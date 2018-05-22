@@ -1,0 +1,72 @@
+# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+
+
+class EULAConfiguration(object):
+
+    """Implementation of the 'EULA Configuration.' model.
+
+    Specifies the End User License Agreement acceptance information.
+
+    Attributes:
+        license_key (string): Specifies the license key.
+        signed_by_user (string): Specifies the login account name for the
+            Cohesity user who accepted the End User License Agreement.
+        signed_time (long|int): Specifies the time that the End User License
+            Agreement was accepted.
+        signed_version (long|int): Specifies the version of the End User
+            License Agreement that was accepted.
+
+    """
+
+    # Create a mapping from Model property names to API property names
+    _names = {
+        "license_key":'licenseKey',
+        "signed_by_user":'signedByUser',
+        "signed_time":'signedTime',
+        "signed_version":'signedVersion'
+    }
+
+    def __init__(self,
+                 license_key=None,
+                 signed_by_user=None,
+                 signed_time=None,
+                 signed_version=None):
+        """Constructor for the EULAConfiguration class"""
+
+        # Initialize members of the class
+        self.license_key = license_key
+        self.signed_by_user = signed_by_user
+        self.signed_time = signed_time
+        self.signed_version = signed_version
+
+
+    @classmethod
+    def from_dictionary(cls,
+                        dictionary):
+        """Creates an instance of this model from a dictionary
+
+        Args:
+            dictionary (dictionary): A dictionary representation of the object as
+            obtained from the deserialization of the server's response. The keys
+            MUST match property names in the API description.
+
+        Returns:
+            object: An instance of this structure class.
+
+        """
+        if dictionary is None:
+            return None
+
+        # Extract variables from the dictionary
+        license_key = dictionary.get('licenseKey')
+        signed_by_user = dictionary.get('signedByUser')
+        signed_time = dictionary.get('signedTime')
+        signed_version = dictionary.get('signedVersion')
+
+        # Return an object of this model
+        return cls(license_key,
+                   signed_by_user,
+                   signed_time,
+                   signed_version)
+
+

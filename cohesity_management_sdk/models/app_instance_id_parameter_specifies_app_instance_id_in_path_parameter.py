@@ -1,0 +1,51 @@
+# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+
+
+class AppInstanceIdParameterSpecifiesAppInstanceIdInPathParameter(object):
+
+    """Implementation of the 'AppInstanceIdParameter specifies app instance Id in path parameter.' model.
+
+    TODO: type model description here.
+
+    Attributes:
+        app_instance_id (long|int): Specifies the app instance Id. In: path
+
+    """
+
+    # Create a mapping from Model property names to API property names
+    _names = {
+        "app_instance_id":'appInstanceId'
+    }
+
+    def __init__(self,
+                 app_instance_id=None):
+        """Constructor for the AppInstanceIdParameterSpecifiesAppInstanceIdInPathParameter class"""
+
+        # Initialize members of the class
+        self.app_instance_id = app_instance_id
+
+
+    @classmethod
+    def from_dictionary(cls,
+                        dictionary):
+        """Creates an instance of this model from a dictionary
+
+        Args:
+            dictionary (dictionary): A dictionary representation of the object as
+            obtained from the deserialization of the server's response. The keys
+            MUST match property names in the API description.
+
+        Returns:
+            object: An instance of this structure class.
+
+        """
+        if dictionary is None:
+            return None
+
+        # Extract variables from the dictionary
+        app_instance_id = dictionary.get('appInstanceId')
+
+        # Return an object of this model
+        return cls(app_instance_id)
+
+

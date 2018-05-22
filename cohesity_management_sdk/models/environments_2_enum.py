@@ -1,0 +1,45 @@
+# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+
+class Environments2Enum(object):
+
+    """Implementation of the 'environments2' enum.
+
+    TODO: type enum description here.
+
+    Attributes:
+        KVMWARE: TODO: type description here.
+        KSQL: TODO: type description here.
+        KVIEW: TODO: type description here.
+        KPUPPETEER: TODO: type description here.
+        KPHYSICAL: TODO: type description here.
+        KPURE: TODO: type description here.
+        KNETAPP: TODO: type description here.
+        KGENERICNAS: TODO: type description here.
+        KHYPERV: TODO: type description here.
+        KACROPOLIS: TODO: type description here.
+        KAZURE: TODO: type description here.
+
+    """
+
+    K_VMWARE = 'kVMware'
+
+    KSQL = 'kSQL'
+
+    KVIEW = 'kView'
+
+    KPUPPETEER = 'kPuppeteer'
+
+    KPHYSICAL = 'kPhysical'
+
+    KPURE = 'kPure'
+
+    KNETAPP = 'kNetapp'
+
+    KGENERICNAS = 'kGenericNas'
+
+    K_HYPERV = 'kHyperV'
+
+    KACROPOLIS = 'kAcropolis'
+
+    KAZURE = 'kAzure'
+

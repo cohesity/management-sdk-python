@@ -1,0 +1,151 @@
+# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+
+import cohesity_management_sdk.models.registered_source_info
+
+class AgentInformation(object):
+
+    """Implementation of the 'Agent Information.' model.
+
+    Specifies information about the Agent software running on the server or
+    the Virtual Machine.
+
+    Attributes:
+        cbmr_version (string): Specifies the version if Cristie BMR product is
+            installed on the host.
+        host_type (HostType3Enum): Specifies the host type where the agent is
+            running. This is only set for persistent agents. 'kLinux'
+            indicates the Linux operating system. 'kWindows' indicates the
+            Microsoft Windows operating system. 'kAix' indicates the IBM AIX
+            operating system. 'kSolaris' indicates the Oracle Solaris
+            operating system.
+        id (long|int): Specifies the agent's id.
+        name (string): Specifies the agent's name.
+        registration_info (RegisteredSourceInfo): Specifies information about
+            a registered Source.
+        source_side_dedup_enabled (bool): Specifies whether source side dedup
+            is enabled or not.
+        status (StatusEnum): Specifies the agent status. Specifies the status
+            of the agent running on a physical source. 'kUnknown' indicates
+            the Agent is not known. No attempt to connect to the Agent has
+            occurred. 'kUnreachable' indicates the Agent is not reachable.
+            'kHealthy' indicates the Agent is healthy. 'kDegraded' indicates
+            the Agent is running but in a degraded state.
+        status_message (string): Specifies additional details about the agent
+            status.
+        upgradability (UpgradabilityEnum): Specifies the upgradability of the
+            agent running on the physical server. Specifies the upgradability
+            of the agent running on the physical server. 'kUpgradable'
+            indicates the Agent can be upgraded to the agent software version
+            on the cluster. 'kCurrent' indicates the Agent is running the
+            latest version. 'kUnknown' indicates the Agent's version is not
+            known. 'kNonUpgradableInvalidVersion' indicates the Agent's
+            version is invalid. 'kNonUpgradableAgentIsNewer' indicates the
+            Agent's version is newer than the agent software version the
+            cluster. 'kNonUpgradableAgentIsOld' indicates the Agent's version
+            is too old that does not support upgrades.
+        upgrade_status (UpgradeStatusEnum): Specifies the status of the
+            upgrade of the agent on a physical server. Specifies the status of
+            the upgrade of the agent on a physical server. 'kIdle' indicates
+            there is no agent upgrade in progress. 'kAccepted' indicates the
+            Agent upgrade is accepted. 'kStarted' indicates the Agent upgrade
+            is in progress. 'kFinished' indicates the Agent upgrade is
+            completed.
+        upgrade_status_message (string): Specifies detailed message about the
+            agent upgrade failure. This field is not set for successful
+            upgrade.
+        version (string): Specifies the version of the Agent software.
+
+    """
+
+    # Create a mapping from Model property names to API property names
+    _names = {
+        "cbmr_version":'cbmrVersion',
+        "host_type":'hostType',
+        "id":'id',
+        "name":'name',
+        "registration_info":'registrationInfo',
+        "source_side_dedup_enabled":'sourceSideDedupEnabled',
+        "status":'status',
+        "status_message":'statusMessage',
+        "upgradability":'upgradability',
+        "upgrade_status":'upgradeStatus',
+        "upgrade_status_message":'upgradeStatusMessage',
+        "version":'version'
+    }
+
+    def __init__(self,
+                 cbmr_version=None,
+                 host_type=None,
+                 id=None,
+                 name=None,
+                 registration_info=None,
+                 source_side_dedup_enabled=None,
+                 status=None,
+                 status_message=None,
+                 upgradability=None,
+                 upgrade_status=None,
+                 upgrade_status_message=None,
+                 version=None):
+        """Constructor for the AgentInformation class"""
+
+        # Initialize members of the class
+        self.cbmr_version = cbmr_version
+        self.host_type = host_type
+        self.id = id
+        self.name = name
+        self.registration_info = registration_info
+        self.source_side_dedup_enabled = source_side_dedup_enabled
+        self.status = status
+        self.status_message = status_message
+        self.upgradability = upgradability
+        self.upgrade_status = upgrade_status
+        self.upgrade_status_message = upgrade_status_message
+        self.version = version
+
+
+    @classmethod
+    def from_dictionary(cls,
+                        dictionary):
+        """Creates an instance of this model from a dictionary
+
+        Args:
+            dictionary (dictionary): A dictionary representation of the object as
+            obtained from the deserialization of the server's response. The keys
+            MUST match property names in the API description.
+
+        Returns:
+            object: An instance of this structure class.
+
+        """
+        if dictionary is None:
+            return None
+
+        # Extract variables from the dictionary
+        cbmr_version = dictionary.get('cbmrVersion')
+        host_type = dictionary.get('hostType')
+        id = dictionary.get('id')
+        name = dictionary.get('name')
+        registration_info = cohesity_management_sdk.models.registered_source_info.RegisteredSourceInfo.from_dictionary(dictionary.get('registrationInfo')) if dictionary.get('registrationInfo') else None
+        source_side_dedup_enabled = dictionary.get('sourceSideDedupEnabled')
+        status = dictionary.get('status')
+        status_message = dictionary.get('statusMessage')
+        upgradability = dictionary.get('upgradability')
+        upgrade_status = dictionary.get('upgradeStatus')
+        upgrade_status_message = dictionary.get('upgradeStatusMessage')
+        version = dictionary.get('version')
+
+        # Return an object of this model
+        return cls(cbmr_version,
+                   host_type,
+                   id,
+                   name,
+                   registration_info,
+                   source_side_dedup_enabled,
+                   status,
+                   status_message,
+                   upgradability,
+                   upgrade_status,
+                   upgrade_status_message,
+                   version)
+
+

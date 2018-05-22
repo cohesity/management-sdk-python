@@ -1,0 +1,22 @@
+# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+
+class Type3Enum(object):
+
+    """Implementation of the 'Type3' enum.
+
+    Specifies the type of managed object in a Pure Storage FlashBlade
+    like 'kStorageArray' or 'kFileSystem'.
+    'kStorageArray' indicates a top level Pure Storage FlashBlade array.
+    'kFileSystem' indicates a Pure Storage FlashBlade file system within the
+    array.
+
+    Attributes:
+        KSTORAGEARRAY: TODO: type description here.
+        KFILESYSTEM: TODO: type description here.
+
+    """
+
+    KSTORAGEARRAY = 'kStorageArray'
+
+    KFILESYSTEM = 'kFileSystem'
+
