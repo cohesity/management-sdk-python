@@ -19,7 +19,7 @@ import argparse
 import sys
 from pprint import pprint
 
-sys.path.append('../')
+sys.path.append('../sdk')
 import cohesity
 from cohesity.api_client import ApiClient
 from cohesity.rest import ApiException
@@ -34,8 +34,7 @@ class CohesityProtectionJobs(BaseTask):
     
     def __init__(self):
         BaseTask.__init__(self, "Protection Jobs")
-        self.argparser.add_argument('--list',nargs=1, help='list protection jobs')
-
+        self.argparser.add_argument('--list', help='display protection jobs',default=True)
     def parse_args(self):
         BaseTask.parse_args(self)
 

@@ -10,7 +10,7 @@ import argparse
 import sys
 import urllib3
 
-sys.path.append('../')
+sys.path.append('../sdk')
 from prettytable import PrettyTable
 
 urllib3.disable_warnings()
@@ -32,14 +32,18 @@ class BaseTask:
         self.argparser = argparse.ArgumentParser(description=description)
         self.argparser.add_argument('-u', '--user', default='admin',
                                     help="Username for rest api.")
-        self.argparser.add_argument('-p', '--password', default='admin',
+        self.argparser.add_argument('-p', '--password', 
                                     help="Password for rest api.")
         self.argparser.add_argument('--host', 
-                                    help="Host for rest api.")
+                                    help="Hostname or ip of the cohesity cluster")
 
     def parse_args(self):
         self.args = self.argparser.parse_args()
         if (not self.args.host):
+          self.argparser.print_help(sys.stderr)
+          sys.exit(1)
+        
+        if (not self.args.password):
           self.argparser.print_help(sys.stderr)
           sys.exit(1)
 

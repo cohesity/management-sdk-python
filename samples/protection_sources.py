@@ -19,7 +19,7 @@ import argparse
 import sys
 from pprint import pprint
 
-sys.path.append('../')
+sys.path.append('../sdk')
 import cohesity
 from cohesity.api_client import ApiClient
 from cohesity.rest import ApiException
@@ -34,7 +34,7 @@ class CohesityProtectionSources(BaseTask):
     
     def __init__(self):
         BaseTask.__init__(self, "Protection Sources")
-        self.argparser.add_argument('--list',nargs=1, help='list protection sources')
+        self.argparser.add_argument('--list', help='list protection sources',default = True)
 
     def parse_args(self):
         BaseTask.parse_args(self)
