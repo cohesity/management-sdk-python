@@ -144,6 +144,18 @@ class ViewBox(object):
         """
         return self._cluster_partition_name
 
+    @cluster_partition_name.setter
+    def cluster_partition_name(self, cluster_partition_name):
+        """
+        Sets the cluster_partition_name of this ViewBox.
+        Specifies the Cohesity Cluster name where the Storage Domain (View Box) is located.
+
+        :param cluster_partition_name: The cluster_partition_name of this ViewBox.
+        :type: str
+        """
+
+        self._cluster_partition_name = cluster_partition_name
+    
     @property
     def default_user_quota_policy(self):
         """
