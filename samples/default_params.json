@@ -1,0 +1,18 @@
+{
+  "protection_policy": {
+    "days_to_keep": 90,
+    "description": "sdk policy generation",
+    "retries": 3,
+    "retry_interval_mins": 30,
+    "inc_periodicity": "kContinuous",
+    "inc_backup_mins": 30
+  },
+  "protection_job": {
+    "description": "sdk job generation",
+    "full_protection_sla_time_mins": 120,
+    "incremental_protection_sla_time_mins": 60
+  }
+}
+
+
+
