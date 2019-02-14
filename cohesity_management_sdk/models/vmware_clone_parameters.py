@@ -1,0 +1,132 @@
+# -*- coding: utf-8 -*-
+
+
+class VmwareCloneParameters(object):
+
+    """Implementation of the 'VmWare Clone Parameters.' model.
+
+    Specifies the information required for recovering or cloning VmWare VMs.
+
+    Attributes:
+        datastore_folder_id (long|int): Specifies the folder where the restore
+            datastore should be created. This is applicable only when the VMs
+            are being cloned.
+        detach_network (bool): Specifies whether the network should be
+            detached from the recovered or cloned VMs.
+        disable_network (bool): Specifies whether the network should be left
+            in disabled state. Attached network is enabled by default. Set
+            this flag to true to disable it.
+        network_id (long|int): Specifies a network configuration to be
+            attached to the cloned or recovered object. For kCloneVMs and
+            kRecoverVMs tasks, original network configuration is detached if
+            the cloned or recovered object is kept under a different parent
+            Protection Source or a different Resource Pool. By default, for
+            kRecoverVMs task, original network configuration is preserved if
+            the recovered object is kept under the same parent Protection
+            Source and the same Resource Pool. Specify this field to override
+            the preserved network configuration or to attach a new network
+            configuration to the cloned or recovered objects. You can get the
+            networkId of the kNetwork object by setting includeNetworks to
+            'true' in the GET /public/protectionSources operation. In the
+            response, get the id of the desired kNetwork object, the resource
+            pool, and the registered parent Protection Source.
+        powered_on (bool): Specifies the power state of the cloned or
+            recovered objects. By default, the cloned or recovered objects are
+            powered off.
+        prefix (string): Specifies a prefix to prepended to the source object
+            name to derive a new name for the recovered or cloned object. By
+            default, cloned or recovered objects retain their original name.
+            Length of this field is limited to 8 characters.
+        resource_pool_id (long|int): Specifies the resource pool where the
+            cloned or recovered objects are attached. This field is mandatory
+            for kCloneVMs Restore Tasks always. For kRecoverVMs Restore Tasks,
+            this field is mandatory only if newParentId field is specified. If
+            this field is not specified, recovered objects are attached to the
+            original resource pool under the original parent.
+        suffix (string): Specifies a suffix to appended to the original source
+            object name to derive a new name for the recovered or cloned
+            object. By default, cloned or recovered objects retain their
+            original name. Length of this field is limited to 8 characters.
+        vm_folder_id (long|int): Specifies a folder where the VMs should be
+            restored. This is applicable only when the VMs are being restored
+            to an alternate location or if clone is being performed.
+
+    """
+
+    # Create a mapping from Model property names to API property names
+    _names = {
+        "datastore_folder_id":'datastoreFolderId',
+        "detach_network":'detachNetwork',
+        "disable_network":'disableNetwork',
+        "network_id":'networkId',
+        "powered_on":'poweredOn',
+        "prefix":'prefix',
+        "resource_pool_id":'resourcePoolId',
+        "suffix":'suffix',
+        "vm_folder_id":'vmFolderId'
+    }
+
+    def __init__(self,
+                 datastore_folder_id=None,
+                 detach_network=None,
+                 disable_network=None,
+                 network_id=None,
+                 powered_on=None,
+                 prefix=None,
+                 resource_pool_id=None,
+                 suffix=None,
+                 vm_folder_id=None):
+        """Constructor for the VmwareCloneParameters class"""
+
+        # Initialize members of the class
+        self.datastore_folder_id = datastore_folder_id
+        self.detach_network = detach_network
+        self.disable_network = disable_network
+        self.network_id = network_id
+        self.powered_on = powered_on
+        self.prefix = prefix
+        self.resource_pool_id = resource_pool_id
+        self.suffix = suffix
+        self.vm_folder_id = vm_folder_id
+
+
+    @classmethod
+    def from_dictionary(cls,
+                        dictionary):
+        """Creates an instance of this model from a dictionary
+
+        Args:
+            dictionary (dictionary): A dictionary representation of the object as
+            obtained from the deserialization of the server's response. The keys
+            MUST match property names in the API description.
+
+        Returns:
+            object: An instance of this structure class.
+
+        """
+        if dictionary is None:
+            return None
+
+        # Extract variables from the dictionary
+        datastore_folder_id = dictionary.get('datastoreFolderId')
+        detach_network = dictionary.get('detachNetwork')
+        disable_network = dictionary.get('disableNetwork')
+        network_id = dictionary.get('networkId')
+        powered_on = dictionary.get('poweredOn')
+        prefix = dictionary.get('prefix')
+        resource_pool_id = dictionary.get('resourcePoolId')
+        suffix = dictionary.get('suffix')
+        vm_folder_id = dictionary.get('vmFolderId')
+
+        # Return an object of this model
+        return cls(datastore_folder_id,
+                   detach_network,
+                   disable_network,
+                   network_id,
+                   powered_on,
+                   prefix,
+                   resource_pool_id,
+                   suffix,
+                   vm_folder_id)
+
+

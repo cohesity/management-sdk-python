@@ -1,0 +1,125 @@
+# -*- coding: utf-8 -*-
+
+import cohesity_management_sdk.models.azure_managed_disk_params
+import cohesity_management_sdk.models.entity
+
+class DeployVMsToAzureParams(object):
+
+    """Implementation of the 'DeployVMsToAzureParams' model.
+
+    Contains Azure specific information needed to identify various resources
+    when converting and deploying a VM to Azure.
+
+    Attributes:
+        azure_managed_disk_params (AzureManagedDiskParams): Contains managed
+            disk parameters needed to deploy to Azure using managed disk.
+        compute_options (Entity): Specifies the attributes and the latest
+            statistics about an entity.
+        network_resource_group (Entity): Specifies the attributes and the
+            latest statistics about an entity.
+        network_security_group (Entity): Specifies the attributes and the
+            latest statistics about an entity.
+        resource_group (Entity): Specifies the attributes and the latest
+            statistics about an entity.
+        storage_account (Entity): Specifies the attributes and the latest
+            statistics about an entity.
+        storage_container (Entity): Specifies the attributes and the latest
+            statistics about an entity.
+        storage_key (Entity): Specifies the attributes and the latest
+            statistics about an entity.
+        storage_resource_group (Entity): Specifies the attributes and the
+            latest statistics about an entity.
+        subnet (Entity): Specifies the attributes and the latest statistics
+            about an entity.
+        virtual_network (Entity): Specifies the attributes and the latest
+            statistics about an entity.
+
+    """
+
+    # Create a mapping from Model property names to API property names
+    _names = {
+        "azure_managed_disk_params":'azureManagedDiskParams',
+        "compute_options":'computeOptions',
+        "network_resource_group":'networkResourceGroup',
+        "network_security_group":'networkSecurityGroup',
+        "resource_group":'resourceGroup',
+        "storage_account":'storageAccount',
+        "storage_container":'storageContainer',
+        "storage_key":'storageKey',
+        "storage_resource_group":'storageResourceGroup',
+        "subnet":'subnet',
+        "virtual_network":'virtualNetwork'
+    }
+
+    def __init__(self,
+                 azure_managed_disk_params=None,
+                 compute_options=None,
+                 network_resource_group=None,
+                 network_security_group=None,
+                 resource_group=None,
+                 storage_account=None,
+                 storage_container=None,
+                 storage_key=None,
+                 storage_resource_group=None,
+                 subnet=None,
+                 virtual_network=None):
+        """Constructor for the DeployVMsToAzureParams class"""
+
+        # Initialize members of the class
+        self.azure_managed_disk_params = azure_managed_disk_params
+        self.compute_options = compute_options
+        self.network_resource_group = network_resource_group
+        self.network_security_group = network_security_group
+        self.resource_group = resource_group
+        self.storage_account = storage_account
+        self.storage_container = storage_container
+        self.storage_key = storage_key
+        self.storage_resource_group = storage_resource_group
+        self.subnet = subnet
+        self.virtual_network = virtual_network
+
+
+    @classmethod
+    def from_dictionary(cls,
+                        dictionary):
+        """Creates an instance of this model from a dictionary
+
+        Args:
+            dictionary (dictionary): A dictionary representation of the object as
+            obtained from the deserialization of the server's response. The keys
+            MUST match property names in the API description.
+
+        Returns:
+            object: An instance of this structure class.
+
+        """
+        if dictionary is None:
+            return None
+
+        # Extract variables from the dictionary
+        azure_managed_disk_params = cohesity_management_sdk.models.azure_managed_disk_params.AzureManagedDiskParams.from_dictionary(dictionary.get('azureManagedDiskParams')) if dictionary.get('azureManagedDiskParams') else None
+        compute_options = cohesity_management_sdk.models.entity.Entity.from_dictionary(dictionary.get('computeOptions')) if dictionary.get('computeOptions') else None
+        network_resource_group = cohesity_management_sdk.models.entity.Entity.from_dictionary(dictionary.get('networkResourceGroup')) if dictionary.get('networkResourceGroup') else None
+        network_security_group = cohesity_management_sdk.models.entity.Entity.from_dictionary(dictionary.get('networkSecurityGroup')) if dictionary.get('networkSecurityGroup') else None
+        resource_group = cohesity_management_sdk.models.entity.Entity.from_dictionary(dictionary.get('resourceGroup')) if dictionary.get('resourceGroup') else None
+        storage_account = cohesity_management_sdk.models.entity.Entity.from_dictionary(dictionary.get('storageAccount')) if dictionary.get('storageAccount') else None
+        storage_container = cohesity_management_sdk.models.entity.Entity.from_dictionary(dictionary.get('storageContainer')) if dictionary.get('storageContainer') else None
+        storage_key = cohesity_management_sdk.models.entity.Entity.from_dictionary(dictionary.get('storageKey')) if dictionary.get('storageKey') else None
+        storage_resource_group = cohesity_management_sdk.models.entity.Entity.from_dictionary(dictionary.get('storageResourceGroup')) if dictionary.get('storageResourceGroup') else None
+        subnet = cohesity_management_sdk.models.entity.Entity.from_dictionary(dictionary.get('subnet')) if dictionary.get('subnet') else None
+        virtual_network = cohesity_management_sdk.models.entity.Entity.from_dictionary(dictionary.get('virtualNetwork')) if dictionary.get('virtualNetwork') else None
+
+        # Return an object of this model
+        return cls(azure_managed_disk_params,
+                   compute_options,
+                   network_resource_group,
+                   network_security_group,
+                   resource_group,
+                   storage_account,
+                   storage_container,
+                   storage_key,
+                   storage_resource_group,
+                   subnet,
+                   virtual_network)
+
+
