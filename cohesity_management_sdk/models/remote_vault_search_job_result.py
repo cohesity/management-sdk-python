@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
 
 import cohesity_management_sdk.models.remote_protection_job_run_information
 import cohesity_management_sdk.models.unique_global_id

@@ -13,6 +13,9 @@ from cohesity_management_sdk.models.alert_state_list_enum import AlertStateListE
 CLUSTER_USERNAME = 'cluster_username'
 CLUSTER_PASSWORD = 'cluster_password'
 CLUSTER_VIP = 'prod-cluster.cohesity.com'
+CLUSTER_USERNAME = 'admin'
+CLUSTER_PASSWORD = 'admin'
+CLUSTER_VIP = '10.2.145.49'
 MAX_ALERTS = 100
 
 class Alerts(object):
@@ -50,11 +53,9 @@ class Alerts(object):
 def main(args):
 
     # To init client with user/pass.
-    cohesity_client = CohesityClient(username=CLUSTER_USERNAME, password=CLUSTER_PASSWORD)
-    cohesity_client.config.cluster_vip = CLUSTER_VIP
-    cohesity_client.config.enable_logging()
-    cohesity_client.config.skip_ssl_verification = True
-
+    cohesity_client = CohesityClient(cluster_vip=CLUSTER_VIP,
+                                     username=CLUSTER_USERNAME,
+                                     password=CLUSTER_PASSWORD)
     alerts = Alerts()
     alerts.display_alerts(cohesity_client, args.max_alerts)
 

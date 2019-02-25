@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
 
 import cohesity_management_sdk.models.isilon_nfs_mount_point
 import cohesity_management_sdk.models.isilon_smb_mount_point

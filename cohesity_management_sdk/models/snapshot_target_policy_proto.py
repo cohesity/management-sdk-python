@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
 
 import cohesity_management_sdk.models.granularity_bucket
 import cohesity_management_sdk.models.retention_policy_proto

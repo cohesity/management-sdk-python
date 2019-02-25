@@ -1,3 +1,5 @@
+# Copyright 2019 Cohesity Inc. 
+
 from setuptools import setup, find_packages
 
 # Try to convert markdown README to rst format for PyPI.
@@ -8,7 +10,7 @@ except(IOError, ImportError):
     long_description = open('README.md').read()
 
 setup(
-    name='cohesity_sdk',
+    name='cohesity_management_sdk',
     version='1.0.0',
     description='This API provides operations for interfacing with the Cohesity Cluster.',
     long_description=long_description,

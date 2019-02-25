@@ -1,4 +1,4 @@
-__all__ = [
+# Copyright 2019 Cohesity Inc. __all__ = [
     'applications_wrapper',
     'application_specific_parameters',
     'vm_volume_information',

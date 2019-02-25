@@ -1,3 +1,5 @@
+# Copyright 2019 Cohesity Inc. 
+
 # -*- coding: utf-8 -*-
 
 import sys
@@ -22,7 +24,7 @@ class Configuration(object):
     array_serialization = "indexed"
 
     # True if the client should skip verification of SSL certificates
-    skip_ssl_verification = False
+    skip_ssl_verification = True
 
     # An enum for SDK environments
     class Environment(object):

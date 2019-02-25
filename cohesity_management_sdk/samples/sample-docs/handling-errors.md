@@ -8,8 +8,9 @@ python handling_errors.py
 ## Connect to the Cohesity Cluster
 First make sure that you are connected to a Cohesity Cluster.
 ```
-cohesity_client = CohesityClient(username=CLUSTER_USERNAME, password=CLUSTER_PASSWORD)
-cohesity_client.config.cluster_vip = CLUSTER_VIP
+cohesity_client = CohesityClient(cluster_vip=CLUSTER_VIP,
+                                 username=CLUSTER_USERNAME, 
+                                 password=CLUSTER_PASSWORD)
 ```
 Note: Alternatively, you can set the above parameters in cohesity_management_sdk/configuration.py
 
@@ -34,9 +35,11 @@ Re-Initializing cohesity client.
 ```
 def init_client(username, password):
     if not username and not password:
-        return CohesityClient(username=username, password=password)
+        return CohesityClient(cluster_vip=CLUSTER_VIP,
+                              username=username, 
+                              password=password)
     else:
-        client = CohesityClient()
+        client = CohesityClient(cluster_vip=CLUSTER_VIP)
         client.auth.authorize()
         return client
 ```

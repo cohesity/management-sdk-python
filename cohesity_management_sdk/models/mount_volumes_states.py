@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
 
 import cohesity_management_sdk.models.mount_volume_result_details
 import cohesity_management_sdk.models.error

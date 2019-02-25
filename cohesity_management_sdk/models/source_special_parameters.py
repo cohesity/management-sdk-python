@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
 
 import cohesity_management_sdk.models.application_special_job_parameters
 import cohesity_management_sdk.models.physical_source_special_job_parameters

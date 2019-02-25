@@ -3,8 +3,9 @@
 # Python example to
 #   1. clone an existing view.
 #   2. Update the cloned view.
-# Usage: python clone_and_update_view.py --view_name=<name_of_view>
+# Usage: python clone_and_update_view.py --view_name=<name_of_view> \
 # --clone_name=<cloned_view_name>
+
 import argparse
 import json
 import jsonpickle
@@ -68,11 +69,9 @@ class CloneView(object):
 
 def main(args):
 
-    cohesity_client = CohesityClient(username=CLUSTER_USERNAME,
+    cohesity_client = CohesityClient(cluster_vip=CLUSTER_VIP,
+                                     username=CLUSTER_USERNAME,
                                      password=CLUSTER_PASSWORD)
-    cohesity_client.config.cluster_vip = CLUSTER_VIP
-    cohesity_client.config.disable_logging()
-    cohesity_client.config.skip_ssl_verification = True
     view_name = args.view_name
     clone_name = args.clone_name
 

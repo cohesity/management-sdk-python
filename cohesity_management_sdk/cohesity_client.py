@@ -1,3 +1,5 @@
+# Copyright 2019 Cohesity Inc.
+
 # -*- coding: utf-8 -*-
 
 from cohesity_management_sdk.decorators import lazy_property
@@ -221,11 +223,14 @@ class CohesityClient(object):
         return AccessTokens()
 
     def __init__(self,
+                 cluster_vip=None,
                  username=None,
                  password=None,
                  domain=None,
                  auth_token=None):
         #CohesityPatch
+        if cluster_vip == None:
+            raise Exception("Specify cluster VIP")
         if auth_token != None:
             Configuration.auth_token = auth_token
         if username != None:
@@ -235,5 +240,6 @@ class CohesityClient(object):
             Configuration.auth_token = None  # Flushing existing token.
         if domain != None:
             Configuration.domain = domain
+        Configuration.cluster_vip = cluster_vip
 
 

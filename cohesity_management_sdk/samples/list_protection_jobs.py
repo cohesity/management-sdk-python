@@ -39,11 +39,9 @@ class ProtectionJobsList(object):
 
 def main():
 
-    cohesity_client = CohesityClient(username=CLUSTER_USERNAME,
+    cohesity_client = CohesityClient(cluster_vip=CLUSTER_VIP,
+                                     username=CLUSTER_USERNAME,
                                      password=CLUSTER_PASSWORD)
-    cohesity_client.config.cluster_vip = CLUSTER_VIP
-    cohesity_client.config.skip_ssl_verification = True
-    cohesity_client.config.disable_logging()
     protect_object = ProtectionJobsList()
     protect_object.display_protection_jobs(cohesity_client)
 

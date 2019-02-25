@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
 
 from cohesity_management_sdk.api_helper import APIHelper
 import cohesity_management_sdk.exceptions.api_exception

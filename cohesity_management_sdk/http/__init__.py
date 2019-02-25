@@ -1,4 +1,4 @@
-__all__ = [
+# Copyright 2019 Cohesity Inc. __all__ = [
     'auth',
     'http_method_enum',
     'http_request',

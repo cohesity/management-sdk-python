@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
 
 from cohesity_management_sdk.http.http_method_enum import HttpMethodEnum
 from cohesity_management_sdk.http.http_request import HttpRequest

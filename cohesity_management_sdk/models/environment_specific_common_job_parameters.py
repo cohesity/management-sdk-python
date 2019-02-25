@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
 
 import cohesity_management_sdk.models.hyperv_environment_job_parameters
 import cohesity_management_sdk.models.nas_environment_job_parameters

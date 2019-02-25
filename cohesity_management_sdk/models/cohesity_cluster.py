@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
 
 import cohesity_management_sdk.models.athena_apps_configuration
 import cohesity_management_sdk.models.cluster_audit_log_configuration
