@@ -9,7 +9,7 @@
 import argparse
 
 from cohesity_management_sdk.cohesity_client import CohesityClient
-from cohesity_management_sdk.samples.on_demand_job_run import ProtectionJobs
+from cohesity_management_sdk.samples.on_demand_job_run.on_demand_job_run import ProtectionJobs
 
 CLUSTER_USERNAME = 'cluster_username'
 CLUSTER_PASSWORD = 'cluster_password'
