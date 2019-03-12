@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 
 class IndexingPolicy(object):
@@ -11,9 +12,9 @@ class IndexingPolicy(object):
     the directories to index.
 
     Attributes:
-        allow_prefixes (list of string): Array of Indexed Directories. 
+        allow_prefixes (list of string): Array of Indexed Directories.
             Specifies a list of directories to index.
-        deny_prefixes (list of string): Array of Excluded Directories. 
+        deny_prefixes (list of string): Array of Excluded Directories.
             Specifies a list of directories to exclude from indexing.
         disable_indexing (bool): Specifies if the files found in an Object
             (such as a VM) should be indexed. If false (the default), files

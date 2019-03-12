@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 import cohesity_management_sdk.models.subnet
 import cohesity_management_sdk.models.quota_policy
@@ -13,7 +14,7 @@ class StorageDomainViewBoxRequest(object):
     Attributes:
         ad_domain_name (string): Specifies an active directory domain that
             this view box is mapped to.
-        client_subnet_white_list (list of Subnet): Array of Subnets. 
+        client_subnet_white_list (list of Subnet): Array of Subnets.
             Specifies the Subnets from which this Storage Domain (View Box)
             accepts requests.
         cloud_down_waterfall_threshold_pct (int): Specifies the cloud down

@@ -12,8 +12,8 @@ from functools import wraps
 from cohesity_management_sdk.cohesity_client import CohesityClient
 from cohesity_management_sdk.exceptions.api_exception import APIException, ExpiredTokenException
 from cohesity_management_sdk.models.access_token import AccessToken
-from cohesity_management_sdk.samples.list_protection_jobs import ProtectionJobsList
-from cohesity_management_sdk.samples.list_unresolved_alerts import Alerts
+from cohesity_management_sdk.samples.list_protection_jobs.list_protection_jobs import ProtectionJobsList
+from cohesity_management_sdk.samples.list_unresolved_alerts.list_unresolved_alerts import Alerts
 
 CLUSTER_USERNAME = 'cluster_username'
 CLUSTER_PASSWORD = 'cluster_password'

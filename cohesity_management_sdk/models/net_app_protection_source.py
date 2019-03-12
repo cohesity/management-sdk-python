@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 import cohesity_management_sdk.models.net_app_cluster_information
 import cohesity_management_sdk.models.net_app_volume_information

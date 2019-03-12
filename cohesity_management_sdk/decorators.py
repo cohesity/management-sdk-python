@@ -1,4 +1,4 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
 
 class lazy_property(object):
 

@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 import cohesity_management_sdk.models.entity_permission_information
 import cohesity_management_sdk.models.aggregated_subtree_info
@@ -13,7 +14,7 @@ class NodeInAProtectionSourcesTree(object):
     'kComputeResource' and 'kResourcePool'.
 
     Attributes:
-        application_nodes (list of object): Array of Child Subtrees. 
+        application_nodes (list of object): Array of Child Subtrees.
             Specifies the child subtree used to store additional
             application-level Objects. Different environments use the subtree
             to store application-level information. For example for SQL

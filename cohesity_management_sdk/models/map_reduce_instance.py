@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 import cohesity_management_sdk.models.map_reduce_instance_input_param
 import cohesity_management_sdk.models.input_selector_selects_the_files_to_map_over

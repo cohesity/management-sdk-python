@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 import cohesity_management_sdk.models.alerting_config
 import cohesity_management_sdk.models.environment_specific_common_job_parameters
@@ -15,7 +16,7 @@ class RPOPolicy(object):
     Attributes:
         alerting_config (AlertingConfig): Specifies optional settings for
             alerting.
-        alerting_policy (list of AlertingPolicyEnum): Array of Job Events. 
+        alerting_policy (list of AlertingPolicyEnum): Array of Job Events.
             During Job Runs, the following Job Events are generated: 1) Job
             succeeds 2) Job fails 3) Job violates the SLA These Job Events can
             cause Alerts to be generated. 'kSuccess' means the Protection Job

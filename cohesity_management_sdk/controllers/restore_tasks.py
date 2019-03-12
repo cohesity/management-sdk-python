@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -111,7 +112,7 @@ class RestoreTasks(BaseController):
         """
         try:
             self.logger.info('search_objects called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for search_objects.')
             _url_path = '/public/restore/objects'
@@ -134,13 +135,13 @@ class RestoreTasks(BaseController):
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for search_objects.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for search_objects.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -152,7 +153,7 @@ class RestoreTasks(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, ObjectSearchResults.from_dictionary)
 
@@ -229,7 +230,7 @@ class RestoreTasks(BaseController):
         """
         try:
             self.logger.info('get_vm_volumes_information called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for get_vm_volumes_information.')
             _url_path = '/public/restore/vms/volumesInformation'
@@ -249,13 +250,13 @@ class RestoreTasks(BaseController):
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for get_vm_volumes_information.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_vm_volumes_information.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -267,7 +268,7 @@ class RestoreTasks(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, VMVolumeInformation.from_dictionary)
 
@@ -296,21 +297,21 @@ class RestoreTasks(BaseController):
         """
         try:
             self.logger.info('update_cancel_restore_task called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for update_cancel_restore_task.')
             self.validate_parameters(id=id)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for update_cancel_restore_task.')
             _url_path = '/public/restore/tasks/cancel/{id}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, { 
+            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
                 'id': id
             })
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for update_cancel_restore_task.')
             _request = self.http_client.put(_query_url)
@@ -349,27 +350,27 @@ class RestoreTasks(BaseController):
         """
         try:
             self.logger.info('get_restore_task_by_id called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for get_restore_task_by_id.')
             self.validate_parameters(id=id)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for get_restore_task_by_id.')
             _url_path = '/public/restore/tasks/{id}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, { 
+            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
                 'id': id
             })
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for get_restore_task_by_id.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_restore_task_by_id.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -381,7 +382,7 @@ class RestoreTasks(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, RestoreTask1.from_dictionary)
 
@@ -427,7 +428,7 @@ class RestoreTasks(BaseController):
         """
         try:
             self.logger.info('get_virtual_disk_information called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for get_virtual_disk_information.')
             self.validate_parameters(source_id=source_id,
@@ -436,7 +437,7 @@ class RestoreTasks(BaseController):
                                      job_id=job_id,
                                      job_run_id=job_run_id,
                                      start_time_usecs=start_time_usecs)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for get_virtual_disk_information.')
             _url_path = '/public/restore/virtualDiskInformation'
@@ -453,13 +454,13 @@ class RestoreTasks(BaseController):
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for get_virtual_disk_information.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_virtual_disk_information.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -471,7 +472,7 @@ class RestoreTasks(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, SpecifiesInformationAboutTheVirtualDisk.from_dictionary)
 
@@ -565,7 +566,7 @@ class RestoreTasks(BaseController):
         """
         try:
             self.logger.info('get_restore_tasks called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for get_restore_tasks.')
             _url_path = '/public/restore/tasks'
@@ -582,13 +583,13 @@ class RestoreTasks(BaseController):
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for get_restore_tasks.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_restore_tasks.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -600,7 +601,7 @@ class RestoreTasks(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, RestoreTask1.from_dictionary)
 
@@ -675,7 +676,7 @@ class RestoreTasks(BaseController):
         """
         try:
             self.logger.info('get_outlook_emails called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for get_outlook_emails.')
             _url_path = '/public/restore/office365/outlook/emails'
@@ -701,13 +702,13 @@ class RestoreTasks(BaseController):
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for get_outlook_emails.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_outlook_emails.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -719,7 +720,7 @@ class RestoreTasks(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, FileFolderSearchResult1.from_dictionary)
 
@@ -770,7 +771,7 @@ class RestoreTasks(BaseController):
         """
         try:
             self.logger.info('get_file_snapshots_information called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for get_file_snapshots_information.')
             self.validate_parameters(cluster_id=cluster_id,
@@ -778,7 +779,7 @@ class RestoreTasks(BaseController):
                                      source_id=source_id,
                                      filename=filename,
                                      job_id=job_id)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for get_file_snapshots_information.')
             _url_path = '/public/restore/files/snapshotsInformation'
@@ -794,13 +795,13 @@ class RestoreTasks(BaseController):
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for get_file_snapshots_information.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_file_snapshots_information.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -812,7 +813,7 @@ class RestoreTasks(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, FileFolderSnapshotInformation.from_dictionary)
 
@@ -861,25 +862,25 @@ class RestoreTasks(BaseController):
         """
         try:
             self.logger.info('create_recover_task called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for create_recover_task.')
             self.validate_parameters(body=body)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for create_recover_task.')
             _url_path = '/public/restore/recover'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for create_recover_task.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for create_recover_task.')
             _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -891,7 +892,7 @@ class RestoreTasks(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, RestoreTask1.from_dictionary)
 
@@ -981,7 +982,7 @@ class RestoreTasks(BaseController):
         """
         try:
             self.logger.info('search_restored_files called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for search_restored_files.')
             _url_path = '/public/restore/files'
@@ -1003,13 +1004,13 @@ class RestoreTasks(BaseController):
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for search_restored_files.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for search_restored_files.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -1021,7 +1022,7 @@ class RestoreTasks(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, FileFolderSearchResult1.from_dictionary)
 
@@ -1055,25 +1056,25 @@ class RestoreTasks(BaseController):
         """
         try:
             self.logger.info('create_deploy_task called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for create_deploy_task.')
             self.validate_parameters(body=body)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for create_deploy_task.')
             _url_path = '/public/restore/deploy'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for create_deploy_task.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for create_deploy_task.')
             _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -1085,7 +1086,7 @@ class RestoreTasks(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, RestoreTask1.from_dictionary)
 
@@ -1116,25 +1117,25 @@ class RestoreTasks(BaseController):
         """
         try:
             self.logger.info('create_download_files_and_folders called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for create_download_files_and_folders.')
             self.validate_parameters(body=body)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for create_download_files_and_folders.')
             _url_path = '/public/restore/downloadFilesAndFolders'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for create_download_files_and_folders.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for create_download_files_and_folders.')
             _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -1146,7 +1147,7 @@ class RestoreTasks(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, RestoreTask1.from_dictionary)
 
@@ -1176,25 +1177,25 @@ class RestoreTasks(BaseController):
         """
         try:
             self.logger.info('create_restore_files_task called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for create_restore_files_task.')
             self.validate_parameters(body=body)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for create_restore_files_task.')
             _url_path = '/public/restore/files'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for create_restore_files_task.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for create_restore_files_task.')
             _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -1206,7 +1207,7 @@ class RestoreTasks(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, RestoreTask1.from_dictionary)
 
@@ -1224,7 +1225,7 @@ class RestoreTasks(BaseController):
 
         Args:
             body (UpdateRestoreTaskParams): TODO: type description here.
-                Example: 
+                Example:
 
         Returns:
             RestoreTask1: Response from the API. Specifies the response of the
@@ -1240,25 +1241,25 @@ Success
         """
         try:
             self.logger.info('update_restore_task called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for update_restore_task.')
             self.validate_parameters(body=body)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for update_restore_task.')
             _url_path = '/public/restore/recover'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for update_restore_task.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for update_restore_task.')
             _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -1270,7 +1271,7 @@ Success
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, RestoreTask1.from_dictionary)
 
@@ -1300,25 +1301,25 @@ Success
         """
         try:
             self.logger.info('create_applications_clone_task called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for create_applications_clone_task.')
             self.validate_parameters(body=body)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for create_applications_clone_task.')
             _url_path = '/public/restore/applicationsClone'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for create_applications_clone_task.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for create_applications_clone_task.')
             _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -1330,7 +1331,7 @@ Success
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, RestoreTask1.from_dictionary)
 
@@ -1361,25 +1362,25 @@ Success
         """
         try:
             self.logger.info('create_applications_recover_task called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for create_applications_recover_task.')
             self.validate_parameters(body=body)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for create_applications_recover_task.')
             _url_path = '/public/restore/applicationsRecover'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for create_applications_recover_task.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for create_applications_recover_task.')
             _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -1391,7 +1392,7 @@ Success
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, RestoreTask1.from_dictionary)
 
@@ -1421,25 +1422,25 @@ Success
         """
         try:
             self.logger.info('create_clone_task called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for create_clone_task.')
             self.validate_parameters(body=body)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for create_clone_task.')
             _url_path = '/public/restore/clone'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for create_clone_task.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for create_clone_task.')
             _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -1451,7 +1452,7 @@ Success
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, RestoreTask1.from_dictionary)
 
@@ -1481,21 +1482,21 @@ Success
         """
         try:
             self.logger.info('destroy_clone_task called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for destroy_clone_task.')
             self.validate_parameters(id=id)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for destroy_clone_task.')
             _url_path = '/public/restore/clone/{id}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, { 
+            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
                 'id': id
             })
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for destroy_clone_task.')
             _request = self.http_client.delete(_query_url)

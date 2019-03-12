@@ -1,5 +1,3 @@
-# List Protection Job- Example Workflow
-
 ## Usage: 
 ```
 python on_demand_job_run.py --job_name <name_of_protection_job>

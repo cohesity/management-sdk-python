@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 import cohesity_management_sdk.models.view_alias_information
 import cohesity_management_sdk.models.file_extension_filter
@@ -20,7 +21,7 @@ class View(object):
     Cluster.
 
     Attributes:
-        access_sids (list of string): Array of Security Identifiers (SIDs) 
+        access_sids (list of string): Array of Security Identifiers (SIDs)
             Specifies the list of security identifiers (SIDs) for the
             restricted Principals who have access to this View.
         aliases (list of ViewAliasInformation): Aliases created for the view.

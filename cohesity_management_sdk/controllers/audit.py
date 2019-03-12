@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -97,7 +98,7 @@ class Audit(BaseController):
         """
         try:
             self.logger.info('search_cluster_audit_logs called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for search_cluster_audit_logs.')
             _url_path = '/public/auditLogs/cluster'
@@ -120,13 +121,13 @@ class Audit(BaseController):
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for search_cluster_audit_logs.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for search_cluster_audit_logs.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -138,7 +139,7 @@ class Audit(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, ClusterAuditLogFilterResult.from_dictionary)
 

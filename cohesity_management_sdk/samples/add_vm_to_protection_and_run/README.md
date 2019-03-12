@@ -1,4 +1,3 @@
-
 ## Usage: 
 ```
 python add_vm_to_protection_and_run.py --job_name <name_of_protection_job> --vm_list list_of_vms

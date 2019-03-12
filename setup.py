@@ -12,11 +12,12 @@ except(IOError, ImportError):
 setup(
     name='cohesity_management_sdk',
     version='1.0.0',
-    description='This API provides operations for interfacing with the Cohesity Cluster.',
+    description='This SDK provides operations for interfacing with the Cohesity Cluster.',
     long_description=long_description,
-    author='Cohesity API Ecosystem Team.',
+    long_description_content_type="text/markdown",
+    author='Cohesity Inc.',
     author_email='cohesity-api-sdks@cohesity.com',
-    url='https://github.com/cohesity/',
+    url='https://github.com/cohesity/management-sdk-python',
     packages=find_packages(),
     install_requires=[
         'requests>=2.9.1, <3.0',

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
 # -*- coding: utf-8 -*-
@@ -39,20 +40,20 @@ class App(BaseController):
         """
         try:
             self.logger.info('upload_app called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for upload_app.')
             _url_path = '/public/apps'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for upload_app.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for upload_app.')
             _request = self.http_client.post(_query_url, headers=_headers)
@@ -64,7 +65,7 @@ class App(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, AppInformation.from_dictionary)
 
@@ -95,23 +96,23 @@ class App(BaseController):
         """
         try:
             self.logger.info('delete_uninstall_app called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for delete_uninstall_app.')
             self.validate_parameters(app_uid=app_uid,
                                      version=version)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for delete_uninstall_app.')
             _url_path = '/public/apps/{appUid}/versions/{version}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, { 
+            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
                 'appUid': app_uid,
                 'version': version
             })
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for delete_uninstall_app.')
             _request = self.http_client.delete(_query_url)
@@ -151,29 +152,29 @@ class App(BaseController):
         """
         try:
             self.logger.info('create_install_app called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for create_install_app.')
             self.validate_parameters(app_uid=app_uid,
                                      version=version)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for create_install_app.')
             _url_path = '/public/apps/{appUid}/versions/{version}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, { 
+            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
                 'appUid': app_uid,
                 'version': version
             })
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for create_install_app.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for create_install_app.')
             _request = self.http_client.post(_query_url, headers=_headers)
@@ -185,7 +186,7 @@ class App(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, AppInformation.from_dictionary)
 
@@ -215,20 +216,20 @@ class App(BaseController):
         """
         try:
             self.logger.info('get_apps called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for get_apps.')
             _url_path = '/public/apps'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for get_apps.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_apps.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -240,7 +241,7 @@ class App(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, AppInformation.from_dictionary)
 

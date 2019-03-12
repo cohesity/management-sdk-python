@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 
 class UpdateMachineAccountsRequest(object):
@@ -9,7 +10,7 @@ class UpdateMachineAccountsRequest(object):
     active directory.
 
     Attributes:
-        machine_accounts (list of string): Array of Machine Accounts. 
+        machine_accounts (list of string): Array of Machine Accounts.
             Specifies an array of computer names used to identify the Cohesity
             Cluster on the domain.
         overwrite_existing_accounts (bool): Specifies whether the specified

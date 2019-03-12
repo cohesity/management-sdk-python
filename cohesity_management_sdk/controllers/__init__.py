@@ -1,4 +1,7 @@
-# Copyright 2019 Cohesity Inc. __all__ = [
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
+
+__all__ = [
     'base_controller',
     'alerts',
     'active_directory',

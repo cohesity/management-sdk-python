@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 
 class VserverNetworkInterface(object):
@@ -10,7 +11,7 @@ class VserverNetworkInterface(object):
     specific data protocol, such as NFS or CIFS.
 
     Attributes:
-        data_protocols (list of DataProtocolEnum): Array of Data Protocols. 
+        data_protocols (list of DataProtocolEnum): Array of Data Protocols.
             Specifies the set of data protocols supported by this interface.
             'kNfs' indicates NFS connections. 'kCifs' indicates SMB (CIFS)
             connections. 'kIscsi' indicates iSCSI connections. 'kFc' indicates

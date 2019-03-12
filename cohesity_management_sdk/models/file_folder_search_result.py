@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 import cohesity_management_sdk.models.email_meta_data
 import cohesity_management_sdk.models.file_folder_version
@@ -15,7 +16,7 @@ class FileFolderSearchResult(object):
         document_type (string): Specifies the inferred document type.
         email_meta_data (EmailMetaData): Specifies details about the emails
             and the folder containing emails.
-        file_versions (list of FileFolderVersion): Array of File Versions. 
+        file_versions (list of FileFolderVersion): Array of File Versions.
             Specifies the different snapshot versions of a file or folder that
             were captured at different times.
         filename (string): Specifies the name of the found file or folder.

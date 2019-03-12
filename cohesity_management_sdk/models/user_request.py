@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 
 class UserRequest(object):
@@ -9,7 +10,7 @@ class UserRequest(object):
     existing user.
 
     Attributes:
-        additional_group_names (list of string): Array of Additional Groups. 
+        additional_group_names (list of string): Array of Additional Groups.
             Specifies the names of additional groups this User may belong to.
         description (string): Specifies a description about the user.
         domain (string): Specifies the fully qualified domain name (FQDN) of

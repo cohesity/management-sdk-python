@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -37,21 +38,21 @@ class LdapProvider(BaseController):
         """
         try:
             self.logger.info('delete_ldap_provider called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for delete_ldap_provider.')
             self.validate_parameters(id=id)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for delete_ldap_provider.')
             _url_path = '/public/ldapProvider/{id}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, { 
+            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
                 'id': id
             })
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for delete_ldap_provider.')
             _request = self.http_client.delete(_query_url)
@@ -89,21 +90,21 @@ class LdapProvider(BaseController):
         """
         try:
             self.logger.info('get_ldap_provider_status called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for get_ldap_provider_status.')
             self.validate_parameters(id=id)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for get_ldap_provider_status.')
             _url_path = '/public/ldapProvider/{id}/status'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, { 
+            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
                 'id': id
             })
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_ldap_provider_status.')
             _request = self.http_client.get(_query_url)
@@ -142,25 +143,25 @@ class LdapProvider(BaseController):
         """
         try:
             self.logger.info('update_ldap_provider called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for update_ldap_provider.')
             self.validate_parameters(body=body)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for update_ldap_provider.')
             _url_path = '/public/ldapProvider'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for update_ldap_provider.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for update_ldap_provider.')
             _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -172,7 +173,7 @@ class LdapProvider(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, LDAPProviderResponse.from_dictionary)
 
@@ -201,25 +202,25 @@ class LdapProvider(BaseController):
         """
         try:
             self.logger.info('create_ldap_provider called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for create_ldap_provider.')
             self.validate_parameters(body=body)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for create_ldap_provider.')
             _url_path = '/public/ldapProvider'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for create_ldap_provider.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for create_ldap_provider.')
             _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -231,7 +232,7 @@ class LdapProvider(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, LDAPProviderResponse.from_dictionary)
 
@@ -268,7 +269,7 @@ class LdapProvider(BaseController):
         """
         try:
             self.logger.info('get_ldap_provider called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for get_ldap_provider.')
             _url_path = '/public/ldapProvider'
@@ -282,13 +283,13 @@ class LdapProvider(BaseController):
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for get_ldap_provider.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_ldap_provider.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -300,7 +301,7 @@ class LdapProvider(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, LDAPProviderResponse.from_dictionary)
 

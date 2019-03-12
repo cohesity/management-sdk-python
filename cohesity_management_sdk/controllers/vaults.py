@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -60,13 +61,13 @@ class Vaults(BaseController):
         """
         try:
             self.logger.info('get_archive_media_info called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for get_archive_media_info.')
             self.validate_parameters(cluster_incarnation_id=cluster_incarnation_id,
                                      qstar_archive_job_id=qstar_archive_job_id,
                                      cluster_id=cluster_id)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for get_archive_media_info.')
             _url_path = '/public/vaults/archiveMediaInfo'
@@ -82,13 +83,13 @@ class Vaults(BaseController):
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for get_archive_media_info.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_archive_media_info.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -100,7 +101,7 @@ class Vaults(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, TapeMediaInformation.from_dictionary)
 
@@ -130,25 +131,25 @@ class Vaults(BaseController):
         """
         try:
             self.logger.info('update_bandwidth_settings called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for update_bandwidth_settings.')
             self.validate_parameters(body=body)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for update_bandwidth_settings.')
             _url_path = '/public/vaults/bandwidthSettings'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for update_bandwidth_settings.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for update_bandwidth_settings.')
             _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -160,7 +161,7 @@ class Vaults(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, VaultBandwidthLimits.from_dictionary)
 
@@ -200,27 +201,27 @@ class Vaults(BaseController):
         """
         try:
             self.logger.info('get_vault_encryption_key called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for get_vault_encryption_key.')
             self.validate_parameters(id=id)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for get_vault_encryption_key.')
             _url_path = '/public/vaults/encryptionKey/{id}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, { 
+            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
                 'id': id
             })
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for get_vault_encryption_key.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_vault_encryption_key.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -232,7 +233,7 @@ class Vaults(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, VaultEncryptionKey.from_dictionary)
 
@@ -273,7 +274,7 @@ class Vaults(BaseController):
         """
         try:
             self.logger.info('get_vaults called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for get_vaults.')
             _url_path = '/public/vaults'
@@ -287,13 +288,13 @@ class Vaults(BaseController):
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for get_vaults.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_vaults.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -305,7 +306,7 @@ class Vaults(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, Vault.from_dictionary)
 
@@ -336,25 +337,25 @@ class Vaults(BaseController):
         """
         try:
             self.logger.info('create_vault called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for create_vault.')
             self.validate_parameters(body=body)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for create_vault.')
             _url_path = '/public/vaults'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for create_vault.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for create_vault.')
             _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -366,7 +367,7 @@ class Vaults(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, Vault.from_dictionary)
 
@@ -391,20 +392,20 @@ class Vaults(BaseController):
         """
         try:
             self.logger.info('get_bandwidth_settings called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for get_bandwidth_settings.')
             _url_path = '/public/vaults/bandwidthSettings'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for get_bandwidth_settings.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_bandwidth_settings.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -416,7 +417,7 @@ class Vaults(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, VaultBandwidthLimits.from_dictionary)
 
@@ -447,27 +448,27 @@ class Vaults(BaseController):
         """
         try:
             self.logger.info('get_vault_by_id called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for get_vault_by_id.')
             self.validate_parameters(id=id)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for get_vault_by_id.')
             _url_path = '/public/vaults/{id}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, { 
+            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
                 'id': id
             })
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for get_vault_by_id.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_vault_by_id.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -479,7 +480,7 @@ class Vaults(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, Vault.from_dictionary)
 
@@ -513,29 +514,29 @@ class Vaults(BaseController):
         """
         try:
             self.logger.info('update_vault called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for update_vault.')
             self.validate_parameters(id=id,
                                      body=body)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for update_vault.')
             _url_path = '/public/vaults/{id}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, { 
+            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
                 'id': id
             })
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for update_vault.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for update_vault.')
             _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -547,7 +548,7 @@ class Vaults(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, Vault.from_dictionary)
 

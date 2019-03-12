@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 import cohesity_management_sdk.models.update_protection_job_run
 
@@ -9,7 +10,7 @@ class UpdateProtectionJobRunsParameters(object):
     Specifies the Job Runs to update with a new expiration times.
 
     Attributes:
-        job_runs (list of UpdateProtectionJobRun): Array of Job Runs. 
+        job_runs (list of UpdateProtectionJobRun): Array of Job Runs.
             Specifies the Job Runs to update with a new expiration times.
 
     """

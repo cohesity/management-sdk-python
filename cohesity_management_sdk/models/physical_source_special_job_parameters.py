@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 import cohesity_management_sdk.models.application_specific_parameters
 import cohesity_management_sdk.models.file_or_directory_to_protect
@@ -21,7 +22,7 @@ class PhysicalSourceSpecialJobParameters(object):
         file_paths (list of FileOrDirectoryToProtect): Array of File Paths to
             Back Up.  Specifies a list of directories or files to protect in a
             Physical Server.
-        volume_guid (list of string): Array of Mounted Volumes to Back Up. 
+        volume_guid (list of string): Array of Mounted Volumes to Back Up.
             Specifies the subset of mounted volumes to protect in a Physical
             Server. If not specified, all mounted volumes on a Physical Server
             are protected.

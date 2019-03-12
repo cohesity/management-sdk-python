@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 import cohesity_management_sdk.models.smb_permission
 
@@ -11,7 +12,7 @@ class SMBPermissionsInformation(object):
     Attributes:
         owner_sid (string): Specifies the security identifier (SID) of the
             owner of the SMB share.
-        permissions (list of SMBPermission): Array of SMB Permissions. 
+        permissions (list of SMBPermission): Array of SMB Permissions.
             Specifies a list of SMB permissions.
 
     """

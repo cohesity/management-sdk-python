@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 import cohesity_management_sdk.models.agent_information
 import cohesity_management_sdk.models.unique_global_id
@@ -37,7 +38,7 @@ class PhysicalProtectionSource(object):
         mtype (Type15Enum): Specifies the type of managed Object in a Physical
             Protection Source. 'kHost' indicates a single physical server.
             'kWindowsCluster' indicates a Microsoft Windows cluster.
-        volumes (list of PhysicalVolume): Array of Physical Volumes. 
+        volumes (list of PhysicalVolume): Array of Physical Volumes.
             Specifies the volumes available on the physical host. These fields
             are populated only for the kPhysicalHost type.
 

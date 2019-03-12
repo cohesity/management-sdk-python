@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -46,20 +47,20 @@ class Tenant(BaseController):
         """
         try:
             self.logger.info('update_tenant_groups called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for update_tenant_groups.')
             _url_path = '/public/tenants/groups'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for update_tenant_groups.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for update_tenant_groups.')
             _request = self.http_client.put(_query_url, headers=_headers)
@@ -71,7 +72,7 @@ class Tenant(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, GroupDetails.from_dictionary)
 
@@ -104,21 +105,21 @@ class Tenant(BaseController):
         """
         try:
             self.logger.info('update_tenant_view_box called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for update_tenant_view_box.')
             _url_path = '/public/tenants/viewBox'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for update_tenant_view_box.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for update_tenant_view_box.')
             _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -130,7 +131,7 @@ class Tenant(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, TenantViewBoxUpdate.from_dictionary)
 
@@ -162,21 +163,21 @@ class Tenant(BaseController):
         """
         try:
             self.logger.info('update_tenant_vlan called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for update_tenant_vlan.')
             _url_path = '/public/tenants/vlan'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for update_tenant_vlan.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for update_tenant_vlan.')
             _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -188,7 +189,7 @@ class Tenant(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, TenantVlanUpdate.from_dictionary)
 
@@ -214,20 +215,20 @@ class Tenant(BaseController):
         """
         try:
             self.logger.info('get_tenants_proxy_config_request called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for get_tenants_proxy_config_request.')
             _url_path = '/public/tenants/proxy/config'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for get_tenants_proxy_config_request.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_tenants_proxy_config_request.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -239,7 +240,7 @@ class Tenant(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body)
 
@@ -271,21 +272,21 @@ class Tenant(BaseController):
         """
         try:
             self.logger.info('update_tenant_users called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for update_tenant_users.')
             _url_path = '/public/tenants/users'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for update_tenant_users.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for update_tenant_users.')
             _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -297,7 +298,7 @@ class Tenant(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, UserDetails.from_dictionary)
 
@@ -330,21 +331,21 @@ class Tenant(BaseController):
         """
         try:
             self.logger.info('update_tenant_view called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for update_tenant_view.')
             _url_path = '/public/tenants/view'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for update_tenant_view.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for update_tenant_view.')
             _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -356,7 +357,7 @@ class Tenant(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, TenantViewUpdate.from_dictionary)
 
@@ -389,21 +390,21 @@ class Tenant(BaseController):
         """
         try:
             self.logger.info('update_tenant_ldap_provider called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for update_tenant_ldap_provider.')
             _url_path = '/public/tenants/ldapProvider'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for update_tenant_ldap_provider.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for update_tenant_ldap_provider.')
             _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -415,7 +416,7 @@ class Tenant(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, TenantLdapProviderUpdate.from_dictionary)
 
@@ -448,21 +449,21 @@ class Tenant(BaseController):
         """
         try:
             self.logger.info('update_tenant_protection_policy called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for update_tenant_protection_policy.')
             _url_path = '/public/tenants/policy'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for update_tenant_protection_policy.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for update_tenant_protection_policy.')
             _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -474,7 +475,7 @@ class Tenant(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, TenantProtectionPolicyUpdate.from_dictionary)
 
@@ -507,21 +508,21 @@ class Tenant(BaseController):
         """
         try:
             self.logger.info('update_tenant_protection_job called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for update_tenant_protection_job.')
             _url_path = '/public/tenants/protectionJob'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for update_tenant_protection_job.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for update_tenant_protection_job.')
             _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -533,7 +534,7 @@ class Tenant(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, TenantProtectionJobUpdate.from_dictionary)
 
@@ -549,7 +550,7 @@ class Tenant(BaseController):
 
         Args:
             ids (list of string, optional): TODO: type description here.
-                Example: 
+                Example:
 
         Returns:
             list of TenantProxy: Response from the API. Get Tenants Proxies
@@ -564,7 +565,7 @@ class Tenant(BaseController):
         """
         try:
             self.logger.info('get_tenants_proxies called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for get_tenants_proxies.')
             _url_path = '/public/tenants/proxies'
@@ -576,13 +577,13 @@ class Tenant(BaseController):
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for get_tenants_proxies.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_tenants_proxies.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -594,7 +595,7 @@ class Tenant(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, TenantProxy.from_dictionary)
 
@@ -628,21 +629,21 @@ class Tenant(BaseController):
         """
         try:
             self.logger.info('create_tenant called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for create_tenant.')
             _url_path = '/public/tenants'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for create_tenant.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for create_tenant.')
             _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -654,7 +655,7 @@ class Tenant(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, TenantDetails.from_dictionary)
 
@@ -670,7 +671,7 @@ class Tenant(BaseController):
 
         Args:
             tenant_id (string, optional): TODO: type description here.
-                Example: 
+                Example:
 
         Returns:
             list of TenantDetails: Response from the API. Get Tenants
@@ -685,21 +686,21 @@ class Tenant(BaseController):
         """
         try:
             self.logger.info('delete_tenant called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for delete_tenant.')
             _url_path = '/public/tenants'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for delete_tenant.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'text/plain; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for delete_tenant.')
             _request = self.http_client.delete(_query_url, headers=_headers, parameters=tenant_id)
@@ -711,7 +712,7 @@ class Tenant(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, TenantDetails.from_dictionary)
 
@@ -744,21 +745,21 @@ class Tenant(BaseController):
         """
         try:
             self.logger.info('update_tenant_active_directory called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for update_tenant_active_directory.')
             _url_path = '/public/tenants/activeDirectory'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for update_tenant_active_directory.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for update_tenant_active_directory.')
             _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -770,7 +771,7 @@ class Tenant(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, TenantActiveDirectoryUpdate.from_dictionary)
 
@@ -803,21 +804,21 @@ class Tenant(BaseController):
         """
         try:
             self.logger.info('update_tenant_entity called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for update_tenant_entity.')
             _url_path = '/public/tenants/entity'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for update_tenant_entity.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for update_tenant_entity.')
             _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -829,7 +830,7 @@ class Tenant(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, TenantEntityUpdate.from_dictionary)
 
@@ -849,7 +850,7 @@ class Tenant(BaseController):
 
         Args:
             ids (list of string, optional): TODO: type description here.
-                Example: 
+                Example:
             properties (list of PropertiesEnum, optional): 'ViewBox' indicates
                 view box data for tenant. 'Vlan' indicates vlan data for
                 tenant. 'ProtectionPolicy' indicates protection policy for
@@ -860,7 +861,7 @@ class Tenant(BaseController):
                 for tenant.
             hierarchy (bool, optional): TODO: type description here. Example:
                             include_self (bool, optional): TODO: type description here.
-                Example: 
+                Example:
             status (list of Status7Enum, optional): Filter by tenant status.
 
         Returns:
@@ -876,7 +877,7 @@ class Tenant(BaseController):
         """
         try:
             self.logger.info('get_tenants called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for get_tenants.')
             _url_path = '/public/tenants'
@@ -892,13 +893,13 @@ class Tenant(BaseController):
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for get_tenants.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_tenants.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -910,7 +911,7 @@ class Tenant(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, TenantDetails.from_dictionary)
 
@@ -940,21 +941,21 @@ class Tenant(BaseController):
         """
         try:
             self.logger.info('update_tenant called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for update_tenant.')
             _url_path = '/public/tenants'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for update_tenant.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for update_tenant.')
             _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -966,7 +967,7 @@ class Tenant(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, TenantDetails.from_dictionary)
 

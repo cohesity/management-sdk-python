@@ -1,5 +1,3 @@
-# List Protection Job- Example Workflow
-
 ## Usage: 
 ```
 python list_unresolved_alerts.py --max_alerts 10

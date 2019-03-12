@@ -1,5 +1,3 @@
-# List Protection Job- Example Workflow
-
 ## Usage: 
 ```
 python handling_errors.py

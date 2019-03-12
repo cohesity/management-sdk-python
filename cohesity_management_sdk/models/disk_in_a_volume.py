@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 import cohesity_management_sdk.models.disk_block
 import cohesity_management_sdk.models.disk_partition
@@ -19,7 +20,7 @@ class DiskInAVolume(object):
             Microsoft's Hyper-V Virtual Hard Drive format. 'kRaw' indicates
             Raw disk format used by KVM, Acropolis. 'kUnknow' indicates
             Unknown disk format.
-        disk_partitions (list of DiskPartition): Array of Partitions. 
+        disk_partitions (list of DiskPartition): Array of Partitions.
             Specifies information about all the partitions in this disk.
         partition_table_format (PartitionTableFormatEnum): Specifies partition
             table format on a disk. 'kNoPartition' indicates missing partition

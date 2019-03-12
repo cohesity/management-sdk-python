@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -40,27 +41,27 @@ class ViewBoxes(BaseController):
         """
         try:
             self.logger.info('get_view_box_by_id called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for get_view_box_by_id.')
             self.validate_parameters(id=id)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for get_view_box_by_id.')
             _url_path = '/public/viewBoxes/{id}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, { 
+            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
                 'id': id
             })
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for get_view_box_by_id.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_view_box_by_id.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -71,10 +72,10 @@ class ViewBoxes(BaseController):
             self.logger.info('Validating response for get_view_box_by_id.')
             if _context.response.status_code == 404:
                 raise APIException('Not Found', _context)
-            elif (_context.response.status_code < 200) or (_context.response.status_code > 208): 
+            elif (_context.response.status_code < 200) or (_context.response.status_code > 208):
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, DomainViewBox.from_dictionary)
 
@@ -106,29 +107,29 @@ class ViewBoxes(BaseController):
         """
         try:
             self.logger.info('update_view_box called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for update_view_box.')
             self.validate_parameters(id=id,
                                      body=body)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for update_view_box.')
             _url_path = '/public/viewBoxes/{id}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, { 
+            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
                 'id': id
             })
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for update_view_box.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for update_view_box.')
             _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -140,7 +141,7 @@ class ViewBoxes(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, DomainViewBox.from_dictionary)
 
@@ -190,7 +191,7 @@ class ViewBoxes(BaseController):
         """
         try:
             self.logger.info('get_view_boxes called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for get_view_boxes.')
             _url_path = '/public/viewBoxes'
@@ -207,13 +208,13 @@ class ViewBoxes(BaseController):
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for get_view_boxes.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_view_boxes.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -225,7 +226,7 @@ class ViewBoxes(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, DomainViewBox.from_dictionary)
 
@@ -255,25 +256,25 @@ class ViewBoxes(BaseController):
         """
         try:
             self.logger.info('create_view_box called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for create_view_box.')
             self.validate_parameters(body=body)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for create_view_box.')
             _url_path = '/public/viewBoxes'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for create_view_box.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for create_view_box.')
             _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -285,7 +286,7 @@ class ViewBoxes(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, DomainViewBox.from_dictionary)
 

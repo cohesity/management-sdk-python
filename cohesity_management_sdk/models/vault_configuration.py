@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 import cohesity_management_sdk.models.amazon_cloud_credentials
 import cohesity_management_sdk.models.azure_cloud_credentials
@@ -30,7 +31,7 @@ class VaultConfiguration(object):
         nas (NASServerCredentials): Specifies the server credentials to
             connect to a NetApp server.
         oracle (OracleCloudCredentials): Specifies the Oracle Cloud
-            Credentials to connect to an Oracle S3 Compatible vault account. 
+            Credentials to connect to an Oracle S3 Compatible vault account.
             Oracle Cloud Credentials Region, Access-Key-Id and
             Secret-Access-Key. Oracle Cloud properties Tenant and Tier Type.
         qstar (QStarServerCredentials): Specifies the server credentials to

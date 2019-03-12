@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 import cohesity_management_sdk.models.bandwidth_limit
 import cohesity_management_sdk.models.create_access_token_credential_request
@@ -51,7 +52,7 @@ class RegisterRemoteCluster(object):
         remote_access_credentials (CreateAccessTokenCredentialRequest):
             Specifies the Cohesity credentials required for generating an
             access token.
-        remote_ips (list of string): Array of Remote Node IP Addresses. 
+        remote_ips (list of string): Array of Remote Node IP Addresses.
             Specifies the IP addresses of the Nodes on the remote Cluster to
             connect with. These IP addresses can also be VIPS. Specifying
             hostnames is not supported.

@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 import cohesity_management_sdk.models.metric_data_point
 
@@ -9,7 +10,7 @@ class MetricDataBlock(object):
     Specifies a series of metric data points for a time series.
 
     Attributes:
-        data_point_vec (list of MetricDataPoint): Array of Data Points. 
+        data_point_vec (list of MetricDataPoint): Array of Data Points.
             Specifies a list of metric data points for a time series.
         metric_name (string): Specifies the name of a metric such as
             'kDiskAwaitTimeMsecs'.

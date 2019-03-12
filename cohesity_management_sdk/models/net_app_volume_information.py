@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 import cohesity_management_sdk.models.cifs_share_information
 import cohesity_management_sdk.models.volume_security_information
@@ -14,11 +15,11 @@ class NetAppVolumeInformation(object):
             this volume.
         capacity_bytes (long|int): Specifies the total capacity in bytes of
             this volume.
-        cifs_shares (list of CIFSShareInformation): Array of CIFS Shares. 
+        cifs_shares (list of CIFSShareInformation): Array of CIFS Shares.
             Specifies the set of CIFS Shares exported for this volume.
         creation_time_usecs (long|int): Specifies the creation time of the
             volume specified in Unix epoch time (in microseconds).
-        data_protocols (list of DataProtocolEnum): Array of Data Protocols. 
+        data_protocols (list of DataProtocolEnum): Array of Data Protocols.
             Specifies the set of data protocols supported by this volume.
             'kNfs' indicates NFS connections. 'kCifs' indicates SMB (CIFS)
             connections. 'kIscsi' indicates iSCSI connections. 'kFc' indicates

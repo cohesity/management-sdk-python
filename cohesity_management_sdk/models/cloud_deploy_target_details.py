@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 import cohesity_management_sdk.models.aws_parameters
 import cohesity_management_sdk.models.azure_parameters
@@ -15,7 +16,7 @@ class CloudDeployTargetDetails(object):
             converting and deploying a VM to AWS.
         azure_params (AzureParameters): Specifies various resources when
             converting and deploying a VM to Azure.
-        id (long|int): Entity corresponding to the cloud deploy target. 
+        id (long|int): Entity corresponding to the cloud deploy target.
             Specifies the id field inside the EntityProto.
         name (string): Specifies the inner object's name or a human-readable
             string made off the salient attributes. This is only plumbed when

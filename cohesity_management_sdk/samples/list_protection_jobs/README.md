@@ -1,5 +1,3 @@
-# List Protection Job- Example Workflow
-
 ## Usage 
 ```
 python list_protection_jobs.py

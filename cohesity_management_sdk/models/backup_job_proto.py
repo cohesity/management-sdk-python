@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 import cohesity_management_sdk.models.alerting_policy_proto
 import cohesity_management_sdk.models.backup_source_parameters
@@ -187,7 +188,7 @@ class BackupJobProto(object):
             backup Oracle DB for 'payroll' department. User can specify
             following tags: 'payroll', 'Oracle_DB'.
         timezone (string): Timezone of the backup job. All time fields (i.e.,
-            TimeOfDay) in this backup job are stored wrt to this timezone. 
+            TimeOfDay) in this backup job are stored wrt to this timezone.
             The time zones have unique names of the form "Area/Location", e.g.
             "America/New_York". We are using "America/Los_Angeles" as a
             default value so as to be backward compatible with pre-2.7 code.

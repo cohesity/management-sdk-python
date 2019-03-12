@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -33,20 +34,20 @@ class Routes(BaseController):
         """
         try:
             self.logger.info('get_routes called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for get_routes.')
             _url_path = '/public/routes'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for get_routes.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_routes.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -58,7 +59,7 @@ class Routes(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, Route.from_dictionary)
 
@@ -73,7 +74,7 @@ class Routes(BaseController):
         Returns the create status upon completion.
 
         Args:
-            body (Route, optional): TODO: type description here. Example: 
+            body (Route, optional): TODO: type description here. Example:
 
         Returns:
             Route: Response from the API. Success
@@ -87,21 +88,21 @@ class Routes(BaseController):
         """
         try:
             self.logger.info('add_route called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for add_route.')
             _url_path = '/public/routes'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for add_route.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for add_route.')
             _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -113,7 +114,7 @@ class Routes(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, Route.from_dictionary)
 
@@ -129,7 +130,7 @@ class Routes(BaseController):
 
         Args:
             body (DeleteRouteParameters, optional): TODO: type description
-                here. Example: 
+                here. Example:
 
         Returns:
             void: Response from the API. No Content
@@ -143,20 +144,20 @@ class Routes(BaseController):
         """
         try:
             self.logger.info('delete_route called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for delete_route.')
             _url_path = '/public/routes'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for delete_route.')
             _headers = {
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for delete_route.')
             _request = self.http_client.delete(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))

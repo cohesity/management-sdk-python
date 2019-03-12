@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 import cohesity_management_sdk.models.key_value_pair
 import cohesity_management_sdk.models.entity_identifier
@@ -15,7 +16,7 @@ class Entity(object):
             attributes of an entity.
         entity_id (EntityIdentifier): Specifies a unique identifier for the
             entity.
-        latest_metric_vec (list of MetricValue): Array of Metric Statistics. 
+        latest_metric_vec (list of MetricValue): Array of Metric Statistics.
             List of the latest statistics for all metrics defined in the
             schema that this entity belongs to. If statistics for a metric is
             not available, then that data point is not returned.

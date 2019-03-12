@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 import cohesity_management_sdk.models.file_folder_search_result
 
@@ -11,7 +12,7 @@ class FileFolderSearchResult1(object):
     the full result.
 
     Attributes:
-        files (list of FileFolderSearchResult): Array of Files and Folders. 
+        files (list of FileFolderSearchResult): Array of Files and Folders.
             Specifies the list of files and folders returned by this request
             that match the specified search and filter criteria. The number of
             files returned is limited by the pageCount field.

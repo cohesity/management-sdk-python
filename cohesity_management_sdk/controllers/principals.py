@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -36,20 +37,20 @@ class Principals(BaseController):
         """
         try:
             self.logger.info('get_session_user called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for get_session_user.')
             _url_path = '/public/sessionUser'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for get_session_user.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_session_user.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -61,7 +62,7 @@ class Principals(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, UserDetails.from_dictionary)
 
@@ -92,21 +93,21 @@ class Principals(BaseController):
         """
         try:
             self.logger.info('create_reset_s_3_secret_key called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for create_reset_s_3_secret_key.')
             _url_path = '/public/users/s3SecretKey'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for create_reset_s_3_secret_key.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for create_reset_s_3_secret_key.')
             _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -118,7 +119,7 @@ class Principals(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, NewS3SecretAccessKey.from_dictionary)
 
@@ -147,21 +148,21 @@ class Principals(BaseController):
         """
         try:
             self.logger.info('update_user called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for update_user.')
             _url_path = '/public/users'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for update_user.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for update_user.')
             _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -173,7 +174,7 @@ class Principals(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, UserDetails.from_dictionary)
 
@@ -208,21 +209,21 @@ class Principals(BaseController):
         """
         try:
             self.logger.info('create_user called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for create_user.')
             _url_path = '/public/users'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for create_user.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for create_user.')
             _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -234,7 +235,7 @@ class Principals(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, UserDetails.from_dictionary)
 
@@ -269,20 +270,20 @@ class Principals(BaseController):
         """
         try:
             self.logger.info('delete_users called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for delete_users.')
             _url_path = '/public/users'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for delete_users.')
             _headers = {
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for delete_users.')
             _request = self.http_client.delete(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -316,20 +317,20 @@ class Principals(BaseController):
         """
         try:
             self.logger.info('get_user_privileges called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for get_user_privileges.')
             _url_path = '/public/users/privileges'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for get_user_privileges.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_user_privileges.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -341,7 +342,7 @@ class Principals(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body)
 
@@ -390,7 +391,7 @@ class Principals(BaseController):
         """
         try:
             self.logger.info('get_users called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for get_users.')
             _url_path = '/public/users'
@@ -406,13 +407,13 @@ class Principals(BaseController):
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for get_users.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_users.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -424,7 +425,7 @@ class Principals(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, UserDetails.from_dictionary)
 
@@ -484,7 +485,7 @@ class Principals(BaseController):
         """
         try:
             self.logger.info('search_principals called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for search_principals.')
             _url_path = '/public/principals/searchPrincipals'
@@ -500,13 +501,13 @@ class Principals(BaseController):
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for search_principals.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for search_principals.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -518,7 +519,7 @@ class Principals(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, Principal.from_dictionary)
 
@@ -550,24 +551,24 @@ class Principals(BaseController):
         """
         try:
             self.logger.info('update_sources_for_principals called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for update_sources_for_principals.')
             self.validate_parameters(body=body)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for update_sources_for_principals.')
             _url_path = '/public/principals/protectionSources'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for update_sources_for_principals.')
             _headers = {
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for update_sources_for_principals.')
             _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -609,7 +610,7 @@ class Principals(BaseController):
         """
         try:
             self.logger.info('list_sources_for_principals called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for list_sources_for_principals.')
             _url_path = '/public/principals/protectionSources'
@@ -621,13 +622,13 @@ class Principals(BaseController):
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for list_sources_for_principals.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for list_sources_for_principals.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -639,7 +640,7 @@ class Principals(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, SourcesForSid.from_dictionary)
 

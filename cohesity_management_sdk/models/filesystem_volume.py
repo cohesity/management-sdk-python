@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 import cohesity_management_sdk.models.disk_in_a_volume
 import cohesity_management_sdk.models.logical_volume
@@ -10,7 +11,7 @@ class FilesystemVolume(object):
     Specifies information about a filesystem volume.
 
     Attributes:
-        disks (list of DiskInAVolume): Array of Disks and Partitions. 
+        disks (list of DiskInAVolume): Array of Disks and Partitions.
             Specifies information about all the disks and partitions needed to
             mount this logical volume.
         display_name (string): Specifies a description about the filesystem.

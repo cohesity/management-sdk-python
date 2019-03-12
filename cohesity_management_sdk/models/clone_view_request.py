@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 import cohesity_management_sdk.models.file_extension_filter
 import cohesity_management_sdk.models.file_level_data_lock_configurations
@@ -15,7 +16,7 @@ class CloneViewRequest(object):
     Specifies the settings for cloning an existing View.
 
     Attributes:
-        access_sids (list of string): Array of Security Identifiers (SIDs) 
+        access_sids (list of string): Array of Security Identifiers (SIDs)
             Specifies the list of security identifiers (SIDs) for the
             restricted Principals who have access to this View.
         clone_view_name (string): Specifies the name of the new View that is

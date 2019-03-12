@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -27,7 +28,7 @@ class ClusterPartitions(BaseController):
         Specifying parameters filters the results that are returned.
 
         Args:
-            ids (list of long|int, optional): Array of Cluster Partition Ids. 
+            ids (list of long|int, optional): Array of Cluster Partition Ids.
                 Filter by a list of Cluster Partition ids. If empty, the
                 Cluster Partitions are not filtered by id.
             names (list of string, optional): Array of Cluster Partition
@@ -46,7 +47,7 @@ class ClusterPartitions(BaseController):
         """
         try:
             self.logger.info('get_cluster_partitions called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for get_cluster_partitions.')
             _url_path = '/public/clusterPartitions'
@@ -59,13 +60,13 @@ class ClusterPartitions(BaseController):
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for get_cluster_partitions.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_cluster_partitions.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -77,7 +78,7 @@ class ClusterPartitions(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, ClusterPartition.from_dictionary)
 
@@ -108,27 +109,27 @@ class ClusterPartitions(BaseController):
         """
         try:
             self.logger.info('get_cluster_partition_by_id called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for get_cluster_partition_by_id.')
             self.validate_parameters(id=id)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for get_cluster_partition_by_id.')
             _url_path = '/public/clusterPartitions/{id}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, { 
+            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
                 'id': id
             })
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for get_cluster_partition_by_id.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_cluster_partition_by_id.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -139,10 +140,10 @@ class ClusterPartitions(BaseController):
             self.logger.info('Validating response for get_cluster_partition_by_id.')
             if _context.response.status_code == 404:
                 raise APIException('Not Found', _context)
-            elif (_context.response.status_code < 200) or (_context.response.status_code > 208): 
+            elif (_context.response.status_code < 200) or (_context.response.status_code > 208):
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, ClusterPartition.from_dictionary)
 

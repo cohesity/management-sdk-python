@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -35,20 +36,20 @@ class Clusters(BaseController):
         """
         try:
             self.logger.info('get_external_client_subnets called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for get_external_client_subnets.')
             _url_path = '/public/externalClientSubnets'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for get_external_client_subnets.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_external_client_subnets.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -60,7 +61,7 @@ class Clusters(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, SpecifiesTheExternalClientSubnetsThatCanCommunicateWithThisCluster.from_dictionary)
 
@@ -85,20 +86,20 @@ class Clusters(BaseController):
         """
         try:
             self.logger.info('get_cluster_keys called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for get_cluster_keys.')
             _url_path = '/public/cluster/keys'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for get_cluster_keys.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_cluster_keys.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -110,7 +111,7 @@ class Clusters(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, ClusterPublicKeys.from_dictionary)
 
@@ -126,7 +127,7 @@ class Clusters(BaseController):
 
         Args:
             body (SpecifiesTheExternalClientSubnetsThatCanCommunicateWithThisCl
-                uster, optional): TODO: type description here. Example: 
+                uster, optional): TODO: type description here. Example:
 
         Returns:
             SpecifiesTheExternalClientSubnetsThatCanCommunicateWithThisCluster:
@@ -141,21 +142,21 @@ class Clusters(BaseController):
         """
         try:
             self.logger.info('update_external_client_subnets called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for update_external_client_subnets.')
             _url_path = '/public/externalClientSubnets'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for update_external_client_subnets.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for update_external_client_subnets.')
             _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -167,7 +168,7 @@ class Clusters(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, SpecifiesTheExternalClientSubnetsThatCanCommunicateWithThisCluster.from_dictionary)
 

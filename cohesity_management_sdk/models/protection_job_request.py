@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 import cohesity_management_sdk.models.alerting_config
 import cohesity_management_sdk.models.cloud_parameters
@@ -24,7 +25,7 @@ class ProtectionJobRequest(object):
             period starts.
         alerting_config (AlertingConfig): Specifies optional settings for
             alerting.
-        alerting_policy (list of AlertingPolicyEnum): Array of Job Events. 
+        alerting_policy (list of AlertingPolicyEnum): Array of Job Events.
             During Job Runs, the following Job Events are generated: 1) Job
             succeeds 2) Job fails 3) Job violates the SLA These Job Events can
             cause Alerts to be generated. 'kSuccess' means the Protection Job
@@ -185,7 +186,7 @@ class ProtectionJobRequest(object):
             this field specifies the settings about the remote script that
             will be executed by this Job. Only specify this field for Remote
             Adapter 'kPuppeteer' Jobs.
-        source_ids (list of long|int): Array of Protected Source Objects. 
+        source_ids (list of long|int): Array of Protected Source Objects.
             Specifies the list of Object ids from the Protection Source to
             protect (or back up) by the Protection Job. An Object in this list
             may be descendant of another Object in this list. For example a

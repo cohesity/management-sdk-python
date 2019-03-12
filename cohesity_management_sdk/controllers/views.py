@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -45,27 +46,27 @@ class Views(BaseController):
         """
         try:
             self.logger.info('get_view_by_name called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for get_view_by_name.')
             self.validate_parameters(name=name)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for get_view_by_name.')
             _url_path = '/public/views/{name}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, { 
+            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
                 'name': name
             })
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for get_view_by_name.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_view_by_name.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -77,7 +78,7 @@ class Views(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, View.from_dictionary)
 
@@ -108,29 +109,29 @@ class Views(BaseController):
         """
         try:
             self.logger.info('update_view_by_name called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for update_view_by_name.')
             self.validate_parameters(name=name,
                                      body=body)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for update_view_by_name.')
             _url_path = '/public/views/{name}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, { 
+            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
                 'name': name
             })
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for update_view_by_name.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for update_view_by_name.')
             _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -142,7 +143,7 @@ class Views(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, View.from_dictionary)
 
@@ -171,21 +172,21 @@ class Views(BaseController):
         """
         try:
             self.logger.info('delete_view called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for delete_view.')
             self.validate_parameters(name=name)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for delete_view.')
             _url_path = '/public/views/{name}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, { 
+            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
                 'name': name
             })
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for delete_view.')
             _request = self.http_client.delete(_query_url)
@@ -224,27 +225,27 @@ class Views(BaseController):
         """
         try:
             self.logger.info('get_file_lock_status called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for get_file_lock_status.')
             self.validate_parameters(name=name)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for get_file_lock_status.')
             _url_path = '/public/views/{name}/fileLocks'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, { 
+            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
                 'name': name
             })
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for get_file_lock_status.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_file_lock_status.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -256,7 +257,7 @@ class Views(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, FileLockStatus.from_dictionary)
 
@@ -288,28 +289,28 @@ class Views(BaseController):
         """
         try:
             self.logger.info('create_lock_file called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for create_lock_file.')
             self.validate_parameters(name=name)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for create_lock_file.')
             _url_path = '/public/views/{name}/fileLocks'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, { 
+            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
                 'name': name
             })
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for create_lock_file.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for create_lock_file.')
             _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -321,7 +322,7 @@ class Views(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, FileLockStatus.from_dictionary)
 
@@ -399,7 +400,7 @@ class Views(BaseController):
         """
         try:
             self.logger.info('get_views called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for get_views.')
             _url_path = '/public/views'
@@ -422,13 +423,13 @@ class Views(BaseController):
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for get_views.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_views.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -440,7 +441,7 @@ class Views(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, GetViewsResult.from_dictionary)
 
@@ -469,25 +470,25 @@ class Views(BaseController):
         """
         try:
             self.logger.info('create_clone_view called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for create_clone_view.')
             self.validate_parameters(body=body)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for create_clone_view.')
             _url_path = '/public/views/clone'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for create_clone_view.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for create_clone_view.')
             _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -499,7 +500,7 @@ class Views(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, View.from_dictionary)
 
@@ -528,24 +529,24 @@ class Views(BaseController):
         """
         try:
             self.logger.info('create_clone_directory called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for create_clone_directory.')
             self.validate_parameters(body=body)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for create_clone_directory.')
             _url_path = '/public/views/cloneDirectory'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for create_clone_directory.')
             _headers = {
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for create_clone_directory.')
             _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -585,25 +586,25 @@ class Views(BaseController):
         """
         try:
             self.logger.info('create_overwrite_view called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for create_overwrite_view.')
             self.validate_parameters(body=body)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for create_overwrite_view.')
             _url_path = '/public/views/overwrite'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for create_overwrite_view.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for create_overwrite_view.')
             _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -615,7 +616,7 @@ class Views(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, View.from_dictionary)
 
@@ -647,29 +648,29 @@ class Views(BaseController):
         """
         try:
             self.logger.info('create_rename_view called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for create_rename_view.')
             self.validate_parameters(body=body,
                                      name=name)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for create_rename_view.')
             _url_path = '/public/views/rename/{name}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, { 
+            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
                 'name': name
             })
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for create_rename_view.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for create_rename_view.')
             _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -681,7 +682,7 @@ class Views(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, View.from_dictionary)
 
@@ -780,7 +781,7 @@ class Views(BaseController):
         """
         try:
             self.logger.info('get_view_user_quotas called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for get_view_user_quotas.')
             _url_path = '/public/viewUserQuotas'
@@ -804,13 +805,13 @@ class Views(BaseController):
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for get_view_user_quotas.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_view_user_quotas.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -822,7 +823,7 @@ class Views(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, ViewUserQuotas.from_dictionary)
 
@@ -852,21 +853,21 @@ class Views(BaseController):
         """
         try:
             self.logger.info('update_view_user_quota called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for update_view_user_quota.')
             _url_path = '/public/viewUserQuotas'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for update_view_user_quota.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for update_view_user_quota.')
             _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -878,7 +879,7 @@ class Views(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, UserQuotaAndUsage.from_dictionary)
 
@@ -908,21 +909,21 @@ class Views(BaseController):
         """
         try:
             self.logger.info('create_view_user_quota called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for create_view_user_quota.')
             _url_path = '/public/viewUserQuotas'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for create_view_user_quota.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for create_view_user_quota.')
             _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -934,7 +935,7 @@ class Views(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, UserQuotaAndUsage.from_dictionary)
 
@@ -964,20 +965,20 @@ class Views(BaseController):
         """
         try:
             self.logger.info('delete_view_users_quota called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for delete_view_users_quota.')
             _url_path = '/public/viewUserQuotas'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for delete_view_users_quota.')
             _headers = {
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for delete_view_users_quota.')
             _request = self.http_client.delete(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -1017,21 +1018,21 @@ class Views(BaseController):
         """
         try:
             self.logger.info('update_user_quota_settings called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for update_user_quota_settings.')
             _url_path = '/public/viewUserQuotasSettings'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for update_user_quota_settings.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for update_user_quota_settings.')
             _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -1043,7 +1044,7 @@ class Views(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, UserQuotaSettings.from_dictionary)
 
@@ -1072,25 +1073,25 @@ class Views(BaseController):
         """
         try:
             self.logger.info('update_view called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for update_view.')
             self.validate_parameters(body=body)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for update_view.')
             _url_path = '/public/views'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for update_view.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for update_view.')
             _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -1102,7 +1103,7 @@ class Views(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, View.from_dictionary)
 
@@ -1131,25 +1132,25 @@ class Views(BaseController):
         """
         try:
             self.logger.info('create_view called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for create_view.')
             self.validate_parameters(body=body)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for create_view.')
             _url_path = '/public/views'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for create_view.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for create_view.')
             _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -1161,7 +1162,7 @@ class Views(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, View.from_dictionary)
 
@@ -1215,7 +1216,7 @@ class Views(BaseController):
         """
         try:
             self.logger.info('get_views_by_share_name called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for get_views_by_share_name.')
             _url_path = '/public/shares'
@@ -1231,13 +1232,13 @@ class Views(BaseController):
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for get_views_by_share_name.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_views_by_share_name.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -1249,7 +1250,7 @@ class Views(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, GetViewsAndAliasesByShareResult.from_dictionary)
 
@@ -1278,27 +1279,27 @@ class Views(BaseController):
         """
         try:
             self.logger.info('create_activate_view_aliases called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for create_activate_view_aliases.')
             self.validate_parameters(name=name)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for create_activate_view_aliases.')
             _url_path = '/public/viewAliases/{name}/activate'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, { 
+            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
                 'name': name
             })
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for create_activate_view_aliases.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for create_activate_view_aliases.')
             _request = self.http_client.post(_query_url, headers=_headers)
@@ -1310,7 +1311,7 @@ class Views(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, ActivateViewAliasesResult.from_dictionary)
 
@@ -1339,25 +1340,25 @@ class Views(BaseController):
         """
         try:
             self.logger.info('create_view_alias called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for create_view_alias.')
             self.validate_parameters(body=body)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for create_view_alias.')
             _url_path = '/public/viewAliases'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for create_view_alias.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for create_view_alias.')
             _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -1369,7 +1370,7 @@ class Views(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, ViewAlias.from_dictionary)
 
@@ -1398,21 +1399,21 @@ class Views(BaseController):
         """
         try:
             self.logger.info('delete_view_alias called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for delete_view_alias.')
             self.validate_parameters(name=name)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for delete_view_alias.')
             _url_path = '/public/viewAliases/{name}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, { 
+            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
                 'name': name
             })
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for delete_view_alias.')
             _request = self.http_client.delete(_query_url)

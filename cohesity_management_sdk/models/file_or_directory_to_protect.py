@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 
 class FileOrDirectoryToProtect(object):
@@ -12,7 +13,7 @@ class FileOrDirectoryToProtect(object):
     Attributes:
         backup_file_path (string): Specifies absolute path to a file or a
             directory in a Physical Server to protect.
-        excluded_file_paths (list of string): Array of Excluded File Paths. 
+        excluded_file_paths (list of string): Array of Excluded File Paths.
             Specifies absolute paths to descendant files or subdirectories of
             backupFilePath that should not be protected.
         skip_nested_volumes (bool): Specifies if any subdirectories under

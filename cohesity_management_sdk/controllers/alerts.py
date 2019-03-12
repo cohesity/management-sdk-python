@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -40,20 +41,20 @@ class Alerts(BaseController):
         """
         try:
             self.logger.info('get_notification_rules called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for get_notification_rules.')
             _url_path = '/public/alertNotificationRules'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for get_notification_rules.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_notification_rules.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -65,7 +66,7 @@ class Alerts(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, NotificationRule.from_dictionary)
 
@@ -90,20 +91,20 @@ class Alerts(BaseController):
         """
         try:
             self.logger.info('get_alert_categories called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for get_alert_categories.')
             _url_path = '/public/alertCategories'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for get_alert_categories.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_alert_categories.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -115,7 +116,7 @@ class Alerts(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, AlertCategoryName.from_dictionary)
 
@@ -142,20 +143,20 @@ class Alerts(BaseController):
         """
         try:
             self.logger.info('update_notification_rule called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for update_notification_rule.')
             _url_path = '/public/alertNotificationRules'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for update_notification_rule.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for update_notification_rule.')
             _request = self.http_client.put(_query_url, headers=_headers)
@@ -167,7 +168,7 @@ class Alerts(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, NotificationRule.from_dictionary)
 
@@ -242,11 +243,11 @@ class Alerts(BaseController):
         """
         try:
             self.logger.info('get_alerts called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for get_alerts.')
             self.validate_parameters(max_alerts=max_alerts)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for get_alerts.')
             _url_path = '/public/alerts'
@@ -270,13 +271,13 @@ class Alerts(BaseController):
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for get_alerts.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_alerts.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -288,7 +289,7 @@ class Alerts(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, Alert.from_dictionary)
 
@@ -343,11 +344,11 @@ class Alerts(BaseController):
         """
         try:
             self.logger.info('get_resolutions called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for get_resolutions.')
             self.validate_parameters(max_resolutions=max_resolutions)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for get_resolutions.')
             _url_path = '/public/alertResolutions'
@@ -365,13 +366,13 @@ class Alerts(BaseController):
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for get_resolutions.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_resolutions.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -383,7 +384,7 @@ class Alerts(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, AlertResolution1.from_dictionary)
 
@@ -412,27 +413,27 @@ class Alerts(BaseController):
         """
         try:
             self.logger.info('get_alert_by_id called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for get_alert_by_id.')
             self.validate_parameters(id=id)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for get_alert_by_id.')
             _url_path = '/public/alerts/{id}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, { 
+            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
                 'id': id
             })
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for get_alert_by_id.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_alert_by_id.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -444,7 +445,7 @@ class Alerts(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, Alert.from_dictionary)
 
@@ -473,20 +474,20 @@ class Alerts(BaseController):
         """
         try:
             self.logger.info('get_alert_types called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for get_alert_types.')
             _url_path = '/public/alertTypes'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for get_alert_types.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_alert_types.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -498,7 +499,7 @@ class Alerts(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, AlertMetadata.from_dictionary)
 
@@ -531,29 +532,29 @@ class Alerts(BaseController):
         """
         try:
             self.logger.info('update_resolution called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for update_resolution.')
             self.validate_parameters(id=id,
                                      body=body)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for update_resolution.')
             _url_path = '/public/alertResolutions/{id}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, { 
+            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
                 'id': id
             })
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for update_resolution.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for update_resolution.')
             _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -565,7 +566,7 @@ class Alerts(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, AlertResolution1.from_dictionary)
 
@@ -595,27 +596,27 @@ class Alerts(BaseController):
         """
         try:
             self.logger.info('get_resolution_by_id called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for get_resolution_by_id.')
             self.validate_parameters(id=id)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for get_resolution_by_id.')
             _url_path = '/public/alertResolutions/{id}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, { 
+            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
                 'id': id
             })
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for get_resolution_by_id.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_resolution_by_id.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -627,7 +628,7 @@ class Alerts(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, AlertResolution1.from_dictionary)
 
@@ -658,25 +659,25 @@ class Alerts(BaseController):
         """
         try:
             self.logger.info('create_resolution called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for create_resolution.')
             self.validate_parameters(body=body)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for create_resolution.')
             _url_path = '/public/alertResolutions'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for create_resolution.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for create_resolution.')
             _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -688,7 +689,7 @@ class Alerts(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, AlertResolution1.from_dictionary)
 
@@ -717,21 +718,21 @@ class Alerts(BaseController):
         """
         try:
             self.logger.info('delete_notification_rule called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for delete_notification_rule.')
             self.validate_parameters(rule_id=rule_id)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for delete_notification_rule.')
             _url_path = '/public/alertNotificationRules/{ruleId}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, { 
+            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
                 'ruleId': rule_id
             })
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for delete_notification_rule.')
             _request = self.http_client.delete(_query_url)
@@ -772,21 +773,21 @@ class Alerts(BaseController):
         """
         try:
             self.logger.info('create_notification_rule called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for create_notification_rule.')
             _url_path = '/public/alertNotificationRules'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for create_notification_rule.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for create_notification_rule.')
             _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -798,7 +799,7 @@ class Alerts(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, NotificationRule.from_dictionary)
 

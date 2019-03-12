@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 import cohesity_management_sdk.models.vserver_network_interface
 import cohesity_management_sdk.models.cifs_share_information
@@ -11,7 +12,7 @@ class NetAppVserverInformation(object):
     Source.
 
     Attributes:
-        data_protocols (list of DataProtocolEnum): Array of Data Protocols. 
+        data_protocols (list of DataProtocolEnum): Array of Data Protocols.
             Specifies the set of data protocols supported by this Vserver. The
             kManagement protocol is not supported for this case. 'kNfs'
             indicates NFS connections. 'kCifs' indicates SMB (CIFS)
@@ -20,7 +21,7 @@ class NetAppVserverInformation(object):
             connections. 'kHttp' indicates HTTP connections. 'kNdmp' indicates
             NDMP connections. 'kManagement' indicates non-data connections
             used for management purposes.
-        interfaces (list of VserverNetworkInterface): Array of Interfaces. 
+        interfaces (list of VserverNetworkInterface): Array of Interfaces.
             Specifies information about all interfaces on this Vserver.
         root_cifs_share (CIFSShareInformation): Specifies information about a
             CIFS share of a NetApp volume.

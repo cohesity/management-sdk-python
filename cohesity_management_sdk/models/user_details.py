@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 import cohesity_management_sdk.models.google_account_information
 import cohesity_management_sdk.models.id_p_user_information
@@ -11,7 +12,7 @@ class UserDetails(object):
     Specifies details about a user.
 
     Attributes:
-        additional_group_names (list of string): Array of Additional Groups. 
+        additional_group_names (list of string): Array of Additional Groups.
             Specifies the names of additional groups this User may belong to.
         created_time_msecs (long|int): Specifies the epoch time in
             milliseconds when the user account was created on the Cohesity

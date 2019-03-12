@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -53,7 +54,7 @@ class Groups(BaseController):
         """
         try:
             self.logger.info('get_groups called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for get_groups.')
             _url_path = '/public/groups'
@@ -68,13 +69,13 @@ class Groups(BaseController):
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for get_groups.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_groups.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -86,7 +87,7 @@ class Groups(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, GroupDetails.from_dictionary)
 
@@ -121,20 +122,20 @@ class Groups(BaseController):
         """
         try:
             self.logger.info('delete_groups called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for delete_groups.')
             _url_path = '/public/groups'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for delete_groups.')
             _headers = {
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for delete_groups.')
             _request = self.http_client.delete(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -177,21 +178,21 @@ class Groups(BaseController):
         """
         try:
             self.logger.info('create_group called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for create_group.')
             _url_path = '/public/groups'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for create_group.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for create_group.')
             _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -203,7 +204,7 @@ class Groups(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, GroupDetails.from_dictionary)
 
@@ -232,21 +233,21 @@ class Groups(BaseController):
         """
         try:
             self.logger.info('update_group called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for update_group.')
             _url_path = '/public/groups'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for update_group.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for update_group.')
             _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -258,7 +259,7 @@ class Groups(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, GroupDetails.from_dictionary)
 

@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 class APIException(Exception):
 
@@ -17,7 +18,7 @@ class APIException(Exception):
 
         Args:
             reason (string): The reason (or error message) for the Exception
-                to be raised.            
+                to be raised.
             context (HttpContext): The HttpContext of the API call.
 
         """

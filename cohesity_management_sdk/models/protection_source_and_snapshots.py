@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 import cohesity_management_sdk.models.protection_source
 import cohesity_management_sdk.models.protection_source_snapshot
@@ -12,7 +13,7 @@ class ProtectionSourceAndSnapshots(object):
     Attributes:
         protection_source (ProtectionSource): Specifies the leaf Protection
             Source Object such as a VM.
-        snapshots_info (list of ProtectionSourceSnapshot): Array of Snapshots 
+        snapshots_info (list of ProtectionSourceSnapshot): Array of Snapshots
             Specifies the Snapshots that contain backups of the Protection
             Source Object.
 

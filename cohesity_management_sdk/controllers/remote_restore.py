@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -49,20 +50,20 @@ class RemoteRestore(BaseController):
         """
         try:
             self.logger.info('list_remote_vault_search_jobs called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for list_remote_vault_search_jobs.')
             _url_path = '/public/remoteVaults/searchJobs'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for list_remote_vault_search_jobs.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for list_remote_vault_search_jobs.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -74,7 +75,7 @@ class RemoteRestore(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, RemoteVaultSearchInformation.from_dictionary)
 
@@ -117,25 +118,25 @@ class RemoteRestore(BaseController):
         """
         try:
             self.logger.info('create_remote_vault_search_job called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for create_remote_vault_search_job.')
             self.validate_parameters(body=body)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for create_remote_vault_search_job.')
             _url_path = '/public/remoteVaults/searchJobs'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for create_remote_vault_search_job.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for create_remote_vault_search_job.')
             _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -147,7 +148,7 @@ class RemoteRestore(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, RemoteVaultSearchJobUid.from_dictionary)
 
@@ -180,24 +181,24 @@ class RemoteRestore(BaseController):
         """
         try:
             self.logger.info('delete_stop_remote_vault_search_job called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for delete_stop_remote_vault_search_job.')
             self.validate_parameters(body=body)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for delete_stop_remote_vault_search_job.')
             _url_path = '/public/remoteVaults/searchJobs'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for delete_stop_remote_vault_search_job.')
             _headers = {
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for delete_stop_remote_vault_search_job.')
             _request = self.http_client.delete(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -243,27 +244,27 @@ class RemoteRestore(BaseController):
         """
         try:
             self.logger.info('list_remote_vault_search_job_by_id called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for list_remote_vault_search_job_by_id.')
             self.validate_parameters(id=id)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for list_remote_vault_search_job_by_id.')
             _url_path = '/public/remoteVaults/searchJobs/{id}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, { 
+            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
                 'id': id
             })
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for list_remote_vault_search_job_by_id.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for list_remote_vault_search_job_by_id.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -275,7 +276,7 @@ class RemoteRestore(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, RemoteVaultSearchInformation.from_dictionary)
 
@@ -333,13 +334,13 @@ class RemoteRestore(BaseController):
         """
         try:
             self.logger.info('get_remote_vault_search_job_results called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for get_remote_vault_search_job_results.')
             self.validate_parameters(search_job_id=search_job_id,
                                      cluster_id=cluster_id,
                                      cluster_incarnation_id=cluster_incarnation_id)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for get_remote_vault_search_job_results.')
             _url_path = '/public/remoteVaults/searchJobResults'
@@ -356,13 +357,13 @@ class RemoteRestore(BaseController):
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for get_remote_vault_search_job_results.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_remote_vault_search_job_results.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -374,7 +375,7 @@ class RemoteRestore(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, RemoteVaultSearchJobResult.from_dictionary)
 
@@ -412,27 +413,27 @@ class RemoteRestore(BaseController):
         """
         try:
             self.logger.info('upload_vault_encryption_keys called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for upload_vault_encryption_keys.')
             self.validate_parameters(id=id)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for upload_vault_encryption_keys.')
             _url_path = '/public/remoteVaults/encryptionKeys/{id}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, { 
+            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
                 'id': id
             })
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for upload_vault_encryption_keys.')
             _headers = {
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for upload_vault_encryption_keys.')
             _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -472,20 +473,20 @@ class RemoteRestore(BaseController):
         """
         try:
             self.logger.info('list_remote_vault_restore_tasks called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for list_remote_vault_restore_tasks.')
             _url_path = '/public/remoteVaults/restoreTasks'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for list_remote_vault_restore_tasks.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for list_remote_vault_restore_tasks.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -497,7 +498,7 @@ class RemoteRestore(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, RemoteVaultRestoreTaskStatus.from_dictionary)
 
@@ -536,25 +537,25 @@ class RemoteRestore(BaseController):
         """
         try:
             self.logger.info('create_remote_vault_restore_task called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for create_remote_vault_restore_task.')
             self.validate_parameters(body=body)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for create_remote_vault_restore_task.')
             _url_path = '/public/remoteVaults/restoreTasks'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for create_remote_vault_restore_task.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for create_remote_vault_restore_task.')
             _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -566,7 +567,7 @@ class RemoteRestore(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, UniqueGlobalId.from_dictionary)
 

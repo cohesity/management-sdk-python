@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -37,20 +38,20 @@ class AppInstance(BaseController):
         """
         try:
             self.logger.info('get_app_instances called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for get_app_instances.')
             _url_path = '/public/appInstances'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for get_app_instances.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_app_instances.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -62,7 +63,7 @@ class AppInstance(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, AppInstance.from_dictionary)
 
@@ -94,28 +95,28 @@ class AppInstance(BaseController):
         """
         try:
             self.logger.info('update_app_instance_state called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for update_app_instance_state.')
             self.validate_parameters(app_instance_id=app_instance_id,
                                      body=body)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for update_app_instance_state.')
             _url_path = '/public/appInstances/{appInstanceId}/states'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, { 
+            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
                 'appInstanceId': app_instance_id
             })
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for update_app_instance_state.')
             _headers = {
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for update_app_instance_state.')
             _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -154,25 +155,25 @@ class AppInstance(BaseController):
         """
         try:
             self.logger.info('create_launch_app_instance called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for create_launch_app_instance.')
             self.validate_parameters(body=body)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for create_launch_app_instance.')
             _url_path = '/public/appInstances'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for create_launch_app_instance.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for create_launch_app_instance.')
             _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -184,7 +185,7 @@ class AppInstance(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, AppInstanceIdParameterSpecifiesAppInstanceIdInPathParameter.from_dictionary)
 

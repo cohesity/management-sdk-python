@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 import cohesity_management_sdk.models.user_id_mapping
 import cohesity_management_sdk.models.update_preferred_domain_controller_request
@@ -19,7 +20,7 @@ class ActiveDirectory(object):
             trusted domain discovery.
         ldap_provider_id (long|int): Specifies the LDAP provider id which is
             map to this Active Directory
-        machine_accounts (list of string): Array of Machine Accounts. 
+        machine_accounts (list of string): Array of Machine Accounts.
             Specifies an array of computer names used to identify the Cohesity
             Cluster on the domain.
         ou_name (string): Specifies an optional Organizational Unit name.

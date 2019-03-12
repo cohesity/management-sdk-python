@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 import cohesity_management_sdk.models.blackout_period
 import cohesity_management_sdk.models.cloud_deploy_policy
@@ -14,7 +15,7 @@ class ProtectionPolicyRequest(object):
     Specifies information about a Protection Policy.
 
     Attributes:
-        blackout_periods (list of BlackoutPeriod): Array of Blackout Periods. 
+        blackout_periods (list of BlackoutPeriod): Array of Blackout Periods.
             If specified, this field defines black periods when new Job Runs
             are not started. If a Job Run has been scheduled but not yet
             executed and the blackout period starts, the behavior depends on
@@ -66,7 +67,7 @@ class ProtectionPolicyRequest(object):
             also defines the retention of copied Snapshots on an External
             Targets such as AWS and Tape.
         snapshot_replication_copy_policies (list of
-            SnapshotCopyReplicationPolicy): Array of Remote Clusters. 
+            SnapshotCopyReplicationPolicy): Array of Remote Clusters.
             Specifies settings for copying Snapshots to Remote Clusters. It
             also defines the retention of copied Snapshots on a Remote
             Cluster.

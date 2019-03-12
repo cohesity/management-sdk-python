@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 from cohesity_management_sdk.configuration import Configuration
 from cohesity_management_sdk.controllers.access_tokens import AccessTokens

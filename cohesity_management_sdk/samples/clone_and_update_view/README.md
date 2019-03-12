@@ -1,5 +1,3 @@
-# Clone existing view- Example Workflow
-
 ## Usage: 
 ```
 python clone_and_update_view.py --view_name=<name_of_view> --clone_name=<cloned_view_name>

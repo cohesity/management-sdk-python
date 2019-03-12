@@ -1,0 +1,10 @@
+#Ignore these files
+.pypirc
+build/
+.idea/
+add_header.sh
+cohesity_management_sdk/add_header.sh
+dist
+cohesity_management_sdk.egg-info
+setup.cfg
+*.pyc

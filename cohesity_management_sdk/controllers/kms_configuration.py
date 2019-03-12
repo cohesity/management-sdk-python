@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -40,7 +41,7 @@ class KmsConfiguration(BaseController):
         """
         try:
             self.logger.info('get_kms_config called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for get_kms_config.')
             _url_path = '/public/kmsConfig'
@@ -52,13 +53,13 @@ class KmsConfiguration(BaseController):
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for get_kms_config.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_kms_config.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -70,7 +71,7 @@ class KmsConfiguration(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, GetKMSConfigurationResponseParameters.from_dictionary)
 
@@ -86,7 +87,7 @@ class KmsConfiguration(BaseController):
 
         Args:
             body (KMSConfiguration, optional): TODO: type description here.
-                Example: 
+                Example:
 
         Returns:
             GetKMSConfigurationResponseParameters: Response from the API.
@@ -101,21 +102,21 @@ class KmsConfiguration(BaseController):
         """
         try:
             self.logger.info('update_kms_config called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for update_kms_config.')
             _url_path = '/public/kmsConfig'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for update_kms_config.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for update_kms_config.')
             _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -127,7 +128,7 @@ class KmsConfiguration(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, GetKMSConfigurationResponseParameters.from_dictionary)
 
@@ -143,7 +144,7 @@ class KmsConfiguration(BaseController):
 
         Args:
             body (KMSConfiguration, optional): TODO: type description here.
-                Example: 
+                Example:
 
         Returns:
             GetKMSConfigurationResponseParameters: Response from the API.
@@ -158,21 +159,21 @@ class KmsConfiguration(BaseController):
         """
         try:
             self.logger.info('create_kms_config called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for create_kms_config.')
             _url_path = '/public/kmsConfig'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for create_kms_config.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for create_kms_config.')
             _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -184,7 +185,7 @@ class KmsConfiguration(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, GetKMSConfigurationResponseParameters.from_dictionary)
 

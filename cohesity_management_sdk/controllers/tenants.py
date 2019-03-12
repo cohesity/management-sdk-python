@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -37,7 +38,7 @@ class Tenants(BaseController):
         """
         try:
             self.logger.info('get_download_tenants_proxy called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for get_download_tenants_proxy.')
             _url_path = '/public/tenants/proxy/image'
@@ -49,13 +50,13 @@ class Tenants(BaseController):
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for get_download_tenants_proxy.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_download_tenants_proxy.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -67,7 +68,7 @@ class Tenants(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body)
 

@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 import cohesity_management_sdk.models.snapshot_copy_task
 
@@ -10,7 +11,7 @@ class ProtectionSourceSnapshot(object):
     Protection Source Object.
 
     Attributes:
-        copy_tasks (list of SnapshotCopyTask): Array of Snapshot Copy Tasks. 
+        copy_tasks (list of SnapshotCopyTask): Array of Snapshot Copy Tasks.
             Specifies a list of copy tasks (such as replication and archival
             tasks).
         job_id (long|int): Specifies the id of the Protection Job.

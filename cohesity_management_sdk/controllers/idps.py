@@ -1,4 +1,5 @@
-# Copyright 2019 Cohesity Inc. # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -38,21 +39,21 @@ class Idps(BaseController):
         """
         try:
             self.logger.info('delete_idp called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for delete_idp.')
             self.validate_parameters(id=id)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for delete_idp.')
             _url_path = '/public/idps/{id}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, { 
+            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
                 'id': id
             })
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for delete_idp.')
             _request = self.http_client.delete(_query_url)
@@ -104,7 +105,7 @@ class Idps(BaseController):
         """
         try:
             self.logger.info('get_idps called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for get_idps.')
             _url_path = '/public/idps'
@@ -118,13 +119,13 @@ class Idps(BaseController):
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for get_idps.')
             _headers = {
                 'accept': 'application/json'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_idps.')
             _request = self.http_client.get(_query_url, headers=_headers)
@@ -136,7 +137,7 @@ class Idps(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, IdPServiceConfiguration.from_dictionary)
 
@@ -169,28 +170,28 @@ class Idps(BaseController):
         """
         try:
             self.logger.info('update_idp called.')
-    
+
             # Validate required parameters
             self.logger.info('Validating required parameters for update_idp.')
             self.validate_parameters(id=id)
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for update_idp.')
             _url_path = '/public/idps/{id}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, { 
+            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
                 'id': id
             })
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for update_idp.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for update_idp.')
             _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -202,7 +203,7 @@ class Idps(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, IdPServiceConfiguration.from_dictionary)
 
@@ -222,7 +223,7 @@ class Idps(BaseController):
                 Cluster SSO login is done.
 
         Returns:
-            void: Response from the API. 
+            void: Response from the API.
 
         Raises:
             APIException: When an error occurs while fetching the data from
@@ -233,7 +234,7 @@ class Idps(BaseController):
         """
         try:
             self.logger.info('get_idp_login called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for get_idp_login.')
             _url_path = '/public/idps/login'
@@ -245,7 +246,7 @@ class Idps(BaseController):
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_idp_login.')
             _request = self.http_client.get(_query_url)
@@ -284,21 +285,21 @@ class Idps(BaseController):
         """
         try:
             self.logger.info('create_idp called.')
-    
+
             # Prepare query URL
             self.logger.info('Preparing query URL for create_idp.')
             _url_path = '/public/idps'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
-    
+
             # Prepare headers
             self.logger.info('Preparing headers for create_idp.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
-    
+
             # Prepare and execute request
             self.logger.info('Preparing and executing request for create_idp.')
             _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
@@ -310,7 +311,7 @@ class Idps(BaseController):
             if _context.response.status_code == 0:
                 raise ErrorErrorException('Error', _context)
             self.validate_response(_context)
-    
+
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, IdPServiceConfiguration.from_dictionary)
 
