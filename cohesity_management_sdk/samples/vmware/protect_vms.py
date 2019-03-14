@@ -10,9 +10,7 @@
 
 import random
 import time
-from cohesity_management_sdk.samples.vmware.config import CLUSTER_VIP, \
-    CLUSTER_PASSWORD, \
-    CLUSTER_USERNAME, VM_CONFIG, JOB
+from config import CLUSTER_VIP, CLUSTER_PASSWORD, CLUSTER_USERNAME, VM_CONFIG, JOB
 from cohesity_management_sdk.samples.vmware.util import connect_vcenter, register_vcenter, \
     vcenter_exists, get_vm_ids, is_task_successful, get_obj
 
