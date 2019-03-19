@@ -2,8 +2,8 @@
 
 # -*- coding: utf-8 -*-
 
+from configuration import Configuration
 from cohesity_management_sdk.decorators import lazy_property
-from cohesity_management_sdk.configuration import Configuration
 from cohesity_management_sdk.http.auth.auth_manager import AuthManager
 from cohesity_management_sdk.controllers.alerts import Alerts
 from cohesity_management_sdk.controllers.active_directory import ActiveDirectory
@@ -47,7 +47,6 @@ from cohesity_management_sdk.controllers.cluster_partitions import ClusterPartit
 from cohesity_management_sdk.controllers.export import Export
 from cohesity_management_sdk.controllers.cluster import Cluster
 from cohesity_management_sdk.controllers.access_tokens import AccessTokens
-
 
 class CohesityClient(object):
 

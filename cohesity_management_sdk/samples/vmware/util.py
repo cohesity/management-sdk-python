@@ -11,8 +11,8 @@ from cohesity_management_sdk.models.environment_enum import EnvironmentEnum
 from cohesity_management_sdk.models.register_protection_source_parameters \
     import RegisterProtectionSourceParameters
 from cohesity_management_sdk.models.vmware_type_enum import VmwareTypeEnum
-from cohesity_management_sdk.samples.vmware.config import VCENTER_HOST, \
-    VCENTER_USER, VCENTER_PASSWORD, DEFAULT_PORT
+from config import VCENTER_IP, \
+    VCENTER_USERNAME, VCENTER_PASSWORD, DEFAULT_PORT
 
 def connect_vcenter():
     """
@@ -20,8 +20,8 @@ def connect_vcenter():
     :return None
     """
     try:
-        si = SmartConnectNoSSL(host=VCENTER_HOST,
-                               user=VCENTER_USER,
+        si = SmartConnectNoSSL(host=VCENTER_IP,
+                               user=VCENTER_USERNAME,
                                pwd=VCENTER_PASSWORD,
                                port=DEFAULT_PORT)
         atexit.register(Disconnect, si)
@@ -37,8 +37,8 @@ def register_vcenter(cohesity_client):
     :return: None
     """
     req_body = RegisterProtectionSourceParameters()
-    req_body.endpoint = VCENTER_HOST
-    req_body.username = VCENTER_USER
+    req_body.endpoint = VCENTER_IP
+    req_body.username = VCENTER_USERNAME
     req_body.password = VCENTER_PASSWORD
     req_body.environment = EnvironmentEnum.K_VMWARE
     req_body.vmware_type = VmwareTypeEnum.KVCENTER
@@ -59,8 +59,8 @@ def vcenter_exists(cohesity_client):
         .list_protection_sources_registration_info(environments=[
         EnvironmentEnum.K_VMWARE])
     for obj in resp.root_nodes:
-        if obj.root_node.name == VCENTER_HOST or \
-           obj.registration_info.access_info.endpoint == VCENTER_HOST:
+        if obj.root_node.name == VCENTER_IP or \
+           obj.registration_info.access_info.endpoint == VCENTER_IP:
            vcenter_id = obj.root_node.id
            return vcenter_id
     return vcenter_id

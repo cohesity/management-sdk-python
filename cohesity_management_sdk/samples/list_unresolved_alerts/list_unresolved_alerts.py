@@ -13,20 +13,12 @@ from cohesity_management_sdk.models.alert_state_list_enum import AlertStateListE
 CLUSTER_USERNAME = 'cluster_username'
 CLUSTER_PASSWORD = 'cluster_password'
 CLUSTER_VIP = 'prod-cluster.cohesity.com'
-CLUSTER_USERNAME = 'admin'
-CLUSTER_PASSWORD = 'admin'
-CLUSTER_VIP = '10.2.145.49'
 MAX_ALERTS = 100
 
 class Alerts(object):
     """
     Class to display Alerts.
     """
-    severity_map = {'kCritical':'CRITICAL', 'kWarning':'WARNING', 'kInfo':'INFO'}
-    category_map = {'kDisk':'DISK', 'kNode': 'NODE', 'kCluster': 'CLUSTER', 'kNodeHealth': 'NODE_HEALTH',
-                    'kClusterHealth': 'CLUSTER_HEALTH', 'kBackupRestore': 'BACKUP_RESTORE', 'kEncryption':'ENCRYPTION',
-                    'kArchivalRestore': 'ARCHIVAL_RESTORE'}
-
     def display_alerts(self, cohesity_client, max_alerts):
         """
         Method to display the list of Unresolved Alerts
@@ -34,11 +26,12 @@ class Alerts(object):
         :return:
         """
         alerts = cohesity_client.alerts
-        alerts_list = alerts.get_alerts(max_alerts=max_alerts, alert_state_list=[AlertStateListEnum.KOPEN])
+        alerts_list = alerts.get_alerts(max_alerts=max_alerts,
+                                        alert_state_list=[AlertStateListEnum.KOPEN])
         for alert in alerts_list:
             print ('{0:<10}\t\t{1:>8}\t{2:>10}'.format(self.epoch_to_date(alert.first_timestamp_usecs),
-                                                           self.category_map[alert.alert_category],
-                                                           self.severity_map[alert.severity]))
+                                                       alert.alert_category,
+                                                       alert.severity))
 
     @staticmethod
     def epoch_to_date(epoch):
