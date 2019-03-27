@@ -6,7 +6,7 @@ from cohesity_management_sdk.api_helper import APIHelper
 from cohesity_management_sdk.configuration import Configuration
 from cohesity_management_sdk.controllers.base_controller import BaseController
 from cohesity_management_sdk.http.auth.auth_manager import AuthManager
-from cohesity_management_sdk.models.interface_group import InterfaceGroup
+from cohesity_management_sdk.models.interface_group import InterfaceGroup1
 from cohesity_management_sdk.exceptions.error_error_exception import ErrorErrorException
 
 class InterfaceGroup(BaseController):
@@ -61,7 +61,7 @@ class InterfaceGroup(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, InterfaceGroup.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body, InterfaceGroup1.from_dictionary)
 
         except Exception as e:
             self.logger.error(e, exc_info = True)
@@ -169,7 +169,7 @@ class InterfaceGroup(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, InterfaceGroup.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body, InterfaceGroup1.from_dictionary)
 
         except Exception as e:
             self.logger.error(e, exc_info = True)
@@ -225,7 +225,7 @@ class InterfaceGroup(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, InterfaceGroup.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body, InterfaceGroup1.from_dictionary)
 
         except Exception as e:
             self.logger.error(e, exc_info = True)

@@ -9,7 +9,7 @@ from cohesity_management_sdk.http.auth.auth_manager import AuthManager
 from cohesity_management_sdk.models.domain_controllers import DomainControllers
 from cohesity_management_sdk.models.non_local_group_or_user import NonLOCALGroupOrUser
 from cohesity_management_sdk.models.active_directory_principal import ActiveDirectoryPrincipal
-from cohesity_management_sdk.models.active_directory import ActiveDirectory
+from cohesity_management_sdk.models.active_directory import ActiveDirectory1
 from cohesity_management_sdk.models.list_centrify_zone import ListCentrifyZone
 from cohesity_management_sdk.exceptions.error_error_exception import ErrorErrorException
 
@@ -310,7 +310,7 @@ class ActiveDirectory(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ActiveDirectory.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body, ActiveDirectory1.from_dictionary)
 
         except Exception as e:
             self.logger.error(e, exc_info = True)
@@ -376,7 +376,7 @@ class ActiveDirectory(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ActiveDirectory.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body, ActiveDirectory1.from_dictionary)
 
         except Exception as e:
             self.logger.error(e, exc_info = True)
@@ -442,7 +442,7 @@ class ActiveDirectory(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ActiveDirectory.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body, ActiveDirectory1.from_dictionary)
 
         except Exception as e:
             self.logger.error(e, exc_info = True)
@@ -508,7 +508,7 @@ class ActiveDirectory(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ActiveDirectory.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body, ActiveDirectory1.from_dictionary)
 
         except Exception as e:
             self.logger.error(e, exc_info = True)
@@ -575,7 +575,7 @@ class ActiveDirectory(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ActiveDirectory.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body, ActiveDirectory1.from_dictionary)
 
         except Exception as e:
             self.logger.error(e, exc_info = True)
@@ -641,7 +641,7 @@ class ActiveDirectory(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ActiveDirectory.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body, ActiveDirectory1.from_dictionary)
 
         except Exception as e:
             self.logger.error(e, exc_info = True)
@@ -825,7 +825,7 @@ class ActiveDirectory(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ActiveDirectory.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body, ActiveDirectory1.from_dictionary)
 
         except Exception as e:
             self.logger.error(e, exc_info = True)

@@ -7,7 +7,7 @@ from cohesity_management_sdk.configuration import Configuration
 from cohesity_management_sdk.controllers.base_controller import BaseController
 from cohesity_management_sdk.http.auth.auth_manager import AuthManager
 from cohesity_management_sdk.models.replication_encryption_key import ReplicationEncryptionKey
-from cohesity_management_sdk.models.remote_cluster import RemoteCluster
+from cohesity_management_sdk.models.remote_cluster import RemoteCluster1
 from cohesity_management_sdk.exceptions.error_error_exception import ErrorErrorException
 
 class RemoteCluster(BaseController):
@@ -193,7 +193,7 @@ class RemoteCluster(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, RemoteCluster.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body, RemoteCluster1.from_dictionary)
 
         except Exception as e:
             self.logger.error(e, exc_info = True)
@@ -256,7 +256,7 @@ class RemoteCluster(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, RemoteCluster.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body, RemoteCluster1.from_dictionary)
 
         except Exception as e:
             self.logger.error(e, exc_info = True)
@@ -323,7 +323,7 @@ class RemoteCluster(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, RemoteCluster.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body, RemoteCluster1.from_dictionary)
 
         except Exception as e:
             self.logger.error(e, exc_info = True)
@@ -387,7 +387,7 @@ class RemoteCluster(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, RemoteCluster.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body, RemoteCluster1.from_dictionary)
 
         except Exception as e:
             self.logger.error(e, exc_info = True)

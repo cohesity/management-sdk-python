@@ -1,4 +1,5 @@
 #Ignore these files
+tests/
 .pypirc
 build/
 .idea/
