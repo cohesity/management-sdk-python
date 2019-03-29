@@ -3,7 +3,7 @@
 
 import cohesity_management_sdk.models.product_model_and_interface_tuple
 
-class InterfaceGroup1(object):
+class InterfaceGroup(object):
 
     """Implementation of the 'InterfaceGroup.' model.
 

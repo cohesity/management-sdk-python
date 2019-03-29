@@ -4,7 +4,7 @@
 import cohesity_management_sdk.models.user_id_mapping
 import cohesity_management_sdk.models.update_preferred_domain_controller_request
 
-class ActiveDirectory1(object):
+class ActiveDirectory(object):
 
     """Implementation of the 'Active Directory.' model.
 

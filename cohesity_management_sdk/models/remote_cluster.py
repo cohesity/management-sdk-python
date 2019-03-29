@@ -5,7 +5,7 @@ import cohesity_management_sdk.models.bandwidth_limit
 import cohesity_management_sdk.models.create_access_token_credential_request
 import cohesity_management_sdk.models.storage_domain_view_box_pairing
 
-class RemoteCluster1(object):
+class RemoteCluster(object):
 
     """Implementation of the 'Remote Cluster.' model.
 

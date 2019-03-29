@@ -1,52 +1,52 @@
+# -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-# -*- coding: utf-8 -*-
-
-from configuration import Configuration
+from cohesity_management_sdk.configuration import Configuration
 from cohesity_management_sdk.decorators import lazy_property
 from cohesity_management_sdk.http.auth.auth_manager import AuthManager
-from cohesity_management_sdk.controllers.alerts import Alerts
-from cohesity_management_sdk.controllers.active_directory import ActiveDirectory
-from cohesity_management_sdk.controllers.tenant import Tenant
-from cohesity_management_sdk.controllers.static_route import StaticRoute
-from cohesity_management_sdk.controllers.preferences import Preferences
-from cohesity_management_sdk.controllers.notifications import Notifications
-from cohesity_management_sdk.controllers.principals import Principals
-from cohesity_management_sdk.controllers.routes import Routes
-from cohesity_management_sdk.controllers.remote_cluster import RemoteCluster
-from cohesity_management_sdk.controllers.nodes import Nodes
-from cohesity_management_sdk.controllers.interface_group import InterfaceGroup
-from cohesity_management_sdk.controllers.clusters import Clusters
-from cohesity_management_sdk.controllers.certificates import Certificates
-from cohesity_management_sdk.controllers.app import App
-from cohesity_management_sdk.controllers.app_instance import AppInstance
-from cohesity_management_sdk.controllers.vlan import Vlan
-from cohesity_management_sdk.controllers.views import Views
-from cohesity_management_sdk.controllers.view_boxes import ViewBoxes
-from cohesity_management_sdk.controllers.restore_tasks import RestoreTasks
-from cohesity_management_sdk.controllers.vaults import Vaults
-from cohesity_management_sdk.controllers.tenants import Tenants
-from cohesity_management_sdk.controllers.statistics import Statistics
-from cohesity_management_sdk.controllers.smb_file_opens import SMBFileOpens
-from cohesity_management_sdk.controllers.search import Search
-from cohesity_management_sdk.controllers.roles import Roles
-from cohesity_management_sdk.controllers.remote_restore import RemoteRestore
-from cohesity_management_sdk.controllers.protection_sources import ProtectionSources
-from cohesity_management_sdk.controllers.protection_runs import ProtectionRuns
-from cohesity_management_sdk.controllers.protection_policies import ProtectionPolicies
-from cohesity_management_sdk.controllers.protection_jobs import ProtectionJobs
-from cohesity_management_sdk.controllers.audit import Audit
-from cohesity_management_sdk.controllers.kms_configuration import KmsConfiguration
-from cohesity_management_sdk.controllers.privileges import Privileges
-from cohesity_management_sdk.controllers.ldap_provider import LdapProvider
-from cohesity_management_sdk.controllers.mimport import Import
-from cohesity_management_sdk.controllers.idps import Idps
-from cohesity_management_sdk.controllers.groups import Groups
-from cohesity_management_sdk.controllers.dashboard import Dashboard
-from cohesity_management_sdk.controllers.cluster_partitions import ClusterPartitions
-from cohesity_management_sdk.controllers.export import Export
-from cohesity_management_sdk.controllers.cluster import Cluster
-from cohesity_management_sdk.controllers.access_tokens import AccessTokens
+from cohesity_management_sdk.controllers.alerts_controller import AlertsController
+from cohesity_management_sdk.controllers.active_directory_controller import ActiveDirectoryController
+from cohesity_management_sdk.controllers.tenant_controller import TenantController
+from cohesity_management_sdk.controllers.static_route_controller import StaticRouteController
+from cohesity_management_sdk.controllers.preferences_controller import PreferencesController
+from cohesity_management_sdk.controllers.notifications_controller import NotificationsController
+from cohesity_management_sdk.controllers.principals_controller import PrincipalsController
+from cohesity_management_sdk.controllers.routes_controller import RoutesController
+from cohesity_management_sdk.controllers.remote_cluster_controller import RemoteClusterController
+from cohesity_management_sdk.controllers.nodes_controller import NodesController
+from cohesity_management_sdk.controllers.interface_group_controller import InterfaceGroupController
+from cohesity_management_sdk.controllers.clusters_controller import ClustersController
+from cohesity_management_sdk.controllers.certificates_controller import CertificatesController
+from cohesity_management_sdk.controllers.app_controller import AppController
+from cohesity_management_sdk.controllers.app_instance_controller import AppInstanceController
+from cohesity_management_sdk.controllers.vlan_controller import VlanController
+from cohesity_management_sdk.controllers.views_controller import ViewsController
+from cohesity_management_sdk.controllers.view_boxes_controller import ViewBoxesController
+from cohesity_management_sdk.controllers.restore_tasks_controller import RestoreTasksController
+from cohesity_management_sdk.controllers.vaults_controller import VaultsController
+from cohesity_management_sdk.controllers.tenants_controller import TenantsController
+from cohesity_management_sdk.controllers.statistics_controller import StatisticsController
+from cohesity_management_sdk.controllers.smb_file_opens_controller import SMBFileOpensController
+from cohesity_management_sdk.controllers.search_controller import SearchController
+from cohesity_management_sdk.controllers.roles_controller import RolesController
+from cohesity_management_sdk.controllers.remote_restore_controller import RemoteRestoreController
+from cohesity_management_sdk.controllers.protection_sources_controller import ProtectionSourcesController
+from cohesity_management_sdk.controllers.protection_runs_controller import ProtectionRunsController
+from cohesity_management_sdk.controllers.protection_policies_controller import ProtectionPoliciesController
+from cohesity_management_sdk.controllers.protection_jobs_controller import ProtectionJobsController
+from cohesity_management_sdk.controllers.audit_controller import AuditController
+from cohesity_management_sdk.controllers.kms_configuration_controller import KmsConfigurationController
+from cohesity_management_sdk.controllers.privileges_controller import PrivilegesController
+from cohesity_management_sdk.controllers.ldap_provider_controller import LdapProviderController
+from cohesity_management_sdk.controllers.import_controller import ImportController
+from cohesity_management_sdk.controllers.idps_controller import IdpsController
+from cohesity_management_sdk.controllers.groups_controller import GroupsController
+from cohesity_management_sdk.controllers.dashboard_controller import DashboardController
+from cohesity_management_sdk.controllers.cluster_partitions_controller import ClusterPartitionsController
+from cohesity_management_sdk.controllers.export_controller import ExportController
+from cohesity_management_sdk.controllers.cluster_controller import ClusterController
+from cohesity_management_sdk.controllers.access_tokens_controller import AccessTokensController
+
 
 class CohesityClient(object):
 
@@ -55,171 +55,171 @@ class CohesityClient(object):
 
     @lazy_property
     def alerts(self):
-        return Alerts()
+        return AlertsController()
 
     @lazy_property
     def active_directory(self):
-        return ActiveDirectory()
+        return ActiveDirectoryController()
 
     @lazy_property
     def tenant(self):
-        return Tenant()
+        return TenantController()
 
     @lazy_property
     def static_route(self):
-        return StaticRoute()
+        return StaticRouteController()
 
     @lazy_property
     def preferences(self):
-        return Preferences()
+        return PreferencesController()
 
     @lazy_property
     def notifications(self):
-        return Notifications()
+        return NotificationsController()
 
     @lazy_property
     def principals(self):
-        return Principals()
+        return PrincipalsController()
 
     @lazy_property
     def routes(self):
-        return Routes()
+        return RoutesController()
 
     @lazy_property
     def remote_cluster(self):
-        return RemoteCluster()
+        return RemoteClusterController()
 
     @lazy_property
     def nodes(self):
-        return Nodes()
+        return NodesController()
 
     @lazy_property
     def interface_group(self):
-        return InterfaceGroup()
+        return InterfaceGroupController()
 
     @lazy_property
     def clusters(self):
-        return Clusters()
+        return ClustersController()
 
     @lazy_property
     def certificates(self):
-        return Certificates()
+        return CertificatesController()
 
     @lazy_property
     def app(self):
-        return App()
+        return AppController()
 
     @lazy_property
     def app_instance(self):
-        return AppInstance()
+        return AppInstanceController()
 
     @lazy_property
     def vlan(self):
-        return Vlan()
+        return VlanController()
 
     @lazy_property
     def views(self):
-        return Views()
+        return ViewsController()
 
     @lazy_property
     def view_boxes(self):
-        return ViewBoxes()
+        return ViewBoxesController()
 
     @lazy_property
     def restore_tasks(self):
-        return RestoreTasks()
+        return RestoreTasksController()
 
     @lazy_property
     def vaults(self):
-        return Vaults()
+        return VaultsController()
 
     @lazy_property
     def tenants(self):
-        return Tenants()
+        return TenantsController()
 
     @lazy_property
     def statistics(self):
-        return Statistics()
+        return StatisticsController()
 
     @lazy_property
     def smb_file_opens(self):
-        return SMBFileOpens()
+        return SMBFileOpensController()
 
     @lazy_property
     def search(self):
-        return Search()
+        return SearchController()
 
     @lazy_property
     def roles(self):
-        return Roles()
+        return RolesController()
 
     @lazy_property
     def remote_restore(self):
-        return RemoteRestore()
+        return RemoteRestoreController()
 
     @lazy_property
     def protection_sources(self):
-        return ProtectionSources()
+        return ProtectionSourcesController()
 
     @lazy_property
     def protection_runs(self):
-        return ProtectionRuns()
+        return ProtectionRunsController()
 
     @lazy_property
     def protection_policies(self):
-        return ProtectionPolicies()
+        return ProtectionPoliciesController()
 
     @lazy_property
     def protection_jobs(self):
-        return ProtectionJobs()
+        return ProtectionJobsController()
 
     @lazy_property
     def audit(self):
-        return Audit()
+        return AuditController()
 
     @lazy_property
     def kms_configuration(self):
-        return KmsConfiguration()
+        return KmsConfigurationController()
 
     @lazy_property
     def privileges(self):
-        return Privileges()
+        return PrivilegesController()
 
     @lazy_property
     def ldap_provider(self):
-        return LdapProvider()
+        return LdapProviderController()
 
     @lazy_property
     def mimport(self):
-        return Import()
+        return ImportController()
 
     @lazy_property
     def idps(self):
-        return Idps()
+        return IdpsController()
 
     @lazy_property
     def groups(self):
-        return Groups()
+        return GroupsController()
 
     @lazy_property
     def dashboard(self):
-        return Dashboard()
+        return DashboardController()
 
     @lazy_property
     def cluster_partitions(self):
-        return ClusterPartitions()
+        return ClusterPartitionsController()
 
     @lazy_property
     def export(self):
-        return Export()
+        return ExportController()
 
     @lazy_property
     def cluster(self):
-        return Cluster()
+        return ClusterController()
 
     @lazy_property
     def access_tokens(self):
-        return AccessTokens()
+        return AccessTokensController()
 
     def __init__(self,
                  cluster_vip=None,
@@ -240,5 +240,3 @@ class CohesityClient(object):
         if domain != None:
             Configuration.domain = domain
         Configuration.cluster_vip = cluster_vip
-
-
