@@ -2,7 +2,7 @@
 # Copyright 2019 Cohesity Inc.
 
 from cohesity_management_sdk.configuration import Configuration
-from cohesity_management_sdk.controllers.access_tokens import AccessTokens
+from cohesity_management_sdk.controllers.access_tokens_controller import AccessTokensController
 from cohesity_management_sdk.models.create_access_token_credential_request import CreateAccessTokenCredentialRequest
 
 
@@ -43,6 +43,6 @@ class AuthManager:
         if Configuration.domain is not None:
             body.domain = Configuration.domain
 
-        token = AccessTokens().create_generate_access_token(body)
+        token = AccessTokensController().create_generate_access_token(body)
         Configuration.auth_token = token
         return token
