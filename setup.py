@@ -14,7 +14,6 @@ setup(
     version='1.0.0',
     description='This SDK provides operations for interfacing with the Cohesity Cluster.',
     long_description=long_description,
-    long_description_content_type="text/markdown",
     author='Cohesity Inc.',
     author_email='cohesity-api-sdks@cohesity.com',
     url='https://github.com/cohesity/management-sdk-python',
