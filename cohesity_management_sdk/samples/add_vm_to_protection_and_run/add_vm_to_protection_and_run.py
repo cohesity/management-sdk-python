@@ -14,6 +14,7 @@ from cohesity_management_sdk.samples.on_demand_job_run.on_demand_job_run import 
 CLUSTER_USERNAME = 'cluster_username'
 CLUSTER_PASSWORD = 'cluster_password'
 CLUSTER_VIP = 'prod-cluster.cohesity.com'
+DOMAIN = 'LOCAL'
 
 class AddVMProtectionJob(object):
 
@@ -76,7 +77,8 @@ class AddVMProtectionJob(object):
 def main(args):
     cohesity_client = CohesityClient(cluster_vip=CLUSTER_VIP,
                                      username=CLUSTER_USERNAME,
-                                     password=CLUSTER_PASSWORD)
+                                     password=CLUSTER_PASSWORD,
+				     domain=DOMAIN)
 
     cohesity_client.config.cluster_vip = CLUSTER_VIP
     vm_protect = AddVMProtectionJob(cohesity_client)

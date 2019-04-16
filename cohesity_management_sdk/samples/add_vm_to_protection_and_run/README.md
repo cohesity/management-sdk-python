@@ -8,7 +8,8 @@ First make sure that you are connected to a Cohesity Cluster.
 ```python
 cohesity_client = CohesityClient(cluster_vip=CLUSTER_VIP,
                                  username=CLUSTER_USERNAME, 
-                                 password=CLUSTER_PASSWORD)
+                                 password=CLUSTER_PASSWORD,
+				 domain=DOMAIN)
 ```
 Note: Alternatively, you can set the above parameters in cohesity_management_sdk/configuration.py
 

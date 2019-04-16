@@ -13,6 +13,7 @@ from cohesity_management_sdk.models.register_protection_source_parameters import
 CLUSTER_USERNAME = 'cluster_username'
 CLUSTER_PASSWORD = 'cluster_password'
 CLUSTER_VIP = 'prod-cluster.cohesity.com'
+DOMAIN = 'LOCAL'
 VCENTER_IP = 'vcenter_ip'
 VCENTER_USERNAME = 'administrator'
 VCENTER_PASSWORD = 'vcenter_password'
@@ -41,7 +42,8 @@ class AddVCenter(object):
 def main():
     cohesity_client = CohesityClient(cluster_vip=CLUSTER_VIP,
                                      username=CLUSTER_USERNAME,
-                                     password=CLUSTER_PASSWORD)
+                                     password=CLUSTER_PASSWORD,
+				     domain=DOMAIN)
     vcenter_object = AddVCenter(cohesity_client)
     vcenter_object.register_vcenter()
 

@@ -8,7 +8,8 @@ First make sure that you are connected to a Cohesity Cluster.
 ```
 cohesity_client = CohesityClient(cluster_vip=CLUSTER_VIP,
                                  username=CLUSTER_USERNAME, 
-                                 password=CLUSTER_PASSWORD)
+                                 password=CLUSTER_PASSWORD,
+				 domain=DOMAIN)
 ```
 Note: Alternatively, you can set the above parameters in cohesity_management_sdk/configuration.py
 
@@ -27,21 +28,6 @@ Note: Alternatively, you can set the above parameters in cohesity_management_sdk
 def function_to_test(cohesity_client)
     
 ```
-
-
-Re-Initializing cohesity client.
-```
-def init_client(username, password):
-    if not username and not password:
-        return CohesityClient(cluster_vip=CLUSTER_VIP,
-                              username=username, 
-                              password=password)
-    else:
-        client = CohesityClient(cluster_vip=CLUSTER_VIP)
-        client.auth.authorize()
-        return client
-```
-
 
 ## Example: Handle insufficient Privileges.
 ```

@@ -22,6 +22,7 @@ from cohesity_management_sdk.models.protocol_access_enum import ProtocolAccessEn
 CLUSTER_VIP = 'prod-cluster.eng.cohesity.com'
 CLUSTER_USER = 'cluster-admin'
 CLUSTER_PASSWORD = 'cluster-password'
+DOMAIN = 'LOCAL'
 COHESITY_S3_PORT = '3000'
 
 BUCKET_NAME = 'test_bucket'
@@ -68,7 +69,7 @@ class S3Integration(object):
         return resp[0].id
 
     def init_cohesity_client(self):
-        return CohesityClient(CLUSTER_VIP, CLUSTER_USER, CLUSTER_PASSWORD)
+        return CohesityClient(CLUSTER_VIP, CLUSTER_USER, CLUSTER_PASSWORD, DOMAIN)
 
     def init_s3_client(self, key_id, secret_access_key):
         """

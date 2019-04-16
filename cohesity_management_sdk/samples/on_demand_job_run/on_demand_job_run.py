@@ -15,6 +15,7 @@ from cohesity_management_sdk.models.run_status_enum import RunStatusEnum
 CLUSTER_USERNAME = 'cluster_username'
 CLUSTER_PASSWORD = 'cluster_password'
 CLUSTER_VIP = 'prod-cluster.cohesity.com'
+DOMAIN = 'LOCAL'
 
 class ProtectionJobs(object):
     """
@@ -72,7 +73,8 @@ class ProtectionJobs(object):
 def main(args):
     cohesity_client = CohesityClient(cluster_vip=CLUSTER_VIP,
                                      username=CLUSTER_USERNAME,
-                                     password=CLUSTER_PASSWORD)
+                                     password=CLUSTER_PASSWORD,
+				     domain=DOMAIN)
     pj = ProtectionJobs(cohesity_client)
     pj.run_job(args.job_name)
 

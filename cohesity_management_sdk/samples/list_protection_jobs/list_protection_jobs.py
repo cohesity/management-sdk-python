@@ -11,6 +11,7 @@ from cohesity_management_sdk.cohesity_client import CohesityClient
 CLUSTER_USERNAME = 'cluster_admin'
 CLUSTER_PASSWORD = 'cluster_password'
 CLUSTER_VIP = 'prod-cluster.cohesity.com'
+DOMAIN = 'LOCAL'
 
 class ProtectionJobsList(object):
 
@@ -41,7 +42,8 @@ def main():
 
     cohesity_client = CohesityClient(cluster_vip=CLUSTER_VIP,
                                      username=CLUSTER_USERNAME,
-                                     password=CLUSTER_PASSWORD)
+                                     password=CLUSTER_PASSWORD,
+				     domain=DOMAIN)
     protect_object = ProtectionJobsList()
     protect_object.display_protection_jobs(cohesity_client)
 
