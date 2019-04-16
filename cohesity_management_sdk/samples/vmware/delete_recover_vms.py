@@ -149,5 +149,4 @@ def main():
     verify_vms_recovered()
 
 if __name__ == '__main__':
-    #main()
-    delete_vms_in_vcenter()
+    main()
