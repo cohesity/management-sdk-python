@@ -28,7 +28,7 @@ class Alerts(object):
         """
         alerts = cohesity_client.alerts
         alerts_list = alerts.get_alerts(max_alerts=max_alerts,
-                                        alert_state_list=[AlertStateListEnum.KOPEN])
+                                        alert_state_list=AlertStateListEnum.KOPEN)
         for alert in alerts_list:
             print ('{0:<10}\t\t{1:>8}\t{2:>10}'.format(self.epoch_to_date(alert.first_timestamp_usecs),
                                                        alert.alert_category,
