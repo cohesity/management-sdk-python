@@ -16,7 +16,7 @@ Note: Alternatively, you can set the above parameters in cohesity_management_sdk
 ## Example
 ``` 
 alerts= cohesity_client.alerts
-alerts_list = alerts.get_alerts(max_alerts=max_alerts, alert_state_list=[AlertStateListEnum.KOPEN])
+alerts_list = alerts.get_alerts(max_alerts=max_alerts, alert_state_list=AlertStateListEnum.KOPEN)
 ```
 
 
