@@ -11,14 +11,18 @@ class ProtectionPolicySummary(object):
 
     """Implementation of the 'ProtectionPolicySummary' model.
 
-    ProtectionPolicySummary specifies protection summary of a given
-    Protection Policy.
+    ProtectionPolicySummary specifies protection summary of a given Protection
+    Policy.
 
     Attributes:
         last_protection_run_summary (LastProtectionRunSummary):
             LastProtectionRunsSummary is the summary of the last Protection
             Run for the Protection Jobs using the Specified Protection
             Policy.
+        pagination_cookie (string): If there are more results to display, use
+            this value to get the next set of results, by using this value in
+            paginationCookie param for the next request to
+            GetProtectionPolicySummary.
         protected_sources_summary (list of ProtectedSourceSummary): Specifies
             the list of Protection Sources which are protected under the given
             policy. This is only populated if the policy is of type kRPO.
@@ -36,6 +40,7 @@ class ProtectionPolicySummary(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "last_protection_run_summary":'lastProtectionRunSummary',
+        "pagination_cookie":'paginationCookie',
         "protected_sources_summary":'protectedSourcesSummary',
         "protection_jobs_summary":'protectionJobsSummary',
         "protection_policy":'protectionPolicy',
@@ -44,6 +49,7 @@ class ProtectionPolicySummary(object):
 
     def __init__(self,
                  last_protection_run_summary=None,
+                 pagination_cookie=None,
                  protected_sources_summary=None,
                  protection_jobs_summary=None,
                  protection_policy=None,
@@ -52,6 +58,7 @@ class ProtectionPolicySummary(object):
 
         # Initialize members of the class
         self.last_protection_run_summary = last_protection_run_summary
+        self.pagination_cookie = pagination_cookie
         self.protected_sources_summary = protected_sources_summary
         self.protection_jobs_summary = protection_jobs_summary
         self.protection_policy = protection_policy
@@ -77,6 +84,7 @@ class ProtectionPolicySummary(object):
 
         # Extract variables from the dictionary
         last_protection_run_summary = cohesity_management_sdk.models.last_protection_run_summary.LastProtectionRunSummary.from_dictionary(dictionary.get('lastProtectionRunSummary')) if dictionary.get('lastProtectionRunSummary') else None
+        pagination_cookie = dictionary.get('paginationCookie')
         protected_sources_summary = None
         if dictionary.get('protectedSourcesSummary') != None:
             protected_sources_summary = list()
@@ -92,6 +100,7 @@ class ProtectionPolicySummary(object):
 
         # Return an object of this model
         return cls(last_protection_run_summary,
+                   pagination_cookie,
                    protected_sources_summary,
                    protection_jobs_summary,
                    protection_policy,

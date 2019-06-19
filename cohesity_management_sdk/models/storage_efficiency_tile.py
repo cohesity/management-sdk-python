@@ -5,10 +5,10 @@ import cohesity_management_sdk.models.sample
 
 class StorageEfficiencyTile(object):
 
-    """Implementation of the 'Storage Efficiency Tile.' model.
+    """Implementation of the 'StorageEfficiencyTile' model.
 
-    StorageEfficiencyTile gives tile information for the storage saved
-    because of compression and dedupe done on the cluster.
+    StorageEfficiencyTile gives tile information for the storage saved because
+    of compression and dedupe done on the cluster.
 
     Attributes:
         data_in_bytes (long|int): Specifies the size of data brought into the

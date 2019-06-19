@@ -2,15 +2,16 @@
 # Copyright 2019 Cohesity Inc.
 
 import cohesity_management_sdk.models.blackout_period
-import cohesity_management_sdk.models.cloud_deploy_policy
+import cohesity_management_sdk.models.snapshot_cloud_copy_policy
 import cohesity_management_sdk.models.extended_retention_policy
 import cohesity_management_sdk.models.scheduling_policy
-import cohesity_management_sdk.models.snapshot_copy_archival_policy
-import cohesity_management_sdk.models.snapshot_copy_replication_policy
+import cohesity_management_sdk.models.rpo_policy_settings
+import cohesity_management_sdk.models.snapshot_archival_copy_policy
+import cohesity_management_sdk.models.snapshot_replication_copy_policy
 
 class ProtectionPolicyRequest(object):
 
-    """Implementation of the 'Protection Policy Request.' model.
+    """Implementation of the 'ProtectionPolicyRequest' model.
 
     Specifies information about a Protection Policy.
 
@@ -20,11 +21,11 @@ class ProtectionPolicyRequest(object):
             are not started. If a Job Run has been scheduled but not yet
             executed and the blackout period starts, the behavior depends on
             the policy field AbortInBlackoutPeriod.
-        cloud_deploy_policies (list of CloudDeployPolicy): Array of Cloud
-            Deploy Policies.  Specifies settings for copying Snapshots to
-            Cloud. CloudDeploy target where backup snapshots may be converted
-            and stored. It also defines the retention of copied Snapshots on
-            the Cloud.
+        cloud_deploy_policies (list of SnapshotCloudCopyPolicy): Array of
+            Cloud Deploy Policies.  Specifies settings for copying Snapshots
+            to Cloud. CloudDeploy target where backup snapshots may be
+            converted and stored. It also defines the retention of copied
+            Snapshots on the Cloud.
         days_to_keep (long|int): Specifies how many days to retain Snapshots
             on the Cohesity Cluster.
         days_to_keep_log (long|int): Specifies the number of days to retain
@@ -48,10 +49,15 @@ class ProtectionPolicyRequest(object):
         log_scheduling_policy (SchedulingPolicy): Specifies settings that
             define a backup schedule for a Protection Job.
         name (string): Specifies the name of the Protection Policy.
+        num_linked_policies (long|int): Species the number of policies linked
+            to a global policy.
         retries (int): Specifies the number of times to retry capturing
             Snapshots before the Job Run fails.
         retry_interval_mins (int): Specifies the number of minutes before
             retrying a failed Protection Job.
+        rpo_policy_settings (RpoPolicySettings): Specifies all the additional
+            settings that are applicable only to an RPO policy. This can
+            include storage domain, settings of different environments, etc.
         skip_interval_mins (int): Specifies the period of time before skipping
             the execution of new Job Runs if an existing queued Job Run of the
             same Protection Job has not started. For example if this field is
@@ -61,26 +67,30 @@ class ProtectionPolicyRequest(object):
             the Cohesity Cluster will skip the new Job Run. If the original
             Job Run completes before 5:30AM the next day, a new Job Run is
             created and starts executing. This field is optional.
-        snapshot_archival_copy_policies (list of SnapshotCopyArchivalPolicy):
+        snapshot_archival_copy_policies (list of SnapshotArchivalCopyPolicy):
             Array of External Targets.  Specifies settings for copying
             Snapshots to  Archival External Targets (such as AWS or Tape). It
             also defines the retention of copied Snapshots on an External
             Targets such as AWS and Tape.
         snapshot_replication_copy_policies (list of
-            SnapshotCopyReplicationPolicy): Array of Remote Clusters.
+            SnapshotReplicationCopyPolicy): Array of Remote Clusters.
             Specifies settings for copying Snapshots to Remote Clusters. It
             also defines the retention of copied Snapshots on a Remote
             Cluster.
         system_scheduling_policy (SchedulingPolicy): Specifies settings that
             define a backup schedule for a Protection Job.
-        worm_retention_type (WormRetentionType1Enum): Specifies WORM retention
-            type for the snapshots. When a WORM retention type is specified,
-            the snapshots of the Protection Jobs using this policy will be
-            kept until the maximum of the snapshot retention time. During that
-            time, the snapshots cannot be deleted. 'kNone' implies there is no
-            WORM retention set. 'kCompliance' implies WORM retention is set
-            for compliance reason. 'kAdministrative' implies WORM retention is
-            set for administrative purposes.
+        mtype (TypeProtectionPolicyRequestEnum): Specifies the type of the
+            protection policy. 'kRegular' means a regular Protection Policy.
+            'kRPO' means an RPO Protection Policy.
+        worm_retention_type (WormRetentionTypeProtectionPolicyRequestEnum):
+            Specifies WORM retention type for the snapshots. When a WORM
+            retention type is specified, the snapshots of the Protection Jobs
+            using this policy will be kept until the maximum of the snapshot
+            retention time. During that time, the snapshots cannot be deleted.
+            'kNone' implies there is no WORM retention set. 'kCompliance'
+            implies WORM retention is set for compliance reason.
+            'kAdministrative' implies WORM retention is set for administrative
+            purposes.
 
     """
 
@@ -97,12 +107,15 @@ class ProtectionPolicyRequest(object):
         "incremental_scheduling_policy":'incrementalSchedulingPolicy',
         "log_scheduling_policy":'logSchedulingPolicy',
         "name":'name',
+        "num_linked_policies":'numLinkedPolicies',
         "retries":'retries',
         "retry_interval_mins":'retryIntervalMins',
+        "rpo_policy_settings":'rpoPolicySettings',
         "skip_interval_mins":'skipIntervalMins',
         "snapshot_archival_copy_policies":'snapshotArchivalCopyPolicies',
         "snapshot_replication_copy_policies":'snapshotReplicationCopyPolicies',
         "system_scheduling_policy":'systemSchedulingPolicy',
+        "mtype":'type',
         "worm_retention_type":'wormRetentionType'
     }
 
@@ -118,12 +131,15 @@ class ProtectionPolicyRequest(object):
                  incremental_scheduling_policy=None,
                  log_scheduling_policy=None,
                  name=None,
+                 num_linked_policies=None,
                  retries=None,
                  retry_interval_mins=None,
+                 rpo_policy_settings=None,
                  skip_interval_mins=None,
                  snapshot_archival_copy_policies=None,
                  snapshot_replication_copy_policies=None,
                  system_scheduling_policy=None,
+                 mtype=None,
                  worm_retention_type=None):
         """Constructor for the ProtectionPolicyRequest class"""
 
@@ -139,12 +155,15 @@ class ProtectionPolicyRequest(object):
         self.incremental_scheduling_policy = incremental_scheduling_policy
         self.log_scheduling_policy = log_scheduling_policy
         self.name = name
+        self.num_linked_policies = num_linked_policies
         self.retries = retries
         self.retry_interval_mins = retry_interval_mins
+        self.rpo_policy_settings = rpo_policy_settings
         self.skip_interval_mins = skip_interval_mins
         self.snapshot_archival_copy_policies = snapshot_archival_copy_policies
         self.snapshot_replication_copy_policies = snapshot_replication_copy_policies
         self.system_scheduling_policy = system_scheduling_policy
+        self.mtype = mtype
         self.worm_retention_type = worm_retention_type
 
 
@@ -175,7 +194,7 @@ class ProtectionPolicyRequest(object):
         if dictionary.get('cloudDeployPolicies') != None:
             cloud_deploy_policies = list()
             for structure in dictionary.get('cloudDeployPolicies'):
-                cloud_deploy_policies.append(cohesity_management_sdk.models.cloud_deploy_policy.CloudDeployPolicy.from_dictionary(structure))
+                cloud_deploy_policies.append(cohesity_management_sdk.models.snapshot_cloud_copy_policy.SnapshotCloudCopyPolicy.from_dictionary(structure))
         days_to_keep = dictionary.get('daysToKeep')
         days_to_keep_log = dictionary.get('daysToKeepLog')
         days_to_keep_system = dictionary.get('daysToKeepSystem')
@@ -189,20 +208,23 @@ class ProtectionPolicyRequest(object):
         incremental_scheduling_policy = cohesity_management_sdk.models.scheduling_policy.SchedulingPolicy.from_dictionary(dictionary.get('incrementalSchedulingPolicy')) if dictionary.get('incrementalSchedulingPolicy') else None
         log_scheduling_policy = cohesity_management_sdk.models.scheduling_policy.SchedulingPolicy.from_dictionary(dictionary.get('logSchedulingPolicy')) if dictionary.get('logSchedulingPolicy') else None
         name = dictionary.get('name')
+        num_linked_policies = dictionary.get('numLinkedPolicies')
         retries = dictionary.get('retries')
         retry_interval_mins = dictionary.get('retryIntervalMins')
+        rpo_policy_settings = cohesity_management_sdk.models.rpo_policy_settings.RpoPolicySettings.from_dictionary(dictionary.get('rpoPolicySettings')) if dictionary.get('rpoPolicySettings') else None
         skip_interval_mins = dictionary.get('skipIntervalMins')
         snapshot_archival_copy_policies = None
         if dictionary.get('snapshotArchivalCopyPolicies') != None:
             snapshot_archival_copy_policies = list()
             for structure in dictionary.get('snapshotArchivalCopyPolicies'):
-                snapshot_archival_copy_policies.append(cohesity_management_sdk.models.snapshot_copy_archival_policy.SnapshotCopyArchivalPolicy.from_dictionary(structure))
+                snapshot_archival_copy_policies.append(cohesity_management_sdk.models.snapshot_archival_copy_policy.SnapshotArchivalCopyPolicy.from_dictionary(structure))
         snapshot_replication_copy_policies = None
         if dictionary.get('snapshotReplicationCopyPolicies') != None:
             snapshot_replication_copy_policies = list()
             for structure in dictionary.get('snapshotReplicationCopyPolicies'):
-                snapshot_replication_copy_policies.append(cohesity_management_sdk.models.snapshot_copy_replication_policy.SnapshotCopyReplicationPolicy.from_dictionary(structure))
+                snapshot_replication_copy_policies.append(cohesity_management_sdk.models.snapshot_replication_copy_policy.SnapshotReplicationCopyPolicy.from_dictionary(structure))
         system_scheduling_policy = cohesity_management_sdk.models.scheduling_policy.SchedulingPolicy.from_dictionary(dictionary.get('systemSchedulingPolicy')) if dictionary.get('systemSchedulingPolicy') else None
+        mtype = dictionary.get('type')
         worm_retention_type = dictionary.get('wormRetentionType')
 
         # Return an object of this model
@@ -217,12 +239,15 @@ class ProtectionPolicyRequest(object):
                    incremental_scheduling_policy,
                    log_scheduling_policy,
                    name,
+                   num_linked_policies,
                    retries,
                    retry_interval_mins,
+                   rpo_policy_settings,
                    skip_interval_mins,
                    snapshot_archival_copy_policies,
                    snapshot_replication_copy_policies,
                    system_scheduling_policy,
+                   mtype,
                    worm_retention_type)
 
 

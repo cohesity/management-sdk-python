@@ -2,15 +2,15 @@
 # Copyright 2019 Cohesity Inc.
 
 import cohesity_management_sdk.models.agent_information
-import cohesity_management_sdk.models.datastore_information
+import cohesity_management_sdk.models.datastore_info
 import cohesity_management_sdk.models.vmware_object_id
-import cohesity_management_sdk.models.vmware_tag_attributes
-import cohesity_management_sdk.models.vcloud_director_info_information
-import cohesity_management_sdk.models.virtual_disk_information
+import cohesity_management_sdk.models.tag_attribute
+import cohesity_management_sdk.models.vcloud_director_info
+import cohesity_management_sdk.models.virtual_disk_info
 
 class VmwareProtectionSource(object):
 
-    """Implementation of the 'VMware Protection Source.' model.
+    """Implementation of the 'VMwareProtectionSource' model.
 
     Specifies a Protection Source in a VMware environment.
 
@@ -34,7 +34,7 @@ class VmwareProtectionSource(object):
             associated with. 'kNotResponding' indicates that virtual machine
             is failed to response due to external issues such as network
             connectivity, hostd not running etc.
-        datastore_info (DatastoreInformation): TODO: type description here.
+        datastore_info (DatastoreInfo): TODO: type description here.
         folder_type (FolderTypeEnum): Specifies the folder type for the
             'kFolder' Object. 'kVMFolder' indicates folder can hold VMs or
             vApps. 'kHostFolder' indicates folder can hold hosts and compute
@@ -45,11 +45,11 @@ class VmwareProtectionSource(object):
         has_persistent_agent (bool): Set to true if a persistent agent is
             running on the Virtual Machine. This is populated for entities of
             type 'kVirtualMachine'.
-        host_type (HostType6Enum): Specifies the host type for the
-            'kVirtualMachine' Object. 'kLinux' indicates the Linux operating
-            system. 'kWindows' indicates the Microsoft Windows operating
-            system. 'kAix' indicates the IBM AIX operating system. 'kSolaris'
-            indicates the Oracle Solaris operating system.
+        host_type (HostTypeVmwareProtectionSourceEnum): Specifies the host
+            type for the 'kVirtualMachine' Object. 'kLinux' indicates the
+            Linux operating system. 'kWindows' indicates the Microsoft Windows
+            operating system. 'kAix' indicates the IBM AIX operating system.
+            'kSolaris' indicates the Oracle Solaris operating system.
         id (VmwareObjectId): Specifies a unique Protection Source id across
             Cohesity Clusters. It is derived from the id of the VMware
             Protection Source.
@@ -57,8 +57,8 @@ class VmwareProtectionSource(object):
             not.
         name (string): Specifies a human readable name of the Protection
             Source.
-        tag_attributes (list of VmwareTagAttributes): Specifies the optional
-            list of VM Tag attributes associated with this Object.
+        tag_attributes (list of TagAttribute): Specifies the optional list of
+            VM Tag attributes associated with this Object.
         tools_running_status (ToolsRunningStatusEnum): Specifies the status of
             VMware Tools for the guest OS on the VM. This is only valid for
             the 'kVirtualMachine' type. 'kGuestToolsRunning' means the VMware
@@ -67,18 +67,18 @@ class VmwareProtectionSource(object):
             the state of the VMware tools on the guest OS is not known.
             'kGuestToolsExecutingScripts' means the guest OS is currently
             executing scripts using VMware tools.
-        mtype (Type19Enum): Specifies the type of managed Object in a VMware
-            Protection Source. Examples of VMware Objects include 'kVCenter',
-            'kFolder', 'kDatacenter', 'kResourcePool', 'kDatastore',
-            'kVirtualMachine', etc. 'kVCenter' indicates the vCenter entity in
-            a VMware protection source type. 'kFolder indicates the folder
-            entity (of any kind) in a VMware protection source type.
-            'kDatacenter' indicates the datacenter entity in a VMware
-            protection source type. 'kComputeResource' indicates the physical
-            compute resource entity in a VMware protection source type.
-            'kResourcePool' indicates the set of physical resourses within a
-            compute resource or cloudcompute resource. 'kDataStore' indicates
-            the datastore entity in a VMware protection source type.
+        mtype (TypeVmwareProtectionSourceEnum): Specifies the type of managed
+            Object in a VMware Protection Source. Examples of VMware Objects
+            include 'kVCenter', 'kFolder', 'kDatacenter', 'kResourcePool',
+            'kDatastore', 'kVirtualMachine', etc. 'kVCenter' indicates the
+            vCenter entity in a VMware protection source type. 'kFolder
+            indicates the folder entity (of any kind) in a VMware protection
+            source type. 'kDatacenter' indicates the datacenter entity in a
+            VMware protection source type. 'kComputeResource' indicates the
+            physical compute resource entity in a VMware protection source
+            type. 'kResourcePool' indicates the set of physical resourses
+            within a compute resource or cloudcompute resource. 'kDataStore'
+            indicates the datastore entity in a VMware protection source type.
             'kHostSystem' indicates the ESXi host entity in a VMware
             protection source type. 'kVirtualMachine' indicates the virtual
             machine entity in a VMware protection source type. 'kVirtualApp'
@@ -102,11 +102,11 @@ class VmwareProtectionSource(object):
             indicates an VCD organization metadata in a VMware protection
             source type. 'kStoragePolicy' indicates a storage policy
             associated with the vApp in a VMware protection source type.
-        vcloud_director_info (list of VcloudDirectorInfoInformation):
-            Specifies an array of vCenters to be registered
-        virtual_disks (list of VirtualDiskInformation): Specifies an array of
-            virtual disks that are part of the Virtual Machine. This is
-            populated for entities of type 'kVirtualMachine'.
+        vcloud_director_info (list of VcloudDirectorInfo): Specifies an array
+            of vCenters to be registered
+        virtual_disks (list of VirtualDiskInfo): Specifies an array of virtual
+            disks that are part of the Virtual Machine. This is populated for
+            entities of type 'kVirtualMachine'.
 
     """
 
@@ -190,7 +190,7 @@ class VmwareProtectionSource(object):
             for structure in dictionary.get('agents'):
                 agents.append(cohesity_management_sdk.models.agent_information.AgentInformation.from_dictionary(structure))
         connection_state = dictionary.get('connectionState')
-        datastore_info = cohesity_management_sdk.models.datastore_information.DatastoreInformation.from_dictionary(dictionary.get('datastoreInfo')) if dictionary.get('datastoreInfo') else None
+        datastore_info = cohesity_management_sdk.models.datastore_info.DatastoreInfo.from_dictionary(dictionary.get('datastoreInfo')) if dictionary.get('datastoreInfo') else None
         folder_type = dictionary.get('folderType')
         has_persistent_agent = dictionary.get('hasPersistentAgent')
         host_type = dictionary.get('hostType')
@@ -201,19 +201,19 @@ class VmwareProtectionSource(object):
         if dictionary.get('tagAttributes') != None:
             tag_attributes = list()
             for structure in dictionary.get('tagAttributes'):
-                tag_attributes.append(cohesity_management_sdk.models.vmware_tag_attributes.VmwareTagAttributes.from_dictionary(structure))
+                tag_attributes.append(cohesity_management_sdk.models.tag_attribute.TagAttribute.from_dictionary(structure))
         tools_running_status = dictionary.get('toolsRunningStatus')
         mtype = dictionary.get('type')
         vcloud_director_info = None
         if dictionary.get('vCloudDirectorInfo') != None:
             vcloud_director_info = list()
             for structure in dictionary.get('vCloudDirectorInfo'):
-                vcloud_director_info.append(cohesity_management_sdk.models.vcloud_director_info_information.VcloudDirectorInfoInformation.from_dictionary(structure))
+                vcloud_director_info.append(cohesity_management_sdk.models.vcloud_director_info.VcloudDirectorInfo.from_dictionary(structure))
         virtual_disks = None
         if dictionary.get('virtualDisks') != None:
             virtual_disks = list()
             for structure in dictionary.get('virtualDisks'):
-                virtual_disks.append(cohesity_management_sdk.models.virtual_disk_information.VirtualDiskInformation.from_dictionary(structure))
+                virtual_disks.append(cohesity_management_sdk.models.virtual_disk_info.VirtualDiskInfo.from_dictionary(structure))
 
         # Return an object of this model
         return cls(agent_id,

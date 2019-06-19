@@ -4,32 +4,32 @@
 
 class ConnectorParameters(object):
 
-    """Implementation of the 'Connector Parameters.' model.
+    """Implementation of the 'ConnectorParameters' model.
 
-    Specifies the parameters required to establish a connection with
-    a particular environment.
+    Specifies the parameters required to establish a connection with a
+    particular environment.
 
     Attributes:
         endpoint (string): Specify an IP address or URL of the environment.
             (such as the IP address of the vCenter Server for a VMware
             environment).
-        environment (Environment1Enum): Specifies the environment like VMware,
-            SQL, where the Protection Source exists. Supported environment
-            types such as 'kView', 'kSQL', 'kVMware', etc. NOTE: 'kPuppeteer'
-            refers to Cohesity's Remote Adapter. 'kVMware' indicates the
-            VMware Protection Source environment. 'kHyperV' indicates the
-            HyperV Protection Source environment. 'kSQL' indicates the SQL
-            Protection Source environment. 'kView' indicates the View
-            Protection Source environment. 'kPuppeteer' indicates the
-            Cohesity's Remote Adapter. 'kPhysical' indicates the physical
-            Protection Source environment. 'kPure' indicates the Pure Storage
-            Protection Source environment. 'kAzure' indicates the Microsoft's
-            Azure Protection Source environment. 'kNetapp' indicates the
-            Netapp Protection Source environment. 'kAgent' indicates the Agent
-            Protection Source environment. 'kGenericNas' indicates the
-            Genreric Network Attached Storage Protection Source environment.
-            'kAcropolis' indicates the Acropolis Protection Source
-            environment. 'kPhsicalFiles' indicates the Physical Files
+        environment (EnvironmentConnectorParametersEnum): Specifies the
+            environment like VMware, SQL, where the Protection Source exists.
+            Supported environment types such as 'kView', 'kSQL', 'kVMware',
+            etc. NOTE: 'kPuppeteer' refers to Cohesity's Remote Adapter.
+            'kVMware' indicates the VMware Protection Source environment.
+            'kHyperV' indicates the HyperV Protection Source environment.
+            'kSQL' indicates the SQL Protection Source environment. 'kView'
+            indicates the View Protection Source environment. 'kPuppeteer'
+            indicates the Cohesity's Remote Adapter. 'kPhysical' indicates the
+            physical Protection Source environment. 'kPure' indicates the Pure
+            Storage Protection Source environment. 'kAzure' indicates the
+            Microsoft's Azure Protection Source environment. 'kNetapp'
+            indicates the Netapp Protection Source environment. 'kAgent'
+            indicates the Agent Protection Source environment. 'kGenericNas'
+            indicates the Genreric Network Attached Storage Protection Source
+            environment. 'kAcropolis' indicates the Acropolis Protection
+            Source environment. 'kPhsicalFiles' indicates the Physical Files
             Protection Source environment. 'kIsilon' indicates the Dell EMC's
             Isilon Protection Source environment. 'kKVM' indicates the KVM
             Protection Source environment. 'kAWS' indicates the AWS Protection

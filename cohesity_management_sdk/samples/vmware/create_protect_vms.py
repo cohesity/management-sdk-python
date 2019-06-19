@@ -11,18 +11,15 @@
 import random
 import time
 from config import CLUSTER_VIP, CLUSTER_PASSWORD, CLUSTER_USERNAME, VM_CONFIG, JOB
-from cohesity_management_sdk.samples.vmware.util import connect_vcenter, register_vcenter, \
+from util import connect_vcenter, register_vcenter, \
     vcenter_exists, get_vm_ids, is_task_successful, get_obj
 
 from cohesity_management_sdk.cohesity_client import CohesityClient
 from cohesity_management_sdk.exceptions.api_exception import APIException
-from cohesity_management_sdk.models.protection_job_request import \
-    ProtectionJobRequest
-from cohesity_management_sdk.models.protection_run_parameters import \
-    ProtectionRunParameters
-from cohesity_management_sdk.models.run_status_enum import RunStatusEnum
-from cohesity_management_sdk.models.run_type_2_enum import RunType2Enum
-
+from cohesity_management_sdk.models.protection_job_request_body import ProtectionJobRequestBody
+from cohesity_management_sdk.models.run_type_enum import RunTypeEnum
+from cohesity_management_sdk.models.status_source_backup_status_enum import \
+    StatusSourceBackupStatusEnum
 from pyVmomi import vim
 
 cohesity_client = CohesityClient(CLUSTER_VIP, CLUSTER_USERNAME,
@@ -120,7 +117,7 @@ def create_protection_job(vm_ids, vcenter_id):
     :return:
     """
     try:
-        body = ProtectionJobRequest()
+        body = ProtectionJobRequestBody()
         body.name = JOB['name']
         body.policy_id = _get_protection_policy_id(JOB['policy_name'])
         body.view_box_id = _get_storage_domain_id()
@@ -162,8 +159,8 @@ def run_job(job_name):
         print ("Protection Job with name: %s doesn't exist" % job_name)
         exit(0)
 
-    req_body = ProtectionRunParameters()
-    req_body.run_type = RunType2Enum.KREGULAR
+    req_body = ProtectionJobRequestBody()
+    req_body.run_type = RunTypeEnum.KREGULAR
     cohesity_client.protection_jobs.create_run_protection_job(id=job_id,
                                                               body=req_body)
 
@@ -176,9 +173,10 @@ def run_job(job_name):
             job_id=job_id, num_runs=1)[0]
     else:
         jresp = jresp[0]
-    if jresp.backup_run.status == RunStatusEnum.KSUCCESS:
+    if jresp.backup_run.status == StatusSourceBackupStatusEnum.KSUCCESS or \
+            jresp.backup_run.status == StatusSourceBackupStatusEnum.KACCEPTED:
         print ("Protection Job %s started successfully" % job_name)
-    elif jresp.backup_run.status == RunStatusEnum.KERROR:
+    elif jresp.backup_run.status == StatusSourceBackupStatusEnum.KERROR:
         print ("Protection Job %s failed." % job_name)
 
 def _name_to_job_id(job_name):

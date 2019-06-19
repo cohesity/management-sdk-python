@@ -2,9 +2,9 @@
 # Copyright 2019 Cohesity Inc.
 
 
-class LDAPProviderStatus(object):
+class LdapProviderStatus(object):
 
-    """Implementation of the 'LDAP Provider Status.' model.
+    """Implementation of the 'LdapProviderStatus' model.
 
     LDAP provider status struct.
 
@@ -21,7 +21,7 @@ class LDAPProviderStatus(object):
 
     def __init__(self,
                  status_message=None):
-        """Constructor for the LDAPProviderStatus class"""
+        """Constructor for the LdapProviderStatus class"""
 
         # Initialize members of the class
         self.status_message = status_message

@@ -5,7 +5,7 @@ import cohesity_management_sdk.models.cluster_networking_endpoint
 
 class ClusterNetworkingResourceInformation(object):
 
-    """Implementation of the 'Cluster Networking Resource Information.' model.
+    """Implementation of the 'ClusterNetworkingResourceInformation' model.
 
     Specifies a resource with IP address.
 

@@ -5,7 +5,7 @@ import cohesity_management_sdk.models.protection_job_info
 
 class ViewProtection(object):
 
-    """Implementation of the 'View Protection.' model.
+    """Implementation of the 'ViewProtection' model.
 
     Specifies information about the Protection Jobs that are protecting the
     View.

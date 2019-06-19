@@ -6,9 +6,8 @@ class WebHookDeliveryTarget(object):
 
     """Implementation of the 'WebHookDeliveryTarget' model.
 
-    WebHookDeliveryTarget
-    Specifies the external api url to hit along with the related options for
-    it.
+    WebHookDeliveryTarget Specifies the external api url to hit along with the
+    related options for it.
 
     Attributes:
         curl_options (string): Specifies curl options used to invoke external

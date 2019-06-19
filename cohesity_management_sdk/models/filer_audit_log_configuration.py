@@ -4,7 +4,7 @@
 
 class FilerAuditLogConfiguration(object):
 
-    """Implementation of the 'Filer Audit Log Configuration.' model.
+    """Implementation of the 'FilerAuditLogConfiguration' model.
 
     Specifies the settings of the filer audit log configuration.
 

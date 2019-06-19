@@ -1,17 +1,18 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
+import cohesity_management_sdk.models.antivirus_scan_config
 import cohesity_management_sdk.models.file_extension_filter
-import cohesity_management_sdk.models.file_level_data_lock_configurations
+import cohesity_management_sdk.models.file_level_data_lock_config
 import cohesity_management_sdk.models.quota_policy
 import cohesity_management_sdk.models.qo_s
-import cohesity_management_sdk.models.smb_permissions_information
+import cohesity_management_sdk.models.smb_permissions_info
 import cohesity_management_sdk.models.storage_policy_override
 import cohesity_management_sdk.models.subnet
 
 class CloneViewRequest(object):
 
-    """Implementation of the 'Clone View Request.' model.
+    """Implementation of the 'CloneViewRequest' model.
 
     Specifies the settings for cloning an existing View.
 
@@ -19,6 +20,8 @@ class CloneViewRequest(object):
         access_sids (list of string): Array of Security Identifiers (SIDs)
             Specifies the list of security identifiers (SIDs) for the
             restricted Principals who have access to this View.
+        antivirus_scan_config (AntivirusScanConfig): Specifies the antivirus
+            scan config settings for this View.
         clone_view_name (string): Specifies the name of the new View that is
             cloned from the source View.
         data_lock_expiry_usecs (long|int): DataLock (Write Once Read Many)
@@ -51,9 +54,9 @@ class CloneViewRequest(object):
             unencrypted sessions are disallowed.
         file_extension_filter (FileExtensionFilter): TODO: type description
             here.
-        file_lock_config (FileLevelDataLockConfigurations): Specifies a config
-            to lock files in a view - to protect from malicious or an
-            accidental attempt to delete or modify the files in this view.
+        file_lock_config (FileLevelDataLockConfig): Specifies a config to lock
+            files in a view - to protect from malicious or an accidental
+            attempt to delete or modify the files in this view.
         logical_quota (QuotaPolicy): Specifies an optional logical quota limit
             (in bytes) for the usage allowed on this View. (Logical data is
             when the data is fully hydrated and expanded.) This limit
@@ -79,8 +82,8 @@ class CloneViewRequest(object):
             Unified and NTFS style. 'kNativeMode' indicates a native security
             mode. 'kUnifiedMode' indicates a unified security mode.
             'kNtfsMode' indicates a NTFS style security mode.
-        smb_permissions_info (SMBPermissionsInformation): Specifies
-            information about SMB permissions.
+        smb_permissions_info (SmbPermissionsInfo): Specifies information about
+            SMB permissions.
         source_view_name (string): Specifies the name of the source View that
             will be cloned.
         storage_policy_override (StoragePolicyOverride): Specifies if inline
@@ -97,6 +100,7 @@ class CloneViewRequest(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "access_sids":'accessSids',
+        "antivirus_scan_config":'antivirusScanConfig',
         "clone_view_name":'cloneViewName',
         "data_lock_expiry_usecs":'dataLockExpiryUsecs',
         "description":'description',
@@ -122,6 +126,7 @@ class CloneViewRequest(object):
 
     def __init__(self,
                  access_sids=None,
+                 antivirus_scan_config=None,
                  clone_view_name=None,
                  data_lock_expiry_usecs=None,
                  description=None,
@@ -147,6 +152,7 @@ class CloneViewRequest(object):
 
         # Initialize members of the class
         self.access_sids = access_sids
+        self.antivirus_scan_config = antivirus_scan_config
         self.clone_view_name = clone_view_name
         self.data_lock_expiry_usecs = data_lock_expiry_usecs
         self.description = description
@@ -189,6 +195,7 @@ class CloneViewRequest(object):
 
         # Extract variables from the dictionary
         access_sids = dictionary.get('accessSids')
+        antivirus_scan_config = cohesity_management_sdk.models.antivirus_scan_config.AntivirusScanConfig.from_dictionary(dictionary.get('antivirusScanConfig')) if dictionary.get('antivirusScanConfig') else None
         clone_view_name = dictionary.get('cloneViewName')
         data_lock_expiry_usecs = dictionary.get('dataLockExpiryUsecs')
         description = dictionary.get('description')
@@ -200,12 +207,12 @@ class CloneViewRequest(object):
         enable_smb_view_discovery = dictionary.get('enableSmbViewDiscovery')
         enforce_smb_encryption = dictionary.get('enforceSmbEncryption')
         file_extension_filter = cohesity_management_sdk.models.file_extension_filter.FileExtensionFilter.from_dictionary(dictionary.get('fileExtensionFilter')) if dictionary.get('fileExtensionFilter') else None
-        file_lock_config = cohesity_management_sdk.models.file_level_data_lock_configurations.FileLevelDataLockConfigurations.from_dictionary(dictionary.get('fileLockConfig')) if dictionary.get('fileLockConfig') else None
+        file_lock_config = cohesity_management_sdk.models.file_level_data_lock_config.FileLevelDataLockConfig.from_dictionary(dictionary.get('fileLockConfig')) if dictionary.get('fileLockConfig') else None
         logical_quota = cohesity_management_sdk.models.quota_policy.QuotaPolicy.from_dictionary(dictionary.get('logicalQuota')) if dictionary.get('logicalQuota') else None
         protocol_access = dictionary.get('protocolAccess')
         qos = cohesity_management_sdk.models.qo_s.QoS.from_dictionary(dictionary.get('qos')) if dictionary.get('qos') else None
         security_mode = dictionary.get('securityMode')
-        smb_permissions_info = cohesity_management_sdk.models.smb_permissions_information.SMBPermissionsInformation.from_dictionary(dictionary.get('smbPermissionsInfo')) if dictionary.get('smbPermissionsInfo') else None
+        smb_permissions_info = cohesity_management_sdk.models.smb_permissions_info.SmbPermissionsInfo.from_dictionary(dictionary.get('smbPermissionsInfo')) if dictionary.get('smbPermissionsInfo') else None
         source_view_name = dictionary.get('sourceViewName')
         storage_policy_override = cohesity_management_sdk.models.storage_policy_override.StoragePolicyOverride.from_dictionary(dictionary.get('storagePolicyOverride')) if dictionary.get('storagePolicyOverride') else None
         subnet_whitelist = None
@@ -217,6 +224,7 @@ class CloneViewRequest(object):
 
         # Return an object of this model
         return cls(access_sids,
+                   antivirus_scan_config,
                    clone_view_name,
                    data_lock_expiry_usecs,
                    description,

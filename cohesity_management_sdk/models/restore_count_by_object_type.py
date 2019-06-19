@@ -4,7 +4,7 @@
 
 class RestoreCountByObjectType(object):
 
-    """Implementation of the 'Restore Count by Object Type.' model.
+    """Implementation of the 'RestoreCountByObjectType' model.
 
     Number of restore operations by object type.
 

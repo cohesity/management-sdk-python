@@ -4,7 +4,7 @@
 
 class ObjectsByEnv(object):
 
-    """Implementation of the 'Objects By Env.' model.
+    """Implementation of the 'ObjectsByEnv' model.
 
     Number of Objects by Type.
 

@@ -4,10 +4,10 @@
 
 class CloudParameters(object):
 
-    """Implementation of the 'Cloud Parameters.' model.
+    """Implementation of the 'CloudParameters' model.
 
-    Specifies Cloud parameters that are applicable to all Protection
-    Sources in a Protection Job in certain scenarios.
+    Specifies Cloud parameters that are applicable to all Protection Sources
+    in a Protection Job in certain scenarios.
 
     Attributes:
         failover_to_cloud (bool): Specifies whether the Protection Sources in

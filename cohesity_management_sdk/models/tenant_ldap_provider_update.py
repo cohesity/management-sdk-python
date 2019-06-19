@@ -4,7 +4,7 @@
 
 class TenantLdapProviderUpdate(object):
 
-    """Implementation of the 'Tenant Ldap Provider Update.' model.
+    """Implementation of the 'TenantLdapProviderUpdate' model.
 
     Specifies Ldap Provider update details response about a tenant.
 

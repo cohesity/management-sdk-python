@@ -5,7 +5,7 @@ import cohesity_management_sdk.models.worm_retention_proto
 
 class RetentionPolicyProto(object):
 
-    """Implementation of the 'Retention Policy Proto.' model.
+    """Implementation of the 'RetentionPolicyProto' model.
 
     Message that specifies the retention policy for backup snapshots.
 

@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.protected_objects_by_enviournment
+import cohesity_management_sdk.models.protected_objects_by_env
 
 class ProtectedObjectsTile(object):
 
-    """Implementation of the 'Protected Objects Tile.' model.
+    """Implementation of the 'ProtectedObjectsTile' model.
 
     Protected Objects information.
 
     Attributes:
-        objects_protected (list of ProtectedObjectsByEnviournment): Protected
-            Objects breakdown by object type.
+        objects_protected (list of ProtectedObjectsByEnv): Protected Objects
+            breakdown by object type.
         protected_count (int): Number of Protected Objects.
         protected_size_bytes (long|int): Size of Protected Objects.
         unprotected_count (int): Number of Unprotected Objects.
@@ -66,7 +66,7 @@ class ProtectedObjectsTile(object):
         if dictionary.get('objectsProtected') != None:
             objects_protected = list()
             for structure in dictionary.get('objectsProtected'):
-                objects_protected.append(cohesity_management_sdk.models.protected_objects_by_enviournment.ProtectedObjectsByEnviournment.from_dictionary(structure))
+                objects_protected.append(cohesity_management_sdk.models.protected_objects_by_env.ProtectedObjectsByEnv.from_dictionary(structure))
         protected_count = dictionary.get('protectedCount')
         protected_size_bytes = dictionary.get('protectedSizeBytes')
         unprotected_count = dictionary.get('unprotectedCount')

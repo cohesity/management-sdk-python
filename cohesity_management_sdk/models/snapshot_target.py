@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.archival_target_1
+import cohesity_management_sdk.models.archival_target
 import cohesity_management_sdk.models.cloud_deploy_target
 import cohesity_management_sdk.models.replication_target
 
@@ -13,7 +13,7 @@ class SnapshotTarget(object):
     archival target) where a backup snapshot may be copied to.
 
     Attributes:
-        archival_target (ArchivalTarget1): Message that specifies the details
+        archival_target (ArchivalTarget): Message that specifies the details
             about an archival target (such as cloud or tape) where backup
             snapshots may be archived to.
         cloud_deploy_target (CloudDeployTarget): Message that specifies the
@@ -66,7 +66,7 @@ class SnapshotTarget(object):
             return None
 
         # Extract variables from the dictionary
-        archival_target = cohesity_management_sdk.models.archival_target_1.ArchivalTarget1.from_dictionary(dictionary.get('archivalTarget')) if dictionary.get('archivalTarget') else None
+        archival_target = cohesity_management_sdk.models.archival_target.ArchivalTarget.from_dictionary(dictionary.get('archivalTarget')) if dictionary.get('archivalTarget') else None
         cloud_deploy_target = cohesity_management_sdk.models.cloud_deploy_target.CloudDeployTarget.from_dictionary(dictionary.get('cloudDeployTarget')) if dictionary.get('cloudDeployTarget') else None
         replication_target = cohesity_management_sdk.models.replication_target.ReplicationTarget.from_dictionary(dictionary.get('replicationTarget')) if dictionary.get('replicationTarget') else None
         mtype = dictionary.get('type')

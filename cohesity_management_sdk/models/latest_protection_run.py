@@ -1,28 +1,28 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.source_object_backup_status
-import cohesity_management_sdk.models.copy_run_task
+import cohesity_management_sdk.models.source_backup_status
+import cohesity_management_sdk.models.copy_run
 import cohesity_management_sdk.models.run_uid
 
 class LatestProtectionRun(object):
 
-    """Implementation of the 'Latest Protection Run.' model.
+    """Implementation of the 'LatestProtectionRun' model.
 
     Specifies the information about the latest Protection Run.
 
     Attributes:
-        backup_run (SourceObjectBackupStatus): Specifies the source object to
+        backup_run (SourceBackupStatus): Specifies the source object to
             protect and the current backup status.
         change_event_id (long|int): Specifies the event id which caused last
             update on this object.
-        copy_run (CopyRunTask): Specifies details about the Copy Run for a
-            backup run of a Job Run. A Copy task copies snapshots resulted
-            from a backup run to a snapshot target which could be 'kLocal',
+        copy_run (CopyRun): Specifies details about the Copy Run for a backup
+            run of a Job Run. A Copy task copies snapshots resulted from a
+            backup run to a snapshot target which could be 'kLocal',
             'kArchival', or 'kRemote'.
         job_run_id (long|int): Specifies job run id of the latest successful
             Protection Job Run.
-        protection_job_run_uid (RunUID): Specifies the universal id of the
+        protection_job_run_uid (RunUid): Specifies the universal id of the
             latest successful Protection Job Run.
         snapshot_target (string): Specifies the cluster id in case of local or
             replication snapshots and name of location in case of archival
@@ -91,11 +91,11 @@ class LatestProtectionRun(object):
             return None
 
         # Extract variables from the dictionary
-        backup_run = cohesity_management_sdk.models.source_object_backup_status.SourceObjectBackupStatus.from_dictionary(dictionary.get('backupRun')) if dictionary.get('backupRun') else None
+        backup_run = cohesity_management_sdk.models.source_backup_status.SourceBackupStatus.from_dictionary(dictionary.get('backupRun')) if dictionary.get('backupRun') else None
         change_event_id = dictionary.get('changeEventId')
-        copy_run = cohesity_management_sdk.models.copy_run_task.CopyRunTask.from_dictionary(dictionary.get('copyRun')) if dictionary.get('copyRun') else None
+        copy_run = cohesity_management_sdk.models.copy_run.CopyRun.from_dictionary(dictionary.get('copyRun')) if dictionary.get('copyRun') else None
         job_run_id = dictionary.get('jobRunId')
-        protection_job_run_uid = cohesity_management_sdk.models.run_uid.RunUID.from_dictionary(dictionary.get('protectionJobRunUid')) if dictionary.get('protectionJobRunUid') else None
+        protection_job_run_uid = cohesity_management_sdk.models.run_uid.RunUid.from_dictionary(dictionary.get('protectionJobRunUid')) if dictionary.get('protectionJobRunUid') else None
         snapshot_target = dictionary.get('snapshotTarget')
         snapshot_target_type = dictionary.get('snapshotTargetType')
         task_status = dictionary.get('taskStatus')

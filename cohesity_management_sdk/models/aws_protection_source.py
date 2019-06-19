@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.vmware_tag_attributes
+import cohesity_management_sdk.models.tag_attribute
 
-class AWSProtectionSource(object):
+class AwsProtectionSource(object):
 
-    """Implementation of the 'AWS Protection Source.' model.
+    """Implementation of the 'AwsProtectionSource' model.
 
     Specifies a Protection Source in AWS environment.
 
@@ -65,21 +65,21 @@ class AWSProtectionSource(object):
             cloud extension.
         secret_access_key (string): Specifies Secret Access key of the AWS
             account.
-        tag_attributes (list of VmwareTagAttributes): Specifies the list of
-            AWS tag attributes.
-        mtype (Type1Enum): Specifies the type of an AWS Protection Source
-            Object such as 'kStorageContainer', 'kVirtualMachine',
-            'kVirtualNetwork', etc. Specifies the type of an AWS source
-            entity. 'kIAMUser' indicates a unique user within an AWS account.
-            'kRegion' indicates a geographical region in the global
-            infrastructure. 'kAvailabilityZone' indicates an availability zone
-            within a region. 'kEC2Instance' indicates a Virtual Machine
-            running in AWS environment. 'kVPC' indicates a virtual private
-            cloud (VPC) network within AWS. 'kSubnet' indicates a subnet
-            inside the VPC. 'kNetworkSecurityGroup' represents a network
-            security group. 'kInstanceType' represents various machine types.
-            'kKeyPair' represents a pair of public and private key used to
-            login into a Virtual Machine.
+        tag_attributes (list of TagAttribute): Specifies the list of AWS tag
+            attributes.
+        mtype (TypeAwsProtectionSourceEnum): Specifies the type of an AWS
+            Protection Source Object such as 'kStorageContainer',
+            'kVirtualMachine', 'kVirtualNetwork', etc. Specifies the type of
+            an AWS source entity. 'kIAMUser' indicates a unique user within an
+            AWS account. 'kRegion' indicates a geographical region in the
+            global infrastructure. 'kAvailabilityZone' indicates an
+            availability zone within a region. 'kEC2Instance' indicates a
+            Virtual Machine running in AWS environment. 'kVPC' indicates a
+            virtual private cloud (VPC) network within AWS. 'kSubnet'
+            indicates a subnet inside the VPC. 'kNetworkSecurityGroup'
+            represents a network security group. 'kInstanceType' represents
+            various machine types. 'kKeyPair' represents a pair of public and
+            private key used to login into a Virtual Machine.
         user_account_id (string): Specifies the account id derived from the
             ARN of the user.
         user_resource_name (string): Specifies the Amazon Resource Name (ARN)
@@ -124,7 +124,7 @@ class AWSProtectionSource(object):
                  mtype=None,
                  user_account_id=None,
                  user_resource_name=None):
-        """Constructor for the AWSProtectionSource class"""
+        """Constructor for the AwsProtectionSource class"""
 
         # Initialize members of the class
         self.access_key = access_key
@@ -179,7 +179,7 @@ class AWSProtectionSource(object):
         if dictionary.get('tagAttributes') != None:
             tag_attributes = list()
             for structure in dictionary.get('tagAttributes'):
-                tag_attributes.append(cohesity_management_sdk.models.vmware_tag_attributes.VmwareTagAttributes.from_dictionary(structure))
+                tag_attributes.append(cohesity_management_sdk.models.tag_attribute.TagAttribute.from_dictionary(structure))
         mtype = dictionary.get('type')
         user_account_id = dictionary.get('userAccountId')
         user_resource_name = dictionary.get('userResourceName')

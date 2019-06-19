@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
-import jsonpickle
 import json
-
+import jsonpickle
 from cohesity_management_sdk.api_helper import APIHelper
 from cohesity_management_sdk.http.http_context import HttpContext
 from cohesity_management_sdk.http.requests_client import RequestsClient
@@ -29,7 +28,7 @@ class BaseController(object):
     http_call_back = None
 
     global_headers = {
-        'user-agent': 'cohesity-Python-sdk-1.0.0'
+        'user-agent': 'cohesity-Python-sdk-1.1.0'
     }
 
     def __init__(self, client=None, call_back=None):

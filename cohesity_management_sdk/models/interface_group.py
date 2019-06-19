@@ -1,19 +1,19 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.product_model_and_interface_tuple
+import cohesity_management_sdk.models.product_model_interface_tuple
 
 class InterfaceGroup(object):
 
-    """Implementation of the 'InterfaceGroup.' model.
+    """Implementation of the 'InterfaceGroup' model.
 
     Specifies the settings of an interface group.
 
     Attributes:
         id (int): Interface group Id.  Specifies the id of the interface
             group.
-        model_interface_lists (list of ProductModelAndInterfaceTuple):
-            Specifies the product model and interface lists.
+        model_interface_lists (list of ProductModelInterfaceTuple): Specifies
+            the product model and interface lists.
         name (string): Specifies the name of the interface group.
 
     """
@@ -60,7 +60,7 @@ class InterfaceGroup(object):
         if dictionary.get('modelInterfaceLists') != None:
             model_interface_lists = list()
             for structure in dictionary.get('modelInterfaceLists'):
-                model_interface_lists.append(cohesity_management_sdk.models.product_model_and_interface_tuple.ProductModelAndInterfaceTuple.from_dictionary(structure))
+                model_interface_lists.append(cohesity_management_sdk.models.product_model_interface_tuple.ProductModelInterfaceTuple.from_dictionary(structure))
         name = dictionary.get('name')
 
         # Return an object of this model

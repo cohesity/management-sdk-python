@@ -1,18 +1,18 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.copy_task_job_run_parameters
-import cohesity_management_sdk.models.unique_global_id
+import cohesity_management_sdk.models.run_job_snapshot_target
+import cohesity_management_sdk.models.universal_id
 
 class UpdateProtectionJobRun(object):
 
-    """Implementation of the 'Update Protection Job Run.' model.
+    """Implementation of the 'UpdateProtectionJobRun' model.
 
-    Specifies a Job Run and the expiration time to update. The expiration
-    time defines the retention period for the Job Run and its snapshots.
+    Specifies a Job Run and the expiration time to update. The expiration time
+    defines the retention period for the Job Run and its snapshots.
 
     Attributes:
-        copy_run_targets (list of CopyTaskJobRunParameters): Specifies the
+        copy_run_targets (list of RunJobSnapshotTarget): Specifies the
             retention for archival, replication or extended local retention.
         expiry_time_usecs (long|int): Specifies a new expiration time as a
             Unix epoch Timestamp (in microseconds). This expiration time
@@ -20,8 +20,7 @@ class UpdateProtectionJobRun(object):
             time for a Job Run is reached, the Job Run and the snapshot
             captured by this Job Run are deleted. If 0 is specified, the Job
             Run and the snapshot are immediately deleted.
-        job_uid (UniqueGlobalId): Specifies a unique universal id for the
-            Job.
+        job_uid (UniversalId): Specifies a unique universal id for the Job.
         run_start_time_usecs (long|int): Specifies the start time of the Job
             Run to update. The start time is specified as a Unix epoch
             Timestamp (in microseconds). This uniquely identifies a snapshot.
@@ -79,9 +78,9 @@ class UpdateProtectionJobRun(object):
         if dictionary.get('copyRunTargets') != None:
             copy_run_targets = list()
             for structure in dictionary.get('copyRunTargets'):
-                copy_run_targets.append(cohesity_management_sdk.models.copy_task_job_run_parameters.CopyTaskJobRunParameters.from_dictionary(structure))
+                copy_run_targets.append(cohesity_management_sdk.models.run_job_snapshot_target.RunJobSnapshotTarget.from_dictionary(structure))
         expiry_time_usecs = dictionary.get('expiryTimeUsecs')
-        job_uid = cohesity_management_sdk.models.unique_global_id.UniqueGlobalId.from_dictionary(dictionary.get('jobUid')) if dictionary.get('jobUid') else None
+        job_uid = cohesity_management_sdk.models.universal_id.UniversalId.from_dictionary(dictionary.get('jobUid')) if dictionary.get('jobUid') else None
         run_start_time_usecs = dictionary.get('runStartTimeUsecs')
         source_ids = dictionary.get('sourceIds')
 

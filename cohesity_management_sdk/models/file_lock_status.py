@@ -4,7 +4,7 @@
 
 class FileLockStatus(object):
 
-    """Implementation of the 'File Lock Status.' model.
+    """Implementation of the 'FileLockStatus' model.
 
     Specifies the information of lock status for a file.
 

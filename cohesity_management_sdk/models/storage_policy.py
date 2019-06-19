@@ -1,15 +1,20 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.erasure_coding_information
+import cohesity_management_sdk.models.erasure_coding_info
 
 class StoragePolicy(object):
 
-    """Implementation of the 'Storage Policy.' model.
+    """Implementation of the 'StoragePolicy' model.
 
     Specifies the storage options applied to a Storage Domain (View Box).
 
     Attributes:
+        app_marker_detection (bool): Specifies Whether to support app marker
+            detection. When this is set to true, app markers (like commvault
+            markers) will be removed from data and put in separate chunks.
+            This way deduplication is improved as it is done on data that has
+            no app markers.
         cloud_spill_vault_id (long|int): Specifies the vault id assigned for
             an external Storage Target to facilitate cloud spill.
         compression_policy (CompressionPolicyEnum): Specifies the compression
@@ -31,8 +36,8 @@ class StoragePolicy(object):
             setting for the Storage Domain (View Box). 'kEncryptionNone'
             indicates the data is not encrypted. 'kEncryptionStrong' indicates
             the data is encrypted.
-        erasure_coding_info (ErasureCodingInformation): Specifies information
-            for erasure coding.
+        erasure_coding_info (ErasureCodingInfo): Specifies information for
+            erasure coding.
         inline_compress (bool): Specifies if compression should occur inline
             (as the data is being written). This field is only relevant if
             compression is enabled. If deduplication is set to inline,
@@ -58,6 +63,7 @@ class StoragePolicy(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "app_marker_detection":'appMarkerDetection',
         "cloud_spill_vault_id":'cloudSpillVaultId',
         "compression_policy":'compressionPolicy',
         "deduplicate_compress_delay_secs":'deduplicateCompressDelaySecs',
@@ -71,6 +77,7 @@ class StoragePolicy(object):
     }
 
     def __init__(self,
+                 app_marker_detection=None,
                  cloud_spill_vault_id=None,
                  compression_policy=None,
                  deduplicate_compress_delay_secs=None,
@@ -84,6 +91,7 @@ class StoragePolicy(object):
         """Constructor for the StoragePolicy class"""
 
         # Initialize members of the class
+        self.app_marker_detection = app_marker_detection
         self.cloud_spill_vault_id = cloud_spill_vault_id
         self.compression_policy = compression_policy
         self.deduplicate_compress_delay_secs = deduplicate_compress_delay_secs
@@ -114,19 +122,21 @@ class StoragePolicy(object):
             return None
 
         # Extract variables from the dictionary
+        app_marker_detection = dictionary.get('appMarkerDetection')
         cloud_spill_vault_id = dictionary.get('cloudSpillVaultId')
         compression_policy = dictionary.get('compressionPolicy')
         deduplicate_compress_delay_secs = dictionary.get('deduplicateCompressDelaySecs')
         deduplication_enabled = dictionary.get('deduplicationEnabled')
         encryption_policy = dictionary.get('encryptionPolicy')
-        erasure_coding_info = cohesity_management_sdk.models.erasure_coding_information.ErasureCodingInformation.from_dictionary(dictionary.get('erasureCodingInfo')) if dictionary.get('erasureCodingInfo') else None
+        erasure_coding_info = cohesity_management_sdk.models.erasure_coding_info.ErasureCodingInfo.from_dictionary(dictionary.get('erasureCodingInfo')) if dictionary.get('erasureCodingInfo') else None
         inline_compress = dictionary.get('inlineCompress')
         inline_deduplicate = dictionary.get('inlineDeduplicate')
         num_failures_tolerated = dictionary.get('numFailuresTolerated')
         num_node_failures_tolerated = dictionary.get('numNodeFailuresTolerated')
 
         # Return an object of this model
-        return cls(cloud_spill_vault_id,
+        return cls(app_marker_detection,
+                   cloud_spill_vault_id,
                    compression_policy,
                    deduplicate_compress_delay_secs,
                    deduplication_enabled,

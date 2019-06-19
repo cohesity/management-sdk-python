@@ -4,7 +4,7 @@
 
 class TapeMediaInformation(object):
 
-    """Implementation of the 'Tape Media Information.' model.
+    """Implementation of the 'TapeMediaInformation' model.
 
     Provides information about a single tape media in a QStar Archive Vault.
 

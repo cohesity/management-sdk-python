@@ -4,10 +4,10 @@
 
 class DiskBlock(object):
 
-    """Implementation of the 'Disk Block.' model.
+    """Implementation of the 'DiskBlock' model.
 
-    Specifies a contiguous block by defining an offset and
-    length of the block.
+    Specifies a contiguous block by defining an offset and length of the
+    block.
 
     Attributes:
         length_bytes (long|int): Specifies the length of the block in bytes.

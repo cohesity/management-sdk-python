@@ -6,10 +6,8 @@ class PhysicalTypeEnum(object):
     """Implementation of the 'PhysicalType' enum.
 
     Specifies the entity type such as 'kPhysicalHost' if the environment is
-    kPhysical.
-    overrideDescription: true
-    'kHost' indicates a single physical server.
-    'kWindowsCluster' indicates a Microsoft Windows cluster.
+    kPhysical. overrideDescription: true 'kHost' indicates a single physical
+    server. 'kWindowsCluster' indicates a Microsoft Windows cluster.
 
     Attributes:
         KHOST: TODO: type description here.

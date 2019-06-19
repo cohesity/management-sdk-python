@@ -5,7 +5,7 @@ import cohesity_management_sdk.models.quota_policy
 
 class QuotaAndUsageInView(object):
 
-    """Implementation of the 'Quota And Usage In View.' model.
+    """Implementation of the 'QuotaAndUsageInView' model.
 
     Specifies the usage and quota information for a specific view.
 

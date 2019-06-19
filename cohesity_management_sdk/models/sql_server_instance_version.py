@@ -4,7 +4,7 @@
 
 class SQLServerInstanceVersion(object):
 
-    """Implementation of the 'SQL Server Instance Version.' model.
+    """Implementation of the 'SQLServerInstanceVersion' model.
 
     Specifies the Server Instance Version.
 

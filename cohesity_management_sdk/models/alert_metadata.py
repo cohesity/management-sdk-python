@@ -5,18 +5,17 @@ import cohesity_management_sdk.models.alert_document
 
 class AlertMetadata(object):
 
-    """Implementation of the 'Alert Metadata' model.
+    """Implementation of the 'AlertMetadata' model.
 
     AlertMetadata specifies metadata for a given alert type. All the alerts of
-    a
-    given alert type share the same metadata.
+    a given alert type share the same metadata.
 
     Attributes:
         alert_document_list (list of AlertDocument): Specifies alert
             documentation one per each language supported.
         alert_type_id (int): Specifies unique id for the alert type.
-        category (Category1Enum): Specifies category of the alert type.
-            Specifies the category of an Alert. kDisk - Alerts that are
+        category (CategoryAlertMetadataEnum): Specifies category of the alert
+            type. Specifies the category of an Alert. kDisk - Alerts that are
             related to Disk. kNode - Alerts that are related to Node. kCluster
             - Alerts that are related to Cluster. kNodeHealth - Alerts that
             are related to Node Health. kClusterHealth - Alerts that are

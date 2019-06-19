@@ -4,7 +4,7 @@
 
 class StoragePolicyOverride(object):
 
-    """Implementation of the 'Storage Policy Override.' model.
+    """Implementation of the 'StoragePolicyOverride' model.
 
     Specifies if inline deduplication and compression settings inherited from
     Storage Domain (View Box) should be disabled for this View.

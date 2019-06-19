@@ -4,7 +4,7 @@
 
 class IndexingPolicyProto(object):
 
-    """Implementation of the 'Indexing Policy Proto.' model.
+    """Implementation of the 'IndexingPolicyProto' model.
 
     Proto to encapsulate file level indexing policy for VMs in a backup job.
 

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.aws_parameters
-import cohesity_management_sdk.models.azure_parameters
+import cohesity_management_sdk.models.aws_params
+import cohesity_management_sdk.models.azure_params
 
 class CloudDeployTargetDetails(object):
 
@@ -12,19 +12,20 @@ class CloudDeployTargetDetails(object):
     snapshots may be converted and stored.
 
     Attributes:
-        aws_params (AWSParameters): Specifies various resources when
-            converting and deploying a VM to AWS.
-        azure_params (AzureParameters): Specifies various resources when
+        aws_params (AwsParams): Specifies various resources when converting
+            and deploying a VM to AWS.
+        azure_params (AzureParams): Specifies various resources when
             converting and deploying a VM to Azure.
         id (long|int): Entity corresponding to the cloud deploy target.
             Specifies the id field inside the EntityProto.
         name (string): Specifies the inner object's name or a human-readable
             string made off the salient attributes. This is only plumbed when
             Entity objects are exposed to Iris BE or to Yoda.
-        mtype (Type21Enum): Specifies the type of the CloudDeploy target.
-            'kAzure' indicates that Azure as a cloud deploy target type.
-            'kAws' indicates that AWS as a cloud deploy target type. 'kGcp'
-            indicates that GCP as a cloud deploy target type.
+        mtype (TypeCloudDeployTargetDetailsEnum): Specifies the type of the
+            CloudDeploy target. 'kAzure' indicates that Azure as a cloud
+            deploy target type. 'kAws' indicates that AWS as a cloud deploy
+            target type. 'kGcp' indicates that GCP as a cloud deploy target
+            type.
 
     """
 
@@ -71,8 +72,8 @@ class CloudDeployTargetDetails(object):
             return None
 
         # Extract variables from the dictionary
-        aws_params = cohesity_management_sdk.models.aws_parameters.AWSParameters.from_dictionary(dictionary.get('awsParams')) if dictionary.get('awsParams') else None
-        azure_params = cohesity_management_sdk.models.azure_parameters.AzureParameters.from_dictionary(dictionary.get('azureParams')) if dictionary.get('azureParams') else None
+        aws_params = cohesity_management_sdk.models.aws_params.AwsParams.from_dictionary(dictionary.get('awsParams')) if dictionary.get('awsParams') else None
+        azure_params = cohesity_management_sdk.models.azure_params.AzureParams.from_dictionary(dictionary.get('azureParams')) if dictionary.get('azureParams') else None
         id = dictionary.get('id')
         name = dictionary.get('name')
         mtype = dictionary.get('type')

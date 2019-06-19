@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.entity
+import cohesity_management_sdk.models.entity_proto
 
 class DeployVMsToAWSParams(object):
 
@@ -11,19 +11,19 @@ class DeployVMsToAWSParams(object):
     when converting and deploying a VM to AWS.
 
     Attributes:
-        instance_type (Entity): Specifies the attributes and the latest
+        instance_type (EntityProto): Specifies the attributes and the latest
             statistics about an entity.
-        key_pair_name (Entity): Specifies the attributes and the latest
+        key_pair_name (EntityProto): Specifies the attributes and the latest
             statistics about an entity.
-        network_security_groups (list of Entity): Names of the network
+        network_security_groups (list of EntityProto): Names of the network
             security groups within the above VPC. At least one entry should be
             present.
-        region (Entity): Specifies the attributes and the latest statistics
+        region (EntityProto): Specifies the attributes and the latest
+            statistics about an entity.
+        subnet (EntityProto): Specifies the attributes and the latest
+            statistics about an entity.
+        vpc (EntityProto): Specifies the attributes and the latest statistics
             about an entity.
-        subnet (Entity): Specifies the attributes and the latest statistics
-            about an entity.
-        vpc (Entity): Specifies the attributes and the latest statistics about
-            an entity.
 
     """
 
@@ -73,16 +73,16 @@ class DeployVMsToAWSParams(object):
             return None
 
         # Extract variables from the dictionary
-        instance_type = cohesity_management_sdk.models.entity.Entity.from_dictionary(dictionary.get('instanceType')) if dictionary.get('instanceType') else None
-        key_pair_name = cohesity_management_sdk.models.entity.Entity.from_dictionary(dictionary.get('keyPairName')) if dictionary.get('keyPairName') else None
+        instance_type = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('instanceType')) if dictionary.get('instanceType') else None
+        key_pair_name = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('keyPairName')) if dictionary.get('keyPairName') else None
         network_security_groups = None
         if dictionary.get('networkSecurityGroups') != None:
             network_security_groups = list()
             for structure in dictionary.get('networkSecurityGroups'):
-                network_security_groups.append(cohesity_management_sdk.models.entity.Entity.from_dictionary(structure))
-        region = cohesity_management_sdk.models.entity.Entity.from_dictionary(dictionary.get('region')) if dictionary.get('region') else None
-        subnet = cohesity_management_sdk.models.entity.Entity.from_dictionary(dictionary.get('subnet')) if dictionary.get('subnet') else None
-        vpc = cohesity_management_sdk.models.entity.Entity.from_dictionary(dictionary.get('vpc')) if dictionary.get('vpc') else None
+                network_security_groups.append(cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(structure))
+        region = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('region')) if dictionary.get('region') else None
+        subnet = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('subnet')) if dictionary.get('subnet') else None
+        vpc = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('vpc')) if dictionary.get('vpc') else None
 
         # Return an object of this model
         return cls(instance_type,

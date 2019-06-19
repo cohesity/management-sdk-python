@@ -5,17 +5,17 @@ import cohesity_management_sdk.models.time_of_day
 
 class BlackoutPeriod(object):
 
-    """Implementation of the 'Blackout Period.' model.
+    """Implementation of the 'BlackoutPeriod' model.
 
-    Specifies a time range in a single day when new Job Runs of
-    Protection Jobs cannot be started. For example, a Protection Job
-    with a daily schedule could define a blackout period for Sunday.
+    Specifies a time range in a single day when new Job Runs of Protection
+    Jobs cannot be started. For example, a Protection Job with a daily
+    schedule could define a blackout period for Sunday.
 
     Attributes:
-        day (Day1Enum): Blackout Day.  Specifies a day in the week when no new
-            Job Runs should be started such as 'kSunday'. If not set, the time
-            range applies to all days. Specifies a day in a week such as
-            'kSunday', 'kMonday', etc.
+        day (DayBlackoutPeriodEnum): Blackout Day.  Specifies a day in the
+            week when no new Job Runs should be started such as 'kSunday'. If
+            not set, the time range applies to all days. Specifies a day in a
+            week such as 'kSunday', 'kMonday', etc.
         end_time (TimeOfDay): Specifies the end time of the blackout time
             range.
         start_time (TimeOfDay): Specifies the start time of the blackout time

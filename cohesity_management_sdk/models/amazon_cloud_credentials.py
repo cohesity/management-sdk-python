@@ -1,15 +1,14 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.c_2_s_access_portal_cap
+import cohesity_management_sdk.models.c_2_s_access_portal
 
 class AmazonCloudCredentials(object):
 
-    """Implementation of the 'Amazon Cloud Credentials.' model.
+    """Implementation of the 'AmazonCloudCredentials' model.
 
-    Specifies the cloud credentials to connect to a Amazon
-    service account. Glacier, S3, and S3-compatible clouds all use these
-    credentials.
+    Specifies the cloud credentials to connect to a Amazon service account.
+    Glacier, S3, and S3-compatible clouds all use these credentials.
 
     Attributes:
         access_key_id (string): Specifies the access key for Amazon service
@@ -17,10 +16,9 @@ class AmazonCloudCredentials(object):
             this field based on the current S3 Compatible Vault (External
             Target) type. For example for Iron Mountain, specify the user name
             from Iron Mountain for this field.
-        c_2_s_access_portal (C2SAccessPortalCAP): Specifies information
-            required to connect to CAP to get AWS credentials.
-            C2SAccessPortal(CAP) is AWS commercial cloud service access
-            portal.
+        c_2_s_access_portal (C2SAccessPortal): Specifies information required
+            to connect to CAP to get AWS credentials. C2SAccessPortal(CAP) is
+            AWS commercial cloud service access portal.
         region (string): Specifies the region to use for the Amazon service
             account.
         secret_access_key (string): Specifies the secret access key for Amazon
@@ -43,6 +41,10 @@ class AmazonCloudCredentials(object):
             tier type of Amazon properties that is accessed less frequently,
             but requires rapid access when needed. 'kAmazonGlacier' indicates
             a tier type of Amazon properties that is accessed rarely.
+            'kAmazonS3OneZoneIA' indicates a tier type of Amazon properties
+            for long-lived, but less frequently accessed data.
+            'kAmazonS3IntelligentTiering' indicates a tier type of Amazon
+            properties for data with unknown or changing access patterns.
         use_https (bool): Specifies whether to use http or https to connect to
             the service. If true, a secure connection (https) is used. This
             field is only significant for S3-compatible cloud services.
@@ -102,7 +104,7 @@ class AmazonCloudCredentials(object):
 
         # Extract variables from the dictionary
         access_key_id = dictionary.get('accessKeyId')
-        c_2_s_access_portal = cohesity_management_sdk.models.c_2_s_access_portal_cap.C2SAccessPortalCAP.from_dictionary(dictionary.get('c2sAccessPortal')) if dictionary.get('c2sAccessPortal') else None
+        c_2_s_access_portal = cohesity_management_sdk.models.c_2_s_access_portal.C2SAccessPortal.from_dictionary(dictionary.get('c2sAccessPortal')) if dictionary.get('c2sAccessPortal') else None
         region = dictionary.get('region')
         secret_access_key = dictionary.get('secretAccessKey')
         service_url = dictionary.get('serviceUrl')

@@ -4,7 +4,7 @@
 
 class TenantProxy(object):
 
-    """Implementation of the 'Tenant Proxy.' model.
+    """Implementation of the 'TenantProxy' model.
 
     Specifies the data for tenant proxy which has been deployed in tenant's
     enviroment.

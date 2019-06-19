@@ -4,14 +4,13 @@
 
 class VmwareDiskExclusionProto(object):
 
-    """Implementation of the 'VMware Disk Exclusion Proto.' model.
+    """Implementation of the 'VMwareDiskExclusionProto' model.
 
     This message contains basic info of the disk to be excluded from backup.
-    The info contained here:
-    1. should be enough to identify the disk during the backup job.
-    2. is a subset of the message fetched to be displayed to the end user.
-    Example: entities/vmware.proto.
-    Note: Currently this is only implemented for VMware type source.
+    The info contained here: 1. should be enough to identify the disk during
+    the backup job. 2. is a subset of the message fetched to be displayed to
+    the end user. Example: entities/vmware.proto. Note: Currently this is only
+    implemented for VMware type source.
 
     Attributes:
         controller_bus_number (long|int): Controller's bus-id controlling the

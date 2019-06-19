@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.entity
+import cohesity_management_sdk.models.entity_proto
 
 class BackupJobProtoExcludeSource(object):
 
@@ -10,8 +10,8 @@ class BackupJobProtoExcludeSource(object):
     TODO: type model description here.
 
     Attributes:
-        entities (list of Entity): An intersection of leaf-level entities will
-            be obtained after expanding the following entities.
+        entities (list of EntityProto): An intersection of leaf-level entities
+            will be obtained after expanding the following entities.
             TODO(Chinmaya): Add some more comments.
 
     """
@@ -51,7 +51,7 @@ class BackupJobProtoExcludeSource(object):
         if dictionary.get('entities') != None:
             entities = list()
             for structure in dictionary.get('entities'):
-                entities.append(cohesity_management_sdk.models.entity.Entity.from_dictionary(structure))
+                entities.append(cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(structure))
 
         # Return an object of this model
         return cls(entities)

@@ -1,36 +1,39 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.view_alias_information
+import cohesity_management_sdk.models.view_alias_info
+import cohesity_management_sdk.models.antivirus_scan_config
 import cohesity_management_sdk.models.file_extension_filter
-import cohesity_management_sdk.models.file_level_data_lock_configurations
+import cohesity_management_sdk.models.file_level_data_lock_config
 import cohesity_management_sdk.models.quota_policy
 import cohesity_management_sdk.models.qo_s
-import cohesity_management_sdk.models.smb_permissions_information
+import cohesity_management_sdk.models.smb_permissions_info
+import cohesity_management_sdk.models.view_stats
 import cohesity_management_sdk.models.storage_policy_override
 import cohesity_management_sdk.models.subnet
 import cohesity_management_sdk.models.view_protection
 
 class View(object):
 
-    """Implementation of the 'View.' model.
+    """Implementation of the 'View' model.
 
-    Specifies settings for defining a storage location (called a View)
-    with NFS and SMB mount paths in a Storage Domain (View Box) on the
-    Cohesity
+    Specifies settings for defining a storage location (called a View) with
+    NFS and SMB mount paths in a Storage Domain (View Box) on the Cohesity
     Cluster.
 
     Attributes:
         access_sids (list of string): Array of Security Identifiers (SIDs)
             Specifies the list of security identifiers (SIDs) for the
             restricted Principals who have access to this View.
-        aliases (list of ViewAliasInformation): Aliases created for the view.
-            A view alias allows a directory path inside a view to be mounted
-            using the alias name.
+        aliases (list of ViewAliasInfo): Aliases created for the view. A view
+            alias allows a directory path inside a view to be mounted using
+            the alias name.
         all_smb_mount_paths (list of string): Array of SMB Paths.  Specifies
             the possible paths that can be used to mount this View as a SMB
             share. If Active Directory has multiple account names; each
             machine account has its own path.
+        antivirus_scan_config (AntivirusScanConfig): Specifies the antivirus
+            scan config settings for this View.
         basic_mount_path (string): Specifies the NFS mount path of the View
             (without the hostname information). This path is used to support
             NFS mounting of the paths specified in the nfsExportPathList on
@@ -70,9 +73,11 @@ class View(object):
             unencrypted sessions are disallowed.
         file_extension_filter (FileExtensionFilter): TODO: type description
             here.
-        file_lock_config (FileLevelDataLockConfigurations): Specifies a config
-            to lock files in a view - to protect from malicious or an
-            accidental attempt to delete or modify the files in this view.
+        file_lock_config (FileLevelDataLockConfig): Specifies a config to lock
+            files in a view - to protect from malicious or an accidental
+            attempt to delete or modify the files in this view.
+        is_target_for_migrated_data (bool): Specifies if a view contains
+            migrated data.
         logical_quota (QuotaPolicy): Specifies an optional logical quota limit
             (in bytes) for the usage allowed on this View. (Logical data is
             when the data is fully hydrated and expanded.) This limit
@@ -107,8 +112,9 @@ class View(object):
             'kNtfsMode' indicates a NTFS style security mode.
         smb_mount_path (string): Specifies the main path for mounting this
             View as an SMB share.
-        smb_permissions_info (SMBPermissionsInformation): Specifies
-            information about SMB permissions.
+        smb_permissions_info (SmbPermissionsInfo): Specifies information about
+            SMB permissions.
+        stats (ViewStats): Provides statistics about the View.
         storage_policy_override (StoragePolicyOverride): Specifies if inline
             deduplication and compression settings inherited from Storage
             Domain (View Box) should be disabled for this View.
@@ -133,6 +139,7 @@ class View(object):
         "access_sids":'accessSids',
         "aliases":'aliases',
         "all_smb_mount_paths":'allSmbMountPaths',
+        "antivirus_scan_config":'antivirusScanConfig',
         "basic_mount_path":'basicMountPath',
         "case_insensitive_names_enabled":'caseInsensitiveNamesEnabled',
         "create_time_msecs":'createTimeMsecs',
@@ -147,6 +154,7 @@ class View(object):
         "enforce_smb_encryption":'enforceSmbEncryption',
         "file_extension_filter":'fileExtensionFilter',
         "file_lock_config":'fileLockConfig',
+        "is_target_for_migrated_data":'isTargetForMigratedData',
         "logical_quota":'logicalQuota',
         "logical_usage_bytes":'logicalUsageBytes',
         "name":'name',
@@ -157,6 +165,7 @@ class View(object):
         "security_mode":'securityMode',
         "smb_mount_path":'smbMountPath',
         "smb_permissions_info":'smbPermissionsInfo',
+        "stats":'stats',
         "storage_policy_override":'storagePolicyOverride',
         "subnet_whitelist":'subnetWhitelist',
         "tenant_id":'tenantId',
@@ -170,6 +179,7 @@ class View(object):
                  access_sids=None,
                  aliases=None,
                  all_smb_mount_paths=None,
+                 antivirus_scan_config=None,
                  basic_mount_path=None,
                  case_insensitive_names_enabled=None,
                  create_time_msecs=None,
@@ -184,6 +194,7 @@ class View(object):
                  enforce_smb_encryption=None,
                  file_extension_filter=None,
                  file_lock_config=None,
+                 is_target_for_migrated_data=None,
                  logical_quota=None,
                  logical_usage_bytes=None,
                  name=None,
@@ -194,6 +205,7 @@ class View(object):
                  security_mode=None,
                  smb_mount_path=None,
                  smb_permissions_info=None,
+                 stats=None,
                  storage_policy_override=None,
                  subnet_whitelist=None,
                  tenant_id=None,
@@ -207,6 +219,7 @@ class View(object):
         self.access_sids = access_sids
         self.aliases = aliases
         self.all_smb_mount_paths = all_smb_mount_paths
+        self.antivirus_scan_config = antivirus_scan_config
         self.basic_mount_path = basic_mount_path
         self.case_insensitive_names_enabled = case_insensitive_names_enabled
         self.create_time_msecs = create_time_msecs
@@ -221,6 +234,7 @@ class View(object):
         self.enforce_smb_encryption = enforce_smb_encryption
         self.file_extension_filter = file_extension_filter
         self.file_lock_config = file_lock_config
+        self.is_target_for_migrated_data = is_target_for_migrated_data
         self.logical_quota = logical_quota
         self.logical_usage_bytes = logical_usage_bytes
         self.name = name
@@ -231,6 +245,7 @@ class View(object):
         self.security_mode = security_mode
         self.smb_mount_path = smb_mount_path
         self.smb_permissions_info = smb_permissions_info
+        self.stats = stats
         self.storage_policy_override = storage_policy_override
         self.subnet_whitelist = subnet_whitelist
         self.tenant_id = tenant_id
@@ -263,8 +278,9 @@ class View(object):
         if dictionary.get('aliases') != None:
             aliases = list()
             for structure in dictionary.get('aliases'):
-                aliases.append(cohesity_management_sdk.models.view_alias_information.ViewAliasInformation.from_dictionary(structure))
+                aliases.append(cohesity_management_sdk.models.view_alias_info.ViewAliasInfo.from_dictionary(structure))
         all_smb_mount_paths = dictionary.get('allSmbMountPaths')
+        antivirus_scan_config = cohesity_management_sdk.models.antivirus_scan_config.AntivirusScanConfig.from_dictionary(dictionary.get('antivirusScanConfig')) if dictionary.get('antivirusScanConfig') else None
         basic_mount_path = dictionary.get('basicMountPath')
         case_insensitive_names_enabled = dictionary.get('caseInsensitiveNamesEnabled')
         create_time_msecs = dictionary.get('createTimeMsecs')
@@ -278,7 +294,8 @@ class View(object):
         enable_smb_view_discovery = dictionary.get('enableSmbViewDiscovery')
         enforce_smb_encryption = dictionary.get('enforceSmbEncryption')
         file_extension_filter = cohesity_management_sdk.models.file_extension_filter.FileExtensionFilter.from_dictionary(dictionary.get('fileExtensionFilter')) if dictionary.get('fileExtensionFilter') else None
-        file_lock_config = cohesity_management_sdk.models.file_level_data_lock_configurations.FileLevelDataLockConfigurations.from_dictionary(dictionary.get('fileLockConfig')) if dictionary.get('fileLockConfig') else None
+        file_lock_config = cohesity_management_sdk.models.file_level_data_lock_config.FileLevelDataLockConfig.from_dictionary(dictionary.get('fileLockConfig')) if dictionary.get('fileLockConfig') else None
+        is_target_for_migrated_data = dictionary.get('isTargetForMigratedData')
         logical_quota = cohesity_management_sdk.models.quota_policy.QuotaPolicy.from_dictionary(dictionary.get('logicalQuota')) if dictionary.get('logicalQuota') else None
         logical_usage_bytes = dictionary.get('logicalUsageBytes')
         name = dictionary.get('name')
@@ -288,7 +305,8 @@ class View(object):
         s_3_access_path = dictionary.get('s3AccessPath')
         security_mode = dictionary.get('securityMode')
         smb_mount_path = dictionary.get('smbMountPath')
-        smb_permissions_info = cohesity_management_sdk.models.smb_permissions_information.SMBPermissionsInformation.from_dictionary(dictionary.get('smbPermissionsInfo')) if dictionary.get('smbPermissionsInfo') else None
+        smb_permissions_info = cohesity_management_sdk.models.smb_permissions_info.SmbPermissionsInfo.from_dictionary(dictionary.get('smbPermissionsInfo')) if dictionary.get('smbPermissionsInfo') else None
+        stats = cohesity_management_sdk.models.view_stats.ViewStats.from_dictionary(dictionary.get('stats')) if dictionary.get('stats') else None
         storage_policy_override = cohesity_management_sdk.models.storage_policy_override.StoragePolicyOverride.from_dictionary(dictionary.get('storagePolicyOverride')) if dictionary.get('storagePolicyOverride') else None
         subnet_whitelist = None
         if dictionary.get('subnetWhitelist') != None:
@@ -305,6 +323,7 @@ class View(object):
         return cls(access_sids,
                    aliases,
                    all_smb_mount_paths,
+                   antivirus_scan_config,
                    basic_mount_path,
                    case_insensitive_names_enabled,
                    create_time_msecs,
@@ -319,6 +338,7 @@ class View(object):
                    enforce_smb_encryption,
                    file_extension_filter,
                    file_lock_config,
+                   is_target_for_migrated_data,
                    logical_quota,
                    logical_usage_bytes,
                    name,
@@ -329,6 +349,7 @@ class View(object):
                    security_mode,
                    smb_mount_path,
                    smb_permissions_info,
+                   stats,
                    storage_policy_override,
                    subnet_whitelist,
                    tenant_id,

@@ -2,9 +2,9 @@
 # Copyright 2019 Cohesity Inc.
 
 
-class LDAPProviderResponse(object):
+class LdapProviderResponse(object):
 
-    """Implementation of the 'LDAP Provider Response.' model.
+    """Implementation of the 'LdapProviderResponse' model.
 
     LDAP provider response struct.
 
@@ -65,7 +65,7 @@ class LDAPProviderResponse(object):
                  use_ssl=None,
                  user_distinguished_name=None,
                  user_password=None):
-        """Constructor for the LDAPProviderResponse class"""
+        """Constructor for the LdapProviderResponse class"""
 
         # Initialize members of the class
         self.ad_domain_name = ad_domain_name

@@ -4,7 +4,7 @@
 
 class QoS(object):
 
-    """Implementation of the 'QoS.' model.
+    """Implementation of the 'QoS' model.
 
     Specifies the Quality of Service (QoS) Policy for the View.
 

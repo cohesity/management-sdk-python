@@ -4,7 +4,7 @@
 
 class Share(object):
 
-    """Implementation of the 'Share.' model.
+    """Implementation of the 'Share' model.
 
     Specifies the share details when request is made for list of shares
     filtered by ShareName parameter.

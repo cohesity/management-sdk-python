@@ -5,14 +5,14 @@ import cohesity_management_sdk.models.user_id
 
 class DeleteViewUsersQuotaParameters(object):
 
-    """Implementation of the 'Delete View Users Quota Parameters.' model.
+    """Implementation of the 'DeleteViewUsersQuotaParameters' model.
 
     Specifies the user ids to remove the corresponding quota overrides in
     view.
 
     Attributes:
         delete_all (bool): Delete all existing user quota override policies.
-        user_ids (list of UserID): The user ids whose policy needs to be
+        user_ids (list of UserId): The user ids whose policy needs to be
             deleted.
         view_name (string): View name of input view.
 
@@ -60,7 +60,7 @@ class DeleteViewUsersQuotaParameters(object):
         if dictionary.get('userIds') != None:
             user_ids = list()
             for structure in dictionary.get('userIds'):
-                user_ids.append(cohesity_management_sdk.models.user_id.UserID.from_dictionary(structure))
+                user_ids.append(cohesity_management_sdk.models.user_id.UserId.from_dictionary(structure))
         view_name = dictionary.get('viewName')
 
         # Return an object of this model

@@ -4,7 +4,7 @@
 
 class CentrifyZone(object):
 
-    """Implementation of the 'Centrify Zone.' model.
+    """Implementation of the 'CentrifyZone' model.
 
     Specifies the properties associated to a Centrify zone of an Active
     Directory domain.

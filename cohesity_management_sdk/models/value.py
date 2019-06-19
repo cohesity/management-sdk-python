@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.data
+import cohesity_management_sdk.models.value_data
 
 class Value(object):
 
-    """Implementation of the 'Value.' model.
+    """Implementation of the 'Value' model.
 
     Specifies a data type and data field used to store data.
 
     Attributes:
-        data (Data): Specifies the fields to store data of a given type.
+        data (ValueData): Specifies the fields to store data of a given type.
             Specify data in the appropriate field for the current data type.
         mtype (int): Specifies the type of value. 0 specifies a data point of
             type Int64. 1 specifies a data point of type Double. 2 specifies a
@@ -53,7 +53,7 @@ class Value(object):
             return None
 
         # Extract variables from the dictionary
-        data = cohesity_management_sdk.models.data.Data.from_dictionary(dictionary.get('data')) if dictionary.get('data') else None
+        data = cohesity_management_sdk.models.value_data.ValueData.from_dictionary(dictionary.get('data')) if dictionary.get('data') else None
         mtype = dictionary.get('type')
 
         # Return an object of this model

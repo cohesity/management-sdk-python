@@ -4,7 +4,7 @@
 
 class ActiveDirectoryPrincipal(object):
 
-    """Implementation of the 'Active Directory Principal.' model.
+    """Implementation of the 'ActiveDirectoryPrincipal' model.
 
     Specifies information about a single principal in an Active Directory.
 

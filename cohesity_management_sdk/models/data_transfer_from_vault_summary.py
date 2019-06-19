@@ -5,10 +5,10 @@ import cohesity_management_sdk.models.data_transfer_from_vault_per_task
 
 class DataTransferFromVaultSummary(object):
 
-    """Implementation of the 'Data Transfer From Vault Summary.' model.
+    """Implementation of the 'DataTransferFromVaultSummary' model.
 
-    Specifies summary statistics about the transfer of data from a Vault
-    to this Cohesity Cluster.
+    Specifies summary statistics about the transfer of data from a Vault to
+    this Cohesity Cluster.
 
     Attributes:
         data_transfer_per_task (list of DataTransferFromVaultPerTask): Array

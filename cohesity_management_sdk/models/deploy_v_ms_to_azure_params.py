@@ -2,7 +2,7 @@
 # Copyright 2019 Cohesity Inc.
 
 import cohesity_management_sdk.models.azure_managed_disk_params
-import cohesity_management_sdk.models.entity
+import cohesity_management_sdk.models.entity_proto
 
 class DeployVMsToAzureParams(object):
 
@@ -14,25 +14,25 @@ class DeployVMsToAzureParams(object):
     Attributes:
         azure_managed_disk_params (AzureManagedDiskParams): Contains managed
             disk parameters needed to deploy to Azure using managed disk.
-        compute_options (Entity): Specifies the attributes and the latest
+        compute_options (EntityProto): Specifies the attributes and the latest
             statistics about an entity.
-        network_resource_group (Entity): Specifies the attributes and the
+        network_resource_group (EntityProto): Specifies the attributes and the
             latest statistics about an entity.
-        network_security_group (Entity): Specifies the attributes and the
+        network_security_group (EntityProto): Specifies the attributes and the
             latest statistics about an entity.
-        resource_group (Entity): Specifies the attributes and the latest
+        resource_group (EntityProto): Specifies the attributes and the latest
             statistics about an entity.
-        storage_account (Entity): Specifies the attributes and the latest
+        storage_account (EntityProto): Specifies the attributes and the latest
             statistics about an entity.
-        storage_container (Entity): Specifies the attributes and the latest
-            statistics about an entity.
-        storage_key (Entity): Specifies the attributes and the latest
-            statistics about an entity.
-        storage_resource_group (Entity): Specifies the attributes and the
+        storage_container (EntityProto): Specifies the attributes and the
             latest statistics about an entity.
-        subnet (Entity): Specifies the attributes and the latest statistics
-            about an entity.
-        virtual_network (Entity): Specifies the attributes and the latest
+        storage_key (EntityProto): Specifies the attributes and the latest
+            statistics about an entity.
+        storage_resource_group (EntityProto): Specifies the attributes and the
+            latest statistics about an entity.
+        subnet (EntityProto): Specifies the attributes and the latest
+            statistics about an entity.
+        virtual_network (EntityProto): Specifies the attributes and the latest
             statistics about an entity.
 
     """
@@ -99,16 +99,16 @@ class DeployVMsToAzureParams(object):
 
         # Extract variables from the dictionary
         azure_managed_disk_params = cohesity_management_sdk.models.azure_managed_disk_params.AzureManagedDiskParams.from_dictionary(dictionary.get('azureManagedDiskParams')) if dictionary.get('azureManagedDiskParams') else None
-        compute_options = cohesity_management_sdk.models.entity.Entity.from_dictionary(dictionary.get('computeOptions')) if dictionary.get('computeOptions') else None
-        network_resource_group = cohesity_management_sdk.models.entity.Entity.from_dictionary(dictionary.get('networkResourceGroup')) if dictionary.get('networkResourceGroup') else None
-        network_security_group = cohesity_management_sdk.models.entity.Entity.from_dictionary(dictionary.get('networkSecurityGroup')) if dictionary.get('networkSecurityGroup') else None
-        resource_group = cohesity_management_sdk.models.entity.Entity.from_dictionary(dictionary.get('resourceGroup')) if dictionary.get('resourceGroup') else None
-        storage_account = cohesity_management_sdk.models.entity.Entity.from_dictionary(dictionary.get('storageAccount')) if dictionary.get('storageAccount') else None
-        storage_container = cohesity_management_sdk.models.entity.Entity.from_dictionary(dictionary.get('storageContainer')) if dictionary.get('storageContainer') else None
-        storage_key = cohesity_management_sdk.models.entity.Entity.from_dictionary(dictionary.get('storageKey')) if dictionary.get('storageKey') else None
-        storage_resource_group = cohesity_management_sdk.models.entity.Entity.from_dictionary(dictionary.get('storageResourceGroup')) if dictionary.get('storageResourceGroup') else None
-        subnet = cohesity_management_sdk.models.entity.Entity.from_dictionary(dictionary.get('subnet')) if dictionary.get('subnet') else None
-        virtual_network = cohesity_management_sdk.models.entity.Entity.from_dictionary(dictionary.get('virtualNetwork')) if dictionary.get('virtualNetwork') else None
+        compute_options = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('computeOptions')) if dictionary.get('computeOptions') else None
+        network_resource_group = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('networkResourceGroup')) if dictionary.get('networkResourceGroup') else None
+        network_security_group = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('networkSecurityGroup')) if dictionary.get('networkSecurityGroup') else None
+        resource_group = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('resourceGroup')) if dictionary.get('resourceGroup') else None
+        storage_account = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('storageAccount')) if dictionary.get('storageAccount') else None
+        storage_container = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('storageContainer')) if dictionary.get('storageContainer') else None
+        storage_key = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('storageKey')) if dictionary.get('storageKey') else None
+        storage_resource_group = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('storageResourceGroup')) if dictionary.get('storageResourceGroup') else None
+        subnet = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('subnet')) if dictionary.get('subnet') else None
+        virtual_network = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('virtualNetwork')) if dictionary.get('virtualNetwork') else None
 
         # Return an object of this model
         return cls(azure_managed_disk_params,

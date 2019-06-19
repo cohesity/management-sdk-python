@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.entity
+import cohesity_management_sdk.models.entity_proto
 
 class DeployVMsToGCPParams(object):
 
@@ -11,13 +11,13 @@ class DeployVMsToGCPParams(object):
     when converting and deploying a VM to GCP.
 
     Attributes:
-        project_id (Entity): Specifies the attributes and the latest
+        project_id (EntityProto): Specifies the attributes and the latest
             statistics about an entity.
-        region (Entity): Specifies the attributes and the latest statistics
-            about an entity.
-        subnet (Entity): Specifies the attributes and the latest statistics
-            about an entity.
-        zone (Entity): Specifies the attributes and the latest statistics
+        region (EntityProto): Specifies the attributes and the latest
+            statistics about an entity.
+        subnet (EntityProto): Specifies the attributes and the latest
+            statistics about an entity.
+        zone (EntityProto): Specifies the attributes and the latest statistics
             about an entity.
 
     """
@@ -62,10 +62,10 @@ class DeployVMsToGCPParams(object):
             return None
 
         # Extract variables from the dictionary
-        project_id = cohesity_management_sdk.models.entity.Entity.from_dictionary(dictionary.get('projectId')) if dictionary.get('projectId') else None
-        region = cohesity_management_sdk.models.entity.Entity.from_dictionary(dictionary.get('region')) if dictionary.get('region') else None
-        subnet = cohesity_management_sdk.models.entity.Entity.from_dictionary(dictionary.get('subnet')) if dictionary.get('subnet') else None
-        zone = cohesity_management_sdk.models.entity.Entity.from_dictionary(dictionary.get('zone')) if dictionary.get('zone') else None
+        project_id = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('projectId')) if dictionary.get('projectId') else None
+        region = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('region')) if dictionary.get('region') else None
+        subnet = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('subnet')) if dictionary.get('subnet') else None
+        zone = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('zone')) if dictionary.get('zone') else None
 
         # Return an object of this model
         return cls(project_id,

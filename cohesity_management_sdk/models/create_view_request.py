@@ -1,17 +1,18 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
+import cohesity_management_sdk.models.antivirus_scan_config
 import cohesity_management_sdk.models.file_extension_filter
-import cohesity_management_sdk.models.file_level_data_lock_configurations
+import cohesity_management_sdk.models.file_level_data_lock_config
 import cohesity_management_sdk.models.quota_policy
 import cohesity_management_sdk.models.qo_s
-import cohesity_management_sdk.models.smb_permissions_information
+import cohesity_management_sdk.models.smb_permissions_info
 import cohesity_management_sdk.models.storage_policy_override
 import cohesity_management_sdk.models.subnet
 
 class CreateViewRequest(object):
 
-    """Implementation of the 'Create View Request.' model.
+    """Implementation of the 'CreateViewRequest' model.
 
     Specifies the information required for creating a new View.
 
@@ -19,6 +20,8 @@ class CreateViewRequest(object):
         access_sids (list of string): Array of Security Identifiers (SIDs)
             Specifies the list of security identifiers (SIDs) for the
             restricted Principals who have access to this View.
+        antivirus_scan_config (AntivirusScanConfig): Specifies the antivirus
+            scan config settings for this View.
         case_insensitive_names_enabled (bool): Specifies whether to support
             case insensitive file/folder names. This parameter can only be set
             during create and cannot be changed.
@@ -47,9 +50,9 @@ class CreateViewRequest(object):
             unencrypted sessions are disallowed.
         file_extension_filter (FileExtensionFilter): TODO: type description
             here.
-        file_lock_config (FileLevelDataLockConfigurations): Specifies a config
-            to lock files in a view - to protect from malicious or an
-            accidental attempt to delete or modify the files in this view.
+        file_lock_config (FileLevelDataLockConfig): Specifies a config to lock
+            files in a view - to protect from malicious or an accidental
+            attempt to delete or modify the files in this view.
         logical_quota (QuotaPolicy): Specifies an optional logical quota limit
             (in bytes) for the usage allowed on this View. (Logical data is
             when the data is fully hydrated and expanded.) This limit
@@ -76,8 +79,8 @@ class CreateViewRequest(object):
             Unified and NTFS style. 'kNativeMode' indicates a native security
             mode. 'kUnifiedMode' indicates a unified security mode.
             'kNtfsMode' indicates a NTFS style security mode.
-        smb_permissions_info (SMBPermissionsInformation): Specifies
-            information about SMB permissions.
+        smb_permissions_info (SmbPermissionsInfo): Specifies information about
+            SMB permissions.
         storage_policy_override (StoragePolicyOverride): Specifies if inline
             deduplication and compression settings inherited from Storage
             Domain (View Box) should be disabled for this View.
@@ -96,6 +99,7 @@ class CreateViewRequest(object):
         "name":'name',
         "view_box_id":'viewBoxId',
         "access_sids":'accessSids',
+        "antivirus_scan_config":'antivirusScanConfig',
         "case_insensitive_names_enabled":'caseInsensitiveNamesEnabled',
         "description":'description',
         "enable_filer_audit_logging":'enableFilerAuditLogging',
@@ -121,6 +125,7 @@ class CreateViewRequest(object):
                  name=None,
                  view_box_id=None,
                  access_sids=None,
+                 antivirus_scan_config=None,
                  case_insensitive_names_enabled=None,
                  description=None,
                  enable_filer_audit_logging=None,
@@ -144,6 +149,7 @@ class CreateViewRequest(object):
 
         # Initialize members of the class
         self.access_sids = access_sids
+        self.antivirus_scan_config = antivirus_scan_config
         self.case_insensitive_names_enabled = case_insensitive_names_enabled
         self.description = description
         self.enable_filer_audit_logging = enable_filer_audit_logging
@@ -188,6 +194,7 @@ class CreateViewRequest(object):
         name = dictionary.get('name')
         view_box_id = dictionary.get('viewBoxId')
         access_sids = dictionary.get('accessSids')
+        antivirus_scan_config = cohesity_management_sdk.models.antivirus_scan_config.AntivirusScanConfig.from_dictionary(dictionary.get('antivirusScanConfig')) if dictionary.get('antivirusScanConfig') else None
         case_insensitive_names_enabled = dictionary.get('caseInsensitiveNamesEnabled')
         description = dictionary.get('description')
         enable_filer_audit_logging = dictionary.get('enableFilerAuditLogging')
@@ -198,12 +205,12 @@ class CreateViewRequest(object):
         enable_smb_view_discovery = dictionary.get('enableSmbViewDiscovery')
         enforce_smb_encryption = dictionary.get('enforceSmbEncryption')
         file_extension_filter = cohesity_management_sdk.models.file_extension_filter.FileExtensionFilter.from_dictionary(dictionary.get('fileExtensionFilter')) if dictionary.get('fileExtensionFilter') else None
-        file_lock_config = cohesity_management_sdk.models.file_level_data_lock_configurations.FileLevelDataLockConfigurations.from_dictionary(dictionary.get('fileLockConfig')) if dictionary.get('fileLockConfig') else None
+        file_lock_config = cohesity_management_sdk.models.file_level_data_lock_config.FileLevelDataLockConfig.from_dictionary(dictionary.get('fileLockConfig')) if dictionary.get('fileLockConfig') else None
         logical_quota = cohesity_management_sdk.models.quota_policy.QuotaPolicy.from_dictionary(dictionary.get('logicalQuota')) if dictionary.get('logicalQuota') else None
         protocol_access = dictionary.get('protocolAccess')
         qos = cohesity_management_sdk.models.qo_s.QoS.from_dictionary(dictionary.get('qos')) if dictionary.get('qos') else None
         security_mode = dictionary.get('securityMode')
-        smb_permissions_info = cohesity_management_sdk.models.smb_permissions_information.SMBPermissionsInformation.from_dictionary(dictionary.get('smbPermissionsInfo')) if dictionary.get('smbPermissionsInfo') else None
+        smb_permissions_info = cohesity_management_sdk.models.smb_permissions_info.SmbPermissionsInfo.from_dictionary(dictionary.get('smbPermissionsInfo')) if dictionary.get('smbPermissionsInfo') else None
         storage_policy_override = cohesity_management_sdk.models.storage_policy_override.StoragePolicyOverride.from_dictionary(dictionary.get('storagePolicyOverride')) if dictionary.get('storagePolicyOverride') else None
         subnet_whitelist = None
         if dictionary.get('subnetWhitelist') != None:
@@ -216,6 +223,7 @@ class CreateViewRequest(object):
         return cls(name,
                    view_box_id,
                    access_sids,
+                   antivirus_scan_config,
                    case_insensitive_names_enabled,
                    description,
                    enable_filer_audit_logging,

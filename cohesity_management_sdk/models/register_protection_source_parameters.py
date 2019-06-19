@@ -1,73 +1,74 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.aws_source_credentials
-import cohesity_management_sdk.models.azure_source_credentials
-import cohesity_management_sdk.models.gcp_source_credentials
-import cohesity_management_sdk.models.nas_mount_credentials
-import cohesity_management_sdk.models.ssl_certification_verification_settings
-import cohesity_management_sdk.models.throttling_policy
+import cohesity_management_sdk.models.aws_credentials
+import cohesity_management_sdk.models.azure_credentials
+import cohesity_management_sdk.models.gcp_credentials
+import cohesity_management_sdk.models.nas_mount_credential_params
+import cohesity_management_sdk.models.office_365_credentials
+import cohesity_management_sdk.models.ssl_verification
+import cohesity_management_sdk.models.throttling_policy_parameters
 import cohesity_management_sdk.models.throttling_policy_override
 
 class RegisterProtectionSourceParameters(object):
 
-    """Implementation of the 'Register Protection Source Parameters.' model.
+    """Implementation of the 'RegisterProtectionSourceParameters' model.
 
     Specifies the parameters required to register a Protection Source.
 
     Attributes:
-        aws_credentials (AWSSourceCredentials): Specifies the credentials to
+        aws_credentials (AwsCredentials): Specifies the credentials to
             authenticate with AWS Cloud Platform.
-        azure_credentials (AzureSourceCredentials): Specifies the credentials
-            to authenticate with Azure Cloud Platform.
+        azure_credentials (AzureCredentials): Specifies the credentials to
+            authenticate with Azure Cloud Platform.
         endpoint (string): Specifies the network endpoint of the Protection
             Source where it is reachable. It could be an URL or hostname or an
             IP address of the Protection Source.
-        environment (Environment12Enum): Specifies the environment such as
-            'kPhysical' or 'kVMware' of the Protection Source.
-            overrideDescription: true Supported environment types such as
-            'kView', 'kSQL', 'kVMware', etc. NOTE: 'kPuppeteer' refers to
-            Cohesity's Remote Adapter. 'kVMware' indicates the VMware
-            Protection Source environment. 'kHyperV' indicates the HyperV
-            Protection Source environment. 'kSQL' indicates the SQL Protection
-            Source environment. 'kView' indicates the View Protection Source
-            environment. 'kPuppeteer' indicates the Cohesity's Remote Adapter.
-            'kPhysical' indicates the physical Protection Source environment.
-            'kPure' indicates the Pure Storage Protection Source environment.
-            'kAzure' indicates the Microsoft's Azure Protection Source
-            environment. 'kNetapp' indicates the Netapp Protection Source
-            environment. 'kAgent' indicates the Agent Protection Source
-            environment. 'kGenericNas' indicates the Genreric Network Attached
-            Storage Protection Source environment. 'kAcropolis' indicates the
-            Acropolis Protection Source environment. 'kPhsicalFiles' indicates
-            the Physical Files Protection Source environment. 'kIsilon'
-            indicates the Dell EMC's Isilon Protection Source environment.
-            'kKVM' indicates the KVM Protection Source environment. 'kAWS'
-            indicates the AWS Protection Source environment. 'kExchange'
-            indicates the Exchange Protection Source environment. 'kHyperVVSS'
-            indicates the HyperV VSS Protection Source environment. 'kOracle'
-            indicates the Oracle Protection Source environment. 'kGCP'
-            indicates the Google Cloud Platform Protection Source environment.
-            'kFlashBlade' indicates the Flash Blade Protection Source
-            environment. 'kAWSNative' indicates the AWS Native Protection
-            Source environment. 'kVCD' indicates the VMware's Virtual cloud
-            Director Protection Source environment. 'kO365' indicates the
-            Office 365 Protection Source environment. 'kO365Outlook' indicates
-            Office 365 outlook Protection Source environment. 'kHyperFlex'
-            indicates the Hyper Flex Protection Source environment.
-            'kGCPNative' indicates the GCP Native Protection Source
-            environment. 'kAzureNative' indicates the Azure Native Protection
-            Source environment.
+        environment (EnvironmentRegisterProtectionSourceParametersEnum):
+            Specifies the environment such as 'kPhysical' or 'kVMware' of the
+            Protection Source. overrideDescription: true Supported environment
+            types such as 'kView', 'kSQL', 'kVMware', etc. NOTE: 'kPuppeteer'
+            refers to Cohesity's Remote Adapter. 'kVMware' indicates the
+            VMware Protection Source environment. 'kHyperV' indicates the
+            HyperV Protection Source environment. 'kSQL' indicates the SQL
+            Protection Source environment. 'kView' indicates the View
+            Protection Source environment. 'kPuppeteer' indicates the
+            Cohesity's Remote Adapter. 'kPhysical' indicates the physical
+            Protection Source environment. 'kPure' indicates the Pure Storage
+            Protection Source environment. 'kAzure' indicates the Microsoft's
+            Azure Protection Source environment. 'kNetapp' indicates the
+            Netapp Protection Source environment. 'kAgent' indicates the Agent
+            Protection Source environment. 'kGenericNas' indicates the
+            Genreric Network Attached Storage Protection Source environment.
+            'kAcropolis' indicates the Acropolis Protection Source
+            environment. 'kPhsicalFiles' indicates the Physical Files
+            Protection Source environment. 'kIsilon' indicates the Dell EMC's
+            Isilon Protection Source environment. 'kKVM' indicates the KVM
+            Protection Source environment. 'kAWS' indicates the AWS Protection
+            Source environment. 'kExchange' indicates the Exchange Protection
+            Source environment. 'kHyperVVSS' indicates the HyperV VSS
+            Protection Source environment. 'kOracle' indicates the Oracle
+            Protection Source environment. 'kGCP' indicates the Google Cloud
+            Platform Protection Source environment. 'kFlashBlade' indicates
+            the Flash Blade Protection Source environment. 'kAWSNative'
+            indicates the AWS Native Protection Source environment. 'kVCD'
+            indicates the VMware's Virtual cloud Director Protection Source
+            environment. 'kO365' indicates the Office 365 Protection Source
+            environment. 'kO365Outlook' indicates Office 365 outlook
+            Protection Source environment. 'kHyperFlex' indicates the Hyper
+            Flex Protection Source environment. 'kGCPNative' indicates the GCP
+            Native Protection Source environment. 'kAzureNative' indicates the
+            Azure Native Protection Source environment.
         force_register (bool): TODO: type description here.
-        gcp_credentials (GCPSourceCredentials): Specifies the credentials to
+        gcp_credentials (GcpCredentials): Specifies the credentials to
             authenticate with Google Cloud Platform.
-        host_type (HostType7Enum): Specifies the optional OS type of the
-            Protection Source (such as kWindows or kLinux).
-            overrideDescription: true 'kLinux' indicates the Linux operating
-            system. 'kWindows' indicates the Microsoft Windows operating
-            system. 'kAix' indicates the IBM AIX operating system. 'kSolaris'
-            indicates the Oracle Solaris operating system.
-        nas_mount_credentials (NASMountCredentials): Specifies the server
+        host_type (HostTypeRegisterProtectionSourceParametersEnum): Specifies
+            the optional OS type of the Protection Source (such as kWindows or
+            kLinux). overrideDescription: true 'kLinux' indicates the Linux
+            operating system. 'kWindows' indicates the Microsoft Windows
+            operating system. 'kAix' indicates the IBM AIX operating system.
+            'kSolaris' indicates the Oracle Solaris operating system.
+        nas_mount_credentials (NasMountCredentialParams): Specifies the server
             credentials to connect to a NetApp server. This field is required
             for mounting SMB volumes on NetApp servers.
         netapp_type (NetappTypeEnum): Specifies the entity type such as
@@ -75,6 +76,8 @@ class RegisterProtectionSourceParameters(object):
             Netapp cluster as a protection source. 'kVserver' indicates a
             Netapp vserver in a cluster as a protection source. 'kVolume'
             indicates  a volume in Netapp vserver as a protection source.
+        office_365_credentials (Office365Credentials): Specifies the
+            credentials to authenticate with Office365 account.
         office_365_type (int): Specifies the entity type such as 'kDomain',
             'kOutlook', 'kMailbox', if the environment is kO365.
         password (string): Specifies password of the username to access the
@@ -93,11 +96,10 @@ class RegisterProtectionSourceParameters(object):
             side dedup on the source or not. This is only applicable to
             Protection Sources which support source side dedup (e.g., Linux
             physical servers).
-        ssl_verification (SSLCertificationVerificationSettings): Specifies
-            information about SSL verification when registering certain
-            sources.
-        throttling_policy (ThrottlingPolicy): Specifies the throttling policy
-            that should be applied to this Source.
+        ssl_verification (SslVerification): Specifies information about SSL
+            verification when registering certain sources.
+        throttling_policy (ThrottlingPolicyParameters): Specifies the
+            throttling policy that should be applied to this Source.
         throttling_policy_overrides (list of ThrottlingPolicyOverride): Array
             of Throttling Policy Overrides for Datastores.  Specifies a list
             of Throttling Policy for datastores that override the common
@@ -154,6 +156,7 @@ class RegisterProtectionSourceParameters(object):
         "host_type":'hostType',
         "nas_mount_credentials":'nasMountCredentials',
         "netapp_type":'netappType',
+        "office_365_credentials":'office365Credentials',
         "office_365_type":'office365Type',
         "password":'password',
         "physical_type":'physicalType',
@@ -176,6 +179,7 @@ class RegisterProtectionSourceParameters(object):
                  host_type=None,
                  nas_mount_credentials=None,
                  netapp_type=None,
+                 office_365_credentials=None,
                  office_365_type=None,
                  password=None,
                  physical_type=None,
@@ -198,6 +202,7 @@ class RegisterProtectionSourceParameters(object):
         self.host_type = host_type
         self.nas_mount_credentials = nas_mount_credentials
         self.netapp_type = netapp_type
+        self.office_365_credentials = office_365_credentials
         self.office_365_type = office_365_type
         self.password = password
         self.physical_type = physical_type
@@ -228,22 +233,23 @@ class RegisterProtectionSourceParameters(object):
             return None
 
         # Extract variables from the dictionary
-        aws_credentials = cohesity_management_sdk.models.aws_source_credentials.AWSSourceCredentials.from_dictionary(dictionary.get('awsCredentials')) if dictionary.get('awsCredentials') else None
-        azure_credentials = cohesity_management_sdk.models.azure_source_credentials.AzureSourceCredentials.from_dictionary(dictionary.get('azureCredentials')) if dictionary.get('azureCredentials') else None
+        aws_credentials = cohesity_management_sdk.models.aws_credentials.AwsCredentials.from_dictionary(dictionary.get('awsCredentials')) if dictionary.get('awsCredentials') else None
+        azure_credentials = cohesity_management_sdk.models.azure_credentials.AzureCredentials.from_dictionary(dictionary.get('azureCredentials')) if dictionary.get('azureCredentials') else None
         endpoint = dictionary.get('endpoint')
         environment = dictionary.get('environment')
         force_register = dictionary.get('forceRegister')
-        gcp_credentials = cohesity_management_sdk.models.gcp_source_credentials.GCPSourceCredentials.from_dictionary(dictionary.get('gcpCredentials')) if dictionary.get('gcpCredentials') else None
+        gcp_credentials = cohesity_management_sdk.models.gcp_credentials.GcpCredentials.from_dictionary(dictionary.get('gcpCredentials')) if dictionary.get('gcpCredentials') else None
         host_type = dictionary.get('hostType')
-        nas_mount_credentials = cohesity_management_sdk.models.nas_mount_credentials.NASMountCredentials.from_dictionary(dictionary.get('nasMountCredentials')) if dictionary.get('nasMountCredentials') else None
+        nas_mount_credentials = cohesity_management_sdk.models.nas_mount_credential_params.NasMountCredentialParams.from_dictionary(dictionary.get('nasMountCredentials')) if dictionary.get('nasMountCredentials') else None
         netapp_type = dictionary.get('netappType')
+        office_365_credentials = cohesity_management_sdk.models.office_365_credentials.Office365Credentials.from_dictionary(dictionary.get('office365Credentials')) if dictionary.get('office365Credentials') else None
         office_365_type = dictionary.get('office365Type')
         password = dictionary.get('password')
         physical_type = dictionary.get('physicalType')
         pure_type = dictionary.get('pureType')
         source_side_dedup_enabled = dictionary.get('sourceSideDedupEnabled')
-        ssl_verification = cohesity_management_sdk.models.ssl_certification_verification_settings.SSLCertificationVerificationSettings.from_dictionary(dictionary.get('sslVerification')) if dictionary.get('sslVerification') else None
-        throttling_policy = cohesity_management_sdk.models.throttling_policy.ThrottlingPolicy.from_dictionary(dictionary.get('throttlingPolicy')) if dictionary.get('throttlingPolicy') else None
+        ssl_verification = cohesity_management_sdk.models.ssl_verification.SslVerification.from_dictionary(dictionary.get('sslVerification')) if dictionary.get('sslVerification') else None
+        throttling_policy = cohesity_management_sdk.models.throttling_policy_parameters.ThrottlingPolicyParameters.from_dictionary(dictionary.get('throttlingPolicy')) if dictionary.get('throttlingPolicy') else None
         throttling_policy_overrides = None
         if dictionary.get('throttlingPolicyOverrides') != None:
             throttling_policy_overrides = list()
@@ -262,6 +268,7 @@ class RegisterProtectionSourceParameters(object):
                    host_type,
                    nas_mount_credentials,
                    netapp_type,
+                   office_365_credentials,
                    office_365_type,
                    password,
                    physical_type,

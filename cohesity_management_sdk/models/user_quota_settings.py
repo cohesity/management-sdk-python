@@ -5,7 +5,7 @@ import cohesity_management_sdk.models.quota_policy
 
 class UserQuotaSettings(object):
 
-    """Implementation of the 'User Quota Settings.' model.
+    """Implementation of the 'UserQuotaSettings' model.
 
     Specifies the quota settings parameters for a particular user.
 

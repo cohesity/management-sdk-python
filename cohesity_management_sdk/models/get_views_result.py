@@ -5,7 +5,7 @@ import cohesity_management_sdk.models.view
 
 class GetViewsResult(object):
 
-    """Implementation of the 'Get Views Result.' model.
+    """Implementation of the 'GetViewsResult' model.
 
     Specifies the list of Views returned that matched the specified filter
     criteria.

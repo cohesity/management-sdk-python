@@ -2,19 +2,19 @@
 # Copyright 2019 Cohesity Inc.
 
 import cohesity_management_sdk.models.full_snapshot_info
-import cohesity_management_sdk.models.time_range
+import cohesity_management_sdk.models.time_range_settings
 
 class RestorePointsForTimeRange(object):
 
-    """Implementation of the 'Restore Points for Time Range.' model.
+    """Implementation of the 'RestorePointsForTimeRange' model.
 
     Specifies the info returned by Magneto RestorePointsForTimeRange API.
 
     Attributes:
         full_snapshot_info (list of FullSnapshotInfo): Specifies the info
             related to the recovery object.
-        time_ranges (list of TimeRange): Specifies the time ranges of the
-            restore object between full snapshots.
+        time_ranges (list of TimeRangeSettings): Specifies the time ranges of
+            the restore object between full snapshots.
 
     """
 
@@ -61,7 +61,7 @@ class RestorePointsForTimeRange(object):
         if dictionary.get('timeRanges') != None:
             time_ranges = list()
             for structure in dictionary.get('timeRanges'):
-                time_ranges.append(cohesity_management_sdk.models.time_range.TimeRange.from_dictionary(structure))
+                time_ranges.append(cohesity_management_sdk.models.time_range_settings.TimeRangeSettings.from_dictionary(structure))
 
         # Return an object of this model
         return cls(full_snapshot_info,

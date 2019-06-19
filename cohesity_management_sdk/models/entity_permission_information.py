@@ -1,24 +1,23 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.group_information
-import cohesity_management_sdk.models.tenant_information
-import cohesity_management_sdk.models.user_information
+import cohesity_management_sdk.models.group_info
+import cohesity_management_sdk.models.tenant_info
+import cohesity_management_sdk.models.user_info
 
 class EntityPermissionInformation(object):
 
-    """Implementation of the 'Entity Permission Information.' model.
+    """Implementation of the 'EntityPermissionInformation' model.
 
     Specifies the permission information of entities.
 
     Attributes:
         entity_id (long|int): Specifies the entity id.
-        groups (list of GroupInformation): Specifies groups that have access
-            to entity in case of restricted user.
-        tenant (TenantInformation): Specifies struct with basic tenant
-            details.
-        users (list of UserInformation): Specifies users that have access to
+        groups (list of GroupInfo): Specifies groups that have access to
             entity in case of restricted user.
+        tenant (TenantInfo): Specifies struct with basic tenant details.
+        users (list of UserInfo): Specifies users that have access to entity
+            in case of restricted user.
 
     """
 
@@ -67,13 +66,13 @@ class EntityPermissionInformation(object):
         if dictionary.get('groups') != None:
             groups = list()
             for structure in dictionary.get('groups'):
-                groups.append(cohesity_management_sdk.models.group_information.GroupInformation.from_dictionary(structure))
-        tenant = cohesity_management_sdk.models.tenant_information.TenantInformation.from_dictionary(dictionary.get('tenant')) if dictionary.get('tenant') else None
+                groups.append(cohesity_management_sdk.models.group_info.GroupInfo.from_dictionary(structure))
+        tenant = cohesity_management_sdk.models.tenant_info.TenantInfo.from_dictionary(dictionary.get('tenant')) if dictionary.get('tenant') else None
         users = None
         if dictionary.get('users') != None:
             users = list()
             for structure in dictionary.get('users'):
-                users.append(cohesity_management_sdk.models.user_information.UserInformation.from_dictionary(structure))
+                users.append(cohesity_management_sdk.models.user_info.UserInfo.from_dictionary(structure))
 
         # Return an object of this model
         return cls(entity_id,

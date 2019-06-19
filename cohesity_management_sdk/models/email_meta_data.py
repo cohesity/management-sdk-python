@@ -4,7 +4,7 @@
 
 class EmailMetaData(object):
 
-    """Implementation of the 'Email Meta Data.' model.
+    """Implementation of the 'EmailMetaData' model.
 
     Specifies details about the emails and the folder containing emails.
 

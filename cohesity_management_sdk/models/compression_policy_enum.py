@@ -5,9 +5,8 @@ class CompressionPolicyEnum(object):
 
     """Implementation of the 'CompressionPolicy' enum.
 
-    Specifies the compression setting to be applied to a Storage Domain
-    (View Box).
-    'kCompressionNone' indicates that data is not compressed.
+    Specifies the compression setting to be applied to a Storage Domain (View
+    Box). 'kCompressionNone' indicates that data is not compressed.
     'kCompressionLow' indicates that data is compressed.
 
     Attributes:

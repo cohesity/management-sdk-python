@@ -1,22 +1,22 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.virtual_disk_id
+import cohesity_management_sdk.models.virtual_disk_id_information
 
 class VirtualDiskMapping(object):
 
-    """Implementation of the 'Virtual Disk Mapping.' model.
+    """Implementation of the 'VirtualDiskMapping' model.
 
     Specifies the request data struct for virtual disk mapping with only the
     disk ids.
 
     Attributes:
-        disk_to_overwrite (VirtualDiskId): Specifies information about virtual
-            disk which includes disk uuid, controller type, bus number and
-            unit number.
-        source_disk (VirtualDiskId): Specifies information about virtual disk
-            which includes disk uuid, controller type, bus number and unit
-            number.
+        disk_to_overwrite (VirtualDiskIdInformation): Specifies information
+            about virtual disk which includes disk uuid, controller type, bus
+            number and unit number.
+        source_disk (VirtualDiskIdInformation): Specifies information about
+            virtual disk which includes disk uuid, controller type, bus number
+            and unit number.
         target_location_id (long|int): Specifies the target location
             information, for e.g. a datastore in VMware environment. If
             diskToOverwrite is specified then the target location is
@@ -61,8 +61,8 @@ class VirtualDiskMapping(object):
             return None
 
         # Extract variables from the dictionary
-        disk_to_overwrite = cohesity_management_sdk.models.virtual_disk_id.VirtualDiskId.from_dictionary(dictionary.get('diskToOverwrite')) if dictionary.get('diskToOverwrite') else None
-        source_disk = cohesity_management_sdk.models.virtual_disk_id.VirtualDiskId.from_dictionary(dictionary.get('sourceDisk')) if dictionary.get('sourceDisk') else None
+        disk_to_overwrite = cohesity_management_sdk.models.virtual_disk_id_information.VirtualDiskIdInformation.from_dictionary(dictionary.get('diskToOverwrite')) if dictionary.get('diskToOverwrite') else None
+        source_disk = cohesity_management_sdk.models.virtual_disk_id_information.VirtualDiskIdInformation.from_dictionary(dictionary.get('sourceDisk')) if dictionary.get('sourceDisk') else None
         target_location_id = dictionary.get('targetLocationId')
 
         # Return an object of this model

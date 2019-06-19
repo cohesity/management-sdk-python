@@ -4,7 +4,7 @@
 
 class TenantViewBoxUpdate(object):
 
-    """Implementation of the 'Tenant View Box Update.' model.
+    """Implementation of the 'TenantViewBoxUpdate' model.
 
     Specifies view box update details response about a tenant.
 

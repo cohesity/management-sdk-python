@@ -5,7 +5,7 @@ import cohesity_management_sdk.models.objects_protected_by_policy
 
 class JobRunsTile(object):
 
-    """Implementation of the 'Job Runs Tile.' model.
+    """Implementation of the 'JobRunsTile' model.
 
     Jon Runs information.
 

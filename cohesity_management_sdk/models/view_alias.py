@@ -4,7 +4,7 @@
 
 class ViewAlias(object):
 
-    """Implementation of the 'View Alias.' model.
+    """Implementation of the 'ViewAlias' model.
 
     TODO: type model description here.
 

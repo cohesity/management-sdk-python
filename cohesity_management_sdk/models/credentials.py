@@ -4,7 +4,7 @@
 
 class Credentials(object):
 
-    """Implementation of the 'Credentials.' model.
+    """Implementation of the 'Credentials' model.
 
     Specifies credentials to access a target source.
 

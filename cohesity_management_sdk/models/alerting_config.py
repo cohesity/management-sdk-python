@@ -4,7 +4,7 @@
 
 class AlertingConfig(object):
 
-    """Implementation of the 'Alerting Config.' model.
+    """Implementation of the 'AlertingConfig' model.
 
     Specifies optional settings for alerting.
 

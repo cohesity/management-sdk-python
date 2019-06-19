@@ -7,7 +7,7 @@ from cohesity_management_sdk.configuration import Configuration
 from cohesity_management_sdk.controllers.base_controller import BaseController
 from cohesity_management_sdk.http.auth.auth_manager import AuthManager
 from cohesity_management_sdk.models.node import Node
-from cohesity_management_sdk.exceptions.error_error_exception import ErrorErrorException
+from cohesity_management_sdk.exceptions.request_error_error_exception import RequestErrorErrorException
 
 class NodesController(BaseController):
 
@@ -21,9 +21,8 @@ class NodesController(BaseController):
         """Does a GET request to /public/nodes.
 
         If no parameters are specified, all Nodes currently on the Cohesity
-        Cluster are
-        returned.
-        Specifying parameters filters the results that are returned.
+        Cluster are returned. Specifying parameters filters the results that
+        are returned.
 
         Returns:
             list of Node: Response from the API. Success
@@ -60,7 +59,7 @@ class NodesController(BaseController):
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_nodes.')
             if _context.response.status_code == 0:
-                raise ErrorErrorException('Error', _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
@@ -121,7 +120,7 @@ class NodesController(BaseController):
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_node_by_id.')
             if _context.response.status_code == 0:
-                raise ErrorErrorException('Error', _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type

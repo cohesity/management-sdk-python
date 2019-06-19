@@ -15,10 +15,10 @@ from cohesity_management_sdk.models.access_token import AccessToken
 from cohesity_management_sdk.samples.list_protection_jobs.list_protection_jobs import ProtectionJobsList
 from cohesity_management_sdk.samples.list_unresolved_alerts.list_unresolved_alerts import Alerts
 
-CLUSTER_USERNAME = 'ad_user'
-CLUSTER_PASSWORD = 'ad_user_password'
+CLUSTER_USERNAME = 'cluster_username'
+CLUSTER_PASSWORD = 'cluster_password'
 CLUSTER_VIP = 'prod-cluster.cohesity.com'
-DOMAIN = 'AD.ORG.COMPANY.COM'
+DOMAIN = 'LOCAL'
 
 INVALID_PASSWORD = 'wrong_password'
 CLUSTER_VIEWER = 'cluster_viewer'
@@ -47,7 +47,7 @@ def handle_invalid_auth(username, password, domain):
             print ("\n\n *** Invalid Username/Password ***\n\n")
             handle_invalid_auth(CLUSTER_USERNAME,
                                 CLUSTER_PASSWORD,
-				DOMAIN)
+				                DOMAIN)
 
 def init_client(username, password, domain):
     """
@@ -87,7 +87,7 @@ def handle_expired_token(cohesity_client):
     """
     cohesity_client.config.disable_logging()
     cohesity_client.config.skip_ssl_verification = True
-    Alerts().display_alerts(cohesity_client, 100)
+    Alerts().display_alerts(cohesity_client, 10)
 
 def handle_priv_error(cluster_username, cluster_password, domain):
     """

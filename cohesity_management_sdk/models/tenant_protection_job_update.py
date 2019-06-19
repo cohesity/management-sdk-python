@@ -4,7 +4,7 @@
 
 class TenantProtectionJobUpdate(object):
 
-    """Implementation of the 'Tenant Protection Job Update.' model.
+    """Implementation of the 'TenantProtectionJobUpdate' model.
 
     Specifies protection Job update details response about a tenant.
 

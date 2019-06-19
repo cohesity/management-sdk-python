@@ -12,7 +12,7 @@ First make sure that you are connected to a Cohesity Cluster.
 cohesity_client = CohesityClient(cluster_vip=CLUSTER_VIP,
                                  username=CLUSTER_USERNAME, 
                                  password=CLUSTER_PASSWORD,
-				 domain=DOMAIN)
+                                 domain=DOMAIN)
 ```
 Note: Alternatively, you can set the above parameters in cohesity_management_sdk/configuration.py
 
@@ -60,7 +60,7 @@ Bucket test_bucket created on Cohesity.
 ['test_bucket', 'aws_s3']
 Uploaded File file.txt of size 1048576 to Bucket: test_bucket
 ('Bucket content: ', 'file.txt')
-File downloaded to : /Users/ashishbhat/pyvmomi-community-samples/samples/vmware/download-file.txt
+File downloaded to :/path/to/file/download-file.txt
 File file.txt deleted from Bucket: test_bucket
 Deleted Bucket: test_bucket
 ```

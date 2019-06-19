@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.data
+import cohesity_management_sdk.models.value_data
 
 class MetricDataPoint(object):
 
-    """Implementation of the 'Metric Data Point.' model.
+    """Implementation of the 'MetricDataPoint' model.
 
     Specifies information about a single data point in a time series.
 
     Attributes:
-        data (Data): Specifies the fields to store data of a given type.
+        data (ValueData): Specifies the fields to store data of a given type.
             Specify data in the appropriate field for the current data type.
         timestamp_msecs (long|int): Specifies a timestamp when the metric data
             point was captured.
@@ -51,7 +51,7 @@ class MetricDataPoint(object):
             return None
 
         # Extract variables from the dictionary
-        data = cohesity_management_sdk.models.data.Data.from_dictionary(dictionary.get('data')) if dictionary.get('data') else None
+        data = cohesity_management_sdk.models.value_data.ValueData.from_dictionary(dictionary.get('data')) if dictionary.get('data') else None
         timestamp_msecs = dictionary.get('timestampMsecs')
 
         # Return an object of this model

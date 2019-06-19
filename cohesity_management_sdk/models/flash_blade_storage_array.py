@@ -5,7 +5,7 @@ import cohesity_management_sdk.models.flash_blade_network_interface
 
 class FlashBladeStorageArray(object):
 
-    """Implementation of the 'Flash Blade Storage Array.' model.
+    """Implementation of the 'FlashBladeStorageArray' model.
 
     Specifies information about a Pure Storage FlashBlade Array.
 

@@ -2,9 +2,9 @@
 # Copyright 2019 Cohesity Inc.
 
 
-class GCPProtectionSource(object):
+class GcpProtectionSource(object):
 
-    """Implementation of the 'GCP Protection Source.' model.
+    """Implementation of the 'GcpProtectionSource' model.
 
     Specifies a Protection Source in GCP environment.
 
@@ -67,18 +67,18 @@ class GCPProtectionSource(object):
             deploy" restore task. Restore entity associated with the above
             matched cloud entity has 'failed_over' flag set to true in its
             cloud extension.
-        mtype (Type4Enum): Specifies the type of an GCP Protection Source
-            Object such as 'kIAMUser', 'kProject', 'kRegion', etc. Specifies
-            the type of a GCP source entity. 'kIAMUser' indicates a unique
-            user within a GCP account. 'kProject' represents compute resources
-            and storage. 'kRegion' indicates a geographical region in the
-            global infrastructure. 'kAvailabilityZone' indicates an
-            availability zone within a region. 'kVirtualMachine' indicates a
-            Virtual Machine running in GCP environment. 'kVPC' indicates a
-            virtual private cloud (VPC) network within GCP. 'kSubnet'
-            indicates a subnet inside the VPC. 'kNetworkSecurityGroup'
-            represents a network security group. 'kInstanceType' represents
-            various machine types.
+        mtype (TypeGcpProtectionSourceEnum): Specifies the type of an GCP
+            Protection Source Object such as 'kIAMUser', 'kProject',
+            'kRegion', etc. Specifies the type of a GCP source entity.
+            'kIAMUser' indicates a unique user within a GCP account.
+            'kProject' represents compute resources and storage. 'kRegion'
+            indicates a geographical region in the global infrastructure.
+            'kAvailabilityZone' indicates an availability zone within a
+            region. 'kVirtualMachine' indicates a Virtual Machine running in
+            GCP environment. 'kVPC' indicates a virtual private cloud (VPC)
+            network within GCP. 'kSubnet' indicates a subnet inside the VPC.
+            'kNetworkSecurityGroup' represents a network security group.
+            'kInstanceType' represents various machine types.
         vpc_network (string): Specifies the VPC Network to deploy proxy VMs.
         vpc_subnetwork (string): Specifies the subnetwork to deploy proxy
             VMs.
@@ -120,7 +120,7 @@ class GCPProtectionSource(object):
                  mtype=None,
                  vpc_network=None,
                  vpc_subnetwork=None):
-        """Constructor for the GCPProtectionSource class"""
+        """Constructor for the GcpProtectionSource class"""
 
         # Initialize members of the class
         self.client_email_address = client_email_address

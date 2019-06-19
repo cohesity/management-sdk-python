@@ -5,13 +5,11 @@ class StatusEnum(object):
 
     """Implementation of the 'Status' enum.
 
-    Specifies the agent status.
-    Specifies the status of the agent running on a physical source.
-    'kUnknown' indicates the Agent is not known. No attempt to connect
-    to the Agent has occurred.
-    'kUnreachable' indicates the Agent is not reachable.
-    'kHealthy' indicates the Agent is healthy.
-    'kDegraded' indicates the Agent is running but in a degraded state.
+    Specifies the agent status. Specifies the status of the agent running on a
+    physical source. 'kUnknown' indicates the Agent is not known. No attempt
+    to connect to the Agent has occurred. 'kUnreachable' indicates the Agent
+    is not reachable. 'kHealthy' indicates the Agent is healthy. 'kDegraded'
+    indicates the Agent is running but in a degraded state.
 
     Attributes:
         KUNKNOWN: TODO: type description here.

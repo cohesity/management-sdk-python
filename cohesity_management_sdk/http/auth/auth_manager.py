@@ -3,7 +3,7 @@
 
 from cohesity_management_sdk.configuration import Configuration
 from cohesity_management_sdk.controllers.access_tokens_controller import AccessTokensController
-from cohesity_management_sdk.models.create_access_token_credential_request import CreateAccessTokenCredentialRequest
+from cohesity_management_sdk.models.access_token_credential import AccessTokenCredential
 
 
 class AuthManager:
@@ -37,7 +37,7 @@ class AuthManager:
 
         """
 
-        body = CreateAccessTokenCredentialRequest()
+        body = AccessTokenCredential()
         body.username = Configuration.username
         body.password = Configuration.password
         if Configuration.domain is not None:

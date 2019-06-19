@@ -4,7 +4,7 @@
 
 class SnapshotVersion(object):
 
-    """Implementation of the 'Snapshot Version.' model.
+    """Implementation of the 'SnapshotVersion' model.
 
     Specifies information about snapshots of a backup object.
 

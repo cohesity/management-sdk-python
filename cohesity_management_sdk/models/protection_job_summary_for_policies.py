@@ -1,25 +1,25 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.backup_run_task
-import cohesity_management_sdk.models.copy_run_task
+import cohesity_management_sdk.models.backup_run
+import cohesity_management_sdk.models.copy_run
 import cohesity_management_sdk.models.protection_job
 
 class ProtectionJobSummaryForPolicies(object):
 
     """Implementation of the 'ProtectionJobSummaryForPolicies' model.
 
-    ProtectionJobSummaryForPolicies is the summary of a Protection
-    Jobs associated with the Specified Protection Policy. This is only
-    populated for a policy of type kRegular.
+    ProtectionJobSummaryForPolicies is the summary of a Protection Jobs
+    associated with the Specified Protection Policy. This is only populated
+    for a policy of type kRegular.
 
     Attributes:
-        backup_run (BackupRunTask): Specifies details about the Backup task
-            for a Job Run. A Backup task captures the original backup
-            snapshots for each Protection Source in the Job.
-        copy_runs (list of CopyRunTask): Specifies details about the Copy
-            tasks of the Job Run. A Copy task copies the captured snapshots to
-            an external target or a Remote Cohesity Cluster.
+        backup_run (BackupRun): Specifies details about the Backup task for a
+            Job Run. A Backup task captures the original backup snapshots for
+            each Protection Source in the Job.
+        copy_runs (list of CopyRun): Specifies details about the Copy tasks of
+            the Job Run. A Copy task copies the captured snapshots to an
+            external target or a Remote Cohesity Cluster.
         protection_job (ProtectionJob): Provides details about a Protection
             Job.
 
@@ -62,12 +62,12 @@ class ProtectionJobSummaryForPolicies(object):
             return None
 
         # Extract variables from the dictionary
-        backup_run = cohesity_management_sdk.models.backup_run_task.BackupRunTask.from_dictionary(dictionary.get('backupRun')) if dictionary.get('backupRun') else None
+        backup_run = cohesity_management_sdk.models.backup_run.BackupRun.from_dictionary(dictionary.get('backupRun')) if dictionary.get('backupRun') else None
         copy_runs = None
         if dictionary.get('copyRuns') != None:
             copy_runs = list()
             for structure in dictionary.get('copyRuns'):
-                copy_runs.append(cohesity_management_sdk.models.copy_run_task.CopyRunTask.from_dictionary(structure))
+                copy_runs.append(cohesity_management_sdk.models.copy_run.CopyRun.from_dictionary(structure))
         protection_job = cohesity_management_sdk.models.protection_job.ProtectionJob.from_dictionary(dictionary.get('protectionJob')) if dictionary.get('protectionJob') else None
 
         # Return an object of this model

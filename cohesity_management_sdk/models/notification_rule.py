@@ -6,7 +6,7 @@ import cohesity_management_sdk.models.web_hook_delivery_target
 
 class NotificationRule(object):
 
-    """Implementation of the 'Notification Rule' model.
+    """Implementation of the 'NotificationRule' model.
 
     Specifies a rule to notify delivery targets such as sending emails,
     invoking an external api etc based on the alert type, category and
@@ -15,11 +15,11 @@ class NotificationRule(object):
     Attributes:
         alert_type_list (list of int): Specifies alert types this rule is
             applicable to.
-        categories (list of Category2Enum): Specifies alert categories this
-            rule is applicable to. Specifies the category of an Alert. kDisk -
-            Alerts that are related to Disk. kNode - Alerts that are related
-            to Node. kCluster - Alerts that are related to Cluster.
-            kNodeHealth - Alerts that are related to Node Health.
+        categories (list of CategoryNotificationRuleEnum): Specifies alert
+            categories this rule is applicable to. Specifies the category of
+            an Alert. kDisk - Alerts that are related to Disk. kNode - Alerts
+            that are related to Node. kCluster - Alerts that are related to
+            Cluster. kNodeHealth - Alerts that are related to Node Health.
             kClusterHealth - Alerts that are related to Cluster Health.
             kBackupRestore - Alerts that are related to Backup/Restore.
             kEncryption - Alerts that are related to Encryption.
@@ -36,11 +36,11 @@ class NotificationRule(object):
             generated.
         rule_id (long|int): Specifies id of the alert delivery rule.
         rule_name (string): Specifies name of the alert delivery rule.
-        severities (list of Severity1Enum): Specifies alert severity types
-            this rule is applicable to. Specifies the severity level of an
-            Alert. kCritical - Alerts whose severity type is Critical.
-            kWarning - Alerts whose severity type is Warning. kInfo - Alerts
-            whose severity type is Info.
+        severities (list of SeverityNotificationRuleEnum): Specifies alert
+            severity types this rule is applicable to. Specifies the severity
+            level of an Alert. kCritical - Alerts whose severity type is
+            Critical. kWarning - Alerts whose severity type is Warning. kInfo
+            - Alerts whose severity type is Info.
         tenant_id (string): Specifies tenant id this rule is applicable to.
         web_hook_delivery_targets (list of WebHookDeliveryTarget): Specifies
             external api urls to be invoked when an alert matching this rule

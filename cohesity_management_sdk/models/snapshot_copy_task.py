@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.snapshot_target_1
+import cohesity_management_sdk.models.snapshot_target_settings
 
 class SnapshotCopyTask(object):
 
-    """Implementation of the 'Snapshot Copy Task.' model.
+    """Implementation of the 'SnapshotCopyTask' model.
 
     Specifies information about copy tasks such as replication and archival
     tasks.
@@ -16,8 +16,8 @@ class SnapshotCopyTask(object):
             the target.
         message (string): Specifies warning or error information when the copy
             task is not successful.
-        snapshot_target (SnapshotTarget1): Specifies settings about a target
-            where a copied Snapshot is stored. A target can be a Remote
+        snapshot_target (SnapshotTargetSettings): Specifies settings about a
+            target where a copied Snapshot is stored. A target can be a Remote
             Cluster or an Archival External Target such as AWS or Tape.
 
     """
@@ -65,7 +65,7 @@ class SnapshotCopyTask(object):
         copy_status = dictionary.get('copyStatus')
         expiry_time_usecs = dictionary.get('expiryTimeUsecs')
         message = dictionary.get('message')
-        snapshot_target = cohesity_management_sdk.models.snapshot_target_1.SnapshotTarget1.from_dictionary(dictionary.get('snapshotTarget')) if dictionary.get('snapshotTarget') else None
+        snapshot_target = cohesity_management_sdk.models.snapshot_target_settings.SnapshotTargetSettings.from_dictionary(dictionary.get('snapshotTarget')) if dictionary.get('snapshotTarget') else None
 
         # Return an object of this model
         return cls(copy_status,

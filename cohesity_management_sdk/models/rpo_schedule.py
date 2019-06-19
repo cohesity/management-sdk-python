@@ -2,30 +2,41 @@
 # Copyright 2019 Cohesity Inc.
 
 
-class RPOSchedule(object):
+class RpoSchedule(object):
 
-    """Implementation of the 'RPO Schedule.' model.
+    """Implementation of the 'RpoSchedule' model.
 
     Specifies an RPO Schedule.
 
     Attributes:
-        rpo_inteval_minutes (long|int): If this field is set, then at any
-            point, a recovery point should be available not older than the
-            given interval minutes.
+        interval_unit (IntervalUnitEnum): Specifies an RPO policy interval
+            unit which will be used along with the multiplier to calculate the
+            interval for the RPO policy execution. this can be kHours, kDays,
+            KWeeks, kMonths RPOIntervalUnit.  Specifies an RPO Schedule
+            interval unit. kMinutes specifies that the rpo interval unit is
+            hours. kHours specifies that the rpo interval unit is hours. kDays
+            specifies that the rpo interval unit is days. kWeeks specifies
+            that the rpo interval unit is weeks. kMonths specifies that the
+            rpo interval unit is months.
+        multiplier (long|int): Specifies the multiplier value to be used with
+            the  RPO interval unit value.
 
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "rpo_inteval_minutes":'rpoIntevalMinutes'
+        "interval_unit":'intervalUnit',
+        "multiplier":'multiplier'
     }
 
     def __init__(self,
-                 rpo_inteval_minutes=None):
-        """Constructor for the RPOSchedule class"""
+                 interval_unit=None,
+                 multiplier=None):
+        """Constructor for the RpoSchedule class"""
 
         # Initialize members of the class
-        self.rpo_inteval_minutes = rpo_inteval_minutes
+        self.interval_unit = interval_unit
+        self.multiplier = multiplier
 
 
     @classmethod
@@ -46,9 +57,11 @@ class RPOSchedule(object):
             return None
 
         # Extract variables from the dictionary
-        rpo_inteval_minutes = dictionary.get('rpoIntevalMinutes')
+        interval_unit = dictionary.get('intervalUnit')
+        multiplier = dictionary.get('multiplier')
 
         # Return an object of this model
-        return cls(rpo_inteval_minutes)
+        return cls(interval_unit,
+                   multiplier)
 
 

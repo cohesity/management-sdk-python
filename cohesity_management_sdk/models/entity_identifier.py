@@ -5,7 +5,7 @@ import cohesity_management_sdk.models.value
 
 class EntityIdentifier(object):
 
-    """Implementation of the 'Entity Identifier.' model.
+    """Implementation of the 'EntityIdentifier' model.
 
     Specifies a unique identifier for the entity.
 

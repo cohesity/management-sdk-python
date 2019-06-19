@@ -5,7 +5,7 @@ import cohesity_management_sdk.models.cluster_audit_log
 
 class AuditLogsTile(object):
 
-    """Implementation of the 'Audit Logs Tile.' model.
+    """Implementation of the 'AuditLogsTile' model.
 
     Audit logs for Dashboard.
 

@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.unique_global_id
+import cohesity_management_sdk.models.universal_id
 
 class VaultEncryptionKey(object):
 
-    """Implementation of the 'Vault Encryption Key.' model.
+    """Implementation of the 'VaultEncryptionKey' model.
 
     Specifies the encrytion information needed to restore data.
 
@@ -15,7 +15,7 @@ class VaultEncryptionKey(object):
         encryption_key_data (string): Specifies the encryption key data
             corresponding to the specified keyUid. It contains a Key
             Encryption Key (KEK) or a Encrypted Data Encryption Key (eDEK).
-        key_uid (UniqueGlobalId): Specifies the universal id of the Data
+        key_uid (UniversalId): Specifies the universal id of the Data
             Encryption Key.
         vault_id (long|int): Specifies the id of the Vault whose data is
             encrypted by this key.
@@ -69,7 +69,7 @@ class VaultEncryptionKey(object):
         # Extract variables from the dictionary
         cluster_name = dictionary.get('clusterName')
         encryption_key_data = dictionary.get('encryptionKeyData')
-        key_uid = cohesity_management_sdk.models.unique_global_id.UniqueGlobalId.from_dictionary(dictionary.get('keyUid')) if dictionary.get('keyUid') else None
+        key_uid = cohesity_management_sdk.models.universal_id.UniversalId.from_dictionary(dictionary.get('keyUid')) if dictionary.get('keyUid') else None
         vault_id = dictionary.get('vaultId')
         vault_name = dictionary.get('vaultName')
 

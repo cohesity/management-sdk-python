@@ -6,14 +6,14 @@ from cohesity_management_sdk.api_helper import APIHelper
 from cohesity_management_sdk.configuration import Configuration
 from cohesity_management_sdk.controllers.base_controller import BaseController
 from cohesity_management_sdk.http.auth.auth_manager import AuthManager
+from cohesity_management_sdk.models.sql_aag_host_and_databases import SqlAagHostAndDatabases
 from cohesity_management_sdk.models.protection_source import ProtectionSource
-from cohesity_management_sdk.models.get_registration_information_response import GetRegistrationInformationResponse
-from cohesity_management_sdk.models.node_in_a_protection_sources_tree import NodeInAProtectionSourcesTree
-from cohesity_management_sdk.models.sqlaag_host_and_databases import SQLAAGHostAndDatabases
-from cohesity_management_sdk.models.protected_vm_information import ProtectedVMInformation
+from cohesity_management_sdk.models.get_registration_info_response import GetRegistrationInfoResponse
+from cohesity_management_sdk.models.protected_vm_info import ProtectedVmInfo
+from cohesity_management_sdk.models.protection_source_node import ProtectionSourceNode
 from cohesity_management_sdk.models.registered_application_server import RegisteredApplicationServer
-from cohesity_management_sdk.models.status_of_physical_upgrade_request import StatusOfPhysicalUpgradeRequest
-from cohesity_management_sdk.exceptions.error_error_exception import ErrorErrorException
+from cohesity_management_sdk.models.upgrade_physical_agents_message import UpgradePhysicalAgentsMessage
+from cohesity_management_sdk.exceptions.request_error_error_exception import RequestErrorErrorException
 
 class ProtectionSourcesController(BaseController):
 
@@ -22,92 +22,6 @@ class ProtectionSourcesController(BaseController):
     def __init__(self, client=None, call_back=None):
         super(ProtectionSourcesController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
-
-    def list_virtual_machines(self,
-                              v_center_id=None,
-                              names=None,
-                              uuids=None,
-                              protected=None):
-        """Does a GET request to /public/protectionSources/virtualMachines.
-
-        Returns all Virtual Machines found in all the vCenter Servers
-        registered
-        on the Cohesity Cluster that match the filter criteria specified
-        using
-        parameters.
-        If an id is specified, only VMs found in the specified vCenter Server
-        are returned.
-        Only VM Objects are returned.
-        Other VMware Objects such as datacenters are not returned.
-
-        Args:
-            v_center_id (long|int, optional): Limit the VMs returned to the
-                set of VMs found in a specific vCenter Server. Pass in the
-                root Protection Source id for the vCenter Server to search for
-                VMs.
-            names (list of string, optional): Limit the returned VMs to those
-                that exactly match the passed in VM name. To match multiple VM
-                names, specify multiple "names" parameters that each specify a
-                single VM name. The string must exactly match the passed in VM
-                name and wild cards are not supported.
-            uuids (list of string, optional): Limit the returned VMs to those
-                that exactly match the passed in UUIDs.
-            protected (bool, optional): Limit the returned VMs to those that
-                have been protected by a Protection Job. By default, both
-                protected and unprotected VMs are returned.
-
-        Returns:
-            list of ProtectionSource: Response from the API. Success
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-        try:
-            self.logger.info('list_virtual_machines called.')
-
-            # Prepare query URL
-            self.logger.info('Preparing query URL for list_virtual_machines.')
-            _url_path = '/public/protectionSources/virtualMachines'
-            _query_builder = Configuration.get_base_uri()
-            _query_builder += _url_path
-            _query_parameters = {
-                'vCenterId': v_center_id,
-                'names': names,
-                'uuids': uuids,
-                'protected': protected
-            }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
-            _query_url = APIHelper.clean_url(_query_builder)
-
-            # Prepare headers
-            self.logger.info('Preparing headers for list_virtual_machines.')
-            _headers = {
-                'accept': 'application/json'
-            }
-
-            # Prepare and execute request
-            self.logger.info('Preparing and executing request for list_virtual_machines.')
-            _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'list_virtual_machines')
-
-            # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for list_virtual_machines.')
-            if _context.response.status_code == 0:
-                raise ErrorErrorException('Error', _context)
-            self.validate_response(_context)
-
-            # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ProtectionSource.from_dictionary)
-
-        except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
 
     def delete_unregister_protection_source(self,
                                             id):
@@ -156,50 +70,30 @@ class ProtectionSourcesController(BaseController):
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for delete_unregister_protection_source.')
             if _context.response.status_code == 0:
-                raise ErrorErrorException('Error', _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
         except Exception as e:
             self.logger.error(e, exc_info = True)
             raise
 
-    def list_protection_sources_registration_info(self,
-                                                  tenant_ids=None,
-                                                  all_under_hierarchy=None,
-                                                  environments=None,
-                                                  ids=None,
-                                                  include_entity_permission_info=None,
-                                                  sids=None):
-        """Does a GET request to /public/protectionSources/registrationInfo.
+    def list_sql_aag_hosts_and_databases(self,
+                                         sql_protection_source_ids):
+        """Does a GET request to /public/protectionSources/sqlAagHostsAndDatabases.
 
-        Returns the registration and protection information of the registered
-        Protection Sources.
+        Given a list of Protection Source Ids registered as SQL servers,
+        returns AAGs found and the databases in AAG(Always on Availablity
+        Group).
 
         Args:
-            tenant_ids (list of string, optional): TenantIds contains ids of
-                the tenants for which objects are to be returned.
-            all_under_hierarchy (bool, optional): AllUnderHierarchy specifies
-                if objects of all the tenants under the hierarchy of the
-                logged in user's organization should be returned.
-            environments (list of Environments2Enum, optional): Return only
-                Protection Sources that match the passed in environment type
-                such as 'kVMware', 'kSQL', 'kView' 'kPhysical', 'kPuppeteer',
-                'kPure', 'kNetapp', 'kGenericNas', 'kHyperV', 'kAcropolis', or
-                'kAzure'. For example, set this parameter to 'kVMware' to only
-                return the Sources (and their Object subtrees) found in the
-                'kVMware' (VMware vCenter Server) environment.  NOTE:
-                'kPuppeteer' refers to Cohesity's Remote Adapter.
-            ids (list of long|int, optional): Return only the registered root
-                nodes whose Ids are given in the list.
-            include_entity_permission_info (bool, optional): If specified,
-                then a list of entites with permissions assigned to them are
-                returned.
-            sids (list of string, optional): Filter the registered root nodes
-                for the sids given in the list.
+            sql_protection_source_ids (list of long|int): Specifies a list of
+                Ids of Protection Sources registered as SQL servers. These
+                sources may have one or more SQL databases in them. Some of
+                them may be part of AAGs(Always on Availability Group).
 
         Returns:
-            GetRegistrationInformationResponse: Response from the API.
-                Success
+            list of SqlAagHostAndDatabases: Response from the API. List SQL
+                AAG hosts and databases response. Success
 
         Raises:
             APIException: When an error occurs while fetching the data from
@@ -209,45 +103,44 @@ class ProtectionSourcesController(BaseController):
 
         """
         try:
-            self.logger.info('list_protection_sources_registration_info called.')
+            self.logger.info('list_sql_aag_hosts_and_databases called.')
+
+            # Validate required parameters
+            self.logger.info('Validating required parameters for list_sql_aag_hosts_and_databases.')
+            self.validate_parameters(sql_protection_source_ids=sql_protection_source_ids)
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for list_protection_sources_registration_info.')
-            _url_path = '/public/protectionSources/registrationInfo'
+            self.logger.info('Preparing query URL for list_sql_aag_hosts_and_databases.')
+            _url_path = '/public/protectionSources/sqlAagHostsAndDatabases'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
-                'tenantIds': tenant_ids,
-                'allUnderHierarchy': all_under_hierarchy,
-                'environments': environments,
-                'ids': ids,
-                'includeEntityPermissionInfo': include_entity_permission_info,
-                'sids': sids
+                'sqlProtectionSourceIds': sql_protection_source_ids
             }
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for list_protection_sources_registration_info.')
+            self.logger.info('Preparing headers for list_sql_aag_hosts_and_databases.')
             _headers = {
                 'accept': 'application/json'
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for list_protection_sources_registration_info.')
+            self.logger.info('Preparing and executing request for list_sql_aag_hosts_and_databases.')
             _request = self.http_client.get(_query_url, headers=_headers)
             AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'list_protection_sources_registration_info')
+            _context = self.execute_request(_request, name = 'list_sql_aag_hosts_and_databases')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for list_protection_sources_registration_info.')
+            self.logger.info('Validating response for list_sql_aag_hosts_and_databases.')
             if _context.response.status_code == 0:
-                raise ErrorErrorException('Error', _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, GetRegistrationInformationResponse.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body, SqlAagHostAndDatabases.from_dictionary)
 
         except Exception as e:
             self.logger.error(e, exc_info = True)
@@ -257,9 +150,9 @@ class ProtectionSourcesController(BaseController):
                                           body):
         """Does a POST request to /public/protectionSources/register.
 
-        Register a Protection Source on the Cohesity Cluster.
-        It could be the root node of a vCenter Server or a physcical server.
-        Returns the newly registered Protection Source upon success.
+        Register a Protection Source on the Cohesity Cluster. It could be the
+        root node of a vCenter Server or a physcical server.  Returns the
+        newly registered Protection Source upon success.
 
         Args:
             body (RegisterProtectionSourceParameters): Request to register a
@@ -305,7 +198,7 @@ class ProtectionSourcesController(BaseController):
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for create_register_protection_source.')
             if _context.response.status_code == 0:
-                raise ErrorErrorException('Error', _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
@@ -315,35 +208,25 @@ class ProtectionSourcesController(BaseController):
             self.logger.error(e, exc_info = True)
             raise
 
-    def list_protection_sources_root_nodes(self,
-                                           environments=None,
-                                           environment=None,
-                                           id=None):
-        """Does a GET request to /public/protectionSources/rootNodes.
+    def create_refresh_protection_source_by_id(self,
+                                               id):
+        """Does a POST request to /public/protectionSources/refresh/{id}.
 
-        Returns the root Protection Sources and the registration information
-        for
-        each of these Sources.
+        Force an immediate refresh between the specified Protection Source
+        tree on the Cohesity Cluster and the Inventory tree in the associated
+        vCenter Server.  For example if a new VM is added to the vCenter
+        Server, after a refresh, a new Protection Source node for this VM is
+        added to the Protection Sources tree.  Success indicates the forced
+        refresh has been started. The amount of time to complete a refresh
+        depends on the size of the Object hierarchies.
 
         Args:
-            environments (list of Environments2Enum, optional): Return only
-                the root Protection Sources that match the passed in
-                environment type such as 'kVMware', 'kSQL', 'kView',
-                'kPuppeteer', 'kPhysical', 'kPure', 'kNetapp', 'kGenericNas',
-                'kHyperV', 'kAcropolis' 'kAzure'. For example, set this
-                parameter to 'kVMware' to only return the root Protection
-                Sources found in the 'kVMware' (VMware vCenter) environment.
-                In addition, the registration information for each Source is
-                returned.  NOTE: 'kPuppeteer' refers to Cohesity's Remote
-                Adapter.
-            environment (string, optional): This field is deprecated. Use
-                environments instead. deprecated: true
-            id (long|int, optional): Return the registration information for
-                the Protection Source id.
+            id (long|int): Id of the root node of the Protection Sources tree
+                to refresh.  Force a refresh of the Object hierarchy for the
+                passed in Protection Sources Id.
 
         Returns:
-            list of NodeInAProtectionSourcesTree: Response from the API.
-                Success
+            void: Response from the API. No Content
 
         Raises:
             APIException: When an error occurs while fetching the data from
@@ -353,65 +236,51 @@ class ProtectionSourcesController(BaseController):
 
         """
         try:
-            self.logger.info('list_protection_sources_root_nodes called.')
+            self.logger.info('create_refresh_protection_source_by_id called.')
+
+            # Validate required parameters
+            self.logger.info('Validating required parameters for create_refresh_protection_source_by_id.')
+            self.validate_parameters(id=id)
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for list_protection_sources_root_nodes.')
-            _url_path = '/public/protectionSources/rootNodes'
-            _query_builder = Configuration.get_base_uri()
-            _query_builder += _url_path
-            _query_parameters = {
-                'environments': environments,
-                'environment': environment,
+            self.logger.info('Preparing query URL for create_refresh_protection_source_by_id.')
+            _url_path = '/public/protectionSources/refresh/{id}'
+            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
                 'id': id
-            }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
+            })
+            _query_builder = Configuration.get_base_uri()
+            _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
-            # Prepare headers
-            self.logger.info('Preparing headers for list_protection_sources_root_nodes.')
-            _headers = {
-                'accept': 'application/json'
-            }
-
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for list_protection_sources_root_nodes.')
-            _request = self.http_client.get(_query_url, headers=_headers)
+            self.logger.info('Preparing and executing request for create_refresh_protection_source_by_id.')
+            _request = self.http_client.post(_query_url)
             AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'list_protection_sources_root_nodes')
+            _context = self.execute_request(_request, name = 'create_refresh_protection_source_by_id')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for list_protection_sources_root_nodes.')
+            self.logger.info('Validating response for create_refresh_protection_source_by_id.')
             if _context.response.status_code == 0:
-                raise ErrorErrorException('Error', _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
-
-            # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, NodeInAProtectionSourcesTree.from_dictionary)
 
         except Exception as e:
             self.logger.error(e, exc_info = True)
             raise
 
-    def list_sql_aag_hosts_and_databases(self,
-                                         sql_protection_source_ids):
-        """Does a GET request to /public/protectionSources/sqlAagHostsAndDatabases.
+    def get_protection_sources_object_by_id(self,
+                                            id):
+        """Does a GET request to /public/protectionSources/objects/{id}.
 
-        Given a list of Protection Source Ids registered as SQL servers,
-        returns
-        AAGs found and the databases in AAG(Always on Availablity Group).
+        Returns the Protection Source object corresponding to the specified
+        id.
 
         Args:
-            sql_protection_source_ids (list of long|int): Specifies a list of
-                Ids of Protection Sources registered as SQL servers. These
-                sources may have one or more SQL databases in them. Some of
-                them may be part of AAGs(Always on Availability Group).
+            id (long|int): Specifies a unique id of the Protection Source to
+                return.
 
         Returns:
-            list of SQLAAGHostAndDatabases: Response from the API. List SQL
-                AAG hosts and databases response.
-Success
+            ProtectionSource: Response from the API. Success
 
         Raises:
             APIException: When an error occurs while fetching the data from
@@ -421,218 +290,38 @@ Success
 
         """
         try:
-            self.logger.info('list_sql_aag_hosts_and_databases called.')
+            self.logger.info('get_protection_sources_object_by_id called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for list_sql_aag_hosts_and_databases.')
-            self.validate_parameters(sql_protection_source_ids=sql_protection_source_ids)
+            self.logger.info('Validating required parameters for get_protection_sources_object_by_id.')
+            self.validate_parameters(id=id)
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for list_sql_aag_hosts_and_databases.')
-            _url_path = '/public/protectionSources/sqlAagHostsAndDatabases'
+            self.logger.info('Preparing query URL for get_protection_sources_object_by_id.')
+            _url_path = '/public/protectionSources/objects/{id}'
+            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
+                'id': id
+            })
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
-            _query_parameters = {
-                'sqlProtectionSourceIds': sql_protection_source_ids
-            }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for list_sql_aag_hosts_and_databases.')
+            self.logger.info('Preparing headers for get_protection_sources_object_by_id.')
             _headers = {
                 'accept': 'application/json'
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for list_sql_aag_hosts_and_databases.')
+            self.logger.info('Preparing and executing request for get_protection_sources_object_by_id.')
             _request = self.http_client.get(_query_url, headers=_headers)
             AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'list_sql_aag_hosts_and_databases')
+            _context = self.execute_request(_request, name = 'get_protection_sources_object_by_id')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for list_sql_aag_hosts_and_databases.')
+            self.logger.info('Validating response for get_protection_sources_object_by_id.')
             if _context.response.status_code == 0:
-                raise ErrorErrorException('Error', _context)
-            self.validate_response(_context)
-
-            # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, SQLAAGHostAndDatabases.from_dictionary)
-
-        except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
-
-    def list_protected_objects(self,
-                               environment,
-                               id,
-                               all_under_hierarchy=None):
-        """Does a GET request to /public/protectionSources/protectedObjects.
-
-        Returns the list of protected Objects in a registered Protection
-        Source.
-
-        Args:
-            environment (Environment2Enum): Specifies the environment type of
-                the registered Protection Source such as 'kVMware', 'kSQL',
-                'kView' 'kPhysical', 'kPuppeteer', 'kPure', 'kNetapp',
-                'kGenericNas', 'kHyperV', 'kAcropolis', or 'kAzure'. For
-                example, set this parameter to 'kVMware' if the registered
-                Protection Source is of 'kVMware' environment type. Supported
-                environment types such as 'kView', 'kSQL', 'kVMware', etc.
-                NOTE: 'kPuppeteer' refers to Cohesity's Remote Adapter.
-                'kVMware' indicates the VMware Protection Source environment.
-                'kHyperV' indicates the HyperV Protection Source environment.
-                'kSQL' indicates the SQL Protection Source environment.
-                'kView' indicates the View Protection Source environment.
-                'kPuppeteer' indicates the Cohesity's Remote Adapter.
-                'kPhysical' indicates the physical Protection Source
-                environment. 'kPure' indicates the Pure Storage Protection
-                Source environment. 'kAzure' indicates the Microsoft's Azure
-                Protection Source environment. 'kNetapp' indicates the Netapp
-                Protection Source environment. 'kAgent' indicates the Agent
-                Protection Source environment. 'kGenericNas' indicates the
-                Genreric Network Attached Storage Protection Source
-                environment. 'kAcropolis' indicates the Acropolis Protection
-                Source environment. 'kPhsicalFiles' indicates the Physical
-                Files Protection Source environment. 'kIsilon' indicates the
-                Dell EMC's Isilon Protection Source environment. 'kKVM'
-                indicates the KVM Protection Source environment. 'kAWS'
-                indicates the AWS Protection Source environment. 'kExchange'
-                indicates the Exchange Protection Source environment.
-                'kHyperVVSS' indicates the HyperV VSS Protection Source
-                environment. 'kOracle' indicates the Oracle Protection Source
-                environment. 'kGCP' indicates the Google Cloud Platform
-                Protection Source environment. 'kFlashBlade' indicates the
-                Flash Blade Protection Source environment. 'kAWSNative'
-                indicates the AWS Native Protection Source environment. 'kVCD'
-                indicates the VMware's Virtual cloud Director Protection
-                Source environment. 'kO365' indicates the Office 365
-                Protection Source environment. 'kO365Outlook' indicates Office
-                365 outlook Protection Source environment. 'kHyperFlex'
-                indicates the Hyper Flex Protection Source environment.
-                'kGCPNative' indicates the GCP Native Protection Source
-                environment. 'kAzureNative' indicates the Azure Native
-                Protection Source environment.
-            id (long|int): Specifies the Id of a registered Protection Source
-                of the type given in environment.
-            all_under_hierarchy (bool, optional): AllUnderHierarchy specifies
-                if objects of all the tenants under the hierarchy of the
-                logged in user's organization should be returned.
-
-        Returns:
-            list of ProtectedVMInformation: Response from the API. Success
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-        try:
-            self.logger.info('list_protected_objects called.')
-
-            # Validate required parameters
-            self.logger.info('Validating required parameters for list_protected_objects.')
-            self.validate_parameters(environment=environment,
-                                     id=id)
-
-            # Prepare query URL
-            self.logger.info('Preparing query URL for list_protected_objects.')
-            _url_path = '/public/protectionSources/protectedObjects'
-            _query_builder = Configuration.get_base_uri()
-            _query_builder += _url_path
-            _query_parameters = {
-                'environment': environment,
-                'id': id,
-                'allUnderHierarchy': all_under_hierarchy
-            }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
-            _query_url = APIHelper.clean_url(_query_builder)
-
-            # Prepare headers
-            self.logger.info('Preparing headers for list_protected_objects.')
-            _headers = {
-                'accept': 'application/json'
-            }
-
-            # Prepare and execute request
-            self.logger.info('Preparing and executing request for list_protected_objects.')
-            _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'list_protected_objects')
-
-            # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for list_protected_objects.')
-            if _context.response.status_code == 0:
-                raise ErrorErrorException('Error', _context)
-            self.validate_response(_context)
-
-            # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ProtectedVMInformation.from_dictionary)
-
-        except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
-
-    def list_data_store_information(self,
-                                    source_id):
-        """Does a GET request to /public/protectionSources/datastores.
-
-        Returns the datastore information in VMware environment.
-
-        Args:
-            source_id (long|int): Specifies the id of the virtual machine in
-                vmware environment.
-
-        Returns:
-            list of ProtectionSource: Response from the API. Success
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-        try:
-            self.logger.info('list_data_store_information called.')
-
-            # Validate required parameters
-            self.logger.info('Validating required parameters for list_data_store_information.')
-            self.validate_parameters(source_id=source_id)
-
-            # Prepare query URL
-            self.logger.info('Preparing query URL for list_data_store_information.')
-            _url_path = '/public/protectionSources/datastores'
-            _query_builder = Configuration.get_base_uri()
-            _query_builder += _url_path
-            _query_parameters = {
-                'sourceId': source_id
-            }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
-            _query_url = APIHelper.clean_url(_query_builder)
-
-            # Prepare headers
-            self.logger.info('Preparing headers for list_data_store_information.')
-            _headers = {
-                'accept': 'application/json'
-            }
-
-            # Prepare and execute request
-            self.logger.info('Preparing and executing request for list_data_store_information.')
-            _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'list_data_store_information')
-
-            # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for list_data_store_information.')
-            if _context.response.status_code == 0:
-                raise ErrorErrorException('Error', _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
@@ -693,7 +382,7 @@ Success
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_protection_sources_objects.')
             if _context.response.status_code == 0:
-                raise ErrorErrorException('Error', _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
@@ -703,19 +392,18 @@ Success
             self.logger.error(e, exc_info = True)
             raise
 
-    def get_protection_sources_object_by_id(self,
-                                            id):
-        """Does a GET request to /public/protectionSources/objects/{id}.
+    def list_data_store_information(self,
+                                    source_id):
+        """Does a GET request to /public/protectionSources/datastores.
 
-        Returns the Protection Source object corresponding to the specified
-        id.
+        Returns the datastore information in VMware environment.
 
         Args:
-            id (long|int): Specifies a unique id of the Protection Source to
-                return.
+            source_id (long|int): Specifies the id of the virtual machine in
+                vmware environment.
 
         Returns:
-            ProtectionSource: Response from the API. Success
+            list of ProtectionSource: Response from the API. Success
 
         Raises:
             APIException: When an error occurs while fetching the data from
@@ -725,338 +413,87 @@ Success
 
         """
         try:
-            self.logger.info('get_protection_sources_object_by_id called.')
+            self.logger.info('list_data_store_information called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for get_protection_sources_object_by_id.')
-            self.validate_parameters(id=id)
+            self.logger.info('Validating required parameters for list_data_store_information.')
+            self.validate_parameters(source_id=source_id)
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for get_protection_sources_object_by_id.')
-            _url_path = '/public/protectionSources/objects/{id}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-                'id': id
-            })
-            _query_builder = Configuration.get_base_uri()
-            _query_builder += _url_path
-            _query_url = APIHelper.clean_url(_query_builder)
-
-            # Prepare headers
-            self.logger.info('Preparing headers for get_protection_sources_object_by_id.')
-            _headers = {
-                'accept': 'application/json'
-            }
-
-            # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_protection_sources_object_by_id.')
-            _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_protection_sources_object_by_id')
-
-            # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for get_protection_sources_object_by_id.')
-            if _context.response.status_code == 0:
-                raise ErrorErrorException('Error', _context)
-            self.validate_response(_context)
-
-            # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ProtectionSource.from_dictionary)
-
-        except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
-
-    def create_refresh_protection_source_by_id(self,
-                                               id):
-        """Does a POST request to /public/protectionSources/refresh/{id}.
-
-        Force an immediate refresh between the specified Protection Source
-        tree
-        on the Cohesity Cluster and the Inventory tree
-        in the associated vCenter Server.
-        For example if a new VM is added to the vCenter Server, after a
-        refresh,
-        a new Protection Source node for this VM is added to the Protection
-        Sources
-        tree.
-        Success indicates the forced refresh has been started. The amount of
-        time to
-        complete a refresh depends on the size of the Object hierarchies.
-
-        Args:
-            id (long|int): Id of the root node of the Protection Sources tree
-                to refresh.  Force a refresh of the Object hierarchy for the
-                passed in Protection Sources Id.
-
-        Returns:
-            void: Response from the API. No Content
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-        try:
-            self.logger.info('create_refresh_protection_source_by_id called.')
-
-            # Validate required parameters
-            self.logger.info('Validating required parameters for create_refresh_protection_source_by_id.')
-            self.validate_parameters(id=id)
-
-            # Prepare query URL
-            self.logger.info('Preparing query URL for create_refresh_protection_source_by_id.')
-            _url_path = '/public/protectionSources/refresh/{id}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-                'id': id
-            })
-            _query_builder = Configuration.get_base_uri()
-            _query_builder += _url_path
-            _query_url = APIHelper.clean_url(_query_builder)
-
-            # Prepare and execute request
-            self.logger.info('Preparing and executing request for create_refresh_protection_source_by_id.')
-            _request = self.http_client.post(_query_url)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'create_refresh_protection_source_by_id')
-
-            # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for create_refresh_protection_source_by_id.')
-            if _context.response.status_code == 0:
-                raise ErrorErrorException('Error', _context)
-            self.validate_response(_context)
-
-        except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
-
-    def list_application_servers(self,
-                                 environment=None,
-                                 protection_source_id=None,
-                                 application=None,
-                                 protection_sources_root_node_id=None):
-        """Does a GET request to /public/protectionSources/applicationServers.
-
-        Given the root node id of a Protection Source tree, returns the list
-        of
-        Application Servers registered under that tree based on the filters.
-
-        Args:
-            environment (Environment2Enum, optional): Specifies the
-                environment such as 'kPhysical' or 'kVMware' of the Protection
-                Source tree. overrideDescription: true Supported environment
-                types such as 'kView', 'kSQL', 'kVMware', etc. NOTE:
-                'kPuppeteer' refers to Cohesity's Remote Adapter. 'kVMware'
-                indicates the VMware Protection Source environment. 'kHyperV'
-                indicates the HyperV Protection Source environment. 'kSQL'
-                indicates the SQL Protection Source environment. 'kView'
-                indicates the View Protection Source environment. 'kPuppeteer'
-                indicates the Cohesity's Remote Adapter. 'kPhysical' indicates
-                the physical Protection Source environment. 'kPure' indicates
-                the Pure Storage Protection Source environment. 'kAzure'
-                indicates the Microsoft's Azure Protection Source environment.
-                'kNetapp' indicates the Netapp Protection Source environment.
-                'kAgent' indicates the Agent Protection Source environment.
-                'kGenericNas' indicates the Genreric Network Attached Storage
-                Protection Source environment. 'kAcropolis' indicates the
-                Acropolis Protection Source environment. 'kPhsicalFiles'
-                indicates the Physical Files Protection Source environment.
-                'kIsilon' indicates the Dell EMC's Isilon Protection Source
-                environment. 'kKVM' indicates the KVM Protection Source
-                environment. 'kAWS' indicates the AWS Protection Source
-                environment. 'kExchange' indicates the Exchange Protection
-                Source environment. 'kHyperVVSS' indicates the HyperV VSS
-                Protection Source environment. 'kOracle' indicates the Oracle
-                Protection Source environment. 'kGCP' indicates the Google
-                Cloud Platform Protection Source environment. 'kFlashBlade'
-                indicates the Flash Blade Protection Source environment.
-                'kAWSNative' indicates the AWS Native Protection Source
-                environment. 'kVCD' indicates the VMware's Virtual cloud
-                Director Protection Source environment. 'kO365' indicates the
-                Office 365 Protection Source environment. 'kO365Outlook'
-                indicates Office 365 outlook Protection Source environment.
-                'kHyperFlex' indicates the Hyper Flex Protection Source
-                environment. 'kGCPNative' indicates the GCP Native Protection
-                Source environment. 'kAzureNative' indicates the Azure Native
-                Protection Source environment.
-            protection_source_id (long|int, optional): Specifies the
-                Protection Source Id of the 'kPhysical' or 'kVMware' entity in
-                the Protection Source tree hosting the applications.
-            application (ApplicationEnum, optional): Specifies the application
-                such as 'kSQL', 'kExchange' running on the Protection Source.
-                overrideDescription: true Supported environment types such as
-                'kView', 'kSQL', 'kVMware', etc. NOTE: 'kPuppeteer' refers to
-                Cohesity's Remote Adapter. 'kVMware' indicates the VMware
-                Protection Source environment. 'kHyperV' indicates the HyperV
-                Protection Source environment. 'kSQL' indicates the SQL
-                Protection Source environment. 'kView' indicates the View
-                Protection Source environment. 'kPuppeteer' indicates the
-                Cohesity's Remote Adapter. 'kPhysical' indicates the physical
-                Protection Source environment. 'kPure' indicates the Pure
-                Storage Protection Source environment. 'kAzure' indicates the
-                Microsoft's Azure Protection Source environment. 'kNetapp'
-                indicates the Netapp Protection Source environment. 'kAgent'
-                indicates the Agent Protection Source environment.
-                'kGenericNas' indicates the Genreric Network Attached Storage
-                Protection Source environment. 'kAcropolis' indicates the
-                Acropolis Protection Source environment. 'kPhsicalFiles'
-                indicates the Physical Files Protection Source environment.
-                'kIsilon' indicates the Dell EMC's Isilon Protection Source
-                environment. 'kKVM' indicates the KVM Protection Source
-                environment. 'kAWS' indicates the AWS Protection Source
-                environment. 'kExchange' indicates the Exchange Protection
-                Source environment. 'kHyperVVSS' indicates the HyperV VSS
-                Protection Source environment. 'kOracle' indicates the Oracle
-                Protection Source environment. 'kGCP' indicates the Google
-                Cloud Platform Protection Source environment. 'kFlashBlade'
-                indicates the Flash Blade Protection Source environment.
-                'kAWSNative' indicates the AWS Native Protection Source
-                environment. 'kVCD' indicates the VMware's Virtual cloud
-                Director Protection Source environment. 'kO365' indicates the
-                Office 365 Protection Source environment. 'kO365Outlook'
-                indicates Office 365 outlook Protection Source environment.
-                'kHyperFlex' indicates the Hyper Flex Protection Source
-                environment. 'kGCPNative' indicates the GCP Native Protection
-                Source environment. 'kAzureNative' indicates the Azure Native
-                Protection Source environment.
-            protection_sources_root_node_id (long|int, optional): Specifies
-                the Protection Source Id of the root node of a Protection
-                Sources tree. A root node represents a registered Source on
-                the Cohesity Cluster, such as a vCenter Server.
-
-        Returns:
-            list of RegisteredApplicationServer: Response from the API.
-                Success
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-        try:
-            self.logger.info('list_application_servers called.')
-
-            # Prepare query URL
-            self.logger.info('Preparing query URL for list_application_servers.')
-            _url_path = '/public/protectionSources/applicationServers'
+            self.logger.info('Preparing query URL for list_data_store_information.')
+            _url_path = '/public/protectionSources/datastores'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
-                'environment': environment,
-                'protectionSourceId': protection_source_id,
-                'application': application,
-                'protectionSourcesRootNodeId': protection_sources_root_node_id
+                'sourceId': source_id
             }
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for list_application_servers.')
+            self.logger.info('Preparing headers for list_data_store_information.')
             _headers = {
                 'accept': 'application/json'
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for list_application_servers.')
+            self.logger.info('Preparing and executing request for list_data_store_information.')
             _request = self.http_client.get(_query_url, headers=_headers)
             AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'list_application_servers')
+            _context = self.execute_request(_request, name = 'list_data_store_information')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for list_application_servers.')
+            self.logger.info('Validating response for list_data_store_information.')
             if _context.response.status_code == 0:
-                raise ErrorErrorException('Error', _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, RegisteredApplicationServer.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body, ProtectionSource.from_dictionary)
 
         except Exception as e:
             self.logger.error(e, exc_info = True)
             raise
 
-    def list_protection_sources(self,
-                                all_under_hierarchy=None,
-                                id=None,
-                                exclude_office_365_types=None,
-                                include_datastores=None,
-                                include_vm_folders=None,
-                                include_entity_permission_info=None,
-                                sids=None,
-                                tenant_ids=None,
-                                exclude_types=None,
-                                include_networks=None,
-                                environments=None,
-                                environment=None):
-        """Does a GET request to /public/protectionSources.
+    def list_protection_sources_registration_info(self,
+                                                  environments=None,
+                                                  ids=None,
+                                                  include_entity_permission_info=None,
+                                                  sids=None,
+                                                  tenant_ids=None,
+                                                  all_under_hierarchy=None):
+        """Does a GET request to /public/protectionSources/registrationInfo.
 
-        If no parameters are specified, all Protection Sources that are
-        registered
-        on the Cohesity Cluster are returned.
-        In addition, an Object subtree gathered from each Source is returned.
-        For example, the Cohesity Cluster interrogates a Source VMware vCenter
-        Server
-        and creates an hierarchical Object subtree that mirrors the
-        Inventory tree on vCenter Server.
-        The contents of the Object tree is returned as a "nodes" hierarchy
-        of "protectionSource"s.
-        Specifying parameters can alter the results that are returned.
+        Returns the registration and protection information of the registered
+        Protection Sources.
 
         Args:
-            all_under_hierarchy (bool, optional): AllUnderHierarchy specifies
-                if objects of all the tenants under the hierarchy of the
-                logged in user's organization should be returned.
-            id (long|int, optional): Return the Object subtree for the passed
-                in Protection Source id.
-            exclude_office_365_types (list of ExcludeOffice365TypesEnum,
-                optional): Specifies the Object types to be filtered out for
-                Office 365 that match the passed in types such as 'kDomain',
-                'kOutlook', 'kMailbox', etc. For example, set this parameter
-                to 'kMailbox' to exclude Mailbox Objects from being returned.
-            include_datastores (bool, optional): Set this parameter to true to
-                also return kDatastore object types found in the Source in
-                addition to their Object subtrees. By default, datastores are
-                not returned.
-            include_vm_folders (bool, optional): Set this parameter to true to
-                also return kVMFolder object types found in the Source in
-                addition to their Object subtrees. By default, VM folder
-                objects are not returned.
+            environments (list of
+                EnvironmentListProtectionSourcesRegistrationInfoEnum,
+                optional): Return only Protection Sources that match the
+                passed in environment type such as 'kVMware', 'kSQL', 'kView'
+                'kPhysical', 'kPuppeteer', 'kPure', 'kNetapp', 'kGenericNas',
+                'kHyperV', 'kAcropolis', or 'kAzure'. For example, set this
+                parameter to 'kVMware' to only return the Sources (and their
+                Object subtrees) found in the 'kVMware' (VMware vCenter
+                Server) environment.  NOTE: 'kPuppeteer' refers to Cohesity's
+                Remote Adapter.
+            ids (list of long|int, optional): Return only the registered root
+                nodes whose Ids are given in the list.
             include_entity_permission_info (bool, optional): If specified,
                 then a list of entites with permissions assigned to them are
                 returned.
-            sids (list of string, optional): Filter the object subtree for the
-                sids given in the list.
+            sids (list of string, optional): Filter the registered root nodes
+                for the sids given in the list.
             tenant_ids (list of string, optional): TenantIds contains ids of
                 the tenants for which objects are to be returned.
-            exclude_types (list of ExcludeTypesEnum, optional): Filter out the
-                Object types (and their subtrees) that match the passed in
-                types such as 'kVCenter', 'kFolder', 'kDatacenter',
-                'kComputeResource', 'kResourcePool', 'kDatastore',
-                'kHostSystem', 'kVirtualMachine', etc. For example, set this
-                parameter to 'kResourcePool' to exclude Resource Pool Objects
-                from being returned.
-            include_networks (bool, optional): Set this parameter to true to
-                also return kNetwork object types found in the Source in
-                addition to their Object subtrees. By default, network objects
-                are not returned.
-            environments (list of Environments2Enum, optional): Return only
-                Protection Sources that match the passed in environment type
-                such as 'kVMware', 'kSQL', 'kView' 'kPhysical', 'kPuppeteer',
-                'kPure', 'kNetapp', 'kGenericNas', 'kHyperV', 'kAcropolis', or
-                'kAzure'. For example, set this parameter to 'kVMware' to only
-                return the Sources (and their Object subtrees) found in the
-                'kVMware' (VMware vCenter Server) environment.  NOTE:
-                'kPuppeteer' refers to Cohesity's Remote Adapter.
-            environment (string, optional): This field is deprecated. Use
-                environments instead. deprecated: true
+            all_under_hierarchy (bool, optional): AllUnderHierarchy specifies
+                if objects of all the tenants under the hierarchy of the
+                logged in user's organization should be returned.
 
         Returns:
-            list of NodeInAProtectionSourcesTree: Response from the API.
-                Success
+            GetRegistrationInfoResponse: Response from the API. Success
 
         Raises:
             APIException: When an error occurs while fetching the data from
@@ -1066,51 +503,45 @@ Success
 
         """
         try:
-            self.logger.info('list_protection_sources called.')
+            self.logger.info('list_protection_sources_registration_info called.')
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for list_protection_sources.')
-            _url_path = '/public/protectionSources'
+            self.logger.info('Preparing query URL for list_protection_sources_registration_info.')
+            _url_path = '/public/protectionSources/registrationInfo'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
-                'allUnderHierarchy': all_under_hierarchy,
-                'id': id,
-                'excludeOffice365Types': exclude_office_365_types,
-                'includeDatastores': include_datastores,
-                'includeVMFolders': include_vm_folders,
+                'environments': environments,
+                'ids': ids,
                 'includeEntityPermissionInfo': include_entity_permission_info,
                 'sids': sids,
                 'tenantIds': tenant_ids,
-                'excludeTypes': exclude_types,
-                'includeNetworks': include_networks,
-                'environments': environments,
-                'environment': environment
+                'allUnderHierarchy': all_under_hierarchy
             }
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for list_protection_sources.')
+            self.logger.info('Preparing headers for list_protection_sources_registration_info.')
             _headers = {
                 'accept': 'application/json'
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for list_protection_sources.')
+            self.logger.info('Preparing and executing request for list_protection_sources_registration_info.')
             _request = self.http_client.get(_query_url, headers=_headers)
             AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'list_protection_sources')
+            _context = self.execute_request(_request, name = 'list_protection_sources_registration_info')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for list_protection_sources.')
+            self.logger.info('Validating response for list_protection_sources_registration_info.')
             if _context.response.status_code == 0:
-                raise ErrorErrorException('Error', _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, NodeInAProtectionSourcesTree.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body, GetRegistrationInfoResponse.from_dictionary)
 
         except Exception as e:
             self.logger.error(e, exc_info = True)
@@ -1167,7 +598,7 @@ Success
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for update_application_servers.')
             if _context.response.status_code == 0:
-                raise ErrorErrorException('Error', _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
@@ -1182,9 +613,8 @@ Success
         """Does a POST request to /public/protectionSources/applicationServers.
 
         Registering Application Servers will help Cohesity Cluster such that
-        any
-        application specific data can be backed up.
-        Returns the Protection Source registered upon success.
+        any application specific data can be backed up.  Returns the
+        Protection Source registered upon success.
 
         Args:
             body (RegisterApplicationServersParameters): Request to register
@@ -1230,7 +660,7 @@ Success
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for create_register_application_servers.')
             if _context.response.status_code == 0:
-                raise ErrorErrorException('Error', _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
@@ -1240,18 +670,580 @@ Success
             self.logger.error(e, exc_info = True)
             raise
 
+    def list_protected_objects(self,
+                               environment,
+                               id,
+                               all_under_hierarchy=None,
+                               include_rpo_snapshots=None):
+        """Does a GET request to /public/protectionSources/protectedObjects.
+
+        Returns the list of protected Objects in a registered Protection
+        Source.
+
+        Args:
+            environment (EnvironmentListProtectedObjectsEnum): Specifies the
+                environment type of the registered Protection Source such as
+                'kVMware', 'kSQL', 'kView' 'kPhysical', 'kPuppeteer', 'kPure',
+                'kNetapp', 'kGenericNas', 'kHyperV', 'kAcropolis', or
+                'kAzure'. For example, set this parameter to 'kVMware' if the
+                registered Protection Source is of 'kVMware' environment type.
+                Supported environment types such as 'kView', 'kSQL',
+                'kVMware', etc. NOTE: 'kPuppeteer' refers to Cohesity's Remote
+                Adapter. 'kVMware' indicates the VMware Protection Source
+                environment. 'kHyperV' indicates the HyperV Protection Source
+                environment. 'kSQL' indicates the SQL Protection Source
+                environment. 'kView' indicates the View Protection Source
+                environment. 'kPuppeteer' indicates the Cohesity's Remote
+                Adapter. 'kPhysical' indicates the physical Protection Source
+                environment. 'kPure' indicates the Pure Storage Protection
+                Source environment. 'kAzure' indicates the Microsoft's Azure
+                Protection Source environment. 'kNetapp' indicates the Netapp
+                Protection Source environment. 'kAgent' indicates the Agent
+                Protection Source environment. 'kGenericNas' indicates the
+                Genreric Network Attached Storage Protection Source
+                environment. 'kAcropolis' indicates the Acropolis Protection
+                Source environment. 'kPhsicalFiles' indicates the Physical
+                Files Protection Source environment. 'kIsilon' indicates the
+                Dell EMC's Isilon Protection Source environment. 'kKVM'
+                indicates the KVM Protection Source environment. 'kAWS'
+                indicates the AWS Protection Source environment. 'kExchange'
+                indicates the Exchange Protection Source environment.
+                'kHyperVVSS' indicates the HyperV VSS Protection Source
+                environment. 'kOracle' indicates the Oracle Protection Source
+                environment. 'kGCP' indicates the Google Cloud Platform
+                Protection Source environment. 'kFlashBlade' indicates the
+                Flash Blade Protection Source environment. 'kAWSNative'
+                indicates the AWS Native Protection Source environment. 'kVCD'
+                indicates the VMware's Virtual cloud Director Protection
+                Source environment. 'kO365' indicates the Office 365
+                Protection Source environment. 'kO365Outlook' indicates Office
+                365 outlook Protection Source environment. 'kHyperFlex'
+                indicates the Hyper Flex Protection Source environment.
+                'kGCPNative' indicates the GCP Native Protection Source
+                environment. 'kAzureNative' indicates the Azure Native
+                Protection Source environment.
+            id (long|int): Specifies the Id of a registered Protection Source
+                of the type given in environment.
+            all_under_hierarchy (bool, optional): AllUnderHierarchy specifies
+                if objects of all the tenants under the hierarchy of the
+                logged in user's organization should be returned.
+            include_rpo_snapshots (bool, optional): If true, then the
+                Protected Objects protected by RPO policies will also be
+                returned.
+
+        Returns:
+            list of ProtectedVmInfo: Response from the API. Success
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+        try:
+            self.logger.info('list_protected_objects called.')
+
+            # Validate required parameters
+            self.logger.info('Validating required parameters for list_protected_objects.')
+            self.validate_parameters(environment=environment,
+                                     id=id)
+
+            # Prepare query URL
+            self.logger.info('Preparing query URL for list_protected_objects.')
+            _url_path = '/public/protectionSources/protectedObjects'
+            _query_builder = Configuration.get_base_uri()
+            _query_builder += _url_path
+            _query_parameters = {
+                'environment': environment,
+                'id': id,
+                'allUnderHierarchy': all_under_hierarchy,
+                'includeRpoSnapshots': include_rpo_snapshots
+            }
+            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
+                _query_parameters, Configuration.array_serialization)
+            _query_url = APIHelper.clean_url(_query_builder)
+
+            # Prepare headers
+            self.logger.info('Preparing headers for list_protected_objects.')
+            _headers = {
+                'accept': 'application/json'
+            }
+
+            # Prepare and execute request
+            self.logger.info('Preparing and executing request for list_protected_objects.')
+            _request = self.http_client.get(_query_url, headers=_headers)
+            AuthManager.apply(_request)
+            _context = self.execute_request(_request, name = 'list_protected_objects')
+
+            # Endpoint and global error handling using HTTP status codes.
+            self.logger.info('Validating response for list_protected_objects.')
+            if _context.response.status_code == 0:
+                raise RequestErrorErrorException('Error', _context)
+            self.validate_response(_context)
+
+            # Return appropriate type
+            return APIHelper.json_deserialize(_context.response.raw_body, ProtectedVmInfo.from_dictionary)
+
+        except Exception as e:
+            self.logger.error(e, exc_info = True)
+            raise
+
+    def list_virtual_machines(self,
+                              v_center_id=None,
+                              names=None,
+                              uuids=None,
+                              protected=None):
+        """Does a GET request to /public/protectionSources/virtualMachines.
+
+        Returns all Virtual Machines found in all the vCenter Servers
+        registered on the Cohesity Cluster that match the filter criteria
+        specified using parameters. If an id is specified, only VMs found in
+        the specified vCenter Server are returned. Only VM Objects are
+        returned. Other VMware Objects such as datacenters are not returned.
+
+        Args:
+            v_center_id (long|int, optional): Limit the VMs returned to the
+                set of VMs found in a specific vCenter Server. Pass in the
+                root Protection Source id for the vCenter Server to search for
+                VMs.
+            names (list of string, optional): Limit the returned VMs to those
+                that exactly match the passed in VM name. To match multiple VM
+                names, specify multiple "names" parameters that each specify a
+                single VM name. The string must exactly match the passed in VM
+                name and wild cards are not supported.
+            uuids (list of string, optional): Limit the returned VMs to those
+                that exactly match the passed in UUIDs.
+            protected (bool, optional): Limit the returned VMs to those that
+                have been protected by a Protection Job. By default, both
+                protected and unprotected VMs are returned.
+
+        Returns:
+            list of ProtectionSource: Response from the API. Success
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+        try:
+            self.logger.info('list_virtual_machines called.')
+
+            # Prepare query URL
+            self.logger.info('Preparing query URL for list_virtual_machines.')
+            _url_path = '/public/protectionSources/virtualMachines'
+            _query_builder = Configuration.get_base_uri()
+            _query_builder += _url_path
+            _query_parameters = {
+                'vCenterId': v_center_id,
+                'names': names,
+                'uuids': uuids,
+                'protected': protected
+            }
+            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
+                _query_parameters, Configuration.array_serialization)
+            _query_url = APIHelper.clean_url(_query_builder)
+
+            # Prepare headers
+            self.logger.info('Preparing headers for list_virtual_machines.')
+            _headers = {
+                'accept': 'application/json'
+            }
+
+            # Prepare and execute request
+            self.logger.info('Preparing and executing request for list_virtual_machines.')
+            _request = self.http_client.get(_query_url, headers=_headers)
+            AuthManager.apply(_request)
+            _context = self.execute_request(_request, name = 'list_virtual_machines')
+
+            # Endpoint and global error handling using HTTP status codes.
+            self.logger.info('Validating response for list_virtual_machines.')
+            if _context.response.status_code == 0:
+                raise RequestErrorErrorException('Error', _context)
+            self.validate_response(_context)
+
+            # Return appropriate type
+            return APIHelper.json_deserialize(_context.response.raw_body, ProtectionSource.from_dictionary)
+
+        except Exception as e:
+            self.logger.error(e, exc_info = True)
+            raise
+
+    def list_protection_sources_root_nodes(self,
+                                           id=None,
+                                           environments=None,
+                                           environment=None):
+        """Does a GET request to /public/protectionSources/rootNodes.
+
+        Returns the root Protection Sources and the registration information
+        for each of these Sources.
+
+        Args:
+            id (long|int, optional): Return the registration information for
+                the Protection Source id.
+            environments (list of
+                EnvironmentListProtectionSourcesRootNodesEnum, optional):
+                Return only the root Protection Sources that match the passed
+                in environment type such as 'kVMware', 'kSQL', 'kView',
+                'kPuppeteer', 'kPhysical', 'kPure', 'kNetapp', 'kGenericNas',
+                'kHyperV', 'kAcropolis' 'kAzure'. For example, set this
+                parameter to 'kVMware' to only return the root Protection
+                Sources found in the 'kVMware' (VMware vCenter) environment.
+                In addition, the registration information for each Source is
+                returned.  NOTE: 'kPuppeteer' refers to Cohesity's Remote
+                Adapter.
+            environment (string, optional): This field is deprecated. Use
+                environments instead. deprecated: true
+
+        Returns:
+            list of ProtectionSourceNode: Response from the API. Success
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+        try:
+            self.logger.info('list_protection_sources_root_nodes called.')
+
+            # Prepare query URL
+            self.logger.info('Preparing query URL for list_protection_sources_root_nodes.')
+            _url_path = '/public/protectionSources/rootNodes'
+            _query_builder = Configuration.get_base_uri()
+            _query_builder += _url_path
+            _query_parameters = {
+                'id': id,
+                'environments': environments,
+                'environment': environment
+            }
+            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
+                _query_parameters, Configuration.array_serialization)
+            _query_url = APIHelper.clean_url(_query_builder)
+
+            # Prepare headers
+            self.logger.info('Preparing headers for list_protection_sources_root_nodes.')
+            _headers = {
+                'accept': 'application/json'
+            }
+
+            # Prepare and execute request
+            self.logger.info('Preparing and executing request for list_protection_sources_root_nodes.')
+            _request = self.http_client.get(_query_url, headers=_headers)
+            AuthManager.apply(_request)
+            _context = self.execute_request(_request, name = 'list_protection_sources_root_nodes')
+
+            # Endpoint and global error handling using HTTP status codes.
+            self.logger.info('Validating response for list_protection_sources_root_nodes.')
+            if _context.response.status_code == 0:
+                raise RequestErrorErrorException('Error', _context)
+            self.validate_response(_context)
+
+            # Return appropriate type
+            return APIHelper.json_deserialize(_context.response.raw_body, ProtectionSourceNode.from_dictionary)
+
+        except Exception as e:
+            self.logger.error(e, exc_info = True)
+            raise
+
+    def list_application_servers(self,
+                                 protection_sources_root_node_id=None,
+                                 environment=None,
+                                 protection_source_id=None,
+                                 application=None):
+        """Does a GET request to /public/protectionSources/applicationServers.
+
+        Given the root node id of a Protection Source tree, returns the list
+        of Application Servers registered under that tree based on the
+        filters.
+
+        Args:
+            protection_sources_root_node_id (long|int, optional): Specifies
+                the Protection Source Id of the root node of a Protection
+                Sources tree. A root node represents a registered Source on
+                the Cohesity Cluster, such as a vCenter Server.
+            environment (EnvironmentListApplicationServersEnum, optional):
+                Specifies the environment such as 'kPhysical' or 'kVMware' of
+                the Protection Source tree. overrideDescription: true
+                Supported environment types such as 'kView', 'kSQL',
+                'kVMware', etc. NOTE: 'kPuppeteer' refers to Cohesity's Remote
+                Adapter. 'kVMware' indicates the VMware Protection Source
+                environment. 'kHyperV' indicates the HyperV Protection Source
+                environment. 'kSQL' indicates the SQL Protection Source
+                environment. 'kView' indicates the View Protection Source
+                environment. 'kPuppeteer' indicates the Cohesity's Remote
+                Adapter. 'kPhysical' indicates the physical Protection Source
+                environment. 'kPure' indicates the Pure Storage Protection
+                Source environment. 'kAzure' indicates the Microsoft's Azure
+                Protection Source environment. 'kNetapp' indicates the Netapp
+                Protection Source environment. 'kAgent' indicates the Agent
+                Protection Source environment. 'kGenericNas' indicates the
+                Genreric Network Attached Storage Protection Source
+                environment. 'kAcropolis' indicates the Acropolis Protection
+                Source environment. 'kPhsicalFiles' indicates the Physical
+                Files Protection Source environment. 'kIsilon' indicates the
+                Dell EMC's Isilon Protection Source environment. 'kKVM'
+                indicates the KVM Protection Source environment. 'kAWS'
+                indicates the AWS Protection Source environment. 'kExchange'
+                indicates the Exchange Protection Source environment.
+                'kHyperVVSS' indicates the HyperV VSS Protection Source
+                environment. 'kOracle' indicates the Oracle Protection Source
+                environment. 'kGCP' indicates the Google Cloud Platform
+                Protection Source environment. 'kFlashBlade' indicates the
+                Flash Blade Protection Source environment. 'kAWSNative'
+                indicates the AWS Native Protection Source environment. 'kVCD'
+                indicates the VMware's Virtual cloud Director Protection
+                Source environment. 'kO365' indicates the Office 365
+                Protection Source environment. 'kO365Outlook' indicates Office
+                365 outlook Protection Source environment. 'kHyperFlex'
+                indicates the Hyper Flex Protection Source environment.
+                'kGCPNative' indicates the GCP Native Protection Source
+                environment. 'kAzureNative' indicates the Azure Native
+                Protection Source environment.
+            protection_source_id (long|int, optional): Specifies the
+                Protection Source Id of the 'kPhysical' or 'kVMware' entity in
+                the Protection Source tree hosting the applications.
+            application (ApplicationEnum, optional): Specifies the application
+                such as 'kSQL', 'kExchange' running on the Protection Source.
+                overrideDescription: true Supported environment types such as
+                'kView', 'kSQL', 'kVMware', etc. NOTE: 'kPuppeteer' refers to
+                Cohesity's Remote Adapter. 'kVMware' indicates the VMware
+                Protection Source environment. 'kHyperV' indicates the HyperV
+                Protection Source environment. 'kSQL' indicates the SQL
+                Protection Source environment. 'kView' indicates the View
+                Protection Source environment. 'kPuppeteer' indicates the
+                Cohesity's Remote Adapter. 'kPhysical' indicates the physical
+                Protection Source environment. 'kPure' indicates the Pure
+                Storage Protection Source environment. 'kAzure' indicates the
+                Microsoft's Azure Protection Source environment. 'kNetapp'
+                indicates the Netapp Protection Source environment. 'kAgent'
+                indicates the Agent Protection Source environment.
+                'kGenericNas' indicates the Genreric Network Attached Storage
+                Protection Source environment. 'kAcropolis' indicates the
+                Acropolis Protection Source environment. 'kPhsicalFiles'
+                indicates the Physical Files Protection Source environment.
+                'kIsilon' indicates the Dell EMC's Isilon Protection Source
+                environment. 'kKVM' indicates the KVM Protection Source
+                environment. 'kAWS' indicates the AWS Protection Source
+                environment. 'kExchange' indicates the Exchange Protection
+                Source environment. 'kHyperVVSS' indicates the HyperV VSS
+                Protection Source environment. 'kOracle' indicates the Oracle
+                Protection Source environment. 'kGCP' indicates the Google
+                Cloud Platform Protection Source environment. 'kFlashBlade'
+                indicates the Flash Blade Protection Source environment.
+                'kAWSNative' indicates the AWS Native Protection Source
+                environment. 'kVCD' indicates the VMware's Virtual cloud
+                Director Protection Source environment. 'kO365' indicates the
+                Office 365 Protection Source environment. 'kO365Outlook'
+                indicates Office 365 outlook Protection Source environment.
+                'kHyperFlex' indicates the Hyper Flex Protection Source
+                environment. 'kGCPNative' indicates the GCP Native Protection
+                Source environment. 'kAzureNative' indicates the Azure Native
+                Protection Source environment.
+
+        Returns:
+            list of RegisteredApplicationServer: Response from the API.
+                Success
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+        try:
+            self.logger.info('list_application_servers called.')
+
+            # Prepare query URL
+            self.logger.info('Preparing query URL for list_application_servers.')
+            _url_path = '/public/protectionSources/applicationServers'
+            _query_builder = Configuration.get_base_uri()
+            _query_builder += _url_path
+            _query_parameters = {
+                'protectionSourcesRootNodeId': protection_sources_root_node_id,
+                'environment': environment,
+                'protectionSourceId': protection_source_id,
+                'application': application
+            }
+            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
+                _query_parameters, Configuration.array_serialization)
+            _query_url = APIHelper.clean_url(_query_builder)
+
+            # Prepare headers
+            self.logger.info('Preparing headers for list_application_servers.')
+            _headers = {
+                'accept': 'application/json'
+            }
+
+            # Prepare and execute request
+            self.logger.info('Preparing and executing request for list_application_servers.')
+            _request = self.http_client.get(_query_url, headers=_headers)
+            AuthManager.apply(_request)
+            _context = self.execute_request(_request, name = 'list_application_servers')
+
+            # Endpoint and global error handling using HTTP status codes.
+            self.logger.info('Validating response for list_application_servers.')
+            if _context.response.status_code == 0:
+                raise RequestErrorErrorException('Error', _context)
+            self.validate_response(_context)
+
+            # Return appropriate type
+            return APIHelper.json_deserialize(_context.response.raw_body, RegisteredApplicationServer.from_dictionary)
+
+        except Exception as e:
+            self.logger.error(e, exc_info = True)
+            raise
+
+    def list_protection_sources(self,
+                                id=None,
+                                exclude_types=None,
+                                exclude_office_365_types=None,
+                                include_datastores=None,
+                                include_networks=None,
+                                include_vm_folders=None,
+                                environments=None,
+                                environment=None,
+                                include_entity_permission_info=None,
+                                sids=None,
+                                tenant_ids=None,
+                                all_under_hierarchy=None):
+        """Does a GET request to /public/protectionSources.
+
+        If no parameters are specified, all Protection Sources that are
+        registered on the Cohesity Cluster are returned. In addition, an
+        Object subtree gathered from each Source is returned. For example, the
+        Cohesity Cluster interrogates a Source VMware vCenter Server and
+        creates an hierarchical Object subtree that mirrors the Inventory tree
+        on vCenter Server. The contents of the Object tree is returned as a
+        "nodes" hierarchy of "protectionSource"s. Specifying parameters can
+        alter the results that are returned.
+
+        Args:
+            id (long|int, optional): Return the Object subtree for the passed
+                in Protection Source id.
+            exclude_types (list of ExcludeTypeEnum, optional): Filter out the
+                Object types (and their subtrees) that match the passed in
+                types such as 'kVCenter', 'kFolder', 'kDatacenter',
+                'kComputeResource', 'kResourcePool', 'kDatastore',
+                'kHostSystem', 'kVirtualMachine', etc. For example, set this
+                parameter to 'kResourcePool' to exclude Resource Pool Objects
+                from being returned.
+            exclude_office_365_types (list of ExcludeOffice365TypeEnum,
+                optional): Specifies the Object types to be filtered out for
+                Office 365 that match the passed in types such as 'kDomain',
+                'kOutlook', 'kMailbox', etc. For example, set this parameter
+                to 'kMailbox' to exclude Mailbox Objects from being returned.
+            include_datastores (bool, optional): Set this parameter to true to
+                also return kDatastore object types found in the Source in
+                addition to their Object subtrees. By default, datastores are
+                not returned.
+            include_networks (bool, optional): Set this parameter to true to
+                also return kNetwork object types found in the Source in
+                addition to their Object subtrees. By default, network objects
+                are not returned.
+            include_vm_folders (bool, optional): Set this parameter to true to
+                also return kVMFolder object types found in the Source in
+                addition to their Object subtrees. By default, VM folder
+                objects are not returned.
+            environments (list of EnvironmentListProtectionSourcesEnum,
+                optional): Return only Protection Sources that match the
+                passed in environment type such as 'kVMware', 'kSQL', 'kView'
+                'kPhysical', 'kPuppeteer', 'kPure', 'kNetapp', 'kGenericNas',
+                'kHyperV', 'kAcropolis', or 'kAzure'. For example, set this
+                parameter to 'kVMware' to only return the Sources (and their
+                Object subtrees) found in the 'kVMware' (VMware vCenter
+                Server) environment.  NOTE: 'kPuppeteer' refers to Cohesity's
+                Remote Adapter.
+            environment (string, optional): This field is deprecated. Use
+                environments instead. deprecated: true
+            include_entity_permission_info (bool, optional): If specified,
+                then a list of entites with permissions assigned to them are
+                returned.
+            sids (list of string, optional): Filter the object subtree for the
+                sids given in the list.
+            tenant_ids (list of string, optional): TenantIds contains ids of
+                the tenants for which objects are to be returned.
+            all_under_hierarchy (bool, optional): AllUnderHierarchy specifies
+                if objects of all the tenants under the hierarchy of the
+                logged in user's organization should be returned.
+
+        Returns:
+            list of ProtectionSourceNode: Response from the API. Success
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+        try:
+            self.logger.info('list_protection_sources called.')
+
+            # Prepare query URL
+            self.logger.info('Preparing query URL for list_protection_sources.')
+            _url_path = '/public/protectionSources'
+            _query_builder = Configuration.get_base_uri()
+            _query_builder += _url_path
+            _query_parameters = {
+                'id': id,
+                'excludeTypes': exclude_types,
+                'excludeOffice365Types': exclude_office_365_types,
+                'includeDatastores': include_datastores,
+                'includeNetworks': include_networks,
+                'includeVMFolders': include_vm_folders,
+                'environments': environments,
+                'environment': environment,
+                'includeEntityPermissionInfo': include_entity_permission_info,
+                'sids': sids,
+                'tenantIds': tenant_ids,
+                'allUnderHierarchy': all_under_hierarchy
+            }
+            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
+                _query_parameters, Configuration.array_serialization)
+            _query_url = APIHelper.clean_url(_query_builder)
+
+            # Prepare headers
+            self.logger.info('Preparing headers for list_protection_sources.')
+            _headers = {
+                'accept': 'application/json'
+            }
+
+            # Prepare and execute request
+            self.logger.info('Preparing and executing request for list_protection_sources.')
+            _request = self.http_client.get(_query_url, headers=_headers)
+            AuthManager.apply(_request)
+            _context = self.execute_request(_request, name = 'list_protection_sources')
+
+            # Endpoint and global error handling using HTTP status codes.
+            self.logger.info('Validating response for list_protection_sources.')
+            if _context.response.status_code == 0:
+                raise RequestErrorErrorException('Error', _context)
+            self.validate_response(_context)
+
+            # Return appropriate type
+            return APIHelper.json_deserialize(_context.response.raw_body, ProtectionSourceNode.from_dictionary)
+
+        except Exception as e:
+            self.logger.error(e, exc_info = True)
+            raise
+
     def delete_unregister_application_servers(self,
+                                              body,
                                               id):
         """Does a DELETE request to /public/protectionSources/applicationServers/{id}.
 
         Unregistering Application Servers will fail if the Protection Source
-        is
-        currently being backed up.
-        Returns the Protection Source whose Application Servers are
-        unregistered upon
-        success.
+        is currently being backed up.  Returns the Protection Source whose
+        Application Servers are unregistered upon success.
 
         Args:
+            body (UnRegisterApplicationServersParameters): Request to register
+                a protection source.
             id (long|int): Specifies a unique id of the Protection Source to
                 unregister the Application Servers. If the Protection Source
                 is currently being backed up, unregister operation will fail.
@@ -1271,7 +1263,8 @@ Success
 
             # Validate required parameters
             self.logger.info('Validating required parameters for delete_unregister_application_servers.')
-            self.validate_parameters(id=id)
+            self.validate_parameters(body=body,
+                                     id=id)
 
             # Prepare query URL
             self.logger.info('Preparing query URL for delete_unregister_application_servers.')
@@ -1286,19 +1279,20 @@ Success
             # Prepare headers
             self.logger.info('Preparing headers for delete_unregister_application_servers.')
             _headers = {
-                'accept': 'application/json'
+                'accept': 'application/json',
+                'content-type': 'application/json; charset=utf-8'
             }
 
             # Prepare and execute request
             self.logger.info('Preparing and executing request for delete_unregister_application_servers.')
-            _request = self.http_client.delete(_query_url, headers=_headers)
+            _request = self.http_client.delete(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
             AuthManager.apply(_request)
             _context = self.execute_request(_request, name = 'delete_unregister_application_servers')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for delete_unregister_application_servers.')
             if _context.response.status_code == 0:
-                raise ErrorErrorException('Error', _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
@@ -1313,32 +1307,25 @@ Success
         """Does a POST request to /public/physicalAgents/upgrade.
 
         If the request is successful, the Cohesity agents on the specified
-        Physical Servers are upgraded to the agent release
-        currently available from this Cohesity Cluster.
-        For example if the Cluster is upgraded from 3.7.1 to 4.0,
-        the agents on the specified Physical Servers can be upgraded to 4.0
-        using
-        this POST operation.
-        To get the agentIds to pass into this operation, call
-        GET /public/protectionSources with the environment set to
-        'KPhysical'.
-        In addition this GET operation returns the agentUpgradability field,
-        that
-        indicates if an agent can be upgraded. Use the agentUpgradability
-        field
-        to determine which Physical Servers to upgrade using this
-        POST /public/physicalAgents/upgrade operation.
-        WARNING: Only agents at a particular Cohesity release can be
-        upgraded using this operation.
-        See the Cohesity online help for details.
-        Returns the status of the upgrade initiation.
+        Physical Servers are upgraded to the agent release currently available
+        from this Cohesity Cluster. For example if the Cluster is upgraded
+        from 3.7.1 to 4.0, the agents on the specified Physical Servers can be
+        upgraded to 4.0 using this POST operation. To get the agentIds to pass
+        into this operation, call GET /public/protectionSources with the
+        environment set to 'KPhysical'. In addition this GET operation returns
+        the agentUpgradability field, that indicates if an agent can be
+        upgraded. Use the agentUpgradability field to determine which Physical
+        Servers to upgrade using this POST /public/physicalAgents/upgrade
+        operation.  WARNING: Only agents at a particular Cohesity release can
+        be upgraded using this operation. See the Cohesity online help for
+        details.  Returns the status of the upgrade initiation.
 
         Args:
-            body (UpgradePhysicalServerAgentsRequest, optional): Request to
-                upgrade agents on Physical Servers.
+            body (UpgradePhysicalServerAgents, optional): Request to upgrade
+                agents on Physical Servers.
 
         Returns:
-            StatusOfPhysicalUpgradeRequest: Response from the API. Success
+            UpgradePhysicalAgentsMessage: Response from the API. Success
 
         Raises:
             APIException: When an error occurs while fetching the data from
@@ -1373,11 +1360,11 @@ Success
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for create_upgrade_physical_agents.')
             if _context.response.status_code == 0:
-                raise ErrorErrorException('Error', _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, StatusOfPhysicalUpgradeRequest.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body, UpgradePhysicalAgentsMessage.from_dictionary)
 
         except Exception as e:
             self.logger.error(e, exc_info = True)
@@ -1391,12 +1378,12 @@ Success
         Host type could be Linux, Windows, AIX.
 
         Args:
-            host_type (HostType8Enum): Specifies the host type for which user
-                wants to download the physical agent. 'kLinux' indicates the
-                Linux operating system. 'kWindows' indicates the Microsoft
-                Windows operating system. 'kAix' indicates the IBM AIX
-                operating system. 'kSolaris' indicates the Oracle Solaris
-                operating system.
+            host_type (HostTypeDownloadPhysicalAgentEnum): Specifies the host
+                type for which user wants to download the physical agent.
+                'kLinux' indicates the Linux operating system. 'kWindows'
+                indicates the Microsoft Windows operating system. 'kAix'
+                indicates the IBM AIX operating system. 'kSolaris' indicates
+                the Oracle Solaris operating system.
             pkg_type (PkgTypeEnum, optional): Specifies the Linux installer
                 package type applicable only to Linux OS and the value can be
                 any of ("kScript","kRPM", "kSuseRPM", "kDEB") 'kScript'
@@ -1449,7 +1436,7 @@ Success
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_download_physical_agent.')
             if _context.response.status_code == 0:
-                raise ErrorErrorException('Error', _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type

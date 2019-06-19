@@ -4,10 +4,10 @@
 
 class RunNowParameters(object):
 
-    """Implementation of the 'RunNowParameters.' model.
+    """Implementation of the 'RunNowParameters' model.
 
-    Specifies the parameters of a Run Now operation. A Run Now operation
-    will try to backup the a source and/or its databases instantly.
+    Specifies the parameters of a Run Now operation. A Run Now operation will
+    try to backup the a source and/or its databases instantly.
 
     Attributes:
         database_ids (list of long|int): Specifies the ids of the DB's to

@@ -5,12 +5,12 @@ import cohesity_management_sdk.models.cluster_networking_resource_information
 
 class NetworkingInformation(object):
 
-    """Implementation of the 'Networking Information.' model.
+    """Implementation of the 'NetworkingInformation' model.
 
     Specifies the struct containing information about network addresses
     configured on the given box. This is needed for dealing with
-    Windows/Oracle
-    Cluster resources that we discover and protect automatically.
+    Windows/Oracle Cluster resources that we discover and protect
+    automatically.
 
     Attributes:
         resource_vec (list of ClusterNetworkingResourceInformation): The list

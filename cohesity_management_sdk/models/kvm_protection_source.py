@@ -2,9 +2,9 @@
 # Copyright 2019 Cohesity Inc.
 
 
-class KVMProtectionSource(object):
+class KvmProtectionSource(object):
 
-    """Implementation of the 'KVM Protection Source.' model.
+    """Implementation of the 'KvmProtectionSource' model.
 
     Specifies a Protection Source in KVM environment.
 
@@ -22,16 +22,16 @@ class KVMProtectionSource(object):
         name (string): Specifies the name of the KVM entity.
         network_id (string): Specifies the network ID to which Vnic is
             attached.
-        mtype (Type9Enum): Specifies the type of KVM Protection Source
-            entities such as 'kDatacenter', 'kCluster', 'kVirtualMachine',
-            etc. Specifies the type of an KVM source entity. 'kOVirtManager'
-            indicates the root entity registerd with Cohesity cluster.
-            'kStandaloneHost' indicates a host registered with Cohesity
-            cluster. 'kDatacenter' indicates a KVM datacenter managed by the
-            OVirt manager. 'kCluster' indicates a KVM cluster managed by the
-            OVirt manager. 'kHost' indicates a host within the KVM
-            environment. 'kVirtualMachine' indicates a virtual machine in the
-            KVM enironment. 'kNetwork' represents a network used by the
+        mtype (TypeKvmProtectionSourceEnum): Specifies the type of KVM
+            Protection Source entities such as 'kDatacenter', 'kCluster',
+            'kVirtualMachine', etc. Specifies the type of an KVM source
+            entity. 'kOVirtManager' indicates the root entity registerd with
+            Cohesity cluster. 'kStandaloneHost' indicates a host registered
+            with Cohesity cluster. 'kDatacenter' indicates a KVM datacenter
+            managed by the OVirt manager. 'kCluster' indicates a KVM cluster
+            managed by the OVirt manager. 'kHost' indicates a host within the
+            KVM environment. 'kVirtualMachine' indicates a virtual machine in
+            the KVM enironment. 'kNetwork' represents a network used by the
             virtual machine entity. 'kStorageDomain' represents a storage
             domain in the KVM environment. 'kVNicProfile' represents a VNic
             profile.
@@ -63,7 +63,7 @@ class KVMProtectionSource(object):
                  network_id=None,
                  mtype=None,
                  uuid=None):
-        """Constructor for the KVMProtectionSource class"""
+        """Constructor for the KvmProtectionSource class"""
 
         # Initialize members of the class
         self.agent_error = agent_error

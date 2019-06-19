@@ -3,9 +3,9 @@
 
 import cohesity_management_sdk.models.sample
 
-class IOPSTile(object):
+class IopsTile(object):
 
-    """Implementation of the 'IOPS Tile.' model.
+    """Implementation of the 'IopsTile' model.
 
     IOPs information for dashboard.
 
@@ -36,7 +36,7 @@ class IOPSTile(object):
                  max_write_iops=None,
                  read_iops_samples=None,
                  write_iops_samples=None):
-        """Constructor for the IOPSTile class"""
+        """Constructor for the IopsTile class"""
 
         # Initialize members of the class
         self.max_read_iops = max_read_iops

@@ -1,51 +1,43 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
+import cohesity_management_sdk.models.alert_resolution_details
 
 class AlertResolution(object):
 
-    """Implementation of the 'Alert Resolution.' model.
+    """Implementation of the 'AlertResolution' model.
 
-    Specifies information about the Alert Resolution such as a summary,
-    id assigned by the Cohesity Cluster, user who resolved the Alerts, etc.
+    Provides Resolution details and the list of Alerts resolved by a
+    Resolution, which are specified by Alert Ids.
 
     Attributes:
-        resolution_details (string): Specifies detailed notes about the
-            Resolution.
-        resolution_id (long|int): Specifies Unique id assigned by the Cohesity
-            Cluster for this Resolution.
-        resolution_summary (string): Specifies short description about the
-            Resolution.
-        timestamp_usecs (long|int): Specifies unix epoch timestamp (in
-            microseconds) when the Alerts were resolved.
-        user_name (string): Specifies name of the Cohesity Cluster user who
-            resolved the Alerts.
+        alert_id_list (list of string): Specifies list of Alerts resolved by a
+            Resolution, which are specified by Alert Ids.
+        resolution_details (AlertResolutionDetails): Specifies information
+            about the Alert Resolution such as a summary, id assigned by the
+            Cohesity Cluster, user who resolved the Alerts, etc.
+        tenant_ids (list of string): Specifies unique tenantIds of the alert
+            contained in this resolution.
 
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "alert_id_list":'alertIdList',
         "resolution_details":'resolutionDetails',
-        "resolution_id":'resolutionId',
-        "resolution_summary":'resolutionSummary',
-        "timestamp_usecs":'timestampUsecs',
-        "user_name":'userName'
+        "tenant_ids":'tenantIds'
     }
 
     def __init__(self,
+                 alert_id_list=None,
                  resolution_details=None,
-                 resolution_id=None,
-                 resolution_summary=None,
-                 timestamp_usecs=None,
-                 user_name=None):
+                 tenant_ids=None):
         """Constructor for the AlertResolution class"""
 
         # Initialize members of the class
+        self.alert_id_list = alert_id_list
         self.resolution_details = resolution_details
-        self.resolution_id = resolution_id
-        self.resolution_summary = resolution_summary
-        self.timestamp_usecs = timestamp_usecs
-        self.user_name = user_name
+        self.tenant_ids = tenant_ids
 
 
     @classmethod
@@ -66,17 +58,13 @@ class AlertResolution(object):
             return None
 
         # Extract variables from the dictionary
-        resolution_details = dictionary.get('resolutionDetails')
-        resolution_id = dictionary.get('resolutionId')
-        resolution_summary = dictionary.get('resolutionSummary')
-        timestamp_usecs = dictionary.get('timestampUsecs')
-        user_name = dictionary.get('userName')
+        alert_id_list = dictionary.get('alertIdList')
+        resolution_details = cohesity_management_sdk.models.alert_resolution_details.AlertResolutionDetails.from_dictionary(dictionary.get('resolutionDetails')) if dictionary.get('resolutionDetails') else None
+        tenant_ids = dictionary.get('tenantIds')
 
         # Return an object of this model
-        return cls(resolution_details,
-                   resolution_id,
-                   resolution_summary,
-                   timestamp_usecs,
-                   user_name)
+        return cls(alert_id_list,
+                   resolution_details,
+                   tenant_ids)
 
 

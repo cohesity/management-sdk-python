@@ -3,9 +3,9 @@
 
 import cohesity_management_sdk.models.protection_source
 
-class AAGAndDatabases(object):
+class AagAndDatabases(object):
 
-    """Implementation of the 'AAG And Databases.' model.
+    """Implementation of the 'AagAndDatabases' model.
 
     Specifies an AAG and the database members of the AAG.
 
@@ -27,7 +27,7 @@ class AAGAndDatabases(object):
     def __init__(self,
                  aag=None,
                  databases=None):
-        """Constructor for the AAGAndDatabases class"""
+        """Constructor for the AagAndDatabases class"""
 
         # Initialize members of the class
         self.aag = aag

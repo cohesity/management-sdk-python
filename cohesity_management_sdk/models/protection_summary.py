@@ -4,10 +4,10 @@
 
 class ProtectionSummary(object):
 
-    """Implementation of the 'Protection Summary.' model.
+    """Implementation of the 'ProtectionSummary' model.
 
-    Specifies the number of protected and unprotected
-    objects, and their sizes information of the given entity.
+    Specifies the number of protected and unprotected objects, and their sizes
+    information of the given entity.
 
     Attributes:
         protected_count (long|int): Specifies the number of objects that are

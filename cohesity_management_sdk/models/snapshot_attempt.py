@@ -4,7 +4,7 @@
 
 class SnapshotAttempt(object):
 
-    """Implementation of the 'Snapshot Attempt.' model.
+    """Implementation of the 'SnapshotAttempt' model.
 
     Specifies information about a single snapshot.
 

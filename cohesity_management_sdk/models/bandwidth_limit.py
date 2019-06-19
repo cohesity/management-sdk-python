@@ -5,10 +5,10 @@ import cohesity_management_sdk.models.bandwidth_limit_override
 
 class BandwidthLimit(object):
 
-    """Implementation of the 'Bandwidth Limit.' model.
+    """Implementation of the 'BandwidthLimit' model.
 
-    Specifies settings for limiting the data transfer rate between
-    the local and remote Clusters.
+    Specifies settings for limiting the data transfer rate between the local
+    and remote Clusters.
 
     Attributes:
         bandwidth_limit_overrides (list of BandwidthLimitOverride): Array of

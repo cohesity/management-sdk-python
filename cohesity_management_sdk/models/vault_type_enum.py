@@ -6,10 +6,9 @@ class VaultTypeEnum(object):
     """Implementation of the 'VaultType' enum.
 
     Specifies the type of the Archival External Target such as 'kCloud',
-    'kTape' or 'kNas'.
-    'kCloud' indicates the archival location as Cloud.
-    'kTape' indicates the archival location as Tape.
-    'kNas' indicates the archival location as Network Attached Storage (Nas).
+    'kTape' or 'kNas'. 'kCloud' indicates the archival location as Cloud.
+    'kTape' indicates the archival location as Tape. 'kNas' indicates the
+    archival location as Network Attached Storage (Nas).
 
     Attributes:
         KCLOUD: TODO: type description here.

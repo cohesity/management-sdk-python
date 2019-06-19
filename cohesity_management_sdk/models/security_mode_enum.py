@@ -5,10 +5,9 @@ class SecurityModeEnum(object):
 
     """Implementation of the 'SecurityMode' enum.
 
-    Specifies the security mode used for this view.
-    Currently we support the following modes: Native, Unified and NTFS style.
-    'kNativeMode' indicates a native security mode.
-    'kUnifiedMode' indicates a unified security mode.
+    Specifies the security mode used for this view. Currently we support the
+    following modes: Native, Unified and NTFS style. 'kNativeMode' indicates a
+    native security mode. 'kUnifiedMode' indicates a unified security mode.
     'kNtfsMode' indicates a NTFS style security mode.
 
     Attributes:

@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.error
+import cohesity_management_sdk.models.request_error
 
 class RestoreObjectState(object):
 
-    """Implementation of the 'Restore Object State.' model.
+    """Implementation of the 'RestoreObjectState' model.
 
     Specifies the state of an individual object in a Restore Task.
 
     Attributes:
-        error (Error): Details about the Error.
+        error (RequestError): Details about the Error.
         object_status (ObjectStatusEnum): Specifies the status of an object
             during a Restore Task. 'kFilesCloned' indicates that the cloning
             has completed. 'kFetchedEntityInfo' indicates that information
@@ -92,7 +92,7 @@ class RestoreObjectState(object):
             return None
 
         # Extract variables from the dictionary
-        error = cohesity_management_sdk.models.error.Error.from_dictionary(dictionary.get('error')) if dictionary.get('error') else None
+        error = cohesity_management_sdk.models.request_error.RequestError.from_dictionary(dictionary.get('error')) if dictionary.get('error') else None
         object_status = dictionary.get('objectStatus')
         resource_pool_id = dictionary.get('resourcePoolId')
         restored_object_id = dictionary.get('restoredObjectId')

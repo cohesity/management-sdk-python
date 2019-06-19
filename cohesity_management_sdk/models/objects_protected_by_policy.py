@@ -5,7 +5,7 @@ import cohesity_management_sdk.models.objects_by_env
 
 class ObjectsProtectedByPolicy(object):
 
-    """Implementation of the 'Objects Protected By Policy.' model.
+    """Implementation of the 'ObjectsProtectedByPolicy' model.
 
     Objects (e.g. VMs) protected by Policy.
 

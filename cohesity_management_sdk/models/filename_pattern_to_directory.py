@@ -4,7 +4,7 @@
 
 class FilenamePatternToDirectory(object):
 
-    """Implementation of the 'Filename Pattern to Directory.' model.
+    """Implementation of the 'FilenamePatternToDirectory' model.
 
     Specifies a filename pattern and the directory path where to keep files
     matching that pattern.

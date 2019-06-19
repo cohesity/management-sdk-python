@@ -6,7 +6,7 @@ import cohesity_management_sdk.models.protection_source
 
 class OutlookRestoreParameters(object):
 
-    """Implementation of the 'Outlook Restore Parameters.' model.
+    """Implementation of the 'OutlookRestoreParameters' model.
 
     Specifies information needed for recovering Mailboxes in O365Outlook
     environment.

@@ -1,33 +1,34 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.remote_script
+import cohesity_management_sdk.models.remote_script_path_and_params
 import cohesity_management_sdk.models.remote_host
 
 class BackupScript(object):
 
-    """Implementation of the 'Backup Script.' model.
+    """Implementation of the 'BackupScript' model.
 
     Specifies details about the pre and post backup scripts for 'kPhysical'
     jobs.
 
     Attributes:
-        full_backup_script (RemoteScript): Specifies the script that should
-            run for the Full (no CBT) backup schedule of a Remote Adapter
-            'kPuppeteer' Job. This field is mandatory if the Policy associated
-            with this Job has a Full (no CBT) backup schedule and this is
-            Remote Adapter 'kPuppeteer' Job.
-        incremental_backup_script (RemoteScript): Specifies the script that
-            should run for the CBT-based backup schedule of a Remote Adapter
-            'kPuppeteer' Job. A CBT-based backup schedule is utilizing Change
-            Block Tracking when capturing Snapshots. This field is mandatory
-            if the Policy associated with this Job has a CBT-based backup
-            schedule and this is Remote Adapter 'kPuppeteer' Job.
-        log_backup_script (RemoteScript): Specifies the script that should run
-            for the Log backup schedule of a Remote Adapter 'kPuppeteer' Job.
-            This field is mandatory if the Policy associated with this Job has
-            a Log backup schedule and this is Remote Adapter 'kPuppeteer'
+        full_backup_script (RemoteScriptPathAndParams): Specifies the script
+            that should run for the Full (no CBT) backup schedule of a Remote
+            Adapter 'kPuppeteer' Job. This field is mandatory if the Policy
+            associated with this Job has a Full (no CBT) backup schedule and
+            this is Remote Adapter 'kPuppeteer' Job.
+        incremental_backup_script (RemoteScriptPathAndParams): Specifies the
+            script that should run for the CBT-based backup schedule of a
+            Remote Adapter 'kPuppeteer' Job. A CBT-based backup schedule is
+            utilizing Change Block Tracking when capturing Snapshots. This
+            field is mandatory if the Policy associated with this Job has a
+            CBT-based backup schedule and this is Remote Adapter 'kPuppeteer'
             Job.
+        log_backup_script (RemoteScriptPathAndParams): Specifies the script
+            that should run for the Log backup schedule of a Remote Adapter
+            'kPuppeteer' Job. This field is mandatory if the Policy associated
+            with this Job has a Log backup schedule and this is Remote Adapter
+            'kPuppeteer' Job.
         remote_host (RemoteHost): Specifies the remote host where the remote
             scripts are executed. This field must be set for Remote Adapter
             Jobs.
@@ -81,9 +82,9 @@ class BackupScript(object):
             return None
 
         # Extract variables from the dictionary
-        full_backup_script = cohesity_management_sdk.models.remote_script.RemoteScript.from_dictionary(dictionary.get('fullBackupScript')) if dictionary.get('fullBackupScript') else None
-        incremental_backup_script = cohesity_management_sdk.models.remote_script.RemoteScript.from_dictionary(dictionary.get('incrementalBackupScript')) if dictionary.get('incrementalBackupScript') else None
-        log_backup_script = cohesity_management_sdk.models.remote_script.RemoteScript.from_dictionary(dictionary.get('logBackupScript')) if dictionary.get('logBackupScript') else None
+        full_backup_script = cohesity_management_sdk.models.remote_script_path_and_params.RemoteScriptPathAndParams.from_dictionary(dictionary.get('fullBackupScript')) if dictionary.get('fullBackupScript') else None
+        incremental_backup_script = cohesity_management_sdk.models.remote_script_path_and_params.RemoteScriptPathAndParams.from_dictionary(dictionary.get('incrementalBackupScript')) if dictionary.get('incrementalBackupScript') else None
+        log_backup_script = cohesity_management_sdk.models.remote_script_path_and_params.RemoteScriptPathAndParams.from_dictionary(dictionary.get('logBackupScript')) if dictionary.get('logBackupScript') else None
         remote_host = cohesity_management_sdk.models.remote_host.RemoteHost.from_dictionary(dictionary.get('remoteHost')) if dictionary.get('remoteHost') else None
         username = dictionary.get('username')
 

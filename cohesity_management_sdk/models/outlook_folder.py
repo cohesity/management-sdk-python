@@ -4,7 +4,7 @@
 
 class OutlookFolder(object):
 
-    """Implementation of the 'Outlook Folder.' model.
+    """Implementation of the 'OutlookFolder' model.
 
     Specifies the Outlook folder details.
 

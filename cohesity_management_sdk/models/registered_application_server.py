@@ -1,20 +1,20 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.node_in_a_protection_sources_tree
+import cohesity_management_sdk.models.protection_source_node
 import cohesity_management_sdk.models.protection_source
 
 class RegisteredApplicationServer(object):
 
-    """Implementation of the 'Registered Application Server.' model.
+    """Implementation of the 'RegisteredApplicationServer' model.
 
     Specifies an Application Server and the Protection Source that registered
     the Application Server.
 
     Attributes:
-        application_server (NodeInAProtectionSourcesTree): Specifies the child
-            subtree used to store additional application-level Objects.
-            Different environments use the subtree to store application-level
+        application_server (ProtectionSourceNode): Specifies the child subtree
+            used to store additional application-level Objects. Different
+            environments use the subtree to store application-level
             information. For example for SQL Server, this subtree stores the
             SQL Server instances running on a VM.
         registered_protection_source (ProtectionSource): Specifies the
@@ -57,7 +57,7 @@ class RegisteredApplicationServer(object):
             return None
 
         # Extract variables from the dictionary
-        application_server = cohesity_management_sdk.models.node_in_a_protection_sources_tree.NodeInAProtectionSourcesTree.from_dictionary(dictionary.get('applicationServer')) if dictionary.get('applicationServer') else None
+        application_server = cohesity_management_sdk.models.protection_source_node.ProtectionSourceNode.from_dictionary(dictionary.get('applicationServer')) if dictionary.get('applicationServer') else None
         registered_protection_source = cohesity_management_sdk.models.protection_source.ProtectionSource.from_dictionary(dictionary.get('registeredProtectionSource')) if dictionary.get('registeredProtectionSource') else None
 
         # Return an object of this model

@@ -5,23 +5,19 @@ class AlertCategoryEnum(object):
 
     """Implementation of the 'AlertCategory' enum.
 
-    Specifies the category of an Alert.
-    kDisk - Alerts that are related to Disk.
-    kNode - Alerts that are related to Node.
-    kCluster - Alerts that are related to Cluster.
-    kNodeHealth - Alerts that are related to Node Health.
-    kClusterHealth - Alerts that are related to Cluster Health.
-    kBackupRestore - Alerts that are related to Backup/Restore.
-    kEncryption - Alerts that are related to Encryption.
-    kArchivalRestore - Alerts that are related to Archival/Restore.
-    kRemoteReplication - Alerts that are related to Remote Replication.
-    kQuota - Alerts that are related to Quota.
-    kLicense - Alerts that are related to License.
-    kHeliosProActiveWellness - Alerts that are related to Helios ProActive
-    Wellness.
-    kHeliosAnalyticsJobs - Alerts that are related to Helios Analytics Jobs.
-    kHeliosSignatureJobs - Alerts that are related to Helios Signature Jobs.
-    kSecurity - Alerts that are related to Security.
+    Specifies the category of an Alert. kDisk - Alerts that are related to
+    Disk. kNode - Alerts that are related to Node. kCluster - Alerts that are
+    related to Cluster. kNodeHealth - Alerts that are related to Node Health.
+    kClusterHealth - Alerts that are related to Cluster Health. kBackupRestore
+    - Alerts that are related to Backup/Restore. kEncryption - Alerts that are
+    related to Encryption. kArchivalRestore - Alerts that are related to
+    Archival/Restore. kRemoteReplication - Alerts that are related to Remote
+    Replication. kQuota - Alerts that are related to Quota. kLicense - Alerts
+    that are related to License. kHeliosProActiveWellness - Alerts that are
+    related to Helios ProActive Wellness. kHeliosAnalyticsJobs - Alerts that
+    are related to Helios Analytics Jobs. kHeliosSignatureJobs - Alerts that
+    are related to Helios Signature Jobs. kSecurity - Alerts that are related
+    to Security.
 
     Attributes:
         KDISK: TODO: type description here.

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.proto_to_represent_pattern_auxiliary_data_type
+import cohesity_management_sdk.models.pattern
 
 class MapReduceAuxData(object):
 
@@ -11,8 +11,8 @@ class MapReduceAuxData(object):
     such data is saved patterns for Pattern finder app.
 
     Attributes:
-        pattern_vec (list of ProtoToRepresentPatternAuxiliaryDataType):
-            Pattern auxiliary data for a MapReduce.
+        pattern_vec (list of Pattern): Pattern auxiliary data for a
+            MapReduce.
 
     """
 
@@ -51,7 +51,7 @@ class MapReduceAuxData(object):
         if dictionary.get('patternVec') != None:
             pattern_vec = list()
             for structure in dictionary.get('patternVec'):
-                pattern_vec.append(cohesity_management_sdk.models.proto_to_represent_pattern_auxiliary_data_type.ProtoToRepresentPatternAuxiliaryDataType.from_dictionary(structure))
+                pattern_vec.append(cohesity_management_sdk.models.pattern.Pattern.from_dictionary(structure))
 
         # Return an object of this model
         return cls(pattern_vec)

@@ -1,18 +1,18 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.error
+import cohesity_management_sdk.models.request_error
 
 class MountVolumeResultDetails(object):
 
-    """Implementation of the 'Mount Volume Result Details.' model.
+    """Implementation of the 'MountVolumeResultDetails' model.
 
-    Specifies the result of mounting an individual mount volume in a
-    Restore Task.
+    Specifies the result of mounting an individual mount volume in a Restore
+    Task.
 
     Attributes:
-        mount_error (Error): Specifies the cause of the mount failure if the
-            mounting of a volume failed.
+        mount_error (RequestError): Specifies the cause of the mount failure
+            if the mounting of a volume failed.
         mount_point (string): Specifies the mount point where the volume is
             mounted. NOTE: This field may not be populated for VM environments
             if the onlining of disks is not requested or there was any issue
@@ -58,7 +58,7 @@ class MountVolumeResultDetails(object):
             return None
 
         # Extract variables from the dictionary
-        mount_error = cohesity_management_sdk.models.error.Error.from_dictionary(dictionary.get('mountError')) if dictionary.get('mountError') else None
+        mount_error = cohesity_management_sdk.models.request_error.RequestError.from_dictionary(dictionary.get('mountError')) if dictionary.get('mountError') else None
         mount_point = dictionary.get('mountPoint')
         volume_name = dictionary.get('volumeName')
 

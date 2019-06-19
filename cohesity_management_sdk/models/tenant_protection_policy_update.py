@@ -4,7 +4,7 @@
 
 class TenantProtectionPolicyUpdate(object):
 
-    """Implementation of the 'Tenant Protection Policy Update.' model.
+    """Implementation of the 'TenantProtectionPolicyUpdate' model.
 
     Specifies protection policy update details response about a tenant.
 

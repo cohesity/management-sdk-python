@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.unique_global_id
+import cohesity_management_sdk.models.universal_id
 
-class RunUID(object):
+class RunUid(object):
 
-    """Implementation of the 'Run UID.' model.
+    """Implementation of the 'RunUid' model.
 
     Specifies the universal id of the latest successful Protection Job Run.
 
     Attributes:
-        job_uid (UniqueGlobalId): Specifies an id for an object that is unique
+        job_uid (UniversalId): Specifies an id for an object that is unique
             across Cohesity Clusters. The id is composite of all the ids
             listed below.
         start_time_usecs (long|int): Specifies the start time of the
@@ -27,7 +27,7 @@ class RunUID(object):
     def __init__(self,
                  job_uid=None,
                  start_time_usecs=None):
-        """Constructor for the RunUID class"""
+        """Constructor for the RunUid class"""
 
         # Initialize members of the class
         self.job_uid = job_uid
@@ -52,7 +52,7 @@ class RunUID(object):
             return None
 
         # Extract variables from the dictionary
-        job_uid = cohesity_management_sdk.models.unique_global_id.UniqueGlobalId.from_dictionary(dictionary.get('jobUid')) if dictionary.get('jobUid') else None
+        job_uid = cohesity_management_sdk.models.universal_id.UniversalId.from_dictionary(dictionary.get('jobUid')) if dictionary.get('jobUid') else None
         start_time_usecs = dictionary.get('startTimeUsecs')
 
         # Return an object of this model

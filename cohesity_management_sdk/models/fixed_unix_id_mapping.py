@@ -2,9 +2,9 @@
 # Copyright 2019 Cohesity Inc.
 
 
-class FixedUnixIDMapping(object):
+class FixedUnixIdMapping(object):
 
-    """Implementation of the 'Fixed Unix ID Mapping.' model.
+    """Implementation of the 'FixedUnixIdMapping' model.
 
     Specifies the fields when mapping type is set to 'kFixed'. It maps all
     Active Directory users of a domain to a fixed Unix uid, and gid.
@@ -26,7 +26,7 @@ class FixedUnixIDMapping(object):
     def __init__(self,
                  gid=None,
                  uid=None):
-        """Constructor for the FixedUnixIDMapping class"""
+        """Constructor for the FixedUnixIdMapping class"""
 
         # Initialize members of the class
         self.gid = gid

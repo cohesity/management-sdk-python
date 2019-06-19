@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.device_tree
+import cohesity_management_sdk.models.device_tree_details
 
 class LogicalVolume(object):
 
-    """Implementation of the 'Logical Volume.' model.
+    """Implementation of the 'LogicalVolume' model.
 
     Specifies attributes for a kLVM (Linux) or kLDM (Windows) filesystem.
 
     Attributes:
-        device_root_node (DeviceTree): Specifies a logical volume stored as a
-            tree where the leaves are the blocks of partitions and
+        device_root_node (DeviceTreeDetails): Specifies a logical volume
+            stored as a tree where the leaves are the blocks of partitions and
             intermediate nodes are assembled by combining nodes using one of
             the following modes: linear layout, striped, mirrored, RAID etc. A
             deviceTree is a block device formed by combining one or more
@@ -66,7 +66,7 @@ class LogicalVolume(object):
             return None
 
         # Extract variables from the dictionary
-        device_root_node = cohesity_management_sdk.models.device_tree.DeviceTree.from_dictionary(dictionary.get('deviceRootNode')) if dictionary.get('deviceRootNode') else None
+        device_root_node = cohesity_management_sdk.models.device_tree_details.DeviceTreeDetails.from_dictionary(dictionary.get('deviceRootNode')) if dictionary.get('deviceRootNode') else None
         group_name = dictionary.get('groupName')
         group_uuid = dictionary.get('groupUuid')
         name = dictionary.get('name')

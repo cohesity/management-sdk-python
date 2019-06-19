@@ -4,7 +4,7 @@
 
 class ClusterNetworkingEndpoint(object):
 
-    """Implementation of the 'Cluster Networking Endpoint.' model.
+    """Implementation of the 'ClusterNetworkingEndpoint' model.
 
     Specifies information about end point.
 

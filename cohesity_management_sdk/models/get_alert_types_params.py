@@ -4,7 +4,7 @@
 
 class GetAlertTypesParams(object):
 
-    """Implementation of the 'Get Alert Types Params.' model.
+    """Implementation of the 'GetAlertTypesParams' model.
 
     Specifies params to get alert types.
 

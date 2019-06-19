@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.full_snapshot_information
-import cohesity_management_sdk.models.snapshot_target_1
+import cohesity_management_sdk.models.restore_info
+import cohesity_management_sdk.models.snapshot_target_settings
 
 class FullSnapshotInfo(object):
 
@@ -12,10 +12,10 @@ class FullSnapshotInfo(object):
     incremental snapshot.
 
     Attributes:
-        restore_info (FullSnapshotInformation): Specifies the info regarding a
-            full SQL snapshot.
-        snapshot_target (list of SnapshotTarget1): Specifies the location
-            holding snapshot copies that may be used for restore.
+        restore_info (RestoreInfo): Specifies the info regarding a full SQL
+            snapshot.
+        snapshot_target (list of SnapshotTargetSettings): Specifies the
+            location holding snapshot copies that may be used for restore.
 
     """
 
@@ -53,12 +53,12 @@ class FullSnapshotInfo(object):
             return None
 
         # Extract variables from the dictionary
-        restore_info = cohesity_management_sdk.models.full_snapshot_information.FullSnapshotInformation.from_dictionary(dictionary.get('restoreInfo')) if dictionary.get('restoreInfo') else None
+        restore_info = cohesity_management_sdk.models.restore_info.RestoreInfo.from_dictionary(dictionary.get('restoreInfo')) if dictionary.get('restoreInfo') else None
         snapshot_target = None
         if dictionary.get('snapshotTarget') != None:
             snapshot_target = list()
             for structure in dictionary.get('snapshotTarget'):
-                snapshot_target.append(cohesity_management_sdk.models.snapshot_target_1.SnapshotTarget1.from_dictionary(structure))
+                snapshot_target.append(cohesity_management_sdk.models.snapshot_target_settings.SnapshotTargetSettings.from_dictionary(structure))
 
         # Return an object of this model
         return cls(restore_info,

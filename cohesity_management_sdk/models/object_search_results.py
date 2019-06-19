@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.object_snapshot
+import cohesity_management_sdk.models.object_snapshot_info
 
 class ObjectSearchResults(object):
 
-    """Implementation of the 'Object Search Results.' model.
+    """Implementation of the 'ObjectSearchResults' model.
 
-    Specifies an array of backup objects and a count to indicate
-    if additional requests must be made to get the full result.
+    Specifies an array of backup objects and a count to indicate if additional
+    requests must be made to get the full result.
 
     Attributes:
-        object_snapshot_info (list of ObjectSnapshot): Array of Snapshot
+        object_snapshot_info (list of ObjectSnapshotInfo): Array of Snapshot
             Objects.  Specifies the list of backup objects returned by this
             request that match the specified search and filter criteria. The
             number of objects returned is limited by the pageCount field.
@@ -60,7 +60,7 @@ class ObjectSearchResults(object):
         if dictionary.get('objectSnapshotInfo') != None:
             object_snapshot_info = list()
             for structure in dictionary.get('objectSnapshotInfo'):
-                object_snapshot_info.append(cohesity_management_sdk.models.object_snapshot.ObjectSnapshot.from_dictionary(structure))
+                object_snapshot_info.append(cohesity_management_sdk.models.object_snapshot_info.ObjectSnapshotInfo.from_dictionary(structure))
         total_count = dictionary.get('totalCount')
 
         # Return an object of this model

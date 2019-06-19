@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.smb_active_open_file
+import cohesity_management_sdk.models.smb_active_open
 
-class SMBActiveSession(object):
+class SmbActiveSession(object):
 
-    """Implementation of the 'SMB Active Session.' model.
+    """Implementation of the 'SmbActiveSession' model.
 
     Specifies an active session and its opens.
 
     Attributes:
-        active_opens (list of SMBActiveOpenFile): Specifies the list of active
+        active_opens (list of SmbActiveOpen): Specifies the list of active
             opens of the file in this session.
         client_ip (string): Specifies the IP address from which the file is
             still open.
@@ -39,7 +39,7 @@ class SMBActiveSession(object):
                  server_ip=None,
                  session_id=None,
                  username=None):
-        """Constructor for the SMBActiveSession class"""
+        """Constructor for the SmbActiveSession class"""
 
         # Initialize members of the class
         self.active_opens = active_opens
@@ -72,7 +72,7 @@ class SMBActiveSession(object):
         if dictionary.get('activeOpens') != None:
             active_opens = list()
             for structure in dictionary.get('activeOpens'):
-                active_opens.append(cohesity_management_sdk.models.smb_active_open_file.SMBActiveOpenFile.from_dictionary(structure))
+                active_opens.append(cohesity_management_sdk.models.smb_active_open.SmbActiveOpen.from_dictionary(structure))
         client_ip = dictionary.get('clientIp')
         domain = dictionary.get('domain')
         server_ip = dictionary.get('serverIp')

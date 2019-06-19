@@ -2,13 +2,13 @@
 # Copyright 2019 Cohesity Inc.
 
 import cohesity_management_sdk.models.connector_parameters
-import cohesity_management_sdk.models.nas_mount_credentials
-import cohesity_management_sdk.models.throttling_policy
+import cohesity_management_sdk.models.nas_mount_credential_params
+import cohesity_management_sdk.models.throttling_policy_parameters
 import cohesity_management_sdk.models.throttling_policy_override
 
 class RegisteredSourceInfo(object):
 
-    """Implementation of the 'Registered Source Info.' model.
+    """Implementation of the 'RegisteredSourceInfo' model.
 
     Specifies information about a registered Source.
 
@@ -27,10 +27,10 @@ class RegisteredSourceInfo(object):
             'kScheduled' indicates the authentication is scheduled.
             'kFinished' indicates the authentication is completed.
             'kRefreshInProgress' indicates the refresh is in progres.
-        environments (list of Environment2Enum): Specifies a list of
-            applications environment that are registered with this Protection
-            Source such as 'kSQL'. Supported environment types such as
-            'kView', 'kSQL', 'kVMware', etc. NOTE: 'kPuppeteer' refers to
+        environments (list of EnvironmentRegisteredSourceInfoEnum): Specifies
+            a list of applications environment that are registered with this
+            Protection Source such as 'kSQL'. Supported environment types such
+            as 'kView', 'kSQL', 'kVMware', etc. NOTE: 'kPuppeteer' refers to
             Cohesity's Remote Adapter. 'kVMware' indicates the VMware
             Protection Source environment. 'kHyperV' indicates the HyperV
             Protection Source environment. 'kSQL' indicates the SQL Protection
@@ -68,8 +68,9 @@ class RegisteredSourceInfo(object):
             space(in GiB) is lower than the value given by this field, backup
             will be aborted. Note that this field is applicable only to
             'kVMware' type of environments.
-        nas_mount_credentials (NASMountCredentials): Specifies the credentials
-            required to mount directories on the NetApp server if given.
+        nas_mount_credentials (NasMountCredentialParams): Specifies the
+            credentials required to mount directories on the NetApp server if
+            given.
         password (string): Specifies password of the username to access the
             target source.
         refresh_error_message (string): Specifies a message if there was any
@@ -81,8 +82,8 @@ class RegisteredSourceInfo(object):
             fetched and built.
         registration_time_usecs (long|int): Specifies the Unix epoch time (in
             microseconds) when the Protection Source was registered.
-        throttling_policy (ThrottlingPolicy): Specifies the throttling policy
-            for a registered Protection Source.
+        throttling_policy (ThrottlingPolicyParameters): Specifies the
+            throttling policy for a registered Protection Source.
         throttling_policy_overrides (list of ThrottlingPolicyOverride): Array
             of Throttling Policy Overrides for Datastores.  Specifies a list
             of Throttling Policy for datastores that override the common
@@ -176,12 +177,12 @@ class RegisteredSourceInfo(object):
         authentication_status = dictionary.get('authenticationStatus')
         environments = dictionary.get('environments')
         minimum_free_space_gb = dictionary.get('minimumFreeSpaceGB')
-        nas_mount_credentials = cohesity_management_sdk.models.nas_mount_credentials.NASMountCredentials.from_dictionary(dictionary.get('nasMountCredentials')) if dictionary.get('nasMountCredentials') else None
+        nas_mount_credentials = cohesity_management_sdk.models.nas_mount_credential_params.NasMountCredentialParams.from_dictionary(dictionary.get('nasMountCredentials')) if dictionary.get('nasMountCredentials') else None
         password = dictionary.get('password')
         refresh_error_message = dictionary.get('refreshErrorMessage')
         refresh_time_usecs = dictionary.get('refreshTimeUsecs')
         registration_time_usecs = dictionary.get('registrationTimeUsecs')
-        throttling_policy = cohesity_management_sdk.models.throttling_policy.ThrottlingPolicy.from_dictionary(dictionary.get('throttlingPolicy')) if dictionary.get('throttlingPolicy') else None
+        throttling_policy = cohesity_management_sdk.models.throttling_policy_parameters.ThrottlingPolicyParameters.from_dictionary(dictionary.get('throttlingPolicy')) if dictionary.get('throttlingPolicy') else None
         throttling_policy_overrides = None
         if dictionary.get('throttlingPolicyOverrides') != None:
             throttling_policy_overrides = list()

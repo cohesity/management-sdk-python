@@ -14,14 +14,14 @@ import urllib3
 urllib3.disable_warnings()
 
 from cohesity_management_sdk.cohesity_client import CohesityClient
-from cohesity_management_sdk.models.reset_s_3_secret_access_key import \
-    ResetS3SecretAccessKey
+from cohesity_management_sdk.models.reset_s_3_secret_key_parameters import \
+    ResetS3SecretKeyParameters
 from cohesity_management_sdk.models.view import View
 from cohesity_management_sdk.models.protocol_access_enum import ProtocolAccessEnum
 
-CLUSTER_VIP = 'prod-cluster.eng.cohesity.com'
-CLUSTER_USER = 'cluster-admin'
-CLUSTER_PASSWORD = 'cluster-password'
+CLUSTER_USERNAME = 'cluster_username'
+CLUSTER_PASSWORD = 'cluster_password'
+CLUSTER_VIP = 'prod-cluster.cohesity.com'
 DOMAIN = 'LOCAL'
 COHESITY_S3_PORT = '3000'
 
@@ -53,7 +53,7 @@ class S3Integration(object):
         Method to generate the keys if doesn't exist.
         :return: None
         """
-        body = ResetS3SecretAccessKey()
+        body = ResetS3SecretKeyParameters()
         body.username = CLUSTER_USER
         self.cohesity_client.principals.create_reset_s_3_secret_key(body)
 

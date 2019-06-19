@@ -5,26 +5,21 @@ class ActionEnum(object):
 
     """Implementation of the 'Action' enum.
 
-    Specifies the action to be performed on all the specfied Protection Jobs.
-    Specifies the type of action to be performed on Protection Job.
-    'kActivate' specifies that Protection Job should be activated.
-    'kDeactivate' sepcifies that Protection Job should be deactivated.
-    'kPause' specifies that Protection Job should be paused.
-    'kResume' specifies that Protection Job should be resumed.
+    Specifies the action to take on the specified service. 'kStop' indicates
+    that the specified services will be stopped. 'kStart' indicates that the
+    specified services will be started. 'kRestart' indicates that the
+    specified services will be restarted.
 
     Attributes:
-        KACTIVATE: TODO: type description here.
-        KDEACTIVATE: TODO: type description here.
-        KPAUSE: TODO: type description here.
-        KRESUME: TODO: type description here.
+        KSTOP: TODO: type description here.
+        KSTART: TODO: type description here.
+        KRESTART: TODO: type description here.
 
     """
 
-    KACTIVATE = 'kActivate'
+    KSTOP = 'kStop'
 
-    KDEACTIVATE = 'kDeactivate'
+    KSTART = 'kStart'
 
-    KPAUSE = 'kPause'
-
-    KRESUME = 'kResume'
+    KRESTART = 'kRestart'
 

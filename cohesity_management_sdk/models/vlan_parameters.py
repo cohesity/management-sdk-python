@@ -2,9 +2,9 @@
 # Copyright 2019 Cohesity Inc.
 
 
-class VLANParameters(object):
+class VlanParameters(object):
 
-    """Implementation of the 'VLAN Parameters.' model.
+    """Implementation of the 'VlanParameters' model.
 
     Specifies VLAN parameters for the restore operation.
 
@@ -14,9 +14,10 @@ class VLANParameters(object):
             are used by default. If VLANs are not configured, this flag is
             ignored. Set this flag to true to force using the partition VIPs
             when VLANs are configured on the Cluster.
-        interface_name (string): Specifies the interface name to use for
-            mounting Cohesity's view on the remote host. If specified,
-            Cohesity hostname or the IP address on this VLAN is used.
+        interface_name (string): Specifies the physical interface group name
+            to use for mounting Cohesity's view on the remote host. If
+            specified, Cohesity hostname or the IP address on this VLAN is
+            used.
         vlan (int): Specifies the VLAN to use for mounting Cohesity's view on
             the remote host. If specified, Cohesity hostname or the IP address
             on this VLAN is used.
@@ -34,7 +35,7 @@ class VLANParameters(object):
                  disable_vlan=None,
                  interface_name=None,
                  vlan=None):
-        """Constructor for the VLANParameters class"""
+        """Constructor for the VlanParameters class"""
 
         # Initialize members of the class
         self.disable_vlan = disable_vlan

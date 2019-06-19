@@ -5,7 +5,7 @@ import cohesity_management_sdk.models.subnet
 
 class StaticRoute(object):
 
-    """Implementation of the 'Static Route.' model.
+    """Implementation of the 'StaticRoute' model.
 
     Specifies the settings of a Static Route.
 
