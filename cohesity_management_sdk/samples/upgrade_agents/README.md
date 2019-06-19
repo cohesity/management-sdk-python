@@ -33,6 +33,7 @@ resp_agents = cohesity_client.protection_sources.list_protection_sources(
 
 ## Upgrade Agent list
 ```python
+
 body = UpgradePhysicalServerAgents()
 body.agent_ids = [agent_id1, agent_id2, agent_id3]
 result = cohesity_client.protection_sources.create_upgrade_physical_agents(body)
@@ -40,6 +41,7 @@ result = cohesity_client.protection_sources.create_upgrade_physical_agents(body)
 
 ## Example Output
 ```
+
 Adding Tenant: coke
 Adding Tenant: pepsi
 Adding Tenant: coco

@@ -9,10 +9,13 @@
 # Usage: python upgrade_agents.py
 # Fill in the cluster credentials below:
 
+
 CLUSTER_USERNAME = 'cluster_username'
 CLUSTER_PASSWORD = 'cluster_password'
 CLUSTER_VIP = 'prod-cluster.cohesity.com'
 DOMAIN = 'LOCAL'
+
+
 AGENT_PARALLEL_UPGRADES = 10
 
 from cohesity_management_sdk.cohesity_client import CohesityClient
@@ -51,6 +54,7 @@ def _get_agents(tenant=None, agent_dict=None):
         resp_agents = cohesity_client.protection_sources.list_protection_sources(
                               tenant_ids=tenant,
                               environments=EnvironmentEnum.KPHYSICAL)
+
     except APIException as ex:
         raise SystemExit("Unable to get agent list: %s" %
                          ex.context.response.raw_body)
