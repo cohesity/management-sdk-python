@@ -6,8 +6,7 @@ class AcropolisRestoreParameters(object):
 
     """Implementation of the 'AcropolisRestoreParameters' model.
 
-    This field defines the Acropolis specific params for restore tasks of
-    type
+    This field defines the Acropolis specific params for restore tasks of type
     kRecoverVMs.
 
     Attributes:

@@ -1,19 +1,19 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.disk_in_a_volume
+import cohesity_management_sdk.models.disk
 import cohesity_management_sdk.models.logical_volume
 
 class FilesystemVolume(object):
 
-    """Implementation of the 'Filesystem Volume.' model.
+    """Implementation of the 'FilesystemVolume' model.
 
     Specifies information about a filesystem volume.
 
     Attributes:
-        disks (list of DiskInAVolume): Array of Disks and Partitions.
-            Specifies information about all the disks and partitions needed to
-            mount this logical volume.
+        disks (list of Disk): Array of Disks and Partitions.  Specifies
+            information about all the disks and partitions needed to mount
+            this logical volume.
         display_name (string): Specifies a description about the filesystem.
         filesystem_type (string): Specifies type of the filesystem on this
             volume.
@@ -97,7 +97,7 @@ class FilesystemVolume(object):
         if dictionary.get('disks') != None:
             disks = list()
             for structure in dictionary.get('disks'):
-                disks.append(cohesity_management_sdk.models.disk_in_a_volume.DiskInAVolume.from_dictionary(structure))
+                disks.append(cohesity_management_sdk.models.disk.Disk.from_dictionary(structure))
         display_name = dictionary.get('displayName')
         filesystem_type = dictionary.get('filesystemType')
         filesystem_uuid = dictionary.get('filesystemUuid')

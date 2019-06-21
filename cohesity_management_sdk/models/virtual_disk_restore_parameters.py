@@ -5,7 +5,7 @@ import cohesity_management_sdk.models.virtual_disk_mapping
 
 class VirtualDiskRestoreParameters(object):
 
-    """Implementation of the 'Virtual Disk Restore Parameters.' model.
+    """Implementation of the 'VirtualDiskRestoreParameters' model.
 
     Specifies the parameters to recover virtual disks of a vm.
 

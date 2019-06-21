@@ -4,7 +4,7 @@
 
 class PhysicalVolume(object):
 
-    """Implementation of the 'Physical Volume.' model.
+    """Implementation of the 'PhysicalVolume' model.
 
     Specifies volume information about a Physical Protection Source.
 

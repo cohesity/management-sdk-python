@@ -4,7 +4,7 @@
 
 class ClusterAuditLogConfiguration(object):
 
-    """Implementation of the 'Cluster Audit Log Configuration.' model.
+    """Implementation of the 'ClusterAuditLogConfiguration' model.
 
     Specifies the settings of the Cluster audit log configuration.
 

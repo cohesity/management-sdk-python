@@ -2,19 +2,20 @@
 # Copyright 2019 Cohesity Inc.
 
 import cohesity_management_sdk.models.alerting_policy_proto
-import cohesity_management_sdk.models.backup_source_parameters
-import cohesity_management_sdk.models.dr_to_cloud_parameters
-import cohesity_management_sdk.models.entity
+import cohesity_management_sdk.models.backup_source_params
+import cohesity_management_sdk.models.backup_job_proto_dr_to_cloud_params
+import cohesity_management_sdk.models.entity_proto
 import cohesity_management_sdk.models.env_backup_params
 import cohesity_management_sdk.models.backup_job_proto_exclude_source
 import cohesity_management_sdk.models.backup_job_proto_exclusion_time_range
-import cohesity_management_sdk.models.deprecated_in_50
+import cohesity_management_sdk.models.job_policy_proto
 import cohesity_management_sdk.models.indexing_policy_proto
 import cohesity_management_sdk.models.universal_id_proto
 import cohesity_management_sdk.models.backup_job_pre_or_post_script
 import cohesity_management_sdk.models.backup_job_proto_backup_source
 import cohesity_management_sdk.models.time
-import cohesity_management_sdk.models.user_information_1
+import cohesity_management_sdk.models.stubbing_policy_proto
+import cohesity_management_sdk.models.user_information
 
 class BackupJobProto(object):
 
@@ -30,7 +31,7 @@ class BackupJobProto(object):
         alerting_policy (AlertingPolicyProto): TODO: type description here.
         backup_qos_principal (int): The backup QoS principal to use for the
             backup job.
-        backup_source_params (list of BackupSourceParameters): This contains
+        backup_source_params (list of BackupSourceParams): This contains
             additional backup params that are applicable to sources that are
             captured as part of the backup job. NOTE: The sources could point
             to higher level entities (such as a "Cluster" in VMware
@@ -45,11 +46,11 @@ class BackupJobProto(object):
             should be deleted. Once a job has been deleted, its status cannot
             be changed.
         description (string): Job description (as entered by the user).
-        dr_to_cloud_params (DRToCloudParameters): A Proto needed in case
-            objects backed up by this job need to DR to cloud. "Fail over"
-            signifies the mechanism to move the workload to cloud.
-        eh_parent_source (Entity): Specifies the attributes and the latest
-            statistics about an entity.
+        dr_to_cloud_params (BackupJobProtoDRToCloudParams): A Proto needed in
+            case objects backed up by this job need to DR to cloud. "Fail
+            over" signifies the mechanism to move the workload to cloud.
+        eh_parent_source (EntityProto): Specifies the attributes and the
+            latest statistics about an entity.
         end_time_usecs (long|int): The time (in usecs) after which no backup
             for the job should be scheduled.
         env_backup_params (EnvBackupParams): Message to capture any additional
@@ -58,14 +59,14 @@ class BackupJobProto(object):
             sources to exclude from backups. These can have non-leaf-level
             entities, but it's up to the creator to ensure that a child of
             these sources hasn't been explicitly added to 'sources'.
-        exclude_sources_deprecated (list of Entity): The list of sources to
-            exclude from backups. These can have non-leaf-level entities, but
-            it's up to the creator to ensure that a child of these sources
+        exclude_sources_deprecated (list of EntityProto): The list of sources
+            to exclude from backups. These can have non-leaf-level entities,
+            but it's up to the creator to ensure that a child of these sources
             hasn't been explicitly added to 'sources'. TODO(Chinmaya): Remove
             after removing references.
         exclusion_ranges (list of BackupJobProtoExclusionTimeRange): Do not
             run backups in these time-ranges.
-        full_backup_job_policy (DEPRECATEDIn50): A message that specifies the
+        full_backup_job_policy (JobPolicyProto): A message that specifies the
             policies to use for a job.
         full_backup_sla_time_mins (long|int): Same as 'sla_time_mins' above,
             but applies to full backups. NOTE: This value is considered only
@@ -95,7 +96,7 @@ class BackupJobProto(object):
             should be used. The only time Iris should ever need to refer to a
             remote job is when restoring an object from a remote snapshot. In
             all such cases, Iris should use the job_uid field.
-        job_policy (DEPRECATEDIn50): A message that specifies the policies to
+        job_policy (JobPolicyProto): A message that specifies the policies to
             use for a job.
         job_uid (UniversalIdProto): TODO: type description here.
         last_modification_time_usecs (long|int): Time when this job
@@ -117,7 +118,7 @@ class BackupJobProto(object):
             by the user if hyperflex snapshots are requested NOTE: If this is
             set to true, then leverage_storage_snapshots above should be
             false.
-        log_backup_job_policy (DEPRECATEDIn50): A message that specifies the
+        log_backup_job_policy (JobPolicyProto): A message that specifies the
             policies to use for a job.
         name (string): The name of this backup job. This must be unique across
             all jobs.
@@ -126,7 +127,7 @@ class BackupJobProto(object):
             environment. If not specified, then snapshots will not be be
             deleted from the primary environment. NOTE: This is only
             applicable for certain environments like kPure.
-        parent_source (Entity): Specifies the attributes and the latest
+        parent_source (EntityProto): Specifies the attributes and the latest
             statistics about an entity.
         perform_source_side_dedup (bool): Whether or not to perform source
             side dedup.
@@ -162,6 +163,8 @@ class BackupJobProto(object):
             all remote jobs that are linked to this job (because of incoming
             replications). This field will only be populated for locally
             created jobs.
+        remote_view_name (string): A human readable name of the remote view. A
+            remote view is created with name overwriting the latest snapshot.
         required_feature_vec (list of string): The features that are strictly
             required to be supported by the cluster of the backup job. This is
             currently used in the following cases: 1. Tx cluster looks at the
@@ -182,6 +185,9 @@ class BackupJobProto(object):
             this proto will have to store the timezone information separately.
             For example, when this proto is part of a backup job, timezone of
             the backup job is applied to get the absolute time.
+        stubbing_policy (StubbingPolicyProto): Stubbing jobs do not use
+            protection policies. Instead, schedule and retention policy will
+            be embedded in the BackupJobProto.
         tag_vec (list of string): Tags associated with the job. User can
             specify tags/keywords that can indexed by Yoda and can be later
             searched in UI. For example, user can create a 'kPuppeteer' job to
@@ -196,7 +202,7 @@ class BackupJobProto(object):
             This is currently only relevant for full or incremental backups in
             a SQL environment.
         mtype (int): The type of environment this backup job corresponds to.
-        user_info (UserInformation1): A message to encapsulate information
+        user_info (UserInformation): A message to encapsulate information
             about the user who made the request. Request should be filtered by
             these fields if specified so that only the objects that the user
             is permissioned for are returned. If both sid_vec & tenant_id are
@@ -254,10 +260,12 @@ class BackupJobProto(object):
         "priority":'priority',
         "quiesce":'quiesce',
         "remote_job_uids":'remoteJobUids',
+        "remote_view_name":'remoteViewName',
         "required_feature_vec":'requiredFeatureVec',
         "sla_time_mins":'slaTimeMins',
         "sources":'sources',
         "start_time":'startTime',
+        "stubbing_policy":'stubbingPolicy',
         "tag_vec":'tagVec',
         "timezone":'timezone',
         "truncate_logs":'truncateLogs',
@@ -313,10 +321,12 @@ class BackupJobProto(object):
                  priority=None,
                  quiesce=None,
                  remote_job_uids=None,
+                 remote_view_name=None,
                  required_feature_vec=None,
                  sla_time_mins=None,
                  sources=None,
                  start_time=None,
+                 stubbing_policy=None,
                  tag_vec=None,
                  timezone=None,
                  truncate_logs=None,
@@ -372,10 +382,12 @@ class BackupJobProto(object):
         self.priority = priority
         self.quiesce = quiesce
         self.remote_job_uids = remote_job_uids
+        self.remote_view_name = remote_view_name
         self.required_feature_vec = required_feature_vec
         self.sla_time_mins = sla_time_mins
         self.sources = sources
         self.start_time = start_time
+        self.stubbing_policy = stubbing_policy
         self.tag_vec = tag_vec
         self.timezone = timezone
         self.truncate_logs = truncate_logs
@@ -409,13 +421,13 @@ class BackupJobProto(object):
         if dictionary.get('backupSourceParams') != None:
             backup_source_params = list()
             for structure in dictionary.get('backupSourceParams'):
-                backup_source_params.append(cohesity_management_sdk.models.backup_source_parameters.BackupSourceParameters.from_dictionary(structure))
+                backup_source_params.append(cohesity_management_sdk.models.backup_source_params.BackupSourceParams.from_dictionary(structure))
         continue_on_quiesce_failure = dictionary.get('continueOnQuiesceFailure')
         dedup_disabled_source_id_vec = dictionary.get('dedupDisabledSourceIdVec')
         deletion_status = dictionary.get('deletionStatus')
         description = dictionary.get('description')
-        dr_to_cloud_params = cohesity_management_sdk.models.dr_to_cloud_parameters.DRToCloudParameters.from_dictionary(dictionary.get('drToCloudParams')) if dictionary.get('drToCloudParams') else None
-        eh_parent_source = cohesity_management_sdk.models.entity.Entity.from_dictionary(dictionary.get('ehParentSource')) if dictionary.get('ehParentSource') else None
+        dr_to_cloud_params = cohesity_management_sdk.models.backup_job_proto_dr_to_cloud_params.BackupJobProtoDRToCloudParams.from_dictionary(dictionary.get('drToCloudParams')) if dictionary.get('drToCloudParams') else None
+        eh_parent_source = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('ehParentSource')) if dictionary.get('ehParentSource') else None
         end_time_usecs = dictionary.get('endTimeUsecs')
         env_backup_params = cohesity_management_sdk.models.env_backup_params.EnvBackupParams.from_dictionary(dictionary.get('envBackupParams')) if dictionary.get('envBackupParams') else None
         exclude_sources = None
@@ -427,13 +439,13 @@ class BackupJobProto(object):
         if dictionary.get('excludeSources_DEPRECATED') != None:
             exclude_sources_deprecated = list()
             for structure in dictionary.get('excludeSources_DEPRECATED'):
-                exclude_sources_deprecated.append(cohesity_management_sdk.models.entity.Entity.from_dictionary(structure))
+                exclude_sources_deprecated.append(cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(structure))
         exclusion_ranges = None
         if dictionary.get('exclusionRanges') != None:
             exclusion_ranges = list()
             for structure in dictionary.get('exclusionRanges'):
                 exclusion_ranges.append(cohesity_management_sdk.models.backup_job_proto_exclusion_time_range.BackupJobProtoExclusionTimeRange.from_dictionary(structure))
-        full_backup_job_policy = cohesity_management_sdk.models.deprecated_in_50.DEPRECATEDIn50.from_dictionary(dictionary.get('fullBackupJobPolicy')) if dictionary.get('fullBackupJobPolicy') else None
+        full_backup_job_policy = cohesity_management_sdk.models.job_policy_proto.JobPolicyProto.from_dictionary(dictionary.get('fullBackupJobPolicy')) if dictionary.get('fullBackupJobPolicy') else None
         full_backup_sla_time_mins = dictionary.get('fullBackupSlaTimeMins')
         indexing_policy = cohesity_management_sdk.models.indexing_policy_proto.IndexingPolicyProto.from_dictionary(dictionary.get('indexingPolicy')) if dictionary.get('indexingPolicy') else None
         is_active = dictionary.get('isActive')
@@ -442,7 +454,7 @@ class BackupJobProto(object):
         is_rpo_job = dictionary.get('isRpoJob')
         job_creation_time_usecs = dictionary.get('jobCreationTimeUsecs')
         job_id = dictionary.get('jobId')
-        job_policy = cohesity_management_sdk.models.deprecated_in_50.DEPRECATEDIn50.from_dictionary(dictionary.get('jobPolicy')) if dictionary.get('jobPolicy') else None
+        job_policy = cohesity_management_sdk.models.job_policy_proto.JobPolicyProto.from_dictionary(dictionary.get('jobPolicy')) if dictionary.get('jobPolicy') else None
         job_uid = cohesity_management_sdk.models.universal_id_proto.UniversalIdProto.from_dictionary(dictionary.get('jobUid')) if dictionary.get('jobUid') else None
         last_modification_time_usecs = dictionary.get('lastModificationTimeUsecs')
         last_pause_modification_time_usecs = dictionary.get('lastPauseModificationTimeUsecs')
@@ -450,10 +462,10 @@ class BackupJobProto(object):
         last_updated_username = dictionary.get('lastUpdatedUsername')
         leverage_storage_snapshots = dictionary.get('leverageStorageSnapshots')
         leverage_storage_snapshots_for_hyperflex = dictionary.get('leverageStorageSnapshotsForHyperflex')
-        log_backup_job_policy = cohesity_management_sdk.models.deprecated_in_50.DEPRECATEDIn50.from_dictionary(dictionary.get('logBackupJobPolicy')) if dictionary.get('logBackupJobPolicy') else None
+        log_backup_job_policy = cohesity_management_sdk.models.job_policy_proto.JobPolicyProto.from_dictionary(dictionary.get('logBackupJobPolicy')) if dictionary.get('logBackupJobPolicy') else None
         name = dictionary.get('name')
         num_snapshots_to_keep_on_primary = dictionary.get('numSnapshotsToKeepOnPrimary')
-        parent_source = cohesity_management_sdk.models.entity.Entity.from_dictionary(dictionary.get('parentSource')) if dictionary.get('parentSource') else None
+        parent_source = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('parentSource')) if dictionary.get('parentSource') else None
         perform_source_side_dedup = dictionary.get('performSourceSideDedup')
         policy_applied_time_msecs = dictionary.get('policyAppliedTimeMsecs')
         policy_id = dictionary.get('policyId')
@@ -468,6 +480,7 @@ class BackupJobProto(object):
             remote_job_uids = list()
             for structure in dictionary.get('remoteJobUids'):
                 remote_job_uids.append(cohesity_management_sdk.models.universal_id_proto.UniversalIdProto.from_dictionary(structure))
+        remote_view_name = dictionary.get('remoteViewName')
         required_feature_vec = dictionary.get('requiredFeatureVec')
         sla_time_mins = dictionary.get('slaTimeMins')
         sources = None
@@ -476,11 +489,12 @@ class BackupJobProto(object):
             for structure in dictionary.get('sources'):
                 sources.append(cohesity_management_sdk.models.backup_job_proto_backup_source.BackupJobProtoBackupSource.from_dictionary(structure))
         start_time = cohesity_management_sdk.models.time.Time.from_dictionary(dictionary.get('startTime')) if dictionary.get('startTime') else None
+        stubbing_policy = cohesity_management_sdk.models.stubbing_policy_proto.StubbingPolicyProto.from_dictionary(dictionary.get('stubbingPolicy')) if dictionary.get('stubbingPolicy') else None
         tag_vec = dictionary.get('tagVec')
         timezone = dictionary.get('timezone')
         truncate_logs = dictionary.get('truncateLogs')
         mtype = dictionary.get('type')
-        user_info = cohesity_management_sdk.models.user_information_1.UserInformation1.from_dictionary(dictionary.get('userInfo')) if dictionary.get('userInfo') else None
+        user_info = cohesity_management_sdk.models.user_information.UserInformation.from_dictionary(dictionary.get('userInfo')) if dictionary.get('userInfo') else None
         view_box_id = dictionary.get('viewBoxId')
 
         # Return an object of this model
@@ -530,10 +544,12 @@ class BackupJobProto(object):
                    priority,
                    quiesce,
                    remote_job_uids,
+                   remote_view_name,
                    required_feature_vec,
                    sla_time_mins,
                    sources,
                    start_time,
+                   stubbing_policy,
                    tag_vec,
                    timezone,
                    truncate_logs,

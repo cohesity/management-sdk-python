@@ -73,7 +73,7 @@ def main(args):
     cohesity_client = CohesityClient(cluster_vip=CLUSTER_VIP,
                                      username=CLUSTER_USERNAME,
                                      password=CLUSTER_PASSWORD,
-				     domain=DOMAIN)
+				                     domain=DOMAIN)
     view_name = args.view_name
     clone_name = args.clone_name
 

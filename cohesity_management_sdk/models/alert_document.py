@@ -4,7 +4,7 @@
 
 class AlertDocument(object):
 
-    """Implementation of the 'Alert Document.' model.
+    """Implementation of the 'AlertDocument' model.
 
     Specifies documentation about the Alert such as name, description, cause
     and how to resolve the Alert.

@@ -1,18 +1,18 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.iscsisan_port
+import cohesity_management_sdk.models.iscsi_san_port
 
 class PureStorageArray(object):
 
-    """Implementation of the 'Pure Storage Array.' model.
+    """Implementation of the 'PureStorageArray' model.
 
     Specifies a Pure Storage Array.
 
     Attributes:
         id (string): Specifies a unique id of a Pure Storage Array. The id is
             unique across Cohesity Clusters.
-        ports (list of ISCSISANPort): Specifies the SAN ports of the Pure
+        ports (list of IscsiSanPort): Specifies the SAN ports of the Pure
             Storage Array.
         revision (string): Specifies the revision of the Pure Storage Array.
         version (string): Specifies the version of the Pure Storage Array.
@@ -64,7 +64,7 @@ class PureStorageArray(object):
         if dictionary.get('ports') != None:
             ports = list()
             for structure in dictionary.get('ports'):
-                ports.append(cohesity_management_sdk.models.iscsisan_port.ISCSISANPort.from_dictionary(structure))
+                ports.append(cohesity_management_sdk.models.iscsi_san_port.IscsiSanPort.from_dictionary(structure))
         revision = dictionary.get('revision')
         version = dictionary.get('version')
 

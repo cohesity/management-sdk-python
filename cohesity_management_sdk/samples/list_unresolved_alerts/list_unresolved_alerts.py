@@ -50,7 +50,7 @@ def main(args):
     cohesity_client = CohesityClient(cluster_vip=CLUSTER_VIP,
                                      username=CLUSTER_USERNAME,
                                      password=CLUSTER_PASSWORD,
-				     domain=DOMAIN)
+				                     domain=DOMAIN)
     alerts = Alerts()
     alerts.display_alerts(cohesity_client, args.max_alerts)
 

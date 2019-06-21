@@ -4,7 +4,7 @@
 
 class AcropolisProtectionSource(object):
 
-    """Implementation of the 'Acropolis Protection Source.' model.
+    """Implementation of the 'AcropolisProtectionSource' model.
 
     Specifies a Protection Source in Acropolis environment.
 

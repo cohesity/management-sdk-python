@@ -4,7 +4,7 @@
 
 class AlertCategoryName(object):
 
-    """Implementation of the 'Alert Category Name' model.
+    """Implementation of the 'AlertCategoryName' model.
 
     AlertCategoryName returns alert category and its public facing string.
 

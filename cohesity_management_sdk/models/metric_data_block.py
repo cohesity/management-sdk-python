@@ -5,7 +5,7 @@ import cohesity_management_sdk.models.metric_data_point
 
 class MetricDataBlock(object):
 
-    """Implementation of the 'Metric Data Block.' model.
+    """Implementation of the 'MetricDataBlock' model.
 
     Specifies a series of metric data points for a time series.
 

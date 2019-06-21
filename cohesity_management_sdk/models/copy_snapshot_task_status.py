@@ -6,7 +6,7 @@ import cohesity_management_sdk.models.copy_run_stats
 
 class CopySnapshotTaskStatus(object):
 
-    """Implementation of the 'Copy Snapshot Task Status.' model.
+    """Implementation of the 'CopySnapshotTaskStatus' model.
 
     Specifies the status of the copy task that copies the snapshot of a
     Protection Source object to a target.
@@ -20,13 +20,13 @@ class CopySnapshotTaskStatus(object):
             depend on the environment of the Protection Source.
         stats (CopyRunStats): Stats for one copy task or aggregated stats of a
             Copy Run in a Protection Job Run.
-        status (Status1Enum): Specifies the status of the source object being
-            protected. 'kAccepted' indicates the task is queued to run but not
-            yet running. 'kRunning' indicates the task is running.
-            'kCanceling' indicates a request to cancel the task has occurred
-            but the task is not yet canceled. 'kCanceled' indicates the task
-            has been canceled. 'kSuccess' indicates the task was successful.
-            'kFailure' indicates the task failed.
+        status (StatusCopySnapshotTaskStatusEnum): Specifies the status of the
+            source object being protected. 'kAccepted' indicates the task is
+            queued to run but not yet running. 'kRunning' indicates the task
+            is running. 'kCanceling' indicates a request to cancel the task
+            has occurred but the task is not yet canceled. 'kCanceled'
+            indicates the task has been canceled. 'kSuccess' indicates the
+            task was successful. 'kFailure' indicates the task failed.
         task_end_time_usecs (long|int): Specifies the end time of the copy
             task. The end time is specified as a Unix epoch Timestamp (in
             microseconds).

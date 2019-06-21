@@ -5,7 +5,7 @@ import cohesity_management_sdk.models.oracle_session
 
 class OracleHost(object):
 
-    """Implementation of the 'Oracle Host.' model.
+    """Implementation of the 'OracleHost' model.
 
     Specifies information about an Oracle Host.
 

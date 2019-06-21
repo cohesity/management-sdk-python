@@ -4,7 +4,7 @@
 
 class UserQuotaSummaryForUser(object):
 
-    """Implementation of the 'User Quota Summary For User.' model.
+    """Implementation of the 'UserQuotaSummaryForUser' model.
 
     Speifies the summary of quota information for a particular user.
 

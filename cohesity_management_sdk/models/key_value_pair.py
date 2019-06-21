@@ -5,7 +5,7 @@ import cohesity_management_sdk.models.value
 
 class KeyValuePair(object):
 
-    """Implementation of the 'Key Value Pair.' model.
+    """Implementation of the 'KeyValuePair' model.
 
     Specifies a key/value pair.
 

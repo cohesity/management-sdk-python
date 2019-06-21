@@ -4,7 +4,7 @@
 
 class OracleSession(object):
 
-    """Implementation of the 'Oracle Session.' model.
+    """Implementation of the 'OracleSession' model.
 
     Specifies information about session configuration for an Oracle host.
 

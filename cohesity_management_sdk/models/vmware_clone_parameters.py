@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
+import cohesity_management_sdk.models.network_mapping
 
 class VmwareCloneParameters(object):
 
-    """Implementation of the 'VmWare Clone Parameters.' model.
+    """Implementation of the 'VmwareCloneParameters' model.
 
     Specifies the information required for recovering or cloning VmWare VMs.
 
@@ -31,6 +32,13 @@ class VmwareCloneParameters(object):
             'true' in the GET /public/protectionSources operation. In the
             response, get the id of the desired kNetwork object, the resource
             pool, and the registered parent Protection Source.
+        network_mappings (list of NetworkMapping): Specifies the parameters
+            for mapping the source and target networks. This field can be used
+            if restoring to a different parent source. This will replace the
+            NetworkId and DisableNetwork that are used to provide
+            configuration for a single network. Unless the support for mapping
+            is available for all the entities old keys can be used to attach a
+            new network. Supports 'kVMware' for now.
         powered_on (bool): Specifies the power state of the cloned or
             recovered objects. By default, the cloned or recovered objects are
             powered off.
@@ -60,6 +68,7 @@ class VmwareCloneParameters(object):
         "detach_network":'detachNetwork',
         "disable_network":'disableNetwork',
         "network_id":'networkId',
+        "network_mappings":'networkMappings',
         "powered_on":'poweredOn',
         "prefix":'prefix',
         "resource_pool_id":'resourcePoolId',
@@ -72,6 +81,7 @@ class VmwareCloneParameters(object):
                  detach_network=None,
                  disable_network=None,
                  network_id=None,
+                 network_mappings=None,
                  powered_on=None,
                  prefix=None,
                  resource_pool_id=None,
@@ -84,6 +94,7 @@ class VmwareCloneParameters(object):
         self.detach_network = detach_network
         self.disable_network = disable_network
         self.network_id = network_id
+        self.network_mappings = network_mappings
         self.powered_on = powered_on
         self.prefix = prefix
         self.resource_pool_id = resource_pool_id
@@ -113,6 +124,11 @@ class VmwareCloneParameters(object):
         detach_network = dictionary.get('detachNetwork')
         disable_network = dictionary.get('disableNetwork')
         network_id = dictionary.get('networkId')
+        network_mappings = None
+        if dictionary.get('networkMappings') != None:
+            network_mappings = list()
+            for structure in dictionary.get('networkMappings'):
+                network_mappings.append(cohesity_management_sdk.models.network_mapping.NetworkMapping.from_dictionary(structure))
         powered_on = dictionary.get('poweredOn')
         prefix = dictionary.get('prefix')
         resource_pool_id = dictionary.get('resourcePoolId')
@@ -124,6 +140,7 @@ class VmwareCloneParameters(object):
                    detach_network,
                    disable_network,
                    network_id,
+                   network_mappings,
                    powered_on,
                    prefix,
                    resource_pool_id,

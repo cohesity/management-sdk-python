@@ -5,7 +5,7 @@ import cohesity_management_sdk.models.restore_count_by_object_type
 
 class RecoveriesTile(object):
 
-    """Implementation of the 'Recoveries Tile.' model.
+    """Implementation of the 'RecoveriesTile' model.
 
     Recoveries information.
 

@@ -15,7 +15,7 @@ python upgrade_agents.py
 cohesity_client = CohesityClient(cluster_vip=CLUSTER_VIP,
                                  username=CLUSTER_USERNAME, 
                                  password=CLUSTER_PASSWORD,
-				 domain=DOMAIN)
+                                 domain=DOMAIN)
 ```
 
 ## Get Tenants
@@ -28,27 +28,28 @@ resp_tenants = cohesity_client.tenant.get_tenants()
 ```python
 resp_agents = cohesity_client.protection_sources.list_protection_sources(
                               tenant_ids=tenant,
-                              environments=Environments2Enum.KPHYSICAL)
+                              environments=EnvironmentEnum.KPHYSICAL)
 ```
 
 ## Upgrade Agent list
 ```python
-body = UpgradePhysicalServerAgentsRequest()
+
+body = UpgradePhysicalServerAgents()
 body.agent_ids = [agent_id1, agent_id2, agent_id3]
 result = cohesity_client.protection_sources.create_upgrade_physical_agents(body)
 ```
 
 ## Example Output
 ```
-Adding Tenant: green
-Adding Tenant: blue
-Adding Tenant: red
-Adding Tenant: yellow
-Tenant list: [u'green/', u'blue/', u'red/', u'yellow/'] 
+
+Adding Tenant: coke
+Adding Tenant: pepsi
+Adding Tenant: coco
+Adding Tenant: alo
+Tenant list: [u'coke/', u'pepsi/', u'coco/', u'alo/'] 
 
 Adding agent: windows_agent to upgrade list
-Excluding Agent from upgrade list: aix_agent because upgradability state is : 
-kCurrent 
+Excluding Agent from upgrade list: aix_agent because upgradability state is : kCurrent 
 Adding agent: linux_agent to upgrade list
 Adding agent: solaris_agent to upgrade list
 Upgrading agents: [u'windows_agent', u'linux_agent', u'solaris_agent']

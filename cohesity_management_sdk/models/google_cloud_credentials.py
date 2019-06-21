@@ -4,7 +4,7 @@
 
 class GoogleCloudCredentials(object):
 
-    """Implementation of the 'Google Cloud Credentials.' model.
+    """Implementation of the 'GoogleCloudCredentials' model.
 
     Specifies the cloud credentials to connect to a Google service account.
 
@@ -16,16 +16,17 @@ class GoogleCloudCredentials(object):
             created.
         project_id (string): Specifies the project id of an existing Google
             Cloud project to store objects.
-        tier_type (TierType2Enum): Specifies the storage class of GCP.
-            GoogleTierType specifies the storage class for Google.
-            'kGoogleStandard' indicates a tier type of Google properties.
-            'kGoogleNearline' indicates a tier type of Google properties that
-            is not accessed frequently. 'kGoogleColdline' indicates a tier
-            type of Google properties that is rarely accessed.
-            'kGoogleRegional' indicates a tier type of Google properties that
-            stores frequently accessed data in the same region.
-            'kGoogleMultiRegional' indicates a tier type of Google properties
-            that is frequently accessed ("hot" objects) around the world.
+        tier_type (TierTypeGoogleCloudCredentialsEnum): Specifies the storage
+            class of GCP. GoogleTierType specifies the storage class for
+            Google. 'kGoogleStandard' indicates a tier type of Google
+            properties. 'kGoogleNearline' indicates a tier type of Google
+            properties that is not accessed frequently. 'kGoogleColdline'
+            indicates a tier type of Google properties that is rarely
+            accessed. 'kGoogleRegional' indicates a tier type of Google
+            properties that stores frequently accessed data in the same
+            region. 'kGoogleMultiRegional' indicates a tier type of Google
+            properties that is frequently accessed ("hot" objects) around the
+            world.
 
     """
 

@@ -4,7 +4,7 @@
 
 class LegalHoldings(object):
 
-    """Implementation of the 'Legal Holdings.' model.
+    """Implementation of the 'LegalHoldings' model.
 
     Specifies the legal holding of a Protection Source.
 

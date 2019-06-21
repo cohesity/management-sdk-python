@@ -4,27 +4,21 @@
 
 class QuotaPolicy(object):
 
-    """Implementation of the 'Quota Policy' model.
+    """Implementation of the 'QuotaPolicy' model.
 
-    Specifies a quota limit that can be optionally applied to Views and
-    View Boxes.
-    At the View level, this quota defines a logical limit for usage on the
-    View.
-    At the View Box level, this quota defines a physical limit or
-    a default logical View limit.
-    If a physical quota is specified for View Box, this quota defines a
-    physical
-    limit for the usage on the View Box.
-    If a default logical View quota is specified for View Box, this limit
-    is inherited by all the Views in that View Box.
-    However, this inherited quota can be overwritten at the View level.
-    A new write is not allowed if the resource will exceed the specified
-    quota.
-    However, it takes time for the Cohesity Cluster to calculate
-    the usage across Nodes, so the limit may be exceeded by a small amount.
-    In addition, if the limit is increased or data is removed,
-    there may be a delay before the Cohesity Cluster allows more data
-    to be written to the resource, as the Cluster calculates the usage
+    Specifies a quota limit that can be optionally applied to Views and View
+    Boxes. At the View level, this quota defines a logical limit for usage on
+    the View. At the View Box level, this quota defines a physical limit or a
+    default logical View limit. If a physical quota is specified for View Box,
+    this quota defines a physical limit for the usage on the View Box. If a
+    default logical View quota is specified for View Box, this limit is
+    inherited by all the Views in that View Box. However, this inherited quota
+    can be overwritten at the View level. A new write is not allowed if the
+    resource will exceed the specified quota. However, it takes time for the
+    Cohesity Cluster to calculate the usage across Nodes, so the limit may be
+    exceeded by a small amount. In addition, if the limit is increased or data
+    is removed, there may be a delay before the Cohesity Cluster allows more
+    data to be written to the resource, as the Cluster calculates the usage
     across Nodes.
 
     Attributes:

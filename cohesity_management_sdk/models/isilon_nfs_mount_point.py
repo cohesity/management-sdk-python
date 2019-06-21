@@ -2,9 +2,9 @@
 # Copyright 2019 Cohesity Inc.
 
 
-class IsilonNFSMountPoint(object):
+class IsilonNfsMountPoint(object):
 
-    """Implementation of the 'Isilon NFS Mount Point.' model.
+    """Implementation of the 'IsilonNfsMountPoint' model.
 
     Specifies NFS Mount Point exposed by Isilon Protection Source.
 
@@ -27,7 +27,7 @@ class IsilonNFSMountPoint(object):
                  access_zone_name=None,
                  description=None,
                  id=None):
-        """Constructor for the IsilonNFSMountPoint class"""
+        """Constructor for the IsilonNfsMountPoint class"""
 
         # Initialize members of the class
         self.access_zone_name = access_zone_name

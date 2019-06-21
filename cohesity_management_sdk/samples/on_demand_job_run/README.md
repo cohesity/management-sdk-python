@@ -9,14 +9,14 @@ First make sure that you are connected to a Cohesity Cluster.
 cohesity_client = CohesityClient(cluster_vip=CLUSTER_VIP,
                                  username=CLUSTER_USERNAME, 
                                  password=CLUSTER_PASSWORD,
-				 domain=DOMAIN)
+                                 domain=DOMAIN)
 ```
 Note: Alternatively, you can set the above parameters in cohesity_management_sdk/configuration.py
 
 ## Example
 ``` 
-req_body = ProtectionRunParameters()
-req_body.run_type = RunType2Enum.KREGULAR
+req_body = ProtectionJobRequestBody()
+req_body.run_type = RunTypeEnum.KREGULAR
 self.jobs_controller.create_run_protection_job(id=job_id, body=req_body)
 
 # Get the status of this Job run.

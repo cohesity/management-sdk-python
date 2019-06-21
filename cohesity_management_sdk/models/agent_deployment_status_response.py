@@ -4,7 +4,7 @@
 
 class AgentDeploymentStatusResponse(object):
 
-    """Implementation of the 'Agent Deployment Status Response.' model.
+    """Implementation of the 'AgentDeploymentStatusResponse' model.
 
     Specifies the overview of the agent deployment status.
 
@@ -31,15 +31,16 @@ class AgentDeploymentStatusResponse(object):
             agent upgrade in progress. 'kAccepted' indicates the Agent upgrade
             is accepted. 'kStarted' indicates the Agent upgrade is in
             progress. 'kFinished' indicates the Agent upgrade is completed.
-        upgradability (Upgradability1Enum): Specfies the upgradability of the
-            agent running on the server. Specifies the upgradability of the
-            agent running on the physical server. 'kUpgradable' indicates the
-            Agent can be upgraded to the agent software version on the
-            cluster. 'kCurrent' indicates the Agent is running the latest
-            version. 'kUnknown' indicates the Agent's version is not known.
-            'kNonUpgradableInvalidVersion' indicates the Agent's version is
-            invalid. 'kNonUpgradableAgentIsNewer' indicates the Agent's
-            version is newer than the agent software version the cluster.
+        upgradability (UpgradabilityAgentDeploymentStatusResponseEnum):
+            Specfies the upgradability of the agent running on the server.
+            Specifies the upgradability of the agent running on the physical
+            server. 'kUpgradable' indicates the Agent can be upgraded to the
+            agent software version on the cluster. 'kCurrent' indicates the
+            Agent is running the latest version. 'kUnknown' indicates the
+            Agent's version is not known. 'kNonUpgradableInvalidVersion'
+            indicates the Agent's version is invalid.
+            'kNonUpgradableAgentIsNewer' indicates the Agent's version is
+            newer than the agent software version the cluster.
             'kNonUpgradableAgentIsOld' indicates the Agent's version is too
             old that does not support upgrades.
         upgrade_status_message (string): Specifies detailed message about the

@@ -6,16 +6,15 @@ class GcpTypeEnum(object):
     """Implementation of the 'GcpType' enum.
 
     Specifies the entity type such as 'kIAMUser' if the environment is kGCP.
-    Specifies the type of a GCP source entity.
-    'kIAMUser' indicates a unique user within a GCP account.
-    'kProject' represents compute resources and storage.
-    'kRegion' indicates a geographical region in the global infrastructure.
-    'kAvailabilityZone' indicates an availability zone within a region.
-    'kVirtualMachine' indicates a Virtual Machine running in GCP environment.
-    'kVPC' indicates a virtual private cloud (VPC) network within GCP.
-    'kSubnet' indicates a subnet inside the VPC.
-    'kNetworkSecurityGroup' represents a network security group.
-    'kInstanceType' represents various machine types.
+    Specifies the type of a GCP source entity. 'kIAMUser' indicates a unique
+    user within a GCP account. 'kProject' represents compute resources and
+    storage. 'kRegion' indicates a geographical region in the global
+    infrastructure. 'kAvailabilityZone' indicates an availability zone within
+    a region. 'kVirtualMachine' indicates a Virtual Machine running in GCP
+    environment. 'kVPC' indicates a virtual private cloud (VPC) network within
+    GCP. 'kSubnet' indicates a subnet inside the VPC. 'kNetworkSecurityGroup'
+    represents a network security group. 'kInstanceType' represents various
+    machine types.
 
     Attributes:
         KIAMUSER: TODO: type description here.

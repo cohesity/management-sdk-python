@@ -5,10 +5,9 @@ class HostOsTypeEnum(object):
 
     """Implementation of the 'HostOsType' enum.
 
-    Specifies the host type on which the agent is installed.
-    'kLinux' indicates the Linux operating system.
-    'kWindows' indicates the Microsoft Windows operating system.
-    'kAix' indicates the IBM AIX operating system.
+    Specifies the host type on which the agent is installed. 'kLinux'
+    indicates the Linux operating system. 'kWindows' indicates the Microsoft
+    Windows operating system. 'kAix' indicates the IBM AIX operating system.
     'kSolaris' indicates the Oracle Solaris operating system.
 
     Attributes:

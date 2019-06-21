@@ -7,7 +7,7 @@ import cohesity_management_sdk.models.isilon_mount_point
 
 class IsilonProtectionSource(object):
 
-    """Implementation of the 'Isilon Protection Source.' model.
+    """Implementation of the 'IsilonProtectionSource' model.
 
     Specifies a Protection Source in Isilon OneFs environment.
 
@@ -19,11 +19,12 @@ class IsilonProtectionSource(object):
         mount_point (IsilonMountPoint): Specifies information about a mount
             point in an Isilon OneFs Cluster.
         name (string): Specifies a unique name of the Protection Source.
-        mtype (Type8Enum): Specifies the type of the entity in an Isilon OneFs
-            file system like 'kCluster', 'kZone', or, 'kMountPoint'.
-            'kCluster' indicates an Isilon OneFs Cluster. 'kZone' indicates an
-            access zone in an Isilon OneFs Cluster. 'kMountPoint' indicates a
-            mount point exposed by an Isilon OneFs Cluster.
+        mtype (TypeIsilonProtectionSourceEnum): Specifies the type of the
+            entity in an Isilon OneFs file system like 'kCluster', 'kZone',
+            or, 'kMountPoint'. 'kCluster' indicates an Isilon OneFs Cluster.
+            'kZone' indicates an access zone in an Isilon OneFs Cluster.
+            'kMountPoint' indicates a mount point exposed by an Isilon OneFs
+            Cluster.
 
     """
 

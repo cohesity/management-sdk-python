@@ -2,9 +2,9 @@
 # Copyright 2019 Cohesity Inc.
 
 
-class UserID(object):
+class UserId(object):
 
-    """Implementation of the 'User ID.' model.
+    """Implementation of the 'UserId' model.
 
     Specifies the mapping between an Unix and an SMB SID.
 
@@ -33,7 +33,7 @@ class UserID(object):
     def __init__(self,
                  sid=None,
                  unix_uid=None):
-        """Constructor for the UserID class"""
+        """Constructor for the UserId class"""
 
         # Initialize members of the class
         self.sid = sid

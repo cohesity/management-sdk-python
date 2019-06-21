@@ -4,7 +4,7 @@
 
 class TenantEntityUpdate(object):
 
-    """Implementation of the 'Tenant Entity Update.' model.
+    """Implementation of the 'TenantEntityUpdate' model.
 
     Specifies entity update details response about a tenant.
 

@@ -4,10 +4,10 @@
 
 class RegisterApplicationServersParameters(object):
 
-    """Implementation of the 'Register Application Servers Parameters.' model.
+    """Implementation of the 'RegisterApplicationServersParameters' model.
 
-    Specifies the parameters required to register Application Servers
-    running in a Protection Source.
+    Specifies the parameters required to register Application Servers running
+    in a Protection Source.
 
     Attributes:
         applications (list of ApplicationEnum): Specifies the types of

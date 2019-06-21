@@ -3,9 +3,9 @@
 
 import cohesity_management_sdk.models.subnet
 
-class VLAN(object):
+class Vlan(object):
 
-    """Implementation of the 'VLAN.' model.
+    """Implementation of the 'Vlan' model.
 
     Specifies the settings of a VLAN.
 
@@ -59,7 +59,7 @@ class VLAN(object):
                  subnet=None,
                  tenant_id=None,
                  vlan_name=None):
-        """Constructor for the VLAN class"""
+        """Constructor for the Vlan class"""
 
         # Initialize members of the class
         self.add_to_cluster_partition = add_to_cluster_partition

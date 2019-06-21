@@ -7,7 +7,7 @@ from cohesity_management_sdk.configuration import Configuration
 from cohesity_management_sdk.controllers.base_controller import BaseController
 from cohesity_management_sdk.http.auth.auth_manager import AuthManager
 from cohesity_management_sdk.models.cluster_partition import ClusterPartition
-from cohesity_management_sdk.exceptions.error_error_exception import ErrorErrorException
+from cohesity_management_sdk.exceptions.request_error_error_exception import RequestErrorErrorException
 from cohesity_management_sdk.exceptions.api_exception import APIException
 
 class ClusterPartitionsController(BaseController):
@@ -24,8 +24,8 @@ class ClusterPartitionsController(BaseController):
         """Does a GET request to /public/clusterPartitions.
 
         If no parameters are specified, all Cluster Partitions currently on
-        the Cohesity Cluster are returned.
-        Specifying parameters filters the results that are returned.
+        the Cohesity Cluster are returned. Specifying parameters filters the
+        results that are returned.
 
         Args:
             ids (list of long|int, optional): Array of Cluster Partition Ids.
@@ -76,7 +76,7 @@ class ClusterPartitionsController(BaseController):
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_cluster_partitions.')
             if _context.response.status_code == 0:
-                raise ErrorErrorException('Error', _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
@@ -141,7 +141,7 @@ class ClusterPartitionsController(BaseController):
             if _context.response.status_code == 404:
                 raise APIException('Not Found', _context)
             elif (_context.response.status_code < 200) or (_context.response.status_code > 208):
-                raise ErrorErrorException('Error', _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type

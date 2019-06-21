@@ -2,7 +2,7 @@
 # Copyright 2019 Cohesity Inc.
 
 import cohesity_management_sdk.models.deploy_v_ms_to_cloud_params
-import cohesity_management_sdk.models.entity
+import cohesity_management_sdk.models.entity_proto
 
 class CloudDeployTarget(object):
 
@@ -15,7 +15,7 @@ class CloudDeployTarget(object):
         deploy_vms_to_cloud_params (DeployVMsToCloudParams): Contains Cloud
             specific information needed to identify various resources when
             deploying a VM to Cloud.
-        target_entity (Entity): Specifies the attributes and the latest
+        target_entity (EntityProto): Specifies the attributes and the latest
             statistics about an entity.
         mtype (int): The type of the CloudDeploy target.
 
@@ -59,7 +59,7 @@ class CloudDeployTarget(object):
 
         # Extract variables from the dictionary
         deploy_vms_to_cloud_params = cohesity_management_sdk.models.deploy_v_ms_to_cloud_params.DeployVMsToCloudParams.from_dictionary(dictionary.get('deployVmsToCloudParams')) if dictionary.get('deployVmsToCloudParams') else None
-        target_entity = cohesity_management_sdk.models.entity.Entity.from_dictionary(dictionary.get('targetEntity')) if dictionary.get('targetEntity') else None
+        target_entity = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('targetEntity')) if dictionary.get('targetEntity') else None
         mtype = dictionary.get('type')
 
         # Return an object of this model

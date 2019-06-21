@@ -4,13 +4,11 @@
 
 class OracleCloudCredentials(object):
 
-    """Implementation of the 'Oracle Cloud Credentials.' model.
+    """Implementation of the 'OracleCloudCredentials' model.
 
     Specifies the Oracle Cloud Credentials to connect to an Oracle S3
-    Compatible
-    vault account.
-    Oracle Cloud Credentials Region, Access-Key-Id and Secret-Access-Key.
-    Oracle Cloud properties Tenant and Tier Type.
+    Compatible vault account.  Oracle Cloud Credentials Region, Access-Key-Id
+    and Secret-Access-Key. Oracle Cloud properties Tenant and Tier Type.
 
     Attributes:
         access_key_id (string): Specifies access key to connect to Oracle S3
@@ -21,10 +19,10 @@ class OracleCloudCredentials(object):
             S3 Compatible vault account.
         tenant (string): Specifies the tenant which is part of the REST
             endpoints for Oracle S3 compatible vaults.
-        tier_type (TierType3Enum): Specifies the storage class of Oracle
-            vault. OracleTierType specifies the storage class for Oracle.
-            'kOracleTierStandard' indicates a tier type of Oracle properties
-            that requires fast, immediate and frequent access.
+        tier_type (TierTypeOracleCloudCredentialsEnum): Specifies the storage
+            class of Oracle vault. OracleTierType specifies the storage class
+            for Oracle. 'kOracleTierStandard' indicates a tier type of Oracle
+            properties that requires fast, immediate and frequent access.
             'kOracleTierArchive' indicates a tier type of Oracle properties
             that is rarely accesed and preserved for long times.
 

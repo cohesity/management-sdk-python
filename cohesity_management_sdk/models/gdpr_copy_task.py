@@ -2,9 +2,9 @@
 # Copyright 2019 Cohesity Inc.
 
 
-class GDPRCopyTask(object):
+class GdprCopyTask(object):
 
-    """Implementation of the 'GDPR Copy Task.' model.
+    """Implementation of the 'GdprCopyTask' model.
 
     CopyTask defines the copy tasks of a job.
 
@@ -44,7 +44,7 @@ class GDPRCopyTask(object):
                  target_name=None,
                  total_snapshots=None,
                  mtype=None):
-        """Constructor for the GDPRCopyTask class"""
+        """Constructor for the GdprCopyTask class"""
 
         # Initialize members of the class
         self.job_id = job_id

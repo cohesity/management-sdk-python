@@ -13,15 +13,17 @@ import time
 from pyVmomi import vim
 
 from cohesity_management_sdk.cohesity_client import CohesityClient
-from cohesity_management_sdk.models.create_restore_task_request import \
-    CreateRestoreTaskRequest
-from cohesity_management_sdk.models.restore_object import RestoreObject
-from cohesity_management_sdk.models.type_30_enum import Type30Enum
+from cohesity_management_sdk.models.recover_task_request import \
+    RecoverTaskRequest
+from cohesity_management_sdk.models.restore_object_details import \
+    RestoreObjectDetails
+from cohesity_management_sdk.models.type_recover_task_request_enum import \
+    TypeRecoverTaskRequestEnum
 from cohesity_management_sdk.models.vmware_restore_parameters import \
     VmwareRestoreParameters
 from config import VM_CONFIG, CLUSTER_USERNAME, CLUSTER_PASSWORD,\
     CLUSTER_VIP, RESTORE, JOB
-from cohesity_management_sdk.samples.vmware.util import connect_vcenter, \
+from util import connect_vcenter, \
     vcenter_exists, register_vcenter, get_vm_ids, get_obj, is_task_successful
 
 vmware_client = connect_vcenter()
@@ -85,15 +87,15 @@ def recover_vms_in_cohesity():
     Method to recover the VMs in Cohesity.
     :return: None
     """
-    body = CreateRestoreTaskRequest()
+    body = RecoverTaskRequest()
     body.name = RESTORE['name']
-    body.type = Type30Enum.KRECOVERVMS
+    body.type = TypeRecoverTaskRequestEnum.KRECOVERVMS
     body.vmware_parameters = VmwareRestoreParameters()
     body.vmware_parameters.disable_network = False
     body.vmware_parameters.powered_on = True
 
     body.objects = []
-    body.objects.append(RestoreObject())
+    body.objects.append(RestoreObjectDetails())
     body.objects[0].job_id = _get_protection_job_id(JOB['name'])
     try:
         restore_task = cohesity_client.restore_tasks.create_recover_task(body)

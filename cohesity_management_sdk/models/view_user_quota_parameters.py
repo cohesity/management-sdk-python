@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.user_quota_policy
+import cohesity_management_sdk.models.user_quota
 
 class ViewUserQuotaParameters(object):
 
-    """Implementation of the 'View User Quota Parameters.' model.
+    """Implementation of the 'ViewUserQuotaParameters' model.
 
     Specifies the params to create and edit a user quota policy in a view.
 
     Attributes:
-        user_quota_policy (UserQuotaPolicy): Specifies the quota policy
-            applied to a user.
+        user_quota_policy (UserQuota): Specifies the quota policy applied to a
+            user.
         view_name (string): View name of input view.
 
     """
@@ -50,7 +50,7 @@ class ViewUserQuotaParameters(object):
             return None
 
         # Extract variables from the dictionary
-        user_quota_policy = cohesity_management_sdk.models.user_quota_policy.UserQuotaPolicy.from_dictionary(dictionary.get('userQuotaPolicy')) if dictionary.get('userQuotaPolicy') else None
+        user_quota_policy = cohesity_management_sdk.models.user_quota.UserQuota.from_dictionary(dictionary.get('userQuotaPolicy')) if dictionary.get('userQuotaPolicy') else None
         view_name = dictionary.get('viewName')
 
         # Return an object of this model

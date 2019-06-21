@@ -5,7 +5,7 @@ import cohesity_management_sdk.models.alert
 
 class HealthTile(object):
 
-    """Implementation of the 'Health Tile.' model.
+    """Implementation of the 'HealthTile' model.
 
     Health for Dashboard.
 

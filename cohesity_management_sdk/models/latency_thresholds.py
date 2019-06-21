@@ -4,7 +4,7 @@
 
 class LatencyThresholds(object):
 
-    """Implementation of the 'Latency Thresholds.' model.
+    """Implementation of the 'LatencyThresholds' model.
 
     Specifies latency thresholds that trigger throttling for all datastores
     found in the registered Protection Source or specific to one datastore.

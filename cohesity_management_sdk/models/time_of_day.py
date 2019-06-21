@@ -4,7 +4,7 @@
 
 class TimeOfDay(object):
 
-    """Implementation of the 'Time of Day.' model.
+    """Implementation of the 'TimeOfDay' model.
 
     Specifies a time in day with hours and minutes.
 

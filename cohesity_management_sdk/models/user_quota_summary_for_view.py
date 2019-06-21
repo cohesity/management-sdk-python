@@ -5,7 +5,7 @@ import cohesity_management_sdk.models.quota_policy
 
 class UserQuotaSummaryForView(object):
 
-    """Implementation of the 'User Quota Summary For View.' model.
+    """Implementation of the 'UserQuotaSummaryForView' model.
 
     Specifies the user quota summary information/result for a view.
 

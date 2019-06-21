@@ -4,7 +4,7 @@
 
 class AzureProtectionSource(object):
 
-    """Implementation of the 'Azure Protection Source.' model.
+    """Implementation of the 'AzureProtectionSource' model.
 
     Specifies a Protection Source in Azure environment.
 
@@ -75,24 +75,25 @@ class AzureProtectionSource(object):
             account etc.
         tenant_id (string): Specifies Tenant Id of the active directory of
             Azure account.
-        mtype (Type2Enum): Specifies the type of an Azure Protection Source
-            Object such as 'kStorageContainer', 'kVirtualMachine',
-            'kVirtualNetwork', etc. Specifies the type of an Azure source
-            entity. 'kSubscription' indicates a billing unit within Azure
-            account. 'kResourceGroup' indicates a container that holds related
-            resources. 'kVirtualMachine' indicates a Virtual Machine in Azure
-            environment. 'kStorageAccount' represents a collection of storage
-            containers. 'kStorageKey' indicates a key required to access the
-            storage account. 'kStorageContainer' represents a storage
-            container within a storage account. 'kStorageBlob' represents a
-            storage blog within a storage container. 'kStorageResourceGroup'
-            indicates a container that holds related storage resources.
-            'kNetworkSecurityGroup' represents a network security group.
-            'kVirtualNetwork' represents a virtual network.
-            'kNetworkResourceGroup' indicates a container that holds related
-            network resources. 'kSubnet' represents a subnet within the
-            virtual network. 'kComputeOptions' indicates the number of CPU
-            cores and memory size available for a type of a Virtual Machine.
+        mtype (TypeAzureProtectionSourceEnum): Specifies the type of an Azure
+            Protection Source Object such as 'kStorageContainer',
+            'kVirtualMachine', 'kVirtualNetwork', etc. Specifies the type of
+            an Azure source entity. 'kSubscription' indicates a billing unit
+            within Azure account. 'kResourceGroup' indicates a container that
+            holds related resources. 'kVirtualMachine' indicates a Virtual
+            Machine in Azure environment. 'kStorageAccount' represents a
+            collection of storage containers. 'kStorageKey' indicates a key
+            required to access the storage account. 'kStorageContainer'
+            represents a storage container within a storage account.
+            'kStorageBlob' represents a storage blog within a storage
+            container. 'kStorageResourceGroup' indicates a container that
+            holds related storage resources. 'kNetworkSecurityGroup'
+            represents a network security group. 'kVirtualNetwork' represents
+            a virtual network. 'kNetworkResourceGroup' indicates a container
+            that holds related network resources. 'kSubnet' represents a
+            subnet within the virtual network. 'kComputeOptions' indicates the
+            number of CPU cores and memory size available for a type of a
+            Virtual Machine.
 
     """
 

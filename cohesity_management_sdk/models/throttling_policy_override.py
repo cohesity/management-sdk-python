@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.throttling_policy
+import cohesity_management_sdk.models.throttling_policy_parameters
 
 class ThrottlingPolicyOverride(object):
 
-    """Implementation of the 'Throttling Policy Override.' model.
+    """Implementation of the 'ThrottlingPolicyOverride' model.
 
     Specifies throttling policy override for a Datastore in a registered
     entity.
@@ -14,8 +14,8 @@ class ThrottlingPolicyOverride(object):
         datastore_id (long|int): Specifies the Protection Source id of the
             Datastore.
         datastore_name (string): Specifies the display name of the Datastore.
-        throttling_policy (ThrottlingPolicy): Specifies the throttling policy
-            for a registered Protection Source.
+        throttling_policy (ThrottlingPolicyParameters): Specifies the
+            throttling policy for a registered Protection Source.
 
     """
 
@@ -58,7 +58,7 @@ class ThrottlingPolicyOverride(object):
         # Extract variables from the dictionary
         datastore_id = dictionary.get('datastoreId')
         datastore_name = dictionary.get('datastoreName')
-        throttling_policy = cohesity_management_sdk.models.throttling_policy.ThrottlingPolicy.from_dictionary(dictionary.get('throttlingPolicy')) if dictionary.get('throttlingPolicy') else None
+        throttling_policy = cohesity_management_sdk.models.throttling_policy_parameters.ThrottlingPolicyParameters.from_dictionary(dictionary.get('throttlingPolicy')) if dictionary.get('throttlingPolicy') else None
 
         # Return an object of this model
         return cls(datastore_id,

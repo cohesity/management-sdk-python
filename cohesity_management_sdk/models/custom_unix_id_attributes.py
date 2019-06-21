@@ -2,9 +2,9 @@
 # Copyright 2019 Cohesity Inc.
 
 
-class CustomUnixIDAttributes(object):
+class CustomUnixIdAttributes(object):
 
-    """Implementation of the 'Custom Unix ID Attributes.' model.
+    """Implementation of the 'CustomUnixIdAttributes' model.
 
     Specifies the custom attributes when mapping type is set to
     'kCustomAttributes'. It defines the attribute names to derive the mapping
@@ -27,7 +27,7 @@ class CustomUnixIDAttributes(object):
     def __init__(self,
                  gid_attr_name=None,
                  uid_attr_name=None):
-        """Constructor for the CustomUnixIDAttributes class"""
+        """Constructor for the CustomUnixIdAttributes class"""
 
         # Initialize members of the class
         self.gid_attr_name = gid_attr_name

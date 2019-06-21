@@ -4,40 +4,35 @@
 
 class ArchivalTarget(object):
 
-    """Implementation of the 'Archival Target.' model.
+    """Implementation of the 'ArchivalTarget' model.
 
-    Specifies settings about the Archival External Target (such as Tape or
-    AWS).
+    Message that specifies the details about an archival target (such as cloud
+    or tape) where backup snapshots may be archived to.
 
     Attributes:
-        vault_id (long|int): Specifies the id of Archival Vault assigned by
-            the Cohesity Cluster.
-        vault_name (string): Name of the Archival Vault.
-        vault_type (VaultTypeEnum): Specifies the type of the Archival
-            External Target such as 'kCloud', 'kTape' or 'kNas'. 'kCloud'
-            indicates the archival location as Cloud. 'kTape' indicates the
-            archival location as Tape. 'kNas' indicates the archival location
-            as Network Attached Storage (Nas).
+        name (string): The name of the archival target.
+        mtype (int): The type of the archival target.
+        vault_id (long|int): The id of the archival vault.
 
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "vault_id":'vaultId',
-        "vault_name":'vaultName',
-        "vault_type":'vaultType'
+        "name":'name',
+        "mtype":'type',
+        "vault_id":'vaultId'
     }
 
     def __init__(self,
-                 vault_id=None,
-                 vault_name=None,
-                 vault_type=None):
+                 name=None,
+                 mtype=None,
+                 vault_id=None):
         """Constructor for the ArchivalTarget class"""
 
         # Initialize members of the class
+        self.name = name
+        self.mtype = mtype
         self.vault_id = vault_id
-        self.vault_name = vault_name
-        self.vault_type = vault_type
 
 
     @classmethod
@@ -58,13 +53,13 @@ class ArchivalTarget(object):
             return None
 
         # Extract variables from the dictionary
+        name = dictionary.get('name')
+        mtype = dictionary.get('type')
         vault_id = dictionary.get('vaultId')
-        vault_name = dictionary.get('vaultName')
-        vault_type = dictionary.get('vaultType')
 
         # Return an object of this model
-        return cls(vault_id,
-                   vault_name,
-                   vault_type)
+        return cls(name,
+                   mtype,
+                   vault_id)
 
 

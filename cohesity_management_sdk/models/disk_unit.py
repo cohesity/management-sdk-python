@@ -4,7 +4,7 @@
 
 class DiskUnit(object):
 
-    """Implementation of the 'Disk Unit.' model.
+    """Implementation of the 'DiskUnit' model.
 
     Specifies information about a disk unit in a controller.
 

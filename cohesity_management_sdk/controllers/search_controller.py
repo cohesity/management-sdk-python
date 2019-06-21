@@ -8,7 +8,7 @@ from cohesity_management_sdk.controllers.base_controller import BaseController
 from cohesity_management_sdk.http.auth.auth_manager import AuthManager
 from cohesity_management_sdk.models.protection_source_response import ProtectionSourceResponse
 from cohesity_management_sdk.models.protection_run_response import ProtectionRunResponse
-from cohesity_management_sdk.exceptions.error_error_exception import ErrorErrorException
+from cohesity_management_sdk.exceptions.request_error_error_exception import RequestErrorErrorException
 
 class SearchController(BaseController):
 
@@ -19,25 +19,72 @@ class SearchController(BaseController):
         self.logger = logging.getLogger(__name__)
 
     def search_protection_sources(self,
+                                  search_string=None,
+                                  protection_status=None,
+                                  environments=None,
                                   last_protection_job_run_status=None,
                                   physical_server_host_types=None,
                                   registered_source_uuids=None,
                                   start_index=None,
-                                  page_count=None,
-                                  search_string=None,
-                                  protection_status=None,
-                                  environments=None):
+                                  page_count=None):
         """Does a GET request to /public/search/protectionSources.
 
         Returns list of all the objects along with the protection status
         information.
 
         Args:
+            search_string (string, optional): Specifies the search string to
+                query the name of the Protection Source or the name of the job
+                protecting a Protection Source.
+            protection_status (list of string, optional): Specifies the
+                protection status of the object. If specified, the objects are
+                filtered based on current protection status of that object on
+                the cluster. Possible values that can be passed are
+                "protected", "unprotected" or both. If not specified, all the
+                objects are returned irrespective of protection status of the
+                object.
+            environments (list of EnvironmentSearchProtectionSourcesEnum,
+                optional): Specifies the environment type by which Protection
+                Sources will be filtered. Supported environment types such as
+                'kView', 'kSQL', 'kVMware', etc. NOTE: 'kPuppeteer' refers to
+                Cohesity's Remote Adapter. 'kVMware' indicates the VMware
+                Protection Source environment. 'kHyperV' indicates the HyperV
+                Protection Source environment. 'kSQL' indicates the SQL
+                Protection Source environment. 'kView' indicates the View
+                Protection Source environment. 'kPuppeteer' indicates the
+                Cohesity's Remote Adapter. 'kPhysical' indicates the physical
+                Protection Source environment. 'kPure' indicates the Pure
+                Storage Protection Source environment. 'kAzure' indicates the
+                Microsoft's Azure Protection Source environment. 'kNetapp'
+                indicates the Netapp Protection Source environment. 'kAgent'
+                indicates the Agent Protection Source environment.
+                'kGenericNas' indicates the Genreric Network Attached Storage
+                Protection Source environment. 'kAcropolis' indicates the
+                Acropolis Protection Source environment. 'kPhsicalFiles'
+                indicates the Physical Files Protection Source environment.
+                'kIsilon' indicates the Dell EMC's Isilon Protection Source
+                environment. 'kKVM' indicates the KVM Protection Source
+                environment. 'kAWS' indicates the AWS Protection Source
+                environment. 'kExchange' indicates the Exchange Protection
+                Source environment. 'kHyperVVSS' indicates the HyperV VSS
+                Protection Source environment. 'kOracle' indicates the Oracle
+                Protection Source environment. 'kGCP' indicates the Google
+                Cloud Platform Protection Source environment. 'kFlashBlade'
+                indicates the Flash Blade Protection Source environment.
+                'kAWSNative' indicates the AWS Native Protection Source
+                environment. 'kVCD' indicates the VMware's Virtual cloud
+                Director Protection Source environment. 'kO365' indicates the
+                Office 365 Protection Source environment. 'kO365Outlook'
+                indicates Office 365 outlook Protection Source environment.
+                'kHyperFlex' indicates the Hyper Flex Protection Source
+                environment. 'kGCPNative' indicates the GCP Native Protection
+                Source environment. 'kAzureNative' indicates the Azure Native
+                Protection Source environment.
             last_protection_job_run_status (list of int, optional): Specifies
                 the last Protection Job run status of the object. If
                 specified, objects will be filtered based on last job run
                 status.
-            physical_server_host_types (list of PhysicalServerHostTypesEnum,
+            physical_server_host_types (list of PhysicalServerHostTypeEnum,
                 optional): Specifies physical server host OS type. If
                 specified, the physical server objects will be filtered based
                 on OS type of the server. 'kLinux' indicates the Linux
@@ -58,53 +105,6 @@ class SearchController(BaseController):
             page_count (int, optional): Specifies the number of items to
                 return in the response for pagination purposes. Default the
                 pageCount to MaxSearchResponseSize if this is unspecified.
-            search_string (string, optional): Specifies the search string to
-                query the name of the Protection Source or the name of the job
-                protecting a Protection Source.
-            protection_status (list of string, optional): Specifies the
-                protection status of the object. If specified, the objects are
-                filtered based on current protection status of that object on
-                the cluster. Possible values that can be passed are
-                "protected", "unprotected" or both. If not specified, all the
-                objects are returned irrespective of protection status of the
-                object.
-            environments (list of Environments7Enum, optional): Specifies the
-                environment type by which Protection Sources will be filtered.
-                Supported environment types such as 'kView', 'kSQL',
-                'kVMware', etc. NOTE: 'kPuppeteer' refers to Cohesity's Remote
-                Adapter. 'kVMware' indicates the VMware Protection Source
-                environment. 'kHyperV' indicates the HyperV Protection Source
-                environment. 'kSQL' indicates the SQL Protection Source
-                environment. 'kView' indicates the View Protection Source
-                environment. 'kPuppeteer' indicates the Cohesity's Remote
-                Adapter. 'kPhysical' indicates the physical Protection Source
-                environment. 'kPure' indicates the Pure Storage Protection
-                Source environment. 'kAzure' indicates the Microsoft's Azure
-                Protection Source environment. 'kNetapp' indicates the Netapp
-                Protection Source environment. 'kAgent' indicates the Agent
-                Protection Source environment. 'kGenericNas' indicates the
-                Genreric Network Attached Storage Protection Source
-                environment. 'kAcropolis' indicates the Acropolis Protection
-                Source environment. 'kPhsicalFiles' indicates the Physical
-                Files Protection Source environment. 'kIsilon' indicates the
-                Dell EMC's Isilon Protection Source environment. 'kKVM'
-                indicates the KVM Protection Source environment. 'kAWS'
-                indicates the AWS Protection Source environment. 'kExchange'
-                indicates the Exchange Protection Source environment.
-                'kHyperVVSS' indicates the HyperV VSS Protection Source
-                environment. 'kOracle' indicates the Oracle Protection Source
-                environment. 'kGCP' indicates the Google Cloud Platform
-                Protection Source environment. 'kFlashBlade' indicates the
-                Flash Blade Protection Source environment. 'kAWSNative'
-                indicates the AWS Native Protection Source environment. 'kVCD'
-                indicates the VMware's Virtual cloud Director Protection
-                Source environment. 'kO365' indicates the Office 365
-                Protection Source environment. 'kO365Outlook' indicates Office
-                365 outlook Protection Source environment. 'kHyperFlex'
-                indicates the Hyper Flex Protection Source environment.
-                'kGCPNative' indicates the GCP Native Protection Source
-                environment. 'kAzureNative' indicates the Azure Native
-                Protection Source environment.
 
         Returns:
             list of ProtectionSourceResponse: Response from the API. Success
@@ -125,14 +125,14 @@ class SearchController(BaseController):
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
+                'searchString': search_string,
+                'protectionStatus': protection_status,
+                'environments': environments,
                 'lastProtectionJobRunStatus': last_protection_job_run_status,
                 'physicalServerHostTypes': physical_server_host_types,
                 'registeredSourceUuids': registered_source_uuids,
                 'startIndex': start_index,
-                'pageCount': page_count,
-                'searchString': search_string,
-                'protectionStatus': protection_status,
-                'environments': environments
+                'pageCount': page_count
             }
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)
@@ -153,7 +153,7 @@ class SearchController(BaseController):
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for search_protection_sources.')
             if _context.response.status_code == 0:
-                raise ErrorErrorException('Error', _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
@@ -168,8 +168,7 @@ class SearchController(BaseController):
         """Does a GET request to /public/search/protectionRuns.
 
         Returns the information of latest snapshot of a particular object
-        across
-        all snapshot target locations.
+        across all snapshot target locations.
 
         Args:
             uuid (string): Specifies the unique id of the Protection Source.
@@ -218,7 +217,7 @@ class SearchController(BaseController):
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for search_protection_runs.')
             if _context.response.status_code == 0:
-                raise ErrorErrorException('Error', _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type

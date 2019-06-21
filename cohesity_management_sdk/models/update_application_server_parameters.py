@@ -4,7 +4,7 @@
 
 class UpdateApplicationServerParameters(object):
 
-    """Implementation of the 'Update Application Server Parameters.' model.
+    """Implementation of the 'UpdateApplicationServerParameters' model.
 
     Specifies the parameters required to modify the parameters of previously
     registered Application Servers in a Protection Source.

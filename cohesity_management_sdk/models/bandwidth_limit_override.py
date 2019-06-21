@@ -1,21 +1,21 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.time_period
+import cohesity_management_sdk.models.time_of_a_week
 
 class BandwidthLimitOverride(object):
 
-    """Implementation of the 'Bandwidth Limit Override' model.
+    """Implementation of the 'BandwidthLimitOverride' model.
 
-    Specifies bandwidth limit override value to be enforced during
-    the specified daily time period for the specified days of the week.
+    Specifies bandwidth limit override value to be enforced during the
+    specified daily time period for the specified days of the week.
 
     Attributes:
         bytes_per_second (long|int): Specifies the value to override the
             regular maximum bandwidth rate (rateLimitBytesPerSec) for the
             specified time period. The value is specified in bytes per
             second.
-        time_periods (TimePeriod): Specifies a time period by specifying a
+        time_periods (TimeOfAWeek): Specifies a time period by specifying a
             single daily time period and one or more days of the week, for
             example 9 AM - 5 PM on Monday, Wednesday or Friday. If different
             time periods are required on different days, then multiple
@@ -58,7 +58,7 @@ class BandwidthLimitOverride(object):
 
         # Extract variables from the dictionary
         bytes_per_second = dictionary.get('bytesPerSecond')
-        time_periods = cohesity_management_sdk.models.time_period.TimePeriod.from_dictionary(dictionary.get('timePeriods')) if dictionary.get('timePeriods') else None
+        time_periods = cohesity_management_sdk.models.time_of_a_week.TimeOfAWeek.from_dictionary(dictionary.get('timePeriods')) if dictionary.get('timePeriods') else None
 
         # Return an object of this model
         return cls(bytes_per_second,

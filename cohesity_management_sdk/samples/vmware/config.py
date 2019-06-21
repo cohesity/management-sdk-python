@@ -6,7 +6,7 @@
 
 from datetime import datetime
 
-VM_CONFIG = {'prefix_name': 'vmware-vms',
+VM_CONFIG = {'prefix_name': 'App-tier-vms',
              'memory': 1024,
              'num_vcpu': 1,
              'guest_id':'windows9Server64Guest',
@@ -18,7 +18,7 @@ VM_CONFIG = {'prefix_name': 'vmware-vms',
              'num_vms': 3,
              }
 
-CLUSTER_USERNAME = 'cluster_admin'
+CLUSTER_USERNAME = 'cluster_username'
 CLUSTER_PASSWORD = 'cluster_password'
 CLUSTER_VIP = 'prod-cluster.cohesity.com'
 VCENTER_IP = 'vcenter_ip'
@@ -26,7 +26,7 @@ VCENTER_USERNAME = 'administrator'
 VCENTER_PASSWORD = 'vcenter_password'
 DEFAULT_PORT = 443
 
-JOB = {'name':'vcenter-automation-backup',
+JOB = {'name':'Protect-App-Tier',
        'policy_name': 'Bronze',
        'run_now': True
        }

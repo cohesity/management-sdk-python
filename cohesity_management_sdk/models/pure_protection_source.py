@@ -6,19 +6,19 @@ import cohesity_management_sdk.models.pure_volume
 
 class PureProtectionSource(object):
 
-    """Implementation of the 'Pure Protection Source.' model.
+    """Implementation of the 'PureProtectionSource' model.
 
     Specifies a Protection Source in a Pure environment.
 
     Attributes:
         name (string): Specifies a unique name of the Protection Source
         storage_array (PureStorageArray): Specifies a Pure Storage Array.
-        mtype (Type16Enum): Specifies the type of managed Object in a pure
-            Protection Source like a kStorageArray or kVolume. Examples of
-            Pure Objects include 'kStorageArray' and 'kVolume'.
-            'kStorageArray' indicates that entire pure storage array is being
-            protected. 'kVolume' indicates that volume within the array is
-            being protected.
+        mtype (TypePureProtectionSourceEnum): Specifies the type of managed
+            Object in a pure Protection Source like a kStorageArray or
+            kVolume. Examples of Pure Objects include 'kStorageArray' and
+            'kVolume'. 'kStorageArray' indicates that entire pure storage
+            array is being protected. 'kVolume' indicates that volume within
+            the array is being protected.
         volume (PureVolume): Specifies a Pure Volume in a Pure Storage Array.
 
     """

@@ -5,7 +5,7 @@ import cohesity_management_sdk.models.quota_policy
 
 class UpdateUserQuotaSettingsForView(object):
 
-    """Implementation of the 'Update User Quota Settings For View.' model.
+    """Implementation of the 'UpdateUserQuotaSettingsForView' model.
 
     Specifies the parameters to update user quota metadata in a view.
 

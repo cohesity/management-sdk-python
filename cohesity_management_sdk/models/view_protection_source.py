@@ -1,24 +1,24 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.unique_global_id
+import cohesity_management_sdk.models.universal_id
 
 class ViewProtectionSource(object):
 
-    """Implementation of the 'View Protection Source.' model.
+    """Implementation of the 'ViewProtectionSource' model.
 
     Specifies a Protection Source in a View environment.
 
     Attributes:
-        id (UniqueGlobalId): Specifies a unique id of a Protection Source for
-            a View. The id is unique across Cohesity Clusters.
+        id (UniversalId): Specifies a unique id of a Protection Source for a
+            View. The id is unique across Cohesity Clusters.
         name (string): Specifies a human readable name of the Protection
             Source of a View.
-        mtype (Type18Enum): Specifies the type of managed Object in a View
-            Protection Source environment. Examples of View Objects include
-            'kViewBox' or 'kView'. 'kViewBox' indicates Storage Domain as a
-            Protection Source type. 'kView' indicates View as a Protection
-            Source type.
+        mtype (TypeViewProtectionSourceEnum): Specifies the type of managed
+            Object in a View Protection Source environment. Examples of View
+            Objects include 'kViewBox' or 'kView'. 'kViewBox' indicates
+            Storage Domain as a Protection Source type. 'kView' indicates View
+            as a Protection Source type.
 
     """
 
@@ -59,7 +59,7 @@ class ViewProtectionSource(object):
             return None
 
         # Extract variables from the dictionary
-        id = cohesity_management_sdk.models.unique_global_id.UniqueGlobalId.from_dictionary(dictionary.get('id')) if dictionary.get('id') else None
+        id = cohesity_management_sdk.models.universal_id.UniversalId.from_dictionary(dictionary.get('id')) if dictionary.get('id') else None
         name = dictionary.get('name')
         mtype = dictionary.get('type')
 

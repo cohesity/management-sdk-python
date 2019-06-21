@@ -6,9 +6,9 @@ from cohesity_management_sdk.api_helper import APIHelper
 from cohesity_management_sdk.configuration import Configuration
 from cohesity_management_sdk.controllers.base_controller import BaseController
 from cohesity_management_sdk.http.auth.auth_manager import AuthManager
-from cohesity_management_sdk.models.cohesity_cluster import CohesityCluster
-from cohesity_management_sdk.models.basic_cohesity_cluster_information import BasicCohesityClusterInformation
-from cohesity_management_sdk.exceptions.error_error_exception import ErrorErrorException
+from cohesity_management_sdk.models.cluster import Cluster
+from cohesity_management_sdk.models.basic_cluster_info import BasicClusterInfo
+from cohesity_management_sdk.exceptions.request_error_error_exception import RequestErrorErrorException
 
 class ClusterController(BaseController):
 
@@ -25,10 +25,10 @@ class ClusterController(BaseController):
         Returns the updated Cluster configuration.
 
         Args:
-            body (UpdateCluster, optional): Update Cluster Parameter.
+            body (UpdateClusterParams, optional): Update Cluster Parameter.
 
         Returns:
-            CohesityCluster: Response from the API. Success
+            Cluster: Response from the API. Success
 
         Raises:
             APIException: When an error occurs while fetching the data from
@@ -63,11 +63,11 @@ class ClusterController(BaseController):
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for update_cluster.')
             if _context.response.status_code == 0:
-                raise ErrorErrorException('Error', _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, CohesityCluster.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body, Cluster.from_dictionary)
 
         except Exception as e:
             self.logger.error(e, exc_info = True)
@@ -84,7 +84,7 @@ class ClusterController(BaseController):
                 the Cohesity Cluster.
 
         Returns:
-            CohesityCluster: Response from the API. Successful Response
+            Cluster: Response from the API. Successful Response
 
         Raises:
             APIException: When an error occurs while fetching the data from
@@ -123,11 +123,11 @@ class ClusterController(BaseController):
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_cluster.')
             if _context.response.status_code == 0:
-                raise ErrorErrorException('Error', _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, CohesityCluster.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body, Cluster.from_dictionary)
 
         except Exception as e:
             self.logger.error(e, exc_info = True)
@@ -136,15 +136,13 @@ class ClusterController(BaseController):
     def get_basic_cluster_info(self):
         """Does a GET request to /public/basicClusterInfo.
 
-        All Active Directory domains that are currently joined to the
-        Cohesity
+        All Active Directory domains that are currently joined to the Cohesity
         Cluster are returned. In addition, the default LOCAL domain on the
         Cohesity Cluster is returned as the first element of the domains array
-        in
-        the response.
+        in the response.
 
         Returns:
-            BasicCohesityClusterInformation: Response from the API. Success
+            BasicClusterInfo: Response from the API. Success
 
         Raises:
             APIException: When an error occurs while fetching the data from
@@ -172,17 +170,16 @@ class ClusterController(BaseController):
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_basic_cluster_info.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
             _context = self.execute_request(_request, name = 'get_basic_cluster_info')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_basic_cluster_info.')
             if _context.response.status_code == 0:
-                raise ErrorErrorException('Error', _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, BasicCohesityClusterInformation.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body, BasicClusterInfo.from_dictionary)
 
         except Exception as e:
             self.logger.error(e, exc_info = True)

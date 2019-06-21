@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.entity
+import cohesity_management_sdk.models.entity_proto
 
 class BackupJobProtoBackupSource(object):
 
@@ -10,12 +10,12 @@ class BackupJobProtoBackupSource(object):
     TODO: type model description here.
 
     Attributes:
-        entities (list of Entity): Source entities. NOTE: Multiple sources can
-            be specified here for non-leaf-level entities in the hierarchy.
-            The sources obtained after expanding these will be intersected
-            among each other to form the final set of sources. e.g. this can
-            be used to backup only those VMs that have both the tags 'SQL' and
-            '3hrs'.
+        entities (list of EntityProto): Source entities. NOTE: Multiple
+            sources can be specified here for non-leaf-level entities in the
+            hierarchy. The sources obtained after expanding these will be
+            intersected among each other to form the final set of sources.
+            e.g. this can be used to backup only those VMs that have both the
+            tags 'SQL' and '3hrs'.
 
     """
 
@@ -54,7 +54,7 @@ class BackupJobProtoBackupSource(object):
         if dictionary.get('entities') != None:
             entities = list()
             for structure in dictionary.get('entities'):
-                entities.append(cohesity_management_sdk.models.entity.Entity.from_dictionary(structure))
+                entities.append(cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(structure))
 
         # Return an object of this model
         return cls(entities)

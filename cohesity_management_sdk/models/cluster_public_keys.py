@@ -4,7 +4,7 @@
 
 class ClusterPublicKeys(object):
 
-    """Implementation of the 'Cluster Public Keys.' model.
+    """Implementation of the 'ClusterPublicKeys' model.
 
     Specifies public keys stored on the Cluster.
 

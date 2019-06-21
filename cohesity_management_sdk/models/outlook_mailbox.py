@@ -1,20 +1,20 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.restore_object
+import cohesity_management_sdk.models.restore_object_details
 import cohesity_management_sdk.models.outlook_folder
 
 class OutlookMailbox(object):
 
-    """Implementation of the 'Outlook Mailbox.' model.
+    """Implementation of the 'OutlookMailbox' model.
 
     Specifies the Outlook mailbox with restore details to support full or
     partial recovery.
 
     Attributes:
-        mailbox_object (RestoreObject): Specifies an object to recover or
-            clone or an object to restore files and folders from. A VM object
-            can be recovered or cloned. A View object can be cloned. To
+        mailbox_object (RestoreObjectDetails): Specifies an object to recover
+            or clone or an object to restore files and folders from. A VM
+            object can be recovered or cloned. A View object can be cloned. To
             specify a particular snapshot, you must specify a jobRunId and a
             startTimeUsecs. If jobRunId and startTimeUsecs are not specified,
             the last Job Run of the specified Job is used.
@@ -63,7 +63,7 @@ class OutlookMailbox(object):
             return None
 
         # Extract variables from the dictionary
-        mailbox_object = cohesity_management_sdk.models.restore_object.RestoreObject.from_dictionary(dictionary.get('mailboxObject')) if dictionary.get('mailboxObject') else None
+        mailbox_object = cohesity_management_sdk.models.restore_object_details.RestoreObjectDetails.from_dictionary(dictionary.get('mailboxObject')) if dictionary.get('mailboxObject') else None
         outlook_folder_list = None
         if dictionary.get('outlookFolderList') != None:
             outlook_folder_list = list()

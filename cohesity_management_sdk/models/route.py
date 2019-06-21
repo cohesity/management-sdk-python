@@ -4,7 +4,7 @@
 
 class Route(object):
 
-    """Implementation of the 'Route.' model.
+    """Implementation of the 'Route' model.
 
     Specifies the settings of a Static Route.
 

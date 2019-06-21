@@ -4,24 +4,24 @@
 
 class AzureCloudCredentials(object):
 
-    """Implementation of the 'Azure Cloud Credentials.' model.
+    """Implementation of the 'AzureCloudCredentials' model.
 
-    Specifies the cloud credentials to connect to a Microsoft
-    Azure service account.
+    Specifies the cloud credentials to connect to a Microsoft Azure service
+    account.
 
     Attributes:
         storage_access_key (string): Specifies the access key to use when
             accessing a storage tier in a Azure cloud service.
         storage_account_name (string): Specifies the account name to use when
             accessing a storage tier in a Azure cloud service.
-        tier_type (TierType1Enum): Specifies the storage class of Azure.
-            AzureTierType specifies the storage class for Azure.
-            'kAzureTierHot' indicates a tier type of Azure properties that is
-            accessed frequently. 'kAzureTierCool' indicates a tier type of
-            Azure properties that is accessed less frequently, and stored for
-            at least 30 days. 'kAzureTierArchive' indicates a tier type of
-            Azure properties that is accessed rarely and stored for at least
-            180 days.
+        tier_type (TierTypeAzureCloudCredentialsEnum): Specifies the storage
+            class of Azure. AzureTierType specifies the storage class for
+            Azure. 'kAzureTierHot' indicates a tier type of Azure properties
+            that is accessed frequently. 'kAzureTierCool' indicates a tier
+            type of Azure properties that is accessed less frequently, and
+            stored for at least 30 days. 'kAzureTierArchive' indicates a tier
+            type of Azure properties that is accessed rarely and stored for at
+            least 180 days.
 
     """
 

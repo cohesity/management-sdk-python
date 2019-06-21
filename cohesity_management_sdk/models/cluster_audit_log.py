@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.tenant_details
+import cohesity_management_sdk.models.tenant
 
 class ClusterAuditLog(object):
 
-    """Implementation of the 'Cluster Audit Log.' model.
+    """Implementation of the 'ClusterAuditLog' model.
 
-    Specifies information about a single Cluster audit log.
-    When an action (such as pausing a Protection Job) occurs, an audit log is
-    generated that provides details about the action.
+    Specifies information about a single Cluster audit log. When an action
+    (such as pausing a Protection Job) occurs, an audit log is generated that
+    provides details about the action.
 
     Attributes:
         action (string): Specifies the action that caused the log to be
@@ -32,10 +32,10 @@ class ClusterAuditLog(object):
             impersonation.
         new_record (string): Specifies the record after the action is
             invoked.
-        original_tenant (TenantDetails): Specifies details about a tenant.
+        original_tenant (Tenant): Specifies details about a tenant.
         previous_record (string): Specifies the record before the action is
             invoked.
-        tenant (TenantDetails): Specifies details about a tenant.
+        tenant (Tenant): Specifies details about a tenant.
         timestamp_usecs (long|int): Specifies the time when the log was
             generated. The time is specified using a Unix epoch Timestamp (in
             microseconds).
@@ -123,9 +123,9 @@ class ClusterAuditLog(object):
         human_timestamp = dictionary.get('humanTimestamp')
         impersonation = dictionary.get('impersonation')
         new_record = dictionary.get('newRecord')
-        original_tenant = cohesity_management_sdk.models.tenant_details.TenantDetails.from_dictionary(dictionary.get('originalTenant')) if dictionary.get('originalTenant') else None
+        original_tenant = cohesity_management_sdk.models.tenant.Tenant.from_dictionary(dictionary.get('originalTenant')) if dictionary.get('originalTenant') else None
         previous_record = dictionary.get('previousRecord')
-        tenant = cohesity_management_sdk.models.tenant_details.TenantDetails.from_dictionary(dictionary.get('tenant')) if dictionary.get('tenant') else None
+        tenant = cohesity_management_sdk.models.tenant.Tenant.from_dictionary(dictionary.get('tenant')) if dictionary.get('tenant') else None
         timestamp_usecs = dictionary.get('timestampUsecs')
         user_name = dictionary.get('userName')
 

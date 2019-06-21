@@ -6,10 +6,9 @@ class Subnet(object):
 
     """Implementation of the 'Subnet' model.
 
-    Defines a Subnet (Subnetwork).
-    The netmask can be specified by setting netmaskBits or netmaskIp4.
-    The netmask can only be set using netmaskIp4 if the IP address
-    is an IPv4 address.
+    Defines a Subnet (Subnetwork). The netmask can be specified by setting
+    netmaskBits or netmaskIp4. The netmask can only be set using netmaskIp4 if
+    the IP address is an IPv4 address.
 
     Attributes:
         component (string): Component that has reserved the subnet.

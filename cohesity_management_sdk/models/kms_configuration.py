@@ -2,9 +2,9 @@
 # Copyright 2019 Cohesity Inc.
 
 
-class KMSConfiguration(object):
+class KmsConfiguration(object):
 
-    """Implementation of the 'KMS Configuration' model.
+    """Implementation of the 'KmsConfiguration' model.
 
     Specifies the parameters for KMS configuration.
 
@@ -47,7 +47,7 @@ class KMSConfiguration(object):
                  server_name=None,
                  server_port=None,
                  server_type=None):
-        """Constructor for the KMSConfiguration class"""
+        """Constructor for the KmsConfiguration class"""
 
         # Initialize members of the class
         self.ca_certificate = ca_certificate

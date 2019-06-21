@@ -4,7 +4,7 @@
 
 class ContinuousSchedule(object):
 
-    """Implementation of the 'Continuous Schedule.' model.
+    """Implementation of the 'ContinuousSchedule' model.
 
     Specifies the time interval between two Job Runs of a continuous backup
     schedule and any blackout periods when new Job Runs should NOT be

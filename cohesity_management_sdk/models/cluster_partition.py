@@ -5,7 +5,7 @@ import cohesity_management_sdk.models.vlan
 
 class ClusterPartition(object):
 
-    """Implementation of the 'Cluster Partition.' model.
+    """Implementation of the 'ClusterPartition' model.
 
     Provides details about a Cluster Partition.
 
@@ -23,7 +23,7 @@ class ClusterPartition(object):
         vlan_ips (list of string): Array of VLAN IPs.  Specifies a list of
             VLAN IP Addresses that route network traffic within certain VLANs
             to the Cluster Partition.
-        vlans (list of VLAN): Array of VLANs.  Specifies a list of VLANs for
+        vlans (list of Vlan): Array of VLANs.  Specifies a list of VLANs for
             the Cluster Partition.
 
     """
@@ -87,7 +87,7 @@ class ClusterPartition(object):
         if dictionary.get('vlans') != None:
             vlans = list()
             for structure in dictionary.get('vlans'):
-                vlans.append(cohesity_management_sdk.models.vlan.VLAN.from_dictionary(structure))
+                vlans.append(cohesity_management_sdk.models.vlan.Vlan.from_dictionary(structure))
 
         # Return an object of this model
         return cls(host_name,

@@ -7,10 +7,10 @@ import argparse
 import time
 
 from cohesity_management_sdk.cohesity_client import CohesityClient
-from cohesity_management_sdk.models.protection_run_parameters import ProtectionRunParameters
-from cohesity_management_sdk.models.run_type_2_enum import RunType2Enum
-from cohesity_management_sdk.models.run_status_enum import RunStatusEnum
-
+from cohesity_management_sdk.models.protection_job_request_body import ProtectionJobRequestBody
+from cohesity_management_sdk.models.run_type_enum import RunTypeEnum
+from cohesity_management_sdk.models.status_source_backup_status_enum import \
+    StatusSourceBackupStatusEnum
 
 CLUSTER_USERNAME = 'cluster_username'
 CLUSTER_PASSWORD = 'cluster_password'
@@ -51,8 +51,8 @@ class ProtectionJobs(object):
             print ("Protection Job with name: %s doesn't exist" % job_name)
             exit(0)
 
-        req_body = ProtectionRunParameters()
-        req_body.run_type = RunType2Enum.KREGULAR
+        req_body = ProtectionJobRequestBody()
+        req_body.run_type = RunTypeEnum.KREGULAR
         self.jobs_controller.create_run_protection_job(id=job_id, body=req_body)
 
         # Get the status of this Job run.
@@ -64,9 +64,11 @@ class ProtectionJobs(object):
                                                             num_runs=1)[0]
         else:
             jresp = jresp[0]
-        if jresp.backup_run.status == RunStatusEnum.KSUCCESS:
+        if jresp.backup_run.status == StatusSourceBackupStatusEnum.KSUCCESS \
+                or jresp.backup_run.status == \
+                StatusSourceBackupStatusEnum.KACCEPTED:
             print ("Protection Job %s started successfully" % job_name)
-        elif jresp.backup_run.status == RunStatusEnum.KERROR:
+        elif jresp.backup_run.status == StatusSourceBackupStatusEnum.KFAILURE:
             print ("Protection Job %s failed." % job_name)
 
 
@@ -74,7 +76,7 @@ def main(args):
     cohesity_client = CohesityClient(cluster_vip=CLUSTER_VIP,
                                      username=CLUSTER_USERNAME,
                                      password=CLUSTER_PASSWORD,
-				     domain=DOMAIN)
+				                     domain=DOMAIN)
     pj = ProtectionJobs(cohesity_client)
     pj.run_job(args.job_name)
 

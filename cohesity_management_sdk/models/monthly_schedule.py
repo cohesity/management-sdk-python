@@ -4,18 +4,17 @@
 
 class MonthlySchedule(object):
 
-    """Implementation of the 'Monthly Schedule.' model.
+    """Implementation of the 'MonthlySchedule' model.
 
-    Specifies a monthly backup schedule by specifying a day in the week
-    and a week in the month.
-    For example, if day is set to 'kMonday' and dayCount is set
-    to 'kThird', a Job Run is started on the third Monday of every month.
+    Specifies a monthly backup schedule by specifying a day in the week and a
+    week in the month. For example, if day is set to 'kMonday' and dayCount is
+    set to 'kThird', a Job Run is started on the third Monday of every month.
 
     Attributes:
-        day (Day3Enum): Specifies the day of the week (such as 'kMonday') to
-            start the Job Run. Used with day count to define the day in the
-            month to start the Job Run. Specifies a day in a week such as
-            'kSunday', 'kMonday', etc.
+        day (DayMonthlyScheduleEnum): Specifies the day of the week (such as
+            'kMonday') to start the Job Run. Used with day count to define the
+            day in the month to start the Job Run. Specifies a day in a week
+            such as 'kSunday', 'kMonday', etc.
         day_count (DayCountEnum): Specifies the day count in the month (such
             as 'kThird') to start the Job Run. Used in combination with day to
             define the day in the month to start the Job Run. Specifies the

@@ -4,7 +4,7 @@
 
 class CapacityByTier(object):
 
-    """Implementation of the 'Capacity By Tier.' model.
+    """Implementation of the 'CapacityByTier' model.
 
     CapacityByTier provides the physical capacity in bytes of each storage
     tier.

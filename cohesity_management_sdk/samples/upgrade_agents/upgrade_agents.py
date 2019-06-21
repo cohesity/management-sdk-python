@@ -9,16 +9,11 @@
 # Usage: python upgrade_agents.py
 # Fill in the cluster credentials below:
 
-CLUSTER_VIP = 'cluster-vip'
-CLUSTER_USERNAME = 'username'
-CLUSTER_PASSWORD = 'password'
-CLUSTER_DOMAIN = 'domain'
-AGENT_PARALLEL_UPGRADES = 10
-
 from cohesity_management_sdk.cohesity_client import CohesityClient
 from cohesity_management_sdk.exceptions.api_exception import APIException
-from cohesity_management_sdk.models.environments_2_enum import Environments2Enum
-from cohesity_management_sdk.models.upgrade_physical_server_agents_request import UpgradePhysicalServerAgentsRequest
+from cohesity_management_sdk.models.environment_enum import EnvironmentEnum
+from cohesity_management_sdk.models.upgrade_physical_server_agents import \
+    UpgradePhysicalServerAgents
 
 try:
     cohesity_client = CohesityClient(cluster_vip=CLUSTER_VIP,
@@ -28,6 +23,14 @@ try:
 except APIException as ex:
     print("Unable to initialze the client due to : %s " % ex.context)
     SystemExit
+    
+CLUSTER_USERNAME = 'cluster_username'
+CLUSTER_PASSWORD = 'cluster_password'
+CLUSTER_VIP = 'prod-cluster.cohesity.com'
+DOMAIN = 'LOCAL'
+
+
+AGENT_PARALLEL_UPGRADES = 10
 
 def get_tenants():
     """
@@ -49,7 +52,8 @@ def _get_agents(tenant=None, agent_dict=None):
     try:
         resp_agents = cohesity_client.protection_sources.list_protection_sources(
                               tenant_ids=tenant,
-                              environments=Environments2Enum.KPHYSICAL)
+                              environments=EnvironmentEnum.KPHYSICAL)
+
     except APIException as ex:
         raise SystemExit("Unable to get agent list: %s" %
                          ex.context.response.raw_body)
@@ -80,7 +84,7 @@ def get_agents(tenant_list):
     return agent_dict
 
 def _upgrade_agents(temp_upgrade_list):
-    body = UpgradePhysicalServerAgentsRequest()
+    body = UpgradePhysicalServerAgents()
     body.agent_ids = temp_upgrade_list
     try:
         result = cohesity_client.protection_sources \

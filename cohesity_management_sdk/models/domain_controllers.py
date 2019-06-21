@@ -4,7 +4,7 @@
 
 class DomainControllers(object):
 
-    """Implementation of the 'Domain Controllers.' model.
+    """Implementation of the 'DomainControllers' model.
 
     Domain Controllers for a domain of an Active Directory domain.
 

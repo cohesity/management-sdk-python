@@ -4,7 +4,7 @@
 
 class GranularityBucket(object):
 
-    """Implementation of the 'Granularity Bucket.' model.
+    """Implementation of the 'GranularityBucket' model.
 
     Message that specifies the frequency granularity at which to copy the
     snapshots from a backup job's runs.

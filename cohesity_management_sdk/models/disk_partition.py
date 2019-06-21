@@ -4,7 +4,7 @@
 
 class DiskPartition(object):
 
-    """Implementation of the 'Disk Partition.' model.
+    """Implementation of the 'DiskPartition' model.
 
     Specifies information about each partition in a physical disk.
 

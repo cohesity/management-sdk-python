@@ -9,10 +9,9 @@ import cohesity_management_sdk.models.user_quota_and_usage
 
 class ViewUserQuotas(object):
 
-    """Implementation of the 'View User Quotas.' model.
+    """Implementation of the 'ViewUserQuotas' model.
 
-    Specifies the Result parameters for all user quotas
-    of a view.
+    Specifies the Result parameters for all user quotas of a view.
 
     Attributes:
         cookie (string): This cookie can be used in the succeeding call to

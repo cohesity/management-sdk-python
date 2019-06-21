@@ -4,7 +4,7 @@
 
 class FlashBladeNetworkInterface(object):
 
-    """Implementation of the 'Flash Blade Network Interface.' model.
+    """Implementation of the 'FlashBladeNetworkInterface' model.
 
     Specifies network interface detail of a Flash Blade Storage Array.
 

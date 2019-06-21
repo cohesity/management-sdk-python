@@ -2,9 +2,9 @@
 # Copyright 2019 Cohesity Inc.
 
 
-class CloseSMBFileOpenParameters(object):
+class CloseSmbFileOpenParameters(object):
 
-    """Implementation of the 'Close SMB File Open Parameters.' model.
+    """Implementation of the 'CloseSmbFileOpenParameters' model.
 
     Specifies parameters required to force close an active SMB file open.
 
@@ -30,7 +30,7 @@ class CloseSMBFileOpenParameters(object):
                  file_path=None,
                  open_id=None,
                  view_name=None):
-        """Constructor for the CloseSMBFileOpenParameters class"""
+        """Constructor for the CloseSmbFileOpenParameters class"""
 
         # Initialize members of the class
         self.file_path = file_path

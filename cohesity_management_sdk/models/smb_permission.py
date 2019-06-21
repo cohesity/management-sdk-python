@@ -2,9 +2,9 @@
 # Copyright 2019 Cohesity Inc.
 
 
-class SMBPermission(object):
+class SmbPermission(object):
 
-    """Implementation of the 'SMB Permission.' model.
+    """Implementation of the 'SmbPermission' model.
 
     Specifies information about a single SMB permission.
 
@@ -15,18 +15,18 @@ class SMBPermission(object):
             'kFullControl' indicates full administrative control of the SMB
             share. 'kSpecialAccess' indicates custom permissions to the SMB
             share using access masks structures.
-        mode (Mode1Enum): Specifies how the permission should be applied to
-            folders and/or files. 'kFolderSubFoldersAndFiles' indicates that
-            permissions are applied to a Folder and it's sub folders and
-            files. 'kFolderAndSubFolders' indicates that permissions are
-            applied to a Folder and it's sub folders. 'kFolderAndSubFiles'
+        mode (ModeSmbPermissionEnum): Specifies how the permission should be
+            applied to folders and/or files. 'kFolderSubFoldersAndFiles'
             indicates that permissions are applied to a Folder and it's sub
-            files. 'kFolderOnly' indicates that permsission are applied to
-            folder only. 'kSubFoldersAndFilesOnly' indicates that permissions
-            are applied to sub folders and files only. 'kSubFoldersOnly'
-            indicates that permissiona are applied to sub folders only.
-            'kFilesOnly' indicates that permissions are applied to files
-            only.
+            folders and files. 'kFolderAndSubFolders' indicates that
+            permissions are applied to a Folder and it's sub folders.
+            'kFolderAndSubFiles' indicates that permissions are applied to a
+            Folder and it's sub files. 'kFolderOnly' indicates that
+            permsission are applied to folder only. 'kSubFoldersAndFilesOnly'
+            indicates that permissions are applied to sub folders and files
+            only. 'kSubFoldersOnly' indicates that permissiona are applied to
+            sub folders only. 'kFilesOnly' indicates that permissions are
+            applied to files only.
         sid (string): Specifies the security identifier (SID) of the
             principal.
         special_access_mask (int): Specifies custom access permissions. When
@@ -42,10 +42,10 @@ class SMBPermission(object):
             the ACE and 'type' is set to kSpecialType. This is a placeholder
             for storing an unmapped type and should not be set when creating
             and editing a View.
-        mtype (Type22Enum): Specifies the type of permission. 'kAllow'
-            indicates access is allowed. 'kDeny' indicates access is denied.
-            'kSpecialType' indicates a type defined in the Access Control
-            Entry (ACE) does not map to 'kAllow' or 'kDeny'.
+        mtype (TypeSmbPermissionEnum): Specifies the type of permission.
+            'kAllow' indicates access is allowed. 'kDeny' indicates access is
+            denied. 'kSpecialType' indicates a type defined in the Access
+            Control Entry (ACE) does not map to 'kAllow' or 'kDeny'.
 
     """
 
@@ -66,7 +66,7 @@ class SMBPermission(object):
                  special_access_mask=None,
                  special_type=None,
                  mtype=None):
-        """Constructor for the SMBPermission class"""
+        """Constructor for the SmbPermission class"""
 
         # Initialize members of the class
         self.access = access

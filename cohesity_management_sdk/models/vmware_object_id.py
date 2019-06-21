@@ -4,10 +4,10 @@
 
 class VmwareObjectId(object):
 
-    """Implementation of the 'VMware Object Id.' model.
+    """Implementation of the 'VMwareObjectId' model.
 
-    Specifies a unique Protection Source id across Cohesity Clusters.
-    It is derived from the id of the VMware Protection Source.
+    Specifies a unique Protection Source id across Cohesity Clusters. It is
+    derived from the id of the VMware Protection Source.
 
     Attributes:
         mor_item (string): Specifies the Managed Object Reference Item.

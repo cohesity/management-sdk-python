@@ -2,9 +2,9 @@
 # Copyright 2019 Cohesity Inc.
 
 
-class SQLSourceId(object):
+class SqlSourceId(object):
 
-    """Implementation of the 'SQL Source Id.' model.
+    """Implementation of the 'SqlSourceId' model.
 
     Specifies a unique id for a SQL Protection Source.
 
@@ -34,7 +34,7 @@ class SQLSourceId(object):
                  created_date_msecs=None,
                  database_id=None,
                  instance_id=None):
-        """Constructor for the SQLSourceId class"""
+        """Constructor for the SqlSourceId class"""
 
         # Initialize members of the class
         self.created_date_msecs = created_date_msecs

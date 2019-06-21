@@ -4,7 +4,7 @@
 
 class WindowsHostSnapshotParameters(object):
 
-    """Implementation of the 'Windows Host Snapshot Parameters.' model.
+    """Implementation of the 'WindowsHostSnapshotParameters' model.
 
     Specifies settings that are meaningful only on Windows hosts.
 

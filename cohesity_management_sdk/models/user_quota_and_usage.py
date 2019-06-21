@@ -5,10 +5,9 @@ import cohesity_management_sdk.models.quota_policy
 
 class UserQuotaAndUsage(object):
 
-    """Implementation of the 'User Quota And Usage.' model.
+    """Implementation of the 'UserQuotaAndUsage' model.
 
-    Specifies the quota override and usage statistics
-    for a particular user.
+    Specifies the quota override and usage statistics for a particular user.
 
     Attributes:
         quota_policy (QuotaPolicy): Specifies a quota limit that can be

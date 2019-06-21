@@ -2,13 +2,13 @@
 # Copyright 2019 Cohesity Inc.
 
 import cohesity_management_sdk.models.continuous_schedule
-import cohesity_management_sdk.models.daily_weekly_schedule
+import cohesity_management_sdk.models.daily_schedule
 import cohesity_management_sdk.models.monthly_schedule
 import cohesity_management_sdk.models.rpo_schedule
 
 class SchedulingPolicy(object):
 
-    """Implementation of the 'Scheduling Policy.' model.
+    """Implementation of the 'SchedulingPolicy' model.
 
     Specifies settings that define a backup schedule for a Protection Job.
 
@@ -17,17 +17,17 @@ class SchedulingPolicy(object):
             between two Job Runs of a continuous backup schedule and any
             blackout periods when new Job Runs should NOT be started. Set if
             periodicity is kContinuous.
-        daily_schedule (DailyWeeklySchedule): Specifies a daily or weekly
-            backup schedule. Set if periodicity is kDaily.
+        daily_schedule (DailySchedule): Specifies a daily or weekly backup
+            schedule. Set if periodicity is kDaily.
         monthly_schedule (MonthlySchedule): Specifies a monthly backup
             schedule. Set if periodicity is kMonthly.
-        periodicity (Periodicity2Enum): Specifies how often to start new Job
+        periodicity (PeriodicityEnum): Specifies how often to start new Job
             Runs of a Protection Job. 'kDaily' means new Job Runs start daily.
             'kMonthly' means new Job Runs start monthly. 'kContinuous' means
             new Job Runs repetitively start at the beginning of the specified
-            time interval (in hours or minutes). 'kOneOff' means this is an
-            additional schedule.
-        rpo_schedule (RPOSchedule): Specifies an RPO policy schedule. Set if
+            time interval (in hours or minutes). 'kContinuousRPO' means this
+            is an RPO schedule.
+        rpo_schedule (RpoSchedule): Specifies an RPO backup schedule. Set if
             periodicity is kContinuousRPO.
 
     """
@@ -76,10 +76,10 @@ class SchedulingPolicy(object):
 
         # Extract variables from the dictionary
         continuous_schedule = cohesity_management_sdk.models.continuous_schedule.ContinuousSchedule.from_dictionary(dictionary.get('continuousSchedule')) if dictionary.get('continuousSchedule') else None
-        daily_schedule = cohesity_management_sdk.models.daily_weekly_schedule.DailyWeeklySchedule.from_dictionary(dictionary.get('dailySchedule')) if dictionary.get('dailySchedule') else None
+        daily_schedule = cohesity_management_sdk.models.daily_schedule.DailySchedule.from_dictionary(dictionary.get('dailySchedule')) if dictionary.get('dailySchedule') else None
         monthly_schedule = cohesity_management_sdk.models.monthly_schedule.MonthlySchedule.from_dictionary(dictionary.get('monthlySchedule')) if dictionary.get('monthlySchedule') else None
         periodicity = dictionary.get('periodicity')
-        rpo_schedule = cohesity_management_sdk.models.rpo_schedule.RPOSchedule.from_dictionary(dictionary.get('rpoSchedule')) if dictionary.get('rpoSchedule') else None
+        rpo_schedule = cohesity_management_sdk.models.rpo_schedule.RpoSchedule.from_dictionary(dictionary.get('rpoSchedule')) if dictionary.get('rpoSchedule') else None
 
         # Return an object of this model
         return cls(continuous_schedule,

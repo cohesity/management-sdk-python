@@ -1,107 +1,42 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.trending_data
+import cohesity_management_sdk.models.universal_id
 
 class ProtectedObject(object):
 
-    """Implementation of the 'Protected Object.' model.
+    """Implementation of the 'ProtectedObject' model.
 
-    Specifies details of a protected object with it's protection trends.
+    Provides details about a Protected Object.
 
     Attributes:
-        cancelled (long|int): Specifies number of cancelled runs across
-            trends.
-        environment (Environment9Enum): Specifies environment. Supported
-            environment types such as 'kView', 'kSQL', 'kVMware', etc. NOTE:
-            'kPuppeteer' refers to Cohesity's Remote Adapter. 'kVMware'
-            indicates the VMware Protection Source environment. 'kHyperV'
-            indicates the HyperV Protection Source environment. 'kSQL'
-            indicates the SQL Protection Source environment. 'kView' indicates
-            the View Protection Source environment. 'kPuppeteer' indicates the
-            Cohesity's Remote Adapter. 'kPhysical' indicates the physical
-            Protection Source environment. 'kPure' indicates the Pure Storage
-            Protection Source environment. 'kAzure' indicates the Microsoft's
-            Azure Protection Source environment. 'kNetapp' indicates the
-            Netapp Protection Source environment. 'kAgent' indicates the Agent
-            Protection Source environment. 'kGenericNas' indicates the
-            Genreric Network Attached Storage Protection Source environment.
-            'kAcropolis' indicates the Acropolis Protection Source
-            environment. 'kPhsicalFiles' indicates the Physical Files
-            Protection Source environment. 'kIsilon' indicates the Dell EMC's
-            Isilon Protection Source environment. 'kKVM' indicates the KVM
-            Protection Source environment. 'kAWS' indicates the AWS Protection
-            Source environment. 'kExchange' indicates the Exchange Protection
-            Source environment. 'kHyperVVSS' indicates the HyperV VSS
-            Protection Source environment. 'kOracle' indicates the Oracle
-            Protection Source environment. 'kGCP' indicates the Google Cloud
-            Platform Protection Source environment. 'kFlashBlade' indicates
-            the Flash Blade Protection Source environment. 'kAWSNative'
-            indicates the AWS Native Protection Source environment. 'kVCD'
-            indicates the VMware's Virtual cloud Director Protection Source
-            environment. 'kO365' indicates the Office 365 Protection Source
-            environment. 'kO365Outlook' indicates Office 365 outlook
-            Protection Source environment. 'kHyperFlex' indicates the Hyper
-            Flex Protection Source environment. 'kGCPNative' indicates the GCP
-            Native Protection Source environment. 'kAzureNative' indicates the
-            Azure Native Protection Source environment.
-        failed (long|int): Specifies number of failed runs across trends.
-        id (long|int): Specifies protected object's Id.
-        name (string): Specifies protected object's name.
-        parent_source_id (long|int): Specifies protected object's parent id.
-        parent_source_name (string): Specifies protected object's parent
-            name.
-        running (long|int): Specifies number of in-progress runs across
-            trends.
-        successful (long|int): Specifies number of successful runs across
-            trends.
-        total (long|int): Specifies total number of runs across trends.
-        trends (list of TrendingData): Aggregated protection runs information
-            by days/weeks.
+        job_id (UniversalId): Specifies an id for an object that is unique
+            across Cohesity Clusters. The id is composite of all the ids
+            listed below.
+        protection_fauilure_reason (string): If protection fails then
+            specifies why the protection failed on this object.
+        protection_source_id (long|int): Specifies the id of the Protection
+            Source.
 
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "cancelled":'cancelled',
-        "environment":'environment',
-        "failed":'failed',
-        "id":'id',
-        "name":'name',
-        "parent_source_id":'parentSourceId',
-        "parent_source_name":'parentSourceName',
-        "running":'running',
-        "successful":'successful',
-        "total":'total',
-        "trends":'trends'
+        "job_id":'jobId',
+        "protection_fauilure_reason":'protectionFauilureReason',
+        "protection_source_id":'protectionSourceId'
     }
 
     def __init__(self,
-                 cancelled=None,
-                 environment=None,
-                 failed=None,
-                 id=None,
-                 name=None,
-                 parent_source_id=None,
-                 parent_source_name=None,
-                 running=None,
-                 successful=None,
-                 total=None,
-                 trends=None):
+                 job_id=None,
+                 protection_fauilure_reason=None,
+                 protection_source_id=None):
         """Constructor for the ProtectedObject class"""
 
         # Initialize members of the class
-        self.cancelled = cancelled
-        self.environment = environment
-        self.failed = failed
-        self.id = id
-        self.name = name
-        self.parent_source_id = parent_source_id
-        self.parent_source_name = parent_source_name
-        self.running = running
-        self.successful = successful
-        self.total = total
-        self.trends = trends
+        self.job_id = job_id
+        self.protection_fauilure_reason = protection_fauilure_reason
+        self.protection_source_id = protection_source_id
 
 
     @classmethod
@@ -122,33 +57,13 @@ class ProtectedObject(object):
             return None
 
         # Extract variables from the dictionary
-        cancelled = dictionary.get('cancelled')
-        environment = dictionary.get('environment')
-        failed = dictionary.get('failed')
-        id = dictionary.get('id')
-        name = dictionary.get('name')
-        parent_source_id = dictionary.get('parentSourceId')
-        parent_source_name = dictionary.get('parentSourceName')
-        running = dictionary.get('running')
-        successful = dictionary.get('successful')
-        total = dictionary.get('total')
-        trends = None
-        if dictionary.get('trends') != None:
-            trends = list()
-            for structure in dictionary.get('trends'):
-                trends.append(cohesity_management_sdk.models.trending_data.TrendingData.from_dictionary(structure))
+        job_id = cohesity_management_sdk.models.universal_id.UniversalId.from_dictionary(dictionary.get('jobId')) if dictionary.get('jobId') else None
+        protection_fauilure_reason = dictionary.get('protectionFauilureReason')
+        protection_source_id = dictionary.get('protectionSourceId')
 
         # Return an object of this model
-        return cls(cancelled,
-                   environment,
-                   failed,
-                   id,
-                   name,
-                   parent_source_id,
-                   parent_source_name,
-                   running,
-                   successful,
-                   total,
-                   trends)
+        return cls(job_id,
+                   protection_fauilure_reason,
+                   protection_source_id)
 
 

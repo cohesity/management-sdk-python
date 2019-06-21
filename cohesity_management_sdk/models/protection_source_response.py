@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.specifies_protection_job_summary_of_an_object
+import cohesity_management_sdk.models.protection_job_summary
 import cohesity_management_sdk.models.protection_source
-import cohesity_management_sdk.models.preotection_source_uid
+import cohesity_management_sdk.models.protection_source_uid
 
 class ProtectionSourceResponse(object):
 
@@ -13,14 +13,14 @@ class ProtectionSourceResponse(object):
     response.
 
     Attributes:
-        jobs (list of SpecifiesProtectionJobSummaryOfAnObject): Specifies the
-            list of Protection Jobs that protect the object.
+        jobs (list of ProtectionJobSummary): Specifies the list of Protection
+            Jobs that protect the object.
         logical_size_in_bytes (long|int): Specifies the logical size of
             Protection Source in bytes.
         parent_source (ProtectionSource): Specifies a generic structure that
             represents a node in the Protection Source tree. Node details will
             depend on the environment of the Protection Source.
-        protection_source_uid_list (list of PreotectionSourceUID): Specifies
+        protection_source_uid_list (list of ProtectionSourceUid): Specifies
             the list of universal ids of the Protection Source.
         source (ProtectionSource): Specifies a generic structure that
             represents a node in the Protection Source tree. Node details will
@@ -79,14 +79,14 @@ class ProtectionSourceResponse(object):
         if dictionary.get('jobs') != None:
             jobs = list()
             for structure in dictionary.get('jobs'):
-                jobs.append(cohesity_management_sdk.models.specifies_protection_job_summary_of_an_object.SpecifiesProtectionJobSummaryOfAnObject.from_dictionary(structure))
+                jobs.append(cohesity_management_sdk.models.protection_job_summary.ProtectionJobSummary.from_dictionary(structure))
         logical_size_in_bytes = dictionary.get('logicalSizeInBytes')
         parent_source = cohesity_management_sdk.models.protection_source.ProtectionSource.from_dictionary(dictionary.get('parentSource')) if dictionary.get('parentSource') else None
         protection_source_uid_list = None
         if dictionary.get('protectionSourceUidList') != None:
             protection_source_uid_list = list()
             for structure in dictionary.get('protectionSourceUidList'):
-                protection_source_uid_list.append(cohesity_management_sdk.models.preotection_source_uid.PreotectionSourceUID.from_dictionary(structure))
+                protection_source_uid_list.append(cohesity_management_sdk.models.protection_source_uid.ProtectionSourceUid.from_dictionary(structure))
         source = cohesity_management_sdk.models.protection_source.ProtectionSource.from_dictionary(dictionary.get('source')) if dictionary.get('source') else None
         uuid = dictionary.get('uuid')
 

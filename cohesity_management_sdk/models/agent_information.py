@@ -5,7 +5,7 @@ import cohesity_management_sdk.models.registered_source_info
 
 class AgentInformation(object):
 
-    """Implementation of the 'Agent Information.' model.
+    """Implementation of the 'AgentInformation' model.
 
     Specifies information about the Agent software running on the server or
     the Virtual Machine.
@@ -13,12 +13,12 @@ class AgentInformation(object):
     Attributes:
         cbmr_version (string): Specifies the version if Cristie BMR product is
             installed on the host.
-        host_type (HostType3Enum): Specifies the host type where the agent is
-            running. This is only set for persistent agents. 'kLinux'
-            indicates the Linux operating system. 'kWindows' indicates the
-            Microsoft Windows operating system. 'kAix' indicates the IBM AIX
-            operating system. 'kSolaris' indicates the Oracle Solaris
-            operating system.
+        host_type (HostTypeAgentInformationEnum): Specifies the host type
+            where the agent is running. This is only set for persistent
+            agents. 'kLinux' indicates the Linux operating system. 'kWindows'
+            indicates the Microsoft Windows operating system. 'kAix' indicates
+            the IBM AIX operating system. 'kSolaris' indicates the Oracle
+            Solaris operating system.
         id (long|int): Specifies the agent's id.
         name (string): Specifies the agent's name.
         registration_info (RegisteredSourceInfo): Specifies information about

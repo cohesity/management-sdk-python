@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.latest_protection_job_run_information
+import cohesity_management_sdk.models.latest_protection_job_run_info
 
 class ProtectionRunResponse(object):
 
@@ -11,12 +11,12 @@ class ProtectionRunResponse(object):
     target locations.
 
     Attributes:
-        archival_runs (list of LatestProtectionJobRunInformation): Specifies
-            the list of archival job information.
-        backup_runs (list of LatestProtectionJobRunInformation): Specifies the
-            list of local backup job information.
-        replication_runs (list of LatestProtectionJobRunInformation):
-            Specifies the list of replication job information.
+        archival_runs (list of LatestProtectionJobRunInfo): Specifies the list
+            of archival job information.
+        backup_runs (list of LatestProtectionJobRunInfo): Specifies the list
+            of local backup job information.
+        replication_runs (list of LatestProtectionJobRunInfo): Specifies the
+            list of replication job information.
 
     """
 
@@ -61,17 +61,17 @@ class ProtectionRunResponse(object):
         if dictionary.get('archivalRuns') != None:
             archival_runs = list()
             for structure in dictionary.get('archivalRuns'):
-                archival_runs.append(cohesity_management_sdk.models.latest_protection_job_run_information.LatestProtectionJobRunInformation.from_dictionary(structure))
+                archival_runs.append(cohesity_management_sdk.models.latest_protection_job_run_info.LatestProtectionJobRunInfo.from_dictionary(structure))
         backup_runs = None
         if dictionary.get('backupRuns') != None:
             backup_runs = list()
             for structure in dictionary.get('backupRuns'):
-                backup_runs.append(cohesity_management_sdk.models.latest_protection_job_run_information.LatestProtectionJobRunInformation.from_dictionary(structure))
+                backup_runs.append(cohesity_management_sdk.models.latest_protection_job_run_info.LatestProtectionJobRunInfo.from_dictionary(structure))
         replication_runs = None
         if dictionary.get('replicationRuns') != None:
             replication_runs = list()
             for structure in dictionary.get('replicationRuns'):
-                replication_runs.append(cohesity_management_sdk.models.latest_protection_job_run_information.LatestProtectionJobRunInformation.from_dictionary(structure))
+                replication_runs.append(cohesity_management_sdk.models.latest_protection_job_run_info.LatestProtectionJobRunInfo.from_dictionary(structure))
 
         # Return an object of this model
         return cls(archival_runs,

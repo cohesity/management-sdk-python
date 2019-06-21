@@ -4,7 +4,7 @@
 
 class TenantVlanUpdate(object):
 
-    """Implementation of the 'Tenant Vlan Update.' model.
+    """Implementation of the 'TenantVlanUpdate' model.
 
     Specifies vlan update details response about a tenant.
 

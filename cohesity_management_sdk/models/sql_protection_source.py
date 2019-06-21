@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.database_file_information
+import cohesity_management_sdk.models.db_file_info
 import cohesity_management_sdk.models.sql_source_id
 import cohesity_management_sdk.models.sql_server_instance_version
 
-class SQLProtectionSource(object):
+class SqlProtectionSource(object):
 
-    """Implementation of the 'SQL Protection Source.' model.
+    """Implementation of the 'SqlProtectionSource' model.
 
     Specifies an Object representing one SQL Server instance or database.
 
@@ -32,11 +32,11 @@ class SQLProtectionSource(object):
         db_file_groups (list of string): Specifies the information about the
             set of file groups for this db on the host. This is only set if
             the type is kDatabase.
-        db_files (list of DatabaseFileInformation): Specifies the last known
-            information about the set of database files on the host. This
-            field is set only for type 'kDatabase'.
+        db_files (list of DbFileInfo): Specifies the last known information
+            about the set of database files on the host. This field is set
+            only for type 'kDatabase'.
         db_owner_username (string): Specifies the name of the database owner.
-        id (SQLSourceId): Specifies a unique id for a SQL Protection Source.
+        id (SqlSourceId): Specifies a unique id for a SQL Protection Source.
         name (string): Specifies the instance name of the SQL Protection
             Source
         owner_id (long|int): Specifies the id of the container VM for the SQL
@@ -66,14 +66,15 @@ class SQLProtectionSource(object):
             database is in offline state.
         sql_server_instance_version (SQLServerInstanceVersion): Specifies the
             Server Instance Version.
-        mtype (Type17Enum): Specifies the type of the managed Object in a SQL
-            Protection Source. Examples of SQL Objects include 'kInstance' and
-            'kDatabase'. 'kInstance' indicates that SQL server instance is
-            being protected. 'kDatabase' indicates that SQL server database is
-            being protected. 'kAAG' indicates that SQL AAG (AlwaysOn
-            Availability Group) is being protected. 'kAAGRootContainer'
-            indicates that SQL AAG's root container is being protected.
-            'kRootContainer' indicates root container for SQL sources.
+        mtype (TypeSqlProtectionSourceEnum): Specifies the type of the managed
+            Object in a SQL Protection Source. Examples of SQL Objects include
+            'kInstance' and 'kDatabase'. 'kInstance' indicates that SQL server
+            instance is being protected. 'kDatabase' indicates that SQL server
+            database is being protected. 'kAAG' indicates that SQL AAG
+            (AlwaysOn Availability Group) is being protected.
+            'kAAGRootContainer' indicates that SQL AAG's root container is
+            being protected. 'kRootContainer' indicates root container for SQL
+            sources.
 
     """
 
@@ -114,7 +115,7 @@ class SQLProtectionSource(object):
                  sql_server_db_state=None,
                  sql_server_instance_version=None,
                  mtype=None):
-        """Constructor for the SQLProtectionSource class"""
+        """Constructor for the SqlProtectionSource class"""
 
         # Initialize members of the class
         self.is_available_for_vss_backup = is_available_for_vss_backup
@@ -164,9 +165,9 @@ class SQLProtectionSource(object):
         if dictionary.get('dbFiles') != None:
             db_files = list()
             for structure in dictionary.get('dbFiles'):
-                db_files.append(cohesity_management_sdk.models.database_file_information.DatabaseFileInformation.from_dictionary(structure))
+                db_files.append(cohesity_management_sdk.models.db_file_info.DbFileInfo.from_dictionary(structure))
         db_owner_username = dictionary.get('dbOwnerUsername')
-        id = cohesity_management_sdk.models.sql_source_id.SQLSourceId.from_dictionary(dictionary.get('id')) if dictionary.get('id') else None
+        id = cohesity_management_sdk.models.sql_source_id.SqlSourceId.from_dictionary(dictionary.get('id')) if dictionary.get('id') else None
         name = dictionary.get('name')
         owner_id = dictionary.get('ownerId')
         recovery_model = dictionary.get('recoveryModel')

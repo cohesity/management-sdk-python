@@ -7,7 +7,7 @@ from cohesity_management_sdk.configuration import Configuration
 from cohesity_management_sdk.controllers.base_controller import BaseController
 from cohesity_management_sdk.http.auth.auth_manager import AuthManager
 from cohesity_management_sdk.models.route import Route
-from cohesity_management_sdk.exceptions.error_error_exception import ErrorErrorException
+from cohesity_management_sdk.exceptions.request_error_error_exception import RequestErrorErrorException
 
 class RoutesController(BaseController):
 
@@ -57,7 +57,7 @@ class RoutesController(BaseController):
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_routes.')
             if _context.response.status_code == 0:
-                raise ErrorErrorException('Error', _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
@@ -112,7 +112,7 @@ class RoutesController(BaseController):
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for add_route.')
             if _context.response.status_code == 0:
-                raise ErrorErrorException('Error', _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
@@ -129,8 +129,8 @@ class RoutesController(BaseController):
         Returns the delete status upon completion.
 
         Args:
-            body (DeleteRouteParameters, optional): TODO: type description
-                here. Example:
+            body (DeleteRouteParam, optional): TODO: type description here.
+                Example:
 
         Returns:
             void: Response from the API. No Content
@@ -167,7 +167,7 @@ class RoutesController(BaseController):
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for delete_route.')
             if _context.response.status_code == 0:
-                raise ErrorErrorException('Error', _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
         except Exception as e:

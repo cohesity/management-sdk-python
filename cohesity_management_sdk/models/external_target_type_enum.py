@@ -5,17 +5,13 @@ class ExternalTargetTypeEnum(object):
 
     """Implementation of the 'ExternalTargetType' enum.
 
-    Specifies the type of Vault.
-    'kS3Compatible' indicates a AWS S3 Compatible Vault.
-    'kQStarTape' indicates a QStar Tape Vault.
-    'kAWSGovCloud' indicates a AWS Gov Cloud Vault.
-    'kNAS' indicates a NAS Vault.
-    'kAzureGovCloud' indicates an Microsoft Azure Gov Cloud Vault.
-    'kAzure' indiactes an Azure vault.
-    'kGoogle' indcates a Google vault.
-    'kAmazon' indicates an AWS vault.
-    'kOracle' indicates an Oracle vault.
-    'kAmazonC2S' indicates an AWS C2S vault.
+    Specifies the type of Vault. 'kS3Compatible' indicates a AWS S3 Compatible
+    Vault. 'kQStarTape' indicates a QStar Tape Vault. 'kAWSGovCloud' indicates
+    a AWS Gov Cloud Vault. 'kNAS' indicates a NAS Vault. 'kAzureGovCloud'
+    indicates an Microsoft Azure Gov Cloud Vault. 'kAzure' indiactes an Azure
+    vault. 'kGoogle' indcates a Google vault. 'kAmazon' indicates an AWS
+    vault. 'kOracle' indicates an Oracle vault. 'kAmazonC2S' indicates an AWS
+    C2S vault.
 
     Attributes:
         KS3COMPATIBLE: TODO: type description here.

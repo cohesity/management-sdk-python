@@ -1,21 +1,20 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.ms_exchange_parameters
+import cohesity_management_sdk.models.ms_exchange_params
 
 class SourceAppParams(object):
 
     """Implementation of the 'SourceAppParams' model.
 
-    This message contains params specific to application running on the
-    source
+    This message contains params specific to application running on the source
     such as a VM or a physical host.
 
     Attributes:
         is_vss_copy_only (bool): If the backup is a VSS full backup with the
             copy-only option specified.
-        ms_exchange_params (MSExchangeParameters): All the params specific to
-            MS exchange application.
+        ms_exchange_params (MSExchangeParams): All the params specific to MS
+            exchange application.
 
     """
 
@@ -54,7 +53,7 @@ class SourceAppParams(object):
 
         # Extract variables from the dictionary
         is_vss_copy_only = dictionary.get('isVssCopyOnly')
-        ms_exchange_params = cohesity_management_sdk.models.ms_exchange_parameters.MSExchangeParameters.from_dictionary(dictionary.get('msExchangeParams')) if dictionary.get('msExchangeParams') else None
+        ms_exchange_params = cohesity_management_sdk.models.ms_exchange_params.MSExchangeParams.from_dictionary(dictionary.get('msExchangeParams')) if dictionary.get('msExchangeParams') else None
 
         # Return an object of this model
         return cls(is_vss_copy_only,

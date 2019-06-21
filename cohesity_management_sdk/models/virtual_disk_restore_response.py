@@ -6,7 +6,7 @@ import cohesity_management_sdk.models.virtual_disk_mapping_response
 
 class VirtualDiskRestoreResponse(object):
 
-    """Implementation of the 'Virtual Disk Restore Response.' model.
+    """Implementation of the 'VirtualDiskRestoreResponse' model.
 
     Specifies the parameters to recover virtual disks of a vm with full
     Protection Source.

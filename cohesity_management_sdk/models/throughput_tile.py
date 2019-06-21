@@ -5,7 +5,7 @@ import cohesity_management_sdk.models.sample
 
 class ThroughputTile(object):
 
-    """Implementation of the 'Throughput Tile.' model.
+    """Implementation of the 'ThroughputTile' model.
 
     Throughput information for dashboard.
 

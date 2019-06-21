@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.restore_object
+import cohesity_management_sdk.models.restore_object_details
 import cohesity_management_sdk.models.cloud_deploy_target_details
 
 class DeployTaskRequest(object):
 
-    """Implementation of the 'Deploy Task Request.' model.
+    """Implementation of the 'DeployTaskRequest' model.
 
     Specifies the settings for a Deploy Task that deploys VMs on cloud.
 
@@ -18,8 +18,8 @@ class DeployTaskRequest(object):
             to this new Protection Source. If not specified, objects are
             cloned or recovered to the original Protection Source that was
             managing them.
-        objects (list of RestoreObject): Array of Objects.  Specifies a list
-            of Protection Source objects or Protection Job objects (with
+        objects (list of RestoreObjectDetails): Array of Objects.  Specifies a
+            list of Protection Source objects or Protection Job objects (with
             specified Protection Source objects).
         target (CloudDeployTargetDetails): Message that specifies the details
             about CloudDeploy target where backup snapshots may be converted
@@ -73,7 +73,7 @@ class DeployTaskRequest(object):
         if dictionary.get('objects') != None:
             objects = list()
             for structure in dictionary.get('objects'):
-                objects.append(cohesity_management_sdk.models.restore_object.RestoreObject.from_dictionary(structure))
+                objects.append(cohesity_management_sdk.models.restore_object_details.RestoreObjectDetails.from_dictionary(structure))
         target = cohesity_management_sdk.models.cloud_deploy_target_details.CloudDeployTargetDetails.from_dictionary(dictionary.get('target')) if dictionary.get('target') else None
 
         # Return an object of this model

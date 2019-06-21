@@ -2,16 +2,17 @@
 # Copyright 2019 Cohesity Inc.
 
 import cohesity_management_sdk.models.acropolis_protection_source
+import cohesity_management_sdk.models.ad_protection_source
 import cohesity_management_sdk.models.aws_protection_source
 import cohesity_management_sdk.models.azure_protection_source
-import cohesity_management_sdk.models.pure_storage_flash_blade_protection_source
+import cohesity_management_sdk.models.flash_blade_protection_source
 import cohesity_management_sdk.models.gcp_protection_source
-import cohesity_management_sdk.models.hyper_flex_storae_snapshot
+import cohesity_management_sdk.models.hyper_flex_protection_source
 import cohesity_management_sdk.models.hyperv_protection_source
 import cohesity_management_sdk.models.isilon_protection_source
 import cohesity_management_sdk.models.kvm_protection_source
-import cohesity_management_sdk.models.generic_nas_protection_source
-import cohesity_management_sdk.models.net_app_protection_source
+import cohesity_management_sdk.models.nas_protection_source
+import cohesity_management_sdk.models.netapp_protection_source
 import cohesity_management_sdk.models.office_365_protection_source
 import cohesity_management_sdk.models.oracle_protection_source
 import cohesity_management_sdk.models.physical_protection_source
@@ -22,17 +23,19 @@ import cohesity_management_sdk.models.vmware_protection_source
 
 class ProtectionSource(object):
 
-    """Implementation of the 'Protection Source.' model.
+    """Implementation of the 'ProtectionSource' model.
 
-    Specifies a generic structure that represents a node
-    in the Protection Source tree. Node details will depend on the
-    environment of the Protection Source.
+    Specifies a generic structure that represents a node in the Protection
+    Source tree. Node details will depend on the environment of the Protection
+    Source.
 
     Attributes:
         acropolis_protection_source (AcropolisProtectionSource): Specifies
             details about an Acropolis Protection Source when the environment
             is set to 'kAcropolis'.
-        aws_protection_source (AWSProtectionSource): Specifies details about
+        ad_protection_source (AdProtectionSource): Specifies details about an
+            AD Protection Source when the environment is set to 'kAD'.
+        aws_protection_source (AwsProtectionSource): Specifies details about
             an AWS Protection Source when the environment is set to 'kAWS'.
         azure_protection_source (AzureProtectionSource): Specifies details
             about an Azure Protection Source when the environment is set to
@@ -74,12 +77,12 @@ class ProtectionSource(object):
             'kGCPNative' indicates the GCP Native Protection Source
             environment. 'kAzureNative' indicates the Azure Native Protection
             Source environment.
-        flash_blade_protection_source (PureStorageFlashBladeProtectionSource):
-            Specifies details about a Pure Storage FlashBlade Protection
-            Source when the environment is set to 'kFlashBlade'.
-        gcp_protection_source (GCPProtectionSource): Specifies details about
+        flash_blade_protection_source (FlashBladeProtectionSource): Specifies
+            details about a Pure Storage FlashBlade Protection Source when the
+            environment is set to 'kFlashBlade'.
+        gcp_protection_source (GcpProtectionSource): Specifies details about
             an GCP Protection Source when the environment is set to 'kGCP'.
-        hyper_flex_protection_source (HyperFlexStoraeSnapshot): Specifies
+        hyper_flex_protection_source (HyperFlexProtectionSource): Specifies
             details about a HyperFlex Storage Snapshot source when the
             environment is set to 'kHyperFlex'
         hyperv_protection_source (HypervProtectionSource): Specifies details
@@ -89,13 +92,13 @@ class ProtectionSource(object):
         isilon_protection_source (IsilonProtectionSource): Specifies details
             about an Isilon OneFs Protection Source when the environment is
             set to 'kIsilon'.
-        kvm_protection_source (KVMProtectionSource): Specifies details about a
+        kvm_protection_source (KvmProtectionSource): Specifies details about a
             KVM Protection Source when the environment is set to 'kKVM'.
         name (string): Specifies a name of the Protection Source.
-        nas_protection_source (GenericNASProtectionSource): Specifies details
-            about a Generic NAS Protection Source when the environment is set
-            to 'kGenericNas'.
-        netapp_protection_source (NetAppProtectionSource): Specifies details
+        nas_protection_source (NasProtectionSource): Specifies details about a
+            Generic NAS Protection Source when the environment is set to
+            'kGenericNas'.
+        netapp_protection_source (NetappProtectionSource): Specifies details
             about a NetApp Protection Source when the environment is set to
             'kNetapp'.
         office_365_protection_source (Office365ProtectionSource): Specifies
@@ -111,7 +114,7 @@ class ProtectionSource(object):
             set to 'kPhysical'.
         pure_protection_source (PureProtectionSource): Specifies details about
             a Pure Protection Source when the environment is set to 'kPure'.
-        sql_protection_source (SQLProtectionSource): Specifies details about a
+        sql_protection_source (SqlProtectionSource): Specifies details about a
             SQL Protection Source when the environment is set to 'kSQL'.
         view_protection_source (ViewProtectionSource): Specifies details about
             a View Protection Source when the environment is set to 'kView'.
@@ -124,6 +127,7 @@ class ProtectionSource(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "acropolis_protection_source":'acropolisProtectionSource',
+        "ad_protection_source":'adProtectionSource',
         "aws_protection_source":'awsProtectionSource',
         "azure_protection_source":'azureProtectionSource',
         "environment":'environment',
@@ -149,6 +153,7 @@ class ProtectionSource(object):
 
     def __init__(self,
                  acropolis_protection_source=None,
+                 ad_protection_source=None,
                  aws_protection_source=None,
                  azure_protection_source=None,
                  environment=None,
@@ -174,6 +179,7 @@ class ProtectionSource(object):
 
         # Initialize members of the class
         self.acropolis_protection_source = acropolis_protection_source
+        self.ad_protection_source = ad_protection_source
         self.aws_protection_source = aws_protection_source
         self.azure_protection_source = azure_protection_source
         self.environment = environment
@@ -216,30 +222,32 @@ class ProtectionSource(object):
 
         # Extract variables from the dictionary
         acropolis_protection_source = cohesity_management_sdk.models.acropolis_protection_source.AcropolisProtectionSource.from_dictionary(dictionary.get('acropolisProtectionSource')) if dictionary.get('acropolisProtectionSource') else None
-        aws_protection_source = cohesity_management_sdk.models.aws_protection_source.AWSProtectionSource.from_dictionary(dictionary.get('awsProtectionSource')) if dictionary.get('awsProtectionSource') else None
+        ad_protection_source = cohesity_management_sdk.models.ad_protection_source.AdProtectionSource.from_dictionary(dictionary.get('adProtectionSource')) if dictionary.get('adProtectionSource') else None
+        aws_protection_source = cohesity_management_sdk.models.aws_protection_source.AwsProtectionSource.from_dictionary(dictionary.get('awsProtectionSource')) if dictionary.get('awsProtectionSource') else None
         azure_protection_source = cohesity_management_sdk.models.azure_protection_source.AzureProtectionSource.from_dictionary(dictionary.get('azureProtectionSource')) if dictionary.get('azureProtectionSource') else None
         environment = dictionary.get('environment')
-        flash_blade_protection_source = cohesity_management_sdk.models.pure_storage_flash_blade_protection_source.PureStorageFlashBladeProtectionSource.from_dictionary(dictionary.get('flashBladeProtectionSource')) if dictionary.get('flashBladeProtectionSource') else None
-        gcp_protection_source = cohesity_management_sdk.models.gcp_protection_source.GCPProtectionSource.from_dictionary(dictionary.get('gcpProtectionSource')) if dictionary.get('gcpProtectionSource') else None
-        hyper_flex_protection_source = cohesity_management_sdk.models.hyper_flex_storae_snapshot.HyperFlexStoraeSnapshot.from_dictionary(dictionary.get('hyperFlexProtectionSource')) if dictionary.get('hyperFlexProtectionSource') else None
+        flash_blade_protection_source = cohesity_management_sdk.models.flash_blade_protection_source.FlashBladeProtectionSource.from_dictionary(dictionary.get('flashBladeProtectionSource')) if dictionary.get('flashBladeProtectionSource') else None
+        gcp_protection_source = cohesity_management_sdk.models.gcp_protection_source.GcpProtectionSource.from_dictionary(dictionary.get('gcpProtectionSource')) if dictionary.get('gcpProtectionSource') else None
+        hyper_flex_protection_source = cohesity_management_sdk.models.hyper_flex_protection_source.HyperFlexProtectionSource.from_dictionary(dictionary.get('hyperFlexProtectionSource')) if dictionary.get('hyperFlexProtectionSource') else None
         hyperv_protection_source = cohesity_management_sdk.models.hyperv_protection_source.HypervProtectionSource.from_dictionary(dictionary.get('hypervProtectionSource')) if dictionary.get('hypervProtectionSource') else None
         id = dictionary.get('id')
         isilon_protection_source = cohesity_management_sdk.models.isilon_protection_source.IsilonProtectionSource.from_dictionary(dictionary.get('isilonProtectionSource')) if dictionary.get('isilonProtectionSource') else None
-        kvm_protection_source = cohesity_management_sdk.models.kvm_protection_source.KVMProtectionSource.from_dictionary(dictionary.get('kvmProtectionSource')) if dictionary.get('kvmProtectionSource') else None
+        kvm_protection_source = cohesity_management_sdk.models.kvm_protection_source.KvmProtectionSource.from_dictionary(dictionary.get('kvmProtectionSource')) if dictionary.get('kvmProtectionSource') else None
         name = dictionary.get('name')
-        nas_protection_source = cohesity_management_sdk.models.generic_nas_protection_source.GenericNASProtectionSource.from_dictionary(dictionary.get('nasProtectionSource')) if dictionary.get('nasProtectionSource') else None
-        netapp_protection_source = cohesity_management_sdk.models.net_app_protection_source.NetAppProtectionSource.from_dictionary(dictionary.get('netappProtectionSource')) if dictionary.get('netappProtectionSource') else None
+        nas_protection_source = cohesity_management_sdk.models.nas_protection_source.NasProtectionSource.from_dictionary(dictionary.get('nasProtectionSource')) if dictionary.get('nasProtectionSource') else None
+        netapp_protection_source = cohesity_management_sdk.models.netapp_protection_source.NetappProtectionSource.from_dictionary(dictionary.get('netappProtectionSource')) if dictionary.get('netappProtectionSource') else None
         office_365_protection_source = cohesity_management_sdk.models.office_365_protection_source.Office365ProtectionSource.from_dictionary(dictionary.get('office365ProtectionSource')) if dictionary.get('office365ProtectionSource') else None
         oracle_protection_source = cohesity_management_sdk.models.oracle_protection_source.OracleProtectionSource.from_dictionary(dictionary.get('oracleProtectionSource')) if dictionary.get('oracleProtectionSource') else None
         parent_id = dictionary.get('parentId')
         physical_protection_source = cohesity_management_sdk.models.physical_protection_source.PhysicalProtectionSource.from_dictionary(dictionary.get('physicalProtectionSource')) if dictionary.get('physicalProtectionSource') else None
         pure_protection_source = cohesity_management_sdk.models.pure_protection_source.PureProtectionSource.from_dictionary(dictionary.get('pureProtectionSource')) if dictionary.get('pureProtectionSource') else None
-        sql_protection_source = cohesity_management_sdk.models.sql_protection_source.SQLProtectionSource.from_dictionary(dictionary.get('sqlProtectionSource')) if dictionary.get('sqlProtectionSource') else None
+        sql_protection_source = cohesity_management_sdk.models.sql_protection_source.SqlProtectionSource.from_dictionary(dictionary.get('sqlProtectionSource')) if dictionary.get('sqlProtectionSource') else None
         view_protection_source = cohesity_management_sdk.models.view_protection_source.ViewProtectionSource.from_dictionary(dictionary.get('viewProtectionSource')) if dictionary.get('viewProtectionSource') else None
         vmware_protection_source = cohesity_management_sdk.models.vmware_protection_source.VmwareProtectionSource.from_dictionary(dictionary.get('vmWareProtectionSource')) if dictionary.get('vmWareProtectionSource') else None
 
         # Return an object of this model
         return cls(acropolis_protection_source,
+                   ad_protection_source,
                    aws_protection_source,
                    azure_protection_source,
                    environment,

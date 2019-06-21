@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.flash_blade_nfs_information
-import cohesity_management_sdk.models.flash_blade_smb_information
+import cohesity_management_sdk.models.flash_blade_nfs_info
+import cohesity_management_sdk.models.flash_blade_smb_info
 
 class FlashBladeFileSystem(object):
 
-    """Implementation of the 'Flash Blade File System.' model.
+    """Implementation of the 'FlashBladeFileSystem' model.
 
     Specifies information about a Flash Blade File System in a Storage Array.
 
@@ -20,8 +20,8 @@ class FlashBladeFileSystem(object):
             bytes of the file system.
         logical_used_bytes (long|int): Specifies the size of logical data
             currently represented on the file system in bytes.
-        nfs_info (FlashBladeNFSInformation): Specifies information specific to
-            NFS protocol exposed by Pure Flash Blade file system.
+        nfs_info (FlashBladeNfsInfo): Specifies information specific to NFS
+            protocol exposed by Pure Flash Blade file system.
         physical_used_bytes (long|int): Specifies the size of physical data
             currently consumed by the file system. This includes the space
             used for the snapshots.
@@ -31,8 +31,8 @@ class FlashBladeFileSystem(object):
             indicates CIFS/SMB Shares are supported on Pure FlashBlade File
             System. 'kHttp' indicates object protocol over HTTP and HTTPS are
             supported.
-        smb_info (FlashBladeSMBInformation): Specifies information specific to
-            SMB shares exposed by Pure Flash Blade file system.
+        smb_info (FlashBladeSmbInfo): Specifies information specific to SMB
+            shares exposed by Pure Flash Blade file system.
         unique_used_bytes (long|int): Specifies the size of physical data
             cconsumed by the file system itself not including the size of the
             snapshots.
@@ -98,10 +98,10 @@ class FlashBladeFileSystem(object):
         created_time_msecs = dictionary.get('createdTimeMsecs')
         logical_capacity_bytes = dictionary.get('logicalCapacityBytes')
         logical_used_bytes = dictionary.get('logicalUsedBytes')
-        nfs_info = cohesity_management_sdk.models.flash_blade_nfs_information.FlashBladeNFSInformation.from_dictionary(dictionary.get('nfsInfo')) if dictionary.get('nfsInfo') else None
+        nfs_info = cohesity_management_sdk.models.flash_blade_nfs_info.FlashBladeNfsInfo.from_dictionary(dictionary.get('nfsInfo')) if dictionary.get('nfsInfo') else None
         physical_used_bytes = dictionary.get('physicalUsedBytes')
         protocols = dictionary.get('protocols')
-        smb_info = cohesity_management_sdk.models.flash_blade_smb_information.FlashBladeSMBInformation.from_dictionary(dictionary.get('smbInfo')) if dictionary.get('smbInfo') else None
+        smb_info = cohesity_management_sdk.models.flash_blade_smb_info.FlashBladeSmbInfo.from_dictionary(dictionary.get('smbInfo')) if dictionary.get('smbInfo') else None
         unique_used_bytes = dictionary.get('uniqueUsedBytes')
 
         # Return an object of this model

@@ -1,20 +1,20 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.parameters_for_a_backup_op
-import cohesity_management_sdk.models.clone_task_information
-import cohesity_management_sdk.models.basic_task_info_handles_the_basic_elements_of_the_notification_task
-import cohesity_management_sdk.models.recovery_task_information
+import cohesity_management_sdk.models.backup_task_info
+import cohesity_management_sdk.models.clone_task_info
+import cohesity_management_sdk.models.basic_task_info
+import cohesity_management_sdk.models.recovery_task_info
 
 class TaskNotification(object):
 
-    """Implementation of the 'Task Notification.' model.
+    """Implementation of the 'TaskNotification' model.
 
     Structure that captures Task Notifications for a user.
 
     Attributes:
-        backup_task (ParametersForABackupOp): TODO: type description here.
-        clone_task (CloneTaskInformation): Parameters for a clone op.
+        backup_task (BackupTaskInfo): TODO: type description here.
+        clone_task (CloneTaskInfo): Parameters for a clone op.
         created_time_secs (long|int): Timestamp at which the notification was
             created.
         description (string): Description holds the actual notification text
@@ -24,16 +24,13 @@ class TaskNotification(object):
             all notifications at once. Nil or 0 value represents false.
         dismissed_time_secs (long|int): Timestamp at which user dismissed this
             notification event.
-        field_message_task
-            (BasicTaskInfoHandlesTheBasicElementsOfTheNotificationTask): TODO:
-            type description here.
+        field_message_task (BasicTaskInfo): TODO: type description here.
         id (string): id identifies a user notification event uniquely. This
             can also be used to dismiss individual notifications.
-        recovery_task (RecoveryTaskInformation): Parameters for a recovery
-            op.
-        status (Status5Enum): Status of the task. Status of the task.
-            'kSuccess' indicates that task completed successfully. 'kError'
-            indicates that task encountered errors.
+        recovery_task (RecoveryTaskInfo): Parameters for a recovery op.
+        status (StatusTaskNotificationEnum): Status of the task. Status of the
+            task. 'kSuccess' indicates that task completed successfully.
+            'kError' indicates that task encountered errors.
         task_type (TaskTypeEnum): Task type denotes which type of task this
             notification is for. This param is used to reflect the taskType.
             'Restore' notification type is generated upon completion of
@@ -116,15 +113,15 @@ class TaskNotification(object):
             return None
 
         # Extract variables from the dictionary
-        backup_task = cohesity_management_sdk.models.parameters_for_a_backup_op.ParametersForABackupOp.from_dictionary(dictionary.get('backupTask')) if dictionary.get('backupTask') else None
-        clone_task = cohesity_management_sdk.models.clone_task_information.CloneTaskInformation.from_dictionary(dictionary.get('cloneTask')) if dictionary.get('cloneTask') else None
+        backup_task = cohesity_management_sdk.models.backup_task_info.BackupTaskInfo.from_dictionary(dictionary.get('backupTask')) if dictionary.get('backupTask') else None
+        clone_task = cohesity_management_sdk.models.clone_task_info.CloneTaskInfo.from_dictionary(dictionary.get('cloneTask')) if dictionary.get('cloneTask') else None
         created_time_secs = dictionary.get('createdTimeSecs')
         description = dictionary.get('description')
         dismissed = dictionary.get('dismissed')
         dismissed_time_secs = dictionary.get('dismissedTimeSecs')
-        field_message_task = cohesity_management_sdk.models.basic_task_info_handles_the_basic_elements_of_the_notification_task.BasicTaskInfoHandlesTheBasicElementsOfTheNotificationTask.from_dictionary(dictionary.get('fieldMessageTask')) if dictionary.get('fieldMessageTask') else None
+        field_message_task = cohesity_management_sdk.models.basic_task_info.BasicTaskInfo.from_dictionary(dictionary.get('fieldMessageTask')) if dictionary.get('fieldMessageTask') else None
         id = dictionary.get('id')
-        recovery_task = cohesity_management_sdk.models.recovery_task_information.RecoveryTaskInformation.from_dictionary(dictionary.get('recoveryTask')) if dictionary.get('recoveryTask') else None
+        recovery_task = cohesity_management_sdk.models.recovery_task_info.RecoveryTaskInfo.from_dictionary(dictionary.get('recoveryTask')) if dictionary.get('recoveryTask') else None
         status = dictionary.get('status')
         task_type = dictionary.get('taskType')
         visited = dictionary.get('visited')

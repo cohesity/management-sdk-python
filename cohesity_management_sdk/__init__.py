@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
-
 __all__ = [
     'api_helper',
     'configuration',

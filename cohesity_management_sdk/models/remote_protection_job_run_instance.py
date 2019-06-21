@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.unique_global_id
+import cohesity_management_sdk.models.universal_id
 
 class RemoteProtectionJobRunInstance(object):
 
-    """Implementation of the 'Remote Protection Job Run Instance.' model.
+    """Implementation of the 'RemoteProtectionJobRunInstance' model.
 
     Specifies details about one Job Run (Snapshot) archived to a remote Vault
     that was captured by a Protection Job.
 
     Attributes:
-        archive_task_uid (UniqueGlobalId): Specifies the globally unique id of
+        archive_task_uid (UniversalId): Specifies the globally unique id of
             the archival task that archived the Snapshot to the Vault.
         archive_version (int): Specifies the version of the archive.
         expiry_time_usecs (long|int): Specifies the time when the archive
@@ -77,7 +77,7 @@ class RemoteProtectionJobRunInstance(object):
             return None
 
         # Extract variables from the dictionary
-        archive_task_uid = cohesity_management_sdk.models.unique_global_id.UniqueGlobalId.from_dictionary(dictionary.get('archiveTaskUid')) if dictionary.get('archiveTaskUid') else None
+        archive_task_uid = cohesity_management_sdk.models.universal_id.UniversalId.from_dictionary(dictionary.get('archiveTaskUid')) if dictionary.get('archiveTaskUid') else None
         archive_version = dictionary.get('archiveVersion')
         expiry_time_usecs = dictionary.get('expiryTimeUsecs')
         index_size_bytes = dictionary.get('indexSizeBytes')

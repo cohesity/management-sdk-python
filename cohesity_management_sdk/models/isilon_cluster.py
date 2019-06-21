@@ -4,7 +4,7 @@
 
 class IsilonCluster(object):
 
-    """Implementation of the 'Isilon Cluster.' model.
+    """Implementation of the 'IsilonCluster' model.
 
     Specifies information about an Isilon Cluster.
 

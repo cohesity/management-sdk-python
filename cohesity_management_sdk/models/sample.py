@@ -4,7 +4,7 @@
 
 class Sample(object):
 
-    """Implementation of the 'Sample.' model.
+    """Implementation of the 'Sample' model.
 
     Specifies a sample of data collected at a timestamp.
 

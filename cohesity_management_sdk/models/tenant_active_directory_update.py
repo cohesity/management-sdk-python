@@ -4,7 +4,7 @@
 
 class TenantActiveDirectoryUpdate(object):
 
-    """Implementation of the 'Tenant Active Directory Update.' model.
+    """Implementation of the 'TenantActiveDirectoryUpdate' model.
 
     Specifies Active Directory update details response about a tenant.
 

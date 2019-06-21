@@ -5,10 +5,9 @@ class TargetHostTypeEnum(object):
 
     """Implementation of the 'TargetHostType' enum.
 
-    Specifies the target host types to be restored.
-    'kLinux' indicates the Linux operating system.
-    'kWindows' indicates the Microsoft Windows operating system.
-    'kAix' indicates the IBM AIX operating system.
+    Specifies the target host types to be restored. 'kLinux' indicates the
+    Linux operating system. 'kWindows' indicates the Microsoft Windows
+    operating system. 'kAix' indicates the IBM AIX operating system.
     'kSolaris' indicates the Oracle Solaris operating system.
 
     Attributes:

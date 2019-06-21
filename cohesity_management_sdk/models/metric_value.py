@@ -5,7 +5,7 @@ import cohesity_management_sdk.models.value
 
 class MetricValue(object):
 
-    """Implementation of the 'Metric Value.' model.
+    """Implementation of the 'MetricValue' model.
 
     Specifies one data point of a metric.
 

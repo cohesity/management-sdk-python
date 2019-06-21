@@ -4,7 +4,7 @@
 
 class Office365ProtectionSource(object):
 
-    """Implementation of the 'Office 365 Protection Source.' model.
+    """Implementation of the 'Office365ProtectionSource' model.
 
     Specifies a Protection Source in Office 365 environment.
 

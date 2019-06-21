@@ -1,19 +1,17 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.vault_configuration
+import cohesity_management_sdk.models.vault_config
 import cohesity_management_sdk.models.vault_bandwidth_limits
 
 class Vault(object):
 
-    """Implementation of the 'Vault.' model.
+    """Implementation of the 'Vault' model.
 
-    Specifies an external storage location and is equivalent to
-    an External Target in the Cohesity Dashboard.
-    A Vault can provide an additional Cloud Tier where cold data of the
-    Cohesity Cluster can be stored in the Cloud.
-    A Vault can also provide archive storage for backup data. This archive
-    data
+    Specifies an external storage location and is equivalent to an External
+    Target in the Cohesity Dashboard. A Vault can provide an additional Cloud
+    Tier where cold data of the Cohesity Cluster can be stored in the Cloud. A
+    Vault can also provide archive storage for backup data. This archive data
     is stored on Tapes and in Cloud Vaults.
 
     Attributes:
@@ -23,13 +21,13 @@ class Vault(object):
             This certificate is in pem format.
         client_private_key (string): Specifies the client private key. This
             certificate is in pem format.
-        compression_policy (CompressionPolicy1Enum): Specifies whether to send
-            data to the Vault in a compressed format. 'kCompressionNone'
+        compression_policy (CompressionPolicyVaultEnum): Specifies whether to
+            send data to the Vault in a compressed format. 'kCompressionNone'
             indicates that data is not compressed. 'kCompressionLow' indicates
             that data is compressed.
-        config (VaultConfiguration): Specifies the settings required to
-            connect to a specific Vault type. For some Vaults, you must also
-            specify a storage location (bucketName).
+        config (VaultConfig): Specifies the settings required to connect to a
+            specific Vault type. For some Vaults, you must also specify a
+            storage location (bucketName).
         customer_managing_encryption_keys (bool): Specifies whether to manage
             the encryption key manually or let the Cohesity Cluster manage it.
             If true, you must get the encryption key store it outside the
@@ -51,10 +49,10 @@ class Vault(object):
             UI). If true, the encryption key has been downloaded using the
             Cohesity Dashboard. An encryption key can only be downloaded once
             using the Cohesity Dashboard.
-        encryption_policy (EncryptionPolicy1Enum): Specifies whether to send
-            and store data in an encrypted format. 'kEncryptionNone' indicates
-            the data is not encrypted. 'kEncryptionStrong' indicates the data
-            is encrypted.
+        encryption_policy (EncryptionPolicyVaultEnum): Specifies whether to
+            send and store data in an encrypted format. 'kEncryptionNone'
+            indicates the data is not encrypted. 'kEncryptionStrong' indicates
+            the data is encrypted.
         external_target_type (ExternalTargetTypeEnum): Specifies the type of
             Vault. 'kS3Compatible' indicates a AWS S3 Compatible Vault.
             'kQStarTape' indicates a QStar Tape Vault. 'kAWSGovCloud'
@@ -81,7 +79,7 @@ class Vault(object):
             field is only populated if encryption is enabled for the Vault and
             customerManagingEncryptionKeys is true.
         name (string): Specifies the name of the Vault.
-        mtype (Type34Enum): Specifies the type of Vault. This field is
+        mtype (TypeVaultEnum): Specifies the type of Vault. This field is
             deprecated. This field is split into ExternalTargetType in and
             TierType in respective credentials. Initialize those fields
             instead. deprecated: true 'kNearline' indicates a Google Nearline
@@ -199,7 +197,7 @@ class Vault(object):
         client_certificate = dictionary.get('clientCertificate')
         client_private_key = dictionary.get('clientPrivateKey')
         compression_policy = dictionary.get('compressionPolicy')
-        config = cohesity_management_sdk.models.vault_configuration.VaultConfiguration.from_dictionary(dictionary.get('config')) if dictionary.get('config') else None
+        config = cohesity_management_sdk.models.vault_config.VaultConfig.from_dictionary(dictionary.get('config')) if dictionary.get('config') else None
         customer_managing_encryption_keys = dictionary.get('customerManagingEncryptionKeys')
         dedup_enabled = dictionary.get('dedupEnabled')
         description = dictionary.get('description')

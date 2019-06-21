@@ -6,8 +6,8 @@ from cohesity_management_sdk.api_helper import APIHelper
 from cohesity_management_sdk.configuration import Configuration
 from cohesity_management_sdk.controllers.base_controller import BaseController
 from cohesity_management_sdk.http.auth.auth_manager import AuthManager
-from cohesity_management_sdk.models.privilege_information import PrivilegeInformation
-from cohesity_management_sdk.exceptions.error_error_exception import ErrorErrorException
+from cohesity_management_sdk.models.privilege_info import PrivilegeInfo
+from cohesity_management_sdk.exceptions.request_error_error_exception import RequestErrorErrorException
 
 class PrivilegesController(BaseController):
 
@@ -21,20 +21,18 @@ class PrivilegesController(BaseController):
                        name=None):
         """Does a GET request to /public/privileges.
 
-        If the 'name' parameter is not specified, all privileges defined
-        on the Cohesity Cluster are returned.
-        In addition, information about each privilege is returned such as the
-        associated category, description, name,  etc.
-        If an exact privilege name (such as PRINCIPAL_VIEW) is specified in
-        the
-        'name' parameter, only information about that single privilege is
-        returned.
+        If the 'name' parameter is not specified, all privileges defined on
+        the Cohesity Cluster are returned. In addition, information about each
+        privilege is returned such as the associated category, description,
+        name,  etc. If an exact privilege name (such as PRINCIPAL_VIEW) is
+        specified in the 'name' parameter, only information about that single
+        privilege is returned.
 
         Args:
             name (string, optional): Specifies the name of the privilege.
 
         Returns:
-            list of PrivilegeInformation: Response from the API. Success
+            list of PrivilegeInfo: Response from the API. Success
 
         Raises:
             APIException: When an error occurs while fetching the data from
@@ -73,11 +71,11 @@ class PrivilegesController(BaseController):
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_privileges.')
             if _context.response.status_code == 0:
-                raise ErrorErrorException('Error', _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, PrivilegeInformation.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body, PrivilegeInfo.from_dictionary)
 
         except Exception as e:
             self.logger.error(e, exc_info = True)

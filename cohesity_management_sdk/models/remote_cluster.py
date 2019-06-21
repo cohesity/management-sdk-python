@@ -2,15 +2,15 @@
 # Copyright 2019 Cohesity Inc.
 
 import cohesity_management_sdk.models.bandwidth_limit
-import cohesity_management_sdk.models.create_access_token_credential_request
-import cohesity_management_sdk.models.storage_domain_view_box_pairing
+import cohesity_management_sdk.models.access_token_credential
+import cohesity_management_sdk.models.view_box_pair_info
 
 class RemoteCluster(object):
 
-    """Implementation of the 'Remote Cluster.' model.
+    """Implementation of the 'RemoteCluster' model.
 
-    Specifies information about a remote Cluster that has been registered
-    for replication.
+    Specifies information about a remote Cluster that has been registered for
+    replication.
 
     Attributes:
         all_endpoints_reachable (bool): Specifies whether any endpoint (such
@@ -54,9 +54,8 @@ class RemoteCluster(object):
             for remote access for SPOG.
         purpose_replication (bool): Whether the remote cluster will be used
             for replication.
-        remote_access_credentials (CreateAccessTokenCredentialRequest):
-            Specifies the Cohesity credentials required for generating an
-            access token.
+        remote_access_credentials (AccessTokenCredential): Specifies the
+            Cohesity credentials required for generating an access token.
         remote_ips (list of string): Array of Remote Node IP Addresses.
             Specifies the IP addresses of the Nodes on the remote Cluster to
             connect with. These IP addresses can also be VIPS. Specifying
@@ -65,11 +64,10 @@ class RemoteCluster(object):
             created this remote cluster configuration.
         user_name (string): Specifies the Cohesity user name used to connect
             to the remote Cluster.
-        view_box_pair_info (list of StorageDomainViewBoxPairing): Array of
-            Storage Domain (View Box) Pairs.  Specifies pairings between
-            Storage Domains (View Boxes) on the local Cluster with Storage
-            Domains (View Boxes) on a remote Cluster that are used in
-            replication.
+        view_box_pair_info (list of ViewBoxPairInfo): Array of Storage Domain
+            (View Box) Pairs.  Specifies pairings between Storage Domains
+            (View Boxes) on the local Cluster with Storage Domains (View
+            Boxes) on a remote Cluster that are used in replication.
         vlan_id (int): Specifies the id of the VLAN to use when communicating
             with the remote Cluster.
 
@@ -181,7 +179,7 @@ class RemoteCluster(object):
         network_interface_ids = dictionary.get('networkInterfaceIds')
         purpose_remote_access = dictionary.get('purposeRemoteAccess')
         purpose_replication = dictionary.get('purposeReplication')
-        remote_access_credentials = cohesity_management_sdk.models.create_access_token_credential_request.CreateAccessTokenCredentialRequest.from_dictionary(dictionary.get('remoteAccessCredentials')) if dictionary.get('remoteAccessCredentials') else None
+        remote_access_credentials = cohesity_management_sdk.models.access_token_credential.AccessTokenCredential.from_dictionary(dictionary.get('remoteAccessCredentials')) if dictionary.get('remoteAccessCredentials') else None
         remote_ips = dictionary.get('remoteIps')
         tenant_id = dictionary.get('tenantId')
         user_name = dictionary.get('userName')
@@ -189,7 +187,7 @@ class RemoteCluster(object):
         if dictionary.get('viewBoxPairInfo') != None:
             view_box_pair_info = list()
             for structure in dictionary.get('viewBoxPairInfo'):
-                view_box_pair_info.append(cohesity_management_sdk.models.storage_domain_view_box_pairing.StorageDomainViewBoxPairing.from_dictionary(structure))
+                view_box_pair_info.append(cohesity_management_sdk.models.view_box_pair_info.ViewBoxPairInfo.from_dictionary(structure))
         vlan_id = dictionary.get('vlanId')
 
         # Return an object of this model

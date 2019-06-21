@@ -4,7 +4,7 @@
 
 class Principal(object):
 
-    """Implementation of the 'Principal.' model.
+    """Implementation of the 'Principal' model.
 
     Specifies information about a single Principal.
 

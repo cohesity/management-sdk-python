@@ -4,7 +4,7 @@
 
 class IsilonAccessZone(object):
 
-    """Implementation of the 'Isilon Access Zone.' model.
+    """Implementation of the 'IsilonAccessZone' model.
 
     Specifies information about access zone in an Isilon Cluster.
 

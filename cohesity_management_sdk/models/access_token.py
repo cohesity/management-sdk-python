@@ -4,10 +4,9 @@
 
 class AccessToken(object):
 
-    """Implementation of the 'Access Token.' model.
+    """Implementation of the 'AccessToken' model.
 
-    Specifies an Access Token that provides permissions for a client to
-    access
+    Specifies an Access Token that provides permissions for a client to access
     the Cohesity REST API available from a Cohesity Cluster.
 
     Attributes:

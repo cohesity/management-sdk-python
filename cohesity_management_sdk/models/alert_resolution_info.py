@@ -4,7 +4,7 @@
 
 class AlertResolutionInfo(object):
 
-    """Implementation of the 'Alert Resolution Info.' model.
+    """Implementation of the 'AlertResolutionInfo' model.
 
     Short description and detailed notes about the Resolution.
 

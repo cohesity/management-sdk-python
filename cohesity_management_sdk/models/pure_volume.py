@@ -4,7 +4,7 @@
 
 class PureVolume(object):
 
-    """Implementation of the 'Pure Volume.' model.
+    """Implementation of the 'PureVolume' model.
 
     Specifies a Pure Volume in a Pure Storage Array.
 

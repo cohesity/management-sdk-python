@@ -6,8 +6,7 @@ class TenantDeletionInfo(object):
 
     """Implementation of the 'TenantDeletionInfo' model.
 
-    TenantDeletionInfo captures the individual deletion state of a category
-    of
+    TenantDeletionInfo captures the individual deletion state of a category of
     objects marked tagged with a tenant_id (which has been marked for
     deletion).
 

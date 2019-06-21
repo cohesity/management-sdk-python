@@ -51,7 +51,7 @@ class AddVMProtectionJob(object):
         """
         str_vm_list = ','.join(vm_list)
         # Note: This API works only with vCenter VMs.
-        print str_vm_list
+        print(str_vm_list)
         resp_vm_list = self.cohesity_client.protection_sources\
             .list_virtual_machines(names=str_vm_list)
 
@@ -59,7 +59,7 @@ class AddVMProtectionJob(object):
         return [vm.id for vm in resp_vm_list]
 
 
-    def check_protection_job_exists(self,protect_job_name):
+    def check_protection_job_exists(self, protect_job_name):
         """
         Method to check if protection job exists.
         :param pj_name(str): Name of Protection Job.

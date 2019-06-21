@@ -2,12 +2,12 @@
 # Copyright 2019 Cohesity Inc.
 
 
-class IsilonSMBMountPoint(object):
+class IsilonSmbMountPoint(object):
 
-    """Implementation of the 'Isilon SMB Mount Point.' model.
+    """Implementation of the 'IsilonSmbMountPoint' model.
 
-    Specifies information specific to SMB shares exposed by Isilon
-    file system.
+    Specifies information specific to SMB shares exposed by Isilon file
+    system.
 
     Attributes:
         access_zone_id (long|int): Specifies the Access Zone Id.
@@ -28,7 +28,7 @@ class IsilonSMBMountPoint(object):
                  access_zone_id=None,
                  description=None,
                  share_name=None):
-        """Constructor for the IsilonSMBMountPoint class"""
+        """Constructor for the IsilonSmbMountPoint class"""
 
         # Initialize members of the class
         self.access_zone_id = access_zone_id

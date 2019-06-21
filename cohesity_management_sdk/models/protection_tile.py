@@ -1,21 +1,19 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.protection_statistics
+import cohesity_management_sdk.models.protection_stats
 
 class ProtectionTile(object):
 
-    """Implementation of the 'Protection Tile.' model.
+    """Implementation of the 'ProtectionTile' model.
 
     Protection information and statistics.
 
     Attributes:
-        last_day_archival (ProtectionStatistics): Protection Statistics.
-        last_day_backup (ProtectionStatistics): Protection Statistics.
-        last_day_replication_in (ProtectionStatistics): Protection
-            Statistics.
-        last_day_replication_out (ProtectionStatistics): Protection
-            Statistics.
+        last_day_archival (ProtectionStats): Protection Statistics.
+        last_day_backup (ProtectionStats): Protection Statistics.
+        last_day_replication_in (ProtectionStats): Protection Statistics.
+        last_day_replication_out (ProtectionStats): Protection Statistics.
 
     """
 
@@ -59,10 +57,10 @@ class ProtectionTile(object):
             return None
 
         # Extract variables from the dictionary
-        last_day_archival = cohesity_management_sdk.models.protection_statistics.ProtectionStatistics.from_dictionary(dictionary.get('lastDayArchival')) if dictionary.get('lastDayArchival') else None
-        last_day_backup = cohesity_management_sdk.models.protection_statistics.ProtectionStatistics.from_dictionary(dictionary.get('lastDayBackup')) if dictionary.get('lastDayBackup') else None
-        last_day_replication_in = cohesity_management_sdk.models.protection_statistics.ProtectionStatistics.from_dictionary(dictionary.get('lastDayReplicationIn')) if dictionary.get('lastDayReplicationIn') else None
-        last_day_replication_out = cohesity_management_sdk.models.protection_statistics.ProtectionStatistics.from_dictionary(dictionary.get('lastDayReplicationOut')) if dictionary.get('lastDayReplicationOut') else None
+        last_day_archival = cohesity_management_sdk.models.protection_stats.ProtectionStats.from_dictionary(dictionary.get('lastDayArchival')) if dictionary.get('lastDayArchival') else None
+        last_day_backup = cohesity_management_sdk.models.protection_stats.ProtectionStats.from_dictionary(dictionary.get('lastDayBackup')) if dictionary.get('lastDayBackup') else None
+        last_day_replication_in = cohesity_management_sdk.models.protection_stats.ProtectionStats.from_dictionary(dictionary.get('lastDayReplicationIn')) if dictionary.get('lastDayReplicationIn') else None
+        last_day_replication_out = cohesity_management_sdk.models.protection_stats.ProtectionStats.from_dictionary(dictionary.get('lastDayReplicationOut')) if dictionary.get('lastDayReplicationOut') else None
 
         # Return an object of this model
         return cls(last_day_archival,

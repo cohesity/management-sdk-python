@@ -3,19 +3,20 @@
 
 import cohesity_management_sdk.models.alerting_config
 import cohesity_management_sdk.models.cloud_parameters
-import cohesity_management_sdk.models.environment_specific_common_job_parameters
+import cohesity_management_sdk.models.data_migration_policy
+import cohesity_management_sdk.models.environment_type_job_parameters
 import cohesity_management_sdk.models.time_of_day
 import cohesity_management_sdk.models.indexing_policy
-import cohesity_management_sdk.models.protection_job_run_instance
+import cohesity_management_sdk.models.protection_run_instance
 import cohesity_management_sdk.models.backup_script
-import cohesity_management_sdk.models.remote_adapter
-import cohesity_management_sdk.models.source_special_parameters
-import cohesity_management_sdk.models.protection_job_summary_statistics
-import cohesity_management_sdk.models.unique_global_id
+import cohesity_management_sdk.models.remote_job_script
+import cohesity_management_sdk.models.source_special_parameter
+import cohesity_management_sdk.models.protection_job_summary_stats
+import cohesity_management_sdk.models.universal_id
 
 class ProtectionJob(object):
 
-    """Implementation of the 'Protection Job.' model.
+    """Implementation of the 'ProtectionJob' model.
 
     Provides details about a Protection Job.
 
@@ -42,17 +43,21 @@ class ProtectionJob(object):
             quiesce failure.
         creation_time_usecs (long|int): Specifies the time when the Protection
             Job was created.
+        data_migration_policy (DataMigrationPolicy): Specifies settings for
+            data migration in NAS environment. This also specifies the
+            retention policy that should be applied to files after they have
+            been moved to cohesity cluster.
         dedup_disabled_source_ids (list of long|int): List of source ids for
             which source side dedup is disabled from the backup job.
         description (string): Specifies a text description about the
             Protection Job.
         end_time_usecs (long|int): Specifies the epoch time (in microseconds)
             after which the Protection Job becomes dormant.
-        environment (Environment10Enum): Specifies the environment type (such
-            as kVMware or kSQL) of the Protection Source this Job is
-            protecting. Supported environment types such as 'kView', 'kSQL',
-            'kVMware', etc. NOTE: 'kPuppeteer' refers to Cohesity's Remote
-            Adapter. 'kVMware' indicates the VMware Protection Source
+        environment (EnvironmentProtectionJobEnum): Specifies the environment
+            type (such as kVMware or kSQL) of the Protection Source this Job
+            is protecting. Supported environment types such as 'kView',
+            'kSQL', 'kVMware', etc. NOTE: 'kPuppeteer' refers to Cohesity's
+            Remote Adapter. 'kVMware' indicates the VMware Protection Source
             environment. 'kHyperV' indicates the HyperV Protection Source
             environment. 'kSQL' indicates the SQL Protection Source
             environment. 'kView' indicates the View Protection Source
@@ -83,10 +88,9 @@ class ProtectionJob(object):
             'kGCPNative' indicates the GCP Native Protection Source
             environment. 'kAzureNative' indicates the Azure Native Protection
             Source environment.
-        environment_parameters (EnvironmentSpecificCommonJobParameters):
-            Specifies additional parameters that are common to all Protection
-            Sources in a Protection Job created for a particular environment
-            type.
+        environment_parameters (EnvironmentTypeJobParameters): Specifies
+            additional parameters that are common to all Protection Sources in
+            a Protection Job created for a particular environment type.
         exclude_source_ids (list of long|int): Array of Excluded Source
             Objects.  List of Object ids from a Protection Source that should
             not be protected and are excluded from being backed up by the
@@ -152,9 +156,8 @@ class ProtectionJob(object):
         is_paused (bool): Indicates if the Protection Job is paused, which
             means that no new Job Runs are started but any existing Job Runs
             continue to execute.
-        last_run (ProtectionJobRunInstance): Specifies the status of one Job
-            Run. A Job Run can have one Backup Run and zero or more Copy
-            Runs.
+        last_run (ProtectionRunInstance): Specifies the status of one Job Run.
+            A Job Run can have one Backup Run and zero or more Copy Runs.
         leverage_storage_snapshots (bool): Specifies whether to leverage the
             storage array based snapshots for this backup job. To leverage
             storage snapshots, the storage array has to be registered as a
@@ -211,10 +214,12 @@ class ProtectionJob(object):
             the file system and applications before taking
             Application-Consistent Snapshots. VMware Tools must be installed
             on the guest Operating System.
-        remote_script (RemoteAdapter): For a Remote Adapter 'kPuppeteer' Job,
-            this field specifies the settings about the remote script that
-            will be executed by this Job. Only specify this field for Remote
-            Adapter 'kPuppeteer' Jobs.
+        remote_script (RemoteJobScript): For a Remote Adapter 'kPuppeteer'
+            Job, this field specifies the settings about the remote script
+            that will be executed by this Job. Only specify this field for
+            Remote Adapter 'kPuppeteer' Jobs.
+        remote_view_name (string): Specifies the remote view name to use for
+            view overwrite.
         source_ids (list of long|int): Array of Protected Source Objects.
             Specifies the list of Object ids from the Protection Source to
             protect (or back up) by the Protection Job. An Object in this list
@@ -222,7 +227,7 @@ class ProtectionJob(object):
             Datacenter could be selected but its child Host excluded. However,
             a child VM under the Host could be explicitly selected to be
             protected. Both the Datacenter and the VM are listed.
-        source_special_parameters (list of SourceSpecialParameters): Array of
+        source_special_parameters (list of SourceSpecialParameter): Array of
             Special Source Parameters.  Specifies additional settings that can
             apply to a subset of the Sources listed in the Protection Job. For
             example, you can specify a list of files and folders to protect
@@ -233,15 +238,20 @@ class ProtectionJob(object):
             Protection Schedule. This is optional and only applicable if the
             Protection Policy defines a monthly or a daily Protection
             Schedule. Default value is 02:00 AM.
-        summary_stats (ProtectionJobSummaryStatistics): Specifies statistics
-            about a Protection Job.
+        summary_stats (ProtectionJobSummaryStats): Specifies statistics about
+            a Protection Job.
         tenant_id (string): Specifies the unique id of the tenant.
         timezone (string): Specifies the timezone to use when calculating time
             for this Protection Job such as the Job start time. Specify the
             timezone in the following format: "Area/Location", for example:
             "America/New_York".
-        uid (UniqueGlobalId): Specifies a global Protection Job id that is
-            unique across Cohesity Clusters.
+        uid (UniversalId): Specifies a global Protection Job id that is unique
+            across Cohesity Clusters.
+        user_specified_tags (list of string): Tags associated with the job.
+            User can specify tags/keywords that can indexed by Yoda and can be
+            later searched in UI. For example, user can create a 'kPuppeteer'
+            job to backup Oracle DB for 'payroll' department. User can specify
+            following tags: 'payroll', 'Oracle_DB'.
         view_box_id (long|int): Specifies the Storage Domain (View Box) id
             where this Job writes data.
         view_name (string): For a Remote Adapter 'kPuppeteer' Job or a 'kView'
@@ -278,6 +288,7 @@ class ProtectionJob(object):
         "cloud_parameters":'cloudParameters',
         "continue_on_quiesce_failure":'continueOnQuiesceFailure',
         "creation_time_usecs":'creationTimeUsecs',
+        "data_migration_policy":'dataMigrationPolicy',
         "dedup_disabled_source_ids":'dedupDisabledSourceIds',
         "description":'description',
         "end_time_usecs":'endTimeUsecs',
@@ -308,6 +319,7 @@ class ProtectionJob(object):
         "qos_type":'qosType',
         "quiesce":'quiesce',
         "remote_script":'remoteScript',
+        "remote_view_name":'remoteViewName',
         "source_ids":'sourceIds',
         "source_special_parameters":'sourceSpecialParameters',
         "start_time":'startTime',
@@ -315,6 +327,7 @@ class ProtectionJob(object):
         "tenant_id":'tenantId',
         "timezone":'timezone',
         "uid":'uid',
+        "user_specified_tags":'userSpecifiedTags',
         "view_name":'viewName',
         "vm_tag_ids":'vmTagIds'
     }
@@ -329,6 +342,7 @@ class ProtectionJob(object):
                  cloud_parameters=None,
                  continue_on_quiesce_failure=None,
                  creation_time_usecs=None,
+                 data_migration_policy=None,
                  dedup_disabled_source_ids=None,
                  description=None,
                  end_time_usecs=None,
@@ -359,6 +373,7 @@ class ProtectionJob(object):
                  qos_type=None,
                  quiesce=None,
                  remote_script=None,
+                 remote_view_name=None,
                  source_ids=None,
                  source_special_parameters=None,
                  start_time=None,
@@ -366,6 +381,7 @@ class ProtectionJob(object):
                  tenant_id=None,
                  timezone=None,
                  uid=None,
+                 user_specified_tags=None,
                  view_name=None,
                  vm_tag_ids=None):
         """Constructor for the ProtectionJob class"""
@@ -377,6 +393,7 @@ class ProtectionJob(object):
         self.cloud_parameters = cloud_parameters
         self.continue_on_quiesce_failure = continue_on_quiesce_failure
         self.creation_time_usecs = creation_time_usecs
+        self.data_migration_policy = data_migration_policy
         self.dedup_disabled_source_ids = dedup_disabled_source_ids
         self.description = description
         self.end_time_usecs = end_time_usecs
@@ -409,6 +426,7 @@ class ProtectionJob(object):
         self.qos_type = qos_type
         self.quiesce = quiesce
         self.remote_script = remote_script
+        self.remote_view_name = remote_view_name
         self.source_ids = source_ids
         self.source_special_parameters = source_special_parameters
         self.start_time = start_time
@@ -416,6 +434,7 @@ class ProtectionJob(object):
         self.tenant_id = tenant_id
         self.timezone = timezone
         self.uid = uid
+        self.user_specified_tags = user_specified_tags
         self.view_box_id = view_box_id
         self.view_name = view_name
         self.vm_tag_ids = vm_tag_ids
@@ -448,11 +467,12 @@ class ProtectionJob(object):
         cloud_parameters = cohesity_management_sdk.models.cloud_parameters.CloudParameters.from_dictionary(dictionary.get('cloudParameters')) if dictionary.get('cloudParameters') else None
         continue_on_quiesce_failure = dictionary.get('continueOnQuiesceFailure')
         creation_time_usecs = dictionary.get('creationTimeUsecs')
+        data_migration_policy = cohesity_management_sdk.models.data_migration_policy.DataMigrationPolicy.from_dictionary(dictionary.get('dataMigrationPolicy')) if dictionary.get('dataMigrationPolicy') else None
         dedup_disabled_source_ids = dictionary.get('dedupDisabledSourceIds')
         description = dictionary.get('description')
         end_time_usecs = dictionary.get('endTimeUsecs')
         environment = dictionary.get('environment')
-        environment_parameters = cohesity_management_sdk.models.environment_specific_common_job_parameters.EnvironmentSpecificCommonJobParameters.from_dictionary(dictionary.get('environmentParameters')) if dictionary.get('environmentParameters') else None
+        environment_parameters = cohesity_management_sdk.models.environment_type_job_parameters.EnvironmentTypeJobParameters.from_dictionary(dictionary.get('environmentParameters')) if dictionary.get('environmentParameters') else None
         exclude_source_ids = dictionary.get('excludeSourceIds')
         exclude_vm_tag_ids = dictionary.get('excludeVmTagIds')
         full_protection_sla_time_mins = dictionary.get('fullProtectionSlaTimeMins')
@@ -464,7 +484,7 @@ class ProtectionJob(object):
         is_active = dictionary.get('isActive')
         is_deleted = dictionary.get('isDeleted')
         is_paused = dictionary.get('isPaused')
-        last_run = cohesity_management_sdk.models.protection_job_run_instance.ProtectionJobRunInstance.from_dictionary(dictionary.get('lastRun')) if dictionary.get('lastRun') else None
+        last_run = cohesity_management_sdk.models.protection_run_instance.ProtectionRunInstance.from_dictionary(dictionary.get('lastRun')) if dictionary.get('lastRun') else None
         leverage_storage_snapshots = dictionary.get('leverageStorageSnapshots')
         leverage_storage_snapshots_for_hyperflex = dictionary.get('leverageStorageSnapshotsForHyperflex')
         modification_time_usecs = dictionary.get('modificationTimeUsecs')
@@ -477,18 +497,20 @@ class ProtectionJob(object):
         priority = dictionary.get('priority')
         qos_type = dictionary.get('qosType')
         quiesce = dictionary.get('quiesce')
-        remote_script = cohesity_management_sdk.models.remote_adapter.RemoteAdapter.from_dictionary(dictionary.get('remoteScript')) if dictionary.get('remoteScript') else None
+        remote_script = cohesity_management_sdk.models.remote_job_script.RemoteJobScript.from_dictionary(dictionary.get('remoteScript')) if dictionary.get('remoteScript') else None
+        remote_view_name = dictionary.get('remoteViewName')
         source_ids = dictionary.get('sourceIds')
         source_special_parameters = None
         if dictionary.get('sourceSpecialParameters') != None:
             source_special_parameters = list()
             for structure in dictionary.get('sourceSpecialParameters'):
-                source_special_parameters.append(cohesity_management_sdk.models.source_special_parameters.SourceSpecialParameters.from_dictionary(structure))
+                source_special_parameters.append(cohesity_management_sdk.models.source_special_parameter.SourceSpecialParameter.from_dictionary(structure))
         start_time = cohesity_management_sdk.models.time_of_day.TimeOfDay.from_dictionary(dictionary.get('startTime')) if dictionary.get('startTime') else None
-        summary_stats = cohesity_management_sdk.models.protection_job_summary_statistics.ProtectionJobSummaryStatistics.from_dictionary(dictionary.get('summaryStats')) if dictionary.get('summaryStats') else None
+        summary_stats = cohesity_management_sdk.models.protection_job_summary_stats.ProtectionJobSummaryStats.from_dictionary(dictionary.get('summaryStats')) if dictionary.get('summaryStats') else None
         tenant_id = dictionary.get('tenantId')
         timezone = dictionary.get('timezone')
-        uid = cohesity_management_sdk.models.unique_global_id.UniqueGlobalId.from_dictionary(dictionary.get('uid')) if dictionary.get('uid') else None
+        uid = cohesity_management_sdk.models.universal_id.UniversalId.from_dictionary(dictionary.get('uid')) if dictionary.get('uid') else None
+        user_specified_tags = dictionary.get('userSpecifiedTags')
         view_name = dictionary.get('viewName')
         vm_tag_ids = dictionary.get('vmTagIds')
 
@@ -502,6 +524,7 @@ class ProtectionJob(object):
                    cloud_parameters,
                    continue_on_quiesce_failure,
                    creation_time_usecs,
+                   data_migration_policy,
                    dedup_disabled_source_ids,
                    description,
                    end_time_usecs,
@@ -532,6 +555,7 @@ class ProtectionJob(object):
                    qos_type,
                    quiesce,
                    remote_script,
+                   remote_view_name,
                    source_ids,
                    source_special_parameters,
                    start_time,
@@ -539,6 +563,7 @@ class ProtectionJob(object):
                    tenant_id,
                    timezone,
                    uid,
+                   user_specified_tags,
                    view_name,
                    vm_tag_ids)
 
