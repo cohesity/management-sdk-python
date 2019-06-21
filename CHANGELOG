@@ -5,49 +5,11 @@ Yay! New version of Cohesity Management SDK is here!
 - This SDK now supports Cohesity DataPlatform 6.3
 
 ### Changed
-- (BREAKING CHANGE) Models names have changed because of the naming convention change we did to ensure future versions of the SDK are 100% backward compatible. This is a breaking change for previous version of the SDK. We apologize for the same. From this version onwards we ensure 100% backward compatibility to all SDK releases going forward.
-- Tenants controller(tenants_controller.py) is removed, now all the endpoints related to tenants are in tenant_controller.py
+- (BREAKING CHANGE) Models names have changed because the way we genereated the models was not consistent. We did to ensure future versions of the SDK are 100% backward compatible. 
 
 ### Fixed
-- None, We acknowledge the outstanding issue (https://github.com/cohesity/management-sdk-python/issues/6) and we will fix it in next release.
+- None
  
 ### Removed
-
-- The following API Endpoints are removed from this SDK
-
-    '/public/reports/agents',
-    '/public/reports/dataTransferFromVaults',
-    '/public/reports/gdpr',
-    '/public/reports/protectedObjectsTrends',
-    '/public/reports/protectionSourcesJobRuns',
-    '/public/reports/protectionSourcesJobsSummary',
-    '/public/scheduler',
-    '/public/dashboard',
-    '/public/export/config',
-    '/public/import/config',
-    '/public/analytics/uploadJar',
-    '/public/analytics/uploadJarPath',
-    '/public/analytics/apps',
-    '/public/analytics/apps/{id}',
-    '/public/analytics/cancelAppInstanceRun/{id}',
-    '/public/analytics/mappers',
-    '/public/analytics/mappers/{id}',
-    '/public/analytics/mrAppRun/{id}',
-    '/public/analytics/mrAppRuns',
-    '/public/analytics/mrBaseJar',
-    '/public/analytics/mrFileFormats',
-    '/public/analytics/mrOutputfiles',
-    '/public/analytics/reducers',
-    '/public/analytics/reducers/{id}',
-    '/public/analytics/runAppInstance',
-    '/public/analytics/supportedPatterns',
-    '/public/analytics/analyzeJar',
-    '/public/appInstances',
-    '/public/appInstances/{appInstanceId}/states',
-    '/public/apps/{appUid}/versions/{version}',
-    '/public/apps',
-    '/public/reports/dataTransferToVaults',
-    '/public/reports/restoreSummaryByObjectType',
-    '/public/banners'
-
+- Tenants controller(tenants_controller.py) is removed, now all the endpoints related to tenants are in tenant_controller.py
 
