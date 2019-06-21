@@ -9,15 +9,6 @@
 # Usage: python upgrade_agents.py
 # Fill in the cluster credentials below:
 
-
-CLUSTER_USERNAME = 'cluster_username'
-CLUSTER_PASSWORD = 'cluster_password'
-CLUSTER_VIP = 'prod-cluster.cohesity.com'
-DOMAIN = 'LOCAL'
-
-
-AGENT_PARALLEL_UPGRADES = 10
-
 from cohesity_management_sdk.cohesity_client import CohesityClient
 from cohesity_management_sdk.exceptions.api_exception import APIException
 from cohesity_management_sdk.models.environment_enum import EnvironmentEnum
@@ -32,6 +23,14 @@ try:
 except APIException as ex:
     print("Unable to initialze the client due to : %s " % ex.context)
     SystemExit
+    
+CLUSTER_USERNAME = 'cluster_username'
+CLUSTER_PASSWORD = 'cluster_password'
+CLUSTER_VIP = 'prod-cluster.cohesity.com'
+DOMAIN = 'LOCAL'
+
+
+AGENT_PARALLEL_UPGRADES = 10
 
 def get_tenants():
     """
