@@ -78,7 +78,7 @@ def main(args):
     cohesity_client = CohesityClient(cluster_vip=CLUSTER_VIP,
                                      username=CLUSTER_USERNAME,
                                      password=CLUSTER_PASSWORD,
-				                     domain=DOMAIN)
+				     domain=DOMAIN)
 
     cohesity_client.config.cluster_vip = CLUSTER_VIP
     vm_protect = AddVMProtectionJob(cohesity_client)
