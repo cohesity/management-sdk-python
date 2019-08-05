@@ -1,3 +1,19 @@
+# [1.1.1] - 2019-08-05
+New version of Cohesity Management SDK is here!
+
+### Added
+- This SDK now supports Cohesity DataPlatform 6.4
+
+### Changed
+- Minor bug fixes for some model names.
+### Fixed
+- Fixed the issue #6 . Creating vlan is now possible through python sdk.
+
+### Removed
+- None.
+
+
+
 # [1.1.0] - 2019-06-20
 Yay! New version of Cohesity Management SDK is here!
 

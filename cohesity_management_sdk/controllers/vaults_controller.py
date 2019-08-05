@@ -136,6 +136,68 @@ class VaultsController(BaseController):
             self.logger.error(e, exc_info = True)
             raise
 
+    def get_vault_by_id(self,
+                        id):
+        """Does a GET request to /public/vaults/{id}.
+
+        Returns the Vault corresponding to the specified Vault Id. A Vault is
+        equivalent to an External Target in the Cohesity Dashboard.
+
+        Args:
+            id (long|int): Specifies a unique id of the Vault.
+
+        Returns:
+            Vault: Response from the API. Success
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+        try:
+            self.logger.info('get_vault_by_id called.')
+
+            # Validate required parameters
+            self.logger.info('Validating required parameters for get_vault_by_id.')
+            self.validate_parameters(id=id)
+
+            # Prepare query URL
+            self.logger.info('Preparing query URL for get_vault_by_id.')
+            _url_path = '/public/vaults/{id}'
+            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
+                'id': id
+            })
+            _query_builder = Configuration.get_base_uri()
+            _query_builder += _url_path
+            _query_url = APIHelper.clean_url(_query_builder)
+
+            # Prepare headers
+            self.logger.info('Preparing headers for get_vault_by_id.')
+            _headers = {
+                'accept': 'application/json'
+            }
+
+            # Prepare and execute request
+            self.logger.info('Preparing and executing request for get_vault_by_id.')
+            _request = self.http_client.get(_query_url, headers=_headers)
+            AuthManager.apply(_request)
+            _context = self.execute_request(_request, name = 'get_vault_by_id')
+
+            # Endpoint and global error handling using HTTP status codes.
+            self.logger.info('Validating response for get_vault_by_id.')
+            if _context.response.status_code == 0:
+                raise RequestErrorErrorException('Error', _context)
+            self.validate_response(_context)
+
+            # Return appropriate type
+            return APIHelper.json_deserialize(_context.response.raw_body, Vault.from_dictionary)
+
+        except Exception as e:
+            self.logger.error(e, exc_info = True)
+            raise
+
     def get_archive_media_info(self,
                                cluster_id,
                                cluster_incarnation_id,
@@ -219,68 +281,6 @@ class VaultsController(BaseController):
 
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, TapeMediaInformation.from_dictionary)
-
-        except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
-
-    def get_vault_by_id(self,
-                        id):
-        """Does a GET request to /public/vaults/{id}.
-
-        Returns the Vault corresponding to the specified Vault Id. A Vault is
-        equivalent to an External Target in the Cohesity Dashboard.
-
-        Args:
-            id (long|int): Specifies a unique id of the Vault.
-
-        Returns:
-            Vault: Response from the API. Success
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-        try:
-            self.logger.info('get_vault_by_id called.')
-
-            # Validate required parameters
-            self.logger.info('Validating required parameters for get_vault_by_id.')
-            self.validate_parameters(id=id)
-
-            # Prepare query URL
-            self.logger.info('Preparing query URL for get_vault_by_id.')
-            _url_path = '/public/vaults/{id}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-                'id': id
-            })
-            _query_builder = Configuration.get_base_uri()
-            _query_builder += _url_path
-            _query_url = APIHelper.clean_url(_query_builder)
-
-            # Prepare headers
-            self.logger.info('Preparing headers for get_vault_by_id.')
-            _headers = {
-                'accept': 'application/json'
-            }
-
-            # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_vault_by_id.')
-            _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_vault_by_id')
-
-            # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for get_vault_by_id.')
-            if _context.response.status_code == 0:
-                raise RequestErrorErrorException('Error', _context)
-            self.validate_response(_context)
-
-            # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, Vault.from_dictionary)
 
         except Exception as e:
             self.logger.error(e, exc_info = True)

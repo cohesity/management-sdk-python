@@ -205,7 +205,7 @@ class BackupRun(object):
         stats = cohesity_management_sdk.models.protection_job_run_stats.ProtectionJobRunStats.from_dictionary(dictionary.get('stats')) if dictionary.get('stats') else None
         status = dictionary.get('status')
         warnings = dictionary.get('warnings')
-        worm_retention_type = dictionary.get('wormRetenti onType')
+        worm_retention_type = dictionary.get('wormRetentionType')
 
         # Return an object of this model
         return cls(environment,

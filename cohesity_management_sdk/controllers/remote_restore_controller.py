@@ -458,8 +458,8 @@ class RemoteRestoreController(BaseController):
 
     def get_remote_vault_search_job_results(self,
                                             search_job_id,
-                                            cluster_id,
                                             cluster_incarnation_id,
+                                            cluster_id=None,
                                             page_count=None,
                                             cluster_name=None,
                                             cookie=None):
@@ -476,14 +476,12 @@ class RemoteRestoreController(BaseController):
                 search Job assigned by the Cohesity Cluster. Used in
                 combination with the clusterId and clusterIncarnationId to
                 uniquely identify the search Job.
-            cluster_id (long|int): Specifies the Cohesity Cluster id where the
-                search Job was created. Used in combination with the
-                searchJobId and clusterIncarnationId to uniquely identify the
-                search Job.
             cluster_incarnation_id (long|int): Specifies the incarnation id of
                 the Cohesity Cluster where the search Job was created. Used in
                 combination with the searchJobId and clusterId to uniquely
                 identify the search Job.
+            cluster_id (long|int, optional): This field uniquely represents a
+                Cohesity cluster.
             page_count (int, optional): Specifies the number of Protection
                 Jobs to return in the response to support pagination.
             cluster_name (string, optional): Optionally filter the result by
@@ -508,7 +506,6 @@ class RemoteRestoreController(BaseController):
             # Validate required parameters
             self.logger.info('Validating required parameters for get_remote_vault_search_job_results.')
             self.validate_parameters(search_job_id=search_job_id,
-                                     cluster_id=cluster_id,
                                      cluster_incarnation_id=cluster_incarnation_id)
 
             # Prepare query URL
@@ -518,7 +515,6 @@ class RemoteRestoreController(BaseController):
             _query_builder += _url_path
             _query_parameters = {
                 'searchJobId': search_job_id,
-                'clusterId': cluster_id,
                 'clusterIncarnationId': cluster_incarnation_id,
                 'pageCount': page_count,
                 'clusterName': cluster_name,
@@ -531,7 +527,8 @@ class RemoteRestoreController(BaseController):
             # Prepare headers
             self.logger.info('Preparing headers for get_remote_vault_search_job_results.')
             _headers = {
-                'accept': 'application/json'
+                'accept': 'application/json',
+                'clusterId': cluster_id
             }
 
             # Prepare and execute request

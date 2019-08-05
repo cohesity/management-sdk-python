@@ -18,6 +18,56 @@ class VlanController(BaseController):
         super(VlanController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
 
+    def create_vlan(self):
+        """Does a POST request to /public/vlans.
+
+        Returns the created VLAN on the Cohesity Cluster.
+
+        Returns:
+            Vlan: Response from the API. Success
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+        try:
+            self.logger.info('create_vlan called.')
+
+            # Prepare query URL
+            self.logger.info('Preparing query URL for create_vlan.')
+            _url_path = '/public/vlans'
+            _query_builder = Configuration.get_base_uri()
+            _query_builder += _url_path
+            _query_url = APIHelper.clean_url(_query_builder)
+
+            # Prepare headers
+            self.logger.info('Preparing headers for create_vlan.')
+            _headers = {
+                'accept': 'application/json'
+            }
+
+            # Prepare and execute request
+            self.logger.info('Preparing and executing request for create_vlan.')
+            _request = self.http_client.post(_query_url, headers=_headers)
+            AuthManager.apply(_request)
+            _context = self.execute_request(_request, name = 'create_vlan')
+
+            # Endpoint and global error handling using HTTP status codes.
+            self.logger.info('Validating response for create_vlan.')
+            if _context.response.status_code == 0:
+                raise RequestErrorErrorException('Error', _context)
+            self.validate_response(_context)
+
+            # Return appropriate type
+            return APIHelper.json_deserialize(_context.response.raw_body, Vlan.from_dictionary)
+
+        except Exception as e:
+            self.logger.error(e, exc_info = True)
+            raise
+
     def update_vlan(self,
                     id,
                     body=None):
@@ -263,56 +313,6 @@ class VlanController(BaseController):
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
-
-        except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
-
-    def create_vlan(self):
-        """Does a POST request to /public/vlans.
-
-        Returns the created VLAN on the Cohesity Cluster.
-
-        Returns:
-            Vlan: Response from the API. Success
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-        try:
-            self.logger.info('create_vlan called.')
-
-            # Prepare query URL
-            self.logger.info('Preparing query URL for create_vlan.')
-            _url_path = '/public/vlans'
-            _query_builder = Configuration.get_base_uri()
-            _query_builder += _url_path
-            _query_url = APIHelper.clean_url(_query_builder)
-
-            # Prepare headers
-            self.logger.info('Preparing headers for create_vlan.')
-            _headers = {
-                'accept': 'application/json'
-            }
-
-            # Prepare and execute request
-            self.logger.info('Preparing and executing request for create_vlan.')
-            _request = self.http_client.post(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'create_vlan')
-
-            # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for create_vlan.')
-            if _context.response.status_code == 0:
-                raise RequestErrorErrorException('Error', _context)
-            self.validate_response(_context)
-
-            # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, Vlan.from_dictionary)
 
         except Exception as e:
             self.logger.error(e, exc_info = True)

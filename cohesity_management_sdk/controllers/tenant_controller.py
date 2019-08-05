@@ -16,8 +16,8 @@ from cohesity_management_sdk.models.tenant_protection_job_update import TenantPr
 from cohesity_management_sdk.models.tenant_protection_policy_update import TenantProtectionPolicyUpdate
 from cohesity_management_sdk.models.tenant_ldap_provider_update import TenantLdapProviderUpdate
 from cohesity_management_sdk.models.tenant_entity_update import TenantEntityUpdate
-from cohesity_management_sdk.models.tenant import Tenant
 from cohesity_management_sdk.models.tenant_active_directory_update import TenantActiveDirectoryUpdate
+from cohesity_management_sdk.models.tenant import Tenant
 from cohesity_management_sdk.exceptions.request_error_error_exception import RequestErrorErrorException
 
 class TenantController(BaseController):
@@ -716,6 +716,64 @@ class TenantController(BaseController):
             self.logger.error(e, exc_info = True)
             raise
 
+    def update_tenant_active_directory(self,
+                                       body=None):
+        """Does a PUT request to /public/tenants/activeDirectory.
+
+        Returns success if the update for Active Directory is successful for
+        specified tenant.
+
+        Args:
+            body (TenantActiveDirectoryUpdateParameters, optional): Request to
+                update existing active directories.
+
+        Returns:
+            TenantActiveDirectoryUpdate: Response from the API. Tenant Active
+                Directory Mapping Response.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+        try:
+            self.logger.info('update_tenant_active_directory called.')
+
+            # Prepare query URL
+            self.logger.info('Preparing query URL for update_tenant_active_directory.')
+            _url_path = '/public/tenants/activeDirectory'
+            _query_builder = Configuration.get_base_uri()
+            _query_builder += _url_path
+            _query_url = APIHelper.clean_url(_query_builder)
+
+            # Prepare headers
+            self.logger.info('Preparing headers for update_tenant_active_directory.')
+            _headers = {
+                'accept': 'application/json',
+                'content-type': 'application/json; charset=utf-8'
+            }
+
+            # Prepare and execute request
+            self.logger.info('Preparing and executing request for update_tenant_active_directory.')
+            _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request)
+            _context = self.execute_request(_request, name = 'update_tenant_active_directory')
+
+            # Endpoint and global error handling using HTTP status codes.
+            self.logger.info('Validating response for update_tenant_active_directory.')
+            if _context.response.status_code == 0:
+                raise RequestErrorErrorException('Error', _context)
+            self.validate_response(_context)
+
+            # Return appropriate type
+            return APIHelper.json_deserialize(_context.response.raw_body, TenantActiveDirectoryUpdate.from_dictionary)
+
+        except Exception as e:
+            self.logger.error(e, exc_info = True)
+            raise
+
     def get_tenants(self,
                     ids=None,
                     properties=None,
@@ -792,64 +850,6 @@ class TenantController(BaseController):
 
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, Tenant.from_dictionary)
-
-        except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
-
-    def update_tenant_active_directory(self,
-                                       body=None):
-        """Does a PUT request to /public/tenants/activeDirectory.
-
-        Returns success if the update for Active Directory is successful for
-        specified tenant.
-
-        Args:
-            body (TenantActiveDirectoryUpdateParameters, optional): Request to
-                update existing active directories.
-
-        Returns:
-            TenantActiveDirectoryUpdate: Response from the API. Tenant Active
-                Directory Mapping Response.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-        try:
-            self.logger.info('update_tenant_active_directory called.')
-
-            # Prepare query URL
-            self.logger.info('Preparing query URL for update_tenant_active_directory.')
-            _url_path = '/public/tenants/activeDirectory'
-            _query_builder = Configuration.get_base_uri()
-            _query_builder += _url_path
-            _query_url = APIHelper.clean_url(_query_builder)
-
-            # Prepare headers
-            self.logger.info('Preparing headers for update_tenant_active_directory.')
-            _headers = {
-                'accept': 'application/json',
-                'content-type': 'application/json; charset=utf-8'
-            }
-
-            # Prepare and execute request
-            self.logger.info('Preparing and executing request for update_tenant_active_directory.')
-            _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'update_tenant_active_directory')
-
-            # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for update_tenant_active_directory.')
-            if _context.response.status_code == 0:
-                raise RequestErrorErrorException('Error', _context)
-            self.validate_response(_context)
-
-            # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, TenantActiveDirectoryUpdate.from_dictionary)
 
         except Exception as e:
             self.logger.error(e, exc_info = True)

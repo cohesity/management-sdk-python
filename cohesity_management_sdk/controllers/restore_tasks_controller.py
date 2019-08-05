@@ -494,6 +494,67 @@ class RestoreTasksController(BaseController):
             self.logger.error(e, exc_info = True)
             raise
 
+    def create_applications_recover_task(self,
+                                         body):
+        """Does a POST request to /public/restore/applicationsRecover.
+
+        Returns the created Restore Task.
+
+        Args:
+            body (ApplicationsRestoreTaskRequest): Request to create a Restore
+                Task for recovering Applications like SQL DB. volumes to mount
+                points.
+
+        Returns:
+            RestoreTask: Response from the API. Success
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+        try:
+            self.logger.info('create_applications_recover_task called.')
+
+            # Validate required parameters
+            self.logger.info('Validating required parameters for create_applications_recover_task.')
+            self.validate_parameters(body=body)
+
+            # Prepare query URL
+            self.logger.info('Preparing query URL for create_applications_recover_task.')
+            _url_path = '/public/restore/applicationsRecover'
+            _query_builder = Configuration.get_base_uri()
+            _query_builder += _url_path
+            _query_url = APIHelper.clean_url(_query_builder)
+
+            # Prepare headers
+            self.logger.info('Preparing headers for create_applications_recover_task.')
+            _headers = {
+                'accept': 'application/json',
+                'content-type': 'application/json; charset=utf-8'
+            }
+
+            # Prepare and execute request
+            self.logger.info('Preparing and executing request for create_applications_recover_task.')
+            _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request)
+            _context = self.execute_request(_request, name = 'create_applications_recover_task')
+
+            # Endpoint and global error handling using HTTP status codes.
+            self.logger.info('Validating response for create_applications_recover_task.')
+            if _context.response.status_code == 0:
+                raise RequestErrorErrorException('Error', _context)
+            self.validate_response(_context)
+
+            # Return appropriate type
+            return APIHelper.json_deserialize(_context.response.raw_body, RestoreTask.from_dictionary)
+
+        except Exception as e:
+            self.logger.error(e, exc_info = True)
+            raise
+
     def get_vm_volumes_information(self,
                                    job_id=None,
                                    cluster_id=None,
@@ -607,16 +668,15 @@ class RestoreTasksController(BaseController):
             self.logger.error(e, exc_info = True)
             raise
 
-    def create_applications_recover_task(self,
-                                         body):
-        """Does a POST request to /public/restore/applicationsRecover.
+    def create_applications_clone_task(self,
+                                       body):
+        """Does a POST request to /public/restore/applicationsClone.
 
         Returns the created Restore Task.
 
         Args:
             body (ApplicationsRestoreTaskRequest): Request to create a Restore
-                Task for recovering Applications like SQL DB. volumes to mount
-                points.
+                Task for cloning Applications like SQL DB.
 
         Returns:
             RestoreTask: Response from the API. Success
@@ -629,34 +689,34 @@ class RestoreTasksController(BaseController):
 
         """
         try:
-            self.logger.info('create_applications_recover_task called.')
+            self.logger.info('create_applications_clone_task called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for create_applications_recover_task.')
+            self.logger.info('Validating required parameters for create_applications_clone_task.')
             self.validate_parameters(body=body)
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for create_applications_recover_task.')
-            _url_path = '/public/restore/applicationsRecover'
+            self.logger.info('Preparing query URL for create_applications_clone_task.')
+            _url_path = '/public/restore/applicationsClone'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for create_applications_recover_task.')
+            self.logger.info('Preparing headers for create_applications_clone_task.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for create_applications_recover_task.')
+            self.logger.info('Preparing and executing request for create_applications_clone_task.')
             _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
             AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'create_applications_recover_task')
+            _context = self.execute_request(_request, name = 'create_applications_clone_task')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for create_applications_recover_task.')
+            self.logger.info('Validating response for create_applications_clone_task.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
@@ -752,66 +812,6 @@ class RestoreTasksController(BaseController):
 
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, VirtualDiskInformation.from_dictionary)
-
-        except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
-
-    def create_applications_clone_task(self,
-                                       body):
-        """Does a POST request to /public/restore/applicationsClone.
-
-        Returns the created Restore Task.
-
-        Args:
-            body (ApplicationsRestoreTaskRequest): Request to create a Restore
-                Task for cloning Applications like SQL DB.
-
-        Returns:
-            RestoreTask: Response from the API. Success
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-        try:
-            self.logger.info('create_applications_clone_task called.')
-
-            # Validate required parameters
-            self.logger.info('Validating required parameters for create_applications_clone_task.')
-            self.validate_parameters(body=body)
-
-            # Prepare query URL
-            self.logger.info('Preparing query URL for create_applications_clone_task.')
-            _url_path = '/public/restore/applicationsClone'
-            _query_builder = Configuration.get_base_uri()
-            _query_builder += _url_path
-            _query_url = APIHelper.clean_url(_query_builder)
-
-            # Prepare headers
-            self.logger.info('Preparing headers for create_applications_clone_task.')
-            _headers = {
-                'accept': 'application/json',
-                'content-type': 'application/json; charset=utf-8'
-            }
-
-            # Prepare and execute request
-            self.logger.info('Preparing and executing request for create_applications_clone_task.')
-            _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'create_applications_clone_task')
-
-            # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for create_applications_clone_task.')
-            if _context.response.status_code == 0:
-                raise RequestErrorErrorException('Error', _context)
-            self.validate_response(_context)
-
-            # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, RestoreTask.from_dictionary)
 
         except Exception as e:
             self.logger.error(e, exc_info = True)
