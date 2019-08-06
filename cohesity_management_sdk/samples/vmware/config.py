@@ -13,7 +13,7 @@ VM_CONFIG = {'prefix_name': 'App-tier-vms',
              'version':'vmx-14',
              'nic_type': 'E1000',
              'net_name': 'VM Network',
-             'data_store': 'cohesity_int_10456',
+             'data_store': 'datastore-name',
              'net_name': 'VM Network',
              'num_vms': 3,
              }
