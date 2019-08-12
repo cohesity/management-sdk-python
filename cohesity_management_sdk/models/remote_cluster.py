@@ -9,8 +9,8 @@ class RemoteCluster(object):
 
     """Implementation of the 'RemoteCluster' model.
 
-    Specifies information about a remote Cluster that has been registered for
-    replication.
+    Specifies information about a remote Cluster that has been registered
+    for replication.
 
     Attributes:
         all_endpoints_reachable (bool): Specifies whether any endpoint (such

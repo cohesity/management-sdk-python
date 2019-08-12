@@ -10,8 +10,9 @@ class GetRegistrationInfoResponse(object):
     """Implementation of the 'GetRegistrationInfoResponse' model.
 
     Specifies the registration, protection and permission information of all
-    or a subset of the registered Protection Source Trees or Views on the
-    Cohesity Cluster.
+    or a
+    subset of the registered Protection Source Trees or Views on the Cohesity
+    Cluster.
 
     Attributes:
         root_nodes (list of ProtectionSourceTreeInfo): Specifies the

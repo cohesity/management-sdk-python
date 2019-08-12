@@ -6,8 +6,8 @@ class NetworkConfiguration(object):
 
     """Implementation of the 'NetworkConfiguration' model.
 
-    Specifies all of the parameters needed for network configuration of the
-    new Cluster.
+    Specifies all of the parameters needed for network configuration of
+    the new Cluster.
 
     Attributes:
         cluster_gateway (string): Specifies the default gateway IP address (or

@@ -8,8 +8,8 @@ class RemoteJobScript(object):
 
     """Implementation of the 'RemoteJobScript' model.
 
-    Provides details about the Remote Adapter associated with a 'kPuppeteer'
-    Protection Job.
+    Provides details about the Remote Adapter associated with a
+    'kPuppeteer' Protection Job.
 
     Attributes:
         full_backup_script (RemoteScriptPathAndParams): Specifies the script

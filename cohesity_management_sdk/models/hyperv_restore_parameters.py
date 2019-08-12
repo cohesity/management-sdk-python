@@ -6,8 +6,8 @@ class HypervRestoreParameters(object):
 
     """Implementation of the 'HypervRestoreParameters' model.
 
-    Specifies information needed when restoring VMs in HyperV enviroment. This
-    field defines the HyperV specific params for restore tasks of type
+    Specifies information needed when restoring VMs in HyperV enviroment.
+    This field defines the HyperV specific params for restore tasks of type
     kRecoverVMs.
 
     Attributes:

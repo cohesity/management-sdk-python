@@ -6,9 +6,9 @@ class HardwareInfo(object):
 
     """Implementation of the 'HardwareInfo' model.
 
-    This struct should match the fields in the hardware JSON file. Hardware
-    JSON file serves as cache for hardware info to reduce hardware polling
-    which takes time.
+    This struct should match the fields in the hardware JSON file.
+    Hardware JSON file serves as cache for hardware info to reduce
+    hardware polling which takes time.
 
     Attributes:
         chassis_model (string): TODO: type description here.

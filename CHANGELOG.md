@@ -1,3 +1,19 @@
+# [1.1.2] - 2019-08-12
+New version of Cohesity Management SDK is here!
+
+### Added
+- ~40 endpoints supported in  6.4 have been added  
+
+### Changed
+- None
+
+### Fixed
+- None
+
+### Removed
+- None
+
+
 # [1.1.1] - 2019-08-05
 New version of Cohesity Management SDK is here!
 

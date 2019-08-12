@@ -7,8 +7,8 @@ class IndexAndSnapshots(object):
 
     """Implementation of the 'IndexAndSnapshots' model.
 
-    Specifies settings required to restore the index and Snapshots of a
-    Protection Job.
+    Specifies settings required to restore the index and Snapshots of
+    a Protection Job.
 
     Attributes:
         archive_task_uid (UniversalId): Specifies a unique id of the Archive

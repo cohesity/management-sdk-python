@@ -6,11 +6,12 @@ class LogicalStats(object):
 
     """Implementation of the 'LogicalStats' model.
 
-    Provides logical statistics for logical entities such as Clusters and
-    Domains (View Boxes). The logical size is the size of the data when it is
-    fully hydrated or expanded. The actual physical data stored on the
-    Cohesity Cluster is reduced by change-block tracking, compression and
-    deduplication.
+    Provides logical statistics for logical entities such as Clusters
+    and Domains (View Boxes).
+    The logical size is the size of the data when it is fully hydrated or
+    expanded.
+    The actual physical data stored on the Cohesity Cluster is
+    reduced by change-block tracking, compression and deduplication.
 
     Attributes:
         total_logical_usage_bytes (long|int): Provides the logical usage as

@@ -6,8 +6,8 @@ class CloudNetworkConfiguration(object):
 
     """Implementation of the 'CloudNetworkConfiguration' model.
 
-    Specifies all of the parameters needed for network configuration of the
-    new Cloud Cluster.
+    Specifies all of the parameters needed for network configuration of
+    the new Cloud Cluster.
 
     Attributes:
         cluster_gateway (string): Specifies the default gateway IP address (or

@@ -7,8 +7,8 @@ class EntitySchemaProtoTimeSeriesDescriptor(object):
 
     """Implementation of the 'EntitySchemaProto_TimeSeriesDescriptor' model.
 
-    Specifies the meta-data required to define a time series of data (set of
-    data points) for a metric.
+    Specifies the meta-data required to define a time series of data
+    (set of data points) for a metric.
 
     Attributes:
         metric_descriptive_name (string): Specifies a descriptive name for the

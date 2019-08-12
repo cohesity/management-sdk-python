@@ -7,9 +7,10 @@ class UpdateSourcesForPrincipalsParams(object):
 
     """Implementation of the 'UpdateSourcesForPrincipalsParams' model.
 
-    Set Access Permissions for Principals. Specifies a list of principals to
-    set access permissions for. For each principal, set the Protection Sources
-    and View names that the specified principal has permissions to access.
+    Set Access Permissions for Principals.
+    Specifies a list of principals to set access permissions for.
+    For each principal, set the Protection Sources and View names
+    that the specified principal has permissions to access.
 
     Attributes:
         sources_for_principals (list of SourceForPrincipalParam): Array of

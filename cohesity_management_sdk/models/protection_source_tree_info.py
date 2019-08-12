@@ -13,9 +13,9 @@ class ProtectionSourceTreeInfo(object):
     """Implementation of the 'ProtectionSourceTreeInfo' model.
 
     Specifies the registration and protection information of a registered
-    Protection Source Tree on the Cohesity Cluster.  Many different Protection
-    Source trees are supported such as 'kVMware', 'kAcropolis', 'kPhysical'
-    etc.,
+    Protection Source Tree on the Cohesity Cluster.
+    Many different Protection Source trees are supported such as
+    'kVMware', 'kAcropolis', 'kPhysical' etc.,
 
     Attributes:
         applications (list of ApplicationInfo): Array of applications

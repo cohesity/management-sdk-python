@@ -6,8 +6,8 @@ class RoleCreateParameters(object):
 
     """Implementation of the 'RoleCreateParameters' model.
 
-    Specifies the parameters required to create a new custom role such as the
-    name, description and the privileges to assign to the role.
+    Specifies the parameters required to create a new custom role such
+    as the name, description and the privileges to assign to the role.
 
     Attributes:
         description (string): Specifies a description about the role.

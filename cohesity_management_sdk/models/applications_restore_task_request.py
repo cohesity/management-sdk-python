@@ -13,41 +13,44 @@ class ApplicationsRestoreTaskRequest(object):
     Servers like SQL or Exchange servers hosted by a Protection Source.
 
     Attributes:
-        application_environment (ApplicationEnvironmentEnum): Specifies the
-            Environment of the Application to restore like 'kSQL', or
-            'kExchange'. overrideDescription: true Supported environment types
-            such as 'kView', 'kSQL', 'kVMware', etc. NOTE: 'kPuppeteer' refers
-            to Cohesity's Remote Adapter. 'kVMware' indicates the VMware
-            Protection Source environment. 'kHyperV' indicates the HyperV
-            Protection Source environment. 'kSQL' indicates the SQL Protection
-            Source environment. 'kView' indicates the View Protection Source
-            environment. 'kPuppeteer' indicates the Cohesity's Remote Adapter.
-            'kPhysical' indicates the physical Protection Source environment.
-            'kPure' indicates the Pure Storage Protection Source environment.
-            'kAzure' indicates the Microsoft's Azure Protection Source
-            environment. 'kNetapp' indicates the Netapp Protection Source
-            environment. 'kAgent' indicates the Agent Protection Source
-            environment. 'kGenericNas' indicates the Genreric Network Attached
-            Storage Protection Source environment. 'kAcropolis' indicates the
-            Acropolis Protection Source environment. 'kPhsicalFiles' indicates
-            the Physical Files Protection Source environment. 'kIsilon'
-            indicates the Dell EMC's Isilon Protection Source environment.
-            'kKVM' indicates the KVM Protection Source environment. 'kAWS'
-            indicates the AWS Protection Source environment. 'kExchange'
-            indicates the Exchange Protection Source environment. 'kHyperVVSS'
-            indicates the HyperV VSS Protection Source environment. 'kOracle'
-            indicates the Oracle Protection Source environment. 'kGCP'
-            indicates the Google Cloud Platform Protection Source environment.
-            'kFlashBlade' indicates the Flash Blade Protection Source
-            environment. 'kAWSNative' indicates the AWS Native Protection
-            Source environment. 'kVCD' indicates the VMware's Virtual cloud
-            Director Protection Source environment. 'kO365' indicates the
-            Office 365 Protection Source environment. 'kO365Outlook' indicates
-            Office 365 outlook Protection Source environment. 'kHyperFlex'
-            indicates the Hyper Flex Protection Source environment.
-            'kGCPNative' indicates the GCP Native Protection Source
-            environment. 'kAzureNative' indicates the Azure Native Protection
-            Source environment.
+        application_environment
+            (ApplicationEnvironmentApplicationsRestoreTaskRequestEnum):
+            Specifies the Environment of the Application to restore like
+            'kSQL', or 'kExchange'. overrideDescription: true Supported
+            environment types such as 'kView', 'kSQL', 'kVMware', etc. NOTE:
+            'kPuppeteer' refers to Cohesity's Remote Adapter. 'kVMware'
+            indicates the VMware Protection Source environment. 'kHyperV'
+            indicates the HyperV Protection Source environment. 'kSQL'
+            indicates the SQL Protection Source environment. 'kView' indicates
+            the View Protection Source environment. 'kPuppeteer' indicates the
+            Cohesity's Remote Adapter. 'kPhysical' indicates the physical
+            Protection Source environment. 'kPure' indicates the Pure Storage
+            Protection Source environment. 'kAzure' indicates the Microsoft's
+            Azure Protection Source environment. 'kNetapp' indicates the
+            Netapp Protection Source environment. 'kAgent' indicates the Agent
+            Protection Source environment. 'kGenericNas' indicates the
+            Genreric Network Attached Storage Protection Source environment.
+            'kAcropolis' indicates the Acropolis Protection Source
+            environment. 'kPhsicalFiles' indicates the Physical Files
+            Protection Source environment. 'kIsilon' indicates the Dell EMC's
+            Isilon Protection Source environment. 'kGPFS' indicates IBM's GPFS
+            Protection Source environment. 'kKVM' indicates the KVM Protection
+            Source environment. 'kAWS' indicates the AWS Protection Source
+            environment. 'kExchange' indicates the Exchange Protection Source
+            environment. 'kHyperVVSS' indicates the HyperV VSS Protection
+            Source environment. 'kOracle' indicates the Oracle Protection
+            Source environment. 'kGCP' indicates the Google Cloud Platform
+            Protection Source environment. 'kFlashBlade' indicates the Flash
+            Blade Protection Source environment. 'kAWSNative' indicates the
+            AWS Native Protection Source environment. 'kVCD' indicates the
+            VMware's Virtual cloud Director Protection Source environment.
+            'kO365' indicates the Office 365 Protection Source environment.
+            'kO365Outlook' indicates Office 365 outlook Protection Source
+            environment. 'kHyperFlex' indicates the Hyper Flex Protection
+            Source environment. 'kGCPNative' indicates the GCP Native
+            Protection Source environment. 'kAzureNative' indicates the Azure
+            Native Protection Source environment. 'kKubernetes' indicates a
+            Kubernetes Protection Source environment.
         application_restore_objects (list of ApplicationRestoreObject):
             Specifies the Application Server objects whose data should be
             restored and the restore parameters for each of them.

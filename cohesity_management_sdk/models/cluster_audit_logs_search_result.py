@@ -7,8 +7,8 @@ class ClusterAuditLogsSearchResult(object):
 
     """Implementation of the 'ClusterAuditLogsSearchResult' model.
 
-    Returns the Cluster audit logs that match the specified filter criteria up
-    to the limit specified in pageCount.
+    Returns the Cluster audit logs that match the specified filter criteria
+    up to the limit specified in pageCount.
 
     Attributes:
         cluster_audit_logs (list of ClusterAuditLog): Array of Cluster Audit

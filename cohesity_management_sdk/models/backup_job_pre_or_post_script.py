@@ -8,11 +8,13 @@ class BackupJobPreOrPostScript(object):
 
     """Implementation of the 'BackupJobPreOrPostScript' model.
 
-    A message to encapsulate the pre and post scripts associated with a backup
-    job. Pre script is executed before backup run of a job starts. Post script
-    is executed after backup run of a job finishes. Currently, pre and post
-    script is only supported for backup job of type 'kPuppeteer' and
-    agent-based backup jobs.
+    A message to encapsulate the pre and post scripts associated with a
+    backup
+    job. Pre script is executed before backup run of a job starts. Post
+    script
+    is executed after backup run of a job finishes.
+    Currently, pre and post script is only supported for backup job of type
+    'kPuppeteer' and agent-based backup jobs.
 
     Attributes:
         backup_script (ScriptPathAndParams): A message to encapsulate pre or

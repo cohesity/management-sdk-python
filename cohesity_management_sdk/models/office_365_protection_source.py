@@ -14,7 +14,11 @@ class Office365ProtectionSource(object):
         name (string): Specifies the name of the office 365 entity.
         primary_smtp_address (string): Specifies the SMTP address for the
             Outlook source.
-        mtype (int): Specifies the type of the Office 365 entity.
+        mtype (TypeOffice365ProtectionSourceEnum): Specifies the type of the
+            Office 365 entity. Specifies the type of Office 365 entity
+            'kDomain' indicates the O365 domain through which authentication
+            occurs. 'kOutlook' indicates the Exchange online entities.
+            'kMailbox' indicates the user's mailbox account.
         uuid (string): Specifies the UUID of the Office 365 entity.
 
     """

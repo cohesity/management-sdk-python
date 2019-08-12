@@ -24,8 +24,8 @@ class ClusterPartitionsController(BaseController):
         """Does a GET request to /public/clusterPartitions.
 
         If no parameters are specified, all Cluster Partitions currently on
-        the Cohesity Cluster are returned. Specifying parameters filters the
-        results that are returned.
+        the Cohesity Cluster are returned.
+        Specifying parameters filters the results that are returned.
 
         Args:
             ids (list of long|int, optional): Array of Cluster Partition Ids.

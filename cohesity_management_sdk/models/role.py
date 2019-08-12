@@ -7,10 +7,10 @@ class Role(object):
     """Implementation of the 'Role' model.
 
     Specifies information about role such as the category, privileges,
-    description, etc. A role can be a default system role or a custom role.
-    Custom roles are user-defined roles that are created using the Cohesity
-    Dashboard, the REST API or the CLI. System roles are provided by default
-    on the Cohesity Cluster.
+    description, etc. A role can be a default system role
+    or a custom role. Custom roles are user-defined roles that are created
+    using the Cohesity Dashboard, the REST API or the CLI.
+    System roles are provided by default on the Cohesity Cluster.
 
     Attributes:
         created_time_msecs (long|int): Specifies the epoch time in

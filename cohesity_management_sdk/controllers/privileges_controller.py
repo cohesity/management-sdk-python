@@ -21,12 +21,14 @@ class PrivilegesController(BaseController):
                        name=None):
         """Does a GET request to /public/privileges.
 
-        If the 'name' parameter is not specified, all privileges defined on
-        the Cohesity Cluster are returned. In addition, information about each
-        privilege is returned such as the associated category, description,
-        name,  etc. If an exact privilege name (such as PRINCIPAL_VIEW) is
-        specified in the 'name' parameter, only information about that single
-        privilege is returned.
+        If the 'name' parameter is not specified, all privileges defined
+        on the Cohesity Cluster are returned.
+        In addition, information about each privilege is returned such as the
+        associated category, description, name,  etc.
+        If an exact privilege name (such as PRINCIPAL_VIEW) is specified in
+        the
+        'name' parameter, only information about that single privilege is
+        returned.
 
         Args:
             name (string, optional): Specifies the name of the privilege.

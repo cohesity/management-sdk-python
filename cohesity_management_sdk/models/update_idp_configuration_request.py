@@ -33,6 +33,12 @@ class UpdateIdpConfigurationRequest(object):
             contains a comma separated list of Cluster roles. Either this
             field or roles must be set. This field takes higher precedence
             than the roles field.
+        sign_request (bool): Specifies whether to sign the SAML request or
+            not. When it is set to true, SAML request will be signed. When it
+            is set to false, SAML request is not signed. Default is false. Set
+            this flag to true if the IdP site is configured to expect the SAML
+            request from the Cluster signed. If this is set to true, users
+            must get the Cluster's certificate and upload it on the IdP site.
         sso_url (string): Specifies the SSO URL of the IdP service for the
             customer. This is the URL given by IdP when the customer created
             an account. Customers may use this for several clusters that are
@@ -50,6 +56,7 @@ class UpdateIdpConfigurationRequest(object):
         "issuer_id":'issuerId',
         "roles":'roles',
         "saml_attribute_name":'samlAttributeName',
+        "sign_request":'signRequest',
         "sso_url":'ssoUrl'
     }
 
@@ -61,6 +68,7 @@ class UpdateIdpConfigurationRequest(object):
                  issuer_id=None,
                  roles=None,
                  saml_attribute_name=None,
+                 sign_request=None,
                  sso_url=None):
         """Constructor for the UpdateIdpConfigurationRequest class"""
 
@@ -72,6 +80,7 @@ class UpdateIdpConfigurationRequest(object):
         self.issuer_id = issuer_id
         self.roles = roles
         self.saml_attribute_name = saml_attribute_name
+        self.sign_request = sign_request
         self.sso_url = sso_url
 
 
@@ -100,6 +109,7 @@ class UpdateIdpConfigurationRequest(object):
         issuer_id = dictionary.get('issuerId')
         roles = dictionary.get('roles')
         saml_attribute_name = dictionary.get('samlAttributeName')
+        sign_request = dictionary.get('signRequest')
         sso_url = dictionary.get('ssoUrl')
 
         # Return an object of this model
@@ -110,6 +120,7 @@ class UpdateIdpConfigurationRequest(object):
                    issuer_id,
                    roles,
                    saml_attribute_name,
+                   sign_request,
                    sso_url)
 
 

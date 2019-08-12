@@ -5,11 +5,12 @@ class TypeNetworkInterfaceEnum(object):
 
     """Implementation of the 'Type_NetworkInterface' enum.
 
-    Specifies the type of interface. 'kPhysicalInterface' indicates a physical
-    interface type. 'kBondMasterInterface' indicates that the interface is the
-    master of a bond. 'kBondSlaveInterface' indicates the the interface is a
-    slave of a bond. 'kTaggedVlanInterface' indicates a tagged vlan interface
-    type.
+    Specifies the type of interface.
+    'kPhysicalInterface' indicates a physical interface type.
+    'kBondMasterInterface' indicates that the interface is the master of a
+    bond.
+    'kBondSlaveInterface' indicates the the interface is a slave of a bond.
+    'kTaggedVlanInterface' indicates a tagged vlan interface type.
 
     Attributes:
         KPHYSICALINTERFACE: TODO: type description here.

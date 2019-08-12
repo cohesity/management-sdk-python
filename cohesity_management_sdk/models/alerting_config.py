@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
+import cohesity_management_sdk.models.email_delivery_target
 
 class AlertingConfig(object):
 
@@ -9,9 +10,9 @@ class AlertingConfig(object):
     Specifies optional settings for alerting.
 
     Attributes:
-        email_addresses (list of string): Specifies additional email addresses
-            where alert notifications (configured in the AlertingPolicy) must
-            be sent.
+        email_delivery_targets (list of EmailDeliveryTarget): Specifies
+            additional email addresses where alert notifications (configured
+            in the AlertingPolicy) must be sent.
         raise_object_level_failure_alert (bool): Specifies the boolean to
             raise per object alert for failures.
 
@@ -19,17 +20,17 @@ class AlertingConfig(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "email_addresses":'emailAddresses',
+        "email_delivery_targets":'emailDeliveryTargets',
         "raise_object_level_failure_alert":'raiseObjectLevelFailureAlert'
     }
 
     def __init__(self,
-                 email_addresses=None,
+                 email_delivery_targets=None,
                  raise_object_level_failure_alert=None):
         """Constructor for the AlertingConfig class"""
 
         # Initialize members of the class
-        self.email_addresses = email_addresses
+        self.email_delivery_targets = email_delivery_targets
         self.raise_object_level_failure_alert = raise_object_level_failure_alert
 
 
@@ -51,11 +52,15 @@ class AlertingConfig(object):
             return None
 
         # Extract variables from the dictionary
-        email_addresses = dictionary.get('emailAddresses')
+        email_delivery_targets = None
+        if dictionary.get('emailDeliveryTargets') != None:
+            email_delivery_targets = list()
+            for structure in dictionary.get('emailDeliveryTargets'):
+                email_delivery_targets.append(cohesity_management_sdk.models.email_delivery_target.EmailDeliveryTarget.from_dictionary(structure))
         raise_object_level_failure_alert = dictionary.get('raiseObjectLevelFailureAlert')
 
         # Return an object of this model
-        return cls(email_addresses,
+        return cls(email_delivery_targets,
                    raise_object_level_failure_alert)
 
 

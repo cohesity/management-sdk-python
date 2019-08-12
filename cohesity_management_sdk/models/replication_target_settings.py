@@ -6,8 +6,8 @@ class ReplicationTargetSettings(object):
 
     """Implementation of the 'ReplicationTargetSettings' model.
 
-    Specifies settings about the Remote Cohesity Cluster where Snapshots are
-    copied to.
+    Specifies settings about the Remote Cohesity Cluster where Snapshots
+    are copied to.
 
     Attributes:
         cluster_id (long|int): Specifies the id of the Remote Cluster.

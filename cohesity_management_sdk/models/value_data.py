@@ -6,8 +6,8 @@ class ValueData(object):
 
     """Implementation of the 'Value_Data' model.
 
-    Specifies the fields to store data of a given type. Specify data in the
-    appropriate field for the current data type.
+    Specifies the fields to store data of a given type.
+    Specify data in the appropriate field for the current data type.
 
     Attributes:
         bytes_value (list of int): Specifies the field to store an array of

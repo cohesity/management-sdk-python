@@ -6,8 +6,8 @@ class EncryptionPolicyVaultEnum(object):
     """Implementation of the 'EncryptionPolicy_Vault' enum.
 
     Specifies whether to send and store data in an encrypted format.
-    'kEncryptionNone' indicates the data is not encrypted. 'kEncryptionStrong'
-    indicates the data is encrypted.
+    'kEncryptionNone' indicates the data is not encrypted.
+    'kEncryptionStrong' indicates the data is encrypted.
 
     Attributes:
         KENCRYPTIONNONE: TODO: type description here.

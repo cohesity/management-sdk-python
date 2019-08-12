@@ -5,8 +5,10 @@ class DayBlackoutPeriodEnum(object):
 
     """Implementation of the 'Day_BlackoutPeriod' enum.
 
-    Blackout Day.  Specifies a day in the week when no new Job Runs should be
-    started such as 'kSunday'. If not set, the time range applies to all days.
+    Blackout Day.
+    Specifies a day in the week when no new Job Runs should be started
+    such as 'kSunday'.
+    If not set, the time range applies to all days.
     Specifies a day in a week such as 'kSunday', 'kMonday', etc.
 
     Attributes:

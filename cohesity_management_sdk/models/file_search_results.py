@@ -8,8 +8,8 @@ class FileSearchResults(object):
     """Implementation of the 'FileSearchResults' model.
 
     Specifies an array of found files and folders. In addition, a count is
-    provided to indicate if additional requests must be made to get the full
-    result.
+    provided to indicate if additional requests must be made to get
+    the full result.
 
     Attributes:
         files (list of FileSearchResult): Array of Files and Folders.

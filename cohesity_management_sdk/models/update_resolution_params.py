@@ -7,7 +7,8 @@ class UpdateResolutionParams(object):
     """Implementation of the 'UpdateResolutionParams' model.
 
     Apply an existing Resolution to a new list of Alerts, which are specified
-    by Alert Ids.
+    by
+    Alert Ids.
 
     Attributes:
         alert_id_list (list of string): Specifies the Alerts to resolve, which

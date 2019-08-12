@@ -6,8 +6,8 @@ class AlertResolutionDetails(object):
 
     """Implementation of the 'AlertResolutionDetails' model.
 
-    Specifies information about the Alert Resolution such as a summary, id
-    assigned by the Cohesity Cluster, user who resolved the Alerts, etc.
+    Specifies information about the Alert Resolution such as a summary,
+    id assigned by the Cohesity Cluster, user who resolved the Alerts, etc.
 
     Attributes:
         resolution_details (string): Specifies detailed notes about the

@@ -17,62 +17,6 @@ class SMBFileOpensController(BaseController):
         super(SMBFileOpensController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
 
-    def create_close_smb_file_open(self,
-                                   body):
-        """Does a POST request to /public/smbFileOpens.
-
-        Returns nothing upon success.
-
-        Args:
-            body (CloseSmbFileOpenParameters): Request to close an active SMB
-                file open.
-
-        Returns:
-            void: Response from the API. No Content
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-        try:
-            self.logger.info('create_close_smb_file_open called.')
-
-            # Validate required parameters
-            self.logger.info('Validating required parameters for create_close_smb_file_open.')
-            self.validate_parameters(body=body)
-
-            # Prepare query URL
-            self.logger.info('Preparing query URL for create_close_smb_file_open.')
-            _url_path = '/public/smbFileOpens'
-            _query_builder = Configuration.get_base_uri()
-            _query_builder += _url_path
-            _query_url = APIHelper.clean_url(_query_builder)
-
-            # Prepare headers
-            self.logger.info('Preparing headers for create_close_smb_file_open.')
-            _headers = {
-                'content-type': 'application/json; charset=utf-8'
-            }
-
-            # Prepare and execute request
-            self.logger.info('Preparing and executing request for create_close_smb_file_open.')
-            _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'create_close_smb_file_open')
-
-            # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for create_close_smb_file_open.')
-            if _context.response.status_code == 0:
-                raise RequestErrorErrorException('Error', _context)
-            self.validate_response(_context)
-
-        except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
-
     def get_smb_file_opens(self,
                            file_path=None,
                            view_name=None,
@@ -81,8 +25,10 @@ class SMBFileOpensController(BaseController):
         """Does a GET request to /public/smbFileOpens.
 
         If no parameters are specified, all active SMB file opens currently on
-        the Cohesity Cluster are returned. Specifying parameters filters the
-        results that are returned.
+        the
+        Cohesity Cluster are returned. Specifying parameters filters the
+        results that
+        are returned.
 
         Args:
             file_path (string, optional): Specifies the filepath in the view
@@ -149,6 +95,62 @@ class SMBFileOpensController(BaseController):
 
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, SmbActiveFileOpensResponse.from_dictionary)
+
+        except Exception as e:
+            self.logger.error(e, exc_info = True)
+            raise
+
+    def create_close_smb_file_open(self,
+                                   body):
+        """Does a POST request to /public/smbFileOpens.
+
+        Returns nothing upon success.
+
+        Args:
+            body (CloseSmbFileOpenParameters): Request to close an active SMB
+                file open.
+
+        Returns:
+            void: Response from the API. No Content
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+        try:
+            self.logger.info('create_close_smb_file_open called.')
+
+            # Validate required parameters
+            self.logger.info('Validating required parameters for create_close_smb_file_open.')
+            self.validate_parameters(body=body)
+
+            # Prepare query URL
+            self.logger.info('Preparing query URL for create_close_smb_file_open.')
+            _url_path = '/public/smbFileOpens'
+            _query_builder = Configuration.get_base_uri()
+            _query_builder += _url_path
+            _query_url = APIHelper.clean_url(_query_builder)
+
+            # Prepare headers
+            self.logger.info('Preparing headers for create_close_smb_file_open.')
+            _headers = {
+                'content-type': 'application/json; charset=utf-8'
+            }
+
+            # Prepare and execute request
+            self.logger.info('Preparing and executing request for create_close_smb_file_open.')
+            _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request)
+            _context = self.execute_request(_request, name = 'create_close_smb_file_open')
+
+            # Endpoint and global error handling using HTTP status codes.
+            self.logger.info('Validating response for create_close_smb_file_open.')
+            if _context.response.status_code == 0:
+                raise RequestErrorErrorException('Error', _context)
+            self.validate_response(_context)
 
         except Exception as e:
             self.logger.error(e, exc_info = True)

@@ -7,8 +7,9 @@ class FileSnapshotInformation(object):
 
     """Implementation of the 'FileSnapshotInformation' model.
 
-    Specifies the information about the snapshot that contains the file or
-    folder. In addition, information about the file or folder is provided.
+    Specifies the information about the snapshot that contains the file
+    or folder. In addition, information about the file or folder is
+    provided.
 
     Attributes:
         has_archival_copy (bool): If true, this snapshot is located on an

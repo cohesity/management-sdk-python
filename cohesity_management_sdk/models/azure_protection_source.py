@@ -36,7 +36,9 @@ class AzureProtectionSource(object):
             overrideDescription: true 'kLinux' indicates the Linux operating
             system. 'kWindows' indicates the Microsoft Windows operating
             system. 'kAix' indicates the IBM AIX operating system. 'kSolaris'
-            indicates the Oracle Solaris operating system.
+            indicates the Oracle Solaris operating system. 'kSapHana'
+            indicates the Sap Hana database system developed by SAP SE.
+            'kOther' indicates the other types of operating system.
         ip_addresses (list of string): Specifies a list of IP addresses for
             entities of type 'kVirtualMachine'.
         location (string): Specifies the physical location of the resource
@@ -73,6 +75,11 @@ class AzureProtectionSource(object):
             customer's Azure account. It represents sub-section within the
             Azure account where a customer allows us to create VMs, storage
             account etc.
+        subscription_type (SubscriptionTypeEnum): Specifies the subscription
+            type of Azure such as 'kAzureCommercial' or 'kAzureGovCloud'.
+            Specifies the subscription type of an Azure source entity.
+            'kAzureCommercial' indicates a standard Azure subscription.
+            'kAzureGovCloud' indicates a govt Azure subscription.
         tenant_id (string): Specifies Tenant Id of the active directory of
             Azure account.
         mtype (TypeAzureProtectionSourceEnum): Specifies the type of an Azure
@@ -112,6 +119,7 @@ class AzureProtectionSource(object):
         "resource_id":'resourceId',
         "restore_task_id":'restoreTaskId',
         "subscription_id":'subscriptionId',
+        "subscription_type":'subscriptionType',
         "tenant_id":'tenantId',
         "mtype":'type'
     }
@@ -130,6 +138,7 @@ class AzureProtectionSource(object):
                  resource_id=None,
                  restore_task_id=None,
                  subscription_id=None,
+                 subscription_type=None,
                  tenant_id=None,
                  mtype=None):
         """Constructor for the AzureProtectionSource class"""
@@ -148,6 +157,7 @@ class AzureProtectionSource(object):
         self.resource_id = resource_id
         self.restore_task_id = restore_task_id
         self.subscription_id = subscription_id
+        self.subscription_type = subscription_type
         self.tenant_id = tenant_id
         self.mtype = mtype
 
@@ -183,6 +193,7 @@ class AzureProtectionSource(object):
         resource_id = dictionary.get('resourceId')
         restore_task_id = dictionary.get('restoreTaskId')
         subscription_id = dictionary.get('subscriptionId')
+        subscription_type = dictionary.get('subscriptionType')
         tenant_id = dictionary.get('tenantId')
         mtype = dictionary.get('type')
 
@@ -200,6 +211,7 @@ class AzureProtectionSource(object):
                    resource_id,
                    restore_task_id,
                    subscription_id,
+                   subscription_type,
                    tenant_id,
                    mtype)
 

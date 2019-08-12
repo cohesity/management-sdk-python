@@ -6,8 +6,8 @@ class UpgradePhysicalServerAgents(object):
 
     """Implementation of the 'UpgradePhysicalServerAgents' model.
 
-    Specifies a request to upgrade the Cohesity agents on one or more Physical
-    Servers registered on the Cohesity Cluster.
+    Specifies a request to upgrade the Cohesity agents on one or more
+    Physical Servers registered on the Cohesity Cluster.
 
     Attributes:
         agent_ids (list of long|int): Array of Agent Ids.  Specifies a list of

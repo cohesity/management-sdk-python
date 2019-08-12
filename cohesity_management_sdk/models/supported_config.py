@@ -6,9 +6,9 @@ class SupportedConfig(object):
 
     """Implementation of the 'SupportedConfig' model.
 
-    Lists the supported Erasure Coding options for the number of Nodes in the
-    Cohesity Cluster. In addition, the minimum number of Nodes supported for
-    this Cluster type is defined.
+    Lists the supported Erasure Coding options for the number of
+    Nodes in the Cohesity Cluster. In addition, the minimum number
+    of Nodes supported for this Cluster type is defined.
 
     Attributes:
         min_nodes_allowed (int): Specifies the minimum number of Nodes

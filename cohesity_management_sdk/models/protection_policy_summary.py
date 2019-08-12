@@ -11,8 +11,8 @@ class ProtectionPolicySummary(object):
 
     """Implementation of the 'ProtectionPolicySummary' model.
 
-    ProtectionPolicySummary specifies protection summary of a given Protection
-    Policy.
+    ProtectionPolicySummary specifies protection summary of a given
+    Protection Policy.
 
     Attributes:
         last_protection_run_summary (LastProtectionRunSummary):

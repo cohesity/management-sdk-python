@@ -6,7 +6,8 @@ class EncryptionConfiguration(object):
 
     """Implementation of the 'EncryptionConfiguration' model.
 
-    Specifies the parameters the user wants to use when configuring encryption
+    Specifies the parameters the user wants to use when configuring
+    encryption
     for the new Cluster.
 
     Attributes:

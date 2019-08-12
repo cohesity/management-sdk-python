@@ -7,7 +7,8 @@ class ProtectionRunsSummary(object):
     """Implementation of the 'ProtectionRunsSummary' model.
 
     ProtectionRunsSummary is the summary of the all the Protection Runs for
-    the Protection Jobs using the Specified Protection Policy.
+    the
+    Protection Jobs using the Specified Protection Policy.
 
     Attributes:
         number_of_archival_runs (long|int): Specifies the total number of

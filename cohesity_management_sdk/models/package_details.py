@@ -6,8 +6,8 @@ class PackageDetails(object):
 
     """Implementation of the 'PackageDetails' model.
 
-    Specifies all of the details of a package that is currently installed on
-    the cluster.
+    Specifies all of the details of a package that is currently installed
+    on the cluster.
 
     Attributes:
         downtime_required (bool): Specifies whether or not downtime is

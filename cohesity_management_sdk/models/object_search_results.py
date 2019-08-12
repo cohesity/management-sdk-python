@@ -7,8 +7,8 @@ class ObjectSearchResults(object):
 
     """Implementation of the 'ObjectSearchResults' model.
 
-    Specifies an array of backup objects and a count to indicate if additional
-    requests must be made to get the full result.
+    Specifies an array of backup objects and a count to indicate
+    if additional requests must be made to get the full result.
 
     Attributes:
         object_snapshot_info (list of ObjectSnapshotInfo): Array of Snapshot

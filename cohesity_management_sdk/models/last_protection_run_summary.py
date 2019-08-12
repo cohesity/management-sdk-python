@@ -7,7 +7,8 @@ class LastProtectionRunSummary(object):
     """Implementation of the 'LastProtectionRunSummary' model.
 
     LastProtectionRunsSummary is the summary of the last Protection Run for
-    the Protection Jobs using the Specified Protection Policy.
+    the
+    Protection Jobs using the Specified Protection Policy.
 
     Attributes:
         number_of_cancelled_protection_runs (long|int): Specifies the number

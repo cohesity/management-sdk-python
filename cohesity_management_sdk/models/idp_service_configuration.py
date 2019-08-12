@@ -21,6 +21,7 @@ class IdpServiceConfiguration(object):
             is required to verify the SAML response.
         certificate_filename (string): Specifies the filename used to upload
             the certificate.
+        domain (string): Specifies a unique name for this IdP configuration.
         enable (bool): Specifies a flag to enable or disable this IdP service.
             When it is set to true, IdP service is enabled. When it is set to
             false, IdP service is disabled. When an IdP service is created, it
@@ -37,6 +38,12 @@ class IdpServiceConfiguration(object):
             contains a comma separated list of Cluster roles. Either this
             field or roles must be set. This field takes higher precedence
             than the roles field.
+        sign_request (bool): Specifies whether to sign the SAML request or
+            not. When it is set to true, SAML request will be signed. When it
+            is set to false, SAML request is not signed. Default is false. Set
+            this flag to true if the IdP site is configured to expect the SAML
+            request from the Cluster signed. If this is set to true, users
+            must get the Cluster's certificate and upload it on the IdP site.
         sso_url (string): Specifies the SSO URL of the IdP service for the
             customer. This is the URL given by IdP when the customer created
             an account. Customers may use this for several clusters that are
@@ -54,12 +61,14 @@ class IdpServiceConfiguration(object):
         "allow_local_authentication":'allowLocalAuthentication',
         "certificate":'certificate',
         "certificate_filename":'certificateFilename',
+        "domain":'domain',
         "enable":'enable',
         "id":'id',
         "issuer_id":'issuerId',
         "name":'name',
         "roles":'roles',
         "saml_attribute_name":'samlAttributeName',
+        "sign_request":'signRequest',
         "sso_url":'ssoUrl',
         "tenant_id":'tenantId'
     }
@@ -68,12 +77,14 @@ class IdpServiceConfiguration(object):
                  allow_local_authentication=None,
                  certificate=None,
                  certificate_filename=None,
+                 domain=None,
                  enable=None,
                  id=None,
                  issuer_id=None,
                  name=None,
                  roles=None,
                  saml_attribute_name=None,
+                 sign_request=None,
                  sso_url=None,
                  tenant_id=None):
         """Constructor for the IdpServiceConfiguration class"""
@@ -82,12 +93,14 @@ class IdpServiceConfiguration(object):
         self.allow_local_authentication = allow_local_authentication
         self.certificate = certificate
         self.certificate_filename = certificate_filename
+        self.domain = domain
         self.enable = enable
         self.id = id
         self.issuer_id = issuer_id
         self.name = name
         self.roles = roles
         self.saml_attribute_name = saml_attribute_name
+        self.sign_request = sign_request
         self.sso_url = sso_url
         self.tenant_id = tenant_id
 
@@ -113,12 +126,14 @@ class IdpServiceConfiguration(object):
         allow_local_authentication = dictionary.get('allowLocalAuthentication')
         certificate = dictionary.get('certificate')
         certificate_filename = dictionary.get('certificateFilename')
+        domain = dictionary.get('domain')
         enable = dictionary.get('enable')
         id = dictionary.get('id')
         issuer_id = dictionary.get('issuerId')
         name = dictionary.get('name')
         roles = dictionary.get('roles')
         saml_attribute_name = dictionary.get('samlAttributeName')
+        sign_request = dictionary.get('signRequest')
         sso_url = dictionary.get('ssoUrl')
         tenant_id = dictionary.get('tenantId')
 
@@ -126,12 +141,14 @@ class IdpServiceConfiguration(object):
         return cls(allow_local_authentication,
                    certificate,
                    certificate_filename,
+                   domain,
                    enable,
                    id,
                    issuer_id,
                    name,
                    roles,
                    saml_attribute_name,
+                   sign_request,
                    sso_url,
                    tenant_id)
 

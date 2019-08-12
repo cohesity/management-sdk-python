@@ -7,8 +7,8 @@ class VaultBandwidthLimits(object):
 
     """Implementation of the 'VaultBandwidthLimits' model.
 
-    VaultBandwidthLimits represents the network bandwidth limits while
-    uploading/downloading data to/from the external media.
+    VaultBandwidthLimits represents the network bandwidth limits
+    while uploading/downloading data to/from the external media.
 
     Attributes:
         download (BandwidthLimit): Specifies settings for limiting the data

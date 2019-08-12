@@ -8,7 +8,8 @@ class NlmLock(object):
     """Implementation of the 'NlmLock' model.
 
     Response <clientID-Locks> map as received from view-keeper is converted
-    into this structure. These Locks belong to one file-path.
+    into
+    this structure. These Locks belong to one file-path.
 
     Attributes:
         client_id (string): Specifies the client ID

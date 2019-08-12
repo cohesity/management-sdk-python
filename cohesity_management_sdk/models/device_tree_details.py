@@ -7,11 +7,13 @@ class DeviceTreeDetails(object):
 
     """Implementation of the 'DeviceTreeDetails' model.
 
-    Specifies a logical volume stored as a tree where the leaves are the
-    blocks of partitions and intermediate nodes are assembled by combining
-    nodes using one of the following modes: linear layout, striped, mirrored,
-    RAID etc. A deviceTree is a block device formed by combining one or more
-    Devices using a combining strategy.
+    Specifies a logical volume stored as a tree where the leaves are
+    the blocks of partitions and intermediate nodes are assembled by
+    combining
+    nodes using one of the following modes: linear layout, striped,
+    mirrored, RAID etc.
+    A deviceTree is a block device formed by combining one or more Devices
+    using a combining strategy.
 
     Attributes:
         combine_method (CombineMethodEnum): Specifies how to combine the

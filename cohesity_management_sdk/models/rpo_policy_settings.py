@@ -9,8 +9,8 @@ class RpoPolicySettings(object):
 
     """Implementation of the 'RpoPolicySettings' model.
 
-    Specifies all the additional settings that are applicable only to an RPO
-    policy. This can include storage domain, settings of different
+    Specifies all the additional settings that are applicable only
+    to an RPO policy. This can include storage domain, settings of different
     environments, etc.
 
     Attributes:

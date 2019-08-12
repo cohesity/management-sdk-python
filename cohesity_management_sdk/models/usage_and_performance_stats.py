@@ -6,8 +6,8 @@ class UsageAndPerformanceStats(object):
 
     """Implementation of the 'UsageAndPerformanceStats' model.
 
-    Provides usage and performance statistics for entities such as a disks,
-    Nodes or Clusters.
+    Provides usage and performance statistics
+    for entities such as a disks, Nodes or Clusters.
 
     Attributes:
         data_in_bytes (long|int): Data brought into the cluster. This is the

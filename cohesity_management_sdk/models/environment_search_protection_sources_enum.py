@@ -22,6 +22,7 @@ class EnvironmentSearchProtectionSourcesEnum(object):
         KACROPOLIS: TODO: type description here.
         KPHYSICALFILES: TODO: type description here.
         KISILON: TODO: type description here.
+        KGPFS: TODO: type description here.
         KKVM: TODO: type description here.
         KAWS: TODO: type description here.
         KEXCHANGE: TODO: type description here.
@@ -36,6 +37,7 @@ class EnvironmentSearchProtectionSourcesEnum(object):
         KHYPERFLEX: TODO: type description here.
         KGCPNATIVE: TODO: type description here.
         KAZURENATIVE: TODO: type description here.
+        KKUBERNETES: TODO: type description here.
 
     """
 
@@ -67,6 +69,8 @@ class EnvironmentSearchProtectionSourcesEnum(object):
 
     KISILON = 'kIsilon'
 
+    KGPFS = 'kGPFS'
+
     KKVM = 'kKVM'
 
     KAWS = 'kAWS'
@@ -94,4 +98,6 @@ class EnvironmentSearchProtectionSourcesEnum(object):
     KGCPNATIVE = 'kGCPNative'
 
     KAZURENATIVE = 'kAzureNative'
+
+    KKUBERNETES = 'kKubernetes'
 

@@ -12,10 +12,13 @@ class BackupPolicyProto(object):
     """Implementation of the 'BackupPolicyProto' model.
 
     If a backup does not get a chance to when it's due (either due to the
-    system being busy or a conflict with another instance of the same job),
-    the backup will still be run when the conflicts go away. But, if there are
-    multiple instances of the same job that are due to be run, only the latest
-    instance would be run.
+    system
+    being busy or a conflict with another instance of the same job), the
+    backup
+    will still be run when the conflicts go away. But, if there are multiple
+    instances of the same job that are due to be run, only the latest
+    instance
+    would be run.
 
     Attributes:
         continuous_schedule (BackupPolicyProtoContinuousSchedule): TODO: type

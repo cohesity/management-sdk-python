@@ -9,8 +9,8 @@ class ActionUpdateProtectionJobsStateParamsEnum(object):
     Specifies the type of action to be performed on Protection Job.
     'kActivate' specifies that Protection Job should be activated.
     'kDeactivate' sepcifies that Protection Job should be deactivated.
-    'kPause' specifies that Protection Job should be paused. 'kResume'
-    specifies that Protection Job should be resumed.
+    'kPause' specifies that Protection Job should be paused.
+    'kResume' specifies that Protection Job should be resumed.
 
     Attributes:
         KACTIVATE: TODO: type description here.

@@ -46,22 +46,26 @@ class RegisteredSourceInfo(object):
             Acropolis Protection Source environment. 'kPhsicalFiles' indicates
             the Physical Files Protection Source environment. 'kIsilon'
             indicates the Dell EMC's Isilon Protection Source environment.
-            'kKVM' indicates the KVM Protection Source environment. 'kAWS'
-            indicates the AWS Protection Source environment. 'kExchange'
-            indicates the Exchange Protection Source environment. 'kHyperVVSS'
-            indicates the HyperV VSS Protection Source environment. 'kOracle'
-            indicates the Oracle Protection Source environment. 'kGCP'
-            indicates the Google Cloud Platform Protection Source environment.
-            'kFlashBlade' indicates the Flash Blade Protection Source
-            environment. 'kAWSNative' indicates the AWS Native Protection
-            Source environment. 'kVCD' indicates the VMware's Virtual cloud
-            Director Protection Source environment. 'kO365' indicates the
-            Office 365 Protection Source environment. 'kO365Outlook' indicates
-            Office 365 outlook Protection Source environment. 'kHyperFlex'
-            indicates the Hyper Flex Protection Source environment.
-            'kGCPNative' indicates the GCP Native Protection Source
-            environment. 'kAzureNative' indicates the Azure Native Protection
-            Source environment.
+            'kGPFS' indicates IBM's GPFS Protection Source environment. 'kKVM'
+            indicates the KVM Protection Source environment. 'kAWS' indicates
+            the AWS Protection Source environment. 'kExchange' indicates the
+            Exchange Protection Source environment. 'kHyperVVSS' indicates the
+            HyperV VSS Protection Source environment. 'kOracle' indicates the
+            Oracle Protection Source environment. 'kGCP' indicates the Google
+            Cloud Platform Protection Source environment. 'kFlashBlade'
+            indicates the Flash Blade Protection Source environment.
+            'kAWSNative' indicates the AWS Native Protection Source
+            environment. 'kVCD' indicates the VMware's Virtual cloud Director
+            Protection Source environment. 'kO365' indicates the Office 365
+            Protection Source environment. 'kO365Outlook' indicates Office 365
+            outlook Protection Source environment. 'kHyperFlex' indicates the
+            Hyper Flex Protection Source environment. 'kGCPNative' indicates
+            the GCP Native Protection Source environment. 'kAzureNative'
+            indicates the Azure Native Protection Source environment.
+            'kKubernetes' indicates a Kubernetes Protection Source
+            environment.
+        is_db_authenticated (bool): Specifies if application entity
+            dbAuthenticated or not. ex: oracle database.
         minimum_free_space_gb (long|int): Specifies the minimum free space in
             GiB of the space expected to be available on the datastore where
             the virtual disks of the VM being backed up. If the amount of free
@@ -105,6 +109,7 @@ class RegisteredSourceInfo(object):
         "authentication_error_message":'authenticationErrorMessage',
         "authentication_status":'authenticationStatus',
         "environments":'environments',
+        "is_db_authenticated":'isDbAuthenticated',
         "minimum_free_space_gb":'minimumFreeSpaceGB',
         "nas_mount_credentials":'nasMountCredentials',
         "password":'password',
@@ -123,6 +128,7 @@ class RegisteredSourceInfo(object):
                  authentication_error_message=None,
                  authentication_status=None,
                  environments=None,
+                 is_db_authenticated=None,
                  minimum_free_space_gb=None,
                  nas_mount_credentials=None,
                  password=None,
@@ -141,6 +147,7 @@ class RegisteredSourceInfo(object):
         self.authentication_error_message = authentication_error_message
         self.authentication_status = authentication_status
         self.environments = environments
+        self.is_db_authenticated = is_db_authenticated
         self.minimum_free_space_gb = minimum_free_space_gb
         self.nas_mount_credentials = nas_mount_credentials
         self.password = password
@@ -176,6 +183,7 @@ class RegisteredSourceInfo(object):
         authentication_error_message = dictionary.get('authenticationErrorMessage')
         authentication_status = dictionary.get('authenticationStatus')
         environments = dictionary.get('environments')
+        is_db_authenticated = dictionary.get('isDbAuthenticated')
         minimum_free_space_gb = dictionary.get('minimumFreeSpaceGB')
         nas_mount_credentials = cohesity_management_sdk.models.nas_mount_credential_params.NasMountCredentialParams.from_dictionary(dictionary.get('nasMountCredentials')) if dictionary.get('nasMountCredentials') else None
         password = dictionary.get('password')
@@ -197,6 +205,7 @@ class RegisteredSourceInfo(object):
                    authentication_error_message,
                    authentication_status,
                    environments,
+                   is_db_authenticated,
                    minimum_free_space_gb,
                    nas_mount_credentials,
                    password,

@@ -7,8 +7,8 @@ class ExpandPhysicalClusterParameters(object):
 
     """Implementation of the 'ExpandPhysicalClusterParameters' model.
 
-    Specifies the parameters needed to expand a Cohesity Physical Edition
-    Cluster.
+    Specifies the parameters needed to expand a Cohesity Physical
+    Edition Cluster.
 
     Attributes:
         node_configs (list of PhysicalNodeConfiguration): Specifies the

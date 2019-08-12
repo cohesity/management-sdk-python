@@ -16,7 +16,8 @@ class EnvBackupParams(object):
     """Implementation of the 'EnvBackupParams' model.
 
     Message to capture any additional environment specific backup params at
-    the job level.
+    the
+    job level.
 
     Attributes:
         file_stubbing_params (FileStubbingParams): File Stubbing Parameters

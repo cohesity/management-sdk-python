@@ -6,8 +6,9 @@ class NfsAccessEnum(object):
     """Implementation of the 'NfsAccess' enum.
 
     Specifies whether clients from this subnet can mount using NFS protocol.
-    Protocol access level. 'kDisabled' indicates Protocol access level
-    'Disabled' 'kReadOnly' indicates Protocol access level 'ReadOnly'
+    Protocol access level.
+    'kDisabled' indicates Protocol access level 'Disabled'
+    'kReadOnly' indicates Protocol access level 'ReadOnly'
     'kReadWrite' indicates Protocol access level 'ReadWrite'
 
     Attributes:

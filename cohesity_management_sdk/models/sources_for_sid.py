@@ -8,10 +8,10 @@ class SourcesForSid(object):
 
     """Implementation of the 'SourcesForSid' model.
 
-    Protection Sources and Views With Access Permissions. Specifies the
-    Protection Sources objects and Views that the specified principal has
-    permissions to access. The principal is specified using a security
-    identifier (SID).
+    Protection Sources and Views With Access Permissions.
+    Specifies the Protection Sources objects and Views that the specified
+    principal has permissions to access. The principal is specified using
+    a security identifier (SID).
 
     Attributes:
         protection_sources (list of ProtectionSource): Array of Protection

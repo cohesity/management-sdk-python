@@ -8,7 +8,8 @@ class OutlookEnvJobParameters(object):
     """Implementation of the 'OutlookEnvJobParameters' model.
 
     Specifies job parameters applicable for all 'kO365Outlook' Environment
-    type Protection Sources in a Protection Job.
+    type
+    Protection Sources in a Protection Job.
 
     Attributes:
         file_path_filter (FilePathFilter): Specifies filters to match files

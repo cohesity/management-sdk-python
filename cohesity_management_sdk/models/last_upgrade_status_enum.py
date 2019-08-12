@@ -5,10 +5,11 @@ class LastUpgradeStatusEnum(object):
 
     """Implementation of the 'LastUpgradeStatus' enum.
 
-    Specifies the status of the last upgrade attempt. Specifies the status of
-    the upgrade of the agent on a physical server. 'kIdle' indicates there is
-    no agent upgrade in progress. 'kAccepted' indicates the Agent upgrade is
-    accepted. 'kStarted' indicates the Agent upgrade is in progress.
+    Specifies the status of the last upgrade attempt.
+    Specifies the status of the upgrade of the agent on a physical server.
+    'kIdle' indicates there is no agent upgrade in progress.
+    'kAccepted' indicates the Agent upgrade is accepted.
+    'kStarted' indicates the Agent upgrade is in progress.
     'kFinished' indicates the Agent upgrade is completed.
 
     Attributes:

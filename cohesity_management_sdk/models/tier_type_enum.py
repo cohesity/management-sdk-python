@@ -5,16 +5,24 @@ class TierTypeEnum(object):
 
     """Implementation of the 'TierType' enum.
 
-    Specifies the storage class of AWS. AmazonTierType specifies the storage
-    class for AWS. 'kAmazonS3Standard' indicates a tier type of Amazon
-    properties that is accessed frequently. 'kAmazonS3StandardIA' indicates a
-    tier type of Amazon properties that is accessed less frequently, but
-    requires rapid access when needed. 'kAmazonGlacier' indicates a tier type
-    of Amazon properties that is accessed rarely. 'kAmazonS3OneZoneIA'
-    indicates a tier type of Amazon properties for long-lived, but less
-    frequently accessed data. 'kAmazonS3IntelligentTiering' indicates a tier
-    type of Amazon properties for data with unknown or changing access
-    patterns.
+    Specifies the storage class of AWS.
+    AmazonTierType specifies the storage class for AWS.
+    'kAmazonS3Standard' indicates a tier type of Amazon properties that is
+    accessed frequently.
+    'kAmazonS3StandardIA' indicates a tier type of Amazon properties that is
+    accessed less frequently, but requires rapid access when needed.
+    'kAmazonGlacier' indicates a tier type of Amazon properties that is
+    accessed
+    rarely.
+    'kAmazonS3OneZoneIA' indicates a tier type of Amazon properties for
+    long-lived, but less frequently accessed data.
+    'kAmazonS3IntelligentTiering' indicates a tier type of Amazon properties
+    for
+    data with unknown or changing access patterns.
+    'kAmazonS3GlacierDeepArchive' indicates a tier type of Amazon properties
+    for
+    data that provides secure, durable object storage for long-term data
+    retention and digital preservation.
 
     Attributes:
         KAMAZONS3STANDARD: TODO: type description here.
@@ -22,6 +30,7 @@ class TierTypeEnum(object):
         KAMAZONGLACIER: TODO: type description here.
         KAMAZONS3ONEZONEIA: TODO: type description here.
         KAMAZONS3INTELLIGENTTIERING: TODO: type description here.
+        KAMAZONS3GLACIERDEEPARCHIVE: TODO: type description here.
 
     """
 
@@ -34,4 +43,6 @@ class TierTypeEnum(object):
     KAMAZONS3ONEZONEIA = 'kAmazonS3OneZoneIA'
 
     KAMAZONS3INTELLIGENTTIERING = 'kAmazonS3IntelligentTiering'
+
+    KAMAZONS3GLACIERDEEPARCHIVE = 'kAmazonS3GlacierDeepArchive'
 

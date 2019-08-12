@@ -7,8 +7,8 @@ class ClusterConfigProtoSID(object):
     """Implementation of the 'ClusterConfigProto_SID' model.
 
     Represents the security identifier that uniquely defines a security
-    principal. SIDs are associated with users and groups. Reference:
-    https://msdn.microsoft.com/en-us/library/aa379597.aspx
+    principal. SIDs are associated with users and groups.
+    Reference: https://msdn.microsoft.com/en-us/library/aa379597.aspx
 
     Attributes:
         identifier_authority (list of int): The authority under which the SID

@@ -10,8 +10,8 @@ class ProtectionSourceNode(object):
 
     """Implementation of the 'ProtectionSourceNode' model.
 
-    Many different node types are supported such as 'kComputeResource' and
-    'kResourcePool'.
+    Many different node types are supported such as
+    'kComputeResource' and 'kResourcePool'.
 
     Attributes:
         application_nodes (list of object): Array of Child Subtrees.

@@ -6,15 +6,17 @@ class MountVolumesParameters(object):
 
     """Implementation of the 'MountVolumesParameters' model.
 
-    Specifies the information required for mounting volumes. Only required for
-    Restore Tasks of type 'kMountVolumes'. At a minimum, the targetSourceId
-    must be specified for 'kMountVolumes' Restore Tasks. If only
-    targetSourceId is specified, all disks are attached but may not be
-    mounted. The mount target must be registered on the Cohesity Cluster. If
-    the mount target is a VM, VMware Tools must be installed. If the mount
-    target is a physical server, a Cohesity Agent must be be installed. See
-    the Cohesity Dashboard help documentation for details. In the username and
-    password fields, specify the credentials to access the mount target.
+    Specifies the information required for mounting volumes.
+    Only required for Restore Tasks of type 'kMountVolumes'.
+    At a minimum, the targetSourceId must be specified for 'kMountVolumes'
+    Restore Tasks. If only targetSourceId is specified, all disks are
+    attached but may not be mounted.
+    The mount target must be registered on the Cohesity Cluster.
+    If the mount target is a VM, VMware Tools must be installed.
+    If the mount target is a physical server, a Cohesity Agent must be
+    be installed. See the Cohesity Dashboard help documentation for details.
+    In the username and password fields, specify the credentials to
+    access the mount target.
 
     Attributes:
         bring_disks_online (bool): Optional setting that determines if the

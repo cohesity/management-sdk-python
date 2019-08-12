@@ -7,8 +7,8 @@ class DataTransferFromVaultSummary(object):
 
     """Implementation of the 'DataTransferFromVaultSummary' model.
 
-    Specifies summary statistics about the transfer of data from a Vault to
-    this Cohesity Cluster.
+    Specifies summary statistics about the transfer of data from a Vault
+    to this Cohesity Cluster.
 
     Attributes:
         data_transfer_per_task (list of DataTransferFromVaultPerTask): Array

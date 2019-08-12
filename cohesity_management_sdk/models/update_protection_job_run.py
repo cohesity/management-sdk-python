@@ -8,8 +8,8 @@ class UpdateProtectionJobRun(object):
 
     """Implementation of the 'UpdateProtectionJobRun' model.
 
-    Specifies a Job Run and the expiration time to update. The expiration time
-    defines the retention period for the Job Run and its snapshots.
+    Specifies a Job Run and the expiration time to update. The expiration
+    time defines the retention period for the Job Run and its snapshots.
 
     Attributes:
         copy_run_targets (list of RunJobSnapshotTarget): Specifies the

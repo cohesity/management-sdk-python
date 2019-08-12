@@ -6,8 +6,8 @@ class EncryptionPolicyEnum(object):
     """Implementation of the 'EncryptionPolicy' enum.
 
     Specifies the encryption setting for the Storage Domain (View Box).
-    'kEncryptionNone' indicates the data is not encrypted. 'kEncryptionStrong'
-    indicates the data is encrypted.
+    'kEncryptionNone' indicates the data is not encrypted.
+    'kEncryptionStrong' indicates the data is encrypted.
 
     Attributes:
         KENCRYPTIONNONE: TODO: type description here.

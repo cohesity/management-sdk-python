@@ -5,13 +5,15 @@ class CurrentOperationEnum(object):
 
     """Implementation of the 'CurrentOperation' enum.
 
-    Specifies the current Cluster-level operation in progress. 'kUpgrade'
-    indicates the Cohesity Cluster is upgrading to a new release.
-    'kRemoveNode' indicates the Cohesity Cluster is removing a Node from the
-    Cluster. 'kNone' indicates no action is occurring on the Cohesity Cluster.
-    'kDestroy' indicates the Cohesity Cluster is getting destoryed. 'kClean'
-    indicates the Cohesity Cluster is getting cleaned. 'kRestartServices'
-    indicates the Cohesity Cluster is restarting the services.
+    Specifies the current Cluster-level operation in progress.
+    'kUpgrade' indicates the Cohesity Cluster is upgrading to a new release.
+    'kRemoveNode' indicates the Cohesity Cluster is removing a Node
+    from the Cluster.
+    'kNone' indicates no action is occurring on the Cohesity Cluster.
+    'kDestroy' indicates the Cohesity Cluster is getting destoryed.
+    'kClean' indicates the Cohesity Cluster is getting cleaned.
+    'kRestartServices' indicates the Cohesity Cluster is restarting the
+    services.
 
     Attributes:
         KREMOVENODE: TODO: type description here.

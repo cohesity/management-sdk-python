@@ -8,7 +8,8 @@ class OracleDBChannelInfo(object):
     """Implementation of the 'OracleDBChannelInfo' model.
 
     Message to capture channel information for Oracle database backup or
-    restore information.
+    restore
+    information.
 
     Attributes:
         db_unique_name (string): The unique name of the database.

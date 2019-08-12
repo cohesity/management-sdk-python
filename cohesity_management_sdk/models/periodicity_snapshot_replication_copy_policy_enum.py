@@ -5,17 +5,21 @@ class PeriodicitySnapshotReplicationCopyPolicyEnum(object):
 
     """Implementation of the 'Periodicity_SnapshotReplicationCopyPolicy' enum.
 
-    Specifies the frequency that Snapshots should be copied to the specified
-    target. Used in combination with multipiler. 'kEvery' means that the
-    Snapshot copy occurs after the number of Job Runs equals the number
-    specified in the multiplier. 'kHour' means that the Snapshot copy occurs
-    hourly at the frequency set in the multiplier, for example if multiplier
-    is 2, the copy occurs every 2 hours. 'kDay' means that the Snapshot copy
-    occurs daily at the frequency set in the multiplier. 'kWeek' means that
-    the Snapshot copy occurs weekly at the frequency set in the multiplier.
-    'kMonth' means that the Snapshot copy occurs monthly at the frequency set
-    in the multiplier. 'kYear' means that the Snapshot copy occurs yearly at
-    the frequency set in the multiplier.
+    Specifies the frequency that Snapshots should be copied to the
+    specified target. Used in combination with multipiler.
+    'kEvery' means that the Snapshot copy occurs after the number of
+    Job Runs equals the number specified in the multiplier.
+    'kHour' means that the Snapshot copy occurs hourly at the frequency
+    set in the multiplier, for example if multiplier is 2, the copy occurs
+    every 2 hours.
+    'kDay' means that the Snapshot copy occurs daily at the frequency
+    set in the multiplier.
+    'kWeek' means that the Snapshot copy occurs weekly at the frequency
+    set in the multiplier.
+    'kMonth' means that the Snapshot copy occurs monthly at the frequency
+    set in the multiplier.
+    'kYear' means that the Snapshot copy occurs yearly at the frequency
+    set in the multiplier.
 
     Attributes:
         KEVERY: TODO: type description here.

@@ -8,8 +8,8 @@ class RemoteVaultSearchJobResults(object):
 
     """Implementation of the 'RemoteVaultSearchJobResults' model.
 
-    Specifies detailed information about Job Runs of Protection Jobs found by
-    a search Job when searching a remote Vault for archived data.
+    Specifies detailed information about Job Runs of Protection Jobs found
+    by a search Job when searching a remote Vault for archived data.
 
     Attributes:
         cluster_count (int): Specifies number of Clusters that have archived

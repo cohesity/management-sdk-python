@@ -12,6 +12,8 @@ class HostTypeDownloadPhysicalAgentEnum(object):
         KWINDOWS: TODO: type description here.
         KAIX: TODO: type description here.
         KSOLARIS: TODO: type description here.
+        KSAPHANA: TODO: type description here.
+        KOTHER: TODO: type description here.
 
     """
 
@@ -22,4 +24,8 @@ class HostTypeDownloadPhysicalAgentEnum(object):
     KAIX = 'kAix'
 
     KSOLARIS = 'kSolaris'
+
+    KSAPHANA = 'kSapHana'
+
+    KOTHER = 'kOther'
 

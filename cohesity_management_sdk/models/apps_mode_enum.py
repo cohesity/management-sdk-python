@@ -5,10 +5,12 @@ class AppsModeEnum(object):
 
     """Implementation of the 'AppsMode' enum.
 
-    Specifies the various modes for running apps. 'kDisabled' specifies that
-    apps are disabled. 'kBareMetal' specifies that apps could only run in
-    containers on the node (no VM). 'kVmOnly' specifies that apps could only
-    run in containers on a VM hosted by the node.
+    Specifies the various modes for running apps.
+    'kDisabled' specifies that apps are disabled.
+    'kBareMetal' specifies that apps could only run in containers
+    on the node (no VM).
+    'kVmOnly' specifies that apps could only run in containers on a VM
+    hosted by the node.
 
     Attributes:
         KDISABLED: TODO: type description here.

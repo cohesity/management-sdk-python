@@ -6,8 +6,9 @@ class DataTransferFromVaultPerTask(object):
 
     """Implementation of the 'DataTransferFromVaultPerTask' model.
 
-    Specifies statistics about the transfer of data from a Vault (External
-    Target) to this Cohesity Cluster for a recover or clone task.
+    Specifies statistics about the transfer of data from a Vault
+    (External Target) to this Cohesity Cluster for a recover or
+    clone task.
 
     Attributes:
         num_logical_bytes_transferred (long|int): Specifies the total number

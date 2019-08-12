@@ -6,8 +6,8 @@ class SyslogServer(object):
 
     """Implementation of the 'SyslogServer' model.
 
-    Specifies the syslog servers configuration to upload Cluster audit logs
-    and filer audit logs.
+    Specifies the syslog servers configuration to upload Cluster
+    audit logs and filer audit logs.
 
     Attributes:
         address (string): Specifies the IP address or hostname of the syslog

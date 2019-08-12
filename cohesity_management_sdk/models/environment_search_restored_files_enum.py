@@ -22,6 +22,7 @@ class EnvironmentSearchRestoredFilesEnum(object):
         KACROPOLIS: TODO: type description here.
         KPHYSICALFILES: TODO: type description here.
         KISILON: TODO: type description here.
+        KGPFS: TODO: type description here.
         KKVM: TODO: type description here.
         KAWS: TODO: type description here.
         KEXCHANGE: TODO: type description here.
@@ -35,6 +36,7 @@ class EnvironmentSearchRestoredFilesEnum(object):
         KO365OUTLOOK: TODO: type description here.
         KHYPERFLEX: TODO: type description here.
         KGCPNATIVE: TODO: type description here.
+        KKUBERNETES: TODO: type description here.
 
     """
 
@@ -66,6 +68,8 @@ class EnvironmentSearchRestoredFilesEnum(object):
 
     KISILON = 'kIsilon'
 
+    KGPFS = 'kGPFS'
+
     KKVM = 'kKVM'
 
     KAWS = 'kAWS'
@@ -91,4 +95,6 @@ class EnvironmentSearchRestoredFilesEnum(object):
     KHYPERFLEX = 'kHyperFlex'
 
     KGCPNATIVE = 'kGCPNative'
+
+    KKUBERNETES = 'kKubernetes'
 

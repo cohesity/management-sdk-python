@@ -6,8 +6,8 @@ class AzureCloudCredentials(object):
 
     """Implementation of the 'AzureCloudCredentials' model.
 
-    Specifies the cloud credentials to connect to a Microsoft Azure service
-    account.
+    Specifies the cloud credentials to connect to a Microsoft
+    Azure service account.
 
     Attributes:
         storage_access_key (string): Specifies the access key to use when

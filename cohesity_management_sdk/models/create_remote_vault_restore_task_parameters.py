@@ -8,9 +8,9 @@ class CreateRemoteVaultRestoreTaskParameters(object):
 
     """Implementation of the 'CreateRemoteVaultRestoreTaskParameters' model.
 
-    Specifies settings required to create a task that restores the index
-    and/or the Snapshots of a Protection Job from a remote Vault to the
-    current Cluster.
+    Specifies settings required to create a task that restores the
+    index and/or the Snapshots of a Protection Job from a remote Vault
+    to the current Cluster.
 
     Attributes:
         glacier_retrieval_type (GlacierRetrievalTypeEnum): Specifies the way
@@ -20,16 +20,16 @@ class CreateRemoteVaultRestoreTaskParameters(object):
             Glacier. Specifies the type of Restore Task.  'kStandard'
             specifies retrievals that allow to access any of your archives
             within several hours. Standard retrievals typically complete
-            within 3-5 hours.This is the default option for retrieval requests
+            within 3–5 hours.This is the default option for retrieval requests
             that do not specify the retrieval option. 'kBulk' specifies
-            retrievals that are Glacier-s lowest-cost retrieval option, which
+            retrievals that are Glacier’s lowest-cost retrieval option, which
             can be use to retrieve large amounts, even petabytes, of data
             inexpensively in a day. Bulk retrieval typically complete within
-            5-12 hours. 'kExpedited' specifies retrievals that allows to
+            5–12 hours. 'kExpedited' specifies retrievals that allows to
             quickly access your data when occasional urgent requests for a
             subset of archives are required. For all but the largest archives
             (250 MB+), data accessed using Expedited retrievals are typically
-            made available within 1-5 minutes.
+            made available within 1–5 minutes.
         restore_objects (list of IndexAndSnapshots): Array of Restore Objects.
             Specifies the list of Snapshots and the index to be restored from
             the remote Vault. The data on the remote Vault may have been

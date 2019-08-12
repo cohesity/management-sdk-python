@@ -5,7 +5,8 @@ class RoleNetworkInterfaceEnum(object):
 
     """Implementation of the 'Role_NetworkInterface' enum.
 
-    Specifies the role of this interface. 'kPrimary' indicates a primary role.
+    Specifies the role of this interface.
+    'kPrimary' indicates a primary role.
     'kSecondary' indicates a secondary role.
 
     Attributes:

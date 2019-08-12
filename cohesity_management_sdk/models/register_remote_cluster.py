@@ -9,8 +9,8 @@ class RegisterRemoteCluster(object):
 
     """Implementation of the 'RegisterRemoteCluster' model.
 
-    Specifies the settings required for registering a remote Cluster on this
-    local Cluster.
+    Specifies the settings required for registering a remote Cluster
+    on this local Cluster.
 
     Attributes:
         all_endpoints_reachable (bool): Specifies whether any endpoint (such

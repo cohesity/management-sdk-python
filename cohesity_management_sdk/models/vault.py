@@ -8,10 +8,12 @@ class Vault(object):
 
     """Implementation of the 'Vault' model.
 
-    Specifies an external storage location and is equivalent to an External
-    Target in the Cohesity Dashboard. A Vault can provide an additional Cloud
-    Tier where cold data of the Cohesity Cluster can be stored in the Cloud. A
-    Vault can also provide archive storage for backup data. This archive data
+    Specifies an external storage location and is equivalent to
+    an External Target in the Cohesity Dashboard.
+    A Vault can provide an additional Cloud Tier where cold data of the
+    Cohesity Cluster can be stored in the Cloud.
+    A Vault can also provide archive storage for backup data. This archive
+    data
     is stored on Tapes and in Cloud Vaults.
 
     Attributes:
@@ -24,7 +26,8 @@ class Vault(object):
         compression_policy (CompressionPolicyVaultEnum): Specifies whether to
             send data to the Vault in a compressed format. 'kCompressionNone'
             indicates that data is not compressed. 'kCompressionLow' indicates
-            that data is compressed.
+            that data is compressed using LZ4 or Snappy. 'kCompressionHigh'
+            indicates that data is compressed in Gzip.
         config (VaultConfig): Specifies the settings required to connect to a
             specific Vault type. For some Vaults, you must also specify a
             storage location (bucketName).
@@ -54,13 +57,23 @@ class Vault(object):
             indicates the data is not encrypted. 'kEncryptionStrong' indicates
             the data is encrypted.
         external_target_type (ExternalTargetTypeEnum): Specifies the type of
-            Vault. 'kS3Compatible' indicates a AWS S3 Compatible Vault.
-            'kQStarTape' indicates a QStar Tape Vault. 'kAWSGovCloud'
-            indicates a AWS Gov Cloud Vault. 'kNAS' indicates a NAS Vault.
-            'kAzureGovCloud' indicates an Microsoft Azure Gov Cloud Vault.
-            'kAzure' indiactes an Azure vault. 'kGoogle' indcates a Google
-            vault. 'kAmazon' indicates an AWS vault. 'kOracle' indicates an
-            Oracle vault. 'kAmazonC2S' indicates an AWS C2S vault.
+            Vault. 'kNearline' indicates a Google Nearline Vault. 'kGlacier'
+            indicates an AWS Glacier Vault. 'kS3' indicates an AWS S3 Vault.
+            'kAzureStandard' indicates a Microsoft Azure Standard Vault.
+            'kS3Compatible' indicates an S3 Compatible Vault. (See the online
+            help for supported types.) 'kQStarTape' indicates a QStar Tape
+            Vault. 'kGoogleStandard' indicates a Google Standard Vault.
+            'kGoogleDRA' indicates a Google DRA Vault. 'kAmazonS3StandardIA'
+            indicates an Amazon S3 Standard-IA Vault. 'kAWSGovCloud' indicates
+            an AWS Gov Cloud Vault. 'kNAS' indicates a NAS Vault. 'kColdline'
+            indicates a Google Coldline Vault. 'kAzureGovCloud' indicates a
+            Microsoft Azure Gov Cloud Vault. 'kAzureArchive' indicates an
+            Azure Archive Vault. 'kAzure' indicates an Azure Vault. 'kGoogle'
+            indicates a Google Vault. 'kAmazon' indicates an Amazon Vault.
+            'kOracle' indicates an Oracle Vault. 'kOracleTierStandard'
+            indicates an Oracle Tier Standard Vault. 'kOracleTierArchive'
+            indicates an Oracle Tier Archive Vault. 'kAmazonC2S' indicates an
+            Amazon Commercial Cloud Services Vault.
         full_archive_interval_days (long|int): Specifies the number days
             between full archives to the Vault. The current default is 90
             days. This is only meaningful when incrementalArchivesEnabled is
@@ -83,15 +96,23 @@ class Vault(object):
             deprecated. This field is split into ExternalTargetType in and
             TierType in respective credentials. Initialize those fields
             instead. deprecated: true 'kNearline' indicates a Google Nearline
-            Vault. 'kColdline' indicates a Google Coldline Vault. 'kGlacier'
-            indicates a AWS Glacier Vault. 'kS3' indicates a AWS S3 Vault.
-            'kAzureStandard' indicates a Microsoft Azure Standard Vault.
-            'kS3Compatible' indicates a AWS S3 Compatible Vault. (See the
-            online help for supported types.) 'kQStarTape' indicates a QStar
-            Tape Vault. 'kGoogleStandard' indicates a Google Standard Vault.
-            'kGoogleDRA' indicates a Google DRA Vault. 'kAWSGovCloud'
-            indicates a AWS Gov Cloud Vault. 'kNAS' indicates a NAS Vault.
-            'kAzureGovCloud' indicates an Microsoft Azure Gov Cloud Vault.
+            Vault. 'kGlacier' indicates an AWS Glacier Vault. 'kS3' indicates
+            an AWS S3 Vault. 'kAzureStandard' indicates a Microsoft Azure
+            Standard Vault. 'kS3Compatible' indicates an S3 Compatible Vault.
+            (See the online help for supported types.) 'kQStarTape' indicates
+            a QStar Tape Vault. 'kGoogleStandard' indicates a Google Standard
+            Vault. 'kGoogleDRA' indicates a Google DRA Vault.
+            'kAmazonS3StandardIA' indicates an Amazon S3 Standard-IA Vault.
+            'kAWSGovCloud' indicates an AWS Gov Cloud Vault. 'kNAS' indicates
+            a NAS Vault. 'kColdline' indicates a Google Coldline Vault.
+            'kAzureGovCloud' indicates a Microsoft Azure Gov Cloud Vault.
+            'kAzureArchive' indicates an Azure Archive Vault. 'kAzure'
+            indicates an Azure Vault. 'kGoogle' indicates a Google Vault.
+            'kAmazon' indicates an Amazon Vault. 'kOracle' indicates an Oracle
+            Vault. 'kOracleTierStandard' indicates an Oracle Tier Standard
+            Vault. 'kOracleTierArchive' indicates an Oracle Tier Archive
+            Vault. 'kAmazonC2S' indicates an Amazon Commercial Cloud Services
+            Vault.
         usage_type (UsageTypeEnum): Specifies the usage type of the Vault.
             'kArchival' indicates the Vault provides archive storage for
             backup data. 'kCloudSpill' indicates the Vault provides additional

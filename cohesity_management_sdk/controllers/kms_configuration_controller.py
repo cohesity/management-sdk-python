@@ -17,19 +17,20 @@ class KmsConfigurationController(BaseController):
         super(KmsConfigurationController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
 
-    def update_kms_config(self,
-                          body=None):
-        """Does a PUT request to /public/kmsConfig.
+    def get_kms_config(self,
+                       server_ip=None):
+        """Does a GET request to /public/kmsConfig.
 
-        Update KMS configurations in the cluster.
+        List KMS configurations in the cluster.
 
         Args:
-            body (KmsConfiguration, optional): TODO: type description here.
-                Example:
+            server_ip (string, optional): Specifies IP address of the KMS for
+                which KMS configuration is requested. If server IP is not
+                specified, all KMS configurations will be fetched.
 
         Returns:
-            KmsConfigurationResponse: Response from the API. Response after
-                KMS has been updated.
+            list of KmsConfigurationResponse: Response from the API. Specifies
+                a list of KMS configurations.
 
         Raises:
             APIException: When an error occurs while fetching the data from
@@ -39,30 +40,34 @@ class KmsConfigurationController(BaseController):
 
         """
         try:
-            self.logger.info('update_kms_config called.')
+            self.logger.info('get_kms_config called.')
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for update_kms_config.')
+            self.logger.info('Preparing query URL for get_kms_config.')
             _url_path = '/public/kmsConfig'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
+            _query_parameters = {
+                'serverIp': server_ip
+            }
+            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
+                _query_parameters, Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for update_kms_config.')
+            self.logger.info('Preparing headers for get_kms_config.')
             _headers = {
-                'accept': 'application/json',
-                'content-type': 'application/json; charset=utf-8'
+                'accept': 'application/json'
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for update_kms_config.')
-            _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
+            self.logger.info('Preparing and executing request for get_kms_config.')
+            _request = self.http_client.get(_query_url, headers=_headers)
             AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'update_kms_config')
+            _context = self.execute_request(_request, name = 'get_kms_config')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for update_kms_config.')
+            self.logger.info('Validating response for get_kms_config.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
@@ -131,20 +136,19 @@ class KmsConfigurationController(BaseController):
             self.logger.error(e, exc_info = True)
             raise
 
-    def get_kms_config(self,
-                       server_ip=None):
-        """Does a GET request to /public/kmsConfig.
+    def update_kms_config(self,
+                          body=None):
+        """Does a PUT request to /public/kmsConfig.
 
-        List KMS configurations in the cluster.
+        Update KMS configurations in the cluster.
 
         Args:
-            server_ip (string, optional): Specifies IP address of the KMS for
-                which KMS configuration is requested. If server IP is not
-                specified, all KMS configurations will be fetched.
+            body (KmsConfiguration, optional): TODO: type description here.
+                Example:
 
         Returns:
-            list of KmsConfigurationResponse: Response from the API. Specifies
-                a list of KMS configurations.
+            KmsConfigurationResponse: Response from the API. Response after
+                KMS has been updated.
 
         Raises:
             APIException: When an error occurs while fetching the data from
@@ -154,34 +158,30 @@ class KmsConfigurationController(BaseController):
 
         """
         try:
-            self.logger.info('get_kms_config called.')
+            self.logger.info('update_kms_config called.')
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for get_kms_config.')
+            self.logger.info('Preparing query URL for update_kms_config.')
             _url_path = '/public/kmsConfig'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
-            _query_parameters = {
-                'serverIp': server_ip
-            }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for get_kms_config.')
+            self.logger.info('Preparing headers for update_kms_config.')
             _headers = {
-                'accept': 'application/json'
+                'accept': 'application/json',
+                'content-type': 'application/json; charset=utf-8'
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_kms_config.')
-            _request = self.http_client.get(_query_url, headers=_headers)
+            self.logger.info('Preparing and executing request for update_kms_config.')
+            _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
             AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_kms_config')
+            _context = self.execute_request(_request, name = 'update_kms_config')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for get_kms_config.')
+            self.logger.info('Validating response for update_kms_config.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)

@@ -40,6 +40,24 @@ class FileLevelDataLockConfig(object):
             be modified or deleted during this timeframe. Set to -1 if the
             required retention duration is forever. This should be set less
             than or equal to the default retention duration.
+        mode (ModeFileLevelDataLockConfigEnum): Specifies the mode of file
+            level datalock. Enterprise mode can be upgraded to Compliance
+            mode, but Compliance mode cannot be downgraded to Enterprise mode.
+            kCompliance: This mode would disallow all user to delete/modify
+            file or view under any condition when it 's in locked status
+            except for deleting view when the view is empty. kEnterprise: This
+            mode would follow the rules as compliance mode for normal users.
+            But it would allow the storage admin (1) to delete view or file
+            anytime no matter it is in locked status or expired. (2) to rename
+            the view (3) to bring back the retention period when it's in
+            locked mode A lock mode of a file in a view can be in one of the
+            following:  'kCompliance': Default mode of datalock, in this mode,
+            Data Security Admin cannot modify/delete this view when datalock
+            is in effect. Data Security Admin can delete this view when
+            datalock is expired. 'kEnterprise' : In this mode, Data Security
+            Admin can change view name or delete view when datalock is in
+            effect. Datalock in this mode can be upgraded to 'kCompliance'
+            mode.
 
     """
 
@@ -50,7 +68,8 @@ class FileLevelDataLockConfig(object):
         "expiry_timestamp_msecs":'expiryTimestampMsecs',
         "locking_protocol":'lockingProtocol',
         "max_retention_duration_msecs":'maxRetentionDurationMsecs',
-        "min_retention_duration_msecs":'minRetentionDurationMsecs'
+        "min_retention_duration_msecs":'minRetentionDurationMsecs',
+        "mode":'mode'
     }
 
     def __init__(self,
@@ -59,7 +78,8 @@ class FileLevelDataLockConfig(object):
                  expiry_timestamp_msecs=None,
                  locking_protocol=None,
                  max_retention_duration_msecs=None,
-                 min_retention_duration_msecs=None):
+                 min_retention_duration_msecs=None,
+                 mode=None):
         """Constructor for the FileLevelDataLockConfig class"""
 
         # Initialize members of the class
@@ -69,6 +89,7 @@ class FileLevelDataLockConfig(object):
         self.locking_protocol = locking_protocol
         self.max_retention_duration_msecs = max_retention_duration_msecs
         self.min_retention_duration_msecs = min_retention_duration_msecs
+        self.mode = mode
 
 
     @classmethod
@@ -95,6 +116,7 @@ class FileLevelDataLockConfig(object):
         locking_protocol = dictionary.get('lockingProtocol')
         max_retention_duration_msecs = dictionary.get('maxRetentionDurationMsecs')
         min_retention_duration_msecs = dictionary.get('minRetentionDurationMsecs')
+        mode = dictionary.get('mode')
 
         # Return an object of this model
         return cls(auto_lock_after_duration_idle,
@@ -102,6 +124,7 @@ class FileLevelDataLockConfig(object):
                    expiry_timestamp_msecs,
                    locking_protocol,
                    max_retention_duration_msecs,
-                   min_retention_duration_msecs)
+                   min_retention_duration_msecs,
+                   mode)
 
 

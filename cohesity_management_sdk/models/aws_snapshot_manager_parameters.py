@@ -7,9 +7,9 @@ class AwsSnapshotManagerParameters(object):
     """Implementation of the 'AwsSnapshotManagerParameters' model.
 
     Protection Job parameters applicable to 'kAWSSnapshotManager' Environment
-    type. Specifies additional job parameters applicable for
-    'kAWSSnapshotManager' Environment type Protection Sources in a Protection
-    Job.
+    type.
+    Specifies additional job parameters applicable for 'kAWSSnapshotManager'
+    Environment type Protection Sources in a Protection Job.
 
     Attributes:
         ami_creation_frequency (int): Specifies the frequency of AMI creation.

@@ -6,7 +6,8 @@ class ArchivalTarget(object):
 
     """Implementation of the 'ArchivalTarget' model.
 
-    Message that specifies the details about an archival target (such as cloud
+    Message that specifies the details about an archival target (such as
+    cloud
     or tape) where backup snapshots may be archived to.
 
     Attributes:

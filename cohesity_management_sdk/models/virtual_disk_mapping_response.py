@@ -9,7 +9,8 @@ class VirtualDiskMappingResponse(object):
     """Implementation of the 'VirtualDiskMappingResponse' model.
 
     Specifies information about virtual disks where a user can specify
-    mappings of source disk and destination disk to overwrite.
+    mappings
+    of source disk and destination disk to overwrite.
 
     Attributes:
         disk_to_overwrite (VirtualDiskIdInformation): Specifies information

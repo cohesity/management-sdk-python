@@ -7,7 +7,8 @@ class CreatedRemoteVaultSearchJobUid(object):
 
     """Implementation of the 'CreatedRemoteVaultSearchJobUid' model.
 
-    Specifies the Uid of the Job created to search the remote vault.
+    Specifies the Uid of the Job created to search the
+    remote vault.
 
     Attributes:
         search_job_uid (UniversalId): Specifies the unique id assigned for the

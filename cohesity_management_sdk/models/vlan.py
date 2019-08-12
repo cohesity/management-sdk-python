@@ -13,6 +13,9 @@ class Vlan(object):
         add_to_cluster_partition (bool): Specifies whether to add the VLAN IPs
             to the cluster partition that already has one or more IPs from
             this VLAN.
+        all_tenant_access (bool): Specifies if this VLAN can be used by all
+            tenants without explicit assignment to them. This option can only
+            be set true for VLANs that are not assigned to any tenant.
         description (string): Specifies a description of the VLAN.
         gateway (string): Specifies the Gateway of the VLAN.
         hostname (string): Specifies the hostname of the VLAN.
@@ -35,6 +38,7 @@ class Vlan(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "add_to_cluster_partition":'addToClusterPartition',
+        "all_tenant_access":'allTenantAccess',
         "description":'description',
         "gateway":'gateway',
         "hostname":'hostname',
@@ -49,6 +53,7 @@ class Vlan(object):
 
     def __init__(self,
                  add_to_cluster_partition=None,
+                 all_tenant_access=None,
                  description=None,
                  gateway=None,
                  hostname=None,
@@ -63,6 +68,7 @@ class Vlan(object):
 
         # Initialize members of the class
         self.add_to_cluster_partition = add_to_cluster_partition
+        self.all_tenant_access = all_tenant_access
         self.description = description
         self.gateway = gateway
         self.hostname = hostname
@@ -94,6 +100,7 @@ class Vlan(object):
 
         # Extract variables from the dictionary
         add_to_cluster_partition = dictionary.get('addToClusterPartition')
+        all_tenant_access = dictionary.get('allTenantAccess')
         description = dictionary.get('description')
         gateway = dictionary.get('gateway')
         hostname = dictionary.get('hostname')
@@ -107,6 +114,7 @@ class Vlan(object):
 
         # Return an object of this model
         return cls(add_to_cluster_partition,
+                   all_tenant_access,
                    description,
                    gateway,
                    hostname,

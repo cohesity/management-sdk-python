@@ -6,8 +6,8 @@ class ProtectionJobRunStats(object):
 
     """Implementation of the 'ProtectionJobRunStats' model.
 
-    Specifies statistics about a Protection Job Run. This contains the Job Run
-    level statistics.
+    Specifies statistics about a Protection Job Run.
+    This contains the Job Run level statistics.
 
     Attributes:
         admitted_time_usecs (long|int): Specifies the time the task was

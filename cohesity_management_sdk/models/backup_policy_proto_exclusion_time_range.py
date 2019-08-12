@@ -8,8 +8,8 @@ class BackupPolicyProtoExclusionTimeRange(object):
     """Implementation of the 'BackupPolicyProto_ExclusionTimeRange' model.
 
     A proto to specify a time range within a single day when backups are not
-    permitted to run. TODO(mark): Remove this when iris stops referring to
-    this.
+    permitted to run.
+    TODO(mark): Remove this when iris stops referring to this.
 
     Attributes:
         day (int): If the day is not set, the time range applies to all days.

@@ -6,7 +6,8 @@ class FilesAndFoldersInfo(object):
 
     """Implementation of the 'FilesAndFoldersInfo' model.
 
-    FilesAndFolders specifies the metadata information about the files and(or)
+    FilesAndFolders specifies the metadata information about the files
+    and(or)
     folders for creating a download task.
 
     Attributes:

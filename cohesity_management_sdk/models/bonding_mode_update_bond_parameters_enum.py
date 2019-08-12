@@ -5,8 +5,9 @@ class BondingModeUpdateBondParametersEnum(object):
 
     """Implementation of the 'BondingMode_UpdateBondParameters' enum.
 
-    Specifies the new bonding mode. 'kActiveBackup' indicates active backup
-    bonding mode. 'k802_3ad' indicates 802.3ad bonding mode.
+    Specifies the new bonding mode.
+    'kActiveBackup' indicates active backup bonding mode.
+    'k802_3ad' indicates 802.3ad bonding mode.
 
     Attributes:
         KACTIVEBACKUP: TODO: type description here.

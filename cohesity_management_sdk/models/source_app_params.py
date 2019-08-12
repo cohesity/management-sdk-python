@@ -7,7 +7,8 @@ class SourceAppParams(object):
 
     """Implementation of the 'SourceAppParams' model.
 
-    This message contains params specific to application running on the source
+    This message contains params specific to application running on the
+    source
     such as a VM or a physical host.
 
     Attributes:

@@ -2,6 +2,7 @@
 # Copyright 2019 Cohesity Inc.
 
 import cohesity_management_sdk.models.acropolis_restore_parameters
+import cohesity_management_sdk.models.deploy_vms_to_cloud
 import cohesity_management_sdk.models.hyperv_restore_parameters
 import cohesity_management_sdk.models.mount_volumes_parameters
 import cohesity_management_sdk.models.restore_object_details
@@ -26,6 +27,9 @@ class RecoverTaskRequest(object):
             continue when some operations on some objects fail. If true, the
             Cohesity Cluster ignores intermittent errors and restores as many
             objects as possible.
+        deploy_vms_to_cloud (DeployVmsToCloud): Specifies the details about
+            deploying vms to specific clouds where backup may be stored and
+            converted.
         glacier_retrieval_type (GlacierRetrievalTypeEnum): Specifies the way
             data needs to be retrieved from the external target. This
             information will be filled in by Iris and Magneto will pass it
@@ -33,16 +37,16 @@ class RecoverTaskRequest(object):
             Glacier. Specifies the type of Restore Task.  'kStandard'
             specifies retrievals that allow to access any of your archives
             within several hours. Standard retrievals typically complete
-            within 3-5 hours.This is the default option for retrieval requests
+            within 3–5 hours.This is the default option for retrieval requests
             that do not specify the retrieval option. 'kBulk' specifies
-            retrievals that are Glacier-s lowest-cost retrieval option, which
+            retrievals that are Glacier’s lowest-cost retrieval option, which
             can be use to retrieve large amounts, even petabytes, of data
             inexpensively in a day. Bulk retrieval typically complete within
-            5-12 hours. 'kExpedited' specifies retrievals that allows to
+            5–12 hours. 'kExpedited' specifies retrievals that allows to
             quickly access your data when occasional urgent requests for a
             subset of archives are required. For all but the largest archives
             (250 MB+), data accessed using Expedited retrievals are typically
-            made available within 1-5 minutes.
+            made available within 1–5 minutes.
         hyperv_parameters (HypervRestoreParameters): Specifies information
             needed when restoring VMs in HyperV enviroment. This field defines
             the HyperV specific params for restore tasks of type kRecoverVMs.
@@ -92,6 +96,7 @@ class RecoverTaskRequest(object):
         "mtype":'type',
         "acropolis_parameters":'acropolisParameters',
         "continue_on_error":'continueOnError',
+        "deploy_vms_to_cloud":'deployVmsToCloud',
         "glacier_retrieval_type":'glacierRetrievalType',
         "hyperv_parameters":'hypervParameters',
         "mount_parameters":'mountParameters',
@@ -110,6 +115,7 @@ class RecoverTaskRequest(object):
                  mtype=None,
                  acropolis_parameters=None,
                  continue_on_error=None,
+                 deploy_vms_to_cloud=None,
                  glacier_retrieval_type=None,
                  hyperv_parameters=None,
                  mount_parameters=None,
@@ -126,6 +132,7 @@ class RecoverTaskRequest(object):
         # Initialize members of the class
         self.acropolis_parameters = acropolis_parameters
         self.continue_on_error = continue_on_error
+        self.deploy_vms_to_cloud = deploy_vms_to_cloud
         self.glacier_retrieval_type = glacier_retrieval_type
         self.hyperv_parameters = hyperv_parameters
         self.mount_parameters = mount_parameters
@@ -163,6 +170,7 @@ class RecoverTaskRequest(object):
         mtype = dictionary.get('type')
         acropolis_parameters = cohesity_management_sdk.models.acropolis_restore_parameters.AcropolisRestoreParameters.from_dictionary(dictionary.get('acropolisParameters')) if dictionary.get('acropolisParameters') else None
         continue_on_error = dictionary.get('continueOnError')
+        deploy_vms_to_cloud = cohesity_management_sdk.models.deploy_vms_to_cloud.DeployVmsToCloud.from_dictionary(dictionary.get('deployVmsToCloud')) if dictionary.get('deployVmsToCloud') else None
         glacier_retrieval_type = dictionary.get('glacierRetrievalType')
         hyperv_parameters = cohesity_management_sdk.models.hyperv_restore_parameters.HypervRestoreParameters.from_dictionary(dictionary.get('hypervParameters')) if dictionary.get('hypervParameters') else None
         mount_parameters = cohesity_management_sdk.models.mount_volumes_parameters.MountVolumesParameters.from_dictionary(dictionary.get('mountParameters')) if dictionary.get('mountParameters') else None
@@ -184,6 +192,7 @@ class RecoverTaskRequest(object):
                    mtype,
                    acropolis_parameters,
                    continue_on_error,
+                   deploy_vms_to_cloud,
                    glacier_retrieval_type,
                    hyperv_parameters,
                    mount_parameters,

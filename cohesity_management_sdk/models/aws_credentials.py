@@ -24,7 +24,12 @@ class AwsCredentials(object):
             inside the VPC. 'kNetworkSecurityGroup' represents a network
             security group. 'kInstanceType' represents various machine types.
             'kKeyPair' represents a pair of public and private key used to
-            login into a Virtual Machine.
+            login into a Virtual Machine. 'kTag' represents a tag attached to
+            EC2 instance. 'kRDSOptionGroup' represents a RDS option group for
+            configuring database features. 'kRDSParameterGroup' represents a
+            RDS parameter group. 'kRDSInstance' represents a RDS DB instance.
+            'kRDSSubnet' represents a RDS subnet. 'kRDSTag' represents a tag
+            attached to RDS instance.
         secret_access_key (string): Specifies Secret Access key of the AWS
             account.
 

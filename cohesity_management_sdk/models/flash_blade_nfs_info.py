@@ -6,7 +6,8 @@ class FlashBladeNfsInfo(object):
 
     """Implementation of the 'FlashBladeNfsInfo' model.
 
-    Specifies information specific to NFS protocol exposed by Pure Flash Blade
+    Specifies information specific to NFS protocol exposed by Pure Flash
+    Blade
     file system.
 
     Attributes:

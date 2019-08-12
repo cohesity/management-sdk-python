@@ -5,12 +5,21 @@ class CombineMethodEnum(object):
 
     """Implementation of the 'CombineMethod' enum.
 
-    Specifies how to combine the children of this node. The combining strategy
-    for child devices. Some of these strategies imply constraint on the number
-    of child devices. e.g. RAID5 will have 5 children. 'LINEAR' indicates
-    children are juxtaposed to form this device. 'STRIPE' indicates children
-    are striped. 'MIRROR' indicates children are mirrored. 'RAID5' 'RAID6'
-    'ZERO' 'THIN' 'THINPOOL' 'SNAPSHOT' 'CACHE' 'CACHEPOOL'
+    Specifies how to combine the children of this node.
+    The combining strategy for child devices. Some of these strategies imply
+    constraint on the number of child devices. e.g. RAID5 will have 5
+    children.
+    'LINEAR' indicates children are juxtaposed to form this device.
+    'STRIPE' indicates children are striped.
+    'MIRROR' indicates children are mirrored.
+    'RAID5'
+    'RAID6'
+    'ZERO'
+    'THIN'
+    'THINPOOL'
+    'SNAPSHOT'
+    'CACHE'
+    'CACHEPOOL'
 
     Attributes:
         LINEAR: TODO: type description here.

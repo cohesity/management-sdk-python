@@ -63,6 +63,8 @@ class Node(object):
             the object is being removed. 'kOkToRemove' means the object has
             been removed on the Cohesity Cluster and if the object is
             physical, it can be removed from the Cohesity Cluster.
+        slot_number (int): Slot number occupied by this node within the
+            chassis.
         stats (NodeStats): NodeStats provides various statistics for the
             node.
         system_disks (list of NodeSystemDiskInfo): SystemDisk describes the
@@ -88,6 +90,7 @@ class Node(object):
         "offline_mount_paths_of_disks":'offlineMountPathsOfDisks',
         "removal_reason":'removalReason',
         "removal_state":'removalState',
+        "slot_number":'slotNumber',
         "stats":'stats',
         "system_disks":'systemDisks'
     }
@@ -109,6 +112,7 @@ class Node(object):
                  offline_mount_paths_of_disks=None,
                  removal_reason=None,
                  removal_state=None,
+                 slot_number=None,
                  stats=None,
                  system_disks=None):
         """Constructor for the Node class"""
@@ -130,6 +134,7 @@ class Node(object):
         self.offline_mount_paths_of_disks = offline_mount_paths_of_disks
         self.removal_reason = removal_reason
         self.removal_state = removal_state
+        self.slot_number = slot_number
         self.stats = stats
         self.system_disks = system_disks
 
@@ -176,6 +181,7 @@ class Node(object):
         offline_mount_paths_of_disks = dictionary.get('offlineMountPathsOfDisks')
         removal_reason = dictionary.get('removalReason')
         removal_state = dictionary.get('removalState')
+        slot_number = dictionary.get('slotNumber')
         stats = cohesity_management_sdk.models.node_stats.NodeStats.from_dictionary(dictionary.get('stats')) if dictionary.get('stats') else None
         system_disks = None
         if dictionary.get('systemDisks') != None:
@@ -200,6 +206,7 @@ class Node(object):
                    offline_mount_paths_of_disks,
                    removal_reason,
                    removal_state,
+                   slot_number,
                    stats,
                    system_disks)
 

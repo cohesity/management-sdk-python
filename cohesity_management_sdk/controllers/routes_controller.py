@@ -17,6 +17,58 @@ class RoutesController(BaseController):
         super(RoutesController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
 
+    def delete_route(self,
+                     body=None):
+        """Does a DELETE request to /public/routes.
+
+        Returns the delete status upon completion.
+
+        Args:
+            body (DeleteRouteParam, optional): TODO: type description here.
+                Example:
+
+        Returns:
+            void: Response from the API. No Content
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+        try:
+            self.logger.info('delete_route called.')
+
+            # Prepare query URL
+            self.logger.info('Preparing query URL for delete_route.')
+            _url_path = '/public/routes'
+            _query_builder = Configuration.get_base_uri()
+            _query_builder += _url_path
+            _query_url = APIHelper.clean_url(_query_builder)
+
+            # Prepare headers
+            self.logger.info('Preparing headers for delete_route.')
+            _headers = {
+                'content-type': 'application/json; charset=utf-8'
+            }
+
+            # Prepare and execute request
+            self.logger.info('Preparing and executing request for delete_route.')
+            _request = self.http_client.delete(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request)
+            _context = self.execute_request(_request, name = 'delete_route')
+
+            # Endpoint and global error handling using HTTP status codes.
+            self.logger.info('Validating response for delete_route.')
+            if _context.response.status_code == 0:
+                raise RequestErrorErrorException('Error', _context)
+            self.validate_response(_context)
+
+        except Exception as e:
+            self.logger.error(e, exc_info = True)
+            raise
+
     def get_routes(self):
         """Does a GET request to /public/routes.
 
@@ -117,58 +169,6 @@ class RoutesController(BaseController):
 
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, Route.from_dictionary)
-
-        except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
-
-    def delete_route(self,
-                     body=None):
-        """Does a DELETE request to /public/routes.
-
-        Returns the delete status upon completion.
-
-        Args:
-            body (DeleteRouteParam, optional): TODO: type description here.
-                Example:
-
-        Returns:
-            void: Response from the API. No Content
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-        try:
-            self.logger.info('delete_route called.')
-
-            # Prepare query URL
-            self.logger.info('Preparing query URL for delete_route.')
-            _url_path = '/public/routes'
-            _query_builder = Configuration.get_base_uri()
-            _query_builder += _url_path
-            _query_url = APIHelper.clean_url(_query_builder)
-
-            # Prepare headers
-            self.logger.info('Preparing headers for delete_route.')
-            _headers = {
-                'content-type': 'application/json; charset=utf-8'
-            }
-
-            # Prepare and execute request
-            self.logger.info('Preparing and executing request for delete_route.')
-            _request = self.http_client.delete(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'delete_route')
-
-            # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for delete_route.')
-            if _context.response.status_code == 0:
-                raise RequestErrorErrorException('Error', _context)
-            self.validate_response(_context)
 
         except Exception as e:
             self.logger.error(e, exc_info = True)

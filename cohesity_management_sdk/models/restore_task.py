@@ -2,8 +2,10 @@
 # Copyright 2019 Cohesity Inc.
 
 import cohesity_management_sdk.models.acropolis_restore_parameters
+import cohesity_management_sdk.models.application_restore_parameters
 import cohesity_management_sdk.models.universal_id
 import cohesity_management_sdk.models.update_view_param
+import cohesity_management_sdk.models.deploy_vms_to_cloud
 import cohesity_management_sdk.models.request_error
 import cohesity_management_sdk.models.hyperv_restore_parameters
 import cohesity_management_sdk.models.mount_volumes_state
@@ -24,6 +26,8 @@ class RestoreTask(object):
         acropolis_parameters (AcropolisRestoreParameters): This field defines
             the Acropolis specific params for restore tasks of type
             kRecoverVMs.
+        application_parameters (ApplicationRestoreParameters): Specifies the
+            information regarding the application restore parameters.
         archive_task_uid (UniversalId): Specifies the uid of the Restore Task
             that retrieves objects from an archive. This field is only
             populated when objects must be retrieved from an archive before
@@ -39,6 +43,9 @@ class RestoreTask(object):
             recovered to a different resource pool or to a different parent
             source. This field is not populated when objects are recovered to
             their original datastore locations in the original parent source.
+        deploy_vms_to_cloud (DeployVmsToCloud): Specifies the details about
+            deploying vms to specific clouds where backup may be stored and
+            converted.
         end_time_usecs (long|int): Specifies the end time of the Restore Task
             as a Unix epoch Timestamp (in microseconds). This field is only
             populated if the Restore Task completes.
@@ -130,10 +137,12 @@ class RestoreTask(object):
     _names = {
         "name":'name',
         "acropolis_parameters":'acropolisParameters',
+        "application_parameters":'applicationParameters',
         "archive_task_uid":'archiveTaskUid',
         "clone_view_parameters":'cloneViewParameters',
         "continue_on_error":'continueOnError',
         "datastore_id":'datastoreId',
+        "deploy_vms_to_cloud":'deployVmsToCloud',
         "end_time_usecs":'endTimeUsecs',
         "error":'error',
         "full_view_name":'fullViewName',
@@ -158,10 +167,12 @@ class RestoreTask(object):
     def __init__(self,
                  name=None,
                  acropolis_parameters=None,
+                 application_parameters=None,
                  archive_task_uid=None,
                  clone_view_parameters=None,
                  continue_on_error=None,
                  datastore_id=None,
+                 deploy_vms_to_cloud=None,
                  end_time_usecs=None,
                  error=None,
                  full_view_name=None,
@@ -185,10 +196,12 @@ class RestoreTask(object):
 
         # Initialize members of the class
         self.acropolis_parameters = acropolis_parameters
+        self.application_parameters = application_parameters
         self.archive_task_uid = archive_task_uid
         self.clone_view_parameters = clone_view_parameters
         self.continue_on_error = continue_on_error
         self.datastore_id = datastore_id
+        self.deploy_vms_to_cloud = deploy_vms_to_cloud
         self.end_time_usecs = end_time_usecs
         self.error = error
         self.full_view_name = full_view_name
@@ -231,10 +244,12 @@ class RestoreTask(object):
         # Extract variables from the dictionary
         name = dictionary.get('name')
         acropolis_parameters = cohesity_management_sdk.models.acropolis_restore_parameters.AcropolisRestoreParameters.from_dictionary(dictionary.get('acropolisParameters')) if dictionary.get('acropolisParameters') else None
+        application_parameters = cohesity_management_sdk.models.application_restore_parameters.ApplicationRestoreParameters.from_dictionary(dictionary.get('applicationParameters')) if dictionary.get('applicationParameters') else None
         archive_task_uid = cohesity_management_sdk.models.universal_id.UniversalId.from_dictionary(dictionary.get('archiveTaskUid')) if dictionary.get('archiveTaskUid') else None
         clone_view_parameters = cohesity_management_sdk.models.update_view_param.UpdateViewParam.from_dictionary(dictionary.get('cloneViewParameters')) if dictionary.get('cloneViewParameters') else None
         continue_on_error = dictionary.get('continueOnError')
         datastore_id = dictionary.get('datastoreId')
+        deploy_vms_to_cloud = cohesity_management_sdk.models.deploy_vms_to_cloud.DeployVmsToCloud.from_dictionary(dictionary.get('deployVmsToCloud')) if dictionary.get('deployVmsToCloud') else None
         end_time_usecs = dictionary.get('endTimeUsecs')
         error = cohesity_management_sdk.models.request_error.RequestError.from_dictionary(dictionary.get('error')) if dictionary.get('error') else None
         full_view_name = dictionary.get('fullViewName')
@@ -266,10 +281,12 @@ class RestoreTask(object):
         # Return an object of this model
         return cls(name,
                    acropolis_parameters,
+                   application_parameters,
                    archive_task_uid,
                    clone_view_parameters,
                    continue_on_error,
                    datastore_id,
+                   deploy_vms_to_cloud,
                    end_time_usecs,
                    error,
                    full_view_name,

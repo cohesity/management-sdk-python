@@ -11,9 +11,9 @@ class CopyRun(object):
 
     """Implementation of the 'CopyRun' model.
 
-    Specifies details about the Copy Run for a backup run of a Job Run. A Copy
-    task copies snapshots resulted from a backup run to a snapshot target
-    which could be 'kLocal', 'kArchival', or 'kRemote'.
+    Specifies details about the Copy Run for a backup run of a Job Run.
+    A Copy task copies snapshots resulted from a backup run to a snapshot
+    target which could be 'kLocal', 'kArchival', or 'kRemote'.
 
     Attributes:
         copy_snapshot_tasks (list of CopySnapshotTaskStatus): Specifies the

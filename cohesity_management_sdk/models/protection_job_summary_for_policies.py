@@ -9,9 +9,9 @@ class ProtectionJobSummaryForPolicies(object):
 
     """Implementation of the 'ProtectionJobSummaryForPolicies' model.
 
-    ProtectionJobSummaryForPolicies is the summary of a Protection Jobs
-    associated with the Specified Protection Policy. This is only populated
-    for a policy of type kRegular.
+    ProtectionJobSummaryForPolicies is the summary of a Protection
+    Jobs associated with the Specified Protection Policy. This is only
+    populated for a policy of type kRegular.
 
     Attributes:
         backup_run (BackupRun): Specifies details about the Backup task for a

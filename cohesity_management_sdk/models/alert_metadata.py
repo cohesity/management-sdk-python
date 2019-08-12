@@ -8,11 +8,18 @@ class AlertMetadata(object):
     """Implementation of the 'AlertMetadata' model.
 
     AlertMetadata specifies metadata for a given alert type. All the alerts of
-    a given alert type share the same metadata.
+    a
+    given alert type share the same metadata.
 
     Attributes:
         alert_document_list (list of AlertDocument): Specifies alert
             documentation one per each language supported.
+        alert_type_bucket (AlertTypeBucketEnum): Specifies the Alert type
+            bucket. Specifies the Alert type bucket. kSoftware - Alerts which
+            are related to Cohesity services. kHardware - Alerts related to
+            hardware on which Cohesity software is running. kService - Alerts
+            related to other external services. kOther - Alerts not of one of
+            above categories.
         alert_type_id (int): Specifies unique id for the alert type.
         category (CategoryAlertMetadataEnum): Specifies category of the alert
             type. Specifies the category of an Alert. kDisk - Alerts that are
@@ -54,6 +61,7 @@ class AlertMetadata(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "alert_document_list":'alertDocumentList',
+        "alert_type_bucket":'alertTypeBucket',
         "alert_type_id":'alertTypeId',
         "category":'category',
         "dedup_interval_seconds":'dedupIntervalSeconds',
@@ -69,6 +77,7 @@ class AlertMetadata(object):
 
     def __init__(self,
                  alert_document_list=None,
+                 alert_type_bucket=None,
                  alert_type_id=None,
                  category=None,
                  dedup_interval_seconds=None,
@@ -84,6 +93,7 @@ class AlertMetadata(object):
 
         # Initialize members of the class
         self.alert_document_list = alert_document_list
+        self.alert_type_bucket = alert_type_bucket
         self.alert_type_id = alert_type_id
         self.category = category
         self.dedup_interval_seconds = dedup_interval_seconds
@@ -120,6 +130,7 @@ class AlertMetadata(object):
             alert_document_list = list()
             for structure in dictionary.get('alertDocumentList'):
                 alert_document_list.append(cohesity_management_sdk.models.alert_document.AlertDocument.from_dictionary(structure))
+        alert_type_bucket = dictionary.get('alertTypeBucket')
         alert_type_id = dictionary.get('alertTypeId')
         category = dictionary.get('category')
         dedup_interval_seconds = dictionary.get('dedupIntervalSeconds')
@@ -134,6 +145,7 @@ class AlertMetadata(object):
 
         # Return an object of this model
         return cls(alert_document_list,
+                   alert_type_bucket,
                    alert_type_id,
                    category,
                    dedup_interval_seconds,

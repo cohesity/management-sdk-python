@@ -14,8 +14,8 @@ class EnvironmentTypeJobParameters(object):
 
     """Implementation of the 'EnvironmentTypeJobParameters' model.
 
-    Specifies additional parameters that are common to all Protection Sources
-    in a Protection Job created for a particular environment type.
+    Specifies additional parameters that are common to all Protection
+    Sources in a Protection Job created for a particular environment type.
 
     Attributes:
         aws_snapshot_parameters (AwsSnapshotManagerParameters): Protection Job

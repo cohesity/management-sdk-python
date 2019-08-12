@@ -5,24 +5,28 @@ class TypeRestoreTaskEnum(object):
 
     """Implementation of the 'Type_RestoreTask' enum.
 
-    Specifies the type of Restore Task.  'kRecoverVMs' specifies a Restore
-    Task that recovers VMs. 'kCloneVMs' specifies a Restore Task that clones
-    VMs. 'kCloneView' specifies a Restore Task that clones a View.
+    Specifies the type of Restore Task.
+    'kRecoverVMs' specifies a Restore Task that recovers VMs.
+    'kCloneVMs' specifies a Restore Task that clones VMs.
+    'kCloneView' specifies a Restore Task that clones a View.
     'kMountVolumes' specifies a Restore Task that mounts volumes.
     'kRestoreFiles' specifies a Restore Task that recovers files and folders.
-    'kRecoverApp' specifies a Restore Task that recovers app. 'kCloneApp'
-    specifies a Restore Task that clone app. 'kRecoverSanVolume' specifies a
-    Restore Task that recovers SAN volumes. 'kConvertAndDeployVMs' specifies a
-    Restore Task that converts and deploy VMs to a target environment.
+    'kRecoverApp' specifies a Restore Task that recovers app.
+    'kCloneApp' specifies a Restore Task that clone app.
+    'kRecoverSanVolume' specifies a Restore Task that recovers SAN volumes.
+    'kConvertAndDeployVMs' specifies a Restore Task that converts and deploy
+    VMs to a target environment.
     'kMountFileVolume' specifies a Restore Task that mounts a file volume.
     'kSystem' specifies a Restore Task that recovers a system.
     'kRecoverVolumes' specifies a Restore Task that recovers volumes via the
-    physical agent. 'kDeployVolumes' specifies a Restore Task that deployes
-    volumes to a target environment. 'kDownloadFiles' specifies a Restore Task
-    that downloads the requested files and folders in zip format.
+    physical agent.
+    'kDeployVolumes' specifies a Restore Task that deployes volumes to a
+    target environment.
+    'kDownloadFiles' specifies a Restore Task that downloads the requested
+    files and folders in zip format.
     'kRecoverEmails' specifies a Restore Task that recovers the mailbox/email
-    items. 'kRecoverDisks' specifies a Restore Task that recovers the virtual
-    disks.
+    items.
+    'kRecoverDisks' specifies a Restore Task that recovers the virtual disks.
 
     Attributes:
         KRECOVERVMS: TODO: type description here.

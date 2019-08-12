@@ -6,8 +6,8 @@ class IsilonSmbMountPoint(object):
 
     """Implementation of the 'IsilonSmbMountPoint' model.
 
-    Specifies information specific to SMB shares exposed by Isilon file
-    system.
+    Specifies information specific to SMB shares exposed by Isilon
+    file system.
 
     Attributes:
         access_zone_id (long|int): Specifies the Access Zone Id.

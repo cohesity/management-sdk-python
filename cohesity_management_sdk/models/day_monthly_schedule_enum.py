@@ -6,7 +6,8 @@ class DayMonthlyScheduleEnum(object):
     """Implementation of the 'Day_MonthlySchedule' enum.
 
     Specifies the day of the week (such as 'kMonday') to start the Job Run.
-    Used with day count to define the day in the month to start the Job Run.
+    Used with day count to define the day in the month to start
+    the Job Run.
     Specifies a day in a week such as 'kSunday', 'kMonday', etc.
 
     Attributes:

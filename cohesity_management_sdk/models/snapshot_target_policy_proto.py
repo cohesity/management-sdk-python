@@ -10,9 +10,10 @@ class SnapshotTargetPolicyProto(object):
     """Implementation of the 'SnapshotTargetPolicyProto' model.
 
     Message that specifies the policy for copying backup snapshots to a
-    target. This message also specifies the retention policy that should be
-    applied to the snapshots after they have been copied to the specified
     target.
+    This message also specifies the retention policy that should be applied
+    to
+    the snapshots after they have been copied to the specified target.
 
     Attributes:
         copy_partially_successful_run (bool): If this is false, then only

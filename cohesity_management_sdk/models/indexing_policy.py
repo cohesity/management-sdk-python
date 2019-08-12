@@ -6,9 +6,10 @@ class IndexingPolicy(object):
 
     """Implementation of the 'IndexingPolicy' model.
 
-    Specifies settings for indexing files found in an Object (such as a VM) so
-    these files can be searched and recovered. This also specifies inclusion
-    and exclusion rules that determine the directories to index.
+    Specifies settings for indexing files found in an Object
+    (such as a VM) so these files can be searched and recovered.
+    This also specifies inclusion and exclusion rules that determine
+    the directories to index.
 
     Attributes:
         allow_prefixes (list of string): Array of Indexed Directories.

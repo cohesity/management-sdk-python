@@ -16,11 +16,14 @@ class PhysicalProtectionSource(object):
         agents (list of AgentInformation): Array of Agents on the Physical
             Protection Source.  Specifiles the agents running on the Physical
             Protection Source and the status information.
+        host_name (string): Specifies the hostname.
         host_type (HostTypePhysicalProtectionSourceEnum): Specifies the
             environment type for the host. 'kLinux' indicates the Linux
             operating system. 'kWindows' indicates the Microsoft Windows
             operating system. 'kAix' indicates the IBM AIX operating system.
             'kSolaris' indicates the Oracle Solaris operating system.
+            'kSapHana' indicates the Sap Hana database system developed by SAP
+            SE. 'kOther' indicates the other types of operating system.
         id (UniversalId): Specifies a unique id of a Physical Protection
             Source. The id is unique across Cohesity Clusters.
         memory_size_bytes (long|int): Specifies the total memory ont the host
@@ -36,9 +39,12 @@ class PhysicalProtectionSource(object):
         os_name (string): Specifies a human readable name of the OS of the
             Protection Source.
         mtype (TypePhysicalProtectionSourceEnum): Specifies the type of
-            managed Object in a Physical Protection Source. 'kHost' indicates
-            a single physical server. 'kWindowsCluster' indicates a Microsoft
-            Windows cluster.
+            managed Object in a Physical Protection Source. 'kGroup' indicates
+            the EH container. 'kHost' indicates a single physical server.
+            'kWindowsCluster' indicates a Microsoft Windows cluster.
+            'kOracleRACCluster' indicates an Oracle Real Application
+            Cluster(RAC). 'kOracleAPCluster' indicates an Oracle
+            Active-Passive Cluster.
         volumes (list of PhysicalVolume): Array of Physical Volumes.
             Specifies the volumes available on the physical host. These fields
             are populated only for the kPhysicalHost type.
@@ -48,6 +54,7 @@ class PhysicalProtectionSource(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "agents":'agents',
+        "host_name":'hostName',
         "host_type":'hostType',
         "id":'id',
         "memory_size_bytes":'memorySizeBytes',
@@ -61,6 +68,7 @@ class PhysicalProtectionSource(object):
 
     def __init__(self,
                  agents=None,
+                 host_name=None,
                  host_type=None,
                  id=None,
                  memory_size_bytes=None,
@@ -74,6 +82,7 @@ class PhysicalProtectionSource(object):
 
         # Initialize members of the class
         self.agents = agents
+        self.host_name = host_name
         self.host_type = host_type
         self.id = id
         self.memory_size_bytes = memory_size_bytes
@@ -108,6 +117,7 @@ class PhysicalProtectionSource(object):
             agents = list()
             for structure in dictionary.get('agents'):
                 agents.append(cohesity_management_sdk.models.agent_information.AgentInformation.from_dictionary(structure))
+        host_name = dictionary.get('hostName')
         host_type = dictionary.get('hostType')
         id = cohesity_management_sdk.models.universal_id.UniversalId.from_dictionary(dictionary.get('id')) if dictionary.get('id') else None
         memory_size_bytes = dictionary.get('memorySizeBytes')
@@ -124,6 +134,7 @@ class PhysicalProtectionSource(object):
 
         # Return an object of this model
         return cls(agents,
+                   host_name,
                    host_type,
                    id,
                    memory_size_bytes,

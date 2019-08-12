@@ -7,8 +7,8 @@ class Time(object):
     """Implementation of the 'Time' model.
 
     A message to encapusulate time of a day. Users of this proto will have to
-    store the timezone information separately. For example, when this proto is
-    part of a backup job, timezone of the backup job is applied to get the
+    store the timezone information separately. For example, when this proto
+    is part of a backup job, timezone of the backup job is applied to get the
     absolute time.
 
     Attributes:

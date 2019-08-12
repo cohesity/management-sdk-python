@@ -7,7 +7,8 @@ class ActivateViewAliasesResult(object):
 
     """Implementation of the 'ActivateViewAliasesResult' model.
 
-    Specifies the information of activated alias views created for a view.
+    Specifies the information of activated alias views created
+    for a view.
 
     Attributes:
         aliases (list of ViewAliasInfo): Aliases created for the view. A view

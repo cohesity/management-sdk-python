@@ -7,8 +7,8 @@ class MountVolumeResultDetails(object):
 
     """Implementation of the 'MountVolumeResultDetails' model.
 
-    Specifies the result of mounting an individual mount volume in a Restore
-    Task.
+    Specifies the result of mounting an individual mount volume in a
+    Restore Task.
 
     Attributes:
         mount_error (RequestError): Specifies the cause of the mount failure

@@ -17,128 +17,15 @@ class GroupsController(BaseController):
         super(GroupsController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
 
-    def update_group(self,
-                     body=None):
-        """Does a PUT request to /public/groups.
-
-        Returns the group that was updated on the Cohesity Cluster.
-
-        Args:
-            body (GroupParameters, optional): Request to update a group.
-
-        Returns:
-            Group: Response from the API. Success
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-        try:
-            self.logger.info('update_group called.')
-
-            # Prepare query URL
-            self.logger.info('Preparing query URL for update_group.')
-            _url_path = '/public/groups'
-            _query_builder = Configuration.get_base_uri()
-            _query_builder += _url_path
-            _query_url = APIHelper.clean_url(_query_builder)
-
-            # Prepare headers
-            self.logger.info('Preparing headers for update_group.')
-            _headers = {
-                'accept': 'application/json',
-                'content-type': 'application/json; charset=utf-8'
-            }
-
-            # Prepare and execute request
-            self.logger.info('Preparing and executing request for update_group.')
-            _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'update_group')
-
-            # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for update_group.')
-            if _context.response.status_code == 0:
-                raise RequestErrorErrorException('Error', _context)
-            self.validate_response(_context)
-
-            # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, Group.from_dictionary)
-
-        except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
-
-    def create_group(self,
-                     body=None):
-        """Does a POST request to /public/groups.
-
-        If an Active Directory domain is specified, a new group is added to
-        the Cohesity Cluster for the specified Active Directory group
-        principal. If the LOCAL domain is specified, a new group is created
-        directly in the default LOCAL domain on the Cohesity Cluster.  Returns
-        the created or added group.
-
-        Args:
-            body (GroupParameters, optional): Request to add or create a
-                Group.
-
-        Returns:
-            Group: Response from the API. Success
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-        try:
-            self.logger.info('create_group called.')
-
-            # Prepare query URL
-            self.logger.info('Preparing query URL for create_group.')
-            _url_path = '/public/groups'
-            _query_builder = Configuration.get_base_uri()
-            _query_builder += _url_path
-            _query_url = APIHelper.clean_url(_query_builder)
-
-            # Prepare headers
-            self.logger.info('Preparing headers for create_group.')
-            _headers = {
-                'accept': 'application/json',
-                'content-type': 'application/json; charset=utf-8'
-            }
-
-            # Prepare and execute request
-            self.logger.info('Preparing and executing request for create_group.')
-            _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'create_group')
-
-            # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for create_group.')
-            if _context.response.status_code == 0:
-                raise RequestErrorErrorException('Error', _context)
-            self.validate_response(_context)
-
-            # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, Group.from_dictionary)
-
-        except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
-
     def delete_groups(self,
                       body=None):
         """Does a DELETE request to /public/groups.
 
         If the group on the Cohesity Cluster was added for an Active Directory
-        user, the referenced principal group on the Active Directory domain is
-        NOT deleted. Only the group on the Cohesity Cluster is deleted.
+        user,
+        the referenced principal group on the Active Directory domain is NOT
+        deleted.
+        Only the group on the Cohesity Cluster is deleted.
         Returns Success if the specified groups are deleted.
 
         Args:
@@ -195,8 +82,9 @@ class GroupsController(BaseController):
         """Does a GET request to /public/groups.
 
         If no parameters are specified, all groups currently on the Cohesity
-        Cluster are returned. Specifying parameters filters the results that
-        are returned.
+        Cluster
+        are returned. Specifying parameters filters the results that are
+        returned.
 
         Args:
             name (string, optional): Optionally specify a group name to filter
@@ -253,6 +141,122 @@ class GroupsController(BaseController):
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_groups.')
+            if _context.response.status_code == 0:
+                raise RequestErrorErrorException('Error', _context)
+            self.validate_response(_context)
+
+            # Return appropriate type
+            return APIHelper.json_deserialize(_context.response.raw_body, Group.from_dictionary)
+
+        except Exception as e:
+            self.logger.error(e, exc_info = True)
+            raise
+
+    def create_group(self,
+                     body=None):
+        """Does a POST request to /public/groups.
+
+        If an Active Directory domain is specified, a new group is added to
+        the
+        Cohesity Cluster for the specified Active Directory group principal.
+        If the LOCAL domain is specified, a new group is created directly in
+        the default LOCAL domain on the Cohesity Cluster.
+        Returns the created or added group.
+
+        Args:
+            body (GroupParameters, optional): Request to add or create a
+                Group.
+
+        Returns:
+            Group: Response from the API. Success
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+        try:
+            self.logger.info('create_group called.')
+
+            # Prepare query URL
+            self.logger.info('Preparing query URL for create_group.')
+            _url_path = '/public/groups'
+            _query_builder = Configuration.get_base_uri()
+            _query_builder += _url_path
+            _query_url = APIHelper.clean_url(_query_builder)
+
+            # Prepare headers
+            self.logger.info('Preparing headers for create_group.')
+            _headers = {
+                'accept': 'application/json',
+                'content-type': 'application/json; charset=utf-8'
+            }
+
+            # Prepare and execute request
+            self.logger.info('Preparing and executing request for create_group.')
+            _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request)
+            _context = self.execute_request(_request, name = 'create_group')
+
+            # Endpoint and global error handling using HTTP status codes.
+            self.logger.info('Validating response for create_group.')
+            if _context.response.status_code == 0:
+                raise RequestErrorErrorException('Error', _context)
+            self.validate_response(_context)
+
+            # Return appropriate type
+            return APIHelper.json_deserialize(_context.response.raw_body, Group.from_dictionary)
+
+        except Exception as e:
+            self.logger.error(e, exc_info = True)
+            raise
+
+    def update_group(self,
+                     body=None):
+        """Does a PUT request to /public/groups.
+
+        Returns the group that was updated on the Cohesity Cluster.
+
+        Args:
+            body (GroupParameters, optional): Request to update a group.
+
+        Returns:
+            Group: Response from the API. Success
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+        try:
+            self.logger.info('update_group called.')
+
+            # Prepare query URL
+            self.logger.info('Preparing query URL for update_group.')
+            _url_path = '/public/groups'
+            _query_builder = Configuration.get_base_uri()
+            _query_builder += _url_path
+            _query_url = APIHelper.clean_url(_query_builder)
+
+            # Prepare headers
+            self.logger.info('Preparing headers for update_group.')
+            _headers = {
+                'accept': 'application/json',
+                'content-type': 'application/json; charset=utf-8'
+            }
+
+            # Prepare and execute request
+            self.logger.info('Preparing and executing request for update_group.')
+            _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request)
+            _context = self.execute_request(_request, name = 'update_group')
+
+            # Endpoint and global error handling using HTTP status codes.
+            self.logger.info('Validating response for update_group.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)

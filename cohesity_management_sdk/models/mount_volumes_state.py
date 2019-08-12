@@ -8,8 +8,8 @@ class MountVolumesState(object):
 
     """Implementation of the 'MountVolumesState' model.
 
-    Specifies the states of mounting all the volumes onto a mount target for a
-    'kRecoverVMs' Restore Task.
+    Specifies the states of mounting all the volumes onto a mount target
+    for a 'kRecoverVMs' Restore Task.
 
     Attributes:
         bring_disks_online (bool): Optional setting that determines if the

@@ -16,7 +16,9 @@ class RemoteHost(object):
             'kLinux' indicates the Linux operating system. 'kWindows'
             indicates the Microsoft Windows operating system. 'kAix' indicates
             the IBM AIX operating system. 'kSolaris' indicates the Oracle
-            Solaris operating system.
+            Solaris operating system. 'kSapHana' indicates the Sap Hana
+            database system developed by SAP SE. 'kOther' indicates the other
+            types of operating system.
 
     """
 

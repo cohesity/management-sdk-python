@@ -7,8 +7,8 @@ class CreateRemoteVaultSearchJobParameters(object):
 
     """Implementation of the 'CreateRemoteVaultSearchJobParameters' model.
 
-    Specifies settings required to create a search of a remote Vault for data
-    that has been archived from other Clusters.
+    Specifies settings required to create a search of a
+    remote Vault for data that has been archived from other Clusters.
 
     Attributes:
         cluster_match_string (string): Filter by specifying a Cluster name

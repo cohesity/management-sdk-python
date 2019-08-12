@@ -6,8 +6,8 @@ class IdpUserInfo(object):
 
     """Implementation of the 'IdpUserInfo' model.
 
-    Specifies an IdP User's information logged in using an IdP. This
-    information is not stored on the Cluster.
+    Specifies an IdP User's information logged in using an IdP.
+    This information is not stored on the Cluster.
 
     Attributes:
         idp_id (long|int): Specifies the unique Id assigned by the Cluster for

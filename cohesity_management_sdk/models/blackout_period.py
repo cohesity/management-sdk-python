@@ -7,9 +7,9 @@ class BlackoutPeriod(object):
 
     """Implementation of the 'BlackoutPeriod' model.
 
-    Specifies a time range in a single day when new Job Runs of Protection
-    Jobs cannot be started. For example, a Protection Job with a daily
-    schedule could define a blackout period for Sunday.
+    Specifies a time range in a single day when new Job Runs of
+    Protection Jobs cannot be started. For example, a Protection Job
+    with a daily schedule could define a blackout period for Sunday.
 
     Attributes:
         day (DayBlackoutPeriodEnum): Blackout Day.  Specifies a day in the

@@ -2,6 +2,7 @@
 # Copyright 2019 Cohesity Inc.
 
 import cohesity_management_sdk.models.application_special_parameters
+import cohesity_management_sdk.models.oracle_special_parameters
 import cohesity_management_sdk.models.physical_special_parameters
 import cohesity_management_sdk.models.credentials
 import cohesity_management_sdk.models.vmware_special_parameters
@@ -17,9 +18,8 @@ class SourceSpecialParameter(object):
         ad_special_parameters (ApplicationSpecialParameters): Specifies
             additional special settings applicable for a Protection Source of
             'kSQL'/'kOracle' type in a Protection Job.
-        oracle_special_parameters (ApplicationSpecialParameters): Specifies
-            additional special settings applicable for a Protection Source of
-            'kSQL'/'kOracle' type in a Protection Job.
+        oracle_special_parameters (OracleSpecialParameters): Specifies special
+            settings applicable for 'kOracle' environment.
         physical_special_parameters (PhysicalSpecialParameters): Specifies
             additional special settings applicable for a Protection Source of
             'kPhysical' type in a Protection Job.
@@ -107,7 +107,7 @@ class SourceSpecialParameter(object):
 
         # Extract variables from the dictionary
         ad_special_parameters = cohesity_management_sdk.models.application_special_parameters.ApplicationSpecialParameters.from_dictionary(dictionary.get('adSpecialParameters')) if dictionary.get('adSpecialParameters') else None
-        oracle_special_parameters = cohesity_management_sdk.models.application_special_parameters.ApplicationSpecialParameters.from_dictionary(dictionary.get('oracleSpecialParameters')) if dictionary.get('oracleSpecialParameters') else None
+        oracle_special_parameters = cohesity_management_sdk.models.oracle_special_parameters.OracleSpecialParameters.from_dictionary(dictionary.get('oracleSpecialParameters')) if dictionary.get('oracleSpecialParameters') else None
         physical_special_parameters = cohesity_management_sdk.models.physical_special_parameters.PhysicalSpecialParameters.from_dictionary(dictionary.get('physicalSpecialParameters')) if dictionary.get('physicalSpecialParameters') else None
         skip_indexing = dictionary.get('skipIndexing')
         source_id = dictionary.get('sourceId')

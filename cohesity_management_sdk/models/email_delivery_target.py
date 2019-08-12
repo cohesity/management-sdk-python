@@ -6,8 +6,8 @@ class EmailDeliveryTarget(object):
 
     """Implementation of the 'EmailDeliveryTarget' model.
 
-    EmailDeliveryTarget Specifies the email address and the locale setting for
-    it.
+    EmailDeliveryTarget
+    Specifies the email address and the locale setting for it.
 
     Attributes:
         email_address (string): TODO: type description here.

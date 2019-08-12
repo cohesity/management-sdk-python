@@ -9,8 +9,8 @@ class CreateClusterResult(object):
 
     Specifies the immediate result of a Cluster creation request. Contains
     validation results for each node. If the request is valid, it also
-    indicates that the individual node bringup operation is started in the
-    background.
+    indicates that the individual node bringup operation is started in
+    the background.
 
     Attributes:
         cluster_id (long|int): Specifies the ID of the new Cluster.

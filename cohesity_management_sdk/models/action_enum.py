@@ -5,10 +5,10 @@ class ActionEnum(object):
 
     """Implementation of the 'Action' enum.
 
-    Specifies the action to take on the specified service. 'kStop' indicates
-    that the specified services will be stopped. 'kStart' indicates that the
-    specified services will be started. 'kRestart' indicates that the
-    specified services will be restarted.
+    Specifies the action to take on the specified service.
+    'kStop' indicates that the specified services will be stopped.
+    'kStart' indicates that the specified services will be started.
+    'kRestart' indicates that the specified services will be restarted.
 
     Attributes:
         KSTOP: TODO: type description here.

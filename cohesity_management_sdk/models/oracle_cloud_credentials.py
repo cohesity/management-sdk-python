@@ -7,8 +7,10 @@ class OracleCloudCredentials(object):
     """Implementation of the 'OracleCloudCredentials' model.
 
     Specifies the Oracle Cloud Credentials to connect to an Oracle S3
-    Compatible vault account.  Oracle Cloud Credentials Region, Access-Key-Id
-    and Secret-Access-Key. Oracle Cloud properties Tenant and Tier Type.
+    Compatible
+    vault account.
+    Oracle Cloud Credentials Region, Access-Key-Id and Secret-Access-Key.
+    Oracle Cloud properties Tenant and Tier Type.
 
     Attributes:
         access_key_id (string): Specifies access key to connect to Oracle S3

@@ -7,7 +7,8 @@ class SchemaInfo(object):
     """Implementation of the 'SchemaInfo' model.
 
     Specifies the metric data point where public data metric name as key and
-    the schema defined metric name as a value.
+    the
+    schema defined metric name as a value.
 
     Attributes:
         entity_id (string): Specifies the id of the entity represented as a

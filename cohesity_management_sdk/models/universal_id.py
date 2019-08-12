@@ -6,8 +6,8 @@ class UniversalId(object):
 
     """Implementation of the 'UniversalId' model.
 
-    Specifies an id for an object that is unique across Cohesity Clusters. The
-    id is composite of all the ids listed below.
+    Specifies an id for an object that is unique across Cohesity Clusters.
+    The id is composite of all the ids listed below.
 
     Attributes:
         cluster_id (long|int): Specifies the Cohesity Cluster id where the

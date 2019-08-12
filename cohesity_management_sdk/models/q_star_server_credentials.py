@@ -6,8 +6,8 @@ class QStarServerCredentials(object):
 
     """Implementation of the 'QStarServerCredentials' model.
 
-    Specifies the server credentials to connect to a QStar service to manage
-    the media Vault.
+    Specifies the server credentials to connect to a QStar service
+    to manage the media Vault.
 
     Attributes:
         host (string): Specifies the IP address or DNS name of the server

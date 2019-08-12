@@ -5,9 +5,10 @@ class ProtocolAccessEnum(object):
 
     """Implementation of the 'ProtocolAccess' enum.
 
-    Specifies the supported Protocols for the View. 'kAll' enables protocol
-    access to all three views: NFS, SMB and S3. 'kNFSOnly' enables protocol
-    access to NFS only. 'kSMBOnly' enables protocol access to SMB only.
+    Specifies the supported Protocols for the View.
+    'kAll' enables protocol access to all three views: NFS, SMB and S3.
+    'kNFSOnly' enables protocol access to NFS only.
+    'kSMBOnly' enables protocol access to SMB only.
     'kS3Only' enables protocol access to S3 only.
 
     Attributes:

@@ -6,8 +6,9 @@ class ClusterHardwareInfo(object):
 
     """Implementation of the 'ClusterHardwareInfo' model.
 
-    Specifies a hardware type for motherboard of the Nodes that make up this
-    Cohesity Cluster such as S2600WB for Ivy Bridge or S2600TP for Haswell.
+    Specifies a hardware type for motherboard of the Nodes
+    that make up this Cohesity Cluster such as S2600WB for Ivy Bridge
+    or S2600TP for Haswell.
 
     Attributes:
         hardware_models (list of string): TODO: type description here.

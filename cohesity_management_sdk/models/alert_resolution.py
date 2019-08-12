@@ -8,7 +8,8 @@ class AlertResolution(object):
     """Implementation of the 'AlertResolution' model.
 
     Provides Resolution details and the list of Alerts resolved by a
-    Resolution, which are specified by Alert Ids.
+    Resolution,
+    which are specified by Alert Ids.
 
     Attributes:
         alert_id_list (list of string): Specifies list of Alerts resolved by a

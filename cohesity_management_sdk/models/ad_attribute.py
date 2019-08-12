@@ -7,9 +7,10 @@ class AdAttribute(object):
 
     """Implementation of the 'AdAttribute' model.
 
-    Represnts the information about the AD attribute of the object. It also
-    contains information regarding whether it is system attribute and whether
-    the attribute is equal on both Snapshot and Production AD.
+    Represnts the information about the AD attribute of the object.
+    It also contains information regarding whether it is system attribute
+    and whether the attribute is equal on both Snapshot and Production
+    AD.
 
     Attributes:
         ad_attribute_flags (list of AdAttributeFlagEnum): Specifies the flags

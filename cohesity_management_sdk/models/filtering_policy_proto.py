@@ -6,17 +6,24 @@ class FilteringPolicyProto(object):
 
     """Implementation of the 'FilteringPolicyProto' model.
 
-    Proto to encapsulate the filtering policy for backup objects like files or
-    directories. If an object is not matched by any of the 'allow_filters', it
+    Proto to encapsulate the filtering policy for backup objects like files
+    or
+    directories. If an object is not matched by any of the 'allow_filters',
+    it
     will be excluded in the backup. If an object is matched by one of the
     'deny_filters', it will always be excluded in the backup. Basically
     'deny_filters' overwrite 'allow_filters' if they both match the same
-    object. Currently we only support two kinds of filter: prefix which always
-    starts with '/', or postfix which always starts with '*' (cannot be "*"
-    only). We don't support regular expression right now. A concrete example
-    is: Allow filters: "/" Deny filters: "/tmp", "*.mp4" Using such a policy
-    will include everything under the root directory except the /tmp directory
-    and all the mp4 files.
+    object.
+    Currently we only support two kinds of filter: prefix which always starts
+    with '/', or postfix which always starts with '*' (cannot be "*" only).
+    We
+    don't support regular expression right now.
+    A concrete example is:
+    Allow filters: "/"
+    Deny filters: "/tmp", "*.mp4"
+    Using such a policy will include everything under the root directory
+    except
+    the /tmp directory and all the mp4 files.
 
     Attributes:
         allow_filters (list of string): List of filters to allow matched

@@ -8,11 +8,13 @@ class DeviceNode(object):
 
     """Implementation of the 'DeviceNode' model.
 
-    Specifies the list of devices that need to be combined to form the storage
-    space. Only one of the fields is populated with a device node. If the
-    device node is a leaf node, leafNode is populated with details about the
-    partition blocks in the file. If the device node is an intermediate node,
-    intermediateNode is populated with a device sub-tree.
+    Specifies the list of devices that need to be combined to form the
+    storage space.
+    Only one of the fields is populated with a device node.
+    If the device node is a leaf node, leafNode is populated with details
+    about the partition blocks in the file.
+    If the device node is an intermediate node, intermediateNode is
+    populated with a device sub-tree.
 
     Attributes:
         intermediate_node (DeviceTreeDetails): Specifies a logical volume

@@ -7,12 +7,13 @@ class ViewBoxPairInfo(object):
     """Implementation of the 'ViewBoxPairInfo' model.
 
     Specifies a pairing between a Storage Domain (View Box) on local Cluster
-    with a Storage Domain (View Box) on a remote Cluster. When replication is
-    configured between a local Cluster and a remote Cluster, the Snapshots are
-    replicated from the specified Storage Domain (View Box) on the local
-    Cluster to the Storage Domain (View Box) on the remote Cluster. See the
-    online help for details about the supported Storage Domains (View Box)
-    pairings between Clusters.
+    with a Storage Domain (View Box) on a remote Cluster.
+    When replication is configured between a local Cluster and a
+    remote Cluster, the Snapshots are replicated from the specified
+    Storage Domain (View Box) on the local Cluster to the Storage Domain
+    (View Box) on the remote Cluster. See the online help for details about
+    the
+    supported Storage Domains (View Box) pairings between Clusters.
 
     Attributes:
         local_view_box_id (long|int): Specifies the id of the Storage Domain

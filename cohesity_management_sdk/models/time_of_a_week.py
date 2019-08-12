@@ -7,10 +7,11 @@ class TimeOfAWeek(object):
 
     """Implementation of the 'TimeOfAWeek' model.
 
-    Specifies a time period by specifying a single daily time period and one
-    or more days of the week, for example 9 AM - 5 PM on Monday, Wednesday or
-    Friday. If different time periods are required on different days, then
-    multiple instances of this Weekly Time Period must be specified.
+    Specifies a time period by specifying a single daily time period
+    and one or more days of the week, for example 9 AM - 5 PM
+    on Monday, Wednesday or Friday. If different time periods are required
+    on different days, then multiple instances of this Weekly Time Period
+    must be specified.
 
     Attributes:
         days (list of DayEnum): Array of Week Days.  Specifies a list of days

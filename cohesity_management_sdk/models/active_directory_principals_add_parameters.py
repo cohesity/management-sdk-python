@@ -6,9 +6,10 @@ class ActiveDirectoryPrincipalsAddParameters(object):
 
     """Implementation of the 'ActiveDirectoryPrincipalsAddParameters' model.
 
-    Specifies the settings for adding new users and groups for Active
-    Directory principals. These users and groups are added to the Cohesity
-    Cluster. You cannot create users and groups in the default Cohesity domain
+    Specifies the settings for adding new users and groups
+    for Active Directory principals.
+    These users and groups are added to the Cohesity Cluster.
+    You cannot create users and groups in the default Cohesity domain
     called 'LOCAL' using this operation.
 
     Attributes:
@@ -22,6 +23,7 @@ class ActiveDirectoryPrincipalsAddParameters(object):
             If 'kUser', the referenced Active Directory principal is a user.
             'kUser' specifies a user object class. 'kGroup' specifies a group
             object class. 'kComputer' specifies a computer object class.
+            'kWellKnownPrincipal' specifies a well known principal.
         principal_name (string): Specifies the name of the Active Directory
             principal, that will be referenced by the group or user. The name
             of the Active Directory principal is used for naming the new group

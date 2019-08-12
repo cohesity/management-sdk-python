@@ -8,9 +8,9 @@ class SnapshotTargetSettings(object):
 
     """Implementation of the 'SnapshotTargetSettings' model.
 
-    Specifies settings about a target where a copied Snapshot is stored. A
-    target can be a Remote Cluster or an Archival External Target such as AWS
-    or Tape.
+    Specifies settings about a target where a copied Snapshot is stored.
+    A target can be a Remote Cluster or an Archival External Target such as
+    AWS or Tape.
 
     Attributes:
         archival_target (ArchivalExternalTarget): Specifies settings about the

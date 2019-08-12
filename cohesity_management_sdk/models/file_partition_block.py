@@ -6,8 +6,8 @@ class FilePartitionBlock(object):
 
     """Implementation of the 'FilePartitionBlock' model.
 
-    Defines a leaf node of a device tree. This refers to a logical partition
-    in a virtual disk file.
+    Defines a leaf node of a device tree. This refers to a logical
+    partition in a virtual disk file.
 
     Attributes:
         disk_file_name (string): Specifies the disk file name where the

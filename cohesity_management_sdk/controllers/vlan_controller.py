@@ -18,184 +18,6 @@ class VlanController(BaseController):
         super(VlanController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
 
-    def create_vlan(self):
-        """Does a POST request to /public/vlans.
-
-        Returns the created VLAN on the Cohesity Cluster.
-
-        Returns:
-            Vlan: Response from the API. Success
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-        try:
-            self.logger.info('create_vlan called.')
-
-            # Prepare query URL
-            self.logger.info('Preparing query URL for create_vlan.')
-            _url_path = '/public/vlans'
-            _query_builder = Configuration.get_base_uri()
-            _query_builder += _url_path
-            _query_url = APIHelper.clean_url(_query_builder)
-
-            # Prepare headers
-            self.logger.info('Preparing headers for create_vlan.')
-            _headers = {
-                'accept': 'application/json'
-            }
-
-            # Prepare and execute request
-            self.logger.info('Preparing and executing request for create_vlan.')
-            _request = self.http_client.post(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'create_vlan')
-
-            # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for create_vlan.')
-            if _context.response.status_code == 0:
-                raise RequestErrorErrorException('Error', _context)
-            self.validate_response(_context)
-
-            # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, Vlan.from_dictionary)
-
-        except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
-
-    def update_vlan(self,
-                    id,
-                    body=None):
-        """Does a PUT request to /public/vlans/{id}.
-
-        Returns the created or updated VLAN on the Cohesity Cluster.
-
-        Args:
-            id (int): Specifies the id of the VLAN.
-            body (Vlan, optional): TODO: type description here. Example:
-
-        Returns:
-            Vlan: Response from the API. Success
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-        try:
-            self.logger.info('update_vlan called.')
-
-            # Validate required parameters
-            self.logger.info('Validating required parameters for update_vlan.')
-            self.validate_parameters(id=id)
-
-            # Prepare query URL
-            self.logger.info('Preparing query URL for update_vlan.')
-            _url_path = '/public/vlans/{id}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-                'id': id
-            })
-            _query_builder = Configuration.get_base_uri()
-            _query_builder += _url_path
-            _query_url = APIHelper.clean_url(_query_builder)
-
-            # Prepare headers
-            self.logger.info('Preparing headers for update_vlan.')
-            _headers = {
-                'accept': 'application/json',
-                'content-type': 'application/json; charset=utf-8'
-            }
-
-            # Prepare and execute request
-            self.logger.info('Preparing and executing request for update_vlan.')
-            _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'update_vlan')
-
-            # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for update_vlan.')
-            if _context.response.status_code == 0:
-                raise RequestErrorErrorException('Error', _context)
-            self.validate_response(_context)
-
-            # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, Vlan.from_dictionary)
-
-        except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
-
-    def get_vlan_by_id(self,
-                       id):
-        """Does a GET request to /public/vlans/{id}.
-
-        Returns the VLAN corresponding to the specified VLAN ID or a specified
-        vlan interface group name. Example: /public/vlans/intf_group1.20
-
-        Args:
-            id (int): Specifies the id of the VLAN.
-
-        Returns:
-            Vlan: Response from the API. Success
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-        try:
-            self.logger.info('get_vlan_by_id called.')
-
-            # Validate required parameters
-            self.logger.info('Validating required parameters for get_vlan_by_id.')
-            self.validate_parameters(id=id)
-
-            # Prepare query URL
-            self.logger.info('Preparing query URL for get_vlan_by_id.')
-            _url_path = '/public/vlans/{id}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-                'id': id
-            })
-            _query_builder = Configuration.get_base_uri()
-            _query_builder += _url_path
-            _query_url = APIHelper.clean_url(_query_builder)
-
-            # Prepare headers
-            self.logger.info('Preparing headers for get_vlan_by_id.')
-            _headers = {
-                'accept': 'application/json'
-            }
-
-            # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_vlan_by_id.')
-            _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_vlan_by_id')
-
-            # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for get_vlan_by_id.')
-            if _context.response.status_code == 404:
-                raise APIException('Not Found', _context)
-            elif (_context.response.status_code < 200) or (_context.response.status_code > 208):
-                raise RequestErrorErrorException('Error', _context)
-            self.validate_response(_context)
-
-            # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, Vlan.from_dictionary)
-
-        except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
-
     def get_vlans(self,
                   tenant_ids=None,
                   all_under_hierarchy=None,
@@ -266,6 +88,65 @@ class VlanController(BaseController):
             self.logger.error(e, exc_info = True)
             raise
 
+    def create_vlan(self,
+                    body):
+        """Does a POST request to /public/vlans.
+
+        Returns the created VLAN on the Cohesity Cluster.
+
+        Args:
+            body (Vlan): TODO: type description here. Example:
+
+        Returns:
+            Vlan: Response from the API. Success
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+        try:
+            self.logger.info('create_vlan called.')
+
+            # Validate required parameters
+            self.logger.info('Validating required parameters for create_vlan.')
+            self.validate_parameters(body=body)
+
+            # Prepare query URL
+            self.logger.info('Preparing query URL for create_vlan.')
+            _url_path = '/public/vlans'
+            _query_builder = Configuration.get_base_uri()
+            _query_builder += _url_path
+            _query_url = APIHelper.clean_url(_query_builder)
+
+            # Prepare headers
+            self.logger.info('Preparing headers for create_vlan.')
+            _headers = {
+                'accept': 'application/json',
+                'content-type': 'application/json; charset=utf-8'
+            }
+
+            # Prepare and execute request
+            self.logger.info('Preparing and executing request for create_vlan.')
+            _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request)
+            _context = self.execute_request(_request, name = 'create_vlan')
+
+            # Endpoint and global error handling using HTTP status codes.
+            self.logger.info('Validating response for create_vlan.')
+            if _context.response.status_code == 0:
+                raise RequestErrorErrorException('Error', _context)
+            self.validate_response(_context)
+
+            # Return appropriate type
+            return APIHelper.json_deserialize(_context.response.raw_body, Vlan.from_dictionary)
+
+        except Exception as e:
+            self.logger.error(e, exc_info = True)
+            raise
+
     def remove_vlan(self,
                     id):
         """Does a DELETE request to /public/vlans/{id}.
@@ -313,6 +194,136 @@ class VlanController(BaseController):
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
+
+        except Exception as e:
+            self.logger.error(e, exc_info = True)
+            raise
+
+    def get_vlan_by_id(self,
+                       id):
+        """Does a GET request to /public/vlans/{id}.
+
+        Returns the VLAN corresponding to the specified VLAN ID or a
+        specified
+        vlan interface group name.
+        Example: /public/vlans/intf_group1.20
+
+        Args:
+            id (int): Specifies the id of the VLAN.
+
+        Returns:
+            Vlan: Response from the API. Success
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+        try:
+            self.logger.info('get_vlan_by_id called.')
+
+            # Validate required parameters
+            self.logger.info('Validating required parameters for get_vlan_by_id.')
+            self.validate_parameters(id=id)
+
+            # Prepare query URL
+            self.logger.info('Preparing query URL for get_vlan_by_id.')
+            _url_path = '/public/vlans/{id}'
+            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
+                'id': id
+            })
+            _query_builder = Configuration.get_base_uri()
+            _query_builder += _url_path
+            _query_url = APIHelper.clean_url(_query_builder)
+
+            # Prepare headers
+            self.logger.info('Preparing headers for get_vlan_by_id.')
+            _headers = {
+                'accept': 'application/json'
+            }
+
+            # Prepare and execute request
+            self.logger.info('Preparing and executing request for get_vlan_by_id.')
+            _request = self.http_client.get(_query_url, headers=_headers)
+            AuthManager.apply(_request)
+            _context = self.execute_request(_request, name = 'get_vlan_by_id')
+
+            # Endpoint and global error handling using HTTP status codes.
+            self.logger.info('Validating response for get_vlan_by_id.')
+            if _context.response.status_code == 404:
+                raise APIException('Not Found', _context)
+            elif (_context.response.status_code < 200) or (_context.response.status_code > 208):
+                raise RequestErrorErrorException('Error', _context)
+            self.validate_response(_context)
+
+            # Return appropriate type
+            return APIHelper.json_deserialize(_context.response.raw_body, Vlan.from_dictionary)
+
+        except Exception as e:
+            self.logger.error(e, exc_info = True)
+            raise
+
+    def update_vlan(self,
+                    id,
+                    body=None):
+        """Does a PUT request to /public/vlans/{id}.
+
+        Returns the created or updated VLAN on the Cohesity Cluster.
+
+        Args:
+            id (int): Specifies the id of the VLAN.
+            body (Vlan, optional): TODO: type description here. Example:
+
+        Returns:
+            Vlan: Response from the API. Success
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+        try:
+            self.logger.info('update_vlan called.')
+
+            # Validate required parameters
+            self.logger.info('Validating required parameters for update_vlan.')
+            self.validate_parameters(id=id)
+
+            # Prepare query URL
+            self.logger.info('Preparing query URL for update_vlan.')
+            _url_path = '/public/vlans/{id}'
+            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
+                'id': id
+            })
+            _query_builder = Configuration.get_base_uri()
+            _query_builder += _url_path
+            _query_url = APIHelper.clean_url(_query_builder)
+
+            # Prepare headers
+            self.logger.info('Preparing headers for update_vlan.')
+            _headers = {
+                'accept': 'application/json',
+                'content-type': 'application/json; charset=utf-8'
+            }
+
+            # Prepare and execute request
+            self.logger.info('Preparing and executing request for update_vlan.')
+            _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request)
+            _context = self.execute_request(_request, name = 'update_vlan')
+
+            # Endpoint and global error handling using HTTP status codes.
+            self.logger.info('Validating response for update_vlan.')
+            if _context.response.status_code == 0:
+                raise RequestErrorErrorException('Error', _context)
+            self.validate_response(_context)
+
+            # Return appropriate type
+            return APIHelper.json_deserialize(_context.response.raw_body, Vlan.from_dictionary)
 
         except Exception as e:
             self.logger.error(e, exc_info = True)

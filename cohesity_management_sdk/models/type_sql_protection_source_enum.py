@@ -6,12 +6,14 @@ class TypeSqlProtectionSourceEnum(object):
     """Implementation of the 'Type_SqlProtectionSource' enum.
 
     Specifies the type of the managed Object in a SQL Protection Source.
-    Examples of SQL Objects include 'kInstance' and 'kDatabase'. 'kInstance'
-    indicates that SQL server instance is being protected. 'kDatabase'
-    indicates that SQL server database is being protected. 'kAAG' indicates
-    that SQL AAG (AlwaysOn Availability Group) is being protected.
+    Examples of SQL Objects include 'kInstance' and 'kDatabase'.
+    'kInstance' indicates that SQL server instance is being protected.
+    'kDatabase' indicates that SQL server database is being protected.
+    'kAAG' indicates that SQL AAG (AlwaysOn Availability Group) is being
+    protected.
     'kAAGRootContainer' indicates that SQL AAG's root container is being
-    protected. 'kRootContainer' indicates root container for SQL sources.
+    protected.
+    'kRootContainer' indicates root container for SQL sources.
 
     Attributes:
         KINSTANCE: TODO: type description here.

@@ -7,9 +7,9 @@ class ClusterAuditLog(object):
 
     """Implementation of the 'ClusterAuditLog' model.
 
-    Specifies information about a single Cluster audit log. When an action
-    (such as pausing a Protection Job) occurs, an audit log is generated that
-    provides details about the action.
+    Specifies information about a single Cluster audit log.
+    When an action (such as pausing a Protection Job) occurs, an audit log is
+    generated that provides details about the action.
 
     Attributes:
         action (string): Specifies the action that caused the log to be

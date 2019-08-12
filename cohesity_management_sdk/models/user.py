@@ -16,6 +16,13 @@ class User(object):
     Attributes:
         additional_group_names (list of string): Array of Additional Groups.
             Specifies the names of additional groups this User may belong to.
+        authentication_type (AuthenticationTypeUserEnum): Specifies the
+            authentication type of the user. 'kAuthLocal' implies
+            authenticated user is a local user. 'kAuthAd' implies
+            authenticated user is an Active Directory user. 'kAuthSalesforce'
+            implies authenticated user is a Salesforce user. 'kAuthGoogle'
+            implies authenticated user is a Google user. 'kAuthSso' implies
+            authenticated user is an SSO user.
         cluster_identifiers (list of ClusterIdentifier): Specifies the list of
             clusters this user has access to. If this is not specified, access
             will be granted to all clusters.
@@ -46,9 +53,11 @@ class User(object):
         preferences (Preferences): TODO: type description here.
         primary_group_name (string): Specifies the name of the primary group
             of this User.
-        privilege_ids (list of int): Array of Privileges.  Specifies the
-            Cohesity privileges from the roles. This will be populated based
-            on the union of all privileges in roles.
+        privilege_ids (list of PrivilegeIdUserEnum): Array of Privileges.
+            Specifies the Cohesity privileges from the roles. This will be
+            populated based on the union of all privileges in roles. Type for
+            unique privilege Id values. All below enum values specify a value
+            for all uniquely defined privileges in Cohesity.
         restricted (bool): Whether the user is a restricted user. A restricted
             user can only view the objects he has permissions to.
         roles (list of string): Array of Roles.  Specifies the Cohesity roles
@@ -69,6 +78,7 @@ class User(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "additional_group_names":'additionalGroupNames',
+        "authentication_type":'authenticationType',
         "cluster_identifiers":'clusterIdentifiers',
         "created_time_msecs":'createdTimeMsecs',
         "description":'description',
@@ -96,6 +106,7 @@ class User(object):
 
     def __init__(self,
                  additional_group_names=None,
+                 authentication_type=None,
                  cluster_identifiers=None,
                  created_time_msecs=None,
                  description=None,
@@ -123,6 +134,7 @@ class User(object):
 
         # Initialize members of the class
         self.additional_group_names = additional_group_names
+        self.authentication_type = authentication_type
         self.cluster_identifiers = cluster_identifiers
         self.created_time_msecs = created_time_msecs
         self.description = description
@@ -167,6 +179,7 @@ class User(object):
 
         # Extract variables from the dictionary
         additional_group_names = dictionary.get('additionalGroupNames')
+        authentication_type = dictionary.get('authenticationType')
         cluster_identifiers = None
         if dictionary.get('clusterIdentifiers') != None:
             cluster_identifiers = list()
@@ -197,6 +210,7 @@ class User(object):
 
         # Return an object of this model
         return cls(additional_group_names,
+                   authentication_type,
                    cluster_identifiers,
                    created_time_msecs,
                    description,

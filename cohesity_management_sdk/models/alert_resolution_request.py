@@ -7,8 +7,8 @@ class AlertResolutionRequest(object):
 
     """Implementation of the 'AlertResolutionRequest' model.
 
-    Request that provides the details of a resolution and the list of Alert
-    Ids to be marked resolved.
+    Request that provides the details of a resolution and the list of
+    Alert Ids to be marked resolved.
 
     Attributes:
         alert_id_list (list of string): Specifies list of alerts resolved by a

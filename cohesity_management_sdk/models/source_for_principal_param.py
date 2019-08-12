@@ -6,9 +6,9 @@ class SourceForPrincipalParam(object):
 
     """Implementation of the 'SourceForPrincipalParam' model.
 
-    Set Access Permissions for a Principal. For the specified principal, grant
-    access permissions to the the specified Protection Sources and View
-    names.
+    Set Access Permissions for a Principal.
+    For the specified principal, grant access permissions to the
+    the specified Protection Sources and View names.
 
     Attributes:
         protection_source_ids (list of long|int): Array of Protection Source

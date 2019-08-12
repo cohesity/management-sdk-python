@@ -15,6 +15,15 @@ class FileLockStatus(object):
             milliseconds when an expired file is kept on hold.
         lock_timestamp_msecs (long|int): Specifies the timestamp at which the
             file was locked.
+        mode (ModeFileLockStatusEnum): Specifies the mode of the file lock.
+            'kCompliance', 'kEnterprise'. A lock mode of a file in a view can
+            be in one of the following:  'kCompliance': Default mode of
+            datalock, in this mode, Data Security Admin cannot modify/delete
+            this view when datalock is in effect. Data Security Admin can
+            delete this view when datalock is expired. 'kEnterprise' : In this
+            mode, Data Security Admin can change view name or delete view when
+            datalock is in effect. Datalock in this mode can be upgraded to
+            'kCompliance' mode.
         state (int): Specifies the lock state of the file.
 
     """
@@ -24,6 +33,7 @@ class FileLockStatus(object):
         "expiry_timestamp_msecs":'expiryTimestampMsecs',
         "hold_timestamp_msecs":'holdTimestampMsecs',
         "lock_timestamp_msecs":'lockTimestampMsecs',
+        "mode":'mode',
         "state":'state'
     }
 
@@ -31,6 +41,7 @@ class FileLockStatus(object):
                  expiry_timestamp_msecs=None,
                  hold_timestamp_msecs=None,
                  lock_timestamp_msecs=None,
+                 mode=None,
                  state=None):
         """Constructor for the FileLockStatus class"""
 
@@ -38,6 +49,7 @@ class FileLockStatus(object):
         self.expiry_timestamp_msecs = expiry_timestamp_msecs
         self.hold_timestamp_msecs = hold_timestamp_msecs
         self.lock_timestamp_msecs = lock_timestamp_msecs
+        self.mode = mode
         self.state = state
 
 
@@ -62,12 +74,14 @@ class FileLockStatus(object):
         expiry_timestamp_msecs = dictionary.get('expiryTimestampMsecs')
         hold_timestamp_msecs = dictionary.get('holdTimestampMsecs')
         lock_timestamp_msecs = dictionary.get('lockTimestampMsecs')
+        mode = dictionary.get('mode')
         state = dictionary.get('state')
 
         # Return an object of this model
         return cls(expiry_timestamp_msecs,
                    hold_timestamp_msecs,
                    lock_timestamp_msecs,
+                   mode,
                    state)
 
 

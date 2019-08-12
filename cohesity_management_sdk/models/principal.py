@@ -16,7 +16,8 @@ class Principal(object):
         object_class (ObjectClassEnum): Specifies the object class of the
             principal (either 'kGroup' or 'kUser'). 'kUser' specifies a user
             object class. 'kGroup' specifies a group object class. 'kComputer'
-            specifies a computer object class.
+            specifies a computer object class. 'kWellKnownPrincipal' specifies
+            a well known principal.
         principal_name (string): Specifies the name of the principal.
         sid (string): Specifies the unique Security id (SID) of the
             principal.

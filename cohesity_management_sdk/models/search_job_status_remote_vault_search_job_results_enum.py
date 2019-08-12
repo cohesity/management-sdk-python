@@ -5,11 +5,12 @@ class SearchJobStatusRemoteVaultSearchJobResultsEnum(object):
 
     """Implementation of the 'SearchJobStatus_RemoteVaultSearchJobResults' enum.
 
-    Specifies the status of the search Job. 'kJobRunning' indicates that the
-    Job/task is currently running. 'kJobFinished' indicates that the Job/task
-    completed and finished. 'kJobFailed' indicates that the Job/task failed
-    and did not complete. 'kJobCanceled' indicates that the Job/task was
-    canceled. 'kJobPaused' indicates the Job/task is paused.
+    Specifies the status of the search Job.
+    'kJobRunning' indicates that the Job/task is currently running.
+    'kJobFinished' indicates that the Job/task completed and finished.
+    'kJobFailed' indicates that the Job/task failed and did not complete.
+    'kJobCanceled' indicates that the Job/task was canceled.
+    'kJobPaused' indicates the Job/task is paused.
 
     Attributes:
         KJOBRUNNING: TODO: type description here.

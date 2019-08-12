@@ -7,9 +7,9 @@ class SnapshotCloudCopyPolicy(object):
 
     """Implementation of the 'SnapshotCloudCopyPolicy' model.
 
-    Specifies settings for copying Snapshots to Cloud. This also specifies the
-    retention policy that should be applied to Snapshots after they have been
-    copied to Cloud.
+    Specifies settings for copying Snapshots to Cloud. This also specifies
+    the retention policy that should be applied to Snapshots after they have
+    been copied to Cloud.
 
     Attributes:
         copy_partial (bool): Specifies if Snapshots are copied from the first

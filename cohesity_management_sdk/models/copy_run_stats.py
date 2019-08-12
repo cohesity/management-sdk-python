@@ -6,8 +6,8 @@ class CopyRunStats(object):
 
     """Implementation of the 'CopyRunStats' model.
 
-    Stats for one copy task or aggregated stats of a Copy Run in a Protection
-    Job Run.
+    Stats for one copy task or aggregated stats of a Copy Run in a
+    Protection Job Run.
 
     Attributes:
         end_time_usecs (long|int): Specifies the time when this replication

@@ -6,9 +6,9 @@ class VserverNetworkInterface(object):
 
     """Implementation of the 'VserverNetworkInterface' model.
 
-    Specifies information about a logical network interface on a NetApp
-    Vserver. The interface's IP address is the mount point for a specific data
-    protocol, such as NFS or CIFS.
+    Specifies information about a logical network interface on a
+    NetApp Vserver. The interface's IP address is the mount point for a
+    specific data protocol, such as NFS or CIFS.
 
     Attributes:
         data_protocols (list of DataProtocolEnum): Array of Data Protocols.

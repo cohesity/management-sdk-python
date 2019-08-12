@@ -5,9 +5,10 @@ class PeriodicityEnum(object):
 
     """Implementation of the 'Periodicity' enum.
 
-    Specifies how often to start new Job Runs of a Protection Job. 'kDaily'
-    means new Job Runs start daily. 'kMonthly' means new Job Runs start
-    monthly. 'kContinuous' means new Job Runs repetitively start at the
+    Specifies how often to start new Job Runs of a Protection Job.
+    'kDaily' means new Job Runs start daily.
+    'kMonthly' means new Job Runs start monthly.
+    'kContinuous' means new Job Runs repetitively start at the
     beginning of the specified time interval (in hours or minutes).
     'kContinuousRPO' means this is an RPO schedule.
 

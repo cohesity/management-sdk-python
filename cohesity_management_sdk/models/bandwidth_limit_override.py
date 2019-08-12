@@ -7,8 +7,8 @@ class BandwidthLimitOverride(object):
 
     """Implementation of the 'BandwidthLimitOverride' model.
 
-    Specifies bandwidth limit override value to be enforced during the
-    specified daily time period for the specified days of the week.
+    Specifies bandwidth limit override value to be enforced during
+    the specified daily time period for the specified days of the week.
 
     Attributes:
         bytes_per_second (long|int): Specifies the value to override the

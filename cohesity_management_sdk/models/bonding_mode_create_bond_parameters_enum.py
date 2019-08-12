@@ -5,9 +5,10 @@ class BondingModeCreateBondParametersEnum(object):
 
     """Implementation of the 'BondingMode_CreateBondParameters' enum.
 
-    Specifies the bonding mode to use for this bond. If not specified, this
-    value will default to 'kActiveBackup'. 'kActiveBackup' indicates active
-    backup bonding mode. 'k802_3ad' indicates 802.3ad bonding mode.
+    Specifies the bonding mode to use for this bond. If not specified,
+    this value will default to 'kActiveBackup'.
+    'kActiveBackup' indicates active backup bonding mode.
+    'k802_3ad' indicates 802.3ad bonding mode.
 
     Attributes:
         KACTIVEBACKUP: TODO: type description here.

@@ -12,8 +12,8 @@ class VaultConfig(object):
 
     """Implementation of the 'VaultConfig' model.
 
-    Specifies the settings required to connect to a specific Vault type. For
-    some Vaults, you must also specify a storage location (bucketName).
+    Specifies the settings required to connect to a specific Vault type.
+    For some Vaults, you must also specify a storage location (bucketName).
 
     Attributes:
         amazon (AmazonCloudCredentials): Specifies the cloud credentials to

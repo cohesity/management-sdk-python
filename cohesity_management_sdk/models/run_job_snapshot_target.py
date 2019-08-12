@@ -8,8 +8,8 @@ class RunJobSnapshotTarget(object):
 
     """Implementation of the 'RunJobSnapshotTarget' model.
 
-    Specifies settings for a Copy Task when a Protection is run. It gives the
-    target location for the Snapshot and its retention.
+    Specifies settings for a Copy Task when a Protection is run. It
+    gives the target location for the Snapshot and its retention.
 
     Attributes:
         archival_target (ArchivalExternalTarget): Specifies settings about the

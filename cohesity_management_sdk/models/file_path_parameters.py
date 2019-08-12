@@ -6,8 +6,8 @@ class FilePathParameters(object):
 
     """Implementation of the 'FilePathParameters' model.
 
-    Specifies a file or a directory to protect in a Physical Server. If a
-    directory is specified, all of its descendants are also backed up.
+    Specifies a file or a directory to protect in a Physical Server.
+    If a directory is specified, all of its descendants are also backed up.
     Optionally, files or subdirectories can be explicitly excluded.
 
     Attributes:
@@ -19,7 +19,7 @@ class FilePathParameters(object):
         skip_nested_volumes (bool): Specifies if any subdirectories under
             backupFilePath, where local or network volumes are mounted, should
             be excluded from being protected. If true, the volumes are not
-            protected.
+            protected. deprecated: true
 
     """
 

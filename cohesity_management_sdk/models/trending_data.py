@@ -6,7 +6,8 @@ class TrendingData(object):
 
     """Implementation of the 'TrendingData' model.
 
-    Specifies protection runs information per object, aggregated over a period
+    Specifies protection runs information per object, aggregated over a
+    period
     of time.
 
     Attributes:

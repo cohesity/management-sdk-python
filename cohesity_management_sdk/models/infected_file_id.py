@@ -7,7 +7,8 @@ class InfectedFileId(object):
     """Implementation of the 'InfectedFileId' model.
 
     Specifies the infected file Identifier. A file is identified with three
-    Ids mentioned in the InfectedFileId definition.
+    Ids
+    mentioned in the InfectedFileId definition.
 
     Attributes:
         entity_id (long|int): Specifies the entity id of the infected file.

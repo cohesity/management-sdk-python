@@ -6,8 +6,8 @@ class HypervCloneParameters(object):
 
     """Implementation of the 'HypervCloneParameters' model.
 
-    Specifies information needed when cloning VMs in HyperV enviroment. This
-    field defines the HyperV specific params for restore tasks of type
+    Specifies information needed when cloning VMs in HyperV enviroment.
+    This field defines the HyperV specific params for restore tasks of type
     kCloneVMs.
 
     Attributes:

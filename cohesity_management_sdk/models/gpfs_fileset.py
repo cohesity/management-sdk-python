@@ -1,0 +1,73 @@
+# -*- coding: utf-8 -*-
+# Copyright 2019 Cohesity Inc.
+
+
+class GpfsFileset(object):
+
+    """Implementation of the 'GpfsFileset' model.
+
+    Specifies information about a fileset in a GPFS file system.
+
+    Attributes:
+        id (int): Specifies the id of the fileset.
+        name (string): Name of the filesystem associated with the fileset
+        path (string): Specifies the absolute path of the fileset.
+        protocols (list of ProtocolGpfsFilesetEnum): Specifies GPFS supported
+            Protocol information enabled on GPFS File System 'kNfs' indicates
+            NFS exports in a GPFS Cluster. 'kSmb' indicates CIFS/SMB Shares in
+            a GPFS Cluster.
+
+    """
+
+    # Create a mapping from Model property names to API property names
+    _names = {
+        "id":'id',
+        "name":'name',
+        "path":'path',
+        "protocols":'protocols'
+    }
+
+    def __init__(self,
+                 id=None,
+                 name=None,
+                 path=None,
+                 protocols=None):
+        """Constructor for the GpfsFileset class"""
+
+        # Initialize members of the class
+        self.id = id
+        self.name = name
+        self.path = path
+        self.protocols = protocols
+
+
+    @classmethod
+    def from_dictionary(cls,
+                        dictionary):
+        """Creates an instance of this model from a dictionary
+
+        Args:
+            dictionary (dictionary): A dictionary representation of the object as
+            obtained from the deserialization of the server's response. The keys
+            MUST match property names in the API description.
+
+        Returns:
+            object: An instance of this structure class.
+
+        """
+        if dictionary is None:
+            return None
+
+        # Extract variables from the dictionary
+        id = dictionary.get('id')
+        name = dictionary.get('name')
+        path = dictionary.get('path')
+        protocols = dictionary.get('protocols')
+
+        # Return an object of this model
+        return cls(id,
+                   name,
+                   path,
+                   protocols)
+
+

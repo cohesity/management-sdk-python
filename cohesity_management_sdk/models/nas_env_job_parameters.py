@@ -8,7 +8,8 @@ class NasEnvJobParameters(object):
 
     """Implementation of the 'NasEnvJobParameters' model.
 
-    Specifies job parameters applicable for all 'kGenericNas' Environment type
+    Specifies job parameters applicable for all 'kGenericNas' Environment
+    type
     Protection Sources in a Protection Job.
 
     Attributes:

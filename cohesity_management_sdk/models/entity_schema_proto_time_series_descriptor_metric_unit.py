@@ -6,14 +6,17 @@ class EntitySchemaProtoTimeSeriesDescriptorMetricUnit(object):
 
     """Implementation of the 'EntitySchemaProto_TimeSeriesDescriptor_MetricUnit' model.
 
-    Specifies the unit of measure for the metric. O specifies a unit of space
-    used such as free disk space. 1 specifies a Unix epoch Timestamp (in
-    microseconds). 2 specifies a Unix epoch Timestamp (in milliseconds). 3
-    specifies a Unix epoch Timestamp (in seconds). 4 specifies a Unix epoch
-    Timestamp (in minutes). 5 specifies a counter such as the read IO metric.
-    6 specifies the temperature in Centigrade. 7 specifies the temperature in
-    Fahrenheit. 8 specifies revolutions per minute such as a CPU fan speed. 9
-    specifies a percentage such as CPU or memory usage.
+    Specifies the unit of measure for the metric.
+    O specifies a unit of space used such as free disk space.
+    1 specifies a Unix epoch Timestamp (in microseconds).
+    2 specifies a Unix epoch Timestamp (in milliseconds).
+    3 specifies a Unix epoch Timestamp (in seconds).
+    4 specifies a Unix epoch Timestamp (in minutes).
+    5 specifies a counter such as the read IO metric.
+    6 specifies the temperature in Centigrade.
+    7 specifies the temperature in Fahrenheit.
+    8 specifies revolutions per minute such as a CPU fan speed.
+    9 specifies a percentage such as CPU or memory usage.
 
     Attributes:
         mtype (int): TODO: type description here.

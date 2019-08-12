@@ -6,8 +6,8 @@ class RemoteScriptPathAndParams(object):
 
     """Implementation of the 'RemoteScriptPathAndParams' model.
 
-    Specifies the path to the remote script and any parameters expected by the
-    remote script.
+    Specifies the path to the remote script and any parameters
+    expected by the remote script.
 
     Attributes:
         continue_on_error (bool): Specifies if the script needs to continue

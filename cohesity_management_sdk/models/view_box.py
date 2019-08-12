@@ -3,6 +3,7 @@
 
 import cohesity_management_sdk.models.subnet
 import cohesity_management_sdk.models.quota_policy
+import cohesity_management_sdk.models.schema_info
 import cohesity_management_sdk.models.view_box_stats
 import cohesity_management_sdk.models.storage_policy
 
@@ -85,6 +86,8 @@ class ViewBox(object):
             creation request arrives, we'll look at all the View Boxes and the
             first Storage Domain (View Box) that allows creating S3 buckets in
             it will be the one where the bucket will be placed.
+        schema_info_list (list of SchemaInfo): Specifies the time series
+            schema info of the view box.
         stats (ViewBoxStats): Provides statistics about the Storage Domain
             (View Box).
         storage_policy (StoragePolicy): Specifies the storage options applied
@@ -122,6 +125,7 @@ class ViewBox(object):
         "physical_quota":'physicalQuota',
         "removal_state":'removalState',
         "s_3_buckets_allowed":'s3BucketsAllowed',
+        "schema_info_list":'schemaInfoList',
         "stats":'stats',
         "storage_policy":'storagePolicy',
         "tenant_id_vec":'tenantIdVec',
@@ -143,6 +147,7 @@ class ViewBox(object):
                  physical_quota=None,
                  removal_state=None,
                  s_3_buckets_allowed=None,
+                 schema_info_list=None,
                  stats=None,
                  storage_policy=None,
                  tenant_id_vec=None,
@@ -164,6 +169,7 @@ class ViewBox(object):
         self.physical_quota = physical_quota
         self.removal_state = removal_state
         self.s_3_buckets_allowed = s_3_buckets_allowed
+        self.schema_info_list = schema_info_list
         self.stats = stats
         self.storage_policy = storage_policy
         self.tenant_id_vec = tenant_id_vec
@@ -206,6 +212,11 @@ class ViewBox(object):
         physical_quota = cohesity_management_sdk.models.quota_policy.QuotaPolicy.from_dictionary(dictionary.get('physicalQuota')) if dictionary.get('physicalQuota') else None
         removal_state = dictionary.get('removalState')
         s_3_buckets_allowed = dictionary.get('s3BucketsAllowed')
+        schema_info_list = None
+        if dictionary.get('schemaInfoList') != None:
+            schema_info_list = list()
+            for structure in dictionary.get('schemaInfoList'):
+                schema_info_list.append(cohesity_management_sdk.models.schema_info.SchemaInfo.from_dictionary(structure))
         stats = cohesity_management_sdk.models.view_box_stats.ViewBoxStats.from_dictionary(dictionary.get('stats')) if dictionary.get('stats') else None
         storage_policy = cohesity_management_sdk.models.storage_policy.StoragePolicy.from_dictionary(dictionary.get('storagePolicy')) if dictionary.get('storagePolicy') else None
         tenant_id_vec = dictionary.get('tenantIdVec')
@@ -226,6 +237,7 @@ class ViewBox(object):
                    physical_quota,
                    removal_state,
                    s_3_buckets_allowed,
+                   schema_info_list,
                    stats,
                    storage_policy,
                    tenant_id_vec,

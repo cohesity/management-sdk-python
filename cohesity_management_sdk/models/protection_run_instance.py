@@ -9,8 +9,8 @@ class ProtectionRunInstance(object):
 
     """Implementation of the 'ProtectionRunInstance' model.
 
-    Specifies the status of one Job Run. A Job Run can have one Backup Run and
-    zero or more Copy Runs.
+    Specifies the status of one Job Run.
+    A Job Run can have one Backup Run and zero or more Copy Runs.
 
     Attributes:
         backup_run (BackupRun): Specifies details about the Backup task for a

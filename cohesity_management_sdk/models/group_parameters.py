@@ -8,7 +8,8 @@ class GroupParameters(object):
     """Implementation of the 'GroupParameters' model.
 
     Specifies the settings used to add/create a new group or modify an
-    existing group.
+    existing
+    group.
 
     Attributes:
         description (string): Specifies a description of the group.

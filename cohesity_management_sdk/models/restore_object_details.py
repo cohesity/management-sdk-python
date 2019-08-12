@@ -9,11 +9,13 @@ class RestoreObjectDetails(object):
 
     """Implementation of the 'RestoreObjectDetails' model.
 
-    Specifies an object to recover or clone or an object to restore files and
-    folders from. A VM object can be recovered or cloned. A View object can be
-    cloned. To specify a particular snapshot, you must specify a jobRunId and
-    a startTimeUsecs. If jobRunId and startTimeUsecs are not specified, the
-    last Job Run of the specified Job is used.
+    Specifies an object to recover or clone or an object to restore files
+    and folders from.
+    A VM object can be recovered or cloned. A View object can be cloned.
+    To specify a particular snapshot, you must specify a jobRunId and
+    a startTimeUsecs.
+    If jobRunId and startTimeUsecs are not specified, the last Job Run of the
+    specified Job is used.
 
     Attributes:
         archival_target (ArchivalExternalTarget): Specifies settings about the
@@ -42,22 +44,24 @@ class RestoreObjectDetails(object):
             Acropolis Protection Source environment. 'kPhsicalFiles' indicates
             the Physical Files Protection Source environment. 'kIsilon'
             indicates the Dell EMC's Isilon Protection Source environment.
-            'kKVM' indicates the KVM Protection Source environment. 'kAWS'
-            indicates the AWS Protection Source environment. 'kExchange'
-            indicates the Exchange Protection Source environment. 'kHyperVVSS'
-            indicates the HyperV VSS Protection Source environment. 'kOracle'
-            indicates the Oracle Protection Source environment. 'kGCP'
-            indicates the Google Cloud Platform Protection Source environment.
-            'kFlashBlade' indicates the Flash Blade Protection Source
-            environment. 'kAWSNative' indicates the AWS Native Protection
-            Source environment. 'kVCD' indicates the VMware's Virtual cloud
-            Director Protection Source environment. 'kO365' indicates the
-            Office 365 Protection Source environment. 'kO365Outlook' indicates
-            Office 365 outlook Protection Source environment. 'kHyperFlex'
-            indicates the Hyper Flex Protection Source environment.
-            'kGCPNative' indicates the GCP Native Protection Source
-            environment. 'kAzureNative' indicates the Azure Native Protection
-            Source environment.
+            'kGPFS' indicates IBM's GPFS Protection Source environment. 'kKVM'
+            indicates the KVM Protection Source environment. 'kAWS' indicates
+            the AWS Protection Source environment. 'kExchange' indicates the
+            Exchange Protection Source environment. 'kHyperVVSS' indicates the
+            HyperV VSS Protection Source environment. 'kOracle' indicates the
+            Oracle Protection Source environment. 'kGCP' indicates the Google
+            Cloud Platform Protection Source environment. 'kFlashBlade'
+            indicates the Flash Blade Protection Source environment.
+            'kAWSNative' indicates the AWS Native Protection Source
+            environment. 'kVCD' indicates the VMware's Virtual cloud Director
+            Protection Source environment. 'kO365' indicates the Office 365
+            Protection Source environment. 'kO365Outlook' indicates Office 365
+            outlook Protection Source environment. 'kHyperFlex' indicates the
+            Hyper Flex Protection Source environment. 'kGCPNative' indicates
+            the GCP Native Protection Source environment. 'kAzureNative'
+            indicates the Azure Native Protection Source environment.
+            'kKubernetes' indicates a Kubernetes Protection Source
+            environment.
         job_id (long|int): Protection Job Id.  Specifies id of the Protection
             Job that backed up the objects to be restored.
         job_run_id (long|int): Specifies the id of the Job Run that captured

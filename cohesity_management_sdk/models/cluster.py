@@ -6,7 +6,9 @@ import cohesity_management_sdk.models.cluster_audit_log_configuration
 import cohesity_management_sdk.models.eula_config
 import cohesity_management_sdk.models.filer_audit_log_configuration
 import cohesity_management_sdk.models.cluster_hardware_info
+import cohesity_management_sdk.models.license_state
 import cohesity_management_sdk.models.ntp_settings_config
+import cohesity_management_sdk.models.schema_info
 import cohesity_management_sdk.models.cluster_stats
 import cohesity_management_sdk.models.supported_config
 import cohesity_management_sdk.models.syslog_server
@@ -105,8 +107,10 @@ class Cluster(object):
             version of Help.
         language_locale (string): Specifies the language and locale for this
             Cohesity Cluster.
-        license_server_claimed (bool): Speifies if cluster is claimed by
-            Helios or not.
+        license_state (LicenseState): Specifies the Licensing State
+            information.
+        local_auth_domain_name (string): Domain name for SMB local
+            authentication.
         local_groups_enabled (bool): Specifies whether to enable local groups
             on cluster. Once it is enabled, it cannot be disabled.
         metadata_fault_tolerance_factor (int): Specifies metadata fault
@@ -130,6 +134,8 @@ class Cluster(object):
         reverse_tunnel_end_time_msecs (long|int): ReverseTunnelEndTimeMsecs
             specifies the end time in milliseconds since epoch until when the
             reverse tunnel will stay enabled.
+        schema_info_list (list of SchemaInfo): Specifies the time series
+            schema info of the cluster.
         smb_ad_disabled (bool): Specifies if Active Directory should be
             disabled for authentication of SMB shares. If 'true', Active
             Directory is disabled.
@@ -187,7 +193,8 @@ class Cluster(object):
         "incarnation_id":'incarnationId',
         "is_documentation_local":'isDocumentationLocal',
         "language_locale":'languageLocale',
-        "license_server_claimed":'licenseServerClaimed',
+        "license_state":'licenseState',
+        "local_auth_domain_name":'localAuthDomainName',
         "local_groups_enabled":'localGroupsEnabled',
         "metadata_fault_tolerance_factor":'metadataFaultToleranceFactor',
         "mtu":'mtu',
@@ -198,6 +205,7 @@ class Cluster(object):
         "proxy_vm_subnet":'proxyVMSubnet',
         "reverse_tunnel_enabled":'reverseTunnelEnabled',
         "reverse_tunnel_end_time_msecs":'reverseTunnelEndTimeMsecs',
+        "schema_info_list":'schemaInfoList',
         "smb_ad_disabled":'smbAdDisabled',
         "stats":'stats',
         "stig_mode":'stigMode',
@@ -238,7 +246,8 @@ class Cluster(object):
                  incarnation_id=None,
                  is_documentation_local=None,
                  language_locale=None,
-                 license_server_claimed=None,
+                 license_state=None,
+                 local_auth_domain_name=None,
                  local_groups_enabled=None,
                  metadata_fault_tolerance_factor=None,
                  mtu=None,
@@ -249,6 +258,7 @@ class Cluster(object):
                  proxy_vm_subnet=None,
                  reverse_tunnel_enabled=None,
                  reverse_tunnel_end_time_msecs=None,
+                 schema_info_list=None,
                  smb_ad_disabled=None,
                  stats=None,
                  stig_mode=None,
@@ -289,7 +299,8 @@ class Cluster(object):
         self.incarnation_id = incarnation_id
         self.is_documentation_local = is_documentation_local
         self.language_locale = language_locale
-        self.license_server_claimed = license_server_claimed
+        self.license_state = license_state
+        self.local_auth_domain_name = local_auth_domain_name
         self.local_groups_enabled = local_groups_enabled
         self.metadata_fault_tolerance_factor = metadata_fault_tolerance_factor
         self.mtu = mtu
@@ -300,6 +311,7 @@ class Cluster(object):
         self.proxy_vm_subnet = proxy_vm_subnet
         self.reverse_tunnel_enabled = reverse_tunnel_enabled
         self.reverse_tunnel_end_time_msecs = reverse_tunnel_end_time_msecs
+        self.schema_info_list = schema_info_list
         self.smb_ad_disabled = smb_ad_disabled
         self.stats = stats
         self.stig_mode = stig_mode
@@ -357,7 +369,8 @@ class Cluster(object):
         incarnation_id = dictionary.get('incarnationId')
         is_documentation_local = dictionary.get('isDocumentationLocal')
         language_locale = dictionary.get('languageLocale')
-        license_server_claimed = dictionary.get('licenseServerClaimed')
+        license_state = cohesity_management_sdk.models.license_state.LicenseState.from_dictionary(dictionary.get('licenseState')) if dictionary.get('licenseState') else None
+        local_auth_domain_name = dictionary.get('localAuthDomainName')
         local_groups_enabled = dictionary.get('localGroupsEnabled')
         metadata_fault_tolerance_factor = dictionary.get('metadataFaultToleranceFactor')
         mtu = dictionary.get('mtu')
@@ -368,6 +381,11 @@ class Cluster(object):
         proxy_vm_subnet = dictionary.get('proxyVMSubnet')
         reverse_tunnel_enabled = dictionary.get('reverseTunnelEnabled')
         reverse_tunnel_end_time_msecs = dictionary.get('reverseTunnelEndTimeMsecs')
+        schema_info_list = None
+        if dictionary.get('schemaInfoList') != None:
+            schema_info_list = list()
+            for structure in dictionary.get('schemaInfoList'):
+                schema_info_list.append(cohesity_management_sdk.models.schema_info.SchemaInfo.from_dictionary(structure))
         smb_ad_disabled = dictionary.get('smbAdDisabled')
         stats = cohesity_management_sdk.models.cluster_stats.ClusterStats.from_dictionary(dictionary.get('stats')) if dictionary.get('stats') else None
         stig_mode = dictionary.get('stigMode')
@@ -411,7 +429,8 @@ class Cluster(object):
                    incarnation_id,
                    is_documentation_local,
                    language_locale,
-                   license_server_claimed,
+                   license_state,
+                   local_auth_domain_name,
                    local_groups_enabled,
                    metadata_fault_tolerance_factor,
                    mtu,
@@ -422,6 +441,7 @@ class Cluster(object):
                    proxy_vm_subnet,
                    reverse_tunnel_enabled,
                    reverse_tunnel_end_time_msecs,
+                   schema_info_list,
                    smb_ad_disabled,
                    stats,
                    stig_mode,

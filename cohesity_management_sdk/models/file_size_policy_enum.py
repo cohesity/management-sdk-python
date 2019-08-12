@@ -5,11 +5,14 @@ class FileSizePolicyEnum(object):
 
     """Implementation of the 'FileSizePolicy' enum.
 
-    Specifies policy to select a file to migrate based on its size. eg. A file
-    can be selected to migrate if its size is greater than or smaller than the
-    FileSizeBytes. enum: kGreaterThan, kSmallerThan. Specifies policy for file
-    seletion in data migration jobs based on file size. 'kGreaterThan':
-    Migrate the files whose size are greater than specified file size.
+    Specifies policy to select a file to migrate based on its size.
+    eg. A file can be selected to migrate if its size is greater than or
+    smaller than the FileSizeBytes.
+    enum: kGreaterThan, kSmallerThan.
+    Specifies policy for file seletion in data migration jobs based on file
+    size.
+    'kGreaterThan': Migrate the files whose size are greater than specified
+    file size.
     'kSmallerThan': Migrate the files whose size are smaller than specified
     file size.
 

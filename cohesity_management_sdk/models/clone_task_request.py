@@ -28,16 +28,16 @@ class CloneTaskRequest(object):
             Glacier. Specifies the type of Restore Task.  'kStandard'
             specifies retrievals that allow to access any of your archives
             within several hours. Standard retrievals typically complete
-            within 3-5 hours.This is the default option for retrieval requests
+            within 3–5 hours.This is the default option for retrieval requests
             that do not specify the retrieval option. 'kBulk' specifies
-            retrievals that are Glacier-s lowest-cost retrieval option, which
+            retrievals that are Glacier’s lowest-cost retrieval option, which
             can be use to retrieve large amounts, even petabytes, of data
             inexpensively in a day. Bulk retrieval typically complete within
-            5-12 hours. 'kExpedited' specifies retrievals that allows to
+            5–12 hours. 'kExpedited' specifies retrievals that allows to
             quickly access your data when occasional urgent requests for a
             subset of archives are required. For all but the largest archives
             (250 MB+), data accessed using Expedited retrievals are typically
-            made available within 1-5 minutes.
+            made available within 1–5 minutes.
         hyperv_parameters (HypervCloneParameters): Specifies information
             needed when cloning VMs in HyperV enviroment. This field defines
             the HyperV specific params for restore tasks of type kCloneVMs.

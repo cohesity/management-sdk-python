@@ -7,8 +7,8 @@ class BandwidthLimit(object):
 
     """Implementation of the 'BandwidthLimit' model.
 
-    Specifies settings for limiting the data transfer rate between the local
-    and remote Clusters.
+    Specifies settings for limiting the data transfer rate between
+    the local and remote Clusters.
 
     Attributes:
         bandwidth_limit_overrides (list of BandwidthLimitOverride): Array of
