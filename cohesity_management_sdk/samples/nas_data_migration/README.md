@@ -33,7 +33,7 @@ Note: 1 Job per nas share will start with name <job_name_prefix-{nas-name}> ,
 in this example: backup-job-prefix-nas-share1
 
 Run script:
-```python
+```bash
 
 python backup_nas_to_cohesity.py
 ```
@@ -59,7 +59,7 @@ nfs_target_qos=Backup Target High
 storage_domain=<Storage Domain of the View>
 ```
 Run script:
-```python
+```bash
 python create_nas_from_backup.py --job_name NAS-Protect-Nas-server
 --cohesity_nfs_name cohesity_nas
 ```
@@ -77,7 +77,7 @@ password=<cluster_password>
 domain=LOCAL
 ```
 
-```python
+```bash
 python update_nfs_whitelist.py --nfs_share_name cohesity_nas --whitelist_ip 10.2.2.3 --whitelist_netmask 255.255.252.0 
 
 Help:
