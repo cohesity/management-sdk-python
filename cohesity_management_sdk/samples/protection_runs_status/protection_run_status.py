@@ -8,12 +8,10 @@ import datetime
 
 from cohesity_management_sdk.cohesity_client import CohesityClient
 
-CLUSTER_USERNAME = 'USERNAME'
-CLUSTER_PASSWORD = 'PASSWORD'
-CLUSTER_VIP = 'VIP_OR_FQDN'
-DOMAIN = 'LOCAL'
-
-#job_id = 
+CLUSTER_VIP = 'CLUSTER_VIP'
+CLUSTER_USERNAME = 'CLUSTER_USERNAME'
+CLUSTER_PASSWORD = 'CLUSTER_PASSWORD'
+DOMAIN = 'DOMAIN'
 
 class ProtectionRunsList(object):
 
@@ -24,10 +22,9 @@ class ProtectionRunsList(object):
         :return:
         """
         protection_runs = cohesity_client.protection_runs
-        # run_list = protection_runs.get_protection_runs(job_id)
         run_list = protection_runs.get_protection_runs()
         for run in run_list:
-            print(self.epoch_to_date(run.backup_run.stats.start_time_usecs), run.backup_run.job_run_id, run.backup_run.status)
+            print(self.epoch_to_date(run.backup_run.stats.start_time_usecs), run.job_name, run.backup_run.job_run_id, run.backup_run.status)
 
     @staticmethod
     def epoch_to_date(epoch):
