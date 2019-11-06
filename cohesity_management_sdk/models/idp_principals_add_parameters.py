@@ -20,8 +20,7 @@ class IdpPrincipalsAddParameters(object):
             referenced Idp principal is a group. If 'kUser', the referenced
             Idp principal is a user. 'kUser' specifies a user object class.
             'kGroup' specifies a group object class. 'kComputer' specifies a
-            computer object class. 'kWellKnownPrincipal' specifies a well
-            known principal.
+            computer object class.
         principal_name (string): Specifies the name of the Idp principal, that
             will be referenced by the group or user. The name of the Idp
             principal is used for naming the new group or user on the Cohesity

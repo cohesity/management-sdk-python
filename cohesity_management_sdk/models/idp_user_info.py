@@ -10,6 +10,11 @@ class IdpUserInfo(object):
     This information is not stored on the Cluster.
 
     Attributes:
+        groups (list of string): Specifies the Idp groups that the user is
+            part of. As the user may not be registered on the cluster, we may
+            have to capture the idp group membership. This way, if a group is
+            created on the cluster later, users will instantly have access to
+            tenantIds from that group as well.
         idp_id (long|int): Specifies the unique Id assigned by the Cluster for
             the IdP.
         issuer_id (string): Specifies the unique identifier assigned by the
@@ -22,6 +27,7 @@ class IdpUserInfo(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "groups":'groups',
         "idp_id":'idpId',
         "issuer_id":'issuerId',
         "user_id":'userId',
@@ -29,6 +35,7 @@ class IdpUserInfo(object):
     }
 
     def __init__(self,
+                 groups=None,
                  idp_id=None,
                  issuer_id=None,
                  user_id=None,
@@ -36,6 +43,7 @@ class IdpUserInfo(object):
         """Constructor for the IdpUserInfo class"""
 
         # Initialize members of the class
+        self.groups = groups
         self.idp_id = idp_id
         self.issuer_id = issuer_id
         self.user_id = user_id
@@ -60,13 +68,15 @@ class IdpUserInfo(object):
             return None
 
         # Extract variables from the dictionary
+        groups = dictionary.get('groups')
         idp_id = dictionary.get('idpId')
         issuer_id = dictionary.get('issuerId')
         user_id = dictionary.get('userId')
         vendor = dictionary.get('vendor')
 
         # Return an object of this model
-        return cls(idp_id,
+        return cls(groups,
+                   idp_id,
                    issuer_id,
                    user_id,
                    vendor)

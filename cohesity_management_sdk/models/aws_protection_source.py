@@ -25,23 +25,13 @@ class AwsProtectionSource(object):
             inside the VPC. 'kNetworkSecurityGroup' represents a network
             security group. 'kInstanceType' represents various machine types.
             'kKeyPair' represents a pair of public and private key used to
-            login into a Virtual Machine. 'kTag' represents a tag attached to
-            EC2 instance. 'kRDSOptionGroup' represents a RDS option group for
-            configuring database features. 'kRDSParameterGroup' represents a
-            RDS parameter group. 'kRDSInstance' represents a RDS DB instance.
-            'kRDSSubnet' represents a RDS subnet. 'kRDSTag' represents a tag
-            attached to RDS instance.
-        db_engine_id (string): Specifies DB engine version info of the entity.
-            This is populated only for RDSInstance, RDSOptionGroup and
-            RDSParameterGroup entity types.
+            login into a Virtual Machine.
         host_type (HostTypeEnum): Specifies the OS type of the Protection
             Source of type 'kVirtualMachine' such as 'kWindows' or 'kLinux'.
             overrideDescription: true 'kLinux' indicates the Linux operating
             system. 'kWindows' indicates the Microsoft Windows operating
             system. 'kAix' indicates the IBM AIX operating system. 'kSolaris'
-            indicates the Oracle Solaris operating system. 'kSapHana'
-            indicates the Sap Hana database system developed by SAP SE.
-            'kOther' indicates the other types of operating system.
+            indicates the Oracle Solaris operating system.
         ip_addresses (string): Specifies the IP address of the entity of type
             'kVirtualMachine'.
         name (string): Specifies the name of the Object set by the Cloud
@@ -89,13 +79,7 @@ class AwsProtectionSource(object):
             indicates a subnet inside the VPC. 'kNetworkSecurityGroup'
             represents a network security group. 'kInstanceType' represents
             various machine types. 'kKeyPair' represents a pair of public and
-            private key used to login into a Virtual Machine. 'kTag'
-            represents a tag attached to EC2 instance. 'kRDSOptionGroup'
-            represents a RDS option group for configuring database features.
-            'kRDSParameterGroup' represents a RDS parameter group.
-            'kRDSInstance' represents a RDS DB instance. 'kRDSSubnet'
-            represents a RDS subnet. 'kRDSTag' represents a tag attached to
-            RDS instance.
+            private key used to login into a Virtual Machine.
         user_account_id (string): Specifies the account id derived from the
             ARN of the user.
         user_resource_name (string): Specifies the Amazon Resource Name (ARN)
@@ -108,7 +92,6 @@ class AwsProtectionSource(object):
         "access_key":'accessKey',
         "amazon_resource_name":'amazonResourceName',
         "aws_type":'awsType',
-        "db_engine_id":'dbEngineId',
         "host_type":'hostType',
         "ip_addresses":'ipAddresses',
         "name":'name',
@@ -128,7 +111,6 @@ class AwsProtectionSource(object):
                  access_key=None,
                  amazon_resource_name=None,
                  aws_type=None,
-                 db_engine_id=None,
                  host_type=None,
                  ip_addresses=None,
                  name=None,
@@ -148,7 +130,6 @@ class AwsProtectionSource(object):
         self.access_key = access_key
         self.amazon_resource_name = amazon_resource_name
         self.aws_type = aws_type
-        self.db_engine_id = db_engine_id
         self.host_type = host_type
         self.ip_addresses = ip_addresses
         self.name = name
@@ -185,7 +166,6 @@ class AwsProtectionSource(object):
         access_key = dictionary.get('accessKey')
         amazon_resource_name = dictionary.get('amazonResourceName')
         aws_type = dictionary.get('awsType')
-        db_engine_id = dictionary.get('dbEngineId')
         host_type = dictionary.get('hostType')
         ip_addresses = dictionary.get('ipAddresses')
         name = dictionary.get('name')
@@ -208,7 +188,6 @@ class AwsProtectionSource(object):
         return cls(access_key,
                    amazon_resource_name,
                    aws_type,
-                   db_engine_id,
                    host_type,
                    ip_addresses,
                    name,

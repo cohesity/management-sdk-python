@@ -28,24 +28,22 @@ class ProtectionSummaryByEnv(object):
             'kAcropolis' indicates the Acropolis Protection Source
             environment. 'kPhsicalFiles' indicates the Physical Files
             Protection Source environment. 'kIsilon' indicates the Dell EMC's
-            Isilon Protection Source environment. 'kGPFS' indicates IBM's GPFS
-            Protection Source environment. 'kKVM' indicates the KVM Protection
-            Source environment. 'kAWS' indicates the AWS Protection Source
-            environment. 'kExchange' indicates the Exchange Protection Source
-            environment. 'kHyperVVSS' indicates the HyperV VSS Protection
-            Source environment. 'kOracle' indicates the Oracle Protection
-            Source environment. 'kGCP' indicates the Google Cloud Platform
-            Protection Source environment. 'kFlashBlade' indicates the Flash
-            Blade Protection Source environment. 'kAWSNative' indicates the
-            AWS Native Protection Source environment. 'kVCD' indicates the
-            VMware's Virtual cloud Director Protection Source environment.
-            'kO365' indicates the Office 365 Protection Source environment.
-            'kO365Outlook' indicates Office 365 outlook Protection Source
-            environment. 'kHyperFlex' indicates the Hyper Flex Protection
-            Source environment. 'kGCPNative' indicates the GCP Native
-            Protection Source environment. 'kAzureNative' indicates the Azure
-            Native Protection Source environment. 'kKubernetes' indicates a
-            Kubernetes Protection Source environment.
+            Isilon Protection Source environment. 'kKVM' indicates the KVM
+            Protection Source environment. 'kAWS' indicates the AWS Protection
+            Source environment. 'kExchange' indicates the Exchange Protection
+            Source environment. 'kHyperVVSS' indicates the HyperV VSS
+            Protection Source environment. 'kOracle' indicates the Oracle
+            Protection Source environment. 'kGCP' indicates the Google Cloud
+            Platform Protection Source environment. 'kFlashBlade' indicates
+            the Flash Blade Protection Source environment. 'kAWSNative'
+            indicates the AWS Native Protection Source environment. 'kVCD'
+            indicates the VMware's Virtual cloud Director Protection Source
+            environment. 'kO365' indicates the Office 365 Protection Source
+            environment. 'kO365Outlook' indicates Office 365 outlook
+            Protection Source environment. 'kHyperFlex' indicates the Hyper
+            Flex Protection Source environment. 'kGCPNative' indicates the GCP
+            Native Protection Source environment. 'kAzureNative' indicates the
+            Azure Native Protection Source environment.
         protected_count (long|int): Specifies the number of objects that are
             protected under the given entity.
         protected_size (long|int): Specifies the total size of the protected

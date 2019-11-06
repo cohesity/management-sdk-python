@@ -11,7 +11,6 @@ class ObjectClassSearchActiveDirectoryPrincipalsEnum(object):
         KUSER: TODO: type description here.
         KGROUP: TODO: type description here.
         KCOMPUTER: TODO: type description here.
-        KWELLKNOWNPRINCIPAL: TODO: type description here.
 
     """
 
@@ -20,6 +19,4 @@ class ObjectClassSearchActiveDirectoryPrincipalsEnum(object):
     KGROUP = 'kGroup'
 
     KCOMPUTER = 'kComputer'
-
-    KWELLKNOWNPRINCIPAL = 'kWellKnownPrincipal'
 

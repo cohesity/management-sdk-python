@@ -18,13 +18,9 @@ class AgentInformation(object):
             agents. 'kLinux' indicates the Linux operating system. 'kWindows'
             indicates the Microsoft Windows operating system. 'kAix' indicates
             the IBM AIX operating system. 'kSolaris' indicates the Oracle
-            Solaris operating system. 'kSapHana' indicates the Sap Hana
-            database system developed by SAP SE. 'kOther' indicates the other
-            types of operating system.
+            Solaris operating system.
         id (long|int): Specifies the agent's id.
         name (string): Specifies the agent's name.
-        oracle_multi_node_channel_supported (bool): Specifies whether oracle
-            multi node multi channel is supported or not.
         registration_info (RegisteredSourceInfo): Specifies information about
             a registered Source.
         source_side_dedup_enabled (bool): Specifies whether source side dedup
@@ -68,7 +64,6 @@ class AgentInformation(object):
         "host_type":'hostType',
         "id":'id',
         "name":'name',
-        "oracle_multi_node_channel_supported":'oracleMultiNodeChannelSupported',
         "registration_info":'registrationInfo',
         "source_side_dedup_enabled":'sourceSideDedupEnabled',
         "status":'status',
@@ -84,7 +79,6 @@ class AgentInformation(object):
                  host_type=None,
                  id=None,
                  name=None,
-                 oracle_multi_node_channel_supported=None,
                  registration_info=None,
                  source_side_dedup_enabled=None,
                  status=None,
@@ -100,7 +94,6 @@ class AgentInformation(object):
         self.host_type = host_type
         self.id = id
         self.name = name
-        self.oracle_multi_node_channel_supported = oracle_multi_node_channel_supported
         self.registration_info = registration_info
         self.source_side_dedup_enabled = source_side_dedup_enabled
         self.status = status
@@ -133,7 +126,6 @@ class AgentInformation(object):
         host_type = dictionary.get('hostType')
         id = dictionary.get('id')
         name = dictionary.get('name')
-        oracle_multi_node_channel_supported = dictionary.get('oracleMultiNodeChannelSupported')
         registration_info = cohesity_management_sdk.models.registered_source_info.RegisteredSourceInfo.from_dictionary(dictionary.get('registrationInfo')) if dictionary.get('registrationInfo') else None
         source_side_dedup_enabled = dictionary.get('sourceSideDedupEnabled')
         status = dictionary.get('status')
@@ -148,7 +140,6 @@ class AgentInformation(object):
                    host_type,
                    id,
                    name,
-                   oracle_multi_node_channel_supported,
                    registration_info,
                    source_side_dedup_enabled,
                    status,

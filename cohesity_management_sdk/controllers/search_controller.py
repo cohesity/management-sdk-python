@@ -128,7 +128,6 @@ class SearchController(BaseController):
                 Acropolis Protection Source environment. 'kPhsicalFiles'
                 indicates the Physical Files Protection Source environment.
                 'kIsilon' indicates the Dell EMC's Isilon Protection Source
-                environment. 'kGPFS' indicates IBM's GPFS Protection Source
                 environment. 'kKVM' indicates the KVM Protection Source
                 environment. 'kAWS' indicates the AWS Protection Source
                 environment. 'kExchange' indicates the Exchange Protection
@@ -145,8 +144,7 @@ class SearchController(BaseController):
                 'kHyperFlex' indicates the Hyper Flex Protection Source
                 environment. 'kGCPNative' indicates the GCP Native Protection
                 Source environment. 'kAzureNative' indicates the Azure Native
-                Protection Source environment. 'kKubernetes' indicates a
-                Kubernetes Protection Source environment.
+                Protection Source environment.
             last_protection_job_run_status (list of int, optional): Specifies
                 the last Protection Job run status of the object. If
                 specified, objects will be filtered based on last job run
@@ -158,9 +156,7 @@ class SearchController(BaseController):
                 operating system. 'kWindows' indicates the Microsoft Windows
                 operating system. 'kAix' indicates the IBM AIX operating
                 system. 'kSolaris' indicates the Oracle Solaris operating
-                system. 'kSapHana' indicates the Sap Hana database system
-                developed by SAP SE. 'kOther' indicates the other types of
-                operating system.
+                system.
             registered_source_uuids (list of string, optional): Specifies the
                 list of Registered Sources Uuids. Only items from the listed
                 Registered Sources are returned.

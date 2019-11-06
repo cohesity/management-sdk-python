@@ -73,8 +73,7 @@ class ClusterController(BaseController):
             raise
 
     def get_cluster(self,
-                    fetch_stats=None,
-                    fetch_time_series_schema=None):
+                    fetch_stats=None):
         """Does a GET request to /public/cluster.
 
         Returns information about this Cohesity Cluster.
@@ -82,8 +81,6 @@ class ClusterController(BaseController):
         Args:
             fetch_stats (bool, optional): If 'true', also get statistics about
                 the Cohesity Cluster.
-            fetch_time_series_schema (bool, optional): Specifies whether to
-                get time series schema info of the cluster.
 
         Returns:
             Cluster: Response from the API. Successful Response
@@ -104,8 +101,7 @@ class ClusterController(BaseController):
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
-                'fetchStats': fetch_stats,
-                'fetchTimeSeriesSchema': fetch_time_series_schema
+                'fetchStats': fetch_stats
             }
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)

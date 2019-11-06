@@ -7,11 +7,9 @@ import cohesity_management_sdk.models.aws_protection_source
 import cohesity_management_sdk.models.azure_protection_source
 import cohesity_management_sdk.models.flash_blade_protection_source
 import cohesity_management_sdk.models.gcp_protection_source
-import cohesity_management_sdk.models.gpfs_protection_source
 import cohesity_management_sdk.models.hyper_flex_protection_source
 import cohesity_management_sdk.models.hyperv_protection_source
 import cohesity_management_sdk.models.isilon_protection_source
-import cohesity_management_sdk.models.kubernetes_protection_source
 import cohesity_management_sdk.models.kvm_protection_source
 import cohesity_management_sdk.models.nas_protection_source
 import cohesity_management_sdk.models.netapp_protection_source
@@ -63,31 +61,27 @@ class ProtectionSource(object):
             Acropolis Protection Source environment. 'kPhsicalFiles' indicates
             the Physical Files Protection Source environment. 'kIsilon'
             indicates the Dell EMC's Isilon Protection Source environment.
-            'kGPFS' indicates IBM's GPFS Protection Source environment. 'kKVM'
-            indicates the KVM Protection Source environment. 'kAWS' indicates
-            the AWS Protection Source environment. 'kExchange' indicates the
-            Exchange Protection Source environment. 'kHyperVVSS' indicates the
-            HyperV VSS Protection Source environment. 'kOracle' indicates the
-            Oracle Protection Source environment. 'kGCP' indicates the Google
-            Cloud Platform Protection Source environment. 'kFlashBlade'
-            indicates the Flash Blade Protection Source environment.
-            'kAWSNative' indicates the AWS Native Protection Source
-            environment. 'kVCD' indicates the VMware's Virtual cloud Director
-            Protection Source environment. 'kO365' indicates the Office 365
-            Protection Source environment. 'kO365Outlook' indicates Office 365
-            outlook Protection Source environment. 'kHyperFlex' indicates the
-            Hyper Flex Protection Source environment. 'kGCPNative' indicates
-            the GCP Native Protection Source environment. 'kAzureNative'
-            indicates the Azure Native Protection Source environment.
-            'kKubernetes' indicates a Kubernetes Protection Source
-            environment.
+            'kKVM' indicates the KVM Protection Source environment. 'kAWS'
+            indicates the AWS Protection Source environment. 'kExchange'
+            indicates the Exchange Protection Source environment. 'kHyperVVSS'
+            indicates the HyperV VSS Protection Source environment. 'kOracle'
+            indicates the Oracle Protection Source environment. 'kGCP'
+            indicates the Google Cloud Platform Protection Source environment.
+            'kFlashBlade' indicates the Flash Blade Protection Source
+            environment. 'kAWSNative' indicates the AWS Native Protection
+            Source environment. 'kVCD' indicates the VMware's Virtual cloud
+            Director Protection Source environment. 'kO365' indicates the
+            Office 365 Protection Source environment. 'kO365Outlook' indicates
+            Office 365 outlook Protection Source environment. 'kHyperFlex'
+            indicates the Hyper Flex Protection Source environment.
+            'kGCPNative' indicates the GCP Native Protection Source
+            environment. 'kAzureNative' indicates the Azure Native Protection
+            Source environment.
         flash_blade_protection_source (FlashBladeProtectionSource): Specifies
             details about a Pure Storage FlashBlade Protection Source when the
             environment is set to 'kFlashBlade'.
         gcp_protection_source (GcpProtectionSource): Specifies details about
             an GCP Protection Source when the environment is set to 'kGCP'.
-        gpfs_protection_source (GpfsProtectionSource): Specifies details about
-            an GPFS Protection Source when the environment is set to 'kGPFS'.
         hyper_flex_protection_source (HyperFlexProtectionSource): Specifies
             details about a HyperFlex Storage Snapshot source when the
             environment is set to 'kHyperFlex'
@@ -98,9 +92,6 @@ class ProtectionSource(object):
         isilon_protection_source (IsilonProtectionSource): Specifies details
             about an Isilon OneFs Protection Source when the environment is
             set to 'kIsilon'.
-        kubernetes_protection_source (KubernetesProtectionSource): Specifies
-            details about a Kubernetes Protection Source when the environment
-            is set to 'kKubernetes'.
         kvm_protection_source (KvmProtectionSource): Specifies details about a
             KVM Protection Source when the environment is set to 'kKVM'.
         name (string): Specifies a name of the Protection Source.
@@ -142,12 +133,10 @@ class ProtectionSource(object):
         "environment":'environment',
         "flash_blade_protection_source":'flashBladeProtectionSource',
         "gcp_protection_source":'gcpProtectionSource',
-        "gpfs_protection_source":'gpfsProtectionSource',
         "hyper_flex_protection_source":'hyperFlexProtectionSource',
         "hyperv_protection_source":'hypervProtectionSource',
         "id":'id',
         "isilon_protection_source":'isilonProtectionSource',
-        "kubernetes_protection_source":'kubernetesProtectionSource',
         "kvm_protection_source":'kvmProtectionSource',
         "name":'name',
         "nas_protection_source":'nasProtectionSource',
@@ -170,12 +159,10 @@ class ProtectionSource(object):
                  environment=None,
                  flash_blade_protection_source=None,
                  gcp_protection_source=None,
-                 gpfs_protection_source=None,
                  hyper_flex_protection_source=None,
                  hyperv_protection_source=None,
                  id=None,
                  isilon_protection_source=None,
-                 kubernetes_protection_source=None,
                  kvm_protection_source=None,
                  name=None,
                  nas_protection_source=None,
@@ -198,12 +185,10 @@ class ProtectionSource(object):
         self.environment = environment
         self.flash_blade_protection_source = flash_blade_protection_source
         self.gcp_protection_source = gcp_protection_source
-        self.gpfs_protection_source = gpfs_protection_source
         self.hyper_flex_protection_source = hyper_flex_protection_source
         self.hyperv_protection_source = hyperv_protection_source
         self.id = id
         self.isilon_protection_source = isilon_protection_source
-        self.kubernetes_protection_source = kubernetes_protection_source
         self.kvm_protection_source = kvm_protection_source
         self.name = name
         self.nas_protection_source = nas_protection_source
@@ -243,12 +228,10 @@ class ProtectionSource(object):
         environment = dictionary.get('environment')
         flash_blade_protection_source = cohesity_management_sdk.models.flash_blade_protection_source.FlashBladeProtectionSource.from_dictionary(dictionary.get('flashBladeProtectionSource')) if dictionary.get('flashBladeProtectionSource') else None
         gcp_protection_source = cohesity_management_sdk.models.gcp_protection_source.GcpProtectionSource.from_dictionary(dictionary.get('gcpProtectionSource')) if dictionary.get('gcpProtectionSource') else None
-        gpfs_protection_source = cohesity_management_sdk.models.gpfs_protection_source.GpfsProtectionSource.from_dictionary(dictionary.get('gpfsProtectionSource')) if dictionary.get('gpfsProtectionSource') else None
         hyper_flex_protection_source = cohesity_management_sdk.models.hyper_flex_protection_source.HyperFlexProtectionSource.from_dictionary(dictionary.get('hyperFlexProtectionSource')) if dictionary.get('hyperFlexProtectionSource') else None
         hyperv_protection_source = cohesity_management_sdk.models.hyperv_protection_source.HypervProtectionSource.from_dictionary(dictionary.get('hypervProtectionSource')) if dictionary.get('hypervProtectionSource') else None
         id = dictionary.get('id')
         isilon_protection_source = cohesity_management_sdk.models.isilon_protection_source.IsilonProtectionSource.from_dictionary(dictionary.get('isilonProtectionSource')) if dictionary.get('isilonProtectionSource') else None
-        kubernetes_protection_source = cohesity_management_sdk.models.kubernetes_protection_source.KubernetesProtectionSource.from_dictionary(dictionary.get('kubernetesProtectionSource')) if dictionary.get('kubernetesProtectionSource') else None
         kvm_protection_source = cohesity_management_sdk.models.kvm_protection_source.KvmProtectionSource.from_dictionary(dictionary.get('kvmProtectionSource')) if dictionary.get('kvmProtectionSource') else None
         name = dictionary.get('name')
         nas_protection_source = cohesity_management_sdk.models.nas_protection_source.NasProtectionSource.from_dictionary(dictionary.get('nasProtectionSource')) if dictionary.get('nasProtectionSource') else None
@@ -270,12 +253,10 @@ class ProtectionSource(object):
                    environment,
                    flash_blade_protection_source,
                    gcp_protection_source,
-                   gpfs_protection_source,
                    hyper_flex_protection_source,
                    hyperv_protection_source,
                    id,
                    isilon_protection_source,
-                   kubernetes_protection_source,
                    kvm_protection_source,
                    name,
                    nas_protection_source,

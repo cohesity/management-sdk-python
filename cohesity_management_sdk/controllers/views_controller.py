@@ -7,12 +7,9 @@ from cohesity_management_sdk.configuration import Configuration
 from cohesity_management_sdk.controllers.base_controller import BaseController
 from cohesity_management_sdk.http.auth.auth_manager import AuthManager
 from cohesity_management_sdk.models.list_nlm_locks_response import ListNlmLocksResponse
-from cohesity_management_sdk.models.qo_s_policy import QoSPolicy
 from cohesity_management_sdk.models.get_views_by_share_name_result import GetViewsByShareNameResult
-from cohesity_management_sdk.models.smb_connection import SmbConnection
 from cohesity_management_sdk.models.view_alias import ViewAlias
 from cohesity_management_sdk.models.activate_view_aliases_result import ActivateViewAliasesResult
-from cohesity_management_sdk.models.dir_quota_info import DirQuotaInfo
 from cohesity_management_sdk.models.view_user_quotas import ViewUserQuotas
 from cohesity_management_sdk.models.user_quota_and_usage import UserQuotaAndUsage
 from cohesity_management_sdk.models.user_quota_settings import UserQuotaSettings
@@ -166,70 +163,6 @@ class ViewsController(BaseController):
             self.logger.error(e, exc_info = True)
             raise
 
-    def get_qo_s_policies(self,
-                          ids=None,
-                          names=None):
-        """Does a GET request to /public/qosPolicies.
-
-        Returns error if op fails.
-
-        Args:
-            ids (list of long|int, optional): Specifies the Ids of QoS
-                Policies to filter by.
-            names (list of string, optional): Specifies the names of QoS
-                Policies to filter by.
-
-        Returns:
-            list of QoSPolicy: Response from the API. Success
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-        try:
-            self.logger.info('get_qo_s_policies called.')
-
-            # Prepare query URL
-            self.logger.info('Preparing query URL for get_qo_s_policies.')
-            _url_path = '/public/qosPolicies'
-            _query_builder = Configuration.get_base_uri()
-            _query_builder += _url_path
-            _query_parameters = {
-                'ids': ids,
-                'names': names
-            }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
-            _query_url = APIHelper.clean_url(_query_builder)
-
-            # Prepare headers
-            self.logger.info('Preparing headers for get_qo_s_policies.')
-            _headers = {
-                'accept': 'application/json'
-            }
-
-            # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_qo_s_policies.')
-            _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_qo_s_policies')
-
-            # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for get_qo_s_policies.')
-            if _context.response.status_code == 0:
-                raise RequestErrorErrorException('Error', _context)
-            self.validate_response(_context)
-
-            # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, QoSPolicy.from_dictionary)
-
-        except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
-
     def get_views_by_share_name(self,
                                 tenant_ids=None,
                                 all_under_hierarchy=None,
@@ -318,78 +251,6 @@ class ViewsController(BaseController):
             self.logger.error(e, exc_info = True)
             raise
 
-    def get_smb_connections(self,
-                            view_names=None,
-                            view_ids=None,
-                            max_count=None,
-                            include_sid=None):
-        """Does a GET request to /public/smbConnections.
-
-        Returns error if op fails.
-
-        Args:
-            view_names (list of string, optional): Parameters to get Smb
-                Connections. List of names of views whose connections are to
-                be fetched.
-            view_ids (list of long|int, optional): List of ids of views whose
-                connections are to be fetched.
-            max_count (int, optional): Maximum number of results to return.
-            include_sid (bool, optional): Specifies whether to include list of
-                sids in the result.
-
-        Returns:
-            list of SmbConnection: Response from the API. Success
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-        try:
-            self.logger.info('get_smb_connections called.')
-
-            # Prepare query URL
-            self.logger.info('Preparing query URL for get_smb_connections.')
-            _url_path = '/public/smbConnections'
-            _query_builder = Configuration.get_base_uri()
-            _query_builder += _url_path
-            _query_parameters = {
-                'viewNames': view_names,
-                'viewIds': view_ids,
-                'maxCount': max_count,
-                'includeSid': include_sid
-            }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
-            _query_url = APIHelper.clean_url(_query_builder)
-
-            # Prepare headers
-            self.logger.info('Preparing headers for get_smb_connections.')
-            _headers = {
-                'accept': 'application/json'
-            }
-
-            # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_smb_connections.')
-            _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_smb_connections')
-
-            # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for get_smb_connections.')
-            if _context.response.status_code == 0:
-                raise RequestErrorErrorException('Error', _context)
-            self.validate_response(_context)
-
-            # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, SmbConnection.from_dictionary)
-
-        except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
-
     def create_view_alias(self,
                           body):
         """Does a POST request to /public/viewAliases.
@@ -397,7 +258,7 @@ class ViewsController(BaseController):
         Returns the created View Alias.
 
         Args:
-            body (ViewAlias): Request to create a View Alias.
+            body (ViewAlias): Request to create a View.
 
         Returns:
             ViewAlias: Response from the API. Success
@@ -438,65 +299,6 @@ class ViewsController(BaseController):
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for create_view_alias.')
-            if _context.response.status_code == 0:
-                raise RequestErrorErrorException('Error', _context)
-            self.validate_response(_context)
-
-            # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ViewAlias.from_dictionary)
-
-        except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
-
-    def update_view_alias(self,
-                          body):
-        """Does a PUT request to /public/viewAliases.
-
-        Returns the updated View Alias.
-
-        Args:
-            body (UpdateViewAliasParam): Request to update a View.
-
-        Returns:
-            ViewAlias: Response from the API. Success
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-        try:
-            self.logger.info('update_view_alias called.')
-
-            # Validate required parameters
-            self.logger.info('Validating required parameters for update_view_alias.')
-            self.validate_parameters(body=body)
-
-            # Prepare query URL
-            self.logger.info('Preparing query URL for update_view_alias.')
-            _url_path = '/public/viewAliases'
-            _query_builder = Configuration.get_base_uri()
-            _query_builder += _url_path
-            _query_url = APIHelper.clean_url(_query_builder)
-
-            # Prepare headers
-            self.logger.info('Preparing headers for update_view_alias.')
-            _headers = {
-                'accept': 'application/json',
-                'content-type': 'application/json; charset=utf-8'
-            }
-
-            # Prepare and execute request
-            self.logger.info('Preparing and executing request for update_view_alias.')
-            _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'update_view_alias')
-
-            # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for update_view_alias.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
@@ -616,130 +418,6 @@ class ViewsController(BaseController):
 
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, ActivateViewAliasesResult.from_dictionary)
-
-        except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
-
-    def get_view_dir_quota_info(self,
-                                view_name):
-        """Does a GET request to /public/viewDirectoryQuotas.
-
-        Gets directory quota info for a view. Returns error if op fails.
-
-        Args:
-            view_name (string): The name of the view.
-
-        Returns:
-            DirQuotaInfo: Response from the API. Success
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-        try:
-            self.logger.info('get_view_dir_quota_info called.')
-
-            # Validate required parameters
-            self.logger.info('Validating required parameters for get_view_dir_quota_info.')
-            self.validate_parameters(view_name=view_name)
-
-            # Prepare query URL
-            self.logger.info('Preparing query URL for get_view_dir_quota_info.')
-            _url_path = '/public/viewDirectoryQuotas'
-            _query_builder = Configuration.get_base_uri()
-            _query_builder += _url_path
-            _query_parameters = {
-                'viewName': view_name
-            }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
-            _query_url = APIHelper.clean_url(_query_builder)
-
-            # Prepare headers
-            self.logger.info('Preparing headers for get_view_dir_quota_info.')
-            _headers = {
-                'accept': 'application/json'
-            }
-
-            # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_view_dir_quota_info.')
-            _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_view_dir_quota_info')
-
-            # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for get_view_dir_quota_info.')
-            if _context.response.status_code == 0:
-                raise RequestErrorErrorException('Error', _context)
-            self.validate_response(_context)
-
-            # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, DirQuotaInfo.from_dictionary)
-
-        except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
-
-    def update_view_dir_quota(self,
-                              body):
-        """Does a PUT request to /public/viewDirectoryQuotas.
-
-        Updates a directory quota policy for a view. Returns error if op
-        fails.
-
-        Args:
-            body (UpdateDirQuotaArgs): Request to update view directory quota
-                policy.
-
-        Returns:
-            DirQuotaInfo: Response from the API. Success
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-        try:
-            self.logger.info('update_view_dir_quota called.')
-
-            # Validate required parameters
-            self.logger.info('Validating required parameters for update_view_dir_quota.')
-            self.validate_parameters(body=body)
-
-            # Prepare query URL
-            self.logger.info('Preparing query URL for update_view_dir_quota.')
-            _url_path = '/public/viewDirectoryQuotas'
-            _query_builder = Configuration.get_base_uri()
-            _query_builder += _url_path
-            _query_url = APIHelper.clean_url(_query_builder)
-
-            # Prepare headers
-            self.logger.info('Preparing headers for update_view_dir_quota.')
-            _headers = {
-                'accept': 'application/json',
-                'content-type': 'application/json; charset=utf-8'
-            }
-
-            # Prepare and execute request
-            self.logger.info('Preparing and executing request for update_view_dir_quota.')
-            _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'update_view_dir_quota')
-
-            # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for update_view_dir_quota.')
-            if _context.response.status_code == 0:
-                raise RequestErrorErrorException('Error', _context)
-            self.validate_response(_context)
-
-            # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, DirQuotaInfo.from_dictionary)
 
         except Exception as e:
             self.logger.error(e, exc_info = True)
@@ -1111,12 +789,10 @@ class ViewsController(BaseController):
                   tenant_ids=None,
                   all_under_hierarchy=None,
                   view_names=None,
-                  view_ids=None,
                   view_box_ids=None,
                   view_box_names=None,
                   match_partial_names=None,
                   max_count=None,
-                  include_protection_jobs=None,
                   max_view_id=None,
                   include_inactive=None,
                   job_ids=None,
@@ -1144,8 +820,6 @@ class ViewsController(BaseController):
                 logged in user's organization should be returned.
             view_names (list of string, optional): Filter by a list of View
                 names.
-            view_ids (list of long|int, optional): Filter by a list of View
-                ids.
             view_box_ids (list of long|int, optional): Filter by a list of
                 Storage Domains (View Boxes) specified by id.
             view_box_names (list of string, optional): Filter by a list of
@@ -1154,10 +828,6 @@ class ViewsController(BaseController):
                 viewNames are matched by prefix rather than exactly matched.
             max_count (int, optional): Specifies a limit on the number of
                 Views returned.
-            include_protection_jobs (bool, optional): Specifies if Protection
-                Jobs information needs to be returned along with view
-                metadata. By default, if not set or set to true, Job
-                information is returned.
             max_view_id (long|int, optional): If the number of Views to return
                 exceeds the maxCount specified in the original request,
                 specify the id of the last View from the viewList in the
@@ -1202,12 +872,10 @@ class ViewsController(BaseController):
                 'tenantIds': tenant_ids,
                 'allUnderHierarchy': all_under_hierarchy,
                 'viewNames': view_names,
-                'viewIds': view_ids,
                 'viewBoxIds': view_box_ids,
                 'viewBoxNames': view_box_names,
                 'matchPartialNames': match_partial_names,
                 'maxCount': max_count,
-                'includeProtectionJobs': include_protection_jobs,
                 'maxViewId': max_view_id,
                 'includeInactive': include_inactive,
                 'jobIds': job_ids,
@@ -1477,254 +1145,6 @@ class ViewsController(BaseController):
             self.logger.error(e, exc_info = True)
             raise
 
-    def delete_view_by_id(self,
-                          id):
-        """Does a DELETE request to /public/views/id/{id}.
-
-        Returns delete status upon completion.
-
-        Args:
-            id (long|int): Specifies the View id.
-
-        Returns:
-            void: Response from the API. No Content
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-        try:
-            self.logger.info('delete_view_by_id called.')
-
-            # Validate required parameters
-            self.logger.info('Validating required parameters for delete_view_by_id.')
-            self.validate_parameters(id=id)
-
-            # Prepare query URL
-            self.logger.info('Preparing query URL for delete_view_by_id.')
-            _url_path = '/public/views/id/{id}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-                'id': id
-            })
-            _query_builder = Configuration.get_base_uri()
-            _query_builder += _url_path
-            _query_url = APIHelper.clean_url(_query_builder)
-
-            # Prepare and execute request
-            self.logger.info('Preparing and executing request for delete_view_by_id.')
-            _request = self.http_client.delete(_query_url)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'delete_view_by_id')
-
-            # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for delete_view_by_id.')
-            if _context.response.status_code == 0:
-                raise RequestErrorErrorException('Error', _context)
-            self.validate_response(_context)
-
-        except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
-
-    def get_view_by_id(self,
-                       id):
-        """Does a GET request to /public/views/id/{id}.
-
-        Returns the View corresponding to the specified View id.
-
-        Args:
-            id (long|int): Specifies the View id.
-
-        Returns:
-            View: Response from the API. Success
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-        try:
-            self.logger.info('get_view_by_id called.')
-
-            # Validate required parameters
-            self.logger.info('Validating required parameters for get_view_by_id.')
-            self.validate_parameters(id=id)
-
-            # Prepare query URL
-            self.logger.info('Preparing query URL for get_view_by_id.')
-            _url_path = '/public/views/id/{id}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-                'id': id
-            })
-            _query_builder = Configuration.get_base_uri()
-            _query_builder += _url_path
-            _query_url = APIHelper.clean_url(_query_builder)
-
-            # Prepare headers
-            self.logger.info('Preparing headers for get_view_by_id.')
-            _headers = {
-                'accept': 'application/json'
-            }
-
-            # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_view_by_id.')
-            _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_view_by_id')
-
-            # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for get_view_by_id.')
-            if _context.response.status_code == 0:
-                raise RequestErrorErrorException('Error', _context)
-            self.validate_response(_context)
-
-            # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, View.from_dictionary)
-
-        except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
-
-    def get_file_lock_status_by_id(self,
-                                   id,
-                                   path=None):
-        """Does a GET request to /public/views/id/{id}/fileLocks.
-
-        Returns error if op fails.
-
-        Args:
-            id (long|int): Specifies the View id.
-            path (string, optional): Specifies the file path that needs to be
-                locked.
-
-        Returns:
-            FileLockStatus: Response from the API. Get lock file status
-                response
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-        try:
-            self.logger.info('get_file_lock_status_by_id called.')
-
-            # Validate required parameters
-            self.logger.info('Validating required parameters for get_file_lock_status_by_id.')
-            self.validate_parameters(id=id)
-
-            # Prepare query URL
-            self.logger.info('Preparing query URL for get_file_lock_status_by_id.')
-            _url_path = '/public/views/id/{id}/fileLocks'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-                'id': id
-            })
-            _query_builder = Configuration.get_base_uri()
-            _query_builder += _url_path
-            _query_parameters = {
-                'path': path
-            }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
-            _query_url = APIHelper.clean_url(_query_builder)
-
-            # Prepare headers
-            self.logger.info('Preparing headers for get_file_lock_status_by_id.')
-            _headers = {
-                'accept': 'application/json'
-            }
-
-            # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_file_lock_status_by_id.')
-            _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_file_lock_status_by_id')
-
-            # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for get_file_lock_status_by_id.')
-            if _context.response.status_code == 0:
-                raise RequestErrorErrorException('Error', _context)
-            self.validate_response(_context)
-
-            # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, FileLockStatus.from_dictionary)
-
-        except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
-
-    def create_lock_file_by_id(self,
-                               id,
-                               body=None):
-        """Does a POST request to /public/views/id/{id}/fileLocks.
-
-        Returns error if op fails.
-
-        Args:
-            id (long|int): Specifies the View id.
-            body (LockFileParams, optional): Request to lock a file.
-
-        Returns:
-            FileLockStatus: Response from the API. Get lock file status
-                response
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-        try:
-            self.logger.info('create_lock_file_by_id called.')
-
-            # Validate required parameters
-            self.logger.info('Validating required parameters for create_lock_file_by_id.')
-            self.validate_parameters(id=id)
-
-            # Prepare query URL
-            self.logger.info('Preparing query URL for create_lock_file_by_id.')
-            _url_path = '/public/views/id/{id}/fileLocks'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-                'id': id
-            })
-            _query_builder = Configuration.get_base_uri()
-            _query_builder += _url_path
-            _query_url = APIHelper.clean_url(_query_builder)
-
-            # Prepare headers
-            self.logger.info('Preparing headers for create_lock_file_by_id.')
-            _headers = {
-                'accept': 'application/json',
-                'content-type': 'application/json; charset=utf-8'
-            }
-
-            # Prepare and execute request
-            self.logger.info('Preparing and executing request for create_lock_file_by_id.')
-            _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'create_lock_file_by_id')
-
-            # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for create_lock_file_by_id.')
-            if _context.response.status_code == 0:
-                raise RequestErrorErrorException('Error', _context)
-            self.validate_response(_context)
-
-            # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, FileLockStatus.from_dictionary)
-
-        except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
-
     def create_overwrite_view(self,
                               body):
         """Does a POST request to /public/views/overwrite.
@@ -1775,72 +1195,6 @@ class ViewsController(BaseController):
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for create_overwrite_view.')
-            if _context.response.status_code == 0:
-                raise RequestErrorErrorException('Error', _context)
-            self.validate_response(_context)
-
-            # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, View.from_dictionary)
-
-        except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
-
-    def create_rename_view_by_id(self,
-                                 body,
-                                 id):
-        """Does a POST request to /public/views/rename/id/{id}.
-
-        Specify unique id of the View in the 'id' parameter.
-        Returns the renamed View.
-
-        Args:
-            body (RenameViewParam): Request to rename a View.
-            id (long|int): Specifies the View id.
-
-        Returns:
-            View: Response from the API. Success
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-        try:
-            self.logger.info('create_rename_view_by_id called.')
-
-            # Validate required parameters
-            self.logger.info('Validating required parameters for create_rename_view_by_id.')
-            self.validate_parameters(body=body,
-                                     id=id)
-
-            # Prepare query URL
-            self.logger.info('Preparing query URL for create_rename_view_by_id.')
-            _url_path = '/public/views/rename/id/{id}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-                'id': id
-            })
-            _query_builder = Configuration.get_base_uri()
-            _query_builder += _url_path
-            _query_url = APIHelper.clean_url(_query_builder)
-
-            # Prepare headers
-            self.logger.info('Preparing headers for create_rename_view_by_id.')
-            _headers = {
-                'accept': 'application/json',
-                'content-type': 'application/json; charset=utf-8'
-            }
-
-            # Prepare and execute request
-            self.logger.info('Preparing and executing request for create_rename_view_by_id.')
-            _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'create_rename_view_by_id')
-
-            # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for create_rename_view_by_id.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
@@ -2097,16 +1451,13 @@ class ViewsController(BaseController):
             raise
 
     def get_file_lock_status(self,
-                             name,
-                             path=None):
+                             name):
         """Does a GET request to /public/views/{name}/fileLocks.
 
         Returns error if op fails.
 
         Args:
             name (string): Specifies the View name.
-            path (string, optional): Specifies the file path that needs to be
-                locked.
 
         Returns:
             FileLockStatus: Response from the API. Get lock file status
@@ -2134,11 +1485,6 @@ class ViewsController(BaseController):
             })
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
-            _query_parameters = {
-                'path': path
-            }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers

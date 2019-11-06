@@ -15,18 +15,18 @@ class SmbPermission(object):
             'kFullControl' indicates full administrative control of the SMB
             share. 'kSpecialAccess' indicates custom permissions to the SMB
             share using access masks structures.
-        mode (ModeEnum): Specifies how the permission should be applied to
-            folders and/or files. 'kFolderSubFoldersAndFiles' indicates that
-            permissions are applied to a Folder and it's sub folders and
-            files. 'kFolderAndSubFolders' indicates that permissions are
-            applied to a Folder and it's sub folders. 'kFolderAndSubFiles'
+        mode (ModeSmbPermissionEnum): Specifies how the permission should be
+            applied to folders and/or files. 'kFolderSubFoldersAndFiles'
             indicates that permissions are applied to a Folder and it's sub
-            files. 'kFolderOnly' indicates that permsission are applied to
-            folder only. 'kSubFoldersAndFilesOnly' indicates that permissions
-            are applied to sub folders and files only. 'kSubFoldersOnly'
-            indicates that permissiona are applied to sub folders only.
-            'kFilesOnly' indicates that permissions are applied to files
-            only.
+            folders and files. 'kFolderAndSubFolders' indicates that
+            permissions are applied to a Folder and it's sub folders.
+            'kFolderAndSubFiles' indicates that permissions are applied to a
+            Folder and it's sub files. 'kFolderOnly' indicates that
+            permsission are applied to folder only. 'kSubFoldersAndFilesOnly'
+            indicates that permissions are applied to sub folders and files
+            only. 'kSubFoldersOnly' indicates that permissiona are applied to
+            sub folders only. 'kFilesOnly' indicates that permissions are
+            applied to files only.
         sid (string): Specifies the security identifier (SID) of the
             principal.
         special_access_mask (int): Specifies custom access permissions. When

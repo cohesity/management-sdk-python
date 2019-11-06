@@ -43,12 +43,6 @@ class Alert(object):
         alert_type (int): Specifies a 5 digit unique digital id for the Alert
             Type, such as 00014 for 'kNodeHighCpuUsage'. This id is used in
             alertCode.
-        alert_type_bucket (AlertTypeBucketEnum): Specifies the Alert type
-            bucket. Specifies the Alert type bucket. kSoftware - Alerts which
-            are related to Cohesity services. kHardware - Alerts related to
-            hardware on which Cohesity software is running. kService - Alerts
-            related to other external services. kOther - Alerts not of one of
-            above categories.
         cluster_id (long|int): Specifies id of the cluster where the alert was
             raised.
         cluster_name (string): Specifies name of the cluster where the alert
@@ -95,7 +89,6 @@ class Alert(object):
         "alert_document":'alertDocument',
         "alert_state":'alertState',
         "alert_type":'alertType',
-        "alert_type_bucket":'alertTypeBucket',
         "cluster_id":'clusterId',
         "cluster_name":'clusterName',
         "dedup_count":'dedupCount',
@@ -117,7 +110,6 @@ class Alert(object):
                  alert_document=None,
                  alert_state=None,
                  alert_type=None,
-                 alert_type_bucket=None,
                  cluster_id=None,
                  cluster_name=None,
                  dedup_count=None,
@@ -139,7 +131,6 @@ class Alert(object):
         self.alert_document = alert_document
         self.alert_state = alert_state
         self.alert_type = alert_type
-        self.alert_type_bucket = alert_type_bucket
         self.cluster_id = cluster_id
         self.cluster_name = cluster_name
         self.dedup_count = dedup_count
@@ -178,7 +169,6 @@ class Alert(object):
         alert_document = cohesity_management_sdk.models.alert_document.AlertDocument.from_dictionary(dictionary.get('alertDocument')) if dictionary.get('alertDocument') else None
         alert_state = dictionary.get('alertState')
         alert_type = dictionary.get('alertType')
-        alert_type_bucket = dictionary.get('alertTypeBucket')
         cluster_id = dictionary.get('clusterId')
         cluster_name = dictionary.get('clusterName')
         dedup_count = dictionary.get('dedupCount')
@@ -203,7 +193,6 @@ class Alert(object):
                    alert_document,
                    alert_state,
                    alert_type,
-                   alert_type_bucket,
                    cluster_id,
                    cluster_name,
                    dedup_count,

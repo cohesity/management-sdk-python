@@ -13,11 +13,16 @@ class ADObject(object):
         destination_guid (string): Specifies the guid of object in the
             Production AD which is equivalent to the object in the Snapshot
             AD.
+        destination_prop_count (int): Specifies the number of properties in AD
+            Object in the Production AD.
         display_name (string): Specifies the display name of the AD object.
         distinguished_name (string): Specifies the distinguished name of the
             AD object. Eg: CN=Jone Doe,OU=Users,DC=corp,DC=cohesity,DC=com
         error_message (string): Specifies the error message while fetching the
             AD object.
+        mismatch_prop_name (string): Specifies the name of the first property
+            which differs in the AD Object fetched from both Snapshot and
+            Production AD.
         object_class (string): Specifies the class name of an AD Object such
             as 'user','computer', 'organizationalUnit'.
         search_result_flags (list of SearchResultFlagEnum): Specifies the
@@ -33,6 +38,8 @@ class ADObject(object):
             support this operation.
         source_guid (string): Specifies the guid of the AD object in Snapshot
             AD.
+        source_prop_count (int): Specifies the number of properties in AD
+            Object in the Snapshot AD.
 
     """
 
@@ -40,34 +47,43 @@ class ADObject(object):
     _names = {
         "description":'description',
         "destination_guid":'destinationGuid',
+        "destination_prop_count":'destinationPropCount',
         "display_name":'displayName',
         "distinguished_name":'distinguishedName',
         "error_message":'errorMessage',
+        "mismatch_prop_name":'mismatchPropName',
         "object_class":'objectClass',
         "search_result_flags":'searchResultFlags',
-        "source_guid":'sourceGuid'
+        "source_guid":'sourceGuid',
+        "source_prop_count":'sourcePropCount'
     }
 
     def __init__(self,
                  description=None,
                  destination_guid=None,
+                 destination_prop_count=None,
                  display_name=None,
                  distinguished_name=None,
                  error_message=None,
+                 mismatch_prop_name=None,
                  object_class=None,
                  search_result_flags=None,
-                 source_guid=None):
+                 source_guid=None,
+                 source_prop_count=None):
         """Constructor for the ADObject class"""
 
         # Initialize members of the class
         self.description = description
         self.destination_guid = destination_guid
+        self.destination_prop_count = destination_prop_count
         self.display_name = display_name
         self.distinguished_name = distinguished_name
         self.error_message = error_message
+        self.mismatch_prop_name = mismatch_prop_name
         self.object_class = object_class
         self.search_result_flags = search_result_flags
         self.source_guid = source_guid
+        self.source_prop_count = source_prop_count
 
 
     @classmethod
@@ -90,21 +106,27 @@ class ADObject(object):
         # Extract variables from the dictionary
         description = dictionary.get('description')
         destination_guid = dictionary.get('destinationGuid')
+        destination_prop_count = dictionary.get('destinationPropCount')
         display_name = dictionary.get('displayName')
         distinguished_name = dictionary.get('distinguishedName')
         error_message = dictionary.get('errorMessage')
+        mismatch_prop_name = dictionary.get('mismatchPropName')
         object_class = dictionary.get('objectClass')
         search_result_flags = dictionary.get('searchResultFlags')
         source_guid = dictionary.get('sourceGuid')
+        source_prop_count = dictionary.get('sourcePropCount')
 
         # Return an object of this model
         return cls(description,
                    destination_guid,
+                   destination_prop_count,
                    display_name,
                    distinguished_name,
                    error_message,
+                   mismatch_prop_name,
                    object_class,
                    search_result_flags,
-                   source_guid)
+                   source_guid,
+                   source_prop_count)
 
 

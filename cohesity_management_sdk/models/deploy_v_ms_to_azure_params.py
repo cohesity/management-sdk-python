@@ -32,16 +32,6 @@ class DeployVMsToAzureParams(object):
             latest statistics about an entity.
         subnet (EntityProto): Specifies the attributes and the latest
             statistics about an entity.
-        temp_vm_resource_group (EntityProto): Specifies the attributes and the
-            latest statistics about an entity.
-        temp_vm_storage_account (EntityProto): Specifies the attributes and
-            the latest statistics about an entity.
-        temp_vm_storage_container (EntityProto): Specifies the attributes and
-            the latest statistics about an entity.
-        temp_vm_subnet (EntityProto): Specifies the attributes and the latest
-            statistics about an entity.
-        temp_vm_virtual_network (EntityProto): Specifies the attributes and
-            the latest statistics about an entity.
         virtual_network (EntityProto): Specifies the attributes and the latest
             statistics about an entity.
 
@@ -59,11 +49,6 @@ class DeployVMsToAzureParams(object):
         "storage_key":'storageKey',
         "storage_resource_group":'storageResourceGroup',
         "subnet":'subnet',
-        "temp_vm_resource_group":'tempVmResourceGroup',
-        "temp_vm_storage_account":'tempVmStorageAccount',
-        "temp_vm_storage_container":'tempVmStorageContainer',
-        "temp_vm_subnet":'tempVmSubnet',
-        "temp_vm_virtual_network":'tempVmVirtualNetwork',
         "virtual_network":'virtualNetwork'
     }
 
@@ -78,11 +63,6 @@ class DeployVMsToAzureParams(object):
                  storage_key=None,
                  storage_resource_group=None,
                  subnet=None,
-                 temp_vm_resource_group=None,
-                 temp_vm_storage_account=None,
-                 temp_vm_storage_container=None,
-                 temp_vm_subnet=None,
-                 temp_vm_virtual_network=None,
                  virtual_network=None):
         """Constructor for the DeployVMsToAzureParams class"""
 
@@ -97,11 +77,6 @@ class DeployVMsToAzureParams(object):
         self.storage_key = storage_key
         self.storage_resource_group = storage_resource_group
         self.subnet = subnet
-        self.temp_vm_resource_group = temp_vm_resource_group
-        self.temp_vm_storage_account = temp_vm_storage_account
-        self.temp_vm_storage_container = temp_vm_storage_container
-        self.temp_vm_subnet = temp_vm_subnet
-        self.temp_vm_virtual_network = temp_vm_virtual_network
         self.virtual_network = virtual_network
 
 
@@ -133,11 +108,6 @@ class DeployVMsToAzureParams(object):
         storage_key = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('storageKey')) if dictionary.get('storageKey') else None
         storage_resource_group = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('storageResourceGroup')) if dictionary.get('storageResourceGroup') else None
         subnet = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('subnet')) if dictionary.get('subnet') else None
-        temp_vm_resource_group = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('tempVmResourceGroup')) if dictionary.get('tempVmResourceGroup') else None
-        temp_vm_storage_account = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('tempVmStorageAccount')) if dictionary.get('tempVmStorageAccount') else None
-        temp_vm_storage_container = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('tempVmStorageContainer')) if dictionary.get('tempVmStorageContainer') else None
-        temp_vm_subnet = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('tempVmSubnet')) if dictionary.get('tempVmSubnet') else None
-        temp_vm_virtual_network = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('tempVmVirtualNetwork')) if dictionary.get('tempVmVirtualNetwork') else None
         virtual_network = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('virtualNetwork')) if dictionary.get('virtualNetwork') else None
 
         # Return an object of this model
@@ -151,11 +121,6 @@ class DeployVMsToAzureParams(object):
                    storage_key,
                    storage_resource_group,
                    subnet,
-                   temp_vm_resource_group,
-                   temp_vm_storage_account,
-                   temp_vm_storage_container,
-                   temp_vm_subnet,
-                   temp_vm_virtual_network,
                    virtual_network)
 
 

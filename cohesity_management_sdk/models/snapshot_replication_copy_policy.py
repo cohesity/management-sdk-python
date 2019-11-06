@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.cloud_deploy_target_details
 import cohesity_management_sdk.models.replication_target_settings
 
 class SnapshotReplicationCopyPolicy(object):
@@ -13,9 +12,6 @@ class SnapshotReplicationCopyPolicy(object):
     they have been copied to the specified target.
 
     Attributes:
-        cloud_target (CloudDeployTargetDetails): Message that specifies the
-            details about CloudDeploy target where backup snapshots may be
-            converted and stored.
         copy_partial (bool): Specifies if Snapshots are copied from the first
             completely successful Job Run or the first partially successful
             Job Run occurring at the start of the replication schedule. If
@@ -52,7 +48,6 @@ class SnapshotReplicationCopyPolicy(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "cloud_target":'cloudTarget',
         "copy_partial":'copyPartial',
         "days_to_keep":'daysToKeep',
         "multiplier":'multiplier',
@@ -61,7 +56,6 @@ class SnapshotReplicationCopyPolicy(object):
     }
 
     def __init__(self,
-                 cloud_target=None,
                  copy_partial=None,
                  days_to_keep=None,
                  multiplier=None,
@@ -70,7 +64,6 @@ class SnapshotReplicationCopyPolicy(object):
         """Constructor for the SnapshotReplicationCopyPolicy class"""
 
         # Initialize members of the class
-        self.cloud_target = cloud_target
         self.copy_partial = copy_partial
         self.days_to_keep = days_to_keep
         self.multiplier = multiplier
@@ -96,7 +89,6 @@ class SnapshotReplicationCopyPolicy(object):
             return None
 
         # Extract variables from the dictionary
-        cloud_target = cohesity_management_sdk.models.cloud_deploy_target_details.CloudDeployTargetDetails.from_dictionary(dictionary.get('cloudTarget')) if dictionary.get('cloudTarget') else None
         copy_partial = dictionary.get('copyPartial')
         days_to_keep = dictionary.get('daysToKeep')
         multiplier = dictionary.get('multiplier')
@@ -104,8 +96,7 @@ class SnapshotReplicationCopyPolicy(object):
         target = cohesity_management_sdk.models.replication_target_settings.ReplicationTargetSettings.from_dictionary(dictionary.get('target')) if dictionary.get('target') else None
 
         # Return an object of this model
-        return cls(cloud_target,
-                   copy_partial,
+        return cls(copy_partial,
                    days_to_keep,
                    multiplier,
                    periodicity,

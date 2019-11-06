@@ -70,9 +70,9 @@ class RolesController(BaseController):
             raise
 
     def get_roles(self,
-                  name=None,
                   tenant_ids=None,
-                  all_under_hierarchy=None):
+                  all_under_hierarchy=None,
+                  name=None):
         """Does a GET request to /public/roles.
 
         If the 'name' parameter is not specified, all roles defined on the
@@ -84,12 +84,12 @@ class RolesController(BaseController):
         returned.
 
         Args:
-            name (string, optional): Specifies the name of the role.
             tenant_ids (list of string, optional): TenantIds contains ids of
                 the tenants for which objects are to be returned.
             all_under_hierarchy (bool, optional): AllUnderHierarchy specifies
                 if objects of all the tenants under the hierarchy of the
                 logged in user's organization should be returned.
+            name (string, optional): Specifies the name of the role.
 
         Returns:
             list of Role: Response from the API. Success
@@ -110,9 +110,9 @@ class RolesController(BaseController):
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
-                'name': name,
                 'tenantIds': tenant_ids,
-                'allUnderHierarchy': all_under_hierarchy
+                'allUnderHierarchy': all_under_hierarchy,
+                'name': name
             }
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)

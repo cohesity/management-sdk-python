@@ -6,10 +6,6 @@ from cohesity_management_sdk.api_helper import APIHelper
 from cohesity_management_sdk.configuration import Configuration
 from cohesity_management_sdk.controllers.base_controller import BaseController
 from cohesity_management_sdk.http.auth.auth_manager import AuthManager
-from cohesity_management_sdk.models.ad_root_topology_object import AdRootTopologyObject
-from cohesity_management_sdk.models.compared_ad_object import ComparedADObject
-from cohesity_management_sdk.models.ad_object import ADObject
-from cohesity_management_sdk.models.ad_objects_restore_status import AdObjectsRestoreStatus
 from cohesity_management_sdk.models.restore_task import RestoreTask
 from cohesity_management_sdk.models.file_search_results import FileSearchResults
 from cohesity_management_sdk.models.file_snapshot_information import FileSnapshotInformation
@@ -25,306 +21,6 @@ class RestoreTasksController(BaseController):
     def __init__(self, client=None, call_back=None):
         super(RestoreTasksController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
-
-    def get_ad_domain_root_topology(self,
-                                    restore_task_id):
-        """Does a GET request to /public/restore/adDomainRootTopology.
-
-        Returns the root topology for an AD domain.
-
-        Args:
-            restore_task_id (long|int): Specifies the restoreTaskId
-                corresponding to which we need to get the ad topology.
-
-        Returns:
-            list of AdRootTopologyObject: Response from the API. Success
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-        try:
-            self.logger.info('get_ad_domain_root_topology called.')
-
-            # Validate required parameters
-            self.logger.info('Validating required parameters for get_ad_domain_root_topology.')
-            self.validate_parameters(restore_task_id=restore_task_id)
-
-            # Prepare query URL
-            self.logger.info('Preparing query URL for get_ad_domain_root_topology.')
-            _url_path = '/public/restore/adDomainRootTopology'
-            _query_builder = Configuration.get_base_uri()
-            _query_builder += _url_path
-            _query_parameters = {
-                'restoreTaskId': restore_task_id
-            }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
-            _query_url = APIHelper.clean_url(_query_builder)
-
-            # Prepare headers
-            self.logger.info('Preparing headers for get_ad_domain_root_topology.')
-            _headers = {
-                'accept': 'application/json'
-            }
-
-            # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_ad_domain_root_topology.')
-            _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_ad_domain_root_topology')
-
-            # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for get_ad_domain_root_topology.')
-            if _context.response.status_code == 0:
-                raise RequestErrorErrorException('Error', _context)
-            self.validate_response(_context)
-
-            # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, AdRootTopologyObject.from_dictionary)
-
-        except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
-
-    def create_compare_ad_objects(self,
-                                  body):
-        """Does a POST request to /public/restore/adObjectAttributes.
-
-        Returns the list of AD Objects after comparing attributes of AD Object
-        from
-        both Snapshot and Production AD.
-
-        Args:
-            body (CompareAdObjectsRequest): Specifies the Request to compare
-                the AD Objects from both Snapshot and Production AD.
-
-        Returns:
-            list of ComparedADObject: Response from the API. Success
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-        try:
-            self.logger.info('create_compare_ad_objects called.')
-
-            # Validate required parameters
-            self.logger.info('Validating required parameters for create_compare_ad_objects.')
-            self.validate_parameters(body=body)
-
-            # Prepare query URL
-            self.logger.info('Preparing query URL for create_compare_ad_objects.')
-            _url_path = '/public/restore/adObjectAttributes'
-            _query_builder = Configuration.get_base_uri()
-            _query_builder += _url_path
-            _query_url = APIHelper.clean_url(_query_builder)
-
-            # Prepare headers
-            self.logger.info('Preparing headers for create_compare_ad_objects.')
-            _headers = {
-                'accept': 'application/json',
-                'content-type': 'application/json; charset=utf-8'
-            }
-
-            # Prepare and execute request
-            self.logger.info('Preparing and executing request for create_compare_ad_objects.')
-            _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'create_compare_ad_objects')
-
-            # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for create_compare_ad_objects.')
-            if _context.response.status_code == 0:
-                raise RequestErrorErrorException('Error', _context)
-            self.validate_response(_context)
-
-            # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ComparedADObject.from_dictionary)
-
-        except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
-
-    def search_ad_objects(self,
-                          restore_task_id,
-                          num_objects=None,
-                          search_base_dn=None,
-                          subtree_search_scope=None,
-                          compare_objects=None,
-                          exclude_system_properties=None,
-                          filter=None,
-                          record_offset=None):
-        """Does a GET request to /public/restore/adObjects.
-
-        Returns the list of AD Objects along with status whether they are
-        missing in
-        Production AD, equal or not equal.
-
-        Args:
-            restore_task_id (long|int): Specifies the restoreTaskId
-                corresponding to which we need to search AD objects.
-            num_objects (int, optional): Specifies the number of AD Objects to
-                be fetched.
-            search_base_dn (string, optional): Specifies the search base
-                distinguished name from where the search should begin in the
-                hierarchy of the AD in both Production and Snapshot AD.
-            subtree_search_scope (bool, optional): Specifies the search scope
-                for the request. If subtree search scope is true all the
-                children of Search Base DN are returned from given offset. If
-                subtree search scope is false only all objects which are one
-                level from the Search Base DN are returned.
-            compare_objects (bool, optional): Specifies the option to compare
-                the properties from Snapshot AD and Production AD if specifed
-                and sets kNotEqual flag in the result when there is mismatch.
-            exclude_system_properties (bool, optional): Specifies the option
-                to exclude the system attributes while comparing the the
-                objects from the Production AD and Snapshot AD.
-            filter (string, optional): Specifies the filter which can be used
-                for searching the AD Objects from given Search Base DN. There
-                are two types of filters supported. They are: 1) If the string
-                does not contain LDAP delimiters '(' and ')', then it is
-                assumed to be ANR search "(anr=<ldap_filter>)" Eg: "a" will
-                result in query to return all ANR fields with "a" characters
-                (case insensitive) in them 2) Search with OR and AND
-                combination: "(|(&(objectClass=user)(distinguishedName=CN=Jone
-                Doe,OU=Users,DC=corp,DC=cohesity,DC=com))(&(objectClass=user)
-                (sAMAccountName=jdoe)))"
-            record_offset (int, optional): Specifies the offset from which AD
-                objects should be searched in both the Snapshot and Production
-                AD.
-
-        Returns:
-            list of ADObject: Response from the API. Success
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-        try:
-            self.logger.info('search_ad_objects called.')
-
-            # Validate required parameters
-            self.logger.info('Validating required parameters for search_ad_objects.')
-            self.validate_parameters(restore_task_id=restore_task_id)
-
-            # Prepare query URL
-            self.logger.info('Preparing query URL for search_ad_objects.')
-            _url_path = '/public/restore/adObjects'
-            _query_builder = Configuration.get_base_uri()
-            _query_builder += _url_path
-            _query_parameters = {
-                'restoreTaskId': restore_task_id,
-                'numObjects': num_objects,
-                'searchBaseDn': search_base_dn,
-                'subtreeSearchScope': subtree_search_scope,
-                'compareObjects': compare_objects,
-                'excludeSystemProperties': exclude_system_properties,
-                'filter': filter,
-                'recordOffset': record_offset
-            }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
-            _query_url = APIHelper.clean_url(_query_builder)
-
-            # Prepare headers
-            self.logger.info('Preparing headers for search_ad_objects.')
-            _headers = {
-                'accept': 'application/json'
-            }
-
-            # Prepare and execute request
-            self.logger.info('Preparing and executing request for search_ad_objects.')
-            _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'search_ad_objects')
-
-            # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for search_ad_objects.')
-            if _context.response.status_code == 0:
-                raise RequestErrorErrorException('Error', _context)
-            self.validate_response(_context)
-
-            # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ADObject.from_dictionary)
-
-        except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
-
-    def get_ad_objects_restore_status(self,
-                                      restore_task_id=None):
-        """Does a GET request to /public/restore/adObjects/status.
-
-        Returns the Restore status of the AD objects which were restored from
-        the
-        snapshot AD to production AD as part of the restore task id specified
-        in the
-        parameters.
-
-        Args:
-            restore_task_id (long|int, optional): Specifies the restoreTaskId
-                corresponding to which we need to get information about the
-                restore of the AD objects.
-
-        Returns:
-            AdObjectsRestoreStatus: Response from the API. Success
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-        try:
-            self.logger.info('get_ad_objects_restore_status called.')
-
-            # Prepare query URL
-            self.logger.info('Preparing query URL for get_ad_objects_restore_status.')
-            _url_path = '/public/restore/adObjects/status'
-            _query_builder = Configuration.get_base_uri()
-            _query_builder += _url_path
-            _query_parameters = {
-                'restoreTaskId': restore_task_id
-            }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
-            _query_url = APIHelper.clean_url(_query_builder)
-
-            # Prepare headers
-            self.logger.info('Preparing headers for get_ad_objects_restore_status.')
-            _headers = {
-                'accept': 'application/json'
-            }
-
-            # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_ad_objects_restore_status.')
-            _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_ad_objects_restore_status')
-
-            # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for get_ad_objects_restore_status.')
-            if _context.response.status_code == 0:
-                raise RequestErrorErrorException('Error', _context)
-            self.validate_response(_context)
-
-            # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, AdObjectsRestoreStatus.from_dictionary)
-
-        except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
 
     def create_applications_clone_task(self,
                                        body):
@@ -696,9 +392,7 @@ class RestoreTasksController(BaseController):
                               start_index=None,
                               page_count=None,
                               source_ids=None,
-                              folder_only=None,
-                              tenant_id=None,
-                              all_under_hierarchy=None):
+                              folder_only=None):
         """Does a GET request to /public/restore/files.
 
         Use the files and folders returned by this operation to populate the
@@ -757,11 +451,6 @@ class RestoreTasksController(BaseController):
             folder_only (bool, optional): Filter by folders or files. If true,
                 only folders are returned. If false, only files are returned.
                 If not specified, both files and folders are returned.
-            tenant_id (string, optional): TenantId specifies the tenant whose
-                action resulted in the audit log.
-            all_under_hierarchy (bool, optional): AllUnderHierarchy specifies
-                if logs of all the tenants under the hierarchy of tenant with
-                id TenantId should be returned.
 
         Returns:
             FileSearchResults: Response from the API. Success
@@ -792,9 +481,7 @@ class RestoreTasksController(BaseController):
                 'startIndex': start_index,
                 'pageCount': page_count,
                 'sourceIds': source_ids,
-                'folderOnly': folder_only,
-                'tenantId': tenant_id,
-                'allUnderHierarchy': all_under_hierarchy
+                'folderOnly': folder_only
             }
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)
@@ -989,9 +676,7 @@ class RestoreTasksController(BaseController):
                        page_count=None,
                        operating_systems=None,
                        application=None,
-                       owner_entity_id=None,
-                       tenant_id=None,
-                       all_under_hierarchy=None):
+                       owner_entity_id=None):
         """Does a GET request to /public/restore/objects.
 
         If no search pattern or filter parameters are specified, all backup
@@ -1056,11 +741,6 @@ class RestoreTasksController(BaseController):
                 belonging to the VM with the specified id are returned.
                 ownerEntityId is only significant if application is set to
                 SQL.
-            tenant_id (string, optional): TenantId specifies the tenant whose
-                action resulted in the audit log.
-            all_under_hierarchy (bool, optional): AllUnderHierarchy specifies
-                if logs of all the tenants under the hierarchy of tenant with
-                id TenantId should be returned.
 
         Returns:
             ObjectSearchResults: Response from the API. Success
@@ -1092,9 +772,7 @@ class RestoreTasksController(BaseController):
                 'pageCount': page_count,
                 'operatingSystems': operating_systems,
                 'application': application,
-                'ownerEntityId': owner_entity_id,
-                'tenantId': tenant_id,
-                'allUnderHierarchy': all_under_hierarchy
+                'ownerEntityId': owner_entity_id
             }
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)
@@ -1140,9 +818,7 @@ class RestoreTasksController(BaseController):
                            show_only_email_folders=None,
                            domain_ids=None,
                            mailbox_ids=None,
-                           protection_job_ids=None,
-                           tenant_id=None,
-                           all_under_hierarchy=None):
+                           protection_job_ids=None):
         """Does a GET request to /public/restore/office365/outlook/emails.
 
         Search for Emails and Emails' folders to recover that match the
@@ -1181,11 +857,6 @@ class RestoreTasksController(BaseController):
             protection_job_ids (list of long|int, optional): Specifies the
                 protection job Ids which have backed up mailbox(es) continaing
                 emails/folders.
-            tenant_id (string, optional): TenantId specifies the tenant whose
-                action resulted in the audit log.
-            all_under_hierarchy (bool, optional): AllUnderHierarchy specifies
-                if logs of all the tenants under the hierarchy of tenant with
-                id TenantId should be returned.
 
         Returns:
             FileSearchResults: Response from the API. Success
@@ -1220,9 +891,7 @@ class RestoreTasksController(BaseController):
                 'showOnlyEmailFolders': show_only_email_folders,
                 'domainIds': domain_ids,
                 'mailboxIds': mailbox_ids,
-                'protectionJobIds': protection_job_ids,
-                'tenantId': tenant_id,
-                'allUnderHierarchy': all_under_hierarchy
+                'protectionJobIds': protection_job_ids
             }
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)
@@ -1451,8 +1120,7 @@ Success
                 environment. 'kAcropolis' indicates the Acropolis Protection
                 Source environment. 'kPhsicalFiles' indicates the Physical
                 Files Protection Source environment. 'kIsilon' indicates the
-                Dell EMC's Isilon Protection Source environment. 'kGPFS'
-                indicates IBM's GPFS Protection Source environment. 'kKVM'
+                Dell EMC's Isilon Protection Source environment. 'kKVM'
                 indicates the KVM Protection Source environment. 'kAWS'
                 indicates the AWS Protection Source environment. 'kExchange'
                 indicates the Exchange Protection Source environment.
@@ -1469,8 +1137,7 @@ Success
                 indicates the Hyper Flex Protection Source environment.
                 'kGCPNative' indicates the GCP Native Protection Source
                 environment. 'kAzureNative' indicates the Azure Native
-                Protection Source environment. 'kKubernetes' indicates a
-                Kubernetes Protection Source environment.
+                Protection Source environment.
 
         Returns:
             list of RestoreTask: Response from the API. Success
@@ -1731,18 +1398,18 @@ Success
             raise
 
     def get_vm_volumes_information(self,
-                                   job_id,
-                                   cluster_id,
-                                   cluster_incarnation_id,
-                                   job_run_id,
-                                   started_time_usecs,
-                                   source_id,
-                                   original_job_id,
+                                   job_id=None,
+                                   cluster_id=None,
+                                   cluster_incarnation_id=None,
+                                   job_run_id=None,
+                                   started_time_usecs=None,
                                    attempt_number=None,
+                                   source_id=None,
+                                   original_job_id=None,
                                    supported_volumes_only=None):
         """Does a GET request to /public/restore/vms/volumesInformation.
 
-        All required fields must be specified for this operation.
+        All fields must be specified for this operation.
         To get values for these fields, invoke the GET
         /public/restore/objects
         operation.
@@ -1750,38 +1417,39 @@ Success
         attemptNumber fields.
 
         Args:
-            job_id (long|int): Specifies the Job id for the Protection Job
-                that is currently associated with the object. If the object
-                was backed up on current Cohesity Cluster, this field contains
-                the id for the Job that captured this backup object. If the
-                object was backed up on a Primary Cluster and replicated to
-                this Cohesity Cluster, a new Inactive Job is created, the
-                object is now associated with new Inactive Job, and this field
-                contains the id of the new Inactive Job.
-            cluster_id (long|int): Specifies the Cohesity Cluster id where the
-                Job was created.
-            cluster_incarnation_id (long|int): Specifies the incarnation id of
-                the Cohesity Cluster where the Job was created. An incarnation
-                id is generated when a Cohesity Cluster is initially created.
-            job_run_id (long|int): Specifies the id of the Job Run that
-                captured the snapshot.
-            started_time_usecs (long|int): Specifies the time when the Job Run
-                starts capturing a snapshot. Specified as a Unix epoch
-                Timestamp (in microseconds).
-            source_id (long|int): Specifies the id of the VM object to search
-                for volumes.
-            original_job_id (long|int): Specifies the id for the Protection
-                Job that originally captured the snapshots of the original
-                object. If the object was backed up on a Primary Cluster
-                replicated to this Cohesity Cluster, and a new Inactive Job is
-                created, this field still contains the id of the original Job
-                and NOT the id of the new Inactive Job. This field is used in
-                combination with the clusterId and clusterIncarnationId to
-                uniquely identify a Job.
+            job_id (long|int, optional): Specifies the Job id for the
+                Protection Job that is currently associated with the object.
+                If the object was backed up on current Cohesity Cluster, this
+                field contains the id for the Job that captured this backup
+                object. If the object was backed up on a Primary Cluster and
+                replicated to this Cohesity Cluster, a new Inactive Job is
+                created, the object is now associated with new Inactive Job,
+                and this field contains the id of the new Inactive Job.
+            cluster_id (long|int, optional): Specifies the Cohesity Cluster id
+                where the Job was created.
+            cluster_incarnation_id (long|int, optional): Specifies the
+                incarnation id of the Cohesity Cluster where the Job was
+                created. An incarnation id is generated when a Cohesity
+                Cluster is initially created.
+            job_run_id (long|int, optional): Specifies the id of the Job Run
+                that captured the snapshot.
+            started_time_usecs (long|int, optional): Specifies the time when
+                the Job Run starts capturing a snapshot. Specified as a Unix
+                epoch Timestamp (in microseconds).
             attempt_number (long|int, optional): Specifies the number of the
                 attempts made by the Job Run to capture a snapshot of the
                 object. For example, if an snapshot is successfully captured
                 after three attempts, this field equals 3.
+            source_id (long|int, optional): Specifies the id of the VM object
+                to search for volumes.
+            original_job_id (long|int, optional): Specifies the id for the
+                Protection Job that originally captured the snapshots of the
+                original object. If the object was backed up on a Primary
+                Cluster replicated to this Cohesity Cluster, and a new
+                Inactive Job is created, this field still contains the id of
+                the original Job and NOT the id of the new Inactive Job. This
+                field is used in combination with the clusterId and
+                clusterIncarnationId to uniquely identify a Job.
             supported_volumes_only (bool, optional): Specifies to return only
                 supported volumes information. Unsupported volumes are not
                 returned if this flag is set to true. Default is false.
@@ -1799,16 +1467,6 @@ Success
         try:
             self.logger.info('get_vm_volumes_information called.')
 
-            # Validate required parameters
-            self.logger.info('Validating required parameters for get_vm_volumes_information.')
-            self.validate_parameters(job_id=job_id,
-                                     cluster_id=cluster_id,
-                                     cluster_incarnation_id=cluster_incarnation_id,
-                                     job_run_id=job_run_id,
-                                     started_time_usecs=started_time_usecs,
-                                     source_id=source_id,
-                                     original_job_id=original_job_id)
-
             # Prepare query URL
             self.logger.info('Preparing query URL for get_vm_volumes_information.')
             _url_path = '/public/restore/vms/volumesInformation'
@@ -1820,9 +1478,9 @@ Success
                 'clusterIncarnationId': cluster_incarnation_id,
                 'jobRunId': job_run_id,
                 'startedTimeUsecs': started_time_usecs,
+                'attemptNumber': attempt_number,
                 'sourceId': source_id,
                 'originalJobId': original_job_id,
-                'attemptNumber': attempt_number,
                 'supportedVolumesOnly': supported_volumes_only
             }
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,

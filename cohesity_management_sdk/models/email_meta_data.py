@@ -9,9 +9,6 @@ class EmailMetaData(object):
     Specifies details about the emails and the folder containing emails.
 
     Attributes:
-        all_under_hierarchy (bool): AllUnderHierarchy specifies if logs of all
-            the tenants under the hierarchy of tenant with id TenantId should
-            be returned.
         bcc_recipient_addresses (list of string): Specifies the email
             addresses of the bcc recipients.
         cc_recipient_addresses (list of string): Specifies the email addresses
@@ -43,14 +40,11 @@ class EmailMetaData(object):
             was sent.
         show_only_email_folders (bool): Specifies whether the query result
             should include only Email folders.
-        tenant_id (string): TenantId specifies the tenant whose action
-            resulted in the audit log.
 
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "all_under_hierarchy":'allUnderHierarchy',
         "bcc_recipient_addresses":'bccRecipientAddresses',
         "cc_recipient_addresses":'ccRecipientAddresses',
         "domain_ids":'domainIds',
@@ -67,12 +61,10 @@ class EmailMetaData(object):
         "recipient_addresses":'recipientAddresses',
         "sender_address":'senderAddress',
         "sent_time_seconds":'sentTimeSeconds',
-        "show_only_email_folders":'showOnlyEmailFolders',
-        "tenant_id":'tenantId'
+        "show_only_email_folders":'showOnlyEmailFolders'
     }
 
     def __init__(self,
-                 all_under_hierarchy=None,
                  bcc_recipient_addresses=None,
                  cc_recipient_addresses=None,
                  domain_ids=None,
@@ -89,12 +81,10 @@ class EmailMetaData(object):
                  recipient_addresses=None,
                  sender_address=None,
                  sent_time_seconds=None,
-                 show_only_email_folders=None,
-                 tenant_id=None):
+                 show_only_email_folders=None):
         """Constructor for the EmailMetaData class"""
 
         # Initialize members of the class
-        self.all_under_hierarchy = all_under_hierarchy
         self.bcc_recipient_addresses = bcc_recipient_addresses
         self.cc_recipient_addresses = cc_recipient_addresses
         self.domain_ids = domain_ids
@@ -112,7 +102,6 @@ class EmailMetaData(object):
         self.sender_address = sender_address
         self.sent_time_seconds = sent_time_seconds
         self.show_only_email_folders = show_only_email_folders
-        self.tenant_id = tenant_id
 
 
     @classmethod
@@ -133,7 +122,6 @@ class EmailMetaData(object):
             return None
 
         # Extract variables from the dictionary
-        all_under_hierarchy = dictionary.get('allUnderHierarchy')
         bcc_recipient_addresses = dictionary.get('bccRecipientAddresses')
         cc_recipient_addresses = dictionary.get('ccRecipientAddresses')
         domain_ids = dictionary.get('domainIds')
@@ -151,11 +139,9 @@ class EmailMetaData(object):
         sender_address = dictionary.get('senderAddress')
         sent_time_seconds = dictionary.get('sentTimeSeconds')
         show_only_email_folders = dictionary.get('showOnlyEmailFolders')
-        tenant_id = dictionary.get('tenantId')
 
         # Return an object of this model
-        return cls(all_under_hierarchy,
-                   bcc_recipient_addresses,
+        return cls(bcc_recipient_addresses,
                    cc_recipient_addresses,
                    domain_ids,
                    email_subject,
@@ -171,7 +157,6 @@ class EmailMetaData(object):
                    recipient_addresses,
                    sender_address,
                    sent_time_seconds,
-                   show_only_email_folders,
-                   tenant_id)
+                   show_only_email_folders)
 
 

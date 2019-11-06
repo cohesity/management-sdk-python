@@ -15,7 +15,7 @@ class ConnectionStateEnum(object):
     'kDisconnected' indicates that server is currently disconnected to
     virtual
     machine.
-    'kInaccessible' indicates that one or more configuration files are
+    'kInacccessible' indicates that one or more configuration files are
     inacccessible.
     'kInvalid' indicates that virtual machine configuration is invalid.
     'kOrphaned' indicates that virtual machine is no longer registered on the
@@ -27,7 +27,7 @@ class ConnectionStateEnum(object):
     Attributes:
         KCONNECTED: TODO: type description here.
         KDISCONNECTED: TODO: type description here.
-        KINACCESSIBLE: TODO: type description here.
+        KINACCCESSIBLE: TODO: type description here.
         KINVALID: TODO: type description here.
         KORPHANED: TODO: type description here.
         KNOTRESPONDING: TODO: type description here.
@@ -38,7 +38,7 @@ class ConnectionStateEnum(object):
 
     KDISCONNECTED = 'kDisconnected'
 
-    KINACCESSIBLE = 'kInaccessible'
+    KINACCCESSIBLE = 'kInacccessible'
 
     KINVALID = 'kInvalid'
 

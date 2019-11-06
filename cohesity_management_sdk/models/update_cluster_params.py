@@ -56,8 +56,8 @@ class UpdateClusterParams(object):
             version of Help.
         language_locale (string): Specifies the language and locale for this
             Cohesity Cluster.
-        local_auth_domain_name (string): Domain name for SMB local
-            authentication.
+        license_server_claimed (bool): Speifies if cluster is claimed by
+            Helios or not.
         local_groups_enabled (bool): Specifies whether to enable local groups
             on cluster. Once it is enabled, it cannot be disabled.
         metadata_fault_tolerance_factor (int): Specifies metadata fault
@@ -110,7 +110,7 @@ class UpdateClusterParams(object):
         "google_analytics_enabled":'googleAnalyticsEnabled',
         "is_documentation_local":'isDocumentationLocal',
         "language_locale":'languageLocale',
-        "local_auth_domain_name":'localAuthDomainName',
+        "license_server_claimed":'licenseServerClaimed',
         "local_groups_enabled":'localGroupsEnabled',
         "metadata_fault_tolerance_factor":'metadataFaultToleranceFactor',
         "mtu":'mtu',
@@ -142,7 +142,7 @@ class UpdateClusterParams(object):
                  google_analytics_enabled=None,
                  is_documentation_local=None,
                  language_locale=None,
-                 local_auth_domain_name=None,
+                 license_server_claimed=None,
                  local_groups_enabled=None,
                  metadata_fault_tolerance_factor=None,
                  mtu=None,
@@ -174,7 +174,7 @@ class UpdateClusterParams(object):
         self.google_analytics_enabled = google_analytics_enabled
         self.is_documentation_local = is_documentation_local
         self.language_locale = language_locale
-        self.local_auth_domain_name = local_auth_domain_name
+        self.license_server_claimed = license_server_claimed
         self.local_groups_enabled = local_groups_enabled
         self.metadata_fault_tolerance_factor = metadata_fault_tolerance_factor
         self.mtu = mtu
@@ -223,7 +223,7 @@ class UpdateClusterParams(object):
         google_analytics_enabled = dictionary.get('googleAnalyticsEnabled')
         is_documentation_local = dictionary.get('isDocumentationLocal')
         language_locale = dictionary.get('languageLocale')
-        local_auth_domain_name = dictionary.get('localAuthDomainName')
+        license_server_claimed = dictionary.get('licenseServerClaimed')
         local_groups_enabled = dictionary.get('localGroupsEnabled')
         metadata_fault_tolerance_factor = dictionary.get('metadataFaultToleranceFactor')
         mtu = dictionary.get('mtu')
@@ -258,7 +258,7 @@ class UpdateClusterParams(object):
                    google_analytics_enabled,
                    is_documentation_local,
                    language_locale,
-                   local_auth_domain_name,
+                   license_server_claimed,
                    local_groups_enabled,
                    metadata_fault_tolerance_factor,
                    mtu,

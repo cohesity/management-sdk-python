@@ -6,9 +6,7 @@ import cohesity_management_sdk.models.antivirus_scan_config
 import cohesity_management_sdk.models.file_extension_filter
 import cohesity_management_sdk.models.file_level_data_lock_config
 import cohesity_management_sdk.models.quota_policy
-import cohesity_management_sdk.models.nfs_root_permissions
 import cohesity_management_sdk.models.qo_s
-import cohesity_management_sdk.models.smb_permission
 import cohesity_management_sdk.models.smb_permissions_info
 import cohesity_management_sdk.models.view_stats
 import cohesity_management_sdk.models.storage_policy_override
@@ -60,8 +58,6 @@ class View(object):
             field SecurityMode. deprecated: true
         enable_nfs_view_discovery (bool): If set, it enables discovery of view
             for NFS.
-        enable_offline_caching (bool): Specifies whether to enable offline
-            file caching of the view.
         enable_smb_access_based_enumeration (bool): Specifies if access-based
             enumeration should be enabled. If 'true', only files and folders
             that the user has permissions to access are visible on the SMB
@@ -101,10 +97,6 @@ class View(object):
         name (string): Specifies the name of the View.
         nfs_mount_path (string): Specifies the path for mounting this View as
             an NFS share.
-        nfs_root_permissions (NfsRootPermissions): Specifies the config of NFS
-            root permission of a view file system.
-        override_global_whitelist (bool): Specifies whether view level client
-            subnet whitelist overrides cluster and global setting.
         protocol_access (ProtocolAccessEnum): Specifies the supported
             Protocols for the View. 'kAll' enables protocol access to all
             three views: NFS, SMB and S3. 'kNFSOnly' enables protocol access
@@ -114,17 +106,11 @@ class View(object):
             View.
         s_3_access_path (string): Specifies the path to access this View as an
             S3 share.
-        s_3_key_mapping_config (S3KeyMappingConfigEnum): Specifies the S3 key
-            mapping config of the view. This parameter can only be set during
-            create and cannot be changed. Configuration of S3 key mapping.
-            Specifies the type of S3 key mapping config.
         security_mode (SecurityModeEnum): Specifies the security mode used for
             this view. Currently we support the following modes: Native,
             Unified and NTFS style. 'kNativeMode' indicates a native security
             mode. 'kUnifiedMode' indicates a unified security mode.
             'kNtfsMode' indicates a NTFS style security mode.
-        share_permissions (list of SmbPermission): Specifies a list of share
-            level permissions.
         smb_mount_path (string): Specifies the main path for mounting this
             View as an SMB share.
         smb_permissions_info (SmbPermissionsInfo): Specifies information about
@@ -163,7 +149,6 @@ class View(object):
         "enable_filer_audit_logging":'enableFilerAuditLogging',
         "enable_mixed_mode_permissions":'enableMixedModePermissions',
         "enable_nfs_view_discovery":'enableNfsViewDiscovery',
-        "enable_offline_caching":'enableOfflineCaching',
         "enable_smb_access_based_enumeration":'enableSmbAccessBasedEnumeration',
         "enable_smb_encryption":'enableSmbEncryption',
         "enable_smb_view_discovery":'enableSmbViewDiscovery',
@@ -175,14 +160,10 @@ class View(object):
         "logical_usage_bytes":'logicalUsageBytes',
         "name":'name',
         "nfs_mount_path":'nfsMountPath',
-        "nfs_root_permissions":'nfsRootPermissions',
-        "override_global_whitelist":'overrideGlobalWhitelist',
         "protocol_access":'protocolAccess',
         "qos":'qos',
         "s_3_access_path":'s3AccessPath',
-        "s_3_key_mapping_config":'s3KeyMappingConfig',
         "security_mode":'securityMode',
-        "share_permissions":'sharePermissions',
         "smb_mount_path":'smbMountPath',
         "smb_permissions_info":'smbPermissionsInfo',
         "stats":'stats',
@@ -208,7 +189,6 @@ class View(object):
                  enable_filer_audit_logging=None,
                  enable_mixed_mode_permissions=None,
                  enable_nfs_view_discovery=None,
-                 enable_offline_caching=None,
                  enable_smb_access_based_enumeration=None,
                  enable_smb_encryption=None,
                  enable_smb_view_discovery=None,
@@ -220,14 +200,10 @@ class View(object):
                  logical_usage_bytes=None,
                  name=None,
                  nfs_mount_path=None,
-                 nfs_root_permissions=None,
-                 override_global_whitelist=None,
                  protocol_access=None,
                  qos=None,
                  s_3_access_path=None,
-                 s_3_key_mapping_config=None,
                  security_mode=None,
-                 share_permissions=None,
                  smb_mount_path=None,
                  smb_permissions_info=None,
                  stats=None,
@@ -253,7 +229,6 @@ class View(object):
         self.enable_filer_audit_logging = enable_filer_audit_logging
         self.enable_mixed_mode_permissions = enable_mixed_mode_permissions
         self.enable_nfs_view_discovery = enable_nfs_view_discovery
-        self.enable_offline_caching = enable_offline_caching
         self.enable_smb_access_based_enumeration = enable_smb_access_based_enumeration
         self.enable_smb_encryption = enable_smb_encryption
         self.enable_smb_view_discovery = enable_smb_view_discovery
@@ -265,14 +240,10 @@ class View(object):
         self.logical_usage_bytes = logical_usage_bytes
         self.name = name
         self.nfs_mount_path = nfs_mount_path
-        self.nfs_root_permissions = nfs_root_permissions
-        self.override_global_whitelist = override_global_whitelist
         self.protocol_access = protocol_access
         self.qos = qos
         self.s_3_access_path = s_3_access_path
-        self.s_3_key_mapping_config = s_3_key_mapping_config
         self.security_mode = security_mode
-        self.share_permissions = share_permissions
         self.smb_mount_path = smb_mount_path
         self.smb_permissions_info = smb_permissions_info
         self.stats = stats
@@ -319,7 +290,6 @@ class View(object):
         enable_filer_audit_logging = dictionary.get('enableFilerAuditLogging')
         enable_mixed_mode_permissions = dictionary.get('enableMixedModePermissions')
         enable_nfs_view_discovery = dictionary.get('enableNfsViewDiscovery')
-        enable_offline_caching = dictionary.get('enableOfflineCaching')
         enable_smb_access_based_enumeration = dictionary.get('enableSmbAccessBasedEnumeration')
         enable_smb_encryption = dictionary.get('enableSmbEncryption')
         enable_smb_view_discovery = dictionary.get('enableSmbViewDiscovery')
@@ -331,18 +301,10 @@ class View(object):
         logical_usage_bytes = dictionary.get('logicalUsageBytes')
         name = dictionary.get('name')
         nfs_mount_path = dictionary.get('nfsMountPath')
-        nfs_root_permissions = cohesity_management_sdk.models.nfs_root_permissions.NfsRootPermissions.from_dictionary(dictionary.get('nfsRootPermissions')) if dictionary.get('nfsRootPermissions') else None
-        override_global_whitelist = dictionary.get('overrideGlobalWhitelist')
         protocol_access = dictionary.get('protocolAccess')
         qos = cohesity_management_sdk.models.qo_s.QoS.from_dictionary(dictionary.get('qos')) if dictionary.get('qos') else None
         s_3_access_path = dictionary.get('s3AccessPath')
-        s_3_key_mapping_config = dictionary.get('s3KeyMappingConfig')
         security_mode = dictionary.get('securityMode')
-        share_permissions = None
-        if dictionary.get('sharePermissions') != None:
-            share_permissions = list()
-            for structure in dictionary.get('sharePermissions'):
-                share_permissions.append(cohesity_management_sdk.models.smb_permission.SmbPermission.from_dictionary(structure))
         smb_mount_path = dictionary.get('smbMountPath')
         smb_permissions_info = cohesity_management_sdk.models.smb_permissions_info.SmbPermissionsInfo.from_dictionary(dictionary.get('smbPermissionsInfo')) if dictionary.get('smbPermissionsInfo') else None
         stats = cohesity_management_sdk.models.view_stats.ViewStats.from_dictionary(dictionary.get('stats')) if dictionary.get('stats') else None
@@ -371,7 +333,6 @@ class View(object):
                    enable_filer_audit_logging,
                    enable_mixed_mode_permissions,
                    enable_nfs_view_discovery,
-                   enable_offline_caching,
                    enable_smb_access_based_enumeration,
                    enable_smb_encryption,
                    enable_smb_view_discovery,
@@ -383,14 +344,10 @@ class View(object):
                    logical_usage_bytes,
                    name,
                    nfs_mount_path,
-                   nfs_root_permissions,
-                   override_global_whitelist,
                    protocol_access,
                    qos,
                    s_3_access_path,
-                   s_3_key_mapping_config,
                    security_mode,
-                   share_permissions,
                    smb_mount_path,
                    smb_permissions_info,
                    stats,

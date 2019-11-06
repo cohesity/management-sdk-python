@@ -288,12 +288,12 @@ class AlertsController(BaseController):
 
     def get_resolutions(self,
                         max_resolutions,
+                        tenant_ids=None,
+                        all_under_hierarchy=None,
                         resolution_id_list=None,
                         alert_id_list=None,
                         start_date_usecs=None,
-                        end_date_usecs=None,
-                        tenant_ids=None,
-                        all_under_hierarchy=None):
+                        end_date_usecs=None):
         """Does a GET request to /public/alertResolutions.
 
         Returns all Alert Resolution objects found on the Cohesity Cluster
@@ -307,6 +307,11 @@ class AlertsController(BaseController):
             max_resolutions (int): Specifies the number of returned
                 Resolutions to be returned. The newest Resolutions are
                 returned.
+            tenant_ids (list of string, optional): TenantIds contains ids of
+                the tenants for which objects are to be returned.
+            all_under_hierarchy (bool, optional): AllUnderHierarchy specifies
+                if objects of all the tenants under the hierarchy of the
+                logged in user's organization should be returned.
             resolution_id_list (list of long|int, optional): Specifies list of
                 Alert Resolution ids to filter resolutions by.
             alert_id_list (list of string, optional): Specifies list of Alert
@@ -315,11 +320,6 @@ class AlertsController(BaseController):
                 epoch in microseconds to filter resolutions by.
             end_date_usecs (long|int, optional): Specifies End Time Unix epoch
                 in microseconds to filter resolutions by.
-            tenant_ids (list of string, optional): TenantIds contains ids of
-                the tenants for which objects are to be returned.
-            all_under_hierarchy (bool, optional): AllUnderHierarchy specifies
-                if objects of all the tenants under the hierarchy of the
-                logged in user's organization should be returned.
 
         Returns:
             list of AlertResolution: Response from the API. Success
@@ -345,12 +345,12 @@ class AlertsController(BaseController):
             _query_builder += _url_path
             _query_parameters = {
                 'maxResolutions': max_resolutions,
+                'tenantIds': tenant_ids,
+                'allUnderHierarchy': all_under_hierarchy,
                 'resolutionIdList': resolution_id_list,
                 'alertIdList': alert_id_list,
                 'startDateUsecs': start_date_usecs,
-                'endDateUsecs': end_date_usecs,
-                'tenantIds': tenant_ids,
-                'allUnderHierarchy': all_under_hierarchy
+                'endDateUsecs': end_date_usecs
             }
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)
@@ -627,6 +627,8 @@ class AlertsController(BaseController):
 
     def get_alerts(self,
                    max_alerts,
+                   tenant_ids=None,
+                   all_under_hierarchy=None,
                    alert_id_list=None,
                    alert_type_list=None,
                    alert_category_list=None,
@@ -636,10 +638,7 @@ class AlertsController(BaseController):
                    end_date_usecs=None,
                    alert_state_list=None,
                    alert_severity_list=None,
-                   alert_type_bucket_list=None,
-                   resolution_id_list=None,
-                   tenant_ids=None,
-                   all_under_hierarchy=None):
+                   resolution_id_list=None):
         """Does a GET request to /public/alerts.
 
         Returns all Alert objects found on the Cohesity Cluster that
@@ -655,6 +654,11 @@ class AlertsController(BaseController):
         Args:
             max_alerts (int): Specifies the number of returned Alerts to be
                 returned. The newest Alerts are returned.
+            tenant_ids (list of string, optional): TenantIds contains ids of
+                the tenants for which objects are to be returned.
+            all_under_hierarchy (bool, optional): AllUnderHierarchy specifies
+                if objects of all the tenants under the hierarchy of the
+                logged in user's organization should be returned.
             alert_id_list (list of string, optional): Specifies list of Alert
                 ids to filter alerts by.
             alert_type_list (list of int, optional): Specifies list of Alert
@@ -673,20 +677,8 @@ class AlertsController(BaseController):
                 list of Alert States to filter alerts by.
             alert_severity_list (list of AlertSeverityListEnum, optional):
                 Specifies list of Alert severity to filter alerts by.
-            alert_type_bucket_list (list of AlertTypeBucketListEnum,
-                optional): Specifies the list of Alert type bucket. Specifies
-                the Alert type bucket. kSoftware - Alerts which are related to
-                Cohesity services. kHardware - Alerts related to hardware on
-                which Cohesity software is running. kService - Alerts related
-                to other external services. kOther - Alerts not of one of
-                above categories.
             resolution_id_list (list of long|int, optional): Specifies alert
                 resolution ids to filter alerts by.
-            tenant_ids (list of string, optional): TenantIds contains ids of
-                the tenants for which objects are to be returned.
-            all_under_hierarchy (bool, optional): AllUnderHierarchy specifies
-                if objects of all the tenants under the hierarchy of the
-                logged in user's organization should be returned.
 
         Returns:
             list of Alert: Response from the API. Success
@@ -712,6 +704,8 @@ class AlertsController(BaseController):
             _query_builder += _url_path
             _query_parameters = {
                 'maxAlerts': max_alerts,
+                'tenantIds': tenant_ids,
+                'allUnderHierarchy': all_under_hierarchy,
                 'alertIdList': alert_id_list,
                 'alertTypeList': alert_type_list,
                 'alertCategoryList': alert_category_list,
@@ -721,10 +715,7 @@ class AlertsController(BaseController):
                 'endDateUsecs': end_date_usecs,
                 'alertStateList': alert_state_list,
                 'alertSeverityList': alert_severity_list,
-                'alertTypeBucketList': alert_type_bucket_list,
-                'resolutionIdList': resolution_id_list,
-                'tenantIds': tenant_ids,
-                'allUnderHierarchy': all_under_hierarchy
+                'resolutionIdList': resolution_id_list
             }
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)

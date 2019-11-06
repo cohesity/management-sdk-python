@@ -36,9 +36,6 @@ class FileStubbingParams(object):
             filters: "/" Deny filters: "/tmp", "*.mp4" Using such a policy
             will include everything under the root directory except the /tmp
             directory and all the mp4 files.
-        nfs_mount_path (string): Mount path where the Cohesity target view
-            must be mounted on all NFS clients for accessing the migrated
-            data.
         target_view_name (string): The target view name to which the data will
             be migrated.
 
@@ -51,7 +48,6 @@ class FileStubbingParams(object):
         "file_size":'fileSize',
         "file_size_policy":'fileSizePolicy',
         "filtering_policy":'filteringPolicy',
-        "nfs_mount_path":'nfsMountPath',
         "target_view_name":'targetViewName'
     }
 
@@ -61,7 +57,6 @@ class FileStubbingParams(object):
                  file_size=None,
                  file_size_policy=None,
                  filtering_policy=None,
-                 nfs_mount_path=None,
                  target_view_name=None):
         """Constructor for the FileStubbingParams class"""
 
@@ -71,7 +66,6 @@ class FileStubbingParams(object):
         self.file_size = file_size
         self.file_size_policy = file_size_policy
         self.filtering_policy = filtering_policy
-        self.nfs_mount_path = nfs_mount_path
         self.target_view_name = target_view_name
 
 
@@ -98,7 +92,6 @@ class FileStubbingParams(object):
         file_size = dictionary.get('fileSize')
         file_size_policy = dictionary.get('fileSizePolicy')
         filtering_policy = cohesity_management_sdk.models.filtering_policy_proto.FilteringPolicyProto.from_dictionary(dictionary.get('filteringPolicy')) if dictionary.get('filteringPolicy') else None
-        nfs_mount_path = dictionary.get('nfsMountPath')
         target_view_name = dictionary.get('targetViewName')
 
         # Return an object of this model
@@ -107,7 +100,6 @@ class FileStubbingParams(object):
                    file_size,
                    file_size_policy,
                    filtering_policy,
-                   nfs_mount_path,
                    target_view_name)
 
 

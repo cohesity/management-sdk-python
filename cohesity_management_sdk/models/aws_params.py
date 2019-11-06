@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.rds_params
 
 class AwsParams(object):
 
@@ -14,8 +13,6 @@ class AwsParams(object):
             to deploy the VM.
         network_security_group_ids (list of long|int): Specifies ids of the
             netwrok security groups within above VPC.
-        rds_params (RdsParams): Specifies rds params for the restore
-            operation.
         region (long|int): Specifies id of the AWS region in which to deploy
             the VM.
         subnet_id (long|int): Specifies id of the subnet within above VPC.
@@ -28,7 +25,6 @@ class AwsParams(object):
     _names = {
         "instance_id":'instanceId',
         "network_security_group_ids":'networkSecurityGroupIds',
-        "rds_params":'rdsParams',
         "region":'region',
         "subnet_id":'subnetId',
         "virtual_private_cloud_id":'virtualPrivateCloudId'
@@ -37,7 +33,6 @@ class AwsParams(object):
     def __init__(self,
                  instance_id=None,
                  network_security_group_ids=None,
-                 rds_params=None,
                  region=None,
                  subnet_id=None,
                  virtual_private_cloud_id=None):
@@ -46,7 +41,6 @@ class AwsParams(object):
         # Initialize members of the class
         self.instance_id = instance_id
         self.network_security_group_ids = network_security_group_ids
-        self.rds_params = rds_params
         self.region = region
         self.subnet_id = subnet_id
         self.virtual_private_cloud_id = virtual_private_cloud_id
@@ -72,7 +66,6 @@ class AwsParams(object):
         # Extract variables from the dictionary
         instance_id = dictionary.get('instanceId')
         network_security_group_ids = dictionary.get('networkSecurityGroupIds')
-        rds_params = cohesity_management_sdk.models.rds_params.RdsParams.from_dictionary(dictionary.get('rdsParams')) if dictionary.get('rdsParams') else None
         region = dictionary.get('region')
         subnet_id = dictionary.get('subnetId')
         virtual_private_cloud_id = dictionary.get('virtualPrivateCloudId')
@@ -80,7 +73,6 @@ class AwsParams(object):
         # Return an object of this model
         return cls(instance_id,
                    network_security_group_ids,
-                   rds_params,
                    region,
                    subnet_id,
                    virtual_private_cloud_id)

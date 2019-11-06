@@ -44,9 +44,7 @@ class RestoreFilesTaskRequest(object):
             to be restored. 'kLinux' indicates the Linux operating system.
             'kWindows' indicates the Microsoft Windows operating system.
             'kAix' indicates the IBM AIX operating system. 'kSolaris'
-            indicates the Oracle Solaris operating system. 'kSapHana'
-            indicates the Sap Hana database system developed by SAP SE.
-            'kOther' indicates the other types of operating system.
+            indicates the Oracle Solaris operating system.
         target_parent_source_id (long|int): Specifies the registered source
             (such as a vCenter Server) that contains the target protection
             source (such as a VM) where the files and folders are recovered

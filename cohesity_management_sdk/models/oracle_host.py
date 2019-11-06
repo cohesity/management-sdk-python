@@ -12,7 +12,6 @@ class OracleHost(object):
     Attributes:
         cpu_count (int): Specifies the count of CPU available on the host.
         ip_addresses (list of string): Specifies the IP address of the host.
-        ports (list of long|int): Specifies ports available for this host.
         sessions (list of OracleSession): Specifies multiple session
             configurations available for this host.
 
@@ -22,21 +21,18 @@ class OracleHost(object):
     _names = {
         "cpu_count":'cpuCount',
         "ip_addresses":'ipAddresses',
-        "ports":'ports',
         "sessions":'sessions'
     }
 
     def __init__(self,
                  cpu_count=None,
                  ip_addresses=None,
-                 ports=None,
                  sessions=None):
         """Constructor for the OracleHost class"""
 
         # Initialize members of the class
         self.cpu_count = cpu_count
         self.ip_addresses = ip_addresses
-        self.ports = ports
         self.sessions = sessions
 
 
@@ -60,7 +56,6 @@ class OracleHost(object):
         # Extract variables from the dictionary
         cpu_count = dictionary.get('cpuCount')
         ip_addresses = dictionary.get('ipAddresses')
-        ports = dictionary.get('ports')
         sessions = None
         if dictionary.get('sessions') != None:
             sessions = list()
@@ -70,7 +65,6 @@ class OracleHost(object):
         # Return an object of this model
         return cls(cpu_count,
                    ip_addresses,
-                   ports,
                    sessions)
 
 

@@ -48,8 +48,7 @@ You can perform a wide range of operations such as:
 * vCenter workflows
 * AWS boto3 object store workflows
 
-And much more, check out the scripts included under
-`cohesity_management_sdk/samples` for reference.
+And much more, check out the scripts included under `samples` for reference.
 
 ## Upgrade
 
@@ -62,7 +61,7 @@ To upgrade the package:
 To upgade the package to specific release:
 
 ```
-pip install cohesity-management-sdk==1.0.2
+pip install cohesity-management-sdk==1.1.3
 ```
 ## Questions or Feedback :
 

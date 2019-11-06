@@ -12,9 +12,9 @@ class FileExtensionFilter(object):
         file_extensions_list (list of string): The list of file extensions to
             apply
         is_enabled (bool): If set, it enables the file extension filter
-        mode (ModeFileExtensionFilterEnum): The mode applied to the list of
-            file extensions 'kWhitelist' indicates a whitelist extension
-            filter. 'kBlacklist' indicates a blacklist extension filter.
+        mode (ModeEnum): The mode applied to the list of file extensions
+            'kWhitelist' indicates a whitelist extension filter. 'kBlacklist'
+            indicates a blacklist extension filter.
 
     """
 

@@ -24,8 +24,7 @@ class ViewBoxesController(BaseController):
                        ids=None,
                        names=None,
                        cluster_partition_ids=None,
-                       fetch_stats=None,
-                       fetch_time_series_schema=None):
+                       fetch_stats=None):
         """Does a GET request to /public/viewBoxes.
 
         If no parameters are specified, all Domains (View Boxes) currently on
@@ -48,8 +47,6 @@ class ViewBoxesController(BaseController):
                 list of Cluster Partition Ids.
             fetch_stats (bool, optional): Specifies whether to include usage
                 and performance statistics.
-            fetch_time_series_schema (bool, optional): Specifies whether to
-                get time series schema info of the view box.
 
         Returns:
             list of ViewBox: Response from the API. Success
@@ -75,8 +72,7 @@ class ViewBoxesController(BaseController):
                 'ids': ids,
                 'names': names,
                 'clusterPartitionIds': cluster_partition_ids,
-                'fetchStats': fetch_stats,
-                'fetchTimeSeriesSchema': fetch_time_series_schema
+                'fetchStats': fetch_stats
             }
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)
@@ -168,8 +164,7 @@ class ViewBoxesController(BaseController):
             raise
 
     def get_view_box_by_id(self,
-                           id,
-                           fetch_stats=None):
+                           id):
         """Does a GET request to /public/viewBoxes/{id}.
 
         Returns the Domain (View Box) corresponding to the specified Domain
@@ -178,8 +173,6 @@ class ViewBoxesController(BaseController):
 
         Args:
             id (long|int): Id of the Storage Domain (View Box)
-            fetch_stats (bool, optional): Specifies whether to include usage
-                and performance statistics.
 
         Returns:
             ViewBox: Response from the API. Success
@@ -206,11 +199,6 @@ class ViewBoxesController(BaseController):
             })
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
-            _query_parameters = {
-                'fetchStats': fetch_stats
-            }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers

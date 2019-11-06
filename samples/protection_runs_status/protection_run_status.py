@@ -42,7 +42,7 @@ def main():
     cohesity_client = CohesityClient(cluster_vip=CLUSTER_VIP,
                                      username=CLUSTER_USERNAME,
                                      password=CLUSTER_PASSWORD,
-				                     domain=DOMAIN)
+				     domain=DOMAIN)
     protection_runs = ProtectionRunsList()
     protection_runs.display_protection_runs(cohesity_client)
 

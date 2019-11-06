@@ -88,14 +88,10 @@ class VlanController(BaseController):
             self.logger.error(e, exc_info = True)
             raise
 
-    def create_vlan(self,
-                    body):
+    def create_vlan(self):
         """Does a POST request to /public/vlans.
 
         Returns the created VLAN on the Cohesity Cluster.
-
-        Args:
-            body (Vlan): TODO: type description here. Example:
 
         Returns:
             Vlan: Response from the API. Success
@@ -110,10 +106,6 @@ class VlanController(BaseController):
         try:
             self.logger.info('create_vlan called.')
 
-            # Validate required parameters
-            self.logger.info('Validating required parameters for create_vlan.')
-            self.validate_parameters(body=body)
-
             # Prepare query URL
             self.logger.info('Preparing query URL for create_vlan.')
             _url_path = '/public/vlans'
@@ -124,13 +116,12 @@ class VlanController(BaseController):
             # Prepare headers
             self.logger.info('Preparing headers for create_vlan.')
             _headers = {
-                'accept': 'application/json',
-                'content-type': 'application/json; charset=utf-8'
+                'accept': 'application/json'
             }
 
             # Prepare and execute request
             self.logger.info('Preparing and executing request for create_vlan.')
-            _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
+            _request = self.http_client.post(_query_url, headers=_headers)
             AuthManager.apply(_request)
             _context = self.execute_request(_request, name = 'create_vlan')
 

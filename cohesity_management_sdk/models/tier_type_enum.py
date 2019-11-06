@@ -19,10 +19,6 @@ class TierTypeEnum(object):
     'kAmazonS3IntelligentTiering' indicates a tier type of Amazon properties
     for
     data with unknown or changing access patterns.
-    'kAmazonS3GlacierDeepArchive' indicates a tier type of Amazon properties
-    for
-    data that provides secure, durable object storage for long-term data
-    retention and digital preservation.
 
     Attributes:
         KAMAZONS3STANDARD: TODO: type description here.
@@ -30,7 +26,6 @@ class TierTypeEnum(object):
         KAMAZONGLACIER: TODO: type description here.
         KAMAZONS3ONEZONEIA: TODO: type description here.
         KAMAZONS3INTELLIGENTTIERING: TODO: type description here.
-        KAMAZONS3GLACIERDEEPARCHIVE: TODO: type description here.
 
     """
 
@@ -43,6 +38,4 @@ class TierTypeEnum(object):
     KAMAZONS3ONEZONEIA = 'kAmazonS3OneZoneIA'
 
     KAMAZONS3INTELLIGENTTIERING = 'kAmazonS3IntelligentTiering'
-
-    KAMAZONS3GLACIERDEEPARCHIVE = 'kAmazonS3GlacierDeepArchive'
 

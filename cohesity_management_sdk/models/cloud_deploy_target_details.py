@@ -3,7 +3,6 @@
 
 import cohesity_management_sdk.models.aws_params
 import cohesity_management_sdk.models.azure_params
-import cohesity_management_sdk.models.gcp_params
 
 class CloudDeployTargetDetails(object):
 
@@ -17,8 +16,6 @@ class CloudDeployTargetDetails(object):
             and deploying a VM to AWS.
         azure_params (AzureParams): Specifies various resources when
             converting and deploying a VM to Azure.
-        gcp_params (GcpParams): Specifies various resources when converting
-            and deploying a VM to GCP.
         id (long|int): Entity corresponding to the cloud deploy target.
             Specifies the id field inside the EntityProto.
         name (string): Specifies the inner object's name or a human-readable
@@ -36,7 +33,6 @@ class CloudDeployTargetDetails(object):
     _names = {
         "aws_params":'awsParams',
         "azure_params":'azureParams',
-        "gcp_params":'gcpParams',
         "id":'id',
         "name":'name',
         "mtype":'type'
@@ -45,7 +41,6 @@ class CloudDeployTargetDetails(object):
     def __init__(self,
                  aws_params=None,
                  azure_params=None,
-                 gcp_params=None,
                  id=None,
                  name=None,
                  mtype=None):
@@ -54,7 +49,6 @@ class CloudDeployTargetDetails(object):
         # Initialize members of the class
         self.aws_params = aws_params
         self.azure_params = azure_params
-        self.gcp_params = gcp_params
         self.id = id
         self.name = name
         self.mtype = mtype
@@ -80,7 +74,6 @@ class CloudDeployTargetDetails(object):
         # Extract variables from the dictionary
         aws_params = cohesity_management_sdk.models.aws_params.AwsParams.from_dictionary(dictionary.get('awsParams')) if dictionary.get('awsParams') else None
         azure_params = cohesity_management_sdk.models.azure_params.AzureParams.from_dictionary(dictionary.get('azureParams')) if dictionary.get('azureParams') else None
-        gcp_params = cohesity_management_sdk.models.gcp_params.GcpParams.from_dictionary(dictionary.get('gcpParams')) if dictionary.get('gcpParams') else None
         id = dictionary.get('id')
         name = dictionary.get('name')
         mtype = dictionary.get('type')
@@ -88,7 +81,6 @@ class CloudDeployTargetDetails(object):
         # Return an object of this model
         return cls(aws_params,
                    azure_params,
-                   gcp_params,
                    id,
                    name,
                    mtype)

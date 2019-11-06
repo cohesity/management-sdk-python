@@ -83,9 +83,9 @@ class ActiveDirectoryController(BaseController):
             raise
 
     def get_active_directory_entry(self,
-                                   domains=None,
                                    tenant_ids=None,
-                                   all_under_hierarchy=None):
+                                   all_under_hierarchy=None,
+                                   domains=None):
         """Does a GET request to /public/activeDirectory.
 
         After a Cohesity Cluster has been joined to an Active Directory
@@ -97,13 +97,13 @@ class ActiveDirectoryController(BaseController):
         operation.
 
         Args:
-            domains (list of string, optional): Specifies the domains to fetch
-                active directory entries.
             tenant_ids (list of string, optional): TenantIds contains ids of
                 the tenants for which objects are to be returned.
             all_under_hierarchy (bool, optional): AllUnderHierarchy specifies
                 if objects of all the tenants under the hierarchy of the
                 logged in user's organization should be returned.
+            domains (list of string, optional): Specifies the domains to fetch
+                active directory entries.
 
         Returns:
             list of ActiveDirectoryEntry: Response from the API. Success
@@ -124,9 +124,9 @@ class ActiveDirectoryController(BaseController):
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
-                'domains': domains,
                 'tenantIds': tenant_ids,
-                'allUnderHierarchy': all_under_hierarchy
+                'allUnderHierarchy': all_under_hierarchy,
+                'domains': domains
             }
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)
@@ -358,8 +358,7 @@ class ActiveDirectoryController(BaseController):
                 principals are returned. If not specified, both group and user
                 principals are returned. 'kUser' specifies a user object
                 class. 'kGroup' specifies a group object class. 'kComputer'
-                specifies a computer object class. 'kWellKnownPrincipal'
-                specifies a well known principal.
+                specifies a computer object class.
             search (string, optional): Optionally filter by matching a
                 substring. Only principals in the with a name or
                 sAMAccountName that matches part or all of the specified

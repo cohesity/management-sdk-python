@@ -25,8 +25,7 @@ class ProtectionSourcesController(BaseController):
 
     def get_download_physical_agent(self,
                                     host_type,
-                                    pkg_type=None,
-                                    agent_type=None):
+                                    pkg_type=None):
         """Does a GET request to /public/physicalAgents/download.
 
         Host type could be Linux, Windows, AIX.
@@ -37,19 +36,13 @@ class ProtectionSourcesController(BaseController):
                 'kLinux' indicates the Linux operating system. 'kWindows'
                 indicates the Microsoft Windows operating system. 'kAix'
                 indicates the IBM AIX operating system. 'kSolaris' indicates
-                the Oracle Solaris operating system. 'kSapHana' indicates the
-                Sap Hana database system developed by SAP SE. 'kOther'
-                indicates the other types of operating system.
+                the Oracle Solaris operating system.
             pkg_type (PkgTypeEnum, optional): Specifies the Linux installer
                 package type applicable only to Linux OS and the value can be
                 any of ("kScript","kRPM", "kSuseRPM", "kDEB") 'kScript'
                 indicates a script based agent installer. 'kRPM' indicates a
                 RPM agent installer. 'kSuseRPM' indicates a Open Suse RPM
                 installer. 'kDEB' indicates a Debian agent installer.
-            agent_type (AgentTypeEnum, optional): Specifies agent type. Can be
-                "kGo" for go agent and "kJava" for java agent and "kCpp" for
-                c++ agent. 'kCpp' indicates a c++ agent. 'kJava' indicates a
-                java agent. 'kGo' indicates a go agent.
 
         Returns:
             list of int: Response from the API. Success
@@ -75,8 +68,7 @@ class ProtectionSourcesController(BaseController):
             _query_builder += _url_path
             _query_parameters = {
                 'hostType': host_type,
-                'pkgType': pkg_type,
-                'agentType': agent_type
+                'pkgType': pkg_type
             }
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)
@@ -183,6 +175,12 @@ class ProtectionSourcesController(BaseController):
             raise
 
     def list_protection_sources(self,
+                                tenant_ids=None,
+                                all_under_hierarchy=None,
+                                after_cursor_entity_id=None,
+                                before_cursor_entity_id=None,
+                                node_id=None,
+                                page_size=None,
                                 id=None,
                                 exclude_types=None,
                                 exclude_office_365_types=None,
@@ -192,9 +190,7 @@ class ProtectionSourcesController(BaseController):
                                 environments=None,
                                 environment=None,
                                 include_entity_permission_info=None,
-                                sids=None,
-                                tenant_ids=None,
-                                all_under_hierarchy=None):
+                                sids=None):
         """Does a GET request to /public/protectionSources.
 
         If no parameters are specified, all Protection Sources that are
@@ -210,6 +206,20 @@ class ProtectionSourcesController(BaseController):
         Specifying parameters can alter the results that are returned.
 
         Args:
+            tenant_ids (list of string, optional): TenantIds contains ids of
+                the tenants for which objects are to be returned.
+            all_under_hierarchy (bool, optional): AllUnderHierarchy specifies
+                if objects of all the tenants under the hierarchy of the
+                logged in user's organization should be returned.
+            after_cursor_entity_id (long|int, optional): Specifies the entity
+                id starting from which the items are to be returned.
+            before_cursor_entity_id (long|int, optional): Specifies the entity
+                id upto which the items are to be returned.
+            node_id (long|int, optional): Specifies the entity id for the Node
+                at any level within the Source entity hierarchy whose children
+                are to be paginated.
+            page_size (long|int, optional): Specifies the maximum number of
+                entities to be returned within the page.
             id (long|int, optional): Return the Object subtree for the passed
                 in Protection Source id.
             exclude_types (list of ExcludeTypeEnum, optional): Filter out the
@@ -252,11 +262,6 @@ class ProtectionSourcesController(BaseController):
                 returned.
             sids (list of string, optional): Filter the object subtree for the
                 sids given in the list.
-            tenant_ids (list of string, optional): TenantIds contains ids of
-                the tenants for which objects are to be returned.
-            all_under_hierarchy (bool, optional): AllUnderHierarchy specifies
-                if objects of all the tenants under the hierarchy of the
-                logged in user's organization should be returned.
 
         Returns:
             list of ProtectionSourceNode: Response from the API. Success
@@ -277,6 +282,12 @@ class ProtectionSourcesController(BaseController):
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
+                'tenantIds': tenant_ids,
+                'allUnderHierarchy': all_under_hierarchy,
+                'afterCursorEntityId': after_cursor_entity_id,
+                'beforeCursorEntityId': before_cursor_entity_id,
+                'nodeId': node_id,
+                'pageSize': page_size,
                 'id': id,
                 'excludeTypes': exclude_types,
                 'excludeOffice365Types': exclude_office_365_types,
@@ -286,9 +297,7 @@ class ProtectionSourcesController(BaseController):
                 'environments': environments,
                 'environment': environment,
                 'includeEntityPermissionInfo': include_entity_permission_info,
-                'sids': sids,
-                'tenantIds': tenant_ids,
-                'allUnderHierarchy': all_under_hierarchy
+                'sids': sids
             }
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)
@@ -355,8 +364,7 @@ class ProtectionSourcesController(BaseController):
                 environment. 'kAcropolis' indicates the Acropolis Protection
                 Source environment. 'kPhsicalFiles' indicates the Physical
                 Files Protection Source environment. 'kIsilon' indicates the
-                Dell EMC's Isilon Protection Source environment. 'kGPFS'
-                indicates IBM's GPFS Protection Source environment. 'kKVM'
+                Dell EMC's Isilon Protection Source environment. 'kKVM'
                 indicates the KVM Protection Source environment. 'kAWS'
                 indicates the AWS Protection Source environment. 'kExchange'
                 indicates the Exchange Protection Source environment.
@@ -373,8 +381,7 @@ class ProtectionSourcesController(BaseController):
                 indicates the Hyper Flex Protection Source environment.
                 'kGCPNative' indicates the GCP Native Protection Source
                 environment. 'kAzureNative' indicates the Azure Native
-                Protection Source environment. 'kKubernetes' indicates a
-                Kubernetes Protection Source environment.
+                Protection Source environment.
             protection_source_id (long|int, optional): Specifies the
                 Protection Source Id of the 'kPhysical' or 'kVMware' entity in
                 the Protection Source tree hosting the applications.
@@ -398,7 +405,6 @@ class ProtectionSourcesController(BaseController):
                 Acropolis Protection Source environment. 'kPhsicalFiles'
                 indicates the Physical Files Protection Source environment.
                 'kIsilon' indicates the Dell EMC's Isilon Protection Source
-                environment. 'kGPFS' indicates IBM's GPFS Protection Source
                 environment. 'kKVM' indicates the KVM Protection Source
                 environment. 'kAWS' indicates the AWS Protection Source
                 environment. 'kExchange' indicates the Exchange Protection
@@ -415,8 +421,7 @@ class ProtectionSourcesController(BaseController):
                 'kHyperFlex' indicates the Hyper Flex Protection Source
                 environment. 'kGCPNative' indicates the GCP Native Protection
                 Source environment. 'kAzureNative' indicates the Azure Native
-                Protection Source environment. 'kKubernetes' indicates a
-                Kubernetes Protection Source environment.
+                Protection Source environment.
 
         Returns:
             list of RegisteredApplicationServer: Response from the API.
@@ -891,8 +896,7 @@ class ProtectionSourcesController(BaseController):
                 environment. 'kAcropolis' indicates the Acropolis Protection
                 Source environment. 'kPhsicalFiles' indicates the Physical
                 Files Protection Source environment. 'kIsilon' indicates the
-                Dell EMC's Isilon Protection Source environment. 'kGPFS'
-                indicates IBM's GPFS Protection Source environment. 'kKVM'
+                Dell EMC's Isilon Protection Source environment. 'kKVM'
                 indicates the KVM Protection Source environment. 'kAWS'
                 indicates the AWS Protection Source environment. 'kExchange'
                 indicates the Exchange Protection Source environment.
@@ -909,8 +913,7 @@ class ProtectionSourcesController(BaseController):
                 indicates the Hyper Flex Protection Source environment.
                 'kGCPNative' indicates the GCP Native Protection Source
                 environment. 'kAzureNative' indicates the Azure Native
-                Protection Source environment. 'kKubernetes' indicates a
-                Kubernetes Protection Source environment.
+                Protection Source environment.
             id (long|int): Specifies the Id of a registered Protection Source
                 of the type given in environment.
             all_under_hierarchy (bool, optional): AllUnderHierarchy specifies
@@ -1106,18 +1109,23 @@ class ProtectionSourcesController(BaseController):
             raise
 
     def list_protection_sources_registration_info(self,
+                                                  tenant_ids=None,
+                                                  all_under_hierarchy=None,
                                                   environments=None,
                                                   ids=None,
                                                   include_entity_permission_info=None,
-                                                  sids=None,
-                                                  tenant_ids=None,
-                                                  all_under_hierarchy=None):
+                                                  sids=None):
         """Does a GET request to /public/protectionSources/registrationInfo.
 
         Returns the registration and protection information of the registered
         Protection Sources.
 
         Args:
+            tenant_ids (list of string, optional): TenantIds contains ids of
+                the tenants for which objects are to be returned.
+            all_under_hierarchy (bool, optional): AllUnderHierarchy specifies
+                if objects of all the tenants under the hierarchy of the
+                logged in user's organization should be returned.
             environments (list of
                 EnvironmentListProtectionSourcesRegistrationInfoEnum,
                 optional): Return only Protection Sources that match the
@@ -1135,11 +1143,6 @@ class ProtectionSourcesController(BaseController):
                 returned.
             sids (list of string, optional): Filter the registered root nodes
                 for the sids given in the list.
-            tenant_ids (list of string, optional): TenantIds contains ids of
-                the tenants for which objects are to be returned.
-            all_under_hierarchy (bool, optional): AllUnderHierarchy specifies
-                if objects of all the tenants under the hierarchy of the
-                logged in user's organization should be returned.
 
         Returns:
             GetRegistrationInfoResponse: Response from the API. Success
@@ -1160,12 +1163,12 @@ class ProtectionSourcesController(BaseController):
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
+                'tenantIds': tenant_ids,
+                'allUnderHierarchy': all_under_hierarchy,
                 'environments': environments,
                 'ids': ids,
                 'includeEntityPermissionInfo': include_entity_permission_info,
-                'sids': sids,
-                'tenantIds': tenant_ids,
-                'allUnderHierarchy': all_under_hierarchy
+                'sids': sids
             }
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)
@@ -1480,72 +1483,6 @@ Success
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
-
-        except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
-
-    def update_protection_source(self,
-                                 id,
-                                 body=None):
-        """Does a PATCH request to /public/protectionSources/{id}.
-
-        Update a previously registered Protection Source with new details.
-
-        Args:
-            id (long|int): Specifies a unique id of the Protection Source to
-                update.
-            body (UpdateProtectionSourceParameters, optional): Request to
-                update protection source.
-
-        Returns:
-            ProtectionSourceNode: Response from the API. Success
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-        try:
-            self.logger.info('update_protection_source called.')
-
-            # Validate required parameters
-            self.logger.info('Validating required parameters for update_protection_source.')
-            self.validate_parameters(id=id)
-
-            # Prepare query URL
-            self.logger.info('Preparing query URL for update_protection_source.')
-            _url_path = '/public/protectionSources/{id}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-                'id': id
-            })
-            _query_builder = Configuration.get_base_uri()
-            _query_builder += _url_path
-            _query_url = APIHelper.clean_url(_query_builder)
-
-            # Prepare headers
-            self.logger.info('Preparing headers for update_protection_source.')
-            _headers = {
-                'accept': 'application/json',
-                'content-type': 'application/json; charset=utf-8'
-            }
-
-            # Prepare and execute request
-            self.logger.info('Preparing and executing request for update_protection_source.')
-            _request = self.http_client.patch(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'update_protection_source')
-
-            # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for update_protection_source.')
-            if _context.response.status_code == 0:
-                raise RequestErrorErrorException('Error', _context)
-            self.validate_response(_context)
-
-            # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ProtectionSourceNode.from_dictionary)
 
         except Exception as e:
             self.logger.error(e, exc_info = True)

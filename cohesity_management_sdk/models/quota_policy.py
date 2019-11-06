@@ -28,6 +28,10 @@ class QuotaPolicy(object):
     across Nodes.
 
     Attributes:
+        alert_limit (string): AlertLimitBytes converted to GiB format for
+            report purposes.
+        hard_limit (string): HardLimitBytes converted to GiB format for report
+            purposes.
         alert_limit_bytes (long|int): Specifies if an alert should be
             triggered when the usage of this resource exceeds this quota
             limit. This limit is optional and is specified in bytes. If no
@@ -45,18 +49,24 @@ class QuotaPolicy(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "alert_limit":'AlertLimit',
+        "hard_limit":'HardLimit',
         "alert_limit_bytes":'alertLimitBytes',
         "alert_threshold_percentage":'alertThresholdPercentage',
         "hard_limit_bytes":'hardLimitBytes'
     }
 
     def __init__(self,
+                 alert_limit=None,
+                 hard_limit=None,
                  alert_limit_bytes=None,
                  alert_threshold_percentage=None,
                  hard_limit_bytes=None):
         """Constructor for the QuotaPolicy class"""
 
         # Initialize members of the class
+        self.alert_limit = alert_limit
+        self.hard_limit = hard_limit
         self.alert_limit_bytes = alert_limit_bytes
         self.alert_threshold_percentage = alert_threshold_percentage
         self.hard_limit_bytes = hard_limit_bytes
@@ -80,12 +90,16 @@ class QuotaPolicy(object):
             return None
 
         # Extract variables from the dictionary
+        alert_limit = dictionary.get('AlertLimit')
+        hard_limit = dictionary.get('HardLimit')
         alert_limit_bytes = dictionary.get('alertLimitBytes')
         alert_threshold_percentage = dictionary.get('alertThresholdPercentage')
         hard_limit_bytes = dictionary.get('hardLimitBytes')
 
         # Return an object of this model
-        return cls(alert_limit_bytes,
+        return cls(alert_limit,
+                   hard_limit,
+                   alert_limit_bytes,
                    alert_threshold_percentage,
                    hard_limit_bytes)
 

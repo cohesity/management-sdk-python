@@ -18,13 +18,6 @@ class TypeAwsProtectionSourceEnum(object):
     'kInstanceType' represents various machine types.
     'kKeyPair' represents a pair of public and private key used to login into
     a Virtual Machine.
-    'kTag' represents a tag attached to EC2 instance.
-    'kRDSOptionGroup' represents a RDS option group for configuring database
-    features.
-    'kRDSParameterGroup' represents a RDS parameter group.
-    'kRDSInstance' represents a RDS DB instance.
-    'kRDSSubnet' represents a RDS subnet.
-    'kRDSTag' represents a tag attached to RDS instance.
 
     Attributes:
         KIAMUSER: TODO: type description here.
@@ -36,12 +29,6 @@ class TypeAwsProtectionSourceEnum(object):
         KNETWORKSECURITYGROUP: TODO: type description here.
         KINSTANCETYPE: TODO: type description here.
         KKEYPAIR: TODO: type description here.
-        KTAG: TODO: type description here.
-        KRDSOPTIONGROUP: TODO: type description here.
-        KRDSPARAMETERGROUP: TODO: type description here.
-        KRDSINSTANCE: TODO: type description here.
-        KRDSSUBNET: TODO: type description here.
-        KRDSTAG: TODO: type description here.
 
     """
 
@@ -62,16 +49,4 @@ class TypeAwsProtectionSourceEnum(object):
     KINSTANCETYPE = 'kInstanceType'
 
     KKEYPAIR = 'kKeyPair'
-
-    KTAG = 'kTag'
-
-    KRDSOPTIONGROUP = 'kRDSOptionGroup'
-
-    KRDSPARAMETERGROUP = 'kRDSParameterGroup'
-
-    KRDSINSTANCE = 'kRDSInstance'
-
-    KRDSSUBNET = 'kRDSSubnet'
-
-    KRDSTAG = 'kRDSTag'
 

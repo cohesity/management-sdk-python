@@ -14,6 +14,7 @@ class ClusterAuditLog(object):
     Attributes:
         action (string): Specifies the action that caused the log to be
             generated.
+        cluster_info (string): Specifies the information of the cluster.
         details (string): Specifies more information about the action.
         domain (string): Specifies the domain of the user who caused the
             action that generated the log.
@@ -30,6 +31,7 @@ class ClusterAuditLog(object):
             timestamp.
         impersonation (bool): Specifies if the log was generated during
             impersonation.
+        ip (string): Specifies the IP address of the user making this action.
         new_record (string): Specifies the record after the action is
             invoked.
         original_tenant (Tenant): Specifies details about a tenant.
@@ -47,6 +49,7 @@ class ClusterAuditLog(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "action":'action',
+        "cluster_info":'clusterInfo',
         "details":'details',
         "domain":'domain',
         "entity_id":'entityId',
@@ -54,6 +57,7 @@ class ClusterAuditLog(object):
         "entity_type":'entityType',
         "human_timestamp":'humanTimestamp',
         "impersonation":'impersonation',
+        "ip":'ip',
         "new_record":'newRecord',
         "original_tenant":'originalTenant',
         "previous_record":'previousRecord',
@@ -64,6 +68,7 @@ class ClusterAuditLog(object):
 
     def __init__(self,
                  action=None,
+                 cluster_info=None,
                  details=None,
                  domain=None,
                  entity_id=None,
@@ -71,6 +76,7 @@ class ClusterAuditLog(object):
                  entity_type=None,
                  human_timestamp=None,
                  impersonation=None,
+                 ip=None,
                  new_record=None,
                  original_tenant=None,
                  previous_record=None,
@@ -81,6 +87,7 @@ class ClusterAuditLog(object):
 
         # Initialize members of the class
         self.action = action
+        self.cluster_info = cluster_info
         self.details = details
         self.domain = domain
         self.entity_id = entity_id
@@ -88,6 +95,7 @@ class ClusterAuditLog(object):
         self.entity_type = entity_type
         self.human_timestamp = human_timestamp
         self.impersonation = impersonation
+        self.ip = ip
         self.new_record = new_record
         self.original_tenant = original_tenant
         self.previous_record = previous_record
@@ -115,6 +123,7 @@ class ClusterAuditLog(object):
 
         # Extract variables from the dictionary
         action = dictionary.get('action')
+        cluster_info = dictionary.get('clusterInfo')
         details = dictionary.get('details')
         domain = dictionary.get('domain')
         entity_id = dictionary.get('entityId')
@@ -122,6 +131,7 @@ class ClusterAuditLog(object):
         entity_type = dictionary.get('entityType')
         human_timestamp = dictionary.get('humanTimestamp')
         impersonation = dictionary.get('impersonation')
+        ip = dictionary.get('ip')
         new_record = dictionary.get('newRecord')
         original_tenant = cohesity_management_sdk.models.tenant.Tenant.from_dictionary(dictionary.get('originalTenant')) if dictionary.get('originalTenant') else None
         previous_record = dictionary.get('previousRecord')
@@ -131,6 +141,7 @@ class ClusterAuditLog(object):
 
         # Return an object of this model
         return cls(action,
+                   cluster_info,
                    details,
                    domain,
                    entity_id,
@@ -138,6 +149,7 @@ class ClusterAuditLog(object):
                    entity_type,
                    human_timestamp,
                    impersonation,
+                   ip,
                    new_record,
                    original_tenant,
                    previous_record,

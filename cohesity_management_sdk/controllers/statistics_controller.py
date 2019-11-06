@@ -24,7 +24,8 @@ class StatisticsController(BaseController):
     def get_entities(self,
                      schema_name,
                      include_aggr_metric_sources=None,
-                     metric_names=None):
+                     metric_names=None,
+                     max_entities=None):
         """Does a GET request to /public/statistics/entities.
 
         An entity is an object found on the Cohesity Cluster, such as a disk
@@ -43,6 +44,8 @@ class StatisticsController(BaseController):
                 metric names to return such as 'kRandomIos' which corresponds
                 to 'Random IOs' in Advanced Diagnostics of the Cohesity
                 Dashboard.
+            max_entities (int, optional): Specifies the maximum entities
+                returned in the result. By default this field is 500.
 
         Returns:
             list of EntityProto: Response from the API. Success
@@ -69,7 +72,8 @@ class StatisticsController(BaseController):
             _query_parameters = {
                 'schemaName': schema_name,
                 'includeAggrMetricSources': include_aggr_metric_sources,
-                'metricNames': metric_names
+                'metricNames': metric_names,
+                'maxEntities': max_entities
             }
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)
@@ -336,10 +340,9 @@ class StatisticsController(BaseController):
 
     def get_time_series_stats(self,
                               schema_name,
+                              entity_id,
                               metric_name,
                               start_time_msecs,
-                              entity_id=None,
-                              entity_id_list=None,
                               end_time_msecs=None,
                               rollup_function=None,
                               rollup_interval_secs=None):
@@ -367,19 +370,15 @@ class StatisticsController(BaseController):
         Args:
             schema_name (string): Specifies the name of entity schema such as
                 'kIceboxJobVaultStats'.
+            entity_id (string): Specifies the id of the entity represented as
+                a string. Get the entityId by running the GET
+                public/statistics/entities operation.
             metric_name (string): Specifies the name of the metric such as the
                 'kDiskAwaitTimeMsecs' which is displayed as 'Disk Health' in
                 Advanced Diagnostics of the Cohesity Dashboard.
             start_time_msecs (long|int): Specifies the start time for the
                 series of metric data. Specify the start time as a Unix epoch
                 Timestamp (in milliseconds).
-            entity_id (string, optional): Specifies the id of the entity
-                represented as a string. Get the entityId by running the GET
-                public/statistics/entities operation.
-            entity_id_list (list of string, optional): Specifies an entity id
-                list represented as a string. The stats result will be the sum
-                over all these entities. If both EntityIdList and EntityId are
-                specified, EntityId will be ignored.
             end_time_msecs (long|int, optional): Specifies the end time for
                 the series of metric data. Specify the end time as a Unix
                 epoch Timestamp (in milliseconds). If not specified, the data
@@ -411,6 +410,7 @@ class StatisticsController(BaseController):
             # Validate required parameters
             self.logger.info('Validating required parameters for get_time_series_stats.')
             self.validate_parameters(schema_name=schema_name,
+                                     entity_id=entity_id,
                                      metric_name=metric_name,
                                      start_time_msecs=start_time_msecs)
 
@@ -421,10 +421,9 @@ class StatisticsController(BaseController):
             _query_builder += _url_path
             _query_parameters = {
                 'schemaName': schema_name,
+                'entityId': entity_id,
                 'metricName': metric_name,
                 'startTimeMsecs': start_time_msecs,
-                'entityId': entity_id,
-                'entityIdList': entity_id_list,
                 'endTimeMsecs': end_time_msecs,
                 'rollupFunction': rollup_function,
                 'rollupIntervalSecs': rollup_interval_secs

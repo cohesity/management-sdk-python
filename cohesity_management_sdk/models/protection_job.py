@@ -41,8 +41,6 @@ class ProtectionJob(object):
             certain scenarios.
         continue_on_quiesce_failure (bool): Whether to continue backing up on
             quiesce failure.
-        create_remote_view (bool): Specifies whether to create a remote view
-            name to use for view overwrite.
         creation_time_usecs (long|int): Specifies the time when the Protection
             Job was created.
         data_migration_policy (DataMigrationPolicy): Specifies settings for
@@ -74,24 +72,22 @@ class ProtectionJob(object):
             Acropolis Protection Source environment. 'kPhsicalFiles' indicates
             the Physical Files Protection Source environment. 'kIsilon'
             indicates the Dell EMC's Isilon Protection Source environment.
-            'kGPFS' indicates IBM's GPFS Protection Source environment. 'kKVM'
-            indicates the KVM Protection Source environment. 'kAWS' indicates
-            the AWS Protection Source environment. 'kExchange' indicates the
-            Exchange Protection Source environment. 'kHyperVVSS' indicates the
-            HyperV VSS Protection Source environment. 'kOracle' indicates the
-            Oracle Protection Source environment. 'kGCP' indicates the Google
-            Cloud Platform Protection Source environment. 'kFlashBlade'
-            indicates the Flash Blade Protection Source environment.
-            'kAWSNative' indicates the AWS Native Protection Source
-            environment. 'kVCD' indicates the VMware's Virtual cloud Director
-            Protection Source environment. 'kO365' indicates the Office 365
-            Protection Source environment. 'kO365Outlook' indicates Office 365
-            outlook Protection Source environment. 'kHyperFlex' indicates the
-            Hyper Flex Protection Source environment. 'kGCPNative' indicates
-            the GCP Native Protection Source environment. 'kAzureNative'
-            indicates the Azure Native Protection Source environment.
-            'kKubernetes' indicates a Kubernetes Protection Source
-            environment.
+            'kKVM' indicates the KVM Protection Source environment. 'kAWS'
+            indicates the AWS Protection Source environment. 'kExchange'
+            indicates the Exchange Protection Source environment. 'kHyperVVSS'
+            indicates the HyperV VSS Protection Source environment. 'kOracle'
+            indicates the Oracle Protection Source environment. 'kGCP'
+            indicates the Google Cloud Platform Protection Source environment.
+            'kFlashBlade' indicates the Flash Blade Protection Source
+            environment. 'kAWSNative' indicates the AWS Native Protection
+            Source environment. 'kVCD' indicates the VMware's Virtual cloud
+            Director Protection Source environment. 'kO365' indicates the
+            Office 365 Protection Source environment. 'kO365Outlook' indicates
+            Office 365 outlook Protection Source environment. 'kHyperFlex'
+            indicates the Hyper Flex Protection Source environment.
+            'kGCPNative' indicates the GCP Native Protection Source
+            environment. 'kAzureNative' indicates the Azure Native Protection
+            Source environment.
         environment_parameters (EnvironmentTypeJobParameters): Specifies
             additional parameters that are common to all Protection Sources in
             a Protection Job created for a particular environment type.
@@ -291,7 +287,6 @@ class ProtectionJob(object):
         "alerting_policy":'alertingPolicy',
         "cloud_parameters":'cloudParameters',
         "continue_on_quiesce_failure":'continueOnQuiesceFailure',
-        "create_remote_view":'createRemoteView',
         "creation_time_usecs":'creationTimeUsecs',
         "data_migration_policy":'dataMigrationPolicy',
         "dedup_disabled_source_ids":'dedupDisabledSourceIds',
@@ -346,7 +341,6 @@ class ProtectionJob(object):
                  alerting_policy=None,
                  cloud_parameters=None,
                  continue_on_quiesce_failure=None,
-                 create_remote_view=None,
                  creation_time_usecs=None,
                  data_migration_policy=None,
                  dedup_disabled_source_ids=None,
@@ -398,7 +392,6 @@ class ProtectionJob(object):
         self.alerting_policy = alerting_policy
         self.cloud_parameters = cloud_parameters
         self.continue_on_quiesce_failure = continue_on_quiesce_failure
-        self.create_remote_view = create_remote_view
         self.creation_time_usecs = creation_time_usecs
         self.data_migration_policy = data_migration_policy
         self.dedup_disabled_source_ids = dedup_disabled_source_ids
@@ -473,7 +466,6 @@ class ProtectionJob(object):
         alerting_policy = dictionary.get('alertingPolicy')
         cloud_parameters = cohesity_management_sdk.models.cloud_parameters.CloudParameters.from_dictionary(dictionary.get('cloudParameters')) if dictionary.get('cloudParameters') else None
         continue_on_quiesce_failure = dictionary.get('continueOnQuiesceFailure')
-        create_remote_view = dictionary.get('createRemoteView')
         creation_time_usecs = dictionary.get('creationTimeUsecs')
         data_migration_policy = cohesity_management_sdk.models.data_migration_policy.DataMigrationPolicy.from_dictionary(dictionary.get('dataMigrationPolicy')) if dictionary.get('dataMigrationPolicy') else None
         dedup_disabled_source_ids = dictionary.get('dedupDisabledSourceIds')
@@ -531,7 +523,6 @@ class ProtectionJob(object):
                    alerting_policy,
                    cloud_parameters,
                    continue_on_quiesce_failure,
-                   create_remote_view,
                    creation_time_usecs,
                    data_migration_policy,
                    dedup_disabled_source_ids,

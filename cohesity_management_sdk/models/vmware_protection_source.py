@@ -27,7 +27,7 @@ class VmwareProtectionSource(object):
             'kConnected', 'kDisconnected', 'kInacccessible', etc. 'kConnected'
             indicates that server has access to virtual machine.
             'kDisconnected' indicates that server is currently disconnected to
-            virtual machine. 'kInaccessible' indicates that one or more
+            virtual machine. 'kInacccessible' indicates that one or more
             configuration files are inacccessible. 'kInvalid' indicates that
             virtual machine configuration is invalid. 'kOrphaned' indicates
             that virtual machine is no longer registered on the host it is
@@ -50,8 +50,6 @@ class VmwareProtectionSource(object):
             Linux operating system. 'kWindows' indicates the Microsoft Windows
             operating system. 'kAix' indicates the IBM AIX operating system.
             'kSolaris' indicates the Oracle Solaris operating system.
-            'kSapHana' indicates the Sap Hana database system developed by SAP
-            SE. 'kOther' indicates the other types of operating system.
         id (VmwareObjectId): Specifies a unique Protection Source id across
             Cohesity Clusters. It is derived from the id of the VMware
             Protection Source.

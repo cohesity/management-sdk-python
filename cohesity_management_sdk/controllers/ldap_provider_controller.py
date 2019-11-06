@@ -18,21 +18,21 @@ class LdapProviderController(BaseController):
         self.logger = logging.getLogger(__name__)
 
     def get_ldap_provider(self,
-                          ids=None,
                           tenant_ids=None,
-                          all_under_hierarchy=None):
+                          all_under_hierarchy=None,
+                          ids=None):
         """Does a GET request to /public/ldapProvider.
 
         Lists the LDAP providers.
 
         Args:
-            ids (list of long|int, optional): Specifies the ids of the LDAP
-                providers to fetch.
             tenant_ids (list of string, optional): TenantIds contains ids of
                 the tenants for which objects are to be returned.
             all_under_hierarchy (bool, optional): AllUnderHierarchy specifies
                 if objects of all the tenants under the hierarchy of the
                 logged in user's organization should be returned.
+            ids (list of long|int, optional): Specifies the ids of the LDAP
+                providers to fetch.
 
         Returns:
             list of LdapProviderResponse: Response from the API. Success
@@ -53,9 +53,9 @@ class LdapProviderController(BaseController):
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
-                'ids': ids,
                 'tenantIds': tenant_ids,
-                'allUnderHierarchy': all_under_hierarchy
+                'allUnderHierarchy': all_under_hierarchy,
+                'ids': ids
             }
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)

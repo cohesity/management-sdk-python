@@ -32,12 +32,18 @@ class ComparedADObject(object):
             destination is missing. 'kDisableSupported' indicates the enable
             and disable is supported on the AD Object. AD Objects of type
             'User' and 'Computers' support this operation.
+        destination_attr_count (int): Specifies the number of attributes of AD
+            Object in the Production AD.
         destination_guid (string): Specifies the guid of the object in the
             Production AD which is equivalent to the one in the Snapshot AD.
         error_message (string): Specifies the error message while fetching the
             AD object.
+        excluded_attr_count (int): Specifies the number of attributes in AD
+            Object which are excluded from comparison.
         mismatch_attr_count (int): Specifies the number of attributes of AD
             Object mismatched on the Snapshot and Production AD.
+        source_attr_count (int): Specifies the number of properties of AD
+            Object in the Snapshot AD.
         source_guid (string): Specifies the guid of the AD object in the
             Snapshot AD.
 
@@ -47,27 +53,36 @@ class ComparedADObject(object):
     _names = {
         "ad_attributes":'adAttributes',
         "ad_object_flags":'adObjectFlags',
+        "destination_attr_count":'destinationAttrCount',
         "destination_guid":'destinationGuid',
         "error_message":'errorMessage',
+        "excluded_attr_count":'excludedAttrCount',
         "mismatch_attr_count":'mismatchAttrCount',
+        "source_attr_count":'sourceAttrCount',
         "source_guid":'sourceGuid'
     }
 
     def __init__(self,
                  ad_attributes=None,
                  ad_object_flags=None,
+                 destination_attr_count=None,
                  destination_guid=None,
                  error_message=None,
+                 excluded_attr_count=None,
                  mismatch_attr_count=None,
+                 source_attr_count=None,
                  source_guid=None):
         """Constructor for the ComparedADObject class"""
 
         # Initialize members of the class
         self.ad_attributes = ad_attributes
         self.ad_object_flags = ad_object_flags
+        self.destination_attr_count = destination_attr_count
         self.destination_guid = destination_guid
         self.error_message = error_message
+        self.excluded_attr_count = excluded_attr_count
         self.mismatch_attr_count = mismatch_attr_count
+        self.source_attr_count = source_attr_count
         self.source_guid = source_guid
 
 
@@ -95,17 +110,23 @@ class ComparedADObject(object):
             for structure in dictionary.get('adAttributes'):
                 ad_attributes.append(cohesity_management_sdk.models.ad_attribute.AdAttribute.from_dictionary(structure))
         ad_object_flags = dictionary.get('adObjectFlags')
+        destination_attr_count = dictionary.get('destinationAttrCount')
         destination_guid = dictionary.get('destinationGuid')
         error_message = dictionary.get('errorMessage')
+        excluded_attr_count = dictionary.get('excludedAttrCount')
         mismatch_attr_count = dictionary.get('mismatchAttrCount')
+        source_attr_count = dictionary.get('sourceAttrCount')
         source_guid = dictionary.get('sourceGuid')
 
         # Return an object of this model
         return cls(ad_attributes,
                    ad_object_flags,
+                   destination_attr_count,
                    destination_guid,
                    error_message,
+                   excluded_attr_count,
                    mismatch_attr_count,
+                   source_attr_count,
                    source_guid)
 
 

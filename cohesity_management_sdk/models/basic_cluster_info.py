@@ -39,9 +39,6 @@ class BasicClusterInfo(object):
             Cohesity Cluster.
         mcm_mode (bool): Specifies whether server is running in mcm-mode. If
             set to true, it is in mcm-mode.
-        mcm_on_prem_mode (bool): Specifies whether server is running in
-            mcm-on-prem-mode. If set to true, it is in mcm on prem mode. This
-            need mcm-mode to be true.
         multi_tenancy_enabled (bool): Specifies if multi-tenancy is enabled on
             the cluster.
         name (string): Specifies the name of the Cohesity Cluster.
@@ -59,7 +56,6 @@ class BasicClusterInfo(object):
         "idp_tenant_exists":'idpTenantExists',
         "language_locale":'languageLocale',
         "mcm_mode":'mcmMode',
-        "mcm_on_prem_mode":'mcmOnPremMode',
         "multi_tenancy_enabled":'multiTenancyEnabled',
         "name":'name'
     }
@@ -74,7 +70,6 @@ class BasicClusterInfo(object):
                  idp_tenant_exists=None,
                  language_locale=None,
                  mcm_mode=None,
-                 mcm_on_prem_mode=None,
                  multi_tenancy_enabled=None,
                  name=None):
         """Constructor for the BasicClusterInfo class"""
@@ -89,7 +84,6 @@ class BasicClusterInfo(object):
         self.idp_tenant_exists = idp_tenant_exists
         self.language_locale = language_locale
         self.mcm_mode = mcm_mode
-        self.mcm_on_prem_mode = mcm_on_prem_mode
         self.multi_tenancy_enabled = multi_tenancy_enabled
         self.name = name
 
@@ -121,7 +115,6 @@ class BasicClusterInfo(object):
         idp_tenant_exists = dictionary.get('idpTenantExists')
         language_locale = dictionary.get('languageLocale')
         mcm_mode = dictionary.get('mcmMode')
-        mcm_on_prem_mode = dictionary.get('mcmOnPremMode')
         multi_tenancy_enabled = dictionary.get('multiTenancyEnabled')
         name = dictionary.get('name')
 
@@ -135,7 +128,6 @@ class BasicClusterInfo(object):
                    idp_tenant_exists,
                    language_locale,
                    mcm_mode,
-                   mcm_on_prem_mode,
                    multi_tenancy_enabled,
                    name)
 

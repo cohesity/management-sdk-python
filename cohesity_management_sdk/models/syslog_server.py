@@ -17,6 +17,10 @@ class SyslogServer(object):
             logs are sent to the syslog server. (default) If 'false', Cluster
             audit logs are not sent to the syslog server. Either cluster audit
             logs or filer audit logs should be enabled.
+        is_data_protection_enabled (bool): Specifies if dataprotection  logs
+            should be sent to syslog server If 'true', dataprotection  logs
+            are sent to the server. If 'false', dataprotection  logs are not
+            sent to the server.(default)
         is_filer_auditing_enabled (bool): Specifies if filer audit logs should
             be sent to this syslog server. If 'true', filer audit logs are
             sent to the syslog server. (default) If 'false', filer audit logs
@@ -38,6 +42,7 @@ class SyslogServer(object):
         "port":'port',
         "protocol":'protocol',
         "is_cluster_auditing_enabled":'isClusterAuditingEnabled',
+        "is_data_protection_enabled":'isDataProtectionEnabled',
         "is_filer_auditing_enabled":'isFilerAuditingEnabled',
         "name":'name'
     }
@@ -47,6 +52,7 @@ class SyslogServer(object):
                  port=None,
                  protocol=None,
                  is_cluster_auditing_enabled=None,
+                 is_data_protection_enabled=None,
                  is_filer_auditing_enabled=None,
                  name=None):
         """Constructor for the SyslogServer class"""
@@ -54,6 +60,7 @@ class SyslogServer(object):
         # Initialize members of the class
         self.address = address
         self.is_cluster_auditing_enabled = is_cluster_auditing_enabled
+        self.is_data_protection_enabled = is_data_protection_enabled
         self.is_filer_auditing_enabled = is_filer_auditing_enabled
         self.name = name
         self.port = port
@@ -82,6 +89,7 @@ class SyslogServer(object):
         port = dictionary.get('port')
         protocol = dictionary.get('protocol')
         is_cluster_auditing_enabled = dictionary.get('isClusterAuditingEnabled')
+        is_data_protection_enabled = dictionary.get('isDataProtectionEnabled')
         is_filer_auditing_enabled = dictionary.get('isFilerAuditingEnabled')
         name = dictionary.get('name')
 
@@ -90,6 +98,7 @@ class SyslogServer(object):
                    port,
                    protocol,
                    is_cluster_auditing_enabled,
+                   is_data_protection_enabled,
                    is_filer_auditing_enabled,
                    name)
 

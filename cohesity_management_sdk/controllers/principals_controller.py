@@ -168,8 +168,7 @@ class PrincipalsController(BaseController):
                 are returned. If not specified, both group and user principals
                 are returned. 'kUser' specifies a user object class. 'kGroup'
                 specifies a group object class. 'kComputer' specifies a
-                computer object class. 'kWellKnownPrincipal' specifies a well
-                known principal.
+                computer object class.
             search (string, optional): Optionally filter by matching a
                 substring. Only principals in the with a name or
                 sAMAccountName that matches part or all of the specified

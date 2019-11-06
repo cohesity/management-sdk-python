@@ -11,13 +11,11 @@ class ObjectClassAddedIdpPrincipalEnum(object):
     'kUser' specifies a user object class.
     'kGroup' specifies a group object class.
     'kComputer' specifies a computer object class.
-    'kWellKnownPrincipal' specifies a well known principal.
 
     Attributes:
         KUSER: TODO: type description here.
         KGROUP: TODO: type description here.
         KCOMPUTER: TODO: type description here.
-        KWELLKNOWNPRINCIPAL: TODO: type description here.
 
     """
 
@@ -26,6 +24,4 @@ class ObjectClassAddedIdpPrincipalEnum(object):
     KGROUP = 'kGroup'
 
     KCOMPUTER = 'kComputer'
-
-    KWELLKNOWNPRINCIPAL = 'kWellKnownPrincipal'
 

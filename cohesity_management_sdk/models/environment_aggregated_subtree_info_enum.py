@@ -25,7 +25,6 @@ class EnvironmentAggregatedSubtreeInfoEnum(object):
     'kPhsicalFiles' indicates the Physical Files Protection Source
     environment.
     'kIsilon' indicates the Dell EMC's Isilon Protection Source environment.
-    'kGPFS' indicates IBM's GPFS Protection Source environment.
     'kKVM' indicates the KVM Protection Source environment.
     'kAWS' indicates the AWS Protection Source environment.
     'kExchange' indicates the Exchange Protection Source environment.
@@ -43,7 +42,6 @@ class EnvironmentAggregatedSubtreeInfoEnum(object):
     'kHyperFlex' indicates the Hyper Flex Protection Source environment.
     'kGCPNative' indicates the GCP Native Protection Source environment.
     'kAzureNative' indicates the Azure Native Protection Source environment.
-    'kKubernetes' indicates a Kubernetes Protection Source environment.
 
     Attributes:
         KVMWARE: TODO: type description here.
@@ -60,7 +58,6 @@ class EnvironmentAggregatedSubtreeInfoEnum(object):
         KACROPOLIS: TODO: type description here.
         KPHYSICALFILES: TODO: type description here.
         KISILON: TODO: type description here.
-        KGPFS: TODO: type description here.
         KKVM: TODO: type description here.
         KAWS: TODO: type description here.
         KEXCHANGE: TODO: type description here.
@@ -75,7 +72,6 @@ class EnvironmentAggregatedSubtreeInfoEnum(object):
         KHYPERFLEX: TODO: type description here.
         KGCPNATIVE: TODO: type description here.
         KAZURENATIVE: TODO: type description here.
-        KKUBERNETES: TODO: type description here.
 
     """
 
@@ -107,8 +103,6 @@ class EnvironmentAggregatedSubtreeInfoEnum(object):
 
     KISILON = 'kIsilon'
 
-    KGPFS = 'kGPFS'
-
     KKVM = 'kKVM'
 
     KAWS = 'kAWS'
@@ -136,6 +130,4 @@ class EnvironmentAggregatedSubtreeInfoEnum(object):
     KGCPNATIVE = 'kGCPNative'
 
     KAZURENATIVE = 'kAzureNative'
-
-    KKUBERNETES = 'kKubernetes'
 

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
-import cohesity_management_sdk.models.ad_object_meta_data
 import cohesity_management_sdk.models.email_meta_data
 import cohesity_management_sdk.models.file_version
 import cohesity_management_sdk.models.universal_id
@@ -14,8 +13,6 @@ class FileSearchResult(object):
     Specifies details about the found file or folder.
 
     Attributes:
-        ad_object_meta_data (AdObjectMetaData): Specifies details about the AD
-            objects.
         document_type (string): Specifies the inferred document type.
         email_meta_data (EmailMetaData): Specifies details about the emails
             and the folder containing emails.
@@ -54,7 +51,6 @@ class FileSearchResult(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "ad_object_meta_data":'adObjectMetaData',
         "document_type":'documentType',
         "email_meta_data":'emailMetaData',
         "file_versions":'fileVersions',
@@ -70,7 +66,6 @@ class FileSearchResult(object):
     }
 
     def __init__(self,
-                 ad_object_meta_data=None,
                  document_type=None,
                  email_meta_data=None,
                  file_versions=None,
@@ -86,7 +81,6 @@ class FileSearchResult(object):
         """Constructor for the FileSearchResult class"""
 
         # Initialize members of the class
-        self.ad_object_meta_data = ad_object_meta_data
         self.document_type = document_type
         self.email_meta_data = email_meta_data
         self.file_versions = file_versions
@@ -119,7 +113,6 @@ class FileSearchResult(object):
             return None
 
         # Extract variables from the dictionary
-        ad_object_meta_data = cohesity_management_sdk.models.ad_object_meta_data.AdObjectMetaData.from_dictionary(dictionary.get('adObjectMetaData')) if dictionary.get('adObjectMetaData') else None
         document_type = dictionary.get('documentType')
         email_meta_data = cohesity_management_sdk.models.email_meta_data.EmailMetaData.from_dictionary(dictionary.get('emailMetaData')) if dictionary.get('emailMetaData') else None
         file_versions = None
@@ -138,8 +131,7 @@ class FileSearchResult(object):
         view_box_id = dictionary.get('viewBoxId')
 
         # Return an object of this model
-        return cls(ad_object_meta_data,
-                   document_type,
+        return cls(document_type,
                    email_meta_data,
                    file_versions,
                    filename,

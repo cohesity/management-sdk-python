@@ -14,19 +14,9 @@ class EntitySchemaProto(object):
     Attributes:
         attributes_descriptor (EntitySchemaProtoAttributesDescriptor):
             Specifies a list of attributes about an entity.
-        flush_interval_secs (int): Defines the interval used to flush in
-            memory stats to scribe table. During this time if the stats server
-            is down before flushing, it could loose some of the stats. Modules
-            can flush any critical stats via AddEntitiesStats API. But this
-            should be used very judiciously as it causes lot of overhead for
-            stats.
         is_internal_schema (bool): Specifies if this schema should be
             displayed in Advanced Diagnostics of the Cohesity Dashboard. If
             false, the schema is displayed.
-        largest_flush_interval_secs (int): Use can change the flush interval
-            secs via gflag and this store the largest interval seconds set.
-            This is used to round up the timestamp to this flush interval secs
-            during range scan. TODO(sanal) move it out to internal proto.
         name (string): Specifies a name that uniquely identifies an entity
             schema such as 'kBridgeClusterStats'.
         schema_descriptive_name (string): Specifies the name of the Schema as
@@ -45,9 +35,7 @@ class EntitySchemaProto(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "attributes_descriptor":'attributesDescriptor',
-        "flush_interval_secs":'flushIntervalSecs',
         "is_internal_schema":'isInternalSchema',
-        "largest_flush_interval_secs":'largestFlushIntervalSecs',
         "name":'name',
         "schema_descriptive_name":'schemaDescriptiveName',
         "schema_help_text":'schemaHelpText',
@@ -57,9 +45,7 @@ class EntitySchemaProto(object):
 
     def __init__(self,
                  attributes_descriptor=None,
-                 flush_interval_secs=None,
                  is_internal_schema=None,
-                 largest_flush_interval_secs=None,
                  name=None,
                  schema_descriptive_name=None,
                  schema_help_text=None,
@@ -69,9 +55,7 @@ class EntitySchemaProto(object):
 
         # Initialize members of the class
         self.attributes_descriptor = attributes_descriptor
-        self.flush_interval_secs = flush_interval_secs
         self.is_internal_schema = is_internal_schema
-        self.largest_flush_interval_secs = largest_flush_interval_secs
         self.name = name
         self.schema_descriptive_name = schema_descriptive_name
         self.schema_help_text = schema_help_text
@@ -98,9 +82,7 @@ class EntitySchemaProto(object):
 
         # Extract variables from the dictionary
         attributes_descriptor = cohesity_management_sdk.models.entity_schema_proto_attributes_descriptor.EntitySchemaProtoAttributesDescriptor.from_dictionary(dictionary.get('attributesDescriptor')) if dictionary.get('attributesDescriptor') else None
-        flush_interval_secs = dictionary.get('flushIntervalSecs')
         is_internal_schema = dictionary.get('isInternalSchema')
-        largest_flush_interval_secs = dictionary.get('largestFlushIntervalSecs')
         name = dictionary.get('name')
         schema_descriptive_name = dictionary.get('schemaDescriptiveName')
         schema_help_text = dictionary.get('schemaHelpText')
@@ -113,9 +95,7 @@ class EntitySchemaProto(object):
 
         # Return an object of this model
         return cls(attributes_descriptor,
-                   flush_interval_secs,
                    is_internal_schema,
-                   largest_flush_interval_secs,
                    name,
                    schema_descriptive_name,
                    schema_help_text,

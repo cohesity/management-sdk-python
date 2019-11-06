@@ -75,10 +75,10 @@ class GroupsController(BaseController):
             raise
 
     def get_groups(self,
-                   name=None,
-                   domain=None,
                    tenant_ids=None,
-                   all_under_hierarchy=None):
+                   all_under_hierarchy=None,
+                   name=None,
+                   domain=None):
         """Does a GET request to /public/groups.
 
         If no parameters are specified, all groups currently on the Cohesity
@@ -87,17 +87,17 @@ class GroupsController(BaseController):
         returned.
 
         Args:
+            tenant_ids (list of string, optional): TenantIds contains ids of
+                the tenants for which objects are to be returned.
+            all_under_hierarchy (bool, optional): AllUnderHierarchy specifies
+                if objects of all the tenants under the hierarchy of the
+                logged in user's organization should be returned.
             name (string, optional): Optionally specify a group name to filter
                 by. All groups containing name will be returned.
             domain (string, optional): If no domain is specified, all groups
                 on the Cohesity Cluster are searched. If a domain is
                 specified, only groups on the Cohesity Cluster associated with
                 that domain are searched.
-            tenant_ids (list of string, optional): TenantIds contains ids of
-                the tenants for which objects are to be returned.
-            all_under_hierarchy (bool, optional): AllUnderHierarchy specifies
-                if objects of all the tenants under the hierarchy of the
-                logged in user's organization should be returned.
 
         Returns:
             list of Group: Response from the API. Success
@@ -118,10 +118,10 @@ class GroupsController(BaseController):
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
-                'name': name,
-                'domain': domain,
                 'tenantIds': tenant_ids,
-                'allUnderHierarchy': all_under_hierarchy
+                'allUnderHierarchy': all_under_hierarchy,
+                'name': name,
+                'domain': domain
             }
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)

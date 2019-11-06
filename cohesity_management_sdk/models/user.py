@@ -4,6 +4,7 @@
 import cohesity_management_sdk.models.cluster_identifier
 import cohesity_management_sdk.models.google_account_info
 import cohesity_management_sdk.models.idp_user_info
+import cohesity_management_sdk.models.tenant_config
 import cohesity_management_sdk.models.preferences
 import cohesity_management_sdk.models.salesforce_account_info
 
@@ -49,15 +50,17 @@ class User(object):
         last_updated_time_msecs (long|int): Specifies the epoch time in
             milliseconds when the user account was last modified on the
             Cohesity Cluster.
+        org_membership (list of TenantConfig): OrgMembership contains the list
+            of all available tenantIds for this user to switch to. Only when
+            creating the session user, this field is populated on the fly. We
+            discover the tenantIds from various groups assigned to the users.
         password (string): Specifies the password of this user.
         preferences (Preferences): TODO: type description here.
         primary_group_name (string): Specifies the name of the primary group
             of this User.
-        privilege_ids (list of PrivilegeIdUserEnum): Array of Privileges.
-            Specifies the Cohesity privileges from the roles. This will be
-            populated based on the union of all privileges in roles. Type for
-            unique privilege Id values. All below enum values specify a value
-            for all uniquely defined privileges in Cohesity.
+        privilege_ids (list of int): Array of Privileges.  Specifies the
+            Cohesity privileges from the roles. This will be populated based
+            on the union of all privileges in roles.
         restricted (bool): Whether the user is a restricted user. A restricted
             user can only view the objects he has permissions to.
         roles (list of string): Array of Roles.  Specifies the Cohesity roles
@@ -89,6 +92,7 @@ class User(object):
         "google_account":'googleAccount',
         "idp_user_info":'idpUserInfo',
         "last_updated_time_msecs":'lastUpdatedTimeMsecs',
+        "org_membership":'orgMembership',
         "password":'password',
         "preferences":'preferences',
         "primary_group_name":'primaryGroupName',
@@ -117,6 +121,7 @@ class User(object):
                  google_account=None,
                  idp_user_info=None,
                  last_updated_time_msecs=None,
+                 org_membership=None,
                  password=None,
                  preferences=None,
                  primary_group_name=None,
@@ -145,6 +150,7 @@ class User(object):
         self.google_account = google_account
         self.idp_user_info = idp_user_info
         self.last_updated_time_msecs = last_updated_time_msecs
+        self.org_membership = org_membership
         self.password = password
         self.preferences = preferences
         self.primary_group_name = primary_group_name
@@ -194,6 +200,11 @@ class User(object):
         google_account = cohesity_management_sdk.models.google_account_info.GoogleAccountInfo.from_dictionary(dictionary.get('googleAccount')) if dictionary.get('googleAccount') else None
         idp_user_info = cohesity_management_sdk.models.idp_user_info.IdpUserInfo.from_dictionary(dictionary.get('idpUserInfo')) if dictionary.get('idpUserInfo') else None
         last_updated_time_msecs = dictionary.get('lastUpdatedTimeMsecs')
+        org_membership = None
+        if dictionary.get('orgMembership') != None:
+            org_membership = list()
+            for structure in dictionary.get('orgMembership'):
+                org_membership.append(cohesity_management_sdk.models.tenant_config.TenantConfig.from_dictionary(structure))
         password = dictionary.get('password')
         preferences = cohesity_management_sdk.models.preferences.Preferences.from_dictionary(dictionary.get('preferences')) if dictionary.get('preferences') else None
         primary_group_name = dictionary.get('primaryGroupName')
@@ -221,6 +232,7 @@ class User(object):
                    google_account,
                    idp_user_info,
                    last_updated_time_msecs,
+                   org_membership,
                    password,
                    preferences,
                    primary_group_name,

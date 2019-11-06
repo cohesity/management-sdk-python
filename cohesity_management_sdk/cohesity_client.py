@@ -13,15 +13,14 @@ from cohesity_management_sdk.controllers.cluster_controller import ClusterContro
 from cohesity_management_sdk.controllers.certificates_controller import CertificatesController
 from cohesity_management_sdk.controllers.clusters_controller import ClustersController
 from cohesity_management_sdk.controllers.cluster_partitions_controller import ClusterPartitionsController
-from cohesity_management_sdk.controllers.nodes_controller import NodesController
 from cohesity_management_sdk.controllers.groups_controller import GroupsController
 from cohesity_management_sdk.controllers.idps_controller import IdpsController
 from cohesity_management_sdk.controllers.interface_group_controller import InterfaceGroupController
 from cohesity_management_sdk.controllers.kms_configuration_controller import KmsConfigurationController
 from cohesity_management_sdk.controllers.ldap_provider_controller import LdapProviderController
-from cohesity_management_sdk.controllers.monitoring_controller import MonitoringController
 from cohesity_management_sdk.controllers.network_controller import NetworkController
 from cohesity_management_sdk.controllers.views_controller import ViewsController
+from cohesity_management_sdk.controllers.nodes_controller import NodesController
 from cohesity_management_sdk.controllers.packages_controller import PackagesController
 from cohesity_management_sdk.controllers.protection_sources_controller import ProtectionSourcesController
 from cohesity_management_sdk.controllers.custom_reporting_controller import CustomReportingController
@@ -34,7 +33,6 @@ from cohesity_management_sdk.controllers.protection_runs_controller import Prote
 from cohesity_management_sdk.controllers.remote_cluster_controller import RemoteClusterController
 from cohesity_management_sdk.controllers.remote_restore_controller import RemoteRestoreController
 from cohesity_management_sdk.controllers.restore_tasks_controller import RestoreTasksController
-from cohesity_management_sdk.controllers.clone_refresh_tasks_controller import CloneRefreshTasksController
 from cohesity_management_sdk.controllers.roles_controller import RolesController
 from cohesity_management_sdk.controllers.routes_controller import RoutesController
 from cohesity_management_sdk.controllers.search_controller import SearchController
@@ -43,8 +41,8 @@ from cohesity_management_sdk.controllers.preferences_controller import Preferenc
 from cohesity_management_sdk.controllers.smb_file_opens_controller import SMBFileOpensController
 from cohesity_management_sdk.controllers.static_route_controller import StaticRouteController
 from cohesity_management_sdk.controllers.statistics_controller import StatisticsController
-from cohesity_management_sdk.controllers.stats_controller import StatsController
 from cohesity_management_sdk.controllers.tenant_controller import TenantController
+from cohesity_management_sdk.controllers.tenants_controller import TenantsController
 from cohesity_management_sdk.controllers.vaults_controller import VaultsController
 from cohesity_management_sdk.controllers.view_boxes_controller import ViewBoxesController
 from cohesity_management_sdk.controllers.vlan_controller import VlanController
@@ -92,10 +90,6 @@ class CohesityClient(object):
         return ClusterPartitionsController()
 
     @lazy_property
-    def nodes(self):
-        return NodesController()
-
-    @lazy_property
     def groups(self):
         return GroupsController()
 
@@ -116,16 +110,16 @@ class CohesityClient(object):
         return LdapProviderController()
 
     @lazy_property
-    def monitoring(self):
-        return MonitoringController()
-
-    @lazy_property
     def network(self):
         return NetworkController()
 
     @lazy_property
     def views(self):
         return ViewsController()
+
+    @lazy_property
+    def nodes(self):
+        return NodesController()
 
     @lazy_property
     def packages(self):
@@ -176,10 +170,6 @@ class CohesityClient(object):
         return RestoreTasksController()
 
     @lazy_property
-    def clone_refresh_tasks(self):
-        return CloneRefreshTasksController()
-
-    @lazy_property
     def roles(self):
         return RolesController()
 
@@ -212,12 +202,12 @@ class CohesityClient(object):
         return StatisticsController()
 
     @lazy_property
-    def stats(self):
-        return StatsController()
-
-    @lazy_property
     def tenant(self):
         return TenantController()
+
+    @lazy_property
+    def tenants(self):
+        return TenantsController()
 
     @lazy_property
     def vaults(self):

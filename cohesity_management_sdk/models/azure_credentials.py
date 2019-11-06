@@ -35,11 +35,6 @@ class AzureCredentials(object):
             customer's Azure account. It represents sub-section within the
             Azure account where a customer allows us to create VMs, storage
             account etc.
-        subscription_type (SubscriptionTypeEnum): Specifies the subscription
-            type of Azure such as 'kAzureCommercial' or 'kAzureGovCloud'.
-            Specifies the subscription type of an Azure source entity.
-            'kAzureCommercial' indicates a standard Azure subscription.
-            'kAzureGovCloud' indicates a govt Azure subscription.
         tenant_id (string): Specifies Tenant Id of the active directory of
             Azure account.
 
@@ -51,7 +46,6 @@ class AzureCredentials(object):
         "application_key":'applicationKey',
         "azure_type":'azureType',
         "subscription_id":'subscriptionId',
-        "subscription_type":'subscriptionType',
         "tenant_id":'tenantId'
     }
 
@@ -60,7 +54,6 @@ class AzureCredentials(object):
                  application_key=None,
                  azure_type=None,
                  subscription_id=None,
-                 subscription_type=None,
                  tenant_id=None):
         """Constructor for the AzureCredentials class"""
 
@@ -69,7 +62,6 @@ class AzureCredentials(object):
         self.application_key = application_key
         self.azure_type = azure_type
         self.subscription_id = subscription_id
-        self.subscription_type = subscription_type
         self.tenant_id = tenant_id
 
 
@@ -95,7 +87,6 @@ class AzureCredentials(object):
         application_key = dictionary.get('applicationKey')
         azure_type = dictionary.get('azureType')
         subscription_id = dictionary.get('subscriptionId')
-        subscription_type = dictionary.get('subscriptionType')
         tenant_id = dictionary.get('tenantId')
 
         # Return an object of this model
@@ -103,7 +94,6 @@ class AzureCredentials(object):
                    application_key,
                    azure_type,
                    subscription_id,
-                   subscription_type,
                    tenant_id)
 
 

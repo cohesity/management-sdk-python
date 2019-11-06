@@ -8,7 +8,6 @@ from cohesity_management_sdk.controllers.base_controller import BaseController
 from cohesity_management_sdk.http.auth.auth_manager import AuthManager
 from cohesity_management_sdk.models.protection_job import ProtectionJob
 from cohesity_management_sdk.models.update_protection_jobs_state import UpdateProtectionJobsState
-from cohesity_management_sdk.models.protection_job_audit_trail import ProtectionJobAuditTrail
 from cohesity_management_sdk.exceptions.request_error_error_exception import RequestErrorErrorException
 
 class ProtectionJobsController(BaseController):
@@ -92,6 +91,8 @@ class ProtectionJobsController(BaseController):
             raise
 
     def get_protection_jobs(self,
+                            tenant_ids=None,
+                            all_under_hierarchy=None,
                             ids=None,
                             names=None,
                             policy_ids=None,
@@ -101,10 +102,7 @@ class ProtectionJobsController(BaseController):
                             only_return_basic_summary=None,
                             include_last_run_and_stats=None,
                             include_rpo_snapshots=None,
-                            is_last_run_sla_violated=None,
-                            only_return_data_migration_jobs=None,
-                            tenant_ids=None,
-                            all_under_hierarchy=None):
+                            only_return_data_migration_jobs=None):
         """Does a GET request to /public/protectionJobs.
 
         If no parameters are specified, all Protection Jobs currently
@@ -112,6 +110,11 @@ class ProtectionJobsController(BaseController):
         Specifying parameters filters the results that are returned.
 
         Args:
+            tenant_ids (list of string, optional): TenantIds contains ids of
+                the tenants for which objects are to be returned.
+            all_under_hierarchy (bool, optional): AllUnderHierarchy specifies
+                if objects of all the tenants under the hierarchy of the
+                logged in user's organization should be returned.
             ids (list of long|int, optional): Filter by a list of Protection
                 Job ids.
             names (list of string, optional): Filter by a list of Protection
@@ -146,18 +149,10 @@ class ProtectionJobsController(BaseController):
             include_rpo_snapshots (bool, optional): If true, then the
                 Protected Objects protected by RPO policies will also be
                 returned.
-            is_last_run_sla_violated (bool, optional): IsLastRunSlaViolated is
-                the parameter to filter the Protection Jobs based on the SLA
-                violation status of the last Protection Run.
             only_return_data_migration_jobs (bool, optional):
                 OnlyReturnDataMigrationJobs specifies if only data migration
                 jobs should be returned. If not set, no data migration job
                 will be returned.
-            tenant_ids (list of string, optional): TenantIds contains ids of
-                the tenants for which objects are to be returned.
-            all_under_hierarchy (bool, optional): AllUnderHierarchy specifies
-                if objects of all the tenants under the hierarchy of the
-                logged in user's organization should be returned.
 
         Returns:
             list of ProtectionJob: Response from the API. Success
@@ -178,6 +173,8 @@ class ProtectionJobsController(BaseController):
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
+                'tenantIds': tenant_ids,
+                'allUnderHierarchy': all_under_hierarchy,
                 'ids': ids,
                 'names': names,
                 'policyIds': policy_ids,
@@ -187,10 +184,7 @@ class ProtectionJobsController(BaseController):
                 'onlyReturnBasicSummary': only_return_basic_summary,
                 'includeLastRunAndStats': include_last_run_and_stats,
                 'includeRpoSnapshots': include_rpo_snapshots,
-                'isLastRunSlaViolated': is_last_run_sla_violated,
-                'onlyReturnDataMigrationJobs': only_return_data_migration_jobs,
-                'tenantIds': tenant_ids,
-                'allUnderHierarchy': all_under_hierarchy
+                'onlyReturnDataMigrationJobs': only_return_data_migration_jobs
             }
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
                 _query_parameters, Configuration.array_serialization)
@@ -603,67 +597,6 @@ class ProtectionJobsController(BaseController):
 
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body, ProtectionJob.from_dictionary)
-
-        except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
-
-    def get_protection_job_audit(self,
-                                 id):
-        """Does a GET request to /public/protectionJobs/{id}/auditTrail.
-
-        Returns the audit of specific protection job edit history.
-
-        Args:
-            id (long|int): Specifies a unique id of the Protection Job.
-
-        Returns:
-            list of ProtectionJobAuditTrail: Response from the API. Success
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-        try:
-            self.logger.info('get_protection_job_audit called.')
-
-            # Validate required parameters
-            self.logger.info('Validating required parameters for get_protection_job_audit.')
-            self.validate_parameters(id=id)
-
-            # Prepare query URL
-            self.logger.info('Preparing query URL for get_protection_job_audit.')
-            _url_path = '/public/protectionJobs/{id}/auditTrail'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-                'id': id
-            })
-            _query_builder = Configuration.get_base_uri()
-            _query_builder += _url_path
-            _query_url = APIHelper.clean_url(_query_builder)
-
-            # Prepare headers
-            self.logger.info('Preparing headers for get_protection_job_audit.')
-            _headers = {
-                'accept': 'application/json'
-            }
-
-            # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_protection_job_audit.')
-            _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_protection_job_audit')
-
-            # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for get_protection_job_audit.')
-            if _context.response.status_code == 0:
-                raise RequestErrorErrorException('Error', _context)
-            self.validate_response(_context)
-
-            # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ProtectionJobAuditTrail.from_dictionary)
 
         except Exception as e:
             self.logger.error(e, exc_info = True)

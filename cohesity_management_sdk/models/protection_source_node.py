@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2019 Cohesity Inc.
 
+import cohesity_management_sdk.models.pagination_parameters
 import cohesity_management_sdk.models.entity_permission_information
 import cohesity_management_sdk.models.aggregated_subtree_info
 import cohesity_management_sdk.models.protection_source
@@ -20,6 +21,13 @@ class ProtectionSourceNode(object):
             to store application-level information. For example for SQL
             Server, this subtree stores the SQL Server instances running on a
             VM.
+        entity_pagination_parameters (PaginationParameters): Specifies the
+            cursor based pagination parameters for Protection Source and its
+            children. Pagination is supported at a given level within the
+            Protection Source Hierarchy with the help of before or after
+            cursors. A Cursor will always refer to a specific source within
+            the source dataset but will be invalidated if the item is
+            removed.
         entity_permission_info (EntityPermissionInformation): Specifies the
             permission information of entities.
         logical_size (long|int): Specifies the logical size of the data in
@@ -58,6 +66,7 @@ class ProtectionSourceNode(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "application_nodes":'applicationNodes',
+        "entity_pagination_parameters":'entityPaginationParameters',
         "entity_permission_info":'entityPermissionInfo',
         "logical_size":'logicalSize',
         "nodes":'nodes',
@@ -69,6 +78,7 @@ class ProtectionSourceNode(object):
 
     def __init__(self,
                  application_nodes=None,
+                 entity_pagination_parameters=None,
                  entity_permission_info=None,
                  logical_size=None,
                  nodes=None,
@@ -80,6 +90,7 @@ class ProtectionSourceNode(object):
 
         # Initialize members of the class
         self.application_nodes = application_nodes
+        self.entity_pagination_parameters = entity_pagination_parameters
         self.entity_permission_info = entity_permission_info
         self.logical_size = logical_size
         self.nodes = nodes
@@ -108,6 +119,7 @@ class ProtectionSourceNode(object):
 
         # Extract variables from the dictionary
         application_nodes = dictionary.get('applicationNodes')
+        entity_pagination_parameters = cohesity_management_sdk.models.pagination_parameters.PaginationParameters.from_dictionary(dictionary.get('entityPaginationParameters')) if dictionary.get('entityPaginationParameters') else None
         entity_permission_info = cohesity_management_sdk.models.entity_permission_information.EntityPermissionInformation.from_dictionary(dictionary.get('entityPermissionInfo')) if dictionary.get('entityPermissionInfo') else None
         logical_size = dictionary.get('logicalSize')
         nodes = dictionary.get('nodes')
@@ -126,6 +138,7 @@ class ProtectionSourceNode(object):
 
         # Return an object of this model
         return cls(application_nodes,
+                   entity_pagination_parameters,
                    entity_permission_info,
                    logical_size,
                    nodes,

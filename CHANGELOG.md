@@ -1,3 +1,18 @@
+# [1.1.3] - 2019-11-05
+New version of Cohesity Management SDK is here!
+
+### Added
+- Added support for LTS 6.3.1x Cohesity DataPlatform.
+
+### Changed
+- None
+
+### Fixed
+- None
+
+### Removed
+- None
+
 # [1.1.2] - 2019-08-12
 New version of Cohesity Management SDK is here!
 
@@ -8,7 +23,7 @@ New version of Cohesity Management SDK is here!
 - None
 
 ### Fixed
-- None
+ None
 
 ### Removed
 - None

@@ -2,7 +2,6 @@
 # Copyright 2019 Cohesity Inc.
 
 import cohesity_management_sdk.models.entity_proto
-import cohesity_management_sdk.models.deploy_db_instances_to_rds_params
 
 class DeployVMsToAWSParams(object):
 
@@ -19,8 +18,6 @@ class DeployVMsToAWSParams(object):
         network_security_groups (list of EntityProto): Names of the network
             security groups within the above VPC. At least one entry should be
             present.
-        rds_params (DeployDBInstancesToRDSParams): Contains RDS specfic
-            options that can be supplied while restoring the RDS DB instance.
         region (EntityProto): Specifies the attributes and the latest
             statistics about an entity.
         subnet (EntityProto): Specifies the attributes and the latest
@@ -35,7 +32,6 @@ class DeployVMsToAWSParams(object):
         "instance_type":'instanceType',
         "key_pair_name":'keyPairName',
         "network_security_groups":'networkSecurityGroups',
-        "rds_params":'rdsParams',
         "region":'region',
         "subnet":'subnet',
         "vpc":'vpc'
@@ -45,7 +41,6 @@ class DeployVMsToAWSParams(object):
                  instance_type=None,
                  key_pair_name=None,
                  network_security_groups=None,
-                 rds_params=None,
                  region=None,
                  subnet=None,
                  vpc=None):
@@ -55,7 +50,6 @@ class DeployVMsToAWSParams(object):
         self.instance_type = instance_type
         self.key_pair_name = key_pair_name
         self.network_security_groups = network_security_groups
-        self.rds_params = rds_params
         self.region = region
         self.subnet = subnet
         self.vpc = vpc
@@ -86,7 +80,6 @@ class DeployVMsToAWSParams(object):
             network_security_groups = list()
             for structure in dictionary.get('networkSecurityGroups'):
                 network_security_groups.append(cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(structure))
-        rds_params = cohesity_management_sdk.models.deploy_db_instances_to_rds_params.DeployDBInstancesToRDSParams.from_dictionary(dictionary.get('rdsParams')) if dictionary.get('rdsParams') else None
         region = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('region')) if dictionary.get('region') else None
         subnet = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('subnet')) if dictionary.get('subnet') else None
         vpc = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('vpc')) if dictionary.get('vpc') else None
@@ -95,7 +88,6 @@ class DeployVMsToAWSParams(object):
         return cls(instance_type,
                    key_pair_name,
                    network_security_groups,
-                   rds_params,
                    region,
                    subnet,
                    vpc)

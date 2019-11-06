@@ -86,9 +86,10 @@ class IdpsController(BaseController):
             raise
 
     def get_idps(self,
+                 tenant_ids=None,
+                 all_under_hierarchy=None,
                  names=None,
                  ids=None,
-                 tenant_ids=None,
                  domains=None):
         """Does a GET request to /public/idps.
 
@@ -98,16 +99,17 @@ class IdpsController(BaseController):
         returned.
 
         Args:
+            tenant_ids (list of string, optional): TenantIds contains ids of
+                the tenants for which objects are to be returned.
+            all_under_hierarchy (bool, optional): AllUnderHierarchy specifies
+                if objects of all the tenants under the hierarchy of the
+                logged in user's organization should be returned.
             names (list of string, optional): Specifies the names of the IdP
                 vendors like Okta. If specified, returns IdP configurations of
                 the vendors matching the names in the parameters.
             ids (list of long|int, optional): Specifies the Ids of the IdP
                 configuration. If specified, returns IdP configurations of the
                 matching Ids in the IdP configuration.
-            tenant_ids (list of string, optional): Specifies the Tenant Ids
-                having IdP configurations. If specified, returns IdP
-                configurations used by the tenants matching the Tenant Ids in
-                the parameters.
             domains (list of string, optional): Specifies the domains of the
                 IdP configurations. If specified, returns IdP configurations
                 matching the domains in the parameters.
@@ -131,9 +133,10 @@ class IdpsController(BaseController):
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
+                'tenantIds': tenant_ids,
+                'allUnderHierarchy': all_under_hierarchy,
                 'names': names,
                 'ids': ids,
-                'tenantIds': tenant_ids,
                 'domains': domains
             }
             _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,

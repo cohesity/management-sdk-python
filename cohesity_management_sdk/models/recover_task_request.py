@@ -2,7 +2,6 @@
 # Copyright 2019 Cohesity Inc.
 
 import cohesity_management_sdk.models.acropolis_restore_parameters
-import cohesity_management_sdk.models.deploy_vms_to_cloud
 import cohesity_management_sdk.models.hyperv_restore_parameters
 import cohesity_management_sdk.models.mount_volumes_parameters
 import cohesity_management_sdk.models.restore_object_details
@@ -27,9 +26,6 @@ class RecoverTaskRequest(object):
             continue when some operations on some objects fail. If true, the
             Cohesity Cluster ignores intermittent errors and restores as many
             objects as possible.
-        deploy_vms_to_cloud (DeployVmsToCloud): Specifies the details about
-            deploying vms to specific clouds where backup may be stored and
-            converted.
         glacier_retrieval_type (GlacierRetrievalTypeEnum): Specifies the way
             data needs to be retrieved from the external target. This
             information will be filled in by Iris and Magneto will pass it
@@ -96,7 +92,6 @@ class RecoverTaskRequest(object):
         "mtype":'type',
         "acropolis_parameters":'acropolisParameters',
         "continue_on_error":'continueOnError',
-        "deploy_vms_to_cloud":'deployVmsToCloud',
         "glacier_retrieval_type":'glacierRetrievalType',
         "hyperv_parameters":'hypervParameters',
         "mount_parameters":'mountParameters',
@@ -115,7 +110,6 @@ class RecoverTaskRequest(object):
                  mtype=None,
                  acropolis_parameters=None,
                  continue_on_error=None,
-                 deploy_vms_to_cloud=None,
                  glacier_retrieval_type=None,
                  hyperv_parameters=None,
                  mount_parameters=None,
@@ -132,7 +126,6 @@ class RecoverTaskRequest(object):
         # Initialize members of the class
         self.acropolis_parameters = acropolis_parameters
         self.continue_on_error = continue_on_error
-        self.deploy_vms_to_cloud = deploy_vms_to_cloud
         self.glacier_retrieval_type = glacier_retrieval_type
         self.hyperv_parameters = hyperv_parameters
         self.mount_parameters = mount_parameters
@@ -170,7 +163,6 @@ class RecoverTaskRequest(object):
         mtype = dictionary.get('type')
         acropolis_parameters = cohesity_management_sdk.models.acropolis_restore_parameters.AcropolisRestoreParameters.from_dictionary(dictionary.get('acropolisParameters')) if dictionary.get('acropolisParameters') else None
         continue_on_error = dictionary.get('continueOnError')
-        deploy_vms_to_cloud = cohesity_management_sdk.models.deploy_vms_to_cloud.DeployVmsToCloud.from_dictionary(dictionary.get('deployVmsToCloud')) if dictionary.get('deployVmsToCloud') else None
         glacier_retrieval_type = dictionary.get('glacierRetrievalType')
         hyperv_parameters = cohesity_management_sdk.models.hyperv_restore_parameters.HypervRestoreParameters.from_dictionary(dictionary.get('hypervParameters')) if dictionary.get('hypervParameters') else None
         mount_parameters = cohesity_management_sdk.models.mount_volumes_parameters.MountVolumesParameters.from_dictionary(dictionary.get('mountParameters')) if dictionary.get('mountParameters') else None
@@ -192,7 +184,6 @@ class RecoverTaskRequest(object):
                    mtype,
                    acropolis_parameters,
                    continue_on_error,
-                   deploy_vms_to_cloud,
                    glacier_retrieval_type,
                    hyperv_parameters,
                    mount_parameters,

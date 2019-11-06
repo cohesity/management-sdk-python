@@ -20,9 +20,7 @@ class StoragePolicy(object):
         compression_policy (CompressionPolicyEnum): Specifies the compression
             setting to be applied to a Storage Domain (View Box).
             'kCompressionNone' indicates that data is not compressed.
-            'kCompressionLow' indicates that data is compressed using LZ4 or
-            Snappy. 'kCompressionHigh' indicates that data is compressed in
-            Gzip.
+            'kCompressionLow' indicates that data is compressed.
         deduplicate_compress_delay_secs (int): Specifies the time in seconds
             when deduplication and compression of data on the Storage Domain
             (View Box) starts. If set to 0, deduplication and compression is

@@ -46,9 +46,6 @@ class AmazonCloudCredentials(object):
             for long-lived, but less frequently accessed data.
             'kAmazonS3IntelligentTiering' indicates a tier type of Amazon
             properties for data with unknown or changing access patterns.
-            'kAmazonS3GlacierDeepArchive' indicates a tier type of Amazon
-            properties for data that provides secure, durable object storage
-            for long-term data retention and digital preservation.
         use_https (bool): Specifies whether to use http or https to connect to
             the service. If true, a secure connection (https) is used. This
             field is only significant for S3-compatible cloud services.
