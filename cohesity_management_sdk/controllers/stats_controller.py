@@ -21,7 +21,6 @@ from cohesity_management_sdk.models.vault_run_stats_summary import VaultRunStats
 from cohesity_management_sdk.models.get_view_box_stats_result import GetViewBoxStatsResult
 from cohesity_management_sdk.models.view_stats_snapshot import ViewStatsSnapshot
 from cohesity_management_sdk.models.view_protocol_stats import ViewProtocolStats
-from cohesity_management_sdk.exceptions.error_exception import ErrorException
 from cohesity_management_sdk.exceptions.request_error_error_exception import RequestErrorErrorException
 
 class StatsController(BaseController):
@@ -94,7 +93,7 @@ class StatsController(BaseController):
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_active_alerts_stats.')
             if _context.response.status_code == 0:
-                raise ErrorException('Error', _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
@@ -249,7 +248,7 @@ class StatsController(BaseController):
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_file_distribution_stats.')
             if _context.response.status_code == 0:
-                raise ErrorException('Error', _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
@@ -327,7 +326,7 @@ class StatsController(BaseController):
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_protection_runs_stats.')
             if _context.response.status_code == 0:
-                raise ErrorException('Error', _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
@@ -377,7 +376,7 @@ class StatsController(BaseController):
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_last_protection_run_stats.')
             if _context.response.status_code == 0:
-                raise ErrorException('Error', _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
@@ -437,7 +436,7 @@ class StatsController(BaseController):
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_protected_objects_summary.')
             if _context.response.status_code == 0:
-                raise ErrorException('Error', _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
@@ -508,7 +507,7 @@ class StatsController(BaseController):
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_restore_stats.')
             if _context.response.status_code == 0:
-                raise ErrorException('Error', _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
@@ -558,7 +557,7 @@ class StatsController(BaseController):
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_storage_stats.')
             if _context.response.status_code == 0:
-                raise ErrorException('Error', _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
@@ -693,7 +692,7 @@ class StatsController(BaseController):
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_vault_stats.')
             if _context.response.status_code == 0:
-                raise ErrorException('Error', _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
@@ -757,7 +756,7 @@ class StatsController(BaseController):
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_vault_provider_stats.')
             if _context.response.status_code == 0:
-                raise ErrorException('Error', _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
@@ -838,7 +837,7 @@ class StatsController(BaseController):
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_vault_run_stats.')
             if _context.response.status_code == 0:
-                raise ErrorException('Error', _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
@@ -970,7 +969,7 @@ class StatsController(BaseController):
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_view_stats.')
             if _context.response.status_code == 0:
-                raise ErrorException('Error', _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
@@ -1020,7 +1019,7 @@ class StatsController(BaseController):
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_view_protocol_stats.')
             if _context.response.status_code == 0:
-                raise ErrorException('Error', _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
