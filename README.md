@@ -1,6 +1,9 @@
 Cohesity Management SDK
 =================
-
+[![License: Apache2](https://img.shields.io/hexpm/l/plug.svg)](https://github.com/cohesity/management-sdk-python/blob/master/LICENSE)
+![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/cohesity/management-sdk-python?include_prereleases)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/cohesity_management_sdk)
+![Maintenance](https://img.shields.io/maintenance/yes/2020)
 ## Overview
 
 The *Cohesity Management SDK*  provides an easy-to-use language binding to
