@@ -9,8 +9,18 @@ Cohesity Management SDK
 The *Cohesity Management SDK*  provides an easy-to-use language binding to
 harness the power of *Cohesity REST APIs* in your python applications.
 
+## Table of contents :scroll:
 
-## Install
+ - [Getting Started](#get-started)
+ - [How to use](#howto)
+ - [More samples] (#sample)
+ - [How can you contribute](#contribute)
+ - [Suggestions and Feedback](#suggest)
+ 
+
+## <a name="get-started"></a> Let's get started :hammer_and_pick:
+
+### Installation
 
 Install via pip:
 ```
@@ -30,7 +40,22 @@ pip install -r requirements.txt
 python setup.py install
 ```
 
-## How to Use:
+### Upgrade
+
+To upgrade the package:
+
+```
+ pip install cohesity-management-sdk --upgrade
+```
+
+To upgade the package to specific release:
+
+```
+pip install cohesity-management-sdk==1.1.3
+```
+
+## <a name="howto"></a> How to Use: :mag_right:
+
 This SDK exposes all the functionality provided by *Cohesity REST API*.
 
 Initializing the Client:
@@ -51,21 +76,15 @@ You can perform a wide range of operations such as:
 * vCenter workflows
 * AWS boto3 object store workflows
 
-And much more, check out the scripts included under `samples` for reference.
+## <a name="sample"></a> More sample code to get going: :bulb:
 
-## Upgrade
+Check out the scripts included under `samples` for reference.
 
-To upgrade the package:
+## <a name="contribute"></a> Contribute :muscle:
 
-```
- pip install cohesity-management-sdk --upgrade
-```
+* [Refer our contribution guideline](https://github.com/chandrashekar-cohesity/management-sdk-python/blob/master/CONTRIBUTING.md).
 
-To upgade the package to specific release:
 
-```
-pip install cohesity-management-sdk==1.1.3
-```
-## Questions or Feedback :
+## <a name ="suggest"></a> Questions or Feedback :raised_hand:
 
 We would love to hear from you. Please send your questions and feedback to: *cohesity-api-sdks@cohesity.com*
