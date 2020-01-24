@@ -13,7 +13,7 @@ harness the power of *Cohesity REST APIs* in your python applications.
 
  - [Getting Started](#get-started)
  - [How to use](#howto)
- - [More samples] (#sample)
+ - [More samples](#sample)
  - [How can you contribute](#contribute)
  - [Suggestions and Feedback](#suggest)
  
