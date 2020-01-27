@@ -1,4 +1,4 @@
-# Contributing to Cohesity Python SDK :muscle:
+# Contributing to Cohesity Python SDK :handshake:
 
 We would love for you to contribute to Cohesity Python SDK and help make it even better than it is
 today! As a contributor, here are the guidelines we would like you to follow:
