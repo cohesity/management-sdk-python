@@ -80,7 +80,7 @@ You can perform a wide range of operations such as:
 
 Check out the scripts included under `samples` for reference.
 
-## <a name="contribute"></a> Contribute :muscle:
+## <a name="contribute"></a> Contribute :handshake:
 
 * [Refer our contribution guideline](https://github.com/chandrashekar-cohesity/management-sdk-python/blob/master/CONTRIBUTING.md).
 
