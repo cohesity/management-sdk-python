@@ -65,24 +65,23 @@ password = 'Password'
 domain = 'Domain' #optional
 cluster_vip = 'prod-cluster.eng.cohesity.com'
 client = CohesityClient(cluster_vip, username, password, domain)
+cluster_controller = client.cluster
+result = cluster_controller.get_basic_cluster_info()
+result_dict =  result.__dict__
+print(result_dict['cluster_software_version']) 
+
+
+#OUTPUT
+6.4.1_release-20191219_aafe3274
 ```
-
-You can perform a wide range of operations such as:
-
-* Retrieve *Cohesity Cluster* details
-* List protection sources
-* List the protection jobs
-* Resolve alerts
-* vCenter workflows
-* AWS boto3 object store workflows
 
 ## <a name="sample"></a> More sample code to get going: :bulb:
 
-Check out the scripts included under `samples` for reference.
+Check out the scripts included under [`samples`](./samples) for reference.
 
 ## <a name="contribute"></a> Contribute :handshake:
 
-* [Refer our contribution guideline](https://github.com/chandrashekar-cohesity/management-sdk-python/blob/master/CONTRIBUTING.md).
+* [Refer our contribution guideline](./CONTRIBUTING.md).
 
 
 ## <a name ="suggest"></a> Questions or Feedback :raised_hand:
