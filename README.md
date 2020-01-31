@@ -9,8 +9,18 @@ Cohesity Management SDK
 The *Cohesity Management SDK*  provides an easy-to-use language binding to
 harness the power of *Cohesity REST APIs* in your python applications.
 
+## Table of contents :scroll:
 
-## Install
+ - [Getting Started](#get-started)
+ - [How to use](#howto)
+ - [More samples](#sample)
+ - [How can you contribute](#contribute)
+ - [Suggestions and Feedback](#suggest)
+ 
+
+## <a name="get-started"></a> Let's get started :hammer_and_pick:
+
+### Installation
 
 Install via pip:
 ```
@@ -30,30 +40,7 @@ pip install -r requirements.txt
 python setup.py install
 ```
 
-## How to Use:
-This SDK exposes all the functionality provided by *Cohesity REST API*.
-
-Initializing the Client:
-```
-username = 'Username'
-password = 'Password'
-domain = 'Domain' #optional
-cluster_vip = 'prod-cluster.eng.cohesity.com'
-client = CohesityClient(cluster_vip, username, password, domain)
-```
-
-You can perform a wide range of operations such as:
-
-* Retrieve *Cohesity Cluster* details
-* List protection sources
-* List the protection jobs
-* Resolve alerts
-* vCenter workflows
-* AWS boto3 object store workflows
-
-And much more, check out the scripts included under `samples` for reference.
-
-## Upgrade
+### Upgrade
 
 To upgrade the package:
 
@@ -66,6 +53,37 @@ To upgade the package to specific release:
 ```
 pip install cohesity-management-sdk==1.1.3
 ```
-## Questions or Feedback :
+
+## <a name="howto"></a> How to Use: :mag_right:
+
+This SDK exposes all the functionality provided by *Cohesity REST API*.
+
+Initializing the Client:
+```
+username = 'Username'
+password = 'Password'
+domain = 'Domain' #optional
+cluster_vip = 'prod-cluster.eng.cohesity.com'
+client = CohesityClient(cluster_vip, username, password, domain)
+cluster_controller = client.cluster
+result = cluster_controller.get_basic_cluster_info()
+result_dict =  result.__dict__
+print(result_dict['cluster_software_version']) 
+
+
+#OUTPUT
+6.4.1_release-20191219_aafe3274
+```
+
+## <a name="sample"></a> More sample code to get going: :bulb:
+
+Check out the scripts included under [`samples`](./samples) for reference.
+
+## <a name="contribute"></a> Contribute :handshake:
+
+* [Refer our contribution guideline](./CONTRIBUTING.md).
+
+
+## <a name ="suggest"></a> Questions or Feedback :raised_hand:
 
 We would love to hear from you. Please send your questions and feedback to: *cohesity-api-sdks@cohesity.com*

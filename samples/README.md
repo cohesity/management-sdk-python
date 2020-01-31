@@ -1,6 +1,15 @@
 Samples for Cohesity Management SDK 
 ========================
 This repository contains reference samples for Cohesity Management SDK.
+
+You can perform a wide range of operations such as:
+
+* Retrieve *Cohesity Cluster* details
+* List protection sources
+* List the protection jobs
+* Resolve alerts
+* vCenter workflows
+* AWS boto3 object store workflows
  
 ### Add VM to protection Job and Run Protection Job.
 
