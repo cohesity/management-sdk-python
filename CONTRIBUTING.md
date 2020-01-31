@@ -22,7 +22,7 @@ If you find a bug in the source code, you can help us by
 [submit a Pull Request](#submit-pr) with a fix.
 
 ## <a name="doc"></a> Have any suggestions for the Documentation? :bulb:
-If you find any discrepancies in our Documentation or you any awesome suggestions for us, report it to us by opening a new issue using the  [Documentation template](https://github.com/chandrashekar-cohesity/management-sdk-python/issues/new?assignees=&labels=&template=documentation.md&title=) provided in our GitHub repo.
+If you find any discrepancies in our Documentation or you any awesome suggestions for us, report it to us by opening a new issue using the  [Documentation template](https://github.com/cohesity/management-sdk-python/issues/new?assignees=&labels=&template=documentation.md&title=) provided in our GitHub repo.
 
 
 ## <a name="feature"></a> Missing a Feature? :star:	
@@ -37,7 +37,7 @@ and help you to craft the change so that it is successfully accepted into the pr
 * **Small Features** can be crafted and directly [submitted as a Pull Request](#submit-pr).
 
 ## <a name="example"></a> Need more code examples and samples?
-Reach out to us [here](https://github.com/chandrashekar-cohesity/management-sdk-python/issues/new?assignees=&labels=&template=sample-requests---questions---.md&title=) if you have any questions or if you want to request more examples and sample code. We would love to help you out!!
+Reach out to us [here](https://github.com/cohesity/management-sdk-python/issues/new?assignees=&labels=&template=sample-requests---questions---.md&title=) if you have any questions or if you want to request more examples and sample code. We would love to help you out!!
 
 ## <a name="submit"></a> Submission Guidelines
 
@@ -49,13 +49,13 @@ We want to fix all the issues as soon as possible, but before fixing a bug we ne
 
 A minimal reproduction allows us to quickly confirm a bug (or point out a coding problem) as well as confirm that we are fixing the right problem.
 
-You can file new issues [here](https://github.com/chandrashekar-cohesity/management-sdk-python/issues/new?assignees=&labels=&template=bug-report.md&title=).
+You can file new issues [here](https://github.com/cohesity/management-sdk-python/issues/new?assignees=&labels=&template=bug-report.md&title=).
 
 
 ### <a name="submit-pr"></a> Submitting a Pull Request (PR)
 Before you submit your Pull Request (PR) consider the following guidelines:
 
-1. Search [GitHub](https://github.com/chandrashekar-cohesity/management-sdk-python/pulls) for an open or closed PR
+1. Search [GitHub](https://github.com/cohesity/management-sdk-python/pulls) for an open or closed PR
   that relates to your submission. You don't want to duplicate effort.
 
 1. Be sure that an issue describes the problem you're fixing, or documents the design for the feature you'd like to add.
@@ -134,7 +134,8 @@ Isn't this just how it works already? Yep. This is widely accepted as the norm i
 
 ## <a name="coc-details"></a> Code of Conduct  :cop:
 
-As contributors and maintainers of the Cohesity Python SDK project, we pledge to respect everyone who contributes by posting issues, updating documentation, submitting pull requests, providing feedback in comments, and any other activities.
+As contributors and maintain
+ers of the Cohesity Python SDK project, we pledge to respect everyone who contributes by posting issues, updating documentation, submitting pull requests, providing feedback in comments, and any other activities.
 
 Communication through any of Cohesity Python SDK's channels (GitHub, [mailing-list](mailto:cohesity-api-sdks@cohesity.com), Twitter, etc.) must be constructive and never resort to personal attacks, trolling, public or private harassment, insults, or other unprofessional conduct.
 
