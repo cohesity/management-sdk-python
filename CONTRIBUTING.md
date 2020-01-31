@@ -22,7 +22,7 @@ If you find a bug in the source code, you can help us by
 [submit a Pull Request](#submit-pr) with a fix.
 
 ## <a name="doc"></a> Have any suggestions for the Documentation? :bulb:
-If you find any discrepancies in our Documentation or you any awesome suggestions for us, report it to us by opening a new issue using the  [Documentation template](https://github.com/chandrashekar-cohesity/management-sdk-python/issues/new?assignees=&labels=&template=---documentation.md&title=) provided in our GitHub repo.
+If you find any discrepancies in our Documentation or you any awesome suggestions for us, report it to us by opening a new issue using the  [Documentation template](https://github.com/chandrashekar-cohesity/management-sdk-python/issues/new?assignees=&labels=&template=documentation.md&title=) provided in our GitHub repo.
 
 
 ## <a name="feature"></a> Missing a Feature? :star:	
@@ -49,7 +49,7 @@ We want to fix all the issues as soon as possible, but before fixing a bug we ne
 
 A minimal reproduction allows us to quickly confirm a bug (or point out a coding problem) as well as confirm that we are fixing the right problem.
 
-You can file new issues [here](https://github.com/chandrashekar-cohesity/management-sdk-python/issues/new?assignees=&labels=&template=---bug-report.md&title=).
+You can file new issues [here](https://github.com/chandrashekar-cohesity/management-sdk-python/issues/new?assignees=&labels=&template=bug-report.md&title=).
 
 
 ### <a name="submit-pr"></a> Submitting a Pull Request (PR)
