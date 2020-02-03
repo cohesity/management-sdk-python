@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.aws_snapshot_manager_parameters
 import cohesity_management_sdk.models.hyperv_env_job_parameters
 import cohesity_management_sdk.models.nas_env_job_parameters
-import cohesity_management_sdk.models.outlook_env_job_parameters
+import cohesity_management_sdk.models.office_365_env_job_parameters
 import cohesity_management_sdk.models.physical_env_job_parameters
-import cohesity_management_sdk.models.pure_env_job_parameters
+import cohesity_management_sdk.models.san_env_job_parameters
 import cohesity_management_sdk.models.sql_env_job_parameters
 import cohesity_management_sdk.models.vmware_env_job_parameters
 
@@ -29,16 +29,17 @@ class EnvironmentTypeJobParameters(object):
         nas_parameters (NasEnvJobParameters): Specifies job parameters
             applicable for all 'kGenericNas' Environment type Protection
             Sources in a Protection Job.
-        outlook_parameters (OutlookEnvJobParameters): Specifies job parameters
-            applicable for all 'kO365Outlook' Environment type Protection
-            Sources in a Protection Job.
+        office_365_parameters (Office365EnvJobParameters): Specifies Office365
+            parameters applicable for all Office365 Environment type
+            Protection Sources in a Protection Job. This encapsulates both
+            OneDrive & Mailbox parameters.
         physical_parameters (PhysicalEnvJobParameters): Protection Job
             parameters applicable to 'kPhysical' Environment type. Specifies
             job parameters applicable for all 'kPhysical' Environment type
             Protection Sources in a Protection Job.
-        pure_parameters (PureEnvJobParameters): Specifies job parameters
-            applicable for all 'kPure' Environment type Protection Sources in
-            a Protection Job.
+        pure_parameters (SanEnvJobParameters): Specifies job parameters
+            applicable for all SAN Environment types Protection Sources in a
+            Protection Job.
         sql_parameters (SqlEnvJobParameters): Specifies job parameters
             applicable for all 'kSQL' Environment type Protection Sources in a
             Protection Job.
@@ -53,7 +54,7 @@ class EnvironmentTypeJobParameters(object):
         "aws_snapshot_parameters":'awsSnapshotParameters',
         "hyperv_parameters":'hypervParameters',
         "nas_parameters":'nasParameters',
-        "outlook_parameters":'outlookParameters',
+        "office_365_parameters":'office365Parameters',
         "physical_parameters":'physicalParameters',
         "pure_parameters":'pureParameters',
         "sql_parameters":'sqlParameters',
@@ -64,7 +65,7 @@ class EnvironmentTypeJobParameters(object):
                  aws_snapshot_parameters=None,
                  hyperv_parameters=None,
                  nas_parameters=None,
-                 outlook_parameters=None,
+                 office_365_parameters=None,
                  physical_parameters=None,
                  pure_parameters=None,
                  sql_parameters=None,
@@ -75,7 +76,7 @@ class EnvironmentTypeJobParameters(object):
         self.aws_snapshot_parameters = aws_snapshot_parameters
         self.hyperv_parameters = hyperv_parameters
         self.nas_parameters = nas_parameters
-        self.outlook_parameters = outlook_parameters
+        self.office_365_parameters = office_365_parameters
         self.physical_parameters = physical_parameters
         self.pure_parameters = pure_parameters
         self.sql_parameters = sql_parameters
@@ -103,9 +104,9 @@ class EnvironmentTypeJobParameters(object):
         aws_snapshot_parameters = cohesity_management_sdk.models.aws_snapshot_manager_parameters.AwsSnapshotManagerParameters.from_dictionary(dictionary.get('awsSnapshotParameters')) if dictionary.get('awsSnapshotParameters') else None
         hyperv_parameters = cohesity_management_sdk.models.hyperv_env_job_parameters.HypervEnvJobParameters.from_dictionary(dictionary.get('hypervParameters')) if dictionary.get('hypervParameters') else None
         nas_parameters = cohesity_management_sdk.models.nas_env_job_parameters.NasEnvJobParameters.from_dictionary(dictionary.get('nasParameters')) if dictionary.get('nasParameters') else None
-        outlook_parameters = cohesity_management_sdk.models.outlook_env_job_parameters.OutlookEnvJobParameters.from_dictionary(dictionary.get('outlookParameters')) if dictionary.get('outlookParameters') else None
+        office_365_parameters = cohesity_management_sdk.models.office_365_env_job_parameters.Office365EnvJobParameters.from_dictionary(dictionary.get('office365Parameters')) if dictionary.get('office365Parameters') else None
         physical_parameters = cohesity_management_sdk.models.physical_env_job_parameters.PhysicalEnvJobParameters.from_dictionary(dictionary.get('physicalParameters')) if dictionary.get('physicalParameters') else None
-        pure_parameters = cohesity_management_sdk.models.pure_env_job_parameters.PureEnvJobParameters.from_dictionary(dictionary.get('pureParameters')) if dictionary.get('pureParameters') else None
+        pure_parameters = cohesity_management_sdk.models.san_env_job_parameters.SanEnvJobParameters.from_dictionary(dictionary.get('pureParameters')) if dictionary.get('pureParameters') else None
         sql_parameters = cohesity_management_sdk.models.sql_env_job_parameters.SqlEnvJobParameters.from_dictionary(dictionary.get('sqlParameters')) if dictionary.get('sqlParameters') else None
         vmware_parameters = cohesity_management_sdk.models.vmware_env_job_parameters.VmwareEnvJobParameters.from_dictionary(dictionary.get('vmwareParameters')) if dictionary.get('vmwareParameters') else None
 
@@ -113,7 +114,7 @@ class EnvironmentTypeJobParameters(object):
         return cls(aws_snapshot_parameters,
                    hyperv_parameters,
                    nas_parameters,
-                   outlook_parameters,
+                   office_365_parameters,
                    physical_parameters,
                    pure_parameters,
                    sql_parameters,

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.tag_attribute
 
@@ -25,13 +25,23 @@ class AwsProtectionSource(object):
             inside the VPC. 'kNetworkSecurityGroup' represents a network
             security group. 'kInstanceType' represents various machine types.
             'kKeyPair' represents a pair of public and private key used to
-            login into a Virtual Machine.
+            login into a Virtual Machine. 'kTag' represents a tag attached to
+            EC2 instance. 'kRDSOptionGroup' represents a RDS option group for
+            configuring database features. 'kRDSParameterGroup' represents a
+            RDS parameter group. 'kRDSInstance' represents a RDS DB instance.
+            'kRDSSubnet' represents a RDS subnet. 'kRDSTag' represents a tag
+            attached to RDS instance.
+        db_engine_id (string): Specifies DB engine version info of the entity.
+            This is populated only for RDSInstance, RDSOptionGroup and
+            RDSParameterGroup entity types.
         host_type (HostTypeEnum): Specifies the OS type of the Protection
             Source of type 'kVirtualMachine' such as 'kWindows' or 'kLinux'.
             overrideDescription: true 'kLinux' indicates the Linux operating
             system. 'kWindows' indicates the Microsoft Windows operating
             system. 'kAix' indicates the IBM AIX operating system. 'kSolaris'
-            indicates the Oracle Solaris operating system.
+            indicates the Oracle Solaris operating system. 'kSapHana'
+            indicates the Sap Hana database system developed by SAP SE.
+            'kOther' indicates the other types of operating system.
         ip_addresses (string): Specifies the IP address of the entity of type
             'kVirtualMachine'.
         name (string): Specifies the name of the Object set by the Cloud
@@ -65,6 +75,11 @@ class AwsProtectionSource(object):
             cloud extension.
         secret_access_key (string): Specifies Secret Access key of the AWS
             account.
+        subscription_type (SubscriptionTypeEnum): Specifies the subscription
+            type of AWS such as 'kAWSCommercial' or 'kAWSGovCloud'. Specifies
+            the subscription type of an AWS source entity. 'kAWSCommercial'
+            indicates a standard AWS subscription. 'kAWSGovCloud' indicates a
+            govt AWS subscription.
         tag_attributes (list of TagAttribute): Specifies the list of AWS tag
             attributes.
         mtype (TypeAwsProtectionSourceEnum): Specifies the type of an AWS
@@ -79,7 +94,13 @@ class AwsProtectionSource(object):
             indicates a subnet inside the VPC. 'kNetworkSecurityGroup'
             represents a network security group. 'kInstanceType' represents
             various machine types. 'kKeyPair' represents a pair of public and
-            private key used to login into a Virtual Machine.
+            private key used to login into a Virtual Machine. 'kTag'
+            represents a tag attached to EC2 instance. 'kRDSOptionGroup'
+            represents a RDS option group for configuring database features.
+            'kRDSParameterGroup' represents a RDS parameter group.
+            'kRDSInstance' represents a RDS DB instance. 'kRDSSubnet'
+            represents a RDS subnet. 'kRDSTag' represents a tag attached to
+            RDS instance.
         user_account_id (string): Specifies the account id derived from the
             ARN of the user.
         user_resource_name (string): Specifies the Amazon Resource Name (ARN)
@@ -92,6 +113,7 @@ class AwsProtectionSource(object):
         "access_key":'accessKey',
         "amazon_resource_name":'amazonResourceName',
         "aws_type":'awsType',
+        "db_engine_id":'dbEngineId',
         "host_type":'hostType',
         "ip_addresses":'ipAddresses',
         "name":'name',
@@ -101,6 +123,7 @@ class AwsProtectionSource(object):
         "resource_id":'resourceId',
         "restore_task_id":'restoreTaskId',
         "secret_access_key":'secretAccessKey',
+        "subscription_type":'subscriptionType',
         "tag_attributes":'tagAttributes',
         "mtype":'type',
         "user_account_id":'userAccountId',
@@ -111,6 +134,7 @@ class AwsProtectionSource(object):
                  access_key=None,
                  amazon_resource_name=None,
                  aws_type=None,
+                 db_engine_id=None,
                  host_type=None,
                  ip_addresses=None,
                  name=None,
@@ -120,6 +144,7 @@ class AwsProtectionSource(object):
                  resource_id=None,
                  restore_task_id=None,
                  secret_access_key=None,
+                 subscription_type=None,
                  tag_attributes=None,
                  mtype=None,
                  user_account_id=None,
@@ -130,6 +155,7 @@ class AwsProtectionSource(object):
         self.access_key = access_key
         self.amazon_resource_name = amazon_resource_name
         self.aws_type = aws_type
+        self.db_engine_id = db_engine_id
         self.host_type = host_type
         self.ip_addresses = ip_addresses
         self.name = name
@@ -139,6 +165,7 @@ class AwsProtectionSource(object):
         self.resource_id = resource_id
         self.restore_task_id = restore_task_id
         self.secret_access_key = secret_access_key
+        self.subscription_type = subscription_type
         self.tag_attributes = tag_attributes
         self.mtype = mtype
         self.user_account_id = user_account_id
@@ -166,6 +193,7 @@ class AwsProtectionSource(object):
         access_key = dictionary.get('accessKey')
         amazon_resource_name = dictionary.get('amazonResourceName')
         aws_type = dictionary.get('awsType')
+        db_engine_id = dictionary.get('dbEngineId')
         host_type = dictionary.get('hostType')
         ip_addresses = dictionary.get('ipAddresses')
         name = dictionary.get('name')
@@ -175,6 +203,7 @@ class AwsProtectionSource(object):
         resource_id = dictionary.get('resourceId')
         restore_task_id = dictionary.get('restoreTaskId')
         secret_access_key = dictionary.get('secretAccessKey')
+        subscription_type = dictionary.get('subscriptionType')
         tag_attributes = None
         if dictionary.get('tagAttributes') != None:
             tag_attributes = list()
@@ -188,6 +217,7 @@ class AwsProtectionSource(object):
         return cls(access_key,
                    amazon_resource_name,
                    aws_type,
+                   db_engine_id,
                    host_type,
                    ip_addresses,
                    name,
@@ -197,6 +227,7 @@ class AwsProtectionSource(object):
                    resource_id,
                    restore_task_id,
                    secret_access_key,
+                   subscription_type,
                    tag_attributes,
                    mtype,
                    user_account_id,

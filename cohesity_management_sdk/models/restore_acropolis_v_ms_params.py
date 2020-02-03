@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.power_state_config_proto
 import cohesity_management_sdk.models.rename_object_param_proto

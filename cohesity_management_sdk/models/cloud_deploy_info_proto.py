@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.cloud_deploy_info_proto_cloud_deploy_entity
 import cohesity_management_sdk.models.restore_info_proto
@@ -24,6 +24,8 @@ class CloudDeployInfoProto(object):
     102
     aws::ReplicationInfo::aws_replication_info      aws/aws.proto
     103
+    azure::ReplicationInfo::azure_replication_info  azure/azure.proto
+    104
     ===========================================================================
     ==
     CloudDeployInfoProto.CloudDeployEntity extension  Location
@@ -42,6 +44,8 @@ class CloudDeployInfoProto(object):
     hyperv/hyperv.proto    104
     aws::ReplicationEntityInfo::aws_replication_entity_info
     aws/aws.proto          105
+    aws::ReplicationEntityInfo::azure_replication_entity_info
+    azure/azure.proto      106
     ===========================================================================
     ==
 

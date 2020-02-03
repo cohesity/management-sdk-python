@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.antivirus_scan_config
 import cohesity_management_sdk.models.file_extension_filter
 import cohesity_management_sdk.models.file_level_data_lock_config
 import cohesity_management_sdk.models.quota_policy
+import cohesity_management_sdk.models.nfs_squash
+import cohesity_management_sdk.models.nfs_root_permissions
 import cohesity_management_sdk.models.qo_s
+import cohesity_management_sdk.models.smb_permission
 import cohesity_management_sdk.models.smb_permissions_info
 import cohesity_management_sdk.models.storage_policy_override
 import cohesity_management_sdk.models.subnet
@@ -31,6 +34,8 @@ class UpdateViewParam(object):
             field SecurityMode. deprecated: true
         enable_nfs_view_discovery (bool): If set, it enables discovery of view
             for NFS.
+        enable_offline_caching (bool): Specifies whether to enable offline
+            file caching of the view.
         enable_smb_access_based_enumeration (bool): Specifies if access-based
             enumeration should be enabled. If 'true', only files and folders
             that the user has permissions to access are visible on the SMB
@@ -63,6 +68,12 @@ class UpdateViewParam(object):
             there may be a delay before the Cohesity Cluster allows more data
             to be written to the View, as the Cluster is calculating the usage
             across Nodes.
+        nfs_all_squash (NfsSquash): TODO: type description here.
+        nfs_root_permissions (NfsRootPermissions): Specifies the config of NFS
+            root permission of a view file system.
+        nfs_root_squash (NfsSquash): TODO: type description here.
+        override_global_whitelist (bool): Specifies whether view level client
+            subnet whitelist overrides cluster and global setting.
         protocol_access (ProtocolAccessEnum): Specifies the supported
             Protocols for the View. 'kAll' enables protocol access to all
             three views: NFS, SMB and S3. 'kNFSOnly' enables protocol access
@@ -75,6 +86,8 @@ class UpdateViewParam(object):
             Unified and NTFS style. 'kNativeMode' indicates a native security
             mode. 'kUnifiedMode' indicates a unified security mode.
             'kNtfsMode' indicates a NTFS style security mode.
+        share_permissions (list of SmbPermission): Specifies a list of share
+            level permissions.
         smb_permissions_info (SmbPermissionsInfo): Specifies information about
             SMB permissions.
         storage_policy_override (StoragePolicyOverride): Specifies if inline
@@ -96,6 +109,7 @@ class UpdateViewParam(object):
         "enable_filer_audit_logging":'enableFilerAuditLogging',
         "enable_mixed_mode_permissions":'enableMixedModePermissions',
         "enable_nfs_view_discovery":'enableNfsViewDiscovery',
+        "enable_offline_caching":'enableOfflineCaching',
         "enable_smb_access_based_enumeration":'enableSmbAccessBasedEnumeration',
         "enable_smb_encryption":'enableSmbEncryption',
         "enable_smb_view_discovery":'enableSmbViewDiscovery',
@@ -103,9 +117,14 @@ class UpdateViewParam(object):
         "file_extension_filter":'fileExtensionFilter',
         "file_lock_config":'fileLockConfig',
         "logical_quota":'logicalQuota',
+        "nfs_all_squash":'nfsAllSquash',
+        "nfs_root_permissions":'nfsRootPermissions',
+        "nfs_root_squash":'nfsRootSquash',
+        "override_global_whitelist":'overrideGlobalWhitelist',
         "protocol_access":'protocolAccess',
         "qos":'qos',
         "security_mode":'securityMode',
+        "share_permissions":'sharePermissions',
         "smb_permissions_info":'smbPermissionsInfo',
         "storage_policy_override":'storagePolicyOverride',
         "subnet_whitelist":'subnetWhitelist',
@@ -119,6 +138,7 @@ class UpdateViewParam(object):
                  enable_filer_audit_logging=None,
                  enable_mixed_mode_permissions=None,
                  enable_nfs_view_discovery=None,
+                 enable_offline_caching=None,
                  enable_smb_access_based_enumeration=None,
                  enable_smb_encryption=None,
                  enable_smb_view_discovery=None,
@@ -126,9 +146,14 @@ class UpdateViewParam(object):
                  file_extension_filter=None,
                  file_lock_config=None,
                  logical_quota=None,
+                 nfs_all_squash=None,
+                 nfs_root_permissions=None,
+                 nfs_root_squash=None,
+                 override_global_whitelist=None,
                  protocol_access=None,
                  qos=None,
                  security_mode=None,
+                 share_permissions=None,
                  smb_permissions_info=None,
                  storage_policy_override=None,
                  subnet_whitelist=None,
@@ -142,6 +167,7 @@ class UpdateViewParam(object):
         self.enable_filer_audit_logging = enable_filer_audit_logging
         self.enable_mixed_mode_permissions = enable_mixed_mode_permissions
         self.enable_nfs_view_discovery = enable_nfs_view_discovery
+        self.enable_offline_caching = enable_offline_caching
         self.enable_smb_access_based_enumeration = enable_smb_access_based_enumeration
         self.enable_smb_encryption = enable_smb_encryption
         self.enable_smb_view_discovery = enable_smb_view_discovery
@@ -149,9 +175,14 @@ class UpdateViewParam(object):
         self.file_extension_filter = file_extension_filter
         self.file_lock_config = file_lock_config
         self.logical_quota = logical_quota
+        self.nfs_all_squash = nfs_all_squash
+        self.nfs_root_permissions = nfs_root_permissions
+        self.nfs_root_squash = nfs_root_squash
+        self.override_global_whitelist = override_global_whitelist
         self.protocol_access = protocol_access
         self.qos = qos
         self.security_mode = security_mode
+        self.share_permissions = share_permissions
         self.smb_permissions_info = smb_permissions_info
         self.storage_policy_override = storage_policy_override
         self.subnet_whitelist = subnet_whitelist
@@ -182,6 +213,7 @@ class UpdateViewParam(object):
         enable_filer_audit_logging = dictionary.get('enableFilerAuditLogging')
         enable_mixed_mode_permissions = dictionary.get('enableMixedModePermissions')
         enable_nfs_view_discovery = dictionary.get('enableNfsViewDiscovery')
+        enable_offline_caching = dictionary.get('enableOfflineCaching')
         enable_smb_access_based_enumeration = dictionary.get('enableSmbAccessBasedEnumeration')
         enable_smb_encryption = dictionary.get('enableSmbEncryption')
         enable_smb_view_discovery = dictionary.get('enableSmbViewDiscovery')
@@ -189,9 +221,18 @@ class UpdateViewParam(object):
         file_extension_filter = cohesity_management_sdk.models.file_extension_filter.FileExtensionFilter.from_dictionary(dictionary.get('fileExtensionFilter')) if dictionary.get('fileExtensionFilter') else None
         file_lock_config = cohesity_management_sdk.models.file_level_data_lock_config.FileLevelDataLockConfig.from_dictionary(dictionary.get('fileLockConfig')) if dictionary.get('fileLockConfig') else None
         logical_quota = cohesity_management_sdk.models.quota_policy.QuotaPolicy.from_dictionary(dictionary.get('logicalQuota')) if dictionary.get('logicalQuota') else None
+        nfs_all_squash = cohesity_management_sdk.models.nfs_squash.NfsSquash.from_dictionary(dictionary.get('nfsAllSquash')) if dictionary.get('nfsAllSquash') else None
+        nfs_root_permissions = cohesity_management_sdk.models.nfs_root_permissions.NfsRootPermissions.from_dictionary(dictionary.get('nfsRootPermissions')) if dictionary.get('nfsRootPermissions') else None
+        nfs_root_squash = cohesity_management_sdk.models.nfs_squash.NfsSquash.from_dictionary(dictionary.get('nfsRootSquash')) if dictionary.get('nfsRootSquash') else None
+        override_global_whitelist = dictionary.get('overrideGlobalWhitelist')
         protocol_access = dictionary.get('protocolAccess')
         qos = cohesity_management_sdk.models.qo_s.QoS.from_dictionary(dictionary.get('qos')) if dictionary.get('qos') else None
         security_mode = dictionary.get('securityMode')
+        share_permissions = None
+        if dictionary.get('sharePermissions') != None:
+            share_permissions = list()
+            for structure in dictionary.get('sharePermissions'):
+                share_permissions.append(cohesity_management_sdk.models.smb_permission.SmbPermission.from_dictionary(structure))
         smb_permissions_info = cohesity_management_sdk.models.smb_permissions_info.SmbPermissionsInfo.from_dictionary(dictionary.get('smbPermissionsInfo')) if dictionary.get('smbPermissionsInfo') else None
         storage_policy_override = cohesity_management_sdk.models.storage_policy_override.StoragePolicyOverride.from_dictionary(dictionary.get('storagePolicyOverride')) if dictionary.get('storagePolicyOverride') else None
         subnet_whitelist = None
@@ -208,6 +249,7 @@ class UpdateViewParam(object):
                    enable_filer_audit_logging,
                    enable_mixed_mode_permissions,
                    enable_nfs_view_discovery,
+                   enable_offline_caching,
                    enable_smb_access_based_enumeration,
                    enable_smb_encryption,
                    enable_smb_view_discovery,
@@ -215,9 +257,14 @@ class UpdateViewParam(object):
                    file_extension_filter,
                    file_lock_config,
                    logical_quota,
+                   nfs_all_squash,
+                   nfs_root_permissions,
+                   nfs_root_squash,
+                   override_global_whitelist,
                    protocol_access,
                    qos,
                    security_mode,
+                   share_permissions,
                    smb_permissions_info,
                    storage_policy_override,
                    subnet_whitelist,

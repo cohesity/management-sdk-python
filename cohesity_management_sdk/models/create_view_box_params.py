@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.subnet
 import cohesity_management_sdk.models.quota_policy
@@ -42,6 +42,10 @@ class CreateViewBoxParams(object):
             there may be delay before the Cohesity Cluster allows more data to
             be written to the Storage Domain (View Box), as the Cluster is
             calculating the usage across Nodes.
+        direct_archive_enabled (bool): Specifies whether this viewbox can be
+            used as a staging area while copying a largedataset that can't fit
+            on the cluster to an external target. The amount of data that can
+            be stored on the viewbox can be specified using 'physical_quota'.
         ldap_provider_id (long|int): When set, the following provides the LDAP
             provider the view box is mapped to. For any view from this view
             box, when accessed via NFS the following LDAP provider is looked
@@ -95,6 +99,7 @@ class CreateViewBoxParams(object):
         "cloud_down_waterfall_threshold_secs":'cloudDownWaterfallThresholdSecs',
         "default_user_quota_policy":'defaultUserQuotaPolicy',
         "default_view_quota_policy":'defaultViewQuotaPolicy',
+        "direct_archive_enabled":'directArchiveEnabled',
         "ldap_provider_id":'ldapProviderId',
         "physical_quota":'physicalQuota',
         "s_3_buckets_allowed":'s3BucketsAllowed',
@@ -111,6 +116,7 @@ class CreateViewBoxParams(object):
                  cloud_down_waterfall_threshold_secs=None,
                  default_user_quota_policy=None,
                  default_view_quota_policy=None,
+                 direct_archive_enabled=None,
                  ldap_provider_id=None,
                  physical_quota=None,
                  s_3_buckets_allowed=None,
@@ -126,6 +132,7 @@ class CreateViewBoxParams(object):
         self.cluster_partition_id = cluster_partition_id
         self.default_user_quota_policy = default_user_quota_policy
         self.default_view_quota_policy = default_view_quota_policy
+        self.direct_archive_enabled = direct_archive_enabled
         self.ldap_provider_id = ldap_provider_id
         self.name = name
         self.physical_quota = physical_quota
@@ -164,6 +171,7 @@ class CreateViewBoxParams(object):
         cloud_down_waterfall_threshold_secs = dictionary.get('cloudDownWaterfallThresholdSecs')
         default_user_quota_policy = cohesity_management_sdk.models.quota_policy.QuotaPolicy.from_dictionary(dictionary.get('defaultUserQuotaPolicy')) if dictionary.get('defaultUserQuotaPolicy') else None
         default_view_quota_policy = cohesity_management_sdk.models.quota_policy.QuotaPolicy.from_dictionary(dictionary.get('defaultViewQuotaPolicy')) if dictionary.get('defaultViewQuotaPolicy') else None
+        direct_archive_enabled = dictionary.get('directArchiveEnabled')
         ldap_provider_id = dictionary.get('ldapProviderId')
         physical_quota = cohesity_management_sdk.models.quota_policy.QuotaPolicy.from_dictionary(dictionary.get('physicalQuota')) if dictionary.get('physicalQuota') else None
         s_3_buckets_allowed = dictionary.get('s3BucketsAllowed')
@@ -179,6 +187,7 @@ class CreateViewBoxParams(object):
                    cloud_down_waterfall_threshold_secs,
                    default_user_quota_policy,
                    default_view_quota_policy,
+                   direct_archive_enabled,
                    ldap_provider_id,
                    physical_quota,
                    s_3_buckets_allowed,

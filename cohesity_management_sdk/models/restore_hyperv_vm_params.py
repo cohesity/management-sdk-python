@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.entity_proto
 import cohesity_management_sdk.models.power_state_config_proto
@@ -14,8 +14,7 @@ class RestoreHypervVMParams(object):
     TODO: type model description here.
 
     Attributes:
-        copy_recovery (bool): Whether to perform copy recovery. TODO(sachin)
-            Make this false when we start supporting Instant Recovery.
+        copy_recovery (bool): Whether to perform copy recovery.
         datastore_entity (EntityProto): Specifies the attributes and the
             latest statistics about an entity.
         power_state_config (PowerStateConfigProto): TODO: type description

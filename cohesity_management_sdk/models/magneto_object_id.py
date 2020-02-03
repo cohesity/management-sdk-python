@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.entity_proto
 import cohesity_management_sdk.models.universal_id_proto
@@ -8,7 +8,7 @@ class MagnetoObjectId(object):
 
     """Implementation of the 'MagnetoObjectId' model.
 
-    TODO(apurv): This message type should be moved to the Yoda namespace.
+    TODO: type model description here.
 
     Attributes:
         entity (EntityProto): Specifies the attributes and the latest

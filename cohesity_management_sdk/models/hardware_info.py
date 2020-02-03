@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 
 class HardwareInfo(object):
@@ -22,6 +22,7 @@ class HardwareInfo(object):
         node_model (string): TODO: type description here.
         node_serial (string): TODO: type description here.
         product_model (string): TODO: type description here.
+        product_model_type (string): TODO: type description here.
         slot_number (string): TODO: type description here.
 
     """
@@ -39,6 +40,7 @@ class HardwareInfo(object):
         "node_model":'nodeModel',
         "node_serial":'nodeSerial',
         "product_model":'productModel',
+        "product_model_type":'productModelType',
         "slot_number":'slotNumber'
     }
 
@@ -54,6 +56,7 @@ class HardwareInfo(object):
                  node_model=None,
                  node_serial=None,
                  product_model=None,
+                 product_model_type=None,
                  slot_number=None):
         """Constructor for the HardwareInfo class"""
 
@@ -69,6 +72,7 @@ class HardwareInfo(object):
         self.node_model = node_model
         self.node_serial = node_serial
         self.product_model = product_model
+        self.product_model_type = product_model_type
         self.slot_number = slot_number
 
 
@@ -101,6 +105,7 @@ class HardwareInfo(object):
         node_model = dictionary.get('nodeModel')
         node_serial = dictionary.get('nodeSerial')
         product_model = dictionary.get('productModel')
+        product_model_type = dictionary.get('productModelType')
         slot_number = dictionary.get('slotNumber')
 
         # Return an object of this model
@@ -115,6 +120,7 @@ class HardwareInfo(object):
                    node_model,
                    node_serial,
                    product_model,
+                   product_model_type,
                    slot_number)
 
 

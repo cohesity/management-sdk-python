@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 class ApplicationEnvironmentApplicationsRestoreTaskRequestEnum(object):
 
@@ -17,6 +17,7 @@ class ApplicationEnvironmentApplicationsRestoreTaskRequestEnum(object):
     'kPuppeteer' indicates the Cohesity's Remote Adapter.
     'kPhysical' indicates the physical Protection Source environment.
     'kPure' indicates the Pure Storage Protection Source environment.
+    'Nimble' indicates the Nimble Storage Protection Source environment.
     'kAzure' indicates the Microsoft's Azure Protection Source environment.
     'kNetapp' indicates the Netapp Protection Source environment.
     'kAgent' indicates the Agent Protection Source environment.
@@ -45,6 +46,7 @@ class ApplicationEnvironmentApplicationsRestoreTaskRequestEnum(object):
     'kGCPNative' indicates the GCP Native Protection Source environment.
     'kAzureNative' indicates the Azure Native Protection Source environment.
     'kKubernetes' indicates a Kubernetes Protection Source environment.
+    'kElastifile' indicates Elastifile Protection Source environment.
 
     Attributes:
         KVMWARE: TODO: type description here.
@@ -54,6 +56,7 @@ class ApplicationEnvironmentApplicationsRestoreTaskRequestEnum(object):
         KPUPPETEER: TODO: type description here.
         KPHYSICAL: TODO: type description here.
         KPURE: TODO: type description here.
+        KNIMBLE: TODO: type description here.
         KAZURE: TODO: type description here.
         KNETAPP: TODO: type description here.
         KAGENT: TODO: type description here.
@@ -77,6 +80,7 @@ class ApplicationEnvironmentApplicationsRestoreTaskRequestEnum(object):
         KGCPNATIVE: TODO: type description here.
         KAZURENATIVE: TODO: type description here.
         KKUBERNETES: TODO: type description here.
+        KELASTIFILE: TODO: type description here.
 
     """
 
@@ -93,6 +97,8 @@ class ApplicationEnvironmentApplicationsRestoreTaskRequestEnum(object):
     KPHYSICAL = 'kPhysical'
 
     KPURE = 'kPure'
+
+    KNIMBLE = 'kNimble'
 
     KAZURE = 'kAzure'
 
@@ -139,4 +145,6 @@ class ApplicationEnvironmentApplicationsRestoreTaskRequestEnum(object):
     KAZURENATIVE = 'kAzureNative'
 
     KKUBERNETES = 'kKubernetes'
+
+    KELASTIFILE = 'kElastifile'
 

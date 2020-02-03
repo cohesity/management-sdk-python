@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.apps_config
 import cohesity_management_sdk.models.cluster_audit_log_configuration
 import cohesity_management_sdk.models.eula_config
 import cohesity_management_sdk.models.filer_audit_log_configuration
 import cohesity_management_sdk.models.cluster_hardware_info
+import cohesity_management_sdk.models.license_state
 import cohesity_management_sdk.models.ntp_settings_config
+import cohesity_management_sdk.models.schema_info
 import cohesity_management_sdk.models.cluster_stats
 import cohesity_management_sdk.models.supported_config
 import cohesity_management_sdk.models.syslog_server
@@ -24,11 +26,6 @@ class Cluster(object):
         banner_enabled (bool): Specifies whether UI banner is enabled on the
             cluster or not. When banner is enabled, UI will make an additional
             API call to fetch the banner and show at the login page.
-        bonding_mode (BondingModeEnum): Specifies the bonding mode to use when
-            bonding NICs to this Cluster. 'KActiveBackup' indicates an
-            Active-backup policy bonding mode. 'K802_3ad' indicates an EEE
-            802.3ad Dynamic link aggregation bonding mode. 'KBalanceAlb'
-            indicates a Adaptive load balancing bonding mode.
         cluster_audit_log_config (ClusterAuditLogConfiguration): Specifies the
             settings of the Cluster audit log configuration.
         cluster_software_version (string): Specifies the current release of
@@ -105,16 +102,16 @@ class Cluster(object):
             version of Help.
         language_locale (string): Specifies the language and locale for this
             Cohesity Cluster.
-        license_server_claimed (bool): Speifies if cluster is claimed by
-            Helios or not.
+        license_state (LicenseState): Specifies the Licensing State
+            information.
+        local_auth_domain_name (string): Domain name for SMB local
+            authentication.
         local_groups_enabled (bool): Specifies whether to enable local groups
             on cluster. Once it is enabled, it cannot be disabled.
         metadata_fault_tolerance_factor (int): Specifies metadata fault
             tolerance setting for the cluster. This denotes the number of
             simultaneous failures[node] supported by metadata services like
             gandalf and scribe.
-        mtu (int): Specifies the Maxium Transmission Unit (MTU) in bytes of
-            the network.
         multi_tenancy_enabled (bool): Specifies if multi tenancy is enabled in
             the cluster. Authentication & Authorization will always use
             tenant_id, however, some UI elements may be disabled when multi
@@ -122,6 +119,7 @@ class Cluster(object):
         name (string): Specifies the name of the Cohesity Cluster.
         node_count (long|int): Specifies the number of Nodes in the Cohesity
             Cluster.
+        node_ips (string): IP addresses of nodes in the cluster
         ntp_settings (NtpSettingsConfig): TODO: type description here.
         proxy_vm_subnet (string): The subnet reserved for ProxyVM
         reverse_tunnel_enabled (bool): If 'true', Cohesity's Remote Tunnel is
@@ -130,6 +128,8 @@ class Cluster(object):
         reverse_tunnel_end_time_msecs (long|int): ReverseTunnelEndTimeMsecs
             specifies the end time in milliseconds since epoch until when the
             reverse tunnel will stay enabled.
+        schema_info_list (list of SchemaInfo): Specifies the time series
+            schema info of the cluster.
         smb_ad_disabled (bool): Specifies if Active Directory should be
             disabled for authentication of SMB shares. If 'true', Active
             Directory is disabled.
@@ -163,7 +163,6 @@ class Cluster(object):
         "apps_settings":'appsSettings',
         "available_metadata_space":'availableMetadataSpace',
         "banner_enabled":'bannerEnabled',
-        "bonding_mode":'bondingMode',
         "cluster_audit_log_config":'clusterAuditLogConfig',
         "cluster_software_version":'clusterSoftwareVersion',
         "cluster_type":'clusterType',
@@ -187,17 +186,19 @@ class Cluster(object):
         "incarnation_id":'incarnationId',
         "is_documentation_local":'isDocumentationLocal',
         "language_locale":'languageLocale',
-        "license_server_claimed":'licenseServerClaimed',
+        "license_state":'licenseState',
+        "local_auth_domain_name":'localAuthDomainName',
         "local_groups_enabled":'localGroupsEnabled',
         "metadata_fault_tolerance_factor":'metadataFaultToleranceFactor',
-        "mtu":'mtu',
         "multi_tenancy_enabled":'multiTenancyEnabled',
         "name":'name',
         "node_count":'nodeCount',
+        "node_ips":'nodeIps',
         "ntp_settings":'ntpSettings',
         "proxy_vm_subnet":'proxyVMSubnet',
         "reverse_tunnel_enabled":'reverseTunnelEnabled',
         "reverse_tunnel_end_time_msecs":'reverseTunnelEndTimeMsecs',
+        "schema_info_list":'schemaInfoList',
         "smb_ad_disabled":'smbAdDisabled',
         "stats":'stats',
         "stig_mode":'stigMode',
@@ -214,7 +215,6 @@ class Cluster(object):
                  apps_settings=None,
                  available_metadata_space=None,
                  banner_enabled=None,
-                 bonding_mode=None,
                  cluster_audit_log_config=None,
                  cluster_software_version=None,
                  cluster_type=None,
@@ -238,17 +238,19 @@ class Cluster(object):
                  incarnation_id=None,
                  is_documentation_local=None,
                  language_locale=None,
-                 license_server_claimed=None,
+                 license_state=None,
+                 local_auth_domain_name=None,
                  local_groups_enabled=None,
                  metadata_fault_tolerance_factor=None,
-                 mtu=None,
                  multi_tenancy_enabled=None,
                  name=None,
                  node_count=None,
+                 node_ips=None,
                  ntp_settings=None,
                  proxy_vm_subnet=None,
                  reverse_tunnel_enabled=None,
                  reverse_tunnel_end_time_msecs=None,
+                 schema_info_list=None,
                  smb_ad_disabled=None,
                  stats=None,
                  stig_mode=None,
@@ -265,7 +267,6 @@ class Cluster(object):
         self.apps_settings = apps_settings
         self.available_metadata_space = available_metadata_space
         self.banner_enabled = banner_enabled
-        self.bonding_mode = bonding_mode
         self.cluster_audit_log_config = cluster_audit_log_config
         self.cluster_software_version = cluster_software_version
         self.cluster_type = cluster_type
@@ -289,17 +290,19 @@ class Cluster(object):
         self.incarnation_id = incarnation_id
         self.is_documentation_local = is_documentation_local
         self.language_locale = language_locale
-        self.license_server_claimed = license_server_claimed
+        self.license_state = license_state
+        self.local_auth_domain_name = local_auth_domain_name
         self.local_groups_enabled = local_groups_enabled
         self.metadata_fault_tolerance_factor = metadata_fault_tolerance_factor
-        self.mtu = mtu
         self.multi_tenancy_enabled = multi_tenancy_enabled
         self.name = name
         self.node_count = node_count
+        self.node_ips = node_ips
         self.ntp_settings = ntp_settings
         self.proxy_vm_subnet = proxy_vm_subnet
         self.reverse_tunnel_enabled = reverse_tunnel_enabled
         self.reverse_tunnel_end_time_msecs = reverse_tunnel_end_time_msecs
+        self.schema_info_list = schema_info_list
         self.smb_ad_disabled = smb_ad_disabled
         self.stats = stats
         self.stig_mode = stig_mode
@@ -333,7 +336,6 @@ class Cluster(object):
         apps_settings = cohesity_management_sdk.models.apps_config.AppsConfig.from_dictionary(dictionary.get('appsSettings')) if dictionary.get('appsSettings') else None
         available_metadata_space = dictionary.get('availableMetadataSpace')
         banner_enabled = dictionary.get('bannerEnabled')
-        bonding_mode = dictionary.get('bondingMode')
         cluster_audit_log_config = cohesity_management_sdk.models.cluster_audit_log_configuration.ClusterAuditLogConfiguration.from_dictionary(dictionary.get('clusterAuditLogConfig')) if dictionary.get('clusterAuditLogConfig') else None
         cluster_software_version = dictionary.get('clusterSoftwareVersion')
         cluster_type = dictionary.get('clusterType')
@@ -357,17 +359,23 @@ class Cluster(object):
         incarnation_id = dictionary.get('incarnationId')
         is_documentation_local = dictionary.get('isDocumentationLocal')
         language_locale = dictionary.get('languageLocale')
-        license_server_claimed = dictionary.get('licenseServerClaimed')
+        license_state = cohesity_management_sdk.models.license_state.LicenseState.from_dictionary(dictionary.get('licenseState')) if dictionary.get('licenseState') else None
+        local_auth_domain_name = dictionary.get('localAuthDomainName')
         local_groups_enabled = dictionary.get('localGroupsEnabled')
         metadata_fault_tolerance_factor = dictionary.get('metadataFaultToleranceFactor')
-        mtu = dictionary.get('mtu')
         multi_tenancy_enabled = dictionary.get('multiTenancyEnabled')
         name = dictionary.get('name')
         node_count = dictionary.get('nodeCount')
+        node_ips = dictionary.get('nodeIps')
         ntp_settings = cohesity_management_sdk.models.ntp_settings_config.NtpSettingsConfig.from_dictionary(dictionary.get('ntpSettings')) if dictionary.get('ntpSettings') else None
         proxy_vm_subnet = dictionary.get('proxyVMSubnet')
         reverse_tunnel_enabled = dictionary.get('reverseTunnelEnabled')
         reverse_tunnel_end_time_msecs = dictionary.get('reverseTunnelEndTimeMsecs')
+        schema_info_list = None
+        if dictionary.get('schemaInfoList') != None:
+            schema_info_list = list()
+            for structure in dictionary.get('schemaInfoList'):
+                schema_info_list.append(cohesity_management_sdk.models.schema_info.SchemaInfo.from_dictionary(structure))
         smb_ad_disabled = dictionary.get('smbAdDisabled')
         stats = cohesity_management_sdk.models.cluster_stats.ClusterStats.from_dictionary(dictionary.get('stats')) if dictionary.get('stats') else None
         stig_mode = dictionary.get('stigMode')
@@ -387,7 +395,6 @@ class Cluster(object):
         return cls(apps_settings,
                    available_metadata_space,
                    banner_enabled,
-                   bonding_mode,
                    cluster_audit_log_config,
                    cluster_software_version,
                    cluster_type,
@@ -411,17 +418,19 @@ class Cluster(object):
                    incarnation_id,
                    is_documentation_local,
                    language_locale,
-                   license_server_claimed,
+                   license_state,
+                   local_auth_domain_name,
                    local_groups_enabled,
                    metadata_fault_tolerance_factor,
-                   mtu,
                    multi_tenancy_enabled,
                    name,
                    node_count,
+                   node_ips,
                    ntp_settings,
                    proxy_vm_subnet,
                    reverse_tunnel_enabled,
                    reverse_tunnel_end_time_msecs,
+                   schema_info_list,
                    smb_ad_disabled,
                    stats,
                    stig_mode,

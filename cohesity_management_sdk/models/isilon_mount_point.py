@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.isilon_nfs_mount_point
 import cohesity_management_sdk.models.isilon_smb_mount_point
@@ -16,10 +16,10 @@ class IsilonMountPoint(object):
             exposed by Isilon Protection Source.
         path (string): Specifies the path of the access zone in ifs. This
             should include the leading "/ifs/".
-        protocols (list of ProtocolIsilonMountPointEnum): List of Protocols on
-            Isilon.  Specifies the list of protocols enabled on Isilon OneFs
-            file system. 'kNfs' indicates NFS exports in an Isilon Cluster.
-            'kSmb' indicates CIFS/SMB Shares in an Isilon Cluster.
+        protocols (list of ProtocolEnum): List of Protocols on Isilon.
+            Specifies the list of protocols enabled on Isilon OneFs file
+            system. 'kNfs' indicates NFS exports in an Isilon Cluster. 'kSmb'
+            indicates CIFS/SMB Shares in an Isilon Cluster.
         smb_mount_points (list of IsilonSmbMountPoint): Specifies information
             about an SMB share. This field is set if the file system supports
             protocol type 'kSmb'.

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 
 class InfectedFile(object):
@@ -9,6 +9,8 @@ class InfectedFile(object):
     Specifies the Result parameters for all infected files.
 
     Attributes:
+        antivirus_provider_name (string): Specifies the name of antivirus
+            service provider.
         entity_id (long|int): Specifies the entity id of the infected file.
         file_path (string): Specifies file path of the infected file.
         infection_detection_timestamp (long|int): Specifies unix epoch
@@ -41,6 +43,7 @@ class InfectedFile(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "antivirus_provider_name":'antivirusProviderName',
         "entity_id":'entityId',
         "file_path":'filePath',
         "infection_detection_timestamp":'infectionDetectionTimestamp',
@@ -55,6 +58,7 @@ class InfectedFile(object):
     }
 
     def __init__(self,
+                 antivirus_provider_name=None,
                  entity_id=None,
                  file_path=None,
                  infection_detection_timestamp=None,
@@ -69,6 +73,7 @@ class InfectedFile(object):
         """Constructor for the InfectedFile class"""
 
         # Initialize members of the class
+        self.antivirus_provider_name = antivirus_provider_name
         self.entity_id = entity_id
         self.file_path = file_path
         self.infection_detection_timestamp = infection_detection_timestamp
@@ -100,6 +105,7 @@ class InfectedFile(object):
             return None
 
         # Extract variables from the dictionary
+        antivirus_provider_name = dictionary.get('antivirusProviderName')
         entity_id = dictionary.get('entityId')
         file_path = dictionary.get('filePath')
         infection_detection_timestamp = dictionary.get('infectionDetectionTimestamp')
@@ -113,7 +119,8 @@ class InfectedFile(object):
         view_name = dictionary.get('viewName')
 
         # Return an object of this model
-        return cls(entity_id,
+        return cls(antivirus_provider_name,
+                   entity_id,
                    file_path,
                    infection_detection_timestamp,
                    modified_timestamp_usecs,

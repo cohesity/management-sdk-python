@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.agent_information
 import cohesity_management_sdk.models.hyperv_datastore
@@ -32,6 +32,8 @@ class HypervProtectionSource(object):
             operating system. 'kWindows' indicates the Microsoft Windows
             operating system. 'kAix' indicates the IBM AIX operating system.
             'kSolaris' indicates the Oracle Solaris operating system.
+            'kSapHana' indicates the Sap Hana database system developed by SAP
+            SE. 'kOther' indicates the other types of operating system.
         hyperv_uuid (string): Specifies the UUID for 'kVirtualMachine' HyperV
             objects.
         name (string): Specifies the name of the HyperV Object.
@@ -44,11 +46,13 @@ class HypervProtectionSource(object):
             indicates a collection of root folders clusters. 'kStandaloneHost'
             indicates a single Nutanix cluster. 'kStandaloneCluster' indicates
             a single Nutanix cluster. 'kHostGroup' indicates a Nutanix cluster
-            manageed by a Prism Central. 'kHost' indicates an HyperV host.
-            'kHostCluster' indicates a Nutanix cluster manageed by a Prism
-            Central. 'kVirtualMachine' indicates a Virtual Machine. 'kNetwork'
-            indicates a Virtual Machine network object. 'kDatastore'
-            represents a storage container object.
+            manageed by a Prism Central. 'kHypervHost' indicates an HyperV
+            host. 'kHostCluster' indicates a Nutanix cluster manageed by a
+            Prism Central. 'kVirtualMachine' indicates a Virtual Machine.
+            'kNetwork' indicates a Virtual Machine network object.
+            'kDatastore' represents a storage container object. 'kTag'
+            indicates a tag type object. 'kCustomProperty' indciates a custom
+            property including tag type.
         uuid (string): Specifies the UUID of the Object. This is unique within
             the HyperV environment.
         vm_info (HypervVirtualMachine): Specifies information about a

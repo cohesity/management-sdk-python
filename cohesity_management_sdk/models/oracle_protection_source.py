@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.oracle_host
 
@@ -17,8 +17,10 @@ class OracleProtectionSource(object):
             enabled. BCT improves the performance of incremental backups by
             recording changed blocks into the block change tracking file. RMAN
             then uses this file to identify changed blocks to be backed up.
-        db_type (int): Specifies the type of the database in Oracle Protection
-            Source.
+        db_type (DbTypeEnum): Specifies the type of the database in Oracle
+            Protection Source. 'kRACDatabase' indicates the database is a RAC
+            DB. 'kSingleInstance' indicates that the databse is single
+            instance.
         fra_size (long|int): Specfies Flash/Fast Recovery area size for the
             current DB entity.
         hosts (list of OracleHost): Specifies the list of hosts for the

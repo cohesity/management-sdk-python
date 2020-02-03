@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 class EnvironmentProtectionSummaryByEnvEnum(object):
 
@@ -15,6 +15,7 @@ class EnvironmentProtectionSummaryByEnvEnum(object):
     'kPuppeteer' indicates the Cohesity's Remote Adapter.
     'kPhysical' indicates the physical Protection Source environment.
     'kPure' indicates the Pure Storage Protection Source environment.
+    'Nimble' indicates the Nimble Storage Protection Source environment.
     'kAzure' indicates the Microsoft's Azure Protection Source environment.
     'kNetapp' indicates the Netapp Protection Source environment.
     'kAgent' indicates the Agent Protection Source environment.
@@ -24,6 +25,7 @@ class EnvironmentProtectionSummaryByEnvEnum(object):
     'kPhsicalFiles' indicates the Physical Files Protection Source
     environment.
     'kIsilon' indicates the Dell EMC's Isilon Protection Source environment.
+    'kGPFS' indicates IBM's GPFS Protection Source environment.
     'kKVM' indicates the KVM Protection Source environment.
     'kAWS' indicates the AWS Protection Source environment.
     'kExchange' indicates the Exchange Protection Source environment.
@@ -41,6 +43,8 @@ class EnvironmentProtectionSummaryByEnvEnum(object):
     'kHyperFlex' indicates the Hyper Flex Protection Source environment.
     'kGCPNative' indicates the GCP Native Protection Source environment.
     'kAzureNative' indicates the Azure Native Protection Source environment.
+    'kKubernetes' indicates a Kubernetes Protection Source environment.
+    'kElastifile' indicates Elastifile Protection Source environment.
 
     Attributes:
         KVMWARE: TODO: type description here.
@@ -50,6 +54,7 @@ class EnvironmentProtectionSummaryByEnvEnum(object):
         KPUPPETEER: TODO: type description here.
         KPHYSICAL: TODO: type description here.
         KPURE: TODO: type description here.
+        KNIMBLE: TODO: type description here.
         KAZURE: TODO: type description here.
         KNETAPP: TODO: type description here.
         KAGENT: TODO: type description here.
@@ -57,6 +62,7 @@ class EnvironmentProtectionSummaryByEnvEnum(object):
         KACROPOLIS: TODO: type description here.
         KPHYSICALFILES: TODO: type description here.
         KISILON: TODO: type description here.
+        KGPFS: TODO: type description here.
         KKVM: TODO: type description here.
         KAWS: TODO: type description here.
         KEXCHANGE: TODO: type description here.
@@ -71,6 +77,8 @@ class EnvironmentProtectionSummaryByEnvEnum(object):
         KHYPERFLEX: TODO: type description here.
         KGCPNATIVE: TODO: type description here.
         KAZURENATIVE: TODO: type description here.
+        KKUBERNETES: TODO: type description here.
+        KELASTIFILE: TODO: type description here.
 
     """
 
@@ -88,6 +96,8 @@ class EnvironmentProtectionSummaryByEnvEnum(object):
 
     KPURE = 'kPure'
 
+    KNIMBLE = 'kNimble'
+
     KAZURE = 'kAzure'
 
     KNETAPP = 'kNetapp'
@@ -101,6 +111,8 @@ class EnvironmentProtectionSummaryByEnvEnum(object):
     KPHYSICALFILES = 'kPhysicalFiles'
 
     KISILON = 'kIsilon'
+
+    KGPFS = 'kGPFS'
 
     KKVM = 'kKVM'
 
@@ -129,4 +141,8 @@ class EnvironmentProtectionSummaryByEnvEnum(object):
     KGCPNATIVE = 'kGCPNative'
 
     KAZURENATIVE = 'kAzureNative'
+
+    KKUBERNETES = 'kKubernetes'
+
+    KELASTIFILE = 'kElastifile'
 

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 class ProtocolViewProtocolStatsEnum(object):
 
@@ -8,18 +8,18 @@ class ProtocolViewProtocolStatsEnum(object):
     TODO: type enum description here.
 
     Attributes:
-        KNFS: TODO: type description here.
+        KISCSI: TODO: type description here.
         KSMB: TODO: type description here.
         KS3: TODO: type description here.
-        KISCSI: TODO: type description here.
+        KNFS: TODO: type description here.
 
     """
 
-    KNFS = 'kNfs'
+    KISCSI = 'kIscsi'
 
     KSMB = 'kSmb'
 
     KS3 = 'kS3'
 
-    KISCSI = 'kIscsi'
+    KNFS = 'kNfs'
 

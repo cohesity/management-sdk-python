@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 class PureTypeEnum(object):
 
@@ -8,8 +8,8 @@ class PureTypeEnum(object):
     Specifies the entity type such as 'kStorageArray' if the environment is
     kPure.
     overrideDescription: true
-    Examples of Pure Objects include 'kStorageArray' and 'kVolume'.
-    'kStorageArray' indicates that entire pure storage array is being
+    Examples of SAN Objects include 'kStorageArray' and 'kVolume'.
+    'kStorageArray' indicates that entire SAN storage array is being
     protected.
     'kVolume' indicates that volume within the array is being protected.
 

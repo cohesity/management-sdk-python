@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 
 class AddedActiveDirectoryPrincipal(object):
@@ -26,6 +26,7 @@ class AddedActiveDirectoryPrincipal(object):
             'kUser', the referenced Active Directory principal is a user.
             'kUser' specifies a user object class. 'kGroup' specifies a group
             object class. 'kComputer' specifies a computer object class.
+            'kWellKnownPrincipal' specifies a well known principal.
         principal_name (string): Specifies the name of the Active Directory
             principal, that will be referenced by the group or user. The name
             of the Active Directory principal is used for naming the new group

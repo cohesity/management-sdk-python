@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.error_proto
 import cohesity_management_sdk.models.retrieve_archive_info_retrieved_entity
@@ -24,8 +24,7 @@ class RetrieveArchiveInfo(object):
         logical_size_bytes (long|int): Total logical size of the retrieval
             task.
         progress_monitor_task_path (string): The root path of the progress
-            monitor for this task. TODO(mark): Rename this field once Iris
-            stops referring to it.
+            monitor for this task.
         retrieved_entity_vec (list of RetrieveArchiveInfoRetrievedEntity):
             Contains info about all retrieved entities.
         start_time_usecs (long|int): Time when this retrieval task was started

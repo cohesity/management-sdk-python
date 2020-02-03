@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.entity_proto
 import cohesity_management_sdk.models.deploy_v_ms_to_cloud_task_state_proto
@@ -55,6 +55,8 @@ class DestroyClonedTaskStateProto(object):
         error (ErrorProto): TODO: type description here.
         folder_entity (EntityProto): Specifies the attributes and the latest
             statistics about an entity.
+        force_delete (bool): flag used to perform force delete, ignore error
+            on delete steps
         full_view_name (string): The full external view name where cloned
             objects are placed.
         parent_source_connection_params (ConnectorParams): Message that
@@ -102,6 +104,7 @@ class DestroyClonedTaskStateProto(object):
         "end_time_usecs":'endTimeUsecs',
         "error":'error',
         "folder_entity":'folderEntity',
+        "force_delete":'forceDelete',
         "full_view_name":'fullViewName',
         "parent_source_connection_params":'parentSourceConnectionParams',
         "parent_task_id":'parentTaskId',
@@ -129,6 +132,7 @@ class DestroyClonedTaskStateProto(object):
                  end_time_usecs=None,
                  error=None,
                  folder_entity=None,
+                 force_delete=None,
                  full_view_name=None,
                  parent_source_connection_params=None,
                  parent_task_id=None,
@@ -156,6 +160,7 @@ class DestroyClonedTaskStateProto(object):
         self.end_time_usecs = end_time_usecs
         self.error = error
         self.folder_entity = folder_entity
+        self.force_delete = force_delete
         self.full_view_name = full_view_name
         self.parent_source_connection_params = parent_source_connection_params
         self.parent_task_id = parent_task_id
@@ -200,6 +205,7 @@ class DestroyClonedTaskStateProto(object):
         end_time_usecs = dictionary.get('endTimeUsecs')
         error = cohesity_management_sdk.models.error_proto.ErrorProto.from_dictionary(dictionary.get('error')) if dictionary.get('error') else None
         folder_entity = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('folderEntity')) if dictionary.get('folderEntity') else None
+        force_delete = dictionary.get('forceDelete')
         full_view_name = dictionary.get('fullViewName')
         parent_source_connection_params = cohesity_management_sdk.models.connector_params.ConnectorParams.from_dictionary(dictionary.get('parentSourceConnectionParams')) if dictionary.get('parentSourceConnectionParams') else None
         parent_task_id = dictionary.get('parentTaskId')
@@ -226,6 +232,7 @@ class DestroyClonedTaskStateProto(object):
                    end_time_usecs,
                    error,
                    folder_entity,
+                   force_delete,
                    full_view_name,
                    parent_source_connection_params,
                    parent_task_id,

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.capacity_by_tier
 import cohesity_management_sdk.models.chassis_info
@@ -44,24 +44,26 @@ class Node(object):
             incarnation id and start the services.
         node_software_version (string): NodeSoftwareVersion is the current
             version of Cohesity software installed on a node.
+        node_type (string): Node type: StorageNode, AllFlashNode, RoboNode,
+            AppNode, etc.
         offline_mount_paths_of_disks (list of string):
             OfflineMountPathsOfDisks provides the corresponding mount paths
             for direct attached disks that are currently offline - access to
             these were detected to hang sometime in the past. After these
             disks have been fixed, their mount paths needs to be removed from
             the following list before these will be accessed again.
-        removal_reason (list of RemovalReasonEnum): RemovalReason specifies
-            the removal reason of the node. 'kAutoHealthCheck' means the
-            entity health is bad. 'kUserGracefulRemoval' means user initiated
-            a graceful removal. 'kUserAvoidAccess' means user initiated a mark
-            offline. 'kUserGracefulNodeRemoval' mean users initiated graceful
-            node removal. 'kUserRemoveDownNode' mean user initiated graceful
-            removal of down node.
-        removal_state (RemovalStateEnum): RemovalState specifies the removal
-            state of the node. 'kDontRemove' means the state of object is
-            functional and it is not being removed. 'kMarkedForRemoval' means
-            the object is being removed. 'kOkToRemove' means the object has
-            been removed on the Cohesity Cluster and if the object is
+        removal_reason (list of RemovalReasonNodeEnum): RemovalReason
+            specifies the removal reason of the node. 'kAutoHealthCheck' means
+            the entity health is bad. 'kUserGracefulRemoval' means user
+            initiated a graceful removal. 'kUserAvoidAccess' means user
+            initiated a mark offline. 'kUserGracefulNodeRemoval' mean users
+            initiated graceful node removal. 'kUserRemoveDownNode' mean user
+            initiated graceful removal of down node.
+        removal_state (RemovalStateNodeEnum): RemovalState specifies the
+            removal state of the node. 'kDontRemove' means the state of object
+            is functional and it is not being removed. 'kMarkedForRemoval'
+            means the object is being removed. 'kOkToRemove' means the object
+            has been removed on the Cohesity Cluster and if the object is
             physical, it can be removed from the Cohesity Cluster.
         slot_number (int): Slot number occupied by this node within the
             chassis.
@@ -87,6 +89,7 @@ class Node(object):
         "node_hardware_info":'nodeHardwareInfo',
         "node_incarnation_id":'nodeIncarnationId',
         "node_software_version":'nodeSoftwareVersion',
+        "node_type":'nodeType',
         "offline_mount_paths_of_disks":'offlineMountPathsOfDisks',
         "removal_reason":'removalReason',
         "removal_state":'removalState',
@@ -109,6 +112,7 @@ class Node(object):
                  node_hardware_info=None,
                  node_incarnation_id=None,
                  node_software_version=None,
+                 node_type=None,
                  offline_mount_paths_of_disks=None,
                  removal_reason=None,
                  removal_state=None,
@@ -131,6 +135,7 @@ class Node(object):
         self.node_hardware_info = node_hardware_info
         self.node_incarnation_id = node_incarnation_id
         self.node_software_version = node_software_version
+        self.node_type = node_type
         self.offline_mount_paths_of_disks = offline_mount_paths_of_disks
         self.removal_reason = removal_reason
         self.removal_state = removal_state
@@ -178,6 +183,7 @@ class Node(object):
         node_hardware_info = cohesity_management_sdk.models.node_hardware_info.NodeHardwareInfo.from_dictionary(dictionary.get('nodeHardwareInfo')) if dictionary.get('nodeHardwareInfo') else None
         node_incarnation_id = dictionary.get('nodeIncarnationId')
         node_software_version = dictionary.get('nodeSoftwareVersion')
+        node_type = dictionary.get('nodeType')
         offline_mount_paths_of_disks = dictionary.get('offlineMountPathsOfDisks')
         removal_reason = dictionary.get('removalReason')
         removal_state = dictionary.get('removalState')
@@ -203,6 +209,7 @@ class Node(object):
                    node_hardware_info,
                    node_incarnation_id,
                    node_software_version,
+                   node_type,
                    offline_mount_paths_of_disks,
                    removal_reason,
                    removal_state,

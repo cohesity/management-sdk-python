@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
+import cohesity_management_sdk.models.office_365_user_info
 
 class Office365ProtectionSource(object):
 
@@ -14,7 +15,13 @@ class Office365ProtectionSource(object):
         name (string): Specifies the name of the office 365 entity.
         primary_smtp_address (string): Specifies the SMTP address for the
             Outlook source.
-        mtype (int): Specifies the type of the Office 365 entity.
+        mtype (TypeOffice365ProtectionSourceEnum): Specifies the type of the
+            Office 365 entity. Specifies the type of Office 365 entity
+            'kDomain' indicates the O365 domain through which authentication
+            occurs. 'kOutlook' indicates the Exchange online entities.
+            'kMailbox' indicates the user's mailbox account.
+        user_info (Office365UserInfo): Specifies information about an
+            Office365 user.
         uuid (string): Specifies the UUID of the Office 365 entity.
 
     """
@@ -25,6 +32,7 @@ class Office365ProtectionSource(object):
         "name":'name',
         "primary_smtp_address":'primarySMTPAddress',
         "mtype":'type',
+        "user_info":'userInfo',
         "uuid":'uuid'
     }
 
@@ -33,6 +41,7 @@ class Office365ProtectionSource(object):
                  name=None,
                  primary_smtp_address=None,
                  mtype=None,
+                 user_info=None,
                  uuid=None):
         """Constructor for the Office365ProtectionSource class"""
 
@@ -41,6 +50,7 @@ class Office365ProtectionSource(object):
         self.name = name
         self.primary_smtp_address = primary_smtp_address
         self.mtype = mtype
+        self.user_info = user_info
         self.uuid = uuid
 
 
@@ -66,6 +76,7 @@ class Office365ProtectionSource(object):
         name = dictionary.get('name')
         primary_smtp_address = dictionary.get('primarySMTPAddress')
         mtype = dictionary.get('type')
+        user_info = cohesity_management_sdk.models.office_365_user_info.Office365UserInfo.from_dictionary(dictionary.get('userInfo')) if dictionary.get('userInfo') else None
         uuid = dictionary.get('uuid')
 
         # Return an object of this model
@@ -73,6 +84,7 @@ class Office365ProtectionSource(object):
                    name,
                    primary_smtp_address,
                    mtype,
+                   user_info,
                    uuid)
 
 

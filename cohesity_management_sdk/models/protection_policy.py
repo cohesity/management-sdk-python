@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.blackout_period
 import cohesity_management_sdk.models.snapshot_cloud_copy_policy
@@ -48,6 +48,8 @@ class ProtectionPolicy(object):
             CBT-based backup schedule of a Protection Job and how long
             Snapshots captured by this schedule are retained on the Cohesity
             Cluster.
+        is_usable (bool): Specifies if the policy can be used to create a
+            job.
         last_modified_time_msecs (long|int): Specifies the epoch time (in
             milliseconds) when the Protection Policy was last modified.
         log_scheduling_policy (SchedulingPolicy): Specifies settings that
@@ -55,6 +57,9 @@ class ProtectionPolicy(object):
         name (string): Specifies the name of the Protection Policy.
         num_linked_policies (long|int): Species the number of policies linked
             to a global policy.
+        parent_policy_id (string): Specifies the parent global policy Id. This
+            must be specified when creating a policy from global policy
+            template.
         retries (int): Specifies the number of times to retry capturing
             Snapshots before the Job Run fails.
         retry_interval_mins (int): Specifies the number of minutes before
@@ -112,10 +117,12 @@ class ProtectionPolicy(object):
         "full_scheduling_policy":'fullSchedulingPolicy',
         "id":'id',
         "incremental_scheduling_policy":'incrementalSchedulingPolicy',
+        "is_usable":'isUsable',
         "last_modified_time_msecs":'lastModifiedTimeMsecs',
         "log_scheduling_policy":'logSchedulingPolicy',
         "name":'name',
         "num_linked_policies":'numLinkedPolicies',
+        "parent_policy_id":'parentPolicyId',
         "retries":'retries',
         "retry_interval_mins":'retryIntervalMins',
         "rpo_policy_settings":'rpoPolicySettings',
@@ -139,10 +146,12 @@ class ProtectionPolicy(object):
                  full_scheduling_policy=None,
                  id=None,
                  incremental_scheduling_policy=None,
+                 is_usable=None,
                  last_modified_time_msecs=None,
                  log_scheduling_policy=None,
                  name=None,
                  num_linked_policies=None,
+                 parent_policy_id=None,
                  retries=None,
                  retry_interval_mins=None,
                  rpo_policy_settings=None,
@@ -166,10 +175,12 @@ class ProtectionPolicy(object):
         self.full_scheduling_policy = full_scheduling_policy
         self.id = id
         self.incremental_scheduling_policy = incremental_scheduling_policy
+        self.is_usable = is_usable
         self.last_modified_time_msecs = last_modified_time_msecs
         self.log_scheduling_policy = log_scheduling_policy
         self.name = name
         self.num_linked_policies = num_linked_policies
+        self.parent_policy_id = parent_policy_id
         self.retries = retries
         self.retry_interval_mins = retry_interval_mins
         self.rpo_policy_settings = rpo_policy_settings
@@ -222,10 +233,12 @@ class ProtectionPolicy(object):
         full_scheduling_policy = cohesity_management_sdk.models.scheduling_policy.SchedulingPolicy.from_dictionary(dictionary.get('fullSchedulingPolicy')) if dictionary.get('fullSchedulingPolicy') else None
         id = dictionary.get('id')
         incremental_scheduling_policy = cohesity_management_sdk.models.scheduling_policy.SchedulingPolicy.from_dictionary(dictionary.get('incrementalSchedulingPolicy')) if dictionary.get('incrementalSchedulingPolicy') else None
+        is_usable = dictionary.get('isUsable')
         last_modified_time_msecs = dictionary.get('lastModifiedTimeMsecs')
         log_scheduling_policy = cohesity_management_sdk.models.scheduling_policy.SchedulingPolicy.from_dictionary(dictionary.get('logSchedulingPolicy')) if dictionary.get('logSchedulingPolicy') else None
         name = dictionary.get('name')
         num_linked_policies = dictionary.get('numLinkedPolicies')
+        parent_policy_id = dictionary.get('parentPolicyId')
         retries = dictionary.get('retries')
         retry_interval_mins = dictionary.get('retryIntervalMins')
         rpo_policy_settings = cohesity_management_sdk.models.rpo_policy_settings.RpoPolicySettings.from_dictionary(dictionary.get('rpoPolicySettings')) if dictionary.get('rpoPolicySettings') else None
@@ -256,10 +269,12 @@ class ProtectionPolicy(object):
                    full_scheduling_policy,
                    id,
                    incremental_scheduling_policy,
+                   is_usable,
                    last_modified_time_msecs,
                    log_scheduling_policy,
                    name,
                    num_linked_policies,
+                   parent_policy_id,
                    retries,
                    retry_interval_mins,
                    rpo_policy_settings,

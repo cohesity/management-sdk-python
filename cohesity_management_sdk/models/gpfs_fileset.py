@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 
 class GpfsFileset(object):
@@ -12,10 +12,10 @@ class GpfsFileset(object):
         id (int): Specifies the id of the fileset.
         name (string): Name of the filesystem associated with the fileset
         path (string): Specifies the absolute path of the fileset.
-        protocols (list of ProtocolGpfsFilesetEnum): Specifies GPFS supported
-            Protocol information enabled on GPFS File System 'kNfs' indicates
-            NFS exports in a GPFS Cluster. 'kSmb' indicates CIFS/SMB Shares in
-            a GPFS Cluster.
+        protocols (list of ProtocolEnum): Specifies GPFS supported Protocol
+            information enabled on GPFS File System 'kNfs' indicates NFS
+            exports in a GPFS fileset. 'kSmb' indicates CIFS/SMB Shares in a
+            GPFS fileset.
 
     """
 

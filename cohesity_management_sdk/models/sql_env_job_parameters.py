@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 
 class SqlEnvJobParameters(object):
@@ -39,13 +39,18 @@ class SqlEnvJobParameters(object):
             this case, the user can further select the exact set of volumes
             using host level params.  Note that the volumes associated with
             selected databases will always be included in the backup.
+        incremental_snapshot_upon_restart (bool): If true, the backup of type
+            kSqlVssVolume will be incremental after restart
         is_copy_only_full (bool): If true, the backup is a full backup with
             the copy-only option specified.
+        num_streams (int): Number of streams to be used in native sql backup.
         user_database_preference (UserDatabasePreferenceEnum): Specifies the
             preference for backing up user databases on the host.
             kBackupAllDatabases implies to backup all databases.
             kBackupAllExceptAAGDatabases implies not to backup AAG databases.
             kBackupOnlyAAGDatabases implies to backup only AAG databases.
+        with_clause (string): With clause is used for setting clauese in
+            native sql backup.
 
     """
 
@@ -56,8 +61,11 @@ class SqlEnvJobParameters(object):
         "backup_system_databases":'backupSystemDatabases',
         "backup_type":'backupType',
         "backup_volumes_only":'backupVolumesOnly',
+        "incremental_snapshot_upon_restart":'incrementalSnapshotUponRestart',
         "is_copy_only_full":'isCopyOnlyFull',
-        "user_database_preference":'userDatabasePreference'
+        "num_streams":'numStreams',
+        "user_database_preference":'userDatabasePreference',
+        "with_clause":'withClause'
     }
 
     def __init__(self,
@@ -66,8 +74,11 @@ class SqlEnvJobParameters(object):
                  backup_system_databases=None,
                  backup_type=None,
                  backup_volumes_only=None,
+                 incremental_snapshot_upon_restart=None,
                  is_copy_only_full=None,
-                 user_database_preference=None):
+                 num_streams=None,
+                 user_database_preference=None,
+                 with_clause=None):
         """Constructor for the SqlEnvJobParameters class"""
 
         # Initialize members of the class
@@ -76,8 +87,11 @@ class SqlEnvJobParameters(object):
         self.backup_system_databases = backup_system_databases
         self.backup_type = backup_type
         self.backup_volumes_only = backup_volumes_only
+        self.incremental_snapshot_upon_restart = incremental_snapshot_upon_restart
         self.is_copy_only_full = is_copy_only_full
+        self.num_streams = num_streams
         self.user_database_preference = user_database_preference
+        self.with_clause = with_clause
 
 
     @classmethod
@@ -103,8 +117,11 @@ class SqlEnvJobParameters(object):
         backup_system_databases = dictionary.get('backupSystemDatabases')
         backup_type = dictionary.get('backupType')
         backup_volumes_only = dictionary.get('backupVolumesOnly')
+        incremental_snapshot_upon_restart = dictionary.get('incrementalSnapshotUponRestart')
         is_copy_only_full = dictionary.get('isCopyOnlyFull')
+        num_streams = dictionary.get('numStreams')
         user_database_preference = dictionary.get('userDatabasePreference')
+        with_clause = dictionary.get('withClause')
 
         # Return an object of this model
         return cls(aag_preference,
@@ -112,7 +129,10 @@ class SqlEnvJobParameters(object):
                    backup_system_databases,
                    backup_type,
                    backup_volumes_only,
+                   incremental_snapshot_upon_restart,
                    is_copy_only_full,
-                   user_database_preference)
+                   num_streams,
+                   user_database_preference,
+                   with_clause)
 
 

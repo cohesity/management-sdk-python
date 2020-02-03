@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.time_of_day
 
@@ -21,6 +21,8 @@ class TimeOfAWeek(object):
             etc.
         end_time (TimeOfDay): Specifies the end time for the daily time
             period.
+        is_all_day (bool): All Day.  Specifies that time range is applied for
+            entire day.
         start_time (TimeOfDay): Specifies the start time for the daily time
             period.
 
@@ -30,18 +32,21 @@ class TimeOfAWeek(object):
     _names = {
         "days":'days',
         "end_time":'endTime',
+        "is_all_day":'isAllDay',
         "start_time":'startTime'
     }
 
     def __init__(self,
                  days=None,
                  end_time=None,
+                 is_all_day=None,
                  start_time=None):
         """Constructor for the TimeOfAWeek class"""
 
         # Initialize members of the class
         self.days = days
         self.end_time = end_time
+        self.is_all_day = is_all_day
         self.start_time = start_time
 
 
@@ -65,11 +70,13 @@ class TimeOfAWeek(object):
         # Extract variables from the dictionary
         days = dictionary.get('days')
         end_time = cohesity_management_sdk.models.time_of_day.TimeOfDay.from_dictionary(dictionary.get('endTime')) if dictionary.get('endTime') else None
+        is_all_day = dictionary.get('isAllDay')
         start_time = cohesity_management_sdk.models.time_of_day.TimeOfDay.from_dictionary(dictionary.get('startTime')) if dictionary.get('startTime') else None
 
         # Return an object of this model
         return cls(days,
                    end_time,
+                   is_all_day,
                    start_time)
 
 

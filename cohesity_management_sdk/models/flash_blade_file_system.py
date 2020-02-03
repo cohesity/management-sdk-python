@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.flash_blade_nfs_info
 import cohesity_management_sdk.models.flash_blade_smb_info
@@ -25,12 +25,12 @@ class FlashBladeFileSystem(object):
         physical_used_bytes (long|int): Specifies the size of physical data
             currently consumed by the file system. This includes the space
             used for the snapshots.
-        protocols (list of ProtocolEnum): List of Protocols.  Specifies the
-            list of protocols enabled on the file system. 'kNfs' indicates NFS
-            exports are supported on Pure FlashBlade File System. 'kCifs2'
-            indicates CIFS/SMB Shares are supported on Pure FlashBlade File
-            System. 'kHttp' indicates object protocol over HTTP and HTTPS are
-            supported.
+        protocols (list of ProtocolFlashBladeFileSystemEnum): List of
+            Protocols.  Specifies the list of protocols enabled on the file
+            system. 'kNfs' indicates NFS exports are supported on Pure
+            FlashBlade File System. 'kCifs2' indicates CIFS/SMB Shares are
+            supported on Pure FlashBlade File System. 'kHttp' indicates object
+            protocol over HTTP and HTTPS are supported.
         smb_info (FlashBladeSmbInfo): Specifies information specific to SMB
             shares exposed by Pure Flash Blade file system.
         unique_used_bytes (long|int): Specifies the size of physical data

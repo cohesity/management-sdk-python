@@ -1,26 +1,22 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 class BondingModeEnum(object):
 
     """Implementation of the 'BondingMode' enum.
 
-    Specifies the bonding mode to use when bonding NICs to this Cluster.
-    'KActiveBackup' indicates an Active-backup policy bonding mode.
-    'K802_3ad' indicates an EEE 802.3ad Dynamic link aggregation bonding
-    mode.
-    'KBalanceAlb' indicates a Adaptive load balancing bonding mode.
+    Specifies the bonding mode to use for this bond. If not specified,
+    this value will default to 'kActiveBackup'.
+    'kActiveBackup' indicates active backup bonding mode.
+    'k802_3ad' indicates 802.3ad bonding mode.
 
     Attributes:
-        ACTIVEBACKUP: TODO: type description here.
-        ENUM_802_3AD: TODO: type description here.
-        BALANCEALB: TODO: type description here.
+        KACTIVEBACKUP: TODO: type description here.
+        K802_3AD: TODO: type description here.
 
     """
 
-    ACTIVEBACKUP = 'ActiveBackup'
+    KACTIVEBACKUP = 'kActiveBackup'
 
-    ENUM_802_3AD = '802_3ad'
-
-    BALANCEALB = 'BalanceAlb'
+    K802_3AD = 'k802_3ad'
 

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.script_execution_status
 import cohesity_management_sdk.models.object_snapshot_type
@@ -13,8 +13,6 @@ class SnapshotInfoProto(object):
     Each available extension is listed below along with the location of the
     proto file (relative to magneto/connectors) where it is defined. The only
     exception is view.proto and physical.proto which reside in magneto/base.
-    TODO(Chinmaya): Evaluate creating a magneto/adapters directory and move
-    connectors and the environment specific protos there.
     SnapshotInfoProto extension                     Location
     Extn
     ===========================================================================
@@ -27,7 +25,7 @@ class SnapshotInfoProto(object):
     102
     physical::SnapshotInfo::physical_snapshot_info base/physical.proto
     103
-    pure::SnapshotInfo::pure_snapshot_info         pure/pure.proto
+    san::SnapshotInfo::san_snapshot_info           san/san.proto
     104
     file::SnapshotInfo::file_snapshot_info         file/file.proto
     105
@@ -61,6 +59,10 @@ class SnapshotInfoProto(object):
     118
     o365::SnapshotInfo::o365_snapshot_info         o365/o365.proto
     119
+    exchange::SnapshotInfo::exchange_snapshot_info exchange/exchange.proto
+    120
+    o365::SharepointSnapshotInfo::sharepoint_snapshot_info
+    o365/o365.proto           121
     ===========================================================================
     ==
 

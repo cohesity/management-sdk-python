@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.subnet
 
@@ -11,6 +11,8 @@ class AppsConfig(object):
 
     Attributes:
         allow_external_traffic (bool): Whether to allow pod external traffic.
+        allow_unresticted_view_access (bool): Whether to allow apps
+            unrestricted view access.
         apps_mode (AppsModeEnum): Specifies the various modes for running
             apps. 'kDisabled' specifies that apps are disabled. 'kBareMetal'
             specifies that apps could only run in containers on the node (no
@@ -31,6 +33,7 @@ class AppsConfig(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "allow_external_traffic":'allowExternalTraffic',
+        "allow_unresticted_view_access":'allowUnrestictedViewAccess',
         "apps_mode":'appsMode',
         "apps_subnet":'appsSubnet',
         "overcommit_memory_pct":'overcommitMemoryPct',
@@ -40,6 +43,7 @@ class AppsConfig(object):
 
     def __init__(self,
                  allow_external_traffic=None,
+                 allow_unresticted_view_access=None,
                  apps_mode=None,
                  apps_subnet=None,
                  overcommit_memory_pct=None,
@@ -49,6 +53,7 @@ class AppsConfig(object):
 
         # Initialize members of the class
         self.allow_external_traffic = allow_external_traffic
+        self.allow_unresticted_view_access = allow_unresticted_view_access
         self.apps_mode = apps_mode
         self.apps_subnet = apps_subnet
         self.overcommit_memory_pct = overcommit_memory_pct
@@ -75,6 +80,7 @@ class AppsConfig(object):
 
         # Extract variables from the dictionary
         allow_external_traffic = dictionary.get('allowExternalTraffic')
+        allow_unresticted_view_access = dictionary.get('allowUnrestictedViewAccess')
         apps_mode = dictionary.get('appsMode')
         apps_subnet = cohesity_management_sdk.models.subnet.Subnet.from_dictionary(dictionary.get('appsSubnet')) if dictionary.get('appsSubnet') else None
         overcommit_memory_pct = dictionary.get('overcommitMemoryPct')
@@ -83,6 +89,7 @@ class AppsConfig(object):
 
         # Return an object of this model
         return cls(allow_external_traffic,
+                   allow_unresticted_view_access,
                    apps_mode,
                    apps_subnet,
                    overcommit_memory_pct,

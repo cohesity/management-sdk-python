@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.cluster_identifier
 
@@ -31,9 +31,11 @@ class UserParameters(object):
         password (string): Specifies the password of this user.
         primary_group_name (string): Specifies the name of the primary group
             of this User.
-        privilege_ids (list of int): Array of Privileges.  Specifies the
-            Cohesity privileges from the roles. This will be populated based
-            on the union of all privileges in roles.
+        privilege_ids (list of PrivilegeIdUserParametersEnum): Array of
+            Privileges.  Specifies the Cohesity privileges from the roles.
+            This will be populated based on the union of all privileges in
+            roles. Type for unique privilege Id values. All below enum values
+            specify a value for all uniquely defined privileges in Cohesity.
         restricted (bool): Whether the user is a restricted user. A restricted
             user can only view the objects he has permissions to.
         roles (list of string): Array of Roles.  Specifies the Cohesity roles

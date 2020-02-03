@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.apps_config
 import cohesity_management_sdk.models.cluster_audit_log_configuration
@@ -19,11 +19,6 @@ class UpdateClusterParams(object):
         banner_enabled (bool): Specifies whether UI banner is enabled on the
             cluster or not. When banner is enabled, UI will make an additional
             API call to fetch the banner and show at the login page.
-        bonding_mode (BondingModeEnum): Specifies the bonding mode to use when
-            bonding NICs to this Cluster. 'KActiveBackup' indicates an
-            Active-backup policy bonding mode. 'K802_3ad' indicates an EEE
-            802.3ad Dynamic link aggregation bonding mode. 'KBalanceAlb'
-            indicates a Adaptive load balancing bonding mode.
         cluster_audit_log_config (ClusterAuditLogConfiguration): Specifies the
             settings of the Cluster audit log configuration.
         dns_server_ips (list of string): Array of IP Addresses of DNS Servers.
@@ -56,16 +51,14 @@ class UpdateClusterParams(object):
             version of Help.
         language_locale (string): Specifies the language and locale for this
             Cohesity Cluster.
-        license_server_claimed (bool): Speifies if cluster is claimed by
-            Helios or not.
+        local_auth_domain_name (string): Domain name for SMB local
+            authentication.
         local_groups_enabled (bool): Specifies whether to enable local groups
             on cluster. Once it is enabled, it cannot be disabled.
         metadata_fault_tolerance_factor (int): Specifies metadata fault
             tolerance setting for the cluster. This denotes the number of
             simultaneous failures[node] supported by metadata services like
             gandalf and scribe.
-        mtu (int): Specifies the Maxium Transmission Unit (MTU) in bytes of
-            the network.
         multi_tenancy_enabled (bool): Specifies if multi tenancy is enabled in
             the cluster. Authentication & Authorization will always use
             tenant_id, however, some UI elements may be disabled when multi
@@ -98,7 +91,6 @@ class UpdateClusterParams(object):
     _names = {
         "apps_settings":'appsSettings',
         "banner_enabled":'bannerEnabled',
-        "bonding_mode":'bondingMode',
         "cluster_audit_log_config":'clusterAuditLogConfig',
         "dns_server_ips":'dnsServerIps',
         "domain_names":'domainNames',
@@ -110,10 +102,9 @@ class UpdateClusterParams(object):
         "google_analytics_enabled":'googleAnalyticsEnabled',
         "is_documentation_local":'isDocumentationLocal',
         "language_locale":'languageLocale',
-        "license_server_claimed":'licenseServerClaimed',
+        "local_auth_domain_name":'localAuthDomainName',
         "local_groups_enabled":'localGroupsEnabled',
         "metadata_fault_tolerance_factor":'metadataFaultToleranceFactor',
-        "mtu":'mtu',
         "multi_tenancy_enabled":'multiTenancyEnabled',
         "name":'name',
         "ntp_settings":'ntpSettings',
@@ -130,7 +121,6 @@ class UpdateClusterParams(object):
     def __init__(self,
                  apps_settings=None,
                  banner_enabled=None,
-                 bonding_mode=None,
                  cluster_audit_log_config=None,
                  dns_server_ips=None,
                  domain_names=None,
@@ -142,10 +132,9 @@ class UpdateClusterParams(object):
                  google_analytics_enabled=None,
                  is_documentation_local=None,
                  language_locale=None,
-                 license_server_claimed=None,
+                 local_auth_domain_name=None,
                  local_groups_enabled=None,
                  metadata_fault_tolerance_factor=None,
-                 mtu=None,
                  multi_tenancy_enabled=None,
                  name=None,
                  ntp_settings=None,
@@ -162,7 +151,6 @@ class UpdateClusterParams(object):
         # Initialize members of the class
         self.apps_settings = apps_settings
         self.banner_enabled = banner_enabled
-        self.bonding_mode = bonding_mode
         self.cluster_audit_log_config = cluster_audit_log_config
         self.dns_server_ips = dns_server_ips
         self.domain_names = domain_names
@@ -174,10 +162,9 @@ class UpdateClusterParams(object):
         self.google_analytics_enabled = google_analytics_enabled
         self.is_documentation_local = is_documentation_local
         self.language_locale = language_locale
-        self.license_server_claimed = license_server_claimed
+        self.local_auth_domain_name = local_auth_domain_name
         self.local_groups_enabled = local_groups_enabled
         self.metadata_fault_tolerance_factor = metadata_fault_tolerance_factor
-        self.mtu = mtu
         self.multi_tenancy_enabled = multi_tenancy_enabled
         self.name = name
         self.ntp_settings = ntp_settings
@@ -211,7 +198,6 @@ class UpdateClusterParams(object):
         # Extract variables from the dictionary
         apps_settings = cohesity_management_sdk.models.apps_config.AppsConfig.from_dictionary(dictionary.get('appsSettings')) if dictionary.get('appsSettings') else None
         banner_enabled = dictionary.get('bannerEnabled')
-        bonding_mode = dictionary.get('bondingMode')
         cluster_audit_log_config = cohesity_management_sdk.models.cluster_audit_log_configuration.ClusterAuditLogConfiguration.from_dictionary(dictionary.get('clusterAuditLogConfig')) if dictionary.get('clusterAuditLogConfig') else None
         dns_server_ips = dictionary.get('dnsServerIps')
         domain_names = dictionary.get('domainNames')
@@ -223,10 +209,9 @@ class UpdateClusterParams(object):
         google_analytics_enabled = dictionary.get('googleAnalyticsEnabled')
         is_documentation_local = dictionary.get('isDocumentationLocal')
         language_locale = dictionary.get('languageLocale')
-        license_server_claimed = dictionary.get('licenseServerClaimed')
+        local_auth_domain_name = dictionary.get('localAuthDomainName')
         local_groups_enabled = dictionary.get('localGroupsEnabled')
         metadata_fault_tolerance_factor = dictionary.get('metadataFaultToleranceFactor')
-        mtu = dictionary.get('mtu')
         multi_tenancy_enabled = dictionary.get('multiTenancyEnabled')
         name = dictionary.get('name')
         ntp_settings = cohesity_management_sdk.models.ntp_settings_config.NtpSettingsConfig.from_dictionary(dictionary.get('ntpSettings')) if dictionary.get('ntpSettings') else None
@@ -246,7 +231,6 @@ class UpdateClusterParams(object):
         # Return an object of this model
         return cls(apps_settings,
                    banner_enabled,
-                   bonding_mode,
                    cluster_audit_log_config,
                    dns_server_ips,
                    domain_names,
@@ -258,10 +242,9 @@ class UpdateClusterParams(object):
                    google_analytics_enabled,
                    is_documentation_local,
                    language_locale,
-                   license_server_claimed,
+                   local_auth_domain_name,
                    local_groups_enabled,
                    metadata_fault_tolerance_factor,
-                   mtu,
                    multi_tenancy_enabled,
                    name,
                    ntp_settings,

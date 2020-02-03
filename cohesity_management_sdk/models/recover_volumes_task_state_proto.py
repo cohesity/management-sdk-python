@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.recover_volumes_params
 import cohesity_management_sdk.models.recover_volumes_task_state_proto_task_result
@@ -11,8 +11,7 @@ class RecoverVolumesTaskStateProto(object):
     TODO: type model description here.
 
     Attributes:
-        params (RecoverVolumesParams): TODO(Chinmaya): Rename this to
-            RecoverPhysicalVolumesParams
+        params (RecoverVolumesParams): TODO: type description here.
         task_result_vec (list of RecoverVolumesTaskStateProtoTaskResult):
             Contains high-level per-volume information. This data is here
             because Iris cannot see into protobuf extensions yet needs to

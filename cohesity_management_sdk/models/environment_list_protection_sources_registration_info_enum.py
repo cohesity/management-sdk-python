@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 class EnvironmentListProtectionSourcesRegistrationInfoEnum(object):
 
@@ -19,6 +19,23 @@ class EnvironmentListProtectionSourcesRegistrationInfoEnum(object):
         KHYPERV: TODO: type description here.
         KACROPOLIS: TODO: type description here.
         KAZURE: TODO: type description here.
+        KPHYSICALFILES: TODO: type description here.
+        KISILON: TODO: type description here.
+        KGPFS: TODO: type description here.
+        KKVM: TODO: type description here.
+        KAWS: TODO: type description here.
+        KEXCHANGE: TODO: type description here.
+        KHYPERVVSS: TODO: type description here.
+        KORACLE: TODO: type description here.
+        KGCP: TODO: type description here.
+        KFLASHBLADE: TODO: type description here.
+        KAWSNATIVE: TODO: type description here.
+        KVCD: TODO: type description here.
+        KO365: TODO: type description here.
+        KO365OUTLOOK: TODO: type description here.
+        KHYPERFLEX: TODO: type description here.
+        KGCPNATIVE: TODO: type description here.
+        KKUBERNETES: TODO: type description here.
 
     """
 
@@ -43,4 +60,38 @@ class EnvironmentListProtectionSourcesRegistrationInfoEnum(object):
     KACROPOLIS = 'kAcropolis'
 
     KAZURE = 'kAzure'
+
+    KPHYSICALFILES = 'kPhysicalFiles'
+
+    KISILON = 'kIsilon'
+
+    KGPFS = 'kGPFS'
+
+    KKVM = 'kKVM'
+
+    KAWS = 'kAWS'
+
+    KEXCHANGE = 'kExchange'
+
+    K_HYPERV_VSS = 'kHyperVVSS'
+
+    KORACLE = 'kOracle'
+
+    KGCP = 'kGCP'
+
+    KFLASHBLADE = 'kFlashBlade'
+
+    KAWSNATIVE = 'kAWSNative'
+
+    KVCD = 'kVCD'
+
+    KO365 = 'kO365'
+
+    KO365OUTLOOK = 'kO365Outlook'
+
+    KHYPERFLEX = 'kHyperFlex'
+
+    KGCPNATIVE = 'kGCPNative'
+
+    KKUBERNETES = 'kKubernetes'
 

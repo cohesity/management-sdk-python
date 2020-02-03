@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 
 class ServiceStateResult(object):
@@ -47,8 +47,8 @@ class ServiceStateResult(object):
             'kAthena' is a service for running distributed containerized
             applications on the Cohesity Data Platform. 'kBifrostBroker' is a
             service for communicating with the Cohesity proxies for
-            multitenancy. 'kOs' can be specified in order to do a full
-            reboot.
+            multitenancy. 'kSmb2Proxy' is a new SMB protocol service. 'kOs'
+            can be specified in order to do a full reboot.
         state (StateServiceStateResultEnum): Specifies the state of the
             service. 'kServiceStopped' indicates that the service has been
             stopped. 'kServiceRunning' indicates that the service is currently

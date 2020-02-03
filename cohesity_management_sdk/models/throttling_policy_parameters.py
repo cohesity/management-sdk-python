@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.latency_thresholds
 
@@ -16,6 +16,12 @@ class ThrottlingPolicyParameters(object):
             the registered entity will be limited to the value set for
             maxConcurrentStreams. If not set or set to false, there is no max
             limit for the number of concurrent streams.
+        enforce_registered_source_max_backups (bool): Specifies whether no. of
+            backups are configured for the registered entity. If set to true,
+            number of backups made by Cohesity cluster in the registered
+            entity will be limited to the value set for
+            RegisteredSourceMaxConcurrentBackups. If not set or set to false,
+            there is no max limit for the number of concurrent backups.
         is_enabled (bool): Indicates whether read operations to the
             datastores, which are part of the registered Protection Source,
             are throttled.
@@ -26,29 +32,39 @@ class ThrottlingPolicyParameters(object):
             streams Cohesity cluster will make concurrently to the datastores
             of the registered entity. This limit is enforced only when the
             flag enforceMaxStreams is set to true.
+        registered_source_max_concurrent_backups (int): Specifies the limit on
+            the number of backups Cohesity cluster will make concurrently to
+            the registered entity. This limit is enforced only when the flag
+            enforceRegisteredSourceMaxBackups is set to true.
 
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
         "enforce_max_streams":'enforceMaxStreams',
+        "enforce_registered_source_max_backups":'enforceRegisteredSourceMaxBackups',
         "is_enabled":'isEnabled',
         "latency_thresholds":'latencyThresholds',
-        "max_concurrent_streams":'maxConcurrentStreams'
+        "max_concurrent_streams":'maxConcurrentStreams',
+        "registered_source_max_concurrent_backups":'registeredSourceMaxConcurrentBackups'
     }
 
     def __init__(self,
                  enforce_max_streams=None,
+                 enforce_registered_source_max_backups=None,
                  is_enabled=None,
                  latency_thresholds=None,
-                 max_concurrent_streams=None):
+                 max_concurrent_streams=None,
+                 registered_source_max_concurrent_backups=None):
         """Constructor for the ThrottlingPolicyParameters class"""
 
         # Initialize members of the class
         self.enforce_max_streams = enforce_max_streams
+        self.enforce_registered_source_max_backups = enforce_registered_source_max_backups
         self.is_enabled = is_enabled
         self.latency_thresholds = latency_thresholds
         self.max_concurrent_streams = max_concurrent_streams
+        self.registered_source_max_concurrent_backups = registered_source_max_concurrent_backups
 
 
     @classmethod
@@ -70,14 +86,18 @@ class ThrottlingPolicyParameters(object):
 
         # Extract variables from the dictionary
         enforce_max_streams = dictionary.get('enforceMaxStreams')
+        enforce_registered_source_max_backups = dictionary.get('enforceRegisteredSourceMaxBackups')
         is_enabled = dictionary.get('isEnabled')
         latency_thresholds = cohesity_management_sdk.models.latency_thresholds.LatencyThresholds.from_dictionary(dictionary.get('latencyThresholds')) if dictionary.get('latencyThresholds') else None
         max_concurrent_streams = dictionary.get('maxConcurrentStreams')
+        registered_source_max_concurrent_backups = dictionary.get('registeredSourceMaxConcurrentBackups')
 
         # Return an object of this model
         return cls(enforce_max_streams,
+                   enforce_registered_source_max_backups,
                    is_enabled,
                    latency_thresholds,
-                   max_concurrent_streams)
+                   max_concurrent_streams,
+                   registered_source_max_concurrent_backups)
 
 

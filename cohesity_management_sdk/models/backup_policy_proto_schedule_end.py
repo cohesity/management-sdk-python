@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 
 class BackupPolicyProtoScheduleEnd(object):
@@ -9,10 +9,8 @@ class BackupPolicyProtoScheduleEnd(object):
     TODO: type model description here.
 
     Attributes:
-        end_after_num_backups (long|int): The following field has been
-            deprecated. TODO(mark): Append "_DEPRECATED" to this field name
-            once iris has stopped referring to it.  If specified, the backup
-            job will no longer be run after it has been run these many times.
+        end_after_num_backups (long|int): If specified, the backup job will no
+            longer be run after it has been run these many times.
         end_time_usecs (long|int): If specified, the backup job will no longer
             be run after this time.
 

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.device_tree_child_device
 
@@ -25,9 +25,7 @@ class DeviceTree(object):
             'device_length'.
         stripe_size (int): In case data is striped, this represents the length
             of the stripe. The number of stripes is defined by the size of
-            child_vec above.  TODO(vipin): 'stripe_size' is not in bytes. We
-            need to multiply it with a constant. Determine the constant and
-            document it here.
+            child_vec above.
         mtype (int): How to combine the children.
 
     """

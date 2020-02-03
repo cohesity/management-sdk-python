@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.filename_pattern_to_directory
 
@@ -14,6 +14,9 @@ class SqlRestoreParameters(object):
             captured before the restore operation. This is only applicable if
             we are restoring the SQL database to its hosting Protection
             Source, and the database is not being renamed.
+        keep_cdc (bool): This field prevents "change data capture" settings
+            from being reomved when a database or log backup is restored on
+            another server and database is recovered.
         keep_offline (bool): Set this to true if we want to restore the
             database and do not want to bring it online after restore.  This
             is only applicable if we are restoring the database back to its
@@ -43,34 +46,41 @@ class SqlRestoreParameters(object):
             extention for secondary files is ".ndf".  If this option is
             specified and the destination folders do not exist they will be
             automatically created.
+        with_clause (string): WithClause allows you to specify clauses to be
+            used in native sql restore task.
 
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
         "capture_tail_logs":'captureTailLogs',
+        "keep_cdc":'keepCdc',
         "keep_offline":'keepOffline',
         "new_database_name":'newDatabaseName',
         "new_instance_name":'newInstanceName',
         "restore_time_secs":'restoreTimeSecs',
         "target_data_files_directory":'targetDataFilesDirectory',
         "target_log_files_directory":'targetLogFilesDirectory',
-        "target_secondary_data_files_directory_list":'targetSecondaryDataFilesDirectoryList'
+        "target_secondary_data_files_directory_list":'targetSecondaryDataFilesDirectoryList',
+        "with_clause":'withClause'
     }
 
     def __init__(self,
                  capture_tail_logs=None,
+                 keep_cdc=None,
                  keep_offline=None,
                  new_database_name=None,
                  new_instance_name=None,
                  restore_time_secs=None,
                  target_data_files_directory=None,
                  target_log_files_directory=None,
-                 target_secondary_data_files_directory_list=None):
+                 target_secondary_data_files_directory_list=None,
+                 with_clause=None):
         """Constructor for the SqlRestoreParameters class"""
 
         # Initialize members of the class
         self.capture_tail_logs = capture_tail_logs
+        self.keep_cdc = keep_cdc
         self.keep_offline = keep_offline
         self.new_database_name = new_database_name
         self.new_instance_name = new_instance_name
@@ -78,6 +88,7 @@ class SqlRestoreParameters(object):
         self.target_data_files_directory = target_data_files_directory
         self.target_log_files_directory = target_log_files_directory
         self.target_secondary_data_files_directory_list = target_secondary_data_files_directory_list
+        self.with_clause = with_clause
 
 
     @classmethod
@@ -99,6 +110,7 @@ class SqlRestoreParameters(object):
 
         # Extract variables from the dictionary
         capture_tail_logs = dictionary.get('captureTailLogs')
+        keep_cdc = dictionary.get('keepCdc')
         keep_offline = dictionary.get('keepOffline')
         new_database_name = dictionary.get('newDatabaseName')
         new_instance_name = dictionary.get('newInstanceName')
@@ -110,15 +122,18 @@ class SqlRestoreParameters(object):
             target_secondary_data_files_directory_list = list()
             for structure in dictionary.get('targetSecondaryDataFilesDirectoryList'):
                 target_secondary_data_files_directory_list.append(cohesity_management_sdk.models.filename_pattern_to_directory.FilenamePatternToDirectory.from_dictionary(structure))
+        with_clause = dictionary.get('withClause')
 
         # Return an object of this model
         return cls(capture_tail_logs,
+                   keep_cdc,
                    keep_offline,
                    new_database_name,
                    new_instance_name,
                    restore_time_secs,
                    target_data_files_directory,
                    target_log_files_directory,
-                   target_secondary_data_files_directory_list)
+                   target_secondary_data_files_directory_list,
+                   with_clause)
 
 

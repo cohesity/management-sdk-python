@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.file_stubbing_params
 import cohesity_management_sdk.models.hyperv_backup_env_params
@@ -27,10 +27,12 @@ class EnvBackupParams(object):
             additional backup params for a HyperV environment.
         nas_backup_params (NasBackupParams): Message to capture any additional
             backup params for a NAS environment.
-        o_365_backup_params (O365BackupEnvParams): TODO: type description
-            here.
+        o_365_backup_params (O365BackupEnvParams): Message to capture any
+            additional backup params for Office365 environment. This
+            encapsulates both Outlook & OneDrive backup parameters.
         outlook_backup_params (OutlookBackupEnvParams): Message to capture any
-            additional backup params for an Outlook environment.
+            additional backup params for Outlook within Office365
+            environment.
         physical_backup_params (PhysicalBackupEnvParams): Message to capture
             any additional backup params for a Physical environment.
         snapshot_manager_params (SnapshotManagerParams): TODO: type

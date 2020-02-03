@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -13,10 +13,9 @@ from cohesity_management_sdk.models.metric_data_block import MetricDataBlock
 from cohesity_management_sdk.models.task import Task
 from cohesity_management_sdk.exceptions.request_error_error_exception import RequestErrorErrorException
 
+
 class StatisticsController(BaseController):
-
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-
     def __init__(self, client=None, call_back=None):
         super(StatisticsController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
@@ -61,7 +60,8 @@ class StatisticsController(BaseController):
             self.logger.info('get_entities called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for get_entities.')
+            self.logger.info(
+                'Validating required parameters for get_entities.')
             self.validate_parameters(schema_name=schema_name)
 
             # Prepare query URL
@@ -75,21 +75,21 @@ class StatisticsController(BaseController):
                 'metricNames': metric_names,
                 'maxEntities': max_entities
             }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
             self.logger.info('Preparing headers for get_entities.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_entities.')
+            self.logger.info(
+                'Preparing and executing request for get_entities.')
             _request = self.http_client.get(_query_url, headers=_headers)
             AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_entities')
+            _context = self.execute_request(_request, name='get_entities')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_entities.')
@@ -98,15 +98,14 @@ class StatisticsController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, EntityProto.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              EntityProto.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
+            self.logger.error(e, exc_info=True)
+            raise APIException(e.message, None)
 
-    def get_entities_schema(self,
-                            schema_names=None,
-                            metric_names=None):
+    def get_entities_schema(self, schema_names=None, metric_names=None):
         """Does a GET request to /public/statistics/entitiesSchema.
 
         An entity schema specifies the meta-data associated with entity such
@@ -159,21 +158,22 @@ class StatisticsController(BaseController):
                 'schemaNames': schema_names,
                 'metricNames': metric_names
             }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
             self.logger.info('Preparing headers for get_entities_schema.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_entities_schema.')
+            self.logger.info(
+                'Preparing and executing request for get_entities_schema.')
             _request = self.http_client.get(_query_url, headers=_headers)
             AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_entities_schema')
+            _context = self.execute_request(_request,
+                                            name='get_entities_schema')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_entities_schema.')
@@ -182,14 +182,14 @@ class StatisticsController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, EntitySchemaProto.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body, EntitySchemaProto.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
+            self.logger.error(e, exc_info=True)
+            raise APIException(e.message, None)
 
-    def get_entity_schema_by_name(self,
-                                  schema_name):
+    def get_entity_schema_by_name(self, schema_name):
         """Does a GET request to /public/statistics/entitiesSchema/{schemaName}.
 
         An entity schema specifies the meta-data associated with entity such
@@ -223,48 +223,51 @@ class StatisticsController(BaseController):
             self.logger.info('get_entity_schema_by_name called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for get_entity_schema_by_name.')
+            self.logger.info(
+                'Validating required parameters for get_entity_schema_by_name.'
+            )
             self.validate_parameters(schema_name=schema_name)
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for get_entity_schema_by_name.')
+            self.logger.info(
+                'Preparing query URL for get_entity_schema_by_name.')
             _url_path = '/public/statistics/entitiesSchema/{schemaName}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-                'schemaName': schema_name
-            })
+            _url_path = APIHelper.append_url_with_template_parameters(
+                _url_path, {'schemaName': schema_name})
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for get_entity_schema_by_name.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            self.logger.info(
+                'Preparing headers for get_entity_schema_by_name.')
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_entity_schema_by_name.')
+            self.logger.info(
+                'Preparing and executing request for get_entity_schema_by_name.'
+            )
             _request = self.http_client.get(_query_url, headers=_headers)
             AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_entity_schema_by_name')
+            _context = self.execute_request(_request,
+                                            name='get_entity_schema_by_name')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for get_entity_schema_by_name.')
+            self.logger.info(
+                'Validating response for get_entity_schema_by_name.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, EntitySchemaProto.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body, EntitySchemaProto.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
+            self.logger.error(e, exc_info=True)
+            raise APIException(e.message, None)
 
-    def get_time_series_schema(self,
-                               entity_type,
-                               entity_id,
-                               entity_name):
+    def get_time_series_schema(self, entity_type, entity_id, entity_name):
         """Does a GET request to /public/statistics/timeSeriesSchema.
 
         Gets the Apollo schema information for an entity to list a series of
@@ -294,7 +297,8 @@ class StatisticsController(BaseController):
             self.logger.info('get_time_series_schema called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for get_time_series_schema.')
+            self.logger.info(
+                'Validating required parameters for get_time_series_schema.')
             self.validate_parameters(entity_type=entity_type,
                                      entity_id=entity_id,
                                      entity_name=entity_name)
@@ -309,21 +313,22 @@ class StatisticsController(BaseController):
                 'entityId': entity_id,
                 'entityName': entity_name
             }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
             self.logger.info('Preparing headers for get_time_series_schema.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_time_series_schema.')
+            self.logger.info(
+                'Preparing and executing request for get_time_series_schema.')
             _request = self.http_client.get(_query_url, headers=_headers)
             AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_time_series_schema')
+            _context = self.execute_request(_request,
+                                            name='get_time_series_schema')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_time_series_schema.')
@@ -332,17 +337,20 @@ class StatisticsController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, TimeSeriesSchemaResponse.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                TimeSeriesSchemaResponse.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
+            self.logger.error(e, exc_info=True)
+            raise APIException(e.message, None)
 
     def get_time_series_stats(self,
                               schema_name,
-                              entity_id,
                               metric_name,
                               start_time_msecs,
+                              entity_id=None,
+                              entity_id_list=None,
                               end_time_msecs=None,
                               rollup_function=None,
                               rollup_interval_secs=None):
@@ -370,15 +378,19 @@ class StatisticsController(BaseController):
         Args:
             schema_name (string): Specifies the name of entity schema such as
                 'kIceboxJobVaultStats'.
-            entity_id (string): Specifies the id of the entity represented as
-                a string. Get the entityId by running the GET
-                public/statistics/entities operation.
             metric_name (string): Specifies the name of the metric such as the
                 'kDiskAwaitTimeMsecs' which is displayed as 'Disk Health' in
                 Advanced Diagnostics of the Cohesity Dashboard.
             start_time_msecs (long|int): Specifies the start time for the
                 series of metric data. Specify the start time as a Unix epoch
                 Timestamp (in milliseconds).
+            entity_id (string, optional): Specifies the id of the entity
+                represented as a string. Get the entityId by running the GET
+                public/statistics/entities operation.
+            entity_id_list (list of string, optional): Specifies an entity id
+                list represented as a string. The stats result will be the sum
+                over all these entities. If both EntityIdList and EntityId are
+                specified, EntityId will be ignored.
             end_time_msecs (long|int, optional): Specifies the end time for
                 the series of metric data. Specify the end time as a Unix
                 epoch Timestamp (in milliseconds). If not specified, the data
@@ -408,9 +420,9 @@ class StatisticsController(BaseController):
             self.logger.info('get_time_series_stats called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for get_time_series_stats.')
+            self.logger.info(
+                'Validating required parameters for get_time_series_stats.')
             self.validate_parameters(schema_name=schema_name,
-                                     entity_id=entity_id,
                                      metric_name=metric_name,
                                      start_time_msecs=start_time_msecs)
 
@@ -421,28 +433,30 @@ class StatisticsController(BaseController):
             _query_builder += _url_path
             _query_parameters = {
                 'schemaName': schema_name,
-                'entityId': entity_id,
                 'metricName': metric_name,
                 'startTimeMsecs': start_time_msecs,
+                'entityId': entity_id,
+                'entityIdList': entity_id_list,
                 'endTimeMsecs': end_time_msecs,
                 'rollupFunction': rollup_function,
                 'rollupIntervalSecs': rollup_interval_secs
             }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
             self.logger.info('Preparing headers for get_time_series_stats.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_time_series_stats.')
+            self.logger.info(
+                'Preparing and executing request for get_time_series_stats.')
             _request = self.http_client.get(_query_url, headers=_headers)
             AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_time_series_stats')
+            _context = self.execute_request(_request,
+                                            name='get_time_series_stats')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_time_series_stats.')
@@ -451,11 +465,12 @@ class StatisticsController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, MetricDataBlock.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              MetricDataBlock.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
+            self.logger.error(e, exc_info=True)
+            raise APIException(e.message, None)
 
     def get_tasks(self,
                   task_paths=None,
@@ -525,21 +540,20 @@ class StatisticsController(BaseController):
                 'excludeSubTasks': exclude_sub_tasks,
                 'attributes': attributes
             }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
             self.logger.info('Preparing headers for get_tasks.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_tasks.')
             _request = self.http_client.get(_query_url, headers=_headers)
             AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_tasks')
+            _context = self.execute_request(_request, name='get_tasks')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_tasks.')
@@ -548,8 +562,9 @@ class StatisticsController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, Task.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              Task.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
+            self.logger.error(e, exc_info=True)
+            raise APIException(e.message, None)

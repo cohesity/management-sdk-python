@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.alerting_policy_proto
 import cohesity_management_sdk.models.backup_source_params
@@ -40,6 +40,11 @@ class BackupJobProto(object):
             entities (such as VMs).
         continue_on_quiesce_failure (bool): Whether to continue backing up on
             quiesce failure.
+        create_remote_view (bool): If set to false, a remote view will not be
+            created. If set to true and: 1) Remote view name is not provided
+            by the user, a remote view is created with the same name as source
+            view name. 2) Remote view name is provided by the user, a remote
+            view is created with the given name.
         dedup_disabled_source_id_vec (list of long|int): List of source ids
             for which source side dedup is disabled from the backup job.
         deletion_status (int): Determines if the job (and associated backups)
@@ -62,8 +67,7 @@ class BackupJobProto(object):
         exclude_sources_deprecated (list of EntityProto): The list of sources
             to exclude from backups. These can have non-leaf-level entities,
             but it's up to the creator to ensure that a child of these sources
-            hasn't been explicitly added to 'sources'. TODO(Chinmaya): Remove
-            after removing references.
+            hasn't been explicitly added to 'sources'.
         exclusion_ranges (list of BackupJobProtoExclusionTimeRange): Do not
             run backups in these time-ranges.
         full_backup_job_policy (JobPolicyProto): A message that specifies the
@@ -80,6 +84,11 @@ class BackupJobProto(object):
             https://goo.gl/1mLvS3.
         is_deleted (bool): Tracks whether the backup job has actually been
             deleted.
+        is_direct_archive_enabled (bool): This field is set to true if this is
+            a direct archive backup job.
+        is_direct_archive_native_format_enabled (bool): This field is set to
+            true if native format should be used for archiving. Applicable for
+            only direct archive jobs.
         is_paused (bool): Whether the backup job is paused. New backup runs
             are not scheduled for the paused backup job. Active run of a
             backup job (if any) is not impacted.
@@ -162,7 +171,18 @@ class BackupJobProto(object):
         remote_job_uids (list of UniversalIdProto): The globally unique ids of
             all remote jobs that are linked to this job (because of incoming
             replications). This field will only be populated for locally
-            created jobs.
+            created jobs. This field is populated only for the local(stub) job
+            during incoming replications. In the most common case of one
+            cluster replicating to another, this field will only have one
+            entry (which is the id of the job on Tx side) and matches the
+            primary_job_uid. This will have multiple entries in the following
+            situation: A->B, A->C replication. The backup is failed over to B,
+            and B now starts replicating to C. In this case, the stub job at C
+            will have two entries. One is the job id from cluster A, and
+            another is the local(stub) job uid from B. Also note that since
+            the job originated from A, primary_job_uid for all the replicated
+            instances of this job across multiple clusters will remain the
+            same (which is equal to the job id from the original cluster A).
         remote_view_name (string): A human readable name of the remote view. A
             remote view is created with name overwriting the latest snapshot.
         required_feature_vec (list of string): The features that are strictly
@@ -219,6 +239,7 @@ class BackupJobProto(object):
         "backup_qos_principal":'backupQosPrincipal',
         "backup_source_params":'backupSourceParams',
         "continue_on_quiesce_failure":'continueOnQuiesceFailure',
+        "create_remote_view":'createRemoteView',
         "dedup_disabled_source_id_vec":'dedupDisabledSourceIdVec',
         "deletion_status":'deletionStatus',
         "description":'description',
@@ -234,6 +255,8 @@ class BackupJobProto(object):
         "indexing_policy":'indexingPolicy',
         "is_active":'isActive',
         "is_deleted":'isDeleted',
+        "is_direct_archive_enabled":'isDirectArchiveEnabled',
+        "is_direct_archive_native_format_enabled":'isDirectArchiveNativeFormatEnabled',
         "is_paused":'isPaused',
         "is_rpo_job":'isRpoJob',
         "job_creation_time_usecs":'jobCreationTimeUsecs',
@@ -280,6 +303,7 @@ class BackupJobProto(object):
                  backup_qos_principal=None,
                  backup_source_params=None,
                  continue_on_quiesce_failure=None,
+                 create_remote_view=None,
                  dedup_disabled_source_id_vec=None,
                  deletion_status=None,
                  description=None,
@@ -295,6 +319,8 @@ class BackupJobProto(object):
                  indexing_policy=None,
                  is_active=None,
                  is_deleted=None,
+                 is_direct_archive_enabled=None,
+                 is_direct_archive_native_format_enabled=None,
                  is_paused=None,
                  is_rpo_job=None,
                  job_creation_time_usecs=None,
@@ -341,6 +367,7 @@ class BackupJobProto(object):
         self.backup_qos_principal = backup_qos_principal
         self.backup_source_params = backup_source_params
         self.continue_on_quiesce_failure = continue_on_quiesce_failure
+        self.create_remote_view = create_remote_view
         self.dedup_disabled_source_id_vec = dedup_disabled_source_id_vec
         self.deletion_status = deletion_status
         self.description = description
@@ -356,6 +383,8 @@ class BackupJobProto(object):
         self.indexing_policy = indexing_policy
         self.is_active = is_active
         self.is_deleted = is_deleted
+        self.is_direct_archive_enabled = is_direct_archive_enabled
+        self.is_direct_archive_native_format_enabled = is_direct_archive_native_format_enabled
         self.is_paused = is_paused
         self.is_rpo_job = is_rpo_job
         self.job_creation_time_usecs = job_creation_time_usecs
@@ -423,6 +452,7 @@ class BackupJobProto(object):
             for structure in dictionary.get('backupSourceParams'):
                 backup_source_params.append(cohesity_management_sdk.models.backup_source_params.BackupSourceParams.from_dictionary(structure))
         continue_on_quiesce_failure = dictionary.get('continueOnQuiesceFailure')
+        create_remote_view = dictionary.get('createRemoteView')
         dedup_disabled_source_id_vec = dictionary.get('dedupDisabledSourceIdVec')
         deletion_status = dictionary.get('deletionStatus')
         description = dictionary.get('description')
@@ -450,6 +480,8 @@ class BackupJobProto(object):
         indexing_policy = cohesity_management_sdk.models.indexing_policy_proto.IndexingPolicyProto.from_dictionary(dictionary.get('indexingPolicy')) if dictionary.get('indexingPolicy') else None
         is_active = dictionary.get('isActive')
         is_deleted = dictionary.get('isDeleted')
+        is_direct_archive_enabled = dictionary.get('isDirectArchiveEnabled')
+        is_direct_archive_native_format_enabled = dictionary.get('isDirectArchiveNativeFormatEnabled')
         is_paused = dictionary.get('isPaused')
         is_rpo_job = dictionary.get('isRpoJob')
         job_creation_time_usecs = dictionary.get('jobCreationTimeUsecs')
@@ -503,6 +535,7 @@ class BackupJobProto(object):
                    backup_qos_principal,
                    backup_source_params,
                    continue_on_quiesce_failure,
+                   create_remote_view,
                    dedup_disabled_source_id_vec,
                    deletion_status,
                    description,
@@ -518,6 +551,8 @@ class BackupJobProto(object):
                    indexing_policy,
                    is_active,
                    is_deleted,
+                   is_direct_archive_enabled,
+                   is_direct_archive_native_format_enabled,
                    is_paused,
                    is_rpo_job,
                    job_creation_time_usecs,

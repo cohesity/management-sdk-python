@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 
 class SyslogServer(object):
@@ -26,6 +26,9 @@ class SyslogServer(object):
             sent to the syslog server. (default) If 'false', filer audit logs
             are not sent to the syslog server. Either cluster audit logs or
             filer audit logs should be enabled.
+        is_ssh_log_enabled (bool): Specifies if ssh login logs should be sent
+            to syslog server If 'true', ssh login logs are sent to the server.
+            If 'false', ssh login logs are not sent to the server.(default)
         name (string): Specifies a unique name for the syslog server on the
             Cluster.
         port (int): Specifies the port where the syslog server listens.
@@ -44,6 +47,7 @@ class SyslogServer(object):
         "is_cluster_auditing_enabled":'isClusterAuditingEnabled',
         "is_data_protection_enabled":'isDataProtectionEnabled',
         "is_filer_auditing_enabled":'isFilerAuditingEnabled',
+        "is_ssh_log_enabled":'isSshLogEnabled',
         "name":'name'
     }
 
@@ -54,6 +58,7 @@ class SyslogServer(object):
                  is_cluster_auditing_enabled=None,
                  is_data_protection_enabled=None,
                  is_filer_auditing_enabled=None,
+                 is_ssh_log_enabled=None,
                  name=None):
         """Constructor for the SyslogServer class"""
 
@@ -62,6 +67,7 @@ class SyslogServer(object):
         self.is_cluster_auditing_enabled = is_cluster_auditing_enabled
         self.is_data_protection_enabled = is_data_protection_enabled
         self.is_filer_auditing_enabled = is_filer_auditing_enabled
+        self.is_ssh_log_enabled = is_ssh_log_enabled
         self.name = name
         self.port = port
         self.protocol = protocol
@@ -91,6 +97,7 @@ class SyslogServer(object):
         is_cluster_auditing_enabled = dictionary.get('isClusterAuditingEnabled')
         is_data_protection_enabled = dictionary.get('isDataProtectionEnabled')
         is_filer_auditing_enabled = dictionary.get('isFilerAuditingEnabled')
+        is_ssh_log_enabled = dictionary.get('isSshLogEnabled')
         name = dictionary.get('name')
 
         # Return an object of this model
@@ -100,6 +107,7 @@ class SyslogServer(object):
                    is_cluster_auditing_enabled,
                    is_data_protection_enabled,
                    is_filer_auditing_enabled,
+                   is_ssh_log_enabled,
                    name)
 
 

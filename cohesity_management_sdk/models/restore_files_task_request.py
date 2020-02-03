@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
+import cohesity_management_sdk.models.restored_file_info_list
 import cohesity_management_sdk.models.restore_object_details
 
 class RestoreFilesTaskRequest(object):
@@ -33,6 +34,8 @@ class RestoreFilesTaskRequest(object):
             target source.
         preserve_attributes (bool): If true, the Restore Tasks preserves the
             original file and folder attributes. This is the default.
+        restored_file_info_list (list of RestoredFileInfoList): Specifies
+            information regarding files and directories.
         source_object_info (RestoreObjectDetails): Specifies information about
             the source object (such as a VM) that contains the files and
             folders to recover. In addition, it contains information about the
@@ -44,7 +47,9 @@ class RestoreFilesTaskRequest(object):
             to be restored. 'kLinux' indicates the Linux operating system.
             'kWindows' indicates the Microsoft Windows operating system.
             'kAix' indicates the IBM AIX operating system. 'kSolaris'
-            indicates the Oracle Solaris operating system.
+            indicates the Oracle Solaris operating system. 'kSapHana'
+            indicates the Sap Hana database system developed by SAP SE.
+            'kOther' indicates the other types of operating system.
         target_parent_source_id (long|int): Specifies the registered source
             (such as a vCenter Server) that contains the target protection
             source (such as a VM) where the files and folders are recovered
@@ -66,6 +71,7 @@ class RestoreFilesTaskRequest(object):
         "overwrite":'overwrite',
         "password":'password',
         "preserve_attributes":'preserveAttributes',
+        "restored_file_info_list":'restoredFileInfoList',
         "source_object_info":'sourceObjectInfo',
         "target_host_type":'targetHostType',
         "target_parent_source_id":'targetParentSourceId',
@@ -82,6 +88,7 @@ class RestoreFilesTaskRequest(object):
                  overwrite=None,
                  password=None,
                  preserve_attributes=None,
+                 restored_file_info_list=None,
                  source_object_info=None,
                  target_host_type=None,
                  target_parent_source_id=None,
@@ -98,6 +105,7 @@ class RestoreFilesTaskRequest(object):
         self.overwrite = overwrite
         self.password = password
         self.preserve_attributes = preserve_attributes
+        self.restored_file_info_list = restored_file_info_list
         self.source_object_info = source_object_info
         self.target_host_type = target_host_type
         self.target_parent_source_id = target_parent_source_id
@@ -131,6 +139,11 @@ class RestoreFilesTaskRequest(object):
         overwrite = dictionary.get('overwrite')
         password = dictionary.get('password')
         preserve_attributes = dictionary.get('preserveAttributes')
+        restored_file_info_list = None
+        if dictionary.get('restoredFileInfoList') != None:
+            restored_file_info_list = list()
+            for structure in dictionary.get('restoredFileInfoList'):
+                restored_file_info_list.append(cohesity_management_sdk.models.restored_file_info_list.RestoredFileInfoList.from_dictionary(structure))
         source_object_info = cohesity_management_sdk.models.restore_object_details.RestoreObjectDetails.from_dictionary(dictionary.get('sourceObjectInfo')) if dictionary.get('sourceObjectInfo') else None
         target_host_type = dictionary.get('targetHostType')
         target_parent_source_id = dictionary.get('targetParentSourceId')
@@ -146,6 +159,7 @@ class RestoreFilesTaskRequest(object):
                    overwrite,
                    password,
                    preserve_attributes,
+                   restored_file_info_list,
                    source_object_info,
                    target_host_type,
                    target_parent_source_id,

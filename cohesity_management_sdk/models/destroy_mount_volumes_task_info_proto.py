@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.error_proto
 import cohesity_management_sdk.models.mount_volumes_info_proto
@@ -15,6 +15,8 @@ class DestroyMountVolumesTaskInfoProto(object):
         error (ErrorProto): TODO: type description here.
         finished (bool): This will be set to true if the task is complete on
             the slave.
+        host_name (string): This is the host name of the ESXi host. It is used
+            if magneto_vmware_use_fqdn_for_guest_file_operations is set.
         mount_volumes_info_proto (MountVolumesInfoProto): Each available
             extension is listed below along with the location of the proto
             file (relative to magneto/connectors) where it is defined.
@@ -36,6 +38,7 @@ class DestroyMountVolumesTaskInfoProto(object):
     _names = {
         "error":'error',
         "finished":'finished',
+        "host_name":'hostName',
         "mount_volumes_info_proto":'mountVolumesInfoProto',
         "slave_task_start_time_usecs":'slaveTaskStartTimeUsecs',
         "target_entity":'targetEntity'
@@ -44,6 +47,7 @@ class DestroyMountVolumesTaskInfoProto(object):
     def __init__(self,
                  error=None,
                  finished=None,
+                 host_name=None,
                  mount_volumes_info_proto=None,
                  slave_task_start_time_usecs=None,
                  target_entity=None):
@@ -52,6 +56,7 @@ class DestroyMountVolumesTaskInfoProto(object):
         # Initialize members of the class
         self.error = error
         self.finished = finished
+        self.host_name = host_name
         self.mount_volumes_info_proto = mount_volumes_info_proto
         self.slave_task_start_time_usecs = slave_task_start_time_usecs
         self.target_entity = target_entity
@@ -77,6 +82,7 @@ class DestroyMountVolumesTaskInfoProto(object):
         # Extract variables from the dictionary
         error = cohesity_management_sdk.models.error_proto.ErrorProto.from_dictionary(dictionary.get('error')) if dictionary.get('error') else None
         finished = dictionary.get('finished')
+        host_name = dictionary.get('hostName')
         mount_volumes_info_proto = cohesity_management_sdk.models.mount_volumes_info_proto.MountVolumesInfoProto.from_dictionary(dictionary.get('mountVolumesInfoProto')) if dictionary.get('mountVolumesInfoProto') else None
         slave_task_start_time_usecs = dictionary.get('slaveTaskStartTimeUsecs')
         target_entity = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('targetEntity')) if dictionary.get('targetEntity') else None
@@ -84,6 +90,7 @@ class DestroyMountVolumesTaskInfoProto(object):
         # Return an object of this model
         return cls(error,
                    finished,
+                   host_name,
                    mount_volumes_info_proto,
                    slave_task_start_time_usecs,
                    target_entity)

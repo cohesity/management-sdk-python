@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.alerting_config
 import cohesity_management_sdk.models.cloud_parameters
@@ -38,6 +38,8 @@ class ProtectionJobRequestBody(object):
             certain scenarios.
         continue_on_quiesce_failure (bool): Whether to continue backing up on
             quiesce failure.
+        create_remote_view (bool): Specifies whether to create a remote view
+            name to use for view overwrite.
         data_migration_policy (DataMigrationPolicy): Specifies settings for
             data migration in NAS environment. This also specifies the
             retention policy that should be applied to files after they have
@@ -59,30 +61,34 @@ class ProtectionJobRequestBody(object):
             environment. 'kPuppeteer' indicates the Cohesity's Remote Adapter.
             'kPhysical' indicates the physical Protection Source environment.
             'kPure' indicates the Pure Storage Protection Source environment.
-            'kAzure' indicates the Microsoft's Azure Protection Source
-            environment. 'kNetapp' indicates the Netapp Protection Source
-            environment. 'kAgent' indicates the Agent Protection Source
+            'Nimble' indicates the Nimble Storage Protection Source
+            environment. 'kAzure' indicates the Microsoft's Azure Protection
+            Source environment. 'kNetapp' indicates the Netapp Protection
+            Source environment. 'kAgent' indicates the Agent Protection Source
             environment. 'kGenericNas' indicates the Genreric Network Attached
             Storage Protection Source environment. 'kAcropolis' indicates the
             Acropolis Protection Source environment. 'kPhsicalFiles' indicates
             the Physical Files Protection Source environment. 'kIsilon'
             indicates the Dell EMC's Isilon Protection Source environment.
-            'kKVM' indicates the KVM Protection Source environment. 'kAWS'
-            indicates the AWS Protection Source environment. 'kExchange'
-            indicates the Exchange Protection Source environment. 'kHyperVVSS'
-            indicates the HyperV VSS Protection Source environment. 'kOracle'
-            indicates the Oracle Protection Source environment. 'kGCP'
-            indicates the Google Cloud Platform Protection Source environment.
-            'kFlashBlade' indicates the Flash Blade Protection Source
-            environment. 'kAWSNative' indicates the AWS Native Protection
-            Source environment. 'kVCD' indicates the VMware's Virtual cloud
-            Director Protection Source environment. 'kO365' indicates the
-            Office 365 Protection Source environment. 'kO365Outlook' indicates
-            Office 365 outlook Protection Source environment. 'kHyperFlex'
-            indicates the Hyper Flex Protection Source environment.
-            'kGCPNative' indicates the GCP Native Protection Source
-            environment. 'kAzureNative' indicates the Azure Native Protection
-            Source environment.
+            'kGPFS' indicates IBM's GPFS Protection Source environment. 'kKVM'
+            indicates the KVM Protection Source environment. 'kAWS' indicates
+            the AWS Protection Source environment. 'kExchange' indicates the
+            Exchange Protection Source environment. 'kHyperVVSS' indicates the
+            HyperV VSS Protection Source environment. 'kOracle' indicates the
+            Oracle Protection Source environment. 'kGCP' indicates the Google
+            Cloud Platform Protection Source environment. 'kFlashBlade'
+            indicates the Flash Blade Protection Source environment.
+            'kAWSNative' indicates the AWS Native Protection Source
+            environment. 'kVCD' indicates the VMware's Virtual cloud Director
+            Protection Source environment. 'kO365' indicates the Office 365
+            Protection Source environment. 'kO365Outlook' indicates Office 365
+            outlook Protection Source environment. 'kHyperFlex' indicates the
+            Hyper Flex Protection Source environment. 'kGCPNative' indicates
+            the GCP Native Protection Source environment. 'kAzureNative'
+            indicates the Azure Native Protection Source environment.
+            'kKubernetes' indicates a Kubernetes Protection Source
+            environment. 'kElastifile' indicates Elastifile Protection Source
+            environment.
         environment_parameters (EnvironmentTypeJobParameters): Specifies
             additional parameters that are common to all Protection Sources in
             a Protection Job created for a particular environment type.
@@ -138,6 +144,10 @@ class ProtectionJobRequestBody(object):
             files found in an Object (such as a VM) so these files can be
             searched and recovered. This also specifies inclusion and
             exclusion rules that determine the directories to index.
+        is_direct_archive_enabled (bool): Specifies if this is a direct
+            archive backup job.
+        is_native_format (bool): Specifies if native format should be used for
+            archiving, applicable for only direct archive jobs.
         leverage_storage_snapshots (bool): Specifies whether to leverage the
             storage array based snapshots for this backup job. To leverage
             storage snapshots, the storage array has to be registered as a
@@ -254,6 +264,7 @@ class ProtectionJobRequestBody(object):
         "alerting_policy":'alertingPolicy',
         "cloud_parameters":'cloudParameters',
         "continue_on_quiesce_failure":'continueOnQuiesceFailure',
+        "create_remote_view":'createRemoteView',
         "data_migration_policy":'dataMigrationPolicy',
         "dedup_disabled_source_ids":'dedupDisabledSourceIds',
         "description":'description',
@@ -267,6 +278,8 @@ class ProtectionJobRequestBody(object):
         "incremental_protection_sla_time_mins":'incrementalProtectionSlaTimeMins',
         "incremental_protection_start_time":'incrementalProtectionStartTime',
         "indexing_policy":'indexingPolicy',
+        "is_direct_archive_enabled":'isDirectArchiveEnabled',
+        "is_native_format":'isNativeFormat',
         "leverage_storage_snapshots":'leverageStorageSnapshots',
         "leverage_storage_snapshots_for_hyperflex":'leverageStorageSnapshotsForHyperflex',
         "parent_source_id":'parentSourceId',
@@ -296,6 +309,7 @@ class ProtectionJobRequestBody(object):
                  alerting_policy=None,
                  cloud_parameters=None,
                  continue_on_quiesce_failure=None,
+                 create_remote_view=None,
                  data_migration_policy=None,
                  dedup_disabled_source_ids=None,
                  description=None,
@@ -309,6 +323,8 @@ class ProtectionJobRequestBody(object):
                  incremental_protection_sla_time_mins=None,
                  incremental_protection_start_time=None,
                  indexing_policy=None,
+                 is_direct_archive_enabled=None,
+                 is_native_format=None,
                  leverage_storage_snapshots=None,
                  leverage_storage_snapshots_for_hyperflex=None,
                  parent_source_id=None,
@@ -335,6 +351,7 @@ class ProtectionJobRequestBody(object):
         self.alerting_policy = alerting_policy
         self.cloud_parameters = cloud_parameters
         self.continue_on_quiesce_failure = continue_on_quiesce_failure
+        self.create_remote_view = create_remote_view
         self.data_migration_policy = data_migration_policy
         self.dedup_disabled_source_ids = dedup_disabled_source_ids
         self.description = description
@@ -348,6 +365,8 @@ class ProtectionJobRequestBody(object):
         self.incremental_protection_sla_time_mins = incremental_protection_sla_time_mins
         self.incremental_protection_start_time = incremental_protection_start_time
         self.indexing_policy = indexing_policy
+        self.is_direct_archive_enabled = is_direct_archive_enabled
+        self.is_native_format = is_native_format
         self.leverage_storage_snapshots = leverage_storage_snapshots
         self.leverage_storage_snapshots_for_hyperflex = leverage_storage_snapshots_for_hyperflex
         self.name = name
@@ -397,6 +416,7 @@ class ProtectionJobRequestBody(object):
         alerting_policy = dictionary.get('alertingPolicy')
         cloud_parameters = cohesity_management_sdk.models.cloud_parameters.CloudParameters.from_dictionary(dictionary.get('cloudParameters')) if dictionary.get('cloudParameters') else None
         continue_on_quiesce_failure = dictionary.get('continueOnQuiesceFailure')
+        create_remote_view = dictionary.get('createRemoteView')
         data_migration_policy = cohesity_management_sdk.models.data_migration_policy.DataMigrationPolicy.from_dictionary(dictionary.get('dataMigrationPolicy')) if dictionary.get('dataMigrationPolicy') else None
         dedup_disabled_source_ids = dictionary.get('dedupDisabledSourceIds')
         description = dictionary.get('description')
@@ -410,6 +430,8 @@ class ProtectionJobRequestBody(object):
         incremental_protection_sla_time_mins = dictionary.get('incrementalProtectionSlaTimeMins')
         incremental_protection_start_time = cohesity_management_sdk.models.time_of_day.TimeOfDay.from_dictionary(dictionary.get('incrementalProtectionStartTime')) if dictionary.get('incrementalProtectionStartTime') else None
         indexing_policy = cohesity_management_sdk.models.indexing_policy.IndexingPolicy.from_dictionary(dictionary.get('indexingPolicy')) if dictionary.get('indexingPolicy') else None
+        is_direct_archive_enabled = dictionary.get('isDirectArchiveEnabled')
+        is_native_format = dictionary.get('isNativeFormat')
         leverage_storage_snapshots = dictionary.get('leverageStorageSnapshots')
         leverage_storage_snapshots_for_hyperflex = dictionary.get('leverageStorageSnapshotsForHyperflex')
         parent_source_id = dictionary.get('parentSourceId')
@@ -442,6 +464,7 @@ class ProtectionJobRequestBody(object):
                    alerting_policy,
                    cloud_parameters,
                    continue_on_quiesce_failure,
+                   create_remote_view,
                    data_migration_policy,
                    dedup_disabled_source_ids,
                    description,
@@ -455,6 +478,8 @@ class ProtectionJobRequestBody(object):
                    incremental_protection_sla_time_mins,
                    incremental_protection_start_time,
                    indexing_policy,
+                   is_direct_archive_enabled,
+                   is_native_format,
                    leverage_storage_snapshots,
                    leverage_storage_snapshots_for_hyperflex,
                    parent_source_id,

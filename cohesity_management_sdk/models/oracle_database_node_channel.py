@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.oracle_database_node
 
@@ -11,6 +11,8 @@ class OracleDatabaseNodeChannel(object):
     a database.
 
     Attributes:
+        archive_log_keep_days (int): Specifies the number of days archive log
+            should be stored.
         database_node_list (list of OracleDatabaseNode): Array of nodes of a
             database.  Specifies the Node info from where we are allowed to
             take the backup/restore.
@@ -31,6 +33,7 @@ class OracleDatabaseNodeChannel(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "archive_log_keep_days":'archiveLogKeepDays',
         "database_node_list":'databaseNodeList',
         "database_unique_name":'databaseUniqueName',
         "database_uuid":'databaseUuid',
@@ -39,6 +42,7 @@ class OracleDatabaseNodeChannel(object):
     }
 
     def __init__(self,
+                 archive_log_keep_days=None,
                  database_node_list=None,
                  database_unique_name=None,
                  database_uuid=None,
@@ -47,6 +51,7 @@ class OracleDatabaseNodeChannel(object):
         """Constructor for the OracleDatabaseNodeChannel class"""
 
         # Initialize members of the class
+        self.archive_log_keep_days = archive_log_keep_days
         self.database_node_list = database_node_list
         self.database_unique_name = database_unique_name
         self.database_uuid = database_uuid
@@ -72,6 +77,7 @@ class OracleDatabaseNodeChannel(object):
             return None
 
         # Extract variables from the dictionary
+        archive_log_keep_days = dictionary.get('archiveLogKeepDays')
         database_node_list = None
         if dictionary.get('databaseNodeList') != None:
             database_node_list = list()
@@ -83,7 +89,8 @@ class OracleDatabaseNodeChannel(object):
         max_node_count = dictionary.get('maxNodeCount')
 
         # Return an object of this model
-        return cls(database_node_list,
+        return cls(archive_log_keep_days,
+                   database_node_list,
                    database_unique_name,
                    database_uuid,
                    default_channel_count,

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.destroy_cloned_entity_info_proto_cloned_entity
 import cohesity_management_sdk.models.error_proto

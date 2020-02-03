@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
+import cohesity_management_sdk.models.host_info
 
 class DeployCertParameters(object):
 
@@ -10,16 +11,13 @@ class DeployCertParameters(object):
 
     Attributes:
         cert_file_name (string): Specifies the filename of the certificate.
-        password (list of string): Specifies the passsword of the host to
-            establish SSH connection. The certificate is copied to the host
-            after generating the certificate on the cluster.
-        server_name (list of string): Specifies the servername of the host
-            where certificate is to be deployed.
-        target (list of string): Specifies the target location on the host
-            where the certificate is deployed.
-        user_name (list of string): TODO(Sai Akhil S): Accept credentials for
-            the cluster instead of each each node and copy certificate to all
-            nodes. Specifies the username of the host.
+        hosts_info_list (list of HostInfo): Specifies the list of all hosts on
+            which the certificate is to be deployed.
+        mtype (TypeDeployCertParametersEnum): Specifies the type of the host
+            such as 'kSapHana', 'kSapOracle', etc. Specifies the host type of
+            host for generating and deploying a Certificate. 'kOther'
+            indicates it is any of the other hosts. 'kSapOracle' indicates it
+            is a SAP Oracle host. 'kSapHana' indicates it is a SAP HANA host.
         valid_days (long|int): Specifies the number of days after which the
             certificate will expire. The user has to input the number of days
             (from the current date) till when the certificate is valid.
@@ -29,28 +27,22 @@ class DeployCertParameters(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "cert_file_name":'certFileName',
-        "password":'password',
-        "server_name":'serverName',
-        "target":'target',
-        "user_name":'userName',
+        "hosts_info_list":'hostsInfoList',
+        "mtype":'type',
         "valid_days":'validDays'
     }
 
     def __init__(self,
                  cert_file_name=None,
-                 password=None,
-                 server_name=None,
-                 target=None,
-                 user_name=None,
+                 hosts_info_list=None,
+                 mtype=None,
                  valid_days=None):
         """Constructor for the DeployCertParameters class"""
 
         # Initialize members of the class
         self.cert_file_name = cert_file_name
-        self.password = password
-        self.server_name = server_name
-        self.target = target
-        self.user_name = user_name
+        self.hosts_info_list = hosts_info_list
+        self.mtype = mtype
         self.valid_days = valid_days
 
 
@@ -73,18 +65,18 @@ class DeployCertParameters(object):
 
         # Extract variables from the dictionary
         cert_file_name = dictionary.get('certFileName')
-        password = dictionary.get('password')
-        server_name = dictionary.get('serverName')
-        target = dictionary.get('target')
-        user_name = dictionary.get('userName')
+        hosts_info_list = None
+        if dictionary.get('hostsInfoList') != None:
+            hosts_info_list = list()
+            for structure in dictionary.get('hostsInfoList'):
+                hosts_info_list.append(cohesity_management_sdk.models.host_info.HostInfo.from_dictionary(structure))
+        mtype = dictionary.get('type')
         valid_days = dictionary.get('validDays')
 
         # Return an object of this model
         return cls(cert_file_name,
-                   password,
-                   server_name,
-                   target,
-                   user_name,
+                   hosts_info_list,
+                   mtype,
                    valid_days)
 
 

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.quota_policy
 
@@ -15,10 +15,9 @@ class DirQuotaPolicy(object):
     to be removed.
 
     Attributes:
-        usage_bytes (long|int): Specifies the current usage (in bytes) by the
-            directory in the view. This is set by the response received from
-            bridge when querying directory quota usage.
         dir_path (string): Specifies the path of the directory in the view.
+        dir_walk_pending (bool): Denotes directory quota walk is pending or
+            not.
         policy (QuotaPolicy): Specifies a quota limit that can be optionally
             applied to Views and View Boxes. At the View level, this quota
             defines a logical limit for usage on the View. At the View Box
@@ -35,26 +34,32 @@ class DirQuotaPolicy(object):
             there may be a delay before the Cohesity Cluster allows more data
             to be written to the resource, as the Cluster calculates the usage
             across Nodes.
+        usage_bytes (long|int): Specifies the current usage (in bytes) by the
+            directory in the view. This is set by the response received from
+            bridge when querying directory quota usage.
 
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "usage_bytes":'UsageBytes',
         "dir_path":'dirPath',
-        "policy":'policy'
+        "dir_walk_pending":'dirWalkPending',
+        "policy":'policy',
+        "usage_bytes":'usageBytes'
     }
 
     def __init__(self,
-                 usage_bytes=None,
                  dir_path=None,
-                 policy=None):
+                 dir_walk_pending=None,
+                 policy=None,
+                 usage_bytes=None):
         """Constructor for the DirQuotaPolicy class"""
 
         # Initialize members of the class
-        self.usage_bytes = usage_bytes
         self.dir_path = dir_path
+        self.dir_walk_pending = dir_walk_pending
         self.policy = policy
+        self.usage_bytes = usage_bytes
 
 
     @classmethod
@@ -75,13 +80,15 @@ class DirQuotaPolicy(object):
             return None
 
         # Extract variables from the dictionary
-        usage_bytes = dictionary.get('UsageBytes')
         dir_path = dictionary.get('dirPath')
+        dir_walk_pending = dictionary.get('dirWalkPending')
         policy = cohesity_management_sdk.models.quota_policy.QuotaPolicy.from_dictionary(dictionary.get('policy')) if dictionary.get('policy') else None
+        usage_bytes = dictionary.get('usageBytes')
 
         # Return an object of this model
-        return cls(usage_bytes,
-                   dir_path,
-                   policy)
+        return cls(dir_path,
+                   dir_walk_pending,
+                   policy,
+                   usage_bytes)
 
 

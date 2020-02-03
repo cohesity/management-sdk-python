@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.entity_proto
 
@@ -12,7 +12,6 @@ class BackupJobProtoExcludeSource(object):
     Attributes:
         entities (list of EntityProto): An intersection of leaf-level entities
             will be obtained after expanding the following entities.
-            TODO(Chinmaya): Add some more comments.
 
     """
 

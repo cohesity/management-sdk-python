@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.network_mapping
 
@@ -10,6 +10,8 @@ class VmwareRestoreParameters(object):
     Specifies the information required for recovering or cloning VmWare VMs.
 
     Attributes:
+        additional_datastore_ids (list of long|int): Specifies additional
+            datastores where the object should be recovered to.
         datastore_folder_id (long|int): Specifies the folder where the restore
             datastore should be created. This is applicable only when the VMs
             are being cloned.
@@ -69,6 +71,7 @@ class VmwareRestoreParameters(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "additional_datastore_ids":'additionalDatastoreIds',
         "datastore_folder_id":'datastoreFolderId',
         "datastore_id":'datastoreId',
         "detach_network":'detachNetwork',
@@ -83,6 +86,7 @@ class VmwareRestoreParameters(object):
     }
 
     def __init__(self,
+                 additional_datastore_ids=None,
                  datastore_folder_id=None,
                  datastore_id=None,
                  detach_network=None,
@@ -97,6 +101,7 @@ class VmwareRestoreParameters(object):
         """Constructor for the VmwareRestoreParameters class"""
 
         # Initialize members of the class
+        self.additional_datastore_ids = additional_datastore_ids
         self.datastore_folder_id = datastore_folder_id
         self.datastore_id = datastore_id
         self.detach_network = detach_network
@@ -128,6 +133,7 @@ class VmwareRestoreParameters(object):
             return None
 
         # Extract variables from the dictionary
+        additional_datastore_ids = dictionary.get('additionalDatastoreIds')
         datastore_folder_id = dictionary.get('datastoreFolderId')
         datastore_id = dictionary.get('datastoreId')
         detach_network = dictionary.get('detachNetwork')
@@ -145,7 +151,8 @@ class VmwareRestoreParameters(object):
         vm_folder_id = dictionary.get('vmFolderId')
 
         # Return an object of this model
-        return cls(datastore_folder_id,
+        return cls(additional_datastore_ids,
+                   datastore_folder_id,
                    datastore_id,
                    detach_network,
                    disable_network,

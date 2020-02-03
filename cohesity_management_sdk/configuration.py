@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import sys
 import logging
 
 from cohesity_management_sdk.api_helper import APIHelper
 #CohesityPatch
-logging.basicConfig(stream=sys.stdout, level=logging.ERROR)
+logging.basicConfig(stream=sys.stdout, level=logging.CRITICAL)
 
 
 class Configuration(object):

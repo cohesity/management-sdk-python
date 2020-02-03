@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 
 class GcpProtectionSource(object):
@@ -23,13 +23,19 @@ class GcpProtectionSource(object):
             GCP environment. 'kVPC' indicates a virtual private cloud (VPC)
             network within GCP. 'kSubnet' indicates a subnet inside the VPC.
             'kNetworkSecurityGroup' represents a network security group.
-            'kInstanceType' represents various machine types.
+            'kInstanceType' represents various machine types. 'kLabel'
+            represents a label present on the instances. 'kMetaData'
+            represents a custom metadata present on instances. 'kTag'
+            represents a network tag on instances. 'kVPCConnector' represents
+            a VPC connector used for serverless VPC access.
         host_type (HostTypeEnum): Specifies the OS type of the Protection
             Source of type 'kVirtualMachine' such as 'kWindows' or 'kLinux'.
             overrideDescription: true 'kLinux' indicates the Linux operating
             system. 'kWindows' indicates the Microsoft Windows operating
             system. 'kAix' indicates the IBM AIX operating system. 'kSolaris'
-            indicates the Oracle Solaris operating system.
+            indicates the Oracle Solaris operating system. 'kSapHana'
+            indicates the Sap Hana database system developed by SAP SE.
+            'kOther' indicates the other types of operating system.
         ip_addresses_vm (string): Specifies the IP address of the entity of
             type 'kVirtualMachine'.
         name (string): Specifies the name of the Object set by the Cloud
@@ -78,7 +84,11 @@ class GcpProtectionSource(object):
             GCP environment. 'kVPC' indicates a virtual private cloud (VPC)
             network within GCP. 'kSubnet' indicates a subnet inside the VPC.
             'kNetworkSecurityGroup' represents a network security group.
-            'kInstanceType' represents various machine types.
+            'kInstanceType' represents various machine types. 'kLabel'
+            represents a label present on the instances. 'kMetaData'
+            represents a custom metadata present on instances. 'kTag'
+            represents a network tag on instances. 'kVPCConnector' represents
+            a VPC connector used for serverless VPC access.
         vpc_network (string): Specifies the VPC Network to deploy proxy VMs.
         vpc_subnetwork (string): Specifies the subnetwork to deploy proxy
             VMs.

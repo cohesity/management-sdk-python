@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -10,10 +10,9 @@ from cohesity_management_sdk.models.view_box import ViewBox
 from cohesity_management_sdk.exceptions.request_error_error_exception import RequestErrorErrorException
 from cohesity_management_sdk.exceptions.api_exception import APIException
 
+
 class ViewBoxesController(BaseController):
-
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-
     def __init__(self, client=None, call_back=None):
         super(ViewBoxesController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
@@ -24,7 +23,8 @@ class ViewBoxesController(BaseController):
                        ids=None,
                        names=None,
                        cluster_partition_ids=None,
-                       fetch_stats=None):
+                       fetch_stats=None,
+                       fetch_time_series_schema=None):
         """Does a GET request to /public/viewBoxes.
 
         If no parameters are specified, all Domains (View Boxes) currently on
@@ -47,6 +47,8 @@ class ViewBoxesController(BaseController):
                 list of Cluster Partition Ids.
             fetch_stats (bool, optional): Specifies whether to include usage
                 and performance statistics.
+            fetch_time_series_schema (bool, optional): Specifies whether to
+                get time series schema info of the view box.
 
         Returns:
             list of ViewBox: Response from the API. Success
@@ -72,23 +74,24 @@ class ViewBoxesController(BaseController):
                 'ids': ids,
                 'names': names,
                 'clusterPartitionIds': cluster_partition_ids,
-                'fetchStats': fetch_stats
+                'fetchStats': fetch_stats,
+                'fetchTimeSeriesSchema': fetch_time_series_schema
             }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
             self.logger.info('Preparing headers for get_view_boxes.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_view_boxes.')
+            self.logger.info(
+                'Preparing and executing request for get_view_boxes.')
             _request = self.http_client.get(_query_url, headers=_headers)
             AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_view_boxes')
+            _context = self.execute_request(_request, name='get_view_boxes')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_view_boxes.')
@@ -97,14 +100,14 @@ class ViewBoxesController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ViewBox.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              ViewBox.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
+            self.logger.error(e, exc_info=True)
+            raise APIException(e.message, None)
 
-    def create_view_box(self,
-                        body):
+    def create_view_box(self, body):
         """Does a POST request to /public/viewBoxes.
 
         Returns the created Domain (View Box).
@@ -127,7 +130,8 @@ class ViewBoxesController(BaseController):
             self.logger.info('create_view_box called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for create_view_box.')
+            self.logger.info(
+                'Validating required parameters for create_view_box.')
             self.validate_parameters(body=body)
 
             # Prepare query URL
@@ -145,10 +149,14 @@ class ViewBoxesController(BaseController):
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for create_view_box.')
-            _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
+            self.logger.info(
+                'Preparing and executing request for create_view_box.')
+            _request = self.http_client.post(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
             AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'create_view_box')
+            _context = self.execute_request(_request, name='create_view_box')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for create_view_box.')
@@ -157,14 +165,66 @@ class ViewBoxesController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ViewBox.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              ViewBox.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
+            self.logger.error(e, exc_info=True)
+            raise APIException(e.message, None)
 
-    def get_view_box_by_id(self,
-                           id):
+    def delete_view_box(self, id):
+        """Does a DELETE request to /public/viewBoxes/{id}.
+
+        Returns delete status upon completion.
+
+        Args:
+            id (long|int): Id of the Storage Domain (View Box)
+
+        Returns:
+            void: Response from the API. No Content
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+        try:
+            self.logger.info('delete_view_box called.')
+
+            # Validate required parameters
+            self.logger.info(
+                'Validating required parameters for delete_view_box.')
+            self.validate_parameters(id=id)
+
+            # Prepare query URL
+            self.logger.info('Preparing query URL for delete_view_box.')
+            _url_path = '/public/viewBoxes/{id}'
+            _url_path = APIHelper.append_url_with_template_parameters(
+                _url_path, {'id': id})
+            _query_builder = Configuration.get_base_uri()
+            _query_builder += _url_path
+            _query_url = APIHelper.clean_url(_query_builder)
+
+            # Prepare and execute request
+            self.logger.info(
+                'Preparing and executing request for delete_view_box.')
+            _request = self.http_client.delete(_query_url)
+            AuthManager.apply(_request)
+            _context = self.execute_request(_request, name='delete_view_box')
+
+            # Endpoint and global error handling using HTTP status codes.
+            self.logger.info('Validating response for delete_view_box.')
+            if _context.response.status_code == 0:
+                raise RequestErrorErrorException('Error', _context)
+            self.validate_response(_context)
+
+        except Exception as e:
+            self.logger.error(e, exc_info=True)
+            raise APIException(e.message, None)
+
+    def get_view_box_by_id(self, id, fetch_stats=None):
         """Does a GET request to /public/viewBoxes/{id}.
 
         Returns the Domain (View Box) corresponding to the specified Domain
@@ -173,6 +233,8 @@ class ViewBoxesController(BaseController):
 
         Args:
             id (long|int): Id of the Storage Domain (View Box)
+            fetch_stats (bool, optional): Specifies whether to include usage
+                and performance statistics.
 
         Returns:
             ViewBox: Response from the API. Success
@@ -188,49 +250,53 @@ class ViewBoxesController(BaseController):
             self.logger.info('get_view_box_by_id called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for get_view_box_by_id.')
+            self.logger.info(
+                'Validating required parameters for get_view_box_by_id.')
             self.validate_parameters(id=id)
 
             # Prepare query URL
             self.logger.info('Preparing query URL for get_view_box_by_id.')
             _url_path = '/public/viewBoxes/{id}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-                'id': id
-            })
+            _url_path = APIHelper.append_url_with_template_parameters(
+                _url_path, {'id': id})
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
+            _query_parameters = {'fetchStats': fetch_stats}
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
             self.logger.info('Preparing headers for get_view_box_by_id.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_view_box_by_id.')
+            self.logger.info(
+                'Preparing and executing request for get_view_box_by_id.')
             _request = self.http_client.get(_query_url, headers=_headers)
             AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_view_box_by_id')
+            _context = self.execute_request(_request,
+                                            name='get_view_box_by_id')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_view_box_by_id.')
             if _context.response.status_code == 404:
                 raise APIException('Not Found', _context)
-            elif (_context.response.status_code < 200) or (_context.response.status_code > 208):
+            elif (_context.response.status_code <
+                  200) or (_context.response.status_code > 208):
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ViewBox.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              ViewBox.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
+            self.logger.error(e, exc_info=True)
+            raise APIException(e.message, None)
 
-    def update_view_box(self,
-                        id,
-                        body):
+    def update_view_box(self, id, body):
         """Does a PUT request to /public/viewBoxes/{id}.
 
         Returns the updated Domain (View Box).
@@ -254,16 +320,15 @@ class ViewBoxesController(BaseController):
             self.logger.info('update_view_box called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for update_view_box.')
-            self.validate_parameters(id=id,
-                                     body=body)
+            self.logger.info(
+                'Validating required parameters for update_view_box.')
+            self.validate_parameters(id=id, body=body)
 
             # Prepare query URL
             self.logger.info('Preparing query URL for update_view_box.')
             _url_path = '/public/viewBoxes/{id}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-                'id': id
-            })
+            _url_path = APIHelper.append_url_with_template_parameters(
+                _url_path, {'id': id})
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
@@ -276,10 +341,14 @@ class ViewBoxesController(BaseController):
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for update_view_box.')
-            _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
+            self.logger.info(
+                'Preparing and executing request for update_view_box.')
+            _request = self.http_client.put(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
             AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'update_view_box')
+            _context = self.execute_request(_request, name='update_view_box')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for update_view_box.')
@@ -288,8 +357,9 @@ class ViewBoxesController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ViewBox.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              ViewBox.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
+            self.logger.error(e, exc_info=True)
+            raise APIException(e.message, None)

@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.acropolis_restore_parameters
+import cohesity_management_sdk.models.deploy_vms_to_cloud
 import cohesity_management_sdk.models.hyperv_restore_parameters
+import cohesity_management_sdk.models.kubernetes_restore_parameters
 import cohesity_management_sdk.models.mount_volumes_parameters
 import cohesity_management_sdk.models.restore_object_details
+import cohesity_management_sdk.models.one_drive_restore_parameters
 import cohesity_management_sdk.models.outlook_restore_parameters
 import cohesity_management_sdk.models.update_view_param
 import cohesity_management_sdk.models.virtual_disk_restore_parameters
@@ -26,6 +29,9 @@ class RecoverTaskRequest(object):
             continue when some operations on some objects fail. If true, the
             Cohesity Cluster ignores intermittent errors and restores as many
             objects as possible.
+        deploy_vms_to_cloud (DeployVmsToCloud): Specifies the details about
+            deploying vms to specific clouds where backup may be stored and
+            converted.
         glacier_retrieval_type (GlacierRetrievalTypeEnum): Specifies the way
             data needs to be retrieved from the external target. This
             information will be filled in by Iris and Magneto will pass it
@@ -46,6 +52,8 @@ class RecoverTaskRequest(object):
         hyperv_parameters (HypervRestoreParameters): Specifies information
             needed when restoring VMs in HyperV enviroment. This field defines
             the HyperV specific params for restore tasks of type kRecoverVMs.
+        kubernetes_parameters (KubernetesRestoreParameters): Specifies the
+            information required for recovering kubernetes entities.
         mount_parameters (MountVolumesParameters): Specifies the information
             required for mounting volumes. Only required for Restore Tasks of
             type 'kMountVolumes'. At a minimum, the targetSourceId must be
@@ -67,6 +75,8 @@ class RecoverTaskRequest(object):
         objects (list of RestoreObjectDetails): Array of Objects.  Specifies a
             list of Protection Source objects or Protection Job objects (with
             specified Protection Source objects).
+        one_drive_parameters (OneDriveRestoreParameters): Specifies
+            information needed for recovering Drive(s) & Drive items.
         outlook_parameters (OutlookRestoreParameters): Specifies information
             needed for recovering Mailboxes in O365Outlook environment.
         restore_view_parameters (UpdateViewParam): Specifies the settings that
@@ -75,6 +85,9 @@ class RecoverTaskRequest(object):
             such as 'kRecoverVMs' or 'kMountVolumes'. 'kRecoverVMs' specifies
             a Restore Task that recovers VMs. 'kMountVolumes' specifies a
             Restore Task that mounts volumes to mount points.
+            'kRecoverNamespaces' specifies a Restore Task that recovers
+            Kubernetes namespaces. 'kMountFileVolume' specifies a Restore Task
+            that mounts a file volume.
         view_name (string): Specifie target view into which the objects are to
             be cloned when doing recovery for NAS.
         virtual_disk_restore_parameters (VirtualDiskRestoreParameters):
@@ -92,11 +105,14 @@ class RecoverTaskRequest(object):
         "mtype":'type',
         "acropolis_parameters":'acropolisParameters',
         "continue_on_error":'continueOnError',
+        "deploy_vms_to_cloud":'deployVmsToCloud',
         "glacier_retrieval_type":'glacierRetrievalType',
         "hyperv_parameters":'hypervParameters',
+        "kubernetes_parameters":'kubernetesParameters',
         "mount_parameters":'mountParameters',
         "new_parent_id":'newParentId',
         "objects":'objects',
+        "one_drive_parameters":'oneDriveParameters',
         "outlook_parameters":'outlookParameters',
         "restore_view_parameters":'restoreViewParameters',
         "view_name":'viewName',
@@ -110,11 +126,14 @@ class RecoverTaskRequest(object):
                  mtype=None,
                  acropolis_parameters=None,
                  continue_on_error=None,
+                 deploy_vms_to_cloud=None,
                  glacier_retrieval_type=None,
                  hyperv_parameters=None,
+                 kubernetes_parameters=None,
                  mount_parameters=None,
                  new_parent_id=None,
                  objects=None,
+                 one_drive_parameters=None,
                  outlook_parameters=None,
                  restore_view_parameters=None,
                  view_name=None,
@@ -126,12 +145,15 @@ class RecoverTaskRequest(object):
         # Initialize members of the class
         self.acropolis_parameters = acropolis_parameters
         self.continue_on_error = continue_on_error
+        self.deploy_vms_to_cloud = deploy_vms_to_cloud
         self.glacier_retrieval_type = glacier_retrieval_type
         self.hyperv_parameters = hyperv_parameters
+        self.kubernetes_parameters = kubernetes_parameters
         self.mount_parameters = mount_parameters
         self.name = name
         self.new_parent_id = new_parent_id
         self.objects = objects
+        self.one_drive_parameters = one_drive_parameters
         self.outlook_parameters = outlook_parameters
         self.restore_view_parameters = restore_view_parameters
         self.mtype = mtype
@@ -163,8 +185,10 @@ class RecoverTaskRequest(object):
         mtype = dictionary.get('type')
         acropolis_parameters = cohesity_management_sdk.models.acropolis_restore_parameters.AcropolisRestoreParameters.from_dictionary(dictionary.get('acropolisParameters')) if dictionary.get('acropolisParameters') else None
         continue_on_error = dictionary.get('continueOnError')
+        deploy_vms_to_cloud = cohesity_management_sdk.models.deploy_vms_to_cloud.DeployVmsToCloud.from_dictionary(dictionary.get('deployVmsToCloud')) if dictionary.get('deployVmsToCloud') else None
         glacier_retrieval_type = dictionary.get('glacierRetrievalType')
         hyperv_parameters = cohesity_management_sdk.models.hyperv_restore_parameters.HypervRestoreParameters.from_dictionary(dictionary.get('hypervParameters')) if dictionary.get('hypervParameters') else None
+        kubernetes_parameters = cohesity_management_sdk.models.kubernetes_restore_parameters.KubernetesRestoreParameters.from_dictionary(dictionary.get('kubernetesParameters')) if dictionary.get('kubernetesParameters') else None
         mount_parameters = cohesity_management_sdk.models.mount_volumes_parameters.MountVolumesParameters.from_dictionary(dictionary.get('mountParameters')) if dictionary.get('mountParameters') else None
         new_parent_id = dictionary.get('newParentId')
         objects = None
@@ -172,6 +196,7 @@ class RecoverTaskRequest(object):
             objects = list()
             for structure in dictionary.get('objects'):
                 objects.append(cohesity_management_sdk.models.restore_object_details.RestoreObjectDetails.from_dictionary(structure))
+        one_drive_parameters = cohesity_management_sdk.models.one_drive_restore_parameters.OneDriveRestoreParameters.from_dictionary(dictionary.get('oneDriveParameters')) if dictionary.get('oneDriveParameters') else None
         outlook_parameters = cohesity_management_sdk.models.outlook_restore_parameters.OutlookRestoreParameters.from_dictionary(dictionary.get('outlookParameters')) if dictionary.get('outlookParameters') else None
         restore_view_parameters = cohesity_management_sdk.models.update_view_param.UpdateViewParam.from_dictionary(dictionary.get('restoreViewParameters')) if dictionary.get('restoreViewParameters') else None
         view_name = dictionary.get('viewName')
@@ -184,11 +209,14 @@ class RecoverTaskRequest(object):
                    mtype,
                    acropolis_parameters,
                    continue_on_error,
+                   deploy_vms_to_cloud,
                    glacier_retrieval_type,
                    hyperv_parameters,
+                   kubernetes_parameters,
                    mount_parameters,
                    new_parent_id,
                    objects,
+                   one_drive_parameters,
                    outlook_parameters,
                    restore_view_parameters,
                    view_name,

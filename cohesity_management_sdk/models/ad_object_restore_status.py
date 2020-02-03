@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.ad_object_restore_status_ad_attribute_restore_status
 import cohesity_management_sdk.models.error_proto

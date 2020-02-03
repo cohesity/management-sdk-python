@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 
 class PrivilegeInfo(object):
@@ -10,8 +10,10 @@ class PrivilegeInfo(object):
     description, name, etc.
 
     Attributes:
-        privilege_id (int): Specifies unique id for a privilege. This number
-            must be unique when creating a new privilege.
+        privilege_id (PrivilegeIdEnum): Specifies unique id for a privilege.
+            This number must be unique when creating a new privilege. Type for
+            unique privilege Id values. All below enum values specify a value
+            for all uniquely defined privileges in Cohesity.
         category (string): Specifies a category for the privilege such as
             'Access Management'.
         description (string): Specifies a description defining what the

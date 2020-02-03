@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -9,16 +9,14 @@ from cohesity_management_sdk.http.auth.auth_manager import AuthManager
 from cohesity_management_sdk.models.route import Route
 from cohesity_management_sdk.exceptions.request_error_error_exception import RequestErrorErrorException
 
+
 class RoutesController(BaseController):
-
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-
     def __init__(self, client=None, call_back=None):
         super(RoutesController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
 
-    def delete_route(self,
-                     body=None):
+    def delete_route(self, body=None):
         """Does a DELETE request to /public/routes.
 
         Returns the delete status upon completion.
@@ -49,15 +47,17 @@ class RoutesController(BaseController):
 
             # Prepare headers
             self.logger.info('Preparing headers for delete_route.')
-            _headers = {
-                'content-type': 'application/json; charset=utf-8'
-            }
+            _headers = {'content-type': 'application/json; charset=utf-8'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for delete_route.')
-            _request = self.http_client.delete(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
+            self.logger.info(
+                'Preparing and executing request for delete_route.')
+            _request = self.http_client.delete(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
             AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'delete_route')
+            _context = self.execute_request(_request, name='delete_route')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for delete_route.')
@@ -66,8 +66,8 @@ class RoutesController(BaseController):
             self.validate_response(_context)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
+            self.logger.error(e, exc_info=True)
+            raise APIException(e.message, None)
 
     def get_routes(self):
         """Does a GET request to /public/routes.
@@ -96,15 +96,13 @@ class RoutesController(BaseController):
 
             # Prepare headers
             self.logger.info('Preparing headers for get_routes.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_routes.')
             _request = self.http_client.get(_query_url, headers=_headers)
             AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_routes')
+            _context = self.execute_request(_request, name='get_routes')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_routes.')
@@ -113,14 +111,14 @@ class RoutesController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, Route.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              Route.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
+            self.logger.error(e, exc_info=True)
+            raise APIException(e.message, None)
 
-    def add_route(self,
-                  body=None):
+    def add_route(self, body=None):
         """Does a POST request to /public/routes.
 
         Returns the create status upon completion.
@@ -157,9 +155,12 @@ class RoutesController(BaseController):
 
             # Prepare and execute request
             self.logger.info('Preparing and executing request for add_route.')
-            _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
+            _request = self.http_client.post(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
             AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'add_route')
+            _context = self.execute_request(_request, name='add_route')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for add_route.')
@@ -168,8 +169,9 @@ class RoutesController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, Route.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              Route.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
+            self.logger.error(e, exc_info=True)
+            raise APIException(e.message, None)

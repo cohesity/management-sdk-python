@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 class BackupTypeSqlEnvJobParametersEnum(object):
 
@@ -13,10 +13,13 @@ class BackupTypeSqlEnvJobParametersEnum(object):
     Attributes:
         KSQLVSSVOLUME: TODO: type description here.
         KSQLVSSFILE: TODO: type description here.
+        KSQLNATIVE: TODO: type description here.
 
     """
 
     KSQLVSSVOLUME = 'kSqlVSSVolume'
 
     KSQLVSSFILE = 'kSqlVSSFile'
+
+    KSQLNATIVE = 'kSqlNative'
 

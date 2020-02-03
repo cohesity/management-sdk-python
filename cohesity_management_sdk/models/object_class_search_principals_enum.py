@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 class ObjectClassSearchPrincipalsEnum(object):
 
@@ -11,6 +11,7 @@ class ObjectClassSearchPrincipalsEnum(object):
         KUSER: TODO: type description here.
         KGROUP: TODO: type description here.
         KCOMPUTER: TODO: type description here.
+        KWELLKNOWNPRINCIPAL: TODO: type description here.
 
     """
 
@@ -19,4 +20,6 @@ class ObjectClassSearchPrincipalsEnum(object):
     KGROUP = 'kGroup'
 
     KCOMPUTER = 'kComputer'
+
+    KWELLKNOWNPRINCIPAL = 'kWellKnownPrincipal'
 

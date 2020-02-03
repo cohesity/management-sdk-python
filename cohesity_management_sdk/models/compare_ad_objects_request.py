@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.guid_pair
 
@@ -17,8 +17,6 @@ class CompareAdObjectsRequest(object):
             attributes from Snapshot AD when destination guid is missing in
             GuidPair. This helps to show attributes of AD object from Snapshot
             AD when the object is missing in Production AD.
-        case_sensitive (bool): Specifies the option to make comparison of
-            attribute values case sensitive. Default is case insensitive.
         exclude_sys_attributes (bool): Specifies the option to exclude AD
             system attributes when comparing two AD object attributes. If the
             objects have same guid, most of the system attributes would
@@ -45,30 +43,27 @@ class CompareAdObjectsRequest(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "restore_task_id":'RestoreTaskId',
+        "guid_pairs":'guidPairs',
         "allow_empty_dest_guids":'allowEmptyDestGuids',
-        "case_sensitive":'caseSensitive',
         "exclude_sys_attributes":'excludeSysAttributes',
         "filter_null_value_attributes":'filterNullValueAttributes',
         "filter_same_value_attributes":'filterSameValueAttributes',
-        "guid_pairs":'guidPairs',
         "quick_compare":'quickCompare'
     }
 
     def __init__(self,
                  restore_task_id=None,
+                 guid_pairs=None,
                  allow_empty_dest_guids=None,
-                 case_sensitive=None,
                  exclude_sys_attributes=None,
                  filter_null_value_attributes=None,
                  filter_same_value_attributes=None,
-                 guid_pairs=None,
                  quick_compare=None):
         """Constructor for the CompareAdObjectsRequest class"""
 
         # Initialize members of the class
         self.restore_task_id = restore_task_id
         self.allow_empty_dest_guids = allow_empty_dest_guids
-        self.case_sensitive = case_sensitive
         self.exclude_sys_attributes = exclude_sys_attributes
         self.filter_null_value_attributes = filter_null_value_attributes
         self.filter_same_value_attributes = filter_same_value_attributes
@@ -95,26 +90,24 @@ class CompareAdObjectsRequest(object):
 
         # Extract variables from the dictionary
         restore_task_id = dictionary.get('RestoreTaskId')
-        allow_empty_dest_guids = dictionary.get('allowEmptyDestGuids')
-        case_sensitive = dictionary.get('caseSensitive')
-        exclude_sys_attributes = dictionary.get('excludeSysAttributes')
-        filter_null_value_attributes = dictionary.get('filterNullValueAttributes')
-        filter_same_value_attributes = dictionary.get('filterSameValueAttributes')
         guid_pairs = None
         if dictionary.get('guidPairs') != None:
             guid_pairs = list()
             for structure in dictionary.get('guidPairs'):
                 guid_pairs.append(cohesity_management_sdk.models.guid_pair.GuidPair.from_dictionary(structure))
+        allow_empty_dest_guids = dictionary.get('allowEmptyDestGuids')
+        exclude_sys_attributes = dictionary.get('excludeSysAttributes')
+        filter_null_value_attributes = dictionary.get('filterNullValueAttributes')
+        filter_same_value_attributes = dictionary.get('filterSameValueAttributes')
         quick_compare = dictionary.get('quickCompare')
 
         # Return an object of this model
         return cls(restore_task_id,
+                   guid_pairs,
                    allow_empty_dest_guids,
-                   case_sensitive,
                    exclude_sys_attributes,
                    filter_null_value_attributes,
                    filter_same_value_attributes,
-                   guid_pairs,
                    quick_compare)
 
 

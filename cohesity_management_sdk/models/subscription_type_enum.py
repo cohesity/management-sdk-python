@@ -1,23 +1,23 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 class SubscriptionTypeEnum(object):
 
     """Implementation of the 'SubscriptionType' enum.
 
-    Specifies the subscription type of Azure such as 'kAzureCommercial' or
-    'kAzureGovCloud'.
-    Specifies the subscription type of an Azure source entity.
-    'kAzureCommercial' indicates a standard Azure subscription.
-    'kAzureGovCloud' indicates a govt Azure subscription.
+    Specifies the subscription type of AWS such as 'kAWSCommercial' or
+    'kAWSGovCloud'.
+    Specifies the subscription type of an AWS source entity.
+    'kAWSCommercial' indicates a standard AWS subscription.
+    'kAWSGovCloud' indicates a govt AWS subscription.
 
     Attributes:
-        KAZURECOMMERCIAL: TODO: type description here.
-        KAZUREGOVCLOUD: TODO: type description here.
+        KAWSCOMMERCIAL: TODO: type description here.
+        KAWSGOVCLOUD: TODO: type description here.
 
     """
 
-    KAZURECOMMERCIAL = 'kAzureCommercial'
+    KAWSCOMMERCIAL = 'kAWSCommercial'
 
-    K_AZURE_GO_VCLOUD = 'kAzureGovCloud'
+    KAWS_GO_VCLOUD = 'kAWSGovCloud'
 

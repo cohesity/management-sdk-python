@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.product_model_interface_tuple
+import cohesity_management_sdk.models.network_params
 
 class InterfaceGroup(object):
 
@@ -15,6 +16,7 @@ class InterfaceGroup(object):
         model_interface_lists (list of ProductModelInterfaceTuple): Specifies
             the product model and interface lists.
         name (string): Specifies the name of the interface group.
+        network_params (NetworkParams): TODO: type description here.
 
     """
 
@@ -22,19 +24,22 @@ class InterfaceGroup(object):
     _names = {
         "id":'id',
         "model_interface_lists":'modelInterfaceLists',
-        "name":'name'
+        "name":'name',
+        "network_params":'networkParams'
     }
 
     def __init__(self,
                  id=None,
                  model_interface_lists=None,
-                 name=None):
+                 name=None,
+                 network_params=None):
         """Constructor for the InterfaceGroup class"""
 
         # Initialize members of the class
         self.id = id
         self.model_interface_lists = model_interface_lists
         self.name = name
+        self.network_params = network_params
 
 
     @classmethod
@@ -62,10 +67,12 @@ class InterfaceGroup(object):
             for structure in dictionary.get('modelInterfaceLists'):
                 model_interface_lists.append(cohesity_management_sdk.models.product_model_interface_tuple.ProductModelInterfaceTuple.from_dictionary(structure))
         name = dictionary.get('name')
+        network_params = cohesity_management_sdk.models.network_params.NetworkParams.from_dictionary(dictionary.get('networkParams')) if dictionary.get('networkParams') else None
 
         # Return an object of this model
         return cls(id,
                    model_interface_lists,
-                   name)
+                   name,
+                   network_params)
 
 

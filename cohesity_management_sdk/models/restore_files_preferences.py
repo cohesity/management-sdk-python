@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 
 class RestoreFilesPreferences(object):
@@ -21,8 +21,7 @@ class RestoreFilesPreferences(object):
         override_originals (bool): This is relevant only if
             restore_to_original_paths is true. If this is true, then already
             existing files will be overridden, otherwise new files will be
-            skipped. TODO(Chinmaya) explore the option of keeping both files
-            instead.
+            skipped.
         preserve_acls (bool): Whether to preserve the ACLs of the original
             file.
         preserve_attributes (bool): Whether to preserve the original

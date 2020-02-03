@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 
 class FilePathParameters(object):
@@ -19,7 +19,7 @@ class FilePathParameters(object):
         skip_nested_volumes (bool): Specifies if any subdirectories under
             backupFilePath, where local or network volumes are mounted, should
             be excluded from being protected. If true, the volumes are not
-            protected.
+            protected. deprecated: true
 
     """
 

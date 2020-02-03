@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.connector_parameters
 import cohesity_management_sdk.models.nas_mount_credential_params
+import cohesity_management_sdk.models.office_365_credentials
+import cohesity_management_sdk.models.registered_app_info
 import cohesity_management_sdk.models.throttling_policy_parameters
 import cohesity_management_sdk.models.throttling_policy_override
 
@@ -38,30 +40,36 @@ class RegisteredSourceInfo(object):
             environment. 'kPuppeteer' indicates the Cohesity's Remote Adapter.
             'kPhysical' indicates the physical Protection Source environment.
             'kPure' indicates the Pure Storage Protection Source environment.
-            'kAzure' indicates the Microsoft's Azure Protection Source
-            environment. 'kNetapp' indicates the Netapp Protection Source
-            environment. 'kAgent' indicates the Agent Protection Source
+            'Nimble' indicates the Nimble Storage Protection Source
+            environment. 'kAzure' indicates the Microsoft's Azure Protection
+            Source environment. 'kNetapp' indicates the Netapp Protection
+            Source environment. 'kAgent' indicates the Agent Protection Source
             environment. 'kGenericNas' indicates the Genreric Network Attached
             Storage Protection Source environment. 'kAcropolis' indicates the
             Acropolis Protection Source environment. 'kPhsicalFiles' indicates
             the Physical Files Protection Source environment. 'kIsilon'
             indicates the Dell EMC's Isilon Protection Source environment.
-            'kKVM' indicates the KVM Protection Source environment. 'kAWS'
-            indicates the AWS Protection Source environment. 'kExchange'
-            indicates the Exchange Protection Source environment. 'kHyperVVSS'
-            indicates the HyperV VSS Protection Source environment. 'kOracle'
-            indicates the Oracle Protection Source environment. 'kGCP'
-            indicates the Google Cloud Platform Protection Source environment.
-            'kFlashBlade' indicates the Flash Blade Protection Source
-            environment. 'kAWSNative' indicates the AWS Native Protection
-            Source environment. 'kVCD' indicates the VMware's Virtual cloud
-            Director Protection Source environment. 'kO365' indicates the
-            Office 365 Protection Source environment. 'kO365Outlook' indicates
-            Office 365 outlook Protection Source environment. 'kHyperFlex'
-            indicates the Hyper Flex Protection Source environment.
-            'kGCPNative' indicates the GCP Native Protection Source
-            environment. 'kAzureNative' indicates the Azure Native Protection
-            Source environment.
+            'kGPFS' indicates IBM's GPFS Protection Source environment. 'kKVM'
+            indicates the KVM Protection Source environment. 'kAWS' indicates
+            the AWS Protection Source environment. 'kExchange' indicates the
+            Exchange Protection Source environment. 'kHyperVVSS' indicates the
+            HyperV VSS Protection Source environment. 'kOracle' indicates the
+            Oracle Protection Source environment. 'kGCP' indicates the Google
+            Cloud Platform Protection Source environment. 'kFlashBlade'
+            indicates the Flash Blade Protection Source environment.
+            'kAWSNative' indicates the AWS Native Protection Source
+            environment. 'kVCD' indicates the VMware's Virtual cloud Director
+            Protection Source environment. 'kO365' indicates the Office 365
+            Protection Source environment. 'kO365Outlook' indicates Office 365
+            outlook Protection Source environment. 'kHyperFlex' indicates the
+            Hyper Flex Protection Source environment. 'kGCPNative' indicates
+            the GCP Native Protection Source environment. 'kAzureNative'
+            indicates the Azure Native Protection Source environment.
+            'kKubernetes' indicates a Kubernetes Protection Source
+            environment. 'kElastifile' indicates Elastifile Protection Source
+            environment.
+        is_db_authenticated (bool): Specifies if application entity
+            dbAuthenticated or not. ex: oracle database.
         minimum_free_space_gb (long|int): Specifies the minimum free space in
             GiB of the space expected to be available on the datastore where
             the virtual disks of the VM being backed up. If the amount of free
@@ -71,6 +79,8 @@ class RegisteredSourceInfo(object):
         nas_mount_credentials (NasMountCredentialParams): Specifies the
             credentials required to mount directories on the NetApp server if
             given.
+        office_365_credentials (Office365Credentials): Specifies the
+            credentials to authenticate with Office365 account.
         password (string): Specifies password of the username to access the
             target source.
         refresh_error_message (string): Specifies a message if there was any
@@ -80,6 +90,9 @@ class RegisteredSourceInfo(object):
         refresh_time_usecs (long|int): Specifies the Unix epoch time (in
             microseconds) when the Protection Source tree was most recently
             fetched and built.
+        registered_apps_info (list of RegisteredAppInfo): Specifies
+            information of the applications registered on this protection
+            source.
         registration_time_usecs (long|int): Specifies the Unix epoch time (in
             microseconds) when the Protection Source was registered.
         throttling_policy (ThrottlingPolicyParameters): Specifies the
@@ -105,11 +118,14 @@ class RegisteredSourceInfo(object):
         "authentication_error_message":'authenticationErrorMessage',
         "authentication_status":'authenticationStatus',
         "environments":'environments',
+        "is_db_authenticated":'isDbAuthenticated',
         "minimum_free_space_gb":'minimumFreeSpaceGB',
         "nas_mount_credentials":'nasMountCredentials',
+        "office_365_credentials":'office365Credentials',
         "password":'password',
         "refresh_error_message":'refreshErrorMessage',
         "refresh_time_usecs":'refreshTimeUsecs',
+        "registered_apps_info":'registeredAppsInfo',
         "registration_time_usecs":'registrationTimeUsecs',
         "throttling_policy":'throttlingPolicy',
         "throttling_policy_overrides":'throttlingPolicyOverrides',
@@ -123,11 +139,14 @@ class RegisteredSourceInfo(object):
                  authentication_error_message=None,
                  authentication_status=None,
                  environments=None,
+                 is_db_authenticated=None,
                  minimum_free_space_gb=None,
                  nas_mount_credentials=None,
+                 office_365_credentials=None,
                  password=None,
                  refresh_error_message=None,
                  refresh_time_usecs=None,
+                 registered_apps_info=None,
                  registration_time_usecs=None,
                  throttling_policy=None,
                  throttling_policy_overrides=None,
@@ -141,11 +160,14 @@ class RegisteredSourceInfo(object):
         self.authentication_error_message = authentication_error_message
         self.authentication_status = authentication_status
         self.environments = environments
+        self.is_db_authenticated = is_db_authenticated
         self.minimum_free_space_gb = minimum_free_space_gb
         self.nas_mount_credentials = nas_mount_credentials
+        self.office_365_credentials = office_365_credentials
         self.password = password
         self.refresh_error_message = refresh_error_message
         self.refresh_time_usecs = refresh_time_usecs
+        self.registered_apps_info = registered_apps_info
         self.registration_time_usecs = registration_time_usecs
         self.throttling_policy = throttling_policy
         self.throttling_policy_overrides = throttling_policy_overrides
@@ -176,11 +198,18 @@ class RegisteredSourceInfo(object):
         authentication_error_message = dictionary.get('authenticationErrorMessage')
         authentication_status = dictionary.get('authenticationStatus')
         environments = dictionary.get('environments')
+        is_db_authenticated = dictionary.get('isDbAuthenticated')
         minimum_free_space_gb = dictionary.get('minimumFreeSpaceGB')
         nas_mount_credentials = cohesity_management_sdk.models.nas_mount_credential_params.NasMountCredentialParams.from_dictionary(dictionary.get('nasMountCredentials')) if dictionary.get('nasMountCredentials') else None
+        office_365_credentials = cohesity_management_sdk.models.office_365_credentials.Office365Credentials.from_dictionary(dictionary.get('office365Credentials')) if dictionary.get('office365Credentials') else None
         password = dictionary.get('password')
         refresh_error_message = dictionary.get('refreshErrorMessage')
         refresh_time_usecs = dictionary.get('refreshTimeUsecs')
+        registered_apps_info = None
+        if dictionary.get('registeredAppsInfo') != None:
+            registered_apps_info = list()
+            for structure in dictionary.get('registeredAppsInfo'):
+                registered_apps_info.append(cohesity_management_sdk.models.registered_app_info.RegisteredAppInfo.from_dictionary(structure))
         registration_time_usecs = dictionary.get('registrationTimeUsecs')
         throttling_policy = cohesity_management_sdk.models.throttling_policy_parameters.ThrottlingPolicyParameters.from_dictionary(dictionary.get('throttlingPolicy')) if dictionary.get('throttlingPolicy') else None
         throttling_policy_overrides = None
@@ -197,11 +226,14 @@ class RegisteredSourceInfo(object):
                    authentication_error_message,
                    authentication_status,
                    environments,
+                   is_db_authenticated,
                    minimum_free_space_gb,
                    nas_mount_credentials,
+                   office_365_credentials,
                    password,
                    refresh_error_message,
                    refresh_time_usecs,
+                   registered_apps_info,
                    registration_time_usecs,
                    throttling_policy,
                    throttling_policy_overrides,

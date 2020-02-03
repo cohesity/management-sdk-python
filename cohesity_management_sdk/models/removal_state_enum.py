@@ -1,28 +1,33 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 class RemovalStateEnum(object):
 
     """Implementation of the 'RemovalState' enum.
 
-    RemovalState specifies the removal state of the node.
-    'kDontRemove' means the state of object is functional and
-    it is not being removed.
-    'kMarkedForRemoval' means the object is being removed.
-    'kOkToRemove' means the object has been removed on the Cohesity Cluster
-    and
-    if the object is physical, it can be removed from the Cohesity Cluster.
+    Specifies the current healing state of the Cluster.
+    'kNoRemoval' indicates that there are no removal operations currently
+    happening on the Cluster.
+    'kNodeRemoval' indicates that there is a Node being removed from the
+    Cluster.
+    'kDiskRemoval' indicates that there is a Disk being removed from the
+    Cluster.
+    'kNodeAndDiskRemoval' indicates that there is a Node and a Disk being
+    removed from the Cluster.
 
     Attributes:
-        KDONTREMOVE: TODO: type description here.
-        KMARKEDFORREMOVAL: TODO: type description here.
-        KOKTOREMOVE: TODO: type description here.
+        KNOREMOVAL: TODO: type description here.
+        KNODEREMOVAL: TODO: type description here.
+        KDISKREMOVAL: TODO: type description here.
+        KNODEANDDISKREMOVAL: TODO: type description here.
 
     """
 
-    KDONTREMOVE = 'kDontRemove'
+    KNOREMOVAL = 'kNoRemoval'
 
-    KMARKEDFORREMOVAL = 'kMarkedForRemoval'
+    KNODEREMOVAL = 'kNodeRemoval'
 
-    KOKTOREMOVE = 'kOkToRemove'
+    KDISKREMOVAL = 'kDiskRemoval'
+
+    KNODEANDDISKREMOVAL = 'kNodeAndDiskRemoval'
 

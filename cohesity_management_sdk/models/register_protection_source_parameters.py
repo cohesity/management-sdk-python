@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.aws_credentials
 import cohesity_management_sdk.models.azure_credentials
 import cohesity_management_sdk.models.gcp_credentials
+import cohesity_management_sdk.models.kubernetes_credentials
 import cohesity_management_sdk.models.nas_mount_credential_params
 import cohesity_management_sdk.models.office_365_credentials
 import cohesity_management_sdk.models.ssl_verification
@@ -17,6 +18,15 @@ class RegisterProtectionSourceParameters(object):
     Specifies the parameters required to register a Protection Source.
 
     Attributes:
+        acropolis_type (AcropolisTypeEnum): Specifies the entity type if the
+            environment is kAcropolis. overrideDescription: true Specifies the
+            type of an Acropolis source entity. 'kPrismCentral' indicates a
+            collection of multiple Nutanix clusters. 'kStandaloneCluster'
+            indicates a single Nutanix cluster. 'kCluster' indicates a Nutanix
+            cluster manageed by a Prism Central. 'kHost' indicates an
+            Acropolis host. 'kVirtualMachine' indicates a Virtual Machine.
+            'kNetwork' indicates a Virtual Machine network object.
+            'kStorageContainer' represents a storage container object.
         agent_endpoint (string): Specifies the agent endpoint if it is
             different from the source endpoint.
         aws_credentials (AwsCredentials): Specifies the credentials to
@@ -37,31 +47,40 @@ class RegisterProtectionSourceParameters(object):
             Protection Source environment. 'kPuppeteer' indicates the
             Cohesity's Remote Adapter. 'kPhysical' indicates the physical
             Protection Source environment. 'kPure' indicates the Pure Storage
-            Protection Source environment. 'kAzure' indicates the Microsoft's
-            Azure Protection Source environment. 'kNetapp' indicates the
-            Netapp Protection Source environment. 'kAgent' indicates the Agent
-            Protection Source environment. 'kGenericNas' indicates the
-            Genreric Network Attached Storage Protection Source environment.
-            'kAcropolis' indicates the Acropolis Protection Source
-            environment. 'kPhsicalFiles' indicates the Physical Files
+            Protection Source environment. 'Nimble' indicates the Nimble
+            Storage Protection Source environment. 'kAzure' indicates the
+            Microsoft's Azure Protection Source environment. 'kNetapp'
+            indicates the Netapp Protection Source environment. 'kAgent'
+            indicates the Agent Protection Source environment. 'kGenericNas'
+            indicates the Genreric Network Attached Storage Protection Source
+            environment. 'kAcropolis' indicates the Acropolis Protection
+            Source environment. 'kPhsicalFiles' indicates the Physical Files
             Protection Source environment. 'kIsilon' indicates the Dell EMC's
-            Isilon Protection Source environment. 'kKVM' indicates the KVM
-            Protection Source environment. 'kAWS' indicates the AWS Protection
-            Source environment. 'kExchange' indicates the Exchange Protection
-            Source environment. 'kHyperVVSS' indicates the HyperV VSS
-            Protection Source environment. 'kOracle' indicates the Oracle
-            Protection Source environment. 'kGCP' indicates the Google Cloud
-            Platform Protection Source environment. 'kFlashBlade' indicates
-            the Flash Blade Protection Source environment. 'kAWSNative'
-            indicates the AWS Native Protection Source environment. 'kVCD'
-            indicates the VMware's Virtual cloud Director Protection Source
-            environment. 'kO365' indicates the Office 365 Protection Source
-            environment. 'kO365Outlook' indicates Office 365 outlook
-            Protection Source environment. 'kHyperFlex' indicates the Hyper
-            Flex Protection Source environment. 'kGCPNative' indicates the GCP
-            Native Protection Source environment. 'kAzureNative' indicates the
-            Azure Native Protection Source environment.
-        force_register (bool): TODO: type description here.
+            Isilon Protection Source environment. 'kGPFS' indicates IBM's GPFS
+            Protection Source environment. 'kKVM' indicates the KVM Protection
+            Source environment. 'kAWS' indicates the AWS Protection Source
+            environment. 'kExchange' indicates the Exchange Protection Source
+            environment. 'kHyperVVSS' indicates the HyperV VSS Protection
+            Source environment. 'kOracle' indicates the Oracle Protection
+            Source environment. 'kGCP' indicates the Google Cloud Platform
+            Protection Source environment. 'kFlashBlade' indicates the Flash
+            Blade Protection Source environment. 'kAWSNative' indicates the
+            AWS Native Protection Source environment. 'kVCD' indicates the
+            VMware's Virtual cloud Director Protection Source environment.
+            'kO365' indicates the Office 365 Protection Source environment.
+            'kO365Outlook' indicates Office 365 outlook Protection Source
+            environment. 'kHyperFlex' indicates the Hyper Flex Protection
+            Source environment. 'kGCPNative' indicates the GCP Native
+            Protection Source environment. 'kAzureNative' indicates the Azure
+            Native Protection Source environment. 'kKubernetes' indicates a
+            Kubernetes Protection Source environment. 'kElastifile' indicates
+            Elastifile Protection Source environment.
+        force_register (bool): ForceRegister is applicable to Physical
+            Environment. By default, the agent running on a physical host will
+            fail the registration, if it is already registered as part of
+            another cluster. By setting this option to true, agent can be
+            forced to register with the current cluster. This is a hidden
+            parameter and should not be documented externally.
         gcp_credentials (GcpCredentials): Specifies the credentials to
             authenticate with Google Cloud Platform.
         host_type (HostTypeRegisterProtectionSourceParametersEnum): Specifies
@@ -70,17 +89,41 @@ class RegisterProtectionSourceParameters(object):
             operating system. 'kWindows' indicates the Microsoft Windows
             operating system. 'kAix' indicates the IBM AIX operating system.
             'kSolaris' indicates the Oracle Solaris operating system.
+            'kSapHana' indicates the Sap Hana database system developed by SAP
+            SE. 'kOther' indicates the other types of operating system.
         hyperv_type (HypervTypeEnum): Specifies the entity type if the
             environment is kHyperV. overrideDescription: true Specifies the
             type of an HyperV Protection Source. 'kSCVMMServer' indicates a
             collection of root folders clusters. 'kStandaloneHost' indicates a
             single Nutanix cluster. 'kStandaloneCluster' indicates a single
             Nutanix cluster. 'kHostGroup' indicates a Nutanix cluster manageed
-            by a Prism Central. 'kHost' indicates an HyperV host.
+            by a Prism Central. 'kHypervHost' indicates an HyperV host.
             'kHostCluster' indicates a Nutanix cluster manageed by a Prism
             Central. 'kVirtualMachine' indicates a Virtual Machine. 'kNetwork'
             indicates a Virtual Machine network object. 'kDatastore'
-            represents a storage container object.
+            represents a storage container object. 'kTag' indicates a tag type
+            object. 'kCustomProperty' indciates a custom property including
+            tag type.
+        kubernetes_credentials (KubernetesCredentials): Specifies the
+            credentials to authenticate with a Kubernetes Cluster.
+        kubernetes_type (KubernetesTypeEnum): Specifies the entity type if the
+            environment is kKubernetes. overrideDescription: true Specifies
+            the type of a Kubernetes Protection Source. 'kCluster' indicates a
+            Kubernetes Cluster. 'kNamespace' indicates a namespace in a
+            Kubernetes Cluster. 'kService' indicates a service running on a
+            Kubernetes Cluster.
+        kvm_type (KvmTypeEnum): Specifies the entity type if the environment
+            is kKVM. overrideDescription: true Specifies the type of an KVM
+            source entity. 'kOVirtManager' indicates the root entity registerd
+            with Cohesity cluster. 'kStandaloneHost' indicates a host
+            registered with Cohesity cluster. 'kDatacenter' indicates a KVM
+            datacenter managed by the OVirt manager. 'kCluster' indicates a
+            KVM cluster managed by the OVirt manager. 'kHost' indicates a host
+            within the KVM environment. 'kVirtualMachine' indicates a virtual
+            machine in the KVM enironment. 'kNetwork' represents a network
+            used by the virtual machine entity. 'kStorageDomain' represents a
+            storage domain in the KVM environment. 'kVNicProfile' represents a
+            VNic profile.
         nas_mount_credentials (NasMountCredentialParams): Specifies the server
             credentials to connect to a NetApp server. This field is required
             for mounting SMB volumes on NetApp servers.
@@ -89,26 +132,39 @@ class RegisterProtectionSourceParameters(object):
             Netapp cluster as a protection source. 'kVserver' indicates a
             Netapp vserver in a cluster as a protection source. 'kVolume'
             indicates  a volume in Netapp vserver as a protection source.
+        nimble_type (NimbleTypeEnum): Specifies the entity type such as
+            'kStorageArray' if the environment is kNimble.
+            overrideDescription: true Examples of SAN Objects include
+            'kStorageArray' and 'kVolume'. 'kStorageArray' indicates that
+            entire SAN storage array is being protected. 'kVolume' indicates
+            that volume within the array is being protected.
         office_365_credentials (Office365Credentials): Specifies the
             credentials to authenticate with Office365 account.
-        office_365_type (int): Specifies the entity type such as 'kDomain',
-            'kOutlook', 'kMailbox', if the environment is kO365.
+        office_365_type (Office365TypeEnum): Specifies the entity type such as
+            'kDomain', 'kOutlook', 'kMailbox', if the environment is kO365.
+            Specifies the type of Office 365 entity 'kDomain' indicates the
+            O365 domain through which authentication occurs. 'kOutlook'
+            indicates the Exchange online entities. 'kMailbox' indicates the
+            user's mailbox account.
         password (string): Specifies password of the username to access the
             target source.
         physical_type (PhysicalTypeEnum): Specifies the entity type such as
             'kPhysicalHost' if the environment is kPhysical.
-            overrideDescription: true 'kHost' indicates a single physical
-            server. 'kWindowsCluster' indicates a Microsoft Windows cluster.
+            overrideDescription: true 'kGroup' indicates the EH container.
+            'kHost' indicates a single physical server. 'kWindowsCluster'
+            indicates a Microsoft Windows cluster. 'kOracleRACCluster'
+            indicates an Oracle Real Application Cluster(RAC).
+            'kOracleAPCluster' indicates an Oracle Active-Passive Cluster.
         pure_type (PureTypeEnum): Specifies the entity type such as
             'kStorageArray' if the environment is kPure. overrideDescription:
-            true Examples of Pure Objects include 'kStorageArray' and
-            'kVolume'. 'kStorageArray' indicates that entire pure storage
-            array is being protected. 'kVolume' indicates that volume within
-            the array is being protected.
+            true Examples of SAN Objects include 'kStorageArray' and
+            'kVolume'. 'kStorageArray' indicates that entire SAN storage array
+            is being protected. 'kVolume' indicates that volume within the
+            array is being protected.
         source_side_dedup_enabled (bool): This controls whether to use source
             side dedup on the source or not. This is only applicable to
-            Protection Sources which support source side dedup (e.g., Linux
-            physical servers).
+            sources which support source side dedup (e.g., Linux physical
+            servers).
         ssl_verification (SslVerification): Specifies information about SSL
             verification when registering certain sources.
         throttling_policy (ThrottlingPolicyParameters): Specifies the
@@ -160,6 +216,7 @@ class RegisterProtectionSourceParameters(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "acropolis_type":'acropolisType',
         "agent_endpoint":'agentEndpoint',
         "aws_credentials":'awsCredentials',
         "azure_credentials":'azureCredentials',
@@ -169,8 +226,12 @@ class RegisterProtectionSourceParameters(object):
         "gcp_credentials":'gcpCredentials',
         "host_type":'hostType',
         "hyperv_type":'hyperVType',
+        "kubernetes_credentials":'kubernetesCredentials',
+        "kubernetes_type":'kubernetesType',
+        "kvm_type":'kvmType',
         "nas_mount_credentials":'nasMountCredentials',
         "netapp_type":'netappType',
+        "nimble_type":'nimbleType',
         "office_365_credentials":'office365Credentials',
         "office_365_type":'office365Type',
         "password":'password',
@@ -185,6 +246,7 @@ class RegisterProtectionSourceParameters(object):
     }
 
     def __init__(self,
+                 acropolis_type=None,
                  agent_endpoint=None,
                  aws_credentials=None,
                  azure_credentials=None,
@@ -194,8 +256,12 @@ class RegisterProtectionSourceParameters(object):
                  gcp_credentials=None,
                  host_type=None,
                  hyperv_type=None,
+                 kubernetes_credentials=None,
+                 kubernetes_type=None,
+                 kvm_type=None,
                  nas_mount_credentials=None,
                  netapp_type=None,
+                 nimble_type=None,
                  office_365_credentials=None,
                  office_365_type=None,
                  password=None,
@@ -210,6 +276,7 @@ class RegisterProtectionSourceParameters(object):
         """Constructor for the RegisterProtectionSourceParameters class"""
 
         # Initialize members of the class
+        self.acropolis_type = acropolis_type
         self.agent_endpoint = agent_endpoint
         self.aws_credentials = aws_credentials
         self.azure_credentials = azure_credentials
@@ -219,8 +286,12 @@ class RegisterProtectionSourceParameters(object):
         self.gcp_credentials = gcp_credentials
         self.host_type = host_type
         self.hyperv_type = hyperv_type
+        self.kubernetes_credentials = kubernetes_credentials
+        self.kubernetes_type = kubernetes_type
+        self.kvm_type = kvm_type
         self.nas_mount_credentials = nas_mount_credentials
         self.netapp_type = netapp_type
+        self.nimble_type = nimble_type
         self.office_365_credentials = office_365_credentials
         self.office_365_type = office_365_type
         self.password = password
@@ -252,6 +323,7 @@ class RegisterProtectionSourceParameters(object):
             return None
 
         # Extract variables from the dictionary
+        acropolis_type = dictionary.get('acropolisType')
         agent_endpoint = dictionary.get('agentEndpoint')
         aws_credentials = cohesity_management_sdk.models.aws_credentials.AwsCredentials.from_dictionary(dictionary.get('awsCredentials')) if dictionary.get('awsCredentials') else None
         azure_credentials = cohesity_management_sdk.models.azure_credentials.AzureCredentials.from_dictionary(dictionary.get('azureCredentials')) if dictionary.get('azureCredentials') else None
@@ -261,8 +333,12 @@ class RegisterProtectionSourceParameters(object):
         gcp_credentials = cohesity_management_sdk.models.gcp_credentials.GcpCredentials.from_dictionary(dictionary.get('gcpCredentials')) if dictionary.get('gcpCredentials') else None
         host_type = dictionary.get('hostType')
         hyperv_type = dictionary.get('hyperVType')
+        kubernetes_credentials = cohesity_management_sdk.models.kubernetes_credentials.KubernetesCredentials.from_dictionary(dictionary.get('kubernetesCredentials')) if dictionary.get('kubernetesCredentials') else None
+        kubernetes_type = dictionary.get('kubernetesType')
+        kvm_type = dictionary.get('kvmType')
         nas_mount_credentials = cohesity_management_sdk.models.nas_mount_credential_params.NasMountCredentialParams.from_dictionary(dictionary.get('nasMountCredentials')) if dictionary.get('nasMountCredentials') else None
         netapp_type = dictionary.get('netappType')
+        nimble_type = dictionary.get('nimbleType')
         office_365_credentials = cohesity_management_sdk.models.office_365_credentials.Office365Credentials.from_dictionary(dictionary.get('office365Credentials')) if dictionary.get('office365Credentials') else None
         office_365_type = dictionary.get('office365Type')
         password = dictionary.get('password')
@@ -280,7 +356,8 @@ class RegisterProtectionSourceParameters(object):
         vmware_type = dictionary.get('vmwareType')
 
         # Return an object of this model
-        return cls(agent_endpoint,
+        return cls(acropolis_type,
+                   agent_endpoint,
                    aws_credentials,
                    azure_credentials,
                    endpoint,
@@ -289,8 +366,12 @@ class RegisterProtectionSourceParameters(object):
                    gcp_credentials,
                    host_type,
                    hyperv_type,
+                   kubernetes_credentials,
+                   kubernetes_type,
+                   kvm_type,
                    nas_mount_credentials,
                    netapp_type,
+                   nimble_type,
                    office_365_credentials,
                    office_365_type,
                    password,

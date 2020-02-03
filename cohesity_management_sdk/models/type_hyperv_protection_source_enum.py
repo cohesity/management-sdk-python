@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 class TypeHypervProtectionSourceEnum(object):
 
@@ -13,22 +13,26 @@ class TypeHypervProtectionSourceEnum(object):
     'kStandaloneHost' indicates a single Nutanix cluster.
     'kStandaloneCluster' indicates a single Nutanix cluster.
     'kHostGroup' indicates a Nutanix cluster manageed by a Prism Central.
-    'kHost' indicates an HyperV host.
+    'kHypervHost' indicates an HyperV host.
     'kHostCluster' indicates a Nutanix cluster manageed by a Prism Central.
     'kVirtualMachine' indicates a Virtual Machine.
     'kNetwork' indicates a Virtual Machine network object.
     'kDatastore' represents a storage container object.
+    'kTag' indicates a tag type object.
+    'kCustomProperty' indciates a custom property including tag type.
 
     Attributes:
         KSCVMMSERVER: TODO: type description here.
         KSTANDALONEHOST: TODO: type description here.
         KSTANDALONECLUSTER: TODO: type description here.
         KHOSTGROUP: TODO: type description here.
-        KHOST: TODO: type description here.
+        KHYPERVHOST: TODO: type description here.
         KHOSTCLUSTER: TODO: type description here.
         KVIRTUALMACHINE: TODO: type description here.
         KNETWORK: TODO: type description here.
         KDATASTORE: TODO: type description here.
+        KTAG: TODO: type description here.
+        KCUSTOMPROPERTY: TODO: type description here.
 
     """
 
@@ -40,7 +44,7 @@ class TypeHypervProtectionSourceEnum(object):
 
     KHOSTGROUP = 'kHostGroup'
 
-    KHOST = 'kHost'
+    K_HYPERV_HOST = 'kHypervHost'
 
     KHOSTCLUSTER = 'kHostCluster'
 
@@ -49,4 +53,8 @@ class TypeHypervProtectionSourceEnum(object):
     KNETWORK = 'kNetwork'
 
     KDATASTORE = 'kDatastore'
+
+    KTAG = 'kTag'
+
+    KCUSTOMPROPERTY = 'kCustomProperty'
 

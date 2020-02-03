@@ -1,13 +1,16 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.acropolis_restore_parameters
+import cohesity_management_sdk.models.application_restore_parameters
 import cohesity_management_sdk.models.universal_id
 import cohesity_management_sdk.models.update_view_param
+import cohesity_management_sdk.models.deploy_vms_to_cloud
 import cohesity_management_sdk.models.request_error
 import cohesity_management_sdk.models.hyperv_restore_parameters
 import cohesity_management_sdk.models.mount_volumes_state
 import cohesity_management_sdk.models.restore_object_details
+import cohesity_management_sdk.models.one_drive_restore_parameters
 import cohesity_management_sdk.models.outlook_restore_parameters
 import cohesity_management_sdk.models.restore_object_state
 import cohesity_management_sdk.models.virtual_disk_recover_task_state
@@ -24,10 +27,16 @@ class RestoreTask(object):
         acropolis_parameters (AcropolisRestoreParameters): This field defines
             the Acropolis specific params for restore tasks of type
             kRecoverVMs.
+        application_parameters (ApplicationRestoreParameters): Specifies the
+            information regarding the application restore parameters.
         archive_task_uid (UniversalId): Specifies the uid of the Restore Task
             that retrieves objects from an archive. This field is only
             populated when objects must be retrieved from an archive before
-            being restored.
+            being restored. This field is deprecated. deprecated:true
+        archive_task_uids (list of UniversalId): Specifies the uids of the
+            Restore Task that retrieves objects from an archive. This field is
+            only populated when objects must be retrieved from an archive
+            before being restored. overrideDescription:true
         clone_view_parameters (UpdateViewParam): Specifies the View settings
             used when cloning a View.
         continue_on_error (bool): Specifies if the Restore Task should
@@ -39,6 +48,9 @@ class RestoreTask(object):
             recovered to a different resource pool or to a different parent
             source. This field is not populated when objects are recovered to
             their original datastore locations in the original parent source.
+        deploy_vms_to_cloud (DeployVmsToCloud): Specifies the details about
+            deploying vms to specific clouds where backup may be stored and
+            converted.
         end_time_usecs (long|int): Specifies the end time of the Restore Task
             as a Unix epoch Timestamp (in microseconds). This field is only
             populated if the Restore Task completes.
@@ -63,6 +75,8 @@ class RestoreTask(object):
         objects (list of RestoreObjectDetails): Array of Objects.  Specifies a
             list of Protection Source objects or Protection Job objects (with
             specified Protection Source objects).
+        one_drive_parameters (OneDriveRestoreParameters): Specifies
+            information needed for recovering Drive(s) & Drive items.
         outlook_parameters (OutlookRestoreParameters): Specifies information
             needed for recovering Mailboxes in O365Outlook environment.
         restore_object_state (list of RestoreObjectState): Array of Object
@@ -112,7 +126,10 @@ class RestoreTask(object):
             specifies a Restore Task that downloads the requested files and
             folders in zip format. 'kRecoverEmails' specifies a Restore Task
             that recovers the mailbox/email items. 'kRecoverDisks' specifies a
-            Restore Task that recovers the virtual disks.
+            Restore Task that recovers the virtual disks. 'kRecoverNamespaces'
+            specifies a Restore Task that recovers Kubernetes namespaces.
+            'kCloneVMsToView' specifies a Restore Task that clones VMs into a
+            View.
         username (string): Specifies the Cohesity user who requested this
             Restore Task.
         view_box_id (long|int): Specifies the id of the Domain (View Box)
@@ -130,10 +147,13 @@ class RestoreTask(object):
     _names = {
         "name":'name',
         "acropolis_parameters":'acropolisParameters',
+        "application_parameters":'applicationParameters',
         "archive_task_uid":'archiveTaskUid',
+        "archive_task_uids":'archiveTaskUids',
         "clone_view_parameters":'cloneViewParameters',
         "continue_on_error":'continueOnError',
         "datastore_id":'datastoreId',
+        "deploy_vms_to_cloud":'deployVmsToCloud',
         "end_time_usecs":'endTimeUsecs',
         "error":'error',
         "full_view_name":'fullViewName',
@@ -142,6 +162,7 @@ class RestoreTask(object):
         "mount_volumes_state":'mountVolumesState',
         "new_parent_id":'newParentId',
         "objects":'objects',
+        "one_drive_parameters":'oneDriveParameters',
         "outlook_parameters":'outlookParameters',
         "restore_object_state":'restoreObjectState',
         "start_time_usecs":'startTimeUsecs',
@@ -158,10 +179,13 @@ class RestoreTask(object):
     def __init__(self,
                  name=None,
                  acropolis_parameters=None,
+                 application_parameters=None,
                  archive_task_uid=None,
+                 archive_task_uids=None,
                  clone_view_parameters=None,
                  continue_on_error=None,
                  datastore_id=None,
+                 deploy_vms_to_cloud=None,
                  end_time_usecs=None,
                  error=None,
                  full_view_name=None,
@@ -170,6 +194,7 @@ class RestoreTask(object):
                  mount_volumes_state=None,
                  new_parent_id=None,
                  objects=None,
+                 one_drive_parameters=None,
                  outlook_parameters=None,
                  restore_object_state=None,
                  start_time_usecs=None,
@@ -185,10 +210,13 @@ class RestoreTask(object):
 
         # Initialize members of the class
         self.acropolis_parameters = acropolis_parameters
+        self.application_parameters = application_parameters
         self.archive_task_uid = archive_task_uid
+        self.archive_task_uids = archive_task_uids
         self.clone_view_parameters = clone_view_parameters
         self.continue_on_error = continue_on_error
         self.datastore_id = datastore_id
+        self.deploy_vms_to_cloud = deploy_vms_to_cloud
         self.end_time_usecs = end_time_usecs
         self.error = error
         self.full_view_name = full_view_name
@@ -198,6 +226,7 @@ class RestoreTask(object):
         self.name = name
         self.new_parent_id = new_parent_id
         self.objects = objects
+        self.one_drive_parameters = one_drive_parameters
         self.outlook_parameters = outlook_parameters
         self.restore_object_state = restore_object_state
         self.start_time_usecs = start_time_usecs
@@ -231,10 +260,17 @@ class RestoreTask(object):
         # Extract variables from the dictionary
         name = dictionary.get('name')
         acropolis_parameters = cohesity_management_sdk.models.acropolis_restore_parameters.AcropolisRestoreParameters.from_dictionary(dictionary.get('acropolisParameters')) if dictionary.get('acropolisParameters') else None
+        application_parameters = cohesity_management_sdk.models.application_restore_parameters.ApplicationRestoreParameters.from_dictionary(dictionary.get('applicationParameters')) if dictionary.get('applicationParameters') else None
         archive_task_uid = cohesity_management_sdk.models.universal_id.UniversalId.from_dictionary(dictionary.get('archiveTaskUid')) if dictionary.get('archiveTaskUid') else None
+        archive_task_uids = None
+        if dictionary.get('archiveTaskUids') != None:
+            archive_task_uids = list()
+            for structure in dictionary.get('archiveTaskUids'):
+                archive_task_uids.append(cohesity_management_sdk.models.universal_id.UniversalId.from_dictionary(structure))
         clone_view_parameters = cohesity_management_sdk.models.update_view_param.UpdateViewParam.from_dictionary(dictionary.get('cloneViewParameters')) if dictionary.get('cloneViewParameters') else None
         continue_on_error = dictionary.get('continueOnError')
         datastore_id = dictionary.get('datastoreId')
+        deploy_vms_to_cloud = cohesity_management_sdk.models.deploy_vms_to_cloud.DeployVmsToCloud.from_dictionary(dictionary.get('deployVmsToCloud')) if dictionary.get('deployVmsToCloud') else None
         end_time_usecs = dictionary.get('endTimeUsecs')
         error = cohesity_management_sdk.models.request_error.RequestError.from_dictionary(dictionary.get('error')) if dictionary.get('error') else None
         full_view_name = dictionary.get('fullViewName')
@@ -247,6 +283,7 @@ class RestoreTask(object):
             objects = list()
             for structure in dictionary.get('objects'):
                 objects.append(cohesity_management_sdk.models.restore_object_details.RestoreObjectDetails.from_dictionary(structure))
+        one_drive_parameters = cohesity_management_sdk.models.one_drive_restore_parameters.OneDriveRestoreParameters.from_dictionary(dictionary.get('oneDriveParameters')) if dictionary.get('oneDriveParameters') else None
         outlook_parameters = cohesity_management_sdk.models.outlook_restore_parameters.OutlookRestoreParameters.from_dictionary(dictionary.get('outlookParameters')) if dictionary.get('outlookParameters') else None
         restore_object_state = None
         if dictionary.get('restoreObjectState') != None:
@@ -266,10 +303,13 @@ class RestoreTask(object):
         # Return an object of this model
         return cls(name,
                    acropolis_parameters,
+                   application_parameters,
                    archive_task_uid,
+                   archive_task_uids,
                    clone_view_parameters,
                    continue_on_error,
                    datastore_id,
+                   deploy_vms_to_cloud,
                    end_time_usecs,
                    error,
                    full_view_name,
@@ -278,6 +318,7 @@ class RestoreTask(object):
                    mount_volumes_state,
                    new_parent_id,
                    objects,
+                   one_drive_parameters,
                    outlook_parameters,
                    restore_object_state,
                    start_time_usecs,

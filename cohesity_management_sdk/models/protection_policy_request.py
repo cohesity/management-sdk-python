@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.blackout_period
 import cohesity_management_sdk.models.snapshot_cloud_copy_policy
@@ -51,6 +51,9 @@ class ProtectionPolicyRequest(object):
         name (string): Specifies the name of the Protection Policy.
         num_linked_policies (long|int): Species the number of policies linked
             to a global policy.
+        parent_policy_id (string): Specifies the parent global policy Id. This
+            must be specified when creating a policy from global policy
+            template.
         retries (int): Specifies the number of times to retry capturing
             Snapshots before the Job Run fails.
         retry_interval_mins (int): Specifies the number of minutes before
@@ -108,6 +111,7 @@ class ProtectionPolicyRequest(object):
         "log_scheduling_policy":'logSchedulingPolicy',
         "name":'name',
         "num_linked_policies":'numLinkedPolicies',
+        "parent_policy_id":'parentPolicyId',
         "retries":'retries',
         "retry_interval_mins":'retryIntervalMins',
         "rpo_policy_settings":'rpoPolicySettings',
@@ -132,6 +136,7 @@ class ProtectionPolicyRequest(object):
                  log_scheduling_policy=None,
                  name=None,
                  num_linked_policies=None,
+                 parent_policy_id=None,
                  retries=None,
                  retry_interval_mins=None,
                  rpo_policy_settings=None,
@@ -156,6 +161,7 @@ class ProtectionPolicyRequest(object):
         self.log_scheduling_policy = log_scheduling_policy
         self.name = name
         self.num_linked_policies = num_linked_policies
+        self.parent_policy_id = parent_policy_id
         self.retries = retries
         self.retry_interval_mins = retry_interval_mins
         self.rpo_policy_settings = rpo_policy_settings
@@ -209,6 +215,7 @@ class ProtectionPolicyRequest(object):
         log_scheduling_policy = cohesity_management_sdk.models.scheduling_policy.SchedulingPolicy.from_dictionary(dictionary.get('logSchedulingPolicy')) if dictionary.get('logSchedulingPolicy') else None
         name = dictionary.get('name')
         num_linked_policies = dictionary.get('numLinkedPolicies')
+        parent_policy_id = dictionary.get('parentPolicyId')
         retries = dictionary.get('retries')
         retry_interval_mins = dictionary.get('retryIntervalMins')
         rpo_policy_settings = cohesity_management_sdk.models.rpo_policy_settings.RpoPolicySettings.from_dictionary(dictionary.get('rpoPolicySettings')) if dictionary.get('rpoPolicySettings') else None
@@ -240,6 +247,7 @@ class ProtectionPolicyRequest(object):
                    log_scheduling_policy,
                    name,
                    num_linked_policies,
+                   parent_policy_id,
                    retries,
                    retry_interval_mins,
                    rpo_policy_settings,

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 
 class ClusterConfigProtoQoSMappingQoSContext(object):
@@ -12,6 +12,7 @@ class ClusterConfigProtoQoSMappingQoSContext(object):
     (QoSContextEqual) for QoSContext.
 
     Attributes:
+        component (int): Component from which request is coming.
         priority (int): Priority of a request.
         mtype (int): TODO: type description here.
         view_box_id (long|int): View box id of a request.
@@ -21,6 +22,7 @@ class ClusterConfigProtoQoSMappingQoSContext(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "component":'component',
         "priority":'priority',
         "mtype":'type',
         "view_box_id":'viewBoxId',
@@ -28,6 +30,7 @@ class ClusterConfigProtoQoSMappingQoSContext(object):
     }
 
     def __init__(self,
+                 component=None,
                  priority=None,
                  mtype=None,
                  view_box_id=None,
@@ -35,6 +38,7 @@ class ClusterConfigProtoQoSMappingQoSContext(object):
         """Constructor for the ClusterConfigProtoQoSMappingQoSContext class"""
 
         # Initialize members of the class
+        self.component = component
         self.priority = priority
         self.mtype = mtype
         self.view_box_id = view_box_id
@@ -59,13 +63,15 @@ class ClusterConfigProtoQoSMappingQoSContext(object):
             return None
 
         # Extract variables from the dictionary
+        component = dictionary.get('component')
         priority = dictionary.get('priority')
         mtype = dictionary.get('type')
         view_box_id = dictionary.get('viewBoxId')
         view_id = dictionary.get('viewId')
 
         # Return an object of this model
-        return cls(priority,
+        return cls(component,
+                   priority,
                    mtype,
                    view_box_id,
                    view_id)

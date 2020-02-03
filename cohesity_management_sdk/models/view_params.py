@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.cluster_config_proto_subnet
 import cohesity_management_sdk.models.view_id_mapping_proto_protocol_access_info
@@ -10,7 +10,7 @@ class ViewParams(object):
 
     """Implementation of the 'ViewParams' model.
 
-    TODO(mark): Move this to magneto.proto.
+    TODO: type model description here.
 
     Attributes:
         client_subnet_whitelist_vec (list of ClusterConfigProtoSubnet): List

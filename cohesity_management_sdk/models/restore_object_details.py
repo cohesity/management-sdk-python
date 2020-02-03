@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.archival_external_target
 import cohesity_management_sdk.models.cloud_deploy_target_details
@@ -36,30 +36,34 @@ class RestoreObjectDetails(object):
             environment. 'kPuppeteer' indicates the Cohesity's Remote Adapter.
             'kPhysical' indicates the physical Protection Source environment.
             'kPure' indicates the Pure Storage Protection Source environment.
-            'kAzure' indicates the Microsoft's Azure Protection Source
-            environment. 'kNetapp' indicates the Netapp Protection Source
-            environment. 'kAgent' indicates the Agent Protection Source
+            'Nimble' indicates the Nimble Storage Protection Source
+            environment. 'kAzure' indicates the Microsoft's Azure Protection
+            Source environment. 'kNetapp' indicates the Netapp Protection
+            Source environment. 'kAgent' indicates the Agent Protection Source
             environment. 'kGenericNas' indicates the Genreric Network Attached
             Storage Protection Source environment. 'kAcropolis' indicates the
             Acropolis Protection Source environment. 'kPhsicalFiles' indicates
             the Physical Files Protection Source environment. 'kIsilon'
             indicates the Dell EMC's Isilon Protection Source environment.
-            'kKVM' indicates the KVM Protection Source environment. 'kAWS'
-            indicates the AWS Protection Source environment. 'kExchange'
-            indicates the Exchange Protection Source environment. 'kHyperVVSS'
-            indicates the HyperV VSS Protection Source environment. 'kOracle'
-            indicates the Oracle Protection Source environment. 'kGCP'
-            indicates the Google Cloud Platform Protection Source environment.
-            'kFlashBlade' indicates the Flash Blade Protection Source
-            environment. 'kAWSNative' indicates the AWS Native Protection
-            Source environment. 'kVCD' indicates the VMware's Virtual cloud
-            Director Protection Source environment. 'kO365' indicates the
-            Office 365 Protection Source environment. 'kO365Outlook' indicates
-            Office 365 outlook Protection Source environment. 'kHyperFlex'
-            indicates the Hyper Flex Protection Source environment.
-            'kGCPNative' indicates the GCP Native Protection Source
-            environment. 'kAzureNative' indicates the Azure Native Protection
-            Source environment.
+            'kGPFS' indicates IBM's GPFS Protection Source environment. 'kKVM'
+            indicates the KVM Protection Source environment. 'kAWS' indicates
+            the AWS Protection Source environment. 'kExchange' indicates the
+            Exchange Protection Source environment. 'kHyperVVSS' indicates the
+            HyperV VSS Protection Source environment. 'kOracle' indicates the
+            Oracle Protection Source environment. 'kGCP' indicates the Google
+            Cloud Platform Protection Source environment. 'kFlashBlade'
+            indicates the Flash Blade Protection Source environment.
+            'kAWSNative' indicates the AWS Native Protection Source
+            environment. 'kVCD' indicates the VMware's Virtual cloud Director
+            Protection Source environment. 'kO365' indicates the Office 365
+            Protection Source environment. 'kO365Outlook' indicates Office 365
+            outlook Protection Source environment. 'kHyperFlex' indicates the
+            Hyper Flex Protection Source environment. 'kGCPNative' indicates
+            the GCP Native Protection Source environment. 'kAzureNative'
+            indicates the Azure Native Protection Source environment.
+            'kKubernetes' indicates a Kubernetes Protection Source
+            environment. 'kElastifile' indicates Elastifile Protection Source
+            environment.
         job_id (long|int): Protection Job Id.  Specifies id of the Protection
             Job that backed up the objects to be restored.
         job_run_id (long|int): Specifies the id of the Job Run that captured

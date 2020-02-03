@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.restore_task_state_base_proto
+import cohesity_management_sdk.models.perform_restore_task_state_proto
 import cohesity_management_sdk.models.clone_app_view_info_proto
 import cohesity_management_sdk.models.cloud_deploy_info_proto
 import cohesity_management_sdk.models.entity_proto
@@ -23,8 +24,8 @@ import cohesity_management_sdk.models.restore_one_drive_params
 import cohesity_management_sdk.models.restore_outlook_params
 import cohesity_management_sdk.models.restore_vmware_vm_params
 import cohesity_management_sdk.models.restored_object_network_config_proto
-import cohesity_management_sdk.models.retrieve_archive_task_state_proto
 import cohesity_management_sdk.models.universal_id_proto
+import cohesity_management_sdk.models.retrieve_archive_task_state_proto
 import cohesity_management_sdk.models.vault_params_restore_params
 import cohesity_management_sdk.models.restored_object_vcd_config_proto
 import cohesity_management_sdk.models.view_params
@@ -43,8 +44,16 @@ class PerformRestoreTaskStateProto(object):
             possible. UI will disable the teardown button only if this is not
             set or set to false. NOTE: This won't be reset if the teardown
             operation subsequently completes as teardown state is managed
-            separately. NOTE: This is not populated for kCloneVMs task.
-            TODO(Chinmaya): Fix this.
+            separately.
+        cdp_restore_progress_monitor_task_path (string): The path of the
+            progress monitor for the task that is responsible for creating the
+            CDP hydrated view.
+        cdp_restore_task (PerformRestoreTaskStateProto): TODO: type
+            description here.
+        cdp_restore_task_id (long|int): The id of the task that will create
+            the CDP hydrated view.
+        cdp_restore_view_name (string): The temporary view where the hydrated
+            disks of the CDP restores are kept.
         child_clone_task_id (long|int): The id of the child clone task
             triggered by refresh op.
         child_destroy_task_id (long|int): The following fields are used by
@@ -65,7 +74,8 @@ class PerformRestoreTaskStateProto(object):
             azure::CloudDeployInfo::azure_cloud_deploy_info azure/azure.proto
             101 gcp::CloudDeployInfo::gcp_cloud_deploy_info     gcp/gcp.proto
             102 aws::ReplicationInfo::aws_replication_info      aws/aws.proto
-            103
+            103 azure::ReplicationInfo::azure_replication_info
+            azure/azure.proto        104
             ===================================================================
             ==========  CloudDeployInfoProto.CloudDeployEntity extension
             Location         Extension
@@ -83,13 +93,16 @@ class PerformRestoreTaskStateProto(object):
             hyperv/hyperv.proto    104
             aws::ReplicationEntityInfo::aws_replication_entity_info
             aws/aws.proto          105
+            aws::ReplicationEntityInfo::azure_replication_entity_info
+            azure/azure.proto      106
             ===================================================================
             ==========
         continue_restore_on_error (bool): Whether to continue with the restore
             operation if restore of any object fails.
         create_view (bool): True iff the target view needs to be created.
-        datastore_entity (EntityProto): Specifies the attributes and the
-            latest statistics about an entity.
+        datastore_entity_vec (list of EntityProto): Please refer to comments
+            for the field CreateRestoreTaskArg.datastore_entity_vec for more
+            details.
         deploy_vms_to_cloud_task_state (DeployVMsToCloudTaskStateProto): TODO:
             type description here.
         folder_entity (EntityProto): Specifies the attributes and the latest
@@ -97,6 +110,8 @@ class PerformRestoreTaskStateProto(object):
         full_view_name (string): The full view name (internal or external).
             This is composed of an optional Cohesity specific prefix and the
             user provided view name.
+        include_vm_config (bool): This is set to true if the vm-config.xml
+            need to be copied in the target view/folder.
         mount_volumes_task_state (MountVolumesTaskStateProto): TODO: type
             description here.
         object_name_deprecated (string): An optional name to give to the
@@ -239,14 +254,20 @@ class PerformRestoreTaskStateProto(object):
         retrieve_archive_stub_view_name (string): The stub view created by
             Icebox corresponding to the archive. The stub view is used to
             selectively retrieve files and folders.
-        retrieve_archive_task (RetrieveArchiveTaskStateProto): Persistent
-            state of a retrieve of an archive task. Only one of either
-            entity_vec or download_files_info needs to be specified in this
-            proto, where entity_vec is for retrieving the whole objects from
-            the archive, and download_files_info is for only downloading the
-            specified files from the archive.
-        retrieve_archive_task_uid (UniversalIdProto): TODO: type description
-            here.
+        retrieve_archive_task_uid_vec (list of UniversalIdProto): The uid of
+            the tasks that will retrieve the objects from the archive.
+            Typically we only retrieve one snapshot for an enity but for point
+            in time restores for SQL/Oracle database, we may need to retrieve
+            multiple snapshots typically one full, and few logs. Hence we may
+            need multiple uids to start retrieval task.
+        retrieve_archive_task_vec (list of RetrieveArchiveTaskStateProto):
+            Proto that contains all the information about the retrieve archive
+            task. Typically we only retrieve one snapshot for an enity but for
+            point in time restores for SQL/Oracle database, we may need to
+            retrieve multiple snapshots typically one full, and few logs. As
+            we may start the multiple retrieval tasks, we need vector of
+            RetrieveArchiveTaskStateProto for storing information of retrieved
+            archive tasks.
         retrieve_archive_view_name (string): The temporary view where the
             entities that have been retrieved from an archive have been placed
             in by Icebox.
@@ -261,7 +282,7 @@ class PerformRestoreTaskStateProto(object):
             view box corresponds to the view box of the backup job.
         view_name_deprecated (string): The view name as provided by the user
             for this restore operation.
-        view_params (ViewParams): TODO(mark): Move this to magneto.proto.
+        view_params (ViewParams): TODO: type description here.
         volume_info_vec (list of VolumeInfo): Information regarding volumes
             that are required for the restore task. This is populated for
             restore files and mount virtual disk ops.
@@ -272,16 +293,21 @@ class PerformRestoreTaskStateProto(object):
     _names = {
         "base":'base',
         "can_teardown":'canTeardown',
+        "cdp_restore_progress_monitor_task_path":'cdpRestoreProgressMonitorTaskPath',
+        "cdp_restore_task":'cdpRestoreTask',
+        "cdp_restore_task_id":'cdpRestoreTaskId',
+        "cdp_restore_view_name":'cdpRestoreViewName',
         "child_clone_task_id":'childCloneTaskId',
         "child_destroy_task_id":'childDestroyTaskId',
         "clone_app_view_info":'cloneAppViewInfo',
         "cloud_deploy_info":'cloudDeployInfo',
         "continue_restore_on_error":'continueRestoreOnError',
         "create_view":'createView',
-        "datastore_entity":'datastoreEntity',
+        "datastore_entity_vec":'datastoreEntityVec',
         "deploy_vms_to_cloud_task_state":'deployVmsToCloudTaskState',
         "folder_entity":'folderEntity',
         "full_view_name":'fullViewName',
+        "include_vm_config":'includeVmConfig',
         "mount_volumes_task_state":'mountVolumesTaskState',
         "object_name_deprecated":'objectName_DEPRECATED',
         "objects":'objects',
@@ -315,8 +341,8 @@ class PerformRestoreTaskStateProto(object):
         "restored_to_different_source":'restoredToDifferentSource',
         "retrieve_archive_progress_monitor_task_path":'retrieveArchiveProgressMonitorTaskPath',
         "retrieve_archive_stub_view_name":'retrieveArchiveStubViewName',
-        "retrieve_archive_task":'retrieveArchiveTask',
-        "retrieve_archive_task_uid":'retrieveArchiveTaskUid',
+        "retrieve_archive_task_uid_vec":'retrieveArchiveTaskUidVec',
+        "retrieve_archive_task_vec":'retrieveArchiveTaskVec',
         "retrieve_archive_view_name":'retrieveArchiveViewName',
         "stub_view_relative_dir_name":'stubViewRelativeDirName',
         "vault_restore_params":'vaultRestoreParams',
@@ -330,16 +356,21 @@ class PerformRestoreTaskStateProto(object):
     def __init__(self,
                  base=None,
                  can_teardown=None,
+                 cdp_restore_progress_monitor_task_path=None,
+                 cdp_restore_task=None,
+                 cdp_restore_task_id=None,
+                 cdp_restore_view_name=None,
                  child_clone_task_id=None,
                  child_destroy_task_id=None,
                  clone_app_view_info=None,
                  cloud_deploy_info=None,
                  continue_restore_on_error=None,
                  create_view=None,
-                 datastore_entity=None,
+                 datastore_entity_vec=None,
                  deploy_vms_to_cloud_task_state=None,
                  folder_entity=None,
                  full_view_name=None,
+                 include_vm_config=None,
                  mount_volumes_task_state=None,
                  object_name_deprecated=None,
                  objects=None,
@@ -373,8 +404,8 @@ class PerformRestoreTaskStateProto(object):
                  restored_to_different_source=None,
                  retrieve_archive_progress_monitor_task_path=None,
                  retrieve_archive_stub_view_name=None,
-                 retrieve_archive_task=None,
-                 retrieve_archive_task_uid=None,
+                 retrieve_archive_task_uid_vec=None,
+                 retrieve_archive_task_vec=None,
                  retrieve_archive_view_name=None,
                  stub_view_relative_dir_name=None,
                  vault_restore_params=None,
@@ -388,16 +419,21 @@ class PerformRestoreTaskStateProto(object):
         # Initialize members of the class
         self.base = base
         self.can_teardown = can_teardown
+        self.cdp_restore_progress_monitor_task_path = cdp_restore_progress_monitor_task_path
+        self.cdp_restore_task = cdp_restore_task
+        self.cdp_restore_task_id = cdp_restore_task_id
+        self.cdp_restore_view_name = cdp_restore_view_name
         self.child_clone_task_id = child_clone_task_id
         self.child_destroy_task_id = child_destroy_task_id
         self.clone_app_view_info = clone_app_view_info
         self.cloud_deploy_info = cloud_deploy_info
         self.continue_restore_on_error = continue_restore_on_error
         self.create_view = create_view
-        self.datastore_entity = datastore_entity
+        self.datastore_entity_vec = datastore_entity_vec
         self.deploy_vms_to_cloud_task_state = deploy_vms_to_cloud_task_state
         self.folder_entity = folder_entity
         self.full_view_name = full_view_name
+        self.include_vm_config = include_vm_config
         self.mount_volumes_task_state = mount_volumes_task_state
         self.object_name_deprecated = object_name_deprecated
         self.objects = objects
@@ -431,8 +467,8 @@ class PerformRestoreTaskStateProto(object):
         self.restored_to_different_source = restored_to_different_source
         self.retrieve_archive_progress_monitor_task_path = retrieve_archive_progress_monitor_task_path
         self.retrieve_archive_stub_view_name = retrieve_archive_stub_view_name
-        self.retrieve_archive_task = retrieve_archive_task
-        self.retrieve_archive_task_uid = retrieve_archive_task_uid
+        self.retrieve_archive_task_uid_vec = retrieve_archive_task_uid_vec
+        self.retrieve_archive_task_vec = retrieve_archive_task_vec
         self.retrieve_archive_view_name = retrieve_archive_view_name
         self.stub_view_relative_dir_name = stub_view_relative_dir_name
         self.vault_restore_params = vault_restore_params
@@ -463,16 +499,25 @@ class PerformRestoreTaskStateProto(object):
         # Extract variables from the dictionary
         base = cohesity_management_sdk.models.restore_task_state_base_proto.RestoreTaskStateBaseProto.from_dictionary(dictionary.get('base')) if dictionary.get('base') else None
         can_teardown = dictionary.get('canTeardown')
+        cdp_restore_progress_monitor_task_path = dictionary.get('cdpRestoreProgressMonitorTaskPath')
+        cdp_restore_task = cohesity_management_sdk.models.perform_restore_task_state_proto.PerformRestoreTaskStateProto.from_dictionary(dictionary.get('cdpRestoreTask')) if dictionary.get('cdpRestoreTask') else None
+        cdp_restore_task_id = dictionary.get('cdpRestoreTaskId')
+        cdp_restore_view_name = dictionary.get('cdpRestoreViewName')
         child_clone_task_id = dictionary.get('childCloneTaskId')
         child_destroy_task_id = dictionary.get('childDestroyTaskId')
         clone_app_view_info = cohesity_management_sdk.models.clone_app_view_info_proto.CloneAppViewInfoProto.from_dictionary(dictionary.get('cloneAppViewInfo')) if dictionary.get('cloneAppViewInfo') else None
         cloud_deploy_info = cohesity_management_sdk.models.cloud_deploy_info_proto.CloudDeployInfoProto.from_dictionary(dictionary.get('cloudDeployInfo')) if dictionary.get('cloudDeployInfo') else None
         continue_restore_on_error = dictionary.get('continueRestoreOnError')
         create_view = dictionary.get('createView')
-        datastore_entity = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('datastoreEntity')) if dictionary.get('datastoreEntity') else None
+        datastore_entity_vec = None
+        if dictionary.get('datastoreEntityVec') != None:
+            datastore_entity_vec = list()
+            for structure in dictionary.get('datastoreEntityVec'):
+                datastore_entity_vec.append(cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(structure))
         deploy_vms_to_cloud_task_state = cohesity_management_sdk.models.deploy_v_ms_to_cloud_task_state_proto.DeployVMsToCloudTaskStateProto.from_dictionary(dictionary.get('deployVmsToCloudTaskState')) if dictionary.get('deployVmsToCloudTaskState') else None
         folder_entity = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('folderEntity')) if dictionary.get('folderEntity') else None
         full_view_name = dictionary.get('fullViewName')
+        include_vm_config = dictionary.get('includeVmConfig')
         mount_volumes_task_state = cohesity_management_sdk.models.mount_volumes_task_state_proto.MountVolumesTaskStateProto.from_dictionary(dictionary.get('mountVolumesTaskState')) if dictionary.get('mountVolumesTaskState') else None
         object_name_deprecated = dictionary.get('objectName_DEPRECATED')
         objects = None
@@ -510,8 +555,16 @@ class PerformRestoreTaskStateProto(object):
         restored_to_different_source = dictionary.get('restoredToDifferentSource')
         retrieve_archive_progress_monitor_task_path = dictionary.get('retrieveArchiveProgressMonitorTaskPath')
         retrieve_archive_stub_view_name = dictionary.get('retrieveArchiveStubViewName')
-        retrieve_archive_task = cohesity_management_sdk.models.retrieve_archive_task_state_proto.RetrieveArchiveTaskStateProto.from_dictionary(dictionary.get('retrieveArchiveTask')) if dictionary.get('retrieveArchiveTask') else None
-        retrieve_archive_task_uid = cohesity_management_sdk.models.universal_id_proto.UniversalIdProto.from_dictionary(dictionary.get('retrieveArchiveTaskUid')) if dictionary.get('retrieveArchiveTaskUid') else None
+        retrieve_archive_task_uid_vec = None
+        if dictionary.get('retrieveArchiveTaskUidVec') != None:
+            retrieve_archive_task_uid_vec = list()
+            for structure in dictionary.get('retrieveArchiveTaskUidVec'):
+                retrieve_archive_task_uid_vec.append(cohesity_management_sdk.models.universal_id_proto.UniversalIdProto.from_dictionary(structure))
+        retrieve_archive_task_vec = None
+        if dictionary.get('retrieveArchiveTaskVec') != None:
+            retrieve_archive_task_vec = list()
+            for structure in dictionary.get('retrieveArchiveTaskVec'):
+                retrieve_archive_task_vec.append(cohesity_management_sdk.models.retrieve_archive_task_state_proto.RetrieveArchiveTaskStateProto.from_dictionary(structure))
         retrieve_archive_view_name = dictionary.get('retrieveArchiveViewName')
         stub_view_relative_dir_name = dictionary.get('stubViewRelativeDirName')
         vault_restore_params = cohesity_management_sdk.models.vault_params_restore_params.VaultParamsRestoreParams.from_dictionary(dictionary.get('vaultRestoreParams')) if dictionary.get('vaultRestoreParams') else None
@@ -528,16 +581,21 @@ class PerformRestoreTaskStateProto(object):
         # Return an object of this model
         return cls(base,
                    can_teardown,
+                   cdp_restore_progress_monitor_task_path,
+                   cdp_restore_task,
+                   cdp_restore_task_id,
+                   cdp_restore_view_name,
                    child_clone_task_id,
                    child_destroy_task_id,
                    clone_app_view_info,
                    cloud_deploy_info,
                    continue_restore_on_error,
                    create_view,
-                   datastore_entity,
+                   datastore_entity_vec,
                    deploy_vms_to_cloud_task_state,
                    folder_entity,
                    full_view_name,
+                   include_vm_config,
                    mount_volumes_task_state,
                    object_name_deprecated,
                    objects,
@@ -571,8 +629,8 @@ class PerformRestoreTaskStateProto(object):
                    restored_to_different_source,
                    retrieve_archive_progress_monitor_task_path,
                    retrieve_archive_stub_view_name,
-                   retrieve_archive_task,
-                   retrieve_archive_task_uid,
+                   retrieve_archive_task_uid_vec,
+                   retrieve_archive_task_vec,
                    retrieve_archive_view_name,
                    stub_view_relative_dir_name,
                    vault_restore_params,

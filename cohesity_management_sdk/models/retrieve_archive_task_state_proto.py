@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.archival_target
 import cohesity_management_sdk.models.universal_id_proto
@@ -51,6 +51,14 @@ class RetrieveArchiveTaskStateProto(object):
         name (string): The name of the retrieval task.
         progress_monitor_task_path (string): The path of the progress monitor
             for this task.
+        restore_archive_files_info
+            (RetrieveArchiveTaskStateProtoDownloadFilesInfo): Information
+            required for Icebox when downloading files from an archived
+            entity. This proto is specifically just for the current temporary
+            solution for downloading a single from an archive, where we let
+            icebox download the file for us. In the future once the new Yoda
+            APIs for downloading files from archive stub views are ready, we
+            will just discard this proto and make field 20 reserved.
         restore_task_id (long|int): For retrieve tasks created after the 2.8
             release, this will contain the id of the restore task that created
             this retrieve task.
@@ -84,6 +92,7 @@ class RetrieveArchiveTaskStateProto(object):
         "job_uid":'jobUid',
         "name":'name',
         "progress_monitor_task_path":'progressMonitorTaskPath',
+        "restore_archive_files_info":'restoreArchiveFilesInfo',
         "restore_task_id":'restoreTaskId',
         "retrieval_info":'retrievalInfo',
         "start_time_usecs":'startTimeUsecs',
@@ -108,6 +117,7 @@ class RetrieveArchiveTaskStateProto(object):
                  job_uid=None,
                  name=None,
                  progress_monitor_task_path=None,
+                 restore_archive_files_info=None,
                  restore_task_id=None,
                  retrieval_info=None,
                  start_time_usecs=None,
@@ -132,6 +142,7 @@ class RetrieveArchiveTaskStateProto(object):
         self.job_uid = job_uid
         self.name = name
         self.progress_monitor_task_path = progress_monitor_task_path
+        self.restore_archive_files_info = restore_archive_files_info
         self.restore_task_id = restore_task_id
         self.retrieval_info = retrieval_info
         self.start_time_usecs = start_time_usecs
@@ -177,6 +188,7 @@ class RetrieveArchiveTaskStateProto(object):
         job_uid = cohesity_management_sdk.models.universal_id_proto.UniversalIdProto.from_dictionary(dictionary.get('jobUid')) if dictionary.get('jobUid') else None
         name = dictionary.get('name')
         progress_monitor_task_path = dictionary.get('progressMonitorTaskPath')
+        restore_archive_files_info = cohesity_management_sdk.models.retrieve_archive_task_state_proto_download_files_info.RetrieveArchiveTaskStateProtoDownloadFilesInfo.from_dictionary(dictionary.get('restoreArchiveFilesInfo')) if dictionary.get('restoreArchiveFilesInfo') else None
         restore_task_id = dictionary.get('restoreTaskId')
         retrieval_info = cohesity_management_sdk.models.retrieve_archive_info.RetrieveArchiveInfo.from_dictionary(dictionary.get('retrievalInfo')) if dictionary.get('retrievalInfo') else None
         start_time_usecs = dictionary.get('startTimeUsecs')
@@ -200,6 +212,7 @@ class RetrieveArchiveTaskStateProto(object):
                    job_uid,
                    name,
                    progress_monitor_task_path,
+                   restore_archive_files_info,
                    restore_task_id,
                    retrieval_info,
                    start_time_usecs,

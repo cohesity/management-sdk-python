@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.oracle_db_channel_info
 
@@ -11,10 +11,18 @@ class AdditionalOracleDBParams(object):
 
     Attributes:
         app_entity_id (long|int): Database app id.
-        db_info_channel_vec (list of OracleDBChannelInfo): Contains the
-            information for each database and the corresponding hosts
-            configured for each. NOTE: Size of this vector will be 1 for RAC
-            and Standalone setups.
+        db_info_channel_vec (list of OracleDBChannelInfo): The following proto
+            message should be renamed to a more general message to represent
+            parameters pertaining to a single unique Oracle database.
+            Uniqueness of an Oracle database should be strictly determined by
+            its database unique name. i.e. all backup parameters needed for a
+            unique Oracle database should be expressed in the following proto.
+            It is a vector for future support of backing up Data Guard
+            sources. We may or may not need this to be vector to support Data
+            Guard sources. For now, the size of this vector is always 1. When
+            we rename this proto in the future, if we determine there is no
+            need to use a vector for Data Guard support, we can choose to
+            remove 'repeated'.
 
     """
 

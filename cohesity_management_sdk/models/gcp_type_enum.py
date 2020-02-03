@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 class GcpTypeEnum(object):
 
@@ -16,6 +16,11 @@ class GcpTypeEnum(object):
     'kSubnet' indicates a subnet inside the VPC.
     'kNetworkSecurityGroup' represents a network security group.
     'kInstanceType' represents various machine types.
+    'kLabel' represents a label present on the instances.
+    'kMetaData' represents a custom metadata present on instances.
+    'kTag' represents a network tag on instances.
+    'kVPCConnector' represents a VPC connector used for serverless VPC
+    access.
 
     Attributes:
         KIAMUSER: TODO: type description here.
@@ -27,6 +32,10 @@ class GcpTypeEnum(object):
         KSUBNET: TODO: type description here.
         KNETWORKSECURITYGROUP: TODO: type description here.
         KINSTANCETYPE: TODO: type description here.
+        KLABEL: TODO: type description here.
+        KMETADATA: TODO: type description here.
+        KTAG: TODO: type description here.
+        KVPCCONNECTOR: TODO: type description here.
 
     """
 
@@ -47,4 +56,12 @@ class GcpTypeEnum(object):
     KNETWORKSECURITYGROUP = 'kNetworkSecurityGroup'
 
     KINSTANCETYPE = 'kInstanceType'
+
+    KLABEL = 'kLabel'
+
+    KMETADATA = 'kMetadata'
+
+    KTAG = 'kTag'
+
+    KVPCCONNECTOR = 'kVPCConnector'
 

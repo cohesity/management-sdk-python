@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.additional_oracle_db_params
 
@@ -10,9 +10,10 @@ class OracleSourceParams(object):
     Message to capture additional backup/restore params for a Oracle source.
 
     Attributes:
-        additional_oracle_db_params_vec (list of AdditionalOracleDBParams):
-            Backup channel information for each Oracle database. NOTE: Size of
-            this vector will be 1 for DG.
+        additional_oracle_db_params_vec (list of AdditionalOracleDBParams): A
+            vector of unique Oracle databases. Each vector entry represents
+            the backup/restore parameters for one unique Oracle database.
+            Uniqueness is determined by the database unique name.
 
     """
 

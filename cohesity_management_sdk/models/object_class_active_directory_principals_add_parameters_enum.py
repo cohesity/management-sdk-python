@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 class ObjectClassActiveDirectoryPrincipalsAddParametersEnum(object):
 
@@ -11,11 +11,13 @@ class ObjectClassActiveDirectoryPrincipalsAddParametersEnum(object):
     'kUser' specifies a user object class.
     'kGroup' specifies a group object class.
     'kComputer' specifies a computer object class.
+    'kWellKnownPrincipal' specifies a well known principal.
 
     Attributes:
         KUSER: TODO: type description here.
         KGROUP: TODO: type description here.
         KCOMPUTER: TODO: type description here.
+        KWELLKNOWNPRINCIPAL: TODO: type description here.
 
     """
 
@@ -24,4 +26,6 @@ class ObjectClassActiveDirectoryPrincipalsAddParametersEnum(object):
     KGROUP = 'kGroup'
 
     KCOMPUTER = 'kComputer'
+
+    KWELLKNOWNPRINCIPAL = 'kWellKnownPrincipal'
 

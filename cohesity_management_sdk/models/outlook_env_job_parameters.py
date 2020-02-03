@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.file_path_filter
 
@@ -7,9 +7,8 @@ class OutlookEnvJobParameters(object):
 
     """Implementation of the 'OutlookEnvJobParameters' model.
 
-    Specifies job parameters applicable for all 'kO365Outlook' Environment
-    type
-    Protection Sources in a Protection Job.
+    Specifies Outlook job parameters applicable for all Office365 Environment
+    type Protection Sources in a Protection Job.
 
     Attributes:
         file_path_filter (FilePathFilter): Specifies filters to match files
@@ -22,20 +21,26 @@ class OutlookEnvJobParameters(object):
             Filters: "/tmp", "*.mp4" Using such a policy will include
             everything under the root directory except the /tmp directory and
             all the mp4 files.
+        should_backup_mailbox (bool): Specifies whether mailbox of each
+            Office365 Users/Groups within the job, should be backed up or
+            not.
 
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "file_path_filter":'filePathFilter'
+        "file_path_filter":'filePathFilter',
+        "should_backup_mailbox":'shouldBackupMailbox'
     }
 
     def __init__(self,
-                 file_path_filter=None):
+                 file_path_filter=None,
+                 should_backup_mailbox=None):
         """Constructor for the OutlookEnvJobParameters class"""
 
         # Initialize members of the class
         self.file_path_filter = file_path_filter
+        self.should_backup_mailbox = should_backup_mailbox
 
 
     @classmethod
@@ -57,8 +62,10 @@ class OutlookEnvJobParameters(object):
 
         # Extract variables from the dictionary
         file_path_filter = cohesity_management_sdk.models.file_path_filter.FilePathFilter.from_dictionary(dictionary.get('filePathFilter')) if dictionary.get('filePathFilter') else None
+        should_backup_mailbox = dictionary.get('shouldBackupMailbox')
 
         # Return an object of this model
-        return cls(file_path_filter)
+        return cls(file_path_filter,
+                   should_backup_mailbox)
 
 

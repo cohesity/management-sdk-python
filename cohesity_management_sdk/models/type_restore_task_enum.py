@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 class TypeRestoreTaskEnum(object):
 
@@ -27,6 +27,9 @@ class TypeRestoreTaskEnum(object):
     'kRecoverEmails' specifies a Restore Task that recovers the mailbox/email
     items.
     'kRecoverDisks' specifies a Restore Task that recovers the virtual disks.
+    'kRecoverNamespaces' specifies a Restore Task that recovers Kubernetes
+    namespaces.
+    'kCloneVMsToView' specifies a Restore Task that clones VMs into a View.
 
     Attributes:
         KRECOVERVMS: TODO: type description here.
@@ -45,6 +48,8 @@ class TypeRestoreTaskEnum(object):
         KDOWNLOADFILES: TODO: type description here.
         KRECOVEREMAILS: TODO: type description here.
         KRECOVERDISKS: TODO: type description here.
+        KRECOVERNAMESPACES: TODO: type description here.
+        KCLONEVMSTOVIEW: TODO: type description here.
 
     """
 
@@ -79,4 +84,8 @@ class TypeRestoreTaskEnum(object):
     KRECOVEREMAILS = 'kRecoverEmails'
 
     KRECOVERDISKS = 'kRecoverDisks'
+
+    KRECOVERNAMESPACES = 'kRecoverNamespaces'
+
+    KCLONEVMSTOVIEW = 'kCloneVMsToView'
 

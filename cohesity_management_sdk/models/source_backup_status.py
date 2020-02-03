@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.snapshot_info
 import cohesity_management_sdk.models.protection_source
@@ -28,6 +28,9 @@ class SourceBackupStatus(object):
         parent_source_id (long|int): Specifies the id of the registered
             Protection Source that is the parent of the Objects that are
             protected by this Job Run.
+        progress_monitor_task_path (string): Specifies the yoda progress
+            monitor task path which is used to get pulse information about the
+            source that is being backed up.
         quiesced (bool): Specifies if app-consistent snapshot was captured.
             This field is set to true, if an app-consistent snapshot was taken
             by quiescing applications and the file system before taking a
@@ -63,6 +66,7 @@ class SourceBackupStatus(object):
         "is_full_backup":'isFullBackup',
         "num_restarts":'numRestarts',
         "parent_source_id":'parentSourceId',
+        "progress_monitor_task_path":'progressMonitorTaskPath',
         "quiesced":'quiesced',
         "sla_violated":'slaViolated',
         "source":'source',
@@ -77,6 +81,7 @@ class SourceBackupStatus(object):
                  is_full_backup=None,
                  num_restarts=None,
                  parent_source_id=None,
+                 progress_monitor_task_path=None,
                  quiesced=None,
                  sla_violated=None,
                  source=None,
@@ -91,6 +96,7 @@ class SourceBackupStatus(object):
         self.is_full_backup = is_full_backup
         self.num_restarts = num_restarts
         self.parent_source_id = parent_source_id
+        self.progress_monitor_task_path = progress_monitor_task_path
         self.quiesced = quiesced
         self.sla_violated = sla_violated
         self.source = source
@@ -122,6 +128,7 @@ class SourceBackupStatus(object):
         is_full_backup = dictionary.get('isFullBackup')
         num_restarts = dictionary.get('numRestarts')
         parent_source_id = dictionary.get('parentSourceId')
+        progress_monitor_task_path = dictionary.get('progressMonitorTaskPath')
         quiesced = dictionary.get('quiesced')
         sla_violated = dictionary.get('slaViolated')
         source = cohesity_management_sdk.models.protection_source.ProtectionSource.from_dictionary(dictionary.get('source')) if dictionary.get('source') else None
@@ -135,6 +142,7 @@ class SourceBackupStatus(object):
                    is_full_backup,
                    num_restarts,
                    parent_source_id,
+                   progress_monitor_task_path,
                    quiesced,
                    sla_violated,
                    source,

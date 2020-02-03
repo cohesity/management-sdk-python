@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.user_id_mapping
 import cohesity_management_sdk.models.preferred_domain_controller
@@ -28,6 +28,7 @@ class ActiveDirectoryEntry(object):
         preferred_domain_controllers (list of PreferredDomainController):
             Specifies Map of Active Directory domain names to its preferred
             domain controllers.
+        task_path (string): Specifies the task path for AD joining task.
         tenant_id (string): Specifies the unique id of the tenant.
         trusted_domains (list of string): Specifies the trusted domains of the
             Active Directory domain.
@@ -53,6 +54,7 @@ class ActiveDirectoryEntry(object):
         "ou_name":'ouName',
         "password":'password',
         "preferred_domain_controllers":'preferredDomainControllers',
+        "task_path":'taskPath',
         "tenant_id":'tenantId',
         "trusted_domains":'trustedDomains',
         "trusted_domains_enabled":'trustedDomainsEnabled',
@@ -71,6 +73,7 @@ class ActiveDirectoryEntry(object):
                  ou_name=None,
                  password=None,
                  preferred_domain_controllers=None,
+                 task_path=None,
                  tenant_id=None,
                  trusted_domains=None,
                  trusted_domains_enabled=None,
@@ -89,6 +92,7 @@ class ActiveDirectoryEntry(object):
         self.ou_name = ou_name
         self.password = password
         self.preferred_domain_controllers = preferred_domain_controllers
+        self.task_path = task_path
         self.tenant_id = tenant_id
         self.trusted_domains = trusted_domains
         self.trusted_domains_enabled = trusted_domains_enabled
@@ -128,6 +132,7 @@ class ActiveDirectoryEntry(object):
             preferred_domain_controllers = list()
             for structure in dictionary.get('preferredDomainControllers'):
                 preferred_domain_controllers.append(cohesity_management_sdk.models.preferred_domain_controller.PreferredDomainController.from_dictionary(structure))
+        task_path = dictionary.get('taskPath')
         tenant_id = dictionary.get('tenantId')
         trusted_domains = dictionary.get('trustedDomains')
         trusted_domains_enabled = dictionary.get('trustedDomainsEnabled')
@@ -145,6 +150,7 @@ class ActiveDirectoryEntry(object):
                    ou_name,
                    password,
                    preferred_domain_controllers,
+                   task_path,
                    tenant_id,
                    trusted_domains,
                    trusted_domains_enabled,

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 
 class CreateBondParameters(object):
@@ -9,10 +9,10 @@ class CreateBondParameters(object):
     Specifies the parameters needed to create a bond.
 
     Attributes:
-        bonding_mode (BondingModeCreateBondParametersEnum): Specifies the
-            bonding mode to use for this bond. If not specified, this value
-            will default to 'kActiveBackup'. 'kActiveBackup' indicates active
-            backup bonding mode. 'k802_3ad' indicates 802.3ad bonding mode.
+        bonding_mode (BondingModeEnum): Specifies the bonding mode to use for
+            this bond. If not specified, this value will default to
+            'kActiveBackup'. 'kActiveBackup' indicates active backup bonding
+            mode. 'k802_3ad' indicates 802.3ad bonding mode.
         name (string): Specifies a unique name to identify the bond being
             created.
         slaves (list of string): Specifies the names of the slaves of this

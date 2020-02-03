@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.application_restore_object
 import cohesity_management_sdk.models.restore_object_details
@@ -22,9 +22,10 @@ class ApplicationRestoreParameters(object):
             environment. 'kPuppeteer' indicates the Cohesity's Remote Adapter.
             'kPhysical' indicates the physical Protection Source environment.
             'kPure' indicates the Pure Storage Protection Source environment.
-            'kAzure' indicates the Microsoft's Azure Protection Source
-            environment. 'kNetapp' indicates the Netapp Protection Source
-            environment. 'kAgent' indicates the Agent Protection Source
+            'Nimble' indicates the Nimble Storage Protection Source
+            environment. 'kAzure' indicates the Microsoft's Azure Protection
+            Source environment. 'kNetapp' indicates the Netapp Protection
+            Source environment. 'kAgent' indicates the Agent Protection Source
             environment. 'kGenericNas' indicates the Genreric Network Attached
             Storage Protection Source environment. 'kAcropolis' indicates the
             Acropolis Protection Source environment. 'kPhsicalFiles' indicates
@@ -47,6 +48,7 @@ class ApplicationRestoreParameters(object):
             the GCP Native Protection Source environment. 'kAzureNative'
             indicates the Azure Native Protection Source environment.
             'kKubernetes' indicates a Kubernetes Protection Source
+            environment. 'kElastifile' indicates Elastifile Protection Source
             environment.
         application_restore_objects (list of ApplicationRestoreObject):
             Specifies the Application Server objects whose data should be

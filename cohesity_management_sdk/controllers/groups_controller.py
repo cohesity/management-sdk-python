@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -9,16 +9,14 @@ from cohesity_management_sdk.http.auth.auth_manager import AuthManager
 from cohesity_management_sdk.models.group import Group
 from cohesity_management_sdk.exceptions.request_error_error_exception import RequestErrorErrorException
 
+
 class GroupsController(BaseController):
-
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-
     def __init__(self, client=None, call_back=None):
         super(GroupsController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
 
-    def delete_groups(self,
-                      body=None):
+    def delete_groups(self, body=None):
         """Does a DELETE request to /public/groups.
 
         If the group on the Cohesity Cluster was added for an Active Directory
@@ -54,15 +52,17 @@ class GroupsController(BaseController):
 
             # Prepare headers
             self.logger.info('Preparing headers for delete_groups.')
-            _headers = {
-                'content-type': 'application/json; charset=utf-8'
-            }
+            _headers = {'content-type': 'application/json; charset=utf-8'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for delete_groups.')
-            _request = self.http_client.delete(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
+            self.logger.info(
+                'Preparing and executing request for delete_groups.')
+            _request = self.http_client.delete(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
             AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'delete_groups')
+            _context = self.execute_request(_request, name='delete_groups')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for delete_groups.')
@@ -71,14 +71,15 @@ class GroupsController(BaseController):
             self.validate_response(_context)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
+            self.logger.error(e, exc_info=True)
+            raise APIException(e.message, None)
 
     def get_groups(self,
-                   tenant_ids=None,
-                   all_under_hierarchy=None,
                    name=None,
-                   domain=None):
+                   domain=None,
+                   filter_by_owned_domains=None,
+                   tenant_ids=None,
+                   all_under_hierarchy=None):
         """Does a GET request to /public/groups.
 
         If no parameters are specified, all groups currently on the Cohesity
@@ -87,17 +88,21 @@ class GroupsController(BaseController):
         returned.
 
         Args:
-            tenant_ids (list of string, optional): TenantIds contains ids of
-                the tenants for which objects are to be returned.
-            all_under_hierarchy (bool, optional): AllUnderHierarchy specifies
-                if objects of all the tenants under the hierarchy of the
-                logged in user's organization should be returned.
             name (string, optional): Optionally specify a group name to filter
                 by. All groups containing name will be returned.
             domain (string, optional): If no domain is specified, all groups
                 on the Cohesity Cluster are searched. If a domain is
                 specified, only groups on the Cohesity Cluster associated with
                 that domain are searched.
+            filter_by_owned_domains (bool, optional): If FilterByOwnedDomains
+                is set to true, then the groups are filtered to show only the
+                ones that are in the domains owned by the current tenant or
+                user.
+            tenant_ids (list of string, optional): TenantIds contains ids of
+                the tenants for which objects are to be returned.
+            all_under_hierarchy (bool, optional): AllUnderHierarchy specifies
+                if objects of all the tenants under the hierarchy of the
+                logged in user's organization should be returned.
 
         Returns:
             list of Group: Response from the API. Success
@@ -118,26 +123,26 @@ class GroupsController(BaseController):
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
-                'tenantIds': tenant_ids,
-                'allUnderHierarchy': all_under_hierarchy,
                 'name': name,
-                'domain': domain
+                'domain': domain,
+                'filterByOwnedDomains': filter_by_owned_domains,
+                'tenantIds': tenant_ids,
+                'allUnderHierarchy': all_under_hierarchy
             }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
             self.logger.info('Preparing headers for get_groups.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_groups.')
             _request = self.http_client.get(_query_url, headers=_headers)
             AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_groups')
+            _context = self.execute_request(_request, name='get_groups')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_groups.')
@@ -146,14 +151,14 @@ class GroupsController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, Group.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              Group.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
+            self.logger.error(e, exc_info=True)
+            raise APIException(e.message, None)
 
-    def create_group(self,
-                     body=None):
+    def create_group(self, body=None):
         """Does a POST request to /public/groups.
 
         If an Active Directory domain is specified, a new group is added to
@@ -195,10 +200,14 @@ class GroupsController(BaseController):
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for create_group.')
-            _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
+            self.logger.info(
+                'Preparing and executing request for create_group.')
+            _request = self.http_client.post(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
             AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'create_group')
+            _context = self.execute_request(_request, name='create_group')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for create_group.')
@@ -207,14 +216,14 @@ class GroupsController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, Group.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              Group.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
+            self.logger.error(e, exc_info=True)
+            raise APIException(e.message, None)
 
-    def update_group(self,
-                     body=None):
+    def update_group(self, body=None):
         """Does a PUT request to /public/groups.
 
         Returns the group that was updated on the Cohesity Cluster.
@@ -250,10 +259,14 @@ class GroupsController(BaseController):
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for update_group.')
-            _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
+            self.logger.info(
+                'Preparing and executing request for update_group.')
+            _request = self.http_client.put(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
             AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'update_group')
+            _context = self.execute_request(_request, name='update_group')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for update_group.')
@@ -262,8 +275,9 @@ class GroupsController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, Group.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              Group.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
+            self.logger.error(e, exc_info=True)
+            raise APIException(e.message, None)

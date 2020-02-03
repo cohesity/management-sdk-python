@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 
 class AzureProtectionSource(object):
@@ -36,8 +36,12 @@ class AzureProtectionSource(object):
             overrideDescription: true 'kLinux' indicates the Linux operating
             system. 'kWindows' indicates the Microsoft Windows operating
             system. 'kAix' indicates the IBM AIX operating system. 'kSolaris'
-            indicates the Oracle Solaris operating system.
+            indicates the Oracle Solaris operating system. 'kSapHana'
+            indicates the Sap Hana database system developed by SAP SE.
+            'kOther' indicates the other types of operating system.
         ip_addresses (list of string): Specifies a list of IP addresses for
+            entities of type 'kVirtualMachine'.
+        is_managed_vm (bool): Specifies whether VM is managed or not for
             entities of type 'kVirtualMachine'.
         location (string): Specifies the physical location of the resource
             group.
@@ -73,6 +77,12 @@ class AzureProtectionSource(object):
             customer's Azure account. It represents sub-section within the
             Azure account where a customer allows us to create VMs, storage
             account etc.
+        subscription_type (SubscriptionTypeAzureProtectionSourceEnum):
+            Specifies the subscription type of Azure such as
+            'kAzureCommercial' or 'kAzureGovCloud'. Specifies the subscription
+            type of an Azure source entity. 'kAzureCommercial' indicates a
+            standard Azure subscription. 'kAzureGovCloud' indicates a govt
+            Azure subscription.
         tenant_id (string): Specifies Tenant Id of the active directory of
             Azure account.
         mtype (TypeAzureProtectionSourceEnum): Specifies the type of an Azure
@@ -104,6 +114,7 @@ class AzureProtectionSource(object):
         "azure_type":'azureType',
         "host_type":'hostType',
         "ip_addresses":'ipAddresses',
+        "is_managed_vm":'isManagedVm',
         "location":'location',
         "memory_mbytes":'memoryMbytes',
         "name":'name',
@@ -112,6 +123,7 @@ class AzureProtectionSource(object):
         "resource_id":'resourceId',
         "restore_task_id":'restoreTaskId',
         "subscription_id":'subscriptionId',
+        "subscription_type":'subscriptionType',
         "tenant_id":'tenantId',
         "mtype":'type'
     }
@@ -122,6 +134,7 @@ class AzureProtectionSource(object):
                  azure_type=None,
                  host_type=None,
                  ip_addresses=None,
+                 is_managed_vm=None,
                  location=None,
                  memory_mbytes=None,
                  name=None,
@@ -130,6 +143,7 @@ class AzureProtectionSource(object):
                  resource_id=None,
                  restore_task_id=None,
                  subscription_id=None,
+                 subscription_type=None,
                  tenant_id=None,
                  mtype=None):
         """Constructor for the AzureProtectionSource class"""
@@ -140,6 +154,7 @@ class AzureProtectionSource(object):
         self.azure_type = azure_type
         self.host_type = host_type
         self.ip_addresses = ip_addresses
+        self.is_managed_vm = is_managed_vm
         self.location = location
         self.memory_mbytes = memory_mbytes
         self.name = name
@@ -148,6 +163,7 @@ class AzureProtectionSource(object):
         self.resource_id = resource_id
         self.restore_task_id = restore_task_id
         self.subscription_id = subscription_id
+        self.subscription_type = subscription_type
         self.tenant_id = tenant_id
         self.mtype = mtype
 
@@ -175,6 +191,7 @@ class AzureProtectionSource(object):
         azure_type = dictionary.get('azureType')
         host_type = dictionary.get('hostType')
         ip_addresses = dictionary.get('ipAddresses')
+        is_managed_vm = dictionary.get('isManagedVm')
         location = dictionary.get('location')
         memory_mbytes = dictionary.get('memoryMbytes')
         name = dictionary.get('name')
@@ -183,6 +200,7 @@ class AzureProtectionSource(object):
         resource_id = dictionary.get('resourceId')
         restore_task_id = dictionary.get('restoreTaskId')
         subscription_id = dictionary.get('subscriptionId')
+        subscription_type = dictionary.get('subscriptionType')
         tenant_id = dictionary.get('tenantId')
         mtype = dictionary.get('type')
 
@@ -192,6 +210,7 @@ class AzureProtectionSource(object):
                    azure_type,
                    host_type,
                    ip_addresses,
+                   is_managed_vm,
                    location,
                    memory_mbytes,
                    name,
@@ -200,6 +219,7 @@ class AzureProtectionSource(object):
                    resource_id,
                    restore_task_id,
                    subscription_id,
+                   subscription_type,
                    tenant_id,
                    mtype)
 

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.magneto_instance_id
 import cohesity_management_sdk.models.magneto_object_id
@@ -18,13 +18,14 @@ class RetrieveArchiveTaskStateProtoDownloadFilesInfo(object):
     make field 20 reserved.
 
     Attributes:
-        file_path (string): The file to download from the archive.
-            TODO(zheng): Right now we only support single file download.
-            Adjust accordingly once we support downloading multiple
-            files/directories.
+        file_path_vec (list of string): The file paths to be retrieved from
+            the archive. For example, if the file paths are /foo/bar and
+            /foo2/bar and target_dir_path is "downloaded_files". The retrieved
+            files will have the full path structure maintained in
+            target_dir_path such as downloaded_files/foo/bar and
+            /downloaded_files/foo2/bar.
         magneto_instance_id (MagnetoInstanceId): TODO: type description here.
-        object_id (MagnetoObjectId): TODO(apurv): This message type should be
-            moved to the Yoda namespace.
+        object_id (MagnetoObjectId): TODO: type description here.
         skip_restore_in_stub_view (bool): Ask Icebox to only create the stub
             view and skip restoring files in the stub view.
         target_dir_path (string): Path to the directory under which the
@@ -36,7 +37,7 @@ class RetrieveArchiveTaskStateProtoDownloadFilesInfo(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "file_path":'filePath',
+        "file_path_vec":'filePathVec',
         "magneto_instance_id":'magnetoInstanceId',
         "object_id":'objectId',
         "skip_restore_in_stub_view":'skipRestoreInStubView',
@@ -45,7 +46,7 @@ class RetrieveArchiveTaskStateProtoDownloadFilesInfo(object):
     }
 
     def __init__(self,
-                 file_path=None,
+                 file_path_vec=None,
                  magneto_instance_id=None,
                  object_id=None,
                  skip_restore_in_stub_view=None,
@@ -54,7 +55,7 @@ class RetrieveArchiveTaskStateProtoDownloadFilesInfo(object):
         """Constructor for the RetrieveArchiveTaskStateProtoDownloadFilesInfo class"""
 
         # Initialize members of the class
-        self.file_path = file_path
+        self.file_path_vec = file_path_vec
         self.magneto_instance_id = magneto_instance_id
         self.object_id = object_id
         self.skip_restore_in_stub_view = skip_restore_in_stub_view
@@ -80,7 +81,7 @@ class RetrieveArchiveTaskStateProtoDownloadFilesInfo(object):
             return None
 
         # Extract variables from the dictionary
-        file_path = dictionary.get('filePath')
+        file_path_vec = dictionary.get('filePathVec')
         magneto_instance_id = cohesity_management_sdk.models.magneto_instance_id.MagnetoInstanceId.from_dictionary(dictionary.get('magnetoInstanceId')) if dictionary.get('magnetoInstanceId') else None
         object_id = cohesity_management_sdk.models.magneto_object_id.MagnetoObjectId.from_dictionary(dictionary.get('objectId')) if dictionary.get('objectId') else None
         skip_restore_in_stub_view = dictionary.get('skipRestoreInStubView')
@@ -88,7 +89,7 @@ class RetrieveArchiveTaskStateProtoDownloadFilesInfo(object):
         target_view_name = dictionary.get('targetViewName')
 
         # Return an object of this model
-        return cls(file_path,
+        return cls(file_path_vec,
                    magneto_instance_id,
                    object_id,
                    skip_restore_in_stub_view,

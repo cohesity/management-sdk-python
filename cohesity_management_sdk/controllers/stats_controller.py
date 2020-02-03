@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -21,19 +21,17 @@ from cohesity_management_sdk.models.vault_run_stats_summary import VaultRunStats
 from cohesity_management_sdk.models.get_view_box_stats_result import GetViewBoxStatsResult
 from cohesity_management_sdk.models.view_stats_snapshot import ViewStatsSnapshot
 from cohesity_management_sdk.models.view_protocol_stats import ViewProtocolStats
+from cohesity_management_sdk.exceptions.error_exception import ErrorException
 from cohesity_management_sdk.exceptions.request_error_error_exception import RequestErrorErrorException
 
+
 class StatsController(BaseController):
-
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-
     def __init__(self, client=None, call_back=None):
         super(StatsController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
 
-    def get_active_alerts_stats(self,
-                                start_time_usecs,
-                                end_time_usecs):
+    def get_active_alerts_stats(self, start_time_usecs, end_time_usecs):
         """Does a GET request to /public/stats/alerts.
 
         Compute the statistics on the active Alerts generated on the cluster
@@ -61,12 +59,14 @@ class StatsController(BaseController):
             self.logger.info('get_active_alerts_stats called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for get_active_alerts_stats.')
+            self.logger.info(
+                'Validating required parameters for get_active_alerts_stats.')
             self.validate_parameters(start_time_usecs=start_time_usecs,
                                      end_time_usecs=end_time_usecs)
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for get_active_alerts_stats.')
+            self.logger.info(
+                'Preparing query URL for get_active_alerts_stats.')
             _url_path = '/public/stats/alerts'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
@@ -74,42 +74,47 @@ class StatsController(BaseController):
                 'startTimeUsecs': start_time_usecs,
                 'endTimeUsecs': end_time_usecs
             }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
             self.logger.info('Preparing headers for get_active_alerts_stats.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_active_alerts_stats.')
+            self.logger.info(
+                'Preparing and executing request for get_active_alerts_stats.')
             _request = self.http_client.get(_query_url, headers=_headers)
             AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_active_alerts_stats')
+            _context = self.execute_request(_request,
+                                            name='get_active_alerts_stats')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for get_active_alerts_stats.')
+            self.logger.info(
+                'Validating response for get_active_alerts_stats.')
             if _context.response.status_code == 0:
-                raise RequestErrorErrorException('Error', _context)
+                raise RequestErrorErrorException(Error, _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ActiveAlertsStats.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body, ActiveAlertsStats.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
+            self.logger.error(e, exc_info=True)
+            raise APIException(e.message, None)
 
     def get_consumer_stats(self,
                            consumer_type=None,
                            max_count=None,
                            cookie=None,
                            consumer_id_list=None,
+                           consumer_entity_id_list=None,
                            view_boxes_id_list=None,
-                           organizations_id_list=None):
+                           organizations_id_list=None,
+                           tenant_ids=None):
         """Does a GET request to /public/stats/consumers.
 
         Gets the statistics of consumers.
@@ -132,10 +137,19 @@ class StatsController(BaseController):
                 is not set, first set of active opens are returned.
             consumer_id_list (list of long|int, optional): Specifies a list of
                 consumer ids.
+            consumer_entity_id_list (list of string, optional): Specifies a
+                list of consumer entity ids. If this field is specified, each
+                entity id must corresponds to the id in 'ConsumerIdList' in
+                the same index, and the length of 'ConsumerEntityIdList' and
+                'ConsumerIdList' must be the same.
             view_boxes_id_list (list of long|int, optional): Specifies a list
                 of view boxes (storage domain) id.
             organizations_id_list (list of string, optional): Specifies a list
                 of organizations (tenant) id.
+            tenant_ids (list of string, optional): Specifies a list of
+                organizations (tenant) id. This field is added to allow
+                tenantIds json tag. This list will be concatenated with
+                TenantsIdList to form full list of tenantsIdList.
 
         Returns:
             GetConsumerStatsResult: Response from the API. Success
@@ -160,24 +174,27 @@ class StatsController(BaseController):
                 'maxCount': max_count,
                 'cookie': cookie,
                 'consumerIdList': consumer_id_list,
+                'consumerEntityIdList': consumer_entity_id_list,
                 'viewBoxesIdList': view_boxes_id_list,
-                'organizationsIdList': organizations_id_list
+                'organizationsIdList': organizations_id_list,
+                'tenantIds': tenant_ids
             }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
             self.logger.info('Preparing headers for get_consumer_stats.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_consumer_stats.')
+            self.logger.info(
+                'Preparing and executing request for get_consumer_stats.')
             _request = self.http_client.get(_query_url, headers=_headers)
             AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_consumer_stats')
+            _context = self.execute_request(_request,
+                                            name='get_consumer_stats')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_consumer_stats.')
@@ -186,14 +203,15 @@ class StatsController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, GetConsumerStatsResult.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                GetConsumerStatsResult.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
+            self.logger.error(e, exc_info=True)
+            raise APIException(e.message, None)
 
-    def get_file_distribution_stats(self,
-                                    entity_type):
+    def get_file_distribution_stats(self, entity_type):
         """Does a GET request to /public/stats/files.
 
         Compute the file distribution statistics on a given entity like
@@ -218,49 +236,54 @@ class StatsController(BaseController):
             self.logger.info('get_file_distribution_stats called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for get_file_distribution_stats.')
+            self.logger.info(
+                'Validating required parameters for get_file_distribution_stats.'
+            )
             self.validate_parameters(entity_type=entity_type)
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for get_file_distribution_stats.')
+            self.logger.info(
+                'Preparing query URL for get_file_distribution_stats.')
             _url_path = '/public/stats/files'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
-            _query_parameters = {
-                'entityType': entity_type
-            }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
+            _query_parameters = {'entityType': entity_type}
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for get_file_distribution_stats.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            self.logger.info(
+                'Preparing headers for get_file_distribution_stats.')
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_file_distribution_stats.')
+            self.logger.info(
+                'Preparing and executing request for get_file_distribution_stats.'
+            )
             _request = self.http_client.get(_query_url, headers=_headers)
             AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_file_distribution_stats')
+            _context = self.execute_request(_request,
+                                            name='get_file_distribution_stats')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for get_file_distribution_stats.')
+            self.logger.info(
+                'Validating response for get_file_distribution_stats.')
             if _context.response.status_code == 0:
-                raise RequestErrorErrorException('Error', _context)
+                raise RequestErrorErrorException(Error, _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, FileDistributionStats.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                FileDistributionStats.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
+            self.logger.error(e, exc_info=True)
+            raise APIException(e.message, None)
 
-    def get_protection_runs_stats(self,
-                                  status,
-                                  start_time_usecs,
+    def get_protection_runs_stats(self, status, start_time_usecs,
                                   end_time_usecs):
         """Does a GET request to /public/stats/protectionRuns.
 
@@ -292,13 +315,16 @@ class StatsController(BaseController):
             self.logger.info('get_protection_runs_stats called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for get_protection_runs_stats.')
+            self.logger.info(
+                'Validating required parameters for get_protection_runs_stats.'
+            )
             self.validate_parameters(status=status,
                                      start_time_usecs=start_time_usecs,
                                      end_time_usecs=end_time_usecs)
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for get_protection_runs_stats.')
+            self.logger.info(
+                'Preparing query URL for get_protection_runs_stats.')
             _url_path = '/public/stats/protectionRuns'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
@@ -307,34 +333,40 @@ class StatsController(BaseController):
                 'startTimeUsecs': start_time_usecs,
                 'endTimeUsecs': end_time_usecs
             }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for get_protection_runs_stats.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            self.logger.info(
+                'Preparing headers for get_protection_runs_stats.')
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_protection_runs_stats.')
+            self.logger.info(
+                'Preparing and executing request for get_protection_runs_stats.'
+            )
             _request = self.http_client.get(_query_url, headers=_headers)
             AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_protection_runs_stats')
+            _context = self.execute_request(_request,
+                                            name='get_protection_runs_stats')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for get_protection_runs_stats.')
+            self.logger.info(
+                'Validating response for get_protection_runs_stats.')
             if _context.response.status_code == 0:
-                raise RequestErrorErrorException('Error', _context)
+                raise RequestErrorErrorException(Error, _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ProtectionRunsStats.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                ProtectionRunsStats.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
+            self.logger.error(e, exc_info=True)
+            raise APIException(e.message, None)
 
     def get_last_protection_run_stats(self):
         """Does a GET request to /public/stats/protectionRuns/lastRun.
@@ -355,39 +387,44 @@ class StatsController(BaseController):
             self.logger.info('get_last_protection_run_stats called.')
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for get_last_protection_run_stats.')
+            self.logger.info(
+                'Preparing query URL for get_last_protection_run_stats.')
             _url_path = '/public/stats/protectionRuns/lastRun'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for get_last_protection_run_stats.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            self.logger.info(
+                'Preparing headers for get_last_protection_run_stats.')
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_last_protection_run_stats.')
+            self.logger.info(
+                'Preparing and executing request for get_last_protection_run_stats.'
+            )
             _request = self.http_client.get(_query_url, headers=_headers)
             AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_last_protection_run_stats')
+            _context = self.execute_request(
+                _request, name='get_last_protection_run_stats')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for get_last_protection_run_stats.')
+            self.logger.info(
+                'Validating response for get_last_protection_run_stats.')
             if _context.response.status_code == 0:
-                raise RequestErrorErrorException('Error', _context)
+                raise RequestErrorErrorException(Error, _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, LastProtectionRunStats.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                LastProtectionRunStats.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
+            self.logger.error(e, exc_info=True)
+            raise APIException(e.message, None)
 
-    def get_protected_objects_summary(self,
-                                      exclude_types=None):
+    def get_protected_objects_summary(self, exclude_types=None):
         """Does a GET request to /public/stats/protectionSummary.
 
         Computes the protected objects summary on the cluster.
@@ -410,45 +447,48 @@ class StatsController(BaseController):
             self.logger.info('get_protected_objects_summary called.')
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for get_protected_objects_summary.')
+            self.logger.info(
+                'Preparing query URL for get_protected_objects_summary.')
             _url_path = '/public/stats/protectionSummary'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
-            _query_parameters = {
-                'excludeTypes': exclude_types
-            }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
+            _query_parameters = {'excludeTypes': exclude_types}
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for get_protected_objects_summary.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            self.logger.info(
+                'Preparing headers for get_protected_objects_summary.')
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_protected_objects_summary.')
+            self.logger.info(
+                'Preparing and executing request for get_protected_objects_summary.'
+            )
             _request = self.http_client.get(_query_url, headers=_headers)
             AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_protected_objects_summary')
+            _context = self.execute_request(
+                _request, name='get_protected_objects_summary')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for get_protected_objects_summary.')
+            self.logger.info(
+                'Validating response for get_protected_objects_summary.')
             if _context.response.status_code == 0:
-                raise RequestErrorErrorException('Error', _context)
+                raise RequestErrorErrorException(Error, _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ProtectedObjectsSummary.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                ProtectedObjectsSummary.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
+            self.logger.error(e, exc_info=True)
+            raise APIException(e.message, None)
 
-    def get_restore_stats(self,
-                          start_time_usecs,
-                          end_time_usecs):
+    def get_restore_stats(self, start_time_usecs, end_time_usecs):
         """Does a GET request to /public/stats/restores.
 
         Compute the statistics on the Restore tasks on the cluster based on
@@ -475,7 +515,8 @@ class StatsController(BaseController):
             self.logger.info('get_restore_stats called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for get_restore_stats.')
+            self.logger.info(
+                'Validating required parameters for get_restore_stats.')
             self.validate_parameters(start_time_usecs=start_time_usecs,
                                      end_time_usecs=end_time_usecs)
 
@@ -488,34 +529,35 @@ class StatsController(BaseController):
                 'startTimeUsecs': start_time_usecs,
                 'endTimeUsecs': end_time_usecs
             }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
             self.logger.info('Preparing headers for get_restore_stats.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_restore_stats.')
+            self.logger.info(
+                'Preparing and executing request for get_restore_stats.')
             _request = self.http_client.get(_query_url, headers=_headers)
             AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_restore_stats')
+            _context = self.execute_request(_request, name='get_restore_stats')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_restore_stats.')
             if _context.response.status_code == 0:
-                raise RequestErrorErrorException('Error', _context)
+                raise RequestErrorErrorException(Error, _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, RestoreStats.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              RestoreStats.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
+            self.logger.error(e, exc_info=True)
+            raise APIException(e.message, None)
 
     def get_storage_stats(self):
         """Does a GET request to /public/stats/storage.
@@ -544,35 +586,38 @@ class StatsController(BaseController):
 
             # Prepare headers
             self.logger.info('Preparing headers for get_storage_stats.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_storage_stats.')
+            self.logger.info(
+                'Preparing and executing request for get_storage_stats.')
             _request = self.http_client.get(_query_url, headers=_headers)
             AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_storage_stats')
+            _context = self.execute_request(_request, name='get_storage_stats')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_storage_stats.')
             if _context.response.status_code == 0:
-                raise RequestErrorErrorException('Error', _context)
+                raise RequestErrorErrorException(Error, _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, StorageStats.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              StorageStats.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
+            self.logger.error(e, exc_info=True)
+            raise APIException(e.message, None)
 
     def get_tenant_stats(self,
                          consumer_type=None,
+                         skip_group_by_tenant=None,
                          max_count=None,
                          cookie=None,
+                         output_format=None,
                          view_boxes_id_list=None,
-                         organizations_id_list=None):
+                         organizations_id_list=None,
+                         tenant_ids=None):
         """Does a GET request to /public/stats/tenants.
 
         Gets the statistics of organizations (tenant).
@@ -587,16 +632,28 @@ class StatsController(BaseController):
                 (storage domain). 'kReplicationRuns', indicates the stats info
                 of Replication In used per organization (tenant) per view box
                 (storage domain).
+            skip_group_by_tenant (bool, optional): Specifies if we should skip
+                grouping by tenant. If false, and tenant has multiple storage
+                domains, then the stats for the stroage domains will be
+                aggregated. If true, then the response will return each
+                storage domain cross tenant independantly.
             max_count (long|int, optional): Specifies a limit on the number of
                 stats groups returned.
             cookie (string, optional): Specifies the opaque string returned in
                 the previous response. If this is set, next set of active
                 opens just after the previous response are returned. If this
                 is not set, first set of active opens are returned.
+            output_format (string, optional): Specifies what format to return
+                the data in. Defaults to proto, but can select other options
+                like csv.
             view_boxes_id_list (list of long|int, optional): Specifies a list
                 of view boxes (storage domain) id.
             organizations_id_list (list of string, optional): Specifies a list
                 of organizations (tenant) id.
+            tenant_ids (list of string, optional): Specifies a list of
+                organizations (tenant) id. This field is added to allow
+                tenantIds json tag. This list will be concatenated with
+                TenantsIdList to form full list of tenantsIdList.
 
         Returns:
             GetTenantStatsResult: Response from the API. Success
@@ -618,26 +675,29 @@ class StatsController(BaseController):
             _query_builder += _url_path
             _query_parameters = {
                 'consumerType': consumer_type,
+                'skipGroupByTenant': skip_group_by_tenant,
                 'maxCount': max_count,
                 'cookie': cookie,
+                'outputFormat': output_format,
                 'viewBoxesIdList': view_boxes_id_list,
-                'organizationsIdList': organizations_id_list
+                'organizationsIdList': organizations_id_list,
+                'tenantIds': tenant_ids
             }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
             self.logger.info('Preparing headers for get_tenant_stats.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_tenant_stats.')
+            self.logger.info(
+                'Preparing and executing request for get_tenant_stats.')
             _request = self.http_client.get(_query_url, headers=_headers)
             AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_tenant_stats')
+            _context = self.execute_request(_request, name='get_tenant_stats')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_tenant_stats.')
@@ -646,11 +706,13 @@ class StatsController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, GetTenantStatsResult.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                GetTenantStatsResult.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
+            self.logger.error(e, exc_info=True)
+            raise APIException(e.message, None)
 
     def get_vault_stats(self):
         """Does a GET request to /public/stats/vaults.
@@ -679,31 +741,30 @@ class StatsController(BaseController):
 
             # Prepare headers
             self.logger.info('Preparing headers for get_vault_stats.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_vault_stats.')
+            self.logger.info(
+                'Preparing and executing request for get_vault_stats.')
             _request = self.http_client.get(_query_url, headers=_headers)
             AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_vault_stats')
+            _context = self.execute_request(_request, name='get_vault_stats')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_vault_stats.')
             if _context.response.status_code == 0:
-                raise RequestErrorErrorException('Error', _context)
+                raise RequestErrorErrorException(Error, _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, VaultStats.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              VaultStats.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
+            self.logger.error(e, exc_info=True)
+            raise APIException(e.message, None)
 
-    def get_vault_provider_stats(self,
-                                 run_type):
+    def get_vault_provider_stats(self, run_type):
         """Does a GET request to /public/stats/vaults/providers.
 
         Compute the size and count of entities on vaults.
@@ -726,50 +787,52 @@ class StatsController(BaseController):
             self.logger.info('get_vault_provider_stats called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for get_vault_provider_stats.')
+            self.logger.info(
+                'Validating required parameters for get_vault_provider_stats.')
             self.validate_parameters(run_type=run_type)
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for get_vault_provider_stats.')
+            self.logger.info(
+                'Preparing query URL for get_vault_provider_stats.')
             _url_path = '/public/stats/vaults/providers'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
-            _query_parameters = {
-                'runType': run_type
-            }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
+            _query_parameters = {'runType': run_type}
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
             self.logger.info('Preparing headers for get_vault_provider_stats.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_vault_provider_stats.')
+            self.logger.info(
+                'Preparing and executing request for get_vault_provider_stats.'
+            )
             _request = self.http_client.get(_query_url, headers=_headers)
             AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_vault_provider_stats')
+            _context = self.execute_request(_request,
+                                            name='get_vault_provider_stats')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for get_vault_provider_stats.')
+            self.logger.info(
+                'Validating response for get_vault_provider_stats.')
             if _context.response.status_code == 0:
-                raise RequestErrorErrorException('Error', _context)
+                raise RequestErrorErrorException(Error, _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, VaultProviderStatsInfo.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                VaultProviderStatsInfo.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
+            self.logger.error(e, exc_info=True)
+            raise APIException(e.message, None)
 
-    def get_vault_run_stats(self,
-                            run_type,
-                            start_time_usecs,
-                            end_time_usecs,
+    def get_vault_run_stats(self, run_type, start_time_usecs, end_time_usecs,
                             interval):
         """Does a GET request to /public/stats/vaults/runs.
 
@@ -801,7 +864,8 @@ class StatsController(BaseController):
             self.logger.info('get_vault_run_stats called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for get_vault_run_stats.')
+            self.logger.info(
+                'Validating required parameters for get_vault_run_stats.')
             self.validate_parameters(run_type=run_type,
                                      start_time_usecs=start_time_usecs,
                                      end_time_usecs=end_time_usecs,
@@ -818,38 +882,42 @@ class StatsController(BaseController):
                 'endTimeUsecs': end_time_usecs,
                 'interval': interval
             }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
             self.logger.info('Preparing headers for get_vault_run_stats.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_vault_run_stats.')
+            self.logger.info(
+                'Preparing and executing request for get_vault_run_stats.')
             _request = self.http_client.get(_query_url, headers=_headers)
             AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_vault_run_stats')
+            _context = self.execute_request(_request,
+                                            name='get_vault_run_stats')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_vault_run_stats.')
             if _context.response.status_code == 0:
-                raise RequestErrorErrorException('Error', _context)
+                raise RequestErrorErrorException(Error, _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, VaultRunStatsSummary.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                VaultRunStatsSummary.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
+            self.logger.error(e, exc_info=True)
+            raise APIException(e.message, None)
 
     def get_view_box_stats(self,
                            view_boxes_id_list=None,
-                           organizations_id_list=None):
+                           organizations_id_list=None,
+                           tenant_ids=None):
         """Does a GET request to /public/stats/viewBoxes.
 
         Gets the statistics of view boxes (storage domain).
@@ -859,6 +927,10 @@ class StatsController(BaseController):
                 of view boxes (storage domain) id.
             organizations_id_list (list of string, optional): Specifies a list
                 of organizations (tenant) id.
+            tenant_ids (list of string, optional): Specifies a list of
+                organizations (tenant) id. This field is added to allow
+                tenantIds json tag. This list will be concatenated with
+                TenantsIdList to form full list of tenantsIdList.
 
         Returns:
             GetViewBoxStatsResult: Response from the API. Success
@@ -880,23 +952,25 @@ class StatsController(BaseController):
             _query_builder += _url_path
             _query_parameters = {
                 'viewBoxesIdList': view_boxes_id_list,
-                'organizationsIdList': organizations_id_list
+                'organizationsIdList': organizations_id_list,
+                'tenantIds': tenant_ids
             }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
             self.logger.info('Preparing headers for get_view_box_stats.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_view_box_stats.')
+            self.logger.info(
+                'Preparing and executing request for get_view_box_stats.')
             _request = self.http_client.get(_query_url, headers=_headers)
             AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_view_box_stats')
+            _context = self.execute_request(_request,
+                                            name='get_view_box_stats')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_view_box_stats.')
@@ -905,15 +979,15 @@ class StatsController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, GetViewBoxStatsResult.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                GetViewBoxStatsResult.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
+            self.logger.error(e, exc_info=True)
+            raise APIException(e.message, None)
 
-    def get_view_stats(self,
-                       metric=None,
-                       num_top_views=None):
+    def get_view_stats(self, metric=None, num_top_views=None):
         """Does a GET request to /public/stats/views.
 
         Compute the statistics on Views.
@@ -950,34 +1024,35 @@ class StatsController(BaseController):
                 'metric': metric,
                 'numTopViews': num_top_views
             }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
             self.logger.info('Preparing headers for get_view_stats.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_view_stats.')
+            self.logger.info(
+                'Preparing and executing request for get_view_stats.')
             _request = self.http_client.get(_query_url, headers=_headers)
             AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_view_stats')
+            _context = self.execute_request(_request, name='get_view_stats')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_view_stats.')
             if _context.response.status_code == 0:
-                raise RequestErrorErrorException('Error', _context)
+                raise RequestErrorErrorException(Error, _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ViewStatsSnapshot.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body, ViewStatsSnapshot.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
+            self.logger.error(e, exc_info=True)
+            raise APIException(e.message, None)
 
     def get_view_protocol_stats(self):
         """Does a GET request to /public/stats/views/protocols.
@@ -998,7 +1073,8 @@ class StatsController(BaseController):
             self.logger.info('get_view_protocol_stats called.')
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for get_view_protocol_stats.')
+            self.logger.info(
+                'Preparing query URL for get_view_protocol_stats.')
             _url_path = '/public/stats/views/protocols'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
@@ -1006,25 +1082,27 @@ class StatsController(BaseController):
 
             # Prepare headers
             self.logger.info('Preparing headers for get_view_protocol_stats.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_view_protocol_stats.')
+            self.logger.info(
+                'Preparing and executing request for get_view_protocol_stats.')
             _request = self.http_client.get(_query_url, headers=_headers)
             AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_view_protocol_stats')
+            _context = self.execute_request(_request,
+                                            name='get_view_protocol_stats')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for get_view_protocol_stats.')
+            self.logger.info(
+                'Validating response for get_view_protocol_stats.')
             if _context.response.status_code == 0:
-                raise RequestErrorErrorException('Error', _context)
+                raise RequestErrorErrorException(Error, _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ViewProtocolStats.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body, ViewProtocolStats.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
-            raise
+            self.logger.error(e, exc_info=True)
+            raise APIException(e.message, None)

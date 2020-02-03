@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.ad_restore_status
 import cohesity_management_sdk.models.ad_update_restore_task_options
@@ -26,6 +26,9 @@ class RestoreADAppObjectParams(object):
             running. Includes both AD object and attribute recoveries.
         num_successfull (int): Number of AD objects restored successfully.
             Includes both AD object and attribute restored.
+        should_mount_and_restore (bool): The following field is set if user
+            wants to mount AD, restore AD objects and destory AD mount in
+            single task.
 
     """
 
@@ -37,7 +40,8 @@ class RestoreADAppObjectParams(object):
         "ldap_port":'ldapPort',
         "num_failed":'numFailed',
         "num_running":'numRunning',
-        "num_successfull":'numSuccessfull'
+        "num_successfull":'numSuccessfull',
+        "should_mount_and_restore":'shouldMountAndRestore'
     }
 
     def __init__(self,
@@ -47,7 +51,8 @@ class RestoreADAppObjectParams(object):
                  ldap_port=None,
                  num_failed=None,
                  num_running=None,
-                 num_successfull=None):
+                 num_successfull=None,
+                 should_mount_and_restore=None):
         """Constructor for the RestoreADAppObjectParams class"""
 
         # Initialize members of the class
@@ -58,6 +63,7 @@ class RestoreADAppObjectParams(object):
         self.num_failed = num_failed
         self.num_running = num_running
         self.num_successfull = num_successfull
+        self.should_mount_and_restore = should_mount_and_restore
 
 
     @classmethod
@@ -89,6 +95,7 @@ class RestoreADAppObjectParams(object):
         num_failed = dictionary.get('numFailed')
         num_running = dictionary.get('numRunning')
         num_successfull = dictionary.get('numSuccessfull')
+        should_mount_and_restore = dictionary.get('shouldMountAndRestore')
 
         # Return an object of this model
         return cls(ad_restore_status_vec,
@@ -97,6 +104,7 @@ class RestoreADAppObjectParams(object):
                    ldap_port,
                    num_failed,
                    num_running,
-                   num_successfull)
+                   num_successfull,
+                   should_mount_and_restore)
 
 

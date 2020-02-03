@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 class ObjectClassEnum(object):
 
@@ -9,11 +9,13 @@ class ObjectClassEnum(object):
     'kUser' specifies a user object class.
     'kGroup' specifies a group object class.
     'kComputer' specifies a computer object class.
+    'kWellKnownPrincipal' specifies a well known principal.
 
     Attributes:
         KUSER: TODO: type description here.
         KGROUP: TODO: type description here.
         KCOMPUTER: TODO: type description here.
+        KWELLKNOWNPRINCIPAL: TODO: type description here.
 
     """
 
@@ -22,4 +24,6 @@ class ObjectClassEnum(object):
     KGROUP = 'kGroup'
 
     KCOMPUTER = 'kComputer'
+
+    KWELLKNOWNPRINCIPAL = 'kWellKnownPrincipal'
 

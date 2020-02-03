@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.archival_external_target
 
@@ -12,6 +12,8 @@ class SnapshotArchivalCopyPolicy(object):
     Snapshots after they have been copied to the specified target.
 
     Attributes:
+        id (string): Specified the Id for a snapshot copy policy. Thsi is
+            generated when the policy is created.
         copy_partial (bool): Specifies if Snapshots are copied from the first
             completely successful Job Run or the first partially successful
             Job Run occurring at the start of the replication schedule. If
@@ -48,6 +50,7 @@ class SnapshotArchivalCopyPolicy(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "id":'Id',
         "copy_partial":'copyPartial',
         "days_to_keep":'daysToKeep',
         "multiplier":'multiplier',
@@ -56,6 +59,7 @@ class SnapshotArchivalCopyPolicy(object):
     }
 
     def __init__(self,
+                 id=None,
                  copy_partial=None,
                  days_to_keep=None,
                  multiplier=None,
@@ -64,6 +68,7 @@ class SnapshotArchivalCopyPolicy(object):
         """Constructor for the SnapshotArchivalCopyPolicy class"""
 
         # Initialize members of the class
+        self.id = id
         self.copy_partial = copy_partial
         self.days_to_keep = days_to_keep
         self.multiplier = multiplier
@@ -89,6 +94,7 @@ class SnapshotArchivalCopyPolicy(object):
             return None
 
         # Extract variables from the dictionary
+        id = dictionary.get('Id')
         copy_partial = dictionary.get('copyPartial')
         days_to_keep = dictionary.get('daysToKeep')
         multiplier = dictionary.get('multiplier')
@@ -96,7 +102,8 @@ class SnapshotArchivalCopyPolicy(object):
         target = cohesity_management_sdk.models.archival_external_target.ArchivalExternalTarget.from_dictionary(dictionary.get('target')) if dictionary.get('target') else None
 
         # Return an object of this model
-        return cls(copy_partial,
+        return cls(id,
+                   copy_partial,
                    days_to_keep,
                    multiplier,
                    periodicity,

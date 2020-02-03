@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
+import cohesity_management_sdk.models.restore_files_params_directory_name_security_style_map_entry
 import cohesity_management_sdk.models.entity_proto
 import cohesity_management_sdk.models.restore_files_preferences
 import cohesity_management_sdk.models.restored_file_info
@@ -15,6 +16,13 @@ class RestoreFilesParams(object):
     restore files to the source.
 
     Attributes:
+        directory_name_security_style_map (list of
+            RestoreFilesParamsDirectoryNameSecurityStyleMapEntry): Directory
+            name security style map contains mapping of the directory name to
+            security style it supports.  This is needed to restore the same
+            permission for the given directory for Qtrees.
+        is_archive_flr (bool): Whether this is a file restore operation from
+            an archive.
         is_file_volume_restore (bool): Whether this is a file based volume
             restore.
         is_mount_based_flr (bool): Whether this is a mount based file restore
@@ -43,11 +51,15 @@ class RestoreFilesParams(object):
             VMware environment to indicate the OS type of the target entity.
             NOTE: This is expected to be set since magneto does not know the
             host type for VMware entities.
+        vpc_connector_entity (EntityProto): Specifies the attributes and the
+            latest statistics about an entity.
 
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "directory_name_security_style_map":'directoryNameSecurityStyleMap',
+        "is_archive_flr":'isArchiveFlr',
         "is_file_volume_restore":'isFileVolumeRestore',
         "is_mount_based_flr":'isMountBasedFlr',
         "nas_protocol_type_vec":'nasProtocolTypeVec',
@@ -59,10 +71,13 @@ class RestoreFilesParams(object):
         "target_entity_credentials":'targetEntityCredentials',
         "target_entity_parent_source":'targetEntityParentSource',
         "target_host_entity":'targetHostEntity',
-        "target_host_type":'targetHostType'
+        "target_host_type":'targetHostType',
+        "vpc_connector_entity":'vpcConnectorEntity'
     }
 
     def __init__(self,
+                 directory_name_security_style_map=None,
+                 is_archive_flr=None,
                  is_file_volume_restore=None,
                  is_mount_based_flr=None,
                  nas_protocol_type_vec=None,
@@ -74,10 +89,13 @@ class RestoreFilesParams(object):
                  target_entity_credentials=None,
                  target_entity_parent_source=None,
                  target_host_entity=None,
-                 target_host_type=None):
+                 target_host_type=None,
+                 vpc_connector_entity=None):
         """Constructor for the RestoreFilesParams class"""
 
         # Initialize members of the class
+        self.directory_name_security_style_map = directory_name_security_style_map
+        self.is_archive_flr = is_archive_flr
         self.is_file_volume_restore = is_file_volume_restore
         self.is_mount_based_flr = is_mount_based_flr
         self.nas_protocol_type_vec = nas_protocol_type_vec
@@ -90,6 +108,7 @@ class RestoreFilesParams(object):
         self.target_entity_parent_source = target_entity_parent_source
         self.target_host_entity = target_host_entity
         self.target_host_type = target_host_type
+        self.vpc_connector_entity = vpc_connector_entity
 
 
     @classmethod
@@ -110,6 +129,12 @@ class RestoreFilesParams(object):
             return None
 
         # Extract variables from the dictionary
+        directory_name_security_style_map = None
+        if dictionary.get('directoryNameSecurityStyleMap') != None:
+            directory_name_security_style_map = list()
+            for structure in dictionary.get('directoryNameSecurityStyleMap'):
+                directory_name_security_style_map.append(cohesity_management_sdk.models.restore_files_params_directory_name_security_style_map_entry.RestoreFilesParamsDirectoryNameSecurityStyleMapEntry.from_dictionary(structure))
+        is_archive_flr = dictionary.get('isArchiveFlr')
         is_file_volume_restore = dictionary.get('isFileVolumeRestore')
         is_mount_based_flr = dictionary.get('isMountBasedFlr')
         nas_protocol_type_vec = dictionary.get('nasProtocolTypeVec')
@@ -126,9 +151,12 @@ class RestoreFilesParams(object):
         target_entity_parent_source = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('targetEntityParentSource')) if dictionary.get('targetEntityParentSource') else None
         target_host_entity = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('targetHostEntity')) if dictionary.get('targetHostEntity') else None
         target_host_type = dictionary.get('targetHostType')
+        vpc_connector_entity = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('vpcConnectorEntity')) if dictionary.get('vpcConnectorEntity') else None
 
         # Return an object of this model
-        return cls(is_file_volume_restore,
+        return cls(directory_name_security_style_map,
+                   is_archive_flr,
+                   is_file_volume_restore,
                    is_mount_based_flr,
                    nas_protocol_type_vec,
                    proxy_entity,
@@ -139,6 +167,7 @@ class RestoreFilesParams(object):
                    target_entity_credentials,
                    target_entity_parent_source,
                    target_host_entity,
-                   target_host_type)
+                   target_host_type,
+                   vpc_connector_entity)
 
 

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 class EnvironmentGetProtectionJobsEnum(object):
 
@@ -15,12 +15,14 @@ class EnvironmentGetProtectionJobsEnum(object):
         KPUPPETEER: TODO: type description here.
         KPHYSICAL: TODO: type description here.
         KPURE: TODO: type description here.
+        KNIMBLE: TODO: type description here.
         KAZURE: TODO: type description here.
         KNETAPP: TODO: type description here.
         KGENERICNAS: TODO: type description here.
         KACROPOLIS: TODO: type description here.
         KPHYSICALFILES: TODO: type description here.
         KISILON: TODO: type description here.
+        KGPFS: TODO: type description here.
         KKVM: TODO: type description here.
         KAWS: TODO: type description here.
         KEXCHANGE: TODO: type description here.
@@ -34,6 +36,8 @@ class EnvironmentGetProtectionJobsEnum(object):
         KO365OUTLOOK: TODO: type description here.
         KHYPERFLEX: TODO: type description here.
         KGCPNATIVE: TODO: type description here.
+        KKUBERNETES: TODO: type description here.
+        KELASTIFILE: TODO: type description here.
 
     """
 
@@ -51,6 +55,8 @@ class EnvironmentGetProtectionJobsEnum(object):
 
     KPURE = 'kPure'
 
+    KNIMBLE = 'kNimble'
+
     KAZURE = 'kAzure'
 
     KNETAPP = 'kNetapp'
@@ -62,6 +68,8 @@ class EnvironmentGetProtectionJobsEnum(object):
     KPHYSICALFILES = 'kPhysicalFiles'
 
     KISILON = 'kIsilon'
+
+    KGPFS = 'kGPFS'
 
     KKVM = 'kKVM'
 
@@ -88,4 +96,8 @@ class EnvironmentGetProtectionJobsEnum(object):
     KHYPERFLEX = 'kHyperFlex'
 
     KGCPNATIVE = 'kGCPNative'
+
+    KKUBERNETES = 'kKubernetes'
+
+    KELASTIFILE = 'kElastifile'
 

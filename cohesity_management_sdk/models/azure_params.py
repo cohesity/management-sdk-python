@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 
 class AzureParams(object):
@@ -38,6 +38,16 @@ class AzureParams(object):
             group for the selected storage account.
         subnet_id (long|int): Specifies Id of the subnet within the above
             virtual network.
+        temp_vm_resource_group_id (long|int): Specifies the resource group
+            where temporary VM needs to be created.
+        temp_vm_storage_account_id (long|int): Specifies the Storage account
+            where temporary VM needs to be created.
+        temp_vm_storage_container_id (long|int): Specifies the Storage
+            container where temporary VM needs to be created.
+        temp_vm_subnet_id (long|int): Specifies the Subnet where temporary VM
+            needs to be created.
+        temp_vm_virtual_network_id (long|int): Specifies the Virtual network
+            where temporary VM needs to be created.
         virtual_network_id (long|int): Specifies Id of the Virtual Network.
 
     """
@@ -53,6 +63,11 @@ class AzureParams(object):
         "storage_container":'storageContainer',
         "storage_resource_group_id":'storageResourceGroupId',
         "subnet_id":'subnetId',
+        "temp_vm_resource_group_id":'tempVmResourceGroupId',
+        "temp_vm_storage_account_id":'tempVmStorageAccountId',
+        "temp_vm_storage_container_id":'tempVmStorageContainerId',
+        "temp_vm_subnet_id":'tempVmSubnetId',
+        "temp_vm_virtual_network_id":'tempVmVirtualNetworkId',
         "virtual_network_id":'virtualNetworkId'
     }
 
@@ -66,6 +81,11 @@ class AzureParams(object):
                  storage_container=None,
                  storage_resource_group_id=None,
                  subnet_id=None,
+                 temp_vm_resource_group_id=None,
+                 temp_vm_storage_account_id=None,
+                 temp_vm_storage_container_id=None,
+                 temp_vm_subnet_id=None,
+                 temp_vm_virtual_network_id=None,
                  virtual_network_id=None):
         """Constructor for the AzureParams class"""
 
@@ -79,6 +99,11 @@ class AzureParams(object):
         self.storage_container = storage_container
         self.storage_resource_group_id = storage_resource_group_id
         self.subnet_id = subnet_id
+        self.temp_vm_resource_group_id = temp_vm_resource_group_id
+        self.temp_vm_storage_account_id = temp_vm_storage_account_id
+        self.temp_vm_storage_container_id = temp_vm_storage_container_id
+        self.temp_vm_subnet_id = temp_vm_subnet_id
+        self.temp_vm_virtual_network_id = temp_vm_virtual_network_id
         self.virtual_network_id = virtual_network_id
 
 
@@ -109,6 +134,11 @@ class AzureParams(object):
         storage_container = dictionary.get('storageContainer')
         storage_resource_group_id = dictionary.get('storageResourceGroupId')
         subnet_id = dictionary.get('subnetId')
+        temp_vm_resource_group_id = dictionary.get('tempVmResourceGroupId')
+        temp_vm_storage_account_id = dictionary.get('tempVmStorageAccountId')
+        temp_vm_storage_container_id = dictionary.get('tempVmStorageContainerId')
+        temp_vm_subnet_id = dictionary.get('tempVmSubnetId')
+        temp_vm_virtual_network_id = dictionary.get('tempVmVirtualNetworkId')
         virtual_network_id = dictionary.get('virtualNetworkId')
 
         # Return an object of this model
@@ -121,6 +151,11 @@ class AzureParams(object):
                    storage_container,
                    storage_resource_group_id,
                    subnet_id,
+                   temp_vm_resource_group_id,
+                   temp_vm_storage_account_id,
+                   temp_vm_storage_container_id,
+                   temp_vm_subnet_id,
+                   temp_vm_virtual_network_id,
                    virtual_network_id)
 
 

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.file_path_filter
 
@@ -45,6 +45,8 @@ class DataMigrationJobParameters(object):
             'kGreaterThan': Migrate the files whose size are greater than
             specified file size. 'kSmallerThan': Migrate the files whose size
             are smaller than specified file size.
+        nfs_mount_path (string): Mount path where the target view must be
+            mounted on all NFS clients for accessing the migrated data.
         target_view_name (string): The target view name to which the data will
             be migrated.
 
@@ -57,6 +59,7 @@ class DataMigrationJobParameters(object):
         "file_selection_policy":'fileSelectionPolicy',
         "file_size_bytes":'fileSizeBytes',
         "file_size_policy":'fileSizePolicy',
+        "nfs_mount_path":'nfsMountPath',
         "target_view_name":'targetViewName'
     }
 
@@ -66,6 +69,7 @@ class DataMigrationJobParameters(object):
                  file_selection_policy=None,
                  file_size_bytes=None,
                  file_size_policy=None,
+                 nfs_mount_path=None,
                  target_view_name=None):
         """Constructor for the DataMigrationJobParameters class"""
 
@@ -75,6 +79,7 @@ class DataMigrationJobParameters(object):
         self.file_selection_policy = file_selection_policy
         self.file_size_bytes = file_size_bytes
         self.file_size_policy = file_size_policy
+        self.nfs_mount_path = nfs_mount_path
         self.target_view_name = target_view_name
 
 
@@ -101,6 +106,7 @@ class DataMigrationJobParameters(object):
         file_selection_policy = dictionary.get('fileSelectionPolicy')
         file_size_bytes = dictionary.get('fileSizeBytes')
         file_size_policy = dictionary.get('fileSizePolicy')
+        nfs_mount_path = dictionary.get('nfsMountPath')
         target_view_name = dictionary.get('targetViewName')
 
         # Return an object of this model
@@ -109,6 +115,7 @@ class DataMigrationJobParameters(object):
                    file_selection_policy,
                    file_size_bytes,
                    file_size_policy,
+                   nfs_mount_path,
                    target_view_name)
 
 

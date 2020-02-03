@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.volume_info_disk_info
 import cohesity_management_sdk.models.volume_info_logical_volume_info
@@ -15,6 +15,7 @@ class VolumeInfo(object):
             and partitions needed to mount this logical volume.
         display_name (string): Display name.
         filesystem_type (string): Filesystem on this volume.
+        fs_label (string): Filesystem label.
         fs_uuid (string): Filesystem uuid.
         is_bootable (bool): Is this volume bootable?
         is_dedup (bool): Is this a dedup volume? Currently, set to true only
@@ -34,6 +35,7 @@ class VolumeInfo(object):
         "disk_vec":'diskVec',
         "display_name":'displayName',
         "filesystem_type":'filesystemType',
+        "fs_label":'fsLabel',
         "fs_uuid":'fsUuid',
         "is_bootable":'isBootable',
         "is_dedup":'isDedup',
@@ -47,6 +49,7 @@ class VolumeInfo(object):
                  disk_vec=None,
                  display_name=None,
                  filesystem_type=None,
+                 fs_label=None,
                  fs_uuid=None,
                  is_bootable=None,
                  is_dedup=None,
@@ -60,6 +63,7 @@ class VolumeInfo(object):
         self.disk_vec = disk_vec
         self.display_name = display_name
         self.filesystem_type = filesystem_type
+        self.fs_label = fs_label
         self.fs_uuid = fs_uuid
         self.is_bootable = is_bootable
         self.is_dedup = is_dedup
@@ -94,6 +98,7 @@ class VolumeInfo(object):
                 disk_vec.append(cohesity_management_sdk.models.volume_info_disk_info.VolumeInfoDiskInfo.from_dictionary(structure))
         display_name = dictionary.get('displayName')
         filesystem_type = dictionary.get('filesystemType')
+        fs_label = dictionary.get('fsLabel')
         fs_uuid = dictionary.get('fsUuid')
         is_bootable = dictionary.get('isBootable')
         is_dedup = dictionary.get('isDedup')
@@ -106,6 +111,7 @@ class VolumeInfo(object):
         return cls(disk_vec,
                    display_name,
                    filesystem_type,
+                   fs_label,
                    fs_uuid,
                    is_bootable,
                    is_dedup,

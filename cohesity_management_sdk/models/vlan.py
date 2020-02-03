@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.subnet
 
@@ -26,6 +26,7 @@ class Vlan(object):
         interface_name (string): Specifies the interface name of the VLAN.
         ips (list of string): Array of IPs.  Specifies a list of IPs in the
             VLAN.
+        mtu (int): TODO: type description here.
         subnet (Subnet): Specifies the subnet of the VLAN. The netmask can be
             specified by setting netmaskBits or netmaskIp4. The netmask can
             only be set using netmaskIp4 if the IP address is an IPv4
@@ -46,6 +47,7 @@ class Vlan(object):
         "iface_group_name":'ifaceGroupName',
         "interface_name":'interfaceName',
         "ips":'ips',
+        "mtu":'mtu',
         "subnet":'subnet',
         "tenant_id":'tenantId',
         "vlan_name":'vlanName'
@@ -61,6 +63,7 @@ class Vlan(object):
                  iface_group_name=None,
                  interface_name=None,
                  ips=None,
+                 mtu=None,
                  subnet=None,
                  tenant_id=None,
                  vlan_name=None):
@@ -76,6 +79,7 @@ class Vlan(object):
         self.iface_group_name = iface_group_name
         self.interface_name = interface_name
         self.ips = ips
+        self.mtu = mtu
         self.subnet = subnet
         self.tenant_id = tenant_id
         self.vlan_name = vlan_name
@@ -108,6 +112,7 @@ class Vlan(object):
         iface_group_name = dictionary.get('ifaceGroupName')
         interface_name = dictionary.get('interfaceName')
         ips = dictionary.get('ips')
+        mtu = dictionary.get('mtu')
         subnet = cohesity_management_sdk.models.subnet.Subnet.from_dictionary(dictionary.get('subnet')) if dictionary.get('subnet') else None
         tenant_id = dictionary.get('tenantId')
         vlan_name = dictionary.get('vlanName')
@@ -122,6 +127,7 @@ class Vlan(object):
                    iface_group_name,
                    interface_name,
                    ips,
+                   mtu,
                    subnet,
                    tenant_id,
                    vlan_name)

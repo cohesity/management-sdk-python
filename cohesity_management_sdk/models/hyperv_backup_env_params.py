@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 
 class HypervBackupEnvParams(object):
@@ -12,20 +12,26 @@ class HypervBackupEnvParams(object):
         allow_crash_consistent_snapshot (bool): Whether to fallback to take a
             crash-consistent snapshot incase taking an app-consistent snapshot
             fails.
+        backup_job_type (int): The type of backup job to use. Default is to
+            auto-detect the best type to use based on the VMs to backup. End
+            user may select RCT or VSS also.
 
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "allow_crash_consistent_snapshot":'allowCrashConsistentSnapshot'
+        "allow_crash_consistent_snapshot":'allowCrashConsistentSnapshot',
+        "backup_job_type":'backupJobType'
     }
 
     def __init__(self,
-                 allow_crash_consistent_snapshot=None):
+                 allow_crash_consistent_snapshot=None,
+                 backup_job_type=None):
         """Constructor for the HypervBackupEnvParams class"""
 
         # Initialize members of the class
         self.allow_crash_consistent_snapshot = allow_crash_consistent_snapshot
+        self.backup_job_type = backup_job_type
 
 
     @classmethod
@@ -47,8 +53,10 @@ class HypervBackupEnvParams(object):
 
         # Extract variables from the dictionary
         allow_crash_consistent_snapshot = dictionary.get('allowCrashConsistentSnapshot')
+        backup_job_type = dictionary.get('backupJobType')
 
         # Return an object of this model
-        return cls(allow_crash_consistent_snapshot)
+        return cls(allow_crash_consistent_snapshot,
+                   backup_job_type)
 
 

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
-import cohesity_management_sdk.models.pure_storage_array
-import cohesity_management_sdk.models.pure_volume
+import cohesity_management_sdk.models.san_storage_array
+import cohesity_management_sdk.models.san_volume
 
 class PureProtectionSource(object):
 
@@ -12,14 +12,14 @@ class PureProtectionSource(object):
 
     Attributes:
         name (string): Specifies a unique name of the Protection Source
-        storage_array (PureStorageArray): Specifies a Pure Storage Array.
+        storage_array (SanStorageArray): Specifies a SAN Storage Array.
         mtype (TypePureProtectionSourceEnum): Specifies the type of managed
-            Object in a pure Protection Source like a kStorageArray or
-            kVolume. Examples of Pure Objects include 'kStorageArray' and
-            'kVolume'. 'kStorageArray' indicates that entire pure storage
-            array is being protected. 'kVolume' indicates that volume within
-            the array is being protected.
-        volume (PureVolume): Specifies a Pure Volume in a Pure Storage Array.
+            Object in a SAN/Pure Protection Source like a kStorageArray or
+            kVolume. Examples of SAN Objects include 'kStorageArray' and
+            'kVolume'. 'kStorageArray' indicates that entire SAN storage array
+            is being protected. 'kVolume' indicates that volume within the
+            array is being protected.
+        volume (SanVolume): Specifies a SAN Volume in a SAN Storage Array.
 
     """
 
@@ -64,9 +64,9 @@ class PureProtectionSource(object):
 
         # Extract variables from the dictionary
         name = dictionary.get('name')
-        storage_array = cohesity_management_sdk.models.pure_storage_array.PureStorageArray.from_dictionary(dictionary.get('storageArray')) if dictionary.get('storageArray') else None
+        storage_array = cohesity_management_sdk.models.san_storage_array.SanStorageArray.from_dictionary(dictionary.get('storageArray')) if dictionary.get('storageArray') else None
         mtype = dictionary.get('type')
-        volume = cohesity_management_sdk.models.pure_volume.PureVolume.from_dictionary(dictionary.get('volume')) if dictionary.get('volume') else None
+        volume = cohesity_management_sdk.models.san_volume.SanVolume.from_dictionary(dictionary.get('volume')) if dictionary.get('volume') else None
 
         # Return an object of this model
         return cls(name,

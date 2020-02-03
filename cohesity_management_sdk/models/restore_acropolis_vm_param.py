@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.snapshot_info_proto
 import cohesity_management_sdk.models.restore_acropolis_vm_param_network_config_info
@@ -15,19 +15,17 @@ class RestoreAcropolisVMParam(object):
             extension is listed below along with the location of the proto
             file (relative to magneto/connectors) where it is defined. The
             only exception is view.proto and physical.proto which reside in
-            magneto/base. TODO(Chinmaya): Evaluate creating a magneto/adapters
-            directory and move connectors and the environment specific protos
-            there.  SnapshotInfoProto extension                     Location
-            Extn
+            magneto/base.  SnapshotInfoProto extension
+            Location              Extn
             ===================================================================
             ========== vmware::SnapshotInfo::vmware_snapshot_info
             vmware/vmware.proto       100 sql::SnapshotInfo::sql_snapshot_info
             sql/sql.proto             101
             view::SnapshotInfo::view_snapshot_info         base/view.proto
             102 physical::SnapshotInfo::physical_snapshot_info
-            base/physical.proto       103
-            pure::SnapshotInfo::pure_snapshot_info         pure/pure.proto
-            104 file::SnapshotInfo::file_snapshot_info         file/file.proto
+            base/physical.proto       103 san::SnapshotInfo::san_snapshot_info
+            san/san.proto             104
+            file::SnapshotInfo::file_snapshot_info         file/file.proto
             105 hyperv::SnapshotInfo::hyperv_snapshot_info
             hyperv/hyperv.proto       106 acropolis::SnapshotInfo::
             acropolis_snapshot_info
@@ -47,7 +45,10 @@ class RestoreAcropolisVMParam(object):
             kubernetes_snapshot_info kubernetes/kubernetes.proto 117
             aws::RDSSnapshotInfo::rds_snapshot_info        aws/aws.proto
             118 o365::SnapshotInfo::o365_snapshot_info         o365/o365.proto
-            119
+            119 exchange::SnapshotInfo::exchange_snapshot_info
+            exchange/exchange.proto   120
+            o365::SharepointSnapshotInfo::sharepoint_snapshot_info
+            o365/o365.proto           121
             ===================================================================
             ==========
         network_config (RestoreAcropolisVMParamNetworkConfigInfo): Proto to

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 
 class AgentDeploymentStatusResponse(object):
@@ -24,7 +24,9 @@ class AgentDeploymentStatusResponse(object):
             agent is installed. 'kLinux' indicates the Linux operating system.
             'kWindows' indicates the Microsoft Windows operating system.
             'kAix' indicates the IBM AIX operating system. 'kSolaris'
-            indicates the Oracle Solaris operating system.
+            indicates the Oracle Solaris operating system. 'kSapHana'
+            indicates the Sap Hana database system developed by SAP SE.
+            'kOther' indicates the other types of operating system.
         last_upgrade_status (LastUpgradeStatusEnum): Specifies the status of
             the last upgrade attempt. Specifies the status of the upgrade of
             the agent on a physical server. 'kIdle' indicates there is no

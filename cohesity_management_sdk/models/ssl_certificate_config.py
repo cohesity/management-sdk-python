@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 
 class SslCertificateConfig(object):
@@ -11,8 +11,7 @@ class SslCertificateConfig(object):
 
     Attributes:
         certificate (string): Certificate is a SSL certificate used by Iris
-            HTTPS webserver. TODO(gaurav): Consider using multipart form for
-            certificate file.
+            HTTPS webserver.
         last_update_time_msecs (long|int): LastUpdateTimeMsecs is a time in
             milliseconds at which certificate was last updated.
         private_key (string): PrivateKey is a matching private key of the

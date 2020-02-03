@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 
 class AwsCredentials(object):
@@ -24,9 +24,19 @@ class AwsCredentials(object):
             inside the VPC. 'kNetworkSecurityGroup' represents a network
             security group. 'kInstanceType' represents various machine types.
             'kKeyPair' represents a pair of public and private key used to
-            login into a Virtual Machine.
+            login into a Virtual Machine. 'kTag' represents a tag attached to
+            EC2 instance. 'kRDSOptionGroup' represents a RDS option group for
+            configuring database features. 'kRDSParameterGroup' represents a
+            RDS parameter group. 'kRDSInstance' represents a RDS DB instance.
+            'kRDSSubnet' represents a RDS subnet. 'kRDSTag' represents a tag
+            attached to RDS instance.
         secret_access_key (string): Specifies Secret Access key of the AWS
             account.
+        subscription_type (SubscriptionTypeEnum): Specifies the subscription
+            type of AWS such as 'kAWSCommercial' or 'kAWSGovCloud'. Specifies
+            the subscription type of an AWS source entity. 'kAWSCommercial'
+            indicates a standard AWS subscription. 'kAWSGovCloud' indicates a
+            govt AWS subscription.
 
     """
 
@@ -35,14 +45,16 @@ class AwsCredentials(object):
         "access_key":'accessKey',
         "amazon_resource_name":'amazonResourceName',
         "aws_type":'awsType',
-        "secret_access_key":'secretAccessKey'
+        "secret_access_key":'secretAccessKey',
+        "subscription_type":'subscriptionType'
     }
 
     def __init__(self,
                  access_key=None,
                  amazon_resource_name=None,
                  aws_type=None,
-                 secret_access_key=None):
+                 secret_access_key=None,
+                 subscription_type=None):
         """Constructor for the AwsCredentials class"""
 
         # Initialize members of the class
@@ -50,6 +62,7 @@ class AwsCredentials(object):
         self.amazon_resource_name = amazon_resource_name
         self.aws_type = aws_type
         self.secret_access_key = secret_access_key
+        self.subscription_type = subscription_type
 
 
     @classmethod
@@ -74,11 +87,13 @@ class AwsCredentials(object):
         amazon_resource_name = dictionary.get('amazonResourceName')
         aws_type = dictionary.get('awsType')
         secret_access_key = dictionary.get('secretAccessKey')
+        subscription_type = dictionary.get('subscriptionType')
 
         # Return an object of this model
         return cls(access_key,
                    amazon_resource_name,
                    aws_type,
-                   secret_access_key)
+                   secret_access_key,
+                   subscription_type)
 
 

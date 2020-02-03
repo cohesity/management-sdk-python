@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.recover_volumes_params_mapping
 import cohesity_management_sdk.models.entity_proto
@@ -8,7 +8,7 @@ class RecoverVolumesParams(object):
 
     """Implementation of the 'RecoverVolumesParams' model.
 
-    TODO(Chinmaya): Rename this to RecoverPhysicalVolumesParams
+    TODO: type model description here.
 
     Attributes:
         force_unmount_volume (bool): Whether volume would be dismounted first

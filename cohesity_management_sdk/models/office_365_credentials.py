@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 
 class Office365Credentials(object):
@@ -19,6 +19,8 @@ class Office365Credentials(object):
         scope (string): Specifies a space separated list of scopes/permissions
             for the user. eg: Incase of MS Graph APIs for Office365, scope is
             set to default: https://graph.microsoft.com/.default
+        use_o_auth_for_exchange_online (bool): Specifies whether OAuth should
+            be used for authentication in case of Exchange Online.
 
     """
 
@@ -27,14 +29,16 @@ class Office365Credentials(object):
         "client_id":'clientId',
         "client_secret":'clientSecret',
         "grant_type":'grantType',
-        "scope":'scope'
+        "scope":'scope',
+        "use_o_auth_for_exchange_online":'useOAuthForExchangeOnline'
     }
 
     def __init__(self,
                  client_id=None,
                  client_secret=None,
                  grant_type=None,
-                 scope=None):
+                 scope=None,
+                 use_o_auth_for_exchange_online=None):
         """Constructor for the Office365Credentials class"""
 
         # Initialize members of the class
@@ -42,6 +46,7 @@ class Office365Credentials(object):
         self.client_secret = client_secret
         self.grant_type = grant_type
         self.scope = scope
+        self.use_o_auth_for_exchange_online = use_o_auth_for_exchange_online
 
 
     @classmethod
@@ -66,11 +71,13 @@ class Office365Credentials(object):
         client_secret = dictionary.get('clientSecret')
         grant_type = dictionary.get('grantType')
         scope = dictionary.get('scope')
+        use_o_auth_for_exchange_online = dictionary.get('useOAuthForExchangeOnline')
 
         # Return an object of this model
         return cls(client_id,
                    client_secret,
                    grant_type,
-                   scope)
+                   scope,
+                   use_o_auth_for_exchange_online)
 
 

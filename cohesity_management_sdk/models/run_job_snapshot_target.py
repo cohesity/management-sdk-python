@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.archival_external_target
+import cohesity_management_sdk.models.cloud_deploy_target_details
 import cohesity_management_sdk.models.replication_target_settings
 
 class RunJobSnapshotTarget(object):
@@ -14,6 +15,9 @@ class RunJobSnapshotTarget(object):
     Attributes:
         archival_target (ArchivalExternalTarget): Specifies settings about the
             Archival External Target (such as Tape or AWS).
+        cloud_replication_target (CloudDeployTargetDetails): Message that
+            specifies the details about CloudDeploy target where backup
+            snapshots may be converted and stored.
         days_to_keep (long|int): Specifies the number of days to retain copied
             Snapshots on the target.
         hold_for_legal_purpose (bool): Specifies optionally whether to retain
@@ -40,6 +44,7 @@ class RunJobSnapshotTarget(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "archival_target":'archivalTarget',
+        "cloud_replication_target":'cloudReplicationTarget',
         "days_to_keep":'daysToKeep',
         "hold_for_legal_purpose":'holdForLegalPurpose',
         "replication_target":'replicationTarget',
@@ -48,6 +53,7 @@ class RunJobSnapshotTarget(object):
 
     def __init__(self,
                  archival_target=None,
+                 cloud_replication_target=None,
                  days_to_keep=None,
                  hold_for_legal_purpose=None,
                  replication_target=None,
@@ -56,6 +62,7 @@ class RunJobSnapshotTarget(object):
 
         # Initialize members of the class
         self.archival_target = archival_target
+        self.cloud_replication_target = cloud_replication_target
         self.days_to_keep = days_to_keep
         self.hold_for_legal_purpose = hold_for_legal_purpose
         self.replication_target = replication_target
@@ -81,6 +88,7 @@ class RunJobSnapshotTarget(object):
 
         # Extract variables from the dictionary
         archival_target = cohesity_management_sdk.models.archival_external_target.ArchivalExternalTarget.from_dictionary(dictionary.get('archivalTarget')) if dictionary.get('archivalTarget') else None
+        cloud_replication_target = cohesity_management_sdk.models.cloud_deploy_target_details.CloudDeployTargetDetails.from_dictionary(dictionary.get('cloudReplicationTarget')) if dictionary.get('cloudReplicationTarget') else None
         days_to_keep = dictionary.get('daysToKeep')
         hold_for_legal_purpose = dictionary.get('holdForLegalPurpose')
         replication_target = cohesity_management_sdk.models.replication_target_settings.ReplicationTargetSettings.from_dictionary(dictionary.get('replicationTarget')) if dictionary.get('replicationTarget') else None
@@ -88,6 +96,7 @@ class RunJobSnapshotTarget(object):
 
         # Return an object of this model
         return cls(archival_target,
+                   cloud_replication_target,
                    days_to_keep,
                    hold_for_legal_purpose,
                    replication_target,

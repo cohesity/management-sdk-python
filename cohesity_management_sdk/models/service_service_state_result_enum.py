@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 class ServiceServiceStateResultEnum(object):
 
@@ -52,6 +52,7 @@ class ServiceServiceStateResultEnum(object):
     on the Cohesity Data Platform.
     'kBifrostBroker' is a service for communicating with the Cohesity proxies
     for multitenancy.
+    'kSmb2Proxy' is a new SMB protocol service.
     'kOs' can be specified in order to do a full reboot.
 
     Attributes:
@@ -83,6 +84,7 @@ class ServiceServiceStateResultEnum(object):
         KEAGLEAGENT: TODO: type description here.
         KATHENA: TODO: type description here.
         KBIFROSTBROKER: TODO: type description here.
+        KSMB2PROXY: TODO: type description here.
         KOS: TODO: type description here.
 
     """
@@ -142,6 +144,8 @@ class ServiceServiceStateResultEnum(object):
     KATHENA = 'kAthena'
 
     KBIFROSTBROKER = 'kBifrostBroker'
+
+    KSMB2PROXY = 'kSmb2Proxy'
 
     KOS = 'kOs'
 

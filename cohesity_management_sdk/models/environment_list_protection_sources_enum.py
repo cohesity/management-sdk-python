@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 class EnvironmentListProtectionSourcesEnum(object):
 
@@ -19,6 +19,7 @@ class EnvironmentListProtectionSourcesEnum(object):
         KHYPERV: TODO: type description here.
         KACROPOLIS: TODO: type description here.
         KAZURE: TODO: type description here.
+        KKUBERNETES: TODO: type description here.
 
     """
 
@@ -43,4 +44,6 @@ class EnvironmentListProtectionSourcesEnum(object):
     KACROPOLIS = 'kAcropolis'
 
     KAZURE = 'kAzure'
+
+    KKUBERNETES = 'kKubernetes'
 

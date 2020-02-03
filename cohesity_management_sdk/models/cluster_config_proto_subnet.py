@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 
 class ClusterConfigProtoSubnet(object):
@@ -20,6 +20,9 @@ class ClusterConfigProtoSubnet(object):
         netmask_ip_4 (string): TODO: type description here.
         nfs_access (int): Whether clients from this subnet can mount using NFS
             protocol.
+        nfs_all_squash (bool): Whether all clients from this subnet can map
+            view with view_all_squash_uid/view_all_squash_gid configured in
+            the view.
         nfs_root_squash (bool): Whether clients from this subnet can mount as
             root on NFS.
         smb_access (int): Whether clients from this subnet can mount using SMB
@@ -37,6 +40,7 @@ class ClusterConfigProtoSubnet(object):
         "netmask_bits":'netmaskBits',
         "netmask_ip_4":'netmaskIp4',
         "nfs_access":'nfsAccess',
+        "nfs_all_squash":'nfsAllSquash',
         "nfs_root_squash":'nfsRootSquash',
         "smb_access":'smbAccess'
     }
@@ -50,6 +54,7 @@ class ClusterConfigProtoSubnet(object):
                  netmask_bits=None,
                  netmask_ip_4=None,
                  nfs_access=None,
+                 nfs_all_squash=None,
                  nfs_root_squash=None,
                  smb_access=None):
         """Constructor for the ClusterConfigProtoSubnet class"""
@@ -63,6 +68,7 @@ class ClusterConfigProtoSubnet(object):
         self.netmask_bits = netmask_bits
         self.netmask_ip_4 = netmask_ip_4
         self.nfs_access = nfs_access
+        self.nfs_all_squash = nfs_all_squash
         self.nfs_root_squash = nfs_root_squash
         self.smb_access = smb_access
 
@@ -93,6 +99,7 @@ class ClusterConfigProtoSubnet(object):
         netmask_bits = dictionary.get('netmaskBits')
         netmask_ip_4 = dictionary.get('netmaskIp4')
         nfs_access = dictionary.get('nfsAccess')
+        nfs_all_squash = dictionary.get('nfsAllSquash')
         nfs_root_squash = dictionary.get('nfsRootSquash')
         smb_access = dictionary.get('smbAccess')
 
@@ -105,6 +112,7 @@ class ClusterConfigProtoSubnet(object):
                    netmask_bits,
                    netmask_ip_4,
                    nfs_access,
+                   nfs_all_squash,
                    nfs_root_squash,
                    smb_access)
 

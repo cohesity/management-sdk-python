@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.oracle_db_channel_info_host_info
 
@@ -7,11 +7,15 @@ class OracleDBChannelInfo(object):
 
     """Implementation of the 'OracleDBChannelInfo' model.
 
-    Message to capture channel information for Oracle database backup or
-    restore
-    information.
+    Note: The name of this proto message is out-dated. This proto can
+    represent
+    more than just the database channel information. It should be renamed
+    in the future.
 
     Attributes:
+        archivelog_keep_days (int): Archived log deletion policy for this
+            unique Oracle database. 1: keep archived log forever 0: delete
+            archived log immediately n>0: delete archived log after n days
         db_unique_name (string): The unique name of the database.
         db_uuid (string): Database id, internal field, is filled by magneto
             master based on corresponding app entity id.
@@ -40,6 +44,7 @@ class OracleDBChannelInfo(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "archivelog_keep_days":'archivelogKeepDays',
         "db_unique_name":'dbUniqueName',
         "db_uuid":'dbUuid',
         "host_info_vec":'hostInfoVec',
@@ -48,6 +53,7 @@ class OracleDBChannelInfo(object):
     }
 
     def __init__(self,
+                 archivelog_keep_days=None,
                  db_unique_name=None,
                  db_uuid=None,
                  host_info_vec=None,
@@ -56,6 +62,7 @@ class OracleDBChannelInfo(object):
         """Constructor for the OracleDBChannelInfo class"""
 
         # Initialize members of the class
+        self.archivelog_keep_days = archivelog_keep_days
         self.db_unique_name = db_unique_name
         self.db_uuid = db_uuid
         self.host_info_vec = host_info_vec
@@ -81,6 +88,7 @@ class OracleDBChannelInfo(object):
             return None
 
         # Extract variables from the dictionary
+        archivelog_keep_days = dictionary.get('archivelogKeepDays')
         db_unique_name = dictionary.get('dbUniqueName')
         db_uuid = dictionary.get('dbUuid')
         host_info_vec = None
@@ -92,7 +100,8 @@ class OracleDBChannelInfo(object):
         num_channels = dictionary.get('numChannels')
 
         # Return an object of this model
-        return cls(db_unique_name,
+        return cls(archivelog_keep_days,
+                   db_unique_name,
                    db_uuid,
                    host_info_vec,
                    max_num_host,

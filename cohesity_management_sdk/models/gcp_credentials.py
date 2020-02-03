@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 
 class GcpCredentials(object):
@@ -23,7 +23,11 @@ class GcpCredentials(object):
             GCP environment. 'kVPC' indicates a virtual private cloud (VPC)
             network within GCP. 'kSubnet' indicates a subnet inside the VPC.
             'kNetworkSecurityGroup' represents a network security group.
-            'kInstanceType' represents various machine types.
+            'kInstanceType' represents various machine types. 'kLabel'
+            represents a label present on the instances. 'kMetaData'
+            represents a custom metadata present on instances. 'kTag'
+            represents a network tag on instances. 'kVPCConnector' represents
+            a VPC connector used for serverless VPC access.
         project_id (string): Specifies Id of the project associated with
             Google cloud account.
         vpc_network (string): Specifies the VPC Network to deploy proxy VMs.

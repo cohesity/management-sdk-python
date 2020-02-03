@@ -1,12 +1,17 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 
 class OracleDBChannelInfoHostInfo(object):
 
     """Implementation of the 'OracleDBChannelInfo_HostInfo' model.
 
-    TODO: type model description here.
+    The name of this proto message is out-dated. This proto should
+    generally be used to represent parameters needed for each Oracle
+    'cluster' node. 'cluster' here is a loose term used to include
+    more than Oracle RAC cluster, e.g. 'active-passive' cluster is also
+    considered here as 'cluster' and its 'cluster node will also be
+    represented by the following proto.
 
     Attributes:
         host (string): Host string from which we are allowed to take the
