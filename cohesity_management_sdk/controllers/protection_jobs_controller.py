@@ -94,7 +94,6 @@ class ProtectionJobsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def get_protection_jobs(self,
                             ids=None,
@@ -226,7 +225,6 @@ class ProtectionJobsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def create_protection_job(self, body):
         """Does a POST request to /public/protectionJobs.
@@ -292,7 +290,6 @@ class ProtectionJobsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def create_run_protection_job(self, id, body):
         """Does a POST request to /public/protectionJobs/run/{id}.
@@ -370,7 +367,6 @@ class ProtectionJobsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def update_protection_jobs_state(self, body=None):
         """Does a POST request to /public/protectionJobs/states.
@@ -446,7 +442,6 @@ class ProtectionJobsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def delete_protection_job(self, id, body=None):
         """Does a DELETE request to /public/protectionJobs/{id}.
@@ -508,7 +503,6 @@ class ProtectionJobsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def get_protection_job_by_id(self, id):
         """Does a GET request to /public/protectionJobs/{id}.
@@ -572,7 +566,6 @@ class ProtectionJobsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def update_protection_job(self, body, id):
         """Does a PUT request to /public/protectionJobs/{id}.
@@ -641,7 +634,6 @@ class ProtectionJobsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def get_protection_job_audit(self, id):
         """Does a GET request to /public/protectionJobs/{id}/auditTrail.
@@ -706,4 +698,3 @@ class ProtectionJobsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)

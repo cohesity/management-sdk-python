@@ -67,7 +67,6 @@ class RolesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def get_roles(self, name=None, tenant_ids=None, all_under_hierarchy=None):
         """Does a GET request to /public/roles.
@@ -138,7 +137,6 @@ class RolesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def create_role(self, body=None):
         """Does a POST request to /public/roles.
@@ -201,7 +199,6 @@ class RolesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def update_role(self, name, body=None):
         """Does a PUT request to /public/roles/{name}.
@@ -269,4 +266,3 @@ class RolesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)

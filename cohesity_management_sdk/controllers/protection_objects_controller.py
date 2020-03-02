@@ -72,7 +72,6 @@ class ProtectionObjectsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def create_protect_object(self, body=None):
         """Does a POST request to /public/protectionObjects.
@@ -134,7 +133,6 @@ class ProtectionObjectsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def update_protection_object(self, body=None):
         """Does a PUT request to /public/protectionObjects.
@@ -202,7 +200,6 @@ Success
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def get_protection_object_summary(self, protection_source_id):
         """Does a GET request to /public/protectionObjects/summary.
@@ -273,4 +270,3 @@ Success
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)

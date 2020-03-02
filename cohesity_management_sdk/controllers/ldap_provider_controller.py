@@ -85,7 +85,6 @@ class LdapProviderController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def create_ldap_provider(self, body):
         """Does a POST request to /public/ldapProvider.
@@ -151,7 +150,6 @@ class LdapProviderController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def update_ldap_provider(self, body):
         """Does a PUT request to /public/ldapProvider.
@@ -218,7 +216,6 @@ class LdapProviderController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def delete_ldap_provider(self, id):
         """Does a DELETE request to /public/ldapProvider/{id}.
@@ -271,7 +268,6 @@ class LdapProviderController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def get_ldap_provider_status(self, id):
         """Does a GET request to /public/ldapProvider/{id}/status.
@@ -327,4 +323,3 @@ class LdapProviderController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)

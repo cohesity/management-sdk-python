@@ -138,7 +138,6 @@ class ProtectionRunsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def update_protection_runs(self, body):
         """Does a PUT request to /public/protectionRuns.
@@ -203,7 +202,6 @@ class ProtectionRunsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def create_cancel_protection_job_run(self, id, body=None):
         """Does a POST request to /public/protectionRuns/cancel/{id}.
@@ -270,7 +268,6 @@ class ProtectionRunsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def get_protection_run_errors(self,
                                   job_id,
@@ -365,4 +362,3 @@ class ProtectionRunsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)

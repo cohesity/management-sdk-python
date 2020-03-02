@@ -80,7 +80,6 @@ class ClusterPartitionsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def get_cluster_partition_by_id(self, id):
         """Does a GET request to /public/clusterPartitions/{id}.
@@ -151,4 +150,3 @@ class ClusterPartitionsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)

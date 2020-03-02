@@ -71,7 +71,6 @@ class ClusterController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def get_cluster(self, fetch_stats=None, fetch_time_series_schema=None):
         """Does a GET request to /public/cluster.
@@ -134,7 +133,6 @@ class ClusterController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def update_cluster(self, body=None):
         """Does a PUT request to /public/cluster.
@@ -193,7 +191,6 @@ class ClusterController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def get_cluster_status(self):
         """Does a GET request to /public/cluster/status.
@@ -247,4 +244,3 @@ class ClusterController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)

@@ -66,7 +66,6 @@ class PreferencesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def patch_user_preferences(self, preferences=None):
         """Does a PATCH request to /public/sessionUser/preferences.
@@ -127,7 +126,6 @@ class PreferencesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def update_user_preferences(self, preferences=None):
         """Does a PUT request to /public/sessionUser/preferences.
@@ -190,4 +188,3 @@ class PreferencesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)

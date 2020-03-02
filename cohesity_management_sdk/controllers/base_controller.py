@@ -116,4 +116,5 @@ class BaseController(object):
                 raise_except = ExpiredTokenException(
                     'Response status code: %s, Response message: %s' %
                     (status, message), context)
+            print(raise_except)
             raise raise_except

@@ -84,7 +84,6 @@ class ViewsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def list_nlm_locks(self,
                        file_path=None,
@@ -168,7 +167,6 @@ class ViewsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def get_qo_s_policies(self, ids=None, names=None):
         """Does a GET request to /public/qosPolicies.
@@ -228,7 +226,6 @@ class ViewsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def get_views_by_share_name(self,
                                 tenant_ids=None,
@@ -325,7 +322,6 @@ class ViewsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def get_smb_connections(self,
                             view_names=None,
@@ -399,7 +395,6 @@ class ViewsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def create_view_alias(self, body):
         """Does a POST request to /public/viewAliases.
@@ -463,7 +458,6 @@ class ViewsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def update_view_alias(self, body):
         """Does a PUT request to /public/viewAliases.
@@ -527,7 +521,6 @@ class ViewsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def delete_view_alias(self, name):
         """Does a DELETE request to /public/viewAliases/{name}.
@@ -579,7 +572,6 @@ class ViewsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def create_activate_view_aliases(self, name):
         """Does a POST request to /public/viewAliases/{name}/activate.
@@ -646,7 +638,6 @@ class ViewsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def get_view_dir_quota_info(self, view_name):
         """Does a GET request to /public/viewDirectoryQuotas.
@@ -711,7 +702,6 @@ class ViewsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def update_view_dir_quota(self, body):
         """Does a PUT request to /public/viewDirectoryQuotas.
@@ -778,7 +768,6 @@ class ViewsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def delete_view_users_quota(self, body=None):
         """Does a DELETE request to /public/viewUserQuotas.
@@ -834,7 +823,6 @@ class ViewsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def get_view_user_quotas(self,
                              view_name=None,
@@ -985,7 +973,6 @@ class ViewsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def create_view_user_quota(self, body=None):
         """Does a POST request to /public/viewUserQuotas.
@@ -1046,7 +1033,6 @@ class ViewsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def update_view_user_quota(self, body=None):
         """Does a PUT request to /public/viewUserQuotas.
@@ -1107,7 +1093,6 @@ class ViewsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def update_user_quota_settings(self, body=None):
         """Does a PUT request to /public/viewUserQuotasSettings.
@@ -1173,7 +1158,6 @@ class ViewsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def get_views(self,
                   tenant_ids=None,
@@ -1334,7 +1318,6 @@ class ViewsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def create_view(self, body):
         """Does a POST request to /public/views.
@@ -1397,7 +1380,6 @@ class ViewsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def update_view(self, body):
         """Does a PUT request to /public/views.
@@ -1460,7 +1442,6 @@ class ViewsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def create_clone_view(self, body):
         """Does a POST request to /public/views/clone.
@@ -1524,7 +1505,6 @@ class ViewsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def create_clone_directory(self, body):
         """Does a POST request to /public/views/cloneDirectory.
@@ -1582,7 +1562,6 @@ class ViewsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def delete_view_by_id(self, id):
         """Does a DELETE request to /public/views/id/{id}.
@@ -1634,7 +1613,6 @@ class ViewsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def get_view_by_id(self, id):
         """Does a GET request to /public/views/id/{id}.
@@ -1694,7 +1672,6 @@ class ViewsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def get_file_lock_status_by_id(self, id, path=None):
         """Does a GET request to /public/views/id/{id}/fileLocks.
@@ -1767,7 +1744,6 @@ class ViewsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def create_lock_file_by_id(self, id, body=None):
         """Does a POST request to /public/views/id/{id}/fileLocks.
@@ -1836,7 +1812,6 @@ class ViewsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def create_overwrite_view(self, body):
         """Does a POST request to /public/views/overwrite.
@@ -1903,7 +1878,6 @@ class ViewsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def create_rename_view_by_id(self, body, id):
         """Does a POST request to /public/views/rename/id/{id}.
@@ -1975,7 +1949,6 @@ class ViewsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def create_rename_view(self, body, name):
         """Does a POST request to /public/views/rename/{name}.
@@ -2044,7 +2017,6 @@ class ViewsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def delete_view(self, name):
         """Does a DELETE request to /public/views/{name}.
@@ -2095,7 +2067,6 @@ class ViewsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def get_view_by_name(self, name):
         """Does a GET request to /public/views/{name}.
@@ -2155,7 +2126,6 @@ class ViewsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def update_view_by_name(self, name, body):
         """Does a PUT request to /public/views/{name}.
@@ -2223,7 +2193,6 @@ class ViewsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def get_file_lock_status(self, name, path=None):
         """Does a GET request to /public/views/{name}/fileLocks.
@@ -2291,7 +2260,6 @@ class ViewsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def create_lock_file(self, name, body=None):
         """Does a POST request to /public/views/{name}/fileLocks.
@@ -2359,4 +2327,3 @@ class ViewsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)

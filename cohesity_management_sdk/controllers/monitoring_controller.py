@@ -88,7 +88,6 @@ class MonitoringController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def get_all_job_runs(self,
                          start_time_msecs,
@@ -215,7 +214,6 @@ class MonitoringController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def get_run_objects_details(self, job_type, job_id, job_run_id):
         """Does a GET request to /public/monitoring/objectDetails.
@@ -290,4 +288,3 @@ class MonitoringController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)

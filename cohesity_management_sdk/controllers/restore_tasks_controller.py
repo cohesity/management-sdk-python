@@ -96,7 +96,6 @@ class RestoreTasksController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def create_compare_ad_objects(self, body):
         """Does a POST request to /public/restore/adObjectAttributes.
@@ -169,7 +168,6 @@ class RestoreTasksController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def search_ad_objects(self,
                           restore_task_id,
@@ -280,7 +278,6 @@ class RestoreTasksController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def create_search_production_ad_objects(self, body):
         """Does a POST request to /public/restore/adObjects.
@@ -352,7 +349,6 @@ class RestoreTasksController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def get_ad_objects(self,
                        name=None,
@@ -453,7 +449,6 @@ class RestoreTasksController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def get_ad_objects_restore_status(self, restore_task_id=None):
         """Does a GET request to /public/restore/adObjects/status.
@@ -522,7 +517,6 @@ class RestoreTasksController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def create_applications_clone_task(self, body):
         """Does a POST request to /public/restore/applicationsClone.
@@ -593,7 +587,6 @@ class RestoreTasksController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def create_applications_recover_task(self, body):
         """Does a POST request to /public/restore/applicationsRecover.
@@ -665,7 +658,6 @@ class RestoreTasksController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def create_clone_task(self, body):
         """Does a POST request to /public/restore/clone.
@@ -730,7 +722,6 @@ class RestoreTasksController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def delete_public_destroy_clone_task(self, id):
         """Does a DELETE request to /public/restore/clone/{id}.
@@ -788,7 +779,6 @@ class RestoreTasksController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def create_deploy_task(self, body):
         """Does a POST request to /public/restore/deploy.
@@ -858,7 +848,6 @@ class RestoreTasksController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def create_download_files_and_folders(self, body):
         """Does a POST request to /public/restore/downloadFilesAndFolders.
@@ -930,7 +919,6 @@ class RestoreTasksController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def search_restored_files(self,
                               search=None,
@@ -1072,7 +1060,6 @@ class RestoreTasksController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def create_restore_files_task(self, body):
         """Does a POST request to /public/restore/files.
@@ -1143,7 +1130,6 @@ class RestoreTasksController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def get_file_fstat_information(self,
                                    job_id,
@@ -1270,7 +1256,6 @@ class RestoreTasksController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def get_file_snapshots_information(self, job_id, cluster_id,
                                        cluster_incarnation_id, source_id,
@@ -1369,7 +1354,6 @@ class RestoreTasksController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def search_objects(self,
                        search=None,
@@ -1519,7 +1503,6 @@ class RestoreTasksController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def get_outlook_emails(self,
                            has_attachments=None,
@@ -1649,7 +1632,6 @@ class RestoreTasksController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def create_get_restore_points_for_time_range(self, body):
         """Does a POST request to /public/restore/pointsForTimeRange.
@@ -1725,7 +1707,6 @@ class RestoreTasksController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def create_recover_task(self, body):
         """Does a POST request to /public/restore/recover.
@@ -1810,7 +1791,6 @@ class RestoreTasksController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def update_restore_task(self, body):
         """Does a PUT request to /public/restore/recover.
@@ -1880,7 +1860,6 @@ Success
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def get_restore_tasks(self,
                           task_ids=None,
@@ -2014,7 +1993,6 @@ Success
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def update_cancel_restore_task(self, id):
         """Does a PUT request to /public/restore/tasks/cancel/{id}.
@@ -2071,7 +2049,6 @@ Success
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def get_restore_task_by_id(self, id):
         """Does a GET request to /public/restore/tasks/{id}.
@@ -2133,7 +2110,6 @@ Success
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def get_virtual_disk_information(self, cluster_id, cluster_incarnation_id,
                                      job_id, job_run_id, start_time_usecs,
@@ -2228,7 +2204,6 @@ Success
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def get_vm_directory_list(self,
                               job_id,
@@ -2370,7 +2345,6 @@ Success
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def get_vm_volumes_information(self,
                                    job_id,
@@ -2510,4 +2484,3 @@ Success
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)

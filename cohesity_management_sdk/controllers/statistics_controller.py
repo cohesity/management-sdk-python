@@ -103,7 +103,6 @@ class StatisticsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def get_entities_schema(self, schema_names=None, metric_names=None):
         """Does a GET request to /public/statistics/entitiesSchema.
@@ -187,7 +186,6 @@ class StatisticsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def get_entity_schema_by_name(self, schema_name):
         """Does a GET request to /public/statistics/entitiesSchema/{schemaName}.
@@ -265,7 +263,6 @@ class StatisticsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def get_time_series_schema(self, entity_type, entity_id, entity_name):
         """Does a GET request to /public/statistics/timeSeriesSchema.
@@ -343,7 +340,6 @@ class StatisticsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def get_time_series_stats(self,
                               schema_name,
@@ -470,7 +466,6 @@ class StatisticsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def get_tasks(self,
                   task_paths=None,
@@ -567,4 +562,3 @@ class StatisticsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)

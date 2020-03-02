@@ -65,7 +65,7 @@ class StaticRouteController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info = True)
-            raise
+            
 
     def remove_static_route(self,
                             ip):
@@ -118,7 +118,7 @@ class StaticRouteController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info = True)
-            raise
+            
 
     def update_static_route(self,
                             ip,
@@ -184,4 +184,4 @@ class StaticRouteController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info = True)
-            raise
+            

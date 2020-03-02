@@ -91,7 +91,6 @@ class RemoteRestoreController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def list_remote_vault_restore_tasks(self):
         """Does a GET request to /public/remoteVaults/restoreTasks.
@@ -153,7 +152,6 @@ class RemoteRestoreController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def create_remote_vault_restore_task(self, body):
         """Does a POST request to /public/remoteVaults/restoreTasks.
@@ -233,7 +231,6 @@ class RemoteRestoreController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def get_remote_vault_search_job_results(self,
                                             search_job_id,
@@ -342,7 +339,6 @@ class RemoteRestoreController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def delete_stop_remote_vault_search_job(self, body):
         """Does a DELETE request to /public/remoteVaults/searchJobs.
@@ -409,7 +405,6 @@ class RemoteRestoreController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def list_remote_vault_search_jobs(self):
         """Does a GET request to /public/remoteVaults/searchJobs.
@@ -477,7 +472,6 @@ class RemoteRestoreController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def create_remote_vault_search_job(self, body):
         """Does a POST request to /public/remoteVaults/searchJobs.
@@ -562,7 +556,6 @@ class RemoteRestoreController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def list_remote_vault_search_job_by_id(self, id):
         """Does a GET request to /public/remoteVaults/searchJobs/{id}.
@@ -637,4 +630,3 @@ class RemoteRestoreController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)

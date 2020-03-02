@@ -69,7 +69,6 @@ class AlertsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def get_notification_rules(self):
         """Does a GET request to /public/alertNotificationRules.
@@ -123,7 +122,6 @@ class AlertsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def create_notification_rule(self, body=None):
         """Does a POST request to /public/alertNotificationRules.
@@ -189,7 +187,6 @@ class AlertsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def update_notification_rule(self):
         """Does a PUT request to /public/alertNotificationRules.
@@ -245,7 +242,6 @@ class AlertsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def delete_notification_rule(self, rule_id):
         """Does a DELETE request to /public/alertNotificationRules/{ruleId}.
@@ -301,7 +297,6 @@ class AlertsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def get_resolutions(self,
                         max_resolutions,
@@ -398,7 +393,6 @@ class AlertsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def create_resolution(self, body):
         """Does a POST request to /public/alertResolutions.
@@ -464,7 +458,6 @@ class AlertsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def get_resolution_by_id(self, id):
         """Does a GET request to /public/alertResolutions/{id}.
@@ -526,7 +519,6 @@ class AlertsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def update_resolution(self, id, body):
         """Does a PUT request to /public/alertResolutions/{id}.
@@ -595,7 +587,6 @@ class AlertsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def get_alert_types(self):
         """Does a GET request to /public/alertTypes.
@@ -649,7 +640,6 @@ class AlertsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def get_alerts(self,
                    max_alerts,
@@ -779,7 +769,6 @@ class AlertsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def get_alert_by_id(self, id):
         """Does a GET request to /public/alerts/{id}.
@@ -839,4 +828,3 @@ class AlertsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)

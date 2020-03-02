@@ -72,7 +72,6 @@ class GroupsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def get_groups(self,
                    name=None,
@@ -156,7 +155,6 @@ class GroupsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def create_group(self, body=None):
         """Does a POST request to /public/groups.
@@ -221,7 +219,6 @@ class GroupsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
 
     def update_group(self, body=None):
         """Does a PUT request to /public/groups.
@@ -280,4 +277,3 @@ class GroupsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
