@@ -2,6 +2,7 @@
 # Copyright 2020 Cohesity Inc.
 
 import logging
+from cohesity_management_sdk.exceptions.api_exception import APIException
 from cohesity_management_sdk.api_helper import APIHelper
 from cohesity_management_sdk.configuration import Configuration
 from cohesity_management_sdk.controllers.base_controller import BaseController
@@ -87,7 +88,7 @@ class ActiveDirectoryController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def get_active_directory_entry(self,
                                    domains=None,
@@ -169,7 +170,7 @@ class ActiveDirectoryController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def create_active_directory_entry(self, body):
         """Does a POST request to /public/activeDirectory.
@@ -245,7 +246,7 @@ class ActiveDirectoryController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def list_centrify_zones(self, domain_name=None):
         """Does a GET request to /public/activeDirectory/centrifyZones.
@@ -304,7 +305,7 @@ class ActiveDirectoryController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def get_active_directory_domain_controllers(self, domain_name=None):
         """Does a GET request to /public/activeDirectory/domainControllers.
@@ -369,7 +370,7 @@ class ActiveDirectoryController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def search_active_directory_principals(self,
                                            domain=None,
@@ -471,7 +472,7 @@ class ActiveDirectoryController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def add_active_directory_principals(self, body=None):
         """Does a POST request to /public/activeDirectory/principals.
@@ -558,7 +559,7 @@ class ActiveDirectoryController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def create_enable_trusted_domain_discovery(self, body, name):
         """Does a POST request to /public/activeDirectory/{name}/enableTrustedDomainState.
@@ -636,7 +637,7 @@ class ActiveDirectoryController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def update_active_directory_id_mapping(self, body, name):
         """Does a PUT request to /public/activeDirectory/{name}/idMappingInfo.
@@ -711,7 +712,7 @@ class ActiveDirectoryController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def update_active_directory_ignored_trusted_domains(self, body, name):
         """Does a PUT request to /public/activeDirectory/{name}/ignoredTrustedDomains.
@@ -792,7 +793,7 @@ class ActiveDirectoryController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def update_active_directory_ldap_provider(self, body, name):
         """Does a PUT request to /public/activeDirectory/{name}/ldapProvider.
@@ -869,7 +870,7 @@ class ActiveDirectoryController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def update_active_directory_machine_accounts(self, body, name):
         """Does a POST request to /public/activeDirectory/{name}/machineAccounts.
@@ -948,7 +949,7 @@ class ActiveDirectoryController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def update_preferred_domain_controllers(self, body, name):
         """Does a PUT request to /public/activeDirectory/{name}/preferredDomainControllers.
@@ -1023,4 +1024,4 @@ class ActiveDirectoryController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)

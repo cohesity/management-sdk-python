@@ -2,6 +2,7 @@
 # Copyright 2020 Cohesity Inc.
 
 import logging
+from cohesity_management_sdk.exceptions.api_exception import APIException
 from cohesity_management_sdk.api_helper import APIHelper
 from cohesity_management_sdk.configuration import Configuration
 from cohesity_management_sdk.controllers.base_controller import BaseController
@@ -87,7 +88,7 @@ class VaultsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def create_vault(self, body):
         """Does a POST request to /public/vaults.
@@ -153,7 +154,7 @@ class VaultsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def get_archive_media_info(self,
                                cluster_id,
@@ -247,7 +248,7 @@ class VaultsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def get_bandwidth_settings(self):
         """Does a GET request to /public/vaults/bandwidthSettings.
@@ -299,7 +300,7 @@ class VaultsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def update_bandwidth_settings(self, body):
         """Does a PUT request to /public/vaults/bandwidthSettings.
@@ -371,7 +372,7 @@ class VaultsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def get_vault_encryption_key(self, id):
         """Does a GET request to /public/vaults/encryptionKey/{id}.
@@ -446,7 +447,7 @@ class VaultsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def get_vault_by_id(self, id):
         """Does a GET request to /public/vaults/{id}.
@@ -508,7 +509,7 @@ class VaultsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def update_vault(self, id, body):
         """Does a PUT request to /public/vaults/{id}.
@@ -578,4 +579,4 @@ class VaultsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)

@@ -2,6 +2,7 @@
 # Copyright 2020 Cohesity Inc.
 
 import logging
+from cohesity_management_sdk.exceptions.api_exception import APIException
 from cohesity_management_sdk.api_helper import APIHelper
 from cohesity_management_sdk.configuration import Configuration
 from cohesity_management_sdk.controllers.base_controller import BaseController
@@ -103,7 +104,7 @@ class StatisticsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def get_entities_schema(self, schema_names=None, metric_names=None):
         """Does a GET request to /public/statistics/entitiesSchema.
@@ -187,7 +188,7 @@ class StatisticsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def get_entity_schema_by_name(self, schema_name):
         """Does a GET request to /public/statistics/entitiesSchema/{schemaName}.
@@ -265,7 +266,7 @@ class StatisticsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def get_time_series_schema(self, entity_type, entity_id, entity_name):
         """Does a GET request to /public/statistics/timeSeriesSchema.
@@ -343,7 +344,7 @@ class StatisticsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def get_time_series_stats(self,
                               schema_name,
@@ -470,7 +471,7 @@ class StatisticsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def get_tasks(self,
                   task_paths=None,
@@ -567,4 +568,4 @@ class StatisticsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)

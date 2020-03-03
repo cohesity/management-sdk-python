@@ -2,6 +2,7 @@
 # Copyright 2020 Cohesity Inc.
 
 import logging
+from cohesity_management_sdk.exceptions.api_exception import APIException
 from cohesity_management_sdk.api_helper import APIHelper
 from cohesity_management_sdk.configuration import Configuration
 from cohesity_management_sdk.controllers.base_controller import BaseController
@@ -85,7 +86,7 @@ class LdapProviderController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def create_ldap_provider(self, body):
         """Does a POST request to /public/ldapProvider.
@@ -151,7 +152,7 @@ class LdapProviderController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def update_ldap_provider(self, body):
         """Does a PUT request to /public/ldapProvider.
@@ -218,7 +219,7 @@ class LdapProviderController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def delete_ldap_provider(self, id):
         """Does a DELETE request to /public/ldapProvider/{id}.
@@ -271,7 +272,7 @@ class LdapProviderController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def get_ldap_provider_status(self, id):
         """Does a GET request to /public/ldapProvider/{id}/status.
@@ -327,4 +328,4 @@ class LdapProviderController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)

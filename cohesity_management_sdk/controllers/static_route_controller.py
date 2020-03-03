@@ -2,6 +2,7 @@
 # Copyright 2019 Cohesity Inc.
 
 import logging
+from cohesity_management_sdk.exceptions.api_exception import APIException
 from cohesity_management_sdk.api_helper import APIHelper
 from cohesity_management_sdk.configuration import Configuration
 from cohesity_management_sdk.controllers.base_controller import BaseController

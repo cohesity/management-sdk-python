@@ -2,6 +2,7 @@
 # Copyright 2020 Cohesity Inc.
 
 import logging
+from cohesity_management_sdk.exceptions.api_exception import APIException
 from cohesity_management_sdk.api_helper import APIHelper
 from cohesity_management_sdk.configuration import Configuration
 from cohesity_management_sdk.controllers.base_controller import BaseController
@@ -87,7 +88,7 @@ class IdpsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def get_idps(self,
                  tenant_ids=None,
@@ -171,7 +172,7 @@ class IdpsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def create_idp(self, body=None):
         """Does a POST request to /public/idps.
@@ -231,7 +232,7 @@ class IdpsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def get_idp_login(self, tenant_id=None):
         """Does a GET request to /public/idps/login.
@@ -282,7 +283,7 @@ class IdpsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def delete_idp(self, id):
         """Does a DELETE request to /public/idps/{id}.
@@ -333,7 +334,7 @@ class IdpsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def update_idp(self, id, body=None):
         """Does a PUT request to /public/idps/{id}.
@@ -401,4 +402,4 @@ class IdpsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)

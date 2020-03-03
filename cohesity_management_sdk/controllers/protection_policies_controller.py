@@ -2,6 +2,7 @@
 # Copyright 2020 Cohesity Inc.
 
 import logging
+from cohesity_management_sdk.exceptions.api_exception import APIException
 from cohesity_management_sdk.api_helper import APIHelper
 from cohesity_management_sdk.configuration import Configuration
 from cohesity_management_sdk.controllers.base_controller import BaseController
@@ -113,7 +114,7 @@ class ProtectionPoliciesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def create_protection_policy(self, body):
         """Does a POST request to /public/protectionPolicies.
@@ -182,7 +183,7 @@ class ProtectionPoliciesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def delete_protection_policy(self, id):
         """Does a DELETE request to /public/protectionPolicies/{id}.
@@ -239,7 +240,7 @@ class ProtectionPoliciesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def get_protection_policy_by_id(self, id):
         """Does a GET request to /public/protectionPolicies/{id}.
@@ -307,7 +308,7 @@ class ProtectionPoliciesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def update_protection_policy(self, body, id):
         """Does a PUT request to /public/protectionPolicies/{id}.
@@ -380,7 +381,7 @@ class ProtectionPoliciesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def get_protection_policy_summary(self,
                                       id,
@@ -490,4 +491,4 @@ class ProtectionPoliciesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)

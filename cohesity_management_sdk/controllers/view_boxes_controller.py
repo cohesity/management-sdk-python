@@ -2,6 +2,7 @@
 # Copyright 2020 Cohesity Inc.
 
 import logging
+from cohesity_management_sdk.exceptions.api_exception import APIException
 from cohesity_management_sdk.api_helper import APIHelper
 from cohesity_management_sdk.configuration import Configuration
 from cohesity_management_sdk.controllers.base_controller import BaseController
@@ -105,7 +106,7 @@ class ViewBoxesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def create_view_box(self, body):
         """Does a POST request to /public/viewBoxes.
@@ -170,7 +171,7 @@ class ViewBoxesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def delete_view_box(self, id):
         """Does a DELETE request to /public/viewBoxes/{id}.
@@ -222,7 +223,7 @@ class ViewBoxesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def get_view_box_by_id(self, id, fetch_stats=None):
         """Does a GET request to /public/viewBoxes/{id}.
@@ -294,7 +295,7 @@ class ViewBoxesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def update_view_box(self, id, body):
         """Does a PUT request to /public/viewBoxes/{id}.
@@ -362,4 +363,4 @@ class ViewBoxesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)

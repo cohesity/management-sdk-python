@@ -2,6 +2,7 @@
 # Copyright 2020 Cohesity Inc.
 
 import logging
+from cohesity_management_sdk.exceptions.api_exception import APIException
 from cohesity_management_sdk.api_helper import APIHelper
 from cohesity_management_sdk.configuration import Configuration
 from cohesity_management_sdk.controllers.base_controller import BaseController
@@ -94,7 +95,7 @@ class ProtectionJobsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def get_protection_jobs(self,
                             ids=None,
@@ -226,7 +227,7 @@ class ProtectionJobsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def create_protection_job(self, body):
         """Does a POST request to /public/protectionJobs.
@@ -292,7 +293,7 @@ class ProtectionJobsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def create_run_protection_job(self, id, body):
         """Does a POST request to /public/protectionJobs/run/{id}.
@@ -370,7 +371,7 @@ class ProtectionJobsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def update_protection_jobs_state(self, body=None):
         """Does a POST request to /public/protectionJobs/states.
@@ -446,7 +447,7 @@ class ProtectionJobsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def delete_protection_job(self, id, body=None):
         """Does a DELETE request to /public/protectionJobs/{id}.
@@ -508,7 +509,7 @@ class ProtectionJobsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def get_protection_job_by_id(self, id):
         """Does a GET request to /public/protectionJobs/{id}.
@@ -572,7 +573,7 @@ class ProtectionJobsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def update_protection_job(self, body, id):
         """Does a PUT request to /public/protectionJobs/{id}.
@@ -641,7 +642,7 @@ class ProtectionJobsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def get_protection_job_audit(self, id):
         """Does a GET request to /public/protectionJobs/{id}/auditTrail.
@@ -706,4 +707,4 @@ class ProtectionJobsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)

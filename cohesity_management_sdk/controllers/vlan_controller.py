@@ -2,13 +2,13 @@
 # Copyright 2020 Cohesity Inc.
 
 import logging
+from cohesity_management_sdk.exceptions.api_exception import APIException
 from cohesity_management_sdk.api_helper import APIHelper
 from cohesity_management_sdk.configuration import Configuration
 from cohesity_management_sdk.controllers.base_controller import BaseController
 from cohesity_management_sdk.http.auth.auth_manager import AuthManager
 from cohesity_management_sdk.models.vlan import Vlan
 from cohesity_management_sdk.exceptions.request_error_error_exception import RequestErrorErrorException
-from cohesity_management_sdk.exceptions.api_exception import APIException
 
 
 class VlanController(BaseController):
@@ -85,7 +85,7 @@ class VlanController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def create_vlan(self, body):
         """Does a POST request to /public/vlans.
@@ -148,7 +148,7 @@ class VlanController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def remove_vlan(self, id):
         """Does a DELETE request to /public/vlans/{id}.
@@ -199,7 +199,7 @@ class VlanController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def get_vlan_by_id(self, id):
         """Does a GET request to /public/vlans/{id}.
@@ -265,7 +265,7 @@ class VlanController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def update_vlan(self, id, body=None):
         """Does a PUT request to /public/vlans/{id}.
@@ -331,4 +331,4 @@ class VlanController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)

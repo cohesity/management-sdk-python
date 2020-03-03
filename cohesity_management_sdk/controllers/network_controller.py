@@ -2,6 +2,7 @@
 # Copyright 2020 Cohesity Inc.
 
 import logging
+from cohesity_management_sdk.exceptions.api_exception import APIException
 from cohesity_management_sdk.api_helper import APIHelper
 from cohesity_management_sdk.configuration import Configuration
 from cohesity_management_sdk.controllers.base_controller import BaseController
@@ -82,7 +83,7 @@ class NetworkController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def delete_bond(self, name):
         """Does a DELETE request to /public/network/bonds/{name}.
@@ -135,7 +136,7 @@ class NetworkController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def delete_hosts(self, ips):
         """Does a DELETE request to /public/network/hosts.
@@ -199,7 +200,7 @@ class NetworkController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def list_hosts(self):
         """Does a GET request to /public/network/hosts.
@@ -250,7 +251,7 @@ class NetworkController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def create_append_hosts(self, body):
         """Does a POST request to /public/network/hosts.
@@ -318,7 +319,7 @@ class NetworkController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def update_edit_hosts(self, body):
         """Does a PUT request to /public/network/hosts.
@@ -383,7 +384,7 @@ class NetworkController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def list_network_interfaces(self):
         """Does a GET request to /public/network/interfaces.
@@ -439,4 +440,4 @@ class NetworkController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)

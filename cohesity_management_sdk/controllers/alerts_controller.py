@@ -2,6 +2,7 @@
 # Copyright 2020 Cohesity Inc.
 
 import logging
+from cohesity_management_sdk.exceptions.api_exception import APIException
 from cohesity_management_sdk.api_helper import APIHelper
 from cohesity_management_sdk.configuration import Configuration
 from cohesity_management_sdk.controllers.base_controller import BaseController
@@ -69,7 +70,7 @@ class AlertsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def get_notification_rules(self):
         """Does a GET request to /public/alertNotificationRules.
@@ -123,7 +124,7 @@ class AlertsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def create_notification_rule(self, body=None):
         """Does a POST request to /public/alertNotificationRules.
@@ -189,7 +190,7 @@ class AlertsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def update_notification_rule(self):
         """Does a PUT request to /public/alertNotificationRules.
@@ -245,7 +246,7 @@ class AlertsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def delete_notification_rule(self, rule_id):
         """Does a DELETE request to /public/alertNotificationRules/{ruleId}.
@@ -301,7 +302,7 @@ class AlertsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def get_resolutions(self,
                         max_resolutions,
@@ -398,7 +399,7 @@ class AlertsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def create_resolution(self, body):
         """Does a POST request to /public/alertResolutions.
@@ -464,7 +465,7 @@ class AlertsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def get_resolution_by_id(self, id):
         """Does a GET request to /public/alertResolutions/{id}.
@@ -526,7 +527,7 @@ class AlertsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def update_resolution(self, id, body):
         """Does a PUT request to /public/alertResolutions/{id}.
@@ -595,7 +596,7 @@ class AlertsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def get_alert_types(self):
         """Does a GET request to /public/alertTypes.
@@ -649,7 +650,7 @@ class AlertsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def get_alerts(self,
                    max_alerts,
@@ -779,7 +780,7 @@ class AlertsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
 
     def get_alert_by_id(self, id):
         """Does a GET request to /public/alerts/{id}.
@@ -839,4 +840,4 @@ class AlertsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException("error", _context)
