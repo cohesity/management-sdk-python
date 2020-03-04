@@ -94,7 +94,7 @@ class RemoteClusterController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def create_remote_cluster(self, body):
         """Does a POST request to /public/remoteClusters.
@@ -164,7 +164,7 @@ class RemoteClusterController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def delete_remote_cluster(self, id):
         """Does a DELETE request to /public/remoteClusters/{id}.
@@ -218,7 +218,7 @@ class RemoteClusterController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def get_remote_cluster_by_id(self, id):
         """Does a GET request to /public/remoteClusters/{id}.
@@ -284,7 +284,7 @@ class RemoteClusterController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def update_remote_cluster(self, id, body):
         """Does a PUT request to /public/remoteClusters/{id}.
@@ -354,7 +354,7 @@ class RemoteClusterController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def get_replication_encryption_key(self):
         """Does a GET request to /public/replicationEncryptionKey.
@@ -411,4 +411,4 @@ class RemoteClusterController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise

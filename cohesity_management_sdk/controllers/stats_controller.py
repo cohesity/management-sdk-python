@@ -104,7 +104,7 @@ class StatsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def get_consumer_stats(self,
                            consumer_type=None,
@@ -209,7 +209,7 @@ class StatsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def get_file_distribution_stats(self, entity_type):
         """Does a GET request to /public/stats/files.
@@ -281,7 +281,7 @@ class StatsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def get_protection_runs_stats(self, status, start_time_usecs,
                                   end_time_usecs):
@@ -366,7 +366,7 @@ class StatsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def get_last_protection_run_stats(self):
         """Does a GET request to /public/stats/protectionRuns/lastRun.
@@ -422,7 +422,7 @@ class StatsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def get_protected_objects_summary(self, exclude_types=None):
         """Does a GET request to /public/stats/protectionSummary.
@@ -486,7 +486,7 @@ class StatsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def get_restore_stats(self, start_time_usecs, end_time_usecs):
         """Does a GET request to /public/stats/restores.
@@ -557,7 +557,7 @@ class StatsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def get_storage_stats(self):
         """Does a GET request to /public/stats/storage.
@@ -607,7 +607,7 @@ class StatsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def get_tenant_stats(self,
                          consumer_type=None,
@@ -712,7 +712,7 @@ class StatsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def get_vault_stats(self):
         """Does a GET request to /public/stats/vaults.
@@ -762,7 +762,7 @@ class StatsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def get_vault_provider_stats(self, run_type):
         """Does a GET request to /public/stats/vaults/providers.
@@ -830,7 +830,7 @@ class StatsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def get_vault_run_stats(self, run_type, start_time_usecs, end_time_usecs,
                             interval):
@@ -912,7 +912,7 @@ class StatsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def get_view_box_stats(self,
                            view_boxes_id_list=None,
@@ -985,7 +985,7 @@ class StatsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def get_view_stats(self, metric=None, num_top_views=None):
         """Does a GET request to /public/stats/views.
@@ -1052,7 +1052,7 @@ class StatsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def get_view_protocol_stats(self):
         """Does a GET request to /public/stats/views/protocols.
@@ -1105,4 +1105,4 @@ class StatsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise

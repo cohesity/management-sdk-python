@@ -83,7 +83,7 @@ class PrincipalsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def update_sources_for_principals(self, body):
         """Does a PUT request to /public/principals/protectionSources.
@@ -149,7 +149,7 @@ class PrincipalsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def search_principals(self,
                           domain=None,
@@ -245,7 +245,7 @@ class PrincipalsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def get_session_user(self):
         """Does a GET request to /public/sessionUser.
@@ -295,7 +295,7 @@ class PrincipalsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def delete_users(self, body=None):
         """Does a DELETE request to /public/users.
@@ -353,7 +353,7 @@ class PrincipalsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def get_users(self,
                   tenant_ids=None,
@@ -444,7 +444,7 @@ class PrincipalsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def create_user(self, body=None):
         """Does a POST request to /public/users.
@@ -509,7 +509,7 @@ class PrincipalsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def update_user(self, body=None):
         """Does a PUT request to /public/users.
@@ -568,7 +568,7 @@ class PrincipalsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def get_user_privileges(self):
         """Does a GET request to /public/users/privileges.
@@ -618,7 +618,7 @@ class PrincipalsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def create_reset_s_3_secret_key(self, body=None):
         """Does a POST request to /public/users/s3SecretKey.
@@ -685,4 +685,4 @@ class PrincipalsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise

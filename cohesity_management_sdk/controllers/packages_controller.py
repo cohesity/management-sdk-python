@@ -67,7 +67,7 @@ class PackagesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def create_download_package(self, body):
         """Does a POST request to /public/packages/url.
@@ -136,4 +136,4 @@ class PackagesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise

@@ -87,7 +87,7 @@ class VaultsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def create_vault(self, body):
         """Does a POST request to /public/vaults.
@@ -153,7 +153,7 @@ class VaultsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def get_archive_media_info(self,
                                cluster_id,
@@ -247,7 +247,7 @@ class VaultsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def get_bandwidth_settings(self):
         """Does a GET request to /public/vaults/bandwidthSettings.
@@ -299,7 +299,7 @@ class VaultsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def update_bandwidth_settings(self, body):
         """Does a PUT request to /public/vaults/bandwidthSettings.
@@ -371,7 +371,7 @@ class VaultsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def get_vault_encryption_key(self, id):
         """Does a GET request to /public/vaults/encryptionKey/{id}.
@@ -446,7 +446,7 @@ class VaultsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def get_vault_by_id(self, id):
         """Does a GET request to /public/vaults/{id}.
@@ -508,7 +508,7 @@ class VaultsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def update_vault(self, id, body):
         """Does a PUT request to /public/vaults/{id}.
@@ -578,4 +578,4 @@ class VaultsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise

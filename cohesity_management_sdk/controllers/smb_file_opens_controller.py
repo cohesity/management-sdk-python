@@ -100,7 +100,7 @@ class SMBFileOpensController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def create_close_smb_file_open(self, body):
         """Does a POST request to /public/smbFileOpens.
@@ -164,4 +164,4 @@ class SMBFileOpensController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise

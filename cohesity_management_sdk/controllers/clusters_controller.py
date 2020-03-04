@@ -73,7 +73,7 @@ class ClustersController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def destroy_cluster(self):
         """Does a DELETE request to /public/clusters.
@@ -117,7 +117,7 @@ class ClustersController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def create_cloud_cluster(self, body):
         """Does a POST request to /public/clusters/cloudEdition.
@@ -188,7 +188,7 @@ class ClustersController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def create_expand_cloud_cluster(self, body):
         """Does a POST request to /public/clusters/cloudEdition/nodes.
@@ -262,7 +262,7 @@ class ClustersController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def get_cluster_creation_progress(self):
         """Does a GET request to /public/clusters/creationProgress.
@@ -321,7 +321,7 @@ class ClustersController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def get_service_gflag(self, service_name=None, gflags_name_list=None):
         """Does a GET request to /public/clusters/gflag.
@@ -426,7 +426,7 @@ class ClustersController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def update_service_gflag(self, body):
         """Does a PUT request to /public/clusters/gflag.
@@ -492,7 +492,7 @@ class ClustersController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def get_io_preferential_tier(self):
         """Does a GET request to /public/clusters/ioPreferentialTier.
@@ -546,7 +546,7 @@ class ClustersController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def put_io_preferential_tier(self, body):
         """Does a PUT request to /public/clusters/ioPreferentialTier.
@@ -614,7 +614,7 @@ class ClustersController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def remove_node(self, id):
         """Does a DELETE request to /public/clusters/nodes/{id}.
@@ -665,7 +665,7 @@ class ClustersController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def create_physical_cluster(self, body):
         """Does a POST request to /public/clusters/physicalEdition.
@@ -738,7 +738,7 @@ class ClustersController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def create_expand_physical_cluster(self, body):
         """Does a POST request to /public/clusters/physicalEdition/nodes.
@@ -812,7 +812,7 @@ class ClustersController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def list_service_states(self):
         """Does a GET request to /public/clusters/services/states.
@@ -864,7 +864,7 @@ class ClustersController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def change_service_state(self, body):
         """Does a POST request to /public/clusters/services/states.
@@ -933,7 +933,7 @@ class ClustersController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def update_upgrade_cluster(self, body):
         """Does a PUT request to /public/clusters/software.
@@ -1004,7 +1004,7 @@ class ClustersController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def create_virtual_cluster(self, body):
         """Does a POST request to /public/clusters/virtualEdition.
@@ -1073,7 +1073,7 @@ class ClustersController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def get_external_client_subnets(self):
         """Does a GET request to /public/externalClientSubnets.
@@ -1129,7 +1129,7 @@ class ClustersController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def update_external_client_subnets(self, body=None):
         """Does a PUT request to /public/externalClientSubnets.
@@ -1195,4 +1195,4 @@ class ClustersController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
