@@ -31,7 +31,8 @@ class PreferencesController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_user_preferences called.')
 
             # Prepare query URL
@@ -66,7 +67,7 @@ class PreferencesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def patch_user_preferences(self, preferences=None):
         """Does a PATCH request to /public/sessionUser/preferences.
@@ -87,7 +88,8 @@ class PreferencesController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('patch_user_preferences called.')
 
             # Prepare query URL
@@ -127,7 +129,7 @@ class PreferencesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def update_user_preferences(self, preferences=None):
         """Does a PUT request to /public/sessionUser/preferences.
@@ -148,7 +150,8 @@ class PreferencesController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('update_user_preferences called.')
 
             # Prepare query URL
@@ -190,4 +193,4 @@ class PreferencesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)

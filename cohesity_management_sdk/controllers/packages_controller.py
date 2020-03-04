@@ -34,7 +34,8 @@ class PackagesController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('list_packages called.')
 
             # Prepare query URL
@@ -67,7 +68,7 @@ class PackagesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def create_download_package(self, body):
         """Does a POST request to /public/packages/url.
@@ -88,7 +89,8 @@ class PackagesController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('create_download_package called.')
 
             # Validate required parameters
@@ -136,4 +138,4 @@ class PackagesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)

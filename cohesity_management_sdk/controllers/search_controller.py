@@ -37,7 +37,8 @@ class SearchController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('search_protection_runs called.')
 
             # Validate required parameters
@@ -81,7 +82,7 @@ class SearchController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def search_protection_sources(self,
                                   search_string=None,
@@ -187,7 +188,8 @@ class SearchController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('search_protection_sources called.')
 
             # Prepare query URL
@@ -239,4 +241,4 @@ class SearchController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)

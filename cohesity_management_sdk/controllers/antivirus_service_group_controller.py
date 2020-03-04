@@ -37,7 +37,8 @@ class AntivirusServiceGroupController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_antivirus_service_group called.')
 
             # Prepare query URL
@@ -76,7 +77,7 @@ class AntivirusServiceGroupController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def create_antivirus_service_group(self, body):
         """Does a POST request to /public/antivirusGroups.
@@ -97,7 +98,8 @@ class AntivirusServiceGroupController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('create_antivirus_service_group called.')
 
             # Validate required parameters
@@ -148,7 +150,7 @@ class AntivirusServiceGroupController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def update_antivirus_service_group(self, body):
         """Does a PUT request to /public/antivirusGroups.
@@ -169,7 +171,8 @@ class AntivirusServiceGroupController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('update_antivirus_service_group called.')
 
             # Validate required parameters
@@ -220,7 +223,7 @@ class AntivirusServiceGroupController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def update_antivirus_service_group_state(self, body=None):
         """Does a PUT request to /public/antivirusGroups/states.
@@ -241,7 +244,8 @@ class AntivirusServiceGroupController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('update_antivirus_service_group_state called.')
 
             # Prepare query URL
@@ -288,7 +292,7 @@ class AntivirusServiceGroupController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def delete_antivirus_service_group(self, id):
         """Does a DELETE request to /public/antivirusGroups/{id}.
@@ -308,7 +312,8 @@ class AntivirusServiceGroupController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('delete_antivirus_service_group called.')
 
             # Validate required parameters
@@ -345,7 +350,7 @@ class AntivirusServiceGroupController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_icap_connection_status(self, icap_uris=None):
         """Does a GET request to /public/icapConnectionStatus.
@@ -367,7 +372,8 @@ class AntivirusServiceGroupController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_icap_connection_status called.')
 
             # Prepare query URL
@@ -410,7 +416,7 @@ class AntivirusServiceGroupController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def delete_infected_files(self, body):
         """Does a DELETE request to /public/infectedFiles.
@@ -432,7 +438,8 @@ class AntivirusServiceGroupController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('delete_infected_files called.')
 
             # Validate required parameters
@@ -478,7 +485,7 @@ class AntivirusServiceGroupController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_infected_files(self,
                            view_names=None,
@@ -520,7 +527,8 @@ class AntivirusServiceGroupController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_infected_files called.')
 
             # Prepare query URL
@@ -565,7 +573,7 @@ class AntivirusServiceGroupController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def update_infected_files(self, body):
         """Does a PUT request to /public/infectedFiles.
@@ -587,7 +595,8 @@ class AntivirusServiceGroupController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('update_infected_files called.')
 
             # Validate required parameters
@@ -633,4 +642,4 @@ class AntivirusServiceGroupController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)

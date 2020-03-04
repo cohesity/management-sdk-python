@@ -56,7 +56,8 @@ class StatisticsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_entities called.')
 
             # Validate required parameters
@@ -103,7 +104,7 @@ class StatisticsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_entities_schema(self, schema_names=None, metric_names=None):
         """Does a GET request to /public/statistics/entitiesSchema.
@@ -146,7 +147,8 @@ class StatisticsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_entities_schema called.')
 
             # Prepare query URL
@@ -187,7 +189,7 @@ class StatisticsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_entity_schema_by_name(self, schema_name):
         """Does a GET request to /public/statistics/entitiesSchema/{schemaName}.
@@ -219,7 +221,8 @@ class StatisticsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_entity_schema_by_name called.')
 
             # Validate required parameters
@@ -265,7 +268,7 @@ class StatisticsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_time_series_schema(self, entity_type, entity_id, entity_name):
         """Does a GET request to /public/statistics/timeSeriesSchema.
@@ -293,7 +296,8 @@ class StatisticsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_time_series_schema called.')
 
             # Validate required parameters
@@ -343,7 +347,7 @@ class StatisticsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_time_series_stats(self,
                               schema_name,
@@ -416,7 +420,8 @@ class StatisticsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_time_series_stats called.')
 
             # Validate required parameters
@@ -470,7 +475,7 @@ class StatisticsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_tasks(self,
                   task_paths=None,
@@ -523,7 +528,8 @@ class StatisticsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_tasks called.')
 
             # Prepare query URL
@@ -567,4 +573,4 @@ class StatisticsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)

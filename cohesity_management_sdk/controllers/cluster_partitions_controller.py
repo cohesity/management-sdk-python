@@ -42,7 +42,8 @@ class ClusterPartitionsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_cluster_partitions called.')
 
             # Prepare query URL
@@ -80,7 +81,7 @@ class ClusterPartitionsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_cluster_partition_by_id(self, id):
         """Does a GET request to /public/clusterPartitions/{id}.
@@ -102,7 +103,8 @@ class ClusterPartitionsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_cluster_partition_by_id called.')
 
             # Validate required parameters
@@ -151,4 +153,4 @@ class ClusterPartitionsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)

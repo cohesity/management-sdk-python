@@ -31,7 +31,8 @@ class NotificationsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_notifications called.')
 
             # Prepare query URL
@@ -64,7 +65,7 @@ class NotificationsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def update_notifications(self, body):
         """Does a PATCH request to /public/sessionUser/notifications.
@@ -85,7 +86,8 @@ class NotificationsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('update_notifications called.')
 
             # Validate required parameters
@@ -123,4 +125,4 @@ class NotificationsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)

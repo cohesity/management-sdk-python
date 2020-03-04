@@ -43,7 +43,8 @@ class LdapProviderController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_ldap_provider called.')
 
             # Prepare query URL
@@ -85,7 +86,7 @@ class LdapProviderController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def create_ldap_provider(self, body):
         """Does a POST request to /public/ldapProvider.
@@ -105,7 +106,8 @@ class LdapProviderController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('create_ldap_provider called.')
 
             # Validate required parameters
@@ -151,7 +153,7 @@ class LdapProviderController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def update_ldap_provider(self, body):
         """Does a PUT request to /public/ldapProvider.
@@ -172,7 +174,8 @@ class LdapProviderController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('update_ldap_provider called.')
 
             # Validate required parameters
@@ -218,7 +221,7 @@ class LdapProviderController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def delete_ldap_provider(self, id):
         """Does a DELETE request to /public/ldapProvider/{id}.
@@ -238,7 +241,8 @@ class LdapProviderController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('delete_ldap_provider called.')
 
             # Validate required parameters
@@ -271,7 +275,7 @@ class LdapProviderController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_ldap_provider_status(self, id):
         """Does a GET request to /public/ldapProvider/{id}/status.
@@ -291,7 +295,8 @@ class LdapProviderController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_ldap_provider_status called.')
 
             # Validate required parameters
@@ -327,4 +332,4 @@ class LdapProviderController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)

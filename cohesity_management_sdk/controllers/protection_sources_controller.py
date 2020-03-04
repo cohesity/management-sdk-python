@@ -60,7 +60,8 @@ class ProtectionSourcesController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_download_physical_agent called.')
 
             # Validate required parameters
@@ -111,7 +112,7 @@ class ProtectionSourcesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def create_upgrade_physical_agents(self, body=None):
         """Does a POST request to /public/physicalAgents/upgrade.
@@ -151,7 +152,8 @@ class ProtectionSourcesController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('create_upgrade_physical_agents called.')
 
             # Prepare query URL
@@ -196,7 +198,7 @@ class ProtectionSourcesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def list_protection_sources(self,
                                 after_cursor_entity_id=None,
@@ -297,7 +299,8 @@ class ProtectionSourcesController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('list_protection_sources called.')
 
             # Prepare query URL
@@ -355,7 +358,7 @@ class ProtectionSourcesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def list_application_servers(self,
                                  protection_sources_root_node_id=None,
@@ -471,7 +474,8 @@ class ProtectionSourcesController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('list_application_servers called.')
 
             # Prepare query URL
@@ -518,7 +522,7 @@ class ProtectionSourcesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def create_register_application_servers(self, body):
         """Does a POST request to /public/protectionSources/applicationServers.
@@ -542,7 +546,8 @@ class ProtectionSourcesController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('create_register_application_servers called.')
 
             # Validate required parameters
@@ -592,7 +597,7 @@ class ProtectionSourcesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def update_application_servers(self, body):
         """Does a PUT request to /public/protectionSources/applicationServers.
@@ -614,7 +619,8 @@ class ProtectionSourcesController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('update_application_servers called.')
 
             # Validate required parameters
@@ -664,7 +670,7 @@ class ProtectionSourcesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def delete_unregister_application_servers(self, body, id):
         """Does a DELETE request to /public/protectionSources/applicationServers/{id}.
@@ -693,7 +699,8 @@ class ProtectionSourcesController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('delete_unregister_application_servers called.')
 
             # Validate required parameters
@@ -747,7 +754,7 @@ class ProtectionSourcesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def list_data_store_information(self, source_id):
         """Does a GET request to /public/protectionSources/datastores.
@@ -768,7 +775,8 @@ class ProtectionSourcesController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('list_data_store_information called.')
 
             # Validate required parameters
@@ -816,7 +824,7 @@ class ProtectionSourcesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_protection_sources_objects(self, object_ids=None):
         """Does a GET request to /public/protectionSources/objects.
@@ -838,7 +846,8 @@ class ProtectionSourcesController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_protection_sources_objects called.')
 
             # Prepare query URL
@@ -880,7 +889,7 @@ class ProtectionSourcesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_protection_sources_object_by_id(self, id):
         """Does a GET request to /public/protectionSources/objects/{id}.
@@ -902,7 +911,8 @@ class ProtectionSourcesController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_protection_sources_object_by_id called.')
 
             # Validate required parameters
@@ -948,7 +958,7 @@ class ProtectionSourcesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def list_protected_objects(self,
                                environment,
@@ -1025,7 +1035,8 @@ class ProtectionSourcesController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('list_protected_objects called.')
 
             # Validate required parameters
@@ -1073,7 +1084,7 @@ class ProtectionSourcesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def create_refresh_protection_source_by_id(self, id):
         """Does a POST request to /public/protectionSources/refresh/{id}.
@@ -1106,7 +1117,8 @@ class ProtectionSourcesController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('create_refresh_protection_source_by_id called.')
 
             # Validate required parameters
@@ -1145,7 +1157,7 @@ class ProtectionSourcesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def create_register_protection_source(self, body):
         """Does a POST request to /public/protectionSources/register.
@@ -1168,7 +1180,8 @@ class ProtectionSourcesController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('create_register_protection_source called.')
 
             # Validate required parameters
@@ -1218,7 +1231,7 @@ class ProtectionSourcesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def list_protection_sources_registration_info(
         self,
@@ -1267,7 +1280,8 @@ class ProtectionSourcesController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info(
                 'list_protection_sources_registration_info called.')
 
@@ -1321,7 +1335,7 @@ class ProtectionSourcesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def list_protection_sources_root_nodes(self,
                                            id=None,
@@ -1360,7 +1374,8 @@ class ProtectionSourcesController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('list_protection_sources_root_nodes called.')
 
             # Prepare query URL
@@ -1407,7 +1422,7 @@ class ProtectionSourcesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def list_sql_aag_hosts_and_databases(self, sql_protection_source_ids):
         """Does a GET request to /public/protectionSources/sqlAagHostsAndDatabases.
@@ -1434,7 +1449,8 @@ Success
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('list_sql_aag_hosts_and_databases called.')
 
             # Validate required parameters
@@ -1486,7 +1502,7 @@ Success
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def list_virtual_machines(self,
                               v_center_id=None,
@@ -1531,7 +1547,8 @@ Success
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('list_virtual_machines called.')
 
             # Prepare query URL
@@ -1574,7 +1591,7 @@ Success
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def delete_unregister_protection_source(self, id):
         """Does a DELETE request to /public/protectionSources/{id}.
@@ -1596,7 +1613,8 @@ Success
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('delete_unregister_protection_source called.')
 
             # Validate required parameters
@@ -1633,7 +1651,7 @@ Success
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def update_protection_source(self, id, body=None):
         """Does a PATCH request to /public/protectionSources/{id}.
@@ -1656,7 +1674,8 @@ Success
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('update_protection_source called.')
 
             # Validate required parameters
@@ -1707,4 +1726,4 @@ Success
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)

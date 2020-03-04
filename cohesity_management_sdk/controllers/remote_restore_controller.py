@@ -46,7 +46,8 @@ class RemoteRestoreController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('upload_vault_encryption_keys called.')
 
             # Validate required parameters
@@ -91,7 +92,7 @@ class RemoteRestoreController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def list_remote_vault_restore_tasks(self):
         """Does a GET request to /public/remoteVaults/restoreTasks.
@@ -114,7 +115,8 @@ class RemoteRestoreController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('list_remote_vault_restore_tasks called.')
 
             # Prepare query URL
@@ -153,7 +155,7 @@ class RemoteRestoreController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def create_remote_vault_restore_task(self, body):
         """Does a POST request to /public/remoteVaults/restoreTasks.
@@ -183,7 +185,8 @@ class RemoteRestoreController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('create_remote_vault_restore_task called.')
 
             # Validate required parameters
@@ -233,7 +236,7 @@ class RemoteRestoreController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_remote_vault_search_job_results(self,
                                             search_job_id,
@@ -283,7 +286,8 @@ class RemoteRestoreController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_remote_vault_search_job_results called.')
 
             # Validate required parameters
@@ -342,7 +346,7 @@ class RemoteRestoreController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def delete_stop_remote_vault_search_job(self, body):
         """Does a DELETE request to /public/remoteVaults/searchJobs.
@@ -366,7 +370,8 @@ class RemoteRestoreController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('delete_stop_remote_vault_search_job called.')
 
             # Validate required parameters
@@ -409,7 +414,7 @@ class RemoteRestoreController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def list_remote_vault_search_jobs(self):
         """Does a GET request to /public/remoteVaults/searchJobs.
@@ -438,7 +443,8 @@ class RemoteRestoreController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('list_remote_vault_search_jobs called.')
 
             # Prepare query URL
@@ -477,7 +483,7 @@ class RemoteRestoreController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def create_remote_vault_search_job(self, body):
         """Does a POST request to /public/remoteVaults/searchJobs.
@@ -511,7 +517,8 @@ class RemoteRestoreController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('create_remote_vault_search_job called.')
 
             # Validate required parameters
@@ -562,7 +569,7 @@ class RemoteRestoreController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def list_remote_vault_search_job_by_id(self, id):
         """Does a GET request to /public/remoteVaults/searchJobs/{id}.
@@ -590,7 +597,8 @@ class RemoteRestoreController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('list_remote_vault_search_job_by_id called.')
 
             # Validate required parameters
@@ -637,4 +645,4 @@ class RemoteRestoreController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)

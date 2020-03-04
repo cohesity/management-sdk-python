@@ -41,7 +41,8 @@ class PrincipalsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('list_sources_for_principals called.')
 
             # Prepare query URL
@@ -83,7 +84,7 @@ class PrincipalsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def update_sources_for_principals(self, body):
         """Does a PUT request to /public/principals/protectionSources.
@@ -106,7 +107,8 @@ class PrincipalsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('update_sources_for_principals called.')
 
             # Validate required parameters
@@ -149,7 +151,7 @@ class PrincipalsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def search_principals(self,
                           domain=None,
@@ -202,7 +204,8 @@ class PrincipalsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('search_principals called.')
 
             # Prepare query URL
@@ -245,7 +248,7 @@ class PrincipalsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_session_user(self):
         """Does a GET request to /public/sessionUser.
@@ -262,7 +265,8 @@ class PrincipalsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_session_user called.')
 
             # Prepare query URL
@@ -295,7 +299,7 @@ class PrincipalsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def delete_users(self, body=None):
         """Does a DELETE request to /public/users.
@@ -321,7 +325,8 @@ class PrincipalsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('delete_users called.')
 
             # Prepare query URL
@@ -353,7 +358,7 @@ class PrincipalsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_users(self,
                   tenant_ids=None,
@@ -401,7 +406,8 @@ class PrincipalsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_users called.')
 
             # Prepare query URL
@@ -444,7 +450,7 @@ class PrincipalsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def create_user(self, body=None):
         """Does a POST request to /public/users.
@@ -470,7 +476,8 @@ class PrincipalsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('create_user called.')
 
             # Prepare query URL
@@ -509,7 +516,7 @@ class PrincipalsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def update_user(self, body=None):
         """Does a PUT request to /public/users.
@@ -529,7 +536,8 @@ class PrincipalsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('update_user called.')
 
             # Prepare query URL
@@ -568,7 +576,7 @@ class PrincipalsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_user_privileges(self):
         """Does a GET request to /public/users/privileges.
@@ -585,7 +593,8 @@ class PrincipalsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_user_privileges called.')
 
             # Prepare query URL
@@ -618,7 +627,7 @@ class PrincipalsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def create_reset_s_3_secret_key(self, body=None):
         """Does a POST request to /public/users/s3SecretKey.
@@ -640,7 +649,8 @@ class PrincipalsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('create_reset_s_3_secret_key called.')
 
             # Prepare query URL
@@ -685,4 +695,4 @@ class PrincipalsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)

@@ -32,7 +32,8 @@ class StaticRouteController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_static_routes called.')
 
             # Prepare query URL
@@ -87,7 +88,8 @@ class StaticRouteController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('remove_static_route called.')
 
             # Validate required parameters
@@ -143,7 +145,8 @@ class StaticRouteController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('update_static_route called.')
 
             # Validate required parameters

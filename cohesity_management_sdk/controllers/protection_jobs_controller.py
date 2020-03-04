@@ -49,7 +49,8 @@ class ProtectionJobsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('change_protection_job_state called.')
 
             # Validate required parameters
@@ -94,7 +95,7 @@ class ProtectionJobsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_protection_jobs(self,
                             ids=None,
@@ -174,7 +175,8 @@ class ProtectionJobsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_protection_jobs called.')
 
             # Prepare query URL
@@ -226,7 +228,7 @@ class ProtectionJobsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def create_protection_job(self, body):
         """Does a POST request to /public/protectionJobs.
@@ -247,7 +249,8 @@ class ProtectionJobsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('create_protection_job called.')
 
             # Validate required parameters
@@ -292,7 +295,7 @@ class ProtectionJobsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def create_run_protection_job(self, id, body):
         """Does a POST request to /public/protectionJobs/run/{id}.
@@ -325,7 +328,8 @@ class ProtectionJobsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('create_run_protection_job called.')
 
             # Validate required parameters
@@ -370,7 +374,7 @@ class ProtectionJobsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def update_protection_jobs_state(self, body=None):
         """Does a POST request to /public/protectionJobs/states.
@@ -401,7 +405,8 @@ class ProtectionJobsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('update_protection_jobs_state called.')
 
             # Prepare query URL
@@ -446,7 +451,7 @@ class ProtectionJobsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def delete_protection_job(self, id, body=None):
         """Does a DELETE request to /public/protectionJobs/{id}.
@@ -468,7 +473,8 @@ class ProtectionJobsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('delete_protection_job called.')
 
             # Validate required parameters
@@ -508,7 +514,7 @@ class ProtectionJobsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_protection_job_by_id(self, id):
         """Does a GET request to /public/protectionJobs/{id}.
@@ -528,7 +534,8 @@ class ProtectionJobsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_protection_job_by_id called.')
 
             # Validate required parameters
@@ -572,7 +579,7 @@ class ProtectionJobsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def update_protection_job(self, body, id):
         """Does a PUT request to /public/protectionJobs/{id}.
@@ -594,7 +601,8 @@ class ProtectionJobsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('update_protection_job called.')
 
             # Validate required parameters
@@ -641,7 +649,7 @@ class ProtectionJobsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_protection_job_audit(self, id):
         """Does a GET request to /public/protectionJobs/{id}/auditTrail.
@@ -661,7 +669,8 @@ class ProtectionJobsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_protection_job_audit called.')
 
             # Validate required parameters
@@ -706,4 +715,4 @@ class ProtectionJobsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)

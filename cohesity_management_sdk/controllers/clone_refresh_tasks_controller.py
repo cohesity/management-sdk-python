@@ -37,7 +37,8 @@ class CloneRefreshTasksController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('create_clone_refresh_task called.')
 
             # Validate required parameters
@@ -87,4 +88,4 @@ class CloneRefreshTasksController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)

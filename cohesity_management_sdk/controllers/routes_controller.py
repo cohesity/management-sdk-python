@@ -35,7 +35,8 @@ class RoutesController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('delete_route called.')
 
             # Prepare query URL
@@ -67,7 +68,7 @@ class RoutesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_routes(self):
         """Does a GET request to /public/routes.
@@ -84,7 +85,8 @@ class RoutesController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_routes called.')
 
             # Prepare query URL
@@ -116,7 +118,7 @@ class RoutesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def add_route(self, body=None):
         """Does a POST request to /public/routes.
@@ -136,7 +138,8 @@ class RoutesController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('add_route called.')
 
             # Prepare query URL
@@ -174,4 +177,4 @@ class RoutesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)

@@ -31,7 +31,8 @@ class InterfaceGroupController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_interface_groups called.')
 
             # Prepare query URL
@@ -65,7 +66,7 @@ class InterfaceGroupController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def create_interface_group(self, body=None):
         """Does a POST request to /public/interfaceGroups.
@@ -86,7 +87,8 @@ class InterfaceGroupController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('create_interface_group called.')
 
             # Prepare query URL
@@ -126,7 +128,7 @@ class InterfaceGroupController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def update_interface_group(self, body=None):
         """Does a PUT request to /public/interfaceGroups.
@@ -147,7 +149,8 @@ class InterfaceGroupController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('update_interface_group called.')
 
             # Prepare query URL
@@ -187,7 +190,7 @@ class InterfaceGroupController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def delete_interface_group(self, name):
         """Does a DELETE request to /public/interfaceGroups/{name}.
@@ -207,7 +210,8 @@ class InterfaceGroupController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('delete_interface_group called.')
 
             # Validate required parameters
@@ -240,4 +244,4 @@ class InterfaceGroupController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)

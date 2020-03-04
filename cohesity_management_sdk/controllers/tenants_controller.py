@@ -36,7 +36,8 @@ class TenantsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_download_tenants_proxy called.')
 
             # Prepare query URL

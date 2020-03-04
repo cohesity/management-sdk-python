@@ -65,7 +65,8 @@ class ProtectionPoliciesController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_protection_policies called.')
 
             # Prepare query URL
@@ -113,7 +114,7 @@ class ProtectionPoliciesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def create_protection_policy(self, body):
         """Does a POST request to /public/protectionPolicies.
@@ -134,7 +135,8 @@ class ProtectionPoliciesController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('create_protection_policy called.')
 
             # Validate required parameters
@@ -182,7 +184,7 @@ class ProtectionPoliciesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def delete_protection_policy(self, id):
         """Does a DELETE request to /public/protectionPolicies/{id}.
@@ -203,7 +205,8 @@ class ProtectionPoliciesController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('delete_protection_policy called.')
 
             # Validate required parameters
@@ -239,7 +242,7 @@ class ProtectionPoliciesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_protection_policy_by_id(self, id):
         """Does a GET request to /public/protectionPolicies/{id}.
@@ -261,7 +264,8 @@ class ProtectionPoliciesController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_protection_policy_by_id called.')
 
             # Validate required parameters
@@ -307,7 +311,7 @@ class ProtectionPoliciesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def update_protection_policy(self, body, id):
         """Does a PUT request to /public/protectionPolicies/{id}.
@@ -330,7 +334,8 @@ class ProtectionPoliciesController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('update_protection_policy called.')
 
             # Validate required parameters
@@ -380,7 +385,7 @@ class ProtectionPoliciesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_protection_policy_summary(self,
                                       id,
@@ -431,7 +436,8 @@ class ProtectionPoliciesController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_protection_policy_summary called.')
 
             # Validate required parameters
@@ -490,4 +496,4 @@ class ProtectionPoliciesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)

@@ -37,7 +37,8 @@ class ProtectionObjectsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('delete_unprotect_object called.')
 
             # Prepare query URL
@@ -72,7 +73,7 @@ class ProtectionObjectsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def create_protect_object(self, body=None):
         """Does a POST request to /public/protectionObjects.
@@ -94,7 +95,8 @@ class ProtectionObjectsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('create_protect_object called.')
 
             # Prepare query URL
@@ -134,7 +136,7 @@ class ProtectionObjectsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def update_protection_object(self, body=None):
         """Does a PUT request to /public/protectionObjects.
@@ -159,7 +161,8 @@ Success
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('update_protection_object called.')
 
             # Prepare query URL
@@ -202,7 +205,7 @@ Success
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_protection_object_summary(self, protection_source_id):
         """Does a GET request to /public/protectionObjects/summary.
@@ -224,7 +227,8 @@ Success
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_protection_object_summary called.')
 
             # Validate required parameters
@@ -273,4 +277,4 @@ Success
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)

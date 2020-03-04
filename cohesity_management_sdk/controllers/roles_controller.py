@@ -35,7 +35,8 @@ class RolesController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('delete_roles called.')
 
             # Prepare query URL
@@ -67,7 +68,7 @@ class RolesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_roles(self, name=None, tenant_ids=None, all_under_hierarchy=None):
         """Does a GET request to /public/roles.
@@ -98,7 +99,8 @@ class RolesController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_roles called.')
 
             # Prepare query URL
@@ -138,7 +140,7 @@ class RolesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def create_role(self, body=None):
         """Does a POST request to /public/roles.
@@ -162,7 +164,8 @@ class RolesController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('create_role called.')
 
             # Prepare query URL
@@ -201,7 +204,7 @@ class RolesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def update_role(self, name, body=None):
         """Does a PUT request to /public/roles/{name}.
@@ -224,7 +227,8 @@ class RolesController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('update_role called.')
 
             # Validate required parameters
@@ -269,4 +273,4 @@ class RolesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)

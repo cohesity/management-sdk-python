@@ -38,7 +38,8 @@ class ClusterController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_basic_cluster_info called.')
 
             # Prepare query URL
@@ -71,7 +72,7 @@ class ClusterController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_cluster(self, fetch_stats=None, fetch_time_series_schema=None):
         """Does a GET request to /public/cluster.
@@ -94,7 +95,8 @@ class ClusterController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_cluster called.')
 
             # Prepare query URL
@@ -134,7 +136,7 @@ class ClusterController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def update_cluster(self, body=None):
         """Does a PUT request to /public/cluster.
@@ -154,7 +156,8 @@ class ClusterController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('update_cluster called.')
 
             # Prepare query URL
@@ -193,7 +196,7 @@ class ClusterController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_cluster_status(self):
         """Does a GET request to /public/cluster/status.
@@ -212,7 +215,8 @@ class ClusterController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_cluster_status called.')
 
             # Prepare query URL
@@ -247,4 +251,4 @@ class ClusterController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)

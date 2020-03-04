@@ -45,7 +45,8 @@ class VlanController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_vlans called.')
 
             # Prepare query URL
@@ -85,7 +86,7 @@ class VlanController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def create_vlan(self, body):
         """Does a POST request to /public/vlans.
@@ -105,7 +106,8 @@ class VlanController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('create_vlan called.')
 
             # Validate required parameters
@@ -148,7 +150,7 @@ class VlanController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def remove_vlan(self, id):
         """Does a DELETE request to /public/vlans/{id}.
@@ -168,7 +170,8 @@ class VlanController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('remove_vlan called.')
 
             # Validate required parameters
@@ -199,7 +202,7 @@ class VlanController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_vlan_by_id(self, id):
         """Does a GET request to /public/vlans/{id}.
@@ -222,7 +225,8 @@ class VlanController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_vlan_by_id called.')
 
             # Validate required parameters
@@ -265,7 +269,7 @@ class VlanController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def update_vlan(self, id, body=None):
         """Does a PUT request to /public/vlans/{id}.
@@ -286,7 +290,8 @@ class VlanController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('update_vlan called.')
 
             # Validate required parameters
@@ -331,4 +336,4 @@ class VlanController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)

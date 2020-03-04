@@ -47,7 +47,8 @@ class RestoreTasksController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_ad_domain_root_topology called.')
 
             # Validate required parameters
@@ -96,7 +97,7 @@ class RestoreTasksController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def create_compare_ad_objects(self, body):
         """Does a POST request to /public/restore/adObjectAttributes.
@@ -119,7 +120,8 @@ class RestoreTasksController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('create_compare_ad_objects called.')
 
             # Validate required parameters
@@ -169,7 +171,7 @@ class RestoreTasksController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def search_ad_objects(self,
                           restore_task_id,
@@ -229,7 +231,8 @@ class RestoreTasksController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('search_ad_objects called.')
 
             # Validate required parameters
@@ -280,7 +283,7 @@ class RestoreTasksController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def create_search_production_ad_objects(self, body):
         """Does a POST request to /public/restore/adObjects.
@@ -302,7 +305,8 @@ class RestoreTasksController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('create_search_production_ad_objects called.')
 
             # Validate required parameters
@@ -352,7 +356,7 @@ class RestoreTasksController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_ad_objects(self,
                        name=None,
@@ -405,7 +409,8 @@ class RestoreTasksController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_ad_objects called.')
 
             # Prepare query URL
@@ -453,7 +458,7 @@ class RestoreTasksController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_ad_objects_restore_status(self, restore_task_id=None):
         """Does a GET request to /public/restore/adObjects/status.
@@ -479,7 +484,8 @@ class RestoreTasksController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_ad_objects_restore_status called.')
 
             # Prepare query URL
@@ -522,7 +528,7 @@ class RestoreTasksController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def create_applications_clone_task(self, body):
         """Does a POST request to /public/restore/applicationsClone.
@@ -543,7 +549,8 @@ class RestoreTasksController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('create_applications_clone_task called.')
 
             # Validate required parameters
@@ -593,7 +600,7 @@ class RestoreTasksController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def create_applications_recover_task(self, body):
         """Does a POST request to /public/restore/applicationsRecover.
@@ -615,7 +622,8 @@ class RestoreTasksController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('create_applications_recover_task called.')
 
             # Validate required parameters
@@ -665,7 +673,7 @@ class RestoreTasksController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def create_clone_task(self, body):
         """Does a POST request to /public/restore/clone.
@@ -686,7 +694,8 @@ class RestoreTasksController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('create_clone_task called.')
 
             # Validate required parameters
@@ -730,7 +739,7 @@ class RestoreTasksController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def delete_public_destroy_clone_task(self, id):
         """Does a DELETE request to /public/restore/clone/{id}.
@@ -751,7 +760,8 @@ class RestoreTasksController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('delete_public_destroy_clone_task called.')
 
             # Validate required parameters
@@ -788,7 +798,7 @@ class RestoreTasksController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def create_deploy_task(self, body):
         """Does a POST request to /public/restore/deploy.
@@ -813,7 +823,8 @@ class RestoreTasksController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('create_deploy_task called.')
 
             # Validate required parameters
@@ -858,7 +869,7 @@ class RestoreTasksController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def create_download_files_and_folders(self, body):
         """Does a POST request to /public/restore/downloadFilesAndFolders.
@@ -880,7 +891,8 @@ class RestoreTasksController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('create_download_files_and_folders called.')
 
             # Validate required parameters
@@ -930,7 +942,7 @@ class RestoreTasksController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def search_restored_files(self,
                               search=None,
@@ -1020,7 +1032,8 @@ class RestoreTasksController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('search_restored_files called.')
 
             # Prepare query URL
@@ -1072,7 +1085,7 @@ class RestoreTasksController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def create_restore_files_task(self, body):
         """Does a POST request to /public/restore/files.
@@ -1093,7 +1106,8 @@ class RestoreTasksController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('create_restore_files_task called.')
 
             # Validate required parameters
@@ -1143,7 +1157,7 @@ class RestoreTasksController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_file_fstat_information(self,
                                    job_id,
@@ -1204,7 +1218,8 @@ class RestoreTasksController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_file_fstat_information called.')
 
             # Validate required parameters
@@ -1270,7 +1285,7 @@ class RestoreTasksController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_file_snapshots_information(self, job_id, cluster_id,
                                        cluster_incarnation_id, source_id,
@@ -1309,7 +1324,8 @@ class RestoreTasksController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_file_snapshots_information called.')
 
             # Validate required parameters
@@ -1369,7 +1385,7 @@ class RestoreTasksController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def search_objects(self,
                        search=None,
@@ -1466,7 +1482,8 @@ class RestoreTasksController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('search_objects called.')
 
             # Prepare query URL
@@ -1519,7 +1536,7 @@ class RestoreTasksController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_outlook_emails(self,
                            has_attachments=None,
@@ -1593,7 +1610,8 @@ class RestoreTasksController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_outlook_emails called.')
 
             # Prepare query URL
@@ -1649,7 +1667,7 @@ class RestoreTasksController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def create_get_restore_points_for_time_range(self, body):
         """Does a POST request to /public/restore/pointsForTimeRange.
@@ -1670,7 +1688,8 @@ class RestoreTasksController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info(
                 'create_get_restore_points_for_time_range called.')
 
@@ -1725,7 +1744,7 @@ class RestoreTasksController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def create_recover_task(self, body):
         """Does a POST request to /public/restore/recover.
@@ -1765,7 +1784,8 @@ class RestoreTasksController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('create_recover_task called.')
 
             # Validate required parameters
@@ -1810,7 +1830,7 @@ class RestoreTasksController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def update_restore_task(self, body):
         """Does a PUT request to /public/restore/recover.
@@ -1835,7 +1855,8 @@ Success
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('update_restore_task called.')
 
             # Validate required parameters
@@ -1880,7 +1901,7 @@ Success
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_restore_tasks(self,
                           task_ids=None,
@@ -1970,7 +1991,8 @@ Success
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_restore_tasks called.')
 
             # Prepare query URL
@@ -2014,7 +2036,7 @@ Success
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def update_cancel_restore_task(self, id):
         """Does a PUT request to /public/restore/tasks/cancel/{id}.
@@ -2034,7 +2056,8 @@ Success
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('update_cancel_restore_task called.')
 
             # Validate required parameters
@@ -2071,7 +2094,7 @@ Success
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_restore_task_by_id(self, id):
         """Does a GET request to /public/restore/tasks/{id}.
@@ -2092,7 +2115,8 @@ Success
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_restore_task_by_id called.')
 
             # Validate required parameters
@@ -2133,7 +2157,7 @@ Success
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_virtual_disk_information(self, cluster_id, cluster_incarnation_id,
                                      job_id, job_run_id, start_time_usecs,
@@ -2166,7 +2190,8 @@ Success
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_virtual_disk_information called.')
 
             # Validate required parameters
@@ -2228,7 +2253,7 @@ Success
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_vm_directory_list(self,
                               job_id,
@@ -2305,7 +2330,8 @@ Success
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_vm_directory_list called.')
 
             # Validate required parameters
@@ -2370,7 +2396,7 @@ Success
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_vm_volumes_information(self,
                                    job_id,
@@ -2443,7 +2469,8 @@ Success
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_vm_volumes_information called.')
 
             # Validate required parameters
@@ -2510,4 +2537,4 @@ Success
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)

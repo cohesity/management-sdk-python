@@ -39,7 +39,8 @@ class NetworkController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('create_bond called.')
 
             # Validate required parameters
@@ -82,7 +83,7 @@ class NetworkController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def delete_bond(self, name):
         """Does a DELETE request to /public/network/bonds/{name}.
@@ -104,7 +105,8 @@ class NetworkController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('delete_bond called.')
 
             # Validate required parameters
@@ -135,7 +137,7 @@ class NetworkController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def delete_hosts(self, ips):
         """Does a DELETE request to /public/network/hosts.
@@ -157,7 +159,8 @@ class NetworkController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('delete_hosts called.')
 
             # Validate required parameters
@@ -199,7 +202,7 @@ class NetworkController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def list_hosts(self):
         """Does a GET request to /public/network/hosts.
@@ -218,7 +221,8 @@ class NetworkController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('list_hosts called.')
 
             # Prepare query URL
@@ -250,7 +254,7 @@ class NetworkController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def create_append_hosts(self, body):
         """Does a POST request to /public/network/hosts.
@@ -273,7 +277,8 @@ class NetworkController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('create_append_hosts called.')
 
             # Validate required parameters
@@ -318,7 +323,7 @@ class NetworkController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def update_edit_hosts(self, body):
         """Does a PUT request to /public/network/hosts.
@@ -339,7 +344,8 @@ class NetworkController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('update_edit_hosts called.')
 
             # Validate required parameters
@@ -383,7 +389,7 @@ class NetworkController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def list_network_interfaces(self):
         """Does a GET request to /public/network/interfaces.
@@ -402,7 +408,8 @@ class NetworkController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('list_network_interfaces called.')
 
             # Prepare query URL
@@ -439,4 +446,4 @@ class NetworkController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)

@@ -51,7 +51,8 @@ class RemoteClusterController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_remote_clusters called.')
 
             # Prepare query URL
@@ -94,7 +95,7 @@ class RemoteClusterController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def create_remote_cluster(self, body):
         """Does a POST request to /public/remoteClusters.
@@ -119,7 +120,8 @@ class RemoteClusterController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('create_remote_cluster called.')
 
             # Validate required parameters
@@ -164,7 +166,7 @@ class RemoteClusterController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def delete_remote_cluster(self, id):
         """Does a DELETE request to /public/remoteClusters/{id}.
@@ -185,7 +187,8 @@ class RemoteClusterController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('delete_remote_cluster called.')
 
             # Validate required parameters
@@ -218,7 +221,7 @@ class RemoteClusterController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_remote_cluster_by_id(self, id):
         """Does a GET request to /public/remoteClusters/{id}.
@@ -240,7 +243,8 @@ class RemoteClusterController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_remote_cluster_by_id called.')
 
             # Validate required parameters
@@ -284,7 +288,7 @@ class RemoteClusterController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def update_remote_cluster(self, id, body):
         """Does a PUT request to /public/remoteClusters/{id}.
@@ -307,7 +311,8 @@ class RemoteClusterController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('update_remote_cluster called.')
 
             # Validate required parameters
@@ -354,7 +359,7 @@ class RemoteClusterController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_replication_encryption_key(self):
         """Does a GET request to /public/replicationEncryptionKey.
@@ -372,7 +377,8 @@ class RemoteClusterController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_replication_encryption_key called.')
 
             # Prepare query URL
@@ -411,4 +417,4 @@ class RemoteClusterController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)

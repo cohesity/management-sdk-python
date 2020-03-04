@@ -35,7 +35,8 @@ class CertificatesController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_certificate_list called.')
 
             # Prepare query URL
@@ -69,7 +70,7 @@ class CertificatesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def create_deploy_host_certificate(self, body=None):
         """Does a POST request to /public/certificates/global.
@@ -91,7 +92,8 @@ class CertificatesController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('create_deploy_host_certificate called.')
 
             # Prepare query URL
@@ -135,7 +137,7 @@ class CertificatesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def delete_web_server_certificate(self):
         """Does a DELETE request to /public/certificates/webServer.
@@ -152,7 +154,8 @@ class CertificatesController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('delete_web_server_certificate called.')
 
             # Prepare query URL
@@ -181,7 +184,7 @@ class CertificatesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_web_server_certificate(self):
         """Does a GET request to /public/certificates/webServer.
@@ -198,7 +201,8 @@ class CertificatesController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_web_server_certificate called.')
 
             # Prepare query URL
@@ -237,7 +241,7 @@ class CertificatesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def update_web_server_certificate(self, body=None):
         """Does a PUT request to /public/certificates/webServer.
@@ -258,7 +262,8 @@ class CertificatesController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('update_web_server_certificate called.')
 
             # Prepare query URL
@@ -303,4 +308,4 @@ class CertificatesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)

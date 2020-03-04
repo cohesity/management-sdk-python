@@ -36,7 +36,8 @@ class NodesController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('list_free_nodes called.')
 
             # Prepare query URL
@@ -70,7 +71,7 @@ class NodesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_node_status(self):
         """Does a GET request to /public/node/status.
@@ -87,7 +88,8 @@ class NodesController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_node_status called.')
 
             # Prepare query URL
@@ -120,7 +122,7 @@ class NodesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_nodes(self):
         """Does a GET request to /public/nodes.
@@ -140,7 +142,8 @@ class NodesController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_nodes called.')
 
             # Prepare query URL
@@ -172,7 +175,7 @@ class NodesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def update_upgrade_node(self, body):
         """Does a PUT request to /public/nodes/software.
@@ -201,7 +204,8 @@ class NodesController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('update_upgrade_node called.')
 
             # Validate required parameters
@@ -246,7 +250,7 @@ class NodesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_node_by_id(self, id):
         """Does a GET request to /public/nodes/{id}.
@@ -266,7 +270,8 @@ class NodesController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_node_by_id called.')
 
             # Validate required parameters
@@ -306,4 +311,4 @@ class NodesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)

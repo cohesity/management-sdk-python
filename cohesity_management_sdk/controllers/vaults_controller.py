@@ -47,7 +47,8 @@ class VaultsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_vaults called.')
 
             # Prepare query URL
@@ -87,7 +88,7 @@ class VaultsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def create_vault(self, body):
         """Does a POST request to /public/vaults.
@@ -109,7 +110,8 @@ class VaultsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('create_vault called.')
 
             # Validate required parameters
@@ -153,7 +155,7 @@ class VaultsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_archive_media_info(self,
                                cluster_id,
@@ -194,7 +196,8 @@ class VaultsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_archive_media_info called.')
 
             # Validate required parameters
@@ -247,7 +250,7 @@ class VaultsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_bandwidth_settings(self):
         """Does a GET request to /public/vaults/bandwidthSettings.
@@ -264,7 +267,8 @@ class VaultsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_bandwidth_settings called.')
 
             # Prepare query URL
@@ -299,7 +303,7 @@ class VaultsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def update_bandwidth_settings(self, body):
         """Does a PUT request to /public/vaults/bandwidthSettings.
@@ -320,7 +324,8 @@ class VaultsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('update_bandwidth_settings called.')
 
             # Validate required parameters
@@ -371,7 +376,7 @@ class VaultsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_vault_encryption_key(self, id):
         """Does a GET request to /public/vaults/encryptionKey/{id}.
@@ -402,7 +407,8 @@ class VaultsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_vault_encryption_key called.')
 
             # Validate required parameters
@@ -446,7 +452,7 @@ class VaultsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_vault_by_id(self, id):
         """Does a GET request to /public/vaults/{id}.
@@ -468,7 +474,8 @@ class VaultsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_vault_by_id called.')
 
             # Validate required parameters
@@ -508,7 +515,7 @@ class VaultsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def update_vault(self, id, body):
         """Does a PUT request to /public/vaults/{id}.
@@ -532,7 +539,8 @@ class VaultsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('update_vault called.')
 
             # Validate required parameters
@@ -578,4 +586,4 @@ class VaultsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)

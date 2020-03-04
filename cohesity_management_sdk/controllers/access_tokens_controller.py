@@ -44,7 +44,8 @@ class AccessTokensController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('create_generate_access_token called.')
 
             # Validate required parameters
@@ -93,4 +94,4 @@ class AccessTokensController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)

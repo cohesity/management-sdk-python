@@ -31,7 +31,8 @@ class CustomReportingController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_postgres called.')
 
             # Prepare query URL
@@ -64,4 +65,4 @@ class CustomReportingController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)

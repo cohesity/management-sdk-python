@@ -87,7 +87,8 @@ class ProtectionRunsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_protection_runs called.')
 
             # Prepare query URL
@@ -138,7 +139,7 @@ class ProtectionRunsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def update_protection_runs(self, body):
         """Does a PUT request to /public/protectionRuns.
@@ -165,7 +166,8 @@ class ProtectionRunsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('update_protection_runs called.')
 
             # Validate required parameters
@@ -203,7 +205,7 @@ class ProtectionRunsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def create_cancel_protection_job_run(self, id, body=None):
         """Does a POST request to /public/protectionRuns/cancel/{id}.
@@ -225,7 +227,8 @@ class ProtectionRunsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('create_cancel_protection_job_run called.')
 
             # Validate required parameters
@@ -270,7 +273,7 @@ class ProtectionRunsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_protection_run_errors(self,
                                   job_id,
@@ -308,7 +311,8 @@ class ProtectionRunsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_protection_run_errors called.')
 
             # Validate required parameters
@@ -365,4 +369,4 @@ class ProtectionRunsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)

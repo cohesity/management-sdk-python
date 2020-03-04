@@ -40,7 +40,8 @@ class GroupsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('delete_groups called.')
 
             # Prepare query URL
@@ -72,7 +73,7 @@ class GroupsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_groups(self,
                    name=None,
@@ -114,7 +115,8 @@ class GroupsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_groups called.')
 
             # Prepare query URL
@@ -156,7 +158,7 @@ class GroupsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def create_group(self, body=None):
         """Does a POST request to /public/groups.
@@ -182,7 +184,8 @@ class GroupsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('create_group called.')
 
             # Prepare query URL
@@ -221,7 +224,7 @@ class GroupsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def update_group(self, body=None):
         """Does a PUT request to /public/groups.
@@ -241,7 +244,8 @@ class GroupsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('update_group called.')
 
             # Prepare query URL
@@ -280,4 +284,4 @@ class GroupsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)

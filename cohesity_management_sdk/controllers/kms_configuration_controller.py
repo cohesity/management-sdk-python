@@ -37,7 +37,8 @@ class KmsConfigurationController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_kms_config called.')
 
             # Prepare query URL
@@ -75,7 +76,7 @@ class KmsConfigurationController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def create_kms_config(self, body=None):
         """Does a POST request to /public/kmsConfig.
@@ -97,7 +98,8 @@ class KmsConfigurationController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('create_kms_config called.')
 
             # Prepare query URL
@@ -137,7 +139,7 @@ class KmsConfigurationController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def update_kms_config(self, body=None):
         """Does a PUT request to /public/kmsConfig.
@@ -159,7 +161,8 @@ class KmsConfigurationController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('update_kms_config called.')
 
             # Prepare query URL
@@ -199,4 +202,4 @@ class KmsConfigurationController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)

@@ -49,7 +49,8 @@ class IdpsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('add_active_idp_principals called.')
 
             # Prepare query URL
@@ -87,7 +88,7 @@ class IdpsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_idps(self,
                  tenant_ids=None,
@@ -128,7 +129,8 @@ class IdpsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_idps called.')
 
             # Prepare query URL
@@ -171,7 +173,7 @@ class IdpsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def create_idp(self, body=None):
         """Does a POST request to /public/idps.
@@ -192,7 +194,8 @@ class IdpsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('create_idp called.')
 
             # Prepare query URL
@@ -231,7 +234,7 @@ class IdpsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def get_idp_login(self, tenant_id=None):
         """Does a GET request to /public/idps/login.
@@ -253,7 +256,8 @@ class IdpsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('get_idp_login called.')
 
             # Prepare query URL
@@ -282,7 +286,7 @@ class IdpsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def delete_idp(self, id):
         """Does a DELETE request to /public/idps/{id}.
@@ -303,7 +307,8 @@ class IdpsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('delete_idp called.')
 
             # Validate required parameters
@@ -333,7 +338,7 @@ class IdpsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
 
     def update_idp(self, id, body=None):
         """Does a PUT request to /public/idps/{id}.
@@ -356,7 +361,8 @@ class IdpsController(BaseController):
                 the request.
 
         """
-        try:
+        _context=None
+	try:
             self.logger.info('update_idp called.')
 
             # Validate required parameters
@@ -401,4 +407,4 @@ class IdpsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise APIException(repr(e), _context)
