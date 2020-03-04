@@ -23,8 +23,9 @@ class APIException(Exception):
 
         """
         super(APIException, self).__init__(reason)
-        self.context = context
-        self.response_code = context.response.status_code
+        if context is not None:
+            self.context = context
+            self.response_code = context.response.status_code
 
 #CohesityPatch
 class ExpiredTokenException(APIException):
