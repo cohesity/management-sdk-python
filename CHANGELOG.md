@@ -1,3 +1,18 @@
+# [1.2.1] - 2020-03-09
+Patch release for exception handling fix
+
+### Added
+- None
+
+### Changed
+- None
+
+### Fixed
+- Issue #13:  Exception handling revered back to `raise` instead of `raise APIException`
+
+### Removed
+- None
+
 # [1.2.0] - 2020-02-03
 New version of Cohesity Management SDK is here!
 
