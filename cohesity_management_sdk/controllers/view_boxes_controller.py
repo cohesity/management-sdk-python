@@ -105,7 +105,7 @@ class ViewBoxesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def create_view_box(self, body):
         """Does a POST request to /public/viewBoxes.
@@ -170,7 +170,7 @@ class ViewBoxesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def delete_view_box(self, id):
         """Does a DELETE request to /public/viewBoxes/{id}.
@@ -222,7 +222,7 @@ class ViewBoxesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def get_view_box_by_id(self, id, fetch_stats=None):
         """Does a GET request to /public/viewBoxes/{id}.
@@ -294,7 +294,7 @@ class ViewBoxesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def update_view_box(self, id, body):
         """Does a PUT request to /public/viewBoxes/{id}.
@@ -362,4 +362,4 @@ class ViewBoxesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise

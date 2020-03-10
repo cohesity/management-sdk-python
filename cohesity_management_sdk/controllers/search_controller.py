@@ -81,7 +81,7 @@ class SearchController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def search_protection_sources(self,
                                   search_string=None,
@@ -239,4 +239,4 @@ class SearchController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise

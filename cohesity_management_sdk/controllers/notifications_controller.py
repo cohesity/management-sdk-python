@@ -64,7 +64,7 @@ class NotificationsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def update_notifications(self, body):
         """Does a PATCH request to /public/sessionUser/notifications.
@@ -123,4 +123,4 @@ class NotificationsController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise

@@ -64,7 +64,7 @@ class AuditController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def get_audit_logs_categories(self):
         """Does a GET request to /public/auditLogs/categories.
@@ -118,7 +118,7 @@ class AuditController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def search_cluster_audit_logs(self,
                                   user_names=None,
@@ -255,4 +255,4 @@ class AuditController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise

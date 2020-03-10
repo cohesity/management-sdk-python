@@ -76,7 +76,7 @@ class AntivirusServiceGroupController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def create_antivirus_service_group(self, body):
         """Does a POST request to /public/antivirusGroups.
@@ -148,7 +148,7 @@ class AntivirusServiceGroupController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def update_antivirus_service_group(self, body):
         """Does a PUT request to /public/antivirusGroups.
@@ -220,7 +220,7 @@ class AntivirusServiceGroupController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def update_antivirus_service_group_state(self, body=None):
         """Does a PUT request to /public/antivirusGroups/states.
@@ -288,7 +288,7 @@ class AntivirusServiceGroupController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def delete_antivirus_service_group(self, id):
         """Does a DELETE request to /public/antivirusGroups/{id}.
@@ -345,7 +345,7 @@ class AntivirusServiceGroupController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def get_icap_connection_status(self, icap_uris=None):
         """Does a GET request to /public/icapConnectionStatus.
@@ -410,7 +410,7 @@ class AntivirusServiceGroupController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def delete_infected_files(self, body):
         """Does a DELETE request to /public/infectedFiles.
@@ -478,7 +478,7 @@ class AntivirusServiceGroupController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def get_infected_files(self,
                            view_names=None,
@@ -565,7 +565,7 @@ class AntivirusServiceGroupController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def update_infected_files(self, body):
         """Does a PUT request to /public/infectedFiles.
@@ -633,4 +633,4 @@ class AntivirusServiceGroupController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise

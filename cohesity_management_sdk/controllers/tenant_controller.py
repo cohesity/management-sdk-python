@@ -85,7 +85,7 @@ class TenantController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def get_tenants(self,
                     ids=None,
@@ -167,7 +167,7 @@ class TenantController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def create_tenant(self, body=None):
         """Does a POST request to /public/tenants.
@@ -231,7 +231,7 @@ class TenantController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def update_tenant(self, body=None):
         """Does a PUT request to /public/tenants.
@@ -290,7 +290,7 @@ class TenantController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def update_tenant_active_directory(self, body=None):
         """Does a PUT request to /public/tenants/activeDirectory.
@@ -359,7 +359,7 @@ class TenantController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def update_tenant_entity(self, body=None):
         """Does a PUT request to /public/tenants/entity.
@@ -423,7 +423,7 @@ class TenantController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def update_tenant_groups(self, body=None):
         """Does a PUT request to /public/tenants/groups.
@@ -486,7 +486,7 @@ class TenantController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def update_tenant_ldap_provider(self, body=None):
         """Does a PUT request to /public/tenants/ldapProvider.
@@ -555,7 +555,7 @@ class TenantController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def update_tenant_protection_policy(self, body=None):
         """Does a PUT request to /public/tenants/policy.
@@ -624,7 +624,7 @@ class TenantController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def update_tenant_protection_job(self, body=None):
         """Does a PUT request to /public/tenants/protectionJob.
@@ -693,7 +693,7 @@ class TenantController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def get_tenants_proxies(self, ids=None):
         """Does a GET request to /public/tenants/proxies.
@@ -753,7 +753,7 @@ class TenantController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def get_tenants_proxy_config_request(self):
         """Does a GET request to /public/tenants/proxy/config.
@@ -808,7 +808,7 @@ class TenantController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def get_download_tenants_proxy(self, id=None):
         """Does a GET request to /public/tenants/proxy/image.
@@ -870,7 +870,7 @@ class TenantController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def update_tenant_users(self, body=None):
         """Does a PUT request to /public/tenants/users.
@@ -933,7 +933,7 @@ class TenantController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def update_tenant_view(self, body=None):
         """Does a PUT request to /public/tenants/view.
@@ -997,7 +997,7 @@ class TenantController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def update_tenant_view_box(self, body=None):
         """Does a PUT request to /public/tenants/viewBox.
@@ -1062,7 +1062,7 @@ class TenantController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def update_tenant_vlan(self, body=None):
         """Does a PUT request to /public/tenants/vlan.
@@ -1125,4 +1125,4 @@ class TenantController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise

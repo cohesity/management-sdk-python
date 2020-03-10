@@ -67,7 +67,7 @@ class RoutesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def get_routes(self):
         """Does a GET request to /public/routes.
@@ -116,7 +116,7 @@ class RoutesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def add_route(self, body=None):
         """Does a POST request to /public/routes.
@@ -174,4 +174,4 @@ class RoutesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise

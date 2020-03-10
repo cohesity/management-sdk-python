@@ -69,7 +69,7 @@ class CertificatesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def create_deploy_host_certificate(self, body=None):
         """Does a POST request to /public/certificates/global.
@@ -135,7 +135,7 @@ class CertificatesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def delete_web_server_certificate(self):
         """Does a DELETE request to /public/certificates/webServer.
@@ -181,7 +181,7 @@ class CertificatesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def get_web_server_certificate(self):
         """Does a GET request to /public/certificates/webServer.
@@ -237,7 +237,7 @@ class CertificatesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def update_web_server_certificate(self, body=None):
         """Does a PUT request to /public/certificates/webServer.
@@ -303,4 +303,4 @@ class CertificatesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise

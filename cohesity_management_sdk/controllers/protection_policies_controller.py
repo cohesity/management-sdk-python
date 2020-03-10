@@ -113,7 +113,7 @@ class ProtectionPoliciesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def create_protection_policy(self, body):
         """Does a POST request to /public/protectionPolicies.
@@ -182,7 +182,7 @@ class ProtectionPoliciesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def delete_protection_policy(self, id):
         """Does a DELETE request to /public/protectionPolicies/{id}.
@@ -239,7 +239,7 @@ class ProtectionPoliciesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def get_protection_policy_by_id(self, id):
         """Does a GET request to /public/protectionPolicies/{id}.
@@ -307,7 +307,7 @@ class ProtectionPoliciesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def update_protection_policy(self, body, id):
         """Does a PUT request to /public/protectionPolicies/{id}.
@@ -380,7 +380,7 @@ class ProtectionPoliciesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def get_protection_policy_summary(self,
                                       id,
@@ -490,4 +490,4 @@ class ProtectionPoliciesController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise

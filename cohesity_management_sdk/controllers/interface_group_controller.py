@@ -65,7 +65,7 @@ class InterfaceGroupController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def create_interface_group(self, body=None):
         """Does a POST request to /public/interfaceGroups.
@@ -126,7 +126,7 @@ class InterfaceGroupController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def update_interface_group(self, body=None):
         """Does a PUT request to /public/interfaceGroups.
@@ -187,7 +187,7 @@ class InterfaceGroupController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
 
     def delete_interface_group(self, name):
         """Does a DELETE request to /public/interfaceGroups/{name}.
@@ -240,4 +240,4 @@ class InterfaceGroupController(BaseController):
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
-            raise APIException(e.message, None)
+            raise
