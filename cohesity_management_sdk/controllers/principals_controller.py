@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -12,16 +12,15 @@ from cohesity_management_sdk.models.user import User
 from cohesity_management_sdk.models.new_s_3_secret_access_key import NewS3SecretAccessKey
 from cohesity_management_sdk.exceptions.request_error_error_exception import RequestErrorErrorException
 
+
 class PrincipalsController(BaseController):
-
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-
-    def __init__(self, client=None, call_back=None):
+    def __init__(self, config=None, client=None, call_back=None):
         super(PrincipalsController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
+        self.config = config
 
-    def list_sources_for_principals(self,
-                                    sids=None):
+    def list_sources_for_principals(self, sids=None):
         """Does a GET request to /public/principals/protectionSources.
 
         From the passed in list principals (specified by SIDs),
@@ -47,44 +46,47 @@ class PrincipalsController(BaseController):
             self.logger.info('list_sources_for_principals called.')
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for list_sources_for_principals.')
+            self.logger.info(
+                'Preparing query URL for list_sources_for_principals.')
             _url_path = '/public/principals/protectionSources'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
-            _query_parameters = {
-                'sids': sids
-            }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
+            _query_parameters = {'sids': sids}
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for list_sources_for_principals.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            self.logger.info(
+                'Preparing headers for list_sources_for_principals.')
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for list_sources_for_principals.')
+            self.logger.info(
+                'Preparing and executing request for list_sources_for_principals.'
+            )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'list_sources_for_principals')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='list_sources_for_principals')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for list_sources_for_principals.')
+            self.logger.info(
+                'Validating response for list_sources_for_principals.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, SourcesForSid.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              SourcesForSid.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def update_sources_for_principals(self,
-                                      body):
+    def update_sources_for_principals(self, body):
         """Does a PUT request to /public/principals/protectionSources.
 
         Specify the security identifier (SID) of the principal to grant
@@ -109,36 +111,45 @@ class PrincipalsController(BaseController):
             self.logger.info('update_sources_for_principals called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for update_sources_for_principals.')
+            self.logger.info(
+                'Validating required parameters for update_sources_for_principals.'
+            )
             self.validate_parameters(body=body)
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for update_sources_for_principals.')
+            self.logger.info(
+                'Preparing query URL for update_sources_for_principals.')
             _url_path = '/public/principals/protectionSources'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for update_sources_for_principals.')
-            _headers = {
-                'content-type': 'application/json; charset=utf-8'
-            }
+            self.logger.info(
+                'Preparing headers for update_sources_for_principals.')
+            _headers = {'content-type': 'application/json; charset=utf-8'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for update_sources_for_principals.')
-            _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'update_sources_for_principals')
+            self.logger.info(
+                'Preparing and executing request for update_sources_for_principals.'
+            )
+            _request = self.http_client.put(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(
+                _request, name='update_sources_for_principals')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for update_sources_for_principals.')
+            self.logger.info(
+                'Validating response for update_sources_for_principals.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
     def search_principals(self,
@@ -197,7 +208,7 @@ class PrincipalsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for search_principals.')
             _url_path = '/public/principals/searchPrincipals'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'domain': domain,
@@ -206,21 +217,21 @@ class PrincipalsController(BaseController):
                 'sids': sids,
                 'includeComputers': include_computers
             }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
             self.logger.info('Preparing headers for search_principals.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for search_principals.')
+            self.logger.info(
+                'Preparing and executing request for search_principals.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'search_principals')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request, name='search_principals')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for search_principals.')
@@ -229,10 +240,11 @@ class PrincipalsController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, Principal.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              Principal.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
     def get_session_user(self):
@@ -256,21 +268,20 @@ class PrincipalsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_session_user.')
             _url_path = '/public/sessionUser'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
             self.logger.info('Preparing headers for get_session_user.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_session_user.')
+            self.logger.info(
+                'Preparing and executing request for get_session_user.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_session_user')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request, name='get_session_user')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_session_user.')
@@ -279,14 +290,14 @@ class PrincipalsController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, User.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              User.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def delete_users(self,
-                     body=None):
+    def delete_users(self, body=None):
         """Does a DELETE request to /public/users.
 
         Only users from the same domain can be deleted by a single request.
@@ -316,21 +327,23 @@ class PrincipalsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for delete_users.')
             _url_path = '/public/users'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
             self.logger.info('Preparing headers for delete_users.')
-            _headers = {
-                'content-type': 'application/json; charset=utf-8'
-            }
+            _headers = {'content-type': 'application/json; charset=utf-8'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for delete_users.')
-            _request = self.http_client.delete(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'delete_users')
+            self.logger.info(
+                'Preparing and executing request for delete_users.')
+            _request = self.http_client.delete(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request, name='delete_users')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for delete_users.')
@@ -339,7 +352,7 @@ class PrincipalsController(BaseController):
             self.validate_response(_context)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
     def get_users(self,
@@ -394,7 +407,7 @@ class PrincipalsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_users.')
             _url_path = '/public/users'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'tenantIds': tenant_ids,
@@ -404,21 +417,20 @@ class PrincipalsController(BaseController):
                 'domain': domain,
                 'partialMatch': partial_match
             }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
             self.logger.info('Preparing headers for get_users.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_users.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_users')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request, name='get_users')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_users.')
@@ -427,14 +439,14 @@ class PrincipalsController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, User.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              User.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def create_user(self,
-                    body=None):
+    def create_user(self, body=None):
         """Does a POST request to /public/users.
 
         If an Active Directory domain is specified, a new user is added to
@@ -464,7 +476,7 @@ class PrincipalsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for create_user.')
             _url_path = '/public/users'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -476,10 +488,14 @@ class PrincipalsController(BaseController):
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for create_user.')
-            _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'create_user')
+            self.logger.info(
+                'Preparing and executing request for create_user.')
+            _request = self.http_client.post(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request, name='create_user')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for create_user.')
@@ -488,14 +504,14 @@ class PrincipalsController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, User.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              User.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def update_user(self,
-                    body=None):
+    def update_user(self, body=None):
         """Does a PUT request to /public/users.
 
         Returns the user that was updated on the Cohesity Cluster.
@@ -520,7 +536,7 @@ class PrincipalsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for update_user.')
             _url_path = '/public/users'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -532,10 +548,14 @@ class PrincipalsController(BaseController):
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for update_user.')
-            _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'update_user')
+            self.logger.info(
+                'Preparing and executing request for update_user.')
+            _request = self.http_client.put(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request, name='update_user')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for update_user.')
@@ -544,10 +564,11 @@ class PrincipalsController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, User.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              User.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
     def get_user_privileges(self):
@@ -571,21 +592,21 @@ class PrincipalsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_user_privileges.')
             _url_path = '/public/users/privileges'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
             self.logger.info('Preparing headers for get_user_privileges.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_user_privileges.')
+            self.logger.info(
+                'Preparing and executing request for get_user_privileges.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_user_privileges')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='get_user_privileges')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_user_privileges.')
@@ -597,11 +618,10 @@ class PrincipalsController(BaseController):
             return APIHelper.json_deserialize(_context.response.raw_body)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def create_reset_s_3_secret_key(self,
-                                    body=None):
+    def create_reset_s_3_secret_key(self, body=None):
         """Does a POST request to /public/users/s3SecretKey.
 
         Returns the new key that was generated.
@@ -625,34 +645,45 @@ class PrincipalsController(BaseController):
             self.logger.info('create_reset_s_3_secret_key called.')
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for create_reset_s_3_secret_key.')
+            self.logger.info(
+                'Preparing query URL for create_reset_s_3_secret_key.')
             _url_path = '/public/users/s3SecretKey'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for create_reset_s_3_secret_key.')
+            self.logger.info(
+                'Preparing headers for create_reset_s_3_secret_key.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for create_reset_s_3_secret_key.')
-            _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'create_reset_s_3_secret_key')
+            self.logger.info(
+                'Preparing and executing request for create_reset_s_3_secret_key.'
+            )
+            _request = self.http_client.post(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='create_reset_s_3_secret_key')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for create_reset_s_3_secret_key.')
+            self.logger.info(
+                'Validating response for create_reset_s_3_secret_key.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, NewS3SecretAccessKey.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                NewS3SecretAccessKey.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise

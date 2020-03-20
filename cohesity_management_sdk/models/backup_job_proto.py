@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.alerting_policy_proto
 import cohesity_management_sdk.models.backup_source_params
@@ -40,6 +40,11 @@ class BackupJobProto(object):
             entities (such as VMs).
         continue_on_quiesce_failure (bool): Whether to continue backing up on
             quiesce failure.
+        create_remote_view (bool): If set to false, a remote view will not be
+            created. If set to true and: 1) Remote view name is not provided
+            by the user, a remote view is created with the same name as source
+            view name. 2) Remote view name is provided by the user, a remote
+            view is created with the given name.
         dedup_disabled_source_id_vec (list of long|int): List of source ids
             for which source side dedup is disabled from the backup job.
         deletion_status (int): Determines if the job (and associated backups)
@@ -219,6 +224,7 @@ class BackupJobProto(object):
         "backup_qos_principal":'backupQosPrincipal',
         "backup_source_params":'backupSourceParams',
         "continue_on_quiesce_failure":'continueOnQuiesceFailure',
+        "create_remote_view":'createRemoteView',
         "dedup_disabled_source_id_vec":'dedupDisabledSourceIdVec',
         "deletion_status":'deletionStatus',
         "description":'description',
@@ -280,6 +286,7 @@ class BackupJobProto(object):
                  backup_qos_principal=None,
                  backup_source_params=None,
                  continue_on_quiesce_failure=None,
+                 create_remote_view=None,
                  dedup_disabled_source_id_vec=None,
                  deletion_status=None,
                  description=None,
@@ -341,6 +348,7 @@ class BackupJobProto(object):
         self.backup_qos_principal = backup_qos_principal
         self.backup_source_params = backup_source_params
         self.continue_on_quiesce_failure = continue_on_quiesce_failure
+        self.create_remote_view = create_remote_view
         self.dedup_disabled_source_id_vec = dedup_disabled_source_id_vec
         self.deletion_status = deletion_status
         self.description = description
@@ -423,6 +431,7 @@ class BackupJobProto(object):
             for structure in dictionary.get('backupSourceParams'):
                 backup_source_params.append(cohesity_management_sdk.models.backup_source_params.BackupSourceParams.from_dictionary(structure))
         continue_on_quiesce_failure = dictionary.get('continueOnQuiesceFailure')
+        create_remote_view = dictionary.get('createRemoteView')
         dedup_disabled_source_id_vec = dictionary.get('dedupDisabledSourceIdVec')
         deletion_status = dictionary.get('deletionStatus')
         description = dictionary.get('description')
@@ -503,6 +512,7 @@ class BackupJobProto(object):
                    backup_qos_principal,
                    backup_source_params,
                    continue_on_quiesce_failure,
+                   create_remote_view,
                    dedup_disabled_source_id_vec,
                    deletion_status,
                    description,

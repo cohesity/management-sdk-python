@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 
 class ChangeServiceStateParameters(object):
@@ -55,8 +55,8 @@ class ChangeServiceStateParameters(object):
             'kAthena' is a service for running distributed containerized
             applications on the Cohesity Data Platform. 'kBifrostBroker' is a
             service for communicating with the Cohesity proxies for
-            multitenancy. 'kOs' can be specified in order to do a full
-            reboot.
+            multitenancy. 'kSmb2Proxy' is a new SMB protocol service. 'kOs'
+            can be specified in order to do a full reboot.
 
     """
 

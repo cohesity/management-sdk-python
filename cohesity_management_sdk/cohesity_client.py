@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 from cohesity_management_sdk.decorators import lazy_property
 from cohesity_management_sdk.configuration import Configuration
@@ -32,6 +32,7 @@ from cohesity_management_sdk.controllers.protection_policies_controller import P
 from cohesity_management_sdk.controllers.protection_runs_controller import ProtectionRunsController
 from cohesity_management_sdk.controllers.remote_cluster_controller import RemoteClusterController
 from cohesity_management_sdk.controllers.remote_restore_controller import RemoteRestoreController
+from cohesity_management_sdk.controllers.reports_controller import ReportsController
 from cohesity_management_sdk.controllers.restore_tasks_controller import RestoreTasksController
 from cohesity_management_sdk.controllers.roles_controller import RolesController
 from cohesity_management_sdk.controllers.routes_controller import RoutesController
@@ -50,176 +51,177 @@ from cohesity_management_sdk.controllers.vlan_controller import VlanController
 
 class CohesityClient(object):
 
-    auth = AuthManager
-    config = Configuration
-
     @lazy_property
     def access_tokens(self):
-        return AccessTokensController()
+        return AccessTokensController(self.config)
 
     @lazy_property
     def active_directory(self):
-        return ActiveDirectoryController()
+        return ActiveDirectoryController(self.config)
 
     @lazy_property
     def alerts(self):
-        return AlertsController()
+        return AlertsController(self.config)
 
     @lazy_property
     def antivirus_service_group(self):
-        return AntivirusServiceGroupController()
+        return AntivirusServiceGroupController(self.config)
 
     @lazy_property
     def audit(self):
-        return AuditController()
+        return AuditController(self.config)
 
     @lazy_property
     def cluster(self):
-        return ClusterController()
+        return ClusterController(self.config)
 
     @lazy_property
     def certificates(self):
-        return CertificatesController()
+        return CertificatesController(self.config)
 
     @lazy_property
     def clusters(self):
-        return ClustersController()
+        return ClustersController(self.config)
 
     @lazy_property
     def cluster_partitions(self):
-        return ClusterPartitionsController()
+        return ClusterPartitionsController(self.config)
 
     @lazy_property
     def groups(self):
-        return GroupsController()
+        return GroupsController(self.config)
 
     @lazy_property
     def idps(self):
-        return IdpsController()
+        return IdpsController(self.config)
 
     @lazy_property
     def interface_group(self):
-        return InterfaceGroupController()
+        return InterfaceGroupController(self.config)
 
     @lazy_property
     def kms_configuration(self):
-        return KmsConfigurationController()
+        return KmsConfigurationController(self.config)
 
     @lazy_property
     def ldap_provider(self):
-        return LdapProviderController()
+        return LdapProviderController(self.config)
 
     @lazy_property
     def network(self):
-        return NetworkController()
+        return NetworkController(self.config)
 
     @lazy_property
     def views(self):
-        return ViewsController()
+        return ViewsController(self.config)
 
     @lazy_property
     def nodes(self):
-        return NodesController()
+        return NodesController(self.config)
 
     @lazy_property
     def packages(self):
-        return PackagesController()
+        return PackagesController(self.config)
 
     @lazy_property
     def protection_sources(self):
-        return ProtectionSourcesController()
+        return ProtectionSourcesController(self.config)
 
     @lazy_property
     def custom_reporting(self):
-        return CustomReportingController()
+        return CustomReportingController(self.config)
 
     @lazy_property
     def principals(self):
-        return PrincipalsController()
+        return PrincipalsController(self.config)
 
     @lazy_property
     def privileges(self):
-        return PrivilegesController()
+        return PrivilegesController(self.config)
 
     @lazy_property
     def protection_jobs(self):
-        return ProtectionJobsController()
+        return ProtectionJobsController(self.config)
 
     @lazy_property
     def protection_objects(self):
-        return ProtectionObjectsController()
+        return ProtectionObjectsController(self.config)
 
     @lazy_property
     def protection_policies(self):
-        return ProtectionPoliciesController()
+        return ProtectionPoliciesController(self.config)
 
     @lazy_property
     def protection_runs(self):
-        return ProtectionRunsController()
+        return ProtectionRunsController(self.config)
 
     @lazy_property
     def remote_cluster(self):
-        return RemoteClusterController()
+        return RemoteClusterController(self.config)
 
     @lazy_property
     def remote_restore(self):
-        return RemoteRestoreController()
+        return RemoteRestoreController(self.config)
+
+    @lazy_property
+    def reports(self):
+        return ReportsController(self.config)
 
     @lazy_property
     def restore_tasks(self):
-        return RestoreTasksController()
+        return RestoreTasksController(self.config)
 
     @lazy_property
     def roles(self):
-        return RolesController()
+        return RolesController(self.config)
 
     @lazy_property
     def routes(self):
-        return RoutesController()
+        return RoutesController(self.config)
 
     @lazy_property
     def search(self):
-        return SearchController()
+        return SearchController(self.config)
 
     @lazy_property
     def notifications(self):
-        return NotificationsController()
+        return NotificationsController(self.config)
 
     @lazy_property
     def preferences(self):
-        return PreferencesController()
+        return PreferencesController(self.config)
 
     @lazy_property
     def smb_file_opens(self):
-        return SMBFileOpensController()
+        return SMBFileOpensController(self.config)
 
     @lazy_property
     def static_route(self):
-        return StaticRouteController()
+        return StaticRouteController(self.config)
 
     @lazy_property
     def statistics(self):
-        return StatisticsController()
+        return StatisticsController(self.config)
 
     @lazy_property
     def tenant(self):
-        return TenantController()
+        return TenantController(self.config)
 
     @lazy_property
     def tenants(self):
-        return TenantsController()
+        return TenantsController(self.config)
 
     @lazy_property
     def vaults(self):
-        return VaultsController()
+        return VaultsController(self.config)
 
     @lazy_property
     def view_boxes(self):
-        return ViewBoxesController()
+        return ViewBoxesController(self.config)
 
     @lazy_property
     def vlan(self):
-        return VlanController()
+        return VlanController(self.config)
 
 
     def __init__(self,
@@ -228,15 +230,17 @@ class CohesityClient(object):
                  password=None,
                  domain=None,
                  auth_token=None):
+        self.auth = AuthManager()
+        self.config = Configuration()
         if cluster_vip is None:
             raise Exception("Specify cluster VIP")
         if auth_token is not None:
-            Configuration.auth_token = auth_token
+            self.config.auth_token = auth_token
         if username is not None:
-            Configuration.username = username
+            self.config.username = username
         if password is not None:
-            Configuration.password = password
-            Configuration.auth_token = None  # Flushing existing token.
+            self.config.password = password
+            self.config.auth_token = None  # Flushing existing token.
         if domain is not None:
-            Configuration.domain = domain
-        Configuration.cluster_vip = cluster_vip
+            self.config.domain = domain
+        self.config.cluster_vip = cluster_vip

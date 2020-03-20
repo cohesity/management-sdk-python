@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -9,13 +9,13 @@ from cohesity_management_sdk.http.auth.auth_manager import AuthManager
 from cohesity_management_sdk.models.smb_active_file_opens_response import SmbActiveFileOpensResponse
 from cohesity_management_sdk.exceptions.request_error_error_exception import RequestErrorErrorException
 
+
 class SMBFileOpensController(BaseController):
-
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-
-    def __init__(self, client=None, call_back=None):
+    def __init__(self, config=None, client=None, call_back=None):
         super(SMBFileOpensController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
+        self.config = config
 
     def get_smb_file_opens(self,
                            file_path=None,
@@ -63,7 +63,7 @@ class SMBFileOpensController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_smb_file_opens.')
             _url_path = '/public/smbFileOpens'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'filePath': file_path,
@@ -71,21 +71,22 @@ class SMBFileOpensController(BaseController):
                 'pageCount': page_count,
                 'cookie': cookie
             }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
             self.logger.info('Preparing headers for get_smb_file_opens.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_smb_file_opens.')
+            self.logger.info(
+                'Preparing and executing request for get_smb_file_opens.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_smb_file_opens')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='get_smb_file_opens')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_smb_file_opens.')
@@ -94,14 +95,15 @@ class SMBFileOpensController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, SmbActiveFileOpensResponse.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                SmbActiveFileOpensResponse.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def create_close_smb_file_open(self,
-                                   body):
+    def create_close_smb_file_open(self, body):
         """Does a POST request to /public/smbFileOpens.
 
         Returns nothing upon success.
@@ -124,34 +126,43 @@ class SMBFileOpensController(BaseController):
             self.logger.info('create_close_smb_file_open called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for create_close_smb_file_open.')
+            self.logger.info(
+                'Validating required parameters for create_close_smb_file_open.'
+            )
             self.validate_parameters(body=body)
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for create_close_smb_file_open.')
+            self.logger.info(
+                'Preparing query URL for create_close_smb_file_open.')
             _url_path = '/public/smbFileOpens'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for create_close_smb_file_open.')
-            _headers = {
-                'content-type': 'application/json; charset=utf-8'
-            }
+            self.logger.info(
+                'Preparing headers for create_close_smb_file_open.')
+            _headers = {'content-type': 'application/json; charset=utf-8'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for create_close_smb_file_open.')
-            _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'create_close_smb_file_open')
+            self.logger.info(
+                'Preparing and executing request for create_close_smb_file_open.'
+            )
+            _request = self.http_client.post(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='create_close_smb_file_open')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for create_close_smb_file_open.')
+            self.logger.info(
+                'Validating response for create_close_smb_file_open.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise

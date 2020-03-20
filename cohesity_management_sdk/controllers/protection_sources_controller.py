@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -15,17 +15,15 @@ from cohesity_management_sdk.models.get_registration_info_response import GetReg
 from cohesity_management_sdk.models.sql_aag_host_and_databases import SqlAagHostAndDatabases
 from cohesity_management_sdk.exceptions.request_error_error_exception import RequestErrorErrorException
 
+
 class ProtectionSourcesController(BaseController):
-
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-
-    def __init__(self, client=None, call_back=None):
+    def __init__(self, config=None, client=None, call_back=None):
         super(ProtectionSourcesController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
+        self.config = config
 
-    def get_download_physical_agent(self,
-                                    host_type,
-                                    pkg_type=None):
+    def get_download_physical_agent(self, host_type, pkg_type=None):
         """Does a GET request to /public/physicalAgents/download.
 
         Host type could be Linux, Windows, AIX.
@@ -58,36 +56,40 @@ class ProtectionSourcesController(BaseController):
             self.logger.info('get_download_physical_agent called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for get_download_physical_agent.')
+            self.logger.info(
+                'Validating required parameters for get_download_physical_agent.'
+            )
             self.validate_parameters(host_type=host_type)
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for get_download_physical_agent.')
+            self.logger.info(
+                'Preparing query URL for get_download_physical_agent.')
             _url_path = '/public/physicalAgents/download'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
-            _query_parameters = {
-                'hostType': host_type,
-                'pkgType': pkg_type
-            }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
+            _query_parameters = {'hostType': host_type, 'pkgType': pkg_type}
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for get_download_physical_agent.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            self.logger.info(
+                'Preparing headers for get_download_physical_agent.')
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_download_physical_agent.')
+            self.logger.info(
+                'Preparing and executing request for get_download_physical_agent.'
+            )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_download_physical_agent')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='get_download_physical_agent')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for get_download_physical_agent.')
+            self.logger.info(
+                'Validating response for get_download_physical_agent.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
@@ -96,11 +98,10 @@ class ProtectionSourcesController(BaseController):
             return APIHelper.json_deserialize(_context.response.raw_body)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def create_upgrade_physical_agents(self,
-                                       body=None):
+    def create_upgrade_physical_agents(self, body=None):
         """Does a POST request to /public/physicalAgents/upgrade.
 
         If the request is successful, the Cohesity agents on the specified
@@ -142,36 +143,47 @@ class ProtectionSourcesController(BaseController):
             self.logger.info('create_upgrade_physical_agents called.')
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for create_upgrade_physical_agents.')
+            self.logger.info(
+                'Preparing query URL for create_upgrade_physical_agents.')
             _url_path = '/public/physicalAgents/upgrade'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for create_upgrade_physical_agents.')
+            self.logger.info(
+                'Preparing headers for create_upgrade_physical_agents.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for create_upgrade_physical_agents.')
-            _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'create_upgrade_physical_agents')
+            self.logger.info(
+                'Preparing and executing request for create_upgrade_physical_agents.'
+            )
+            _request = self.http_client.post(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(
+                _request, name='create_upgrade_physical_agents')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for create_upgrade_physical_agents.')
+            self.logger.info(
+                'Validating response for create_upgrade_physical_agents.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, UpgradePhysicalAgentsMessage.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                UpgradePhysicalAgentsMessage.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
     def list_protection_sources(self,
@@ -277,9 +289,10 @@ class ProtectionSourcesController(BaseController):
             self.logger.info('list_protection_sources called.')
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for list_protection_sources.')
+            self.logger.info(
+                'Preparing query URL for list_protection_sources.')
             _url_path = '/public/protectionSources'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'tenantIds': tenant_ids,
@@ -299,33 +312,37 @@ class ProtectionSourcesController(BaseController):
                 'includeEntityPermissionInfo': include_entity_permission_info,
                 'sids': sids
             }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
             self.logger.info('Preparing headers for list_protection_sources.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for list_protection_sources.')
+            self.logger.info(
+                'Preparing and executing request for list_protection_sources.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'list_protection_sources')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='list_protection_sources')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for list_protection_sources.')
+            self.logger.info(
+                'Validating response for list_protection_sources.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ProtectionSourceNode.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                ProtectionSourceNode.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
     def list_application_servers(self,
@@ -438,9 +455,10 @@ class ProtectionSourcesController(BaseController):
             self.logger.info('list_application_servers called.')
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for list_application_servers.')
+            self.logger.info(
+                'Preparing query URL for list_application_servers.')
             _url_path = '/public/protectionSources/applicationServers'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'protectionSourcesRootNodeId': protection_sources_root_node_id,
@@ -448,37 +466,41 @@ class ProtectionSourcesController(BaseController):
                 'protectionSourceId': protection_source_id,
                 'application': application
             }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
             self.logger.info('Preparing headers for list_application_servers.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for list_application_servers.')
+            self.logger.info(
+                'Preparing and executing request for list_application_servers.'
+            )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'list_application_servers')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='list_application_servers')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for list_application_servers.')
+            self.logger.info(
+                'Validating response for list_application_servers.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, RegisteredApplicationServer.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                RegisteredApplicationServer.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def create_register_application_servers(self,
-                                            body):
+    def create_register_application_servers(self, body):
         """Does a POST request to /public/protectionSources/applicationServers.
 
         Registering Application Servers will help Cohesity Cluster such that
@@ -504,44 +526,55 @@ class ProtectionSourcesController(BaseController):
             self.logger.info('create_register_application_servers called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for create_register_application_servers.')
+            self.logger.info(
+                'Validating required parameters for create_register_application_servers.'
+            )
             self.validate_parameters(body=body)
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for create_register_application_servers.')
+            self.logger.info(
+                'Preparing query URL for create_register_application_servers.')
             _url_path = '/public/protectionSources/applicationServers'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for create_register_application_servers.')
+            self.logger.info(
+                'Preparing headers for create_register_application_servers.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for create_register_application_servers.')
-            _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'create_register_application_servers')
+            self.logger.info(
+                'Preparing and executing request for create_register_application_servers.'
+            )
+            _request = self.http_client.post(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(
+                _request, name='create_register_application_servers')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for create_register_application_servers.')
+            self.logger.info(
+                'Validating response for create_register_application_servers.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ProtectionSource.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              ProtectionSource.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def update_application_servers(self,
-                                   body):
+    def update_application_servers(self, body):
         """Does a PUT request to /public/protectionSources/applicationServers.
 
         Returns the Protection Source whose registration parameters of its
@@ -565,45 +598,55 @@ class ProtectionSourcesController(BaseController):
             self.logger.info('update_application_servers called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for update_application_servers.')
+            self.logger.info(
+                'Validating required parameters for update_application_servers.'
+            )
             self.validate_parameters(body=body)
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for update_application_servers.')
+            self.logger.info(
+                'Preparing query URL for update_application_servers.')
             _url_path = '/public/protectionSources/applicationServers'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for update_application_servers.')
+            self.logger.info(
+                'Preparing headers for update_application_servers.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for update_application_servers.')
-            _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'update_application_servers')
+            self.logger.info(
+                'Preparing and executing request for update_application_servers.'
+            )
+            _request = self.http_client.put(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='update_application_servers')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for update_application_servers.')
+            self.logger.info(
+                'Validating response for update_application_servers.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ProtectionSource.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              ProtectionSource.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def delete_unregister_application_servers(self,
-                                              body,
-                                              id):
+    def delete_unregister_application_servers(self, body, id):
         """Does a DELETE request to /public/protectionSources/applicationServers/{id}.
 
         Unregistering Application Servers will fail if the Protection Source
@@ -634,48 +677,59 @@ class ProtectionSourcesController(BaseController):
             self.logger.info('delete_unregister_application_servers called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for delete_unregister_application_servers.')
-            self.validate_parameters(body=body,
-                                     id=id)
+            self.logger.info(
+                'Validating required parameters for delete_unregister_application_servers.'
+            )
+            self.validate_parameters(body=body, id=id)
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for delete_unregister_application_servers.')
+            self.logger.info(
+                'Preparing query URL for delete_unregister_application_servers.'
+            )
             _url_path = '/public/protectionSources/applicationServers/{id}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-                'id': id
-            })
-            _query_builder = Configuration.get_base_uri()
+            _url_path = APIHelper.append_url_with_template_parameters(
+                _url_path, {'id': id})
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for delete_unregister_application_servers.')
+            self.logger.info(
+                'Preparing headers for delete_unregister_application_servers.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for delete_unregister_application_servers.')
-            _request = self.http_client.delete(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'delete_unregister_application_servers')
+            self.logger.info(
+                'Preparing and executing request for delete_unregister_application_servers.'
+            )
+            _request = self.http_client.delete(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(
+                _request, name='delete_unregister_application_servers')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for delete_unregister_application_servers.')
+            self.logger.info(
+                'Validating response for delete_unregister_application_servers.'
+            )
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ProtectionSource.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              ProtectionSource.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def list_data_store_information(self,
-                                    source_id):
+    def list_data_store_information(self, source_id):
         """Does a GET request to /public/protectionSources/datastores.
 
         Returns the datastore information in VMware environment.
@@ -698,48 +752,53 @@ class ProtectionSourcesController(BaseController):
             self.logger.info('list_data_store_information called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for list_data_store_information.')
+            self.logger.info(
+                'Validating required parameters for list_data_store_information.'
+            )
             self.validate_parameters(source_id=source_id)
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for list_data_store_information.')
+            self.logger.info(
+                'Preparing query URL for list_data_store_information.')
             _url_path = '/public/protectionSources/datastores'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
-            _query_parameters = {
-                'sourceId': source_id
-            }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
+            _query_parameters = {'sourceId': source_id}
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for list_data_store_information.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            self.logger.info(
+                'Preparing headers for list_data_store_information.')
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for list_data_store_information.')
+            self.logger.info(
+                'Preparing and executing request for list_data_store_information.'
+            )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'list_data_store_information')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='list_data_store_information')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for list_data_store_information.')
+            self.logger.info(
+                'Validating response for list_data_store_information.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ProtectionSource.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              ProtectionSource.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def get_protection_sources_objects(self,
-                                       object_ids=None):
+    def get_protection_sources_objects(self, object_ids=None):
         """Does a GET request to /public/protectionSources/objects.
 
         Returns the Protection Source objects corresponding to the specified
@@ -763,44 +822,47 @@ class ProtectionSourcesController(BaseController):
             self.logger.info('get_protection_sources_objects called.')
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for get_protection_sources_objects.')
+            self.logger.info(
+                'Preparing query URL for get_protection_sources_objects.')
             _url_path = '/public/protectionSources/objects'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
-            _query_parameters = {
-                'objectIds': object_ids
-            }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
+            _query_parameters = {'objectIds': object_ids}
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for get_protection_sources_objects.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            self.logger.info(
+                'Preparing headers for get_protection_sources_objects.')
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_protection_sources_objects.')
+            self.logger.info(
+                'Preparing and executing request for get_protection_sources_objects.'
+            )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_protection_sources_objects')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(
+                _request, name='get_protection_sources_objects')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for get_protection_sources_objects.')
+            self.logger.info(
+                'Validating response for get_protection_sources_objects.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ProtectionSource.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              ProtectionSource.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def get_protection_sources_object_by_id(self,
-                                            id):
+    def get_protection_sources_object_by_id(self, id):
         """Does a GET request to /public/protectionSources/objects/{id}.
 
         Returns the Protection Source object corresponding to the specified
@@ -824,42 +886,48 @@ class ProtectionSourcesController(BaseController):
             self.logger.info('get_protection_sources_object_by_id called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for get_protection_sources_object_by_id.')
+            self.logger.info(
+                'Validating required parameters for get_protection_sources_object_by_id.'
+            )
             self.validate_parameters(id=id)
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for get_protection_sources_object_by_id.')
+            self.logger.info(
+                'Preparing query URL for get_protection_sources_object_by_id.')
             _url_path = '/public/protectionSources/objects/{id}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-                'id': id
-            })
-            _query_builder = Configuration.get_base_uri()
+            _url_path = APIHelper.append_url_with_template_parameters(
+                _url_path, {'id': id})
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for get_protection_sources_object_by_id.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            self.logger.info(
+                'Preparing headers for get_protection_sources_object_by_id.')
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_protection_sources_object_by_id.')
+            self.logger.info(
+                'Preparing and executing request for get_protection_sources_object_by_id.'
+            )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_protection_sources_object_by_id')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(
+                _request, name='get_protection_sources_object_by_id')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for get_protection_sources_object_by_id.')
+            self.logger.info(
+                'Validating response for get_protection_sources_object_by_id.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ProtectionSource.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              ProtectionSource.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
     def list_protected_objects(self,
@@ -937,14 +1005,14 @@ class ProtectionSourcesController(BaseController):
             self.logger.info('list_protected_objects called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for list_protected_objects.')
-            self.validate_parameters(environment=environment,
-                                     id=id)
+            self.logger.info(
+                'Validating required parameters for list_protected_objects.')
+            self.validate_parameters(environment=environment, id=id)
 
             # Prepare query URL
             self.logger.info('Preparing query URL for list_protected_objects.')
             _url_path = '/public/protectionSources/protectedObjects'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'environment': environment,
@@ -952,21 +1020,22 @@ class ProtectionSourcesController(BaseController):
                 'allUnderHierarchy': all_under_hierarchy,
                 'includeRpoSnapshots': include_rpo_snapshots
             }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
             self.logger.info('Preparing headers for list_protected_objects.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for list_protected_objects.')
+            self.logger.info(
+                'Preparing and executing request for list_protected_objects.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'list_protected_objects')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='list_protected_objects')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for list_protected_objects.')
@@ -975,14 +1044,14 @@ class ProtectionSourcesController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ProtectedVmInfo.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              ProtectedVmInfo.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def create_refresh_protection_source_by_id(self,
-                                               id):
+    def create_refresh_protection_source_by_id(self, id):
         """Does a POST request to /public/protectionSources/refresh/{id}.
 
         Force an immediate refresh between the specified Protection Source
@@ -1017,37 +1086,44 @@ class ProtectionSourcesController(BaseController):
             self.logger.info('create_refresh_protection_source_by_id called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for create_refresh_protection_source_by_id.')
+            self.logger.info(
+                'Validating required parameters for create_refresh_protection_source_by_id.'
+            )
             self.validate_parameters(id=id)
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for create_refresh_protection_source_by_id.')
+            self.logger.info(
+                'Preparing query URL for create_refresh_protection_source_by_id.'
+            )
             _url_path = '/public/protectionSources/refresh/{id}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-                'id': id
-            })
-            _query_builder = Configuration.get_base_uri()
+            _url_path = APIHelper.append_url_with_template_parameters(
+                _url_path, {'id': id})
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for create_refresh_protection_source_by_id.')
+            self.logger.info(
+                'Preparing and executing request for create_refresh_protection_source_by_id.'
+            )
             _request = self.http_client.post(_query_url)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'create_refresh_protection_source_by_id')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(
+                _request, name='create_refresh_protection_source_by_id')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for create_refresh_protection_source_by_id.')
+            self.logger.info(
+                'Validating response for create_refresh_protection_source_by_id.'
+            )
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def create_register_protection_source(self,
-                                          body):
+    def create_register_protection_source(self, body):
         """Does a POST request to /public/protectionSources/register.
 
         Register a Protection Source on the Cohesity Cluster.
@@ -1072,49 +1148,62 @@ class ProtectionSourcesController(BaseController):
             self.logger.info('create_register_protection_source called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for create_register_protection_source.')
+            self.logger.info(
+                'Validating required parameters for create_register_protection_source.'
+            )
             self.validate_parameters(body=body)
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for create_register_protection_source.')
+            self.logger.info(
+                'Preparing query URL for create_register_protection_source.')
             _url_path = '/public/protectionSources/register'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for create_register_protection_source.')
+            self.logger.info(
+                'Preparing headers for create_register_protection_source.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for create_register_protection_source.')
-            _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'create_register_protection_source')
+            self.logger.info(
+                'Preparing and executing request for create_register_protection_source.'
+            )
+            _request = self.http_client.post(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(
+                _request, name='create_register_protection_source')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for create_register_protection_source.')
+            self.logger.info(
+                'Validating response for create_register_protection_source.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ProtectionSource.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              ProtectionSource.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def list_protection_sources_registration_info(self,
-                                                  tenant_ids=None,
-                                                  all_under_hierarchy=None,
-                                                  environments=None,
-                                                  ids=None,
-                                                  include_entity_permission_info=None,
-                                                  sids=None):
+    def list_protection_sources_registration_info(
+        self,
+        tenant_ids=None,
+        all_under_hierarchy=None,
+        environments=None,
+        ids=None,
+        include_entity_permission_info=None,
+        sids=None):
         """Does a GET request to /public/protectionSources/registrationInfo.
 
         Returns the registration and protection information of the registered
@@ -1155,12 +1244,15 @@ class ProtectionSourcesController(BaseController):
 
         """
         try:
-            self.logger.info('list_protection_sources_registration_info called.')
+            self.logger.info(
+                'list_protection_sources_registration_info called.')
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for list_protection_sources_registration_info.')
+            self.logger.info(
+                'Preparing query URL for list_protection_sources_registration_info.'
+            )
             _url_path = '/public/protectionSources/registrationInfo'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'tenantIds': tenant_ids,
@@ -1170,33 +1262,41 @@ class ProtectionSourcesController(BaseController):
                 'includeEntityPermissionInfo': include_entity_permission_info,
                 'sids': sids
             }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for list_protection_sources_registration_info.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            self.logger.info(
+                'Preparing headers for list_protection_sources_registration_info.'
+            )
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for list_protection_sources_registration_info.')
+            self.logger.info(
+                'Preparing and executing request for list_protection_sources_registration_info.'
+            )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'list_protection_sources_registration_info')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(
+                _request, name='list_protection_sources_registration_info')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for list_protection_sources_registration_info.')
+            self.logger.info(
+                'Validating response for list_protection_sources_registration_info.'
+            )
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, GetRegistrationInfoResponse.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                GetRegistrationInfoResponse.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
     def list_protection_sources_root_nodes(self,
@@ -1240,46 +1340,52 @@ class ProtectionSourcesController(BaseController):
             self.logger.info('list_protection_sources_root_nodes called.')
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for list_protection_sources_root_nodes.')
+            self.logger.info(
+                'Preparing query URL for list_protection_sources_root_nodes.')
             _url_path = '/public/protectionSources/rootNodes'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'id': id,
                 'environments': environments,
                 'environment': environment
             }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for list_protection_sources_root_nodes.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            self.logger.info(
+                'Preparing headers for list_protection_sources_root_nodes.')
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for list_protection_sources_root_nodes.')
+            self.logger.info(
+                'Preparing and executing request for list_protection_sources_root_nodes.'
+            )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'list_protection_sources_root_nodes')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(
+                _request, name='list_protection_sources_root_nodes')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for list_protection_sources_root_nodes.')
+            self.logger.info(
+                'Validating response for list_protection_sources_root_nodes.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ProtectionSourceNode.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                ProtectionSourceNode.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def list_sql_aag_hosts_and_databases(self,
-                                         sql_protection_source_ids):
+    def list_sql_aag_hosts_and_databases(self, sql_protection_source_ids):
         """Does a GET request to /public/protectionSources/sqlAagHostsAndDatabases.
 
         Given a list of Protection Source Ids registered as SQL servers,
@@ -1308,44 +1414,54 @@ Success
             self.logger.info('list_sql_aag_hosts_and_databases called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for list_sql_aag_hosts_and_databases.')
-            self.validate_parameters(sql_protection_source_ids=sql_protection_source_ids)
+            self.logger.info(
+                'Validating required parameters for list_sql_aag_hosts_and_databases.'
+            )
+            self.validate_parameters(
+                sql_protection_source_ids=sql_protection_source_ids)
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for list_sql_aag_hosts_and_databases.')
+            self.logger.info(
+                'Preparing query URL for list_sql_aag_hosts_and_databases.')
             _url_path = '/public/protectionSources/sqlAagHostsAndDatabases'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'sqlProtectionSourceIds': sql_protection_source_ids
             }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for list_sql_aag_hosts_and_databases.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            self.logger.info(
+                'Preparing headers for list_sql_aag_hosts_and_databases.')
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for list_sql_aag_hosts_and_databases.')
+            self.logger.info(
+                'Preparing and executing request for list_sql_aag_hosts_and_databases.'
+            )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'list_sql_aag_hosts_and_databases')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(
+                _request, name='list_sql_aag_hosts_and_databases')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for list_sql_aag_hosts_and_databases.')
+            self.logger.info(
+                'Validating response for list_sql_aag_hosts_and_databases.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, SqlAagHostAndDatabases.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                SqlAagHostAndDatabases.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
     def list_virtual_machines(self,
@@ -1397,7 +1513,7 @@ Success
             # Prepare query URL
             self.logger.info('Preparing query URL for list_virtual_machines.')
             _url_path = '/public/protectionSources/virtualMachines'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'vCenterId': v_center_id,
@@ -1405,21 +1521,22 @@ Success
                 'uuids': uuids,
                 'protected': protected
             }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
             self.logger.info('Preparing headers for list_virtual_machines.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for list_virtual_machines.')
+            self.logger.info(
+                'Preparing and executing request for list_virtual_machines.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'list_virtual_machines')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='list_virtual_machines')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for list_virtual_machines.')
@@ -1428,14 +1545,14 @@ Success
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ProtectionSource.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              ProtectionSource.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def delete_unregister_protection_source(self,
-                                            id):
+    def delete_unregister_protection_source(self, id):
         """Does a DELETE request to /public/protectionSources/{id}.
 
         Unregister a previously registered Protection Source.
@@ -1459,31 +1576,37 @@ Success
             self.logger.info('delete_unregister_protection_source called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for delete_unregister_protection_source.')
+            self.logger.info(
+                'Validating required parameters for delete_unregister_protection_source.'
+            )
             self.validate_parameters(id=id)
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for delete_unregister_protection_source.')
+            self.logger.info(
+                'Preparing query URL for delete_unregister_protection_source.')
             _url_path = '/public/protectionSources/{id}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-                'id': id
-            })
-            _query_builder = Configuration.get_base_uri()
+            _url_path = APIHelper.append_url_with_template_parameters(
+                _url_path, {'id': id})
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for delete_unregister_protection_source.')
+            self.logger.info(
+                'Preparing and executing request for delete_unregister_protection_source.'
+            )
             _request = self.http_client.delete(_query_url)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'delete_unregister_protection_source')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(
+                _request, name='delete_unregister_protection_source')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for delete_unregister_protection_source.')
+            self.logger.info(
+                'Validating response for delete_unregister_protection_source.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -14,16 +14,15 @@ from cohesity_management_sdk.models.virtual_disk_information import VirtualDiskI
 from cohesity_management_sdk.models.vm_volumes_information import VmVolumesInformation
 from cohesity_management_sdk.exceptions.request_error_error_exception import RequestErrorErrorException
 
+
 class RestoreTasksController(BaseController):
-
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-
-    def __init__(self, client=None, call_back=None):
+    def __init__(self, config=None, client=None, call_back=None):
         super(RestoreTasksController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
+        self.config = config
 
-    def create_applications_clone_task(self,
-                                       body):
+    def create_applications_clone_task(self, body):
         """Does a POST request to /public/restore/applicationsClone.
 
         Returns the created Restore Task.
@@ -46,44 +45,55 @@ class RestoreTasksController(BaseController):
             self.logger.info('create_applications_clone_task called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for create_applications_clone_task.')
+            self.logger.info(
+                'Validating required parameters for create_applications_clone_task.'
+            )
             self.validate_parameters(body=body)
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for create_applications_clone_task.')
+            self.logger.info(
+                'Preparing query URL for create_applications_clone_task.')
             _url_path = '/public/restore/applicationsClone'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for create_applications_clone_task.')
+            self.logger.info(
+                'Preparing headers for create_applications_clone_task.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for create_applications_clone_task.')
-            _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'create_applications_clone_task')
+            self.logger.info(
+                'Preparing and executing request for create_applications_clone_task.'
+            )
+            _request = self.http_client.post(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(
+                _request, name='create_applications_clone_task')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for create_applications_clone_task.')
+            self.logger.info(
+                'Validating response for create_applications_clone_task.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, RestoreTask.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              RestoreTask.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def create_applications_recover_task(self,
-                                         body):
+    def create_applications_recover_task(self, body):
         """Does a POST request to /public/restore/applicationsRecover.
 
         Returns the created Restore Task.
@@ -107,44 +117,55 @@ class RestoreTasksController(BaseController):
             self.logger.info('create_applications_recover_task called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for create_applications_recover_task.')
+            self.logger.info(
+                'Validating required parameters for create_applications_recover_task.'
+            )
             self.validate_parameters(body=body)
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for create_applications_recover_task.')
+            self.logger.info(
+                'Preparing query URL for create_applications_recover_task.')
             _url_path = '/public/restore/applicationsRecover'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for create_applications_recover_task.')
+            self.logger.info(
+                'Preparing headers for create_applications_recover_task.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for create_applications_recover_task.')
-            _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'create_applications_recover_task')
+            self.logger.info(
+                'Preparing and executing request for create_applications_recover_task.'
+            )
+            _request = self.http_client.post(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(
+                _request, name='create_applications_recover_task')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for create_applications_recover_task.')
+            self.logger.info(
+                'Validating response for create_applications_recover_task.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, RestoreTask.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              RestoreTask.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def create_clone_task(self,
-                          body):
+    def create_clone_task(self, body):
         """Does a POST request to /public/restore/clone.
 
         Returns the created Restore Task that clones VMs or a View.
@@ -167,13 +188,14 @@ class RestoreTasksController(BaseController):
             self.logger.info('create_clone_task called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for create_clone_task.')
+            self.logger.info(
+                'Validating required parameters for create_clone_task.')
             self.validate_parameters(body=body)
 
             # Prepare query URL
             self.logger.info('Preparing query URL for create_clone_task.')
             _url_path = '/public/restore/clone'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -185,10 +207,14 @@ class RestoreTasksController(BaseController):
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for create_clone_task.')
-            _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'create_clone_task')
+            self.logger.info(
+                'Preparing and executing request for create_clone_task.')
+            _request = self.http_client.post(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request, name='create_clone_task')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for create_clone_task.')
@@ -197,14 +223,14 @@ class RestoreTasksController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, RestoreTask.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              RestoreTask.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def delete_public_destroy_clone_task(self,
-                                         id):
+    def delete_public_destroy_clone_task(self, id):
         """Does a DELETE request to /public/restore/clone/{id}.
 
         Destroy a clone task with specified id.
@@ -227,37 +253,42 @@ class RestoreTasksController(BaseController):
             self.logger.info('delete_public_destroy_clone_task called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for delete_public_destroy_clone_task.')
+            self.logger.info(
+                'Validating required parameters for delete_public_destroy_clone_task.'
+            )
             self.validate_parameters(id=id)
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for delete_public_destroy_clone_task.')
+            self.logger.info(
+                'Preparing query URL for delete_public_destroy_clone_task.')
             _url_path = '/public/restore/clone/{id}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-                'id': id
-            })
-            _query_builder = Configuration.get_base_uri()
+            _url_path = APIHelper.append_url_with_template_parameters(
+                _url_path, {'id': id})
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for delete_public_destroy_clone_task.')
+            self.logger.info(
+                'Preparing and executing request for delete_public_destroy_clone_task.'
+            )
             _request = self.http_client.delete(_query_url)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'delete_public_destroy_clone_task')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(
+                _request, name='delete_public_destroy_clone_task')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for delete_public_destroy_clone_task.')
+            self.logger.info(
+                'Validating response for delete_public_destroy_clone_task.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def create_deploy_task(self,
-                           body):
+    def create_deploy_task(self, body):
         """Does a POST request to /public/restore/deploy.
 
         Returns the created Restore Task that deploys VMs on cloud. This
@@ -284,13 +315,14 @@ class RestoreTasksController(BaseController):
             self.logger.info('create_deploy_task called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for create_deploy_task.')
+            self.logger.info(
+                'Validating required parameters for create_deploy_task.')
             self.validate_parameters(body=body)
 
             # Prepare query URL
             self.logger.info('Preparing query URL for create_deploy_task.')
             _url_path = '/public/restore/deploy'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -302,10 +334,15 @@ class RestoreTasksController(BaseController):
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for create_deploy_task.')
-            _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'create_deploy_task')
+            self.logger.info(
+                'Preparing and executing request for create_deploy_task.')
+            _request = self.http_client.post(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='create_deploy_task')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for create_deploy_task.')
@@ -314,14 +351,14 @@ class RestoreTasksController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, RestoreTask.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              RestoreTask.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def create_download_files_and_folders(self,
-                                          body):
+    def create_download_files_and_folders(self, body):
         """Does a POST request to /public/restore/downloadFilesAndFolders.
 
         Returns the created download Task information that downloads files and
@@ -345,40 +382,52 @@ class RestoreTasksController(BaseController):
             self.logger.info('create_download_files_and_folders called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for create_download_files_and_folders.')
+            self.logger.info(
+                'Validating required parameters for create_download_files_and_folders.'
+            )
             self.validate_parameters(body=body)
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for create_download_files_and_folders.')
+            self.logger.info(
+                'Preparing query URL for create_download_files_and_folders.')
             _url_path = '/public/restore/downloadFilesAndFolders'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for create_download_files_and_folders.')
+            self.logger.info(
+                'Preparing headers for create_download_files_and_folders.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for create_download_files_and_folders.')
-            _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'create_download_files_and_folders')
+            self.logger.info(
+                'Preparing and executing request for create_download_files_and_folders.'
+            )
+            _request = self.http_client.post(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(
+                _request, name='create_download_files_and_folders')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for create_download_files_and_folders.')
+            self.logger.info(
+                'Validating response for create_download_files_and_folders.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, RestoreTask.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              RestoreTask.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
     def search_restored_files(self,
@@ -468,7 +517,7 @@ class RestoreTasksController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for search_restored_files.')
             _url_path = '/public/restore/files'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'search': search,
@@ -483,21 +532,22 @@ class RestoreTasksController(BaseController):
                 'sourceIds': source_ids,
                 'folderOnly': folder_only
             }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
             self.logger.info('Preparing headers for search_restored_files.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for search_restored_files.')
+            self.logger.info(
+                'Preparing and executing request for search_restored_files.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'search_restored_files')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='search_restored_files')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for search_restored_files.')
@@ -506,14 +556,14 @@ class RestoreTasksController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, FileSearchResults.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body, FileSearchResults.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def create_restore_files_task(self,
-                                  body):
+    def create_restore_files_task(self, body):
         """Does a POST request to /public/restore/files.
 
         Returns the created Restore Task that recovers files and folders.
@@ -536,47 +586,56 @@ class RestoreTasksController(BaseController):
             self.logger.info('create_restore_files_task called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for create_restore_files_task.')
+            self.logger.info(
+                'Validating required parameters for create_restore_files_task.'
+            )
             self.validate_parameters(body=body)
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for create_restore_files_task.')
+            self.logger.info(
+                'Preparing query URL for create_restore_files_task.')
             _url_path = '/public/restore/files'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for create_restore_files_task.')
+            self.logger.info(
+                'Preparing headers for create_restore_files_task.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for create_restore_files_task.')
-            _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'create_restore_files_task')
+            self.logger.info(
+                'Preparing and executing request for create_restore_files_task.'
+            )
+            _request = self.http_client.post(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='create_restore_files_task')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for create_restore_files_task.')
+            self.logger.info(
+                'Validating response for create_restore_files_task.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, RestoreTask.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              RestoreTask.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def get_file_snapshots_information(self,
-                                       job_id,
-                                       cluster_id,
-                                       cluster_incarnation_id,
-                                       source_id,
+    def get_file_snapshots_information(self, job_id, cluster_id,
+                                       cluster_incarnation_id, source_id,
                                        filename):
         """Does a GET request to /public/restore/files/snapshotsInformation.
 
@@ -616,17 +675,21 @@ class RestoreTasksController(BaseController):
             self.logger.info('get_file_snapshots_information called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for get_file_snapshots_information.')
-            self.validate_parameters(job_id=job_id,
-                                     cluster_id=cluster_id,
-                                     cluster_incarnation_id=cluster_incarnation_id,
-                                     source_id=source_id,
-                                     filename=filename)
+            self.logger.info(
+                'Validating required parameters for get_file_snapshots_information.'
+            )
+            self.validate_parameters(
+                job_id=job_id,
+                cluster_id=cluster_id,
+                cluster_incarnation_id=cluster_incarnation_id,
+                source_id=source_id,
+                filename=filename)
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for get_file_snapshots_information.')
+            self.logger.info(
+                'Preparing query URL for get_file_snapshots_information.')
             _url_path = '/public/restore/files/snapshotsInformation'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'jobId': job_id,
@@ -635,33 +698,39 @@ class RestoreTasksController(BaseController):
                 'sourceId': source_id,
                 'filename': filename
             }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for get_file_snapshots_information.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            self.logger.info(
+                'Preparing headers for get_file_snapshots_information.')
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_file_snapshots_information.')
+            self.logger.info(
+                'Preparing and executing request for get_file_snapshots_information.'
+            )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_file_snapshots_information')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(
+                _request, name='get_file_snapshots_information')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for get_file_snapshots_information.')
+            self.logger.info(
+                'Validating response for get_file_snapshots_information.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, FileSnapshotInformation.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                FileSnapshotInformation.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
     def search_objects(self,
@@ -758,7 +827,7 @@ class RestoreTasksController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for search_objects.')
             _url_path = '/public/restore/objects'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'search': search,
@@ -774,21 +843,21 @@ class RestoreTasksController(BaseController):
                 'application': application,
                 'ownerEntityId': owner_entity_id
             }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
             self.logger.info('Preparing headers for search_objects.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for search_objects.')
+            self.logger.info(
+                'Preparing and executing request for search_objects.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'search_objects')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request, name='search_objects')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for search_objects.')
@@ -797,10 +866,12 @@ class RestoreTasksController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ObjectSearchResults.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                ObjectSearchResults.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
     def get_outlook_emails(self,
@@ -874,7 +945,7 @@ class RestoreTasksController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_outlook_emails.')
             _url_path = '/public/restore/office365/outlook/emails'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'hasAttachments': has_attachments,
@@ -893,21 +964,22 @@ class RestoreTasksController(BaseController):
                 'mailboxIds': mailbox_ids,
                 'protectionJobIds': protection_job_ids
             }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
             self.logger.info('Preparing headers for get_outlook_emails.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_outlook_emails.')
+            self.logger.info(
+                'Preparing and executing request for get_outlook_emails.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_outlook_emails')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='get_outlook_emails')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_outlook_emails.')
@@ -916,14 +988,14 @@ class RestoreTasksController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, FileSearchResults.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body, FileSearchResults.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def create_recover_task(self,
-                            body):
+    def create_recover_task(self, body):
         """Does a POST request to /public/restore/recover.
 
         Returns the created Restore Task. This operation returns the
@@ -965,13 +1037,14 @@ class RestoreTasksController(BaseController):
             self.logger.info('create_recover_task called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for create_recover_task.')
+            self.logger.info(
+                'Validating required parameters for create_recover_task.')
             self.validate_parameters(body=body)
 
             # Prepare query URL
             self.logger.info('Preparing query URL for create_recover_task.')
             _url_path = '/public/restore/recover'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -983,10 +1056,15 @@ class RestoreTasksController(BaseController):
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for create_recover_task.')
-            _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'create_recover_task')
+            self.logger.info(
+                'Preparing and executing request for create_recover_task.')
+            _request = self.http_client.post(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='create_recover_task')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for create_recover_task.')
@@ -995,14 +1073,14 @@ class RestoreTasksController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, RestoreTask.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              RestoreTask.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def update_restore_task(self,
-                            body):
+    def update_restore_task(self, body):
         """Does a PUT request to /public/restore/recover.
 
         Updates an existing restore task with additional params which are
@@ -1029,13 +1107,14 @@ Success
             self.logger.info('update_restore_task called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for update_restore_task.')
+            self.logger.info(
+                'Validating required parameters for update_restore_task.')
             self.validate_parameters(body=body)
 
             # Prepare query URL
             self.logger.info('Preparing query URL for update_restore_task.')
             _url_path = '/public/restore/recover'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -1047,10 +1126,15 @@ Success
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for update_restore_task.')
-            _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'update_restore_task')
+            self.logger.info(
+                'Preparing and executing request for update_restore_task.')
+            _request = self.http_client.put(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='update_restore_task')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for update_restore_task.')
@@ -1059,10 +1143,11 @@ Success
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, RestoreTask.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              RestoreTask.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
     def get_restore_tasks(self,
@@ -1155,7 +1240,7 @@ Success
             # Prepare query URL
             self.logger.info('Preparing query URL for get_restore_tasks.')
             _url_path = '/public/restore/tasks'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'taskIds': task_ids,
@@ -1165,21 +1250,21 @@ Success
                 'taskTypes': task_types,
                 'environment': environment
             }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
             self.logger.info('Preparing headers for get_restore_tasks.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_restore_tasks.')
+            self.logger.info(
+                'Preparing and executing request for get_restore_tasks.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_restore_tasks')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request, name='get_restore_tasks')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_restore_tasks.')
@@ -1188,14 +1273,14 @@ Success
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, RestoreTask.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              RestoreTask.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def update_cancel_restore_task(self,
-                                   id):
+    def update_cancel_restore_task(self, id):
         """Does a PUT request to /public/restore/tasks/cancel/{id}.
 
         Cancel a recover or clone task with specified id.
@@ -1217,37 +1302,42 @@ Success
             self.logger.info('update_cancel_restore_task called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for update_cancel_restore_task.')
+            self.logger.info(
+                'Validating required parameters for update_cancel_restore_task.'
+            )
             self.validate_parameters(id=id)
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for update_cancel_restore_task.')
+            self.logger.info(
+                'Preparing query URL for update_cancel_restore_task.')
             _url_path = '/public/restore/tasks/cancel/{id}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-                'id': id
-            })
-            _query_builder = Configuration.get_base_uri()
+            _url_path = APIHelper.append_url_with_template_parameters(
+                _url_path, {'id': id})
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for update_cancel_restore_task.')
+            self.logger.info(
+                'Preparing and executing request for update_cancel_restore_task.'
+            )
             _request = self.http_client.put(_query_url)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'update_cancel_restore_task')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='update_cancel_restore_task')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for update_cancel_restore_task.')
+            self.logger.info(
+                'Validating response for update_cancel_restore_task.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def get_restore_task_by_id(self,
-                               id):
+    def get_restore_task_by_id(self, id):
         """Does a GET request to /public/restore/tasks/{id}.
 
         Returns the Restore Task corresponding to the specified Restore Task
@@ -1270,30 +1360,30 @@ Success
             self.logger.info('get_restore_task_by_id called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for get_restore_task_by_id.')
+            self.logger.info(
+                'Validating required parameters for get_restore_task_by_id.')
             self.validate_parameters(id=id)
 
             # Prepare query URL
             self.logger.info('Preparing query URL for get_restore_task_by_id.')
             _url_path = '/public/restore/tasks/{id}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-                'id': id
-            })
-            _query_builder = Configuration.get_base_uri()
+            _url_path = APIHelper.append_url_with_template_parameters(
+                _url_path, {'id': id})
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
             self.logger.info('Preparing headers for get_restore_task_by_id.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_restore_task_by_id.')
+            self.logger.info(
+                'Preparing and executing request for get_restore_task_by_id.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_restore_task_by_id')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='get_restore_task_by_id')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_restore_task_by_id.')
@@ -1302,18 +1392,15 @@ Success
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, RestoreTask.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              RestoreTask.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def get_virtual_disk_information(self,
-                                     cluster_id,
-                                     cluster_incarnation_id,
-                                     job_id,
-                                     job_run_id,
-                                     start_time_usecs,
+    def get_virtual_disk_information(self, cluster_id, cluster_incarnation_id,
+                                     job_id, job_run_id, start_time_usecs,
                                      source_id):
         """Does a GET request to /public/restore/virtualDiskInformation.
 
@@ -1347,18 +1434,22 @@ Success
             self.logger.info('get_virtual_disk_information called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for get_virtual_disk_information.')
-            self.validate_parameters(cluster_id=cluster_id,
-                                     cluster_incarnation_id=cluster_incarnation_id,
-                                     job_id=job_id,
-                                     job_run_id=job_run_id,
-                                     start_time_usecs=start_time_usecs,
-                                     source_id=source_id)
+            self.logger.info(
+                'Validating required parameters for get_virtual_disk_information.'
+            )
+            self.validate_parameters(
+                cluster_id=cluster_id,
+                cluster_incarnation_id=cluster_incarnation_id,
+                job_id=job_id,
+                job_run_id=job_run_id,
+                start_time_usecs=start_time_usecs,
+                source_id=source_id)
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for get_virtual_disk_information.')
+            self.logger.info(
+                'Preparing query URL for get_virtual_disk_information.')
             _url_path = '/public/restore/virtualDiskInformation'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'clusterId': cluster_id,
@@ -1368,33 +1459,39 @@ Success
                 'startTimeUsecs': start_time_usecs,
                 'sourceId': source_id
             }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for get_virtual_disk_information.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            self.logger.info(
+                'Preparing headers for get_virtual_disk_information.')
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_virtual_disk_information.')
+            self.logger.info(
+                'Preparing and executing request for get_virtual_disk_information.'
+            )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_virtual_disk_information')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(
+                _request, name='get_virtual_disk_information')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for get_virtual_disk_information.')
+            self.logger.info(
+                'Validating response for get_virtual_disk_information.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, VirtualDiskInformation.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                VirtualDiskInformation.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
     def get_vm_volumes_information(self,
@@ -1468,9 +1565,10 @@ Success
             self.logger.info('get_vm_volumes_information called.')
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for get_vm_volumes_information.')
+            self.logger.info(
+                'Preparing query URL for get_vm_volumes_information.')
             _url_path = '/public/restore/vms/volumesInformation'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'jobId': job_id,
@@ -1483,31 +1581,37 @@ Success
                 'originalJobId': original_job_id,
                 'supportedVolumesOnly': supported_volumes_only
             }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for get_vm_volumes_information.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            self.logger.info(
+                'Preparing headers for get_vm_volumes_information.')
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_vm_volumes_information.')
+            self.logger.info(
+                'Preparing and executing request for get_vm_volumes_information.'
+            )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_vm_volumes_information')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='get_vm_volumes_information')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for get_vm_volumes_information.')
+            self.logger.info(
+                'Validating response for get_vm_volumes_information.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, VmVolumesInformation.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                VmVolumesInformation.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise

@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import sys
 import logging
 
 from cohesity_management_sdk.api_helper import APIHelper
 #CohesityPatch
-logging.basicConfig(stream=sys.stdout, level=logging.ERROR)
+logging.basicConfig(stream=sys.stdout, level=logging.CRITICAL)
 
 
 class Configuration(object):
@@ -66,8 +66,7 @@ class Configuration(object):
         },
     }
 
-    @classmethod
-    def get_base_uri(cls, server=Server.DEFAULT_HOST):
+    def get_base_uri(self, server=Server.DEFAULT_HOST):
         """Generates the appropriate base URI for the environment and the server.
 
         Args:
@@ -78,19 +77,17 @@ class Configuration(object):
 
         """
         parameters = {
-            "cluster_vip": cls.cluster_vip,
+            "cluster_vip": self.cluster_vip,
         }
         return APIHelper.append_url_with_template_parameters(
-            cls.environments[cls.environment][server], parameters, False)
+            self.environments[self.environment][server], parameters, False)
 
-    @classmethod
     def disable_logging(cls):
         """Disable all logging in the SDK
         """
         for handler in logging.root.handlers[:]:
             logging.root.removeHandler(handler)
 
-    @classmethod
     def enable_logging(cls, filename=None, filemode='a',
                        stream=sys.stdout, level=logging.INFO):
         """Enable logging in the SDK

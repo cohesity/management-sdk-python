@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -13,16 +13,15 @@ from cohesity_management_sdk.models.active_directory_principal import ActiveDire
 from cohesity_management_sdk.models.added_active_directory_principal import AddedActiveDirectoryPrincipal
 from cohesity_management_sdk.exceptions.request_error_error_exception import RequestErrorErrorException
 
+
 class ActiveDirectoryController(BaseController):
-
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-
-    def __init__(self, client=None, call_back=None):
+    def __init__(self, config=None, client=None, call_back=None):
         super(ActiveDirectoryController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
+        self.config = config
 
-    def delete_active_directory_entry(self,
-                                      body):
+    def delete_active_directory_entry(self, body):
         """Does a DELETE request to /public/activeDirectory.
 
         Deletes the join of the Cohesity Cluster to the specified
@@ -50,36 +49,45 @@ class ActiveDirectoryController(BaseController):
             self.logger.info('delete_active_directory_entry called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for delete_active_directory_entry.')
+            self.logger.info(
+                'Validating required parameters for delete_active_directory_entry.'
+            )
             self.validate_parameters(body=body)
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for delete_active_directory_entry.')
+            self.logger.info(
+                'Preparing query URL for delete_active_directory_entry.')
             _url_path = '/public/activeDirectory'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for delete_active_directory_entry.')
-            _headers = {
-                'content-type': 'application/json; charset=utf-8'
-            }
+            self.logger.info(
+                'Preparing headers for delete_active_directory_entry.')
+            _headers = {'content-type': 'application/json; charset=utf-8'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for delete_active_directory_entry.')
-            _request = self.http_client.delete(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'delete_active_directory_entry')
+            self.logger.info(
+                'Preparing and executing request for delete_active_directory_entry.'
+            )
+            _request = self.http_client.delete(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(
+                _request, name='delete_active_directory_entry')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for delete_active_directory_entry.')
+            self.logger.info(
+                'Validating response for delete_active_directory_entry.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
     def get_active_directory_entry(self,
@@ -119,46 +127,52 @@ class ActiveDirectoryController(BaseController):
             self.logger.info('get_active_directory_entry called.')
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for get_active_directory_entry.')
+            self.logger.info(
+                'Preparing query URL for get_active_directory_entry.')
             _url_path = '/public/activeDirectory'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'tenantIds': tenant_ids,
                 'allUnderHierarchy': all_under_hierarchy,
                 'domains': domains
             }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for get_active_directory_entry.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            self.logger.info(
+                'Preparing headers for get_active_directory_entry.')
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_active_directory_entry.')
+            self.logger.info(
+                'Preparing and executing request for get_active_directory_entry.'
+            )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_active_directory_entry')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='get_active_directory_entry')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for get_active_directory_entry.')
+            self.logger.info(
+                'Validating response for get_active_directory_entry.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ActiveDirectoryEntry.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                ActiveDirectoryEntry.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def create_active_directory_entry(self,
-                                      body):
+    def create_active_directory_entry(self, body):
         """Does a POST request to /public/activeDirectory.
 
         After a Cohesity Cluster has been joined to an Active Directory
@@ -185,44 +199,56 @@ class ActiveDirectoryController(BaseController):
             self.logger.info('create_active_directory_entry called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for create_active_directory_entry.')
+            self.logger.info(
+                'Validating required parameters for create_active_directory_entry.'
+            )
             self.validate_parameters(body=body)
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for create_active_directory_entry.')
+            self.logger.info(
+                'Preparing query URL for create_active_directory_entry.')
             _url_path = '/public/activeDirectory'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for create_active_directory_entry.')
+            self.logger.info(
+                'Preparing headers for create_active_directory_entry.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for create_active_directory_entry.')
-            _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'create_active_directory_entry')
+            self.logger.info(
+                'Preparing and executing request for create_active_directory_entry.'
+            )
+            _request = self.http_client.post(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(
+                _request, name='create_active_directory_entry')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for create_active_directory_entry.')
+            self.logger.info(
+                'Validating response for create_active_directory_entry.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ActiveDirectoryEntry.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                ActiveDirectoryEntry.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def list_centrify_zones(self,
-                            domain_name=None):
+    def list_centrify_zones(self, domain_name=None):
         """Does a GET request to /public/activeDirectory/centrifyZones.
 
         Fetches the list centrify zones of an active directory domain.
@@ -247,26 +273,25 @@ class ActiveDirectoryController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for list_centrify_zones.')
             _url_path = '/public/activeDirectory/centrifyZones'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
-            _query_parameters = {
-                'domainName': domain_name
-            }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
+            _query_parameters = {'domainName': domain_name}
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
             self.logger.info('Preparing headers for list_centrify_zones.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for list_centrify_zones.')
+            self.logger.info(
+                'Preparing and executing request for list_centrify_zones.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'list_centrify_zones')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='list_centrify_zones')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for list_centrify_zones.')
@@ -275,10 +300,11 @@ class ActiveDirectoryController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ListCentrifyZone.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              ListCentrifyZone.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
     def get_active_directory_domain_controllers(self):
@@ -300,35 +326,43 @@ class ActiveDirectoryController(BaseController):
             self.logger.info('get_active_directory_domain_controllers called.')
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for get_active_directory_domain_controllers.')
+            self.logger.info(
+                'Preparing query URL for get_active_directory_domain_controllers.'
+            )
             _url_path = '/public/activeDirectory/domainControllers'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for get_active_directory_domain_controllers.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            self.logger.info(
+                'Preparing headers for get_active_directory_domain_controllers.'
+            )
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_active_directory_domain_controllers.')
+            self.logger.info(
+                'Preparing and executing request for get_active_directory_domain_controllers.'
+            )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_active_directory_domain_controllers')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(
+                _request, name='get_active_directory_domain_controllers')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for get_active_directory_domain_controllers.')
+            self.logger.info(
+                'Validating response for get_active_directory_domain_controllers.'
+            )
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, DomainControllers.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body, DomainControllers.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
     def search_active_directory_principals(self,
@@ -385,9 +419,10 @@ class ActiveDirectoryController(BaseController):
             self.logger.info('search_active_directory_principals called.')
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for search_active_directory_principals.')
+            self.logger.info(
+                'Preparing query URL for search_active_directory_principals.')
             _url_path = '/public/activeDirectory/principals'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'domain': domain,
@@ -396,37 +431,42 @@ class ActiveDirectoryController(BaseController):
                 'sids': sids,
                 'includeComputers': include_computers
             }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for search_active_directory_principals.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            self.logger.info(
+                'Preparing headers for search_active_directory_principals.')
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for search_active_directory_principals.')
+            self.logger.info(
+                'Preparing and executing request for search_active_directory_principals.'
+            )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'search_active_directory_principals')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(
+                _request, name='search_active_directory_principals')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for search_active_directory_principals.')
+            self.logger.info(
+                'Validating response for search_active_directory_principals.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ActiveDirectoryPrincipal.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                ActiveDirectoryPrincipal.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def add_active_directory_principals(self,
-                                        body=None):
+    def add_active_directory_principals(self, body=None):
         """Does a POST request to /public/activeDirectory/principals.
 
         After a group or user has been added to a Cohesity Cluster,
@@ -470,40 +510,50 @@ class ActiveDirectoryController(BaseController):
             self.logger.info('add_active_directory_principals called.')
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for add_active_directory_principals.')
+            self.logger.info(
+                'Preparing query URL for add_active_directory_principals.')
             _url_path = '/public/activeDirectory/principals'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for add_active_directory_principals.')
+            self.logger.info(
+                'Preparing headers for add_active_directory_principals.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for add_active_directory_principals.')
-            _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'add_active_directory_principals')
+            self.logger.info(
+                'Preparing and executing request for add_active_directory_principals.'
+            )
+            _request = self.http_client.post(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(
+                _request, name='add_active_directory_principals')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for add_active_directory_principals.')
+            self.logger.info(
+                'Validating response for add_active_directory_principals.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, AddedActiveDirectoryPrincipal.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                AddedActiveDirectoryPrincipal.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def create_enable_trusted_domain_discovery(self,
-                                               trusted_domains_enabled,
+    def create_enable_trusted_domain_discovery(self, trusted_domains_enabled,
                                                name):
         """Does a POST request to /public/activeDirectory/{name}/enableTrustedDomainState.
 
@@ -528,49 +578,62 @@ class ActiveDirectoryController(BaseController):
             self.logger.info('create_enable_trusted_domain_discovery called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for create_enable_trusted_domain_discovery.')
-            self.validate_parameters(trusted_domains_enabled=trusted_domains_enabled,
-                                     name=name)
+            self.logger.info(
+                'Validating required parameters for create_enable_trusted_domain_discovery.'
+            )
+            self.validate_parameters(
+                trusted_domains_enabled=trusted_domains_enabled, name=name)
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for create_enable_trusted_domain_discovery.')
+            self.logger.info(
+                'Preparing query URL for create_enable_trusted_domain_discovery.'
+            )
             _url_path = '/public/activeDirectory/{name}/enableTrustedDomainState'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-                'name': name
-            })
-            _query_builder = Configuration.get_base_uri()
+            _url_path = APIHelper.append_url_with_template_parameters(
+                _url_path, {'name': name})
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for create_enable_trusted_domain_discovery.')
+            self.logger.info(
+                'Preparing headers for create_enable_trusted_domain_discovery.'
+            )
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'text/plain; charset=utf-8'
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for create_enable_trusted_domain_discovery.')
-            _request = self.http_client.post(_query_url, headers=_headers, parameters=str(trusted_domains_enabled))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'create_enable_trusted_domain_discovery')
+            self.logger.info(
+                'Preparing and executing request for create_enable_trusted_domain_discovery.'
+            )
+            _request = self.http_client.post(
+                _query_url,
+                headers=_headers,
+                parameters=str(trusted_domains_enabled))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(
+                _request, name='create_enable_trusted_domain_discovery')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for create_enable_trusted_domain_discovery.')
+            self.logger.info(
+                'Validating response for create_enable_trusted_domain_discovery.'
+            )
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ActiveDirectoryEntry.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                ActiveDirectoryEntry.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def update_active_directory_id_mapping(self,
-                                           body,
-                                           name):
+    def update_active_directory_id_mapping(self, body, name):
         """Does a PUT request to /public/activeDirectory/{name}/idMappingInfo.
 
         Updates the user id mapping info of an Active Directory.
@@ -594,49 +657,58 @@ class ActiveDirectoryController(BaseController):
             self.logger.info('update_active_directory_id_mapping called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for update_active_directory_id_mapping.')
-            self.validate_parameters(body=body,
-                                     name=name)
+            self.logger.info(
+                'Validating required parameters for update_active_directory_id_mapping.'
+            )
+            self.validate_parameters(body=body, name=name)
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for update_active_directory_id_mapping.')
+            self.logger.info(
+                'Preparing query URL for update_active_directory_id_mapping.')
             _url_path = '/public/activeDirectory/{name}/idMappingInfo'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-                'name': name
-            })
-            _query_builder = Configuration.get_base_uri()
+            _url_path = APIHelper.append_url_with_template_parameters(
+                _url_path, {'name': name})
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for update_active_directory_id_mapping.')
+            self.logger.info(
+                'Preparing headers for update_active_directory_id_mapping.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for update_active_directory_id_mapping.')
-            _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'update_active_directory_id_mapping')
+            self.logger.info(
+                'Preparing and executing request for update_active_directory_id_mapping.'
+            )
+            _request = self.http_client.put(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(
+                _request, name='update_active_directory_id_mapping')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for update_active_directory_id_mapping.')
+            self.logger.info(
+                'Validating response for update_active_directory_id_mapping.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ActiveDirectoryEntry.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                ActiveDirectoryEntry.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def update_active_directory_ignored_trusted_domains(self,
-                                                        body,
-                                                        name):
+    def update_active_directory_ignored_trusted_domains(self, body, name):
         """Does a PUT request to /public/activeDirectory/{name}/ignoredTrustedDomains.
 
         Updates the list of trusted domains to be ignored during trusted
@@ -658,52 +730,66 @@ class ActiveDirectoryController(BaseController):
 
         """
         try:
-            self.logger.info('update_active_directory_ignored_trusted_domains called.')
+            self.logger.info(
+                'update_active_directory_ignored_trusted_domains called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for update_active_directory_ignored_trusted_domains.')
-            self.validate_parameters(body=body,
-                                     name=name)
+            self.logger.info(
+                'Validating required parameters for update_active_directory_ignored_trusted_domains.'
+            )
+            self.validate_parameters(body=body, name=name)
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for update_active_directory_ignored_trusted_domains.')
+            self.logger.info(
+                'Preparing query URL for update_active_directory_ignored_trusted_domains.'
+            )
             _url_path = '/public/activeDirectory/{name}/ignoredTrustedDomains'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-                'name': name
-            })
-            _query_builder = Configuration.get_base_uri()
+            _url_path = APIHelper.append_url_with_template_parameters(
+                _url_path, {'name': name})
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for update_active_directory_ignored_trusted_domains.')
+            self.logger.info(
+                'Preparing headers for update_active_directory_ignored_trusted_domains.'
+            )
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for update_active_directory_ignored_trusted_domains.')
-            _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'update_active_directory_ignored_trusted_domains')
+            self.logger.info(
+                'Preparing and executing request for update_active_directory_ignored_trusted_domains.'
+            )
+            _request = self.http_client.put(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(
+                _request,
+                name='update_active_directory_ignored_trusted_domains')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for update_active_directory_ignored_trusted_domains.')
+            self.logger.info(
+                'Validating response for update_active_directory_ignored_trusted_domains.'
+            )
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ActiveDirectoryEntry.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                ActiveDirectoryEntry.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def update_active_directory_ldap_provider(self,
-                                              body,
-                                              name):
+    def update_active_directory_ldap_provider(self, body, name):
         """Does a PUT request to /public/activeDirectory/{name}/ldapProvider.
 
         Updates the the LDAP provide Id for an Active Directory domain.
@@ -727,49 +813,60 @@ class ActiveDirectoryController(BaseController):
             self.logger.info('update_active_directory_ldap_provider called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for update_active_directory_ldap_provider.')
-            self.validate_parameters(body=body,
-                                     name=name)
+            self.logger.info(
+                'Validating required parameters for update_active_directory_ldap_provider.'
+            )
+            self.validate_parameters(body=body, name=name)
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for update_active_directory_ldap_provider.')
+            self.logger.info(
+                'Preparing query URL for update_active_directory_ldap_provider.'
+            )
             _url_path = '/public/activeDirectory/{name}/ldapProvider'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-                'name': name
-            })
-            _query_builder = Configuration.get_base_uri()
+            _url_path = APIHelper.append_url_with_template_parameters(
+                _url_path, {'name': name})
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for update_active_directory_ldap_provider.')
+            self.logger.info(
+                'Preparing headers for update_active_directory_ldap_provider.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for update_active_directory_ldap_provider.')
-            _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'update_active_directory_ldap_provider')
+            self.logger.info(
+                'Preparing and executing request for update_active_directory_ldap_provider.'
+            )
+            _request = self.http_client.put(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(
+                _request, name='update_active_directory_ldap_provider')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for update_active_directory_ldap_provider.')
+            self.logger.info(
+                'Validating response for update_active_directory_ldap_provider.'
+            )
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ActiveDirectoryEntry.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                ActiveDirectoryEntry.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def update_active_directory_machine_accounts(self,
-                                                 body,
-                                                 name):
+    def update_active_directory_machine_accounts(self, body, name):
         """Does a POST request to /public/activeDirectory/{name}/machineAccounts.
 
         Updates the machine accounts of an Active Directory.
@@ -790,52 +887,65 @@ class ActiveDirectoryController(BaseController):
 
         """
         try:
-            self.logger.info('update_active_directory_machine_accounts called.')
+            self.logger.info(
+                'update_active_directory_machine_accounts called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for update_active_directory_machine_accounts.')
-            self.validate_parameters(body=body,
-                                     name=name)
+            self.logger.info(
+                'Validating required parameters for update_active_directory_machine_accounts.'
+            )
+            self.validate_parameters(body=body, name=name)
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for update_active_directory_machine_accounts.')
+            self.logger.info(
+                'Preparing query URL for update_active_directory_machine_accounts.'
+            )
             _url_path = '/public/activeDirectory/{name}/machineAccounts'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-                'name': name
-            })
-            _query_builder = Configuration.get_base_uri()
+            _url_path = APIHelper.append_url_with_template_parameters(
+                _url_path, {'name': name})
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for update_active_directory_machine_accounts.')
+            self.logger.info(
+                'Preparing headers for update_active_directory_machine_accounts.'
+            )
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for update_active_directory_machine_accounts.')
-            _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'update_active_directory_machine_accounts')
+            self.logger.info(
+                'Preparing and executing request for update_active_directory_machine_accounts.'
+            )
+            _request = self.http_client.post(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(
+                _request, name='update_active_directory_machine_accounts')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for update_active_directory_machine_accounts.')
+            self.logger.info(
+                'Validating response for update_active_directory_machine_accounts.'
+            )
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ActiveDirectoryEntry.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                ActiveDirectoryEntry.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def update_preferred_domain_controllers(self,
-                                            body,
-                                            name):
+    def update_preferred_domain_controllers(self, body, name):
         """Does a PUT request to /public/activeDirectory/{name}/preferredDomainControllers.
 
         Updates the preferred domain controllers of an Active Directory
@@ -859,42 +969,53 @@ class ActiveDirectoryController(BaseController):
             self.logger.info('update_preferred_domain_controllers called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for update_preferred_domain_controllers.')
-            self.validate_parameters(body=body,
-                                     name=name)
+            self.logger.info(
+                'Validating required parameters for update_preferred_domain_controllers.'
+            )
+            self.validate_parameters(body=body, name=name)
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for update_preferred_domain_controllers.')
+            self.logger.info(
+                'Preparing query URL for update_preferred_domain_controllers.')
             _url_path = '/public/activeDirectory/{name}/preferredDomainControllers'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-                'name': name
-            })
-            _query_builder = Configuration.get_base_uri()
+            _url_path = APIHelper.append_url_with_template_parameters(
+                _url_path, {'name': name})
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for update_preferred_domain_controllers.')
+            self.logger.info(
+                'Preparing headers for update_preferred_domain_controllers.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for update_preferred_domain_controllers.')
-            _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'update_preferred_domain_controllers')
+            self.logger.info(
+                'Preparing and executing request for update_preferred_domain_controllers.'
+            )
+            _request = self.http_client.put(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(
+                _request, name='update_preferred_domain_controllers')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for update_preferred_domain_controllers.')
+            self.logger.info(
+                'Validating response for update_preferred_domain_controllers.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ActiveDirectoryEntry.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                ActiveDirectoryEntry.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise

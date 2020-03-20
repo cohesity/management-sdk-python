@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -13,16 +13,15 @@ from cohesity_management_sdk.models.host_entry import HostEntry
 from cohesity_management_sdk.models.node_network_interfaces import NodeNetworkInterfaces
 from cohesity_management_sdk.exceptions.request_error_error_exception import RequestErrorErrorException
 
+
 class NetworkController(BaseController):
-
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-
-    def __init__(self, client=None, call_back=None):
+    def __init__(self, config=None, client=None, call_back=None):
         super(NetworkController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
+        self.config = config
 
-    def create_bond(self,
-                    body):
+    def create_bond(self, body):
         """Does a POST request to /public/network/bonds.
 
         Sends a request to create a new network bond on the Cluster. This can
@@ -52,7 +51,7 @@ class NetworkController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for create_bond.')
             _url_path = '/public/network/bonds'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -64,10 +63,14 @@ class NetworkController(BaseController):
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for create_bond.')
-            _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'create_bond')
+            self.logger.info(
+                'Preparing and executing request for create_bond.')
+            _request = self.http_client.post(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request, name='create_bond')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for create_bond.')
@@ -76,14 +79,14 @@ class NetworkController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, CreateBondResult.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              CreateBondResult.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def update_bond(self,
-                    body):
+    def update_bond(self, body):
         """Does a PUT request to /public/network/bonds.
 
         Sends a request to update the bonding mode of a network bond. This can
@@ -113,7 +116,7 @@ class NetworkController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for update_bond.')
             _url_path = '/public/network/bonds'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -125,10 +128,14 @@ class NetworkController(BaseController):
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for update_bond.')
-            _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'update_bond')
+            self.logger.info(
+                'Preparing and executing request for update_bond.')
+            _request = self.http_client.put(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request, name='update_bond')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for update_bond.')
@@ -137,14 +144,14 @@ class NetworkController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, UpdateBondResult.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              UpdateBondResult.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def delete_bond(self,
-                    name):
+    def delete_bond(self, name):
         """Does a DELETE request to /public/network/bonds/{name}.
 
         Sends a request to delete a network bond from the Cluster. This can
@@ -174,18 +181,18 @@ class NetworkController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for delete_bond.')
             _url_path = '/public/network/bonds/{name}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-                'name': name
-            })
-            _query_builder = Configuration.get_base_uri()
+            _url_path = APIHelper.append_url_with_template_parameters(
+                _url_path, {'name': name})
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for delete_bond.')
+            self.logger.info(
+                'Preparing and executing request for delete_bond.')
             _request = self.http_client.delete(_query_url)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'delete_bond')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request, name='delete_bond')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for delete_bond.')
@@ -194,11 +201,10 @@ class NetworkController(BaseController):
             self.validate_response(_context)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def delete_hosts(self,
-                     ips):
+    def delete_hosts(self, ips):
         """Does a DELETE request to /public/network/hosts.
 
         Sends a request to remove one or more entries from the Cluster's
@@ -222,32 +228,31 @@ class NetworkController(BaseController):
             self.logger.info('delete_hosts called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for delete_hosts.')
+            self.logger.info(
+                'Validating required parameters for delete_hosts.')
             self.validate_parameters(ips=ips)
 
             # Prepare query URL
             self.logger.info('Preparing query URL for delete_hosts.')
             _url_path = '/public/network/hosts'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
-            _query_parameters = {
-                'ips': ips
-            }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
+            _query_parameters = {'ips': ips}
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
             self.logger.info('Preparing headers for delete_hosts.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for delete_hosts.')
+            self.logger.info(
+                'Preparing and executing request for delete_hosts.')
             _request = self.http_client.delete(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'delete_hosts')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request, name='delete_hosts')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for delete_hosts.')
@@ -256,10 +261,11 @@ class NetworkController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, HostResult.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              HostResult.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
     def list_hosts(self):
@@ -285,21 +291,19 @@ class NetworkController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for list_hosts.')
             _url_path = '/public/network/hosts'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
             self.logger.info('Preparing headers for list_hosts.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
             self.logger.info('Preparing and executing request for list_hosts.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'list_hosts')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request, name='list_hosts')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for list_hosts.')
@@ -308,14 +312,14 @@ class NetworkController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, HostEntry.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              HostEntry.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def create_append_hosts(self,
-                            body):
+    def create_append_hosts(self, body):
         """Does a POST request to /public/network/hosts.
 
         Sends a request to add one or more new entries to the Cluster's
@@ -340,13 +344,14 @@ class NetworkController(BaseController):
             self.logger.info('create_append_hosts called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for create_append_hosts.')
+            self.logger.info(
+                'Validating required parameters for create_append_hosts.')
             self.validate_parameters(body=body)
 
             # Prepare query URL
             self.logger.info('Preparing query URL for create_append_hosts.')
             _url_path = '/public/network/hosts'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -358,10 +363,15 @@ class NetworkController(BaseController):
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for create_append_hosts.')
-            _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'create_append_hosts')
+            self.logger.info(
+                'Preparing and executing request for create_append_hosts.')
+            _request = self.http_client.post(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='create_append_hosts')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for create_append_hosts.')
@@ -370,14 +380,14 @@ class NetworkController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, HostResult.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              HostResult.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def update_edit_hosts(self,
-                          body):
+    def update_edit_hosts(self, body):
         """Does a PUT request to /public/network/hosts.
 
         Sends a request to edit one or more entries in the Cluster's
@@ -400,13 +410,14 @@ class NetworkController(BaseController):
             self.logger.info('update_edit_hosts called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for update_edit_hosts.')
+            self.logger.info(
+                'Validating required parameters for update_edit_hosts.')
             self.validate_parameters(body=body)
 
             # Prepare query URL
             self.logger.info('Preparing query URL for update_edit_hosts.')
             _url_path = '/public/network/hosts'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -418,10 +429,14 @@ class NetworkController(BaseController):
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for update_edit_hosts.')
-            _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'update_edit_hosts')
+            self.logger.info(
+                'Preparing and executing request for update_edit_hosts.')
+            _request = self.http_client.put(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request, name='update_edit_hosts')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for update_edit_hosts.')
@@ -430,10 +445,11 @@ class NetworkController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, HostResult.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              HostResult.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
     def list_network_interfaces(self):
@@ -457,33 +473,37 @@ class NetworkController(BaseController):
             self.logger.info('list_network_interfaces called.')
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for list_network_interfaces.')
+            self.logger.info(
+                'Preparing query URL for list_network_interfaces.')
             _url_path = '/public/network/interfaces'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
             self.logger.info('Preparing headers for list_network_interfaces.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for list_network_interfaces.')
+            self.logger.info(
+                'Preparing and executing request for list_network_interfaces.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'list_network_interfaces')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='list_network_interfaces')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for list_network_interfaces.')
+            self.logger.info(
+                'Validating response for list_network_interfaces.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, NodeNetworkInterfaces.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                NodeNetworkInterfaces.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise

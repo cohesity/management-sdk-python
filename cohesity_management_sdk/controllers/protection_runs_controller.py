@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -9,13 +9,13 @@ from cohesity_management_sdk.http.auth.auth_manager import AuthManager
 from cohesity_management_sdk.models.protection_run_instance import ProtectionRunInstance
 from cohesity_management_sdk.exceptions.request_error_error_exception import RequestErrorErrorException
 
+
 class ProtectionRunsController(BaseController):
-
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-
-    def __init__(self, client=None, call_back=None):
+    def __init__(self, config=None, client=None, call_back=None):
         super(ProtectionRunsController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
+        self.config = config
 
     def get_protection_runs(self,
                             job_id=None,
@@ -93,7 +93,7 @@ class ProtectionRunsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_protection_runs.')
             _url_path = '/public/protectionRuns'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'jobId': job_id,
@@ -108,21 +108,22 @@ class ProtectionRunsController(BaseController):
                 'excludeErrorRuns': exclude_error_runs,
                 'excludeNonRestoreableRuns': exclude_non_restoreable_runs
             }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
             self.logger.info('Preparing headers for get_protection_runs.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_protection_runs.')
+            self.logger.info(
+                'Preparing and executing request for get_protection_runs.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_protection_runs')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='get_protection_runs')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_protection_runs.')
@@ -131,14 +132,15 @@ class ProtectionRunsController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ProtectionRunInstance.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                ProtectionRunInstance.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def update_protection_runs(self,
-                               body):
+    def update_protection_runs(self, body):
         """Does a PUT request to /public/protectionRuns.
 
         Update the expiration date (retention period) for the specified
@@ -167,27 +169,31 @@ class ProtectionRunsController(BaseController):
             self.logger.info('update_protection_runs called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for update_protection_runs.')
+            self.logger.info(
+                'Validating required parameters for update_protection_runs.')
             self.validate_parameters(body=body)
 
             # Prepare query URL
             self.logger.info('Preparing query URL for update_protection_runs.')
             _url_path = '/public/protectionRuns'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
             self.logger.info('Preparing headers for update_protection_runs.')
-            _headers = {
-                'content-type': 'application/json; charset=utf-8'
-            }
+            _headers = {'content-type': 'application/json; charset=utf-8'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for update_protection_runs.')
-            _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'update_protection_runs')
+            self.logger.info(
+                'Preparing and executing request for update_protection_runs.')
+            _request = self.http_client.put(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='update_protection_runs')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for update_protection_runs.')
@@ -196,12 +202,10 @@ class ProtectionRunsController(BaseController):
             self.validate_response(_context)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def create_cancel_protection_job_run(self,
-                                         id,
-                                         body=None):
+    def create_cancel_protection_job_run(self, id, body=None):
         """Does a POST request to /public/protectionRuns/cancel/{id}.
 
         Cancel a Protection Job run.
@@ -225,37 +229,45 @@ class ProtectionRunsController(BaseController):
             self.logger.info('create_cancel_protection_job_run called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for create_cancel_protection_job_run.')
+            self.logger.info(
+                'Validating required parameters for create_cancel_protection_job_run.'
+            )
             self.validate_parameters(id=id)
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for create_cancel_protection_job_run.')
+            self.logger.info(
+                'Preparing query URL for create_cancel_protection_job_run.')
             _url_path = '/public/protectionRuns/cancel/{id}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-                'id': id
-            })
-            _query_builder = Configuration.get_base_uri()
+            _url_path = APIHelper.append_url_with_template_parameters(
+                _url_path, {'id': id})
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for create_cancel_protection_job_run.')
-            _headers = {
-                'content-type': 'application/json; charset=utf-8'
-            }
+            self.logger.info(
+                'Preparing headers for create_cancel_protection_job_run.')
+            _headers = {'content-type': 'application/json; charset=utf-8'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for create_cancel_protection_job_run.')
-            _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'create_cancel_protection_job_run')
+            self.logger.info(
+                'Preparing and executing request for create_cancel_protection_job_run.'
+            )
+            _request = self.http_client.post(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(
+                _request, name='create_cancel_protection_job_run')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for create_cancel_protection_job_run.')
+            self.logger.info(
+                'Validating response for create_cancel_protection_job_run.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise

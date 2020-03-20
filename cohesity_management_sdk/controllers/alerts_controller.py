@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -13,13 +13,13 @@ from cohesity_management_sdk.models.alert_metadata import AlertMetadata
 from cohesity_management_sdk.models.alert import Alert
 from cohesity_management_sdk.exceptions.request_error_error_exception import RequestErrorErrorException
 
+
 class AlertsController(BaseController):
-
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-
-    def __init__(self, client=None, call_back=None):
+    def __init__(self, config=None, client=None, call_back=None):
         super(AlertsController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
+        self.config = config
 
     def get_alert_categories(self):
         """Does a GET request to /public/alertCategories.
@@ -42,21 +42,21 @@ class AlertsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_alert_categories.')
             _url_path = '/public/alertCategories'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
             self.logger.info('Preparing headers for get_alert_categories.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_alert_categories.')
+            self.logger.info(
+                'Preparing and executing request for get_alert_categories.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_alert_categories')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='get_alert_categories')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_alert_categories.')
@@ -65,10 +65,11 @@ class AlertsController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, AlertCategoryName.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body, AlertCategoryName.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
     def get_notification_rules(self):
@@ -95,21 +96,21 @@ class AlertsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_notification_rules.')
             _url_path = '/public/alertNotificationRules'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
             self.logger.info('Preparing headers for get_notification_rules.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_notification_rules.')
+            self.logger.info(
+                'Preparing and executing request for get_notification_rules.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_notification_rules')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='get_notification_rules')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_notification_rules.')
@@ -118,14 +119,14 @@ class AlertsController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, NotificationRule.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              NotificationRule.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def create_notification_rule(self,
-                                 body=None):
+    def create_notification_rule(self, body=None):
         """Does a POST request to /public/alertNotificationRules.
 
         Creates a new notification rule with provided delivery targets such as
@@ -150,9 +151,10 @@ class AlertsController(BaseController):
             self.logger.info('create_notification_rule called.')
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for create_notification_rule.')
+            self.logger.info(
+                'Preparing query URL for create_notification_rule.')
             _url_path = '/public/alertNotificationRules'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -164,22 +166,30 @@ class AlertsController(BaseController):
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for create_notification_rule.')
-            _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'create_notification_rule')
+            self.logger.info(
+                'Preparing and executing request for create_notification_rule.'
+            )
+            _request = self.http_client.post(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='create_notification_rule')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for create_notification_rule.')
+            self.logger.info(
+                'Validating response for create_notification_rule.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, NotificationRule.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              NotificationRule.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
     def update_notification_rule(self):
@@ -203,39 +213,42 @@ class AlertsController(BaseController):
             self.logger.info('update_notification_rule called.')
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for update_notification_rule.')
+            self.logger.info(
+                'Preparing query URL for update_notification_rule.')
             _url_path = '/public/alertNotificationRules'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
             self.logger.info('Preparing headers for update_notification_rule.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for update_notification_rule.')
+            self.logger.info(
+                'Preparing and executing request for update_notification_rule.'
+            )
             _request = self.http_client.put(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'update_notification_rule')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='update_notification_rule')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for update_notification_rule.')
+            self.logger.info(
+                'Validating response for update_notification_rule.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, NotificationRule.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              NotificationRule.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def delete_notification_rule(self,
-                                 rule_id):
+    def delete_notification_rule(self, rule_id):
         """Does a DELETE request to /public/alertNotificationRules/{ruleId}.
 
         Deletes an existing alert notification rule matching the rule id.
@@ -257,33 +270,38 @@ class AlertsController(BaseController):
             self.logger.info('delete_notification_rule called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for delete_notification_rule.')
+            self.logger.info(
+                'Validating required parameters for delete_notification_rule.')
             self.validate_parameters(rule_id=rule_id)
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for delete_notification_rule.')
+            self.logger.info(
+                'Preparing query URL for delete_notification_rule.')
             _url_path = '/public/alertNotificationRules/{ruleId}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-                'ruleId': rule_id
-            })
-            _query_builder = Configuration.get_base_uri()
+            _url_path = APIHelper.append_url_with_template_parameters(
+                _url_path, {'ruleId': rule_id})
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for delete_notification_rule.')
+            self.logger.info(
+                'Preparing and executing request for delete_notification_rule.'
+            )
             _request = self.http_client.delete(_query_url)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'delete_notification_rule')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='delete_notification_rule')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for delete_notification_rule.')
+            self.logger.info(
+                'Validating response for delete_notification_rule.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
     def get_resolutions(self,
@@ -335,13 +353,14 @@ class AlertsController(BaseController):
             self.logger.info('get_resolutions called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for get_resolutions.')
+            self.logger.info(
+                'Validating required parameters for get_resolutions.')
             self.validate_parameters(max_resolutions=max_resolutions)
 
             # Prepare query URL
             self.logger.info('Preparing query URL for get_resolutions.')
             _url_path = '/public/alertResolutions'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'maxResolutions': max_resolutions,
@@ -352,21 +371,21 @@ class AlertsController(BaseController):
                 'startDateUsecs': start_date_usecs,
                 'endDateUsecs': end_date_usecs
             }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
             self.logger.info('Preparing headers for get_resolutions.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_resolutions.')
+            self.logger.info(
+                'Preparing and executing request for get_resolutions.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_resolutions')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request, name='get_resolutions')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_resolutions.')
@@ -375,14 +394,14 @@ class AlertsController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, AlertResolution.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              AlertResolution.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def create_resolution(self,
-                          body):
+    def create_resolution(self, body):
         """Does a POST request to /public/alertResolutions.
 
         Create an Alert Resolution and apply it to one or more Alerts.
@@ -406,13 +425,14 @@ class AlertsController(BaseController):
             self.logger.info('create_resolution called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for create_resolution.')
+            self.logger.info(
+                'Validating required parameters for create_resolution.')
             self.validate_parameters(body=body)
 
             # Prepare query URL
             self.logger.info('Preparing query URL for create_resolution.')
             _url_path = '/public/alertResolutions'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -424,10 +444,14 @@ class AlertsController(BaseController):
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for create_resolution.')
-            _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'create_resolution')
+            self.logger.info(
+                'Preparing and executing request for create_resolution.')
+            _request = self.http_client.post(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request, name='create_resolution')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for create_resolution.')
@@ -436,14 +460,14 @@ class AlertsController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, AlertResolution.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              AlertResolution.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def get_resolution_by_id(self,
-                             id):
+    def get_resolution_by_id(self, id):
         """Does a GET request to /public/alertResolutions/{id}.
 
         Returns the Alert Resolution object corresponding to passed in Alert
@@ -466,30 +490,30 @@ class AlertsController(BaseController):
             self.logger.info('get_resolution_by_id called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for get_resolution_by_id.')
+            self.logger.info(
+                'Validating required parameters for get_resolution_by_id.')
             self.validate_parameters(id=id)
 
             # Prepare query URL
             self.logger.info('Preparing query URL for get_resolution_by_id.')
             _url_path = '/public/alertResolutions/{id}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-                'id': id
-            })
-            _query_builder = Configuration.get_base_uri()
+            _url_path = APIHelper.append_url_with_template_parameters(
+                _url_path, {'id': id})
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
             self.logger.info('Preparing headers for get_resolution_by_id.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_resolution_by_id.')
+            self.logger.info(
+                'Preparing and executing request for get_resolution_by_id.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_resolution_by_id')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='get_resolution_by_id')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_resolution_by_id.')
@@ -498,15 +522,14 @@ class AlertsController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, AlertResolution.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              AlertResolution.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def update_resolution(self,
-                          id,
-                          body):
+    def update_resolution(self, id, body):
         """Does a PUT request to /public/alertResolutions/{id}.
 
         Apply an existing Alert Resolution to one or more additional Alerts.
@@ -531,17 +554,16 @@ class AlertsController(BaseController):
             self.logger.info('update_resolution called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for update_resolution.')
-            self.validate_parameters(id=id,
-                                     body=body)
+            self.logger.info(
+                'Validating required parameters for update_resolution.')
+            self.validate_parameters(id=id, body=body)
 
             # Prepare query URL
             self.logger.info('Preparing query URL for update_resolution.')
             _url_path = '/public/alertResolutions/{id}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-                'id': id
-            })
-            _query_builder = Configuration.get_base_uri()
+            _url_path = APIHelper.append_url_with_template_parameters(
+                _url_path, {'id': id})
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -553,10 +575,14 @@ class AlertsController(BaseController):
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for update_resolution.')
-            _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'update_resolution')
+            self.logger.info(
+                'Preparing and executing request for update_resolution.')
+            _request = self.http_client.put(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request, name='update_resolution')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for update_resolution.')
@@ -565,10 +591,11 @@ class AlertsController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, AlertResolution.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              AlertResolution.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
     def get_alert_types(self):
@@ -596,21 +623,20 @@ class AlertsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_alert_types.')
             _url_path = '/public/alertTypes'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
             self.logger.info('Preparing headers for get_alert_types.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_alert_types.')
+            self.logger.info(
+                'Preparing and executing request for get_alert_types.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_alert_types')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request, name='get_alert_types')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_alert_types.')
@@ -619,10 +645,11 @@ class AlertsController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, AlertMetadata.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              AlertMetadata.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
     def get_alerts(self,
@@ -700,7 +727,7 @@ class AlertsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_alerts.')
             _url_path = '/public/alerts'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'maxAlerts': max_alerts,
@@ -717,21 +744,20 @@ class AlertsController(BaseController):
                 'alertSeverityList': alert_severity_list,
                 'resolutionIdList': resolution_id_list
             }
-            _query_builder = APIHelper.append_url_with_query_parameters(_query_builder,
-                _query_parameters, Configuration.array_serialization)
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
             self.logger.info('Preparing headers for get_alerts.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_alerts.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_alerts')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request, name='get_alerts')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_alerts.')
@@ -740,14 +766,14 @@ class AlertsController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, Alert.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              Alert.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def get_alert_by_id(self,
-                        id):
+    def get_alert_by_id(self, id):
         """Does a GET request to /public/alerts/{id}.
 
         Returns the Alert object corresponding to the specified id.
@@ -769,30 +795,29 @@ class AlertsController(BaseController):
             self.logger.info('get_alert_by_id called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for get_alert_by_id.')
+            self.logger.info(
+                'Validating required parameters for get_alert_by_id.')
             self.validate_parameters(id=id)
 
             # Prepare query URL
             self.logger.info('Preparing query URL for get_alert_by_id.')
             _url_path = '/public/alerts/{id}'
-            _url_path = APIHelper.append_url_with_template_parameters(_url_path, {
-                'id': id
-            })
-            _query_builder = Configuration.get_base_uri()
+            _url_path = APIHelper.append_url_with_template_parameters(
+                _url_path, {'id': id})
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
             self.logger.info('Preparing headers for get_alert_by_id.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_alert_by_id.')
+            self.logger.info(
+                'Preparing and executing request for get_alert_by_id.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_alert_by_id')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request, name='get_alert_by_id')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_alert_by_id.')
@@ -801,8 +826,9 @@ class AlertsController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, Alert.from_dictionary)
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              Alert.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise

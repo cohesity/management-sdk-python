@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -14,13 +14,13 @@ from cohesity_management_sdk.models.upgrade_cluster_result import UpgradeCluster
 from cohesity_management_sdk.models.external_client_subnets import ExternalClientSubnets
 from cohesity_management_sdk.exceptions.request_error_error_exception import RequestErrorErrorException
 
+
 class ClustersController(BaseController):
-
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-
-    def __init__(self, client=None, call_back=None):
+    def __init__(self, config=None, client=None, call_back=None):
         super(ClustersController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
+        self.config = config
 
     def get_cluster_keys(self):
         """Does a GET request to /public/cluster/keys.
@@ -43,21 +43,20 @@ class ClustersController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_cluster_keys.')
             _url_path = '/public/cluster/keys'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
             self.logger.info('Preparing headers for get_cluster_keys.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_cluster_keys.')
+            self.logger.info(
+                'Preparing and executing request for get_cluster_keys.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_cluster_keys')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request, name='get_cluster_keys')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_cluster_keys.')
@@ -66,10 +65,11 @@ class ClustersController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ClusterPublicKeys.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body, ClusterPublicKeys.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
     def destroy_cluster(self):
@@ -95,15 +95,16 @@ class ClustersController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for destroy_cluster.')
             _url_path = '/public/clusters'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for destroy_cluster.')
+            self.logger.info(
+                'Preparing and executing request for destroy_cluster.')
             _request = self.http_client.delete(_query_url)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'destroy_cluster')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request, name='destroy_cluster')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for destroy_cluster.')
@@ -112,11 +113,10 @@ class ClustersController(BaseController):
             self.validate_response(_context)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def create_cloud_cluster(self,
-                             body):
+    def create_cloud_cluster(self, body):
         """Does a POST request to /public/clusters/cloudEdition.
 
         Sends a request to create a new Cloud Edition Cohesity Cluster and
@@ -143,13 +143,14 @@ class ClustersController(BaseController):
             self.logger.info('create_cloud_cluster called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for create_cloud_cluster.')
+            self.logger.info(
+                'Validating required parameters for create_cloud_cluster.')
             self.validate_parameters(body=body)
 
             # Prepare query URL
             self.logger.info('Preparing query URL for create_cloud_cluster.')
             _url_path = '/public/clusters/cloudEdition'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -161,10 +162,15 @@ class ClustersController(BaseController):
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for create_cloud_cluster.')
-            _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'create_cloud_cluster')
+            self.logger.info(
+                'Preparing and executing request for create_cloud_cluster.')
+            _request = self.http_client.post(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='create_cloud_cluster')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for create_cloud_cluster.')
@@ -173,14 +179,15 @@ class ClustersController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, CreateClusterResult.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                CreateClusterResult.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def create_expand_cloud_cluster(self,
-                                    body):
+    def create_expand_cloud_cluster(self, body):
         """Does a POST request to /public/clusters/cloudEdition/nodes.
 
         Sends a request to expand a Cloud Edition Cohesity Cluster and returns
@@ -205,40 +212,53 @@ class ClustersController(BaseController):
             self.logger.info('create_expand_cloud_cluster called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for create_expand_cloud_cluster.')
+            self.logger.info(
+                'Validating required parameters for create_expand_cloud_cluster.'
+            )
             self.validate_parameters(body=body)
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for create_expand_cloud_cluster.')
+            self.logger.info(
+                'Preparing query URL for create_expand_cloud_cluster.')
             _url_path = '/public/clusters/cloudEdition/nodes'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for create_expand_cloud_cluster.')
+            self.logger.info(
+                'Preparing headers for create_expand_cloud_cluster.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for create_expand_cloud_cluster.')
-            _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'create_expand_cloud_cluster')
+            self.logger.info(
+                'Preparing and executing request for create_expand_cloud_cluster.'
+            )
+            _request = self.http_client.post(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='create_expand_cloud_cluster')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for create_expand_cloud_cluster.')
+            self.logger.info(
+                'Validating response for create_expand_cloud_cluster.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, CreateClusterResult.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                CreateClusterResult.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
     def get_cluster_creation_progress(self):
@@ -263,39 +283,44 @@ class ClustersController(BaseController):
             self.logger.info('get_cluster_creation_progress called.')
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for get_cluster_creation_progress.')
+            self.logger.info(
+                'Preparing query URL for get_cluster_creation_progress.')
             _url_path = '/public/clusters/creationProgress'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for get_cluster_creation_progress.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            self.logger.info(
+                'Preparing headers for get_cluster_creation_progress.')
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_cluster_creation_progress.')
+            self.logger.info(
+                'Preparing and executing request for get_cluster_creation_progress.'
+            )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_cluster_creation_progress')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(
+                _request, name='get_cluster_creation_progress')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for get_cluster_creation_progress.')
+            self.logger.info(
+                'Validating response for get_cluster_creation_progress.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ClusterCreationProgressResult.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                ClusterCreationProgressResult.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def create_physical_cluster(self,
-                                body):
+    def create_physical_cluster(self, body):
         """Does a POST request to /public/clusters/physicalEdition.
 
         Sends a request to create a new Physical Edition Cohesity Cluster and
@@ -322,13 +347,15 @@ class ClustersController(BaseController):
             self.logger.info('create_physical_cluster called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for create_physical_cluster.')
+            self.logger.info(
+                'Validating required parameters for create_physical_cluster.')
             self.validate_parameters(body=body)
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for create_physical_cluster.')
+            self.logger.info(
+                'Preparing query URL for create_physical_cluster.')
             _url_path = '/public/clusters/physicalEdition'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -340,26 +367,33 @@ class ClustersController(BaseController):
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for create_physical_cluster.')
-            _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'create_physical_cluster')
+            self.logger.info(
+                'Preparing and executing request for create_physical_cluster.')
+            _request = self.http_client.post(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='create_physical_cluster')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for create_physical_cluster.')
+            self.logger.info(
+                'Validating response for create_physical_cluster.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, CreateClusterResult.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                CreateClusterResult.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def create_expand_physical_cluster(self,
-                                       body):
+    def create_expand_physical_cluster(self, body):
         """Does a POST request to /public/clusters/physicalEdition/nodes.
 
         Sends a request to expand a Physical Edition Cohesity Cluster and
@@ -384,44 +418,56 @@ class ClustersController(BaseController):
             self.logger.info('create_expand_physical_cluster called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for create_expand_physical_cluster.')
+            self.logger.info(
+                'Validating required parameters for create_expand_physical_cluster.'
+            )
             self.validate_parameters(body=body)
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for create_expand_physical_cluster.')
+            self.logger.info(
+                'Preparing query URL for create_expand_physical_cluster.')
             _url_path = '/public/clusters/physicalEdition/nodes'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for create_expand_physical_cluster.')
+            self.logger.info(
+                'Preparing headers for create_expand_physical_cluster.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for create_expand_physical_cluster.')
-            _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'create_expand_physical_cluster')
+            self.logger.info(
+                'Preparing and executing request for create_expand_physical_cluster.'
+            )
+            _request = self.http_client.post(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(
+                _request, name='create_expand_physical_cluster')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for create_expand_physical_cluster.')
+            self.logger.info(
+                'Validating response for create_expand_physical_cluster.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, CreateClusterResult.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                CreateClusterResult.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def change_service_state(self,
-                             body):
+    def change_service_state(self, body):
         """Does a POST request to /public/clusters/services/states.
 
         Sends a request to either stop, start, or restart one or more of the
@@ -446,13 +492,14 @@ class ClustersController(BaseController):
             self.logger.info('change_service_state called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for change_service_state.')
+            self.logger.info(
+                'Validating required parameters for change_service_state.')
             self.validate_parameters(body=body)
 
             # Prepare query URL
             self.logger.info('Preparing query URL for change_service_state.')
             _url_path = '/public/clusters/services/states'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -464,10 +511,15 @@ class ClustersController(BaseController):
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for change_service_state.')
-            _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'change_service_state')
+            self.logger.info(
+                'Preparing and executing request for change_service_state.')
+            _request = self.http_client.post(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='change_service_state')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for change_service_state.')
@@ -476,14 +528,15 @@ class ClustersController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ChangeServiceStateResult.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                ChangeServiceStateResult.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def update_upgrade_cluster(self,
-                               body):
+    def update_upgrade_cluster(self, body):
         """Does a PUT request to /public/clusters/software.
 
         Sends a request to upgrade the software version of a Cohesity Cluster
@@ -510,13 +563,14 @@ class ClustersController(BaseController):
             self.logger.info('update_upgrade_cluster called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for update_upgrade_cluster.')
+            self.logger.info(
+                'Validating required parameters for update_upgrade_cluster.')
             self.validate_parameters(body=body)
 
             # Prepare query URL
             self.logger.info('Preparing query URL for update_upgrade_cluster.')
             _url_path = '/public/clusters/software'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -528,10 +582,15 @@ class ClustersController(BaseController):
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for update_upgrade_cluster.')
-            _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'update_upgrade_cluster')
+            self.logger.info(
+                'Preparing and executing request for update_upgrade_cluster.')
+            _request = self.http_client.put(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='update_upgrade_cluster')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for update_upgrade_cluster.')
@@ -540,14 +599,15 @@ class ClustersController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, UpgradeClusterResult.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                UpgradeClusterResult.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def create_virtual_cluster(self,
-                               body):
+    def create_virtual_cluster(self, body):
         """Does a POST request to /public/clusters/virtualEdition.
 
         Sends a request to create a new Virtual Edition Cohesity Cluster and
@@ -572,13 +632,14 @@ class ClustersController(BaseController):
             self.logger.info('create_virtual_cluster called.')
 
             # Validate required parameters
-            self.logger.info('Validating required parameters for create_virtual_cluster.')
+            self.logger.info(
+                'Validating required parameters for create_virtual_cluster.')
             self.validate_parameters(body=body)
 
             # Prepare query URL
             self.logger.info('Preparing query URL for create_virtual_cluster.')
             _url_path = '/public/clusters/virtualEdition'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -590,10 +651,15 @@ class ClustersController(BaseController):
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for create_virtual_cluster.')
-            _request = self.http_client.post(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'create_virtual_cluster')
+            self.logger.info(
+                'Preparing and executing request for create_virtual_cluster.')
+            _request = self.http_client.post(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='create_virtual_cluster')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for create_virtual_cluster.')
@@ -602,10 +668,12 @@ class ClustersController(BaseController):
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, CreateClusterResult.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                CreateClusterResult.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
     def get_external_client_subnets(self):
@@ -627,39 +695,44 @@ class ClustersController(BaseController):
             self.logger.info('get_external_client_subnets called.')
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for get_external_client_subnets.')
+            self.logger.info(
+                'Preparing query URL for get_external_client_subnets.')
             _url_path = '/public/externalClientSubnets'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for get_external_client_subnets.')
-            _headers = {
-                'accept': 'application/json'
-            }
+            self.logger.info(
+                'Preparing headers for get_external_client_subnets.')
+            _headers = {'accept': 'application/json'}
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for get_external_client_subnets.')
+            self.logger.info(
+                'Preparing and executing request for get_external_client_subnets.'
+            )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'get_external_client_subnets')
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='get_external_client_subnets')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for get_external_client_subnets.')
+            self.logger.info(
+                'Validating response for get_external_client_subnets.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ExternalClientSubnets.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                ExternalClientSubnets.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise
 
-    def update_external_client_subnets(self,
-                                       body=None):
+    def update_external_client_subnets(self, body=None):
         """Does a PUT request to /public/externalClientSubnets.
 
         Returns the updated external Client Subnets of the cluster.
@@ -682,34 +755,45 @@ class ClustersController(BaseController):
             self.logger.info('update_external_client_subnets called.')
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for update_external_client_subnets.')
+            self.logger.info(
+                'Preparing query URL for update_external_client_subnets.')
             _url_path = '/public/externalClientSubnets'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for update_external_client_subnets.')
+            self.logger.info(
+                'Preparing headers for update_external_client_subnets.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
             }
 
             # Prepare and execute request
-            self.logger.info('Preparing and executing request for update_external_client_subnets.')
-            _request = self.http_client.put(_query_url, headers=_headers, parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name = 'update_external_client_subnets')
+            self.logger.info(
+                'Preparing and executing request for update_external_client_subnets.'
+            )
+            _request = self.http_client.put(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(
+                _request, name='update_external_client_subnets')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for update_external_client_subnets.')
+            self.logger.info(
+                'Validating response for update_external_client_subnets.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body, ExternalClientSubnets.from_dictionary)
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                ExternalClientSubnets.from_dictionary)
 
         except Exception as e:
-            self.logger.error(e, exc_info = True)
+            self.logger.error(e, exc_info=True)
             raise

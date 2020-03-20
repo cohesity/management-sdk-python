@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 class ServiceEnum(object):
 
@@ -36,6 +36,7 @@ class ServiceEnum(object):
         KEAGLEAGENT: TODO: type description here.
         KATHENA: TODO: type description here.
         KBIFROSTBROKER: TODO: type description here.
+        KSMB2PROXY: TODO: type description here.
         KOS: TODO: type description here.
 
     """
@@ -95,6 +96,8 @@ class ServiceEnum(object):
     KATHENA = 'kAthena'
 
     KBIFROSTBROKER = 'kBifrostBroker'
+
+    KSMB2PROXY = 'kSmb2Proxy'
 
     KOS = 'kOs'
 

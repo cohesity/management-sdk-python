@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.agent_information
 import cohesity_management_sdk.models.universal_id
@@ -39,6 +39,7 @@ class PhysicalProtectionSource(object):
             managed Object in a Physical Protection Source. 'kHost' indicates
             a single physical server. 'kWindowsCluster' indicates a Microsoft
             Windows cluster.
+        vcs_version (string): Specifies cluster version for VCS host.
         volumes (list of PhysicalVolume): Array of Physical Volumes.
             Specifies the volumes available on the physical host. These fields
             are populated only for the kPhysicalHost type.
@@ -56,6 +57,7 @@ class PhysicalProtectionSource(object):
         "num_processors":'numProcessors',
         "os_name":'osName',
         "mtype":'type',
+        "vcs_version":'vcsVersion',
         "volumes":'volumes'
     }
 
@@ -69,6 +71,7 @@ class PhysicalProtectionSource(object):
                  num_processors=None,
                  os_name=None,
                  mtype=None,
+                 vcs_version=None,
                  volumes=None):
         """Constructor for the PhysicalProtectionSource class"""
 
@@ -82,6 +85,7 @@ class PhysicalProtectionSource(object):
         self.num_processors = num_processors
         self.os_name = os_name
         self.mtype = mtype
+        self.vcs_version = vcs_version
         self.volumes = volumes
 
 
@@ -116,6 +120,7 @@ class PhysicalProtectionSource(object):
         num_processors = dictionary.get('numProcessors')
         os_name = dictionary.get('osName')
         mtype = dictionary.get('type')
+        vcs_version = dictionary.get('vcsVersion')
         volumes = None
         if dictionary.get('volumes') != None:
             volumes = list()
@@ -132,6 +137,7 @@ class PhysicalProtectionSource(object):
                    num_processors,
                    os_name,
                    mtype,
+                   vcs_version,
                    volumes)
 
 

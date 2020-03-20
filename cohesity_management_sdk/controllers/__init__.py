@@ -28,6 +28,7 @@ __all__ = [
     'protection_runs_controller',
     'remote_cluster_controller',
     'remote_restore_controller',
+    'reports_controller',
     'restore_tasks_controller',
     'roles_controller',
     'routes_controller',
