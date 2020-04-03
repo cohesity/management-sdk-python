@@ -22,9 +22,6 @@ cohesity_client = CohesityClient(cluster_vip=configparser.get('import_cluster_co
 
 cluster_dict = pickle.load(open("cluster_config.txt", "rb"))
 
-with open("template.json", "r") as file_obj:
-    template_dict = json.load(file_obj)
-
 
 def create_protection_policy():
     """
