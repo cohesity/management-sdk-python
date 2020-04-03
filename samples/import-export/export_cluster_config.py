@@ -1,79 +1,65 @@
-import os
-import shutil
-from rest_client import RestClient
-rest_client = RestClient.get_instance(conf_type="export")
+import pickle
+import configparser
+from cohesity_management_sdk.cohesity_client import CohesityClient
+from cohesity_management_sdk.exceptions.request_error_error_exception import RequestErrorErrorException
+from cohesity_management_sdk.exceptions.api_exception import APIException
 
-# Get the current working directory.
-cwd = os.getcwd()
 
-config_file_dir = os.path.join(cwd, "cluster_config")
-protect_policy_json_file = os.path.join(config_file_dir, "protection_policies.json")
-storage_domain_json_file = os.path.join(config_file_dir, "storage_domains.json")
-protect_job_json_file = os.path.join(config_file_dir, "protection_jobs.json")
-protect_source_json_file = os.path.join(config_file_dir, "protection_sources.json")
-external_targets_json_file = os.path.join(config_file_dir, "external_targets.json")
+# Fetch the Cluster credentials from config file.
+configparser = configparser.ConfigParser()
+configparser.read('config.ini')
 
-# Check for already available config files folder, if found delete the folder
-# and its contents.
-if os.path.isdir(config_file_dir):
-    shutil.rmtree(config_file_dir)
-os.makedirs(config_file_dir)
+cohesity_client = CohesityClient(cluster_vip=configparser.get('import_cluster_config', 'cluster_ip'),
+                                 username=configparser.get('import_cluster_config', 'username'),
+                                 password=configparser.get('import_cluster_config', 'password'),
+                                 domain= configparser.get('import_cluster_config', 'domain'))
+cluster_dict = {
+    "views": [],
+    "storage_domains": [],
+    "policies": [],
+    "protection_jobs": [],
+    "protection_sources": [],
+    "external_targets": []
+}
 
 def get_protection_policies():
     """
     Fetches the protection policies available in the cluster and save the response
-    to  a json file.
+    to a file.
     """
-    code, cont = rest_client.get("protectionPolicies")
-    if code == 200:
-        with open(protect_policy_json_file, "w") as file_obj:
-            file_obj.write(cont.decode("utf-8"))
-    else:
-        print("Failure while fetching protection policies")
-        exit()
+    policy_list = cohesity_client.protection_policies.get_protection_policies()
+    cluster_dict['policies'] = policy_list
+
+
+def get_storage_domains():
+    storage_domain_list = cohesity_client.view_boxes.get_view_boxes()
+    cluster_dict["storage_domains"] = storage_domain_list
+
+
+def get_views():
+    views_list = cohesity_client.views.get_views().views
+    cluster_dict["views"] = views_list
 
 
 def get_protection_jobs():
-    code, cont = rest_client.get("protectionJobs")
-    if code == 200:
-        with open(protect_job_json_file, "w") as file_obj:
-            file_obj.write(cont.decode("utf-8"))
-    else:
-        print("Failure while fetching protection Jobs.")
-        exit()
-
-def get_storage_domains():
-    code, cont = rest_client.get("viewBoxes")
-    if code == 200:
-        with open(storage_domain_json_file, "w") as file_obj:
-            file_obj.write(cont.decode("utf-8"))
-    else:
-        print("Failure while fetching storage domains.")
-        exit()
+    protection_job_list = cohesity_client.protection_jobs.get_protection_jobs()
+    cluster_dict["protection_jobs"] = protection_job_list
 
 
 def get_protection_sources():
-    code, cont = rest_client.get("protectionSources?allUnderHierarchy=false&environments=kVMware,kAzure,kPhysical,kGenericNas&excludeTypes="\
-    "kVCenter,kFolder,kDatacenter,kComputeResource,kClusterComputeResource,kResourcePool,kDatastore,kHostSystem,kVirtualApp,kStandaloneHost,kStoragePod,kNetwork,kDistributedVirtualPortgroup,kTagCategory,kTag")
-    print(code, cont)
-    if code == 200:
-        with open(protect_source_json_file, "w") as file_obj:
-            file_obj.write(cont.decode("utf-8"))
-    else:
-        print("Failure while fetching protection sources.")
-        exit()
+    protection_source_list = cohesity_client.protection_sources.list_protection_sources()
+    cluster_dict["protection_sources"] = protection_source_list
+
 
 def get_external_targets():
-    code, cont = rest_client.get("vaults")
-    if code == 200:
-        with open(external_targets_json_file, "w") as file_obj:
-            file_obj.write(cont.decode("utf-8"))
-    else:
-        print("Failure while fetching external targets.")
-        exit()
+    external_target_list = cohesity_client.vaults.get_vaults()
+    cluster_dict["external_targets"] = external_target_list
 
 get_storage_domains()
 get_protection_policies()
 get_protection_jobs()
 get_protection_sources()
 get_external_targets()
+get_views()
+# Fetch all the resources and store the data in file.
+pickle.dump(cluster_dict, open("cluster_config.txt", "wb"))
