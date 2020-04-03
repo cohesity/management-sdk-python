@@ -1,0 +1,61 @@
+{
+    "policy": {
+        "name": "Test_Policy",
+        "incrementalSchedulingPolicy": {
+            "periodicity": "kMonthly",
+            "monthlySchedule": {
+                "dayCount": "kFirst",
+                "day": "kSunday"
+            }
+        },
+        "daysToKeep": 90,
+        "retries": 3,
+        "retryIntervalMins": 30,
+        "blackoutPeriods": [],
+        "extendedRetentionPolicies": [],
+        "snapshotReplicationCopyPolicies": [],
+        "snapshotArchivalCopyPolicies": [],
+        "cloudDeployPolicies": []
+    },
+    "storage_domain": {
+        "name": "Test_SD",
+        "clusterPartitionId": 3,
+        "storagePolicy": {
+            "deduplicationEnabled": true,
+            "inlineDeduplicate": true,
+            "compressionPolicy": "kCompressionLow",
+            "inlineCompress": true,
+            "deduplicateCompressDelaySecs": 0,
+            "encryptionPolicy": "kEncryptionNone",
+            "numFailuresTolerated": 0,
+            "numNodeFailuresTolerated": 0
+        },
+        "s3BucketsAllowed": false,
+        "adDomainName": null,
+        "ldapProviderId": null,
+        "clusterPartitionName": "DefaultPartition",
+        "removalState": "kDontRemove"
+    },
+    "view": {
+        "name": "TestView",
+        "viewBoxId": 0,
+        "caseInsensitiveNamesEnabled": true,
+        "description": "This view is created for newman automation",
+        "enableFilerAuditLogging": true,
+        "enableMixedModePermissions": true,
+        "enableNfsViewDiscovery": true,
+        "enableOfflineCaching": true,
+        "enableSmbAccessBasedEnumeration": true,
+        "enableSmbEncryption": true,
+        "enableSmbViewDiscovery": true,
+        "enforceSmbEncryption": true,
+        "overrideGlobalWhitelist": true,
+        "protocolAccess": "kAll",
+        "securityMode": "kNativeMode",
+        "logicalQuota": {
+            "alertLimitBytes": 9126805504,
+            "alertThresholdPercentage": 85,
+            "hardLimitBytes": 10737418240
+        }
+    }
+}
