@@ -1,65 +1,34 @@
 import pickle
+import library
 import configparser
 from cohesity_management_sdk.cohesity_client import CohesityClient
-from cohesity_management_sdk.exceptions.request_error_error_exception import RequestErrorErrorException
-from cohesity_management_sdk.exceptions.api_exception import APIException
 
 
 # Fetch the Cluster credentials from config file.
 configparser = configparser.ConfigParser()
 configparser.read('config.ini')
 
-cohesity_client = CohesityClient(cluster_vip=configparser.get('import_cluster_config', 'cluster_ip'),
-                                 username=configparser.get('import_cluster_config', 'username'),
-                                 password=configparser.get('import_cluster_config', 'password'),
-                                 domain= configparser.get('import_cluster_config', 'domain'))
+cohesity_client = CohesityClient(cluster_vip=configparser.get('export_cluster_config', 'cluster_ip'),
+                                 username=configparser.get('export_cluster_config', 'username'),
+                                 password=configparser.get('export_cluster_config', 'password'),
+                                 domain= configparser.get('export_cluster_config', 'domain'))
+
+
 cluster_dict = {
-    "views": [],
-    "storage_domains": [],
-    "policies": [],
-    "protection_jobs": [],
-    "protection_sources": [],
-    "external_targets": []
-}
+    "cluster_config": library.get_cluster_config(cohesity_client),
+    "views": library.get_views(cohesity_client),
+    "storage_domains": library.get_storage_domains(cohesity_client),
+    "policies": library.get_protection_policies(cohesity_client),
+    "protection_jobs": library.get_protection_jobs(cohesity_client),
+    "protection_sources": library.get_protection_sources(cohesity_client),
+    "external_targets": library.get_external_targets(cohesity_client),
+    "sources": library.get_protection_sources(cohesity_client)#,
+    #"all_protection_sources": library.get_all_protection_sources(cohesity_client)
+    }
+dct = {}
+for source in cluster_dict["sources"]:
+    dct[source.protection_source.id] = library.get_all_protection_sources(cohesity_client, source.protection_source.id)
+cluster_dict["all_protection_sources"] = dct
 
-def get_protection_policies():
-    """
-    Fetches the protection policies available in the cluster and save the response
-    to a file.
-    """
-    policy_list = cohesity_client.protection_policies.get_protection_policies()
-    cluster_dict['policies'] = policy_list
-
-
-def get_storage_domains():
-    storage_domain_list = cohesity_client.view_boxes.get_view_boxes()
-    cluster_dict["storage_domains"] = storage_domain_list
-
-
-def get_views():
-    views_list = cohesity_client.views.get_views().views
-    cluster_dict["views"] = views_list
-
-
-def get_protection_jobs():
-    protection_job_list = cohesity_client.protection_jobs.get_protection_jobs()
-    cluster_dict["protection_jobs"] = protection_job_list
-
-
-def get_protection_sources():
-    protection_source_list = cohesity_client.protection_sources.list_protection_sources()
-    cluster_dict["protection_sources"] = protection_source_list
-
-
-def get_external_targets():
-    external_target_list = cohesity_client.vaults.get_vaults()
-    cluster_dict["external_targets"] = external_target_list
-
-get_storage_domains()
-get_protection_policies()
-get_protection_jobs()
-get_protection_sources()
-get_external_targets()
-get_views()
 # Fetch all the resources and store the data in file.
 pickle.dump(cluster_dict, open("cluster_config.txt", "wb"))
