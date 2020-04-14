@@ -23,7 +23,6 @@ cohesity_client = CohesityClient(cluster_vip=configparser.get('import_cluster_co
                                      'import_cluster_config', 'password'),
                                  domain=configparser.get('import_cluster_config', 'domain'))
 
-
 # Read the imported cluster configurations from file.
 cluster_dict = pickle.load(open("cluster_config.txt", "rb"))
 
@@ -39,8 +38,8 @@ policy_mapping = {}
 source_mapping = {}
 storage_domain_mapping = {}
 view_mapping = {}
-view_box_mapping = {}
 
+view_box_mapping = {}
 
 def create_storage_domain():
     existing_storage_domain_list = {}
@@ -89,6 +88,8 @@ def create_protection_source():
             environment = source.protection_source.environment
             body.endpoint = source_name
             env = environment[1:].lower()
+            if environment in ["kPhysical"]:
+                continue
             body.username = source.registration_info.username
             body.environment = environment
             for attr in dir(source.protection_source):
@@ -99,12 +100,14 @@ def create_protection_source():
 
             if env_type not in ["kViewBox"]:
                 password = configparser.get(source.protection_source.name, "password")
-                body.password = password #"Cohe$1ty"
+                body.password = password
+                #body.password = "Cohe$1ty"
             # Set the environment type
             setattr(body, env + "_type", env_type)
 
             if env == "view": 
                 body.view_type = "kViewBox"
+
             try:
                 result = cohesity_client.protection_sources.create_register_protection_source(
                     body)
@@ -179,11 +182,12 @@ def create_protection_policy():
 
 
 def create_protection_job():
+
     existing_job_list = []
     active_protection_jobs = []
 
     protection_job_list = cluster_dict.get("protection_jobs", [])
-    exported_resources = cluster_dict.get("all_protection_sources", {})
+    exported_protection_source_objects = cluster_dict.get("protection_objects", {})
     existing_jobs = library.get_protection_jobs(cohesity_client)
 
     for job in existing_jobs:
@@ -206,15 +210,29 @@ def create_protection_job():
             source_id_list = protection_job.source_ids
             parent_id = protection_job.parent_source_id
 
-            #excluded_source_ids = protection_job.exclude_source_ids
-            #if not excluded_source_ids:
-            #    exclude_source_ids = []
-            for res in exported_resources[parent_id]:
+            excluded_source_ids = protection_job.exclude_source_ids
+            if not excluded_source_ids:
+                exclude_source_ids = []
+
+            print(protection_job.environment)
+            if protection_job.environment in ["kPhysical"]:
+                continue
+
+            # UUID list for VMware resources.
+            uuid_list = []
+            for res in exported_protection_source_objects[parent_id]:
                 if res.id in source_id_list:
+                    if res.environment == "kVMware":
+                        uuid_list.append(res.vmware_protection_source.id.uuid)
                     exported_sources_list[res.name] = res.parent_id
 
-            for res in library.get_all_protection_sources(cohesity_client, source_mapping[parent_id]):
-                if res.name in exported_sources_list.keys() or res.parent_id == source_mapping[parent_id]:
+            for res in library.get_protection_source_objects(cohesity_client, source_mapping[parent_id]):
+                if res.environment == "kVMware" and res.vmware_protection_source.id.uuid in uuid_list:
+                    # if protection_job.environment == "kView":
+                    #     protection_job.view_name = res.name
+                    source_list.append(res.id)
+
+                elif res.name in exported_sources_list.keys() and res.parent_id == source_mapping[parent_id]:
                     # For protection views, view name is required.
                     if protection_job.environment == "kView":
                         protection_job.view_name = res.name
@@ -222,6 +240,8 @@ def create_protection_job():
 
                 #if res.id in excluded_source_ids:
                 #    exclude_source_ids.append(res.id)
+            if not source_list:
+                continue
             protection_job.view_box_id = storage_domain_mapping[protection_job.view_box_id]
             protection_job.source_ids = source_list
             protection_job.parent_source_id = source_mapping[parent_id]

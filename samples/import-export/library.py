@@ -33,7 +33,15 @@ def get_protection_jobs(cohesity_client):
     return protection_job_list
 
 
-def get_all_protection_sources(cohesity_client, id):#, env, id):
+def get_protection_source_by_id(cohesity_client, id):
+    print(id)
+    protection_source_list = cohesity_client.protection_sources.list_protection_sources(id=id)
+    print(protection_source_list)
+    return protection_source_list
+
+
+def get_protection_source_objects(cohesity_client, id):#, env, id):
+    print(id)
     protection_sources = cohesity_client.protection_sources.get_protection_sources_objects(object_ids=[id])
     #protection_sources = cohesity_client.protection_sources.list_protected_objects(environment=env,id=id)
     #print((protection_sources))

@@ -23,12 +23,14 @@ cluster_dict = {
     "protection_sources": library.get_protection_sources(cohesity_client),
     "external_targets": library.get_external_targets(cohesity_client),
     "sources": library.get_protection_sources(cohesity_client)#,
-    #"all_protection_sources": library.get_all_protection_sources(cohesity_client)
+    #"protection_objects": library.get_protection_source_objects(cohesity_client)
     }
-dct = {}
+
+obj_dct = {}
 for source in cluster_dict["sources"]:
-    dct[source.protection_source.id] = library.get_all_protection_sources(cohesity_client, source.protection_source.id)
-cluster_dict["all_protection_sources"] = dct
+    obj_dct[source.protection_source.id] = library.get_protection_source_objects(cohesity_client, source.protection_source.id)
+cluster_dict["protection_objects"] = obj_dct
+
 
 # Fetch all the resources and store the data in file.
 pickle.dump(cluster_dict, open("cluster_config.txt", "wb"))
