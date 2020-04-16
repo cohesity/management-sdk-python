@@ -13,24 +13,14 @@ from cohesity_management_sdk.models.register_protection_source_parameters import
 from cohesity_management_sdk.exceptions.request_error_error_exception import RequestErrorErrorException
 from cohesity_management_sdk.exceptions.api_exception import APIException
 
-import yaml
-import logging.config
-"""with open("logging.yaml") as file_obj:
-    config = yaml.load(file_obj.read())
-    logging.config.dictConfig(config)"""
 
 logger = logging.getLogger(__file__)
 logger.setLevel(logging.DEBUG)
-#formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-#con = logging.StreamHandler()
-# con.setFormatter(formatter)
-# con.setLevel(logging.DEBUG)
-# logger.addHandler(con)
 
 # Fetch the Cluster credentials from config file.
 configparser = configparser.ConfigParser()
 configparser.read('config.ini')
-sleep_time = configparser.get("sleep", "time")
+sleep_time = int(configparser.get("sleep", "time"))
 cohesity_client = CohesityClient(cluster_vip=configparser.get('import_cluster_config', 'cluster_ip'),
                                  username=configparser.get(
                                      'import_cluster_config', 'username'),
@@ -211,8 +201,8 @@ def create_protection_source():
                     source_mapping[id] = registered_source_list[source_name]
                     logger.info("Source '%s' already registered, ignoring." % (source_name))
                     continue
-                else:
-                    nodes = nodes[-1]
+                #else:
+                #    nodes = nodes[-1]
 
             for node in nodes:
                 name = node["protectionSource"]["name"]
@@ -221,9 +211,8 @@ def create_protection_source():
                     source_mapping[id] = registered_source_list[name]
                     logger.info("Source '%s' already registered, ignoring." % (name))
                     continue
-                else:
-                    create_source(source, environment, node)
 
+                create_source(source, environment, node)
 
     except Exception as err:
         logger.info(err)
@@ -317,12 +306,15 @@ def create_protection_job():
 
     try:
         for each_job in protection_job_list:
+            name = each_job.name
+
             if not each_job.is_deleted:
                 active_protection_jobs.append(each_job)
 
         for protection_job in active_protection_jobs:
             source_list = []
             exported_sources_list = {}
+
             if protection_job.parent_source_id not in source_mapping.keys():
                 continue
             name = protection_job.name
@@ -412,10 +404,8 @@ def update_ids():
 
 if __name__ == "__main__":
     create_protection_source()
-    print(source_mapping)
     create_protection_policy()
     create_storage_domain()
     create_view()
     create_protection_job()
     update_ids()
-    exit()
