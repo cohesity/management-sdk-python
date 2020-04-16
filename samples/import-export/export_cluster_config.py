@@ -1,8 +1,10 @@
 import pickle
 import library
+import logging
 import configparser
 from cohesity_management_sdk.cohesity_client import CohesityClient
 
+logger = logging.getLogger(__file__)
 
 # Fetch the Cluster credentials from config file.
 configparser = configparser.ConfigParser()
@@ -13,6 +15,10 @@ cohesity_client = CohesityClient(cluster_vip=configparser.get('export_cluster_co
                                  password=configparser.get('export_cluster_config', 'password'),
                                  domain= configparser.get('export_cluster_config', 'domain'))
 
+logger.setLevel(logging.INFO)
+
+logger.info("Exporting resources from cluster '%s'" % (
+    configparser.get('export_cluster_config', 'cluster_ip')))
 
 cluster_dict = {
     "cluster_config": library.get_cluster_config(cohesity_client),
@@ -26,11 +32,18 @@ cluster_dict = {
     #"protection_objects": library.get_protection_source_objects(cohesity_client)
     }
 
-obj_dct = {}
-for source in cluster_dict["sources"]:
-    obj_dct[source.protection_source.id] = library.get_protection_source_objects(cohesity_client, source.protection_source.id)
-cluster_dict["protection_objects"] = obj_dct
 
+obj_dct = {}
+source_dct = {}
+
+for source in cluster_dict["sources"]:
+    id = source.protection_source.id
+    env = source.protection_source.environment
+    res = library.get_protection_source_by_id(cohesity_client, id, env)
+    source_dct[id] = res.nodes
+    obj_dct[source.protection_source.id] = library.get_protection_source_object_by_id(cohesity_client, source.protection_source.id)
+cluster_dict["protection_objects"] = obj_dct
+cluster_dict["source_dct"] = source_dct
 
 # Fetch all the resources and store the data in file.
 pickle.dump(cluster_dict, open("cluster_config.txt", "wb"))
