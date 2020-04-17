@@ -22,12 +22,14 @@ pip install cohesity_management_sdk pickle configparser
 This will work for Python 2 >=2.7.9 and Python 3 >=3.4.
 
 ## Prerequisite
-0. The API connectivity from the box which is running these scripts to the exported/imported cluster(s).
-1. In config.ini : 
-    a. Exported Cluster credentials.
-    b. Imported Cluster credentials.
-    c. Replicated cluster credentials 
-    d. Protection sources such as vCenter credentials
+```
+1. The API connectivity from the box which is running these scripts to the exported/imported cluster(s).
+        2. In config.ini : 
+            a. Exported Cluster credentials.
+            b. Imported Cluster credentials.
+            c. Replicated cluster credentials 
+            d. Protection sources such as vCenter credentials
+```
 
 ## Export 
 
