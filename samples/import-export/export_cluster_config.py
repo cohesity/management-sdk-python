@@ -2,6 +2,7 @@ import pickle
 import library
 import logging
 import configparser
+import datetime
 from cohesity_management_sdk.cohesity_client import CohesityClient
 
 logger = logging.getLogger(__file__)
@@ -28,8 +29,8 @@ cluster_dict = {
     "protection_jobs": library.get_protection_jobs(cohesity_client),
     "protection_sources": library.get_protection_sources(cohesity_client),
     "external_targets": library.get_external_targets(cohesity_client),
-    "sources": library.get_protection_sources(cohesity_client)#,
-    #"protection_objects": library.get_protection_source_objects(cohesity_client)
+    "sources": library.get_protection_sources(cohesity_client),
+    "remote_clusters": library.get_remote_clusters(cohesity_client)
     }
 
 
@@ -41,9 +42,14 @@ for source in cluster_dict["sources"]:
     env = source.protection_source.environment
     res = library.get_protection_source_by_id(cohesity_client, id, env)
     source_dct[id] = res.nodes
-    obj_dct[source.protection_source.id] = library.get_protection_source_object_by_id(cohesity_client, source.protection_source.id)
+    obj_dct[source.protection_source.id] = \
+        library.get_protection_source_object_by_id(cohesity_client,
+                                                   source.protection_source.id)
 cluster_dict["protection_objects"] = obj_dct
 cluster_dict["source_dct"] = source_dct
 
 # Fetch all the resources and store the data in file.
-pickle.dump(cluster_dict, open("cluster_config.txt", "wb"))
+
+pickle.dump(cluster_dict,
+            open("export-config-%s" %
+                 datetime.datetime.now().strftime("%Y-%m-%d-%H:%M"), "wb"))

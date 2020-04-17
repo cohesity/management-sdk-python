@@ -59,3 +59,7 @@ def get_protection_sources(cohesity_client):
 def get_external_targets(cohesity_client):
     external_target_list = cohesity_client.vaults.get_vaults()
     return external_target_list
+
+def get_remote_clusters(coheity_client):
+    remote_cluster_list = coheity_client.remote_cluster.get_remote_clusters()
+    return remote_cluster_list
