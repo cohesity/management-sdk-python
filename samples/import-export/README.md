@@ -1,40 +1,93 @@
-# IMPORT EXPORT TASKS
+# Cohesity Cluster Export/Import
 
 ## Overview
 
-Import export tasks provide option to export cluster resources like sources, views, storage domains, external targets from one cluster to another.
-
+Import export tasks provide option to export and import the cluster resources namely
+  * Protection Sources
+  * Cohesity Views
+  * Storage Domains, 
+  * External targets(NAS) 
+  * Cluster Configs
+    * DNS
+    * NTP Servers
+    * Domain Names
+  * Protection Jobs
+  * Protection Sources(NAS, Views, VMware)
+  * Protection Policies
+  
 ## Installation
-
-The generated code uses Python packages named jsonpickle and dateutil. You can resolve these dependencies using pip. This will work for Python 2 >=2.7.9 and Python 3 >=3.4.
+```
+pip install cohesity_management_sdk pickle configparser 
+```
+This will work for Python 2 >=2.7.9 and Python 3 >=3.4.
 
 ## Prerequisite
+0. The API connectivity from the box which is running these scripts to the exported/imported cluster(s).
+1. In config.ini : 
+    a. Exported Cluster credentials.
+    b. Imported Cluster credentials.
+    c. Replicated cluster credentials 
+    d. Protection sources such as vCenter credentials
 
-In config.ini file, update the cluster credentials of cluster which needs to be imported/exported.
-
-## How to do
+## Export 
 
 Run the following command to export resources.
 ```
-python3 export_cluster_config.py
+python export_cluster_config.py
 ```
-The above command will generate a export-config file which needs be provided while importing resources.
+The above command will generate a <export-config-timestamp> file (eg: export-config-2020-04-17-12:15) which needs be provided while importing resources.
 
-Run the following command to import resources
+### Ouput 
 ```
-python3 import_cluster_config.py <export-config file>
-```
+INFO:export_app:Exporting resources from cluster 'xyzzy'
+INFO:export_app:
+ *** Exported resources summary ***
 
-## Output
+INFO:export_app:	*** Protection Views ***:
+Check, NaveenaView, Test, DemoUI, Target
 
-* INFO:import_cluster_config.py:Please find the imported resources summary.
-* INFO:import_cluster_config.py:Successfully registered/created the following Protection Jobs:
-newmanJob-1584050541627-412, MultipleVms, Replication Job Test, SingleVm
-* INFO:import_cluster_config.py:Successfully registered/created the following Protection Views:
-Check, Test, DemoUI, Target
-* INFO:import_cluster_config.py:Successfully registered/created the following Protection Sources:
-10.2.102.11:/target, 10.2.102.11:/Test, 10.2.167.151, 10.2.145.23, vc-67.eco.eng.cohesity.com, sv4-qa-vcenter65-01.eng.cohesity.com
-* INFO:import_cluster_config.py:Successfully registered/created the following Protection Policies:
+INFO:export_app:	*** Storage Domains ***:
+DefaultStorageDomain, StorageRe;l, Physical
+
+INFO:export_app:	*** Protection Policies ***:
 Default Policy, Bronze, Gold, viewpolicy, Nas policy, Replication policy, Silver, Physical
-* INFO:import_cluster_config.py:Successfully registered/created the following External Targets:
+
+INFO:export_app:	*** Protection Jobs ***:
+newmanJob-1584050541627-412, VMWare-job, Replication Job , DB_tier
+
+INFO:export_app:	*** External Targets ***:
+Newman-vault-1586863576896, Newman-vault-1586870313194, TestTarget, check, CheckTarget
+
+INFO:export_app:	*** Protection Sources ***:
+ 10.2.x.y:/target, x.y.z.y, 10.2.145.23, 10.2..x.y, vcenter.eng.cohesity.com
+```
+
+ ## Import
+```
+python import_cluster_config.py <export-config-timestamp>
+```
+
+### Output
+```
+INFO:import_app:
+ *** Imported resources summary ***
+
+INFO:import_app:Successfully registered/created the following Protection Views:
+Check, NaveenaView, Test, DemoUI, Target
+
+INFO:import_app:Successfully registered/created the following External Targets:
 TestTarget, check, CheckTarget
+
+INFO:import_app:Successfully registered/created the following Protection Sources:
+10.2.x.y:/target, 10.2.x.y, 10.2.x.y
+
+INFO:import_app:Successfully registered/created the following Protection Policies:
+Default Policy, Bronze, Gold, viewpolicy, Nas policy, Replication policy, Silver, Physical
+
+INFO:import_app:Successfully registered/created the following Protection Jobs:
+SingleVm
+
+*** Corrective actions/errors  ***
+ERROR:import_app: Please specify the password for vCenter vcenter.eng.cohesity.com source in config.ini
+ERROR:import_app:Response status code: 500, Response message: Specified parent source vcenter.eng.cohesity.com does not match the real parent source 10.2.x.y of entity App-tier-vms-0
+```
