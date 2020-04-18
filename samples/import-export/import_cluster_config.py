@@ -430,7 +430,7 @@ def create_protection_jobs():
                         break
             for res in library.get_protection_source_object_by_id(cohesity_client, source_mapping[parent_id]):
                 if res.environment == "kVMware":
-                    if not res.vmware_protection_source.id.uuid in uuid_list:
+                    if not (res.vmware_protection_source.id.uuid in uuid_list or res.parent_id == source_mapping[parent_id]):
                         continue
 
                     source_list.append(res.id)
@@ -444,7 +444,6 @@ def create_protection_jobs():
                 # Check if the source ids are fetched.
                 if len(source_list) == count:
                     break
-
             protection_job.view_box_id = storage_domain_mapping[protection_job.view_box_id]
             protection_job.policy_id = policy_mapping.get(
                 protection_job.policy_id)
@@ -465,6 +464,7 @@ def create_protection_jobs():
                 time.sleep(2 * sleep_time)
             except Exception as e:
                 logger.info(e)
+
 
     except RequestErrorErrorException as e:
         logger.info(e)
