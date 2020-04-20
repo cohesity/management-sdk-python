@@ -18,10 +18,10 @@ cohesity_client = CohesityClient(cluster_vip=configparser.get('export_cluster_co
 
 logger.setLevel(logging.INFO)
 
+
 logger.info("Exporting resources from cluster '%s'" % (
     configparser.get('export_cluster_config', 'cluster_ip')))
 
-    
 
 cluster_dict = {
     "cluster_config": library.get_cluster_config(cohesity_client),
@@ -47,17 +47,15 @@ for source in cluster_dict["sources"]:
     res = library.get_protection_source_by_id(cohesity_client, id, env)
     source_dct[id] = res.nodes
     if env in ["kView", "kVMware"]:
-        exported_res["Protection Sources"].append(source.protection_source.name)
-        
-    elif not res.nodes:
-        pass
+        name = source.protection_source.name
+        exported_res["Protection Sources"].append(name)
     else:
         for nodes in res.nodes:
-            exported_res["Protection Sources"].append(
-                nodes["protectionSource"]["name"])
-    obj_dct[source.protection_source.id] = \
-        library.get_protection_source_object_by_id(cohesity_client,
-                                                   source.protection_source.id)
+            name =  nodes["protectionSource"]["name"]
+            if name not in exported_res["Protection Sources"]:
+                exported_res["Protection Sources"].append(name)
+    obj_dct[id] = \
+        library.get_protection_source_object_by_id(cohesity_client, id)
 cluster_dict["protection_objects"] = obj_dct
 cluster_dict["source_dct"] = source_dct
 
@@ -69,4 +67,4 @@ pickle.dump(cluster_dict,
 
 logger.info("Please find the imported resources summary.\n")
 for key, val in exported_res.items():
-    logger.info("Successfully registered/created the following %s:\n%s\n" % (key, ", ".join(val)))
+    logger.info("Successfully exported the following %s:\n%s\n" % (key, ", ".join(val)))

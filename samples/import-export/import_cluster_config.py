@@ -68,13 +68,19 @@ remote_cluster_mapping = {}
 from collections import defaultdict
 imported_res_dict = defaultdict(list)
 
-cluster_ip = configparser.get('import_cluster_config', 'cluster_ip')
-
+cluster_name = ""
+node_ips = []
+export_config = cluster_dict["cluster_config"]
+import_config = library.get_cluster_config(cohesity_client)
+import_cluster_ip = configparser.get('import_cluster_config', 'cluster_ip')
+export_cluster_ip = configparser.get('export_cluster_config', 'cluster_ip')
 
 def import_cluster_config():
     try:
         config = cluster_dict["cluster_config"]
-        cohesity_client.cluster.update_cluster(config)
+        cluster_name = config.name
+        node_ips = config.node_ips
+        #cohesity_client.cluster.update_cluster(config)
     except Exception as e:
         logger.error(e)
 
@@ -83,23 +89,27 @@ def import_cluster_config():
 def create_vaults():
     available_vaults_dict = {}
     vaults = cluster_dict.get("external_targets")
-    import_cluster_ip = configparser.get('import_cluster_config', 'cluster_ip')
     available_vaults = library.get_external_targets(cohesity_client)
 
     for vault in available_vaults:
         available_vaults_dict[vault.name] = vault.id
     
     for vault in vaults:
+        if not vault.config.nas:
+            continue
         body = Vault()
-        if vault.name in available_vaults_dict.keys():
+        vault_name =  vault.name + "_" + "1"
+        if vault_name in available_vaults_dict.keys():
             imported_res_dict["External Targets"].append(vault.name)
             continue
         _construct_body(body, vault)
         if vault.config.nas and vault.config.nas.mount_path: 
             try:
-                #vault.name = vault.name + "_" + str(random.choice(range(100)))
-                res = cohesity_client.vaults.create_vault(vault)
-                imported_res_dict["External Targets"].append(vault.name)
+                body.name = vault.name + "_" + "1" #str(random.choice(range(100)))
+                if vault.config.nas.host == export_cluster_ip:
+                    body.config.nas.host = import_cluster_ip
+                res = cohesity_client.vaults.create_vault(body)
+                imported_res_dict["External Targets"].append(body.name)
             except Exception as e:
                 logger.info(e)
 
@@ -114,7 +124,7 @@ def create_sources(source, environment, node):
             from cohesity_management_sdk.models.nas_mount_credential_params import NasMountCredentialParams
             protect_source = node["protectionSource"]
             endpoint = protect_source["name"]
-            share_list = []
+            # share_list = []
 
             # for i in cohesity_client.views.get_views_by_share_name().shares_list:
             #     share_list.append(i.nfs_mount_path)
@@ -123,7 +133,12 @@ def create_sources(source, environment, node):
             #     if endpoint.split(":")[-1] == val.split(":"):
             #         endpoint = val
 
-            endpoint = cluster_ip + ":" + endpoint.split(":")[-1]
+            #endpoint = cluster_ip + ":" + endpoint.split(":")[-1]
+            
+            if export_config.name in endpoint:
+                endpoint = endpoint.replace(export_config.name, import_cluster_ip)#import_config.name)
+            elif export_cluster_ip in endpoint:
+                endpoint = endpoint.replace(export_cluster_ip, import_cluster_ip)
             res_type = protect_source["nasProtectionSource"]["type"]
             host_type = protect_source["nasProtectionSource"]["protocol"]
             body.endpoint = endpoint
@@ -145,7 +160,7 @@ def create_sources(source, environment, node):
             #logger.info("Registering source %s" % (endpoint))
 
         elif environment in ["kVMware", "kView"]:
-            source_name = source.protection_source.name
+            #source_name = source.protection_source.name
             #logger.info("Registering source %s" % (source_name))
             env = environment[1:].lower()
             body.username = source.registration_info.username
@@ -168,8 +183,7 @@ def create_sources(source, environment, node):
                 return
             if env == "view":
                 body.view_type = "kViewBox"
-        result = register_sources(body, source)
-        imported_res_dict["Protection Sources"].append(endpoint)
+        register_sources(body, source)
         time.sleep(sleep_time)
     except Exception as e:
         logger.info(e)
@@ -183,6 +197,7 @@ def register_sources(body, source):
             body)
         source_mapping[source.protection_source.id] = result.id
         source_ids.append(result.id)
+        imported_res_dict["Protection Sources"].append(body.endpoint)
         #logger.info("Source registration '%s' is successful." %
         #            (body.endpoint))
         return result
@@ -342,7 +357,7 @@ def create_protection_policies():
                 imported_res_dict["Protection Policies"].append(policy.name)
                 policy_mapping[policy.id] = existing_policy_list[policy.name]
                 continue
-
+            
             if not policy.incremental_scheduling_policy.daily_schedule:
                 policy.incremental_scheduling_policy.daily_schedule = {}
 
@@ -373,6 +388,7 @@ def create_protection_jobs():
     active_protection_jobs = []
 
     protection_job_list = cluster_dict.get("protection_jobs", [])
+
     exported_protection_source_objects = cluster_dict.get(
         "protection_objects", {})
     existing_jobs = library.get_protection_jobs(cohesity_client)
@@ -389,15 +405,13 @@ def create_protection_jobs():
             environment = protection_job.environment
             source_list = []
             exported_sources_list = {}
-
             if environment == "kView":
                 if protection_job.view_box_id not in storage_domain_mapping.keys():
                     continue
                 
-            elif protection_job.parent_source_id not in source_mapping.keys():
+            elif environment == "kVMware" and  protection_job.parent_source_id not in source_mapping.keys():
                 continue
-            name = protection_job.name
-            #logger.info("Creating protection job '%s'" % name)
+
             # Check if the protection source is already available.
             if protection_job.name in existing_job_list:
                 imported_res_dict["Protection Jobs"].append(protection_job.name)
@@ -410,53 +424,68 @@ def create_protection_jobs():
             if not excluded_source_ids:
                 exclude_source_ids = []
 
-            if protection_job.environment in ["kPhysical"]:
-                pass
-
             # UUID list for VMware resources.
             uuid_list = []
 
             # logger.info(exported_protection_source_objects)
             count = 0
             list_len = len(source_id_list)
+
             if exported_protection_source_objects.get(parent_id, None):
                 for res in exported_protection_source_objects[parent_id]:
                     if res.id in source_id_list:
                         if res.environment == "kVMware":
                             uuid_list.append(res.vmware_protection_source.id.uuid)
+                        elif res.environment == "kView":
+                            protection_job.view_name = res.name
+
                         exported_sources_list[res.name] = res.parent_id
                         count += 1
                     if count == list_len:
                         break
-            for res in library.get_protection_source_object_by_id(cohesity_client, source_mapping[parent_id]):
-                if res.environment == "kVMware":
-                    if not (res.vmware_protection_source.id.uuid in uuid_list or res.parent_id == source_mapping[parent_id]):
-                        continue
 
-                    source_list.append(res.id)
-                    # For protection views, view name is required.
-                    if protection_job.environment == "kView":
-                        protection_job.view_name = res.name
 
-                elif res.name in exported_sources_list.keys():# and res.parent_id == source_mapping[parent_id]:
-                    source_list.append(res.id)
+            if environment != "kView" and source_mapping.get(parent_id, None) == None:
+                err_msg = "Protection Source not available for job %s" % name
+                ERROR_LIST.append(err_msg)
+                continue
 
-                # Check if the source ids are fetched.
-                if len(source_list) == count:
-                    break
+            if source_mapping.get(parent_id, None):
+                for res in library.get_protection_source_object_by_id(cohesity_client, source_mapping[parent_id]):
+                    if res.environment == "kVMware":
+                        if res.vmware_protection_source.id.uuid in uuid_list and res.parent_id == source_mapping[parent_id]:
+                            source_list.append(res.id)
+
+                            # For protection views, view name is required.
+                            #if protection_job.environment == "kView":
+                            #    protection_job.view_name = res.name
+
+                    elif res.name in exported_sources_list.keys():# and res.parent_id == source_mapping[parent_id]:
+                        source_list.append(res.id)
+
+                    # Check if the source ids are fetched.
+                    if len(source_list) == count:
+                        break
+
             protection_job.view_box_id = storage_domain_mapping[protection_job.view_box_id]
             protection_job.policy_id = policy_mapping.get(
-                protection_job.policy_id)
-            if environment == "kView":
-                pass
-            elif not (source_list and protection_job.policy_id and protection_job.view_box_id):
+                protection_job.policy_id, None)
+
+            if not protection_job.view_box_id: #source_list and
+                ERROR_LIST.append("Viewbox not available for job %s" % name)
                 continue
-            else:
+            elif not protection_job.policy_id:
+                ERROR_LIST.append("Protection policy not available for job %s" % name)
+                continue
+            if source_list:
                 protection_job.source_ids = source_list
+            if source_mapping.get(parent_id, ""):
                 protection_job.parent_source_id = source_mapping[parent_id]
             try:
                 result = cohesity_client.protection_jobs.create_protection_job(
                     protection_job)
+                #cohesity_client.protection_jobs.create_run_protection_job(id=result.id, body={})
+
                 #logger.info("Protection job '%s' is created successfully" % (
                 #    protection_job.name))
                 jobs.append(result.id)
@@ -464,7 +493,6 @@ def create_protection_jobs():
                 time.sleep(2 * sleep_time)
             except Exception as e:
                 logger.info(e)
-
 
     except RequestErrorErrorException as e:
         logger.info(e)
@@ -483,7 +511,6 @@ def create_remote_clusters():
         repl_list[cluster.name] = cluster.cluster_id
 
     # if the remote cluster exists then get the ID
-
     for cluster in remote_cluster_list:
         if cluster.name in repl_list.keys():
             continue
@@ -550,10 +577,11 @@ def debug():
         #logger.info(j)
         json.dump(j, f)
 
+
 if __name__ == "__main__":
-    import_cluster_config()
+    # import_cluster_config()
     create_storage_domains()
-    #create_remote_clusters()
+    # create_remote_clusters()
     create_views()
     create_vaults()
     create_protection_sources()
