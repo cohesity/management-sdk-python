@@ -4,6 +4,7 @@ import logging
 import configparser
 import datetime
 from cohesity_management_sdk.cohesity_client import CohesityClient
+import rest_client
 
 logger = logging.getLogger(__file__)
 
@@ -17,7 +18,6 @@ cohesity_client = CohesityClient(cluster_vip=configparser.get('export_cluster_co
                                  domain= configparser.get('export_cluster_config', 'domain'))
 
 logger.setLevel(logging.INFO)
-
 
 logger.info("Exporting resources from cluster '%s'" % (
     configparser.get('export_cluster_config', 'cluster_ip')))
@@ -37,8 +37,6 @@ cluster_dict = {
 
 
 exported_res = library.debug()
-
-obj_dct = {}
 source_dct = {}
 
 for source in cluster_dict["sources"]:
@@ -54,9 +52,6 @@ for source in cluster_dict["sources"]:
             name =  nodes["protectionSource"]["name"]
             if name not in exported_res["Protection Sources"]:
                 exported_res["Protection Sources"].append(name)
-    obj_dct[id] = \
-        library.get_protection_source_object_by_id(cohesity_client, id)
-cluster_dict["protection_objects"] = obj_dct
 cluster_dict["source_dct"] = source_dct
 
 # Fetch all the resources and store the data in file.

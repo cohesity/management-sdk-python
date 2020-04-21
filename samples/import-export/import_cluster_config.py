@@ -98,14 +98,14 @@ def create_vaults():
         if not vault.config.nas:
             continue
         body = Vault()
-        vault_name =  vault.name + "_" + "1"
+        vault_name =  vault.name# + "_" + "1"
         if vault_name in available_vaults_dict.keys():
             imported_res_dict["External Targets"].append(vault.name)
             continue
         _construct_body(body, vault)
         if vault.config.nas and vault.config.nas.mount_path: 
             try:
-                body.name = vault.name + "_" + "1" #str(random.choice(range(100)))
+                body.name = vault.name #str(random.choice(range(100)))
                 if vault.config.nas.host == export_cluster_ip:
                     body.config.nas.host = import_cluster_ip
                 res = cohesity_client.vaults.create_vault(body)
@@ -202,11 +202,11 @@ def register_sources(body, source):
         #            (body.endpoint))
         return result
     except RequestErrorErrorException as e:
-        logger.info(e)
+        ERROR_LIST.append(e)
     except APIException as e:
-        logger.info(e)
+        ERROR_LIST.append(e)
     except Exception as e:
-        logger.info(e)
+        ERROR_LIST.append(e)
 
 
 def create_storage_domains():
@@ -235,9 +235,9 @@ def create_storage_domains():
                 sds.append(result.id)
                 storage_domain_mapping[storage_domain.id] = result.id
             except RequestErrorErrorException as e:
-                logger.info(e)
+                logger.error(e)
             except APIException as e:
-                logger.info(e)
+                logger.error(e)
     except Exception as err:
         logger.info(err)
 
@@ -254,11 +254,10 @@ def create_protection_sources():
 
         for source in existing_sources:
             env = (source.protection_source.environment)
-            if env not in ["kPhysical", "kVMware", "KView", "kGenericNas"]:
+            if env not in ["kPhysical", "kVMware", "kView", "kGenericNas"]:
                 continue
-            
-            id = (source.protection_source.id)
 
+            id = (source.protection_source.id)
             name = source.protection_source.name
             if env == "kVMware":
                 registered_source_list[name] = id
@@ -389,8 +388,6 @@ def create_protection_jobs():
 
     protection_job_list = cluster_dict.get("protection_jobs", [])
 
-    exported_protection_source_objects = cluster_dict.get(
-        "protection_objects", {})
     existing_jobs = library.get_protection_jobs(cohesity_client)
     for job in existing_jobs:
         existing_job_list.append(job.name)
@@ -404,7 +401,9 @@ def create_protection_jobs():
             name = protection_job.name
             environment = protection_job.environment
             source_list = []
-            exported_sources_list = {}
+            if environment not in ["kPhysical", "kVMware", "kView", "kGenericNas"]:
+                continue
+
             if environment == "kView":
                 if protection_job.view_box_id not in storage_domain_mapping.keys():
                     continue
@@ -415,7 +414,7 @@ def create_protection_jobs():
             # Check if the protection source is already available.
             if protection_job.name in existing_job_list:
                 imported_res_dict["Protection Jobs"].append(protection_job.name)
-                #logger.debug("Protection job '%s' already available." % name)
+                # logger.debug("Protection job '%s' already available." % name)
                 continue
 
             source_id_list = protection_job.source_ids
@@ -428,44 +427,44 @@ def create_protection_jobs():
             uuid_list = []
 
             # logger.info(exported_protection_source_objects)
-            count = 0
+
             list_len = len(source_id_list)
+            source = cluster_dict.get("source_dct")[parent_id]
 
-            if exported_protection_source_objects.get(parent_id, None):
-                for res in exported_protection_source_objects[parent_id]:
-                    if res.id in source_id_list:
-                        if res.environment == "kVMware":
-                            uuid_list.append(res.vmware_protection_source.id.uuid)
-                        elif res.environment == "kView":
-                            protection_job.view_name = res.name
+            nodes = source[0].get("nodes", [])
+            if not nodes and environment == "kView":
+                for each_source in source:
+                    if each_source["protectionSource"]["id"] in source_id_list:
+                        protection_job.view_name = each_source["protectionSource"]["name"]
 
-                        exported_sources_list[res.name] = res.parent_id
-                        count += 1
-                    if count == list_len:
-                        break
+            for node in nodes:
+                if node.get("nodes", []):
+                    nodes.extend(node["nodes"])
+                # Fetch the UUID list from with available source ids from exported cluster. VMware
+                # resources are provided with UUID and mapping is based on uuid.
+                if environment == "kVMware" and node["protectionSource"]["id"] in source_id_list:
+                    uuid_list.append(node["protectionSource"]["vmWareProtectionSource"]["id"].get("uuid"))
+                if len(uuid_list) == list_len:
+                    break
 
+            nodes = []
+            if source_mapping.get(parent_id, None):
+                nodes = library.get_protection_source_by_id(cohesity_client, source_mapping[parent_id], environment).nodes
+
+            for node in nodes:
+                if node.get("nodes", []):
+                    nodes.extend(node["nodes"])
+                if environment == "kVMware":
+                    uuid = node["protectionSource"]["vmWareProtectionSource"]["id"].get("uuid")
+                    if uuid in uuid_list and node["protectionSource"]["parentId"] == source_mapping[parent_id]:
+                        source_list.append(node["protectionSource"]["id"])
+                if len(source_list) == list_len:
+                    break
 
             if environment != "kView" and source_mapping.get(parent_id, None) == None:
                 err_msg = "Protection Source not available for job %s" % name
                 ERROR_LIST.append(err_msg)
                 continue
-
-            if source_mapping.get(parent_id, None):
-                for res in library.get_protection_source_object_by_id(cohesity_client, source_mapping[parent_id]):
-                    if res.environment == "kVMware":
-                        if res.vmware_protection_source.id.uuid in uuid_list and res.parent_id == source_mapping[parent_id]:
-                            source_list.append(res.id)
-
-                            # For protection views, view name is required.
-                            #if protection_job.environment == "kView":
-                            #    protection_job.view_name = res.name
-
-                    elif res.name in exported_sources_list.keys():# and res.parent_id == source_mapping[parent_id]:
-                        source_list.append(res.id)
-
-                    # Check if the source ids are fetched.
-                    if len(source_list) == count:
-                        break
 
             protection_job.view_box_id = storage_domain_mapping[protection_job.view_box_id]
             protection_job.policy_id = policy_mapping.get(
@@ -474,17 +473,20 @@ def create_protection_jobs():
             if not protection_job.view_box_id: #source_list and
                 ERROR_LIST.append("Viewbox not available for job %s" % name)
                 continue
-            elif not protection_job.policy_id:
+
+            if not protection_job.policy_id:
                 ERROR_LIST.append("Protection policy not available for job %s" % name)
                 continue
+
             if source_list:
                 protection_job.source_ids = source_list
+            
             if source_mapping.get(parent_id, ""):
                 protection_job.parent_source_id = source_mapping[parent_id]
+
             try:
                 result = cohesity_client.protection_jobs.create_protection_job(
                     protection_job)
-                #cohesity_client.protection_jobs.create_run_protection_job(id=result.id, body={})
 
                 #logger.info("Protection job '%s' is created successfully" % (
                 #    protection_job.name))
@@ -581,7 +583,7 @@ def debug():
 if __name__ == "__main__":
     # import_cluster_config()
     create_storage_domains()
-    # create_remote_clusters()
+    create_remote_clusters()
     create_views()
     create_vaults()
     create_protection_sources()
@@ -592,3 +594,8 @@ if __name__ == "__main__":
 logger.info("Please find the imported resources summary.")
 for key, val in imported_res_dict.items():
     logger.info("Successfully registered/created the following %s:\n%s\n" % (key, ", ".join(val)))
+
+if ERROR_LIST:
+    ERROR_LIST = [str(err) for err in ERROR_LIST]
+    logger.error("Please find the error messages,")
+    logger.error("\n".join(ERROR_LIST))
