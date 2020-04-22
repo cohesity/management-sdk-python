@@ -55,10 +55,10 @@ for source in cluster_dict["sources"]:
 cluster_dict["source_dct"] = source_dct
 
 # Fetch all the resources and store the data in file.
-
 pickle.dump(cluster_dict,
-            open("export-config-%s" %
-                 datetime.datetime.now().strftime("%Y-%m-%d-%H:%M"), "wb"))
+            open("export-config-%s-%s" %(cluster_dict['cluster_config'].name,
+                 datetime.datetime.now().strftime("%Y-%m-%d-%H:%M")), "wb"))
+
 
 logger.info("Please find the imported resources summary.\n")
 for key, val in exported_res.items():
