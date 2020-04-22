@@ -61,7 +61,7 @@ Before you submit your Pull Request (PR) consider the following guidelines:
 1. Be sure that an issue describes the problem you're fixing, or documents the design for the feature you'd like to add.
   Discussing the design up front helps to ensure that we're ready to accept your work.
 
-1. Fork the `cohesity/cohesity-powershell-module` repo.
+1. Fork the `cohesity/management-sdk-python` repo.
 
 1. Make your changes in a new git branch:
 
@@ -82,7 +82,7 @@ Before you submit your Pull Request (PR) consider the following guidelines:
     git push origin my-fix-branch
     ```
 
-1. In GitHub, send a pull request to `cohesity-powershell-module:master`.
+1. In GitHub, send a pull request to `management-sdk-python:master`.
 * If we suggest changes then:
   * Make the required updates.
   * Re-run the Cohesity Python SDK test suites to ensure tests are still passing.
