@@ -96,7 +96,7 @@ def create_vaults():
 
     for vault in available_vaults:
         available_vaults_dict[vault.name] = vault.id
-    
+
     for vault in vaults:
         if not vault.config.nas:
             continue
@@ -578,13 +578,13 @@ def create_remote_clusters():
             )
             remote_cohesity_client.remote_cluster.create_remote_cluster(remote_body)
             # Delete the exported cluster entry from remote cluster.
-            remote_clusters = remote_cohesity_client.remote_cluster.get_remote_clusters()
+            # remote_clusters = remote_cohesity_client.remote_cluster.get_remote_clusters()
             
-            cluster_id_to_delete = [True for clus in remote_clusters if clus.cluster_id == export_config.id]
+            # cluster_id_to_delete = [True for clus in remote_clusters if clus.cluster_id == export_config.id]
 
-            if cluster_id_to_delete:
-                remote_cohesity_client.remote_cluster.delete_remote_cluster(id=export_config.id)
-                imported_res_dict['Remote_Clusters'].append(cluster.name)
+            # if cluster_id_to_delete:
+            #     remote_cohesity_client.remote_cluster.delete_remote_cluster(id=export_config.id)
+            #     imported_res_dict['Remote_Clusters'].append(cluster.name)
         except RequestErrorErrorException as e:
             logger.info(e)
         except APIException as e:
@@ -649,22 +649,23 @@ def debug():
 
 
 if __name__ == "__main__":
-    # logger.info("Importing cluster config \n\n")
-    # import_cluster_config()
+    logger.info("Importing cluster config \n\n")
+    import_cluster_config()
     logger.info("Importing Storage domains \n\n")
     create_storage_domains()
-    # logger.info("Importing remote clusters  \n\n")
+    logger.info("Importing remote clusters  \n\n")
     create_remote_clusters()
-    # logger.info("Importing Views  \n\n")
-    # create_views()
-    # #create_vaults()
-    # logger.info("Importing Sources  \n\n")
-    # create_protection_sources()
-    # logger.info("Importing Policies  \n\n")
-    # create_protection_policies()
-    # logger.info("Importing Jobs  \n\n")
-    # create_protection_jobs()
-    # #debug()
+    logger.info("Importing Views  \n\n")
+    create_views()
+    logger.info("Importing Targets  \n\n")
+    create_vaults()
+    logger.info("Importing Sources  \n\n")
+    create_protection_sources()
+    logger.info("Importing Policies  \n\n")
+    create_protection_policies()
+    logger.info("Importing Jobs  \n\n")
+    create_protection_jobs()
+    debug()
 
 
 logger.info("\n\nImported resources summary.")
