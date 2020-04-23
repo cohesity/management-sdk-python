@@ -17,6 +17,7 @@ from collections import defaultdict
 from cohesity_management_sdk.models.vault import Vault
 from cohesity_management_sdk.cohesity_client import CohesityClient
 from cohesity_management_sdk.exceptions.api_exception import APIException
+from cohesity_management_sdk.models.view_box_pair_info import ViewBoxPairInfo
 from cohesity_management_sdk.models.create_view_request import CreateViewRequest
 from cohesity_management_sdk.models.create_view_box_params import CreateViewBoxParams
 from cohesity_management_sdk.models.register_remote_cluster import RegisterRemoteCluster
@@ -27,7 +28,7 @@ from cohesity_management_sdk.exceptions.request_error_error_exception import Req
 from cohesity_management_sdk.models.register_protection_source_parameters import RegisterProtectionSourceParameters
 
 
-logger = logging.getLogger(__file__)
+logger = logging.getLogger('import_app')
 logger.setLevel(logging.DEBUG)
 
 # Fetch the Cluster credentials from config file.
@@ -43,15 +44,18 @@ cohesity_client = CohesityClient(cluster_vip=configparser.get('import_cluster_co
                                      'import_cluster_config', 'password'),
                                  domain=configparser.get('import_cluster_config', 'domain'))
 
+
 # Read the imported cluster configurations from file.
 if len(sys.argv) != 2:
     logger.error("Please specify the exported config file.")
     sys.exit(1)
-if not path.exists(sys.argv[1]):
-    logger.error("Exported Config file does not exist")
-    sys.exit(1)
 else:
-    cluster_dict = pickle.load(open(sys.argv[1], "rb"))
+    try:
+        cluster_dict = pickle.load(open(sys.argv[1], "rb"))
+    except IOError:
+        print('Import file does not exist')
+        sys.exit(1)
+
 
 # TODO Delete
 view_ids = []
@@ -77,7 +81,7 @@ export_cluster_ip = configparser.get('export_cluster_config', 'cluster_ip')
 
 def import_cluster_config():
     try:
-        config = cluster_dict["cluster_config"]
+        config = cluster_dict.get("cluster_config")
         existing_config = import_config
         config.name = existing_config.name
         cohesity_client.cluster.update_cluster(config)
@@ -292,7 +296,6 @@ def create_views():
     existing_view_dict = {}
     for view in existing_views:
         existing_view_dict[view.name] = view.view_id
-
     for view in view_list:
         try:
             if view.name in existing_view_dict.keys():
@@ -340,6 +343,10 @@ def create_protection_policies():
 
             if not policy.incremental_scheduling_policy.monthly_schedule:
                 policy.incremental_scheduling_policy.monthly_schedule = {}
+            if policy.full_scheduling_policy:
+                if not policy.full_scheduling_policy.daily_schedule:
+                    policy.full_scheduling_policy.daily_schedule = {"days": []}
+
             body = ProtectionPolicyRequest()
             _construct_body(body, policy)
             result = cohesity_client.protection_policies.create_protection_policy(
@@ -350,11 +357,14 @@ def create_protection_policies():
             time.sleep(sleep_time)
 
         except RequestErrorErrorException as e:
-            logger.info(e)
+            ERROR_LIST.append("Error creating Policy: %s, failed with error: "
+                              "%s" % (policy.name, e))
         except APIException as e:
-            logger.info(e)
-        except Exception as err:
-            logger.info(err)
+            ERROR_LIST.append("Error creating Policy: %s, failed with error: "
+                              "%s" % (policy.name, e))
+        except Exception as e:
+            ERROR_LIST.append("Error creating Policy: %s, failed with error: "
+                              "%s" % (policy.name, e))
 
 
 def create_protection_jobs():
@@ -500,38 +510,75 @@ def create_remote_clusters():
         try:
             #Add the remote cluster first
             if cluster.name not in configparser:
-                ERROR_LIST.append("Please add password for remote cluster %s" % cluster.name)
+                ERROR_LIST.append("Please add password for remote cluster: %s "
+                                  "in config.ini" % cluster.name)
+                continue
             remote_cluster_password = configparser.get(cluster.name, 'password')
-            # c2 = CohesityClient(cluster_vip=cluster.local_ips[0],
-            #                     username=cluster.user_name,
-            #                     password=remote_cluster_password)
             cluster.password = remote_cluster_password
+            cluster.domain = configparser.get(cluster.name, 'domain')
             body = RegisterRemoteCluster()
             _construct_body(body, cluster)
             body.cluster_id = None
-            for view_box in body.view_box_pair_info:
-                local_view_box_id = _get_sd_id(view_box.local_view_box_name)
-                if local_view_box_id < 0:
-                    ERROR_LIST.append("Failed to find Storage domain %s, "
-                                      "Remote Cluster pairing not successful" % view_box.local_view_box_name)
-                    continue
-                view_box.local_view_box_id = storage_domain_mapping[local_view_box_id]
+            if body.view_box_pair_info:
+                for view_box in body.view_box_pair_info:
+                    local_view_box_id = _get_sd_id(view_box.local_view_box_name)
+                    if local_view_box_id < 0:
+                        ERROR_LIST.append("Failed to find Storage domain %s, "
+                                          "Remote Cluster pairing not successful" % view_box.local_view_box_name)
+                        continue
+                    view_box.local_view_box_id = local_view_box_id
             body.password = remote_cluster_password
+            if not _register_remote_cluster(cluster.local_ips[0],
+                                            cluster.user_name,
+                                            remote_cluster_password,
+                                            body):
+                continue
+
+            # Since the client is singleton, we are re-initing the class object
+            c2 = CohesityClient(
+                cluster_vip=configparser.get('import_cluster_config',
+                                             'cluster_ip'),
+                username=configparser.get(
+                    'import_cluster_config', 'username'),
+                password=configparser.get(
+                    'import_cluster_config', 'password'),
+                domain=configparser.get('import_cluster_config', 'domain'))
             cohesity_client.remote_cluster.create_remote_cluster(body)
+            imported_res_dict['Remote_Clusters'].append(cluster.name)
         except RequestErrorErrorException as e:
             logger.info(e)
         except APIException as e:
-            logger.info(e)
-            ERROR_LIST.append(e)
-        except Exception as err:
-            logger.info(err)
+            #logger.info(e)
+            ERROR_LIST.append("Remote_cluster registration failed with error: %s" % e.args[0])
+        except Exception as e:
+            ERROR_LIST.append("Please provide passwords for the remote "
+                              "cluster in config.ini, Failed to import remote cluster with error: %s" % e.args[0])
 
-    # for policy in protection_policy_list:
-    #     try:
-    #         # If policy with same name is already available.
-    #         if policy.name in existing_policy_list.keys():
-    #             policy_mapping[policy.id] = existing_policy_list[policy.name]
+def _register_remote_cluster(cluster_vip, username, password, local_cluster):
+
+    # cc = CohesityClient(cluster_vip, username, password)
+    # ext_config = cluster_dict.get("cluster_config")
+    # ext_remote_cluster = cc.remote_cluster.get_remote_clusters(
+    #     cluster_names=export_config.name)[0]
+    # body = RegisterRemoteCluster()
+    # _construct_body(body, local_cluster)
+    # body.cluster_id = None
+    # if body.view_box_pair_info:
+    #     for view_box in body.view_box_pair_info:
+    #         local_view_box_id = _get_sd_id(view_box.local_view_box_name)
+    #         if local_view_box_id < 0:
+    #             ERROR_LIST.append("Failed to find Storage domain %s, "
+    #                               "Remote Cluster pairing not successful" % view_box.local_view_box_name)
     #             continue
+
+    # Step 1: get remote clusters's client
+    # Step 2: construct the body like the one created for local cluster
+# registering the remote cluster , now the parameters are reversed for
+# viewboxes.
+    # Return false if the registration doesn't go through.
+    # Return true if registration succeeds
+
+
 def _construct_body(body, entity):
     items = [item for item in dir(entity)if not item.startswith('__') and not
              item.startswith('_')]
@@ -540,7 +587,9 @@ def _construct_body(body, entity):
             continue
         setattr(body, item, getattr(entity, item))
 
-def _get_sd_id(view_box_name):
+def _get_sd_id(view_box_name, cc=None):
+    # if not None:
+    #     existing_storage_domains = library.get_storage_domains(cc)
     existing_storage_domains = library.get_storage_domains(cohesity_client)
     for sd in existing_storage_domains:
         if sd.name == view_box_name:
@@ -560,21 +609,32 @@ def debug():
 
 
 if __name__ == "__main__":
-    import_cluster_config()
+    # logger.info("Importing cluster config \n\n")
+    # import_cluster_config()
+    logger.info("Importing Storage domains \n\n")
     create_storage_domains()
-    create_remote_clusters()
+    # logger.info("Importing remote clusters  \n\n")
+    # create_remote_clusters()
+    logger.info("Importing Views  \n\n")
     create_views()
-    create_vaults()
-    create_protection_sources()
-    create_protection_policies()
-    create_protection_jobs()
-    debug()
+    # #create_vaults()
+    # logger.info("Importing Sources  \n\n")
+    # create_protection_sources()
+    # logger.info("Importing Policies  \n\n")
+    # create_protection_policies()
+    # logger.info("Importing Jobs  \n\n")
+    # create_protection_jobs()
+    # #debug()
 
-logger.info("Please find the imported resources summary.")
+
+logger.info("\n\nImported resources summary.")
 for key, val in imported_res_dict.items():
-    logger.info("Successfully registered/created the following %s:\n%s\n" % (key, ", ".join(val)))
+    logger.info("%s:\n%s\n" % (key, ", ".join(val)))
 
 if ERROR_LIST:
     ERROR_LIST = [str(err) for err in ERROR_LIST]
-    logger.error("Please find the error messages,")
-    logger.error("\n".join(ERROR_LIST))
+    logger.error("Please find the error list/corrective actions:")
+    i = 1
+    for E in ERROR_LIST:
+        logger.error("\t  %s: %s\n" % (i, E))
+        i = i + 1

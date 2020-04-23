@@ -4,9 +4,8 @@ import logging
 import configparser
 import datetime
 from cohesity_management_sdk.cohesity_client import CohesityClient
-import rest_client
 
-logger = logging.getLogger(__file__)
+logger = logging.getLogger('export_app')
 
 # Fetch the Cluster credentials from config file.
 configparser = configparser.ConfigParser()
@@ -55,11 +54,14 @@ for source in cluster_dict["sources"]:
 cluster_dict["source_dct"] = source_dct
 
 # Fetch all the resources and store the data in file.
-pickle.dump(cluster_dict,
-            open("export-config-%s-%s" %(cluster_dict['cluster_config'].name,
-                 datetime.datetime.now().strftime("%Y-%m-%d-%H:%M")), "wb"))
+exported_config_file = "export-config-%s-%s" %(cluster_dict[
+                                                   'cluster_config'].name, datetime.datetime.now().strftime("%Y-%m-%d-%H:%M"))
+pickle.dump(cluster_dict, open(exported_config_file, "wb"))
 
 
 logger.info("Please find the imported resources summary.\n")
 for key, val in exported_res.items():
     logger.info("Successfully exported the following %s:\n%s\n" % (key, ", ".join(val)))
+
+
+logger.info("Exported config file: %s" % exported_config_file)
