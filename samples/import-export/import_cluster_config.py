@@ -494,6 +494,33 @@ def create_protection_jobs():
     except Exception as err:
         logger.info(err)
 
+
+def construct_view_box_pair(view_box_pair_info, body, remote_body):
+    try:
+        body.view_box_pair_info = []
+        remote_body.view_box_pair_info = []
+        for view_box in view_box_pair_info:
+            local_view_box_id = _get_sd_id(view_box.local_view_box_name)
+            local_view_box_pair = ViewBoxPairInfo()
+            remote_view_box_pair = ViewBoxPairInfo()
+            if local_view_box_id < 0:
+                ERROR_LIST.append("Failed to find Storage domain %s, "
+                                    "Remote Cluster pairing not successful" % view_box.local_view_box_name)
+                continue
+
+            local_view_box_pair.local_view_box_id = remote_view_box_pair.remote_view_box_id = local_view_box_id
+            local_view_box_pair.local_view_box_name = remote_view_box_pair.remote_view_box_name = view_box.local_view_box_name
+            local_view_box_pair.remote_view_box_id = remote_view_box_pair.local_view_box_id = view_box.remote_view_box_id
+            local_view_box_pair.remote_view_box_name = remote_view_box_pair.local_view_box_name = view_box.remote_view_box_name
+
+            body.view_box_pair_info.append(local_view_box_pair)
+            remote_body.view_box_pair_info.append(remote_view_box_pair)
+        return body, remote_body
+
+    except Exception as err:
+        ERROR_LIST.append(err)
+
+
 def create_remote_clusters():
 
     repl_list = {}
@@ -513,49 +540,62 @@ def create_remote_clusters():
                 ERROR_LIST.append("Please add password for remote cluster: %s "
                                   "in config.ini" % cluster.name)
                 continue
-            remote_cluster_password = configparser.get(cluster.name, 'password')
-            cluster.password = remote_cluster_password
-            cluster.domain = configparser.get(cluster.name, 'domain')
-            body = RegisterRemoteCluster()
-            _construct_body(body, cluster)
-            body.cluster_id = None
-            if body.view_box_pair_info:
-                for view_box in body.view_box_pair_info:
-                    local_view_box_id = _get_sd_id(view_box.local_view_box_name)
-                    if local_view_box_id < 0:
-                        ERROR_LIST.append("Failed to find Storage domain %s, "
-                                          "Remote Cluster pairing not successful" % view_box.local_view_box_name)
-                        continue
-                    view_box.local_view_box_id = local_view_box_id
-            body.password = remote_cluster_password
-            if not _register_remote_cluster(cluster.local_ips[0],
-                                            cluster.user_name,
-                                            remote_cluster_password,
-                                            body):
-                continue
 
-            # Since the client is singleton, we are re-initing the class object
-            c2 = CohesityClient(
-                cluster_vip=configparser.get('import_cluster_config',
-                                             'cluster_ip'),
+            remote_cluster_password = configparser.get(cluster.name, 'password')
+            remote_cluster_domain = configparser.get(cluster.name, 'domain')
+            cluster.password = remote_cluster_password
+            cluster.domain = remote_cluster_domain
+            body = RegisterRemoteCluster()
+            remote_body = RegisterRemoteCluster()
+            local_cohesity_client = CohesityClient(
+                cluster_vip=configparser.get(
+                    'import_cluster_config', 'cluster_ip'),
                 username=configparser.get(
                     'import_cluster_config', 'username'),
                 password=configparser.get(
                     'import_cluster_config', 'password'),
                 domain=configparser.get('import_cluster_config', 'domain'))
-            cohesity_client.remote_cluster.create_remote_cluster(body)
-            imported_res_dict['Remote_Clusters'].append(cluster.name)
+            _construct_body(body, cluster)
+            _construct_body(remote_body, cluster)
+            cluster_id = cluster.cluster_id
+            body.cluster_id = None
+            local_ips = [import_cluster_ip]
+            remote_ips = cluster.remote_ips
+            if cluster.view_box_pair_info:
+                body, remote_body = construct_view_box_pair(
+                    cluster.view_box_pair_info, body, remote_body)
+
+            body.local_ips = remote_body.remote_ips = local_ips
+            body.remote_ips = remote_body.local_ips = remote_ips
+            local_cohesity_client.remote_cluster.create_remote_cluster(body)
+
+            # Since the client is singleton, we are re-initing the class object
+            remote_cohesity_client = CohesityClient(
+                cluster_vip=remote_ips.pop(),
+                username=cluster.user_name,
+                password=remote_cluster_password,
+                domain=remote_cluster_domain
+            )
+            remote_cohesity_client.remote_cluster.create_remote_cluster(remote_body)
+            # Delete the exported cluster entry from remote cluster.
+            remote_clusters = remote_cohesity_client.remote_cluster.get_remote_clusters()
+            
+            cluster_id_to_delete = [True for clus in remote_clusters if clus.cluster_id == export_config.id]
+
+            if cluster_id_to_delete:
+                remote_cohesity_client.remote_cluster.delete_remote_cluster(id=export_config.id)
+                imported_res_dict['Remote_Clusters'].append(cluster.name)
         except RequestErrorErrorException as e:
             logger.info(e)
         except APIException as e:
-            #logger.info(e)
+            logger.info(e)
             ERROR_LIST.append("Remote_cluster registration failed with error: %s" % e.args[0])
         except Exception as e:
             ERROR_LIST.append("Please provide passwords for the remote "
                               "cluster in config.ini, Failed to import remote cluster with error: %s" % e.args[0])
 
 def _register_remote_cluster(cluster_vip, username, password, local_cluster):
-
+    pass
     # cc = CohesityClient(cluster_vip, username, password)
     # ext_config = cluster_dict.get("cluster_config")
     # ext_remote_cluster = cc.remote_cluster.get_remote_clusters(
@@ -614,9 +654,9 @@ if __name__ == "__main__":
     logger.info("Importing Storage domains \n\n")
     create_storage_domains()
     # logger.info("Importing remote clusters  \n\n")
-    # create_remote_clusters()
-    logger.info("Importing Views  \n\n")
-    create_views()
+    create_remote_clusters()
+    # logger.info("Importing Views  \n\n")
+    # create_views()
     # #create_vaults()
     # logger.info("Importing Sources  \n\n")
     # create_protection_sources()
