@@ -420,7 +420,6 @@ def create_protection_jobs():
             source = cluster_dict.get("source_dct")[parent_id]
 
             nodes = source[0].get("nodes", [])
-            
             if not nodes and environment in ["kPhysical", "kPhysicalFiles", "kView"]:
                 for each_source in source:
                     id = each_source["protectionSource"]["id"]
@@ -431,8 +430,13 @@ def create_protection_jobs():
                                     cohesity_client, id=None, env="kPhysical").protection_source.id
                             source_list.append(source_mapping[id])
                             protection_job.parent_source_id = physical_parent_id
+                            if protection_job.source_special_parameters:
+                                for ps_source in protection_job.source_special_parameters:
+                                    if ps_source.source_id == id:
+                                        ps_source.source_id = source_mapping[id]
                         else:
                             protection_job.view_name = each_source["protectionSource"]["name"]
+
 
             for node in nodes:
                 if node.get("nodes", []):
@@ -463,10 +467,12 @@ def create_protection_jobs():
                 ERROR_LIST.append(err_msg)
                 continue
 
+
             protection_job.view_box_id = storage_domain_mapping[protection_job.view_box_id]
             protection_job.policy_id = policy_mapping.get(
                 protection_job.policy_id, None)
 
+    
             if not protection_job.view_box_id:
                 ERROR_LIST.append("Viewbox not available for job %s" % name)
                 continue
