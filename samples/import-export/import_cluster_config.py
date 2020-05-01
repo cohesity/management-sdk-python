@@ -86,6 +86,7 @@ def import_cluster_config():
         existing_config = import_config
         config.name = existing_config.name
         cohesity_client.cluster.update_cluster(config)
+        time.sleep(sleep_time)
     except Exception as e:
         logger.error(e)
 
@@ -99,23 +100,43 @@ def create_vaults():
         available_vaults_dict[vault.name] = vault.id
 
     for vault in vaults:
-        if not vault.config.nas:
+        if vault.name in available_vaults_dict.keys():
+            imported_res_dict["External Targets"].append(vault.name)
             continue
-        body = Vault()
-        vault_name =  vault.name
-        if vault_name in available_vaults_dict.keys():
-            imported_res_dict["External Targets"].append(vault_name)
-            continue
-        _construct_body(body, vault)
-        if vault.config.nas and vault.config.nas.mount_path: 
+
+        if vault.config.amazon: # Amazon s3 and Generic s3 targets
             try:
-                body.name = vault_name
-                if vault.config.nas.host == export_cluster_ip:
-                    body.config.nas.host = import_cluster_ip
+                body = Vault()
+
+                _construct_body(body, vault)
+                secret_key = configparser.get(vault.name, "secret_access_key")
+                body.config.amazon.secret_access_key = secret_key
+
                 cohesity_client.vaults.create_vault(body)
                 imported_res_dict["External Targets"].append(body.name)
-            except Exception as e:
-                logger.info(e)
+                time.sleep(sleep_time)
+            except RequestErrorErrorException as e:
+                logger.error(e)
+            except APIException as e:
+                ERROR_LIST.append("Error Adding S3 Target %s, Failed with error %s" % (vault.name, e))
+            except Exception as err:
+                ERROR_LIST.append("Please add correct config for %s in "
+                                  "config.ini" % vault.name)
+        if vault.config.nas:
+            body = Vault()
+            _construct_body(body, vault)
+            try:
+                cohesity_client.vaults.create_vault(body)
+                imported_res_dict["External Targets"].append(body.name)
+            except RequestErrorErrorException as e:
+                logger.error(e)
+            except APIException as e:
+                ERROR_LIST.append(
+                    "Error Adding S3 Target %s, Failed with error %s" % (
+                    vault.name, e))
+            except Exception as err:
+                ERROR_LIST.append("Please add correct config for %s in "
+                                  "config.ini" % vault.name)
 
 
 def create_sources(source, environment, node):
@@ -265,10 +286,7 @@ def create_protection_sources():
                 if source_name in registered_source_list.keys():
                     source_mapping[id] = registered_source_list[source_name]
                     imported_res_dict["Protection Sources"].append(source_name)
-                    #logger.info("Source '%s' already registered, ignoring." % (source_name))
                     continue
-                #else:
-                #    nodes = nodes[-1]
             if not nodes:
                 continue
             for node in nodes:
@@ -351,6 +369,13 @@ def create_protection_policies():
 
             body = ProtectionPolicyRequest()
             _construct_body(body, policy)
+            if policy.snapshot_archival_copy_policies and len(\
+                    policy.snapshot_archival_copy_policies) != 0:
+                for ext_target in policy.snapshot_archival_copy_policies:
+                    try:
+                        del ext_target._names['id']
+                    except KeyError:
+                        pass
             result = cohesity_client.protection_policies.create_protection_policy(
                 body)
             imported_res_dict["Protection Policies"].append(policy.name)
@@ -589,23 +614,28 @@ def create_remote_clusters():
                                 domain=configparser.get('import_cluster_config', 'domain'))
             cohesity_client.remote_cluster.create_remote_cluster(body)
             imported_res_dict["Remote Clusters"].append(cluster.name)
-            # Since the client is singleton, we are re-initing the class object
 
-            # Delete the exported cluster entry from remote cluster.
-            # remote_clusters = remote_cohesity_client.remote_cluster.get_remote_clusters()
-            
-            # cluster_id_to_delete = [True for clus in remote_clusters if clus.cluster_id == export_config.id]
-
-            # if cluster_id_to_delete:
-            #     remote_cohesity_client.remote_cluster.delete_remote_cluster(id=export_config.id)
-            #     imported_res_dict['Remote_Clusters'].append(cluster.name)
         except RequestErrorErrorException as e:
             logger.info(e)
         except APIException as e:
+            # Since the client is singleton, we are re-initing the class object
+            c2 = CohesityClient(
+                cluster_vip=configparser.get('import_cluster_config',
+                                             'cluster_ip'),
+                username=configparser.get('import_cluster_config', 'username'),
+                password=configparser.get('import_cluster_config', 'password'),
+                domain=configparser.get('import_cluster_config', 'domain'))
             if "already been registered" in e.args[0]:
                 continue
             ERROR_LIST.append("Remote_cluster registration failed with error: %s" % e.args[0])
         except Exception as e:
+            # Since the client is singleton, we are re-initing the class object
+            c2 = CohesityClient(
+                cluster_vip=configparser.get('import_cluster_config',
+                                             'cluster_ip'),
+                username=configparser.get('import_cluster_config', 'username'),
+                password=configparser.get('import_cluster_config', 'password'),
+                domain=configparser.get('import_cluster_config', 'domain'))
             ERROR_LIST.append("Please provide passwords for the remote "
                               "cluster in config.ini, Failed to import remote cluster with error: %s" % e.args[0])
 
@@ -618,9 +648,7 @@ def _construct_body(body, entity):
             continue
         setattr(body, item, getattr(entity, item))
 
-def _get_sd_id(view_box_name, cc=None):
-    # if not None:
-    #     existing_storage_domains = library.get_storage_domains(cc)
+def _get_sd_id(view_box_name):
     existing_storage_domains = library.get_storage_domains(cohesity_client)
     for sd in existing_storage_domains:
         if sd.name == view_box_name:
