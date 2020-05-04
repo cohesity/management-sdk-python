@@ -6,7 +6,7 @@ Import export tasks provide option to export and import the cluster resources na
   * Protection Sources
   * Cohesity Views
   * Storage Domains, 
-  * External targets(NAS) 
+  * External targets(NAS, s3) 
   * Cluster Configs
     * DNS
     * NTP Servers
@@ -17,7 +17,7 @@ Import export tasks provide option to export and import the cluster resources na
   
 ## Installation
 ```
-pip install cohesity_management_sdk pickle configparser 
+pip install cohesity_management_sdk configparser 
 ```
 This will work for Python 2 >=2.7.9 and Python 3 >=3.4.
 
@@ -29,6 +29,11 @@ This will work for Python 2 >=2.7.9 and Python 3 >=3.4.
             b. Imported Cluster credentials.
             c. Replicated cluster credentials 
             d. Protection sources such as vCenter credentials
+            3. S3 Secret Access key. 
+```
+## Note
+```
+1. This is not a restore point feature. It doesn't add/delete incremental updates for existing entities.
 ```
 
 ## Export 
