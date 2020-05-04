@@ -66,7 +66,7 @@ INFO:export_app:	*** Protection Sources ***:
 
  ## Import
 ```
-python import_cluster_config.py <export-config-timestamp>
+python import_cluster_config.py <export-config-Cluster-Name-timestamp>
 ```
 
 ### Output
