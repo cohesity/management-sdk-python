@@ -11,6 +11,10 @@ def get_cluster_config(cohesity_client):
     return config
 
 
+def get_cluster_partitions(cohesity_client):
+    return cohesity_client.cluster_partitions.get_cluster_partitions()
+
+
 def get_protection_policies(cohesity_client):
     """
     Fetches the protection policies available in the cluster and save the response
@@ -18,6 +22,7 @@ def get_protection_policies(cohesity_client):
     """
     #logger.info("Loading protection policies")
     policy_list = cohesity_client.protection_policies.get_protection_policies()
+    policy_list = policy_list if policy_list else []
     for policy in policy_list:
         exported_res_dict["Protection Policies"].append(policy.name)
     return policy_list

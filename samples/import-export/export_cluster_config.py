@@ -24,6 +24,7 @@ logger.info("Exporting resources from cluster '%s'" % (
 
 cluster_dict = {
     "cluster_config": library.get_cluster_config(cohesity_client),
+    "partitions": library.get_cluster_partitions(cohesity_client),
     "views": library.get_views(cohesity_client),
     "storage_domains": library.get_storage_domains(cohesity_client),
     "policies": library.get_protection_policies(cohesity_client),
@@ -47,10 +48,11 @@ for source in cluster_dict["sources"]:
         name = source.protection_source.name
         exported_res["Protection Sources"].append(name)
     else:
-        for nodes in res.nodes:
-            name =  nodes["protectionSource"]["name"]
-            if name not in exported_res["Protection Sources"]:
-                exported_res["Protection Sources"].append(name)
+        if res.nodes:
+            for nodes in res.nodes:
+                name =  nodes["protectionSource"]["name"]
+                if name not in exported_res["Protection Sources"]:
+                    exported_res["Protection Sources"].append(name)
 cluster_dict["source_dct"] = source_dct
 
 # Fetch all the resources and store the data in file.

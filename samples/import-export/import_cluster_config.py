@@ -46,6 +46,7 @@ cohesity_client = CohesityClient(cluster_vip=configparser.get('import_cluster_co
                                  domain=configparser.get('import_cluster_config', 'domain'))
 
 
+
 # Read the imported cluster configurations from file.
 if len(sys.argv) != 2:
     logger.error("Please specify the exported config file.")
@@ -76,6 +77,10 @@ imported_res_dict = defaultdict(list)
 
 export_config = cluster_dict["cluster_config"]
 import_config = library.get_cluster_config(cohesity_client)
+exported_cluster_partitions = cluster_dict["partitions"]
+exported_host_names = [partition.host_name for partition in exported_cluster_partitions]
+
+
 import_cluster_ip = configparser.get('import_cluster_config', 'cluster_ip')
 export_cluster_ip = configparser.get('export_cluster_config', 'cluster_ip')
 
@@ -149,17 +154,34 @@ def create_sources(source, environment, node):
             source_id = node["protectionSource"]["id"]
             protect_source = node["protectionSource"]
             endpoint = protect_source["name"]
-            if export_config.name in endpoint:
-                endpoint = endpoint.replace(export_config.name, import_cluster_ip)
-            elif export_cluster_ip in endpoint:
+            is_local_mount = False
+            if export_cluster_ip in endpoint:
                 endpoint = endpoint.replace(export_cluster_ip, import_cluster_ip)
+                is_local_mount = True
+            else:
+                for host in exported_host_names:
+                    if host in endpoint:
+                        endpoint = endpoint.replace(host, import_cluster_ip)
+                        is_local_mount = True
+                        break
+
             res_type = protect_source["nasProtectionSource"]["type"]
             host_type = protect_source["nasProtectionSource"]["protocol"]
+
             body.endpoint = endpoint
             body.nas_type = res_type
             body.nas_mount_credentials = NasMountCredentialParams()
             body.nas_mount_credentials.nas_protocol = host_type
             body.nas_mount_credentials.nas_type = res_type
+            if host_type != "kNfs3":
+                username = node["registrationInfo"]["nasMountCredentials"].get(
+                    "username", None)
+                if is_local_mount:
+                    password = configparser.get("import_cluster_config", "password")
+                else:
+                    password = configparser.get(endpoint , "password")
+                body.nas_mount_credentials.username = username
+                body.nas_mount_credentials.password = password
 
         elif environment == "kPhysical":
             source_id = node["protectionSource"]["id"]
@@ -231,8 +253,10 @@ def create_storage_domains():
 
         for storage_domain in storage_domain_list:
             if storage_domain.name in existing_storage_domain_list.keys():
-                storage_domain_mapping[storage_domain.id] = existing_storage_domain_list[storage_domain.name]
+                new_storage_domain_id = existing_storage_domain_list[storage_domain.name]
+                storage_domain_mapping[storage_domain.id] = new_storage_domain_id
                 continue
+
             try:
                 result = cohesity_client.view_boxes.create_view_box(
                     storage_domain)
@@ -273,7 +297,7 @@ def create_protection_sources():
             for node in nodes:
                 registered_source_list[node["protectionSource"]
                                        ["name"]] = node["protectionSource"]["id"]
-                
+
         for source in sources:
             environment = source.protection_source.environment
             if environment not in ["kPhysical", "kPhysicalFiles", "kVMware", "KView", "kGenericNas"]:
@@ -291,7 +315,13 @@ def create_protection_sources():
                 continue
             for node in nodes:
                 name = node["protectionSource"]["name"]
+                if environment == "kGenericNas":
+                    for host in exported_host_names:
+                        if host in name:
+                            name = name.replace(host, import_cluster_ip)
+
                 id = node["protectionSource"]["id"]
+
                 if name in registered_source_list.keys():
                     source_mapping[id] = registered_source_list[name]
                     imported_res_dict["Protection Sources"].append(name)
@@ -355,7 +385,8 @@ def create_protection_policies():
             # If policy with same name is already available.
             if policy.name in existing_policy_list.keys():
                 imported_res_dict["Protection Policies"].append(policy.name)
-                policy_mapping[policy.id] = existing_policy_list[policy.name]
+                policy_id = existing_policy_list[policy.name]
+                policy_mapping[policy.id] = policy_id
                 continue
 
             if not policy.incremental_scheduling_policy.daily_schedule:
@@ -398,14 +429,14 @@ def create_protection_jobs():
     """
     Creates protection job.
     """
-    existing_job_list = []
+    existing_job_list = {}
     physical_parent_id = None
     active_protection_jobs = []
     protection_job_list = cluster_dict.get("protection_jobs", [])
 
     existing_jobs = library.get_protection_jobs(cohesity_client)
     for job in existing_jobs:
-        existing_job_list.append(job.name)
+        existing_job_list[job.name] = job.id
 
     try:
         for each_job in protection_job_list:
@@ -427,7 +458,7 @@ def create_protection_jobs():
                 continue
 
             # Check if the protection source is already available.
-            if protection_job.name in existing_job_list:
+            if protection_job.name in existing_job_list.keys():
                 imported_res_dict["Protection Jobs"].append(protection_job.name)
                 continue
 
@@ -514,7 +545,8 @@ def create_protection_jobs():
             try:
                 result = cohesity_client.protection_jobs.create_protection_job(
                     protection_job)
-                jobs.append(result.id)
+                current_job_id = result.id
+                jobs.append(current_job_id)
                 imported_res_dict["Protection Jobs"].append(protection_job.name)
 
                 if bool(configparser.get('import_cluster_config',
@@ -522,7 +554,7 @@ def create_protection_jobs():
                     body = ChangeProtectionJobStateParam()
                     body.pause = True
                     cohesity_client.protection_jobs\
-                        .change_protection_job_state(result.id, body)
+                        .change_protection_job_state(current_job_id, body)
                     time.sleep(2 * sleep_time)
             except Exception as e:
                 ERROR_LIST.append("Creating Protection Job failed: %s" % e)
@@ -572,8 +604,10 @@ def create_remote_clusters():
 
     # if the remote cluster exists then get the ID
     for cluster in remote_cluster_list:
-        if cluster.name in repl_list.keys():
+        # Check the remote cluster registered is not the current cluster.
+        if cluster.remote_ips[0] == import_cluster_ip:
             continue
+
         try:
             #Add the remote cluster first
             if cluster.name not in configparser:
@@ -589,6 +623,7 @@ def create_remote_clusters():
             _construct_body(remote_body, cluster)
             cluster_id = cluster.cluster_id
             body.cluster_id = None
+            remote_body.cluster_id = None
             local_ips = [import_cluster_ip]
             remote_ips = cluster.remote_ips
             if cluster.view_box_pair_info:
@@ -596,11 +631,23 @@ def create_remote_clusters():
                     cluster.view_box_pair_info, body, remote_body)
             body.local_ips = remote_body.remote_ips = local_ips
             body.remote_ips = remote_body.local_ips = remote_ips
+
             try:
                 remote_cohesity_client = CohesityClient(
                     cluster_vip=remote_ips[0],
                     username=cluster.user_name,
                     password=remote_cluster_password)
+
+                interfaces = remote_cohesity_client.remote_cluster.get_remote_cluster_by_id(id=export_config.id)
+                if interfaces:
+                    interface_group = interfaces[0].network_interface_group
+                    remote_body.network_interface_group = interface_group
+                else:
+                    # Get the interfaces available in remote cluster.
+                    interfaces = c2.interface_group.get_interface_groups()
+                    if interfaces:
+                        remote_body.network_interface_group = interfaces[0].name
+
                 remote_cohesity_client.remote_cluster.create_remote_cluster(remote_body)
             except APIException as err:
                 if "already been registered" in err.args[0]:
@@ -612,6 +659,13 @@ def create_remote_clusters():
                                 username=configparser.get('import_cluster_config', 'username'),
                                 password=configparser.get('import_cluster_config', 'password'),
                                 domain=configparser.get('import_cluster_config', 'domain'))
+
+            interfaces = cohesity_client.interface_group.get_interface_groups()
+            if interfaces:
+                ifaces = [iface.name for iface in interfaces]
+            iface_grp = body.network_interface_group
+            body.network_interface_group = ifaces.pop() if iface_grp not in ifaces else iface_grp
+
             cohesity_client.remote_cluster.create_remote_cluster(body)
             imported_res_dict["Remote Clusters"].append(cluster.name)
 
@@ -665,7 +719,6 @@ def debug():
         json_dict["jobs"].extend(jobs)
     with open("del_res.json", "w") as f:
         json.dump(json_dict, f)
-
 
 if __name__ == "__main__":
     logger.info("Importing cluster config \n\n")
