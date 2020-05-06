@@ -46,7 +46,7 @@ cohesity_client = CohesityClient(cluster_vip=configparser.get('import_cluster_co
                                  domain=configparser.get('import_cluster_config', 'domain'))
 
 
-
+override = configparser.get("import_cluster_config", "override")
 # Read the imported cluster configurations from file.
 if len(sys.argv) != 2:
     logger.error("Please specify the exported config file.")
@@ -174,6 +174,7 @@ def create_sources(source, environment, node):
             body.nas_mount_credentials.nas_protocol = host_type
             body.nas_mount_credentials.nas_type = res_type
             if host_type != "kNfs3":
+                # Nfs file system doesn't require credentials
                 username = node["registrationInfo"]["nasMountCredentials"].get(
                     "username", None)
                 if is_local_mount:
@@ -255,6 +256,8 @@ def create_storage_domains():
             if storage_domain.name in existing_storage_domain_list.keys():
                 new_storage_domain_id = existing_storage_domain_list[storage_domain.name]
                 storage_domain_mapping[storage_domain.id] = new_storage_domain_id
+                if override:
+                    cohesity_client.view_boxes.update_view_box(new_storage_domain_id, storage_domain)
                 continue
 
             try:
@@ -352,6 +355,8 @@ def create_views():
                 imported_res_dict["Protection Views"].append(view.name)
                 #logger.info("Cohesity View '%s' already available." %
                 #            (view.name))
+                if override:
+                    cohesity_client.views.update_view(view)
                 view_mapping[view.name] = existing_view_dict[view.name]
             else:
                 view.view_box_id = storage_domain_mapping[view.view_box_id]
@@ -381,13 +386,17 @@ def create_protection_policies():
         existing_policy_list[policy.name] = policy.id
 
     for policy in protection_policy_list:
+        is_policy_available = False
         try:
             # If policy with same name is already available.
             if policy.name in existing_policy_list.keys():
+                is_policy_available = True
                 imported_res_dict["Protection Policies"].append(policy.name)
                 policy_id = existing_policy_list[policy.name]
                 policy_mapping[policy.id] = policy_id
-                continue
+                # Override the existing policy if override is set to True.
+                if not override:
+                    continue
 
             if not policy.incremental_scheduling_policy.daily_schedule:
                 policy.incremental_scheduling_policy.daily_schedule = {}
@@ -398,6 +407,9 @@ def create_protection_policies():
                 if not policy.full_scheduling_policy.daily_schedule:
                     policy.full_scheduling_policy.daily_schedule = {"days": []}
 
+            if is_policy_available:
+                cohesity_client.protection_policies.update_protection_policy(policy, policy_id)
+                continue
             body = ProtectionPolicyRequest()
             _construct_body(body, policy)
             if policy.snapshot_archival_copy_policies and len(\
@@ -445,6 +457,7 @@ def create_protection_jobs():
 
         for protection_job in active_protection_jobs:
             source_list = []
+            is_job_available = False
             name = protection_job.name
             environment = protection_job.environment
             if environment not in ["kPhysical", "kPhysicalFiles", "kVMware", "kView", "kGenericNas"]:
@@ -460,7 +473,10 @@ def create_protection_jobs():
             # Check if the protection source is already available.
             if protection_job.name in existing_job_list.keys():
                 imported_res_dict["Protection Jobs"].append(protection_job.name)
-                continue
+                is_job_available = True
+                current_job_id = existing_job_list[protection_job.name]
+                if not override:
+                    continue
 
             source_id_list = protection_job.source_ids
             parent_id = protection_job.parent_source_id
@@ -543,11 +559,15 @@ def create_protection_jobs():
             if source_mapping.get(parent_id, ""):
                 protection_job.parent_source_id = source_mapping[parent_id]
             try:
-                result = cohesity_client.protection_jobs.create_protection_job(
-                    protection_job)
-                current_job_id = result.id
-                jobs.append(current_job_id)
-                imported_res_dict["Protection Jobs"].append(protection_job.name)
+                if override and is_job_available:
+                    cohesity_client.protection_jobs.update_protection_job(
+                        protection_job, current_job_id)
+                else:
+                    result = cohesity_client.protection_jobs.create_protection_job(
+                        protection_job)
+                    current_job_id = result.id
+                    jobs.append(current_job_id)
+                    imported_res_dict["Protection Jobs"].append(protection_job.name)
 
                 if bool(configparser.get('import_cluster_config',
                                          'pause_jobs')):
@@ -608,6 +628,12 @@ def create_remote_clusters():
         if cluster.remote_ips[0] == import_cluster_ip:
             continue
 
+        is_remote_cluster_available = False
+        if cluster.name in repl_list.keys():
+            if not override:
+                continue
+            is_remote_cluster_available = True
+
         try:
             #Add the remote cluster first
             if cluster.name not in configparser:
@@ -648,7 +674,10 @@ def create_remote_clusters():
                     if interfaces:
                         remote_body.network_interface_group = interfaces[0].name
 
-                remote_cohesity_client.remote_cluster.create_remote_cluster(remote_body)
+                if is_remote_cluster_available:
+                    remote_cohesity_client.remote_cluster.update_remote_cluster(import_config.id, remote_body)
+                else:
+                    remote_cohesity_client.remote_cluster.create_remote_cluster(remote_body)
             except APIException as err:
                 if "already been registered" in err.args[0]:
                     pass
@@ -666,6 +695,8 @@ def create_remote_clusters():
             iface_grp = body.network_interface_group
             body.network_interface_group = ifaces.pop() if iface_grp not in ifaces else iface_grp
 
+            if is_remote_cluster_available:
+                cohesity_client.remote_cluster.update_remote_cluster(cluster_id, body)
             cohesity_client.remote_cluster.create_remote_cluster(body)
             imported_res_dict["Remote Clusters"].append(cluster.name)
 
