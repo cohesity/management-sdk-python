@@ -45,8 +45,10 @@ cohesity_client = CohesityClient(cluster_vip=configparser.get('import_cluster_co
                                      'import_cluster_config', 'password'),
                                  domain=configparser.get('import_cluster_config', 'domain'))
 
+# Check for the flags for pause jobs and override.
+override = configparser.get("import_cluster_config", "override").capitalize() == "True"
+pause_jobs = configparser.get('import_cluster_config', 'pause_jobs').capitalize() == "True"
 
-override = configparser.get("import_cluster_config", "override")
 # Read the imported cluster configurations from file.
 if len(sys.argv) != 2:
     logger.error("Please specify the exported config file.")
@@ -208,13 +210,17 @@ def create_sources(source, environment, node):
                 if env in attr:
                     attribute = attr
                     break
+
             env_type = getattr(source.protection_source, attribute).mtype
             body.vmware_type = env_type
+
+            if env_type == "kvCloudDirector":
+                return
+
             if env_type not in ["kViewBox"]:
                 password = configparser.get(source.protection_source.name, "password")
                 body.password = password
-            if env_type == "kvCloudDirector":
-                return
+
             if env == "view":
                 body.view_type = "kViewBox"
         register_sources(body, source_id)
@@ -313,6 +319,9 @@ def create_protection_sources():
                 if source_name in registered_source_list.keys():
                     source_mapping[id] = registered_source_list[source_name]
                     imported_res_dict["Protection Sources"].append(source_name)
+                    if override:
+                        cohesity_client.protection_sources.create_refresh_protection_source_by_id(
+                            registered_source_list[source_name])
                     continue
             if not nodes:
                 continue
@@ -320,14 +329,17 @@ def create_protection_sources():
                 name = node["protectionSource"]["name"]
                 if environment == "kGenericNas":
                     for host in exported_host_names:
-                        if host in name:
-                            name = name.replace(host, import_cluster_ip)
+                        if host in name or export_cluster_ip in name:
+                            name = name.replace(host, import_cluster_ip).replace(
+                                export_cluster_ip, import_cluster_ip)
 
                 id = node["protectionSource"]["id"]
-
                 if name in registered_source_list.keys():
                     source_mapping[id] = registered_source_list[name]
                     imported_res_dict["Protection Sources"].append(name)
+                    if override:
+                        cohesity_client.protection_sources.create_refresh_protection_source_by_id(
+                            registered_source_list[name])
                     #logger.info("Source '%s' already registered, ignoring." % (name))
                     continue
 
@@ -442,7 +454,6 @@ def create_protection_jobs():
     Creates protection job.
     """
     existing_job_list = {}
-    physical_parent_id = None
     active_protection_jobs = []
     protection_job_list = cluster_dict.get("protection_jobs", [])
 
@@ -458,6 +469,7 @@ def create_protection_jobs():
         for protection_job in active_protection_jobs:
             source_list = []
             is_job_available = False
+            _parent_id = None
             name = protection_job.name
             environment = protection_job.environment
             if environment not in ["kPhysical", "kPhysicalFiles", "kVMware", "kView", "kGenericNas"]:
@@ -492,16 +504,17 @@ def create_protection_jobs():
             source = cluster_dict.get("source_dct")[parent_id]
 
             nodes = source[0].get("nodes", [])
-            if not nodes and environment in ["kPhysical", "kPhysicalFiles", "kView"]:
+            if not nodes and environment in ["kPhysical", "kPhysicalFiles", "kGenericNas", "kView"]:
                 for each_source in source:
                     id = each_source["protectionSource"]["id"]
                     if id in source_id_list:
-                        if environment in ["kPhysical", "kPhysicalFiles"]:
-                            if not physical_parent_id:
-                                physical_parent_id = library.get_protection_source_by_id(
-                                    cohesity_client, id=None, env="kPhysical").protection_source.id
+                        if environment in ["kPhysical", "kPhysicalFiles", "kGenericNas"]:
+                            env = "kPhysical" if "Physical" in environment else "kGenericNas"
+                            if not _parent_id:
+                                _parent_id = library.get_protection_source_by_id(
+                                    cohesity_client, id=None, env=env).protection_source.id
                             source_list.append(source_mapping[id])
-                            protection_job.parent_source_id = physical_parent_id
+                            protection_job.parent_source_id = _parent_id
                             if protection_job.source_special_parameters:
                                 for ps_source in protection_job.source_special_parameters:
                                     if ps_source.source_id == id:
@@ -522,7 +535,8 @@ def create_protection_jobs():
 
             nodes = []
             if source_mapping.get(parent_id, None):
-                nodes = library.get_protection_source_by_id(cohesity_client, source_mapping[parent_id], environment).nodes
+                nodes = library.get_protection_source_by_id(
+                    cohesity_client, source_mapping[parent_id], environment).nodes
 
             for node in nodes:
                 if node.get("nodes", []):
@@ -534,7 +548,8 @@ def create_protection_jobs():
                 if len(source_list) == list_len:
                     break
 
-            if environment not in ["kPhysical", "kPhysicalFiles", "kView"] and source_mapping.get(parent_id, None) == None:
+            if environment not in ["kPhysical", "kGenericNas", "kPhysicalFiles", "kView"] and source_mapping.get(
+                parent_id, None) == None:
                 err_msg = "Protection Source not available for job %s" % name
                 ERROR_LIST.append(err_msg)
                 continue
@@ -569,8 +584,7 @@ def create_protection_jobs():
                     jobs.append(current_job_id)
                     imported_res_dict["Protection Jobs"].append(protection_job.name)
 
-                if bool(configparser.get('import_cluster_config',
-                                         'pause_jobs')):
+                if pause_jobs:
                     body = ChangeProtectionJobStateParam()
                     body.pause = True
                     cohesity_client.protection_jobs\
