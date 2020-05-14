@@ -1,9 +1,16 @@
+# Copyright 2020 Cohesity Inc.
+#
+# Python utility to export the cluster config.
+# Usage: python export_cluster_config.py
+
 import pickle
-import library
 import logging
 import configparser
 import datetime
 from cohesity_management_sdk.cohesity_client import CohesityClient
+
+# Custom module import
+import library
 
 logger = logging.getLogger('export_app')
 
@@ -24,7 +31,6 @@ logger.info("Exporting resources from cluster '%s'" % (
 
 cluster_dict = {
     "cluster_config": library.get_cluster_config(cohesity_client),
-    "partitions": library.get_cluster_partitions(cohesity_client),
     "views": library.get_views(cohesity_client),
     "storage_domains": library.get_storage_domains(cohesity_client),
     "policies": library.get_protection_policies(cohesity_client),
