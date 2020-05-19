@@ -32,9 +32,38 @@ This will work for Python 2 >=2.7.9 and Python 3 >=3.4.
             3. S3 Secret Access key. 
 ```
 ## Note
-```
+
 1. This is not a restore point feature. It doesn't add/delete incremental updates for existing entities.
-```
+
+2. Override - Flag to override the existing protection resources during import-config is available in config.ini. 
+   
+   ```override=True/False```
+
+    ### Protection Sources
+
+    When override option is enabled, while importing sources existing sources are refreshed. Whereas when override is disabled, no changes is made to the existing sources.
+
+    ### Protection Jobs
+     When override option is enabled, full backup of jobs is performed. 
+
+    For example, 
+    1. At time t0, cluster ClusterA has a protection job 'Job' with 3 vms(VM1, VM2, VM3) and resources are exported.
+    2. When we import the exported config(from ClusterA) to a new cluster 'ClusterB', clusterB will have protection job 'Job' with same 3 vms(VM1, VM2, VM3). 
+    3. At time t1, In ClusterA, we are adding new vm(VM4) to protection job 'Job'(so total objects protected by Job is 4) and export the resources.
+    4. When to try to import the updated config in ClusterB with following options,
+    ```
+    Override=False
+      Override is disabled, so Job in clusterB will not be updated. It will contain only 3 jobs(VM1, VM2, VM3).
+
+    Override=True
+      Override is enabled, so Job in clusterB will be updated. It will contain 4 jobs(VM1, VM2, VM3, VM4).
+    ```
+
+    ### Protection Policies, Protection Views, Storage Domains
+    For policies views and storage domains, when override is enabled full backup of resources is performed for already available resources. 
+
+    ### Remote Clusters
+    When override is enabled, while importing existing remote clusters storage domain mapping and other settings are updated. Whereas if overrride is disabled no changes are made to existing remote clusters.
 
 ## Export 
 
