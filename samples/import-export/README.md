@@ -60,7 +60,7 @@ This will work for Python 2 >=2.7.9 and Python 3 >=3.4.
     ```
 
     ### Protection Policies, Protection Views, Storage Domains
-    For policies views and storage domains, when override is enabled full backup of resources is performed for already available resources. 
+    When override is enabled, existing policies views and storage domains are updated.
 
     ### Remote Clusters
     When override is enabled, while importing existing remote clusters storage domain mapping and other settings are updated. Whereas if overrride is disabled no changes are made to existing remote clusters.
