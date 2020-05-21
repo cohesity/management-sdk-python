@@ -45,8 +45,9 @@ This will work for Python 3 >=3.4.
     When override option is enabled, while importing sources existing sources are refreshed. Whereas when override is disabled, no changes is made to the existing sources.
 
      Protection Jobs
+     
      When override option is enabled, full backup of jobs is performed. 
-
+     
     For example, 
     1. At time t0, cluster ClusterA has a protection job 'Job' with 3 vms(VM1, VM2, VM3) and resources are exported.
     2. When we import the exported config(from ClusterA) to a new cluster 'ClusterB', clusterB will have protection job 'Job' with same 3 vms(VM1, VM2, VM3). 
@@ -61,9 +62,11 @@ This will work for Python 3 >=3.4.
     ```
 
     Protection Policies, Protection Views, Storage Domains
+    
     When override is enabled, existing policies views and storage domains are updated.
 
     Remote Clusters
+    
     When override is enabled, while importing existing remote clusters storage domain mapping and other settings are updated. Whereas if overrride is disabled no changes are made to existing remote clusters.
 
 ## Export 
