@@ -1,8 +1,13 @@
-# Cohesity Cluster Export/Import
+# Project Anfield (Cohesity Cluster Export/Import)
+
+This Project helps take Cohesity Cluster's configuration export and import it in other clusters so that the metadata or the configuration is created with 1-click.This Project draws inspiration from formidable fortress of the best football team in the world: Liverpool Football Club. 
+
+![Project Anfield](./anfield.png)
+
 
 ## Overview
 
-Import export tasks provide option to export and import the cluster resources namely
+Current version fo the tooling supports export and import the cluster resources namely:
   * Protection Sources
   * Cohesity Views
   * Storage Domains, 
@@ -25,7 +30,7 @@ This will work for Python 3 >=3.4.
 ## Prerequisite
 ```
 1. The API connectivity from the box which is running these scripts to the exported/imported cluster(s).
-        2. In config.ini : 
+2. In config.ini :
             a. Exported Cluster credentials.
             b. Imported Cluster credentials.
             c. Replicated cluster credentials. 
