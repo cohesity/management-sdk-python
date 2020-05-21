@@ -14,12 +14,13 @@ Import export tasks provide option to export and import the cluster resources na
   * Protection Jobs
   * Protection Sources(NAS, Views, VMware)
   * Protection Policies
+  * Replicated Clusters
   
 ## Installation
 ```
 pip install cohesity_management_sdk configparser 
 ```
-This will work for Python 2 >=2.7.9 and Python 3 >=3.4.
+This will work for Python 3 >=3.4.
 
 ## Prerequisite
 ```
@@ -27,8 +28,8 @@ This will work for Python 2 >=2.7.9 and Python 3 >=3.4.
         2. In config.ini : 
             a. Exported Cluster credentials.
             b. Imported Cluster credentials.
-            c. Replicated cluster credentials 
-            d. Protection sources such as vCenter credentials
+            c. Replicated cluster credentials. 
+            d. Protection sources such as vCenter credentials.
             3. S3 Secret Access key. 
 ```
 ## Note
@@ -37,13 +38,13 @@ This will work for Python 2 >=2.7.9 and Python 3 >=3.4.
 
 2. Override - Flag to override the existing protection resources during import-config is available in config.ini. 
    
-   ```override=True/False```
+   `override=True/False`
 
-    ### Protection Sources
+    Protection Sources
 
     When override option is enabled, while importing sources existing sources are refreshed. Whereas when override is disabled, no changes is made to the existing sources.
 
-    ### Protection Jobs
+     Protection Jobs
      When override option is enabled, full backup of jobs is performed. 
 
     For example, 
@@ -59,10 +60,10 @@ This will work for Python 2 >=2.7.9 and Python 3 >=3.4.
       Override is enabled, so Job in clusterB will be updated. It will contain 4 jobs(VM1, VM2, VM3, VM4).
     ```
 
-    ### Protection Policies, Protection Views, Storage Domains
+    Protection Policies, Protection Views, Storage Domains
     When override is enabled, existing policies views and storage domains are updated.
 
-    ### Remote Clusters
+    Remote Clusters
     When override is enabled, while importing existing remote clusters storage domain mapping and other settings are updated. Whereas if overrride is disabled no changes are made to existing remote clusters.
 
 ## Export 
@@ -71,11 +72,11 @@ Run the following command to export resources.
 ```
 python export_cluster_config.py
 ```
-The above command will generate a <export-config-timestamp> file (eg: export-config-2020-04-17-12:15) which needs be provided while importing resources.
+The above command will generate a <export-config-ClusterName-timestamp> file (eg: export-config-Kursk-2020-04-17-12:15) which needs be provided while importing resources.
 
 ### Ouput 
 ```
-INFO:export_app:Exporting resources from cluster 'xyzzy'
+INFO:export_app:Exporting resources from cluster 'Kursk'
 INFO:export_app:
  *** Exported resources summary ***
 
