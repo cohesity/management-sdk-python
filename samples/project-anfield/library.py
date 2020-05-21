@@ -45,10 +45,13 @@ def get_views(cohesity_client):
 
 def get_protection_jobs(cohesity_client):
     protection_job_list = cohesity_client.protection_jobs.get_protection_jobs()
+    active_job_list = []
     for job in protection_job_list:
-        if not job.is_deleted:
-            exported_res_dict["Protection Jobs"].append(job.name)
-    return protection_job_list
+        if job.is_deleted:
+            continue
+        active_job_list.append(job)
+        exported_res_dict["Protection Jobs"].append(job.name)
+    return active_job_list
 
 
 def get_protection_source_by_id(cohesity_client, id, env):

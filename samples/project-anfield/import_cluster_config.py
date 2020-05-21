@@ -4,7 +4,6 @@
 # Expects config.ini to be present in the current directory.
 # Usage: python import_cluster_config.py <path/to/file>
 
-import configparser
 import copy
 import json
 import logging
@@ -12,6 +11,12 @@ import pickle
 import random
 import sys
 import time
+
+# Check for python version
+if float(sys.version[:3]) >= 3:
+    import configparser as configparser
+else:
+    import ConfigParser as configparser
 
 from collections import defaultdict
 from os import path
@@ -90,7 +95,7 @@ def import_cluster_config():
         cohesity_client.cluster.update_cluster(config)
         time.sleep(sleep_time)
     except Exception as e:
-        ERROR_LIST.append(e)
+        ERROR_LIST.append("Error while importing cluster config %s" % e)
 
 
 def create_vaults():
@@ -116,10 +121,13 @@ def create_vaults():
                 imported_res_dict["External Targets"].append(body.name)
                 time.sleep(sleep_time)
             except RequestErrorErrorException as e:
-                ERROR_LIST.append(e)
+                ERROR_LIST.append(
+                    "Error Adding Amazon S3 Target: %s, Failed with error: %s" % (
+                        vault.name, e))
             except APIException as e:
                 ERROR_LIST.append(
-                    "Error Adding S3 Target: %s, Failed with error: %s" % (vault.name, e))
+                    "Error Adding Amazon S3 Target: %s, Failed with error: %s" % (
+                        vault.name, e))
             except Exception as err:
                 ERROR_LIST.append("Please add correct config for %s in "
                                   "config.ini" % vault.name)
@@ -130,7 +138,9 @@ def create_vaults():
                 cohesity_client.vaults.create_vault(body)
                 imported_res_dict["External Targets"].append(body.name)
             except RequestErrorErrorException as e:
-                ERROR_LIST.append(e)
+                ERROR_LIST.append(
+                    "Error Adding S3 Target: %s, Failed with error: %s" % (
+                        vault.name, e))
             except APIException as e:
                 ERROR_LIST.append(
                     "Error Adding S3 Target: %s, Failed with error: %s" % (
@@ -209,8 +219,13 @@ def create_sources(source, environment, node):
         register_sources(body, source_id)
         time.sleep(sleep_time)
     except Exception as e:
-        ERROR_LIST.append("Error adding source : %s failed with error : %s" % (
-            body.endpoint, e))
+        if "No section" in e:
+            ERROR_LIST.append(
+                "Please provide password for source %s " % body.endpoint)
+        else:
+            ERROR_LIST.append(
+                "Error adding source : %s failed with error : %s" % (
+                body.endpoint, e))
 
 
 def register_sources(body, source_id):
@@ -257,12 +272,15 @@ def create_storage_domains():
                     storage_domain)
                 storage_domain_mapping[storage_domain.id] = result.id
             except RequestErrorErrorException as e:
-                ERROR_LIST.append(e)
+                ERROR_LIST.append(
+                    "Error adding storage domain %s, Failed with error %s", (
+                        storage_domain.name, e))
             except APIException as e:
-                ERROR_LIST.append(e)
+                ERROR_LIST.append(
+                    "Error adding storage domain %s, Failed with error %s", (
+                        storage_domain.name, e))
     except Exception as err:
-        ERROR_LIST.append(err)
-
+        ERROR_LIST.append("Error while adding storage domains")
 
 def create_protection_sources():
     """
@@ -352,11 +370,14 @@ def create_views():
                 time.sleep(sleep_time)
 
         except RequestErrorErrorException as e:
-            ERROR_LIST.append(e)
+            ERROR_LIST.append("Error adding view %s, Failed with error %s", (
+                        view.name, e))
         except APIException as e:
-            ERROR_LIST.append(e)
+            ERROR_LIST.append("Error adding view %s, Failed with error %s", (
+                        view.name, e))
         except Exception as err:
-            ERROR_LIST.append(err)
+            ERROR_LIST.append("Error adding view %s, Failed with error %s", (
+                        view.name, err))
 
 
 def create_protection_policies():
@@ -428,18 +449,13 @@ def create_protection_jobs():
     """
     existing_job_list = {}
     active_protection_jobs = []
-    protection_job_list = cluster_dict.get("protection_jobs", [])
+    active_protection_jobs = cluster_dict.get("protection_jobs", [])
 
     existing_jobs = library.get_protection_jobs(cohesity_client)
     for job in existing_jobs:
-        if not job.is_deleted:
-            existing_job_list[job.name] = job.id
+        existing_job_list[job.name] = job.id
 
     try:
-        for each_job in protection_job_list:
-            if not each_job.is_deleted:
-                active_protection_jobs.append(each_job)
-
         for protection_job in active_protection_jobs:
             source_list = []
             _parent_id = None
@@ -450,11 +466,9 @@ def create_protection_jobs():
 
             if environment not in env_list:
                 continue
-
             if environment == "kView":
                 if protection_job.view_box_id not in storage_domain_mapping.keys():
                     continue
-
             elif environment not in ["kPhysical", "kPhysicalFiles", "kView"] and source_mapping.get(parent_id, None) == None:
                 err_msg = "Protection Source not available for job %s" % name
                 ERROR_LIST.append(err_msg)
@@ -476,10 +490,24 @@ def create_protection_jobs():
 
             # UUID list for VMware resources.
             uuid_list = []
+
             if source_mapping.get(parent_id, None):
                 protection_job.parent_id = source_mapping[parent_id]
 
             list_len = len(source_id_list)
+            protection_job.view_box_id = storage_domain_mapping[
+                protection_job.view_box_id]
+            protection_job.policy_id = policy_mapping.get(
+                protection_job.policy_id, None)
+
+            if not protection_job.view_box_id:
+                ERROR_LIST.append("Viewbox not available for job %s" % name)
+                continue
+
+            if not protection_job.policy_id:
+                ERROR_LIST.append(
+                    "Protection policy not available for job %s" % name)
+                continue
             source = cluster_dict.get("source_dct")[parent_id]
 
             nodes = source[0].get("nodes", [])
@@ -515,12 +543,11 @@ def create_protection_jobs():
                     uuid_source_mapping[uuid_list[-1]] = node["protectionSource"]["id"]
                 if len(uuid_list) == list_len:
                     break
-
             nodes = []
+
             if source_mapping.get(parent_id, None):
                 nodes = library.get_protection_source_by_id(
                     cohesity_client, source_mapping[parent_id], environment).nodes
-
             source_spl_params = protection_job.source_special_parameters
             source_object_dct = {}
             for node in nodes:
@@ -539,20 +566,8 @@ def create_protection_jobs():
 
             if source_spl_params and environment == "kVMware":
                 for param in source_spl_params:
-                    param.source_id = source_object_dct[param.source_id]
-            protection_job.view_box_id = storage_domain_mapping[
-                protection_job.view_box_id]
-            protection_job.policy_id = policy_mapping.get(
-                protection_job.policy_id, None)
-
-            if not protection_job.view_box_id:
-                ERROR_LIST.append("Viewbox not available for job %s" % name)
-                continue
-
-            if not protection_job.policy_id:
-                ERROR_LIST.append(
-                    "Protection policy not available for job %s" % name)
-                continue
+                    if param.source_id in source_object_dct.keys():
+                        param.source_id = source_object_dct[param.source_id]
 
             if source_list:
                 protection_job.source_ids = source_list
@@ -648,7 +663,6 @@ def create_remote_clusters():
                 ERROR_LIST.append("Please add password for remote cluster: %s "
                                   "in config.ini" % cluster.name)
                 continue
-
             remote_cluster_password = configparser.get(
                 cluster.name, "password")
             cluster.password = remote_cluster_password
@@ -666,7 +680,6 @@ def create_remote_clusters():
                     cluster.view_box_pair_info, body, remote_body)
             body.local_ips = remote_body.remote_ips = local_ips
             body.remote_ips = remote_body.local_ips = remote_ips
-
             try:
                 remote_cohesity_client = CohesityClient(
                     cluster_vip=remote_ips[0],
@@ -675,12 +688,13 @@ def create_remote_clusters():
 
                 interfaces = remote_cohesity_client.remote_cluster.get_remote_cluster_by_id(
                     id=export_config.id)
-                if interfaces:
+                #if interfaces:
+                if False:
                     interface_group = interfaces[0].network_interface_group
                     remote_body.network_interface_group = interface_group
                 else:
                     # Get the interfaces available in remote cluster.
-                    interfaces = c2.interface_group.get_interface_groups()
+                    interfaces = cohesity_client.interface_group.get_interface_groups()
                     if interfaces:
                         remote_body.network_interface_group = interfaces[0].name
 
@@ -697,13 +711,13 @@ def create_remote_clusters():
                     raise err
 
             c2 = CohesityClient(cluster_vip=configparser.get(
-                "import_cluster_config", "cluster_ip"),
-                username=configparser.get(
-                "import_cluster_config", "username"),
-                password=configparser.get(
-                "import_cluster_config", "password"),
-                domain=configparser.get(
-                "import_cluster_config", "domain"))
+                                    "import_cluster_config", "cluster_ip"),
+                                username=configparser.get(
+                                    "import_cluster_config", "username"),
+                                password=configparser.get(
+                                    "import_cluster_config", "password"),
+                                domain=configparser.get(
+                                    "import_cluster_config", "domain"))
 
             interfaces = cohesity_client.interface_group.get_interface_groups()
             if interfaces:
@@ -732,8 +746,8 @@ def create_remote_clusters():
                     "import_cluster_config", "domain"))
             if "already been registered" in e.args[0]:
                 continue
-            ERROR_LIST.append(
-                "Remote_cluster registration failed with error: %s" % e.args[0])
+            ERROR_LIST.append("Registering remote cluster %s failed with "
+                              "error: %s" % (cluster.name, e.args[0]))
         except Exception as e:
             # Since the client is singleton, we are re-initing the class object
             c2 = CohesityClient(
@@ -745,9 +759,8 @@ def create_remote_clusters():
                     "import_cluster_config", "password"),
                 domain=configparser.get(
                     "import_cluster_config", "domain"))
-            ERROR_LIST.append("Please provide passwords for the remote "
-                              "cluster in config.ini, Failed to import remote"
-                              " cluster with error: %s" % e.args[0])
+            ERROR_LIST.append("Registering remote cluster %s failed with "
+                              "error: %s" % (cluster.name, e.args[0]))
 
 
 def _construct_body(body, entity):
