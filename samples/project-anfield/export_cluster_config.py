@@ -6,6 +6,7 @@
 import datetime
 import logging
 import pickle
+import requests
 import sys
 # Check for python version
 if float(sys.version[:3]) >= 3:
@@ -13,9 +14,8 @@ if float(sys.version[:3]) >= 3:
 else:
     import ConfigParser as configparser
 
-# Disable python warning.
-import urllib3
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+# Disable python warnings.
+requests.packages.urllib3.disable_warnings()
 
 # Custom module import
 from cohesity_management_sdk.cohesity_client import CohesityClient

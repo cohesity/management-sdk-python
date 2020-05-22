@@ -47,7 +47,7 @@ def get_protection_jobs(cohesity_client):
     protection_job_list = cohesity_client.protection_jobs.get_protection_jobs()
     active_job_list = []
     for job in protection_job_list:
-        if job.is_deleted:
+        if job.is_deleted or job.is_active == False:
             continue
         active_job_list.append(job)
         exported_res_dict["Protection Jobs"].append(job.name)

@@ -9,6 +9,7 @@ import json
 import logging
 import pickle
 import random
+import requests
 import sys
 import time
 
@@ -17,6 +18,9 @@ if float(sys.version[:3]) >= 3:
     import configparser as configparser
 else:
     import ConfigParser as configparser
+
+# Disable python warnings.
+requests.packages.urllib3.disable_warnings()
 
 from collections import defaultdict
 from os import path
@@ -659,7 +663,7 @@ def create_remote_clusters():
 
         try:
             # Add the remote cluster first
-            if cluster.name not in configparser:
+            if cluster.name not in configparser.sections():
                 ERROR_LIST.append("Please add password for remote cluster: %s "
                                   "in config.ini" % cluster.name)
                 continue
