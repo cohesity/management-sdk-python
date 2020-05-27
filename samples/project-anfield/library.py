@@ -57,7 +57,8 @@ def get_protection_jobs(cohesity_client):
 def get_protection_source_by_id(cohesity_client, id, env):
     protection_source_list = cohesity_client.protection_sources.list_protection_sources(
         id=id, environment=env)
-    return protection_source_list[0]
+    return_list = protection_source_list[0] if protection_source_list else None
+    return return_list
 
 
 def get_protection_sources(cohesity_client):

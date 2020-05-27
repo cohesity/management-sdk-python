@@ -16,9 +16,10 @@ import time
 # Check for python version
 if float(sys.version[:3]) >= 3:
     import configparser as configparser
+    from configparser import NoSectionError
 else:
     import ConfigParser as configparser
-
+    from ConfigParser import NoSectionError
 # Disable python warnings.
 requests.packages.urllib3.disable_warnings()
 
@@ -49,6 +50,7 @@ logger.setLevel(logging.DEBUG)
 ERROR_LIST = []
 configparser = configparser.ConfigParser()
 configparser.read("config.ini")
+
 sleep_time = int(configparser.get("import_cluster_config", "api_pause_time"))
 
 cohesity_client = CohesityClient(cluster_vip=configparser.get(
@@ -170,6 +172,7 @@ def create_sources(source, environment, node):
             host_type = protect_source["nasProtectionSource"]["protocol"]
 
             body.endpoint = endpoint
+            name = endpoint
             body.nas_type = res_type
             body.nas_mount_credentials = NasMountCredentialParams()
             body.nas_mount_credentials.nas_protocol = host_type
@@ -191,6 +194,7 @@ def create_sources(source, environment, node):
             body.force_register = True
             protect_source = node["protectionSource"]
             endpoint = protect_source["name"]
+            name = endpoint
             res_type = protect_source["physicalProtectionSource"]["type"]
             host_type = protect_source["physicalProtectionSource"]["hostType"]
             body.endpoint = endpoint
@@ -200,6 +204,7 @@ def create_sources(source, environment, node):
 
         elif environment in ["kVMware", "kView"]:
             env = environment[1:].lower()
+            name = source.protection_source.name
             body.username = source.registration_info.username
             body.environment = environment
             source_id = source.protection_source.id
@@ -215,24 +220,21 @@ def create_sources(source, environment, node):
                 return
             body.vmware_type = env_type
             if env_type not in ["kViewBox"]:
-                password = configparser.get(
-                    source.protection_source.name, "password")
+                password = configparser.get(name, "password")
                 body.password = password
             if env == "view":
                 body.view_type = "kViewBox"
-        register_sources(body, source_id)
+        register_sources(body, name, source_id)
         time.sleep(sleep_time)
+    except NoSectionError as e:
+        ERROR_LIST.append("Please provide password for source %s " % (
+            name))
     except Exception as e:
-        if "No section" in e:
-            ERROR_LIST.append(
-                "Please provide password for source %s " % body.endpoint)
-        else:
-            ERROR_LIST.append(
-                "Error adding source : %s failed with error : %s" % (
-                body.endpoint, e))
+        ERROR_LIST.append("Error adding source : %s failed with error : %s" % (
+            name, e))
 
 
-def register_sources(body, source_id):
+def register_sources(body, name, source_id):
     """
     Registers the protection source.
     """
@@ -246,7 +248,7 @@ def register_sources(body, source_id):
     except Exception as e:
         ERROR_LIST.append(
             "Error adding source : %s, failed with error : %s" % (
-                body.endpoint, e))
+                name, e))
 
 
 def create_storage_domains():
@@ -499,8 +501,8 @@ def create_protection_jobs():
                 protection_job.parent_id = source_mapping[parent_id]
 
             list_len = len(source_id_list)
-            protection_job.view_box_id = storage_domain_mapping[
-                protection_job.view_box_id]
+            protection_job.view_box_id = storage_domain_mapping.get(
+                protection_job.view_box_id, None)
             protection_job.policy_id = policy_mapping.get(
                 protection_job.policy_id, None)
 
@@ -517,15 +519,22 @@ def create_protection_jobs():
             nodes = source[0].get("nodes", [])
             copy_env_list = copy.deepcopy(env_list)
             copy_env_list.pop(copy_env_list.index("kVMware"))
-
+            to_proceed = True
             if not nodes and environment in copy_env_list:
                 for each_source in source:
                     id = each_source["protectionSource"]["id"]
                     if id in source_id_list:
-                        if environment in ["kPhysical", "kPhysicalFiles", "kGenericNas"]:
+                        if environment in [
+                            "kPhysical", "kPhysicalFiles", "kGenericNas"]:
                             env = "kPhysical" if "Physical" in environment else "kGenericNas"
-                            _parent_id = library.get_protection_source_by_id(
-                                cohesity_client, id=None, env=env).protection_source.id
+                            obj = library.get_protection_source_by_id(
+                                cohesity_client, id=None, env=env)
+                            if not obj or source_mapping.get(id, None) == None:
+                                ERROR_LIST.append(
+                                    "Protection Source not available for job %s" % name)
+                                to_proceed = False
+                                break
+                            _parent_id = obj.protection_source.id
 
                             source_list.append(source_mapping[id])
                             protection_job.parent_source_id = _parent_id
@@ -534,14 +543,22 @@ def create_protection_jobs():
                                     if ps_source.source_id == id:
                                         ps_source.source_id = source_mapping[id]
                         else:
-                            protection_job.view_name = each_source["protectionSource"]["name"]
+                            protection_job.view_name = each_source[
+                                "protectionSource"]["name"]
+            # Check to break from loop if protection source for job is not
+            # available.
+            if not to_proceed:
+                continue
             uuid_source_mapping = {}
+
             for node in nodes:
                 if node.get("nodes", []):
                     nodes.extend(node["nodes"])
-                # Fetch the UUID list from with available source ids from exported cluster. VMware
-                # resources are provided with UUID and mapping is based on uuid.
-                if environment == "kVMware" and node["protectionSource"]["id"] in source_id_list:
+                # Fetch the UUID list from with available source ids from
+                # exported cluster. VMware resources are provided with UUID
+                # and mapping is based on uuid.
+                if environment == "kVMware" and node["protectionSource"][
+                    "id"] in source_id_list:
                     uuid_list.append(node["protectionSource"][
                         "vmWareProtectionSource"]["id"].get("uuid"))
                     uuid_source_mapping[uuid_list[-1]] = node["protectionSource"]["id"]
@@ -660,7 +677,6 @@ def create_remote_clusters():
             if not override:
                 continue
             is_remote_cluster_available = True
-
         try:
             # Add the remote cluster first
             if cluster.name not in configparser.sections():
@@ -692,8 +708,7 @@ def create_remote_clusters():
 
                 interfaces = remote_cohesity_client.remote_cluster.get_remote_cluster_by_id(
                     id=export_config.id)
-                #if interfaces:
-                if False:
+                if interfaces:
                     interface_group = interfaces[0].network_interface_group
                     remote_body.network_interface_group = interface_group
                 else:
