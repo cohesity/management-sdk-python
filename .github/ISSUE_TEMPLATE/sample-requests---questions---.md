@@ -10,4 +10,4 @@ assignees: ''
 ## ❓ Questions and Requests
 
 If it's an urgent request, Please contact us instead.
-- [Email](cohesity-api-sdks@cohesity.com)
+- [Cohesity API Team](cohesity-api-sdks@cohesity.com)
