@@ -68,6 +68,8 @@ override = configparser.get(
     "import_cluster_config", "override").capitalize() == "True"
 pause_jobs = configparser.get(
     "import_cluster_config", "pause_jobs").capitalize() == "True"
+gflag_import = configparser.get(
+    "import_cluster_config", "gflag").capitalize() == "True"
 
 # Read the imported cluster configurations from file.
 if len(sys.argv) != 2:
@@ -799,9 +801,36 @@ def _get_sd_id(view_box_name):
     return -1
 
 
+def update_gflags():
+    # Update the Gflag values for services.
+    try:
+        cluster_ip = configparser.get('import_cluster_config', 'cluster_ip')
+        username = configparser.get('import_cluster_config', 'username')
+        password = configparser.get('import_cluster_config', 'password')
+        domain = configparser.get('import_cluster_config', 'domain')
+        # Remove existing gflags in the cluster.
+        _, resp = library.gflag(cluster_ip, username, password, domain)
+        gflags = json.loads(resp.decode("utf-8"))
+        for gflag in gflags:
+            if gflag.get("gflags", []):
+                updated_flags = [{"name":obj["name"]} for obj in gflag["gflags"]]
+                gflag["gflags"] = updated_flags
+                library.gflag(cluster_ip, username, password, domain, json.dumps(
+                    gflag), "put")
+        # Update the flags from exported cluster.
+        exported_gflags = json.loads(cluster_dict["gflag"])
+        for body in exported_gflags:
+            library.gflag(
+                cluster_ip, username, password, domain,json.dumps(body), "put")
+    except Exception as err:
+        ERROR_LIST.append(
+            "Error occurred while updating gflags. Error details %s" % err)
+
 if __name__ == "__main__":
     logger.info("Importing cluster config \n\n")
     import_cluster_config()
+    if gflag_import:
+        update_gflags()
     logger.info("Importing Storage domains \n\n")
     create_storage_domains()
     logger.info("Importing remote clusters  \n\n")

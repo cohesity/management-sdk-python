@@ -2,13 +2,27 @@
 #
 # Python libraries with functions to import/export the cluster config.
 
-import logging
 from collections import defaultdict
+from rest_client import RestClient
 
+import json
+import logging
 logger = logging.getLogger(__file__)
 logger.setLevel(logging.INFO)
 
 exported_res_dict = defaultdict(list)
+
+
+def gflag(endpoint, user, password, domain, body={}, action="get"):
+    # Function to get and update the gflags from the clusters.
+    # Returns response code and response.
+    api = "clusters/gflag"
+    rest_obj = RestClient(endpoint, user, password, domain)
+    if action == "get":
+        code, resp = rest_obj.get(api)
+    else:
+        code, resp = rest_obj.put(api, data=body)
+    return code, resp
 
 
 def get_cluster_config(cohesity_client):
