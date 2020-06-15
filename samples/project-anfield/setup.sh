@@ -1,1 +1,1 @@
-pip install cohesity_management_sdk configparser
+pip install cohesity_management_sdk configparser requests
