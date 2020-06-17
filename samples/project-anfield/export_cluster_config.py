@@ -18,8 +18,8 @@ else:
 requests.packages.urllib3.disable_warnings()
 
 # Custom module import
-from cohesity_management_sdk.cohesity_client import CohesityClient
 import library
+from cohesity_management_sdk.cohesity_client import CohesityClient
 
 logger = logging.getLogger('export_app')
 
@@ -27,10 +27,13 @@ logger = logging.getLogger('export_app')
 configparser = configparser.ConfigParser()
 configparser.read('config.ini')
 
-cohesity_client = CohesityClient(cluster_vip=configparser.get('export_cluster_config', 'cluster_ip'),
-                                 username=configparser.get('export_cluster_config', 'username'),
-                                 password=configparser.get('export_cluster_config', 'password'),
-                                 domain= configparser.get('export_cluster_config', 'domain'))
+cohesity_client = CohesityClient(cluster_vip=configparser.get(
+                                      'export_cluster_config', 'cluster_ip'),
+                                 username=configparser.get(
+                                     'export_cluster_config', 'username'),
+                                 password=configparser.get(
+                                     'export_cluster_config', 'password'),
+                                 domain=configparser.get('export_cluster_config', 'domain'))
 
 logger.setLevel(logging.INFO)
 
@@ -63,19 +66,29 @@ for source in cluster_dict["sources"]:
     else:
         if res.nodes:
             for nodes in res.nodes:
-                name =  nodes["protectionSource"]["name"]
+                name = nodes["protectionSource"]["name"]
                 if name not in exported_res["Protection Sources"]:
                     exported_res["Protection Sources"].append(name)
 cluster_dict["source_dct"] = source_dct
 
+# Fetch all the gflags from the cluster.
+code, resp = library.gflag(
+    configparser.get('export_cluster_config', 'cluster_ip'),
+    configparser.get('export_cluster_config', 'username'),
+    configparser.get('export_cluster_config', 'password'),
+    configparser.get('export_cluster_config', 'domain'))
+
+cluster_dict["gflag"] = resp.decode("utf-8")
+
 # Fetch all the resources and store the data in file.
-exported_config_file = "export-config-%s-%s" %(cluster_dict['cluster_config'].name,
-    datetime.datetime.now().strftime("%Y-%m-%d-%H-%M"))
+exported_config_file = "export-config-%s-%s" % (cluster_dict['cluster_config'].name,
+                                                datetime.datetime.now().strftime("%Y-%m-%d-%H-%M"))
 pickle.dump(cluster_dict, open(exported_config_file, "wb"))
 
 logger.info("Please find the imported resources summary.\n")
 for key, val in exported_res.items():
-    logger.info("Successfully exported the following %s:\n%s\n" % (key, ", ".join(val)))
+    logger.info("Successfully exported the following %s:\n%s\n" %
+                (key, ", ".join(val)))
 
 
 logger.info("Exported config file: %s" % exported_config_file)
