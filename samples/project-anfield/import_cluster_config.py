@@ -808,20 +808,13 @@ def update_gflags():
         username = configparser.get('import_cluster_config', 'username')
         password = configparser.get('import_cluster_config', 'password')
         domain = configparser.get('import_cluster_config', 'domain')
-        # Remove existing gflags in the cluster.
-        _, resp = library.gflag(cluster_ip, username, password, domain)
-        gflags = json.loads(resp.decode("utf-8"))
-        for gflag in gflags:
-            if gflag.get("gflags", []):
-                updated_flags = [{"name":obj["name"]} for obj in gflag["gflags"]]
-                gflag["gflags"] = updated_flags
-                library.gflag(cluster_ip, username, password, domain, json.dumps(
-                    gflag), "put")
+
         # Update the flags from exported cluster.
         exported_gflags = json.loads(cluster_dict["gflag"])
         for body in exported_gflags:
             library.gflag(
                 cluster_ip, username, password, domain,json.dumps(body), "put")
+            imported_res_dict["Gflag services"].append(body["serviceName"])
     except Exception as err:
         ERROR_LIST.append(
             "Error occurred while updating gflags. Error details %s" % err)
@@ -831,6 +824,7 @@ if __name__ == "__main__":
     import_cluster_config()
     # Gflags are imported from cluster based on flag value.
     if gflag_import:
+        logger.info("Importing gflags \n\n")
         update_gflags()
     logger.info("Importing Storage domains \n\n")
     create_storage_domains()
