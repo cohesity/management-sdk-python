@@ -829,6 +829,7 @@ def update_gflags():
 if __name__ == "__main__":
     logger.info("Importing cluster config \n\n")
     import_cluster_config()
+    # Gflags are imported from cluster based on flag value.
     if gflag_import:
         update_gflags()
     logger.info("Importing Storage domains \n\n")
