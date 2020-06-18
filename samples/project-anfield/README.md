@@ -73,6 +73,13 @@ This will work for Python 3 >=3.4.
     Remote Clusters
     
     When override is enabled, while importing existing remote clusters storage domain mapping and other settings are updated. Whereas if overrride is disabled no changes are made to existing remote clusters.
+    
+3. Gflag - Flag to import gflags for services from exported cluster.
+
+   `gflag=True/False`
+
+   After importing the gflags into the target cluster, each individual services which needs the gflag change needs to be restarted manually.
+   NOTE: This feature imports all the gflags to the cluster. To apply gflag for specific service, chose only the individual service and restart. 
 
 ## Export 
 
