@@ -20,6 +20,7 @@ requests.packages.urllib3.disable_warnings()
 # Custom module import
 import library
 from cohesity_management_sdk.cohesity_client import CohesityClient
+from cohesity_management_sdk.exceptions.api_exception import APIException
 
 logger = logging.getLogger('export_app')
 
@@ -27,13 +28,23 @@ logger = logging.getLogger('export_app')
 configparser = configparser.ConfigParser()
 configparser.read('config.ini')
 
-cohesity_client = CohesityClient(cluster_vip=configparser.get(
+try:
+    cohesity_client = CohesityClient(cluster_vip=configparser.get(
                                       'export_cluster_config', 'cluster_ip'),
                                  username=configparser.get(
                                      'export_cluster_config', 'username'),
                                  password=configparser.get(
                                      'export_cluster_config', 'password'),
-                                 domain=configparser.get('export_cluster_config', 'domain'))
+                                 domain=configparser.get(
+                                     'export_cluster_config', 'domain'))
+    # Make a function call to validate the credentials.
+    cohesity_client.cluster.get_cluster()
+except APIException as err:
+    print("Authentication error occurred, error details: %s" % err)
+    exit()
+except Exception as err:
+    print("Authentication error occurred, error details: %s" % err)
+    exit()
 
 logger.setLevel(logging.INFO)
 
@@ -54,13 +65,17 @@ cluster_dict = {
 
 exported_res = library.debug()
 source_dct = {}
+env_list = ["kGenericNas", "kPhysical", "kPhysicalFiles", "kIsilon", "KView", "kVMware"]
+
 
 for source in cluster_dict["sources"]:
     id = source.protection_source.id
     env = source.protection_source.environment
+    if env not in env_list:
+        continue
     res = library.get_protection_source_by_id(cohesity_client, id, env)
     source_dct[id] = res.nodes
-    if env in ["kView", "kVMware"]:
+    if env in ["kView", "kVMware", "kIsilon"]:
         name = source.protection_source.name
         exported_res["Protection Sources"].append(name)
     else:
