@@ -10,6 +10,8 @@ class AlertingConfig(object):
     Specifies optional settings for alerting.
 
     Attributes:
+        email_addresses (list of string): Exists to maintain backwards
+            compatibility with versions before eff8198.
         email_delivery_targets (list of EmailDeliveryTarget): Specifies
             additional email addresses where alert notifications (configured
             in the AlertingPolicy) must be sent.
@@ -20,16 +22,19 @@ class AlertingConfig(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "email_addresses":'emailAddresses',
         "email_delivery_targets":'emailDeliveryTargets',
         "raise_object_level_failure_alert":'raiseObjectLevelFailureAlert'
     }
 
     def __init__(self,
+                 email_addresses=None,
                  email_delivery_targets=None,
                  raise_object_level_failure_alert=None):
         """Constructor for the AlertingConfig class"""
 
         # Initialize members of the class
+        self.email_addresses = email_addresses
         self.email_delivery_targets = email_delivery_targets
         self.raise_object_level_failure_alert = raise_object_level_failure_alert
 
@@ -52,6 +57,7 @@ class AlertingConfig(object):
             return None
 
         # Extract variables from the dictionary
+        email_addresses = dictionary.get('emailAddresses')
         email_delivery_targets = None
         if dictionary.get('emailDeliveryTargets') != None:
             email_delivery_targets = list()
@@ -60,7 +66,8 @@ class AlertingConfig(object):
         raise_object_level_failure_alert = dictionary.get('raiseObjectLevelFailureAlert')
 
         # Return an object of this model
-        return cls(email_delivery_targets,
+        return cls(email_addresses,
+                   email_delivery_targets,
                    raise_object_level_failure_alert)
 
 

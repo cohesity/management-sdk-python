@@ -18,6 +18,9 @@ class DeliveryRuleProtoDeliveryTarget(object):
         external_api_url (string): Specifies the external api to be invoked
             when an alert matching this rule is raised.
         locale (string): Locale for the delivery target.
+        snmp_notification (bool): Need to send snmp notification for matched
+            alerts.
+        syslog_notification (bool): Need to write syslog for matched alerts.
         tenant_id (string): Tenant who has been assigned this target. This
             field is not populated within AlertsDataProto persisted in
             Gandalf. This is a convenience field and is populated on the fly
@@ -39,6 +42,8 @@ class DeliveryRuleProtoDeliveryTarget(object):
         "external_api_curl_options":'externalApiCurlOptions',
         "external_api_url":'externalApiUrl',
         "locale":'locale',
+        "snmp_notification":'snmpNotification',
+        "syslog_notification":'syslogNotification',
         "tenant_id":'tenantId'
     }
 
@@ -47,6 +52,8 @@ class DeliveryRuleProtoDeliveryTarget(object):
                  external_api_curl_options=None,
                  external_api_url=None,
                  locale=None,
+                 snmp_notification=None,
+                 syslog_notification=None,
                  tenant_id=None):
         """Constructor for the DeliveryRuleProtoDeliveryTarget class"""
 
@@ -55,6 +62,8 @@ class DeliveryRuleProtoDeliveryTarget(object):
         self.external_api_curl_options = external_api_curl_options
         self.external_api_url = external_api_url
         self.locale = locale
+        self.snmp_notification = snmp_notification
+        self.syslog_notification = syslog_notification
         self.tenant_id = tenant_id
 
 
@@ -80,6 +89,8 @@ class DeliveryRuleProtoDeliveryTarget(object):
         external_api_curl_options = dictionary.get('externalApiCurlOptions')
         external_api_url = dictionary.get('externalApiUrl')
         locale = dictionary.get('locale')
+        snmp_notification = dictionary.get('snmpNotification')
+        syslog_notification = dictionary.get('syslogNotification')
         tenant_id = dictionary.get('tenantId')
 
         # Return an object of this model
@@ -87,6 +98,8 @@ class DeliveryRuleProtoDeliveryTarget(object):
                    external_api_curl_options,
                    external_api_url,
                    locale,
+                   snmp_notification,
+                   syslog_notification,
                    tenant_id)
 
 

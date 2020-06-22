@@ -10,7 +10,7 @@ from cohesity_management_sdk.exceptions.request_error_error_exception import Req
 
 class AccessTokensController(BaseController):
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-    def __init__(self, config=None,  client=None, call_back=None):
+    def __init__(self, config=None, client=None, call_back=None):
         super(AccessTokensController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
         self.config = config

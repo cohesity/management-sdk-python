@@ -59,6 +59,9 @@ class Configuration(object):
     # AccessToken object, containing the fields access_token, privileges and token_type
     auth_token = None
 
+    # API Key patch
+    api_key = None
+
     # All the environments the SDK can run in
     environments = {
         Environment.PRODUCTION: {
@@ -82,12 +85,14 @@ class Configuration(object):
         return APIHelper.append_url_with_template_parameters(
             self.environments[self.environment][server], parameters, False)
 
+    @classmethod
     def disable_logging(cls):
         """Disable all logging in the SDK
         """
         for handler in logging.root.handlers[:]:
             logging.root.removeHandler(handler)
 
+    @classmethod
     def enable_logging(cls, filename=None, filemode='a',
                        stream=sys.stdout, level=logging.INFO):
         """Enable logging in the SDK

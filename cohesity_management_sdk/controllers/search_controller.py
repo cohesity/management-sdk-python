@@ -138,14 +138,13 @@ class SearchController(BaseController):
                 Cloud Platform Protection Source environment. 'kFlashBlade'
                 indicates the Flash Blade Protection Source environment.
                 'kAWSNative' indicates the AWS Native Protection Source
-                environment. 'kVCD' indicates the VMware's Virtual cloud
-                Director Protection Source environment. 'kO365' indicates the
-                Office 365 Protection Source environment. 'kO365Outlook'
-                indicates Office 365 outlook Protection Source environment.
-                'kHyperFlex' indicates the Hyper Flex Protection Source
-                environment. 'kGCPNative' indicates the GCP Native Protection
-                Source environment. 'kAzureNative' indicates the Azure Native
-                Protection Source environment.
+                environment. 'kO365' indicates the Office 365 Protection
+                Source environment. 'kO365Outlook' indicates Office 365
+                outlook Protection Source environment. 'kHyperFlex' indicates
+                the Hyper Flex Protection Source environment. 'kGCPNative'
+                indicates the GCP Native Protection Source environment.
+                'kAzureNative' indicates the Azure Native Protection Source
+                environment.
             last_protection_job_run_status (list of int, optional): Specifies
                 the last Protection Job run status of the object. If
                 specified, objects will be filtered based on last job run

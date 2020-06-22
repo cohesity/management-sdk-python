@@ -3,6 +3,7 @@
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
+from cohesity_management_sdk.configuration import Configuration
 from cohesity_management_sdk.controllers.base_controller import BaseController
 from cohesity_management_sdk.http.auth.auth_manager import AuthManager
 from cohesity_management_sdk.models.basic_cluster_info import BasicClusterInfo
@@ -12,7 +13,7 @@ from cohesity_management_sdk.exceptions.request_error_error_exception import Req
 
 class ClusterController(BaseController):
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-    def __init__(self, config = None, client=None, call_back=None):
+    def __init__(self, config=None, client=None, call_back=None):
         super(ClusterController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
         self.config = config
@@ -102,7 +103,7 @@ class ClusterController(BaseController):
             _query_parameters = {'fetchStats': fetch_stats}
             _query_builder = APIHelper.append_url_with_query_parameters(
                 _query_builder, _query_parameters,
-                self.config.array_serialization)
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers

@@ -130,6 +130,9 @@ class View(object):
             Box) where the View is stored.
         view_id (long|int): Specifies an id of the View assigned by the
             Cohesity Cluster.
+        view_lock_enabled (bool): Specifies whether view lock is enabled. If
+            enabled the view cannot be modified or deleted until unlock. By
+            default it is disabled.
         view_protection (ViewProtection): Specifies information about the
             Protection Jobs that are protecting the View.
 
@@ -173,6 +176,7 @@ class View(object):
         "view_box_id":'viewBoxId',
         "view_box_name":'viewBoxName',
         "view_id":'viewId',
+        "view_lock_enabled":'viewLockEnabled',
         "view_protection":'viewProtection'
     }
 
@@ -213,6 +217,7 @@ class View(object):
                  view_box_id=None,
                  view_box_name=None,
                  view_id=None,
+                 view_lock_enabled=None,
                  view_protection=None):
         """Constructor for the View class"""
 
@@ -253,6 +258,7 @@ class View(object):
         self.view_box_id = view_box_id
         self.view_box_name = view_box_name
         self.view_id = view_id
+        self.view_lock_enabled = view_lock_enabled
         self.view_protection = view_protection
 
 
@@ -318,6 +324,7 @@ class View(object):
         view_box_id = dictionary.get('viewBoxId')
         view_box_name = dictionary.get('viewBoxName')
         view_id = dictionary.get('viewId')
+        view_lock_enabled = dictionary.get('viewLockEnabled')
         view_protection = cohesity_management_sdk.models.view_protection.ViewProtection.from_dictionary(dictionary.get('viewProtection')) if dictionary.get('viewProtection') else None
 
         # Return an object of this model
@@ -357,6 +364,7 @@ class View(object):
                    view_box_id,
                    view_box_name,
                    view_id,
+                   view_lock_enabled,
                    view_protection)
 
 

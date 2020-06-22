@@ -9,7 +9,8 @@ class IsilonCluster(object):
     Specifies information about an Isilon Cluster.
 
     Attributes:
-        api_version (int): Specifies the API version of an Isilon Cluster.
+        api_version_str (string): Specifies the API version of an Isilon
+            Cluster as string.
         description (string): Specifies the description of an Isilon Cluster.
         guid (string): Specifies a globally unique id of an Isilon Cluster.
         version (string): Specifies the version of an Isilon Cluster.
@@ -18,21 +19,21 @@ class IsilonCluster(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "api_version":'apiVersion',
+        "api_version_str":'apiVersionStr',
         "description":'description',
         "guid":'guid',
         "version":'version'
     }
 
     def __init__(self,
-                 api_version=None,
+                 api_version_str=None,
                  description=None,
                  guid=None,
                  version=None):
         """Constructor for the IsilonCluster class"""
 
         # Initialize members of the class
-        self.api_version = api_version
+        self.api_version_str = api_version_str
         self.description = description
         self.guid = guid
         self.version = version
@@ -56,13 +57,13 @@ class IsilonCluster(object):
             return None
 
         # Extract variables from the dictionary
-        api_version = dictionary.get('apiVersion')
+        api_version_str = dictionary.get('apiVersionStr')
         description = dictionary.get('description')
         guid = dictionary.get('guid')
         version = dictionary.get('version')
 
         # Return an object of this model
-        return cls(api_version,
+        return cls(api_version_str,
                    description,
                    guid,
                    version)

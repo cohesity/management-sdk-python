@@ -13,6 +13,8 @@ class NasBackupParams(object):
         continue_on_error (bool): Whether the backup job should continue on
             errors for snapshot based backups. For non-snapshot-based generic
             NAS backup jobs, Magneto always continues on errors.
+        encryption_enabled (bool): Whether this backup job should utilize nfs
+            encryption.
         filtering_policy (FilteringPolicyProto): Proto to encapsulate the
             filtering policy for backup objects like files or directories. If
             an object is not matched by any of the 'allow_filters', it will be
@@ -26,6 +28,12 @@ class NasBackupParams(object):
             filters: "/" Deny filters: "/tmp", "*.mp4" Using such a policy
             will include everything under the root directory except the /tmp
             directory and all the mp4 files.
+        full_backup_snapshot_label (string): Only used when we  backup using
+            discovered snapshots. This prefix is to figure out which
+            discovered snapshot we need to use for full backup.
+        incremental_backup_snapshot_label (string): Only used when we  backup
+            using discovered snapshots. This prefix is to figure out which
+            discovered snapshot we need to use for incremental backup.
         mixed_mode_preference (int): If the target entity is a mixed mode
             volume, which NAS protocol type the user prefer to backup. This
             does not apply to generic NAS and will be ignored.
@@ -38,21 +46,30 @@ class NasBackupParams(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "continue_on_error":'continueOnError',
+        "encryption_enabled":'encryptionEnabled',
         "filtering_policy":'filteringPolicy',
+        "full_backup_snapshot_label":'fullBackupSnapshotLabel',
+        "incremental_backup_snapshot_label":'incrementalBackupSnapshotLabel',
         "mixed_mode_preference":'mixedModePreference',
         "snapshot_change_enabled":'snapshotChangeEnabled'
     }
 
     def __init__(self,
                  continue_on_error=None,
+                 encryption_enabled=None,
                  filtering_policy=None,
+                 full_backup_snapshot_label=None,
+                 incremental_backup_snapshot_label=None,
                  mixed_mode_preference=None,
                  snapshot_change_enabled=None):
         """Constructor for the NasBackupParams class"""
 
         # Initialize members of the class
         self.continue_on_error = continue_on_error
+        self.encryption_enabled = encryption_enabled
         self.filtering_policy = filtering_policy
+        self.full_backup_snapshot_label = full_backup_snapshot_label
+        self.incremental_backup_snapshot_label = incremental_backup_snapshot_label
         self.mixed_mode_preference = mixed_mode_preference
         self.snapshot_change_enabled = snapshot_change_enabled
 
@@ -76,13 +93,19 @@ class NasBackupParams(object):
 
         # Extract variables from the dictionary
         continue_on_error = dictionary.get('continueOnError')
+        encryption_enabled = dictionary.get('encryptionEnabled')
         filtering_policy = cohesity_management_sdk.models.filtering_policy_proto.FilteringPolicyProto.from_dictionary(dictionary.get('filteringPolicy')) if dictionary.get('filteringPolicy') else None
+        full_backup_snapshot_label = dictionary.get('fullBackupSnapshotLabel')
+        incremental_backup_snapshot_label = dictionary.get('incrementalBackupSnapshotLabel')
         mixed_mode_preference = dictionary.get('mixedModePreference')
         snapshot_change_enabled = dictionary.get('snapshotChangeEnabled')
 
         # Return an object of this model
         return cls(continue_on_error,
+                   encryption_enabled,
                    filtering_policy,
+                   full_backup_snapshot_label,
+                   incremental_backup_snapshot_label,
                    mixed_mode_preference,
                    snapshot_change_enabled)
 

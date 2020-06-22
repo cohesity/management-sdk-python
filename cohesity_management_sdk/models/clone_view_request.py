@@ -94,6 +94,9 @@ class CloneViewRequest(object):
             View. (Overrides the Subnets specified at the global Cohesity
             Cluster level.)
         tenant_id (string): Optional tenant id who has access to this View.
+        view_lock_enabled (bool): Specifies whether view lock is enabled. If
+            enabled the view cannot be modified or deleted until unlock. By
+            default it is disabled.
 
     """
 
@@ -121,7 +124,8 @@ class CloneViewRequest(object):
         "source_view_name":'sourceViewName',
         "storage_policy_override":'storagePolicyOverride',
         "subnet_whitelist":'subnetWhitelist',
-        "tenant_id":'tenantId'
+        "tenant_id":'tenantId',
+        "view_lock_enabled":'viewLockEnabled'
     }
 
     def __init__(self,
@@ -147,7 +151,8 @@ class CloneViewRequest(object):
                  source_view_name=None,
                  storage_policy_override=None,
                  subnet_whitelist=None,
-                 tenant_id=None):
+                 tenant_id=None,
+                 view_lock_enabled=None):
         """Constructor for the CloneViewRequest class"""
 
         # Initialize members of the class
@@ -174,6 +179,7 @@ class CloneViewRequest(object):
         self.storage_policy_override = storage_policy_override
         self.subnet_whitelist = subnet_whitelist
         self.tenant_id = tenant_id
+        self.view_lock_enabled = view_lock_enabled
 
 
     @classmethod
@@ -221,6 +227,7 @@ class CloneViewRequest(object):
             for structure in dictionary.get('subnetWhitelist'):
                 subnet_whitelist.append(cohesity_management_sdk.models.subnet.Subnet.from_dictionary(structure))
         tenant_id = dictionary.get('tenantId')
+        view_lock_enabled = dictionary.get('viewLockEnabled')
 
         # Return an object of this model
         return cls(access_sids,
@@ -245,6 +252,7 @@ class CloneViewRequest(object):
                    source_view_name,
                    storage_policy_override,
                    subnet_whitelist,
-                   tenant_id)
+                   tenant_id,
+                   view_lock_enabled)
 
 

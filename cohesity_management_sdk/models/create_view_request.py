@@ -91,6 +91,9 @@ class CreateViewRequest(object):
         tenant_id (string): Optional tenant id who has access to this View.
         view_box_id (long|int): Specifies the id of the Storage Domain (View
             Box) where the View will be created.
+        view_lock_enabled (bool): Specifies whether view lock is enabled. If
+            enabled the view cannot be modified or deleted until unlock. By
+            default it is disabled.
 
     """
 
@@ -118,7 +121,8 @@ class CreateViewRequest(object):
         "smb_permissions_info":'smbPermissionsInfo',
         "storage_policy_override":'storagePolicyOverride',
         "subnet_whitelist":'subnetWhitelist',
-        "tenant_id":'tenantId'
+        "tenant_id":'tenantId',
+        "view_lock_enabled":'viewLockEnabled'
     }
 
     def __init__(self,
@@ -144,7 +148,8 @@ class CreateViewRequest(object):
                  smb_permissions_info=None,
                  storage_policy_override=None,
                  subnet_whitelist=None,
-                 tenant_id=None):
+                 tenant_id=None,
+                 view_lock_enabled=None):
         """Constructor for the CreateViewRequest class"""
 
         # Initialize members of the class
@@ -171,6 +176,7 @@ class CreateViewRequest(object):
         self.subnet_whitelist = subnet_whitelist
         self.tenant_id = tenant_id
         self.view_box_id = view_box_id
+        self.view_lock_enabled = view_lock_enabled
 
 
     @classmethod
@@ -218,6 +224,7 @@ class CreateViewRequest(object):
             for structure in dictionary.get('subnetWhitelist'):
                 subnet_whitelist.append(cohesity_management_sdk.models.subnet.Subnet.from_dictionary(structure))
         tenant_id = dictionary.get('tenantId')
+        view_lock_enabled = dictionary.get('viewLockEnabled')
 
         # Return an object of this model
         return cls(name,
@@ -242,6 +249,7 @@ class CreateViewRequest(object):
                    smb_permissions_info,
                    storage_policy_override,
                    subnet_whitelist,
-                   tenant_id)
+                   tenant_id,
+                   view_lock_enabled)
 
 

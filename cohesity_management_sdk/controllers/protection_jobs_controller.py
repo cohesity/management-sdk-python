@@ -3,6 +3,7 @@
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
+from cohesity_management_sdk.configuration import Configuration
 from cohesity_management_sdk.controllers.base_controller import BaseController
 from cohesity_management_sdk.http.auth.auth_manager import AuthManager
 from cohesity_management_sdk.models.protection_job import ProtectionJob
@@ -193,7 +194,7 @@ class ProtectionJobsController(BaseController):
             }
             _query_builder = APIHelper.append_url_with_query_parameters(
                 _query_builder, _query_parameters,
-                self.config.array_serialization)
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers

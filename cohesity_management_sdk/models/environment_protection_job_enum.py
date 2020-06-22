@@ -34,8 +34,6 @@ class EnvironmentProtectionJobEnum(object):
     'kGCP' indicates the Google Cloud Platform Protection Source environment.
     'kFlashBlade' indicates the Flash Blade Protection Source environment.
     'kAWSNative' indicates the AWS Native Protection Source environment.
-    'kVCD' indicates the VMware's Virtual cloud Director Protection Source
-    environment.
     'kO365' indicates the Office 365 Protection Source environment.
     'kO365Outlook' indicates Office 365 outlook Protection Source
     environment.
@@ -66,7 +64,6 @@ class EnvironmentProtectionJobEnum(object):
         KGCP: TODO: type description here.
         KFLASHBLADE: TODO: type description here.
         KAWSNATIVE: TODO: type description here.
-        KVCD: TODO: type description here.
         KO365: TODO: type description here.
         KO365OUTLOOK: TODO: type description here.
         KHYPERFLEX: TODO: type description here.
@@ -118,8 +115,6 @@ class EnvironmentProtectionJobEnum(object):
     KFLASHBLADE = 'kFlashBlade'
 
     KAWSNATIVE = 'kAWSNative'
-
-    KVCD = 'kVCD'
 
     KO365 = 'kO365'
 

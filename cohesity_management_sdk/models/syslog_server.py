@@ -12,6 +12,10 @@ class SyslogServer(object):
     Attributes:
         address (string): Specifies the IP address or hostname of the syslog
             server.
+        is_alert_auditing_enabled (bool): Specifies if cohesity alert should
+            be sent to syslog server If 'true', alert audting message are sent
+            to the server. If 'false', alert auditng message are not sent to
+            the server.(default)
         is_cluster_auditing_enabled (bool): Specifies if Cluster audit logs
             should be sent to this syslog server. If 'true', Cluster audit
             logs are sent to the syslog server. (default) If 'false', Cluster
@@ -26,6 +30,9 @@ class SyslogServer(object):
             sent to the syslog server. (default) If 'false', filer audit logs
             are not sent to the syslog server. Either cluster audit logs or
             filer audit logs should be enabled.
+        is_ssh_log_enabled (bool): Specifies if ssh login logs should be sent
+            to syslog server If 'true', ssh login logs are sent to the server.
+            If 'false', ssh login logs are not sent to the server.(default)
         name (string): Specifies a unique name for the syslog server on the
             Cluster.
         port (int): Specifies the port where the syslog server listens.
@@ -41,9 +48,11 @@ class SyslogServer(object):
         "address":'address',
         "port":'port',
         "protocol":'protocol',
+        "is_alert_auditing_enabled":'isAlertAuditingEnabled',
         "is_cluster_auditing_enabled":'isClusterAuditingEnabled',
         "is_data_protection_enabled":'isDataProtectionEnabled',
         "is_filer_auditing_enabled":'isFilerAuditingEnabled',
+        "is_ssh_log_enabled":'isSshLogEnabled',
         "name":'name'
     }
 
@@ -51,17 +60,21 @@ class SyslogServer(object):
                  address=None,
                  port=None,
                  protocol=None,
+                 is_alert_auditing_enabled=None,
                  is_cluster_auditing_enabled=None,
                  is_data_protection_enabled=None,
                  is_filer_auditing_enabled=None,
+                 is_ssh_log_enabled=None,
                  name=None):
         """Constructor for the SyslogServer class"""
 
         # Initialize members of the class
         self.address = address
+        self.is_alert_auditing_enabled = is_alert_auditing_enabled
         self.is_cluster_auditing_enabled = is_cluster_auditing_enabled
         self.is_data_protection_enabled = is_data_protection_enabled
         self.is_filer_auditing_enabled = is_filer_auditing_enabled
+        self.is_ssh_log_enabled = is_ssh_log_enabled
         self.name = name
         self.port = port
         self.protocol = protocol
@@ -88,18 +101,22 @@ class SyslogServer(object):
         address = dictionary.get('address')
         port = dictionary.get('port')
         protocol = dictionary.get('protocol')
+        is_alert_auditing_enabled = dictionary.get('isAlertAuditingEnabled')
         is_cluster_auditing_enabled = dictionary.get('isClusterAuditingEnabled')
         is_data_protection_enabled = dictionary.get('isDataProtectionEnabled')
         is_filer_auditing_enabled = dictionary.get('isFilerAuditingEnabled')
+        is_ssh_log_enabled = dictionary.get('isSshLogEnabled')
         name = dictionary.get('name')
 
         # Return an object of this model
         return cls(address,
                    port,
                    protocol,
+                   is_alert_auditing_enabled,
                    is_cluster_auditing_enabled,
                    is_data_protection_enabled,
                    is_filer_auditing_enabled,
+                   is_ssh_log_enabled,
                    name)
 
 

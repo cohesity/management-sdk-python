@@ -30,7 +30,6 @@ class EnvironmentListApplicationServersEnum(object):
         KGCP: TODO: type description here.
         KFLASHBLADE: TODO: type description here.
         KAWSNATIVE: TODO: type description here.
-        KVCD: TODO: type description here.
         KO365: TODO: type description here.
         KO365OUTLOOK: TODO: type description here.
         KHYPERFLEX: TODO: type description here.
@@ -82,8 +81,6 @@ class EnvironmentListApplicationServersEnum(object):
     KFLASHBLADE = 'kFlashBlade'
 
     KAWSNATIVE = 'kAWSNative'
-
-    KVCD = 'kVCD'
 
     KO365 = 'kO365'
 

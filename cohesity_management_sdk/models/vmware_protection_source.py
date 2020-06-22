@@ -93,7 +93,7 @@ class VmwareProtectionSource(object):
             VMware protection source type. 'kTag' indocates a tag entity in a
             VMware protection source type. 'kOpaqueNetwork' indicates a opaque
             network which is created and managed by an entity outside of
-            vSphere. 'kVCloudDirector' indicates a vCloud director entity in a
+            vSphere. 'kvCloudDirector' indicates a vCloud director entity in a
             VMware protection source type. 'kOrganization' indicates an
             Organization under a vCD in a VMware protection source type.
             'kVirtualDatacenter' indicates a virtual datacenter entity in a

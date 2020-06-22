@@ -75,14 +75,12 @@ class ProtectionJobRequestBody(object):
             indicates the Google Cloud Platform Protection Source environment.
             'kFlashBlade' indicates the Flash Blade Protection Source
             environment. 'kAWSNative' indicates the AWS Native Protection
-            Source environment. 'kVCD' indicates the VMware's Virtual cloud
-            Director Protection Source environment. 'kO365' indicates the
-            Office 365 Protection Source environment. 'kO365Outlook' indicates
-            Office 365 outlook Protection Source environment. 'kHyperFlex'
-            indicates the Hyper Flex Protection Source environment.
-            'kGCPNative' indicates the GCP Native Protection Source
-            environment. 'kAzureNative' indicates the Azure Native Protection
-            Source environment.
+            Source environment. 'kO365' indicates the Office 365 Protection
+            Source environment. 'kO365Outlook' indicates Office 365 outlook
+            Protection Source environment. 'kHyperFlex' indicates the Hyper
+            Flex Protection Source environment. 'kGCPNative' indicates the GCP
+            Native Protection Source environment. 'kAzureNative' indicates the
+            Azure Native Protection Source environment.
         environment_parameters (EnvironmentTypeJobParameters): Specifies
             additional parameters that are common to all Protection Sources in
             a Protection Job created for a particular environment type.
@@ -138,6 +136,9 @@ class ProtectionJobRequestBody(object):
             files found in an Object (such as a VM) so these files can be
             searched and recovered. This also specifies inclusion and
             exclusion rules that determine the directories to index.
+        is_paused (bool): Specifies if the Protection Job is paused, which
+            means that no new Job Runs are started but any existing Job Runs
+            continue to execute.
         leverage_storage_snapshots (bool): Specifies whether to leverage the
             storage array based snapshots for this backup job. To leverage
             storage snapshots, the storage array has to be registered as a
@@ -267,6 +268,7 @@ class ProtectionJobRequestBody(object):
         "incremental_protection_sla_time_mins":'incrementalProtectionSlaTimeMins',
         "incremental_protection_start_time":'incrementalProtectionStartTime',
         "indexing_policy":'indexingPolicy',
+        "is_paused":'isPaused',
         "leverage_storage_snapshots":'leverageStorageSnapshots',
         "leverage_storage_snapshots_for_hyperflex":'leverageStorageSnapshotsForHyperflex',
         "parent_source_id":'parentSourceId',
@@ -309,6 +311,7 @@ class ProtectionJobRequestBody(object):
                  incremental_protection_sla_time_mins=None,
                  incremental_protection_start_time=None,
                  indexing_policy=None,
+                 is_paused=None,
                  leverage_storage_snapshots=None,
                  leverage_storage_snapshots_for_hyperflex=None,
                  parent_source_id=None,
@@ -348,6 +351,7 @@ class ProtectionJobRequestBody(object):
         self.incremental_protection_sla_time_mins = incremental_protection_sla_time_mins
         self.incremental_protection_start_time = incremental_protection_start_time
         self.indexing_policy = indexing_policy
+        self.is_paused = is_paused
         self.leverage_storage_snapshots = leverage_storage_snapshots
         self.leverage_storage_snapshots_for_hyperflex = leverage_storage_snapshots_for_hyperflex
         self.name = name
@@ -410,6 +414,7 @@ class ProtectionJobRequestBody(object):
         incremental_protection_sla_time_mins = dictionary.get('incrementalProtectionSlaTimeMins')
         incremental_protection_start_time = cohesity_management_sdk.models.time_of_day.TimeOfDay.from_dictionary(dictionary.get('incrementalProtectionStartTime')) if dictionary.get('incrementalProtectionStartTime') else None
         indexing_policy = cohesity_management_sdk.models.indexing_policy.IndexingPolicy.from_dictionary(dictionary.get('indexingPolicy')) if dictionary.get('indexingPolicy') else None
+        is_paused = dictionary.get('isPaused')
         leverage_storage_snapshots = dictionary.get('leverageStorageSnapshots')
         leverage_storage_snapshots_for_hyperflex = dictionary.get('leverageStorageSnapshotsForHyperflex')
         parent_source_id = dictionary.get('parentSourceId')
@@ -455,6 +460,7 @@ class ProtectionJobRequestBody(object):
                    incremental_protection_sla_time_mins,
                    incremental_protection_start_time,
                    indexing_policy,
+                   is_paused,
                    leverage_storage_snapshots,
                    leverage_storage_snapshots_for_hyperflex,
                    parent_source_id,

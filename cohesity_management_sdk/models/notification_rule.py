@@ -41,6 +41,10 @@ class NotificationRule(object):
             level of an Alert. kCritical - Alerts whose severity type is
             Critical. kWarning - Alerts whose severity type is Warning. kInfo
             - Alerts whose severity type is Info.
+        snmp_enabled (bool): Specifies whether SNMP notification to be invoked
+            when an alert matching this rule is generated.
+        syslog_enabled (bool): Specifies whether syslog notification to be
+            invoked when an alert matching this rule is generated.
         tenant_id (string): Specifies tenant id this rule is applicable to.
         web_hook_delivery_targets (list of WebHookDeliveryTarget): Specifies
             external api urls to be invoked when an alert matching this rule
@@ -56,6 +60,8 @@ class NotificationRule(object):
         "rule_id":'ruleId',
         "rule_name":'ruleName',
         "severities":'severities',
+        "snmp_enabled":'snmpEnabled',
+        "syslog_enabled":'syslogEnabled',
         "tenant_id":'tenantId',
         "web_hook_delivery_targets":'webHookDeliveryTargets'
     }
@@ -67,6 +73,8 @@ class NotificationRule(object):
                  rule_id=None,
                  rule_name=None,
                  severities=None,
+                 snmp_enabled=None,
+                 syslog_enabled=None,
                  tenant_id=None,
                  web_hook_delivery_targets=None):
         """Constructor for the NotificationRule class"""
@@ -78,6 +86,8 @@ class NotificationRule(object):
         self.rule_id = rule_id
         self.rule_name = rule_name
         self.severities = severities
+        self.snmp_enabled = snmp_enabled
+        self.syslog_enabled = syslog_enabled
         self.tenant_id = tenant_id
         self.web_hook_delivery_targets = web_hook_delivery_targets
 
@@ -110,6 +120,8 @@ class NotificationRule(object):
         rule_id = dictionary.get('ruleId')
         rule_name = dictionary.get('ruleName')
         severities = dictionary.get('severities')
+        snmp_enabled = dictionary.get('snmpEnabled')
+        syslog_enabled = dictionary.get('syslogEnabled')
         tenant_id = dictionary.get('tenantId')
         web_hook_delivery_targets = None
         if dictionary.get('webHookDeliveryTargets') != None:
@@ -124,6 +136,8 @@ class NotificationRule(object):
                    rule_id,
                    rule_name,
                    severities,
+                   snmp_enabled,
+                   syslog_enabled,
                    tenant_id,
                    web_hook_delivery_targets)
 

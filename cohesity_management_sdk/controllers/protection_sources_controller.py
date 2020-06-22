@@ -390,15 +390,14 @@ class ProtectionSourcesController(BaseController):
                 environment. 'kGCP' indicates the Google Cloud Platform
                 Protection Source environment. 'kFlashBlade' indicates the
                 Flash Blade Protection Source environment. 'kAWSNative'
-                indicates the AWS Native Protection Source environment. 'kVCD'
-                indicates the VMware's Virtual cloud Director Protection
-                Source environment. 'kO365' indicates the Office 365
-                Protection Source environment. 'kO365Outlook' indicates Office
-                365 outlook Protection Source environment. 'kHyperFlex'
-                indicates the Hyper Flex Protection Source environment.
-                'kGCPNative' indicates the GCP Native Protection Source
-                environment. 'kAzureNative' indicates the Azure Native
-                Protection Source environment.
+                indicates the AWS Native Protection Source environment.
+                'kO365' indicates the Office 365 Protection Source
+                environment. 'kO365Outlook' indicates Office 365 outlook
+                Protection Source environment. 'kHyperFlex' indicates the
+                Hyper Flex Protection Source environment. 'kGCPNative'
+                indicates the GCP Native Protection Source environment.
+                'kAzureNative' indicates the Azure Native Protection Source
+                environment.
             protection_source_id (long|int, optional): Specifies the
                 Protection Source Id of the 'kPhysical' or 'kVMware' entity in
                 the Protection Source tree hosting the applications.
@@ -431,14 +430,13 @@ class ProtectionSourcesController(BaseController):
                 Cloud Platform Protection Source environment. 'kFlashBlade'
                 indicates the Flash Blade Protection Source environment.
                 'kAWSNative' indicates the AWS Native Protection Source
-                environment. 'kVCD' indicates the VMware's Virtual cloud
-                Director Protection Source environment. 'kO365' indicates the
-                Office 365 Protection Source environment. 'kO365Outlook'
-                indicates Office 365 outlook Protection Source environment.
-                'kHyperFlex' indicates the Hyper Flex Protection Source
-                environment. 'kGCPNative' indicates the GCP Native Protection
-                Source environment. 'kAzureNative' indicates the Azure Native
-                Protection Source environment.
+                environment. 'kO365' indicates the Office 365 Protection
+                Source environment. 'kO365Outlook' indicates Office 365
+                outlook Protection Source environment. 'kHyperFlex' indicates
+                the Hyper Flex Protection Source environment. 'kGCPNative'
+                indicates the GCP Native Protection Source environment.
+                'kAzureNative' indicates the Azure Native Protection Source
+                environment.
 
         Returns:
             list of RegisteredApplicationServer: Response from the API.
@@ -973,15 +971,14 @@ class ProtectionSourcesController(BaseController):
                 environment. 'kGCP' indicates the Google Cloud Platform
                 Protection Source environment. 'kFlashBlade' indicates the
                 Flash Blade Protection Source environment. 'kAWSNative'
-                indicates the AWS Native Protection Source environment. 'kVCD'
-                indicates the VMware's Virtual cloud Director Protection
-                Source environment. 'kO365' indicates the Office 365
-                Protection Source environment. 'kO365Outlook' indicates Office
-                365 outlook Protection Source environment. 'kHyperFlex'
-                indicates the Hyper Flex Protection Source environment.
-                'kGCPNative' indicates the GCP Native Protection Source
-                environment. 'kAzureNative' indicates the Azure Native
-                Protection Source environment.
+                indicates the AWS Native Protection Source environment.
+                'kO365' indicates the Office 365 Protection Source
+                environment. 'kO365Outlook' indicates Office 365 outlook
+                Protection Source environment. 'kHyperFlex' indicates the
+                Hyper Flex Protection Source environment. 'kGCPNative'
+                indicates the GCP Native Protection Source environment.
+                'kAzureNative' indicates the Azure Native Protection Source
+                environment.
             id (long|int): Specifies the Id of a registered Protection Source
                 of the type given in environment.
             all_under_hierarchy (bool, optional): AllUnderHierarchy specifies

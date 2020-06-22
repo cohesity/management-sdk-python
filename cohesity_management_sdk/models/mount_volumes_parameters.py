@@ -36,6 +36,9 @@ class MountVolumesParameters(object):
             if the source is a VMware VM, then the mount target must also be a
             VMware VM. The mount target must be registered on the Cohesity
             Cluster.
+        use_existing_agent (bool): Optional setting that determines if this
+            will use an existing agent on the target vm to bring disks
+            online.
         username (string): Specifies username to access the target source.
         volume_names (list of string): Array of Volume Names.  Optionally
             specify the names of volumes to mount. If none are specified, all
@@ -50,6 +53,7 @@ class MountVolumesParameters(object):
         "bring_disks_online":'bringDisksOnline',
         "password":'password',
         "target_source_id":'targetSourceId',
+        "use_existing_agent":'useExistingAgent',
         "username":'username',
         "volume_names":'volumeNames'
     }
@@ -58,6 +62,7 @@ class MountVolumesParameters(object):
                  bring_disks_online=None,
                  password=None,
                  target_source_id=None,
+                 use_existing_agent=None,
                  username=None,
                  volume_names=None):
         """Constructor for the MountVolumesParameters class"""
@@ -66,6 +71,7 @@ class MountVolumesParameters(object):
         self.bring_disks_online = bring_disks_online
         self.password = password
         self.target_source_id = target_source_id
+        self.use_existing_agent = use_existing_agent
         self.username = username
         self.volume_names = volume_names
 
@@ -91,6 +97,7 @@ class MountVolumesParameters(object):
         bring_disks_online = dictionary.get('bringDisksOnline')
         password = dictionary.get('password')
         target_source_id = dictionary.get('targetSourceId')
+        use_existing_agent = dictionary.get('useExistingAgent')
         username = dictionary.get('username')
         volume_names = dictionary.get('volumeNames')
 
@@ -98,6 +105,7 @@ class MountVolumesParameters(object):
         return cls(bring_disks_online,
                    password,
                    target_source_id,
+                   use_existing_agent,
                    username,
                    volume_names)
 

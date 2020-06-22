@@ -665,6 +665,7 @@ class AlertsController(BaseController):
                    end_date_usecs=None,
                    alert_state_list=None,
                    alert_severity_list=None,
+                   alert_type_bucket_list=None,
                    resolution_id_list=None):
         """Does a GET request to /public/alerts.
 
@@ -704,6 +705,13 @@ class AlertsController(BaseController):
                 list of Alert States to filter alerts by.
             alert_severity_list (list of AlertSeverityListEnum, optional):
                 Specifies list of Alert severity to filter alerts by.
+            alert_type_bucket_list (list of AlertTypeBucketListEnum,
+                optional): Specifies the list of Alert type bucket. Specifies
+                the Alert type bucket. kSoftware - Alerts which are related to
+                Cohesity services. kHardware - Alerts related to hardware
+                where Cohesity software is running. kService - Alerts related
+                to other external services. kOther - Alerts not of one of
+                above categories.
             resolution_id_list (list of long|int, optional): Specifies alert
                 resolution ids to filter alerts by.
 
@@ -742,6 +750,7 @@ class AlertsController(BaseController):
                 'endDateUsecs': end_date_usecs,
                 'alertStateList': alert_state_list,
                 'alertSeverityList': alert_severity_list,
+                'alertTypeBucketList': alert_type_bucket_list,
                 'resolutionIdList': resolution_id_list
             }
             _query_builder = APIHelper.append_url_with_query_parameters(

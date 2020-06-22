@@ -3,6 +3,7 @@
 
 import cohesity_management_sdk.models.data_migration_job_parameters
 import cohesity_management_sdk.models.file_path_filter
+import cohesity_management_sdk.models.snapshot_label
 
 class NasEnvJobParameters(object):
 
@@ -25,6 +26,8 @@ class NasEnvJobParameters(object):
         enable_faster_incremental_backups (bool): Specifies whether this job
             will enable faster incremental backups using change list or
             similar APIs
+        encryption_enabled (bool): Specifies if the protection job should use
+            encryption while backing up
         file_path_filters (FilePathFilter): Specifies filters to match files
             and directories on a Server. Two kinds of filters are supported.
             a) prefix which always starts with '/'. b) posix which always
@@ -40,6 +43,9 @@ class NasEnvJobParameters(object):
             generic NAS and will be ignored. Specifies the protocol used by a
             NAS server. 'kNfs3' indicates NFS v3 protocol. 'kCifs1' indicates
             CIFS v1.0 protocol.
+        snapshot_label (SnapshotLabel): Specifies the snapshot label for
+            incremental and full backup of Secondary Netapp volumes
+            (Data-Protect Volumes).
 
     """
 
@@ -48,24 +54,30 @@ class NasEnvJobParameters(object):
         "continue_on_error":'continueOnError',
         "data_migration_job_parameters":'dataMigrationJobParameters',
         "enable_faster_incremental_backups":'enableFasterIncrementalBackups',
+        "encryption_enabled":'encryptionEnabled',
         "file_path_filters":'filePathFilters',
-        "nas_protocol":'nasProtocol'
+        "nas_protocol":'nasProtocol',
+        "snapshot_label":'snapshotLabel'
     }
 
     def __init__(self,
                  continue_on_error=None,
                  data_migration_job_parameters=None,
                  enable_faster_incremental_backups=None,
+                 encryption_enabled=None,
                  file_path_filters=None,
-                 nas_protocol=None):
+                 nas_protocol=None,
+                 snapshot_label=None):
         """Constructor for the NasEnvJobParameters class"""
 
         # Initialize members of the class
         self.continue_on_error = continue_on_error
         self.data_migration_job_parameters = data_migration_job_parameters
         self.enable_faster_incremental_backups = enable_faster_incremental_backups
+        self.encryption_enabled = encryption_enabled
         self.file_path_filters = file_path_filters
         self.nas_protocol = nas_protocol
+        self.snapshot_label = snapshot_label
 
 
     @classmethod
@@ -89,14 +101,18 @@ class NasEnvJobParameters(object):
         continue_on_error = dictionary.get('continueOnError')
         data_migration_job_parameters = cohesity_management_sdk.models.data_migration_job_parameters.DataMigrationJobParameters.from_dictionary(dictionary.get('dataMigrationJobParameters')) if dictionary.get('dataMigrationJobParameters') else None
         enable_faster_incremental_backups = dictionary.get('enableFasterIncrementalBackups')
+        encryption_enabled = dictionary.get('encryptionEnabled')
         file_path_filters = cohesity_management_sdk.models.file_path_filter.FilePathFilter.from_dictionary(dictionary.get('filePathFilters')) if dictionary.get('filePathFilters') else None
         nas_protocol = dictionary.get('nasProtocol')
+        snapshot_label = cohesity_management_sdk.models.snapshot_label.SnapshotLabel.from_dictionary(dictionary.get('snapshotLabel')) if dictionary.get('snapshotLabel') else None
 
         # Return an object of this model
         return cls(continue_on_error,
                    data_migration_job_parameters,
                    enable_faster_incremental_backups,
+                   encryption_enabled,
                    file_path_filters,
-                   nas_protocol)
+                   nas_protocol,
+                   snapshot_label)
 
 

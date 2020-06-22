@@ -39,14 +39,13 @@ class ConnectorParameters(object):
             Protection Source environment. 'kGCP' indicates the Google Cloud
             Platform Protection Source environment. 'kFlashBlade' indicates
             the Flash Blade Protection Source environment. 'kAWSNative'
-            indicates the AWS Native Protection Source environment. 'kVCD'
-            indicates the VMware's Virtual cloud Director Protection Source
-            environment. 'kO365' indicates the Office 365 Protection Source
-            environment. 'kO365Outlook' indicates Office 365 outlook
-            Protection Source environment. 'kHyperFlex' indicates the Hyper
-            Flex Protection Source environment. 'kGCPNative' indicates the GCP
-            Native Protection Source environment. 'kAzureNative' indicates the
-            Azure Native Protection Source environment.
+            indicates the AWS Native Protection Source environment. 'kO365'
+            indicates the Office 365 Protection Source environment.
+            'kO365Outlook' indicates Office 365 outlook Protection Source
+            environment. 'kHyperFlex' indicates the Hyper Flex Protection
+            Source environment. 'kGCPNative' indicates the GCP Native
+            Protection Source environment. 'kAzureNative' indicates the Azure
+            Native Protection Source environment.
         id (long|int): Specifies a Unique id that is generated when the Source
             is registered. This is a convenience field that is used to
             maintain an index to different connection params.

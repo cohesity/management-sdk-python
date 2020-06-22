@@ -46,7 +46,7 @@ class VmwareTypeEnum(object):
     'kOpaqueNetwork' indicates a opaque network which is created and managed
     by an
     entity outside of vSphere.
-    'kVCloudDirector' indicates a vCloud director entity in a VMware
+    'kvCloudDirector' indicates a vCloud director entity in a VMware
     protection source type.
     'kOrganization' indicates an Organization under a vCD in a VMware
     protection source type.
@@ -120,7 +120,7 @@ class VmwareTypeEnum(object):
 
     KOPAQUENETWORK = 'kOpaqueNetwork'
 
-    K_VCLOUD_DIRECTOR = 'kVCloudDirector'
+    K_VCLOUD_DIRECTOR = 'kvCloudDirector'
 
     KORGANIZATION = 'kOrganization'
 

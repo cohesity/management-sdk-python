@@ -69,14 +69,12 @@ class ProtectionSource(object):
             indicates the Google Cloud Platform Protection Source environment.
             'kFlashBlade' indicates the Flash Blade Protection Source
             environment. 'kAWSNative' indicates the AWS Native Protection
-            Source environment. 'kVCD' indicates the VMware's Virtual cloud
-            Director Protection Source environment. 'kO365' indicates the
-            Office 365 Protection Source environment. 'kO365Outlook' indicates
-            Office 365 outlook Protection Source environment. 'kHyperFlex'
-            indicates the Hyper Flex Protection Source environment.
-            'kGCPNative' indicates the GCP Native Protection Source
-            environment. 'kAzureNative' indicates the Azure Native Protection
-            Source environment.
+            Source environment. 'kO365' indicates the Office 365 Protection
+            Source environment. 'kO365Outlook' indicates Office 365 outlook
+            Protection Source environment. 'kHyperFlex' indicates the Hyper
+            Flex Protection Source environment. 'kGCPNative' indicates the GCP
+            Native Protection Source environment. 'kAzureNative' indicates the
+            Azure Native Protection Source environment.
         flash_blade_protection_source (FlashBladeProtectionSource): Specifies
             details about a Pure Storage FlashBlade Protection Source when the
             environment is set to 'kFlashBlade'.
