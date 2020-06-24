@@ -68,10 +68,10 @@ try:
     rest_obj = RestClient(cluster_ip, username, password, domain)
 except APIException as err:
     print("Authentication error occurred, error details: %s" % err)
-    exit()
+    exit(1)
 except Exception as err:
     print("Authentication error occurred, error details: %s" % err)
-    exit()
+    exit(1)
 
 # Check for the flags for pause jobs and override.
 override = configparser.get(
@@ -217,7 +217,7 @@ def create_sources(source, environment, node):
 
         elif environment == "kIsilon":
             # Since public API is not available for Isilon source registration
-            # registering source using privatge API call.
+            # registering source using private API call.
             # entity type 14 is reserved for Isilon source.
             body = {
                 "entity": {
@@ -911,8 +911,13 @@ def update_gflags():
         # Update the flags from exported cluster.
         exported_gflags = json.loads(cluster_dict["gflag"])
         for body in exported_gflags:
-            library.gflag(
+            code, resp = library.gflag(
                 cluster_ip, username, password, domain, json.dumps(body), "put")
+            print(code)
+            if code not in [200, 204]:
+                ERROR_LIST.append("Failed to update gflag for service %s" % (
+                    body["serviceName"]))
+                continue
             imported_res_dict["Gflag services"].append(body["serviceName"])
     except Exception as err:
         ERROR_LIST.append(

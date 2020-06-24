@@ -41,10 +41,10 @@ try:
     cohesity_client.cluster.get_cluster()
 except APIException as err:
     print("Authentication error occurred, error details: %s" % err)
-    exit()
+    exit(1)
 except Exception as err:
     print("Authentication error occurred, error details: %s" % err)
-    exit()
+    exit(1)
 
 logger.setLevel(logging.INFO)
 
@@ -65,6 +65,8 @@ cluster_dict = {
 
 exported_res = library.debug()
 source_dct = {}
+
+# List of support environments.
 env_list = ["kGenericNas", "kPhysical", "kPhysicalFiles", "kIsilon", "KView", "kVMware"]
 
 
@@ -93,7 +95,12 @@ code, resp = library.gflag(
     configparser.get('export_cluster_config', 'password'),
     configparser.get('export_cluster_config', 'domain'))
 
-cluster_dict["gflag"] = resp.decode("utf-8")
+if code == 200:
+    cluster_dict["gflag"] = resp.decode("utf-8")
+else:
+    # Incase of cluster versions less than 6.3, API for fetching gflags is not
+    # avaialble.
+    cluster_dict["gflag"] = []
 
 # Fetch all the resources and store the data in file.
 exported_config_file = "export-config-%s-%s" % (cluster_dict['cluster_config'].name,
