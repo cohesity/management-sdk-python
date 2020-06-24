@@ -64,7 +64,7 @@ try:
                                     password=password,
                                     domain=domain)
     # Make a function call to validate the credentials.
-    cohesity_client.cluster.get_cluster()
+    cohesity_client.principals.get_user_privileges()
     rest_obj = RestClient(cluster_ip, username, password, domain)
 except APIException as err:
     print("Authentication error occurred, error details: %s" % err)

@@ -38,7 +38,7 @@ try:
                                  domain=configparser.get(
                                      'export_cluster_config', 'domain'))
     # Make a function call to validate the credentials.
-    cohesity_client.cluster.get_cluster()
+    cohesity_client.principals.get_user_privileges()
 except APIException as err:
     print("Authentication error occurred, error details: %s" % err)
     exit(1)
