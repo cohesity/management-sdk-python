@@ -913,7 +913,6 @@ def update_gflags():
         for body in exported_gflags:
             code, resp = library.gflag(
                 cluster_ip, username, password, domain, json.dumps(body), "put")
-            print(code)
             if code not in [200, 204]:
                 ERROR_LIST.append("Failed to update gflag for service %s" % (
                     body["serviceName"]))
