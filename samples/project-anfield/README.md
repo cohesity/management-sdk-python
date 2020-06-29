@@ -17,9 +17,10 @@ Current version fo the tooling supports export and import the cluster resources 
     * NTP Servers
     * Domain Names
   * Protection Jobs
-  * Protection Sources(NAS, Views, VMware)
+  * Protection Sources(NAS, Views, VMware, Isilon(NFS))
   * Protection Policies
   * Replicated Clusters
+  * Gflags
   
 ## Installation
 ```
