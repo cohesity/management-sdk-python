@@ -22,6 +22,10 @@ def gflag(endpoint, user, password, domain, body={}, action="get"):
         code, resp = rest_obj.get(api)
     else:
         code, resp = rest_obj.put(api, data=body)
+    # If the response code is failed, returns empty list. Gflags APIs are
+    # supported in cluster version >= 6.3.
+    if code == 404:
+        resp = json.dumps([]).encode("utf-8")
     return code, resp
 
 
