@@ -79,7 +79,9 @@ This will work for Python 3 >=3.4.
    `gflag=True/False`
 
    After importing the gflags into the target cluster, each individual services which needs the gflag change needs to be restarted manually.
-   NOTE: This feature imports all the gflags to the cluster. To apply gflag for specific service, chose only the individual service and restart. 
+   NOTE: This feature imports all the gflags to the cluster. To apply gflag for specific service, chose only the individual service and restart. Gflags import/export is supported with cluster version >= 6.3.
+
+4. While importing Isilon sources, only NFS protocols are supported. If a job contains both NFS and SMB objects, only NFS objects are added to job.
 
 ## Export 
 
