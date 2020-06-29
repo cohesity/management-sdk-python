@@ -2,8 +2,9 @@
 
 This Project helps take Cohesity Cluster's configuration export and import it in other clusters so that the metadata or the configuration is created with 1-click.This Project draws inspiration from formidable fortress of the best football team in the world: Liverpool Football Club. 
 
-![Project Anfield](./anfield.png)
-
+<p align="center">
+  <img src="./anfield.png">
+</p>
 
 ## Overview
 
@@ -17,7 +18,12 @@ Current version fo the tooling supports export and import the cluster resources 
     * NTP Servers
     * Domain Names
   * Protection Jobs
-  * Protection Sources(NAS, Views, VMware, Isilon(NFS))
+  * Protection Sources
+    * VMWare 
+    * Physical
+    * NAS
+    * Cohesity Views
+    * Isilon(NFS)
   * Protection Policies
   * Replicated Clusters
   * Gflags
