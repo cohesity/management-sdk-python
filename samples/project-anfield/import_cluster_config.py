@@ -13,6 +13,31 @@ import requests
 import sys
 import time
 
+from collections import defaultdict
+from os import path
+
+# Custom module import
+import library
+from cohesity_management_sdk.cohesity_client import CohesityClient
+from cohesity_management_sdk.exceptions.request_error_error_exception import RequestErrorErrorException
+from cohesity_management_sdk.exceptions.api_exception import APIException
+from cohesity_management_sdk.models.change_protection_job_state_param import ChangeProtectionJobStateParam
+from cohesity_management_sdk.models.create_view_request import CreateViewRequest
+from cohesity_management_sdk.models.create_view_box_params import CreateViewBoxParams
+from cohesity_management_sdk.models.environment_register_protection_source_parameters_enum \
+    import EnvironmentRegisterProtectionSourceParametersEnum as env_enum
+from cohesity_management_sdk.models.nas_mount_credential_params import NasMountCredentialParams
+from cohesity_management_sdk.models.nas_protocol_enum import NasProtocolEnum as nas_enum
+from cohesity_management_sdk.models.protection_job_request_body import ProtectionJobRequestBody
+from cohesity_management_sdk.models.protection_policy_request import ProtectionPolicyRequest
+from cohesity_management_sdk.models.register_remote_cluster import RegisterRemoteCluster
+from cohesity_management_sdk.models.register_protection_source_parameters import RegisterProtectionSourceParameters
+from cohesity_management_sdk.models.vault import Vault
+from cohesity_management_sdk.models.view_box_pair_info import ViewBoxPairInfo
+from cohesity_management_sdk.models.vmware_type_enum import VmwareTypeEnum as vmware_enum
+from cohesity_management_sdk.models.type_view_protection_source_enum import TypeViewProtectionSourceEnum as view_enum
+from library import RestClient
+
 # Check for python version
 if float(sys.version[:3]) >= 3:
     import configparser as configparser
@@ -23,27 +48,6 @@ else:
 # Disable python warnings.
 requests.packages.urllib3.disable_warnings()
 
-from collections import defaultdict
-from os import path
-
-# Custom module import
-import library
-
-from cohesity_management_sdk.cohesity_client import CohesityClient
-from cohesity_management_sdk.exceptions.api_exception import APIException
-from cohesity_management_sdk.exceptions.request_error_error_exception import RequestErrorErrorException
-from cohesity_management_sdk.models.change_protection_job_state_param import ChangeProtectionJobStateParam
-from cohesity_management_sdk.models.create_view_box_params import CreateViewBoxParams
-from cohesity_management_sdk.models.create_view_request import CreateViewRequest
-from cohesity_management_sdk.models.nas_mount_credential_params import NasMountCredentialParams
-from cohesity_management_sdk.models.protection_job_request_body import ProtectionJobRequestBody
-from cohesity_management_sdk.models.protection_policy_request import ProtectionPolicyRequest
-from cohesity_management_sdk.models.register_protection_source_parameters import RegisterProtectionSourceParameters
-from cohesity_management_sdk.models.register_remote_cluster import RegisterRemoteCluster
-from cohesity_management_sdk.models.vault import Vault
-from cohesity_management_sdk.models.view_box_pair_info import ViewBoxPairInfo
-
-from library import RestClient
 
 logger = logging.getLogger("import_app")
 logger.setLevel(logging.DEBUG)
@@ -59,10 +63,11 @@ try:
     username = configparser.get("import_cluster_config", "username")
     password = configparser.get("import_cluster_config", "password")
     domain = configparser.get("import_cluster_config", "domain")
+
     cohesity_client = CohesityClient(cluster_vip=cluster_ip,
-                                    username=username,
-                                    password=password,
-                                    domain=domain)
+                                     username=username,
+                                     password=password,
+                                     domain=domain)
     # Make a function call to validate the credentials.
     cohesity_client.principals.get_user_privileges()
     rest_obj = RestClient(cluster_ip, username, password, domain)
@@ -102,8 +107,8 @@ storage_domain_mapping = {}
 imported_res_dict = defaultdict(list)
 export_config = cluster_dict["cluster_config"]
 import_config = library.get_cluster_config(cohesity_client)
-env_list = ["kGenericNas", "kIsilon", "kPhysical",
-            "kPhysicalFiles", "KView", "kVMware"]
+env_list = [env_enum.KGENERICNAS, env_enum.KISILON, env_enum.KPHYSICAL,
+            env_enum.KPHYSICALFILES, env_enum.KVIEW, env_enum.K_VMWARE]
 
 
 def import_cluster_config():
@@ -175,7 +180,7 @@ def create_sources(source, environment, node):
     try:
         body = RegisterProtectionSourceParameters()
         body.environment = environment
-        if environment == "kGenericNas":
+        if environment == env_enum.KGENERICNAS:
             source_id = node["protectionSource"]["id"]
             protect_source = node["protectionSource"]
             endpoint = protect_source["name"]
@@ -183,14 +188,13 @@ def create_sources(source, environment, node):
 
             res_type = protect_source["nasProtectionSource"]["type"]
             host_type = protect_source["nasProtectionSource"]["protocol"]
-
             name = endpoint
             body.endpoint = endpoint
             body.nas_type = res_type
             body.nas_mount_credentials = NasMountCredentialParams()
             body.nas_mount_credentials.nas_protocol = host_type
             body.nas_mount_credentials.nas_type = res_type
-            if host_type != "kNfs3":
+            if host_type != nas_enum.KNFS3:
                 # Nfs file system doesn't require credentials
                 username = node["registrationInfo"]["nasMountCredentials"].get(
                     "username", None)
@@ -202,7 +206,7 @@ def create_sources(source, environment, node):
                 body.nas_mount_credentials.username = username
                 body.nas_mount_credentials.password = password
 
-        elif environment == "kPhysical":
+        elif environment == env_enum.KPHYSICAL:
             source_id = node["protectionSource"]["id"]
             body.force_register = True
             protect_source = node["protectionSource"]
@@ -215,7 +219,7 @@ def create_sources(source, environment, node):
             body.physical_type = res_type
             body.host_type = host_type
 
-        elif environment == "kIsilon":
+        elif environment == env_enum.KISILON:
             # Since public API is not available for Isilon source registration
             # registering source using private API call.
             # entity type 14 is reserved for Isilon source.
@@ -223,15 +227,15 @@ def create_sources(source, environment, node):
                 "entity": {
                     "type": 14,
                     "isilonEntity": {
-                    "type": 0
+                        "type": 0
                     }
                 },
                 "entityInfo": {
                     "endpoint": "",
                     "type": 14,
                     "credentials": {
-                    "password": "",
-                    "username": ""
+                        "password": "",
+                        "username": ""
                     }
                 }
             }
@@ -249,14 +253,14 @@ def create_sources(source, environment, node):
             if code != 200:
                 ERROR_LIST.append(
                     "Error adding source : %s failed with error : %s" % (
-                    name, resp))
+                        name, resp))
             else:
                 result = json.loads(resp.decode("utf-8"))
                 source_mapping[source_id] = result["entity"]["id"]
                 imported_res_dict["Protection Sources"].append(name)
             return
 
-        elif environment in ["kVMware", "kView"]:
+        elif environment in [env_enum.K_VMWARE, env_enum.KVIEW]:
             env = environment[1:].lower()
             name = source.protection_source.name
             body.username = source.registration_info.username
@@ -270,14 +274,16 @@ def create_sources(source, environment, node):
                     attribute = attr
                     break
             env_type = getattr(source.protection_source, attribute).mtype
-            if env_type == "kvCloudDirector":
+            if env_type.lower() == vmware_enum.K_VCLOUD_DIRECTOR.lower():
+                # Since environment type returns kvCloudDirector and enum
+                # returns kVCloudDirector, both are converted to lowercase.
                 return
             body.vmware_type = env_type
-            if env_type not in ["kViewBox"]:
+            if env_type not in [view_enum.KVIEWBOX]:
                 password = configparser.get(name, "password")
                 body.password = password
             if env == "view":
-                body.view_type = "kViewBox"
+                body.view_type = view_enum.KVIEWBOX
         register_sources(body, name, source_id)
         time.sleep(sleep_time)
     except NoSectionError as e:
@@ -322,6 +328,7 @@ def create_storage_domains():
             if storage_domain.name in existing_storage_domain_list.keys():
                 new_storage_domain_id = existing_storage_domain_list[storage_domain.name]
                 storage_domain_mapping[storage_domain.id] = new_storage_domain_id
+                imported_res_dict["Storage Domains"].append(storage_domain.name)
                 if override:
                     cohesity_client.view_boxes.update_view_box(
                         new_storage_domain_id, storage_domain)
@@ -331,6 +338,7 @@ def create_storage_domains():
                 result = cohesity_client.view_boxes.create_view_box(
                     storage_domain)
                 storage_domain_mapping[storage_domain.id] = result.id
+                imported_res_dict["Storage Domains"].append(storage_domain.name)
             except RequestErrorErrorException as e:
                 ERROR_LIST.append(
                     "Error adding storage domain %s, Failed with error %s" % (
@@ -360,7 +368,7 @@ def create_protection_sources():
 
             id = source.protection_source.id
             name = source.protection_source.name
-            if env in ["kIsilon", "kVMware"]:
+            if env in [env_enum.KISILON, env_enum.K_VMWARE]:
                 registered_source_list[name] = id
                 continue
 
@@ -377,8 +385,11 @@ def create_protection_sources():
             source_name = source.protection_source.name
             id = source.protection_source.id
 
+            if environment == env_enum.KVIEW:
+                # Views are not created as a part of sources.
+                continue
             nodes = cluster_dict.get("source_dct")[id]
-            if environment in ["kVMware", "kIsilon"]:
+            if environment in [env_enum.K_VMWARE, env_enum.KISILON]:
                 if source_name in registered_source_list.keys():
                     source_mapping[id] = registered_source_list[source_name]
                     imported_res_dict["Protection Sources"].append(source_name)
@@ -386,7 +397,7 @@ def create_protection_sources():
                         cohesity_client.protection_sources.create_refresh_protection_source_by_id(
                             registered_source_list[source_name])
                     continue
-                elif environment == "kIsilon":
+                elif environment == env_enum.KISILON:
                     create_sources(source, environment, None)
                     continue
             if not nodes:
@@ -440,13 +451,13 @@ def create_views():
 
         except RequestErrorErrorException as e:
             ERROR_LIST.append("Error adding view %s, Failed with error %s" % (
-                        view.name, e))
+                view.name, e))
         except APIException as e:
             ERROR_LIST.append("Error adding view %s, Failed with error %s" % (
-                        view.name, e))
+                view.name, e))
         except Exception as err:
             ERROR_LIST.append("Error adding view %s, Failed with error %s" % (
-                        view.name, err))
+                view.name, err))
 
 
 def create_protection_policies():
@@ -535,10 +546,10 @@ def create_protection_jobs():
 
             if environment not in env_list:
                 continue
-            if environment == "kView":
+            if environment == env_enum.KVIEW:
                 if protection_job.view_box_id not in storage_domain_mapping.keys():
                     continue
-            elif environment not in ["kPhysical", "kPhysicalFiles", "kView"] and source_mapping.get(parent_id, None) == None:
+            elif environment not in [env_enum.KPHYSICAL, env_enum.KPHYSICALFILES, env_enum.KVIEW] and source_mapping.get(parent_id, None) == None:
                 err_msg = "Protection Source not available for job %s" % job_name
                 ERROR_LIST.append(err_msg)
                 continue
@@ -570,29 +581,31 @@ def create_protection_jobs():
                 protection_job.policy_id, None)
 
             if not protection_job.view_box_id:
-                ERROR_LIST.append("Viewbox not available for job %s" % job_name)
+                ERROR_LIST.append(
+                    "Viewbox not available for job %s" % job_name)
                 continue
 
             if not protection_job.policy_id:
                 ERROR_LIST.append(
                     "Protection policy not available for job %s" % job_name)
                 continue
-            sources = cluster_dict.get("source_dct")[parent_id]
+            sources = cluster_dict["source_dct"].get(parent_id, [])
             nodes = []
             for source in sources:
                 nodes.extend(source.get("nodes", []))
 
             copy_env_list = copy.deepcopy(env_list)
-            copy_env_list.pop(copy_env_list.index("kVMware"))
-            copy_env_list.pop(copy_env_list.index("kIsilon"))
+            copy_env_list.pop(copy_env_list.index(env_enum.K_VMWARE))
+            copy_env_list.pop(copy_env_list.index(env_enum.KISILON))
             to_proceed = True
+
             if not nodes and environment in copy_env_list:
                 for each_source in sources:
                     id = each_source["protectionSource"]["id"]
                     if id in source_id_list:
                         if environment in [
-                            "kPhysical", "kPhysicalFiles", "kGenericNas"]:
-                            env = "kPhysical" if "Physical" in environment else "kGenericNas"
+                                env_enum.KPHYSICAL, env_enum.KPHYSICALFILES, env_enum.KGENERICNAS]:
+                            env = env_enum.KPHYSICAL if "Physical" in environment else env_enum.KGENERICNAS
                             obj = library.get_protection_source_by_id(
                                 cohesity_client, id=None, env=env)
                             if not obj or source_mapping.get(id, None) == None:
@@ -622,13 +635,13 @@ def create_protection_jobs():
                 # Fetch the UUID list from with available source ids from
                 # exported cluster. VMware resources are provided with UUID
                 # and mapping is based on uuid.
-                if environment == "kVMware" and node["protectionSource"][
-                    "id"] in source_id_list:
+                if environment == env_enum.K_VMWARE and node["protectionSource"][
+                        "id"] in source_id_list:
                     uuid_list.append(node["protectionSource"][
                         "vmWareProtectionSource"]["id"].get("uuid"))
                     uuid_source_mapping[uuid_list[-1]] = node[
                         "protectionSource"]["id"]
-                if environment == "kIsilon" and node["protectionSource"][
+                if environment == env_enum.KISILON and node["protectionSource"][
                         "id"] in source_id_list:
                     uuid_source_mapping[node["protectionSource"]["name"]] = \
                         node["protectionSource"]["isilonProtectionSource"][
@@ -645,18 +658,18 @@ def create_protection_jobs():
             for node in nodes:
                 if node.get("nodes", []):
                     nodes.extend(node["nodes"])
-                if environment == "kVMware":
+                if environment == env_enum.K_VMWARE:
                     uuid = node["protectionSource"]["vmWareProtectionSource"][
                         "id"].get("uuid")
                     if uuid in uuid_list and node["protectionSource"][
-                        "parentId"] == source_mapping[parent_id]:
+                            "parentId"] == source_mapping[parent_id]:
                         id = node["protectionSource"]["id"]
                         source_list.append(id)
                         source_object_dct[uuid_source_mapping[uuid]] = id
-                if environment == "kIsilon":
+                if environment == env_enum.KISILON:
                     name = node["protectionSource"]["name"]
                     if node["protectionSource"]["isilonProtectionSource"].get(
-                        "mountPoint", None) == None:
+                            "mountPoint", None) == None:
                         mount_point = node["protectionSource"]["isilonProtectionSource"][
                             "accessZone"]["name"]
                     else:
@@ -666,7 +679,7 @@ def create_protection_jobs():
                             uuid_source_mapping[name]:
                         name = node["protectionSource"]["name"]
                         protocol = node["protectionSource"]["isilonProtectionSource"][
-                             "mountPoint"]["protocols"]
+                            "mountPoint"]["protocols"]
                         if "kNfs" in protocol:
                             source_list.append(node["protectionSource"]["id"])
                         else:
@@ -676,15 +689,14 @@ def create_protection_jobs():
                             ERROR_LIST.append(
                                 "Protection job '%s' contain objects %s of "
                                 "following protocol %s. Supported protocol is kNfs." % (
-                                job_name, name, ", ".join(protocol)))
+                                    job_name, name, ", ".join(protocol)))
                             break
                 if len(source_list) == list_len:
                     break
             # Check to break from loop.
             if not to_proceed:
                 continue
-
-            if source_spl_params and environment == "kVMware":
+            if source_spl_params and environment == env_enum.K_VMWARE:
                 for param in source_spl_params:
                     if param.source_id in source_object_dct.keys():
                         param.source_id = source_object_dct[param.source_id]
@@ -783,7 +795,8 @@ def create_remote_clusters():
                 continue
             remote_cluster_password = configparser.get(
                 cluster.name, "password")
-            cluster_password = configparser.get("import_cluster_config", "password")
+            cluster_password = configparser.get(
+                "import_cluster_config", "password")
             body = RegisterRemoteCluster()
             remote_body = RegisterRemoteCluster()
             _construct_body(body, cluster)
@@ -831,13 +844,13 @@ def create_remote_clusters():
                     raise err
 
             c2 = CohesityClient(cluster_vip=configparser.get(
-                                    "import_cluster_config", "cluster_ip"),
-                                username=configparser.get(
-                                    "import_cluster_config", "username"),
-                                password=configparser.get(
-                                    "import_cluster_config", "password"),
-                                domain=configparser.get(
-                                    "import_cluster_config", "domain"))
+                "import_cluster_config", "cluster_ip"),
+                username=configparser.get(
+                "import_cluster_config", "username"),
+                password=configparser.get(
+                "import_cluster_config", "password"),
+                domain=configparser.get(
+                "import_cluster_config", "domain"))
 
             interfaces = cohesity_client.interface_group.get_interface_groups()
             if interfaces:
@@ -858,7 +871,7 @@ def create_remote_clusters():
         except APIException as e:
             # Since the client is singleton, we are re-initing the class object
             c2 = CohesityClient(cluster_vip=configparser.get(
-                    "import_cluster_config", "cluster_ip"),
+                "import_cluster_config", "cluster_ip"),
                 username=configparser.get(
                     "import_cluster_config", "username"),
                 password=configparser.get(

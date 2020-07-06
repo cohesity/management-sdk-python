@@ -8,19 +8,22 @@ import logging
 import pickle
 import requests
 import sys
+
+# Custom module import
+from cohesity_management_sdk.cohesity_client import CohesityClient
+from cohesity_management_sdk.exceptions.api_exception import APIException
+from cohesity_management_sdk.models.environment_register_protection_source_parameters_enum \
+    import EnvironmentRegisterProtectionSourceParametersEnum as env_enum
+import library
+
+# Disable python warnings.
+requests.packages.urllib3.disable_warnings()
+
 # Check for python version
 if float(sys.version[:3]) >= 3:
     import configparser as configparser
 else:
     import ConfigParser as configparser
-
-# Disable python warnings.
-requests.packages.urllib3.disable_warnings()
-
-# Custom module import
-import library
-from cohesity_management_sdk.cohesity_client import CohesityClient
-from cohesity_management_sdk.exceptions.api_exception import APIException
 
 logger = logging.getLogger('export_app')
 
@@ -30,13 +33,13 @@ configparser.read('config.ini')
 
 try:
     cohesity_client = CohesityClient(cluster_vip=configparser.get(
-                                      'export_cluster_config', 'cluster_ip'),
-                                 username=configparser.get(
-                                     'export_cluster_config', 'username'),
-                                 password=configparser.get(
-                                     'export_cluster_config', 'password'),
-                                 domain=configparser.get(
-                                     'export_cluster_config', 'domain'))
+        'export_cluster_config', 'cluster_ip'),
+        username=configparser.get(
+        'export_cluster_config', 'username'),
+        password=configparser.get(
+        'export_cluster_config', 'password'),
+        domain=configparser.get(
+        'export_cluster_config', 'domain'))
     # Make a function call to validate the credentials.
     cohesity_client.principals.get_user_privileges()
 except APIException as err:
@@ -67,7 +70,8 @@ exported_res = library.debug()
 source_dct = {}
 
 # List of support environments.
-env_list = ["kGenericNas", "kPhysical", "kPhysicalFiles", "kIsilon", "KView", "kVMware"]
+env_list = [env_enum.KGENERICNAS, env_enum.KISILON, env_enum.KPHYSICAL,
+            env_enum.KPHYSICALFILES, env_enum.KVIEW, env_enum.K_VMWARE]
 
 
 for source in cluster_dict["sources"]:
@@ -77,7 +81,7 @@ for source in cluster_dict["sources"]:
         continue
     res = library.get_protection_source_by_id(cohesity_client, id, env)
     source_dct[id] = res.nodes
-    if env in ["kView", "kVMware", "kIsilon"]:
+    if env in [env_enum.KVIEW, env_enum.K_VMWARE, env_enum.KISILON]:
         name = source.protection_source.name
         exported_res["Protection Sources"].append(name)
     else:
