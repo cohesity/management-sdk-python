@@ -12,7 +12,8 @@ import sys
 # Custom module import
 from cohesity_management_sdk.cohesity_client import CohesityClient
 from cohesity_management_sdk.exceptions.api_exception import APIException
-from cohesity_management_sdk.models.environment_register_protection_source_parameters_enum import EnvironmentRegisterProtectionSourceParametersEnum as env_enum
+from cohesity_management_sdk.models.environment_register_protection_source_parameters_enum \
+    import EnvironmentRegisterProtectionSourceParametersEnum as env_enum
 import library
 
 # Disable python warnings.
