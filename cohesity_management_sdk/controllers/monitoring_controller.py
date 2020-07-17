@@ -14,6 +14,7 @@ from cohesity_management_sdk.exceptions.request_error_error_exception import Req
 
 class MonitoringController(BaseController):
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
+
     def __init__(self, client=None, call_back=None):
         super(MonitoringController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
@@ -124,7 +125,7 @@ class MonitoringController(BaseController):
                 indicates the Microsoft's Azure Protection Source environment.
                 'kNetapp' indicates the Netapp Protection Source environment.
                 'kAgent' indicates the Agent Protection Source environment.
-                'kGenericNas' indicates the Genreric Network Attached Storage
+                'kGenericNas' indicates the Generic Network Attached Storage
                 Protection Source environment. 'kAcropolis' indicates the
                 Acropolis Protection Source environment. 'kPhsicalFiles'
                 indicates the Physical Files Protection Source environment.
@@ -139,16 +140,17 @@ class MonitoringController(BaseController):
                 Cloud Platform Protection Source environment. 'kFlashBlade'
                 indicates the Flash Blade Protection Source environment.
                 'kAWSNative' indicates the AWS Native Protection Source
-                environment. 'kVCD' indicates the VMware's Virtual cloud
-                Director Protection Source environment. 'kO365' indicates the
-                Office 365 Protection Source environment. 'kO365Outlook'
-                indicates Office 365 outlook Protection Source environment.
-                'kHyperFlex' indicates the Hyper Flex Protection Source
-                environment. 'kGCPNative' indicates the GCP Native Protection
-                Source environment. 'kAzureNative' indicates the Azure Native
-                Protection Source environment. 'kKubernetes' indicates a
-                Kubernetes Protection Source environment. 'kElastifile'
-                indicates Elastifile Protection Source environment.
+                environment. 'kO365' indicates the Office 365 Protection Source
+                environment. 'kO365Outlook' indicates Office 365 outlook
+                Protection Source environment. 'kHyperFlex' indicates the Hyper
+                Flex Protection Source environment. 'kGCPNative' indicates the
+                GCP Native Protection Source environment. 'kAzureNative'
+                indicates the Azure Native Protection Source environment.
+                'kKubernetes' indicates a Kubernetes Protection Source
+                environment. 'kElastifile' indicates Elastifile Protection
+                Source environment. 'kAD' indicates Active Directory Protection
+                Source environment. 'kRDSSnapshotManager' indicates AWS RDS
+                Protection Source environment.
             page (int, optional): Specifies the page number in case of
                 pagination of response.
             page_size (int, optional): Specifies the size of the page in case

@@ -17,6 +17,7 @@ class CreatePhysicalClusterParameters(object):
         encryption_config (EncryptionConfiguration): Specifies the parameters
             the user wants to use when configuring encryption for the new
             Cluster.
+        ip_preference (int): Specifies IP preference.
         ipmi_config (IpmiConfiguration): Specifies the parameters for
             configuration of IPMI. This is only needed for physical clusters.
         metadata_fault_tolerance (int): Specifies the metadata fault
@@ -31,6 +32,7 @@ class CreatePhysicalClusterParameters(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "cluster_name":'clusterName',
+        "ip_preference":'ipPreference',
         "ipmi_config":'ipmiConfig',
         "network_config":'networkConfig',
         "node_configs":'nodeConfigs',
@@ -44,12 +46,14 @@ class CreatePhysicalClusterParameters(object):
                  network_config=None,
                  node_configs=None,
                  encryption_config=None,
-                 metadata_fault_tolerance=None):
+                 metadata_fault_tolerance=None,
+                 ip_preference=None):
         """Constructor for the CreatePhysicalClusterParameters class"""
 
         # Initialize members of the class
         self.cluster_name = cluster_name
         self.encryption_config = encryption_config
+        self.ip_preference = ip_preference
         self.ipmi_config = ipmi_config
         self.metadata_fault_tolerance = metadata_fault_tolerance
         self.network_config = network_config
@@ -76,6 +80,7 @@ class CreatePhysicalClusterParameters(object):
         # Extract variables from the dictionary
         cluster_name = dictionary.get('clusterName')
         ipmi_config = cohesity_management_sdk.models.ipmi_configuration.IpmiConfiguration.from_dictionary(dictionary.get('ipmiConfig')) if dictionary.get('ipmiConfig') else None
+        ip_preference = dictionary.get('ip_preference', None)
         network_config = cohesity_management_sdk.models.network_configuration.NetworkConfiguration.from_dictionary(dictionary.get('networkConfig')) if dictionary.get('networkConfig') else None
         node_configs = None
         if dictionary.get('nodeConfigs') != None:
@@ -91,6 +96,7 @@ class CreatePhysicalClusterParameters(object):
                    network_config,
                    node_configs,
                    encryption_config,
-                   metadata_fault_tolerance)
+                   metadata_fault_tolerance,
+                   ip_preference)
 
 

@@ -14,6 +14,7 @@ from cohesity_management_sdk.exceptions.request_error_error_exception import Req
 
 class ProtectionJobsController(BaseController):
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
+
     def __init__(self, client=None, call_back=None):
         super(ProtectionJobsController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
@@ -108,6 +109,7 @@ class ProtectionJobsController(BaseController):
                             include_rpo_snapshots=None,
                             is_last_run_sla_violated=None,
                             only_return_data_migration_jobs=None,
+                            prune_excluded_source_ids=None,
                             tenant_ids=None,
                             all_under_hierarchy=None):
         """Does a GET request to /public/protectionJobs.
@@ -158,6 +160,10 @@ class ProtectionJobsController(BaseController):
                 OnlyReturnDataMigrationJobs specifies if only data migration
                 jobs should be returned. If not set, no data migration job
                 will be returned.
+            prune_excluded_source_ids (bool, optional): If true, the list of
+                exclusion sources will be omitted from the response. This can
+                be used to improve performance when the exclusion sources are
+                not needed.
             tenant_ids (list of string, optional): TenantIds contains ids of
                 the tenants for which objects are to be returned.
             all_under_hierarchy (bool, optional): AllUnderHierarchy specifies
@@ -194,6 +200,7 @@ class ProtectionJobsController(BaseController):
                 'includeRpoSnapshots': include_rpo_snapshots,
                 'isLastRunSlaViolated': is_last_run_sla_violated,
                 'onlyReturnDataMigrationJobs': only_return_data_migration_jobs,
+                'PruneExcludedSourceIds': prune_excluded_source_ids,
                 'tenantIds': tenant_ids,
                 'allUnderHierarchy': all_under_hierarchy
             }
@@ -297,7 +304,7 @@ class ProtectionJobsController(BaseController):
     def create_run_protection_job(self, id, body):
         """Does a POST request to /public/protectionJobs/run/{id}.
 
-        Immediately excute a single Job Run and ignore the schedule defined
+        Immediately execute a single Job Run and ignore the schedule defined
         in the Policy.
         A Protection Policy associated with the Job may define up to three
         backup run types:

@@ -13,9 +13,8 @@ class NetworkInterface(object):
             slots of any slaves if this interface is a bond.
         bond_slaves (list of string): Specifies the names of any slaves if
             this interface is a bond.
-        bonding_mode (BondingModeNetworkInterfaceEnum): Specifies the bonding
-            mode if this interface is a bond. 'kActiveBackup' indicates active
-            backup bonding mode. 'k802_3ad' indicates 802.3ad bonding mode.
+        bonding_mode (int): Specifies the bonding mode if this interface is
+            a bond.
         gateway (string): Specifies the gateway of the interface.
         group (string): Specifies the group that this interface belongs to.
         id (long|int): Specifies the ID of this network interface.
@@ -41,12 +40,7 @@ class NetworkInterface(object):
         speed (string): Specifies the speed of the Interface.
         static_ip (string): Specifies the static IP of the interface.
         subnet (string): Specifies the subnet mask of the interface.
-        mtype (TypeNetworkInterfaceEnum): Specifies the type of interface.
-            'kPhysicalInterface' indicates a physical interface type.
-            'kBondMasterInterface' indicates that the interface is the master
-            of a bond. 'kBondSlaveInterface' indicates the the interface is a
-            slave of a bond. 'kTaggedVlanInterface' indicates a tagged vlan
-            interface type.
+        mtype (int): Specifies the type of interface.
         virtual_ip (string): Specifies the virtual IP of the interface.
 
     """

@@ -797,7 +797,7 @@ class ActiveDirectoryController(BaseController):
     def update_active_directory_ldap_provider(self, body, name):
         """Does a PUT request to /public/activeDirectory/{name}/ldapProvider.
 
-        Updates the the LDAP provide Id for an Active Directory domain.
+        Updates the LDAP provide Id for an Active Directory domain.
 
         Args:
             body (UpdateLdapProviderParams): Request to update the LDAP

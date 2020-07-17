@@ -21,7 +21,7 @@ class AcropolisProtectionSource(object):
             Specifies the type of an Acropolis source entity. 'kPrismCentral'
             indicates a collection of multiple Nutanix clusters.
             'kStandaloneCluster' indicates a single Nutanix cluster.
-            'kCluster' indicates a Nutanix cluster manageed by a Prism
+            'kCluster' indicates a Nutanix cluster managed by a Prism
             Central. 'kHost' indicates an Acropolis host. 'kVirtualMachine'
             indicates a Virtual Machine. 'kNetwork' indicates a Virtual
             Machine network object. 'kStorageContainer' represents a storage
@@ -29,6 +29,8 @@ class AcropolisProtectionSource(object):
         uuid (string): Specifies the UUID of the Acropolis Object. This is
             unique within the cluster instance. Together with clusterUuid,
             this entity is unique within the Acropolis environment.
+        version(string, optional): Specifies the version of an Acropolis
+            cluster or standalone cluster.
 
     """
 
@@ -39,7 +41,8 @@ class AcropolisProtectionSource(object):
         "mount_path":'mountPath',
         "name":'name',
         "mtype":'type',
-        "uuid":'uuid'
+        "uuid":'uuid',
+        "version":'version'
     }
 
     def __init__(self,
@@ -48,7 +51,8 @@ class AcropolisProtectionSource(object):
                  mount_path=None,
                  name=None,
                  mtype=None,
-                 uuid=None):
+                 uuid=None,
+                 version=None):
         """Constructor for the AcropolisProtectionSource class"""
 
         # Initialize members of the class
@@ -58,6 +62,7 @@ class AcropolisProtectionSource(object):
         self.name = name
         self.mtype = mtype
         self.uuid = uuid
+        self.version = version
 
 
     @classmethod
@@ -84,6 +89,7 @@ class AcropolisProtectionSource(object):
         name = dictionary.get('name')
         mtype = dictionary.get('type')
         uuid = dictionary.get('uuid')
+        version = dictionary.get('version')
 
         # Return an object of this model
         return cls(cluster_uuid,
@@ -91,6 +97,7 @@ class AcropolisProtectionSource(object):
                    mount_path,
                    name,
                    mtype,
-                   uuid)
+                   uuid,
+                   version)
 
 

@@ -24,6 +24,8 @@ class ADObjectRestoreParam(object):
             specified must have privileges to add objects to this OU. Example:
             'OU=SJC,OU=EngOU,DC=contoso,DC=com'. This parameter is ignored for
             OU objects.
+        src_sysvol_folder (string, optional): When restoring a GPO, need to
+            know the absolute path for SYSVOL folder.
 
     """
 
@@ -32,14 +34,16 @@ class ADObjectRestoreParam(object):
         "credentials":'credentials',
         "guid_vec":'guidVec',
         "option_flags":'optionFlags',
-        "ou_path":'ouPath'
+        "ou_path":'ouPath',
+        "src_sysvol_folder":'srcSysvolFolder'
     }
 
     def __init__(self,
                  credentials=None,
                  guid_vec=None,
                  option_flags=None,
-                 ou_path=None):
+                 ou_path=None,
+                 src_sysvol_folder=None):
         """Constructor for the ADObjectRestoreParam class"""
 
         # Initialize members of the class
@@ -47,6 +51,7 @@ class ADObjectRestoreParam(object):
         self.guid_vec = guid_vec
         self.option_flags = option_flags
         self.ou_path = ou_path
+        self.src_sysvol_folder = src_sysvol_folder
 
 
     @classmethod
@@ -71,11 +76,13 @@ class ADObjectRestoreParam(object):
         guid_vec = dictionary.get('guidVec')
         option_flags = dictionary.get('optionFlags')
         ou_path = dictionary.get('ouPath')
+        src_sysvol_folder = dictionary.get('srcSysvolFolder')
 
         # Return an object of this model
         return cls(credentials,
                    guid_vec,
                    option_flags,
-                   ou_path)
+                   ou_path,
+                   src_sysvol_folder)
 
 

@@ -16,6 +16,9 @@ class BandwidthLimit(object):
             limits and time periods when those limits override the
             rateLimitBytesPerSec limit. If overlapping time periods are
             specified, the last one in the array takes precedence.
+        io_rate (int): Specifies the default IO Rate of the throttling
+            schedule. This value is internally mapped to some notion of how
+            many resources a process should be consuming.
         rate_limit_bytes_per_sec (long|int): Specifies the maximum allowed
             data transfer rate between the local Cluster and remote Clusters.
             The value is specified in bytes per second. If not set, the data
@@ -30,17 +33,20 @@ class BandwidthLimit(object):
     _names = {
         "bandwidth_limit_overrides":'bandwidthLimitOverrides',
         "rate_limit_bytes_per_sec":'rateLimitBytesPerSec',
+        "io_rate":'ioRate',
         "timezone":'timezone'
     }
 
     def __init__(self,
                  bandwidth_limit_overrides=None,
+                 io_rate=None,
                  rate_limit_bytes_per_sec=None,
                  timezone=None):
         """Constructor for the BandwidthLimit class"""
 
         # Initialize members of the class
         self.bandwidth_limit_overrides = bandwidth_limit_overrides
+        self.io_rate = io_rate
         self.rate_limit_bytes_per_sec = rate_limit_bytes_per_sec
         self.timezone = timezone
 
@@ -69,10 +75,12 @@ class BandwidthLimit(object):
             for structure in dictionary.get('bandwidthLimitOverrides'):
                 bandwidth_limit_overrides.append(cohesity_management_sdk.models.bandwidth_limit_override.BandwidthLimitOverride.from_dictionary(structure))
         rate_limit_bytes_per_sec = dictionary.get('rateLimitBytesPerSec')
+        io_rate = dictionary.get('ioRate')
         timezone = dictionary.get('timezone')
 
         # Return an object of this model
         return cls(bandwidth_limit_overrides,
+                   io_rate,
                    rate_limit_bytes_per_sec,
                    timezone)
 

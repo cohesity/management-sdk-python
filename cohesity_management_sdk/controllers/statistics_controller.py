@@ -111,7 +111,7 @@ class StatisticsController(BaseController):
         An entity schema specifies the meta-data associated with entity such
         as
         the list of attributes and a time series of data.
-        For example for a Disk entity, the entity schema specifies the Node
+        For example, for a Disk entity, the entity schema specifies the Node
         that is
         using this Disk, the type of the Disk, and Metrics about the Disk such
         as Space
@@ -195,7 +195,7 @@ class StatisticsController(BaseController):
         An entity schema specifies the meta-data associated with entity such
         as the
         list of attributes and a time series of data.
-        For example for a Disk entity, the entity schema specifies the Node
+        For example, for a Disk entity, the entity schema specifies the Node
         that is
         using this Disk, the type of the Disk, and Metrics about the Disk such
         as
@@ -504,7 +504,7 @@ class StatisticsController(BaseController):
                 include subtasks. By default all subtasks of any task matching
                 a query will be returned.
             attributes (list of string, optional): If specified, tasks
-                matching the current query are futher filtered by these
+                matching the current query are further filtered by these
                 KeyValuePairs. This gives client an ability to search by
                 custom attributes that they specified during the task
                 creation. Only the Tasks having 'all' of the specified

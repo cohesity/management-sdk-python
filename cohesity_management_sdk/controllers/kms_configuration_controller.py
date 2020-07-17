@@ -16,15 +16,13 @@ class KmsConfigurationController(BaseController):
         super(KmsConfigurationController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
 
-    def get_kms_config(self, server_ip=None):
+    def get_kms_config(self, id=None):
         """Does a GET request to /public/kmsConfig.
 
         List KMS configurations in the cluster.
 
         Args:
-            server_ip (string, optional): Specifies IP address of the KMS for
-                which KMS configuration is requested. If server IP is not
-                specified, all KMS configurations will be fetched.
+            id (int, optional): The Id of a KMS server.
 
         Returns:
             list of KmsConfigurationResponse: Response from the API. Specifies
@@ -45,7 +43,7 @@ class KmsConfigurationController(BaseController):
             _url_path = '/public/kmsConfig'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
-            _query_parameters = {'serverIp': server_ip}
+            _query_parameters = {'id': id}
             _query_builder = APIHelper.append_url_with_query_parameters(
                 _query_builder, _query_parameters,
                 Configuration.array_serialization)

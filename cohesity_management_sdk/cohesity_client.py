@@ -20,6 +20,7 @@ from cohesity_management_sdk.controllers.interface_controller import InterfaceCo
 from cohesity_management_sdk.controllers.interface_group_controller import InterfaceGroupController
 from cohesity_management_sdk.controllers.kms_configuration_controller import KmsConfigurationController
 from cohesity_management_sdk.controllers.ldap_provider_controller import LdapProviderController
+from cohesity_management_sdk.controllers.license_controller import LicenseController
 from cohesity_management_sdk.controllers.monitoring_controller import MonitoringController
 from cohesity_management_sdk.controllers.network_controller import NetworkController
 from cohesity_management_sdk.controllers.views_controller import ViewsController
@@ -110,6 +111,10 @@ class CohesityClient(object):
     @lazy_property
     def interface_group(self):
         return InterfaceGroupController()
+
+    @lazy_property
+    def license(self):
+        return LicenseController()
 
     @lazy_property
     def kms_configuration(self):

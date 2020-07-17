@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 # Copyright 2020 Cohesity Inc.
 
-class EnvironmentConnectorParametersEnum(object):
+class ProtectionEnvironmentEnum(object):
 
-    """Implementation of the 'Environment_ConnectorParameters' enum.
+    """Implementation of the 'ProtectionSourceEnvironment' enum.
 
-    Specifies the environment like VMware, SQL, where the
-    Protection Source exists.
-    Supported environment types such as 'kView', 'kSQL', 'kVMware', etc.
+    Specifies the source environment of the protection job.
+    Supported environment types such as 'kView', 'kSQL', 'kVMware',
+    etc.
     NOTE: 'kPuppeteer' refers to Cohesity's Remote Adapter.
     'kVMware' indicates the VMware Protection Source environment.
     'kHyperV' indicates the HyperV Protection Source environment.
@@ -37,8 +37,7 @@ class EnvironmentConnectorParametersEnum(object):
     'kFlashBlade' indicates the Flash Blade Protection Source environment.
     'kAWSNative' indicates the AWS Native Protection Source environment.
     'kO365' indicates the Office 365 Protection Source environment.
-    'kO365Outlook' indicates Office 365 outlook Protection Source
-    environment.
+    'kO365Outlook' indicates Office 365 outlook Protection Source environment.
     'kHyperFlex' indicates the Hyper Flex Protection Source environment.
     'kGCPNative' indicates the GCP Native Protection Source environment.
     'kAzureNative' indicates the Azure Native Protection Source environment.
@@ -131,8 +130,6 @@ class EnvironmentConnectorParametersEnum(object):
 
     KAWSNATIVE = 'kAWSNative'
 
-    KVCD = 'kVCD'
-
     KO365 = 'kO365'
 
     KO365OUTLOOK = 'kO365Outlook'
@@ -146,4 +143,8 @@ class EnvironmentConnectorParametersEnum(object):
     KKUBERNETES = 'kKubernetes'
 
     KELASTIFILE = 'kElastifile'
+
+    KAD = 'kAD'
+    
+    KRDSSNAPSHOTMANAGER = 'kRDSSnapshotManager'
 

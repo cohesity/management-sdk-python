@@ -19,425 +19,16 @@ from cohesity_management_sdk.exceptions.request_error_error_exception import Req
 from cohesity_management_sdk.exceptions.error_exception import ErrorException
 
 
-class ClustersController(BaseController):
+class IpController(BaseController):
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
     def __init__(self, client=None, call_back=None):
-        super(ClustersController, self).__init__(client, call_back)
+        super(IpController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
 
-    def get_background_activity_schedule(self):
-        """Does a GET request to /public/cluster/backgroundActivitySchedule.
+    def put_configure_ip(self, body):
+        """Does a PUT request to /public/ip
 
-        Sends a request to get the apollo throttling settings applied for
-        the cluster.
-
-        Returns:
-            BandwidthLimit: Response from the API. Success
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-        try:
-            self.logger.info('get_background_activity_schedule called.')
-
-            # Prepare query URL
-            self.logger.info(
-                'Preparing query URL for get_background_activity_schedule.')
-            _url_path = '/public/cluster/backgroundActivitySchedule'
-            _query_builder = Configuration.get_base_uri()
-            _query_builder += _url_path
-            _query_url = APIHelper.clean_url(_query_builder)
-
-            # Prepare headers
-            self.logger.info(
-                'Preparing headers for get_background_activity_schedule.')
-            _headers = {'accept': 'application/json'}
-
-            # Prepare and execute request
-            self.logger.info(
-                'Preparing and executing request for ' + \
-                'get_background_activity_schedule.')
-            _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(
-                _request, name='get_background_activity_schedule')
-
-            # Endpoint and global error handling using HTTP status codes.
-            self.logger.info(
-                'Validating response for get_background_activity_schedule.')
-            if _context.response.status_code == 0:
-                raise RequestErrorErrorException('Error', _context)
-            self.validate_response(_context)
-
-            # Return appropriate type
-            return APIHelper.json_deserialize(
-                _context.response.raw_body, BandwidthLimit.from_dictionary)
-
-        except Exception as e:
-            self.logger.error(e, exc_info=True)
-            raise
-
-    def get_cluster_keys(self):
-        """Does a GET request to /public/cluster/keys.
-
-        Returns the Public Keys for the cluster.
-
-        Returns:
-            ClusterPublicKeys: Response from the API. Success
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-        try:
-            self.logger.info('get_cluster_keys called.')
-
-            # Prepare query URL
-            self.logger.info('Preparing query URL for get_cluster_keys.')
-            _url_path = '/public/cluster/keys'
-            _query_builder = Configuration.get_base_uri()
-            _query_builder += _url_path
-            _query_url = APIHelper.clean_url(_query_builder)
-
-            # Prepare headers
-            self.logger.info('Preparing headers for get_cluster_keys.')
-            _headers = {'accept': 'application/json'}
-
-            # Prepare and execute request
-            self.logger.info(
-                'Preparing and executing request for get_cluster_keys.')
-            _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name='get_cluster_keys')
-
-            # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for get_cluster_keys.')
-            if _context.response.status_code == 0:
-                raise RequestErrorErrorException('Error', _context)
-            self.validate_response(_context)
-
-            # Return appropriate type
-            return APIHelper.json_deserialize(
-                _context.response.raw_body, ClusterPublicKeys.from_dictionary)
-
-        except Exception as e:
-            self.logger.error(e, exc_info=True)
-            raise
-
-    def destroy_cluster(self):
-        """Does a DELETE request to /public/clusters.
-
-        Sends a request to destroy a Cohesity Cluster and returns some
-        information
-        about the operation and each Node.
-
-        Returns:
-            void: Response from the API. No Content
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-        try:
-            self.logger.info('destroy_cluster called.')
-
-            # Prepare query URL
-            self.logger.info('Preparing query URL for destroy_cluster.')
-            _url_path = '/public/clusters'
-            _query_builder = Configuration.get_base_uri()
-            _query_builder += _url_path
-            _query_url = APIHelper.clean_url(_query_builder)
-
-            # Prepare and execute request
-            self.logger.info(
-                'Preparing and executing request for destroy_cluster.')
-            _request = self.http_client.delete(_query_url)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request, name='destroy_cluster')
-
-            # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for destroy_cluster.')
-            if _context.response.status_code == 0:
-                raise RequestErrorErrorException('Error', _context)
-            self.validate_response(_context)
-
-        except Exception as e:
-            self.logger.error(e, exc_info=True)
-            raise
-
-    def create_cloud_cluster(self, body):
-        """Does a POST request to /public/clusters/cloudEdition.
-
-        Sends a request to create a new Cloud Edition Cohesity Cluster and
-        returns
-        the IDs, name, and software version of the new cluster. Also returns
-        the
-        status of each node.
-
-        Args:
-            body (CreateCloudClusterParameters): TODO: type description here.
-                Example:
-
-        Returns:
-            CreateClusterResult: Response from the API. Success
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-        try:
-            self.logger.info('create_cloud_cluster called.')
-
-            # Validate required parameters
-            self.logger.info(
-                'Validating required parameters for create_cloud_cluster.')
-            self.validate_parameters(body=body)
-
-            # Prepare query URL
-            self.logger.info('Preparing query URL for create_cloud_cluster.')
-            _url_path = '/public/clusters/cloudEdition'
-            _query_builder = Configuration.get_base_uri()
-            _query_builder += _url_path
-            _query_url = APIHelper.clean_url(_query_builder)
-
-            # Prepare headers
-            self.logger.info('Preparing headers for create_cloud_cluster.')
-            _headers = {
-                'accept': 'application/json',
-                'content-type': 'application/json; charset=utf-8'
-            }
-
-            # Prepare and execute request
-            self.logger.info(
-                'Preparing and executing request for create_cloud_cluster.')
-            _request = self.http_client.post(
-                _query_url,
-                headers=_headers,
-                parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request,
-                                            name='create_cloud_cluster')
-
-            # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for create_cloud_cluster.')
-            if _context.response.status_code == 0:
-                raise RequestErrorErrorException('Error', _context)
-            self.validate_response(_context)
-
-            # Return appropriate type
-            return APIHelper.json_deserialize(
-                _context.response.raw_body,
-                CreateClusterResult.from_dictionary)
-
-        except Exception as e:
-            self.logger.error(e, exc_info=True)
-            raise
-
-    def create_expand_cloud_cluster(self, body):
-        """Does a POST request to /public/clusters/cloudEdition/nodes.
-
-        Sends a request to expand a Cloud Edition Cohesity Cluster and returns
-        some
-        information about the request and each new Node.
-
-        Args:
-            body (ExpandCloudClusterParameters): TODO: type description here.
-                Example:
-
-        Returns:
-            CreateClusterResult: Response from the API. Success
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-        try:
-            self.logger.info('create_expand_cloud_cluster called.')
-
-            # Validate required parameters
-            self.logger.info(
-                'Validating required parameters for create_expand_cloud_cluster.'
-            )
-            self.validate_parameters(body=body)
-
-            # Prepare query URL
-            self.logger.info(
-                'Preparing query URL for create_expand_cloud_cluster.')
-            _url_path = '/public/clusters/cloudEdition/nodes'
-            _query_builder = Configuration.get_base_uri()
-            _query_builder += _url_path
-            _query_url = APIHelper.clean_url(_query_builder)
-
-            # Prepare headers
-            self.logger.info(
-                'Preparing headers for create_expand_cloud_cluster.')
-            _headers = {
-                'accept': 'application/json',
-                'content-type': 'application/json; charset=utf-8'
-            }
-
-            # Prepare and execute request
-            self.logger.info(
-                'Preparing and executing request for create_expand_cloud_cluster.'
-            )
-            _request = self.http_client.post(
-                _query_url,
-                headers=_headers,
-                parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request,
-                                            name='create_expand_cloud_cluster')
-
-            # Endpoint and global error handling using HTTP status codes.
-            self.logger.info(
-                'Validating response for create_expand_cloud_cluster.')
-            if _context.response.status_code == 0:
-                raise RequestErrorErrorException('Error', _context)
-            self.validate_response(_context)
-
-            # Return appropriate type
-            return APIHelper.json_deserialize(
-                _context.response.raw_body,
-                CreateClusterResult.from_dictionary)
-
-        except Exception as e:
-            self.logger.error(e, exc_info=True)
-            raise
-
-    def get_cluster_creation_progress(self):
-        """Does a GET request to /public/clusters/creationProgress.
-
-        Sends a request to check the progress of the creation of a new
-        Cohesity
-        Cluster and returns some information about the creation process along
-        with an estimated time remaining and completion percentage.
-
-        Returns:
-            ClusterCreationProgressResult: Response from the API. Success
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-        try:
-            self.logger.info('get_cluster_creation_progress called.')
-
-            # Prepare query URL
-            self.logger.info(
-                'Preparing query URL for get_cluster_creation_progress.')
-            _url_path = '/public/clusters/creationProgress'
-            _query_builder = Configuration.get_base_uri()
-            _query_builder += _url_path
-            _query_url = APIHelper.clean_url(_query_builder)
-
-            # Prepare headers
-            self.logger.info(
-                'Preparing headers for get_cluster_creation_progress.')
-            _headers = {'accept': 'application/json'}
-
-            # Prepare and execute request
-            self.logger.info(
-                'Preparing and executing request for get_cluster_creation_progress.'
-            )
-            _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(
-                _request, name='get_cluster_creation_progress')
-
-            # Endpoint and global error handling using HTTP status codes.
-            self.logger.info(
-                'Validating response for get_cluster_creation_progress.')
-            if _context.response.status_code == 0:
-                raise RequestErrorErrorException('Error', _context)
-            self.validate_response(_context)
-
-            # Return appropriate type
-            return APIHelper.json_deserialize(
-                _context.response.raw_body,
-                ClusterCreationProgressResult.from_dictionary)
-
-        except Exception as e:
-            self.logger.error(e, exc_info=True)
-            raise
-
-
-    def get_io_preferential_tier(self):
-        """Does a GET request to /public/clusters/ioPreferentialTier.
-
-        Get the IO preferential tiers of the cluster.
-
-        Returns:
-            IoPreferentialTier: Response from the API. Success
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-        try:
-            self.logger.info('get_io_preferential_tier called.')
-
-            # Prepare query URL
-            self.logger.info(
-                'Preparing query URL for get_io_preferential_tier.')
-            _url_path = '/public/clusters/ioPreferentialTier'
-            _query_builder = Configuration.get_base_uri()
-            _query_builder += _url_path
-            _query_url = APIHelper.clean_url(_query_builder)
-
-            # Prepare headers
-            self.logger.info('Preparing headers for get_io_preferential_tier.')
-            _headers = {'accept': 'application/json'}
-
-            # Prepare and execute request
-            self.logger.info(
-                'Preparing and executing request for get_io_preferential_tier.'
-            )
-            _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(_request,
-                                            name='get_io_preferential_tier')
-
-            # Endpoint and global error handling using HTTP status codes.
-            self.logger.info(
-                'Validating response for get_io_preferential_tier.')
-            if _context.response.status_code == 0:
-                raise RequestErrorErrorException(Error, _context)
-            self.validate_response(_context)
-
-            # Return appropriate type
-            return APIHelper.json_deserialize(
-                _context.response.raw_body, IoPreferentialTier.from_dictionary)
-
-        except Exception as e:
-            self.logger.error(e, exc_info=True)
-            raise
-
-    def put_io_preferential_tier(self, body):
-        """Does a PUT request to /public/clusters/ioPreferentialTier.
-
-        Update the IO preferential tiers of the cluster.
+        Configure the specfied IP settings on the Cohesity Cluster.
 
         Args:
             body (IoPreferentialTier): TODO: type description here. Example:
@@ -453,23 +44,23 @@ class ClustersController(BaseController):
 
         """
         try:
-            self.logger.info('put_io_preferential_tier called.')
+            self.logger.info('put_configure_ip called.')
 
             # Validate required parameters
             self.logger.info(
-                'Validating required parameters for put_io_preferential_tier.')
+                'Validating required parameters for put_configure_ip.')
             self.validate_parameters(body=body)
 
             # Prepare query URL
             self.logger.info(
-                'Preparing query URL for put_io_preferential_tier.')
+                'Preparing query URL for put_configure_ip.')
             _url_path = '/public/clusters/ioPreferentialTier'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for put_io_preferential_tier.')
+            self.logger.info('Preparing headers for put_configure_ip.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
@@ -477,7 +68,7 @@ class ClustersController(BaseController):
 
             # Prepare and execute request
             self.logger.info(
-                'Preparing and executing request for put_io_preferential_tier.'
+                'Preparing and executing request for put_configure_ip.'
             )
             _request = self.http_client.put(
                 _query_url,
@@ -485,11 +76,11 @@ class ClustersController(BaseController):
                 parameters=APIHelper.json_serialize(body))
             AuthManager.apply(_request)
             _context = self.execute_request(_request,
-                                            name='put_io_preferential_tier')
+                                            name='put_configure_ip')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info(
-                'Validating response for put_io_preferential_tier.')
+                'Validating response for put_configure_ip.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException(Error, _context)
             self.validate_response(_context)

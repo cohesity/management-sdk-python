@@ -5,7 +5,7 @@ class UpgradabilityAgentDeploymentStatusResponseEnum(object):
 
     """Implementation of the 'Upgradability_AgentDeploymentStatusResponse' enum.
 
-    Specfies the upgradability of the agent running on the server.
+    Specifies the upgradability of the agent running on the server.
     Specifies the upgradability of the agent running on the physical server.
     'kUpgradable' indicates the Agent can be upgraded to the agent software
     version on the cluster.

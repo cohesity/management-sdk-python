@@ -9,8 +9,10 @@ class RegisterRemoteCluster(object):
 
     """Implementation of the 'RegisterRemoteCluster' model.
 
-    Specifies the settings required for registering a remote Cluster
-    on this local Cluster.
+    Specifies settings for limiting the data transfer rate between
+    the local and remote Clusters or bandwidth limiting schedule for apollo.
+    Only one of RateLimitBytesPerSec or IoRate should be set in this struct
+    and corresponding BandwidthLimitOverrides should also be in the same unit.
 
     Attributes:
         all_endpoints_reachable (bool): Specifies whether any endpoint (such

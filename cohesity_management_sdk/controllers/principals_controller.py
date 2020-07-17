@@ -159,7 +159,7 @@ class PrincipalsController(BaseController):
                           include_computers=None):
         """Does a GET request to /public/principals/searchPrincipals.
 
-        Optionally limit the search results by specifying security identifiers
+        Optionally, limit the search results by specifying security identifiers
         (SIDs),
         an object class (user or group) or a substring.
         You can specify SIDs or a substring but not both.

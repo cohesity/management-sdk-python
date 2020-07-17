@@ -30,8 +30,14 @@ class CreateViewRequest(object):
             during create and cannot be changed.
         description (string): Specifies an optional text description about the
             View.
+        enable_fast_durable_handle (bool): Specifies whether fast durable
+            handle is enabled. If enabled, view open handle will be kept in
+            memory, which results in a higher performance. But the handles
+            cannot be recovered if node or service crashes.
         enable_filer_audit_logging (bool): Specifies if Filer Audit Logging is
             enabled for this view.
+        enable_live_indexing (bool): Specifies whether to enable live indexing
+            for the view.
         enable_mixed_mode_permissions (bool): If set, mixed mode (NFS and SMB)
             access is enabled for this view. This field is deprecated. Use the
             field SecurityMode. deprecated: true
@@ -47,6 +53,8 @@ class CreateViewRequest(object):
             View. If set, it enables the SMB encryption for the View.
             Encryption is supported only by SMB 3.x dialects. Dialects that do
             not support would still access data in unencrypted format.
+        enable_smb_oplock (bool): Specifies whether SMB opportunistic lock is
+            enabled.
         enable_smb_view_discovery (bool): If set, it enables discovery of view
             for SMB.
         enforce_smb_encryption (bool): Specifies the SMB encryption for all
@@ -79,10 +87,11 @@ class CreateViewRequest(object):
         override_global_whitelist (bool): Specifies whether view level client
             subnet whitelist overrides cluster and global setting.
         protocol_access (ProtocolAccessEnum): Specifies the supported
-            Protocols for the View. 'kAll' enables protocol access to all
-            three views: NFS, SMB and S3. 'kNFSOnly' enables protocol access
-            to NFS only. 'kSMBOnly' enables protocol access to SMB only.
-            'kS3Only' enables protocol access to S3 only.
+            Protocols for the View. 'kAll' enables protocol access to
+            following three views: NFS, SMB and S3. 'kNFSOnly' enables
+            protocol access to NFS only. 'kSMBOnly' enables protocol access
+            to SMB only. 'kS3Only' enables protocol access to S3 only.
+            'kSwiftOnly' enables protocol access to Swift only.
         qos (QoS): Specifies the Quality of Service (QoS) Policy for the
             View.
         s_3_key_mapping_config (S3KeyMappingConfigCreateViewRequestEnum):
@@ -104,6 +113,14 @@ class CreateViewRequest(object):
             of Subnets with IP addresses that have permissions to access the
             View. (Overrides the Subnets specified at the global Cohesity
             Cluster level.)
+        swift_project_domain (string, optional): Specifies the Keystone
+            project domain.
+        swift_project_name (string, optional): Specifies the Keystone
+            project name.
+        swift_user_domain (string, optional): Specifies the Keystone
+            user domain.
+        swift_user_name (string, optional): Specifies the Keystone
+            username.
         tenant_id (string): Optional tenant id who has access to this View.
         view_box_id (long|int): Specifies the id of the Storage Domain (View
             Box) where the View will be created.
@@ -118,12 +135,15 @@ class CreateViewRequest(object):
         "antivirus_scan_config":'antivirusScanConfig',
         "case_insensitive_names_enabled":'caseInsensitiveNamesEnabled',
         "description":'description',
+        "enable_fast_durable_handle":'enableFastDurableHandle',
         "enable_filer_audit_logging":'enableFilerAuditLogging',
+        "enable_live_indexing":'enableLiveIndexing',
         "enable_mixed_mode_permissions":'enableMixedModePermissions',
         "enable_nfs_view_discovery":'enableNfsViewDiscovery',
         "enable_offline_caching":'enableOfflineCaching',
         "enable_smb_access_based_enumeration":'enableSmbAccessBasedEnumeration',
         "enable_smb_encryption":'enableSmbEncryption',
+        "enable_smb_oplock":'enableSmbOplock',
         "enable_smb_view_discovery":'enableSmbViewDiscovery',
         "enforce_smb_encryption":'enforceSmbEncryption',
         "file_extension_filter":'fileExtensionFilter',
@@ -141,6 +161,10 @@ class CreateViewRequest(object):
         "smb_permissions_info":'smbPermissionsInfo',
         "storage_policy_override":'storagePolicyOverride',
         "subnet_whitelist":'subnetWhitelist',
+        "swift_project_domain":'swiftProjectDomain',
+        "swift_project_name":'swiftProjectName',
+        "swift_user_domain":'swiftUserDomain',
+        "swift_user_name":'swiftUserName',
         "tenant_id":'tenantId'
     }
 
@@ -150,13 +174,16 @@ class CreateViewRequest(object):
                  access_sids=None,
                  antivirus_scan_config=None,
                  case_insensitive_names_enabled=None,
+                 enable_fast_durable_handle=None,
                  description=None,
                  enable_filer_audit_logging=None,
+                 enable_live_indexing=None,
                  enable_mixed_mode_permissions=None,
                  enable_nfs_view_discovery=None,
                  enable_offline_caching=None,
                  enable_smb_access_based_enumeration=None,
                  enable_smb_encryption=None,
+                 enable_smb_oplock=None,
                  enable_smb_view_discovery=None,
                  enforce_smb_encryption=None,
                  file_extension_filter=None,
@@ -174,6 +201,10 @@ class CreateViewRequest(object):
                  smb_permissions_info=None,
                  storage_policy_override=None,
                  subnet_whitelist=None,
+                 swift_project_domain=None,
+                 swift_project_name=None,
+                 swift_user_domain=None,
+                 swift_user_name=None,
                  tenant_id=None):
         """Constructor for the CreateViewRequest class"""
 
@@ -182,12 +213,15 @@ class CreateViewRequest(object):
         self.antivirus_scan_config = antivirus_scan_config
         self.case_insensitive_names_enabled = case_insensitive_names_enabled
         self.description = description
+        self.enable_fast_durable_handle = enable_fast_durable_handle
         self.enable_filer_audit_logging = enable_filer_audit_logging
+        self.enable_live_indexing = enable_live_indexing
         self.enable_mixed_mode_permissions = enable_mixed_mode_permissions
         self.enable_nfs_view_discovery = enable_nfs_view_discovery
         self.enable_offline_caching = enable_offline_caching
         self.enable_smb_access_based_enumeration = enable_smb_access_based_enumeration
         self.enable_smb_encryption = enable_smb_encryption
+        self.enable_smb_oplock = enable_smb_oplock
         self.enable_smb_view_discovery = enable_smb_view_discovery
         self.enforce_smb_encryption = enforce_smb_encryption
         self.file_extension_filter = file_extension_filter
@@ -206,6 +240,10 @@ class CreateViewRequest(object):
         self.smb_permissions_info = smb_permissions_info
         self.storage_policy_override = storage_policy_override
         self.subnet_whitelist = subnet_whitelist
+        self.swift_project_domain = swift_project_domain
+        self.swift_project_name = swift_project_name
+        self.swift_user_domain = swift_user_domain
+        self.swift_user_name = swift_user_name
         self.tenant_id = tenant_id
         self.view_box_id = view_box_id
 
@@ -234,12 +272,15 @@ class CreateViewRequest(object):
         antivirus_scan_config = cohesity_management_sdk.models.antivirus_scan_config.AntivirusScanConfig.from_dictionary(dictionary.get('antivirusScanConfig')) if dictionary.get('antivirusScanConfig') else None
         case_insensitive_names_enabled = dictionary.get('caseInsensitiveNamesEnabled')
         description = dictionary.get('description')
+        enable_fast_durable_handle = dictionary.get('enableFastDurableHandle', None)
         enable_filer_audit_logging = dictionary.get('enableFilerAuditLogging')
+        enable_live_indexing = dictionary.get('enableLiveIndexing', None)
         enable_mixed_mode_permissions = dictionary.get('enableMixedModePermissions')
         enable_nfs_view_discovery = dictionary.get('enableNfsViewDiscovery')
         enable_offline_caching = dictionary.get('enableOfflineCaching')
         enable_smb_access_based_enumeration = dictionary.get('enableSmbAccessBasedEnumeration')
         enable_smb_encryption = dictionary.get('enableSmbEncryption')
+        enable_smb_oplock = dictionary.get('enableSmbOplock', None)
         enable_smb_view_discovery = dictionary.get('enableSmbViewDiscovery')
         enforce_smb_encryption = dictionary.get('enforceSmbEncryption')
         file_extension_filter = cohesity_management_sdk.models.file_extension_filter.FileExtensionFilter.from_dictionary(dictionary.get('fileExtensionFilter')) if dictionary.get('fileExtensionFilter') else None
@@ -265,6 +306,10 @@ class CreateViewRequest(object):
             subnet_whitelist = list()
             for structure in dictionary.get('subnetWhitelist'):
                 subnet_whitelist.append(cohesity_management_sdk.models.subnet.Subnet.from_dictionary(structure))
+        swift_project_domain = dictionary.get('swiftProjectDomain', None)
+        swift_project_name = dictionary.get('swiftProjectName', None)
+        swift_user_domain = dictionary.get('swiftUserDomain', None)
+        swift_user_name = dictionary.get('swiftUserName', None)
         tenant_id = dictionary.get('tenantId')
 
         # Return an object of this model
@@ -274,12 +319,15 @@ class CreateViewRequest(object):
                    antivirus_scan_config,
                    case_insensitive_names_enabled,
                    description,
+                   enable_fast_durable_handle,
                    enable_filer_audit_logging,
+                   enable_live_indexing,
                    enable_mixed_mode_permissions,
                    enable_nfs_view_discovery,
                    enable_offline_caching,
                    enable_smb_access_based_enumeration,
                    enable_smb_encryption,
+                   enable_smb_oplock,
                    enable_smb_view_discovery,
                    enforce_smb_encryption,
                    file_extension_filter,
@@ -297,6 +345,10 @@ class CreateViewRequest(object):
                    smb_permissions_info,
                    storage_policy_override,
                    subnet_whitelist,
+                   swift_project_domain,
+                   swift_project_name,
+                   swift_user_domain,
+                   swift_user_name,
                    tenant_id)
 
 

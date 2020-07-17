@@ -112,9 +112,14 @@ class StatsController(BaseController):
                            cookie=None,
                            consumer_id_list=None,
                            consumer_entity_id_list=None,
+                           fetch_view_box_name=None,
+                           fetch_tenant_name=None,
+                           fetch_protection_policy=None,
+                           fetch_protection_environment=None,
                            view_boxes_id_list=None,
                            organizations_id_list=None,
-                           tenant_ids=None):
+                           tenant_ids=None,
+                           include_service_provider=None):
         """Does a GET request to /public/stats/consumers.
 
         Gets the statistics of consumers.
@@ -142,6 +147,18 @@ class StatsController(BaseController):
                 entity id must corresponds to the id in 'ConsumerIdList' in
                 the same index, and the length of 'ConsumerEntityIdList' and
                 'ConsumerIdList' must be the same.
+            fetch_view_box_name (bool, optional): Specifies whether to fetch
+                view box (storage domain) name for each consumer.
+            fetch_tenant_name (bool, optional): Specifies whether to fetch
+                tenant (organization) name for each consumer.
+            fetch_protection_policy (bool, optional): Specifies whether to
+                fetch protection policy for each consumer. This field is
+                applicable only if 'consumerType' is 'kProtectionRuns' or
+                'kReplicationRuns'.
+            fetch_protection_environment(bool, optional): Specifies whether
+                to fetch protection environment for each consumer. This field
+                is applicable only if 'consumerType' is 'kProtectionRuns' or
+                'kReplicationRuns'.
             view_boxes_id_list (list of long|int, optional): Specifies a list
                 of view boxes (storage domain) id.
             organizations_id_list (list of string, optional): Specifies a list
@@ -150,6 +167,10 @@ class StatsController(BaseController):
                 organizations (tenant) id. This field is added to allow
                 tenantIds json tag. This list will be concatenated with
                 TenantsIdList to form full list of tenantsIdList.
+            include_service_provider(bool, optional): Specifies whether to
+                fetch the consumption of external service providers. These
+                information will be listed as a unique organization (tenant) in
+                response. By default it is false.
 
         Returns:
             GetConsumerStatsResult: Response from the API. Success
@@ -175,9 +196,14 @@ class StatsController(BaseController):
                 'cookie': cookie,
                 'consumerIdList': consumer_id_list,
                 'consumerEntityIdList': consumer_entity_id_list,
+                'fetchViewBoxName': fetch_view_box_name,
+                'fetchTenantName': fetch_tenant_name,
+                'fetchProtectionPolicy': fetch_protection_policy,
+                'fetchProtectionEnvironment': fetch_protection_environment,
                 'viewBoxesIdList': view_boxes_id_list,
                 'organizationsIdList': organizations_id_list,
-                'tenantIds': tenant_ids
+                'tenantIds': tenant_ids,
+                'includeServiceProvider': include_service_provider
             }
             _query_builder = APIHelper.append_url_with_query_parameters(
                 _query_builder, _query_parameters,
@@ -617,7 +643,8 @@ class StatsController(BaseController):
                          output_format=None,
                          view_boxes_id_list=None,
                          organizations_id_list=None,
-                         tenant_ids=None):
+                         tenant_ids=None,
+                         include_service_provider=None):
         """Does a GET request to /public/stats/tenants.
 
         Gets the statistics of organizations (tenant).
@@ -634,9 +661,9 @@ class StatsController(BaseController):
                 (storage domain).
             skip_group_by_tenant (bool, optional): Specifies if we should skip
                 grouping by tenant. If false, and tenant has multiple storage
-                domains, then the stats for the stroage domains will be
+                domains, then the stats for the storage domains will be
                 aggregated. If true, then the response will return each
-                storage domain cross tenant independantly.
+                storage domain cross tenant independently.
             max_count (long|int, optional): Specifies a limit on the number of
                 stats groups returned.
             cookie (string, optional): Specifies the opaque string returned in
@@ -654,6 +681,10 @@ class StatsController(BaseController):
                 organizations (tenant) id. This field is added to allow
                 tenantIds json tag. This list will be concatenated with
                 TenantsIdList to form full list of tenantsIdList.
+            include_service_provider(bool, optional): Specifies whether to
+                fetch the consumption of external service providers. These
+                information will be listed as a unique organization (tenant) in
+                response. By default it is false.
 
         Returns:
             GetTenantStatsResult: Response from the API. Success
@@ -681,7 +712,8 @@ class StatsController(BaseController):
                 'outputFormat': output_format,
                 'viewBoxesIdList': view_boxes_id_list,
                 'organizationsIdList': organizations_id_list,
-                'tenantIds': tenant_ids
+                'tenantIds': tenant_ids,
+                'includeServiceProvider': include_service_provider
             }
             _query_builder = APIHelper.append_url_with_query_parameters(
                 _query_builder, _query_parameters,
@@ -917,7 +949,8 @@ class StatsController(BaseController):
     def get_view_box_stats(self,
                            view_boxes_id_list=None,
                            organizations_id_list=None,
-                           tenant_ids=None):
+                           tenant_ids=None,
+                           include_service_provider=None):
         """Does a GET request to /public/stats/viewBoxes.
 
         Gets the statistics of view boxes (storage domain).
@@ -931,6 +964,10 @@ class StatsController(BaseController):
                 organizations (tenant) id. This field is added to allow
                 tenantIds json tag. This list will be concatenated with
                 TenantsIdList to form full list of tenantsIdList.
+            include_service_provider(bool, optional): Specifies whether to
+                fetch the consumption of external service providers. These
+                information will be listed as a unique organization (tenant) in
+                response. By default it is false.
 
         Returns:
             GetViewBoxStatsResult: Response from the API. Success
@@ -953,7 +990,8 @@ class StatsController(BaseController):
             _query_parameters = {
                 'viewBoxesIdList': view_boxes_id_list,
                 'organizationsIdList': organizations_id_list,
-                'tenantIds': tenant_ids
+                'tenantIds': tenant_ids,
+                'includeServiceProvider': include_service_provider
             }
             _query_builder = APIHelper.append_url_with_query_parameters(
                 _query_builder, _query_parameters,

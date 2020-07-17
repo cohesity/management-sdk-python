@@ -77,6 +77,8 @@ class BackupJobProto(object):
             for full backups that are excepted i.e either scheduled or the
             first full backup and not for full backups that happen as a result
             of incremental backup failure.
+        global_include_exclude : Determines global include and exclude filters
+            which are applied to all sources in a job.
         indexing_policy (IndexingPolicyProto): Proto to encapsulate file level
             indexing policy for VMs in a backup job.
         is_active (bool): Whether the backup job is active or not. Details
@@ -252,6 +254,7 @@ class BackupJobProto(object):
         "exclusion_ranges":'exclusionRanges',
         "full_backup_job_policy":'fullBackupJobPolicy',
         "full_backup_sla_time_mins":'fullBackupSlaTimeMins',
+        "global_include_exclude":'globalIncludeExclude',
         "indexing_policy":'indexingPolicy',
         "is_active":'isActive',
         "is_deleted":'isDeleted',
@@ -316,6 +319,7 @@ class BackupJobProto(object):
                  exclusion_ranges=None,
                  full_backup_job_policy=None,
                  full_backup_sla_time_mins=None,
+                 global_include_exclude=None,
                  indexing_policy=None,
                  is_active=None,
                  is_deleted=None,
@@ -380,6 +384,7 @@ class BackupJobProto(object):
         self.exclusion_ranges = exclusion_ranges
         self.full_backup_job_policy = full_backup_job_policy
         self.full_backup_sla_time_mins = full_backup_sla_time_mins
+        self.global_include_exclude = global_include_exclude
         self.indexing_policy = indexing_policy
         self.is_active = is_active
         self.is_deleted = is_deleted
@@ -477,6 +482,7 @@ class BackupJobProto(object):
                 exclusion_ranges.append(cohesity_management_sdk.models.backup_job_proto_exclusion_time_range.BackupJobProtoExclusionTimeRange.from_dictionary(structure))
         full_backup_job_policy = cohesity_management_sdk.models.job_policy_proto.JobPolicyProto.from_dictionary(dictionary.get('fullBackupJobPolicy')) if dictionary.get('fullBackupJobPolicy') else None
         full_backup_sla_time_mins = dictionary.get('fullBackupSlaTimeMins')
+        global_include_exclude = dictionary.get('globalIncludeExclude') if dictionary.get('globalIncludeExclude') else None
         indexing_policy = cohesity_management_sdk.models.indexing_policy_proto.IndexingPolicyProto.from_dictionary(dictionary.get('indexingPolicy')) if dictionary.get('indexingPolicy') else None
         is_active = dictionary.get('isActive')
         is_deleted = dictionary.get('isDeleted')
@@ -548,6 +554,7 @@ class BackupJobProto(object):
                    exclusion_ranges,
                    full_backup_job_policy,
                    full_backup_sla_time_mins,
+                   global_include_exclude,
                    indexing_policy,
                    is_active,
                    is_deleted,

@@ -11,7 +11,6 @@ from cohesity_management_sdk.models.cluster import Cluster
 from cohesity_management_sdk.models.cluster_status_result import ClusterStatusResult
 from cohesity_management_sdk.exceptions.request_error_error_exception import RequestErrorErrorException
 
-
 class ClusterController(BaseController):
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
     def __init__(self, client=None, call_back=None):
@@ -64,7 +63,6 @@ class ClusterController(BaseController):
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
-
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body,
                                               BasicClusterInfo.from_dictionary)

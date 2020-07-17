@@ -56,8 +56,8 @@ class ChangeServiceStateParameters(object):
             applications on the Cohesity Data Platform. 'kBifrostBroker' is a
             service for communicating with the Cohesity proxies for
             multitenancy. 'kSmb2Proxy' is a new SMB protocol service. 'kOs'
-            can be specified in order to do a full reboot.
-
+            can be specified in order to do a full reboot. 'kAtom' is a
+            service for receiving data for the Continuous Data Protection.
     """
 
     # Create a mapping from Model property names to API property names

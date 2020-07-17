@@ -879,13 +879,13 @@ class ViewsController(BaseController):
                 result. If this field is set to true, only the list of users
                 who has exceeded the alert threshold will be returned.
             unix_uid (int, optional): If interested in a user via
-                unix-identifier, include UnixUid. Otherwise, If valid unix-id
+                unix-identifier, include UnixUid. Otherwise, If a valid unix-id
                 to SID mappings are available (i.e., when mixed mode is
                 enabled) the server will perform the necessary id mapping and
                 return the correct usage irrespective of whether the unix id /
                 SID is provided.
             sid (string, optional): If interested in a user via smb_client,
-                include SID. Otherwise, If valid unix-id to SID mappings are
+                include SID. Otherwise, If a valid unix-id to SID mappings are
                 available (i.e., when mixed mode is enabled) the server will
                 perform the necessary id mapping and return the correct usage
                 irrespective of whether the unix id / SID is provided. The

@@ -933,6 +933,13 @@ class RestoreTasksController(BaseController):
             raise
 
     def search_restored_files(self,
+                              must_have_tags=None,
+                              might_have_tags=None,
+                              must_have_snapshot_tags=None,
+                              might_have_snapshot_tags=None,
+                              paginate=None,
+                              page_size=None,
+                              pagination_cookie=None,
                               search=None,
                               job_ids=None,
                               registered_source_ids=None,
@@ -959,6 +966,28 @@ class RestoreTasksController(BaseController):
         in the source objects (such as VMs).
 
         Args:
+            must_have_tags(list of string, optional): Specifies tags which must
+                be all present in the document.
+            might_have_tags(list of string, optional): Specifies list of tags,
+                one of which might be present in the document. These are OR'ed
+                together and the resulting criteria AND'ed with the rest of the
+                query.
+            must_have_snapshot_tags(list of string, optional): Specifies
+                snapshot tags which must be all present in the document.
+            might_have_snapshot_tags(list of string, optional): Specifies list
+                of snapshot tags, one of which might be present in the
+                document. These are OR'ed together and the resulting criteria
+                AND'ed with the rest of the query.
+            paginate(bool, optional): Specifies bool to control pagination of
+                search results. Only valid for librarian queries. If this is
+                set to true and a pagination cookie is provided, search will be
+                resumed.
+            page_size(int , optional): Specifies pagesize for pagination. Only
+                valid for librarian queries. Effective only when Paginate is
+                set to true.
+            pagination_cookie(string, optional): Specifies cookie for resuming
+                search if pagination is being used. Only valid for librarian
+                queries. Effective only when Paginate is set to true.
             search (string, optional): Filter by searching for sub-strings in
                 the item name. The specified string can match any part of the
                 item name. For example: "vm" or "123" both match the item name
@@ -1029,6 +1058,13 @@ class RestoreTasksController(BaseController):
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
+                'mustHaveTags': must_have_tags,
+                'mightHaveTags': might_have_tags,
+                'mustHaveSnapshotTags': must_have_snapshot_tags,
+                'mightHaveSnapshotTags': might_have_snapshot_tags,
+                'paginate': paginate,
+                'pageSize': page_size,
+                'paginationCookie': pagination_cookie,
                 'search': search,
                 'jobIds': job_ids,
                 'registeredSourceIds': registered_source_ids,

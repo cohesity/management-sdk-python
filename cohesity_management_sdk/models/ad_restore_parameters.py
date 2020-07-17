@@ -10,8 +10,13 @@ class AdRestoreParameters(object):
     Specifies the parameters specific to Application domain controller.
 
     Attributes:
+        ad_options (string): Specifies the Active Directory options for the
+            Restore task.
         credentials (Credentials): Specifies credentials to access a target
             source.
+        mount_and_restore (bool): Specifies the option to mount the AD snapshot
+            database and restore the AD objects in a single restore task.
+            AdOptions must be set if this is set to true.
         port (int): Specifies the port on which the AD domain controller's
             NTDS database will be mounted.
 
@@ -19,17 +24,23 @@ class AdRestoreParameters(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "ad_options":'adOptions',
         "credentials":'credentials',
+        "mount_and_restore":'mountAndRestore',
         "port":'port'
     }
 
     def __init__(self,
+                 ad_port=None,
                  credentials=None,
+                 mount_and_restore=None,
                  port=None):
         """Constructor for the AdRestoreParameters class"""
 
         # Initialize members of the class
+        self.ad_options = ad_options
         self.credentials = credentials
+        self.mount_and_restore = mount_and_restore
         self.port = port
 
 
@@ -51,11 +62,15 @@ class AdRestoreParameters(object):
             return None
 
         # Extract variables from the dictionary
+        ad_options = dictionary.get("adOptions")
         credentials = cohesity_management_sdk.models.credentials.Credentials.from_dictionary(dictionary.get('credentials')) if dictionary.get('credentials') else None
+        mount_and_restore = dictionary.get('mountAndRestore')
         port = dictionary.get('port')
 
         # Return an object of this model
-        return cls(credentials,
+        return cls(ad_options,
+                   credentials,
+                   mount_and_restore,
                    port)
 
 

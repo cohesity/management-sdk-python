@@ -10,10 +10,10 @@ class AwsParams(object):
     Specifies various resources when converting and deploying a VM to AWS.
 
     Attributes:
-        instance_id (long|int): Specfies id of the AWS instance type in which
+        instance_id (long|int): Specifies id of the AWS instance type in which
             to deploy the VM.
         network_security_group_ids (list of long|int): Specifies ids of the
-            netwrok security groups within above VPC.
+            network security groups within above VPC.
         rds_params (RdsParams): Specifies rds params for the restore
             operation.
         region (long|int): Specifies id of the AWS region in which to deploy
