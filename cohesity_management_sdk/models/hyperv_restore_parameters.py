@@ -41,6 +41,8 @@ class HypervRestoreParameters(object):
             name to derive a new name for the recovered or cloned object. By
             default, cloned or recovered objects retain their original name.
             Length of this field is limited to 8 characters.
+        preserve_tags (bool): Specifies whether or not to preserve tags during
+            the operation.
         resource_id (long|int): The resource (HyperV host) to which the
             restored VM will be attached.  This field is optional for a
             kRecoverVMs task if the VMs are being restored to its original
@@ -61,6 +63,7 @@ class HypervRestoreParameters(object):
         "network_id":'networkId',
         "powered_on":'poweredOn',
         "prefix":'prefix',
+        "preserve_tags":'preserveTags',
         "resource_id":'resourceId',
         "suffix":'suffix'
     }
@@ -71,6 +74,7 @@ class HypervRestoreParameters(object):
                  network_id=None,
                  powered_on=None,
                  prefix=None,
+                 preserve_tags=None,
                  resource_id=None,
                  suffix=None):
         """Constructor for the HypervRestoreParameters class"""
@@ -81,6 +85,7 @@ class HypervRestoreParameters(object):
         self.network_id = network_id
         self.powered_on = powered_on
         self.prefix = prefix
+        self.preserve_tags = preserve_tags
         self.resource_id = resource_id
         self.suffix = suffix
 
@@ -108,6 +113,7 @@ class HypervRestoreParameters(object):
         network_id = dictionary.get('networkId')
         powered_on = dictionary.get('poweredOn')
         prefix = dictionary.get('prefix')
+        preserve_tags = dictionary.get('preserveTags', None)
         resource_id = dictionary.get('resourceId')
         suffix = dictionary.get('suffix')
 
@@ -117,6 +123,7 @@ class HypervRestoreParameters(object):
                    network_id,
                    powered_on,
                    prefix,
+                   preserve_tags,
                    resource_id,
                    suffix)
 

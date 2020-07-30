@@ -7,7 +7,9 @@ from cohesity_management_sdk.http.auth.auth_manager import AuthManager
 from cohesity_management_sdk.controllers.access_tokens_controller import AccessTokensController
 from cohesity_management_sdk.controllers.active_directory_controller import ActiveDirectoryController
 from cohesity_management_sdk.controllers.alerts_controller import AlertsController
+from cohesity_management_sdk.controllers.analytics_controller import AnalyticsController
 from cohesity_management_sdk.controllers.antivirus_service_group_controller import AntivirusServiceGroupController
+from cohesity_management_sdk.controllers.app_instance_controller import AppInstanceController
 from cohesity_management_sdk.controllers.audit_controller import AuditController
 from cohesity_management_sdk.controllers.cluster_controller import ClusterController
 from cohesity_management_sdk.controllers.certificates_controller import CertificatesController
@@ -18,11 +20,13 @@ from cohesity_management_sdk.controllers.groups_controller import GroupsControll
 from cohesity_management_sdk.controllers.idps_controller import IdpsController
 from cohesity_management_sdk.controllers.interface_controller import InterfaceController
 from cohesity_management_sdk.controllers.interface_group_controller import InterfaceGroupController
-from cohesity_management_sdk.controllers.kms_configuration_controller import KmsConfigurationController
+from cohesity_management_sdk.controllers.ip_controller import IpController
+from cohesity_management_sdk.controllers.kms_configuration_response_controller import KmsConfigurationResponseController
 from cohesity_management_sdk.controllers.ldap_provider_controller import LdapProviderController
 from cohesity_management_sdk.controllers.license_controller import LicenseController
 from cohesity_management_sdk.controllers.monitoring_controller import MonitoringController
 from cohesity_management_sdk.controllers.network_controller import NetworkController
+from cohesity_management_sdk.controllers.tags_controller import TagsController
 from cohesity_management_sdk.controllers.views_controller import ViewsController
 from cohesity_management_sdk.controllers.packages_controller import PackagesController
 from cohesity_management_sdk.controllers.protection_sources_controller import ProtectionSourcesController
@@ -63,6 +67,14 @@ class CohesityClient(object):
     @lazy_property
     def active_directory(self):
         return ActiveDirectoryController()
+
+    @lazy_property
+    def app_instance(self):
+        return AppInstanceController()
+
+    @lazy_property
+    def analytics(self):
+        return AnalyticsController()
 
     @lazy_property
     def alerts(self):
@@ -113,12 +125,16 @@ class CohesityClient(object):
         return InterfaceGroupController()
 
     @lazy_property
+    def ip(self):
+        return IpController()
+
+    @lazy_property
     def license(self):
         return LicenseController()
 
     @lazy_property
     def kms_configuration(self):
-        return KmsConfigurationController()
+        return KmsConfigurationResponseController()
 
     @lazy_property
     def ldap_provider(self):
@@ -219,6 +235,10 @@ class CohesityClient(object):
     @lazy_property
     def stats(self):
         return StatsController()
+
+    @lazy_property
+    def tags(self):
+        return TagsController()
 
     @lazy_property
     def tenant(self):

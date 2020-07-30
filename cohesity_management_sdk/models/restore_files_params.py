@@ -3,6 +3,7 @@
 
 import cohesity_management_sdk.models.restore_files_params_directory_name_security_style_map_entry
 import cohesity_management_sdk.models.entity_proto
+import cohesity_management_sdk.models.file_uptiering_params
 import cohesity_management_sdk.models.restore_files_preferences
 import cohesity_management_sdk.models.restored_file_info
 import cohesity_management_sdk.models.credentials
@@ -23,8 +24,10 @@ class RestoreFilesParams(object):
             permission for the given directory for Qtrees.
         is_archive_flr (bool): Whether this is a file restore operation from
             an archive.
-        is_file_volume_restore (bool): Whether this is a file based volume
-            restore.
+        is_file_volume_restore (bool): Whether this will use an existing agent
+            on the target VM to do the restore.
+            This field is deprecated. restore_method should be used for populating
+            use of existing agent.
         is_mount_based_flr (bool): Whether this is a mount based file restore
             operation
         nas_protocol_type_vec (list of int): The NAS protocol type(s) of this
@@ -37,6 +40,8 @@ class RestoreFilesParams(object):
         restore_files_preferences (RestoreFilesPreferences): This message
             captures preferences from the user while restoring the files on
             the target.
+        restore_method (int): Determines the type of method to be used to
+            perform FLR.
         restored_file_info_vec (list of RestoredFileInfo): Information
             regarding files and directories.
         target_entity (EntityProto): Specifies the attributes and the latest
@@ -51,6 +56,8 @@ class RestoreFilesParams(object):
             VMware environment to indicate the OS type of the target entity.
             NOTE: This is expected to be set since magneto does not know the
             host type for VMware entities.
+        uptier_params (FileUptieringParams): Set if this is NAS Migration
+            uptier operation.
         vpc_connector_entity (EntityProto): Specifies the attributes and the
             latest statistics about an entity.
 
@@ -66,12 +73,14 @@ class RestoreFilesParams(object):
         "proxy_entity":'proxyEntity',
         "proxy_entity_parent_source":'proxyEntityParentSource',
         "restore_files_preferences":'restoreFilesPreferences',
+        "restore_method":'restoreMethod',
         "restored_file_info_vec":'restoredFileInfoVec',
         "target_entity":'targetEntity',
         "target_entity_credentials":'targetEntityCredentials',
         "target_entity_parent_source":'targetEntityParentSource',
         "target_host_entity":'targetHostEntity',
         "target_host_type":'targetHostType',
+        "uptier_params":'uptierParams',
         "vpc_connector_entity":'vpcConnectorEntity'
     }
 
@@ -84,12 +93,14 @@ class RestoreFilesParams(object):
                  proxy_entity=None,
                  proxy_entity_parent_source=None,
                  restore_files_preferences=None,
+                 restore_method=None,
                  restored_file_info_vec=None,
                  target_entity=None,
                  target_entity_credentials=None,
                  target_entity_parent_source=None,
                  target_host_entity=None,
                  target_host_type=None,
+                 uptier_params=None,
                  vpc_connector_entity=None):
         """Constructor for the RestoreFilesParams class"""
 
@@ -102,12 +113,14 @@ class RestoreFilesParams(object):
         self.proxy_entity = proxy_entity
         self.proxy_entity_parent_source = proxy_entity_parent_source
         self.restore_files_preferences = restore_files_preferences
+        self.restore_method  = restore_method
         self.restored_file_info_vec = restored_file_info_vec
         self.target_entity = target_entity
         self.target_entity_credentials = target_entity_credentials
         self.target_entity_parent_source = target_entity_parent_source
         self.target_host_entity = target_host_entity
         self.target_host_type = target_host_type
+        self.uptier_params = uptier_params
         self.vpc_connector_entity = vpc_connector_entity
 
 
@@ -141,6 +154,7 @@ class RestoreFilesParams(object):
         proxy_entity = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('proxyEntity')) if dictionary.get('proxyEntity') else None
         proxy_entity_parent_source = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('proxyEntityParentSource')) if dictionary.get('proxyEntityParentSource') else None
         restore_files_preferences = cohesity_management_sdk.models.restore_files_preferences.RestoreFilesPreferences.from_dictionary(dictionary.get('restoreFilesPreferences')) if dictionary.get('restoreFilesPreferences') else None
+        restore_method = dictionary.get('restoreMethod')
         restored_file_info_vec = None
         if dictionary.get('restoredFileInfoVec') != None:
             restored_file_info_vec = list()
@@ -151,6 +165,7 @@ class RestoreFilesParams(object):
         target_entity_parent_source = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('targetEntityParentSource')) if dictionary.get('targetEntityParentSource') else None
         target_host_entity = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('targetHostEntity')) if dictionary.get('targetHostEntity') else None
         target_host_type = dictionary.get('targetHostType')
+        uptier_params = cohesity_management_sdk.models.file_uptiering_params.FileUptieringParams.from_dictionary(dictionary.get('uptierParams')) if dictionary.get('uptierParams') else None
         vpc_connector_entity = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('vpcConnectorEntity')) if dictionary.get('vpcConnectorEntity') else None
 
         # Return an object of this model
@@ -162,12 +177,14 @@ class RestoreFilesParams(object):
                    proxy_entity,
                    proxy_entity_parent_source,
                    restore_files_preferences,
+                   restore_method,
                    restored_file_info_vec,
                    target_entity,
                    target_entity_credentials,
                    target_entity_parent_source,
                    target_host_entity,
                    target_host_type,
+                   uptier_params,
                    vpc_connector_entity)
 
 

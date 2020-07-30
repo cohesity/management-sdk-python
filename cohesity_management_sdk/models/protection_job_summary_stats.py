@@ -16,7 +16,7 @@ class ProtectionJobSummaryStats(object):
             fastest successful Protection Run so far. It is specified as a
             Unix epoch Timestamp (in microseconds).
         num_canceled_runs (long|int): Specifies the number of runs that were
-            canceled.
+            cancelled.
         num_failed_runs (long|int): Specifies the number of runs that failed
             to finish.
         num_sla_violations (long|int): Specifies the number of runs having SLA

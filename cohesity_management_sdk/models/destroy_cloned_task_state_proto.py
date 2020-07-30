@@ -9,6 +9,7 @@ import cohesity_management_sdk.models.destroy_mount_volumes_task_info_proto
 import cohesity_management_sdk.models.error_proto
 import cohesity_management_sdk.models.connector_params
 import cohesity_management_sdk.models.user_information
+import cohesity_management_sdk.models.restored_object_vcd_config_proto
 
 class DestroyClonedTaskStateProto(object):
 
@@ -17,6 +18,9 @@ class DestroyClonedTaskStateProto(object):
     TODO: type model description here.
 
     Attributes:
+        action_executor_target_type (int): Denotes the target for action
+            executor(Bridge/Bridge_Proxy) on which task on slave should
+            execute actions.
         clone_task_name (string): The name of the clone task.
         datastore_entity (EntityProto): Specifies the attributes and the
             latest statistics about an entity.
@@ -90,11 +94,14 @@ class DestroyClonedTaskStateProto(object):
             to.
         view_name_deprecated (string): The view name as provided by the user
             for the clone operation.
+        vcd_config (RestoredObjectVCDConfigProto): VCD config for the
+            restored object.
 
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "action_executor_target_type":'actionExecutorTargetType',
         "clone_task_name":'cloneTaskName',
         "datastore_entity":'datastoreEntity',
         "deploy_vms_to_cloud_task_state":'deployVmsToCloudTaskState',
@@ -118,11 +125,13 @@ class DestroyClonedTaskStateProto(object):
         "mtype":'type',
         "user":'user',
         "user_info":'userInfo',
+        "vcd_config":'vcdConfig',
         "view_box_id":'viewBoxId',
         "view_name_deprecated":'viewName_DEPRECATED'
     }
 
     def __init__(self,
+                 action_executor_target_type=None,
                  clone_task_name=None,
                  datastore_entity=None,
                  deploy_vms_to_cloud_task_state=None,
@@ -146,11 +155,13 @@ class DestroyClonedTaskStateProto(object):
                  mtype=None,
                  user=None,
                  user_info=None,
+                 vcd_config=None,
                  view_box_id=None,
                  view_name_deprecated=None):
         """Constructor for the DestroyClonedTaskStateProto class"""
 
         # Initialize members of the class
+        self.action_executor_target_type = action_executor_target_type
         self.clone_task_name = clone_task_name
         self.datastore_entity = datastore_entity
         self.deploy_vms_to_cloud_task_state = deploy_vms_to_cloud_task_state
@@ -174,6 +185,7 @@ class DestroyClonedTaskStateProto(object):
         self.mtype = mtype
         self.user = user
         self.user_info = user_info
+        self.vcd_config = vcd_config
         self.view_box_id = view_box_id
         self.view_name_deprecated = view_name_deprecated
 
@@ -196,6 +208,7 @@ class DestroyClonedTaskStateProto(object):
             return None
 
         # Extract variables from the dictionary
+        action_executor_target_type = dictionary.get('actionExecutorTargetType')
         clone_task_name = dictionary.get('cloneTaskName')
         datastore_entity = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('datastoreEntity')) if dictionary.get('datastoreEntity') else None
         deploy_vms_to_cloud_task_state = cohesity_management_sdk.models.deploy_v_ms_to_cloud_task_state_proto.DeployVMsToCloudTaskStateProto.from_dictionary(dictionary.get('deployVmsToCloudTaskState')) if dictionary.get('deployVmsToCloudTaskState') else None
@@ -219,11 +232,13 @@ class DestroyClonedTaskStateProto(object):
         mtype = dictionary.get('type')
         user = dictionary.get('user')
         user_info = cohesity_management_sdk.models.user_information.UserInformation.from_dictionary(dictionary.get('userInfo')) if dictionary.get('userInfo') else None
+        vcd_config = cohesity_management_sdk.models.restored_object_vcd_config_proto.RestoredObjectVCDConfigProto.from_dictionary(dictionary.get('vcdConfig'))
         view_box_id = dictionary.get('viewBoxId')
         view_name_deprecated = dictionary.get('viewName_DEPRECATED')
 
         # Return an object of this model
-        return cls(clone_task_name,
+        return cls(action_executor_target_type,
+                   clone_task_name,
                    datastore_entity,
                    deploy_vms_to_cloud_task_state,
                    destroy_clone_app_task_info,
@@ -246,6 +261,7 @@ class DestroyClonedTaskStateProto(object):
                    mtype,
                    user,
                    user_info,
+                   vcd_config,
                    view_box_id,
                    view_name_deprecated)
 

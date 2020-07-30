@@ -7,15 +7,17 @@ class RemoteHostConnectorParams(object):
 
     """Implementation of the 'RemoteHostConnectorParams' model.
 
-    TODO: type model description here.
+    Contains parameters to connect to a remote host.
 
     Attributes:
-        credentials (Credentials): Specifies credentials to access a target
-            source.
+        credentials (Credentials): Credentials that will be used to login to
+            the remote host. For env of type kLinux, it is expected that user
+            has setup the password-less access to the remote host. So only
+            username field MUST be specified.
         host_address (string): Address (i.e., IP, hostname or FQDN) of the
             host to connect to. Magneto will connect using ssh or equivalent
             to the host.
-        host_type (int): Type of host to connect to.
+        host_type (int): Execution status of the host_address.
 
     """
 
@@ -46,7 +48,7 @@ class RemoteHostConnectorParams(object):
         Args:
             dictionary (dictionary): A dictionary representation of the object as
             obtained from the deserialization of the server's response. The keys
-            MUST match property names in the API description.
+            MUST match property names in the API dehost_addression.
 
         Returns:
             object: An instance of this structure class.

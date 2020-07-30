@@ -28,6 +28,12 @@ class GcpProtectionSource(object):
             represents a custom metadata present on instances. 'kTag'
             represents a network tag on instances. 'kVPCConnector' represents
             a VPC connector used for serverless VPC access.
+        host_project_id (string): Specifies the host project id. It is
+            populated in entities of type kSubnet if the subnet is part of a
+            shared VPC. This contains the ID of host project the subnet
+            belongs to. Populated in entities of type kProject if the
+            project is a service project in a Shared VPC setup. This contains
+            the ID of the host project it is attached to.
         host_type (HostTypeEnum): Specifies the OS type of the Protection
             Source of type 'kVirtualMachine' such as 'kWindows' or 'kLinux'.
             overrideDescription: true 'kLinux' indicates the Linux operating
@@ -100,6 +106,7 @@ class GcpProtectionSource(object):
         "client_email_address":'clientEmailAddress',
         "client_private_key":'clientPrivateKey',
         "gcp_type":'gcpType',
+        "host_project_id":'hostProjectId',
         "host_type":'hostType',
         "ip_addresses_vm":'ipAddressesVM',
         "name":'name',
@@ -118,6 +125,7 @@ class GcpProtectionSource(object):
                  client_email_address=None,
                  client_private_key=None,
                  gcp_type=None,
+                 host_project_id=None,
                  host_type=None,
                  ip_addresses_vm=None,
                  name=None,
@@ -136,6 +144,7 @@ class GcpProtectionSource(object):
         self.client_email_address = client_email_address
         self.client_private_key = client_private_key
         self.gcp_type = gcp_type
+        self.host_project_id = host_project_id
         self.host_type = host_type
         self.ip_addresses_vm = ip_addresses_vm
         self.name = name
@@ -171,6 +180,7 @@ class GcpProtectionSource(object):
         client_email_address = dictionary.get('clientEmailAddress')
         client_private_key = dictionary.get('clientPrivateKey')
         gcp_type = dictionary.get('gcpType')
+        host_project_id = dictionary.get('hostProjectId', None)
         host_type = dictionary.get('hostType')
         ip_addresses_vm = dictionary.get('ipAddressesVM')
         name = dictionary.get('name')
@@ -188,6 +198,7 @@ class GcpProtectionSource(object):
         return cls(client_email_address,
                    client_private_key,
                    gcp_type,
+                   host_project_id,
                    host_type,
                    ip_addresses_vm,
                    name,

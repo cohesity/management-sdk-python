@@ -19,8 +19,9 @@ class Office365Credentials(object):
         scope (string): Specifies a space separated list of scopes/permissions
             for the user. eg: Incase of MS Graph APIs for Office365, scope is
             set to default: https://graph.microsoft.com/.default
-        use_o_auth_for_exchange_online (bool): Specifies whether OAuth should
-            be used for authentication in case of Exchange Online.
+        use_o_auth_for_exchange_online (bool): This field is deprecated from
+            here and placed in RegisteredSourceInfo and
+            ProtectionSourceParameters. deprecated: true
 
     """
 

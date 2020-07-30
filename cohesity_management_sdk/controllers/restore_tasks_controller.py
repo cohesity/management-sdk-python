@@ -455,6 +455,96 @@ class RestoreTasksController(BaseController):
             self.logger.error(e, exc_info=True)
             raise
 
+    def get_one_drive_documents(self,
+                                tenant_ids=None,
+                                all_under_hierarchy=None,
+                                document_name=None,
+                                domain_ids=None,
+                                mailbox_ids=None,
+                                protection_job_ids=None):
+        """Does a GET request to /public/restore/office365/onedrive/documents.
+
+        Search for OneDrive files and folder to recover that match the
+        specified
+        search and filter criterias on the Cohesity cluster.
+
+        Args:
+            tenant_ids (string, optional): TenantId specifies the tenant
+                whose action resulted in the audit log.
+            all_under_hierarchy (bool, optional): AllUnderHierarchy specifies
+                if logs of all the tenants under the hierarchy of tenant with
+                id TenantId should be returned.
+            document_name (string, optional): Specifies the document
+                (file/folder) name.
+            domain_ids (list of int, optional): Specifies the domain Ids in
+                which Users' OneDrives are registered.
+            mailbox_ids (list of int, optional): Specifies the Office365 User
+                Ids which is the owner of the OneDrive.
+            protection_job_ids (list of string, optional): Specifies the
+                protection job Ids which have backed up mailbox(es) contianing
+                emails/folders.
+
+        Returns:
+            FileSearchResults: Response from the API. Success
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+        try:
+            self.logger.info('get_one_drive_documents called.')
+
+            # Prepare query URL
+            self.logger.info(
+                'Preparing query URL for get_one_drive_documents.')
+            _url_path = '/public/restore/office365/onedrive/documents'
+            _query_builder = Configuration.get_base_uri()
+            _query_builder += _url_path
+            _query_parameters = {
+                'tenantIds': tenant_ids,
+                'allUnderHierarchy': all_under_hierarchy,
+                'documentName': document_name,
+                'domainIds': domain_ids,
+                'mailboxIds': mailbox_ids,
+                'protectionJobIds': protection_job_ids
+            }
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
+            _query_url = APIHelper.clean_url(_query_builder)
+
+            # Prepare headers
+            self.logger.info('Preparing headers for get_one_drive_documents.')
+            _headers = {'accept': 'application/json'}
+
+            # Prepare and execute request
+            self.logger.info(
+                'Preparing and executing request for get_one_drive_documents.')
+            _request = self.http_client.get(_query_url, headers=_headers)
+            AuthManager.apply(_request)
+            _context = self.execute_request(_request,
+                                            name='get_one_drive_documents')
+
+            # Endpoint and global error handling using HTTP status codes.
+            self.logger.info(
+                'Validating response for get_one_drive_documents.')
+            if _context.response.status_code == 0:
+                raise RequestErrorErrorException('Error', _context)
+            self.validate_response(_context)
+
+            # Return appropriate type
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                FileSearchResults.from_dictionary)
+
+        except Exception as e:
+            self.logger.error(e, exc_info=True)
+            raise
+
+
     def get_ad_objects_restore_status(self, restore_task_id=None):
         """Does a GET request to /public/restore/adObjects/status.
 
@@ -1970,7 +2060,7 @@ Success
                 Microsoft's Azure Protection Source environment. 'kNetapp'
                 indicates the Netapp Protection Source environment. 'kAgent'
                 indicates the Agent Protection Source environment.
-                'kGenericNas' indicates the Genreric Network Attached Storage
+                'kGenericNas' indicates the Generic Network Attached Storage
                 Protection Source environment. 'kAcropolis' indicates the
                 Acropolis Protection Source environment. 'kPhsicalFiles'
                 indicates the Physical Files Protection Source environment.
@@ -1985,8 +2075,7 @@ Success
                 Cloud Platform Protection Source environment. 'kFlashBlade'
                 indicates the Flash Blade Protection Source environment.
                 'kAWSNative' indicates the AWS Native Protection Source
-                environment. 'kVCD' indicates the VMware's Virtual cloud
-                Director Protection Source environment. 'kO365' indicates the
+                environment. 'kO365' indicates the
                 Office 365 Protection Source environment. 'kO365Outlook'
                 indicates Office 365 outlook Protection Source environment.
                 'kHyperFlex' indicates the Hyper Flex Protection Source
@@ -1995,6 +2084,9 @@ Success
                 Protection Source environment. 'kKubernetes' indicates a
                 Kubernetes Protection Source environment. 'kElastifile'
                 indicates Elastifile Protection Source environment.
+                'kAD' indicates Active Directory Protection Source environment.
+                'kRDSSnapshotManager' indicates AWS RDS Protection Source
+                environment.
 
         Returns:
             list of RestoreTask: Response from the API. Success

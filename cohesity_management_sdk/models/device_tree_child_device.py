@@ -12,6 +12,8 @@ class DeviceTreeChildDevice(object):
 
     Attributes:
         device (DeviceTree): TODO: type description here.
+        device_type (int): This specifies how the parent device is using this
+            child device.
         partition_slice (DeviceTreePartitionSlice): TODO: type description
             here.
 
@@ -20,16 +22,19 @@ class DeviceTreeChildDevice(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "device":'device',
+        "device_type":'deviceType',
         "partition_slice":'partitionSlice'
     }
 
     def __init__(self,
                  device=None,
+                 device_type=None,
                  partition_slice=None):
         """Constructor for the DeviceTreeChildDevice class"""
 
         # Initialize members of the class
         self.device = device
+        self.device_type = device_type
         self.partition_slice = partition_slice
 
 
@@ -52,10 +57,12 @@ class DeviceTreeChildDevice(object):
 
         # Extract variables from the dictionary
         device = cohesity_management_sdk.models.device_tree.DeviceTree.from_dictionary(dictionary.get('device')) if dictionary.get('device') else None
+        device_type = dictionary.get('deviceType', None)
         partition_slice = cohesity_management_sdk.models.device_tree_partition_slice.DeviceTreePartitionSlice.from_dictionary(dictionary.get('partitionSlice')) if dictionary.get('partitionSlice') else None
 
         # Return an object of this model
         return cls(device,
+                   device_type,
                    partition_slice)
 
 

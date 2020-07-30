@@ -73,7 +73,6 @@ class EnvironmentRegisterProtectionSourceParametersEnum(object):
         KGCP: TODO: type description here.
         KFLASHBLADE: TODO: type description here.
         KAWSNATIVE: TODO: type description here.
-        KVCD: TODO: type description here.
         KO365: TODO: type description here.
         KO365OUTLOOK: TODO: type description here.
         KHYPERFLEX: TODO: type description here.
@@ -81,6 +80,8 @@ class EnvironmentRegisterProtectionSourceParametersEnum(object):
         KAZURENATIVE: TODO: type description here.
         KKUBERNETES: TODO: type description here.
         KELASTIFILE: TODO: type description here.
+        KAD: TODO: type description here.
+        KRDSSNAPSHOTMANAGER: TODO: type description here.
 
     """
 
@@ -132,8 +133,6 @@ class EnvironmentRegisterProtectionSourceParametersEnum(object):
 
     KAWSNATIVE = 'kAWSNative'
 
-    KVCD = 'kVCD'
-
     KO365 = 'kO365'
 
     KO365OUTLOOK = 'kO365Outlook'
@@ -147,4 +146,8 @@ class EnvironmentRegisterProtectionSourceParametersEnum(object):
     KKUBERNETES = 'kKubernetes'
 
     KELASTIFILE = 'kElastifile'
+
+    KAD = 'kAD'
+
+    KRDSSNAPSHOTMANAGER = 'kRDSSnapshotManager'
 

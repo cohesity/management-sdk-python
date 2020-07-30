@@ -12,6 +12,8 @@ class PhysicalNodeConfiguration(object):
         node_id (long|int): Specifies the Node ID for this node.
         node_ip (string): Specifies the Node IP address for this node.
         node_ipmi_ip (string): Specifies IPMI IP for this node.
+        use_as_compute_node (bool): Specifies whether to use the Node for
+            compute only.
 
     """
 
@@ -19,13 +21,15 @@ class PhysicalNodeConfiguration(object):
     _names = {
         "node_id":'nodeId',
         "node_ip":'nodeIp',
-        "node_ipmi_ip":'nodeIpmiIp'
+        "node_ipmi_ip":'nodeIpmiIp',
+        "use_as_compute_node":'useAsComputeNode'
     }
 
     def __init__(self,
                  node_id=None,
                  node_ip=None,
-                 node_ipmi_ip=None):
+                 node_ipmi_ip=None,
+                 use_as_compute_node=None):
         """Constructor for the PhysicalNodeConfiguration class"""
 
         # Initialize members of the class
@@ -55,10 +59,12 @@ class PhysicalNodeConfiguration(object):
         node_id = dictionary.get('nodeId')
         node_ip = dictionary.get('nodeIp')
         node_ipmi_ip = dictionary.get('nodeIpmiIp')
+        use_as_compute_node = dictionary.get('useAsComputeNode')
 
         # Return an object of this model
         return cls(node_id,
                    node_ip,
-                   node_ipmi_ip)
+                   node_ipmi_ip,
+                   use_as_compute_node)
 
 

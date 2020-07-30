@@ -26,7 +26,7 @@ class PhysicalProtectionSource(object):
             SE. 'kOther' indicates the other types of operating system.
         id (UniversalId): Specifies a unique id of a Physical Protection
             Source. The id is unique across Cohesity Clusters.
-        memory_size_bytes (long|int): Specifies the total memory ont the host
+        memory_size_bytes (long|int): Specifies the total memory on the host
             in bytes.
         name (string): Specifies a human readable name of the Protection
             Source.

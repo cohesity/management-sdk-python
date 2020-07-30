@@ -14,7 +14,7 @@ class NetworkingInformation(object):
 
     Attributes:
         resource_vec (list of ClusterNetworkingResourceInformation): The list
-            of resources on the the system that are accessible by an IP
+            of resources on the system that are accessible by an IP
             address.
 
     """

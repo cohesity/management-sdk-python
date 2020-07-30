@@ -2,6 +2,7 @@
 # Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.application_restore_object
+import cohesity_management_sdk.models.protection_source_and_application_restore_objects
 import cohesity_management_sdk.models.restore_object_details
 import cohesity_management_sdk.models.vlan_parameters
 
@@ -141,7 +142,11 @@ class ApplicationsRestoreTaskRequest(object):
                 application_restore_objects.append(cohesity_management_sdk.models.application_restore_object.ApplicationRestoreObject.from_dictionary(structure))
         password = dictionary.get('password')
         username = dictionary.get('username')
-        protection_source_and_application_objects = dictionary.get('protectionSourceAndApplicationObjects')
+        protection_source_and_application_objects = None
+        if dictionary.get('protectionSourceAndApplicationObjects') != None:
+            protection_source_and_application_objects = list()
+            for each_object in dictionary.get('protectionSourceAndApplicationObjects'):
+                protection_source_and_application_objects.append(cohesity_management_sdk.models.protection_source_and_application_restore_objects.ProtectionSourceAndApplicationRestoreObjects(each_object))
         vlan_parameters = cohesity_management_sdk.models.vlan_parameters.VlanParameters.from_dictionary(dictionary.get('vlanParameters')) if dictionary.get('vlanParameters') else None
 
         # Return an object of this model

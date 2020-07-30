@@ -38,6 +38,9 @@ class PerformRestoreTaskStateProto(object):
     TODO: type model description here.
 
     Attributes:
+        action_executor_target_type (int): Denotes the target for action
+            executor(Bridge / BridgeProxy) on which task on slave should
+            execute actions.
         base (RestoreTaskStateBaseProto): TODO: type description here.
         can_teardown (bool): This is set if the clone operation has created
             any objects on the primary environment and teardown operation is
@@ -141,6 +144,8 @@ class PerformRestoreTaskStateProto(object):
         path_prefix_deprecated (string): TODO: type description here.
         power_state_config (PowerStateConfigProto): TODO: type description
             here.
+        preserve_tags (bool): Whether to preserve tags for the clone op.
+          This field is currently used by HyperV and VMWare.
         progress_monitor_task_path (string): Root path of a Pulse task
             tracking the progress of the restore task.
         recover_disks_task_state (RecoverDisksTaskStateProto): TODO: type
@@ -291,6 +296,7 @@ class PerformRestoreTaskStateProto(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "action_executor_target_type":'actionExecutorTargetType',
         "base":'base',
         "can_teardown":'canTeardown',
         "cdp_restore_progress_monitor_task_path":'cdpRestoreProgressMonitorTaskPath',
@@ -316,6 +322,7 @@ class PerformRestoreTaskStateProto(object):
         "parent_restore_task_id":'parentRestoreTaskId',
         "path_prefix_deprecated":'pathPrefix_DEPRECATED',
         "power_state_config":'powerStateConfig',
+        "preserve_tags":'preserveTags',
         "progress_monitor_task_path":'progressMonitorTaskPath',
         "recover_disks_task_state":'recoverDisksTaskState',
         "recover_volumes_task_state":'recoverVolumesTaskState',
@@ -354,6 +361,7 @@ class PerformRestoreTaskStateProto(object):
     }
 
     def __init__(self,
+                 action_executor_target_type=None,
                  base=None,
                  can_teardown=None,
                  cdp_restore_progress_monitor_task_path=None,
@@ -379,6 +387,7 @@ class PerformRestoreTaskStateProto(object):
                  parent_restore_task_id=None,
                  path_prefix_deprecated=None,
                  power_state_config=None,
+                 preserve_tags=None,
                  progress_monitor_task_path=None,
                  recover_disks_task_state=None,
                  recover_volumes_task_state=None,
@@ -417,6 +426,7 @@ class PerformRestoreTaskStateProto(object):
         """Constructor for the PerformRestoreTaskStateProto class"""
 
         # Initialize members of the class
+        self.action_executor_target_type = action_executor_target_type
         self.base = base
         self.can_teardown = can_teardown
         self.cdp_restore_progress_monitor_task_path = cdp_restore_progress_monitor_task_path
@@ -442,6 +452,7 @@ class PerformRestoreTaskStateProto(object):
         self.parent_restore_task_id = parent_restore_task_id
         self.path_prefix_deprecated = path_prefix_deprecated
         self.power_state_config = power_state_config
+        self.preserve_tags = preserve_tags
         self.progress_monitor_task_path = progress_monitor_task_path
         self.recover_disks_task_state = recover_disks_task_state
         self.recover_volumes_task_state = recover_volumes_task_state
@@ -497,6 +508,7 @@ class PerformRestoreTaskStateProto(object):
             return None
 
         # Extract variables from the dictionary
+        action_executor_target_type = dictionary.get('actionExecutorTargetType')
         base = cohesity_management_sdk.models.restore_task_state_base_proto.RestoreTaskStateBaseProto.from_dictionary(dictionary.get('base')) if dictionary.get('base') else None
         can_teardown = dictionary.get('canTeardown')
         cdp_restore_progress_monitor_task_path = dictionary.get('cdpRestoreProgressMonitorTaskPath')
@@ -530,6 +542,7 @@ class PerformRestoreTaskStateProto(object):
         parent_restore_task_id = dictionary.get('parentRestoreTaskId')
         path_prefix_deprecated = dictionary.get('pathPrefix_DEPRECATED')
         power_state_config = cohesity_management_sdk.models.power_state_config_proto.PowerStateConfigProto.from_dictionary(dictionary.get('powerStateConfig')) if dictionary.get('powerStateConfig') else None
+        preserve_tags = dictionary.get('preserveTags')
         progress_monitor_task_path = dictionary.get('progressMonitorTaskPath')
         recover_disks_task_state = cohesity_management_sdk.models.recover_disks_task_state_proto.RecoverDisksTaskStateProto.from_dictionary(dictionary.get('recoverDisksTaskState')) if dictionary.get('recoverDisksTaskState') else None
         recover_volumes_task_state = cohesity_management_sdk.models.recover_volumes_task_state_proto.RecoverVolumesTaskStateProto.from_dictionary(dictionary.get('recoverVolumesTaskState')) if dictionary.get('recoverVolumesTaskState') else None
@@ -579,7 +592,8 @@ class PerformRestoreTaskStateProto(object):
                 volume_info_vec.append(cohesity_management_sdk.models.volume_info.VolumeInfo.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(base,
+        return cls(action_executor_target_type,
+                   base,
                    can_teardown,
                    cdp_restore_progress_monitor_task_path,
                    cdp_restore_task,
@@ -604,6 +618,7 @@ class PerformRestoreTaskStateProto(object):
                    parent_restore_task_id,
                    path_prefix_deprecated,
                    power_state_config,
+                   preserve_tags,
                    progress_monitor_task_path,
                    recover_disks_task_state,
                    recover_volumes_task_state,

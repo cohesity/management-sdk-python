@@ -19,6 +19,8 @@ class OracleDBChannelInfo(object):
         db_unique_name (string): The unique name of the database.
         db_uuid (string): Database id, internal field, is filled by magneto
             master based on corresponding app entity id.
+        enable_dg_primary_backup (bool): If set to false, and if the DG database
+            role is primary, we will not allow the backup of that database.
         host_info_vec (list of OracleDBChannelInfoHostInfo): Vector of Oracle
             hosts from which we are allowed to take the backup/restore. In
             case of RAC database it may be more than one.
@@ -47,6 +49,7 @@ class OracleDBChannelInfo(object):
         "archivelog_keep_days":'archivelogKeepDays',
         "db_unique_name":'dbUniqueName',
         "db_uuid":'dbUuid',
+        "enable_dg_primary_backup":'enableDgPrimaryBackup',
         "host_info_vec":'hostInfoVec',
         "max_num_host":'maxNumHost',
         "num_channels":'numChannels'
@@ -56,6 +59,7 @@ class OracleDBChannelInfo(object):
                  archivelog_keep_days=None,
                  db_unique_name=None,
                  db_uuid=None,
+                 enable_dg_primary_backup=None,
                  host_info_vec=None,
                  max_num_host=None,
                  num_channels=None):
@@ -65,6 +69,7 @@ class OracleDBChannelInfo(object):
         self.archivelog_keep_days = archivelog_keep_days
         self.db_unique_name = db_unique_name
         self.db_uuid = db_uuid
+        self.enable_dg_primary_backup = enable_dg_primary_backup
         self.host_info_vec = host_info_vec
         self.max_num_host = max_num_host
         self.num_channels = num_channels
@@ -91,6 +96,7 @@ class OracleDBChannelInfo(object):
         archivelog_keep_days = dictionary.get('archivelogKeepDays')
         db_unique_name = dictionary.get('dbUniqueName')
         db_uuid = dictionary.get('dbUuid')
+        enable_dg_primary_backup = dictionary.get('enableDgPrimaryBackup')
         host_info_vec = None
         if dictionary.get('hostInfoVec') != None:
             host_info_vec = list()
@@ -103,6 +109,7 @@ class OracleDBChannelInfo(object):
         return cls(archivelog_keep_days,
                    db_unique_name,
                    db_uuid,
+                   enable_dg_primary_backup,
                    host_info_vec,
                    max_num_host,
                    num_channels)

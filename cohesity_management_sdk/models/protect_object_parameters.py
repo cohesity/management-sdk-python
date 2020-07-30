@@ -11,8 +11,8 @@ class ProtectObjectParameters(object):
     Attributes:
         protection_source_environment (ProtectionSourceEnvironmentEnum):
             Specifies the environment type of the Protection Source object.
-            etc. Supported environment types such as 'kView', 'kSQL', 'kVMware',
-            NOTE: 'kPuppeteer' refers to Cohesity's Remote Adapter.
+            Supported environment types such as 'kView', 'kSQL', 'kVMware',
+            etc. NOTE: 'kPuppeteer' refers to Cohesity's Remote Adapter.
             'kVMware' indicates the VMware Protection Source environment.
             'kHyperV' indicates the HyperV Protection Source environment.
             'kSQL' indicates the SQL Protection Source environment. 'kView'
@@ -43,11 +43,11 @@ class ProtectObjectParameters(object):
             indicates the Hyper Flex Protection Source environment.
             'kGCPNative' indicates the GCP Native Protection Source
             environment. 'kAzureNative' indicates the Azure Native Protection
-            Source environment. 'kKubernetes' indicates a Kubernetes Protection
-            Source environment. 'kElastifile' indicates Elastifile Protection
-            Source environment. 'kAD' indicates Active Directory Protection
-            Source environment. 'kRDSSnapshotManager' indicates AWS RDS
-            Protection Source environment.
+            Source environment. 'kKubernetes' indicates a Kubernetes
+            Protection Source environment. 'kElastifile' indicates Elastifile
+            Protection Source environment. 'kAD' indicates Active Directory
+            Protection Source environment. 'kRDSSnapshotManager' indicates AWS
+            RDS Protection Source environment.
         protection_source_ids (list of long|int): Specifies the ids of the
             Protection Sources to protect.
         rpo_policy_id (string): Specifies the Rpo policy id.

@@ -2,6 +2,7 @@
 # Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.data_migration_job_parameters
+import cohesity_management_sdk.models.data_uptier_job_parameters
 import cohesity_management_sdk.models.file_path_filter
 
 class NasEnvJobParameters(object):
@@ -22,6 +23,9 @@ class NasEnvJobParameters(object):
             not set, default value is true.
         data_migration_job_parameters (DataMigrationJobParameters): Specifies
             parameters applicable for data migration jobs in NAS environment.
+        data_uptier_job_parameters (DataUptierJobParameters): Specifies
+            additional parameters that are applicable only to the data uptier
+            jobs in NAS environment.
         enable_faster_incremental_backups (bool): Specifies whether this job
             will enable faster incremental backups using change list or
             similar APIs
@@ -47,6 +51,7 @@ class NasEnvJobParameters(object):
     _names = {
         "continue_on_error":'continueOnError',
         "data_migration_job_parameters":'dataMigrationJobParameters',
+        "data_uptier_job_parameters":'data_uptier_job_parameters',
         "enable_faster_incremental_backups":'enableFasterIncrementalBackups',
         "file_path_filters":'filePathFilters',
         "nas_protocol":'nasProtocol'
@@ -55,6 +60,7 @@ class NasEnvJobParameters(object):
     def __init__(self,
                  continue_on_error=None,
                  data_migration_job_parameters=None,
+                 data_uptier_job_parameters=None,
                  enable_faster_incremental_backups=None,
                  file_path_filters=None,
                  nas_protocol=None):
@@ -63,6 +69,7 @@ class NasEnvJobParameters(object):
         # Initialize members of the class
         self.continue_on_error = continue_on_error
         self.data_migration_job_parameters = data_migration_job_parameters
+        self.data_uptier_job_parameters = data_uptier_job_parameters
         self.enable_faster_incremental_backups = enable_faster_incremental_backups
         self.file_path_filters = file_path_filters
         self.nas_protocol = nas_protocol
@@ -88,6 +95,7 @@ class NasEnvJobParameters(object):
         # Extract variables from the dictionary
         continue_on_error = dictionary.get('continueOnError')
         data_migration_job_parameters = cohesity_management_sdk.models.data_migration_job_parameters.DataMigrationJobParameters.from_dictionary(dictionary.get('dataMigrationJobParameters')) if dictionary.get('dataMigrationJobParameters') else None
+        data_uptier_job_parameters = cohesity_management_sdk.models.data_uptier_job_parameters.DataUptierJobParameters.from_dictionary(dictionary.get('dataUptierJobParameters')) if dictionary.get('dataUptierJobParameters') else None
         enable_faster_incremental_backups = dictionary.get('enableFasterIncrementalBackups')
         file_path_filters = cohesity_management_sdk.models.file_path_filter.FilePathFilter.from_dictionary(dictionary.get('filePathFilters')) if dictionary.get('filePathFilters') else None
         nas_protocol = dictionary.get('nasProtocol')
@@ -95,6 +103,7 @@ class NasEnvJobParameters(object):
         # Return an object of this model
         return cls(continue_on_error,
                    data_migration_job_parameters,
+                   data_uptier_job_parameters,
                    enable_faster_incremental_backups,
                    file_path_filters,
                    nas_protocol)

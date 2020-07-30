@@ -2,6 +2,7 @@
 # Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.restore_info_proto_restore_entity
+import cohesity_management_sdk.models.script_execution_status
 
 class RestoreInfoProto(object):
 
@@ -10,6 +11,7 @@ class RestoreInfoProto(object):
     Each available extension is listed below along with the location of the
     proto file (relative to magneto/connectors) where it is defined. The
     extension applies to both RestoreInfoProto as well as RestoreEntity.
+
     RestoreInfoProto extension                     Location
     Extension
     ===========================================================================
@@ -47,8 +49,13 @@ class RestoreInfoProto(object):
     114
     one_drive::RestoreInfo::one_drive_restore_info
     ms_graph/graph.proto      115
+    cdp::RestoreInfo::cdp_restore_info           cdp.proto
+    116
+    exchange::RestoreInfo::exchange_restore_info exchange/exchange.proto
+    117
     ===========================================================================
     ==
+
     RestoreInfoProto.RestoreEntity extension       Location
     Extension
     ===========================================================================
@@ -78,6 +85,10 @@ class RestoreInfoProto(object):
     ==
 
     Attributes:
+        post_script_status (ScriptExecutionStatus): Captures the execution
+            status of post script.
+        pre_script_status (ScriptExecutionStatus): Captures the execution
+            status of pre script.
         restore_entity_vec (list of RestoreInfoProtoRestoreEntity): Contains
             the file paths and the information of the restored entities.
         target_type (int): Specifies the target type for the task. The field
@@ -88,18 +99,24 @@ class RestoreInfoProto(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "post_script_status":'postScriptStatus',
+        "pre_script_status":'preScriptStatus',
         "restore_entity_vec":'restoreEntityVec',
         "target_type":'targetType',
         "mtype":'type'
     }
 
     def __init__(self,
+                 post_script_status=None,
+                 pre_script_status=None,
                  restore_entity_vec=None,
                  target_type=None,
                  mtype=None):
         """Constructor for the RestoreInfoProto class"""
 
         # Initialize members of the class
+        self.post_script_status = post_script_status
+        self.pre_script_status = pre_script_status
         self.restore_entity_vec = restore_entity_vec
         self.target_type = target_type
         self.mtype = mtype
@@ -123,6 +140,8 @@ class RestoreInfoProto(object):
             return None
 
         # Extract variables from the dictionary
+        post_script_status = cohesity_management_sdk.models.script_execution_status.ScriptExecutionStatus.from_dictionary(dictionary.get('postScriptStatus')) if dictionary.get('postScriptStatus') else None
+        pre_script_status = cohesity_management_sdk.models.script_execution_status.ScriptExecutionStatus.from_dictionary(dictionary.get('preScriptStatus')) if dictionary.get('preScriptStatus') else None
         restore_entity_vec = None
         if dictionary.get('restoreEntityVec') != None:
             restore_entity_vec = list()
@@ -132,7 +151,9 @@ class RestoreInfoProto(object):
         mtype = dictionary.get('type')
 
         # Return an object of this model
-        return cls(restore_entity_vec,
+        return cls(post_script_status,
+                   pre_script_status,
+                   restore_entity_vec,
                    target_type,
                    mtype)
 

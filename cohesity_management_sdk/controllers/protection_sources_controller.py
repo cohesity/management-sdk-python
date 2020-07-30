@@ -15,6 +15,7 @@ from cohesity_management_sdk.models.run_diagnostics_message import RunDiagnostic
 from cohesity_management_sdk.models.get_registration_info_response import GetRegistrationInfoResponse
 from cohesity_management_sdk.models.sql_aag_host_and_databases import SqlAagHostAndDatabases
 from cohesity_management_sdk.exceptions.request_error_error_exception import RequestErrorErrorException
+from cohesity_management_sdk.models.exchange_dag_hosts_response import ExchangeDagHostsResponse
 
 
 class ProtectionSourcesController(BaseController):
@@ -443,7 +444,7 @@ class ProtectionSourcesController(BaseController):
                 indicates the Microsoft's Azure Protection Source environment.
                 'kNetapp' indicates the Netapp Protection Source environment.
                 'kAgent' indicates the Agent Protection Source environment.
-                'kGenericNas' indicates the Genreric Network Attached Storage
+                'kGenericNas' indicates the Generic Network Attached Storage
                 Protection Source environment. 'kAcropolis' indicates the
                 Acropolis Protection Source environment. 'kPhsicalFiles'
                 indicates the Physical Files Protection Source environment.
@@ -458,8 +459,7 @@ class ProtectionSourcesController(BaseController):
                 Cloud Platform Protection Source environment. 'kFlashBlade'
                 indicates the Flash Blade Protection Source environment.
                 'kAWSNative' indicates the AWS Native Protection Source
-                environment. 'kVCD' indicates the VMware's Virtual cloud
-                Director Protection Source environment. 'kO365' indicates the
+                environment. 'kO365' indicates the
                 Office 365 Protection Source environment. 'kO365Outlook'
                 indicates Office 365 outlook Protection Source environment.
                 'kHyperFlex' indicates the Hyper Flex Protection Source
@@ -468,6 +468,9 @@ class ProtectionSourcesController(BaseController):
                 Protection Source environment. 'kKubernetes' indicates a
                 Kubernetes Protection Source environment. 'kElastifile'
                 indicates Elastifile Protection Source environment.
+                'kAD' indicates Active Directory Protection Source environment.
+                'kRDSSnapshotManager' indicates AWS RDS Protection Source
+                environment.
 
         Returns:
             list of RegisteredApplicationServer: Response from the API.
@@ -895,6 +898,69 @@ class ProtectionSourcesController(BaseController):
             self.logger.error(e, exc_info=True)
             raise
 
+    def list_exchange_dag_hosts(self, endpoint=None, protection_source_id=None):
+        """Does a GET request to /public/protectionSources/exchangeDagHosts.
+
+        Returns information about all the exchange hosts that belong to an
+        Exchange
+        DAG.
+
+        Args:
+            endpoint (string, optional): Specifies the endpoint of Exchange
+                DAG or a host which is member of Exchange DAG or a standalone
+                exchange server.
+            protection_source_id (int): Specifies the Protection Source Id of
+                the Exchange DAG source.
+
+        Returns:
+            ExchangeDagHostsResponse: Response from the API. Success
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+        try:
+            self.logger.info('list_exchange_dag_hosts called.')
+
+            # Prepare query URL
+            self.logger.info('Preparing query URL for list_exchange_dag_hosts.')
+            _url_path = '/public/protectionSources/exchangeDagHosts'
+            _query_builder = Configuration.get_base_uri()
+            _query_builder += _url_path
+            _query_parameters = {'endpoint': endpoint, 'protectionSourceId': protection_source_id}
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
+            _query_url = APIHelper.clean_url(_query_builder)
+
+            # Prepare headers
+            self.logger.info('Preparing headers for list_exchange_dag_hosts.')
+            _headers = {'accept': 'application/json'}
+
+            # Prepare and execute request
+            self.logger.info(
+                'Preparing and executing request for list_exchange_dag_hosts.')
+            _request = self.http_client.get(_query_url, headers=_headers)
+            AuthManager.apply(_request)
+            _context = self.execute_request(_request, name='list_exchange_dag_hosts')
+
+            # Endpoint and global error handling using HTTP status codes.
+            self.logger.info('Validating response for list_exchange_dag_hosts.')
+            if _context.response.status_code == 0:
+                raise RequestErrorErrorException('Error', _context)
+            self.validate_response(_context)
+
+            # Return appropriate type
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              ExchangeDagHostsResponse.from_dictionary)
+
+        except Exception as e:
+            self.logger.error(e, exc_info=True)
+            raise
+
     def get_protection_sources_objects(self, object_ids=None):
         """Does a GET request to /public/protectionSources/objects.
 
@@ -1058,7 +1124,7 @@ class ProtectionSourcesController(BaseController):
                 Microsoft's Azure Protection Source environment. 'kNetapp'
                 indicates the Netapp Protection Source environment. 'kAgent'
                 indicates the Agent Protection Source environment.
-                'kGenericNas' indicates the Genreric Network Attached Storage
+                'kGenericNas' indicates the Generic Network Attached Storage
                 Protection Source environment. 'kAcropolis' indicates the
                 Acropolis Protection Source environment. 'kPhsicalFiles'
                 indicates the Physical Files Protection Source environment.
@@ -1073,8 +1139,7 @@ class ProtectionSourcesController(BaseController):
                 Cloud Platform Protection Source environment. 'kFlashBlade'
                 indicates the Flash Blade Protection Source environment.
                 'kAWSNative' indicates the AWS Native Protection Source
-                environment. 'kVCD' indicates the VMware's Virtual cloud
-                Director Protection Source environment. 'kO365' indicates the
+                environment. 'kO365' indicates the
                 Office 365 Protection Source environment. 'kO365Outlook'
                 indicates Office 365 outlook Protection Source environment.
                 'kHyperFlex' indicates the Hyper Flex Protection Source

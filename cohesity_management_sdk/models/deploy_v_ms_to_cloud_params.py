@@ -2,6 +2,7 @@
 # Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.deploy_v_ms_to_aws_params
+import cohesity_management_sdk.models.deploy_fleet_params
 import cohesity_management_sdk.models.deploy_v_ms_to_azure_params
 import cohesity_management_sdk.models.deploy_v_ms_to_gcp_params
 import cohesity_management_sdk.models.replicate_snapshots_to_aws_params
@@ -15,6 +16,8 @@ class DeployVMsToCloudParams(object):
     when deploying a VM to Cloud.
 
     Attributes:
+        deploy_fleet_params (DeployFleetParams): Contains Fleet specific
+            params.
         deploy_vms_to_aws_params (DeployVMsToAWSParams): Contains AWS specific
             information needed to identify various resources when converting
             and deploying a VM to AWS.
@@ -34,6 +37,7 @@ class DeployVMsToCloudParams(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "deploy_fleet_params":'deployFleetParams',
         "deploy_vms_to_aws_params":'deployVmsToAwsParams',
         "deploy_vms_to_azure_params":'deployVmsToAzureParams',
         "deploy_vms_to_gcp_params":'deployVmsToGcpParams',
@@ -42,6 +46,7 @@ class DeployVMsToCloudParams(object):
     }
 
     def __init__(self,
+                 deploy_fleet_params=None,
                  deploy_vms_to_aws_params=None,
                  deploy_vms_to_azure_params=None,
                  deploy_vms_to_gcp_params=None,
@@ -50,6 +55,7 @@ class DeployVMsToCloudParams(object):
         """Constructor for the DeployVMsToCloudParams class"""
 
         # Initialize members of the class
+        self.deploy_fleet_params = deploy_fleet_params
         self.deploy_vms_to_aws_params = deploy_vms_to_aws_params
         self.deploy_vms_to_azure_params = deploy_vms_to_azure_params
         self.deploy_vms_to_gcp_params = deploy_vms_to_gcp_params
@@ -75,6 +81,7 @@ class DeployVMsToCloudParams(object):
             return None
 
         # Extract variables from the dictionary
+        deploy_fleet_params =  cohesity_management_sdk.models.deploy_fleet_params.DeployFleetParams.from_dictionary(dictionary.get('deployFleetParams')) if dictionary.get('deployFleetParams') else None
         deploy_vms_to_aws_params = cohesity_management_sdk.models.deploy_v_ms_to_aws_params.DeployVMsToAWSParams.from_dictionary(dictionary.get('deployVmsToAwsParams')) if dictionary.get('deployVmsToAwsParams') else None
         deploy_vms_to_azure_params = cohesity_management_sdk.models.deploy_v_ms_to_azure_params.DeployVMsToAzureParams.from_dictionary(dictionary.get('deployVmsToAzureParams')) if dictionary.get('deployVmsToAzureParams') else None
         deploy_vms_to_gcp_params = cohesity_management_sdk.models.deploy_v_ms_to_gcp_params.DeployVMsToGCPParams.from_dictionary(dictionary.get('deployVmsToGcpParams')) if dictionary.get('deployVmsToGcpParams') else None
@@ -82,7 +89,8 @@ class DeployVMsToCloudParams(object):
         replicate_snapshots_to_azure_params = cohesity_management_sdk.models.replicate_snapshots_to_azure_params.ReplicateSnapshotsToAzureParams.from_dictionary(dictionary.get('replicateSnapshotsToAzureParams')) if dictionary.get('replicateSnapshotsToAzureParams') else None
 
         # Return an object of this model
-        return cls(deploy_vms_to_aws_params,
+        return cls(deploy_fleet_params,
+                   deploy_vms_to_aws_params,
                    deploy_vms_to_azure_params,
                    deploy_vms_to_gcp_params,
                    replicate_snapshots_to_aws_params,

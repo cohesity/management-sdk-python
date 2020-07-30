@@ -423,7 +423,7 @@ class ClustersController(BaseController):
             self.logger.info(
                 'Validating response for get_io_preferential_tier.')
             if _context.response.status_code == 0:
-                raise RequestErrorErrorException(Error, _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
@@ -491,7 +491,7 @@ class ClustersController(BaseController):
             self.logger.info(
                 'Validating response for put_io_preferential_tier.')
             if _context.response.status_code == 0:
-                raise RequestErrorErrorException(Error, _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type

@@ -50,7 +50,7 @@ class NetappVolumeInfo(object):
             indicates read-write volume. 'kLoadSharing' indicates load-sharing
             volume. 'kDataProtection' indicates data-protection volume.
             'kDataCache' indicates data-cache volume. 'kTmp' indicates
-            temporaray purpose. 'kUnknownType' indicates unknown type.
+            temporary purpose. 'kUnknownType' indicates unknown type.
         used_bytes (long|int): Specifies the total space (in bytes) used in
             this volume.
 

@@ -154,7 +154,7 @@ class DataUsageStats(object):
                  storage_consumed_bytes_timestamp_usec=None,
                  total_logical_usage_bytes=None,
                  total_logical_usage_bytes_timestamp_usec=None,
-                 unique_physical_data_bytes=Nonee):
+                 unique_physical_data_bytes=None):
         """Constructor for the DataUsageStats class"""
 
         # Initialize members of the class

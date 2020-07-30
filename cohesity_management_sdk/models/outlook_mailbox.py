@@ -21,7 +21,7 @@ class OutlookMailbox(object):
         outlook_folder_list (list of OutlookFolder): Specifies the list of
             folders to be restored incase user wishes not to restore entire
             mailbox.
-        restore_entire_mailbox (bool): Specifies whether the enitre mailbox is
+        restore_entire_mailbox (bool): Specifies whether the entire mailbox is
             to be restored.
 
     """

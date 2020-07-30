@@ -9,7 +9,7 @@ class GcpParams(object):
     Specifies various resources when converting and deploying a VM to GCP.
 
     Attributes:
-        instance_id (long|int): Specfies id of the GCP instance type in which
+        instance_id (long|int): Specifies id of the GCP instance type in which
             to deploy the VM.
         region (long|int): Specifies id of the GCP region in which to deploy
             the VM.

@@ -3,6 +3,7 @@
 
 import cohesity_management_sdk.models.application_restore_object
 import cohesity_management_sdk.models.restore_object_details
+import cohesity_management_sdk.models.protection_source_and_application_restore_objects
 
 class ApplicationRestoreParameters(object):
 
@@ -60,7 +61,7 @@ class ApplicationRestoreParameters(object):
             jobRunId and a startTimeUsecs. If jobRunId and startTimeUsecs are
             not specified, the last Job Run of the specified Job is used.
         protection_source_and_application_objects (list of 
-            ProtectionSourceAndApplicationObjects): Specifies the list of
+            ProtectionSourceAndApplicationRestoreObjects): Specifies the list of
             hosting protection source and Application restore objects tuple.
 
     """
@@ -70,7 +71,7 @@ class ApplicationRestoreParameters(object):
         "application_environment":'applicationEnvironment',
         "application_restore_objects":'applicationRestoreObjects',
         "hosting_protection_source":'hostingProtectionSource',
-        "protection_source_and_application_objects":'ProtectionSourceAndApplicationObjects'
+        "protection_source_and_application_objects":'protectionSourceAndApplicationObjects'
     }
 
     def __init__(self,
@@ -112,7 +113,11 @@ class ApplicationRestoreParameters(object):
             for structure in dictionary.get('applicationRestoreObjects'):
                 application_restore_objects.append(cohesity_management_sdk.models.application_restore_object.ApplicationRestoreObject.from_dictionary(structure))
         hosting_protection_source = cohesity_management_sdk.models.restore_object_details.RestoreObjectDetails.from_dictionary(dictionary.get('hostingProtectionSource')) if dictionary.get('hostingProtectionSource') else None
-        protection_source_and_application_objects = dictionary.get('protectionSourceAndApplicationObjects') if dictionary.get('protectionSourceAndApplicationObjects') else None
+        protection_source_and_application_objects = None
+        if dictionary.get('protectionSourceAndApplicationObjects') != None:
+            protection_source_and_application_objects = list()
+            for each_object in dictionary.get('protectionSourceAndApplicationObjects'):
+                protection_source_and_application_objects.append(cohesity_management_sdk.models.protection_source_and_application_restore_objects.ProtectionSourceAndApplicationRestoreObjects(each_object))
         # Return an object of this model
         return cls(application_environment,
                    application_restore_objects,

@@ -9,10 +9,8 @@ class RegisterRemoteCluster(object):
 
     """Implementation of the 'RegisterRemoteCluster' model.
 
-    Specifies settings for limiting the data transfer rate between
-    the local and remote Clusters or bandwidth limiting schedule for apollo.
-    Only one of RateLimitBytesPerSec or IoRate should be set in this struct
-    and corresponding BandwidthLimitOverrides should also be in the same unit.
+    Specifies the settings required for registering a remote Cluster
+    on this local Cluster.
 
     Attributes:
         all_endpoints_reachable (bool): Specifies whether any endpoint (such
@@ -20,9 +18,19 @@ class RegisterRemoteCluster(object):
             Cluster. If true, a service running on the local Cluster can
             communicate directly with any of its peers running on the remote
             Cluster, without using a proxy.
+        auto_register_target (bool): Specifies whether the remote cluster
+            needs to be kept in sync. This will be set to true by default.
+        auto_registration (bool): Specifies whether the remote registration
+            has happened automatically (due to registration on the other site).
+            Can't think of other states (other than manually & automatically)
+            so this isn't an enum.
+            For a manual registration, this field will not be set.
         bandwidth_limit (BandwidthLimit): Specifies settings for limiting the
             data transfer rate between the local and remote Clusters.
         cluster_id (long|int): Specifies the unique id of the remote Cluster.
+        cluster_incarnation_id (int): Specifies the unique incarnation id of
+            the remote Cluster. This id is determined dynamically by
+            contacting the remote Cluster.
         compression_enabled (bool): Specifies whether to compress the outbound
             data when transferring the replication data over the network to
             the remote Cluster.
@@ -33,9 +41,10 @@ class RegisterRemoteCluster(object):
             a remote Cluster, the encryption key specified on the local
             Cluster must be the same as the key specified on the remote
             Cluster.
-        network_interface_group (string): Specifies the group name of the
-            network interfaces to use for communicating with the remote
-            Cluster.
+        name (string): Specifies the name of the remote cluster. This field is
+            determined dynamically by contacting the remote cluster.
+        network_interface (string): Specifies the name of the network
+            interfaces to use for communicating with the remote Cluster.
         password (string): Specifies the password for Cohesity user to use
             when connecting to the remote Cluster.
         purpose_remote_access (bool): Whether the remote cluster will be used
@@ -64,11 +73,15 @@ class RegisterRemoteCluster(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "all_endpoints_reachable":'allEndpointsReachable',
+        "auto_register_target":'autoRegisterTarget',
+        "auto_registration":'autoRegistration',
         "bandwidth_limit":'bandwidthLimit',
         "cluster_id":'clusterId',
+        "cluster_incarnation_id":'clusterIncarnationId',
         "compression_enabled":'compressionEnabled',
         "encryption_key":'encryptionKey',
-        "network_interface_group":'networkInterfaceGroup',
+        "name":'name',
+        "network_interface":'networkInterface',
         "password":'password',
         "purpose_remote_access":'purposeRemoteAccess',
         "purpose_replication":'purposeReplication',
@@ -82,11 +95,15 @@ class RegisterRemoteCluster(object):
 
     def __init__(self,
                  all_endpoints_reachable=None,
+                 auto_register_target=None,
+                 auto_registration=None,
                  bandwidth_limit=None,
                  cluster_id=None,
+                 cluster_incarnation_id=None,
                  compression_enabled=None,
                  encryption_key=None,
-                 network_interface_group=None,
+                 name=None,
+                 network_interface=None,
                  password=None,
                  purpose_remote_access=None,
                  purpose_replication=None,
@@ -100,11 +117,15 @@ class RegisterRemoteCluster(object):
 
         # Initialize members of the class
         self.all_endpoints_reachable = all_endpoints_reachable
+        self.auto_register_target = auto_register_target
+        self.auto_registration = auto_registration
         self.bandwidth_limit = bandwidth_limit
         self.cluster_id = cluster_id
+        self.cluster_incarnation_id = cluster_incarnation_id
         self.compression_enabled = compression_enabled
         self.encryption_key = encryption_key
-        self.network_interface_group = network_interface_group
+        self.name = name
+        self.network_interface = network_interface
         self.password = password
         self.purpose_remote_access = purpose_remote_access
         self.purpose_replication = purpose_replication
@@ -135,11 +156,15 @@ class RegisterRemoteCluster(object):
 
         # Extract variables from the dictionary
         all_endpoints_reachable = dictionary.get('allEndpointsReachable')
+        auto_register_target = dictionary.get('autoRegisterTarget')
+        auto_registration = dictionary.get('autoRegistration')
         bandwidth_limit = cohesity_management_sdk.models.bandwidth_limit.BandwidthLimit.from_dictionary(dictionary.get('bandwidthLimit')) if dictionary.get('bandwidthLimit') else None
         cluster_id = dictionary.get('clusterId')
+        cluster_incarnation_id = dictionary.get('clusterIncarnationId')
         compression_enabled = dictionary.get('compressionEnabled')
         encryption_key = dictionary.get('encryptionKey')
-        network_interface_group = dictionary.get('networkInterfaceGroup')
+        name = dictionary.get('name')
+        network_interface = dictionary.get('networkInterface')
         password = dictionary.get('password')
         purpose_remote_access = dictionary.get('purposeRemoteAccess')
         purpose_replication = dictionary.get('purposeReplication')
@@ -156,11 +181,15 @@ class RegisterRemoteCluster(object):
 
         # Return an object of this model
         return cls(all_endpoints_reachable,
+                   auto_register_target,
+                   auto_registration,
                    bandwidth_limit,
                    cluster_id,
+                   cluster_incarnation_id,
                    compression_enabled,
                    encryption_key,
-                   network_interface_group,
+                   name,
+                   network_interface,
                    password,
                    purpose_remote_access,
                    purpose_replication,

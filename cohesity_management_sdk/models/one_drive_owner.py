@@ -8,7 +8,7 @@ class OneDriveOwner(object):
 
     """Implementation of the 'OneDriveOwner' model.
 
-    Specfies OneDrive owner details.
+    Specifies OneDrive owner details.
 
     Attributes:
         drive_info_list (list of OneDriveInfo): Specifies the Drives that a

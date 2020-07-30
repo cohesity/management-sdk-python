@@ -16,6 +16,7 @@ import cohesity_management_sdk.models.backup_job_proto_backup_source
 import cohesity_management_sdk.models.time
 import cohesity_management_sdk.models.stubbing_policy_proto
 import cohesity_management_sdk.models.user_information
+import cohesity_management_sdk.models.physical_file_backup_params_global_include_exclude
 
 class BackupJobProto(object):
 
@@ -77,7 +78,8 @@ class BackupJobProto(object):
             for full backups that are excepted i.e either scheduled or the
             first full backup and not for full backups that happen as a result
             of incremental backup failure.
-        global_include_exclude : Determines global include and exclude filters
+        global_include_exclude (PhysicalFileBackupParams_GlobalIncludeExclude):
+            Determines global include and exclude filters
             which are applied to all sources in a job.
         indexing_policy (IndexingPolicyProto): Proto to encapsulate file level
             indexing policy for VMs in a backup job.
@@ -482,7 +484,7 @@ class BackupJobProto(object):
                 exclusion_ranges.append(cohesity_management_sdk.models.backup_job_proto_exclusion_time_range.BackupJobProtoExclusionTimeRange.from_dictionary(structure))
         full_backup_job_policy = cohesity_management_sdk.models.job_policy_proto.JobPolicyProto.from_dictionary(dictionary.get('fullBackupJobPolicy')) if dictionary.get('fullBackupJobPolicy') else None
         full_backup_sla_time_mins = dictionary.get('fullBackupSlaTimeMins')
-        global_include_exclude = dictionary.get('globalIncludeExclude') if dictionary.get('globalIncludeExclude') else None
+        global_include_exclude = cohesity_management_sdk.models.physical_file_backup_params_global_include_exclude.PhysicalFileBackupParams_GlobalIncludeExclude.from_dictionary(dictionary.get('globalIncludeExclude')) if dictionary.get('globalIncludeExclude') else None
         indexing_policy = cohesity_management_sdk.models.indexing_policy_proto.IndexingPolicyProto.from_dictionary(dictionary.get('indexingPolicy')) if dictionary.get('indexingPolicy') else None
         is_active = dictionary.get('isActive')
         is_deleted = dictionary.get('isDeleted')

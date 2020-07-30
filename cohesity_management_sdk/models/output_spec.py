@@ -1,3 +1,4 @@
+
 # -*- coding: utf-8 -*-
 # Copyright 2020 Cohesity Inc.
 
@@ -6,7 +7,7 @@ class OutputSpec(object):
 
     """Implementation of the 'OutputSpec' model.
 
-    TODO: type model description here.
+    Output specification for the mapreduce.
 
     Attributes:
         num_reduce_shards (int): Number of reduce shards.
@@ -49,7 +50,6 @@ class OutputSpec(object):
         self.reduce_output_prefix = reduce_output_prefix
         self.view_box_id = view_box_id
         self.view_name = view_name
-
 
     @classmethod
     def from_dictionary(cls,

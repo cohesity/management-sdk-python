@@ -13,6 +13,7 @@ import cohesity_management_sdk.models.entity_proto
 import cohesity_management_sdk.models.perform_restore_job_state_proto_restore_task
 import cohesity_management_sdk.models.restore_vmware_vm_params
 import cohesity_management_sdk.models.restored_object_network_config_proto
+import cohesity_management_sdk.models.perform_restore_task_state_proto
 import cohesity_management_sdk.models.user_information
 
 class PerformRestoreJobStateProto(object):
@@ -45,6 +46,8 @@ class PerformRestoreJobStateProto(object):
             with a particular environment.
         power_state_config (PowerStateConfigProto): TODO: type description
             here.
+        preserve_tags (bool): Whether to preserve tags for the clone op.
+          This field is currently used by HyperV and VMWare.
         progress_monitor_task_path (string): Root path of a Pulse task
             tracking the progress of the restore job.
         rename_restored_object_param (RenameObjectParamProto): Message to
@@ -60,6 +63,10 @@ class PerformRestoreJobStateProto(object):
             here.
         restore_parent_source (EntityProto): Specifies the attributes and the
             latest statistics about an entity.
+        restore_task_state_proto_tmpl (PerformRestoreTaskStateProto): This
+            will be optionally populated for certain type of restores (FLR for
+            now) and can be used as a template proto while creating the actual
+            restore task later.
         restore_task_vec (list of PerformRestoreJobStateProtoRestoreTask):
             Even if the user wanted to restore an entire job from the latest
             snapshot, this will have info of all the individual objects.
@@ -81,6 +88,9 @@ class PerformRestoreJobStateProto(object):
             returned.
         view_box_id (long|int): The view box id to which the restore job
             belongs to.
+        warnings (List of ErrorProto): Populate warnings on the job if any.
+            The warning messages are propagated from the child restore tasks
+            upon completion of the task.
 
     """
 
@@ -95,6 +105,7 @@ class PerformRestoreJobStateProto(object):
         "name":'name',
         "parent_source_connection_params":'parentSourceConnectionParams',
         "power_state_config":'powerStateConfig',
+        "preserve_tags":'preserveTags',
         "progress_monitor_task_path":'progressMonitorTaskPath',
         "rename_restored_object_param":'renameRestoredObjectParam',
         "restore_acropolis_vms_params":'restoreAcropolisVmsParams',
@@ -102,6 +113,7 @@ class PerformRestoreJobStateProto(object):
         "restore_kubernetes_namespaces_params":'restoreKubernetesNamespacesParams',
         "restore_kvm_vms_params":'restoreKvmVmsParams',
         "restore_parent_source":'restoreParentSource',
+        "restore_task_state_proto_tmpl":'restoreTaskStateProtoTmpl',
         "restore_task_vec":'restoreTaskVec',
         "restore_vmware_vm_params":'restoreVmwareVmParams',
         "restored_objects_network_config":'restoredObjectsNetworkConfig',
@@ -111,7 +123,8 @@ class PerformRestoreJobStateProto(object):
         "mtype":'type',
         "user":'user',
         "user_info":'userInfo',
-        "view_box_id":'viewBoxId'
+        "view_box_id":'viewBoxId',
+        "warnings":'warnings'
     }
 
     def __init__(self,
@@ -124,6 +137,7 @@ class PerformRestoreJobStateProto(object):
                  name=None,
                  parent_source_connection_params=None,
                  power_state_config=None,
+                 preserve_tags=None,
                  progress_monitor_task_path=None,
                  rename_restored_object_param=None,
                  restore_acropolis_vms_params=None,
@@ -131,6 +145,7 @@ class PerformRestoreJobStateProto(object):
                  restore_kubernetes_namespaces_params=None,
                  restore_kvm_vms_params=None,
                  restore_parent_source=None,
+                 restore_task_state_proto_tmpl=None,
                  restore_task_vec=None,
                  restore_vmware_vm_params=None,
                  restored_objects_network_config=None,
@@ -140,7 +155,8 @@ class PerformRestoreJobStateProto(object):
                  mtype=None,
                  user=None,
                  user_info=None,
-                 view_box_id=None):
+                 view_box_id=None,
+                 warnings=None):
         """Constructor for the PerformRestoreJobStateProto class"""
 
         # Initialize members of the class
@@ -153,6 +169,7 @@ class PerformRestoreJobStateProto(object):
         self.name = name
         self.parent_source_connection_params = parent_source_connection_params
         self.power_state_config = power_state_config
+        self.preserve_tags = preserve_tags
         self.progress_monitor_task_path = progress_monitor_task_path
         self.rename_restored_object_param = rename_restored_object_param
         self.restore_acropolis_vms_params = restore_acropolis_vms_params
@@ -160,6 +177,7 @@ class PerformRestoreJobStateProto(object):
         self.restore_kubernetes_namespaces_params = restore_kubernetes_namespaces_params
         self.restore_kvm_vms_params = restore_kvm_vms_params
         self.restore_parent_source = restore_parent_source
+        self.restore_task_state_proto_tmpl = restore_task_state_proto_tmpl
         self.restore_task_vec = restore_task_vec
         self.restore_vmware_vm_params = restore_vmware_vm_params
         self.restored_objects_network_config = restored_objects_network_config
@@ -170,6 +188,7 @@ class PerformRestoreJobStateProto(object):
         self.user = user
         self.user_info = user_info
         self.view_box_id = view_box_id
+        self.warnings = warnings
 
 
     @classmethod
@@ -199,6 +218,7 @@ class PerformRestoreJobStateProto(object):
         name = dictionary.get('name')
         parent_source_connection_params = cohesity_management_sdk.models.connector_params.ConnectorParams.from_dictionary(dictionary.get('parentSourceConnectionParams')) if dictionary.get('parentSourceConnectionParams') else None
         power_state_config = cohesity_management_sdk.models.power_state_config_proto.PowerStateConfigProto.from_dictionary(dictionary.get('powerStateConfig')) if dictionary.get('powerStateConfig') else None
+        preserve_tags = dictionary.get('preserveTags', None)
         progress_monitor_task_path = dictionary.get('progressMonitorTaskPath')
         rename_restored_object_param = cohesity_management_sdk.models.rename_object_param_proto.RenameObjectParamProto.from_dictionary(dictionary.get('renameRestoredObjectParam')) if dictionary.get('renameRestoredObjectParam') else None
         restore_acropolis_vms_params = cohesity_management_sdk.models.restore_acropolis_v_ms_params.RestoreAcropolisVMsParams.from_dictionary(dictionary.get('restoreAcropolisVmsParams')) if dictionary.get('restoreAcropolisVmsParams') else None
@@ -206,6 +226,7 @@ class PerformRestoreJobStateProto(object):
         restore_kubernetes_namespaces_params = cohesity_management_sdk.models.restore_kubernetes_namespaces_params.RestoreKubernetesNamespacesParams.from_dictionary(dictionary.get('restoreKubernetesNamespacesParams')) if dictionary.get('restoreKubernetesNamespacesParams') else None
         restore_kvm_vms_params = cohesity_management_sdk.models.restore_kvmv_ms_params.RestoreKVMVMsParams.from_dictionary(dictionary.get('restoreKvmVmsParams')) if dictionary.get('restoreKvmVmsParams') else None
         restore_parent_source = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('restoreParentSource')) if dictionary.get('restoreParentSource') else None
+        restore_task_state_proto_tmpl = cohesity_management_sdk.models.perform_restore_task_state_proto.PerformRestoreTaskStateProto.from_dictionary(dictionary.get('restoreTaskStateProtoTmpl')) if dictionary.get('restoreTaskStateProtoTmpl') else None
         restore_task_vec = None
         if dictionary.get('restoreTaskVec') != None:
             restore_task_vec = list()
@@ -220,6 +241,7 @@ class PerformRestoreJobStateProto(object):
         user = dictionary.get('user')
         user_info = cohesity_management_sdk.models.user_information.UserInformation.from_dictionary(dictionary.get('userInfo')) if dictionary.get('userInfo') else None
         view_box_id = dictionary.get('viewBoxId')
+        warnings = dictionary.get('warnings')
 
         # Return an object of this model
         return cls(admitted_time_usecs,
@@ -231,6 +253,7 @@ class PerformRestoreJobStateProto(object):
                    name,
                    parent_source_connection_params,
                    power_state_config,
+                   preserve_tags,
                    progress_monitor_task_path,
                    rename_restored_object_param,
                    restore_acropolis_vms_params,
@@ -238,6 +261,7 @@ class PerformRestoreJobStateProto(object):
                    restore_kubernetes_namespaces_params,
                    restore_kvm_vms_params,
                    restore_parent_source,
+                   restore_task_state_proto_tmpl,
                    restore_task_vec,
                    restore_vmware_vm_params,
                    restored_objects_network_config,
@@ -247,6 +271,7 @@ class PerformRestoreJobStateProto(object):
                    mtype,
                    user,
                    user_info,
-                   view_box_id)
+                   view_box_id,
+                   warnings)
 
 
