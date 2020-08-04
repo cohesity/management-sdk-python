@@ -10,9 +10,8 @@ class ViewStats(object):
     Provides statistics about the View.
 
     Attributes:
-        data_usage_stats (DataUsageStats): Specifies the data usage metric of
-            the data stored on the Cohesity Cluster or Storage Domains (View
-            Boxes).
+        data_usage_stats (DataUsageStats): Specifies the data usage
+            metric of the data stored in this View.
         id (long|int): Specifies the id of the View.
 
     """

@@ -51,7 +51,7 @@ class NasEnvJobParameters(object):
     _names = {
         "continue_on_error":'continueOnError',
         "data_migration_job_parameters":'dataMigrationJobParameters',
-        "data_uptier_job_parameters":'data_uptier_job_parameters',
+        "data_uptier_job_parameters":'dataUptierJobParameters',
         "enable_faster_incremental_backups":'enableFasterIncrementalBackups',
         "file_path_filters":'filePathFilters',
         "nas_protocol":'nasProtocol'

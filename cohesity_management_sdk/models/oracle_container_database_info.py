@@ -14,9 +14,9 @@ class OracleContainerDatabaseInfo(object):
     customer-created pluggable databases (PDBs).
 
     Attributes:
-    pluggable_database_info_list (list of OraclePluggableDatabaseInfo):
-        Specifies the list of Pluggable databases within this Container
-        Database.
+        pluggable_database_info_list (list of OraclePluggableDatabaseInfo):
+            Specifies the list of Pluggable databases within this Container
+            Database.
     """
 
     # Create a mapping from Model property names to API property names

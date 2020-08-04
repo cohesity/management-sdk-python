@@ -12,7 +12,8 @@ class VirtualDiskRecoverTaskState(object):
     state.
 
     Attributes:
-        error (RequestError): Details about the Error.
+        error (RequestError): The error encountered by task (if any). Only
+            valid if the task has finished.
         is_instant_recovery_finished (bool): Specifies if instant recovery of
             the virtual disk is complete.
         task_state (TaskStateEnum): Specifies the current state of the restore
@@ -24,8 +25,7 @@ class VirtualDiskRecoverTaskState(object):
             completed. 'kUnMountDatastoreDone' indicates that disk has
             unmounted the datastore.
         virtual_disk_restore_response (VirtualDiskRestoreResponse): Specifies
-            the parameters to recover virtual disks of a vm with full
-            Protection Source.
+            the response for recovery of virtual disks of a vm.
 
     """
 

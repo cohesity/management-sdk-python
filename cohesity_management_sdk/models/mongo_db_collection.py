@@ -12,7 +12,7 @@ class MongoDBCollection(object):
         is_capped_collection (bool): Set to true if this is a capped
             Collection.
         is_mongo_view (bool): Set to true if this Collection is a view.
-        size_bytes (int): Size of this Collection.
+        size_bytes (int|long): Size of this Collection.
 
     """
 

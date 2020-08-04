@@ -106,6 +106,8 @@ class VmwareProtectionSource(object):
             associated with the vApp in a VMware protection source type.
         vcloud_director_info (list of VcloudDirectorInfo): Specifies an array
             of vCenters to be registered
+        version (string): For vCenter and ESXi, this will show the software
+            version. For VMs, this will show the hardware version.
         virtual_disks (list of VirtualDiskInfo): Specifies an array of virtual
             disks that are part of the Virtual Machine. This is populated for
             entities of type 'kVirtualMachine'.
@@ -128,6 +130,7 @@ class VmwareProtectionSource(object):
         "tools_running_status":'toolsRunningStatus',
         "mtype":'type',
         "vcloud_director_info":'vCloudDirectorInfo',
+        "version":'version',
         "virtual_disks":'virtualDisks'
     }
 
@@ -146,6 +149,7 @@ class VmwareProtectionSource(object):
                  tools_running_status=None,
                  mtype=None,
                  vcloud_director_info=None,
+                 version=None,
                  virtual_disks=None):
         """Constructor for the VmwareProtectionSource class"""
 
@@ -164,6 +168,7 @@ class VmwareProtectionSource(object):
         self.tools_running_status = tools_running_status
         self.mtype = mtype
         self.vcloud_director_info = vcloud_director_info
+        self.version = version
         self.virtual_disks = virtual_disks
 
 
@@ -211,6 +216,7 @@ class VmwareProtectionSource(object):
             vcloud_director_info = list()
             for structure in dictionary.get('vCloudDirectorInfo'):
                 vcloud_director_info.append(cohesity_management_sdk.models.vcloud_director_info.VcloudDirectorInfo.from_dictionary(structure))
+        version = dictionary.get('version')
         virtual_disks = None
         if dictionary.get('virtualDisks') != None:
             virtual_disks = list()
@@ -232,6 +238,7 @@ class VmwareProtectionSource(object):
                    tools_running_status,
                    mtype,
                    vcloud_director_info,
+                   version,
                    virtual_disks)
 
 

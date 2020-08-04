@@ -21,12 +21,12 @@ class ViewUserQuotas(object):
             that the server could provide.
         quota_and_usage_in_all_views (list of QuotaAndUsageInView): The quota
             and usage information for a user in all his views.
-        summary_for_user (UserQuotaSummaryForUser): Speifies the summary of
-            quota information for a particular user.
-        summary_for_view (UserQuotaSummaryForView): Specifies the user quota
-            summary information/result for a view.
-        user_quota_settings (UserQuotaSettings): Specifies the quota settings
-            parameters for a particular user.
+        summary_for_user (UserQuotaSummaryForUser): UserQuotaSummaryForUser is
+            the summary for user quotas in all views for a user.
+        summary_for_view (UserQuotaSummaryForView): UserQuotaSummaryForView is
+            the summary for user quotas in a view.
+        user_quota_settings (UserQuotaSettings): The default user quota policy
+            for this view.
         users_quota_and_usage (list of UserQuotaAndUsage): The list of user
             quota policies/overrides and usages.
 

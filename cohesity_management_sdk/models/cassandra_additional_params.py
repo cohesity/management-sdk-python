@@ -105,6 +105,7 @@ class CassandraAdditionalParams(object):
                    cassandra_version,
                    data_center_vec,
                    dse_solr_info,
+                   dse_version,
                    storage_mbean_name,
                    tiered_storage_dirs_map)
 

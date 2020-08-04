@@ -10,7 +10,6 @@ class NodeToTieredStorageDirectoriesMap(object):
 
     Attributes:
         cassandra_node_name (string): Name of the Cassandra node.
-            the capacity of each storage tier.
         tiered_storage_directories_vec (list of string): Array of tiered
             storage directories.
 

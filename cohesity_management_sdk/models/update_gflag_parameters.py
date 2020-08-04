@@ -64,8 +64,8 @@ class UpdateGflagParameters(object):
     }
 
     def __init__(self,
-                 service_name=None,
-                 gflags=None):
+                 gflags=None,
+                 service_name=None):
         """Constructor for the UpdateGflagParameters class"""
 
         # Initialize members of the class
@@ -99,7 +99,6 @@ class UpdateGflagParameters(object):
                 gflags.append(cohesity_management_sdk.models.gflag.Gflag.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(service_name,
-                   gflags)
+        return cls(gflags, service_name)
 
 

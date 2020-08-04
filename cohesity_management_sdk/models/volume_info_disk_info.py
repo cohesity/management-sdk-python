@@ -8,7 +8,7 @@ class VolumeInfoDiskInfo(object):
 
     """Implementation of the 'VolumeInfo_DiskInfo' model.
 
-    TODO: type model description here.
+    Information about each disk in volume.
 
     Attributes:
         disk_file_name (string): Disk name. This is the vmdk names, and not

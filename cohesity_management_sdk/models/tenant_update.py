@@ -11,6 +11,15 @@ class TenantUpdate(object):
     Attributes:
         bifrost_enabled (bool): Specifies whether bifrost (Ambassador proxy)
             is enabled for tenant.
+        cluster_hostname (string): The hostname for Cohesity cluster as seen by
+            tenants and as is routable from the tenant's network. Tenant's
+            VLAN's hostname, if available can be used instead but it is
+            mandatory to provide this value if there's no VLAN hostname to
+            use. Also, when set, this field would take precedence over VLAN
+            hostname.
+        cluster_ips (list of string): Set of IPs as seen from the tenant's
+            network for the Cohesity cluster. Only one from 'ClusterHostname'
+            and 'ClusterIps' is needed.
         description (string): Specifies the description of this tenant.
         name (string): Specifies the name of the tenant.
         subscribe_to_alert_emails (bool): Service provider can optionally
@@ -22,6 +31,8 @@ class TenantUpdate(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "bifrost_enabled":'bifrostEnabled',
+        "cluster_hostname":'clusterHostname',
+        "cluster_ips":'clusterIps',
         "description":'description',
         "name":'name',
         "subscribe_to_alert_emails":'subscribeToAlertEmails',
@@ -30,6 +41,8 @@ class TenantUpdate(object):
 
     def __init__(self,
                  bifrost_enabled=None,
+                 cluster_hostname=None,
+                 cluster_ips=None,
                  description=None,
                  name=None,
                  subscribe_to_alert_emails=None,
@@ -38,6 +51,8 @@ class TenantUpdate(object):
 
         # Initialize members of the class
         self.bifrost_enabled = bifrost_enabled
+        self.cluster_hostname = cluster_hostname
+        self.cluster_ips = cluster_ips
         self.description = description
         self.name = name
         self.subscribe_to_alert_emails = subscribe_to_alert_emails
@@ -63,6 +78,8 @@ class TenantUpdate(object):
 
         # Extract variables from the dictionary
         bifrost_enabled = dictionary.get('bifrostEnabled')
+        cluster_hostname = dictionary.get('clusterHostname')
+        cluster_ips = dictionary.get('clusterIps')
         description = dictionary.get('description')
         name = dictionary.get('name')
         subscribe_to_alert_emails = dictionary.get('subscribeToAlertEmails')
@@ -70,6 +87,8 @@ class TenantUpdate(object):
 
         # Return an object of this model
         return cls(bifrost_enabled,
+                   cluster_hostname,
+                   cluster_ips,
                    description,
                    name,
                    subscribe_to_alert_emails,

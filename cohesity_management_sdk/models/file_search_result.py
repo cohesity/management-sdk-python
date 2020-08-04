@@ -153,7 +153,7 @@ class FileSearchResult(object):
         protection_source = cohesity_management_sdk.models.protection_source.ProtectionSource.from_dictionary(dictionary.get('protectionSource')) if dictionary.get('protectionSource') else None
         one_drive_document_metadata = cohesity_management_sdk.models.one_drive_document_metadata.OneDriveDocumentMetadata.from_dictionary(dictionary.get('oneDriveDocumentMetadata')) if dictionary.get('oneDriveDocumentMetadata') else None
         registered_source_id = dictionary.get('registeredSourceId')
-        snapshot_tags = dict_items.get('snapshotTags', None)
+        snapshot_tags = dictionary.get('snapshotTags', None)
         source_id = dictionary.get('sourceId')
         tags = dictionary.get('tags', None)
         tags_to_snapshots_map = dictionary.get('tagsToSnapshotsMap', None)

@@ -9,7 +9,7 @@ class MongoDBProtectionSource(object):
 
     """Implementation of the 'MongoDBProtectionSource' model.
 
-    Specifies an Object representing Hive.
+    Specifies an Object representing MongoDB.
 
     Attributes:
         cluster_info (MongoDBCluster): Information of a mongodb cluster, only

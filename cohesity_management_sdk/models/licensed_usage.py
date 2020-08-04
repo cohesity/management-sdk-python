@@ -9,12 +9,12 @@ class LicensedUsage(object):
     Structure to hold feature usage on cluster side.
 
     Attributes:
-        capacity_gb (int): Feature usage by the cluster.
-        expiry_time (int): Expiry time(epoch) of each feature.
+        capacity_gb (int|long): Feature usage by the cluster.
+        expiry_time (int|long): Expiry time(epoch) of each feature.
             There could be multiple expiry time for the given SKU.
         feature_name (string): Name of feature.
         license_type (string): Type of License
-        num_vm (int): Number of VM spinned.
+        num_vm (int|long): Number of VM spinned.
 
     """
 

@@ -11,8 +11,8 @@ class MongoDBBackupJobParams(object):
     job level.
 
     Attributes:
-    mongo_additional_info (MongoDBAdditionalParams): Additional hdfs connection
-        params required for Hive Backup.
+        mongo_additional_info (MongoDBAdditionalParams): Additional parameters
+            required for Mongo backup
     """
 
     # Create a mapping from Model property names to API property names

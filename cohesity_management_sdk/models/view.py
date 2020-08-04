@@ -54,8 +54,14 @@ class View(object):
             time.
         description (string): Specifies an optional text description about the
             View.
+        enable_fast_durable_handle (bool): Specifies whether fast durable
+            handle is enabled. If enabled, view open handle will be kept in
+            memory, which results in a higher performance. But the handles
+            cannot be recovered if node or service crashes.
         enable_filer_audit_logging (bool): Specifies if Filer Audit Logging is
             enabled for this view.
+        enable_live_indexing (bool): Specifies whether to enable live indexing
+            for the view.
         enable_mixed_mode_permissions (bool): If set, mixed mode (NFS and SMB)
             access is enabled for this view. This field is deprecated. Use the
             field SecurityMode. deprecated: true
@@ -71,14 +77,17 @@ class View(object):
             View. If set, it enables the SMB encryption for the View.
             Encryption is supported only by SMB 3.x dialects. Dialects that do
             not support would still access data in unencrypted format.
+        enable_smb_oplock (bool): Specifies whether SMB opportunistic lock is
+            enabled.
         enable_smb_view_discovery (bool): If set, it enables discovery of view
             for SMB.
         enforce_smb_encryption (bool): Specifies the SMB encryption for all
             the sessions for the View. If set, encryption is enforced for all
             the sessions for the View. When enabled all future and existing
             unencrypted sessions are disallowed.
-        file_extension_filter (FileExtensionFilter): TODO: type description
-            here.
+        file_extension_filter (FileExtensionFilter): Optional filtering
+            criteria that should be satisfied by all the files created in
+            this view. It does not affect existing files.
         file_lock_config (FileLevelDataLockConfig): Specifies a config to lock
             files in a view - to protect from malicious or an accidental
             attempt to delete or modify the files in this view.
@@ -100,12 +109,12 @@ class View(object):
         logical_usage_bytes (long|int): LogicalUsageBytes is the logical usage
             in bytes for the view.
         name (string): Specifies the name of the View.
-        nfs_all_squash (NfsSquash): TODO: type description here.
+        nfs_all_squash (NfsSquash): Specifies the NFS all squash config.
         nfs_mount_path (string): Specifies the path for mounting this View as
             an NFS share.
         nfs_root_permissions (NfsRootPermissions): Specifies the config of NFS
             root permission of a view file system.
-        nfs_root_squash (NfsSquash): TODO: type description here.
+        nfs_root_squash (NfsSquash): Specifies the NFS root squash config.
         override_global_whitelist (bool): Specifies whether view level client
             subnet whitelist overrides cluster and global setting.
         protocol_access (ProtocolAccessEnum): Specifies the supported
@@ -140,6 +149,10 @@ class View(object):
             of Subnets with IP addresses that have permissions to access the
             View. (Overrides the Subnets specified at the global Cohesity
             Cluster level.)
+        swift_project_domain (string): Specifies the Keystone project domain.
+        swift_project_name (string): Specifies the Keystone project name.
+        swift_user_domain (string): Specifies the Keystone user domain.
+        swift_username (string): Specifies the Keystone username.
         tenant_id (string): Optional tenant id who has access to this View.
         view_box_id (long|int): Specifies the id of the Storage Domain (View
             Box) where the View is stored.
@@ -163,12 +176,15 @@ class View(object):
         "create_time_msecs":'createTimeMsecs',
         "data_lock_expiry_usecs":'dataLockExpiryUsecs',
         "description":'description',
+        "enable_fast_durable_handle":'enableFastDurableHandle',
         "enable_filer_audit_logging":'enableFilerAuditLogging',
+        "enable_live_indexing":'enableLiveIndexing',
         "enable_mixed_mode_permissions":'enableMixedModePermissions',
         "enable_nfs_view_discovery":'enableNfsViewDiscovery',
         "enable_offline_caching":'enableOfflineCaching',
         "enable_smb_access_based_enumeration":'enableSmbAccessBasedEnumeration',
         "enable_smb_encryption":'enableSmbEncryption',
+        "enable_smb_oplock":'enableSmbOplock',
         "enable_smb_view_discovery":'enableSmbViewDiscovery',
         "enforce_smb_encryption":'enforceSmbEncryption',
         "file_extension_filter":'fileExtensionFilter',
@@ -193,6 +209,10 @@ class View(object):
         "stats":'stats',
         "storage_policy_override":'storagePolicyOverride',
         "subnet_whitelist":'subnetWhitelist',
+        "swift_project_domain":'swiftProjectDomain',
+        "swift_project_name":'swiftProjectName',
+        "swift_user_domain":'swiftUserDomain',
+        "swift_username":'swiftUsername',
         "tenant_id":'tenantId',
         "view_box_id":'viewBoxId',
         "view_box_name":'viewBoxName',
@@ -210,12 +230,15 @@ class View(object):
                  create_time_msecs=None,
                  data_lock_expiry_usecs=None,
                  description=None,
+                 enable_fast_durable_handle=None,
                  enable_filer_audit_logging=None,
+                 enable_live_indexing=None,
                  enable_mixed_mode_permissions=None,
                  enable_nfs_view_discovery=None,
                  enable_offline_caching=None,
                  enable_smb_access_based_enumeration=None,
                  enable_smb_encryption=None,
+                 enable_smb_oplock=None,
                  enable_smb_view_discovery=None,
                  enforce_smb_encryption=None,
                  file_extension_filter=None,
@@ -240,6 +263,10 @@ class View(object):
                  stats=None,
                  storage_policy_override=None,
                  subnet_whitelist=None,
+                 swift_project_domain=None,
+                 swift_project_name=None,
+                 swift_user_domain=None,
+                 swift_username=None,
                  tenant_id=None,
                  view_box_id=None,
                  view_box_name=None,
@@ -257,12 +284,15 @@ class View(object):
         self.create_time_msecs = create_time_msecs
         self.data_lock_expiry_usecs = data_lock_expiry_usecs
         self.description = description
+        self.enable_fast_durable_handle = enable_fast_durable_handle
         self.enable_filer_audit_logging = enable_filer_audit_logging
+        self.enable_live_indexing = enable_live_indexing
         self.enable_mixed_mode_permissions = enable_mixed_mode_permissions
         self.enable_nfs_view_discovery = enable_nfs_view_discovery
         self.enable_offline_caching = enable_offline_caching
         self.enable_smb_access_based_enumeration = enable_smb_access_based_enumeration
         self.enable_smb_encryption = enable_smb_encryption
+        self.enable_smb_oplock = enable_smb_oplock
         self.enable_smb_view_discovery = enable_smb_view_discovery
         self.enforce_smb_encryption = enforce_smb_encryption
         self.file_extension_filter = file_extension_filter
@@ -287,6 +317,10 @@ class View(object):
         self.stats = stats
         self.storage_policy_override = storage_policy_override
         self.subnet_whitelist = subnet_whitelist
+        self.swift_project_domain = swift_project_domain
+        self.swift_project_name = swift_project_name
+        self.swift_user_domain = swift_user_domain
+        self.swift_username = swift_username
         self.tenant_id = tenant_id
         self.view_box_id = view_box_id
         self.view_box_name = view_box_name
@@ -325,12 +359,15 @@ class View(object):
         create_time_msecs = dictionary.get('createTimeMsecs')
         data_lock_expiry_usecs = dictionary.get('dataLockExpiryUsecs')
         description = dictionary.get('description')
+        enable_fast_durable_handle = dictionary.get('enableFastDurableHandle')
         enable_filer_audit_logging = dictionary.get('enableFilerAuditLogging')
+        enable_live_indexing = dictionary.get('enableLiveIndexing')
         enable_mixed_mode_permissions = dictionary.get('enableMixedModePermissions')
         enable_nfs_view_discovery = dictionary.get('enableNfsViewDiscovery')
         enable_offline_caching = dictionary.get('enableOfflineCaching')
         enable_smb_access_based_enumeration = dictionary.get('enableSmbAccessBasedEnumeration')
         enable_smb_encryption = dictionary.get('enableSmbEncryption')
+        enable_smb_oplock = dictionary.get('enableSmbOplock')
         enable_smb_view_discovery = dictionary.get('enableSmbViewDiscovery')
         enforce_smb_encryption = dictionary.get('enforceSmbEncryption')
         file_extension_filter = cohesity_management_sdk.models.file_extension_filter.FileExtensionFilter.from_dictionary(dictionary.get('fileExtensionFilter')) if dictionary.get('fileExtensionFilter') else None
@@ -363,6 +400,10 @@ class View(object):
             subnet_whitelist = list()
             for structure in dictionary.get('subnetWhitelist'):
                 subnet_whitelist.append(cohesity_management_sdk.models.subnet.Subnet.from_dictionary(structure))
+        swift_project_domain = dictionary.get('swiftProjectDomain', None)
+        swift_project_name = dictionary.get('swiftProjectName', None)
+        swift_user_domain = dictionary.get('swiftUserDomain')
+        swift_username = dictionary.get('swiftUsername')
         tenant_id = dictionary.get('tenantId')
         view_box_id = dictionary.get('viewBoxId')
         view_box_name = dictionary.get('viewBoxName')
@@ -379,12 +420,15 @@ class View(object):
                    create_time_msecs,
                    data_lock_expiry_usecs,
                    description,
+                   enable_fast_durable_handle,
                    enable_filer_audit_logging,
+                   enable_live_indexing,
                    enable_mixed_mode_permissions,
                    enable_nfs_view_discovery,
                    enable_offline_caching,
                    enable_smb_access_based_enumeration,
                    enable_smb_encryption,
+                   enable_smb_oplock,
                    enable_smb_view_discovery,
                    enforce_smb_encryption,
                    file_extension_filter,
@@ -409,6 +453,10 @@ class View(object):
                    stats,
                    storage_policy_override,
                    subnet_whitelist,
+                   swift_project_domain,
+                   swift_project_name,
+                   swift_user_domain,
+                   swift_username,
                    tenant_id,
                    view_box_id,
                    view_box_name,

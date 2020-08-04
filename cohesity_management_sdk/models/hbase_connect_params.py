@@ -11,8 +11,8 @@ class HBaseConnectParams(object):
 
     Attributes:
         root_data_directory (string): Specifies the HBase data root directory.
-        zookeeper_quorum (list of string): Specifies the zookeeper_quorum for
-            the Hive entity.
+        zookeeper_quorum (list of string): Specifies the HBase zookeeper
+            quorum.
 
     """
 

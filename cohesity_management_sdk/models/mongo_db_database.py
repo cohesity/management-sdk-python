@@ -9,8 +9,7 @@ class MongoDBDatabase(object):
     Specifies an Object containing information about a mongodb database.
 
     Attributes:
-    size_bytes (int): Additional hdfs connection params
-        required for Hive Backup.
+        size_bytes (int|long): Size of this Database.
     """
 
     # Create a mapping from Model property names to API property names

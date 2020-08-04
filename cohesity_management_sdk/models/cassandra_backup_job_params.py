@@ -14,8 +14,8 @@ class CassandraBackupJobParams(object):
     Attributes:
         cassandra_additional_info (CassandraAdditionalParams): Additional
             parameters required for Cassandra backup.
-        selected_data_center_vec (string):  The data centers selected for
-            backup.
+        selected_data_center_vec (list of string):  The data centers selected
+            for backup.
 
     """
 

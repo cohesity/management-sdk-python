@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2020 Cohesity Inc.
 
+import cohesity_management_sdk.models.tag_attribute
 
 class GcpProtectionSource(object):
 
@@ -79,6 +80,8 @@ class GcpProtectionSource(object):
             deploy" restore task. Restore entity associated with the above
             matched cloud entity has 'failed_over' flag set to true in its
             cloud extension.
+        tag_attributes (list of TagAttribute):  Specifies the list of GCP tag
+            attributes.
         mtype (TypeGcpProtectionSourceEnum): Specifies the type of an GCP
             Protection Source Object such as 'kIAMUser', 'kProject',
             'kRegion', etc. Specifies the type of a GCP source entity.
@@ -117,6 +120,7 @@ class GcpProtectionSource(object):
         "resource_id":'resourceId',
         "restore_task_id":'restoreTaskId',
         "mtype":'type',
+        "tag_attributes":'tagAttributes',
         "vpc_network":'vpcNetwork',
         "vpc_subnetwork":'vpcSubnetwork'
     }
@@ -136,6 +140,7 @@ class GcpProtectionSource(object):
                  resource_id=None,
                  restore_task_id=None,
                  mtype=None,
+                 tag_attributes=None,
                  vpc_network=None,
                  vpc_subnetwork=None):
         """Constructor for the GcpProtectionSource class"""
@@ -155,6 +160,7 @@ class GcpProtectionSource(object):
         self.resource_id = resource_id
         self.restore_task_id = restore_task_id
         self.mtype = mtype
+        self.tag_attributes = tag_attributes
         self.vpc_network = vpc_network
         self.vpc_subnetwork = vpc_subnetwork
 
@@ -190,6 +196,11 @@ class GcpProtectionSource(object):
         region_id = dictionary.get('regionId')
         resource_id = dictionary.get('resourceId')
         restore_task_id = dictionary.get('restoreTaskId')
+        tag_attributes = None
+        if dictionary.get('tagAttributes') != None:
+            tag_attributes= list()
+            for structure in dictionary.get('tagAttributes'):
+                tag_attributes.append(cohesity_management_sdk.models.tag_attribute.TagAttribute.from_dictionary(structure))
         mtype = dictionary.get('type')
         vpc_network = dictionary.get('vpcNetwork')
         vpc_subnetwork = dictionary.get('vpcSubnetwork')
@@ -209,6 +220,7 @@ class GcpProtectionSource(object):
                    resource_id,
                    restore_task_id,
                    mtype,
+                   tag_attributes,
                    vpc_network,
                    vpc_subnetwork)
 

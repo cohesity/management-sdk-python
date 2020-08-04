@@ -6,7 +6,7 @@ class VolumeInfoDiskInfoPhysicalRange(object):
 
     """Implementation of the 'VolumeInfo_DiskInfo_PhysicalRange' model.
 
-    TODO: type model description here.
+    This message represents a physical contiguous range in disk file.
 
     Attributes:
         length (long|int): Length of this range in bytes.

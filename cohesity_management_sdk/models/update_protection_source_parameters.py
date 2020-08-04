@@ -10,6 +10,8 @@ import cohesity_management_sdk.models.office_365_credentials
 import cohesity_management_sdk.models.ssl_verification
 import cohesity_management_sdk.models.throttling_policy_parameters
 import cohesity_management_sdk.models.throttling_policy_override
+import cohesity_management_sdk.models.exchange_dag_protection_preference
+import cohesity_management_sdk.models.vlan_parameters
 
 class UpdateProtectionSourceParameters(object):
 
@@ -28,6 +30,10 @@ class UpdateProtectionSourceParameters(object):
         endpoint (string): Specifies the network endpoint of the Protection
             Source where it is reachable. It could be an URL or hostname or an
             IP address of the Protection Source.
+        exchange_dag_protection_preference (ExchangeDAGProtectionPreference):
+            Specifies information about the preference order while choosing
+            between which database copy of the exchange database which is part
+            of DAG should be protected.
         force_register (bool): ForceRegister is applicable to Physical
             Environment. By default, the agent running on a physical host will
             fail the registration, if it is already registered as part of
@@ -68,7 +74,14 @@ class UpdateProtectionSourceParameters(object):
             of Throttling Policy for datastores that override the common
             throttling policy specified for the registered Protection Source.
             For datastores not in this list, common policy will still apply.
+        use_o_auth_for_exchange_online (bool): Specifies whether OAuth should
+            be used for authentication in case of Exchange Online.
         username (string): Specifies username to access the target source.
+        vlan_params (VlanParameters): Specifies the VLAN parameters to be used
+            while taking the backup of this entity and is the preferred
+            selection for restoring the same. For restores, the VLAN
+            parameters specifed here can be overridden. Currently, this is
+            only applicable for Physical hosts running Oracle.
 
     """
 
@@ -78,6 +91,7 @@ class UpdateProtectionSourceParameters(object):
         "aws_credentials":'awsCredentials',
         "azure_credentials":'azureCredentials',
         "endpoint":'endpoint',
+        "exchange_dag_protection_preference":'exchangeDagProtectionPreference',
         "force_register":'forceRegister',
         "gcp_credentials":'gcpCredentials',
         "host_type":'hostType',
@@ -90,7 +104,9 @@ class UpdateProtectionSourceParameters(object):
         "ssl_verification":'sslVerification',
         "throttling_policy":'throttlingPolicy',
         "throttling_policy_overrides":'throttlingPolicyOverrides',
-        "username":'username'
+        "use_o_auth_for_exchange_online":'useOAuthForExchangeOnline',
+        "username":'username',
+        "vlan_params":'vlanParams'
     }
 
     def __init__(self,
@@ -98,6 +114,7 @@ class UpdateProtectionSourceParameters(object):
                  aws_credentials=None,
                  azure_credentials=None,
                  endpoint=None,
+                 exchange_dag_protection_preference=None,
                  force_register=None,
                  gcp_credentials=None,
                  host_type=None,
@@ -110,7 +127,9 @@ class UpdateProtectionSourceParameters(object):
                  ssl_verification=None,
                  throttling_policy=None,
                  throttling_policy_overrides=None,
-                 username=None):
+                 use_o_auth_for_exchange_online=None,
+                 username=None,
+                 vlan_params=None):
         """Constructor for the UpdateProtectionSourceParameters class"""
 
         # Initialize members of the class
@@ -118,6 +137,7 @@ class UpdateProtectionSourceParameters(object):
         self.aws_credentials = aws_credentials
         self.azure_credentials = azure_credentials
         self.endpoint = endpoint
+        self.exchange_dag_protection_preference = exchange_dag_protection_preference
         self.force_register = force_register
         self.gcp_credentials = gcp_credentials
         self.host_type = host_type
@@ -130,7 +150,9 @@ class UpdateProtectionSourceParameters(object):
         self.ssl_verification = ssl_verification
         self.throttling_policy = throttling_policy
         self.throttling_policy_overrides = throttling_policy_overrides
+        self.use_o_auth_for_exchange_online = use_o_auth_for_exchange_online
         self.username = username
+        self.vlan_params = vlan_params
 
 
     @classmethod
@@ -154,6 +176,7 @@ class UpdateProtectionSourceParameters(object):
         agent_endpoint = dictionary.get('agentEndpoint')
         aws_credentials = cohesity_management_sdk.models.aws_credentials.AwsCredentials.from_dictionary(dictionary.get('awsCredentials')) if dictionary.get('awsCredentials') else None
         azure_credentials = cohesity_management_sdk.models.azure_credentials.AzureCredentials.from_dictionary(dictionary.get('azureCredentials')) if dictionary.get('azureCredentials') else None
+        exchange_dag_protection_preference = cohesity_management_sdk.models.exchange_dag_protection_preference.ExchangeDAGProtectionPreference.from_dictionary(dictionary.get('exchangeDagProtectionPreference')) if dictionary.get('exchangeDagProtectionPreference') else None
         endpoint = dictionary.get('endpoint')
         force_register = dictionary.get('forceRegister')
         gcp_credentials = cohesity_management_sdk.models.gcp_credentials.GcpCredentials.from_dictionary(dictionary.get('gcpCredentials')) if dictionary.get('gcpCredentials') else None
@@ -171,13 +194,16 @@ class UpdateProtectionSourceParameters(object):
             throttling_policy_overrides = list()
             for structure in dictionary.get('throttlingPolicyOverrides'):
                 throttling_policy_overrides.append(cohesity_management_sdk.models.throttling_policy_override.ThrottlingPolicyOverride.from_dictionary(structure))
+        use_o_auth_for_exchange_online = dictionary.get('useOAuthForExchangeOnline')
         username = dictionary.get('username')
+        vlan_params = cohesity_management_sdk.models.vlan_parameters.VlanParameters.from_dictionary(dictionary.get('vlanParams')) if dictionary.get('vlanParams') else None
 
         # Return an object of this model
         return cls(agent_endpoint,
                    aws_credentials,
                    azure_credentials,
                    endpoint,
+                   exchange_dag_protection_preference,
                    force_register,
                    gcp_credentials,
                    host_type,
@@ -190,6 +216,8 @@ class UpdateProtectionSourceParameters(object):
                    ssl_verification,
                    throttling_policy,
                    throttling_policy_overrides,
-                   username)
+                   use_o_auth_for_exchange_online,
+                   username,
+                   vlan_params)
 
 

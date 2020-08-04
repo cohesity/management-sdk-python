@@ -10,8 +10,8 @@ class MongoDBAdditionalParams(object):
     this Mongo cluster.
 
     Attributes:
-    secondary_node_tag (string): The tag associated with the secondary nodes
-        from which backups should be performed.
+    secondary_node_tag (list of string): The tag associated with the
+        secondary nodes from which backups should be performed.
     use_secondary_for_backup (bool): Set to true if this cluster uses
         secondary nodes for backup.
     """

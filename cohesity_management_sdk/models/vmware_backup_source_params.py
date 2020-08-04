@@ -15,8 +15,10 @@ class VmwareBackupSourceParams(object):
         source_app_params (SourceAppParams): This message contains params
             specific to application running on the source such as a VM or a
             physical host.
-        vm_credentials (Credentials): Specifies credentials to access a target
-            source.
+        vm_credentials (Credentials): Target entity credentials. This should
+            usually be set if the source_app_params is set, i.e any additional
+            operations that require access within the guest.
+            
         vmware_disk_exclusion_info (list of VmwareDiskExclusionProto): List of
             Virtual Disk(s) to be excluded from the backup job for the source.
             Overrides the exclusion list requested (if any) through

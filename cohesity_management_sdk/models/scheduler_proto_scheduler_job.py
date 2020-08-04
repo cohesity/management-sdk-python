@@ -13,7 +13,7 @@ class SchedulerProto_SchedulerJob(object):
     Attributes:
         enable_recurring_email (bool): The boolean which specifies if this
             job is to be scheduled or not.
-        id (int): The unique id for the scheduled job assigned by the cluster.
+        id (int|long): The unique id for the scheduled job assigned by the cluster.
         name (string): The name of the scheduled job given by the user.
         schedule_job_parameters (
             SchedulerProto_SchedulerJob_ScheduleJobParameters): TODO: Type
@@ -79,7 +79,11 @@ class SchedulerProto_SchedulerJob(object):
         id = dictionary.get('id')
         name = dictionary.get('name')
         schedule_job_parameters = cohesity_management_sdk.models.scheduler_proto_scheduler_job_schedule_job_parameters.SchedulerProto_SchedulerJob_ScheduleJobParameters.from_dictionary(dictionary.get('scheduleJobParameters')) if dictionary.get('scheduleJobParameters') else None
-        schedules = cohesity_management_sdk.models.scheduler_proto_scheduler_job_schedule.SchedulerProtoSchedulerJobSchedule.from_dictionary(dictionary.get('schedules')) if dictionary.get('schedules') else None
+        schedules = None
+        if dictionary.get('schedules') != None:
+            schedules = list()
+            for structure in dictionary.get('schedules'):
+                schedules.append(cohesity_management_sdk.models.scheduler_proto_scheduler_job_schedule.SchedulerProtoSchedulerJobSchedule.from_dictionary(structure))
         tenant_id = dictionary.get('tenantId')
         mtype = dictionary.get('type')
 

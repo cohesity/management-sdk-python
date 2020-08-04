@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # Copyright 2020 Cohesity Inc.
 
-import cohesity_management_sdk.models.aws_kms_configuration
-import cohesity_management_sdk.models.cryptsoft_kms_configuration
+import cohesity_management_sdk.models.aws_kms_update_params
+import cohesity_management_sdk.models.cryptsoft_kms_update_params
 
 class KmsUpdateRequestParameters(object):
 
@@ -11,8 +11,8 @@ class KmsUpdateRequestParameters(object):
     Request to create a KMS with specified configuration.
 
     Attributes:
-        aws_kms (AwsKmsConfiguration): AWS KMS conifg.
-        cryptsoft_kms (CryptsoftKmsConfiguration): Cryptsoft KMS config.
+        aws_kms (AwsKmsUpdateParams): AWS KMS conifg.
+        cryptsoft_kms (CryptsoftKmsUpdateParams): Cryptsoft KMS config.
         id (int): The Id of a KMS server.
         server_name (string): Specifies the name given to the KMS Server.
 
@@ -57,8 +57,8 @@ class KmsUpdateRequestParameters(object):
             return None
 
         # Extract variables from the dictionary
-        aws_kms = cohesity_management_sdk.models.aws_kms_configuration.AwsKmsConfiguration.from_dictionary(dictionary.get('awsKms')) if dictionary.get('awsKms') else None
-        cryptsoft_kms = cohesity_management_sdk.models.cryptsoft_kms_configuration.CryptsoftKmsConfiguration.from_dictionary(dictionary.get('cryptsoftKms')) if dictionary.get('cryptsoftKms') else None
+        aws_kms = cohesity_management_sdk.models.aws_kms_update_params.AwsKmsUpdateParams.from_dictionary(dictionary.get('awsKms')) if dictionary.get('awsKms') else None
+        cryptsoft_kms = cohesity_management_sdk.models.cryptsoft_kms_update_params.CryptsoftKmsUpdateParams.from_dictionary(dictionary.get('cryptsoftKms')) if dictionary.get('cryptsoftKms') else None
         id = dictionary.get('id')
         server_name = dictionary.get('serverName')
 

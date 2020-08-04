@@ -66,17 +66,17 @@ class RunMapReduceParams(object):
 
         # Extract variables from the dictionary
         app_id = dictionary.get('appId')
-        input_params_list = None
+        input_params = None
         if dictionary.get('inputParams', None) != None:
-            input_params_list = list()
+            input_params = list()
             for params in dictionary.get('inputParams'):
-                input_params_list.append(cohesity_management_sdk.models.map_reduce_instance_input_param.MapReduceInstanceInputParam.from_dictionary(params))
+                input_params.append(cohesity_management_sdk.models.map_reduce_instance_input_param.MapReduceInstanceInputParam.from_dictionary(params))
         mr_input = cohesity_management_sdk.models.input_spec.InputSpec.from_dictionary(dictionary.get('mrInput')) if  dictionary.get('mrInput') else None
         mr_output = cohesity_management_sdk.models.output_spec.OutputSpec.from_dictionary(dictionary.get('mrOutput')) if dictionary.get('mrOutput') else None
 
         # Return an object of this model
         return cls(app_id,
-                   input_params_list,
+                   input_params,
                    mr_input,
                    mr_output)
 

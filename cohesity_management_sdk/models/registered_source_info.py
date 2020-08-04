@@ -101,7 +101,7 @@ class RegisteredSourceInfo(object):
         nas_mount_credentials (NasMountCredentialParams): Specifies the
             credentials required to mount directories on the NetApp server if
             given.
-        office_365_credentials_list (Office365Credentials): Specifies the
+        office_365_credentials_list (list of Office365Credentials): Specifies the
             credentials to authenticate with Office365 account.
         password (string): Specifies password of the username to access the
             target source.
@@ -257,7 +257,11 @@ class RegisteredSourceInfo(object):
         minimum_free_space_gb = dictionary.get('minimumFreeSpaceGB')
         mongodb_params = cohesity_management_sdk.models.mongo_db_connect_params.MongoDBConnectParams.from_dictionary(dictionary.get('mongodbParams')) if dictionary.get('mongodbParams') else None
         nas_mount_credentials = cohesity_management_sdk.models.nas_mount_credential_params.NasMountCredentialParams.from_dictionary(dictionary.get('nasMountCredentials')) if dictionary.get('nasMountCredentials') else None
-        office_365_credentials_list = cohesity_management_sdk.models.office_365_credentials.Office365Credentials.from_dictionary(dictionary.get('office365CredentialsList')) if dictionary.get('office365CredentialsList') else None
+        office_365_credentials_list = None
+        if dictionary.get('office365CredentialsList') != None:
+            office_365_credentials_list = list()
+            for structure in dictionary.get('office365CredentialsList'):
+                office_365_credentials_list.append(cohesity_management_sdk.models.office_365_credentials.Office365Credentials.from_dictionary(structure))
         password = dictionary.get('password')
         refresh_error_message = dictionary.get('refreshErrorMessage')
         refresh_time_usecs = dictionary.get('refreshTimeUsecs')
@@ -291,6 +295,7 @@ class RegisteredSourceInfo(object):
                    hive_params,
                    is_db_authenticated,
                    minimum_free_space_gb,
+                   mongodb_params,
                    nas_mount_credentials,
                    office_365_credentials_list,
                    password,

@@ -10,7 +10,7 @@ class CouchbaseBucket(object):
 
     Attributes:
     bucket_type (string): Type of this bucket.
-    document_count (list of string): Number of documents in this bucket.
+    document_count (int|long): Number of documents in this bucket.
     """
 
     # Create a mapping from Model property names to API property names

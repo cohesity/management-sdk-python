@@ -24,7 +24,8 @@ class RetrieveArchiveTaskStateProto(object):
         archival_target (ArchivalTarget): Message that specifies the details
             about an archival target (such as cloud or tape) where backup
             snapshots may be archived to.
-        archive_task_uid (UniversalIdProto): TODO: type description here.
+        archive_task_uid (UniversalIdProto): The uid of the archive to be
+            retrieved.
         backup_run_start_time_usecs (long|int): The start time of the backup
             run whose corresponding archive is being retrieved. This field is
             just used for logging purposes.
@@ -43,11 +44,13 @@ class RetrieveArchiveTaskStateProto(object):
             objects to retrieve from archive. Even if the user wanted to
             retrieve all objects from the archive, this field will contain all
             individual leaf-level objects.
-        error (ErrorProto): TODO: type description here.
+        error (ErrorProto): The error encountered by task (if any). Only valid
+            if the task has finished.
         full_view_name_deprecated (string): The full view name (external).
             This is composed of a Cohesity specific prefix and the user
             provided view name.
-        job_uid (UniversalIdProto): TODO: type description here.
+        job_uid (UniversalIdProto): The uid of the job to which the archive to
+            be retrieved belongs to.
         name (string): The name of the retrieval task.
         progress_monitor_task_path (string): The path of the progress monitor
             for this task.
@@ -66,10 +69,11 @@ class RetrieveArchiveTaskStateProto(object):
             about the retrieval of an archive task as provided by Icebox.
         start_time_usecs (long|int): The start time for this retrieval task.
         status (int): The status of this task.
-        task_uid (UniversalIdProto): TODO: type description here.
+        task_uid (UniversalIdProto): The globally unique id for this retrieval
+            of an archive task.
         user (string): The user who requested this retrieval task.
-        vault_restore_params (VaultParamsRestoreParams): TODO: type
-            description here.
+        vault_restore_params (VaultParamsRestoreParams): Params to be passed
+            to Icebox while restoring data from an archive.
         view_box_id (long|int): The view box id to which 'view_name' belongs
             to.
         view_name_deprecated (string): The view name as provided by the user

@@ -46,7 +46,7 @@ class RestoreExchangeParams(object):
         Args:
             dictionary (dictionary): A dictionary representation of the object as
             obtained from the deserialization of the server's response. The keys
-            MUST match property names in the API demtypeion.
+            MUST match property names in the API description.
 
         Returns:
             object: An instance of this structure class.

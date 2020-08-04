@@ -44,7 +44,7 @@ class RestoreExchangeParams_ViewOptions(object):
         Args:
             dictionary (dictionary): A dictionary representation of the object as
             obtained from the deserialization of the server's response. The keys
-            MUST match property names in the API deview_nameion.
+            MUST match property names in the API description.
 
         Returns:
             object: An instance of this structure class.
@@ -54,9 +54,9 @@ class RestoreExchangeParams_ViewOptions(object):
             return None
 
         # Extract variables from the dictionary
-        mount_point = cohesity_management_sdk.models.remote_host_connector_params.RemoteHostConnectorParams.from_dictionary(dictionary.get('mountPoint')) if dictionary.get('mountPoint') else None
-        view_name = cohesity_management_sdk.models.view_name_path_and_params.view_namePathAndParams.from_dictionary(dictionary.get('viewName')) if dictionary.get('viewName') else None
-        whitelist_restore_view_for_all = cohesity_management_sdk.models.view_name_execution_whitelist_restore_view_for_all.view_nameExecutionwhitelist_restore_view_for_all.from_dictionary(dictionary.get('whitelistRestoreViewForAll')) if dictionary.get('whitelistRestoreViewForAll') else None
+        mount_point = dictionary.get('mountPoint')
+        view_name = dictionary.get('viewName')
+        whitelist_restore_view_for_all = dictionary.get('whitelistRestoreViewForAll')
 
         # Return an object of this model
         return cls(mount_point,

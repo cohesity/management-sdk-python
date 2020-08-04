@@ -2,6 +2,7 @@
 # Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.ad_restore_parameters
+import cohesity_management_sdk.models.exchange_restore_parameters
 import cohesity_management_sdk.models.sql_restore_parameters
 
 class ApplicationRestoreObject(object):
@@ -16,8 +17,8 @@ class ApplicationRestoreObject(object):
             specific to Application domain controller.
         application_server_id (long|int): Specifies the Application Server to
             restore (for example, kSQL).
-        exchange_restore_parameters (): Specifies parameters speicific to
-            Exchange Application Server.
+        exchange_restore_parameters (ExchangeRestoreParameters): Specifies
+             parameters speicific to Exchange Application Server.
         sql_restore_parameters (SqlRestoreParameters): Specifies the
             parameters specific the Application Server instance.
         target_host_id (long|int): Specifies the target host if the
@@ -82,7 +83,7 @@ class ApplicationRestoreObject(object):
         sql_restore_parameters = cohesity_management_sdk.models.sql_restore_parameters.SqlRestoreParameters.from_dictionary(dictionary.get('sqlRestoreParameters')) if dictionary.get('sqlRestoreParameters') else None
         target_host_id = dictionary.get('targetHostId')
         target_root_node_id = dictionary.get('targetRootNodeId')
-        exchange_restore_parameters = dictionary.get('exchangeRestoreParameters') if dictionary.get('exchangeRestoreParameters') else None
+        exchange_restore_parameters = cohesity_management_sdk.models.exchange_restore_parameters.ExchangeRestoreParameters.from_dictionary(dictionary.get('exchangeRestoreParameters')) if dictionary.get('exchangeRestoreParameters') else None
         # Return an object of this model
         return cls(ad_restore_parameters,
                    application_server_id,

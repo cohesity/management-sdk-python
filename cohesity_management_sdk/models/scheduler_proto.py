@@ -7,12 +7,11 @@ class SchedulerProto(object):
 
     """Implementation of the 'SchedulerProto' model.
 
-    Specifies the scheduler structure which holds the various schedule
-    jobs.
+    Specifies the scheduler structure which holds the various schedule jobs.
 
     Attributes:
-    scheduler_jobs (list of SchedulerProto_SchedulerJob): Additional hdfs connection params
-        required for Hive Backup.
+        scheduler_jobs (list of SchedulerProto_SchedulerJob):  The array of
+            the various scheduler jobs.
     """
 
     # Create a mapping from Model property names to API property names

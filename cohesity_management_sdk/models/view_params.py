@@ -10,7 +10,7 @@ class ViewParams(object):
 
     """Implementation of the 'ViewParams' model.
 
-    TODO: type model description here.
+    Contains information needed when creating or cloning a view.
 
     Attributes:
         client_subnet_whitelist_vec (list of ClusterConfigProtoSubnet): List
@@ -18,12 +18,12 @@ class ViewParams(object):
             for the new view.
         disable_nfs_access (bool): Whether to disable NFS access in the new
             view.
-        protocol_access_info (ViewIdMappingProtoProtocolAccessInfo): TODO:
-            type description here.
+        protocol_access_info (ViewIdMappingProtoProtocolAccessInfo): The
+            protocol access override (if any) of the view.
         qos_mapping_vec (list of ClusterConfigProtoQoSMapping): The qos
             mappings (if any) for the new view.
         storage_policy_override (ClusterConfigProtoStoragePolicyOverride):
-            TODO: type description here.
+            The storage policy override (if any) for the new view.
         view_description (string): The description to be applied to the new
             view.
         worm_lock_expiry_usecs (long|int): This value 'worm_lock_expiry_usecs'

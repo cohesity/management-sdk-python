@@ -9,24 +9,24 @@ class DocError(object):
     DocError are document error incurred in yoda service while tagging.
 
     Attributes:
-        document_Id (string): DocumentId is document which caused the error.
+        document_id (string): DocumentId is document which caused the error.
         error_string (string): ErrorString is the error converted to string.
 
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "document_Id": 'documentId',
+        "document_id": 'documentId',
         "error_string": 'errorString'
     }
 
     def __init__(self,
-                 document_Id=None,
+                 document_id=None,
                  error_string=None):
         """Constructor for the DocError class"""
 
         # Initialize members of the class
-        self.document_Id = document_Id
+        self.document_id = document_id
         self.error_string = error_string
 
 
@@ -48,11 +48,11 @@ class DocError(object):
             return None
 
         # Extract variables from the dictionary
-        document_Id = dictionary.get('documentId', None)
+        document_id = dictionary.get('documentId', None)
         error_string = dictionary.get('errorString', None)
 
         # Return an object of this model
-        return cls(document_Id,
+        return cls(document_id,
                    error_string)
 
 

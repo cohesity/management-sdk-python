@@ -107,7 +107,7 @@ class RegisterProtectionSourceParameters(object):
             'kCluster,' if the environment is kNetapp.
         nimble_type (NimbleTypeEnum): Specifies the entity type such as
             'kStorageArray' if the environment is kNimble.
-        office365_credentials_list (Office365Credentials): Office365 Source
+        office365_credentials_list (list of Office365Credentials): Office365 Source
             Credentials.
 
             Specifies credentials needed to authenticate & authorize user for
@@ -286,7 +286,11 @@ class RegisterProtectionSourceParameters(object):
         netapp_type = dictionary.get('netappType')
         nimble_type = dictionary.get('nimbleType')
         office_365_type = dictionary.get('office365Type')
-        office365_credentials_list = cohesity_management_sdk.office_365_credentials.Office365Credentials.from_dictionary(dictionary.get('office365CredentialsList')) if dictionary.get('office365CredentialsList') else None
+        office365_credentials_list = None
+        if dictionary.get('office365CredentialsList') != None:
+            office365_credentials_list = list()
+            for structure in dictionary.get('office365CredentialsList'):
+                office365_credentials_list.append(cohesity_management_sdk.office_365_credentials.Office365Credentials.from_dictionary(structure))
         password = dictionary.get('password')
         physical_type = dictionary.get('physicalType')
         pure_type = dictionary.get('pureType')

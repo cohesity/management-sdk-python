@@ -11,10 +11,12 @@ from cohesity_management_sdk.controllers.analytics_controller import AnalyticsCo
 from cohesity_management_sdk.controllers.antivirus_service_group_controller import AntivirusServiceGroupController
 from cohesity_management_sdk.controllers.app_instance_controller import AppInstanceController
 from cohesity_management_sdk.controllers.audit_controller import AuditController
+from cohesity_management_sdk.controllers.banner_controller import BannerController
 from cohesity_management_sdk.controllers.cluster_controller import ClusterController
 from cohesity_management_sdk.controllers.certificates_controller import CertificatesController
 from cohesity_management_sdk.controllers.clusters_controller import ClustersController
 from cohesity_management_sdk.controllers.cluster_partitions_controller import ClusterPartitionsController
+from cohesity_management_sdk.controllers.dashboard_controller import DashboardController
 from cohesity_management_sdk.controllers.nodes_controller import NodesController
 from cohesity_management_sdk.controllers.groups_controller import GroupsController
 from cohesity_management_sdk.controllers.idps_controller import IdpsController
@@ -22,10 +24,14 @@ from cohesity_management_sdk.controllers.interface_controller import InterfaceCo
 from cohesity_management_sdk.controllers.interface_group_controller import InterfaceGroupController
 from cohesity_management_sdk.controllers.ip_controller import IpController
 from cohesity_management_sdk.controllers.kms_configuration_response_controller import KmsConfigurationResponseController
+from cohesity_management_sdk.controllers.kms_configuration_controller import KmsConfigurationController
+from cohesity_management_sdk.controllers.kms_update_request_parameters_controller import KmsUpdateRequestParametersController
 from cohesity_management_sdk.controllers.ldap_provider_controller import LdapProviderController
 from cohesity_management_sdk.controllers.license_controller import LicenseController
 from cohesity_management_sdk.controllers.monitoring_controller import MonitoringController
 from cohesity_management_sdk.controllers.network_controller import NetworkController
+from cohesity_management_sdk.controllers.reports_controller import ReportsController
+from cohesity_management_sdk.controllers.scheduler_controller import SchedulerController
 from cohesity_management_sdk.controllers.tags_controller import TagsController
 from cohesity_management_sdk.controllers.views_controller import ViewsController
 from cohesity_management_sdk.controllers.packages_controller import PackagesController
@@ -89,6 +95,10 @@ class CohesityClient(object):
         return AuditController()
 
     @lazy_property
+    def banner(self):
+        return BannerController() 
+
+    @lazy_property
     def cluster(self):
         return ClusterController()
 
@@ -103,6 +113,10 @@ class CohesityClient(object):
     @lazy_property
     def cluster_partitions(self):
         return ClusterPartitionsController()
+
+    @lazy_property
+    def dashboard(self):
+        return DashboardController()
 
     @lazy_property
     def nodes(self):
@@ -134,7 +148,15 @@ class CohesityClient(object):
 
     @lazy_property
     def kms_configuration(self):
+        return KmsConfigurationController()
+
+    @lazy_property
+    def kms_configuration_response(self):
         return KmsConfigurationResponseController()
+
+    @lazy_property
+    def kms_update_request_parameters(self):
+        return KmsUpdateRequestParametersController()
 
     @lazy_property
     def ldap_provider(self):
@@ -213,6 +235,10 @@ class CohesityClient(object):
         return RoutesController()
 
     @lazy_property
+    def scheduler(self):
+        return SchedulerController()
+
+    @lazy_property
     def search(self):
         return SearchController()
 
@@ -224,6 +250,9 @@ class CohesityClient(object):
     def preferences(self):
         return PreferencesController()
 
+    @lazy_property
+    def reports(self):
+        return ReportsController()
     @lazy_property
     def smb_file_opens(self):
         return SMBFileOpensController()

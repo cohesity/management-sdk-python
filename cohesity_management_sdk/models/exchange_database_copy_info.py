@@ -90,6 +90,7 @@ class ExchangeDatabaseCopyInfo(object):
         self.backup_unsupported_reasons = backup_unsupported_reasons
         self.copy_guid = copy_guid
         self.created_time_msecs = created_time_msecs
+        self.database_state = database_state
         self.db_size_bytes = db_size_bytes
         self.dbguid = dbguid
         self.fqdn = fqdn

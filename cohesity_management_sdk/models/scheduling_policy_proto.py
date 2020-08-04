@@ -13,18 +13,15 @@ class SchedulingPolicyProto(object):
     TODO: type model description here.
 
     Attributes:
-        continuous_schedule (SchedulingPolicyProtoContinuousSchedule): TODO:
-            type description here.
-        daily_schedule (SchedulingPolicyProtoDailySchedule): The daily
-            schedule encompasses weekly schedules as well. This has been done
-            so there is only one way of specifying a schedule (backing up
-            daily is the same as backing up weekly, but on all days of the
-            week).
-        monthly_schedule (SchedulingPolicyProtoMonthlySchedule): TODO: type
-            description here.
+        continuous_schedule (SchedulingPolicyProtoContinuousSchedule):  Set if
+            periodicity is kContinuous.
+        daily_schedule (SchedulingPolicyProtoDailySchedule): Set if
+            periodicity is kDaily.
+        monthly_schedule (SchedulingPolicyProtoMonthlySchedule): Set if
+            periodicity is kMonthly.
         periodicity (int): Determines how often the job should be run.
-        rpo_schedule (SchedulingPolicyProtoRPOSchedule): TODO: type
-            description here.
+        rpo_schedule (SchedulingPolicyProtoRPOSchedule):  Set if periodicity
+            is kContinuousRPO.
 
     """
 

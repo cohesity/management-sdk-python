@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2020 Cohesity Inc.
 
+import cohesity_management_sdk.models.additional_connector_params
 import cohesity_management_sdk.models.credentials
 import cohesity_management_sdk.models.entity_proto
 
@@ -12,8 +13,8 @@ class ConnectorParams(object):
     connection with a particular environment.
 
     Attributes:
-        additional_params: Optional additional connector params might be
-            needed to connect to an environment.
+        additional_params(AdditionalConnectorParams): Optional additional
+            connector params might be needed to connect to an environment.
         agent_endpoint (string): For some of the environments connection to
             endpoint is done through an agent. This captures the agent
             endpoint information.
@@ -115,7 +116,7 @@ class ConnectorParams(object):
             return None
 
         # Extract variables from the dictionary
-        additional_params = dictionary.get('additionalParams')
+        additional_params = cohesity_management_sdk.models.additional_connector_params.AdditionalConnectorParams.from_dictionary(dictionary.get('additionalParams')) if dictionary.get('additionalParams') else None
         agent_endpoint = dictionary.get('agentEndpoint')
         agent_port = dictionary.get('agentPort')
         credentials = cohesity_management_sdk.models.credentials.Credentials.from_dictionary(dictionary.get('credentials')) if dictionary.get('credentials') else None

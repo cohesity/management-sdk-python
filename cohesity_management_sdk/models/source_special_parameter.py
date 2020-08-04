@@ -18,6 +18,9 @@ class SourceSpecialParameter(object):
         ad_special_parameters (ApplicationSpecialParameters): Specifies
             additional special settings applicable for a Protection Source of
             'kSQL'/'kOracle' type in a Protection Job.
+        exchange_special_parameters (ApplicationSpecialParameters): Specifies
+            additional special parameters that are applicable only to
+            Protection Sources of 'kExchange' type.
         oracle_special_parameters (OracleSpecialParameters): Specifies special
             settings applicable for 'kOracle' environment.
         physical_special_parameters (PhysicalSpecialParameters): Specifies
@@ -54,6 +57,7 @@ class SourceSpecialParameter(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "ad_special_parameters":'adSpecialParameters',
+        "exchange_special_parameters":'exchangeSpecialParameters',
         "oracle_special_parameters":'oracleSpecialParameters',
         "physical_special_parameters":'physicalSpecialParameters',
         "skip_indexing":'skipIndexing',
@@ -66,6 +70,7 @@ class SourceSpecialParameter(object):
 
     def __init__(self,
                  ad_special_parameters=None,
+                 exchange_special_parameters=None,
                  oracle_special_parameters=None,
                  physical_special_parameters=None,
                  skip_indexing=None,
@@ -78,6 +83,7 @@ class SourceSpecialParameter(object):
 
         # Initialize members of the class
         self.ad_special_parameters = ad_special_parameters
+        self.exchange_special_parameters = exchange_special_parameters
         self.oracle_special_parameters = oracle_special_parameters
         self.physical_special_parameters = physical_special_parameters
         self.skip_indexing = skip_indexing
@@ -107,6 +113,7 @@ class SourceSpecialParameter(object):
 
         # Extract variables from the dictionary
         ad_special_parameters = cohesity_management_sdk.models.application_special_parameters.ApplicationSpecialParameters.from_dictionary(dictionary.get('adSpecialParameters')) if dictionary.get('adSpecialParameters') else None
+        exchange_special_parameters =  cohesity_management_sdk.models.application_special_parameters.ApplicationSpecialParameters.from_dictionary(dictionary.get('exchangeSpecialParameters')) if dictionary.get('exchangeSpecialParameters') else None
         oracle_special_parameters = cohesity_management_sdk.models.oracle_special_parameters.OracleSpecialParameters.from_dictionary(dictionary.get('oracleSpecialParameters')) if dictionary.get('oracleSpecialParameters') else None
         physical_special_parameters = cohesity_management_sdk.models.physical_special_parameters.PhysicalSpecialParameters.from_dictionary(dictionary.get('physicalSpecialParameters')) if dictionary.get('physicalSpecialParameters') else None
         skip_indexing = dictionary.get('skipIndexing')
@@ -118,6 +125,7 @@ class SourceSpecialParameter(object):
 
         # Return an object of this model
         return cls(ad_special_parameters,
+                   exchange_special_parameters,
                    oracle_special_parameters,
                    physical_special_parameters,
                    skip_indexing,

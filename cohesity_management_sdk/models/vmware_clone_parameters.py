@@ -46,6 +46,11 @@ class VmwareCloneParameters(object):
             name to derive a new name for the recovered or cloned object. By
             default, cloned or recovered objects retain their original name.
             Length of this field is limited to 8 characters.
+        preserve_custom_attributes_during_clone (bool): Specifies whether or
+            not to preserve the custom attributes during the clone operation.
+            The default behavior is 'true'.
+        preserve_tags (bool): Specifies whether or not to preserve tags during
+            the clone operation. The default behavior is 'true'.
         resource_pool_id (long|int): Specifies the resource pool where the
             cloned or recovered objects are attached. This field is mandatory
             for kCloneVMs Restore Tasks always. For kRecoverVMs Restore Tasks,
@@ -71,6 +76,8 @@ class VmwareCloneParameters(object):
         "network_mappings":'networkMappings',
         "powered_on":'poweredOn',
         "prefix":'prefix',
+        "preserve_custom_attributes_during_clone":'preserveCustomAttributesDuringClone',
+        "preserve_tags":'preserveTags',
         "resource_pool_id":'resourcePoolId',
         "suffix":'suffix',
         "vm_folder_id":'vmFolderId'
@@ -84,6 +91,8 @@ class VmwareCloneParameters(object):
                  network_mappings=None,
                  powered_on=None,
                  prefix=None,
+                 preserve_custom_attributes_during_clone=None,
+                 preserve_tags=None,
                  resource_pool_id=None,
                  suffix=None,
                  vm_folder_id=None):
@@ -97,6 +106,8 @@ class VmwareCloneParameters(object):
         self.network_mappings = network_mappings
         self.powered_on = powered_on
         self.prefix = prefix
+        self.preserve_custom_attributes_during_clone = preserve_custom_attributes_during_clone
+        self.preserve_tags = preserve_tags
         self.resource_pool_id = resource_pool_id
         self.suffix = suffix
         self.vm_folder_id = vm_folder_id
@@ -131,6 +142,8 @@ class VmwareCloneParameters(object):
                 network_mappings.append(cohesity_management_sdk.models.network_mapping.NetworkMapping.from_dictionary(structure))
         powered_on = dictionary.get('poweredOn')
         prefix = dictionary.get('prefix')
+        preserve_custom_attributes_during_clone = dictionary.get('preserveCustomAttributesDuringClone')
+        preserve_tags = dictionary.get('preserveTags')
         resource_pool_id = dictionary.get('resourcePoolId')
         suffix = dictionary.get('suffix')
         vm_folder_id = dictionary.get('vmFolderId')
@@ -143,6 +156,8 @@ class VmwareCloneParameters(object):
                    network_mappings,
                    powered_on,
                    prefix,
+                   preserve_custom_attributes_during_clone,
+                   preserve_tags,
                    resource_pool_id,
                    suffix,
                    vm_folder_id)

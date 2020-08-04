@@ -29,7 +29,7 @@ class AcropolisProtectionSource(object):
         uuid (string): Specifies the UUID of the Acropolis Object. This is
             unique within the cluster instance. Together with clusterUuid,
             this entity is unique within the Acropolis environment.
-        version(string, optional): Specifies the version of an Acropolis
+        version (string, optional): Specifies the version of an Acropolis
             cluster or standalone cluster.
 
     """

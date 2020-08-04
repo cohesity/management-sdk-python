@@ -10,15 +10,15 @@ class HdfsConnectParams(object):
     source.
 
     Attributes:
-    hadoop_distribution (HadoopDistributionEnum): Specifies the Hadoop
-        Distribution.
-        Hadoop distribution.
+        hadoop_distribution (HadoopDistributionEnum): Specifies the Hadoop
+            Distribution.
+            Hadoop distribution.
 
-        'CDH' indicates Hadoop distribution type Cloudera.
-        'HDP' indicates Hadoop distribution type Hortonworks.
-    hadoop_version (string): Specifies the Hadoop version
-    namenode (string): Specifies the Namenode host or Nameservice.
-    port (int): Specifies the Webhdfs Port
+            'CDH' indicates Hadoop distribution type Cloudera.
+            'HDP' indicates Hadoop distribution type Hortonworks.
+        hadoop_version (string): Specifies the Hadoop version
+        namenode (string): Specifies the Namenode host or Nameservice.
+        port (int): Specifies the Webhdfs Port
     """
 
     # Create a mapping from Model property names to API property names

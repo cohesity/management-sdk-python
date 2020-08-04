@@ -44,7 +44,7 @@ class SchedulerProto_SchedulerJob_ScheduleJobParameters_ReportJobParameter_Repor
         tenant_id_vec (list of string): Specifies tenant ids for which report
             needs to be generated.
         timezone (string): Specifies the timezone.
-        unix_uid (int | long): Specifies the unix uid of the user.
+        unix_uid (int): Specifies the unix uid of the user.
         vault_ids (list of int|long): Specifies the vault ids for which to get
             the report data.
         view_box_id (int|long): Specifies the view box for which to get the

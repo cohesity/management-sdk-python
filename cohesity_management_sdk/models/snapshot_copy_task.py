@@ -12,13 +12,12 @@ class SnapshotCopyTask(object):
 
     Attributes:
         copy_status (string): Specifies the status of the copy task.
-        expiry_time_usecs (long|int): Specifies when the Snapshot expires on
+        expiry_time_usecs (int|long): Specifies when the Snapshot expires on
             the target.
         message (string): Specifies warning or error information when the copy
             task is not successful.
-        snapshot_target (SnapshotTargetSettings): Specifies settings about a
-            target where a copied Snapshot is stored. A target can be a Remote
-            Cluster or an Archival External Target such as AWS or Tape.
+        snapshot_target (SnapshotTargetSettings): Specifies the target location where
+            the Snapshot was copied to.
 
     """
 

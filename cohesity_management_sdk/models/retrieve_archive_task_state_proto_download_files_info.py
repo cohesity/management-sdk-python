@@ -24,8 +24,10 @@ class RetrieveArchiveTaskStateProtoDownloadFilesInfo(object):
             files will have the full path structure maintained in
             target_dir_path such as downloaded_files/foo/bar and
             /downloaded_files/foo2/bar.
-        magneto_instance_id (MagnetoInstanceId): TODO: type description here.
-        object_id (MagnetoObjectId): TODO: type description here.
+        magneto_instance_id (MagnetoInstanceId): Instance from which the
+            requested files will be restored.
+        object_id (MagnetoObjectId): Object from which the requested files
+            will be restored.
         skip_restore_in_stub_view (bool): Ask Icebox to only create the stub
             view and skip restoring files in the stub view.
         target_dir_path (string): Path to the directory under which the

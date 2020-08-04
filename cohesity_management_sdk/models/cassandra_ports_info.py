@@ -13,9 +13,8 @@ class CassandraPortsInfo(object):
             transport.
         rpc_port (int): Specifies the Remote Procedure Call (RPC) port for
             general mechanism for client-server applications.
-        ssl_storage_port (string): The ssl_storage_port URL of the
-            environment (such as the address of the vCenter instance for a
-            VMware environment, etc).
+        ssl_storage_port (string):  Specifies the SSL port for encrypted
+            communication.
         storage_port (int): Specifies the attributes and the latest
             statistics about an entity.
 

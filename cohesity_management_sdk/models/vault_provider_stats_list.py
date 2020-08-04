@@ -10,21 +10,20 @@ class VaultProviderStatsList(object):
     Specifies the stats by provider for each vault.
 
     Attributes:
-    hdfs_connect_params (VaultProviderStatsInfo): Additional hdfs connection params
-        required for Hive Backup.
+    vault_provider_stats_info (list of VaultProviderStatsInfo)
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "hdfs_connect_params":'hdfsConnectParams'
+        "vault_provider_stats_info":'VaultProviderStatsInfo'
     }
 
     def __init__(self,
-                 hdfs_connect_params=None):
+                 vault_provider_stats_info=None):
         """Constructor for the VaultProviderStatsList class"""
 
         # Initialize members of the class
-        self.hdfs_connect_params = hdfs_connect_params
+        self.vault_provider_stats_info = vault_provider_stats_info
 
 
     @classmethod
@@ -45,9 +44,9 @@ class VaultProviderStatsList(object):
             return None
 
         # Extract variables from the dictionary
-        hdfs_connect_params = cohesity_management_sdk.models.vault_provider_stats_info.VaultProviderStatsInfo.from_dictionary(dictionary.get('VaultProviderStatsInfo')) if dictionary.get('VaultProviderStatsInfo') else None
+        vault_provider_stats_info = cohesity_management_sdk.models.vault_provider_stats_info.VaultProviderStatsInfo.from_dictionary(dictionary.get('VaultProviderStatsInfo')) if dictionary.get('VaultProviderStatsInfo') else None
 
         # Return an object of this model
-        return cls(hdfs_connect_params)
+        return cls(vault_provider_stats_info)
 
 

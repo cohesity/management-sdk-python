@@ -11,7 +11,7 @@ class AdditionalConnectorParams(object):
     connection with a particular environment.
 
     Attributes:
-        o365_region (o365Region): Optional o365_region proto to store the
+        o365_region (O365RegionProto): Optional o365_region proto to store the
             region info to be used while making ews/graph api calls in o365
             adapter.
         use_outlook_ews_oauth (bool): Whether OAuth should be used for

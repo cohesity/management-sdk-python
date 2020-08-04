@@ -35,7 +35,7 @@ class AWSFleetParams(object):
 
         # Initialize members of the class
         self.fleet_subnet_type = fleet_subnet_type
-        self.script = script
+        self.fleet_tag_vec = fleet_tag_vec
         self.network_params = network_params
 
 

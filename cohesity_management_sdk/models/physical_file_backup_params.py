@@ -14,8 +14,9 @@ class PhysicalFileBackupParams(object):
             Specifies the paths to backup on the Physical source.
         skip_nested_volumes_vec (list of string): Mount types of nested
             volumes to be skipped.
-        symlink_follow_nas_target (bool): Specifies whether to follow nas target pointed by symlink.
-          Set to true only for windows physical file based job.
+        symlink_follow_nas_target (bool): Specifies whether to follow nas target
+            pointed by symlink.
+            Set to true only for windows physical file based job.
         uses_skip_nested_volumes_vec (bool): Specifies whether to use
             skip_nested_volumes_vec to skip nested mounts. Before 6.4,
             BackupPathInfo.skip_nested_volumes boolean was used to skip nested

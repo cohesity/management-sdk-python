@@ -17,24 +17,25 @@ class ViewPrivileges(object):
             kNone - None of the views have access.
             kAll - All the views have access.
             kSpecific - Only specific views have access.
-        start_ip (string): Start IP of the range
+        view_ids (list of int): Specifies the ids of the views which are
+            allowed to be accessed in case the privilege type is kSpecific.
 
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
         "privileges_type": 'privilegesType',
-        "start_ip": 'startIp'
+        "view_ids": 'viewIds'
     }
 
     def __init__(self,
                  privileges_type=None,
-                 start_ip=None):
+                 view_ids=None):
         """Constructor for the ViewPrivileges class"""
 
         # Initialize members of the class
         self.privileges_type = privileges_type
-        self.start_ip = start_ip
+        self.view_ids = view_ids
 
 
     @classmethod
@@ -56,10 +57,10 @@ class ViewPrivileges(object):
 
         # Extract variables from the dictionary
         privileges_type = dictionary.get('privilegesType', None)
-        start_ip = dictionary.get('startIp', None)
+        view_ids = dictionary.get('viewIds', None)
 
         # Return an object of this model
         return cls(privileges_type,
-                   start_ip)
+                   view_ids)
 
 

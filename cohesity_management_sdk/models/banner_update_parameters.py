@@ -2,33 +2,31 @@
 # Copyright 2020 Cohesity Inc.
 
 
-class HiveConnectParams(object):
+class BannerUpdateParameters(object):
 
-    """Implementation of the 'HiveConnectParams' model.
+    """Implementation of the 'BannerUpdateParameters' model.
 
-    Specifies an Object containing information about a registered Hive
-    source.
+    Specifies the settings used to update a new banner.
 
     Attributes:
-        metastore (string): Specifies the Hive metastore host.
-        thrift_port (int): Specifies the Hive metastore thrift Port
-
+        content (string): Specifies the content of the banner.
+        description (string): Specifies the description of this banner.
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "metastore": 'metastore',
-        "thrift_port": 'thriftPort'
+        "content": 'content',
+        "description": 'description'
     }
 
     def __init__(self,
-                 metastore=None,
-                 thrift_port=None):
-        """Constructor for the HiveConnectParams class"""
+                 content=None,
+                 description=None):
+        """Constructor for the BannerUpdateParameters class"""
 
         # Initialize members of the class
-        self.metastore = metastore
-        self.thrift_port = thrift_port
+        self.content = content
+        self.description = description
 
 
     @classmethod
@@ -49,11 +47,11 @@ class HiveConnectParams(object):
             return None
 
         # Extract variables from the dictionary
-        metastore = dictionary.get('metastore', None)
-        thrift_port = dictionary.get('thriftPort', None)
+        content = dictionary.get('content')
+        description = dictionary.get('description')
 
         # Return an object of this model
-        return cls(metastore,
-                   thrift_port)
+        return cls(content,
+                   description)
 
 

@@ -7,10 +7,11 @@ class O365RegionProto(object):
     """Implementation of the 'O365RegionProto' model.
 
     O365Region proto will store the information about the region from where
-        o365 connector apis calls are made.
+    o365 connector apis calls are made.
 
     Attributes:
-    country (int): The country where the o365 connector apis were called from.
+        country (int): The country where the o365 connector apis were called
+        from.
     """
 
     # Create a mapping from Model property names to API property names

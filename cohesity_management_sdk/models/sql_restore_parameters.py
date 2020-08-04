@@ -14,6 +14,8 @@ class SqlRestoreParameters(object):
             captured before the restore operation. This is only applicable if
             we are restoring the SQL database to its hosting Protection
             Source, and the database is not being renamed.
+        is_auto_sync_enabled (bool): This field determines if Auto Sync
+            enabled/disabled for SQL Multi-stage Restore task
         keep_cdc (bool): This field prevents "change data capture" settings
             from being reomved when a database or log backup is restored on
             another server and database is recovered.
@@ -54,6 +56,7 @@ class SqlRestoreParameters(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "capture_tail_logs":'captureTailLogs',
+        "is_auto_sync_enabled":'isAutoSyncEnabled',
         "keep_cdc":'keepCdc',
         "keep_offline":'keepOffline',
         "new_database_name":'newDatabaseName',
@@ -67,6 +70,7 @@ class SqlRestoreParameters(object):
 
     def __init__(self,
                  capture_tail_logs=None,
+                 is_auto_sync_enabled=None,
                  keep_cdc=None,
                  keep_offline=None,
                  new_database_name=None,
@@ -80,6 +84,7 @@ class SqlRestoreParameters(object):
 
         # Initialize members of the class
         self.capture_tail_logs = capture_tail_logs
+        self.is_auto_sync_enabled = is_auto_sync_enabled
         self.keep_cdc = keep_cdc
         self.keep_offline = keep_offline
         self.new_database_name = new_database_name
@@ -110,6 +115,7 @@ class SqlRestoreParameters(object):
 
         # Extract variables from the dictionary
         capture_tail_logs = dictionary.get('captureTailLogs')
+        is_auto_sync_enabled = dictionary.get('isAutoSyncEnabled')
         keep_cdc = dictionary.get('keepCdc')
         keep_offline = dictionary.get('keepOffline')
         new_database_name = dictionary.get('newDatabaseName')
@@ -126,6 +132,7 @@ class SqlRestoreParameters(object):
 
         # Return an object of this model
         return cls(capture_tail_logs,
+                   is_auto_sync_enabled,
                    keep_cdc,
                    keep_offline,
                    new_database_name,

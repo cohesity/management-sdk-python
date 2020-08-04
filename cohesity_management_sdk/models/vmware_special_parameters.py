@@ -13,8 +13,8 @@ class VmwareSpecialParameters(object):
     of 'kVMware' type in a Protection Job.
 
     Attributes:
-        application_parameters (ApplicationParameters): TODO: type description
-            here.
+        application_parameters (ApplicationParameters): Specifies parameters
+            that are related to applications running on the Protection Source.
         excluded_disks (list of DiskUnit): Specifies the list of Disks to be
             excluded from backing up. These disks are excluded from all
             Protection Sources in the Protection Job.

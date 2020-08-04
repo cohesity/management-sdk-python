@@ -6,6 +6,7 @@ import cohesity_management_sdk.models.tenant_deletion_info
 import cohesity_management_sdk.models.ldap_provider_response
 import cohesity_management_sdk.models.backup_job_proto
 import cohesity_management_sdk.models.view
+import cohesity_management_sdk.models.swift_params
 
 class Tenant(object):
 
@@ -18,6 +19,15 @@ class Tenant(object):
             active directories this tenant is associated to.
         bifrost_enabled (bool): Specifies whether bifrost (Ambassador proxy)
             is enabled for tenant.
+        cluster_hostname (string): The hostname for Cohesity cluster as seen by
+            tenants and as is routable from the tenant's network. Tenant's
+            VLAN's hostname, if available can be used instead but it is
+            mandatory to provide this value if there's no VLAN hostname to
+            use. Also, when set, this field would take precedence over VLAN
+            hostname.
+        cluster_ips (list of string): Set of IPs as seen from the tenant's
+            network for the Cohesity cluster. Only one from 'ClusterHostname'
+            and 'ClusterIps' is needed.
         created_time_msecs (long|int): Specifies the epoch time in
             milliseconds when the tenant account was created on the Cohesity
             Cluster.
@@ -49,6 +59,8 @@ class Tenant(object):
             this tenant is associated to.
         subscribe_to_alert_emails (bool): Service provider can optionally
             unsubscribe from the Tenant Alert Emails.
+        swift_config (SwiftParams): Specifies the Swift configuration of this
+            tenant.
         tenant_id (string): Specifies the unique id of the tenant.
         view_box_ids (list of long|int): Specifies the ViewBoxIds this tenant
             is associated to.
@@ -63,6 +75,8 @@ class Tenant(object):
     _names = {
         "active_directories":'activeDirectories',
         "bifrost_enabled":'bifrostEnabled',
+        "cluster_hostname":'clusterHostname',
+        "cluster_ips":'clusterIps',
         "created_time_msecs":'createdTimeMsecs',
         "deleted":'deleted',
         "deleted_time_msecs":'deletedTimeMsecs',
@@ -78,6 +92,7 @@ class Tenant(object):
         "policy_ids":'policyIds',
         "protection_jobs":'protectionJobs',
         "subscribe_to_alert_emails":'subscribeToAlertEmails',
+        "swift_config":'swiftConfig',
         "tenant_id":'tenantId',
         "view_box_ids":'viewBoxIds',
         "views":'views',
@@ -87,6 +102,8 @@ class Tenant(object):
     def __init__(self,
                  active_directories=None,
                  bifrost_enabled=None,
+                 cluster_hostname=None,
+                 cluster_ips=None,
                  created_time_msecs=None,
                  deleted=None,
                  deleted_time_msecs=None,
@@ -102,6 +119,7 @@ class Tenant(object):
                  policy_ids=None,
                  protection_jobs=None,
                  subscribe_to_alert_emails=None,
+                 swift_config=None,
                  tenant_id=None,
                  view_box_ids=None,
                  views=None,
@@ -111,6 +129,8 @@ class Tenant(object):
         # Initialize members of the class
         self.active_directories = active_directories
         self.bifrost_enabled = bifrost_enabled
+        self.cluster_hostname = cluster_hostname
+        self.cluster_ips = cluster_ips
         self.created_time_msecs = created_time_msecs
         self.deleted = deleted
         self.deleted_time_msecs = deleted_time_msecs
@@ -126,6 +146,7 @@ class Tenant(object):
         self.policy_ids = policy_ids
         self.protection_jobs = protection_jobs
         self.subscribe_to_alert_emails = subscribe_to_alert_emails
+        self.swift_config = swift_config
         self.tenant_id = tenant_id
         self.view_box_ids = view_box_ids
         self.views = views
@@ -156,6 +177,8 @@ class Tenant(object):
             for structure in dictionary.get('activeDirectories'):
                 active_directories.append(cohesity_management_sdk.models.active_directory_entry.ActiveDirectoryEntry.from_dictionary(structure))
         bifrost_enabled = dictionary.get('bifrostEnabled')
+        cluster_hostname = dictionary.get('clusterHostname')
+        cluster_ips = dictionary.get('clusterIps')
         created_time_msecs = dictionary.get('createdTimeMsecs')
         deleted = dictionary.get('deleted')
         deleted_time_msecs = dictionary.get('deletedTimeMsecs')
@@ -183,6 +206,7 @@ class Tenant(object):
             for structure in dictionary.get('protectionJobs'):
                 protection_jobs.append(cohesity_management_sdk.models.backup_job_proto.BackupJobProto.from_dictionary(structure))
         subscribe_to_alert_emails = dictionary.get('subscribeToAlertEmails')
+        swift_config = cohesity_management_sdk.models.swift_params.SwiftParams.from_dictionary(dictionary.get('swiftConfig'))
         tenant_id = dictionary.get('tenantId')
         view_box_ids = dictionary.get('viewBoxIds')
         views = None
@@ -195,6 +219,8 @@ class Tenant(object):
         # Return an object of this model
         return cls(active_directories,
                    bifrost_enabled,
+                   cluster_hostname,
+                   cluster_ips,
                    created_time_msecs,
                    deleted,
                    deleted_time_msecs,
@@ -210,6 +236,7 @@ class Tenant(object):
                    policy_ids,
                    protection_jobs,
                    subscribe_to_alert_emails,
+                   swift_config,
                    tenant_id,
                    view_box_ids,
                    views,

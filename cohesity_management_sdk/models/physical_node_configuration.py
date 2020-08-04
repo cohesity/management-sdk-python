@@ -36,6 +36,7 @@ class PhysicalNodeConfiguration(object):
         self.node_id = node_id
         self.node_ip = node_ip
         self.node_ipmi_ip = node_ipmi_ip
+        self.use_as_compute_node = use_as_compute_node
 
 
     @classmethod
