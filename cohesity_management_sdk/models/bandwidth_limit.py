@@ -32,8 +32,8 @@ class BandwidthLimit(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "bandwidth_limit_overrides":'bandwidthLimitOverrides',
-        "rate_limit_bytes_per_sec":'rateLimitBytesPerSec',
         "io_rate":'ioRate',
+        "rate_limit_bytes_per_sec":'rateLimitBytesPerSec',
         "timezone":'timezone'
     }
 

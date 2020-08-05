@@ -18,7 +18,7 @@ class DocumentTypeEnum(object):
 
     """
 
-    kFILE = 'kFile'
+    KFILE = 'kFile'
 
     KFOLDER = 'kFolder'
 

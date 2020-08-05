@@ -26,9 +26,6 @@ class CategoryAlertMetadataEnum(object):
     kAppsInfra - Alerts that are related to applications infra.
     kAntivirus - Alerts that are related to antivirus.
     kArchivalCopy - Alerts that are related to archival copies.
-    kAppsInfra - Alerts that are related to applications infra.
-    kAntivirus - Alerts that are related to antivirus.
-    kArchivalCopy - Alerts that are related to archival copies.
 
     Attributes:
         KDISK: TODO: type description here.

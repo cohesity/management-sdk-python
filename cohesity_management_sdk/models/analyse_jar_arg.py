@@ -23,7 +23,7 @@ class AnalyseJarArg(object):
     _names = {
         "jar_name":'jarName',
         "jar_path":'jarPath',
-        "jar_relative_path":'requiresSsl',
+        "jar_relative_path":'jarRelativePath',
         "save_entities":'saveEntities'
     }
 
@@ -61,7 +61,7 @@ class AnalyseJarArg(object):
         # Extract variables from the dictionary
         jar_name = dictionary.get('jarName')
         jar_path = dictionary.get('jarPath')
-        jar_relative_path = dictionary.get('requiresSsl')
+        jar_relative_path = dictionary.get('jarRelativePath')
         save_entities = dictionary.get('saveEntities')
 
         # Return an object of this model

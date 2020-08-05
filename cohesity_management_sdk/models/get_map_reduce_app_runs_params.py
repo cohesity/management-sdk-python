@@ -53,7 +53,7 @@ class GetMapReduceAppRunsParams(object):
         "include_details":'includeDetails',
         "last_num_instances":'lastNumInstances',
         "max_run_end_time_in_secs":'maxRunEndTimeInSecs',
-        "max_run_start_time_in_secs":'isSystemDefined',
+        "max_run_start_time_in_secs":'maxRunStartTimeInSecs',
         "min_run_end_time_in_secs":'minRunEndTimeInSecs',
         "min_run_start_time_in_secs":'minRunStartTimeInSecs',
         "page_size":'pageSize',
@@ -112,7 +112,7 @@ class GetMapReduceAppRunsParams(object):
         include_details = dictionary.get('includeDetails')
         last_num_instances = dictionary.get('lastNumInstances')
         max_run_end_time_in_secs = dictionary.get('maxRunEndTimeInSecs')
-        max_run_start_time_in_secs = dictionary.get('isSystemDefined')
+        max_run_start_time_in_secs = dictionary.get('maxRunStartTimeInSecs')
         min_run_end_time_in_secs = dictionary.get('minRunEndTimeInSecs')
         min_run_start_time_in_secs = dictionary.get('minRunStartTimeInSecs')
         page_size = dictionary.get('pageSize')

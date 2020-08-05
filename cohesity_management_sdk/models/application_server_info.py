@@ -30,7 +30,7 @@ class ApplicationServerInfo(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "database_copy_info_list": 'ownerId',
+        "database_copy_info_list": 'databaseCopyInfoList',
         "database_info_list":'databaseInfoList',
         "fqdn": 'fqdn',
         "guid": 'guid',

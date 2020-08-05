@@ -158,8 +158,8 @@ class RegisterProtectionSourceParameters(object):
         "azure_credentials":'azureCredentials',
         "endpoint":'endpoint',
         "environment":'environment',
-        "force_register":'forceRegister',
         "exchange_dag_protection_preference":'exchangeDAGProtectionPreference',
+        "force_register":'forceRegister',
         "gcp_credentials":'gcpCredentials',
         "host_type":'hostType',
         "hyperv_type":'hyperVType',
@@ -191,8 +191,8 @@ class RegisterProtectionSourceParameters(object):
                  azure_credentials=None,
                  endpoint=None,
                  environment=None,
-                 force_register=None,
                  exchange_dag_protection_preference=None,
+                 force_register=None,
                  gcp_credentials=None,
                  host_type=None,
                  hyperv_type=None,
@@ -274,8 +274,8 @@ class RegisterProtectionSourceParameters(object):
         azure_credentials = cohesity_management_sdk.models.azure_credentials.AzureCredentials.from_dictionary(dictionary.get('azureCredentials')) if dictionary.get('azureCredentials') else None
         endpoint = dictionary.get('endpoint')
         environment = dictionary.get('environment')
-        force_register = dictionary.get('forceRegister')
         exchange_dag_protection_preference = cohesity_management_sdk.models.exchange_dag_protection_preference.ExchangeDAGProtectionPreference.from_dictionary(dictionary.get('exchangeDAGProtectionPreference')) if dictionary.get('exchangeDAGProtectionPreference') else None
+        force_register = dictionary.get('forceRegister')
         gcp_credentials = cohesity_management_sdk.models.gcp_credentials.GcpCredentials.from_dictionary(dictionary.get('gcpCredentials')) if dictionary.get('gcpCredentials') else None
         host_type = dictionary.get('hostType')
         hyperv_type = dictionary.get('hyperVType')
@@ -314,8 +314,8 @@ class RegisterProtectionSourceParameters(object):
                    azure_credentials,
                    endpoint,
                    environment,
-                   force_register,
                    exchange_dag_protection_preference,
+                   force_register,
                    gcp_credentials,
                    host_type,
                    hyperv_type,

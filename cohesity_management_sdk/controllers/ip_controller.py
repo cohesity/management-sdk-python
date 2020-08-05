@@ -17,7 +17,7 @@ class IpController(BaseController):
         super(IpController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
 
-    def configure_ip(self, body):
+    def configure_ip(self, body=None):
         """Does a PUT request to /public/ip
 
         Configure the specfied IP settings on the Cohesity Cluster.
@@ -37,11 +37,6 @@ class IpController(BaseController):
         """
         try:
             self.logger.info('configure_ip called.')
-
-            # Validate required parameters
-            self.logger.info(
-                'Validating required parameters for configure_ip.')
-            self.validate_parameters(body=body)
 
             # Prepare query URL
             self.logger.info(

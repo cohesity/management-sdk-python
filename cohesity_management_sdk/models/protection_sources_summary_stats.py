@@ -112,7 +112,6 @@ class ProtectionSourcesSummaryStats(object):
                  last_run_type=None,
                  last_successful_run_time_usecs=None,
                  num_data_read_bytes=None,
-                 run_status=None,
                  num_errors=None,
                  num_logical_bytes_protected=None,
                  num_snapshots=None,

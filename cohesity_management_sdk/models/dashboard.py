@@ -43,7 +43,7 @@ class Dashboard(object):
         "protection":'protection',
         "recoveries":'recoveries',
         "storage_efficiency":'storageEfficiency',
-        "throughput":'requiredPropertyVec'
+        "throughput":'throughput'
     }
 
     def __init__(self,

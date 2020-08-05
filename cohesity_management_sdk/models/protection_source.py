@@ -184,7 +184,7 @@ class ProtectionSource(object):
         "flash_blade_protection_source":'flashBladeProtectionSource',
         "gcp_protection_source":'gcpProtectionSource',
         "gpfs_protection_source":'gpfsProtectionSource',
-        "h_base_protection_source":'HBaseProtectionSource',
+        "h_base_protection_source":'hbaseProtectionSource',
         "hdfs_protection_source":'hdfsProtectionSource',
         "hive_protection_source":'hiveProtectionSource',
         "hyper_flex_protection_source":'hyperFlexProtectionSource',

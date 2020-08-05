@@ -13,24 +13,24 @@ class GetMRJarUploadPathResult(object):
 
     Attributes:
         error (ErrorProto): Status code for this http rpc.
-        Jar_upload_path (string): Path where Jars can be uploaded by Iris.
+        jar_upload_path (string): Path where Jars can be uploaded by Iris.
 
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
         "error": 'error',
-        "Jar_upload_path": 'JarUploadPath'
+        "jar_upload_path": 'jarUploadPath'
     }
 
     def __init__(self,
                  error=None,
-                 Jar_upload_path=None):
+                 jar_upload_path=None):
         """Constructor for the GetMRJarUploadPathResult class"""
 
         # Initialize members of the class
         self.error = error
-        self.Jar_upload_path = Jar_upload_path
+        self.jar_upload_path = jar_upload_path
 
 
     @classmethod
@@ -52,10 +52,10 @@ class GetMRJarUploadPathResult(object):
 
         # Extract variables from the dictionary
         error = cohesity_management_sdk.models.error_proto.ErrorProto.from_dictionary(dictionary.get('error')) if dictionary.get('error') else None
-        Jar_upload_path = dictionary.get('JarUploadPath', None)
+        jar_upload_path = dictionary.get('jarUploadPath', None)
 
         # Return an object of this model
         return cls(error,
-                   Jar_upload_path)
+                   jar_upload_path)
 
 

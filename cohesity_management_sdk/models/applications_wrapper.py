@@ -12,7 +12,7 @@ class ApplicationsWrapper(object):
 
     Attributes:
         applications (list of MapReduceInfo): Applications specifies the list of
-        available map-reduce applications in analytics workbench.
+            available map-reduce applications in analytics workbench.
     """
 
     # Create a mapping from Model property names to API property names

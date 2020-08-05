@@ -140,7 +140,7 @@ class AppInstanceController(BaseController):
             self.logger.error(e, exc_info=True)
             raise
 
-    def update_app_instance_state(self, app_instance_id, body):
+    def update_app_instance_state(self, app_instance_id=None, body=None):
         """Does a PUT request to /public/appInstances/{appInstanceId}/states.
 
         Changes the state of the app instances.

@@ -41,6 +41,7 @@ class AlertCategoryEnum(object):
         KHELIOSPROACTIVEWELLNESS: TODO: type description here.
         KHELIOSANALYTICSJOBS: TODO: type description here.
         KHELIOSSIGNATUREJOBS: TODO: type description here.
+        KSECURITY: TODO: type description here. 
         KAPPSINFRA: TODO: type description here.
         KANTIVIRUS: TODO: type description here.
         KARCHIVALCOPY: TODO: type description here.

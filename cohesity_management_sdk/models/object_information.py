@@ -94,10 +94,11 @@ class ObjectInformation(object):
                 copy_task_info.append(cohesity_management_sdk.models.gdpr_copy_task.GdprCopyTask.from_dictionary(structure))
         is_protected = dictionary.get('isProtected')
         location = dictionary.get('location')
-        if dictionary.get('protection_info') != None:
-            is_protected = list()
-            for structure in dictionary.get('protection_info'):
-                is_protected.append(cohesity_management_sdk.models.protection_info.ProtectionInfo.from_dictionary(structure))
+        protection_info = None
+        if dictionary.get('protectionInfo') != None:
+            protection_info = list()
+            for structure in dictionary.get('protectionInfo'):
+                protection_info.append(cohesity_management_sdk.models.protection_info.ProtectionInfo.from_dictionary(structure))
         root_node_id = dictionary.get('rootNodeId')
         source_id = dictionary.get('sourceId')
         source_name = dictionary.get('sourceName')

@@ -18,7 +18,7 @@ class NodeToTieredStorageDirectoriesMap(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "cassandra_node_name": 'cassandraNodeName',
-        "tiered_storage_directories_vec": 'TieredStorageDirectoriesVec'
+        "tiered_storage_directories_vec": 'tieredStorageDirectoriesVec'
     }
 
     def __init__(self,
@@ -51,7 +51,7 @@ class NodeToTieredStorageDirectoriesMap(object):
         # Extract variables from the dictionary
         cassandra_node_name = dictionary.get('cassandraNodeName')
         tiered_storage_directories_vec = dictionary.get(
-            'TieredStorageDirectoriesVec')
+            'tieredStorageDirectoriesVec')
 
         # Return an object of this model
         return cls(cassandra_node_name,

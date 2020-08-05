@@ -69,8 +69,8 @@ class FileSearchResult(object):
         "is_folder":'isFolder',
         "job_id":'jobId',
         "job_uid":'jobUid',
-        "protection_source":'protectionSource',
         "one_drive_document_metadata":'oneDriveDocumentMetadata',
+        "protection_source":'protectionSource',
         "registered_source_id":'registeredSourceId',
         "snapshot_tags":'snapshotTags',
         "source_id":'sourceId',
@@ -89,8 +89,8 @@ class FileSearchResult(object):
                  is_folder=None,
                  job_id=None,
                  job_uid=None,
-                 protection_source=None,
                  one_drive_document_metadata=None,
+                 protection_source=None,
                  registered_source_id=None,
                  snapshot_tags=None,
                  source_id=None,
@@ -109,8 +109,8 @@ class FileSearchResult(object):
         self.is_folder = is_folder
         self.job_id = job_id
         self.job_uid = job_uid
-        self.protection_source = protection_source
         self.one_drive_document_metadata = one_drive_document_metadata
+        self.protection_source = protection_source
         self.registered_source_id = registered_source_id
         self.snapshot_tags = snapshot_tags
         self.source_id = source_id
@@ -119,8 +119,8 @@ class FileSearchResult(object):
         self.mtype = mtype
         self.view_box_id = view_box_id
 
-
     @classmethod
+
     def from_dictionary(cls,
                         dictionary):
         """Creates an instance of this model from a dictionary
@@ -169,8 +169,8 @@ class FileSearchResult(object):
                    is_folder,
                    job_id,
                    job_uid,
-                   protection_source,
                    one_drive_document_metadata,
+                   protection_source,
                    registered_source_id,
                    snapshot_tags,
                    source_id,
