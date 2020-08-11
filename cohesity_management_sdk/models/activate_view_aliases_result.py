@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2020 Cohesity Inc.
 
-import cohesity_management_sdk.models.view_alias_info
+import cohesity_management_sdk.models.view_alias
 
 class ActivateViewAliasesResult(object):
 
@@ -11,7 +11,7 @@ class ActivateViewAliasesResult(object):
     for a view.
 
     Attributes:
-        aliases (list of ViewAliasInfo): Aliases created for the view. A view
+        aliases (list of ViewAlias): Aliases created for the view. A view
             alias allows a directory path inside a view to be mounted using
             the alias name.
 
@@ -52,7 +52,7 @@ class ActivateViewAliasesResult(object):
         if dictionary.get('aliases') != None:
             aliases = list()
             for structure in dictionary.get('aliases'):
-                aliases.append(cohesity_management_sdk.models.view_alias_info.ViewAliasInfo.from_dictionary(structure))
+                aliases.append(cohesity_management_sdk.models.view_alias.ViewAlias.from_dictionary(structure))
 
         # Return an object of this model
         return cls(aliases)

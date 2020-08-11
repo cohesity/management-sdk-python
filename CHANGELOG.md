@@ -1,3 +1,18 @@
+# [1.3.0] - 2020-08-12
+New version of Cohesity Management SDK is here!
+
+### Added
+- Added support for LTS 6.5.0x Cohesity DataPlatform.
+
+### Changed
+- None
+
+### Fixed
+- None
+
+### Removed
+- None
+
 # [1.2.1] - 2020-03-09
 Patch release for exception handling fix
 

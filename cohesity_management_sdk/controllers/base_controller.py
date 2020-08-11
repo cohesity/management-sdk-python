@@ -27,7 +27,7 @@ class BaseController(object):
 
     http_call_back = None
 
-    global_headers = {'user-agent': 'cohesity-Python-sdk-1.2.1'}
+    global_headers = {'user-agent': 'cohesity-Python-sdk-1.3.0'}
 
     def __init__(self, client=None, call_back=None):
         if client != None:

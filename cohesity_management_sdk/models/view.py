@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2020 Cohesity Inc.
 
-import cohesity_management_sdk.models.view_alias_info
+import cohesity_management_sdk.models.view_alias
 import cohesity_management_sdk.models.antivirus_scan_config
 import cohesity_management_sdk.models.file_extension_filter
 import cohesity_management_sdk.models.file_level_data_lock_config
@@ -29,7 +29,7 @@ class View(object):
         access_sids (list of string): Array of Security Identifiers (SIDs)
             Specifies the list of security identifiers (SIDs) for the
             restricted Principals who have access to this View.
-        aliases (list of ViewAliasInfo): Aliases created for the view. A view
+        aliases (list of ViewAlias): Aliases created for the view. A view
             alias allows a directory path inside a view to be mounted using
             the alias name.
         all_smb_mount_paths (list of string): Array of SMB Paths.  Specifies
@@ -351,7 +351,7 @@ class View(object):
         if dictionary.get('aliases') != None:
             aliases = list()
             for structure in dictionary.get('aliases'):
-                aliases.append(cohesity_management_sdk.models.view_alias_info.ViewAliasInfo.from_dictionary(structure))
+                aliases.append(cohesity_management_sdk.models.view_alias.ViewAlias.from_dictionary(structure))
         all_smb_mount_paths = dictionary.get('allSmbMountPaths')
         antivirus_scan_config = cohesity_management_sdk.models.antivirus_scan_config.AntivirusScanConfig.from_dictionary(dictionary.get('antivirusScanConfig')) if dictionary.get('antivirusScanConfig') else None
         basic_mount_path = dictionary.get('basicMountPath')
