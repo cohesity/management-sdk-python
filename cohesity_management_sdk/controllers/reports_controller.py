@@ -666,11 +666,7 @@ class ReportsController(BaseController):
                   report_name=None,
                   report_type=None,
                   tenant_ids=None,
-                  all_under_hierarchy=None,
-                  match_alias_names=None,
-                  include_views_with_antivirus_enabled_only=None,
-                  include_stats=None,
-                  include_views_with_data_lock_enabled_only=None):
+                  all_under_hierarchy=None):
         """Does a GET request to /public/reports/protectionSourcesJobsSummary.
 
         For example, if two Job ids are passed in, Snapshot summary statistics

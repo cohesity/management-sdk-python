@@ -66,7 +66,7 @@ class ExtractFileRangeResult(object):
         # Extract variables from the dictionary
         data = dictionary.get('data')
         eof = dictionary.get('eof')
-        error = cohesity_management_sdk.models.error_proto.ErrorProto.from_dictionary(dictionary.get('error')) if dictionary.get('error') else dictionary.get('error')
+        error = cohesity_management_sdk.models.error_proto.ErrorProto.from_dictionary(dictionary.get('error')) if dictionary.get('error') else None
         file_length = dictionary.get('fileLength')
         start_offset = dictionary.get('startOffset')
 

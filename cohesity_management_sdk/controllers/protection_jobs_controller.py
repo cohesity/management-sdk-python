@@ -200,7 +200,7 @@ class ProtectionJobsController(BaseController):
                 'includeRpoSnapshots': include_rpo_snapshots,
                 'isLastRunSlaViolated': is_last_run_sla_violated,
                 'onlyReturnDataMigrationJobs': only_return_data_migration_jobs,
-                'PruneExcludedSourceIds': prune_excluded_source_ids,
+                'pruneExcludedSourceIds': prune_excluded_source_ids,
                 'tenantIds': tenant_ids,
                 'allUnderHierarchy': all_under_hierarchy
             }

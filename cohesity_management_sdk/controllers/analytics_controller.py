@@ -150,7 +150,7 @@ class AnalyticsController(BaseController):
             self.logger.error(e, exc_info=True)
             raise
 
-    def create_application(self, body):
+    def create_application(self, body=None):
         """Does a POST request to /public/analytics/apps.
 
         Returns the created application.
@@ -278,7 +278,7 @@ class AnalyticsController(BaseController):
             self.logger.error(e, exc_info=True)
             raise
 
-    def update_application(self, id, body):
+    def update_application(self, id=None, body=None):
         """Does a PUT request to /public/analytics/apps/{id}.
 
         Returns the updated Application.
@@ -299,11 +299,6 @@ class AnalyticsController(BaseController):
         """
         try:
             self.logger.info('update_application called.')
-
-            # Validate required parameters
-            self.logger.info(
-                'Validating required parameters for update_application.')
-            self.validate_parameters(id=id, body=body)
 
             # Prepare query URL
             self.logger.info('Preparing query URL for update_application.')
@@ -510,7 +505,7 @@ class AnalyticsController(BaseController):
             self.logger.error(e, exc_info=True)
             raise
 
-    def create_mapper(self, body):
+    def create_mapper(self, body=None):
         """Does a POST request to /public/analytics/mappers.
 
         Returns the created mapper.
@@ -530,11 +525,6 @@ class AnalyticsController(BaseController):
         """
         try:
             self.logger.info('create_mapper called.')
-
-            # Validate required parameters
-            self.logger.info(
-                'Validating required parameters for create_mapper.')
-            self.validate_parameters(body=body)
 
             # Prepare query URL
             self.logger.info('Preparing query URL for create_mapper.')
@@ -635,7 +625,7 @@ class AnalyticsController(BaseController):
             self.logger.error(e, exc_info=True)
             raise
 
-    def update_mapper(self, id, body):
+    def update_mapper(self, id, body=None):
         """Does a PUT request to /public/analytics/apps/{id}.
 
         Returns the updated Application.
@@ -660,7 +650,7 @@ class AnalyticsController(BaseController):
             # Validate required parameters
             self.logger.info(
                 'Validating required parameters for update_mapper.')
-            self.validate_parameters(id=id, body=body)
+            self.validate_parameters(id=id)
 
             # Prepare query URL
             self.logger.info('Preparing query URL for update_mapper.')
@@ -808,7 +798,7 @@ class AnalyticsController(BaseController):
             self.logger.error(e, exc_info=True)
             raise
 
-    def get_map_reduce_app_runs(self, body):
+    def get_map_reduce_app_runs(self, body=None):
         """Does a GET request to /public/analytics/mrAppRuns.
 
         List map reduce application runs filtered by the specified parameters.
@@ -832,12 +822,6 @@ class AnalyticsController(BaseController):
         """
         try:
             self.logger.info('get_map_reduce_app_runs called.')
-
-            # Validate required parameters
-            self.logger.info(
-                'Validating required parameters for get_map_reduce_app_runs.'
-            )
-            self.validate_parameters(body=body)
 
             # Prepare query URL
             self.logger.info(
@@ -1057,7 +1041,7 @@ class AnalyticsController(BaseController):
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
-                'IsNfsFile': is_nfs_file,
+                'isNfsFile': is_nfs_file,
                 'partitionId': partition_id,
                 'viewBoxId': view_box_id,
                 'viewName': view_name,
@@ -1152,7 +1136,7 @@ class AnalyticsController(BaseController):
             self.logger.error(e, exc_info=True)
             raise
 
-    def create_reducer(self, body):
+    def create_reducer(self, body=None):
         """Does a POST request to /public/analytics/reducers.
 
         Returns the created reducer.
@@ -1172,11 +1156,6 @@ class AnalyticsController(BaseController):
         """
         try:
             self.logger.info('create_reducer called.')
-
-            # Validate required parameters
-            self.logger.info(
-                'Validating required parameters for create_reducer.')
-            self.validate_parameters(body=body)
 
             # Prepare query URL
             self.logger.info('Preparing query URL for create_reducer.')
@@ -1500,7 +1479,10 @@ class AnalyticsController(BaseController):
             _url_path = '/public/analytics/supportedPatterns'
             _query_builder = Configuration.get_base_uri()
             _query_builder += _url_path
-            _query_parameters = {'applicationId': application_id, 'ApplicationDataType': application_data_type}
+            _query_parameters = {
+                'applicationId': application_id,
+                'applicationDataType': application_data_type
+                }
             _query_builder = APIHelper.append_url_with_query_parameters(
                 _query_builder, _query_parameters,
                 Configuration.array_serialization)

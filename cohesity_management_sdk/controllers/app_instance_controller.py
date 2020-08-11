@@ -140,14 +140,15 @@ class AppInstanceController(BaseController):
             self.logger.error(e, exc_info=True)
             raise
 
-    def update_app_instance_state(self, app_instance_id=None, body=None):
+    def update_app_instance_state(self, app_instance_id, body):
         """Does a PUT request to /public/appInstances/{appInstanceId}/states.
 
         Changes the state of the app instances.
 
         Args:
             app_instance_id (int): Specifies the app instance Id.
-            body (UpdateAppInstanceStateParameters): Request to update app instance state.
+            body (UpdateAppInstanceStateParameters): Request to update app
+            instance state.
 
         Returns:
             void: Response from the API. No Content

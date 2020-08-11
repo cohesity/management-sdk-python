@@ -80,7 +80,7 @@ class CreatePhysicalClusterParameters(object):
         # Extract variables from the dictionary
         cluster_name = dictionary.get('clusterName')
         ipmi_config = cohesity_management_sdk.models.ipmi_configuration.IpmiConfiguration.from_dictionary(dictionary.get('ipmiConfig')) if dictionary.get('ipmiConfig') else None
-        ip_preference = dictionary.get('ip_preference', None)
+        ip_preference = dictionary.get('ipPreference', None)
         network_config = cohesity_management_sdk.models.network_configuration.NetworkConfiguration.from_dictionary(dictionary.get('networkConfig')) if dictionary.get('networkConfig') else None
         node_configs = None
         if dictionary.get('nodeConfigs') != None:

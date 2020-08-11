@@ -128,7 +128,7 @@ class EnvBackupParams(object):
         file_uptiering_params = cohesity_management_sdk.models.file_uptiering_params.FileUptieringParams.from_dictionary(dictionary.get('fileUptieringParams')) if dictionary.get('fileUptieringParams') else None
         hyperv_backup_params = cohesity_management_sdk.models.hyperv_backup_env_params.HypervBackupEnvParams.from_dictionary(dictionary.get('hypervBackupParams')) if dictionary.get('hypervBackupParams') else None
         nas_backup_params = cohesity_management_sdk.models.nas_backup_params.NasBackupParams.from_dictionary(dictionary.get('nasBackupParams')) if dictionary.get('nasBackupParams') else None
-        no_sql_backup_job_params = cohesity_management_sdk.models.no_sql_backup_job_params.NoSqlBackupJobParams.from_dictionary(dictionary.get('nosqlBackupJobParams')) if dictionary.get('NoSqlBackupJobParams') else None
+        no_sql_backup_job_params = cohesity_management_sdk.models.no_sql_backup_job_params.NoSqlBackupJobParams.from_dictionary(dictionary.get('nosqlBackupJobParams')) if dictionary.get('noSqlBackupJobParams') else None
         o_365_backup_params = cohesity_management_sdk.models.o_365_backup_env_params.O365BackupEnvParams.from_dictionary(dictionary.get('o365BackupParams')) if dictionary.get('o365BackupParams') else None
         oracle_backup_job_params = cohesity_management_sdk.models.oracle_backup_job_params.OracleBackupJobParams.from_dictionary(dictionary.get('oracleBackupJobParams')) if dictionary.get('oracleBackupJobParams') else None
         outlook_backup_params = cohesity_management_sdk.models.outlook_backup_env_params.OutlookBackupEnvParams.from_dictionary(dictionary.get('outlookBackupParams')) if dictionary.get('outlookBackupParams') else None

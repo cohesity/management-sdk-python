@@ -146,7 +146,7 @@ class ApplicationsRestoreTaskRequest(object):
         if dictionary.get('protectionSourceAndApplicationObjects') != None:
             protection_source_and_application_objects = list()
             for each_object in dictionary.get('protectionSourceAndApplicationObjects'):
-                protection_source_and_application_objects.append(cohesity_management_sdk.models.protection_source_and_application_restore_objects.ProtectionSourceAndApplicationRestoreObjects(each_object))
+                protection_source_and_application_objects.append(cohesity_management_sdk.models.protection_source_and_application_restore_objects.ProtectionSourceAndApplicationRestoreObjects.from_dictionary(each_object))
         vlan_parameters = cohesity_management_sdk.models.vlan_parameters.VlanParameters.from_dictionary(dictionary.get('vlanParameters')) if dictionary.get('vlanParameters') else None
 
         # Return an object of this model

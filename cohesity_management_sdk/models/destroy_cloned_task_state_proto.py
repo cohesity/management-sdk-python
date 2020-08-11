@@ -232,7 +232,7 @@ class DestroyClonedTaskStateProto(object):
         mtype = dictionary.get('type')
         user = dictionary.get('user')
         user_info = cohesity_management_sdk.models.user_information.UserInformation.from_dictionary(dictionary.get('userInfo')) if dictionary.get('userInfo') else None
-        vcd_config = cohesity_management_sdk.models.restored_object_vcd_config_proto.RestoredObjectVCDConfigProto.from_dictionary(dictionary.get('vcdConfig'))
+        vcd_config = cohesity_management_sdk.models.restored_object_vcd_config_proto.RestoredObjectVCDConfigProto.from_dictionary(dictionary.get('vcdConfig')) if dictionary.get('vcdConfig') else None
         view_box_id = dictionary.get('viewBoxId')
         view_name_deprecated = dictionary.get('viewName_DEPRECATED')
 
