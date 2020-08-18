@@ -4,6 +4,7 @@ __all__ = [
     'alerts_controller',
     'analytics_controller',
     'antivirus_service_group_controller',
+    'app_controller',
     'app_instance_controller',
     'audit_controller',
     'banner_controller',

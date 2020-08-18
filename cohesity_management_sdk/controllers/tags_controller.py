@@ -13,9 +13,10 @@ from cohesity_management_sdk.models.tags_operation_result import TagsOperationRe
 
 class TagsController(BaseController):
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-    def __init__(self, client=None, call_back=None):
+    def __init__(self, config=None, client=None, call_back=None):
         super(TagsController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
+        self.config = config
 
 
     def apply_tags(self, body=None):
@@ -43,7 +44,7 @@ class TagsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for apply_tags.')
             _url_path = '/public/tags/apply'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -61,7 +62,7 @@ class TagsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='apply_tags')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -103,7 +104,7 @@ class TagsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for remove_tags.')
             _url_path = '/public/tags/remove'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -121,7 +122,7 @@ class TagsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='remove_tags')
 
             # Endpoint and global error handling using HTTP status codes.

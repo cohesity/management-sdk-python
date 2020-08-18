@@ -11,9 +11,10 @@ from cohesity_management_sdk.exceptions.request_error_error_exception import Req
 
 class AccessTokensController(BaseController):
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-    def __init__(self, client=None, call_back=None):
+    def __init__(self, config=None, client=None, call_back=None):
         super(AccessTokensController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
+        self.config = config
 
     def create_generate_access_token(self, body):
         """Does a POST request to /public/accessTokens.
@@ -57,7 +58,7 @@ class AccessTokensController(BaseController):
             self.logger.info(
                 'Preparing query URL for create_generate_access_token.')
             _url_path = '/public/accessTokens'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 

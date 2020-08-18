@@ -16,9 +16,10 @@ from cohesity_management_sdk.models.banner_update_parameters import BannerUpdate
 
 class BannerController(BaseController):
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-    def __init__(self, client=None, call_back=None):
+    def __init__(self, config=None, client=None, call_back=None):
         super(BannerController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
+        self.config = config
 
     def get_banner(self, body=None):
         """Does a GET request to /public/banners.
@@ -48,7 +49,7 @@ class BannerController(BaseController):
             self.logger.info(
                 'Preparing query URL for get_banner.')
             _url_path = '/public/banners'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -64,7 +65,7 @@ class BannerController(BaseController):
                 'Preparing and executing request for get_banner.'
             )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_banner')
 
@@ -111,7 +112,7 @@ class BannerController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for update_banner.')
             _url_path = '/public/banners'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -129,7 +130,7 @@ class BannerController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='update_banner')
 
             # Endpoint and global error handling using HTTP status codes.

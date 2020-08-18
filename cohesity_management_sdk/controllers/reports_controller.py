@@ -18,9 +18,10 @@ from cohesity_management_sdk.models.protection_sources_jobs_summary_report_respo
 
 class ReportsController(BaseController):
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-    def __init__(self, client=None, call_back=None):
+    def __init__(self, config=None, client=None, call_back=None):
         super(ReportsController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
+        self.config = config
 
     def get_agent_deployment_report(self,
                                     host_os_type=None,
@@ -63,7 +64,7 @@ class ReportsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_agent_deployment_report.')
             _url_path = '/public/reports/agents'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'hostOsType': host_os_type,
@@ -84,7 +85,7 @@ class ReportsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_agent_deployment_report.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='get_agent_deployment_report')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -152,7 +153,7 @@ class ReportsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_data_transfer_from_vaults_report_request.')
             _url_path = '/public/reports/dataTransferFromVaults'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'startTimeMsecs': start_time_msecs,
@@ -174,7 +175,7 @@ class ReportsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_data_transfer_from_vaults_report_request.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='get_data_transfer_from_vaults_report_request')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -242,7 +243,7 @@ class ReportsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_data_transfer_to_vaults_report_request.')
             _url_path = '/public/reports/dataTransferToVaults'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'startTimeMsecs': start_time_msecs,
@@ -264,7 +265,7 @@ class ReportsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_data_transfer_to_vaults_report_request.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='get_data_transfer_to_vaults_report_request')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -332,7 +333,7 @@ class ReportsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_gdpr_report.')
             _url_path = '/public/reports/gdpr'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'id': id,
@@ -356,7 +357,7 @@ class ReportsController(BaseController):
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_gdpr_report.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='get_gdpr_report')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -495,7 +496,7 @@ class ReportsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_protected_objects_trends_report_request.')
             _url_path = '/public/reports/protectedObjectsTrends'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'jobIds': job_ids,
@@ -522,7 +523,7 @@ class ReportsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_protected_objects_trends_report_request.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_protected_objects_trends_report_request')
 
@@ -608,7 +609,7 @@ class ReportsController(BaseController):
             self.logger.info(
                 'Preparing query URL for get_protection_sources_job_runs_report_request.')
             _url_path = '/public/reports/protectionSourcesJobRuns'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'jobIds': job_ids,
@@ -633,7 +634,7 @@ class ReportsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_protection_sources_job_runs_report_request.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_protection_sources_job_runs_report_request')
 
@@ -750,7 +751,7 @@ class ReportsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_protection_sources_jobs_summary_report_request.')
             _url_path = '/public/reports/protectionSourcesJobsSummary'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'jobIds': job_ids,
@@ -779,7 +780,7 @@ class ReportsController(BaseController):
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_protection_sources_jobs_summary_report_request.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='get_protection_sources_jobs_summary_report_request')
 
             # Endpoint and global error handling using HTTP status codes.

@@ -15,9 +15,10 @@ from cohesity_management_sdk.exceptions.request_error_error_exception import Req
 
 class VaultsController(BaseController):
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-    def __init__(self, client=None, call_back=None):
+    def __init__(self, config=None, client=None, call_back=None):
         super(VaultsController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
+        self.config = config
 
     def get_vaults(self, id=None, name=None, include_marked_for_removal=None):
         """Does a GET request to /public/vaults.
@@ -53,7 +54,7 @@ class VaultsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_vaults.')
             _url_path = '/public/vaults'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'id': id,
@@ -72,7 +73,7 @@ class VaultsController(BaseController):
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_vaults.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='get_vaults')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -120,7 +121,7 @@ class VaultsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for create_vault.')
             _url_path = '/public/vaults'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -138,7 +139,7 @@ class VaultsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='create_vault')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -208,7 +209,7 @@ class VaultsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_archive_media_info.')
             _url_path = '/public/vaults/archiveMediaInfo'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'clusterId': cluster_id,
@@ -230,7 +231,7 @@ class VaultsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_archive_media_info.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_archive_media_info')
 
@@ -270,7 +271,7 @@ class VaultsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_bandwidth_settings.')
             _url_path = '/public/vaults/bandwidthSettings'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -282,7 +283,7 @@ class VaultsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_bandwidth_settings.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_bandwidth_settings')
 
@@ -333,7 +334,7 @@ class VaultsController(BaseController):
             self.logger.info(
                 'Preparing query URL for update_bandwidth_settings.')
             _url_path = '/public/vaults/bandwidthSettings'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -353,7 +354,7 @@ class VaultsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='update_bandwidth_settings')
 
@@ -416,7 +417,7 @@ class VaultsController(BaseController):
             _url_path = '/public/vaults/encryptionKey/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -429,7 +430,7 @@ class VaultsController(BaseController):
                 'Preparing and executing request for get_vault_encryption_key.'
             )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_vault_encryption_key')
 
@@ -481,7 +482,7 @@ class VaultsController(BaseController):
             _url_path = '/public/vaults/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -493,7 +494,7 @@ class VaultsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_vault_by_id.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='get_vault_by_id')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -545,7 +546,7 @@ class VaultsController(BaseController):
             _url_path = '/public/vaults/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -563,7 +564,7 @@ class VaultsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='update_vault')
 
             # Endpoint and global error handling using HTTP status codes.

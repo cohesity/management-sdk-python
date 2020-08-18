@@ -20,9 +20,10 @@ from cohesity_management_sdk.models.exchange_dag_hosts_response import ExchangeD
 
 class ProtectionSourcesController(BaseController):
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-    def __init__(self, client=None, call_back=None):
+    def __init__(self, config=None, client=None, call_back=None):
         super(ProtectionSourcesController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
+        self.config = config
 
     def get_download_physical_agent(self,
                                     host_type,
@@ -75,7 +76,7 @@ class ProtectionSourcesController(BaseController):
             self.logger.info(
                 'Preparing query URL for get_download_physical_agent.')
             _url_path = '/public/physicalAgents/download'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'hostType': host_type,
@@ -97,7 +98,7 @@ class ProtectionSourcesController(BaseController):
                 'Preparing and executing request for get_download_physical_agent.'
             )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_download_physical_agent')
 
@@ -160,7 +161,7 @@ class ProtectionSourcesController(BaseController):
             self.logger.info(
                 'Preparing query URL for create_upgrade_physical_agents.')
             _url_path = '/public/physicalAgents/upgrade'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -180,7 +181,7 @@ class ProtectionSourcesController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='create_upgrade_physical_agents')
 
@@ -313,7 +314,7 @@ class ProtectionSourcesController(BaseController):
             self.logger.info(
                 'Preparing query URL for list_protection_sources.')
             _url_path = '/public/protectionSources'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'afterCursorEntityId': after_cursor_entity_id,
@@ -347,7 +348,7 @@ class ProtectionSourcesController(BaseController):
             self.logger.info(
                 'Preparing and executing request for list_protection_sources.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='list_protection_sources')
 
@@ -490,7 +491,7 @@ class ProtectionSourcesController(BaseController):
             self.logger.info(
                 'Preparing query URL for list_application_servers.')
             _url_path = '/public/protectionSources/applicationServers'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'protectionSourcesRootNodeId': protection_sources_root_node_id,
@@ -512,7 +513,7 @@ class ProtectionSourcesController(BaseController):
                 'Preparing and executing request for list_application_servers.'
             )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='list_application_servers')
 
@@ -567,7 +568,7 @@ class ProtectionSourcesController(BaseController):
             self.logger.info(
                 'Preparing query URL for create_register_application_servers.')
             _url_path = '/public/protectionSources/applicationServers'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -587,7 +588,7 @@ class ProtectionSourcesController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='create_register_application_servers')
 
@@ -639,7 +640,7 @@ class ProtectionSourcesController(BaseController):
             self.logger.info(
                 'Preparing query URL for update_application_servers.')
             _url_path = '/public/protectionSources/applicationServers'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -659,7 +660,7 @@ class ProtectionSourcesController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='update_application_servers')
 
@@ -721,7 +722,7 @@ class ProtectionSourcesController(BaseController):
             _url_path = '/public/protectionSources/applicationServers/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -741,7 +742,7 @@ class ProtectionSourcesController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='delete_unregister_application_servers')
 
@@ -793,7 +794,7 @@ class ProtectionSourcesController(BaseController):
             self.logger.info(
                 'Preparing query URL for list_data_store_information.')
             _url_path = '/public/protectionSources/datastores'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {'sourceId': source_id}
             _query_builder = APIHelper.append_url_with_query_parameters(
@@ -811,7 +812,7 @@ class ProtectionSourcesController(BaseController):
                 'Preparing and executing request for list_data_store_information.'
             )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='list_data_store_information')
 
@@ -866,7 +867,7 @@ class ProtectionSourcesController(BaseController):
             _url_path = '/public/protectionSources/diagnostics/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
             # Prepare headers
@@ -880,7 +881,7 @@ class ProtectionSourcesController(BaseController):
                 'Preparing and executing request for run_diagnostics.'
             )
             _request = self.http_client.post(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='run_diagnostics')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -928,7 +929,7 @@ class ProtectionSourcesController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for list_exchange_dag_hosts.')
             _url_path = '/public/protectionSources/exchangeDagHosts'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {'endpoint': endpoint, 'protectionSourceId': protection_source_id}
             _query_builder = APIHelper.append_url_with_query_parameters(
@@ -944,7 +945,7 @@ class ProtectionSourcesController(BaseController):
             self.logger.info(
                 'Preparing and executing request for list_exchange_dag_hosts.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='list_exchange_dag_hosts')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -988,7 +989,7 @@ class ProtectionSourcesController(BaseController):
             self.logger.info(
                 'Preparing query URL for get_protection_sources_objects.')
             _url_path = '/public/protectionSources/objects'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {'objectIds': object_ids}
             _query_builder = APIHelper.append_url_with_query_parameters(
@@ -1006,7 +1007,7 @@ class ProtectionSourcesController(BaseController):
                 'Preparing and executing request for get_protection_sources_objects.'
             )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='get_protection_sources_objects')
 
@@ -1060,7 +1061,7 @@ class ProtectionSourcesController(BaseController):
             _url_path = '/public/protectionSources/objects/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -1074,7 +1075,7 @@ class ProtectionSourcesController(BaseController):
                 'Preparing and executing request for get_protection_sources_object_by_id.'
             )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='get_protection_sources_object_by_id')
 
@@ -1178,7 +1179,7 @@ class ProtectionSourcesController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for list_protected_objects.')
             _url_path = '/public/protectionSources/protectedObjects'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'environment': environment,
@@ -1199,7 +1200,7 @@ class ProtectionSourcesController(BaseController):
             self.logger.info(
                 'Preparing and executing request for list_protected_objects.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='list_protected_objects')
 
@@ -1269,7 +1270,7 @@ class ProtectionSourcesController(BaseController):
             _url_path = '/public/protectionSources/refresh/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -1278,7 +1279,7 @@ class ProtectionSourcesController(BaseController):
                 'Preparing and executing request for create_refresh_protection_source_by_id.'
             )
             _request = self.http_client.post(_query_url)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='create_refresh_protection_source_by_id')
 
@@ -1328,7 +1329,7 @@ class ProtectionSourcesController(BaseController):
             self.logger.info(
                 'Preparing query URL for create_register_protection_source.')
             _url_path = '/public/protectionSources/register'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -1348,7 +1349,7 @@ class ProtectionSourcesController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='create_register_protection_source')
 
@@ -1423,7 +1424,7 @@ class ProtectionSourcesController(BaseController):
                 'Preparing query URL for list_protection_sources_registration_info.'
             )
             _url_path = '/public/protectionSources/registrationInfo'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'environments': environments,
@@ -1449,7 +1450,7 @@ class ProtectionSourcesController(BaseController):
                 'Preparing and executing request for list_protection_sources_registration_info.'
             )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='list_protection_sources_registration_info')
 
@@ -1514,7 +1515,7 @@ class ProtectionSourcesController(BaseController):
             self.logger.info(
                 'Preparing query URL for list_protection_sources_root_nodes.')
             _url_path = '/public/protectionSources/rootNodes'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'id': id,
@@ -1536,7 +1537,7 @@ class ProtectionSourcesController(BaseController):
                 'Preparing and executing request for list_protection_sources_root_nodes.'
             )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='list_protection_sources_root_nodes')
 
@@ -1595,7 +1596,7 @@ Success
             self.logger.info(
                 'Preparing query URL for list_sql_aag_hosts_and_databases.')
             _url_path = '/public/protectionSources/sqlAagHostsAndDatabases'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'sqlProtectionSourceIds': sql_protection_source_ids
@@ -1615,7 +1616,7 @@ Success
                 'Preparing and executing request for list_sql_aag_hosts_and_databases.'
             )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='list_sql_aag_hosts_and_databases')
 
@@ -1684,7 +1685,7 @@ Success
             # Prepare query URL
             self.logger.info('Preparing query URL for list_virtual_machines.')
             _url_path = '/public/protectionSources/virtualMachines'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'vCenterId': v_center_id,
@@ -1705,7 +1706,7 @@ Success
             self.logger.info(
                 'Preparing and executing request for list_virtual_machines.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='list_virtual_machines')
 
@@ -1758,7 +1759,7 @@ Success
             _url_path = '/public/protectionSources/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -1767,7 +1768,7 @@ Success
                 'Preparing and executing request for delete_unregister_protection_source.'
             )
             _request = self.http_client.delete(_query_url)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='delete_unregister_protection_source')
 
@@ -1817,7 +1818,7 @@ Success
             _url_path = '/public/protectionSources/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -1836,7 +1837,7 @@ Success
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='update_protection_source')
 

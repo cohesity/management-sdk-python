@@ -28,9 +28,10 @@ from cohesity_management_sdk.models.get_mr_jar_upload_path_result import GetMRJa
 
 class AnalyticsController(BaseController):
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-    def __init__(self, client=None, call_back=None):
+    def __init__(self, config=None, client=None, call_back=None):
         super(AnalyticsController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
+        self.config = config
 
     def analyze_jar(self, body=None):
         """Does a POST request to /public/analytics/analyzeJar.
@@ -58,7 +59,7 @@ class AnalyticsController(BaseController):
             self.logger.info(
                 'Preparing query URL for analyze_jar.')
             _url_path = '/public/analytics/analyzeJar'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -77,7 +78,7 @@ class AnalyticsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='analyze_jar')
 
@@ -121,7 +122,7 @@ class AnalyticsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_applications.')
             _url_path = '/public/analytics/apps'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -133,7 +134,7 @@ class AnalyticsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_applications.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_applications')
 
@@ -179,7 +180,7 @@ class AnalyticsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for create_application.')
             _url_path = '/public/analytics/apps'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -197,7 +198,7 @@ class AnalyticsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='create_application')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -248,7 +249,7 @@ class AnalyticsController(BaseController):
             _url_path = '/public/analytics/apps/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -260,7 +261,7 @@ class AnalyticsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_application_by_id.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_application_by_id')
 
@@ -305,7 +306,7 @@ class AnalyticsController(BaseController):
             _url_path = '/public/analytics/apps/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -323,7 +324,7 @@ class AnalyticsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='update_application')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -371,7 +372,7 @@ class AnalyticsController(BaseController):
             _url_path = '/public/analytics/apps/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -379,7 +380,7 @@ class AnalyticsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for delete_application.')
             _request = self.http_client.delete(_query_url)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='delete_application')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -423,7 +424,7 @@ class AnalyticsController(BaseController):
             _url_path = '/public/analytics/cancelAppInstanceRun/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -434,7 +435,7 @@ class AnalyticsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for cancel_map_reduce_instance_run.')
             _request = self.http_client.put(_query_url)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='cancel_map_reduce_instance_run')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -476,7 +477,7 @@ class AnalyticsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_mappers.')
             _url_path = '/public/analytics/mappers'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -488,7 +489,7 @@ class AnalyticsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_mappers.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='get_mappers')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -529,7 +530,7 @@ class AnalyticsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for create_mapper.')
             _url_path = '/public/analytics/mappers'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -547,7 +548,7 @@ class AnalyticsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='create_mapper')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -596,7 +597,7 @@ class AnalyticsController(BaseController):
             _url_path = '/public/analytics/mappers/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -608,7 +609,7 @@ class AnalyticsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_mapper_by_id.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='get_mapper_by_id')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -657,7 +658,7 @@ class AnalyticsController(BaseController):
             _url_path = '/public/analytics/apps/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -675,7 +676,7 @@ class AnalyticsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='update_mapper')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -723,7 +724,7 @@ class AnalyticsController(BaseController):
             _url_path = '/public/analytics/mappers/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -731,7 +732,7 @@ class AnalyticsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for delete_mapper.')
             _request = self.http_client.delete(_query_url)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='delete_mapper')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -777,7 +778,7 @@ class AnalyticsController(BaseController):
             _url_path = '/public/analytics/mrAppRun/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -785,7 +786,7 @@ class AnalyticsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for delete_map_reduce_instance_run.')
             _request = self.http_client.delete(_query_url)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='delete_map_reduce_instance_run')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -827,7 +828,7 @@ class AnalyticsController(BaseController):
             self.logger.info(
                 'Preparing query URL for get_map_reduce_app_runs.')
             _url_path = '/public/analytics/mrAppRuns'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {'body': body}
             _query_builder = APIHelper.append_url_with_query_parameters(
@@ -845,7 +846,7 @@ class AnalyticsController(BaseController):
                 'Preparing and executing request for get_map_reduce_app_runs.'
             )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_map_reduce_app_runs')
 
@@ -886,7 +887,7 @@ class AnalyticsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for download_mr_base_jar.')
             _url_path = '/public/analytics/mrBaseJar'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -898,7 +899,7 @@ class AnalyticsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for download_mr_base_jar.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='download_mr_base_jar')
 
@@ -953,7 +954,7 @@ class AnalyticsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_map_reduce_file_formats.')
             _url_path = '/public/analytics/mrFileFormats'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'resultFilePath': result_file_path,
@@ -973,7 +974,7 @@ class AnalyticsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_map_reduce_file_formats.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='get_map_reduce_file_formats')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -1038,7 +1039,7 @@ class AnalyticsController(BaseController):
             self.logger.info(
                 'Preparing query URL for download_mr_output_files.')
             _url_path = '/public/analytics/mrOutputfiles'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'isNfsFile': is_nfs_file,
@@ -1062,7 +1063,7 @@ class AnalyticsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for download_mr_output_files.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='download_mr_output_files')
 
@@ -1105,7 +1106,7 @@ class AnalyticsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_reducers.')
             _url_path = '/public/analytics/reducers'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -1117,7 +1118,7 @@ class AnalyticsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_reducers.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_reducers')
 
@@ -1160,7 +1161,7 @@ class AnalyticsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for create_reducer.')
             _url_path = '/public/analytics/reducers'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -1178,7 +1179,7 @@ class AnalyticsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='create_reducer')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -1228,7 +1229,7 @@ class AnalyticsController(BaseController):
             _url_path = '/public/analytics/reducers/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -1240,7 +1241,7 @@ class AnalyticsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_reducer_by_id.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='get_reducer_by_id')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -1290,7 +1291,7 @@ class AnalyticsController(BaseController):
             _url_path = '/public/analytics/reducers/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -1309,7 +1310,7 @@ class AnalyticsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='update_reducer')
 
@@ -1360,7 +1361,7 @@ class AnalyticsController(BaseController):
             _url_path = '/public/analytics/reducers/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -1368,7 +1369,7 @@ class AnalyticsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for delete_reducer.')
             _request = self.http_client.delete(_query_url)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='delete_reducer')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -1410,7 +1411,7 @@ class AnalyticsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for run_map_reduce_app_instance.')
             _url_path = '/public/analytics/runAppInstance'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -1428,7 +1429,7 @@ class AnalyticsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='run_map_reduce_app_instance')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -1477,7 +1478,7 @@ class AnalyticsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_supported_patterns.')
             _url_path = '/public/analytics/supportedPatterns'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'applicationId': application_id,
@@ -1496,7 +1497,7 @@ class AnalyticsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_supported_patterns.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='get_supported_patterns')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -1546,7 +1547,7 @@ class AnalyticsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for save_pattern.')
             _url_path = '/public/analytics/supportedPatterns'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -1564,7 +1565,7 @@ class AnalyticsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='save_pattern')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -1602,7 +1603,7 @@ class AnalyticsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for upload_jar.')
             _url_path = '/public/analytics/uploadJar'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -1617,7 +1618,7 @@ class AnalyticsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for upload_jar.')
             _request = self.http_client.post(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='upload_jar')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -1663,7 +1664,7 @@ class AnalyticsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for delete_uploaded_jar.')
             _url_path = '/public/analytics/uploadJar'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -1678,7 +1679,7 @@ class AnalyticsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='delete_uploaded_jar')
 
@@ -1713,7 +1714,7 @@ class AnalyticsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_mr_upload_jar_path.')
             _url_path = '/public/analytics/uploadJarPath'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -1725,7 +1726,7 @@ class AnalyticsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_mr_upload_jar_path.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_mr_upload_jar_path')
 

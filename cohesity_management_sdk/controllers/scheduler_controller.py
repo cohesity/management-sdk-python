@@ -16,9 +16,10 @@ from cohesity_management_sdk.models.scheduler_proto_scheduler_job_schedule_job_p
 
 class SchedulerController(BaseController):
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-    def __init__(self, client=None, call_back=None):
+    def __init__(self, config=None, client=None, call_back=None):
         super(SchedulerController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
+        self.config = config
 
     def get_scheduler_jobs(self,
                        ids=None,
@@ -56,7 +57,7 @@ class SchedulerController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_scheduler_jobs.')
             _url_path = '/public/scheduler'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'ids': ids,
@@ -76,7 +77,7 @@ class SchedulerController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_scheduler_jobs.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='get_scheduler_jobs')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -123,7 +124,7 @@ class SchedulerController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for update_scheduler_job.')
             _url_path = '/public/scheduler'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -141,7 +142,7 @@ class SchedulerController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='update_scheduler_job')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -189,7 +190,7 @@ class SchedulerController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for create_scheduler_job.')
             _url_path = '/public/scheduler'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -207,7 +208,7 @@ class SchedulerController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='create_scheduler_job')
 
@@ -261,7 +262,7 @@ class SchedulerController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for delete_scheduler_jobs.')
             _url_path = '/public/scheduler'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -276,7 +277,7 @@ class SchedulerController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='delete_scheduler_jobs')
 

@@ -21,9 +21,10 @@ from cohesity_management_sdk.exceptions.error_exception import ErrorException
 
 class ClustersController(BaseController):
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-    def __init__(self, client=None, call_back=None):
+    def __init__(self, config=None, client=None, call_back=None):
         super(ClustersController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
+        self.config = config
 
     def get_background_activity_schedule(self):
         """Does a GET request to /public/cluster/backgroundActivitySchedule.
@@ -48,7 +49,7 @@ class ClustersController(BaseController):
             self.logger.info(
                 'Preparing query URL for get_background_activity_schedule.')
             _url_path = '/public/cluster/backgroundActivitySchedule'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -62,7 +63,7 @@ class ClustersController(BaseController):
                 'Preparing and executing request for ' + \
                 'get_background_activity_schedule.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='get_background_activity_schedule')
 
@@ -102,7 +103,7 @@ class ClustersController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_cluster_keys.')
             _url_path = '/public/cluster/keys'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -114,7 +115,7 @@ class ClustersController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_cluster_keys.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='get_cluster_keys')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -154,7 +155,7 @@ class ClustersController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for destroy_cluster.')
             _url_path = '/public/clusters'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -162,7 +163,7 @@ class ClustersController(BaseController):
             self.logger.info(
                 'Preparing and executing request for destroy_cluster.')
             _request = self.http_client.delete(_query_url)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='destroy_cluster')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -209,7 +210,7 @@ class ClustersController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for create_cloud_cluster.')
             _url_path = '/public/clusters/cloudEdition'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -227,7 +228,7 @@ class ClustersController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='create_cloud_cluster')
 
@@ -280,7 +281,7 @@ class ClustersController(BaseController):
             self.logger.info(
                 'Preparing query URL for create_expand_cloud_cluster.')
             _url_path = '/public/clusters/cloudEdition/nodes'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -300,7 +301,7 @@ class ClustersController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='create_expand_cloud_cluster')
 
@@ -345,7 +346,7 @@ class ClustersController(BaseController):
             self.logger.info(
                 'Preparing query URL for get_cluster_creation_progress.')
             _url_path = '/public/clusters/creationProgress'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -359,7 +360,7 @@ class ClustersController(BaseController):
                 'Preparing and executing request for get_cluster_creation_progress.'
             )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='get_cluster_creation_progress')
 
@@ -402,7 +403,7 @@ class ClustersController(BaseController):
             self.logger.info(
                 'Preparing query URL for get_io_preferential_tier.')
             _url_path = '/public/clusters/ioPreferentialTier'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -415,7 +416,7 @@ class ClustersController(BaseController):
                 'Preparing and executing request for get_io_preferential_tier.'
             )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_io_preferential_tier')
 
@@ -464,7 +465,7 @@ class ClustersController(BaseController):
             self.logger.info(
                 'Preparing query URL for put_io_preferential_tier.')
             _url_path = '/public/clusters/ioPreferentialTier'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -483,7 +484,7 @@ class ClustersController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='put_io_preferential_tier')
 
@@ -532,7 +533,7 @@ class ClustersController(BaseController):
             _url_path = '/public/clusters/nodes/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -540,7 +541,7 @@ class ClustersController(BaseController):
             self.logger.info(
                 'Preparing and executing request for remove_node.')
             _request = self.http_client.delete(_query_url)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='remove_node')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -588,7 +589,7 @@ class ClustersController(BaseController):
             self.logger.info(
                 'Preparing query URL for create_physical_cluster.')
             _url_path = '/public/clusters/physicalEdition'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -606,7 +607,7 @@ class ClustersController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='create_physical_cluster')
 
@@ -660,7 +661,7 @@ class ClustersController(BaseController):
             self.logger.info(
                 'Preparing query URL for create_expand_physical_cluster.')
             _url_path = '/public/clusters/physicalEdition/nodes'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -680,7 +681,7 @@ class ClustersController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='create_expand_physical_cluster')
 
@@ -722,7 +723,7 @@ class ClustersController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for list_service_states.')
             _url_path = '/public/clusters/services/states'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -734,7 +735,7 @@ class ClustersController(BaseController):
             self.logger.info(
                 'Preparing and executing request for list_service_states.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='list_service_states')
 
@@ -784,7 +785,7 @@ class ClustersController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for change_service_state.')
             _url_path = '/public/clusters/services/states'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -802,7 +803,7 @@ class ClustersController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='change_service_state')
 
@@ -855,7 +856,7 @@ class ClustersController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for update_upgrade_cluster.')
             _url_path = '/public/clusters/software'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -873,7 +874,7 @@ class ClustersController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='update_upgrade_cluster')
 
@@ -924,7 +925,7 @@ class ClustersController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for create_virtual_cluster.')
             _url_path = '/public/clusters/virtualEdition'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -942,7 +943,7 @@ class ClustersController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='create_virtual_cluster')
 
@@ -983,7 +984,7 @@ class ClustersController(BaseController):
             self.logger.info(
                 'Preparing query URL for get_external_client_subnets.')
             _url_path = '/public/externalClientSubnets'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -997,7 +998,7 @@ class ClustersController(BaseController):
                 'Preparing and executing request for get_external_client_subnets.'
             )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_external_client_subnets')
 
@@ -1043,7 +1044,7 @@ class ClustersController(BaseController):
             self.logger.info(
                 'Preparing query URL for update_external_client_subnets.')
             _url_path = '/public/externalClientSubnets'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -1063,7 +1064,7 @@ class ClustersController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='update_external_client_subnets')
 

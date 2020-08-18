@@ -16,9 +16,10 @@ from cohesity_management_sdk.exceptions.request_error_error_exception import Req
 
 class AlertsController(BaseController):
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-    def __init__(self, client=None, call_back=None):
+    def __init__(self, config=None, client=None, call_back=None):
         super(AlertsController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
+        self.config = config
 
     def get_alert_categories(self):
         """Does a GET request to /public/alertCategories.
@@ -41,7 +42,7 @@ class AlertsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_alert_categories.')
             _url_path = '/public/alertCategories'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -53,7 +54,7 @@ class AlertsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_alert_categories.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_alert_categories')
 
@@ -95,7 +96,7 @@ class AlertsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_notification_rules.')
             _url_path = '/public/alertNotificationRules'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -107,7 +108,7 @@ class AlertsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_notification_rules.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_notification_rules')
 
@@ -153,7 +154,7 @@ class AlertsController(BaseController):
             self.logger.info(
                 'Preparing query URL for create_notification_rule.')
             _url_path = '/public/alertNotificationRules'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -172,7 +173,7 @@ class AlertsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='create_notification_rule')
 
@@ -215,7 +216,7 @@ class AlertsController(BaseController):
             self.logger.info(
                 'Preparing query URL for update_notification_rule.')
             _url_path = '/public/alertNotificationRules'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -228,7 +229,7 @@ class AlertsController(BaseController):
                 'Preparing and executing request for update_notification_rule.'
             )
             _request = self.http_client.put(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='update_notification_rule')
 
@@ -279,7 +280,7 @@ class AlertsController(BaseController):
             _url_path = '/public/alertNotificationRules/{ruleId}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'ruleId': rule_id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -288,7 +289,7 @@ class AlertsController(BaseController):
                 'Preparing and executing request for delete_notification_rule.'
             )
             _request = self.http_client.delete(_query_url)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='delete_notification_rule')
 
@@ -359,7 +360,7 @@ class AlertsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_resolutions.')
             _url_path = '/public/alertResolutions'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'maxResolutions': max_resolutions,
@@ -383,7 +384,7 @@ class AlertsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_resolutions.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='get_resolutions')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -431,7 +432,7 @@ class AlertsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for create_resolution.')
             _url_path = '/public/alertResolutions'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -449,7 +450,7 @@ class AlertsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='create_resolution')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -498,7 +499,7 @@ class AlertsController(BaseController):
             _url_path = '/public/alertResolutions/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -510,7 +511,7 @@ class AlertsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_resolution_by_id.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_resolution_by_id')
 
@@ -562,7 +563,7 @@ class AlertsController(BaseController):
             _url_path = '/public/alertResolutions/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -580,7 +581,7 @@ class AlertsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='update_resolution')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -622,7 +623,7 @@ class AlertsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_alert_types.')
             _url_path = '/public/alertTypes'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -634,7 +635,7 @@ class AlertsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_alert_types.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='get_alert_types')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -734,7 +735,7 @@ class AlertsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_alerts.')
             _url_path = '/public/alerts'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'maxAlerts': max_alerts,
@@ -764,7 +765,7 @@ class AlertsController(BaseController):
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_alerts.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='get_alerts')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -812,7 +813,7 @@ class AlertsController(BaseController):
             _url_path = '/public/alerts/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -824,7 +825,7 @@ class AlertsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_alert_by_id.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='get_alert_by_id')
 
             # Endpoint and global error handling using HTTP status codes.

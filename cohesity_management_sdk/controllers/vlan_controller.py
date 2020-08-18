@@ -13,9 +13,10 @@ from cohesity_management_sdk.exceptions.api_exception import APIException
 
 class VlanController(BaseController):
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-    def __init__(self, client=None, call_back=None):
+    def __init__(self, config=None, client=None, call_back=None):
         super(VlanController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
+        self.config = config
 
     def get_vlans(self,
                   tenant_ids=None,
@@ -51,7 +52,7 @@ class VlanController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_vlans.')
             _url_path = '/public/vlans'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'tenantIds': tenant_ids,
@@ -70,7 +71,7 @@ class VlanController(BaseController):
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_vlans.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='get_vlans')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -115,7 +116,7 @@ class VlanController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for create_vlan.')
             _url_path = '/public/vlans'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -133,7 +134,7 @@ class VlanController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='create_vlan')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -180,7 +181,7 @@ class VlanController(BaseController):
             _url_path = '/public/vlans/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -188,7 +189,7 @@ class VlanController(BaseController):
             self.logger.info(
                 'Preparing and executing request for remove_vlan.')
             _request = self.http_client.delete(_query_url)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='remove_vlan')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -235,7 +236,7 @@ class VlanController(BaseController):
             _url_path = '/public/vlans/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -247,7 +248,7 @@ class VlanController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_vlan_by_id.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='get_vlan_by_id')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -298,7 +299,7 @@ class VlanController(BaseController):
             _url_path = '/public/vlans/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -316,7 +317,7 @@ class VlanController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='update_vlan')
 
             # Endpoint and global error handling using HTTP status codes.

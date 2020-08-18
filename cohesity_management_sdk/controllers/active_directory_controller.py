@@ -16,9 +16,10 @@ from cohesity_management_sdk.exceptions.request_error_error_exception import Req
 
 class ActiveDirectoryController(BaseController):
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-    def __init__(self, client=None, call_back=None):
+    def __init__(self, config=None, client=None, call_back=None):
         super(ActiveDirectoryController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
+        self.config = config
 
     def delete_active_directory_entry(self, body):
         """Does a DELETE request to /public/activeDirectory.
@@ -57,7 +58,7 @@ class ActiveDirectoryController(BaseController):
             self.logger.info(
                 'Preparing query URL for delete_active_directory_entry.')
             _url_path = '/public/activeDirectory'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -74,7 +75,7 @@ class ActiveDirectoryController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='delete_active_directory_entry')
 
@@ -129,7 +130,7 @@ class ActiveDirectoryController(BaseController):
             self.logger.info(
                 'Preparing query URL for get_active_directory_entry.')
             _url_path = '/public/activeDirectory'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'domains': domains,
@@ -151,7 +152,7 @@ class ActiveDirectoryController(BaseController):
                 'Preparing and executing request for get_active_directory_entry.'
             )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_active_directory_entry')
 
@@ -207,7 +208,7 @@ class ActiveDirectoryController(BaseController):
             self.logger.info(
                 'Preparing query URL for create_active_directory_entry.')
             _url_path = '/public/activeDirectory'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -227,7 +228,7 @@ class ActiveDirectoryController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='create_active_directory_entry')
 
@@ -272,7 +273,7 @@ class ActiveDirectoryController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for list_centrify_zones.')
             _url_path = '/public/activeDirectory/centrifyZones'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {'domainName': domain_name}
             _query_builder = APIHelper.append_url_with_query_parameters(
@@ -288,7 +289,7 @@ class ActiveDirectoryController(BaseController):
             self.logger.info(
                 'Preparing and executing request for list_centrify_zones.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='list_centrify_zones')
 
@@ -332,7 +333,7 @@ class ActiveDirectoryController(BaseController):
                 'Preparing query URL for get_active_directory_domain_controllers.'
             )
             _url_path = '/public/activeDirectory/domainControllers'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {'domainName': domain_name}
             _query_builder = APIHelper.append_url_with_query_parameters(
@@ -351,7 +352,7 @@ class ActiveDirectoryController(BaseController):
                 'Preparing and executing request for get_active_directory_domain_controllers.'
             )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='get_active_directory_domain_controllers')
 
@@ -429,7 +430,7 @@ class ActiveDirectoryController(BaseController):
             self.logger.info(
                 'Preparing query URL for search_active_directory_principals.')
             _url_path = '/public/activeDirectory/principals'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'domain': domain,
@@ -453,7 +454,7 @@ class ActiveDirectoryController(BaseController):
                 'Preparing and executing request for search_active_directory_principals.'
             )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='search_active_directory_principals')
 
@@ -520,7 +521,7 @@ class ActiveDirectoryController(BaseController):
             self.logger.info(
                 'Preparing query URL for add_active_directory_principals.')
             _url_path = '/public/activeDirectory/principals'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -540,7 +541,7 @@ class ActiveDirectoryController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='add_active_directory_principals')
 
@@ -596,7 +597,7 @@ class ActiveDirectoryController(BaseController):
             _url_path = '/public/activeDirectory/{name}/enableTrustedDomainState'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'name': name})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -617,7 +618,7 @@ class ActiveDirectoryController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='create_enable_trusted_domain_discovery')
 
@@ -673,7 +674,7 @@ class ActiveDirectoryController(BaseController):
             _url_path = '/public/activeDirectory/{name}/idMappingInfo'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'name': name})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -693,7 +694,7 @@ class ActiveDirectoryController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='update_active_directory_id_mapping')
 
@@ -751,7 +752,7 @@ class ActiveDirectoryController(BaseController):
             _url_path = '/public/activeDirectory/{name}/ignoredTrustedDomains'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'name': name})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -772,7 +773,7 @@ class ActiveDirectoryController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request,
                 name='update_active_directory_ignored_trusted_domains')
@@ -830,7 +831,7 @@ class ActiveDirectoryController(BaseController):
             _url_path = '/public/activeDirectory/{name}/ldapProvider'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'name': name})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -850,7 +851,7 @@ class ActiveDirectoryController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='update_active_directory_ldap_provider')
 
@@ -908,7 +909,7 @@ class ActiveDirectoryController(BaseController):
             _url_path = '/public/activeDirectory/{name}/machineAccounts'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'name': name})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -929,7 +930,7 @@ class ActiveDirectoryController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='update_active_directory_machine_accounts')
 
@@ -985,7 +986,7 @@ class ActiveDirectoryController(BaseController):
             _url_path = '/public/activeDirectory/{name}/preferredDomainControllers'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'name': name})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -1005,7 +1006,7 @@ class ActiveDirectoryController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='update_preferred_domain_controllers')
 

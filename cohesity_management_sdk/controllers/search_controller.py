@@ -13,9 +13,10 @@ from cohesity_management_sdk.exceptions.request_error_error_exception import Req
 
 class SearchController(BaseController):
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-    def __init__(self, client=None, call_back=None):
+    def __init__(self, config=None, client=None, call_back=None):
         super(SearchController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
+        self.config = config
 
     def search_protection_runs(self, uuid):
         """Does a GET request to /public/search/protectionRuns.
@@ -48,7 +49,7 @@ class SearchController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for search_protection_runs.')
             _url_path = '/public/search/protectionRuns'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {'uuid': uuid}
             _query_builder = APIHelper.append_url_with_query_parameters(
@@ -64,7 +65,7 @@ class SearchController(BaseController):
             self.logger.info(
                 'Preparing and executing request for search_protection_runs.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='search_protection_runs')
 
@@ -195,7 +196,7 @@ class SearchController(BaseController):
             self.logger.info(
                 'Preparing query URL for search_protection_sources.')
             _url_path = '/public/search/protectionSources'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'searchString': search_string,
@@ -222,7 +223,7 @@ class SearchController(BaseController):
                 'Preparing and executing request for search_protection_sources.'
             )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='search_protection_sources')
 

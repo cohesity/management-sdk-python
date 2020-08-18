@@ -12,10 +12,8 @@ logging.basicConfig(stream=sys.stdout, level=logging.CRITICAL)
 class Configuration(object):
 
     """A class used for configuring the SDK by a user.
-
     This class need not be instantiated and all properties and methods
     are accessible without instance creation.
-
     """
 
     # Set the array parameter serialization method
@@ -59,6 +57,9 @@ class Configuration(object):
     # AccessToken object, containing the fields access_token, privileges and token_type
     auth_token = None
 
+    # API Key patch
+    api_key = None
+
     # All the environments the SDK can run in
     environments = {
         Environment.PRODUCTION: {
@@ -66,22 +67,18 @@ class Configuration(object):
         },
     }
 
-    @classmethod
-    def get_base_uri(cls, server=Server.DEFAULT_HOST):
+    def get_base_uri(self, server=Server.DEFAULT_HOST):
         """Generates the appropriate base URI for the environment and the server.
-
         Args:
             server (Configuration.Server): The server enum for which the base URI is required.
-
         Returns:
             String: The base URI.
-
         """
         parameters = {
-            "cluster_vip": cls.cluster_vip,
+            "cluster_vip": self.cluster_vip,
         }
         return APIHelper.append_url_with_template_parameters(
-            cls.environments[cls.environment][server], parameters, False)
+            self.environments[self.environment][server], parameters, False)
 
     @classmethod
     def disable_logging(cls):
@@ -94,7 +91,6 @@ class Configuration(object):
     def enable_logging(cls, filename=None, filemode='a',
                        stream=sys.stdout, level=logging.INFO):
         """Enable logging in the SDK
-
         Args:
             filename: Specifies that a FileHandler be created, using the specified
                 filename, rather than a StreamHandler.

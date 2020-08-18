@@ -12,9 +12,10 @@ from cohesity_management_sdk.exceptions.request_error_error_exception import Req
 
 class KmsConfigurationResponseController(BaseController):
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-    def __init__(self, client=None, call_back=None):
+    def __init__(self, config=None, client=None, call_back=None):
         super(KmsConfigurationResponseController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
+        self.config = config
 
     def get_kms_config(self, id=None):
         """Does a GET request to /public/kmsConfig.
@@ -41,7 +42,7 @@ class KmsConfigurationResponseController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_kms_config.')
             _url_path = '/public/kmsConfig'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {'id': id}
             _query_builder = APIHelper.append_url_with_query_parameters(
@@ -57,7 +58,7 @@ class KmsConfigurationResponseController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_kms_config.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='get_kms_config')
 
             # Endpoint and global error handling using HTTP status codes.

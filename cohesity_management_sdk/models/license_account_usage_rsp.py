@@ -20,9 +20,9 @@ class LicenseAccountUsageRsp(object):
         licensed_usage (list of LicensedUsage): LicenseFeatureUsages holds information
             about each feature from license orders.
         trial_expiration (int): Trial expiration period.
-        usage (list of FeatureUsage): Creating a map of cluster id and feature usage to
-            make it consistent display usage UI for the helios server license
-            page UI.
+        usage (dict<object, list of FeatureUsage>): Creating a map of cluster
+            id and feature usage to make it consistent display usage UI for
+            the helios server license page UI.
     """
 
     # Create a mapping from Model property names to API property names
@@ -88,11 +88,7 @@ class LicenseAccountUsageRsp(object):
             for structure in dictionary.get('licensedUsage'):
                 licensed_usage.append(cohesity_management_sdk.models.licensed_usage.LicensedUsage.from_dictionary(structure))
         trial_expiration = dictionary.get('trialExpiration')
-        usage = None
-        if dictionary.get('usage') != None:
-            usage = list()
-            for structure in dictionary.get('usage'):
-                usage.append(cohesity_management_sdk.models.feature_usage.FeatureUsage.from_dictionary(structure))
+        usage = dictionary.get('usage')
 
         # Return an object of this model
         return cls(feature_over_usage,

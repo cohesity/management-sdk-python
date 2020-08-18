@@ -12,9 +12,10 @@ from cohesity_management_sdk.models.dashboard_response import DashboardResponse
 
 class DashboardController(BaseController):
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-    def __init__(self, client=None, call_back=None):
+    def __init__(self, config=None, client=None, call_back=None):
         super(DashboardController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
+        self.config = config
 
     def get_dashboard(self,
                        cluster_id=None,
@@ -55,7 +56,7 @@ class DashboardController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_dashboard.')
             _url_path = '/public/dashboard'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'clusterId': cluster_id,
@@ -76,7 +77,7 @@ class DashboardController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_dashboard.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='get_dashboard')
 
             # Endpoint and global error handling using HTTP status codes.

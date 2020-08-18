@@ -24,9 +24,10 @@ from cohesity_management_sdk.exceptions.request_error_error_exception import Req
 
 class ViewsController(BaseController):
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-    def __init__(self, client=None, call_back=None):
+    def __init__(self, config=None, client=None, call_back=None):
         super(ViewsController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
+        self.config = config
 
     def delete_clear_nlm_locks(self, body):
         """Does a DELETE request to /public/nlmLocks.
@@ -57,7 +58,7 @@ class ViewsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for delete_clear_nlm_locks.')
             _url_path = '/public/nlmLocks'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -72,7 +73,7 @@ class ViewsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='delete_clear_nlm_locks')
 
@@ -131,7 +132,7 @@ class ViewsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for list_nlm_locks.')
             _url_path = '/public/nlmLocks'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'filePath': file_path,
@@ -152,7 +153,7 @@ class ViewsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for list_nlm_locks.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='list_nlm_locks')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -197,7 +198,7 @@ class ViewsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_qo_s_policies.')
             _url_path = '/public/qosPolicies'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {'ids': ids, 'names': names}
             _query_builder = APIHelper.append_url_with_query_parameters(
@@ -213,7 +214,7 @@ class ViewsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_qo_s_policies.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='get_qo_s_policies')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -284,7 +285,7 @@ class ViewsController(BaseController):
             self.logger.info(
                 'Preparing query URL for get_views_by_share_name.')
             _url_path = '/public/shares'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'tenantIds': tenant_ids,
@@ -307,7 +308,7 @@ class ViewsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_views_by_share_name.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_views_by_share_name')
 
@@ -362,7 +363,7 @@ class ViewsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_smb_connections.')
             _url_path = '/public/smbConnections'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'viewNames': view_names,
@@ -383,7 +384,7 @@ class ViewsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_smb_connections.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_smb_connections')
 
@@ -430,7 +431,7 @@ class ViewsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for create_view_alias.')
             _url_path = '/public/viewAliases'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -448,7 +449,7 @@ class ViewsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='create_view_alias')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -494,7 +495,7 @@ class ViewsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for update_view_alias.')
             _url_path = '/public/viewAliases'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -512,7 +513,7 @@ class ViewsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='update_view_alias')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -560,7 +561,7 @@ class ViewsController(BaseController):
             _url_path = '/public/viewAliases/{name}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'name': name})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -568,7 +569,7 @@ class ViewsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for delete_view_alias.')
             _request = self.http_client.delete(_query_url)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='delete_view_alias')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -614,7 +615,7 @@ class ViewsController(BaseController):
             _url_path = '/public/viewAliases/{name}/activate'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'name': name})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -628,7 +629,7 @@ class ViewsController(BaseController):
                 'Preparing and executing request for create_activate_view_aliases.'
             )
             _request = self.http_client.post(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='create_activate_view_aliases')
 
@@ -678,7 +679,7 @@ class ViewsController(BaseController):
             self.logger.info(
                 'Preparing query URL for get_view_dir_quota_info.')
             _url_path = '/public/viewDirectoryQuotas'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {'viewName': view_name}
             _query_builder = APIHelper.append_url_with_query_parameters(
@@ -694,7 +695,7 @@ class ViewsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_view_dir_quota_info.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_view_dir_quota_info')
 
@@ -744,7 +745,7 @@ class ViewsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for update_view_dir_quota.')
             _url_path = '/public/viewDirectoryQuotas'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -762,7 +763,7 @@ class ViewsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='update_view_dir_quota')
 
@@ -806,7 +807,7 @@ class ViewsController(BaseController):
             self.logger.info(
                 'Preparing query URL for delete_view_users_quota.')
             _url_path = '/public/viewUserQuotas'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -821,7 +822,7 @@ class ViewsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='delete_view_users_quota')
 
@@ -937,7 +938,7 @@ class ViewsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_view_user_quotas.')
             _url_path = '/public/viewUserQuotas'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'viewName': view_name,
@@ -969,7 +970,7 @@ class ViewsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_view_user_quotas.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_view_user_quotas')
 
@@ -1012,7 +1013,7 @@ class ViewsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for create_view_user_quota.')
             _url_path = '/public/viewUserQuotas'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -1030,7 +1031,7 @@ class ViewsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='create_view_user_quota')
 
@@ -1073,7 +1074,7 @@ class ViewsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for update_view_user_quota.')
             _url_path = '/public/viewUserQuotas'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -1091,7 +1092,7 @@ class ViewsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='update_view_user_quota')
 
@@ -1136,7 +1137,7 @@ class ViewsController(BaseController):
             self.logger.info(
                 'Preparing query URL for update_user_quota_settings.')
             _url_path = '/public/viewUserQuotasSettings'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -1156,7 +1157,7 @@ class ViewsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='update_user_quota_settings')
 
@@ -1269,7 +1270,7 @@ class ViewsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_views.')
             _url_path = '/public/views'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'tenantIds':
@@ -1319,7 +1320,7 @@ class ViewsController(BaseController):
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_views.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='get_views')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -1364,7 +1365,7 @@ class ViewsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for create_view.')
             _url_path = '/public/views'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -1382,7 +1383,7 @@ class ViewsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='create_view')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -1427,7 +1428,7 @@ class ViewsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for update_view.')
             _url_path = '/public/views'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -1445,7 +1446,7 @@ class ViewsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='update_view')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -1491,7 +1492,7 @@ class ViewsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for create_clone_view.')
             _url_path = '/public/views/clone'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -1509,7 +1510,7 @@ class ViewsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='create_clone_view')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -1555,7 +1556,7 @@ class ViewsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for create_clone_directory.')
             _url_path = '/public/views/cloneDirectory'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -1570,7 +1571,7 @@ class ViewsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='create_clone_directory')
 
@@ -1615,7 +1616,7 @@ class ViewsController(BaseController):
             _url_path = '/public/views/id/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -1623,7 +1624,7 @@ class ViewsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for delete_view_by_id.')
             _request = self.http_client.delete(_query_url)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='delete_view_by_id')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -1667,7 +1668,7 @@ class ViewsController(BaseController):
             _url_path = '/public/views/id/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -1679,7 +1680,7 @@ class ViewsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_view_by_id.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='get_view_by_id')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -1732,7 +1733,7 @@ class ViewsController(BaseController):
             _url_path = '/public/views/id/{id}/fileLocks'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {'path': path}
             _query_builder = APIHelper.append_url_with_query_parameters(
@@ -1750,7 +1751,7 @@ class ViewsController(BaseController):
                 'Preparing and executing request for get_file_lock_status_by_id.'
             )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_file_lock_status_by_id')
 
@@ -1802,7 +1803,7 @@ class ViewsController(BaseController):
             _url_path = '/public/views/id/{id}/fileLocks'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -1820,7 +1821,7 @@ class ViewsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='create_lock_file_by_id')
 
@@ -1869,7 +1870,7 @@ class ViewsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for create_overwrite_view.')
             _url_path = '/public/views/overwrite'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -1887,7 +1888,7 @@ class ViewsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='create_overwrite_view')
 
@@ -1939,7 +1940,7 @@ class ViewsController(BaseController):
             _url_path = '/public/views/rename/id/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -1958,7 +1959,7 @@ class ViewsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='create_rename_view_by_id')
 
@@ -2010,7 +2011,7 @@ class ViewsController(BaseController):
             _url_path = '/public/views/rename/{name}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'name': name})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -2028,7 +2029,7 @@ class ViewsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='create_rename_view')
 
@@ -2076,7 +2077,7 @@ class ViewsController(BaseController):
             _url_path = '/public/views/{name}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'name': name})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -2084,7 +2085,7 @@ class ViewsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for delete_view.')
             _request = self.http_client.delete(_query_url)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='delete_view')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -2128,7 +2129,7 @@ class ViewsController(BaseController):
             _url_path = '/public/views/{name}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'name': name})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -2140,7 +2141,7 @@ class ViewsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_view_by_name.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='get_view_by_name')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -2189,7 +2190,7 @@ class ViewsController(BaseController):
             _url_path = '/public/views/{name}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'name': name})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -2207,7 +2208,7 @@ class ViewsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='update_view_by_name')
 
@@ -2259,7 +2260,7 @@ class ViewsController(BaseController):
             _url_path = '/public/views/{name}/fileLocks'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'name': name})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {'path': path}
             _query_builder = APIHelper.append_url_with_query_parameters(
@@ -2275,7 +2276,7 @@ class ViewsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_file_lock_status.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_file_lock_status')
 
@@ -2326,7 +2327,7 @@ class ViewsController(BaseController):
             _url_path = '/public/views/{name}/fileLocks'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'name': name})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -2344,7 +2345,7 @@ class ViewsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='create_lock_file')
 
             # Endpoint and global error handling using HTTP status codes.

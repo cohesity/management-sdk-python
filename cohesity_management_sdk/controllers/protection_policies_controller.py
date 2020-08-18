@@ -13,9 +13,10 @@ from cohesity_management_sdk.exceptions.request_error_error_exception import Req
 
 class ProtectionPoliciesController(BaseController):
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-    def __init__(self, client=None, call_back=None):
+    def __init__(self, config=None, client=None, call_back=None):
         super(ProtectionPoliciesController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
+        self.config = config
 
     def get_protection_policies(self,
                                 ids=None,
@@ -72,7 +73,7 @@ class ProtectionPoliciesController(BaseController):
             self.logger.info(
                 'Preparing query URL for get_protection_policies.')
             _url_path = '/public/protectionPolicies'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'ids': ids,
@@ -96,7 +97,7 @@ class ProtectionPoliciesController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_protection_policies.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_protection_policies')
 
@@ -146,7 +147,7 @@ class ProtectionPoliciesController(BaseController):
             self.logger.info(
                 'Preparing query URL for create_protection_policy.')
             _url_path = '/public/protectionPolicies'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -165,7 +166,7 @@ class ProtectionPoliciesController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='create_protection_policy')
 
@@ -217,7 +218,7 @@ class ProtectionPoliciesController(BaseController):
             _url_path = '/public/protectionPolicies/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -226,7 +227,7 @@ class ProtectionPoliciesController(BaseController):
                 'Preparing and executing request for delete_protection_policy.'
             )
             _request = self.http_client.delete(_query_url)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='delete_protection_policy')
 
@@ -276,7 +277,7 @@ class ProtectionPoliciesController(BaseController):
             _url_path = '/public/protectionPolicies/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -290,7 +291,7 @@ class ProtectionPoliciesController(BaseController):
                 'Preparing and executing request for get_protection_policy_by_id.'
             )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_protection_policy_by_id')
 
@@ -344,7 +345,7 @@ class ProtectionPoliciesController(BaseController):
             _url_path = '/public/protectionPolicies/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -363,7 +364,7 @@ class ProtectionPoliciesController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='update_protection_policy')
 
@@ -444,7 +445,7 @@ class ProtectionPoliciesController(BaseController):
             self.logger.info(
                 'Preparing query URL for get_protection_policy_summary.')
             _url_path = '/public/protectionPolicySummary'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'id': id,
@@ -472,7 +473,7 @@ class ProtectionPoliciesController(BaseController):
                 'Preparing and executing request for get_protection_policy_summary.'
             )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='get_protection_policy_summary')
 

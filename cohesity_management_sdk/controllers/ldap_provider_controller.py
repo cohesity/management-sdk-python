@@ -12,9 +12,10 @@ from cohesity_management_sdk.exceptions.request_error_error_exception import Req
 
 class LdapProviderController(BaseController):
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-    def __init__(self, client=None, call_back=None):
+    def __init__(self, config=None, client=None, call_back=None):
         super(LdapProviderController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
+        self.config = config
 
     def get_ldap_provider(self,
                           ids=None,
@@ -49,7 +50,7 @@ class LdapProviderController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_ldap_provider.')
             _url_path = '/public/ldapProvider'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'ids': ids,
@@ -69,7 +70,7 @@ class LdapProviderController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_ldap_provider.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='get_ldap_provider')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -116,7 +117,7 @@ class LdapProviderController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for create_ldap_provider.')
             _url_path = '/public/ldapProvider'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -134,7 +135,7 @@ class LdapProviderController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='create_ldap_provider')
 
@@ -183,7 +184,7 @@ class LdapProviderController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for update_ldap_provider.')
             _url_path = '/public/ldapProvider'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -201,7 +202,7 @@ class LdapProviderController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='update_ldap_provider')
 
@@ -251,7 +252,7 @@ class LdapProviderController(BaseController):
             _url_path = '/public/ldapProvider/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -259,7 +260,7 @@ class LdapProviderController(BaseController):
             self.logger.info(
                 'Preparing and executing request for delete_ldap_provider.')
             _request = self.http_client.delete(_query_url)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='delete_ldap_provider')
 
@@ -305,7 +306,7 @@ class LdapProviderController(BaseController):
             _url_path = '/public/ldapProvider/{id}/status'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -314,7 +315,7 @@ class LdapProviderController(BaseController):
                 'Preparing and executing request for get_ldap_provider_status.'
             )
             _request = self.http_client.get(_query_url)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_ldap_provider_status')
 
