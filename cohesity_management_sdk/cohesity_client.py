@@ -299,7 +299,6 @@ class CohesityClient(object):
         self.auth = AuthManager()
         self.config = Configuration()
 
-        print(cluster_vip)
         if cluster_vip is None:
             raise Exception("Specify cluster VIP")
         if auth_token is not None:

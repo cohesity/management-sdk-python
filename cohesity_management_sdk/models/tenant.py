@@ -206,7 +206,7 @@ class Tenant(object):
             for structure in dictionary.get('protectionJobs'):
                 protection_jobs.append(cohesity_management_sdk.models.backup_job_proto.BackupJobProto.from_dictionary(structure))
         subscribe_to_alert_emails = dictionary.get('subscribeToAlertEmails')
-        swift_config = cohesity_management_sdk.models.swift_params.SwiftParams.from_dictionary(dictionary.get('swiftConfig'))
+        swift_config = cohesity_management_sdk.models.swift_params.SwiftParams.from_dictionary(dictionary.get('swiftConfig')) if dictionary.get('swiftConfig') else None
         tenant_id = dictionary.get('tenantId')
         view_box_ids = dictionary.get('viewBoxIds')
         views = None

@@ -2,7 +2,7 @@
 # Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.fleet_network_params
-import cohesity_management_sdk.models.fleet_tags
+import cohesity_management_sdk.models.fleet_tag
 
 class FleetParams(object):
 
@@ -20,7 +20,7 @@ class FleetParams(object):
                 Edition cluster.
             'kSourceVM' implies same subnet as of source vm.
             'kCustom' implies the custome subnet.
-        fleet_tags (list of FleetTags): Specifies the tag information for the
+        fleet_tags (list of FleetTag): Specifies the tag information for the
             fleet.
 
     """
@@ -68,7 +68,7 @@ class FleetParams(object):
         if dictionary.get('fleetTags') != None:
             fleet_tags = list()
             for structure in dictionary.get('fleetTags'):
-                fleet_tags.append(cohesity_management_sdk.models.fleet_tags.FleetTags.from_dictionary(structure))
+                fleet_tags.append(cohesity_management_sdk.models.fleet_tag.FleetTag.from_dictionary(structure))
 
         # Return an object of this model
         return cls(fleet_network_params,

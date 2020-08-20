@@ -113,7 +113,7 @@ class DataTransferToVaultSummary(object):
         if dictionary.get('dataTransferPerProtectionJob') != None:
             data_transfer_per_protection_job = list()
             for structure in dictionary.get('dataTransferPerProtectionJob'):
-                data_transfer_per_protection_job.append(cohesity_management_sdk.models.cohesity_management_sdk.models.data_transfer_to_vault_per_protection_job.DataTransferToVaultPerProtectionJob.from_dictionary(structure))
+                data_transfer_per_protection_job.append(cohesity_management_sdk.models.data_transfer_to_vault_per_protection_job.DataTransferToVaultPerProtectionJob.from_dictionary(structure))
         logical_data_transferred_bytes_during_time_range = dictionary.get('logicalDataTransferredBytesDuringTimeRange')
         num_logical_bytes_transferred = dictionary.get('numLogicalBytesTransferred')
         num_physical_bytes_transferred = dictionary.get('numPhysicalBytesTransferred')

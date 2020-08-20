@@ -58,6 +58,7 @@ class AwsKmsConfiguration(object):
         self.ca_certificate = ca_certificate
         self.cmk_alias = cmk_alias
         self.cmk_arn = cmk_arn
+        self.cmk_key_id = cmk_key_id
         self.region = region
         self.secret_access_key = secret_access_key
         self.verify_ssl = verify_ssl
@@ -85,6 +86,7 @@ class AwsKmsConfiguration(object):
         ca_certificate = dictionary.get('caCertificate')
         cmk_alias = dictionary.get('cmkAlias')
         cmk_arn = dictionary.get('cmkArn')
+        cmk_key_id = dictionary.get('cmkKeyId')
         region = dictionary.get('region')
         secret_access_key = dictionary.get('secretAccessKey')
         verify_ssl = dictionary.get('verifySSL')
@@ -94,6 +96,7 @@ class AwsKmsConfiguration(object):
                    ca_certificate,
                    cmk_alias,
                    cmk_arn,
+                   cmk_key_id,
                    region,
                    secret_access_key,
                    verify_ssl)

@@ -11,7 +11,7 @@ class RunMapReduceInstanceResult(object):
 
     Attributes:
         error (ErrorProto): Status code of http rpc.
-        map_reduce_instance_id (int): Return the ID of instance.
+        map_reduce_instance_id (long|int): Return the ID of instance.
 
     """
 

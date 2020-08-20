@@ -81,8 +81,8 @@ class Cluster(object):
             the encryption keys are rotated every 77760000 seconds (30 days).
         eula_config (EulaConfig): Specifies the End User License Agreement
             (EULA) acceptance information.
-        fault_tolerance_level (string): Specifies the level which
-            'MetadataFaultToleranceFactor' applies to. 'kNode' indicates
+        fault_tolerance_level (FaultToleranceLevelEnum): Specifies the level
+            which 'MetadataFaultToleranceFactor' applies to. 'kNode' indicates
             'MetadataFaultToleranceFactor' applies to Node level. 'kChassis'
             indicates 'MetadataFaultToleranceFactor' applies to Chassis level.
             'kRack' indicates 'MetadataFaultToleranceFactor' applies to Rack

@@ -31,8 +31,6 @@ class ExchangeDatabaseInfo(object):
         name (string): Specifes the name of the Exchange Database.
         owner_id (int): Specifies the owner entity id of the Exchange
             Application Server which has this database copy.
-        server_name (string): Specifies the display name of the Exchange
-            Application Server on which the database copy is hosted.
         utc_offset_min (int): Specifies UTC time offset of database creation
             time.
 
@@ -49,7 +47,6 @@ class ExchangeDatabaseInfo(object):
         "dbguid":'dbguid',
         "name":'name',
         "owner_id":'ownerId',
-        "server_name":'serverName',
         "utc_offset_min":'utcOffsetMin'
     }
 
@@ -63,7 +60,6 @@ class ExchangeDatabaseInfo(object):
                  dbguid=None,
                  name=None,
                  owner_id=None,
-                 server_name=None,
                  utc_offset_min=None):
         """Constructor for the ExchangeDatabaseInfo class"""
 
@@ -76,7 +72,6 @@ class ExchangeDatabaseInfo(object):
         self.dbguid = dbguid
         self.name = name
         self.owner_id = owner_id
-        self.server_name = server_name
         self.utc_offset_min = utc_offset_min
 
 
@@ -107,7 +102,6 @@ class ExchangeDatabaseInfo(object):
         dbguid = dictionary.get('dbguid')
         name = dictionary.get('name')
         owner_id = dictionary.get('ownerId')
-        server_name = dictionary.get('serverName')
         utc_offset_min = dictionary.get('utcOffsetMin')
 
         # Return an object of this model
@@ -120,7 +114,6 @@ class ExchangeDatabaseInfo(object):
                    dbguid,
                    name,
                    owner_id,
-                   server_name,
                    utc_offset_min)
 
 

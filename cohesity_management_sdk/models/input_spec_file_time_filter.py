@@ -13,8 +13,10 @@ class InputSpec_FileTimeFilter(object):
     time.
 
     Attributes:
-        change_time_range_end_secs (int):  End of file's change time range.
-        change_time_range_start_secs (int): Start of file's change time range.
+        change_time_range_end_secs (long|int):  End of file's change time
+            range.
+        change_time_range_start_secs (long|int): Start of file's change time
+            range.
 
     """
 

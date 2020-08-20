@@ -67,7 +67,7 @@ class RestoreSourceSummaryByObjectTypeElement(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "datastore_id":'clusterId',
+        "datastore_id":'datastoreId',
         "file_restore_info":'fileRestoreInfo',
         "name":'name',
         "objects":'objects',
@@ -117,10 +117,18 @@ class RestoreSourceSummaryByObjectTypeElement(object):
             return None
 
         # Extract variables from the dictionary
-        datastore_id = dictionary.get('clusterId')
-        file_restore_info = cohesity_management_sdk.models.file_restore_info.FileRestoreInfo.from_dictionary(dictionary.get('fileRestoreInfo')) if  dictionary.get('fileRestoreInfo') else None
+        datastore_id = dictionary.get('datastoreId')
+        file_restore_info = None
+        if dictionary.get('fileRestoreInfo') != None:
+            file_restore_info = list()
+            for structure in dictionary.get('fileRestoreInfo'):
+                file_restore_info.append(cohesity_management_sdk.models.file_restore_info.FileRestoreInfo.from_dictionary(structure))
         name = dictionary.get('name')
-        objects = cohesity_management_sdk.models.restore_object_details.RestoreObjectDetails.from_dictionary(dictionary.get('objects')) if  dictionary.get('objects') else None
+        objects = None
+        if dictionary.get('objects') != None:
+            objects = list()
+            for structure in dictionary.get('objects'):
+                objects.append(cohesity_management_sdk.models.restore_object_details.RestoreObjectDetails.from_dictionary(structure))
         protection_source_name = dictionary.get('protectionSourceName')
         start_time_usecs = dictionary.get('startTimeUsecs')
         mtype = dictionary.get('type')

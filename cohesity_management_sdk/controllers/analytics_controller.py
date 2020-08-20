@@ -959,7 +959,7 @@ class AnalyticsController(BaseController):
             _query_parameters = {
                 'resultFilePath': result_file_path,
                 'storageDomainId': storage_domain_id,
-                'ViewName': view_name
+                'viewName': view_name
             }
             _query_builder = APIHelper.append_url_with_query_parameters(
                 _query_builder, _query_parameters,

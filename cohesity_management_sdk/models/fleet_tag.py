@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 # Copyright 2020 Cohesity Inc.
 
-class FleetTags(object):
+class FleetTag(object):
 
-    """Implementation of the 'FleetTags' model.
+    """Implementation of the 'FleetTag' model.
 
    Specfies the key,value pair for the fleet tag.
 
@@ -22,7 +22,7 @@ class FleetTags(object):
     def __init__(self,
                  key=None,
                  value=None):
-        """Constructor for the FleetTags class"""
+        """Constructor for the FleetTag class"""
 
         # Initialize members of the class
         self.key = key

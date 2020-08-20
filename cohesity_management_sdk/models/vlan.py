@@ -155,7 +155,7 @@ class Vlan(object):
                    appsips,
                    description,
                    gateway,
-                   gateway_v6.
+                   gateway_v6,
                    hostname,
                    id,
                    iface_group_name,

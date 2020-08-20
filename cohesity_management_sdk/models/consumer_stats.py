@@ -26,7 +26,7 @@ class ConsumerStats(object):
             to this consumer.
         id (long|int): Specifies the id of the consumer.
         name (string): Specifies the name of the consumer.
-        protection_environment (protectionEnvironmentEnum): Specifies the
+        protection_environment (ProtectionEnvironmentEnum): Specifies the
             source environment of the protection job.
             Supported environment types such as 'kView', 'kSQL', 'kVMware'
              etc.

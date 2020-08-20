@@ -90,7 +90,8 @@ class ReportsController(BaseController):
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_agent_deployment_report.')
-            if _context.response.status_code == 0:raise RequestErrorErrorException('Error', _context)
+            if _context.response.status_code == 0:
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
@@ -180,7 +181,8 @@ class ReportsController(BaseController):
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_data_transfer_from_vaults_report_request.')
-            if _context.response.status_code == 0:raise RequestErrorErrorException('Error', _context)
+            if _context.response.status_code == 0:
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
@@ -270,7 +272,8 @@ class ReportsController(BaseController):
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_data_transfer_to_vaults_report_request.')
-            if _context.response.status_code == 0:raise RequestErrorErrorException('Error', _context)
+            if _context.response.status_code == 0:
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
@@ -362,7 +365,8 @@ class ReportsController(BaseController):
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_gdpr_report.')
-            if _context.response.status_code == 0:raise RequestErrorErrorException('Error', _context)
+            if _context.response.status_code == 0:
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
@@ -529,7 +533,8 @@ class ReportsController(BaseController):
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_protected_objects_trends_report_request.')
-            if _context.response.status_code == 0:raise RequestErrorErrorException('Error', _context)
+            if _context.response.status_code == 0:
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
@@ -641,7 +646,8 @@ class ReportsController(BaseController):
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info(
                 'Validating response for get_protection_sources_job_runs_report_request.')
-            if _context.response.status_code == 0:raise RequestErrorErrorException('Error', _context)
+            if _context.response.status_code == 0:
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
@@ -785,7 +791,8 @@ class ReportsController(BaseController):
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_protection_sources_jobs_summary_report_request.')
-            if _context.response.status_code == 0:raise RequestErrorErrorException('Error', _context)
+            if _context.response.status_code == 0:
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type

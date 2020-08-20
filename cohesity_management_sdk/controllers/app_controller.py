@@ -136,7 +136,7 @@ class AppController(BaseController):
             raise
 
     def install_app(self, version, app_uid):
-        """Does a GET request to /public/apps/{appUid}/versions/{version}.
+        """Does a POST request to /public/apps/{appUid}/versions/{version}.
 
         Only purchased apps can be installed using this api.
 
@@ -178,7 +178,7 @@ class AppController(BaseController):
             # Prepare and execute request
             self.logger.info(
                 'Preparing and executing request for install_app.')
-            _request = self.http_client.get(_query_url, headers=_headers)
+            _request = self.http_client.post(_query_url, headers=_headers)
             AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='install_app')
 
@@ -239,7 +239,7 @@ class AppController(BaseController):
             # Prepare and execute request
             self.logger.info(
                 'Preparing and executing request for uninstall_app.')
-            _request = self.http_client.get(_query_url, headers=_headers)
+            _request = self.http_client.delete(_query_url, headers=_headers)
             AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='uninstall_app')
 
