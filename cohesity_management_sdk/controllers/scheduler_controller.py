@@ -230,16 +230,14 @@ class SchedulerController(BaseController):
             self.logger.error(e, exc_info=True)
             raise
 
-    def delete_scheduler_jobs(self, body=None):
+    def delete_scheduler_jobs(self, ids=None):
         """Does a DELETE request to /public/scheduler.
 
         Specify a list of email report schedule job ids to unschedule and
         delete.
 
         Args:
-            body (list of int): Request to clear NLM locks.
-            Attributes:
-                ids( list of int|long): Array of ids
+            ids (list<object, int|long>): Array of ids
 
         Returns:
             void: Response from the API. No Content
@@ -254,11 +252,6 @@ class SchedulerController(BaseController):
         try:
             self.logger.info('delete_scheduler_jobs called.')
 
-            # Validate required parameters
-            self.logger.info(
-                'Validating required parameters for delete_scheduler_jobs.')
-            #self.validate_parameters(body=body)
-
             # Prepare query URL
             self.logger.info('Preparing query URL for delete_scheduler_jobs.')
             _url_path = '/public/scheduler'
@@ -268,7 +261,10 @@ class SchedulerController(BaseController):
 
             # Prepare headers
             self.logger.info('Preparing headers for delete_scheduler_jobs.')
-            _headers = {'content-type': 'application/json; charset=utf-8'}
+            _headers = {
+                'accept': 'application/json',
+                'content-type': 'application/json; charset=utf-8'
+            }
 
             # Prepare and execute request
             self.logger.info(
@@ -276,7 +272,7 @@ class SchedulerController(BaseController):
             _request = self.http_client.delete(
                 _query_url,
                 headers=_headers,
-                parameters=APIHelper.json_serialize(body))
+                parameters=APIHelper.json_serialize(ids))
             AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='delete_scheduler_jobs')

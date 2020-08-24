@@ -49,7 +49,8 @@ class ReportsController(BaseController):
                 the Cohesity agent.
 
         Returns:
-            AgentDeploymentStatusResponse: Response from the API. Successful Response
+            list of AgentDeploymentStatusResponse: Response from the API.
+                Successful Response
 
         Raises:
             APIException: When an error occurs while fetching the data from
@@ -379,7 +380,7 @@ class ReportsController(BaseController):
 
     def get_protected_objects_trends_report_request(self,
                              job_ids=None,
-                             include_usage=None,
+                             start_time_usecs=None,
                              timezone=None,
                              end_time_usecs=None,
                              environments=None,
@@ -398,7 +399,7 @@ class ReportsController(BaseController):
             job_ids (list of int|long, optional): Filter by a list of Job ids.
                 Snapshots summary statistics for the specified Protection Jobs
                 are reported.
-            include_usage (int|long, optional): Filter by a start time.
+            start_time_usecs (int|long, optional): Filter by a start time.
                 Snapshot summary statistics for Job Runs that started after
                 the specified time are reported. Specify the start time as a
                 Unix epoch Timestamp (in microseconds).
@@ -485,7 +486,7 @@ class ReportsController(BaseController):
                 logged in user's organization should be returned.
 
         Returns:
-            ProtectionTrend: Response from the API. Success
+            list of ProtectionTrend: Response from the API. Success
 
         Raises:
             APIException: When an error occurs while fetching the data from
@@ -504,7 +505,7 @@ class ReportsController(BaseController):
             _query_builder += _url_path
             _query_parameters = {
                 'jobIds': job_ids,
-                'startTimeUsecs': include_usage,
+                'startTimeUsecs': start_time_usecs,
                 'timezone': timezone,
                 'endTimeUsecs': end_time_usecs,
                 'environments': environments,
@@ -598,7 +599,8 @@ class ReportsController(BaseController):
                 not run to completion.
 
         Returns:
-            ProtectionSourcesJobRunsReportElement: Response from the API. Success
+            list of ProtectionSourcesJobRunsReportElement: Response from the
+                API. Success
 
         Raises:
             APIException: When an error occurs while fetching the data from

@@ -18,7 +18,7 @@ class SchedulerProto_SchedulerJob(object):
         schedule_job_parameters (
             SchedulerProto_SchedulerJob_ScheduleJobParameters): TODO: Type
             description here.
-        schedules (list of SchedulerProto_SchedulerJob_Schedule): TODO: Type
+        schedules (list of SchedulerProtoSchedulerJobSchedule): TODO: Type
             description here.
         tenant_id (string): Specifies id of tenant who created the scheduler
             job.

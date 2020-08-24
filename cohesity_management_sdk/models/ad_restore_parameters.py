@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2020 Cohesity Inc.
 
+import cohesity_management_sdk.models.ad_restore_options
 import cohesity_management_sdk.models.credentials
 
 class AdRestoreParameters(object):
@@ -10,7 +11,7 @@ class AdRestoreParameters(object):
     Specifies the parameters specific to Application domain controller.
 
     Attributes:
-        ad_options (string): Specifies the Active Directory options for the
+        ad_options (AdRestoreOptions): Specifies the Active Directory options for the
             Restore task.
         credentials (Credentials): Specifies credentials to access a target
             source.
@@ -62,7 +63,7 @@ class AdRestoreParameters(object):
             return None
 
         # Extract variables from the dictionary
-        ad_options = dictionary.get("adOptions")
+        ad_options = cohesity_management_sdk.models.ad_restore_options.AdRestoreOptions.from_dictionary(dictionary.get("adOptions")) if dictionary.get("adOptions") else None
         credentials = cohesity_management_sdk.models.credentials.Credentials.from_dictionary(dictionary.get('credentials')) if dictionary.get('credentials') else None
         mount_and_restore = dictionary.get('mountAndRestore')
         port = dictionary.get('port')

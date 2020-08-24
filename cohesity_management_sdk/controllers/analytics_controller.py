@@ -224,7 +224,7 @@ class AnalyticsController(BaseController):
         List details about a single Application.
 
         Args:
-            id (long|int)
+            id (long|int): TODO: Type description here.
 
         Returns:
             MapReduceInfo: Response from the API. Success
@@ -279,14 +279,14 @@ class AnalyticsController(BaseController):
             self.logger.error(e, exc_info=True)
             raise
 
-    def update_application(self, id=None, body=None):
+    def update_application(self, id, body=None):
         """Does a PUT request to /public/analytics/apps/{id}.
 
         Returns the updated Application.
 
         Args:
-            id (long|int): TODO: Type descritpion here
-            body (MapReduceInfo): TODO: Type descritpion here
+            id (long|int): TODO: Type description here.
+            body (MapReduceInfo, optional): TODO: Type description here.
 
         Returns:
             MapReduceInfo: Response from the API. Success
@@ -300,6 +300,11 @@ class AnalyticsController(BaseController):
         """
         try:
             self.logger.info('update_application called.')
+
+            # Validate required parameters
+            self.logger.info(
+                'Validating required parameters for update_application.')
+            self.validate_parameters(id=id)
 
             # Prepare query URL
             self.logger.info('Preparing query URL for update_application.')
@@ -399,7 +404,7 @@ class AnalyticsController(BaseController):
         Cancel a specific map reduce instance run.
 
         Args:
-            id (long|int): TODO: Type descritpion here
+            id (long|int): TODO: Type description here.
 
         Returns:
             KillMapReduceInstanceResult: Response from the API. Success
@@ -632,8 +637,8 @@ class AnalyticsController(BaseController):
         Returns the updated Application.
 
         Args:
-            id (long|int): TODO: Type descritpion here
-            body (MapperInfo): TODO: Type descritpion here
+            id (long|int): TODO: Type description here.
+            body (MapperInfo): TODO: Type description here.
 
         Returns:
             MapperInfo: Response from the API. Success
@@ -809,10 +814,10 @@ class AnalyticsController(BaseController):
         Specifying parameters filters the results that are returned.
 
         Args:
-            body(GetMapReduceAppRunsParams)
+            body(GetMapReduceAppRunsParams): TODO Type description here.
 
         Returns:
-            AppRunHistory: Response from the API. Success
+            list of AppRunHistory: Response from the API. Success
 
         Raises:
             APIException: When an error occurs while fetching the data from
@@ -1457,8 +1462,7 @@ class AnalyticsController(BaseController):
         application.
 
         Args:
-            application_id (list of long|int, optional): Specifies the
-                application Id.
+            application_id (list of long|int): Specifies the application Id.
             application_data_type (list of string, optional): Specifies the
                 data type for which supported patterns can be fetched.
 
