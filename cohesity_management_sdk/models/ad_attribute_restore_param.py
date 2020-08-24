@@ -34,6 +34,8 @@ class ADAttributeRestoreParam(object):
             are case insensitive. Caller may check the
             ADAttributeFlags.kSystem obtained during object compare to exclude
             system properties.
+        src_sysvol_folder (string, optional): When restoring a GPO, need to
+            know the absolute path for SYSVOL folder.
 
     """
 
@@ -42,14 +44,16 @@ class ADAttributeRestoreParam(object):
         "excluded_property_vec":'excludedPropertyVec',
         "guidpair_vec":'guidpairVec',
         "option_flags":'optionFlags',
-        "property_vec":'propertyVec'
+        "property_vec":'propertyVec',
+        "src_sysvol_folder":'srcSysvolFolder'
     }
 
     def __init__(self,
                  excluded_property_vec=None,
                  guidpair_vec=None,
                  option_flags=None,
-                 property_vec=None):
+                 property_vec=None,
+                 src_sysvol_folder=None):
         """Constructor for the ADAttributeRestoreParam class"""
 
         # Initialize members of the class
@@ -57,6 +61,7 @@ class ADAttributeRestoreParam(object):
         self.guidpair_vec = guidpair_vec
         self.option_flags = option_flags
         self.property_vec = property_vec
+        self.src_sysvol_folder = src_sysvol_folder
 
 
     @classmethod
@@ -85,11 +90,12 @@ class ADAttributeRestoreParam(object):
                 guidpair_vec.append(cohesity_management_sdk.models.ad_guid_pair_ad_attribute_restore_param.ADGuidPairADAttributeRestoreParam.from_dictionary(structure))
         option_flags = dictionary.get('optionFlags')
         property_vec = dictionary.get('propertyVec')
-
+        src_sysvol_folder = dictionary.get('srcSysvolFolder')
         # Return an object of this model
         return cls(excluded_property_vec,
                    guidpair_vec,
                    option_flags,
-                   property_vec)
+                   property_vec,
+                   src_sysvol_folder)
 
 

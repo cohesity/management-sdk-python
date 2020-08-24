@@ -14,9 +14,10 @@ from cohesity_management_sdk.exceptions.request_error_error_exception import Req
 
 class ProtectionObjectsController(BaseController):
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-    def __init__(self, client=None, call_back=None):
+    def __init__(self, config=None, client=None, call_back=None):
         super(ProtectionObjectsController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
+        self.config = config
 
     def delete_unprotect_object(self, body=None):
         """Does a DELETE request to /public/protectionObjects.
@@ -44,7 +45,7 @@ class ProtectionObjectsController(BaseController):
             self.logger.info(
                 'Preparing query URL for delete_unprotect_object.')
             _url_path = '/public/protectionObjects'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -59,7 +60,7 @@ class ProtectionObjectsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='delete_unprotect_object')
 
@@ -100,7 +101,7 @@ class ProtectionObjectsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for create_protect_object.')
             _url_path = '/public/protectionObjects'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -118,7 +119,7 @@ class ProtectionObjectsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='create_protect_object')
 
@@ -166,7 +167,7 @@ Success
             self.logger.info(
                 'Preparing query URL for update_protection_object.')
             _url_path = '/public/protectionObjects'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -185,7 +186,7 @@ Success
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='update_protection_object')
 
@@ -237,7 +238,7 @@ Success
             self.logger.info(
                 'Preparing query URL for get_protection_object_summary.')
             _url_path = '/public/protectionObjects/summary'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {'protectionSourceId': protection_source_id}
             _query_builder = APIHelper.append_url_with_query_parameters(
@@ -255,7 +256,7 @@ Success
                 'Preparing and executing request for get_protection_object_summary.'
             )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='get_protection_object_summary')
 

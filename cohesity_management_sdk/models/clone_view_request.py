@@ -34,8 +34,14 @@ class CloneViewRequest(object):
             Privilege) can delete the view until the lock expiry time.
         description (string): Specifies an optional text description about the
             View.
+        enable_fast_durable_handle (bool): Specifies whether fast durable
+            handle is enabled. If enabled, view open handle will be kept in
+            memory, which results in a higher performance. But the handles
+            cannot be recovered if node or service crashes.
         enable_filer_audit_logging (bool): Specifies if Filer Audit Logging is
             enabled for this view.
+        enable_live_indexing (bool): Specifies whether to enable live indexing
+            for the view.
         enable_mixed_mode_permissions (bool): If set, mixed mode (NFS and SMB)
             access is enabled for this view. This field is deprecated. Use the
             field SecurityMode. deprecated: true
@@ -51,6 +57,8 @@ class CloneViewRequest(object):
             View. If set, it enables the SMB encryption for the View.
             Encryption is supported only by SMB 3.x dialects. Dialects that do
             not support would still access data in unencrypted format.
+        enable_smb_oplock (bool): Specifies whether SMB opportunistic lock is
+            enabled.
         enable_smb_view_discovery (bool): If set, it enables discovery of view
             for SMB.
         enforce_smb_encryption (bool): Specifies the SMB encryption for all
@@ -82,10 +90,11 @@ class CloneViewRequest(object):
         override_global_whitelist (bool): Specifies whether view level client
             subnet whitelist overrides cluster and global setting.
         protocol_access (ProtocolAccessEnum): Specifies the supported
-            Protocols for the View. 'kAll' enables protocol access to all
-            three views: NFS, SMB and S3. 'kNFSOnly' enables protocol access
-            to NFS only. 'kSMBOnly' enables protocol access to SMB only.
-            'kS3Only' enables protocol access to S3 only.
+            Protocols for the View. 'kAll' enables protocol access to
+            following three views: NFS, SMB and S3. 'kNFSOnly' enables
+            protocol access to NFS only. 'kSMBOnly' enables protocol access to
+            SMB only. 'kS3Only' enables protocol access to S3 only.
+            'kSwiftOnly' enables protocol access to Swift only.
         qos (QoS): Specifies the Quality of Service (QoS) Policy for the
             View.
         security_mode (SecurityModeEnum): Specifies the security mode used for
@@ -106,6 +115,10 @@ class CloneViewRequest(object):
             of Subnets with IP addresses that have permissions to access the
             View. (Overrides the Subnets specified at the global Cohesity
             Cluster level.)
+        swift_project_domain (string, optional): Specifies the Keystone
+            project domain.
+        swift_project_name (string, optional): Specifies the Keystone
+            project name.
         tenant_id (string): Optional tenant id who has access to this View.
 
     """
@@ -117,12 +130,15 @@ class CloneViewRequest(object):
         "clone_view_name":'cloneViewName',
         "data_lock_expiry_usecs":'dataLockExpiryUsecs',
         "description":'description',
+        "enable_fast_durable_handle":'enableFastDurableHandle',
         "enable_filer_audit_logging":'enableFilerAuditLogging',
+        "enable_live_indexing":'enableLiveIndexing',
         "enable_mixed_mode_permissions":'enableMixedModePermissions',
         "enable_nfs_view_discovery":'enableNfsViewDiscovery',
         "enable_offline_caching":'enableOfflineCaching',
         "enable_smb_access_based_enumeration":'enableSmbAccessBasedEnumeration',
         "enable_smb_encryption":'enableSmbEncryption',
+        "enable_smb_oplock":'enableSmbOplock',
         "enable_smb_view_discovery":'enableSmbViewDiscovery',
         "enforce_smb_encryption":'enforceSmbEncryption',
         "file_extension_filter":'fileExtensionFilter',
@@ -140,6 +156,8 @@ class CloneViewRequest(object):
         "source_view_name":'sourceViewName',
         "storage_policy_override":'storagePolicyOverride',
         "subnet_whitelist":'subnetWhitelist',
+        "swift_project_domain":'swiftProjectDomain',
+        "swift_project_name":'swiftProjectName',
         "tenant_id":'tenantId'
     }
 
@@ -149,12 +167,15 @@ class CloneViewRequest(object):
                  clone_view_name=None,
                  data_lock_expiry_usecs=None,
                  description=None,
+                 enable_fast_durable_handle=None,
                  enable_filer_audit_logging=None,
+                 enable_live_indexing=None,
                  enable_mixed_mode_permissions=None,
                  enable_nfs_view_discovery=None,
                  enable_offline_caching=None,
                  enable_smb_access_based_enumeration=None,
                  enable_smb_encryption=None,
+                 enable_smb_oplock=None,
                  enable_smb_view_discovery=None,
                  enforce_smb_encryption=None,
                  file_extension_filter=None,
@@ -172,6 +193,8 @@ class CloneViewRequest(object):
                  source_view_name=None,
                  storage_policy_override=None,
                  subnet_whitelist=None,
+                 swift_project_domain=None,
+                 swift_project_name=None,
                  tenant_id=None):
         """Constructor for the CloneViewRequest class"""
 
@@ -181,12 +204,15 @@ class CloneViewRequest(object):
         self.clone_view_name = clone_view_name
         self.data_lock_expiry_usecs = data_lock_expiry_usecs
         self.description = description
+        self.enable_fast_durable_handle = enable_fast_durable_handle
         self.enable_filer_audit_logging = enable_filer_audit_logging
+        self.enable_live_indexing = enable_live_indexing
         self.enable_mixed_mode_permissions = enable_mixed_mode_permissions
         self.enable_nfs_view_discovery = enable_nfs_view_discovery
         self.enable_offline_caching = enable_offline_caching
         self.enable_smb_access_based_enumeration = enable_smb_access_based_enumeration
         self.enable_smb_encryption = enable_smb_encryption
+        self.enable_smb_oplock = enable_smb_oplock
         self.enable_smb_view_discovery = enable_smb_view_discovery
         self.enforce_smb_encryption = enforce_smb_encryption
         self.file_extension_filter = file_extension_filter
@@ -204,6 +230,8 @@ class CloneViewRequest(object):
         self.source_view_name = source_view_name
         self.storage_policy_override = storage_policy_override
         self.subnet_whitelist = subnet_whitelist
+        self.swift_project_domain = swift_project_domain
+        self.swift_project_name = swift_project_name
         self.tenant_id = tenant_id
 
 
@@ -230,12 +258,15 @@ class CloneViewRequest(object):
         clone_view_name = dictionary.get('cloneViewName')
         data_lock_expiry_usecs = dictionary.get('dataLockExpiryUsecs')
         description = dictionary.get('description')
+        enable_fast_durable_handle = dictionary.get('enableFastDurableHandle')
         enable_filer_audit_logging = dictionary.get('enableFilerAuditLogging')
+        enable_live_indexing = dictionary.get('enableLiveIndexing')
         enable_mixed_mode_permissions = dictionary.get('enableMixedModePermissions')
         enable_nfs_view_discovery = dictionary.get('enableNfsViewDiscovery')
         enable_offline_caching = dictionary.get('enableOfflineCaching')
         enable_smb_access_based_enumeration = dictionary.get('enableSmbAccessBasedEnumeration')
         enable_smb_encryption = dictionary.get('enableSmbEncryption')
+        enable_smb_oplock = dictionary.get('enableSmbOplock')
         enable_smb_view_discovery = dictionary.get('enableSmbViewDiscovery')
         enforce_smb_encryption = dictionary.get('enforceSmbEncryption')
         file_extension_filter = cohesity_management_sdk.models.file_extension_filter.FileExtensionFilter.from_dictionary(dictionary.get('fileExtensionFilter')) if dictionary.get('fileExtensionFilter') else None
@@ -261,6 +292,8 @@ class CloneViewRequest(object):
             subnet_whitelist = list()
             for structure in dictionary.get('subnetWhitelist'):
                 subnet_whitelist.append(cohesity_management_sdk.models.subnet.Subnet.from_dictionary(structure))
+        swift_project_domain = dictionary.get('swiftProjectDomain', None)
+        swift_project_name = dictionary.get('swiftProjectName', None)
         tenant_id = dictionary.get('tenantId')
 
         # Return an object of this model
@@ -269,12 +302,15 @@ class CloneViewRequest(object):
                    clone_view_name,
                    data_lock_expiry_usecs,
                    description,
+                   enable_fast_durable_handle,
                    enable_filer_audit_logging,
+                   enable_live_indexing,
                    enable_mixed_mode_permissions,
                    enable_nfs_view_discovery,
                    enable_offline_caching,
                    enable_smb_access_based_enumeration,
                    enable_smb_encryption,
+                   enable_smb_oplock,
                    enable_smb_view_discovery,
                    enforce_smb_encryption,
                    file_extension_filter,
@@ -292,6 +328,8 @@ class CloneViewRequest(object):
                    source_view_name,
                    storage_policy_override,
                    subnet_whitelist,
+                   swift_project_domain,
+                   swift_project_name,
                    tenant_id)
 
 

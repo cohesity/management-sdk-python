@@ -10,9 +10,8 @@ class RunUid(object):
     Specifies the universal id of the latest successful Protection Job Run.
 
     Attributes:
-        job_uid (UniversalId): Specifies an id for an object that is unique
-            across Cohesity Clusters. The id is composite of all the ids
-            listed below.
+        job_uid (UniversalId): Specifies the universal id of the Protection
+            Job.
         start_time_usecs (long|int): Specifies the start time of the
             Protection Job Run.
 

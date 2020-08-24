@@ -15,7 +15,8 @@ class UpdateClusterParams(object):
     Cohesity Cluster.
 
     Attributes:
-        apps_settings (AppsConfig): TODO: type description here.
+        apps_settings (AppsConfig): Specifies the Athena apps mode for the
+            cluster.
         banner_enabled (bool): Specifies whether UI banner is enabled on the
             cluster or not. When banner is enabled, UI will make an additional
             API call to fetch the banner and show at the login page.
@@ -37,6 +38,15 @@ class UpdateClusterParams(object):
         encryption_key_rotation_period_secs (long|int): Specifies the period
             of time (in seconds) when encryption keys are rotated. By default,
             the encryption keys are rotated every 77760000 seconds (30 days).
+        fault_tolerance_level (UpdateClusterParamsFaultToleranceLevelEnum):
+            Specifies the level which 'MetadataFaultToleranceFactor' applies
+            to.
+            'kNode' indicates 'MetadataFaultToleranceFactor' applies to Node
+            level.
+            'kChassis' indicates 'MetadataFaultToleranceFactor' applies to
+            Chassis level.
+            'kRack' indicates 'MetadataFaultToleranceFactor' applies to Rack
+            level.
         filer_audit_log_config (FilerAuditLogConfiguration): Specifies the
             settings of the filer audit log configuration.
         gateway (string): Specifies the gateway IP address.
@@ -64,7 +74,10 @@ class UpdateClusterParams(object):
             tenant_id, however, some UI elements may be disabled when multi
             tenancy is disabled.
         name (string): Specifies the name of the Cohesity Cluster.
-        ntp_settings (NtpSettingsConfig): TODO: type description here.
+        ntp_settings (NtpSettingsConfig): Specifies if the ntp/master slave
+            scheme should be disabled for this cluster.
+        pcie_ssd_tier_rebalance_delay_secs (int): Specifies the rebalance
+            delay in seconds for cluster PcieSSD storage tier.
         reverse_tunnel_enabled (bool): If 'true', Cohesity's Remote Tunnel is
             enabled. Cohesity can access the Cluster and provide remote
             assistance via a Remote Tunnel.
@@ -97,6 +110,7 @@ class UpdateClusterParams(object):
         "enable_active_monitoring":'enableActiveMonitoring',
         "enable_upgrade_pkg_polling":'enableUpgradePkgPolling',
         "encryption_key_rotation_period_secs":'encryptionKeyRotationPeriodSecs',
+        "fault_tolerance_level":'faultToleranceLevel',
         "filer_audit_log_config":'filerAuditLogConfig',
         "gateway":'gateway',
         "google_analytics_enabled":'googleAnalyticsEnabled',
@@ -108,6 +122,7 @@ class UpdateClusterParams(object):
         "multi_tenancy_enabled":'multiTenancyEnabled',
         "name":'name',
         "ntp_settings":'ntpSettings',
+        "pcie_ssd_tier_rebalance_delay_secs":'pcieSsdTierRebalanceDelaySecs',
         "reverse_tunnel_enabled":'reverseTunnelEnabled',
         "reverse_tunnel_end_time_msecs":'reverseTunnelEndTimeMsecs',
         "smb_ad_disabled":'smbAdDisabled',
@@ -127,6 +142,7 @@ class UpdateClusterParams(object):
                  enable_active_monitoring=None,
                  enable_upgrade_pkg_polling=None,
                  encryption_key_rotation_period_secs=None,
+                 fault_tolerance_level=None,
                  filer_audit_log_config=None,
                  gateway=None,
                  google_analytics_enabled=None,
@@ -138,6 +154,7 @@ class UpdateClusterParams(object):
                  multi_tenancy_enabled=None,
                  name=None,
                  ntp_settings=None,
+                 pcie_ssd_tier_rebalance_delay_secs=None,
                  reverse_tunnel_enabled=None,
                  reverse_tunnel_end_time_msecs=None,
                  smb_ad_disabled=None,
@@ -157,6 +174,7 @@ class UpdateClusterParams(object):
         self.enable_active_monitoring = enable_active_monitoring
         self.enable_upgrade_pkg_polling = enable_upgrade_pkg_polling
         self.encryption_key_rotation_period_secs = encryption_key_rotation_period_secs
+        self.fault_tolerance_level = fault_tolerance_level
         self.filer_audit_log_config = filer_audit_log_config
         self.gateway = gateway
         self.google_analytics_enabled = google_analytics_enabled
@@ -168,6 +186,7 @@ class UpdateClusterParams(object):
         self.multi_tenancy_enabled = multi_tenancy_enabled
         self.name = name
         self.ntp_settings = ntp_settings
+        self.pcie_ssd_tier_rebalance_delay_secs = pcie_ssd_tier_rebalance_delay_secs
         self.reverse_tunnel_enabled = reverse_tunnel_enabled
         self.reverse_tunnel_end_time_msecs = reverse_tunnel_end_time_msecs
         self.smb_ad_disabled = smb_ad_disabled
@@ -204,6 +223,7 @@ class UpdateClusterParams(object):
         enable_active_monitoring = dictionary.get('enableActiveMonitoring')
         enable_upgrade_pkg_polling = dictionary.get('enableUpgradePkgPolling')
         encryption_key_rotation_period_secs = dictionary.get('encryptionKeyRotationPeriodSecs')
+        fault_tolerance_level = dictionary.get('faultToleranceLevel')
         filer_audit_log_config = cohesity_management_sdk.models.filer_audit_log_configuration.FilerAuditLogConfiguration.from_dictionary(dictionary.get('filerAuditLogConfig')) if dictionary.get('filerAuditLogConfig') else None
         gateway = dictionary.get('gateway')
         google_analytics_enabled = dictionary.get('googleAnalyticsEnabled')
@@ -215,6 +235,7 @@ class UpdateClusterParams(object):
         multi_tenancy_enabled = dictionary.get('multiTenancyEnabled')
         name = dictionary.get('name')
         ntp_settings = cohesity_management_sdk.models.ntp_settings_config.NtpSettingsConfig.from_dictionary(dictionary.get('ntpSettings')) if dictionary.get('ntpSettings') else None
+        pcie_ssd_tier_rebalance_delay_secs = dictionary.get('pcieSsdTierRebalanceDelaySecs')
         reverse_tunnel_enabled = dictionary.get('reverseTunnelEnabled')
         reverse_tunnel_end_time_msecs = dictionary.get('reverseTunnelEndTimeMsecs')
         smb_ad_disabled = dictionary.get('smbAdDisabled')
@@ -237,6 +258,7 @@ class UpdateClusterParams(object):
                    enable_active_monitoring,
                    enable_upgrade_pkg_polling,
                    encryption_key_rotation_period_secs,
+                   fault_tolerance_level,
                    filer_audit_log_config,
                    gateway,
                    google_analytics_enabled,
@@ -248,6 +270,7 @@ class UpdateClusterParams(object):
                    multi_tenancy_enabled,
                    name,
                    ntp_settings,
+                   pcie_ssd_tier_rebalance_delay_secs,
                    reverse_tunnel_enabled,
                    reverse_tunnel_end_time_msecs,
                    smb_ad_disabled,

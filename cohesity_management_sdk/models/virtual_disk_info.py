@@ -6,7 +6,7 @@ class VirtualDiskInfo(object):
 
     """Implementation of the 'VirtualDiskInfo' model.
 
-    TODO: type model description here.
+    Virtual Disk Information.
 
     Attributes:
         bus_number (long|int): Specifies the Id of the controller bus that

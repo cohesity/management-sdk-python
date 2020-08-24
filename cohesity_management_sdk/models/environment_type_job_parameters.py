@@ -2,9 +2,11 @@
 # Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.aws_snapshot_manager_parameters
+import cohesity_management_sdk.models.exchange_env_job_parameters
 import cohesity_management_sdk.models.hyperv_env_job_parameters
 import cohesity_management_sdk.models.nas_env_job_parameters
 import cohesity_management_sdk.models.office_365_env_job_parameters
+import cohesity_management_sdk.models.oracle_env_job_parameters
 import cohesity_management_sdk.models.physical_env_job_parameters
 import cohesity_management_sdk.models.san_env_job_parameters
 import cohesity_management_sdk.models.sql_env_job_parameters
@@ -23,6 +25,9 @@ class EnvironmentTypeJobParameters(object):
             Specifies additional job parameters applicable for
             'kAWSSnapshotManager' Environment type Protection Sources in a
             Protection Job.
+        exchange_parameters (ExchangeEnvJobParameters): Specifies additional
+            special parameters that are applicable only to Types of
+            'kExchange' type.
         hyperv_parameters (HypervEnvJobParameters): Specifies job parameters
             applicable for all 'kHyperV' Environment type Protection Sources
             in a Protection Job.
@@ -33,6 +38,9 @@ class EnvironmentTypeJobParameters(object):
             parameters applicable for all Office365 Environment type
             Protection Sources in a Protection Job. This encapsulates both
             OneDrive & Mailbox parameters.
+        oracle_parameters (OracleEnvJobParameters): Specifies job parameters
+            applicable for all 'kOracle' Environment type Protection Sources
+            in a Protection Job.
         physical_parameters (PhysicalEnvJobParameters): Protection Job
             parameters applicable to 'kPhysical' Environment type. Specifies
             job parameters applicable for all 'kPhysical' Environment type
@@ -52,9 +60,11 @@ class EnvironmentTypeJobParameters(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "aws_snapshot_parameters":'awsSnapshotParameters',
+        "exchange_parameters":'exchangeParameters',
         "hyperv_parameters":'hypervParameters',
         "nas_parameters":'nasParameters',
         "office_365_parameters":'office365Parameters',
+        "oracle_parameters": 'oracleParameters',
         "physical_parameters":'physicalParameters',
         "pure_parameters":'pureParameters',
         "sql_parameters":'sqlParameters',
@@ -63,9 +73,11 @@ class EnvironmentTypeJobParameters(object):
 
     def __init__(self,
                  aws_snapshot_parameters=None,
+                 exchange_parameters=None,
                  hyperv_parameters=None,
                  nas_parameters=None,
                  office_365_parameters=None,
+                 oracle_parameters=None,
                  physical_parameters=None,
                  pure_parameters=None,
                  sql_parameters=None,
@@ -74,9 +86,11 @@ class EnvironmentTypeJobParameters(object):
 
         # Initialize members of the class
         self.aws_snapshot_parameters = aws_snapshot_parameters
+        self.exchange_parameters = exchange_parameters
         self.hyperv_parameters = hyperv_parameters
         self.nas_parameters = nas_parameters
         self.office_365_parameters = office_365_parameters
+        self.oracle_parameters = oracle_parameters
         self.physical_parameters = physical_parameters
         self.pure_parameters = pure_parameters
         self.sql_parameters = sql_parameters
@@ -102,9 +116,11 @@ class EnvironmentTypeJobParameters(object):
 
         # Extract variables from the dictionary
         aws_snapshot_parameters = cohesity_management_sdk.models.aws_snapshot_manager_parameters.AwsSnapshotManagerParameters.from_dictionary(dictionary.get('awsSnapshotParameters')) if dictionary.get('awsSnapshotParameters') else None
+        exchange_parameters = cohesity_management_sdk.models.exchange_env_job_parameters.ExchangeEnvJobParameters.from_dictionary(dictionary.get('exchangeParameters')) if dictionary.get('exchangeParameters') else None
         hyperv_parameters = cohesity_management_sdk.models.hyperv_env_job_parameters.HypervEnvJobParameters.from_dictionary(dictionary.get('hypervParameters')) if dictionary.get('hypervParameters') else None
         nas_parameters = cohesity_management_sdk.models.nas_env_job_parameters.NasEnvJobParameters.from_dictionary(dictionary.get('nasParameters')) if dictionary.get('nasParameters') else None
         office_365_parameters = cohesity_management_sdk.models.office_365_env_job_parameters.Office365EnvJobParameters.from_dictionary(dictionary.get('office365Parameters')) if dictionary.get('office365Parameters') else None
+        oracle_parameters = cohesity_management_sdk.models.oracle_env_job_parameters.OracleEnvJobParameters.from_dictionary(dictionary.get('oracleParameters')) if dictionary.get('oracleParameters') else None
         physical_parameters = cohesity_management_sdk.models.physical_env_job_parameters.PhysicalEnvJobParameters.from_dictionary(dictionary.get('physicalParameters')) if dictionary.get('physicalParameters') else None
         pure_parameters = cohesity_management_sdk.models.san_env_job_parameters.SanEnvJobParameters.from_dictionary(dictionary.get('pureParameters')) if dictionary.get('pureParameters') else None
         sql_parameters = cohesity_management_sdk.models.sql_env_job_parameters.SqlEnvJobParameters.from_dictionary(dictionary.get('sqlParameters')) if dictionary.get('sqlParameters') else None
@@ -112,9 +128,11 @@ class EnvironmentTypeJobParameters(object):
 
         # Return an object of this model
         return cls(aws_snapshot_parameters,
+                   exchange_parameters,
                    hyperv_parameters,
                    nas_parameters,
                    office_365_parameters,
+                   oracle_parameters,
                    physical_parameters,
                    pure_parameters,
                    sql_parameters,

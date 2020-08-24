@@ -10,8 +10,8 @@ class ViewUserQuotaParameters(object):
     Specifies the params to create and edit a user quota policy in a view.
 
     Attributes:
-        user_quota_policy (UserQuota): Specifies the quota policy applied to a
-            user.
+        user_quota_policy (UserQuota): The user quota policies that need to be
+            updated.
         view_name (string): View name of input view.
 
     """

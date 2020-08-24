@@ -27,9 +27,10 @@ from cohesity_management_sdk.exceptions.request_error_error_exception import Req
 
 class StatsController(BaseController):
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-    def __init__(self, client=None, call_back=None):
+    def __init__(self, config=None, client=None, call_back=None):
         super(StatsController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
+        self.config = config
 
     def get_active_alerts_stats(self, start_time_usecs, end_time_usecs):
         """Does a GET request to /public/stats/alerts.
@@ -68,7 +69,7 @@ class StatsController(BaseController):
             self.logger.info(
                 'Preparing query URL for get_active_alerts_stats.')
             _url_path = '/public/stats/alerts'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'startTimeUsecs': start_time_usecs,
@@ -87,7 +88,7 @@ class StatsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_active_alerts_stats.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_active_alerts_stats')
 
@@ -95,7 +96,7 @@ class StatsController(BaseController):
             self.logger.info(
                 'Validating response for get_active_alerts_stats.')
             if _context.response.status_code == 0:
-                raise RequestErrorErrorException(Error, _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
@@ -112,9 +113,14 @@ class StatsController(BaseController):
                            cookie=None,
                            consumer_id_list=None,
                            consumer_entity_id_list=None,
+                           fetch_view_box_name=None,
+                           fetch_tenant_name=None,
+                           fetch_protection_policy=None,
+                           fetch_protection_environment=None,
                            view_boxes_id_list=None,
                            organizations_id_list=None,
-                           tenant_ids=None):
+                           tenant_ids=None,
+                           include_service_provider=None):
         """Does a GET request to /public/stats/consumers.
 
         Gets the statistics of consumers.
@@ -142,6 +148,18 @@ class StatsController(BaseController):
                 entity id must corresponds to the id in 'ConsumerIdList' in
                 the same index, and the length of 'ConsumerEntityIdList' and
                 'ConsumerIdList' must be the same.
+            fetch_view_box_name (bool, optional): Specifies whether to fetch
+                view box (storage domain) name for each consumer.
+            fetch_tenant_name (bool, optional): Specifies whether to fetch
+                tenant (organization) name for each consumer.
+            fetch_protection_policy (bool, optional): Specifies whether to
+                fetch protection policy for each consumer. This field is
+                applicable only if 'consumerType' is 'kProtectionRuns' or
+                'kReplicationRuns'.
+            fetch_protection_environment(bool, optional): Specifies whether
+                to fetch protection environment for each consumer. This field
+                is applicable only if 'consumerType' is 'kProtectionRuns' or
+                'kReplicationRuns'.
             view_boxes_id_list (list of long|int, optional): Specifies a list
                 of view boxes (storage domain) id.
             organizations_id_list (list of string, optional): Specifies a list
@@ -150,6 +168,10 @@ class StatsController(BaseController):
                 organizations (tenant) id. This field is added to allow
                 tenantIds json tag. This list will be concatenated with
                 TenantsIdList to form full list of tenantsIdList.
+            include_service_provider(bool, optional): Specifies whether to
+                fetch the consumption of external service providers. These
+                information will be listed as a unique organization (tenant) in
+                response. By default it is false.
 
         Returns:
             GetConsumerStatsResult: Response from the API. Success
@@ -167,7 +189,7 @@ class StatsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_consumer_stats.')
             _url_path = '/public/stats/consumers'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'consumerType': consumer_type,
@@ -175,9 +197,14 @@ class StatsController(BaseController):
                 'cookie': cookie,
                 'consumerIdList': consumer_id_list,
                 'consumerEntityIdList': consumer_entity_id_list,
+                'fetchViewBoxName': fetch_view_box_name,
+                'fetchTenantName': fetch_tenant_name,
+                'fetchProtectionPolicy': fetch_protection_policy,
+                'fetchProtectionEnvironment': fetch_protection_environment,
                 'viewBoxesIdList': view_boxes_id_list,
                 'organizationsIdList': organizations_id_list,
-                'tenantIds': tenant_ids
+                'tenantIds': tenant_ids,
+                'includeServiceProvider': include_service_provider
             }
             _query_builder = APIHelper.append_url_with_query_parameters(
                 _query_builder, _query_parameters,
@@ -192,7 +219,7 @@ class StatsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_consumer_stats.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_consumer_stats')
 
@@ -245,7 +272,7 @@ class StatsController(BaseController):
             self.logger.info(
                 'Preparing query URL for get_file_distribution_stats.')
             _url_path = '/public/stats/files'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {'entityType': entity_type}
             _query_builder = APIHelper.append_url_with_query_parameters(
@@ -263,7 +290,7 @@ class StatsController(BaseController):
                 'Preparing and executing request for get_file_distribution_stats.'
             )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_file_distribution_stats')
 
@@ -271,7 +298,7 @@ class StatsController(BaseController):
             self.logger.info(
                 'Validating response for get_file_distribution_stats.')
             if _context.response.status_code == 0:
-                raise RequestErrorErrorException(Error, _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
@@ -326,7 +353,7 @@ class StatsController(BaseController):
             self.logger.info(
                 'Preparing query URL for get_protection_runs_stats.')
             _url_path = '/public/stats/protectionRuns'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'status': status,
@@ -348,7 +375,7 @@ class StatsController(BaseController):
                 'Preparing and executing request for get_protection_runs_stats.'
             )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_protection_runs_stats')
 
@@ -356,7 +383,7 @@ class StatsController(BaseController):
             self.logger.info(
                 'Validating response for get_protection_runs_stats.')
             if _context.response.status_code == 0:
-                raise RequestErrorErrorException(Error, _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
@@ -390,7 +417,7 @@ class StatsController(BaseController):
             self.logger.info(
                 'Preparing query URL for get_last_protection_run_stats.')
             _url_path = '/public/stats/protectionRuns/lastRun'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -404,7 +431,7 @@ class StatsController(BaseController):
                 'Preparing and executing request for get_last_protection_run_stats.'
             )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='get_last_protection_run_stats')
 
@@ -412,7 +439,7 @@ class StatsController(BaseController):
             self.logger.info(
                 'Validating response for get_last_protection_run_stats.')
             if _context.response.status_code == 0:
-                raise RequestErrorErrorException(Error, _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
@@ -450,7 +477,7 @@ class StatsController(BaseController):
             self.logger.info(
                 'Preparing query URL for get_protected_objects_summary.')
             _url_path = '/public/stats/protectionSummary'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {'excludeTypes': exclude_types}
             _query_builder = APIHelper.append_url_with_query_parameters(
@@ -468,7 +495,7 @@ class StatsController(BaseController):
                 'Preparing and executing request for get_protected_objects_summary.'
             )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='get_protected_objects_summary')
 
@@ -476,7 +503,7 @@ class StatsController(BaseController):
             self.logger.info(
                 'Validating response for get_protected_objects_summary.')
             if _context.response.status_code == 0:
-                raise RequestErrorErrorException(Error, _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
@@ -523,7 +550,7 @@ class StatsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_restore_stats.')
             _url_path = '/public/stats/restores'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'startTimeUsecs': start_time_usecs,
@@ -542,13 +569,13 @@ class StatsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_restore_stats.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='get_restore_stats')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_restore_stats.')
             if _context.response.status_code == 0:
-                raise RequestErrorErrorException(Error, _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
@@ -580,7 +607,7 @@ class StatsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_storage_stats.')
             _url_path = '/public/stats/storage'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -592,13 +619,13 @@ class StatsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_storage_stats.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='get_storage_stats')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_storage_stats.')
             if _context.response.status_code == 0:
-                raise RequestErrorErrorException(Error, _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
@@ -617,7 +644,8 @@ class StatsController(BaseController):
                          output_format=None,
                          view_boxes_id_list=None,
                          organizations_id_list=None,
-                         tenant_ids=None):
+                         tenant_ids=None,
+                         include_service_provider=None):
         """Does a GET request to /public/stats/tenants.
 
         Gets the statistics of organizations (tenant).
@@ -634,9 +662,9 @@ class StatsController(BaseController):
                 (storage domain).
             skip_group_by_tenant (bool, optional): Specifies if we should skip
                 grouping by tenant. If false, and tenant has multiple storage
-                domains, then the stats for the stroage domains will be
+                domains, then the stats for the storage domains will be
                 aggregated. If true, then the response will return each
-                storage domain cross tenant independantly.
+                storage domain cross tenant independently.
             max_count (long|int, optional): Specifies a limit on the number of
                 stats groups returned.
             cookie (string, optional): Specifies the opaque string returned in
@@ -654,6 +682,10 @@ class StatsController(BaseController):
                 organizations (tenant) id. This field is added to allow
                 tenantIds json tag. This list will be concatenated with
                 TenantsIdList to form full list of tenantsIdList.
+            include_service_provider(bool, optional): Specifies whether to
+                fetch the consumption of external service providers. These
+                information will be listed as a unique organization (tenant) in
+                response. By default it is false.
 
         Returns:
             GetTenantStatsResult: Response from the API. Success
@@ -671,7 +703,7 @@ class StatsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_tenant_stats.')
             _url_path = '/public/stats/tenants'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'consumerType': consumer_type,
@@ -681,7 +713,8 @@ class StatsController(BaseController):
                 'outputFormat': output_format,
                 'viewBoxesIdList': view_boxes_id_list,
                 'organizationsIdList': organizations_id_list,
-                'tenantIds': tenant_ids
+                'tenantIds': tenant_ids,
+                'includeServiceProvider': include_service_provider
             }
             _query_builder = APIHelper.append_url_with_query_parameters(
                 _query_builder, _query_parameters,
@@ -696,7 +729,7 @@ class StatsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_tenant_stats.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='get_tenant_stats')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -735,7 +768,7 @@ class StatsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_vault_stats.')
             _url_path = '/public/stats/vaults'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -747,13 +780,13 @@ class StatsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_vault_stats.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='get_vault_stats')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_vault_stats.')
             if _context.response.status_code == 0:
-                raise RequestErrorErrorException(Error, _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
@@ -795,7 +828,7 @@ class StatsController(BaseController):
             self.logger.info(
                 'Preparing query URL for get_vault_provider_stats.')
             _url_path = '/public/stats/vaults/providers'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {'runType': run_type}
             _query_builder = APIHelper.append_url_with_query_parameters(
@@ -812,7 +845,7 @@ class StatsController(BaseController):
                 'Preparing and executing request for get_vault_provider_stats.'
             )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_vault_provider_stats')
 
@@ -820,7 +853,7 @@ class StatsController(BaseController):
             self.logger.info(
                 'Validating response for get_vault_provider_stats.')
             if _context.response.status_code == 0:
-                raise RequestErrorErrorException(Error, _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
@@ -874,7 +907,7 @@ class StatsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_vault_run_stats.')
             _url_path = '/public/stats/vaults/runs'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'runType': run_type,
@@ -895,14 +928,14 @@ class StatsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_vault_run_stats.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_vault_run_stats')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_vault_run_stats.')
             if _context.response.status_code == 0:
-                raise RequestErrorErrorException(Error, _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
@@ -917,7 +950,8 @@ class StatsController(BaseController):
     def get_view_box_stats(self,
                            view_boxes_id_list=None,
                            organizations_id_list=None,
-                           tenant_ids=None):
+                           tenant_ids=None,
+                           include_service_provider=None):
         """Does a GET request to /public/stats/viewBoxes.
 
         Gets the statistics of view boxes (storage domain).
@@ -931,6 +965,10 @@ class StatsController(BaseController):
                 organizations (tenant) id. This field is added to allow
                 tenantIds json tag. This list will be concatenated with
                 TenantsIdList to form full list of tenantsIdList.
+            include_service_provider(bool, optional): Specifies whether to
+                fetch the consumption of external service providers. These
+                information will be listed as a unique organization (tenant) in
+                response. By default it is false.
 
         Returns:
             GetViewBoxStatsResult: Response from the API. Success
@@ -948,12 +986,13 @@ class StatsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_view_box_stats.')
             _url_path = '/public/stats/viewBoxes'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'viewBoxesIdList': view_boxes_id_list,
                 'organizationsIdList': organizations_id_list,
-                'tenantIds': tenant_ids
+                'tenantIds': tenant_ids,
+                'includeServiceProvider': include_service_provider
             }
             _query_builder = APIHelper.append_url_with_query_parameters(
                 _query_builder, _query_parameters,
@@ -968,7 +1007,7 @@ class StatsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_view_box_stats.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_view_box_stats')
 
@@ -1018,7 +1057,7 @@ class StatsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_view_stats.')
             _url_path = '/public/stats/views'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'metric': metric,
@@ -1037,13 +1076,13 @@ class StatsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_view_stats.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='get_view_stats')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info('Validating response for get_view_stats.')
             if _context.response.status_code == 0:
-                raise RequestErrorErrorException(Error, _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type
@@ -1076,7 +1115,7 @@ class StatsController(BaseController):
             self.logger.info(
                 'Preparing query URL for get_view_protocol_stats.')
             _url_path = '/public/stats/views/protocols'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -1088,7 +1127,7 @@ class StatsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_view_protocol_stats.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_view_protocol_stats')
 
@@ -1096,7 +1135,7 @@ class StatsController(BaseController):
             self.logger.info(
                 'Validating response for get_view_protocol_stats.')
             if _context.response.status_code == 0:
-                raise RequestErrorErrorException(Error, _context)
+                raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
 
             # Return appropriate type

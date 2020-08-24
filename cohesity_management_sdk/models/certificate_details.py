@@ -11,7 +11,7 @@ class CertificateDetails(object):
     Attributes:
         cert_file_name (string): Specifies the filename of the certificate.
             This is unique to each certificate generated.
-        expiry_date (long|int): Specifies the date in epoch till when the
+        expiry_date (string): Specifies the date in epoch till when the
             certificate is valid.
         host_ips (list of string): Each certificate can be deployed to
             multiple hosts. List of all hosts is returned after deployment.

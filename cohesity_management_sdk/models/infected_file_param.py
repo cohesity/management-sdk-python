@@ -6,7 +6,7 @@ class InfectedFileParam(object):
 
     """Implementation of the 'InfectedFileParam' model.
 
-    TODO: type model description here.
+    Specifies the parameters to delete a infected file.
 
     Attributes:
         entity_id (long|int): Specifies the entity id of the infected file.

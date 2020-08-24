@@ -13,9 +13,10 @@ from cohesity_management_sdk.exceptions.request_error_error_exception import Req
 
 class RemoteClusterController(BaseController):
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-    def __init__(self, client=None, call_back=None):
+    def __init__(self, config=None, client=None, call_back=None):
         super(RemoteClusterController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
+        self.config = config
 
     def get_remote_clusters(self,
                             cluster_ids=None,
@@ -57,7 +58,7 @@ class RemoteClusterController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_remote_clusters.')
             _url_path = '/public/remoteClusters'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'clusterIds': cluster_ids,
@@ -78,7 +79,7 @@ class RemoteClusterController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_remote_clusters.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_remote_clusters')
 
@@ -130,7 +131,7 @@ class RemoteClusterController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for create_remote_cluster.')
             _url_path = '/public/remoteClusters'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -148,7 +149,7 @@ class RemoteClusterController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='create_remote_cluster')
 
@@ -198,7 +199,7 @@ class RemoteClusterController(BaseController):
             _url_path = '/public/remoteClusters/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -206,7 +207,7 @@ class RemoteClusterController(BaseController):
             self.logger.info(
                 'Preparing and executing request for delete_remote_cluster.')
             _request = self.http_client.delete(_query_url)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='delete_remote_cluster')
 
@@ -254,7 +255,7 @@ class RemoteClusterController(BaseController):
             _url_path = '/public/remoteClusters/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -267,7 +268,7 @@ class RemoteClusterController(BaseController):
                 'Preparing and executing request for get_remote_cluster_by_id.'
             )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_remote_cluster_by_id')
 
@@ -320,7 +321,7 @@ class RemoteClusterController(BaseController):
             _url_path = '/public/remoteClusters/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -338,7 +339,7 @@ class RemoteClusterController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='update_remote_cluster')
 
@@ -379,7 +380,7 @@ class RemoteClusterController(BaseController):
             self.logger.info(
                 'Preparing query URL for get_replication_encryption_key.')
             _url_path = '/public/replicationEncryptionKey'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -393,7 +394,7 @@ class RemoteClusterController(BaseController):
                 'Preparing and executing request for get_replication_encryption_key.'
             )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='get_replication_encryption_key')
 

@@ -79,10 +79,10 @@ class SnapshotInfoProto(object):
         num_app_objects (int): Number of application objects in total backed
             up by this task. For example, if the environment type is kSQL,
             this number is for all of the SQL server databases
-        post_backup_script_status (ScriptExecutionStatus): TODO: type
-            description here.
-        pre_backup_script_status (ScriptExecutionStatus): TODO: type
-            description here.
+        post_backup_script_status (ScriptExecutionStatus): Captures the
+            execution status of post backup script.
+        pre_backup_script_status (ScriptExecutionStatus): Captures the
+            execution status of pre backup script.
         relative_snapshot_dir (string): This is the path relative to
             'root_path' under which the snapshot lives. This does not begin
             with a '/' and is of the form foo/bar/baz.
@@ -97,9 +97,10 @@ class SnapshotInfoProto(object):
             key in that table where such state is stored.
         slave_task_start_time_usecs (long|int): This is the timestamp at which
             the slave task started.
-        snapshot_type (ObjectSnapshotType): TODO: type description here.
-        storage_snapshot_provider (StorageSnapshotProviderParams): TODO: type
-            description here.
+        snapshot_type (ObjectSnapshotType): Captures the snapshot type for
+            some objects such as VM.
+        storage_snapshot_provider (StorageSnapshotProviderParams): Specifies
+            the parameters required for Storage Snapshot provider.
         target_type (int): Specifies the target type for the task. The field
             is only valid if the task has got a permit.
         total_bytes_read_from_source (long|int): Contains the information

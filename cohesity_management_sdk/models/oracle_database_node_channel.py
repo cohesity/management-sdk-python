@@ -26,6 +26,9 @@ class OracleDatabaseNodeChannel(object):
             use per host per db. This value is used on all
             OracleDatabaseNode's unless databaseNodeList item's channelCount
             is specified for the node.
+        enable_dg_primary_backup (bool): Specifies whether the database having
+            the Primary role within Data Guard configuration is to be backed
+            up.
         max_node_count (int): Specifies the maximum number of nodes from which
             we are allowed to take backup/restore.
 
@@ -38,6 +41,7 @@ class OracleDatabaseNodeChannel(object):
         "database_unique_name":'databaseUniqueName',
         "database_uuid":'databaseUuid',
         "default_channel_count":'defaultChannelCount',
+        "enable_dg_primary_backup":'enableDgPrimaryBackup',
         "max_node_count":'maxNodeCount'
     }
 
@@ -47,6 +51,7 @@ class OracleDatabaseNodeChannel(object):
                  database_unique_name=None,
                  database_uuid=None,
                  default_channel_count=None,
+                 enable_dg_primary_backup=None,
                  max_node_count=None):
         """Constructor for the OracleDatabaseNodeChannel class"""
 
@@ -56,6 +61,7 @@ class OracleDatabaseNodeChannel(object):
         self.database_unique_name = database_unique_name
         self.database_uuid = database_uuid
         self.default_channel_count = default_channel_count
+        self.enable_dg_primary_backup = enable_dg_primary_backup
         self.max_node_count = max_node_count
 
 
@@ -86,6 +92,7 @@ class OracleDatabaseNodeChannel(object):
         database_unique_name = dictionary.get('databaseUniqueName')
         database_uuid = dictionary.get('databaseUuid')
         default_channel_count = dictionary.get('defaultChannelCount')
+        enable_dg_primary_backup = dictionary.get('enableDgPrimaryBackup')
         max_node_count = dictionary.get('maxNodeCount')
 
         # Return an object of this model
@@ -94,6 +101,7 @@ class OracleDatabaseNodeChannel(object):
                    database_unique_name,
                    database_uuid,
                    default_channel_count,
+                   enable_dg_primary_backup,
                    max_node_count)
 
 

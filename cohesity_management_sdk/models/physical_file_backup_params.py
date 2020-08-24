@@ -14,6 +14,9 @@ class PhysicalFileBackupParams(object):
             Specifies the paths to backup on the Physical source.
         skip_nested_volumes_vec (list of string): Mount types of nested
             volumes to be skipped.
+        symlink_follow_nas_target (bool): Specifies whether to follow nas target
+            pointed by symlink.
+            Set to true only for windows physical file based job.
         uses_skip_nested_volumes_vec (bool): Specifies whether to use
             skip_nested_volumes_vec to skip nested mounts. Before 6.4,
             BackupPathInfo.skip_nested_volumes boolean was used to skip nested
@@ -25,6 +28,7 @@ class PhysicalFileBackupParams(object):
     _names = {
         "backup_path_info_vec":'backupPathInfoVec',
         "skip_nested_volumes_vec":'skipNestedVolumesVec',
+        "symlink_follow_nas_target":'symlinkFollowNasTarget',
         "uses_skip_nested_volumes_vec":'usesSkipNestedVolumesVec'
     }
 
@@ -37,6 +41,7 @@ class PhysicalFileBackupParams(object):
         # Initialize members of the class
         self.backup_path_info_vec = backup_path_info_vec
         self.skip_nested_volumes_vec = skip_nested_volumes_vec
+        self.symlink_follow_nas_target = symlink_follow_nas_target
         self.uses_skip_nested_volumes_vec = uses_skip_nested_volumes_vec
 
 
@@ -64,11 +69,13 @@ class PhysicalFileBackupParams(object):
             for structure in dictionary.get('backupPathInfoVec'):
                 backup_path_info_vec.append(cohesity_management_sdk.models.physical_file_backup_params_backup_path_info.PhysicalFileBackupParamsBackupPathInfo.from_dictionary(structure))
         skip_nested_volumes_vec = dictionary.get('skipNestedVolumesVec')
+        symlink_follow_nas_target = dictionary.get('symlinkFollowNasTarget')
         uses_skip_nested_volumes_vec = dictionary.get('usesSkipNestedVolumesVec')
 
         # Return an object of this model
         return cls(backup_path_info_vec,
                    skip_nested_volumes_vec,
+                   symlink_follow_nas_target,
                    uses_skip_nested_volumes_vec)
 
 

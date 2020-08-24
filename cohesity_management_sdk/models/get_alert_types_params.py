@@ -25,7 +25,10 @@ class GetAlertTypesParams(object):
             ProActive Wellness. kHeliosAnalyticsJobs - Alerts that are related
             to Helios Analytics Jobs. kHeliosSignatureJobs - Alerts that are
             related to Helios Signature Jobs. kSecurity - Alerts that are
-            related to Security.
+            related to Security. kAppsInfra - Alerts that are related to
+            applications infra. kAntivirus - Alerts that are related to
+            antivirus. kArchivalCopy - Alerts that are related to archival
+            copies.
 
     """
 

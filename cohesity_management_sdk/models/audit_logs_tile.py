@@ -11,14 +11,13 @@ class AuditLogsTile(object):
 
     Attributes:
         cluster_audit_logs (list of ClusterAuditLog): Array of Cluster Audit
-            Logs.  Specifies a list of Cluster audit logs that match the
+            Logs. Specifies a list of Cluster audit logs that match the
             specified filter criteria up to the limit specified in pageCount.
         total_count (long|int): Specifies the total number of logs that match
             the specified filter criteria. (This number might be larger than
             the size of the Cluster Audit Logs array.) This count is provided
             to indicate if additional requests must be made to get the full
             result.
-
     """
 
     # Create a mapping from Model property names to API property names

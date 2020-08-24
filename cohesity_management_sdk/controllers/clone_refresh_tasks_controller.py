@@ -12,9 +12,10 @@ from cohesity_management_sdk.exceptions.request_error_error_exception import Req
 
 class CloneRefreshTasksController(BaseController):
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-    def __init__(self, client=None, call_back=None):
+    def __init__(self, config=None, client=None, call_back=None):
         super(CloneRefreshTasksController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
+        self.config = config
 
     def create_clone_refresh_task(self, body):
         """Does a POST request to /public/restore/applicationsClone/refresh.
@@ -50,7 +51,7 @@ class CloneRefreshTasksController(BaseController):
             self.logger.info(
                 'Preparing query URL for create_clone_refresh_task.')
             _url_path = '/public/restore/applicationsClone/refresh'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -70,7 +71,7 @@ class CloneRefreshTasksController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='create_clone_refresh_task')
 

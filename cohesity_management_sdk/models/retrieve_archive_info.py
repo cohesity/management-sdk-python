@@ -18,7 +18,8 @@ class RetrieveArchiveInfo(object):
             this retrieval task so far.
         end_time_usecs (long|int): Time when this retrieval task ended at
             Icebox side. If not set, then the retrieval has not ended yet.
-        error (ErrorProto): TODO: type description here.
+        error (ErrorProto):If the retrieval task has completed, the following
+            indicates whether there was an error in its completion.
         logical_bytes_transferred (long|int): Number of logical bytes
             transferred so far.
         logical_size_bytes (long|int): Total logical size of the retrieval

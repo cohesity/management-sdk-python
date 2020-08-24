@@ -40,6 +40,8 @@ class ApplicationEnum(object):
         KAZURENATIVE: TODO: type description here.
         KKUBERNETES: TODO: type description here.
         KELASTIFILE: TODO: type description here.
+        KAD: TODO: type description here.
+        KRDSSNAPSHOTMANAGER: TODO: type description here.
 
     """
 
@@ -106,4 +108,8 @@ class ApplicationEnum(object):
     KKUBERNETES = 'kKubernetes'
 
     KELASTIFILE = 'kElastifile'
+
+    KAD = 'kAD'
+
+    KRDSSNAPSHOTMANAGER = 'kRDSSnapshotManager'
 

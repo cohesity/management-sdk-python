@@ -12,6 +12,9 @@ class MetricDataPoint(object):
     Attributes:
         data (ValueData): Specifies the fields to store data of a given type.
             Specify data in the appropriate field for the current data type.
+        rollup_function (int): If this is a rolled up data point, following
+            enum denotes the rollup function used for rolling up. For a raw
+            point this enum is not set.
         timestamp_msecs (long|int): Specifies a timestamp when the metric data
             point was captured.
 
@@ -20,16 +23,19 @@ class MetricDataPoint(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "data":'data',
+        "rollup_function":'rollupFunction',
         "timestamp_msecs":'timestampMsecs'
     }
 
     def __init__(self,
                  data=None,
+                 rollup_function=None,
                  timestamp_msecs=None):
         """Constructor for the MetricDataPoint class"""
 
         # Initialize members of the class
         self.data = data
+        self.rollup_function = rollup_function
         self.timestamp_msecs = timestamp_msecs
 
 
@@ -52,10 +58,12 @@ class MetricDataPoint(object):
 
         # Extract variables from the dictionary
         data = cohesity_management_sdk.models.value_data.ValueData.from_dictionary(dictionary.get('data')) if dictionary.get('data') else None
+        rollup_function = dictionary.get('rollupFunction')
         timestamp_msecs = dictionary.get('timestampMsecs')
 
         # Return an object of this model
         return cls(data,
+                   rollup_function,
                    timestamp_msecs)
 
 

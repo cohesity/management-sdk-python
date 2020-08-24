@@ -13,10 +13,10 @@ class NetworkInterface(object):
             slots of any slaves if this interface is a bond.
         bond_slaves (list of string): Specifies the names of any slaves if
             this interface is a bond.
-        bonding_mode (BondingModeNetworkInterfaceEnum): Specifies the bonding
-            mode if this interface is a bond. 'kActiveBackup' indicates active
-            backup bonding mode. 'k802_3ad' indicates 802.3ad bonding mode.
+        bonding_mode (int): Specifies the bonding mode if this interface is
+            a bond.
         gateway (string): Specifies the gateway of the interface.
+        gateway6 (string): Specifies the gateway6 of the interface.
         group (string): Specifies the group that this interface belongs to.
         id (long|int): Specifies the ID of this network interface.
         is_connected (bool): Specifies whether or not the Interface is
@@ -32,21 +32,13 @@ class NetworkInterface(object):
             'kPrimary' indicates a primary role. 'kSecondary' indicates a
             secondary role.
         services (list of ServiceNetworkInterfaceEnum): Specifies the types of
-            services this interface is used for. 'kReplicationService'
-            indicates a service which is used for data replication.
-            'kRemoteTunnelService' indicates a service which is used for
-            remote tunneling. 'kClusterDataService' indicates a service which
-            is used for managing Cluster data. 'kAvahiDiscoverService'
-            indicates a service which is used for Avahi discovery.
+            services this interface is used for.
         speed (string): Specifies the speed of the Interface.
         static_ip (string): Specifies the static IP of the interface.
+        static_ip6 (string): Specifies the static IPv6 of the interface.
         subnet (string): Specifies the subnet mask of the interface.
-        mtype (TypeNetworkInterfaceEnum): Specifies the type of interface.
-            'kPhysicalInterface' indicates a physical interface type.
-            'kBondMasterInterface' indicates that the interface is the master
-            of a bond. 'kBondSlaveInterface' indicates the the interface is a
-            slave of a bond. 'kTaggedVlanInterface' indicates a tagged vlan
-            interface type.
+        subnet6 (string): Specifies the subnet6 mask of the interface.
+        mtype (int): Specifies the type of interface.
         virtual_ip (string): Specifies the virtual IP of the interface.
 
     """
@@ -57,6 +49,7 @@ class NetworkInterface(object):
         "bond_slaves":'bondSlaves',
         "bonding_mode":'bondingMode',
         "gateway":'gateway',
+        "gateway6":'gateway6',
         "group":'group',
         "id":'id',
         "is_connected":'isConnected',
@@ -69,7 +62,9 @@ class NetworkInterface(object):
         "services":'services',
         "speed":'speed',
         "static_ip":'staticIp',
+        "static_ip6":'staticIp6',
         "subnet":'subnet',
+        "subnet6":'subnet6',
         "mtype":'type',
         "virtual_ip":'virtualIp'
     }
@@ -79,6 +74,7 @@ class NetworkInterface(object):
                  bond_slaves=None,
                  bonding_mode=None,
                  gateway=None,
+                 gateway6=None,
                  group=None,
                  id=None,
                  is_connected=None,
@@ -91,7 +87,9 @@ class NetworkInterface(object):
                  services=None,
                  speed=None,
                  static_ip=None,
+                 static_ip6=None,
                  subnet=None,
+                 subnet6=None,
                  mtype=None,
                  virtual_ip=None):
         """Constructor for the NetworkInterface class"""
@@ -101,6 +99,7 @@ class NetworkInterface(object):
         self.bond_slaves = bond_slaves
         self.bonding_mode = bonding_mode
         self.gateway = gateway
+        self.gateway6 = gateway6
         self.group = group
         self.id = id
         self.is_connected = is_connected
@@ -113,7 +112,9 @@ class NetworkInterface(object):
         self.services = services
         self.speed = speed
         self.static_ip = static_ip
+        self.static_ip6 = static_ip6
         self.subnet = subnet
+        self.subnet6 = subnet6
         self.mtype = mtype
         self.virtual_ip = virtual_ip
 
@@ -140,6 +141,7 @@ class NetworkInterface(object):
         bond_slaves = dictionary.get('bondSlaves')
         bonding_mode = dictionary.get('bondingMode')
         gateway = dictionary.get('gateway')
+        gateway6 = dictionary.get('gateway6')
         group = dictionary.get('group')
         id = dictionary.get('id')
         is_connected = dictionary.get('isConnected')
@@ -152,7 +154,9 @@ class NetworkInterface(object):
         services = dictionary.get('services')
         speed = dictionary.get('speed')
         static_ip = dictionary.get('staticIp')
+        static_ip6 = dictionary.get('staticIp6')
         subnet = dictionary.get('subnet')
+        subnet6 = dictionary.get('subnet6')
         mtype = dictionary.get('type')
         virtual_ip = dictionary.get('virtualIp')
 
@@ -161,6 +165,7 @@ class NetworkInterface(object):
                    bond_slaves,
                    bonding_mode,
                    gateway,
+                   gateway6,
                    group,
                    id,
                    is_connected,
@@ -173,7 +178,9 @@ class NetworkInterface(object):
                    services,
                    speed,
                    static_ip,
+                   static_ip6,
                    subnet,
+                   subnet6,
                    mtype,
                    virtual_ip)
 

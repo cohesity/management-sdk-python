@@ -5,15 +5,22 @@ import cohesity_management_sdk.models.acropolis_protection_source
 import cohesity_management_sdk.models.ad_protection_source
 import cohesity_management_sdk.models.aws_protection_source
 import cohesity_management_sdk.models.azure_protection_source
+import cohesity_management_sdk.models.cassandra_protection_source
+import cohesity_management_sdk.models.couchbase_protection_source
+import cohesity_management_sdk.models.exchange_protection_source
 import cohesity_management_sdk.models.elastifile_protection_source
 import cohesity_management_sdk.models.flash_blade_protection_source
 import cohesity_management_sdk.models.gcp_protection_source
 import cohesity_management_sdk.models.gpfs_protection_source
+import cohesity_management_sdk.models.h_base_protection_source
+import cohesity_management_sdk.models.hdfs_protection_source
+import cohesity_management_sdk.models.hive_protection_source
 import cohesity_management_sdk.models.hyper_flex_protection_source
 import cohesity_management_sdk.models.hyperv_protection_source
 import cohesity_management_sdk.models.isilon_protection_source
 import cohesity_management_sdk.models.kubernetes_protection_source
 import cohesity_management_sdk.models.kvm_protection_source
+import cohesity_management_sdk.models.mongodb_protection_source
 import cohesity_management_sdk.models.nas_protection_source
 import cohesity_management_sdk.models.netapp_protection_source
 import cohesity_management_sdk.models.nimble_protection_source
@@ -44,9 +51,18 @@ class ProtectionSource(object):
         azure_protection_source (AzureProtectionSource): Specifies details
             about an Azure Protection Source when the environment is set to
             'kAzure'.
+        cassandra_protection_source (CassandraProtectionSource): Specifies
+            details about a Cassandra Protection Source when the environment
+            is set to 'kCassandra'.
+        couchbase_protection_source (CouchbaseProtectionSource): Specifies
+            details about a Couchbase Protection Source when the environment
+            is set to 'kCouchbase'.
         elastifile_protection_source (ElastifileProtectionSource): Specifies
             details about a Elastifile Protection Source when the environment
             is set to 'kElastifile'.
+        exchange_protection_source (ExchangeProtectionSource): Specifies
+            details about an Exchange Protection Source when the environment
+            is set to 'kExchange'.
         environment (EnvironmentEnum): Specifies the environment (such as
             'kVMware' or 'kSQL') where the Protection Source exists. Depending
             on the environment, one of the following Protection Sources are
@@ -64,7 +80,7 @@ class ProtectionSource(object):
             environment. 'kAzure' indicates the Microsoft's Azure Protection
             Source environment. 'kNetapp' indicates the Netapp Protection
             Source environment. 'kAgent' indicates the Agent Protection Source
-            environment. 'kGenericNas' indicates the Genreric Network Attached
+            environment. 'kGenericNas' indicates the Generic Network Attached
             Storage Protection Source environment. 'kAcropolis' indicates the
             Acropolis Protection Source environment. 'kPhsicalFiles' indicates
             the Physical Files Protection Source environment. 'kIsilon'
@@ -78,15 +94,16 @@ class ProtectionSource(object):
             Cloud Platform Protection Source environment. 'kFlashBlade'
             indicates the Flash Blade Protection Source environment.
             'kAWSNative' indicates the AWS Native Protection Source
-            environment. 'kVCD' indicates the VMware's Virtual cloud Director
-            Protection Source environment. 'kO365' indicates the Office 365
-            Protection Source environment. 'kO365Outlook' indicates Office 365
-            outlook Protection Source environment. 'kHyperFlex' indicates the
-            Hyper Flex Protection Source environment. 'kGCPNative' indicates
-            the GCP Native Protection Source environment. 'kAzureNative'
-            indicates the Azure Native Protection Source environment.
-            'kKubernetes' indicates a Kubernetes Protection Source
-            environment. 'kElastifile' indicates Elastifile Protection Source
+            environment. 'kO365' indicates the Office 365 Protection Source
+            environment. 'kO365Outlook' indicates Office 365 outlook
+            Protection Source environment. 'kHyperFlex' indicates the Hyper
+            Flex Protection Source environment. 'kGCPNative' indicates the GCP
+            Native Protection Source environment. 'kAzureNative' indicates the
+            Azure Native Protection Source environment. 'kKubernetes'
+            indicates a Kubernetes Protection Source environment.
+            'kElastifile' indicates Elastifile Protection Source environment. 
+            'kAD' indicates Active Directory Protection Source environment.
+            'kRDSSnapshotManager' indicates AWS RDS Protection Source
             environment.
         flash_blade_protection_source (FlashBladeProtectionSource): Specifies
             details about a Pure Storage FlashBlade Protection Source when the
@@ -95,6 +112,13 @@ class ProtectionSource(object):
             an GCP Protection Source when the environment is set to 'kGCP'.
         gpfs_protection_source (GpfsProtectionSource): Specifies details about
             an GPFS Protection Source when the environment is set to 'kGPFS'.
+        h_base_protection_source (HBaseProtectionSource): Specifies details
+            about a HBase Protection Source when the environment is set to
+            'kHBase'.
+        hdfs_protection_source (HdfsProtectionSource): Specifies details about
+            a Hdfs Protection Source when the environment is set to 'kHdfs'.
+        hive_protection_source (HiveProtectionSource): Specifies details about
+            a Hive Protection Source when the environment is set to 'kHive'.
         hyper_flex_protection_source (HyperFlexProtectionSource): Specifies
             details about a HyperFlex Storage Snapshot source when the
             environment is set to 'kHyperFlex'
@@ -110,6 +134,9 @@ class ProtectionSource(object):
             is set to 'kKubernetes'.
         kvm_protection_source (KvmProtectionSource): Specifies details about a
             KVM Protection Source when the environment is set to 'kKVM'.
+        mongodb_protection_source (MongoDBProtectionSource): Specifies details
+            about a MongoDB Protection Source when the environment is set to
+            'kMongoDB'.
         name (string): Specifies a name of the Protection Source.
         nas_protection_source (NasProtectionSource): Specifies details about a
             Generic NAS Protection Source when the environment is set to
@@ -149,11 +176,17 @@ class ProtectionSource(object):
         "ad_protection_source":'adProtectionSource',
         "aws_protection_source":'awsProtectionSource',
         "azure_protection_source":'azureProtectionSource',
+        "cassandra_protection_source":'cassandraProtectionSource',
+        "couchbase_protection_source":'couchbaseProtectionSource',
         "elastifile_protection_source":'elastifileProtectionSource',
+        "exchange_protection_source":'exchangeProtectionSource',
         "environment":'environment',
         "flash_blade_protection_source":'flashBladeProtectionSource',
         "gcp_protection_source":'gcpProtectionSource',
         "gpfs_protection_source":'gpfsProtectionSource',
+        "h_base_protection_source":'hbaseProtectionSource',
+        "hdfs_protection_source":'hdfsProtectionSource',
+        "hive_protection_source":'hiveProtectionSource',
         "hyper_flex_protection_source":'hyperFlexProtectionSource',
         "hyperv_protection_source":'hypervProtectionSource',
         "id":'id',
@@ -161,6 +194,7 @@ class ProtectionSource(object):
         "kubernetes_protection_source":'kubernetesProtectionSource',
         "kvm_protection_source":'kvmProtectionSource',
         "name":'name',
+        "mongodb_protection_source":'mongodbProtectionSource',
         "nas_protection_source":'nasProtectionSource',
         "netapp_protection_source":'netappProtectionSource',
         "nimble_protection_source":'nimbleProtectionSource',
@@ -179,17 +213,24 @@ class ProtectionSource(object):
                  ad_protection_source=None,
                  aws_protection_source=None,
                  azure_protection_source=None,
+                 cassandra_protection_source=None,
+                 couchbase_protection_source=None,
                  elastifile_protection_source=None,
                  environment=None,
+                 exchange_protection_source=None,
                  flash_blade_protection_source=None,
                  gcp_protection_source=None,
                  gpfs_protection_source=None,
+                 h_base_protection_source=None,
+                 hdfs_protection_source=None,
+                 hive_protection_source=None,
                  hyper_flex_protection_source=None,
                  hyperv_protection_source=None,
                  id=None,
                  isilon_protection_source=None,
                  kubernetes_protection_source=None,
                  kvm_protection_source=None,
+                 mongodb_protection_source=None,
                  name=None,
                  nas_protection_source=None,
                  netapp_protection_source=None,
@@ -209,17 +250,24 @@ class ProtectionSource(object):
         self.ad_protection_source = ad_protection_source
         self.aws_protection_source = aws_protection_source
         self.azure_protection_source = azure_protection_source
+        self.cassandra_protection_source = cassandra_protection_source
+        self.couchbase_protection_source = couchbase_protection_source
         self.elastifile_protection_source = elastifile_protection_source
+        self.exchange_protection_source = exchange_protection_source
         self.environment = environment
         self.flash_blade_protection_source = flash_blade_protection_source
         self.gcp_protection_source = gcp_protection_source
         self.gpfs_protection_source = gpfs_protection_source
+        self.h_base_protection_source = h_base_protection_source
+        self.hdfs_protection_source = hdfs_protection_source
+        self.hive_protection_source = hive_protection_source
         self.hyper_flex_protection_source = hyper_flex_protection_source
         self.hyperv_protection_source = hyperv_protection_source
         self.id = id
         self.isilon_protection_source = isilon_protection_source
         self.kubernetes_protection_source = kubernetes_protection_source
         self.kvm_protection_source = kvm_protection_source
+        self.mongodb_protection_source = mongodb_protection_source
         self.name = name
         self.nas_protection_source = nas_protection_source
         self.netapp_protection_source = netapp_protection_source
@@ -256,11 +304,17 @@ class ProtectionSource(object):
         ad_protection_source = cohesity_management_sdk.models.ad_protection_source.AdProtectionSource.from_dictionary(dictionary.get('adProtectionSource')) if dictionary.get('adProtectionSource') else None
         aws_protection_source = cohesity_management_sdk.models.aws_protection_source.AwsProtectionSource.from_dictionary(dictionary.get('awsProtectionSource')) if dictionary.get('awsProtectionSource') else None
         azure_protection_source = cohesity_management_sdk.models.azure_protection_source.AzureProtectionSource.from_dictionary(dictionary.get('azureProtectionSource')) if dictionary.get('azureProtectionSource') else None
+        cassandra_protection_source = cohesity_management_sdk.models.cassandra_protection_source.CassandraProtectionSource.from_dictionary(dictionary.get('cassandraProtectionSource')) if dictionary.get('cassandraProtectionSource') else None
+        couchbase_protection_source = cohesity_management_sdk.models.couchbase_protection_source.CouchbaseProtectionSource.from_dictionary(dictionary.get('couchbaseProtectionSource')) if dictionary.get('couchbaseProtectionSource') else None
         elastifile_protection_source = cohesity_management_sdk.models.elastifile_protection_source.ElastifileProtectionSource.from_dictionary(dictionary.get('elastifileProtectionSource')) if dictionary.get('elastifileProtectionSource') else None
+        exchange_protection_source = cohesity_management_sdk.models.exchange_protection_source.ExchangeProtectionSource.from_dictionary(dictionary.get('exchangeProtectionSource')) if dictionary.get('exchangeProtectionSource') else None
         environment = dictionary.get('environment')
         flash_blade_protection_source = cohesity_management_sdk.models.flash_blade_protection_source.FlashBladeProtectionSource.from_dictionary(dictionary.get('flashBladeProtectionSource')) if dictionary.get('flashBladeProtectionSource') else None
         gcp_protection_source = cohesity_management_sdk.models.gcp_protection_source.GcpProtectionSource.from_dictionary(dictionary.get('gcpProtectionSource')) if dictionary.get('gcpProtectionSource') else None
         gpfs_protection_source = cohesity_management_sdk.models.gpfs_protection_source.GpfsProtectionSource.from_dictionary(dictionary.get('gpfsProtectionSource')) if dictionary.get('gpfsProtectionSource') else None
+        h_base_protection_source = cohesity_management_sdk.models.h_base_protection_source.HBaseProtectionSource.from_dictionary(dictionary.get('hbaseProtectionSource')) if dictionary.get('hbaseProtectionSource') else None
+        hdfs_protection_source = cohesity_management_sdk.models.hdfs_protection_source.HdfsProtectionSource.from_dictionary(dictionary.get('hdfsProtectionSource')) if dictionary.get('hdfsProtectionSource') else None
+        hive_protection_source = cohesity_management_sdk.models.hive_protection_source.HiveProtectionSource.from_dictionary(dictionary.get('hiveProtectionSource')) if dictionary.get('hiveProtectionSource') else None
         hyper_flex_protection_source = cohesity_management_sdk.models.hyper_flex_protection_source.HyperFlexProtectionSource.from_dictionary(dictionary.get('hyperFlexProtectionSource')) if dictionary.get('hyperFlexProtectionSource') else None
         hyperv_protection_source = cohesity_management_sdk.models.hyperv_protection_source.HypervProtectionSource.from_dictionary(dictionary.get('hypervProtectionSource')) if dictionary.get('hypervProtectionSource') else None
         id = dictionary.get('id')
@@ -268,6 +322,7 @@ class ProtectionSource(object):
         kubernetes_protection_source = cohesity_management_sdk.models.kubernetes_protection_source.KubernetesProtectionSource.from_dictionary(dictionary.get('kubernetesProtectionSource')) if dictionary.get('kubernetesProtectionSource') else None
         kvm_protection_source = cohesity_management_sdk.models.kvm_protection_source.KvmProtectionSource.from_dictionary(dictionary.get('kvmProtectionSource')) if dictionary.get('kvmProtectionSource') else None
         name = dictionary.get('name')
+        mongodb_protection_source = cohesity_management_sdk.models.mongodb_protection_source.MongoDBProtectionSource.from_dictionary(dictionary.get('mongodbProtectionSource')) if dictionary.get('mongodbProtectionSource') else None
         nas_protection_source = cohesity_management_sdk.models.nas_protection_source.NasProtectionSource.from_dictionary(dictionary.get('nasProtectionSource')) if dictionary.get('nasProtectionSource') else None
         netapp_protection_source = cohesity_management_sdk.models.netapp_protection_source.NetappProtectionSource.from_dictionary(dictionary.get('netappProtectionSource')) if dictionary.get('netappProtectionSource') else None
         nimble_protection_source = cohesity_management_sdk.models.nimble_protection_source.NimbleProtectionSource.from_dictionary(dictionary.get('nimbleProtectionSource')) if dictionary.get('nimbleProtectionSource') else None
@@ -285,17 +340,24 @@ class ProtectionSource(object):
                    ad_protection_source,
                    aws_protection_source,
                    azure_protection_source,
+                   cassandra_protection_source,
+                   couchbase_protection_source,
                    elastifile_protection_source,
                    environment,
+                   exchange_protection_source,
                    flash_blade_protection_source,
                    gcp_protection_source,
                    gpfs_protection_source,
+                   h_base_protection_source,
+                   hdfs_protection_source,
+                   hive_protection_source,
                    hyper_flex_protection_source,
                    hyperv_protection_source,
                    id,
                    isilon_protection_source,
                    kubernetes_protection_source,
                    kvm_protection_source,
+                   mongodb_protection_source,
                    name,
                    nas_protection_source,
                    netapp_protection_source,

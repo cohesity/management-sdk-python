@@ -15,6 +15,8 @@ class BandwidthLimitOverride(object):
             regular maximum bandwidth rate (rateLimitBytesPerSec) for the
             specified time period. The value is specified in bytes per
             second.
+        io_rate (int): Specifies the value to override the default IO rate for
+            the specified time period.
         time_periods (TimeOfAWeek): Specifies a time period by specifying a
             single daily time period and one or more days of the week, for
             example 9 AM - 5 PM on Monday, Wednesday or Friday. If different
@@ -26,16 +28,19 @@ class BandwidthLimitOverride(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "bytes_per_second":'bytesPerSecond',
+        "io_rate":'ioRate',
         "time_periods":'timePeriods'
     }
 
     def __init__(self,
                  bytes_per_second=None,
+                 io_rate=None,
                  time_periods=None):
         """Constructor for the BandwidthLimitOverride class"""
 
         # Initialize members of the class
         self.bytes_per_second = bytes_per_second
+        self.io_rate = io_rate
         self.time_periods = time_periods
 
 
@@ -58,10 +63,12 @@ class BandwidthLimitOverride(object):
 
         # Extract variables from the dictionary
         bytes_per_second = dictionary.get('bytesPerSecond')
+        io_rate = dictionary.get('ioRate')
         time_periods = cohesity_management_sdk.models.time_of_a_week.TimeOfAWeek.from_dictionary(dictionary.get('timePeriods')) if dictionary.get('timePeriods') else None
 
         # Return an object of this model
         return cls(bytes_per_second,
+                   io_rate,
                    time_periods)
 
 

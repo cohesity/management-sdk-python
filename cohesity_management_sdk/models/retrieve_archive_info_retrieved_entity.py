@@ -18,7 +18,8 @@ class RetrieveArchiveInfoRetrievedEntity(object):
             this entity finished or failed.
         entity (EntityProto): Specifies the attributes and the latest
             statistics about an entity.
-        error (ErrorProto): TODO: type description here.
+        error (ErrorProto): If the retrieve of the 'entity' failed, this
+            field may contain the cause of the failure.
         logical_bytes_transferred (long|int): Number of logical bytes
             transferred so far.
         logical_size_bytes (long|int): Total logical size of this entity.

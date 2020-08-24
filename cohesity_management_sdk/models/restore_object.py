@@ -35,6 +35,10 @@ class RestoreObject(object):
         job_uid (UniversalIdProto): TODO: type description here.
         parent_source (EntityProto): Specifies the attributes and the latest
             statistics about an entity.
+        point_in_time_restore_time_usecs (int): The time to which the object
+            needs to be restored. If this is not set, then the object will be
+            restored to the full/incremental snapshot. This is applicable only
+            if the object is protected using CDP.
         restore_acropolis_vm_param (RestoreAcropolisVMParam): TODO: type
             description here.
         snapshot_relative_dir_path (string): The relative path to the
@@ -64,6 +68,7 @@ class RestoreObject(object):
         "job_instance_id":'jobInstanceId',
         "job_uid":'jobUid',
         "parent_source":'parentSource',
+        "point_in_time_restore_time_usecs":'pointInTimeRestoreTimeUsecs',
         "restore_acropolis_vm_param":'restoreAcropolisVmParam',
         "snapshot_relative_dir_path":'snapshotRelativeDirPath',
         "start_time_usecs":'startTimeUsecs',
@@ -81,6 +86,7 @@ class RestoreObject(object):
                  job_instance_id=None,
                  job_uid=None,
                  parent_source=None,
+                 point_in_time_restore_time_usecs=None,
                  restore_acropolis_vm_param=None,
                  snapshot_relative_dir_path=None,
                  start_time_usecs=None,
@@ -98,6 +104,7 @@ class RestoreObject(object):
         self.job_instance_id = job_instance_id
         self.job_uid = job_uid
         self.parent_source = parent_source
+        self.point_in_time_restore_time_usecs = point_in_time_restore_time_usecs
         self.restore_acropolis_vm_param = restore_acropolis_vm_param
         self.snapshot_relative_dir_path = snapshot_relative_dir_path
         self.start_time_usecs = start_time_usecs
@@ -132,6 +139,7 @@ class RestoreObject(object):
         job_instance_id = dictionary.get('jobInstanceId')
         job_uid = cohesity_management_sdk.models.universal_id_proto.UniversalIdProto.from_dictionary(dictionary.get('jobUid')) if dictionary.get('jobUid') else None
         parent_source = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('parentSource')) if dictionary.get('parentSource') else None
+        point_in_time_restore_time_usecs = dictionary.get('pointInTimeRestoreTimeUsecs')
         restore_acropolis_vm_param = cohesity_management_sdk.models.restore_acropolis_vm_param.RestoreAcropolisVMParam.from_dictionary(dictionary.get('restoreAcropolisVmParam')) if dictionary.get('restoreAcropolisVmParam') else None
         snapshot_relative_dir_path = dictionary.get('snapshotRelativeDirPath')
         start_time_usecs = dictionary.get('startTimeUsecs')
@@ -148,6 +156,7 @@ class RestoreObject(object):
                    job_instance_id,
                    job_uid,
                    parent_source,
+                   point_in_time_restore_time_usecs,
                    restore_acropolis_vm_param,
                    snapshot_relative_dir_path,
                    start_time_usecs,

@@ -14,9 +14,10 @@ from cohesity_management_sdk.exceptions.request_error_error_exception import Req
 
 class ClusterController(BaseController):
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-    def __init__(self, client=None, call_back=None):
+    def __init__(self, config=None, client=None, call_back=None):
         super(ClusterController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
+        self.config = config
 
     def get_basic_cluster_info(self):
         """Does a GET request to /public/basicClusterInfo.
@@ -44,7 +45,7 @@ class ClusterController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_basic_cluster_info.')
             _url_path = '/public/basicClusterInfo'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -100,7 +101,7 @@ class ClusterController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_cluster.')
             _url_path = '/public/cluster'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'fetchStats': fetch_stats,
@@ -119,7 +120,7 @@ class ClusterController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_cluster.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='get_cluster')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -160,7 +161,7 @@ class ClusterController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for update_cluster.')
             _url_path = '/public/cluster'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -178,7 +179,7 @@ class ClusterController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='update_cluster')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -218,7 +219,7 @@ class ClusterController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_cluster_status.')
             _url_path = '/public/cluster/status'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -230,7 +231,7 @@ class ClusterController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_cluster_status.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_cluster_status')
 

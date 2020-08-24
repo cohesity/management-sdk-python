@@ -15,9 +15,10 @@ from cohesity_management_sdk.exceptions.request_error_error_exception import Req
 
 class PrincipalsController(BaseController):
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-    def __init__(self, client=None, call_back=None):
+    def __init__(self, config=None, client=None, call_back=None):
         super(PrincipalsController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
+        self.config = config
 
     def list_sources_for_principals(self, sids=None):
         """Does a GET request to /public/principals/protectionSources.
@@ -48,7 +49,7 @@ class PrincipalsController(BaseController):
             self.logger.info(
                 'Preparing query URL for list_sources_for_principals.')
             _url_path = '/public/principals/protectionSources'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {'sids': sids}
             _query_builder = APIHelper.append_url_with_query_parameters(
@@ -66,7 +67,7 @@ class PrincipalsController(BaseController):
                 'Preparing and executing request for list_sources_for_principals.'
             )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='list_sources_for_principals')
 
@@ -119,7 +120,7 @@ class PrincipalsController(BaseController):
             self.logger.info(
                 'Preparing query URL for update_sources_for_principals.')
             _url_path = '/public/principals/protectionSources'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -136,7 +137,7 @@ class PrincipalsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='update_sources_for_principals')
 
@@ -159,7 +160,7 @@ class PrincipalsController(BaseController):
                           include_computers=None):
         """Does a GET request to /public/principals/searchPrincipals.
 
-        Optionally limit the search results by specifying security identifiers
+        Optionally, limit the search results by specifying security identifiers
         (SIDs),
         an object class (user or group) or a substring.
         You can specify SIDs or a substring but not both.
@@ -208,7 +209,7 @@ class PrincipalsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for search_principals.')
             _url_path = '/public/principals/searchPrincipals'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'domain': domain,
@@ -230,7 +231,7 @@ class PrincipalsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for search_principals.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='search_principals')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -268,7 +269,7 @@ class PrincipalsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_session_user.')
             _url_path = '/public/sessionUser'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -280,7 +281,7 @@ class PrincipalsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_session_user.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='get_session_user')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -327,7 +328,7 @@ class PrincipalsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for delete_users.')
             _url_path = '/public/users'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -342,7 +343,7 @@ class PrincipalsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='delete_users')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -407,7 +408,7 @@ class PrincipalsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_users.')
             _url_path = '/public/users'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'tenantIds': tenant_ids,
@@ -429,7 +430,7 @@ class PrincipalsController(BaseController):
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_users.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='get_users')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -476,7 +477,7 @@ class PrincipalsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for create_user.')
             _url_path = '/public/users'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -494,7 +495,7 @@ class PrincipalsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='create_user')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -535,7 +536,7 @@ class PrincipalsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for update_user.')
             _url_path = '/public/users'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -553,7 +554,7 @@ class PrincipalsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='update_user')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -591,7 +592,7 @@ class PrincipalsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_user_privileges.')
             _url_path = '/public/users/privileges'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -603,7 +604,7 @@ class PrincipalsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_user_privileges.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_user_privileges')
 
@@ -647,7 +648,7 @@ class PrincipalsController(BaseController):
             self.logger.info(
                 'Preparing query URL for create_reset_s_3_secret_key.')
             _url_path = '/public/users/s3SecretKey'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -667,7 +668,7 @@ class PrincipalsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='create_reset_s_3_secret_key')
 

@@ -29,7 +29,7 @@ class LatestProtectionRun(object):
             snapshots.
         snapshot_target_type (int): Specifies the snapshot target type of the
             latest snapshot.
-        task_status (int): Specifies the task status of the Protecion Job Run
+        task_status (int): Specifies the task status of the Protection Job Run
             in the final attempt.
         uuid (string): Specifies the unique id of the Protection Source for
             which a snapshot is taken.

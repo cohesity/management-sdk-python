@@ -12,11 +12,10 @@ class VirtualDiskMapping(object):
 
     Attributes:
         disk_to_overwrite (VirtualDiskIdInformation): Specifies information
-            about virtual disk which includes disk uuid, controller type, bus
-            number and unit number.
+            about disk which user wants to overwrite. If specified, then
+            powerOffVmBeforeRecovery must be true.
         source_disk (VirtualDiskIdInformation): Specifies information about
-            virtual disk which includes disk uuid, controller type, bus number
-            and unit number.
+            the source disk.
         target_location_id (long|int): Specifies the target location
             information, for e.g. a datastore in VMware environment. If
             diskToOverwrite is specified then the target location is

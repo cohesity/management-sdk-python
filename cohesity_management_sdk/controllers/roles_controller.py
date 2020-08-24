@@ -12,9 +12,10 @@ from cohesity_management_sdk.exceptions.request_error_error_exception import Req
 
 class RolesController(BaseController):
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-    def __init__(self, client=None, call_back=None):
+    def __init__(self, config=None, client=None, call_back=None):
         super(RolesController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
+        self.config = config
 
     def delete_roles(self, body=None):
         """Does a DELETE request to /public/roles.
@@ -41,7 +42,7 @@ class RolesController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for delete_roles.')
             _url_path = '/public/roles'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -56,7 +57,7 @@ class RolesController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='delete_roles')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -104,7 +105,7 @@ class RolesController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_roles.')
             _url_path = '/public/roles'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'name': name,
@@ -123,7 +124,7 @@ class RolesController(BaseController):
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_roles.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='get_roles')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -168,7 +169,7 @@ class RolesController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for create_role.')
             _url_path = '/public/roles'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -186,7 +187,7 @@ class RolesController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='create_role')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -236,7 +237,7 @@ class RolesController(BaseController):
             _url_path = '/public/roles/{name}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'name': name})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -254,7 +255,7 @@ class RolesController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='update_role')
 
             # Endpoint and global error handling using HTTP status codes.

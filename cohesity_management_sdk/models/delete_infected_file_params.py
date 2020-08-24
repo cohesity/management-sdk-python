@@ -7,7 +7,7 @@ class DeleteInfectedFileParams(object):
 
     """Implementation of the 'DeleteInfectedFileParams' model.
 
-    TODO: type model description here.
+    Specifies the parameters to delete the infected files.
 
     Attributes:
         infected_file_ids (list of InfectedFileParam): Specifies the list of

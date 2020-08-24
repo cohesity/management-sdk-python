@@ -22,6 +22,9 @@ class AlertCategoryEnum(object):
     kHeliosAnalyticsJobs - Alerts that are related to Helios Analytics Jobs.
     kHeliosSignatureJobs - Alerts that are related to Helios Signature Jobs.
     kSecurity - Alerts that are related to Security.
+    kAppsInfra - Alerts that are related to applications infra.
+    kAntivirus - Alerts that are related to antivirus.
+    kArchivalCopy - Alerts that are related to archival copies.
 
     Attributes:
         KDISK: TODO: type description here.
@@ -38,7 +41,10 @@ class AlertCategoryEnum(object):
         KHELIOSPROACTIVEWELLNESS: TODO: type description here.
         KHELIOSANALYTICSJOBS: TODO: type description here.
         KHELIOSSIGNATUREJOBS: TODO: type description here.
-        KSECURITY: TODO: type description here.
+        KSECURITY: TODO: type description here. 
+        KAPPSINFRA: TODO: type description here.
+        KANTIVIRUS: TODO: type description here.
+        KARCHIVALCOPY: TODO: type description here.
 
     """
 
@@ -72,3 +78,8 @@ class AlertCategoryEnum(object):
 
     KSECURITY = 'kSecurity'
 
+    KAPPSINFRA = 'kAppsInfra'
+
+    KANTIVIRUS = 'kAntivirus'
+
+    KARCHIVALCOPY = 'kArchivalCopy'

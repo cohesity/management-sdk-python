@@ -22,8 +22,8 @@ class StorageDomainStats(object):
             physical quota of the view box (storage domain).
         schema_info_list (list of UsageSchemaInfo): Specifies a list of
             schemaInfos of the view box (storage domain).
-        stats (DataUsageStats): Specifies the data usage metric of the data
-            stored on the Cohesity Cluster or Storage Domains (View Boxes).
+        stats (DataUsageStats): Specifies details of statistics of the view
+            box (storage domain).
 
     """
 

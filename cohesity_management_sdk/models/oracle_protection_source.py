@@ -2,6 +2,8 @@
 # Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.oracle_host
+import cohesity_management_sdk.models.oracle_container_database_info
+import cohesity_management_sdk.models.oracle_data_guard_info
 
 class OracleProtectionSource(object):
 
@@ -17,11 +19,19 @@ class OracleProtectionSource(object):
             enabled. BCT improves the performance of incremental backups by
             recording changed blocks into the block change tracking file. RMAN
             then uses this file to identify changed blocks to be backed up.
+        container_database_info (OracleContainerDatabaseInfo): Specifies the
+            Container Database Information including the Pluggable databases
+            within the container.
+        data_guard_info (OracleDataGuardInfo): Specifies the Data Gurad
+            configuration information for the current DB entity.
+        database_unique_name (string): Specifies the unique name of the Oracle
+            entity.
         db_type (DbTypeEnum): Specifies the type of the database in Oracle
             Protection Source. 'kRACDatabase' indicates the database is a RAC
             DB. 'kSingleInstance' indicates that the databse is single
             instance.
-        fra_size (long|int): Specfies Flash/Fast Recovery area size for the
+        domain (string): Specifies the Oracle DB Domain.
+        fra_size (long|int): Specifies Flash/Fast Recovery area size for the
             current DB entity.
         hosts (list of OracleHost): Specifies the list of hosts for the
             current DB entity.
@@ -55,7 +65,11 @@ class OracleProtectionSource(object):
     _names = {
         "archive_log_enabled":'archiveLogEnabled',
         "bct_enabled":'bctEnabled',
+        "container_database_info":'containerDatabaseInfo',
+        "data_guard_info":'dataGuardInfo',
+        "database_unique_name":'databaseUniqueName',
         "db_type":'dbType',
+        "domain":'domain',
         "fra_size":'fraSize',
         "hosts":'hosts',
         "name":'name',
@@ -72,7 +86,11 @@ class OracleProtectionSource(object):
     def __init__(self,
                  archive_log_enabled=None,
                  bct_enabled=None,
+                 container_database_info=None,
+                 data_guard_info=None,
+                 database_unique_name=None,
                  db_type=None,
+                 domain=None,
                  fra_size=None,
                  hosts=None,
                  name=None,
@@ -89,7 +107,11 @@ class OracleProtectionSource(object):
         # Initialize members of the class
         self.archive_log_enabled = archive_log_enabled
         self.bct_enabled = bct_enabled
+        self.container_database_info = container_database_info
+        self.data_guard_info = data_guard_info
+        self.database_unique_name = database_unique_name
         self.db_type = db_type
+        self.domain = domain
         self.fra_size = fra_size
         self.hosts = hosts
         self.name = name
@@ -123,7 +145,11 @@ class OracleProtectionSource(object):
         # Extract variables from the dictionary
         archive_log_enabled = dictionary.get('archiveLogEnabled')
         bct_enabled = dictionary.get('bctEnabled')
+        container_database_info = cohesity_management_sdk.models.oracle_container_database_info.OracleContainerDatabaseInfo.from_dictionary(dictionary.get('containerDatabaseInfo')) if dictionary.get('containerDatabaseInfo') else None
+        data_guard_info = cohesity_management_sdk.models.oracle_data_guard_info.OracleDataGuardInfo.from_dictionary(dictionary.get('dataGuardInfo')) if dictionary.get('dataGuardInfo') else None
+        database_unique_name = dictionary.get('databaseUniqueName')
         db_type = dictionary.get('dbType')
+        domain = dictionary.get('domain')
         fra_size = dictionary.get('fraSize')
         hosts = None
         if dictionary.get('hosts') != None:
@@ -143,7 +169,11 @@ class OracleProtectionSource(object):
         # Return an object of this model
         return cls(archive_log_enabled,
                    bct_enabled,
+                   container_database_info,
+                   data_guard_info,
+                   database_unique_name,
                    db_type,
+                   domain,
                    fra_size,
                    hosts,
                    name,

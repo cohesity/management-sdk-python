@@ -11,11 +11,11 @@ class NodeNetworkInterfaces(object):
 
     Attributes:
         chassis_serial (string): Specifies the serial number of Chassis.
-        id (long|int): Specifies the ID of the Node.
         interfaces (list of NetworkInterface): Specifies the list of network
             interfaces present on this Node.
         message (string): Specifies an optional message describing the result
             of the request pertaining to this Node.
+        node_id (long|int): Specifies the ID of the Node.
         slot (long|int): Specifies the slot number the Node is located in.
 
     """
@@ -23,25 +23,25 @@ class NodeNetworkInterfaces(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "chassis_serial":'chassisSerial',
-        "id":'id',
         "interfaces":'interfaces',
         "message":'message',
+        "node_id":'nodeId',
         "slot":'slot'
     }
 
     def __init__(self,
                  chassis_serial=None,
-                 id=None,
                  interfaces=None,
                  message=None,
+                 node_id=None,
                  slot=None):
         """Constructor for the NodeNetworkInterfaces class"""
 
         # Initialize members of the class
         self.chassis_serial = chassis_serial
-        self.id = id
         self.interfaces = interfaces
         self.message = message
+        self.node_id = node_id
         self.slot = slot
 
 
@@ -64,7 +64,7 @@ class NodeNetworkInterfaces(object):
 
         # Extract variables from the dictionary
         chassis_serial = dictionary.get('chassisSerial')
-        id = dictionary.get('id')
+        node_id = dictionary.get('nodeId')
         interfaces = None
         if dictionary.get('interfaces') != None:
             interfaces = list()
@@ -75,9 +75,9 @@ class NodeNetworkInterfaces(object):
 
         # Return an object of this model
         return cls(chassis_serial,
-                   id,
                    interfaces,
                    message,
+                   node_id,
                    slot)
 
 

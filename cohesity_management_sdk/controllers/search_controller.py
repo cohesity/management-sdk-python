@@ -13,9 +13,10 @@ from cohesity_management_sdk.exceptions.request_error_error_exception import Req
 
 class SearchController(BaseController):
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-    def __init__(self, client=None, call_back=None):
+    def __init__(self, config=None, client=None, call_back=None):
         super(SearchController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
+        self.config = config
 
     def search_protection_runs(self, uuid):
         """Does a GET request to /public/search/protectionRuns.
@@ -48,7 +49,7 @@ class SearchController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for search_protection_runs.')
             _url_path = '/public/search/protectionRuns'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {'uuid': uuid}
             _query_builder = APIHelper.append_url_with_query_parameters(
@@ -64,7 +65,7 @@ class SearchController(BaseController):
             self.logger.info(
                 'Preparing and executing request for search_protection_runs.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='search_protection_runs')
 
@@ -124,7 +125,7 @@ class SearchController(BaseController):
                 indicates the Microsoft's Azure Protection Source environment.
                 'kNetapp' indicates the Netapp Protection Source environment.
                 'kAgent' indicates the Agent Protection Source environment.
-                'kGenericNas' indicates the Genreric Network Attached Storage
+                'kGenericNas' indicates the Generic Network Attached Storage
                 Protection Source environment. 'kAcropolis' indicates the
                 Acropolis Protection Source environment. 'kPhsicalFiles'
                 indicates the Physical Files Protection Source environment.
@@ -139,16 +140,17 @@ class SearchController(BaseController):
                 Cloud Platform Protection Source environment. 'kFlashBlade'
                 indicates the Flash Blade Protection Source environment.
                 'kAWSNative' indicates the AWS Native Protection Source
-                environment. 'kVCD' indicates the VMware's Virtual cloud
-                Director Protection Source environment. 'kO365' indicates the
-                Office 365 Protection Source environment. 'kO365Outlook'
-                indicates Office 365 outlook Protection Source environment.
-                'kHyperFlex' indicates the Hyper Flex Protection Source
-                environment. 'kGCPNative' indicates the GCP Native Protection
-                Source environment. 'kAzureNative' indicates the Azure Native
-                Protection Source environment. 'kKubernetes' indicates a
-                Kubernetes Protection Source environment. 'kElastifile'
-                indicates Elastifile Protection Source environment.
+                environment. 'kO365' indicates the Office 365 Protection Source
+                environment. 'kO365Outlook' indicates Office 365 outlook
+                Protection Source environment. 'kHyperFlex' indicates the Hyper
+                Flex Protection Source environment. 'kGCPNative' indicates the
+                GCP Native Protection Source environment. 'kAzureNative'
+                indicates the Azure Native Protection Source environment.
+                'kKubernetes' indicates a Kubernetes Protection Source
+                environment. 'kElastifile' indicates Elastifile Protection
+                Source environment. 'kAD' indicates Active Directory Protection
+                Source environment. 'kRDSSnapshotManager' indicates AWS RDS
+                Protection Source environment.
             last_protection_job_run_status (list of int, optional): Specifies
                 the last Protection Job run status of the object. If
                 specified, objects will be filtered based on last job run
@@ -194,7 +196,7 @@ class SearchController(BaseController):
             self.logger.info(
                 'Preparing query URL for search_protection_sources.')
             _url_path = '/public/search/protectionSources'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'searchString': search_string,
@@ -221,7 +223,7 @@ class SearchController(BaseController):
                 'Preparing and executing request for search_protection_sources.'
             )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='search_protection_sources')
 

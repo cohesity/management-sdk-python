@@ -13,7 +13,7 @@ class CloneDirectoryParams(object):
             will contain the clone contents.
         destination_parent_directory_path (string): Specifies the path of the
             destination parent directory. The source dir would be cloned as a
-            child of dest parent dir.
+            child of destination parent dir.
         source_directory_path (string): Specifies the path of the source
             directory
 

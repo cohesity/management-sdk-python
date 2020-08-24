@@ -17,7 +17,7 @@ class IdpServiceConfiguration(object):
             with admin role can login always independent of this flag's
             setting.
         certificate (string): Specifies the certificate generated for the app
-            by the IdP service when the Cluster is registerd as an app. This
+            by the IdP service when the Cluster is registered as an app. This
             is required to verify the SAML response.
         certificate_filename (string): Specifies the filename used to upload
             the certificate.
@@ -32,8 +32,8 @@ class IdpServiceConfiguration(object):
             For example, exkh1aov1nhHrgFhN0h7.
         name (string): Specifies the name of the vendor providing IdP
             service.
-        roles (list of string): Specifies a list roles assigned to an IdP user
-            if samlAttributeName is not given.
+        roles (list of string):  Specifies a list of roles assigned to an IdP
+            user if samlAttributeName is not given.
         saml_attribute_name (string): Specifies the SAML attribute name that
             contains a comma separated list of Cluster roles. Either this
             field or roles must be set. This field takes higher precedence

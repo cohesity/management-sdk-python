@@ -12,9 +12,10 @@ from cohesity_management_sdk.exceptions.request_error_error_exception import Req
 
 class RoutesController(BaseController):
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-    def __init__(self, client=None, call_back=None):
+    def __init__(self, config=None, client=None, call_back=None):
         super(RoutesController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
+        self.config = config
 
     def delete_route(self, body=None):
         """Does a DELETE request to /public/routes.
@@ -41,7 +42,7 @@ class RoutesController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for delete_route.')
             _url_path = '/public/routes'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -56,7 +57,7 @@ class RoutesController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='delete_route')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -90,7 +91,7 @@ class RoutesController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_routes.')
             _url_path = '/public/routes'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -101,7 +102,7 @@ class RoutesController(BaseController):
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_routes.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='get_routes')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -142,7 +143,7 @@ class RoutesController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for add_route.')
             _url_path = '/public/routes'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -159,7 +160,7 @@ class RoutesController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='add_route')
 
             # Endpoint and global error handling using HTTP status codes.
