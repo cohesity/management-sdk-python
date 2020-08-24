@@ -10,9 +10,9 @@ class UsageAndPerformanceStats(object):
     for entities such as a disks, Nodes or Clusters.
 
     Attributes:
-        data_in_bytes (long|int): Data brought into the cluster. This is the
-            usage before data reduction if we ignore the zeroes and effects of
-            cloning.
+        data_in_bytes (long|int): Specifies the data read from the protected
+            objects by the Cohesity Cluster before any data reduction using
+            deduplication and compression.
         data_in_bytes_after_reduction (long|int): Morphed Usage before data is
             replicated to other nodes as per RF or Erasure Coding policy.
         min_usable_physical_capacity_bytes (long|int): Specifies the minimum
@@ -25,7 +25,8 @@ class UsageAndPerformanceStats(object):
         num_bytes_written (long|int): Provides the total number of bytes
             written in the last 30 second.
         physical_capacity_bytes (long|int): Provides the total physical
-            capacity in bytes as computed by the Cohesity Cluster.
+            capacity in bytes of all the storage devices, after subtracting
+            space reserved for cluster services
         read_ios (long|int): Provides the number of Read IOs that occurred in
             the last 30 seconds.
         read_latency_msecs (float): Provides the Read latency in milliseconds
@@ -40,10 +41,10 @@ class UsageAndPerformanceStats(object):
             bytes, as computed by the Cohesity Cluster, before the size of the
             data is reduced by change-block tracking, compression and
             deduplication.
-        total_physical_usage_bytes (long|int): Provides the total capacity, as
-            computed by the Cohesity Cluster, after the size of the data has
-            been reduced by change-block tracking, compression and
-            deduplication.
+        total_physical_usage_bytes (long|int): Provides the data stored
+            locally, after the data has been reduced by deduplication and
+            compression, including the space required for honoring the
+            resiliency settings (EC/RF).
         write_ios (long|int): Provides the number of Write IOs that occurred
             in the last 30 seconds.
         write_latency_msecs (float): Provides the Write latency in

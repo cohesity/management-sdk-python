@@ -11,21 +11,21 @@ class MongoDBBackupJobParams(object):
     job level.
 
     Attributes:
-        mongo_additional_info (MongoDBAdditionalParams): Additional parameters
+        mongodb_aditional_info (MongoDBAdditionalParams): Additional parameters
             required for Mongo backup
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "mongo_additional_info":'mongoAdditionalInfo'
+        "mongodb_aditional_info":'mongodbAdditionalInfo'
     }
 
     def __init__(self,
-                 mongo_additional_info=None):
+                 mongodb_aditional_info=None):
         """Constructor for the MongoDBBackupJobParams class"""
 
         # Initialize members of the class
-        self.mongo_additional_info = mongo_additional_info
+        self.mongodb_aditional_info = mongodb_aditional_info
 
 
     @classmethod
@@ -46,9 +46,9 @@ class MongoDBBackupJobParams(object):
             return None
 
         # Extract variables from the dictionary
-        mongo_additional_info = cohesity_management_sdk.models.mongoDB_additional_params.MongoDBAdditionalParams.from_dictionary(dictionary.get('mongoAdditionalInfo')) if dictionary.get('mongoAdditionalInfo') else None
+        mongodb_aditional_info = cohesity_management_sdk.models.mongoDB_additional_params.MongoDBAdditionalParams.from_dictionary(dictionary.get('mongodbAdditionalInfo')) if dictionary.get('mongodbAdditionalInfo') else None
 
         # Return an object of this model
-        return cls(mongo_additional_info)
+        return cls(mongodb_aditional_info)
 
 

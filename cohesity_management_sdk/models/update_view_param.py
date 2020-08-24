@@ -7,6 +7,7 @@ import cohesity_management_sdk.models.file_level_data_lock_config
 import cohesity_management_sdk.models.quota_policy
 import cohesity_management_sdk.models.nfs_squash
 import cohesity_management_sdk.models.nfs_root_permissions
+import cohesity_management_sdk.models.nis_netgroup
 import cohesity_management_sdk.models.qo_s
 import cohesity_management_sdk.models.smb_permission
 import cohesity_management_sdk.models.smb_permissions_info
@@ -77,10 +78,17 @@ class UpdateViewParam(object):
             there may be a delay before the Cohesity Cluster allows more data
             to be written to the View, as the Cluster is calculating the usage
             across Nodes.
+        netgroup_whitelist (list of NisNetgroup): Array of Netgroups.
+            Specifies a list of Netgroups that have permissions to access the
+            View. (Overrides the Netgroups specified at the global Cohesity
+            Cluster level.)
         nfs_all_squash (NfsSquash): Specifies the NFS all squash config.
         nfs_root_permissions (NfsRootPermissions): Specifies the config of NFS
             root permission of a view file system.
         nfs_root_squash (NfsSquash): Specifies the NFS root squash config.
+        override_global_netgroup_whitelist (bool): Specifies whether view
+            level client netgroup whitelist overrides cluster and global
+            setting.
         override_global_whitelist (bool): Specifies whether view level client
             subnet whitelist overrides cluster and global setting.
         protocol_access (ProtocolAccessEnum): Specifies the supported
@@ -109,6 +117,9 @@ class UpdateViewParam(object):
         swift_project_domain (string): Specifies the Keystone project domain.
         swift_project_name (string): Specifies the Keystone project name.
         tenant_id (string): Optional tenant id who has access to this View.
+        view_lock_enabled (bool): Specifies whether view lock is enabled. If
+            enabled the view cannot be modified or deleted until unlock. By
+            default it is disabled.
 
     """
 
@@ -131,9 +142,11 @@ class UpdateViewParam(object):
         "file_extension_filter":'fileExtensionFilter',
         "file_lock_config":'fileLockConfig',
         "logical_quota":'logicalQuota',
+        "netgroup_whitelist":'netgroupWhitelist',
         "nfs_all_squash":'nfsAllSquash',
         "nfs_root_permissions":'nfsRootPermissions',
         "nfs_root_squash":'nfsRootSquash',
+        "override_global_netgroup_whitelist":'overrideGlobalNetgroupWhitelist',
         "override_global_whitelist":'overrideGlobalWhitelist',
         "protocol_access":'protocolAccess',
         "qos":'qos',
@@ -144,7 +157,8 @@ class UpdateViewParam(object):
         "subnet_whitelist":'subnetWhitelist',
         "swift_project_domain":'swiftProjectDomain',
         "swift_project_name":'swiftProjectName',
-        "tenant_id":'tenantId'
+        "tenant_id":'tenantId',
+        "view_lock_enabled":'viewLockEnabled'
     }
 
     def __init__(self,
@@ -165,9 +179,11 @@ class UpdateViewParam(object):
                  file_extension_filter=None,
                  file_lock_config=None,
                  logical_quota=None,
+                 netgroup_whitelist=None,
                  nfs_all_squash=None,
                  nfs_root_permissions=None,
                  nfs_root_squash=None,
+                 override_global_netgroup_whitelist=None,
                  override_global_whitelist=None,
                  protocol_access=None,
                  qos=None,
@@ -178,7 +194,8 @@ class UpdateViewParam(object):
                  subnet_whitelist=None,
                  swift_project_domain=None,
                  swift_project_name=None,
-                 tenant_id=None):
+                 tenant_id=None,
+                 view_lock_enabled=None):
         """Constructor for the UpdateViewParam class"""
 
         # Initialize members of the class
@@ -199,9 +216,11 @@ class UpdateViewParam(object):
         self.file_extension_filter = file_extension_filter
         self.file_lock_config = file_lock_config
         self.logical_quota = logical_quota
+        self.netgroup_whitelist = netgroup_whitelist
         self.nfs_all_squash = nfs_all_squash
         self.nfs_root_permissions = nfs_root_permissions
         self.nfs_root_squash = nfs_root_squash
+        self.override_global_netgroup_whitelist = override_global_netgroup_whitelist
         self.override_global_whitelist = override_global_whitelist
         self.protocol_access = protocol_access
         self.qos = qos
@@ -213,6 +232,7 @@ class UpdateViewParam(object):
         self.swift_project_domain = swift_project_domain
         self.swift_project_name = swift_project_name
         self.tenant_id = tenant_id
+        self.view_lock_enabled = view_lock_enabled
 
 
     @classmethod
@@ -250,9 +270,15 @@ class UpdateViewParam(object):
         file_extension_filter = cohesity_management_sdk.models.file_extension_filter.FileExtensionFilter.from_dictionary(dictionary.get('fileExtensionFilter')) if dictionary.get('fileExtensionFilter') else None
         file_lock_config = cohesity_management_sdk.models.file_level_data_lock_config.FileLevelDataLockConfig.from_dictionary(dictionary.get('fileLockConfig')) if dictionary.get('fileLockConfig') else None
         logical_quota = cohesity_management_sdk.models.quota_policy.QuotaPolicy.from_dictionary(dictionary.get('logicalQuota')) if dictionary.get('logicalQuota') else None
+        netgroup_whitelist = None
+        if dictionary.get('netgroupWhitelist') != None:
+            netgroup_whitelist = list()
+            for structure in dictionary.get('netgroupWhitelist'):
+                netgroup_whitelist.append(cohesity_management_sdk.models.nis_netgroup.NisNetgroup.from_dictionary(structure))
         nfs_all_squash = cohesity_management_sdk.models.nfs_squash.NfsSquash.from_dictionary(dictionary.get('nfsAllSquash')) if dictionary.get('nfsAllSquash') else None
         nfs_root_permissions = cohesity_management_sdk.models.nfs_root_permissions.NfsRootPermissions.from_dictionary(dictionary.get('nfsRootPermissions')) if dictionary.get('nfsRootPermissions') else None
         nfs_root_squash = cohesity_management_sdk.models.nfs_squash.NfsSquash.from_dictionary(dictionary.get('nfsRootSquash')) if dictionary.get('nfsRootSquash') else None
+        override_global_netgroup_whitelist = dictionary.get('overrideGlobalNetgroupWhitelist')
         override_global_whitelist = dictionary.get('overrideGlobalWhitelist')
         protocol_access = dictionary.get('protocolAccess')
         qos = cohesity_management_sdk.models.qo_s.QoS.from_dictionary(dictionary.get('qos')) if dictionary.get('qos') else None
@@ -272,6 +298,7 @@ class UpdateViewParam(object):
         swift_project_domain = dictionary.get('swiftProjectDomain', None)
         swift_project_name = dictionary.get('swiftProjectName', None)
         tenant_id = dictionary.get('tenantId')
+        view_lock_enabled = dictionary.get('viewLockEnabled')
 
         # Return an object of this model
         return cls(access_sids,
@@ -291,9 +318,11 @@ class UpdateViewParam(object):
                    file_extension_filter,
                    file_lock_config,
                    logical_quota,
+                   netgroup_whitelist,
                    nfs_all_squash,
                    nfs_root_permissions,
                    nfs_root_squash,
+                   override_global_netgroup_whitelist,
                    override_global_whitelist,
                    protocol_access,
                    qos,
@@ -304,6 +333,7 @@ class UpdateViewParam(object):
                    subnet_whitelist,
                    swift_project_domain,
                    swift_project_name,
-                   tenant_id)
+                   tenant_id,
+                   view_lock_enabled)
 
 

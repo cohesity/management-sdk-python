@@ -47,8 +47,13 @@ class AggregatedSubtreeInfo(object):
             'kKubernetes' indicates a Kubernetes Protection Source
             environment. 'kElastifile' indicates Elastifile Protection Source
             environment. 'kAD' indicates Active Directory Protection Source 
-            environment. 'kRDSSnapshotManager' indicates AWS RDS Protection Source
-            environment.
+            environment. 'kRDSSnapshotManager' indicates AWS RDS Protection
+            Source environment. 'kCassandra' indicates Cassandra Protection
+            Source environment. 'kMongoDB' indicates MongoDB Protection
+            Source environment. 'kCouchbase' indicates Couchbase Protection
+            Source environment. 'kHdfs' indicates Hdfs Protection Source
+            environment. 'kHive' indicates Hive Protection Source environment.
+            'kHBase' indicates HBase Protection Source environment.
         leaves_count (long|int): Specifies the number of leaf nodes under the
             subtree of this node.
         total_logical_size (long|int): Specifies the total logical size of the

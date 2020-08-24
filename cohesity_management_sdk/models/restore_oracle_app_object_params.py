@@ -4,6 +4,7 @@
 import cohesity_management_sdk.models.restore_oracle_app_object_params_alternate_location_params
 import cohesity_management_sdk.models.clone_app_view_params
 import cohesity_management_sdk.models.oracle_source_params
+import cohesity_management_sdk.models.restore_oracle_app_object_params_key_value_pair
 
 class RestoreOracleAppObjectParams(object):
 
@@ -31,6 +32,9 @@ class RestoreOracleAppObjectParams(object):
             recovered to the full/incremental snapshot (specified in the
             owner's restore object in AppOwnerRestoreInfo). This is only
             applicable if restoring to the original Oracle instance.
+        shell_environment_vec (list of
+            RestoreOracleAppObjectParams_KeyValuePair): TODO: Type description
+            here.
 
     """
 
@@ -41,7 +45,8 @@ class RestoreOracleAppObjectParams(object):
         "oracle_clone_app_view_params_vec":'oracleCloneAppViewParamsVec',
         "oracle_target_params":'oracleTargetParams',
         "parallel_op_enabled":'parallelOpEnabled',
-        "restore_time_secs":'restoreTimeSecs'
+        "restore_time_secs":'restoreTimeSecs',
+        "shell_environment_vec":'shellEnvironmentVec'
     }
 
     def __init__(self,
@@ -50,7 +55,8 @@ class RestoreOracleAppObjectParams(object):
                  oracle_clone_app_view_params_vec=None,
                  oracle_target_params=None,
                  parallel_op_enabled=None,
-                 restore_time_secs=None):
+                 restore_time_secs=None,
+                 shell_environment_vec=None):
         """Constructor for the RestoreOracleAppObjectParams class"""
 
         # Initialize members of the class
@@ -60,6 +66,7 @@ class RestoreOracleAppObjectParams(object):
         self.oracle_target_params = oracle_target_params
         self.parallel_op_enabled = parallel_op_enabled
         self.restore_time_secs = restore_time_secs
+        self.shell_environment_vec = shell_environment_vec
 
 
     @classmethod
@@ -90,6 +97,11 @@ class RestoreOracleAppObjectParams(object):
         oracle_target_params = cohesity_management_sdk.models.oracle_source_params.OracleSourceParams.from_dictionary(dictionary.get('oracleTargetParams')) if dictionary.get('oracleTargetParams') else None
         parallel_op_enabled = dictionary.get('parallelOpEnabled')
         restore_time_secs = dictionary.get('restoreTimeSecs')
+        shell_environment_vec = None
+        if dictionary.get('shellEnvironmentVec') != None:
+            shell_environment_vec = list()
+            for structure in dictionary.get('shellEnvironmentVec'):
+                shell_environment_vec.append(cohesity_management_sdk.models.restore_oracle_app_object_params_key_value_pair.RestoreOracleAppObjectParams_KeyValuePair.from_dictionary(structure))
 
         # Return an object of this model
         return cls(alternate_location_params,
@@ -97,6 +109,7 @@ class RestoreOracleAppObjectParams(object):
                    oracle_clone_app_view_params_vec,
                    oracle_target_params,
                    parallel_op_enabled,
-                   restore_time_secs)
+                   restore_time_secs,
+                   shell_environment_vec)
 
 

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2020 Cohesity Inc.
 
+import cohesity_management_sdk.models.vlan_params
 
 class OracleEnvJobParameters(object):
 
@@ -15,19 +16,24 @@ class OracleEnvJobParameters(object):
         Note: This parameter is for the entire Job. For overriding persistence
         of mountpoints for a subset of Oracle hosts within the job, refer
         OracleSourceParams.
+    vlan_params (VlanParams): Indicates the vlan preference that is selected
+        by the user for doing backup.
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "persist_mountpoints": 'persistMountpoints'
+        "persist_mountpoints": 'persistMountpoints',
+        "vlan_params":'vlanParams'
     }
 
     def __init__(self,
-                 persist_mountpoints=None):
+                 persist_mountpoints=None,
+                 vlan_params=None):
         """Constructor for the OracleEnvJobParameters class"""
 
         # Initialize members of the class
         self.persist_mountpoints = persist_mountpoints
+        self.vlan_params = vlan_params
 
 
     @classmethod
@@ -49,8 +55,10 @@ class OracleEnvJobParameters(object):
 
         # Extract variables from the dictionary
         persist_mountpoints = dictionary.get('persistMountpoints')
+        vlan_params = cohesity_management_sdk.models.vlan_params.VlanParams.from_dictionary(dictionary.get('vlanParams')) if dictionary.get('vlanParams') else None
 
         # Return an object of this model
-        return cls(persist_mountpoints)
+        return cls(persist_mountpoints,
+                   vlan_params)
 
 

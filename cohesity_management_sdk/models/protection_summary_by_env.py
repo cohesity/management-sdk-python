@@ -48,7 +48,13 @@ class ProtectionSummaryByEnv(object):
             Protection Source environment. 'kElastifile' indicates Elastifile
             Protection Source environment. 'kAD' indicates Active Directory
             Protection Source environment. 'kRDSSnapshotManager' indicates AWS
-            RDS Protection Source environment.
+            RDS Protection Source environment. 'kCassandra' indicates
+            Cassandra Protection Source environment. 'kMongoDB' indicates
+            MongoDB Protection Source environment. 'kCouchbase' indicates
+            Couchbase Protection Source environment. 'kHdfs' indicates Hdfs
+            Protection Source environment. 'kHive' indicates Hive Protection
+            Source environment. 'kHBase' indicates HBase Protection Source
+            environment.
         protected_count (long|int): Specifies the number of objects that are
             protected under the given entity.
         protected_size (long|int): Specifies the total size of the protected

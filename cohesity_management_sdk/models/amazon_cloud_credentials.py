@@ -17,9 +17,20 @@ class AmazonCloudCredentials(object):
             this field based on the current S3 Compatible Vault (External
             Target) type. For example for Iron Mountain, specify the user name
             from Iron Mountain for this field.
+        auth_method (AuthMethodEnum): Specifies the iauth method used for the
+            request. See the Cohesity online help for the value to specify for
+            this field based on the current S3-compatible Vault (External
+            Target) type. Specifies the authentication method to be used for
+            API calls. 'kUseIAMUser' indicates a user based authentication.
+            'kUseIAMRole' indicates a role based authentication, used only for
+            AWS CE.
         c_2_s_access_portal (C2SAccessPortal): Specifies information required
             to connect to CAP to get AWS credentials. C2SAccessPortal(CAP) is
             AWS commercial cloud service access portal.
+        iam_role_arn (string): Specifies the iam role arn Amazon service
+            account. See the Cohesity online help for the value to specify for
+            this field based on the current S3-compatible Vault (External
+            Target) type.
         region (string): Specifies the region to use for the Amazon service
             account.
         secret_access_key (string): Specifies the secret access key for Amazon
@@ -46,9 +57,14 @@ class AmazonCloudCredentials(object):
             for long-lived, but less frequently accessed data.
             'kAmazonS3IntelligentTiering' indicates a tier type of Amazon
             properties for data with unknown or changing access patterns.
+            'kAmazonS3Glacier' indicates a tier type of Amazon properties for
+            data that provides secure, durable object storage for long-term
+            data retention and digital preservation. It provides three options
+            for access to archives, from a few minutes to several hours.
             'kAmazonS3GlacierDeepArchive' indicates a tier type of Amazon
             properties for data that provides secure, durable object storage
-            for long-term data retention and digital preservation.
+            for long-term data retention and digital preservation. It provides
+            two access options ranging from 12 to 48 hours.
         use_https (bool): Specifies whether to use http or https to connect to
             the service. If true, a secure connection (https) is used. This
             field is only significant for S3-compatible cloud services.
@@ -58,7 +74,9 @@ class AmazonCloudCredentials(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "access_key_id":'accessKeyId',
+        "auth_method":'authMethod',
         "c_2_s_access_portal":'c2sAccessPortal',
+        "iam_role_arn":'iamRoleArn',
         "region":'region',
         "secret_access_key":'secretAccessKey',
         "service_url":'serviceUrl',
@@ -69,7 +87,9 @@ class AmazonCloudCredentials(object):
 
     def __init__(self,
                  access_key_id=None,
+                 auth_method=None,
                  c_2_s_access_portal=None,
+                 iam_role_arn=None,
                  region=None,
                  secret_access_key=None,
                  service_url=None,
@@ -80,7 +100,9 @@ class AmazonCloudCredentials(object):
 
         # Initialize members of the class
         self.access_key_id = access_key_id
+        self.auth_method = auth_method
         self.c_2_s_access_portal = c_2_s_access_portal
+        self.iam_role_arn = iam_role_arn
         self.region = region
         self.secret_access_key = secret_access_key
         self.service_url = service_url
@@ -108,7 +130,9 @@ class AmazonCloudCredentials(object):
 
         # Extract variables from the dictionary
         access_key_id = dictionary.get('accessKeyId')
+        auth_method = dictionary.get('authMethod')
         c_2_s_access_portal = cohesity_management_sdk.models.c_2_s_access_portal.C2SAccessPortal.from_dictionary(dictionary.get('c2sAccessPortal')) if dictionary.get('c2sAccessPortal') else None
+        iam_role_arn = dictionary.get('iamRoleArn')
         region = dictionary.get('region')
         secret_access_key = dictionary.get('secretAccessKey')
         service_url = dictionary.get('serviceUrl')
@@ -118,7 +142,9 @@ class AmazonCloudCredentials(object):
 
         # Return an object of this model
         return cls(access_key_id,
+                   auth_method,
                    c_2_s_access_portal,
+                   iam_role_arn,
                    region,
                    secret_access_key,
                    service_url,

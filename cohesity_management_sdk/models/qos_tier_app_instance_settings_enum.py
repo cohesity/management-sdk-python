@@ -11,11 +11,13 @@ class QosTierAppInstanceSettingsEnum(object):
     kLow - Low QoS Tier.
     kMedium - Medium QoS Tier.
     kHigh - High QoS Tier.
+    kMax - Max QoS Tier.
 
     Attributes:
         KLOW: TODO: type description here.
         KMEDIUM: TODO: type description here.
         KHIGH: TODO: type description here.
+        KMAX: TODO: type description here.
 
     """
 
@@ -24,3 +26,5 @@ class QosTierAppInstanceSettingsEnum(object):
     KMEDIUM = 'kMedium'
 
     KHIGH = 'kHigh'
+
+    KMAX = 'kMax'

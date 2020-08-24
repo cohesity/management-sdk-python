@@ -51,7 +51,13 @@ class RemoteProtectionJobRunInformation(object):
             a Kubernetes Protection Source environment. 'kElastifile' indicates
             Elastifile Protection Source environment. 'kAD' indicates Active
             Directory Protection Source environment. 'kRDSSnapshotManager'
-            indicates AWS RDS Protection Source environment.
+            indicates AWS RDS Protection Source environment. 'kCassandra'
+            indicates Cassandra Protection Source environment. 'kMongoDB'
+            indicates MongoDB Protection Source environment. 'kCouchbase'
+            indicates Couchbase Protection Source environment. 'kHdfs'
+            indicates Hdfs Protection Source environment. 'kHive' indicates
+            Hive Protection Source environment. 'kHBase' indicates HBase
+            Protection Source environment.
         job_name (string): Specifies the name of the Protection Job on the
             original Cluster.
         job_uid (UniversalId): Specifies the globally unique id of the

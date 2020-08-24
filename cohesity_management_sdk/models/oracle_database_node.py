@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2020 Cohesity Inc.
 
+import cohesity_management_sdk.models.oracle_sbt_host_params
 
 class OracleDatabaseNode(object):
 
@@ -15,6 +16,8 @@ class OracleDatabaseNode(object):
         node (string): Specifies the ip of the database node.
         port (long|int): Specifies the port on which user wants to run the
             backup/recovery.
+        sbt_host_params (OracleSbtHostParams): Specifies the necessary
+            parameters for SBT.
 
     """
 
@@ -22,19 +25,22 @@ class OracleDatabaseNode(object):
     _names = {
         "channel_count":'channelCount',
         "node":'node',
-        "port":'port'
+        "port":'port',
+        "sbt_host_params":'sbtHostParams'
     }
 
     def __init__(self,
                  channel_count=None,
                  node=None,
-                 port=None):
+                 port=None,
+                 sbt_host_params=None):
         """Constructor for the OracleDatabaseNode class"""
 
         # Initialize members of the class
         self.channel_count = channel_count
         self.node = node
         self.port = port
+        self.sbt_host_params = sbt_host_params
 
 
     @classmethod
@@ -58,10 +64,12 @@ class OracleDatabaseNode(object):
         channel_count = dictionary.get('channelCount')
         node = dictionary.get('node')
         port = dictionary.get('port')
+        sbt_host_params = cohesity_management_sdk.models.oracle_sbt_host_params.OracleSbtHostParams.from_dictionary(dictionary.get('sbtHostParams')) if dictionary.get('sbtHostParams') else None
 
         # Return an object of this model
         return cls(channel_count,
                    node,
-                   port)
+                   port,
+                   sbt_host_params)
 
 

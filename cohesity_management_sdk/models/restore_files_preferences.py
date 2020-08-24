@@ -16,6 +16,8 @@ class RestoreFilesPreferences(object):
             location.
         continue_on_error (bool): Whether to continue with the copy in case of
             encountering an error.
+        encryption_enabled (bool): Whether to enable encryption for NFS and
+            SMB restores.
         generate_ssh_keys (bool): In case of GCP Linux restores, whether to
             generate ssh keys to connect to the customer's instance.
         override_originals (bool): This is relevant only if
@@ -38,6 +40,7 @@ class RestoreFilesPreferences(object):
     _names = {
         "alternate_restore_base_directory":'alternateRestoreBaseDirectory',
         "continue_on_error":'continueOnError',
+        "encryption_enabled":'encryptionEnabled',
         "generate_ssh_keys":'generateSshKeys',
         "override_originals":'overrideOriginals',
         "preserve_acls":'preserveAcls',
@@ -50,6 +53,7 @@ class RestoreFilesPreferences(object):
     def __init__(self,
                  alternate_restore_base_directory=None,
                  continue_on_error=None,
+                 encryption_enabled=None,
                  generate_ssh_keys=None,
                  override_originals=None,
                  preserve_acls=None,
@@ -62,6 +66,7 @@ class RestoreFilesPreferences(object):
         # Initialize members of the class
         self.alternate_restore_base_directory = alternate_restore_base_directory
         self.continue_on_error = continue_on_error
+        self.encryption_enabled = encryption_enabled
         self.generate_ssh_keys = generate_ssh_keys
         self.override_originals = override_originals
         self.preserve_acls = preserve_acls
@@ -91,6 +96,7 @@ class RestoreFilesPreferences(object):
         # Extract variables from the dictionary
         alternate_restore_base_directory = dictionary.get('alternateRestoreBaseDirectory')
         continue_on_error = dictionary.get('continueOnError')
+        encryption_enabled = dictionary.get('encryptionEnabled')
         generate_ssh_keys = dictionary.get('generateSshKeys')
         override_originals = dictionary.get('overrideOriginals')
         preserve_acls = dictionary.get('preserveAcls')
@@ -102,6 +108,7 @@ class RestoreFilesPreferences(object):
         # Return an object of this model
         return cls(alternate_restore_base_directory,
                    continue_on_error,
+                   encryption_enabled,
                    generate_ssh_keys,
                    override_originals,
                    preserve_acls,

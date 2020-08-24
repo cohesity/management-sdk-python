@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2020 Cohesity Inc.
 
-import cohesity_management_sdk.models.apps_config
+import cohesity_management_sdk.models.subnet
 import cohesity_management_sdk.models.cluster_audit_log_configuration
 import cohesity_management_sdk.models.filer_audit_log_configuration
 import cohesity_management_sdk.models.ntp_settings_config
@@ -15,8 +15,7 @@ class UpdateClusterParams(object):
     Cohesity Cluster.
 
     Attributes:
-        apps_settings (AppsConfig): Specifies the Athena apps mode for the
-            cluster.
+        apps_subnet (Subnet): The subnet for Athena apps.
         banner_enabled (bool): Specifies whether UI banner is enabled on the
             cluster or not. When banner is enabled, UI will make an additional
             API call to fetch the banner and show at the login page.
@@ -87,6 +86,10 @@ class UpdateClusterParams(object):
         smb_ad_disabled (bool): Specifies if Active Directory should be
             disabled for authentication of SMB shares. If 'true', Active
             Directory is disabled.
+        smb_multichannel_enabled (bool): Specifies whether SMB multichannel is
+            enabled on the cluster. When this is set to true, then any SMB3
+            multichannel enabled client can establish multiple TCP connection
+            per session to the Server.
         stig_mode (bool): Specifies if STIG mode is enabled or not.
         syslog_servers (list of SyslogServer): Array of Syslog Servers.
             Specifies a list of Syslog servers to send audit logs to.
@@ -102,7 +105,7 @@ class UpdateClusterParams(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "apps_settings":'appsSettings',
+        "apps_subnet":'appsSubnet',
         "banner_enabled":'bannerEnabled',
         "cluster_audit_log_config":'clusterAuditLogConfig',
         "dns_server_ips":'dnsServerIps',
@@ -126,6 +129,7 @@ class UpdateClusterParams(object):
         "reverse_tunnel_enabled":'reverseTunnelEnabled',
         "reverse_tunnel_end_time_msecs":'reverseTunnelEndTimeMsecs',
         "smb_ad_disabled":'smbAdDisabled',
+        "smb_multichannel_enabled":'smbMultichannelEnabled',
         "stig_mode":'stigMode',
         "syslog_servers":'syslogServers',
         "tenant_viewbox_sharing_enabled":'tenantViewboxSharingEnabled',
@@ -134,7 +138,7 @@ class UpdateClusterParams(object):
     }
 
     def __init__(self,
-                 apps_settings=None,
+                 apps_subnet=None,
                  banner_enabled=None,
                  cluster_audit_log_config=None,
                  dns_server_ips=None,
@@ -158,6 +162,7 @@ class UpdateClusterParams(object):
                  reverse_tunnel_enabled=None,
                  reverse_tunnel_end_time_msecs=None,
                  smb_ad_disabled=None,
+                 smb_multichannel_enabled=None,
                  stig_mode=None,
                  syslog_servers=None,
                  tenant_viewbox_sharing_enabled=None,
@@ -166,7 +171,7 @@ class UpdateClusterParams(object):
         """Constructor for the UpdateClusterParams class"""
 
         # Initialize members of the class
-        self.apps_settings = apps_settings
+        self.apps_subnet = apps_subnet
         self.banner_enabled = banner_enabled
         self.cluster_audit_log_config = cluster_audit_log_config
         self.dns_server_ips = dns_server_ips
@@ -190,6 +195,7 @@ class UpdateClusterParams(object):
         self.reverse_tunnel_enabled = reverse_tunnel_enabled
         self.reverse_tunnel_end_time_msecs = reverse_tunnel_end_time_msecs
         self.smb_ad_disabled = smb_ad_disabled
+        self.smb_multichannel_enabled = smb_multichannel_enabled
         self.stig_mode = stig_mode
         self.syslog_servers = syslog_servers
         self.tenant_viewbox_sharing_enabled = tenant_viewbox_sharing_enabled
@@ -215,7 +221,7 @@ class UpdateClusterParams(object):
             return None
 
         # Extract variables from the dictionary
-        apps_settings = cohesity_management_sdk.models.apps_config.AppsConfig.from_dictionary(dictionary.get('appsSettings')) if dictionary.get('appsSettings') else None
+        apps_subnet = cohesity_management_sdk.models.subnet.Subnet.from_dictionary(dictionary.get('appsSubnet')) if dictionary.get('appsSubnet') else None
         banner_enabled = dictionary.get('bannerEnabled')
         cluster_audit_log_config = cohesity_management_sdk.models.cluster_audit_log_configuration.ClusterAuditLogConfiguration.from_dictionary(dictionary.get('clusterAuditLogConfig')) if dictionary.get('clusterAuditLogConfig') else None
         dns_server_ips = dictionary.get('dnsServerIps')
@@ -239,6 +245,7 @@ class UpdateClusterParams(object):
         reverse_tunnel_enabled = dictionary.get('reverseTunnelEnabled')
         reverse_tunnel_end_time_msecs = dictionary.get('reverseTunnelEndTimeMsecs')
         smb_ad_disabled = dictionary.get('smbAdDisabled')
+        smb_multichannel_enabled = dictionary.get('smbMultichannelEnabled')
         stig_mode = dictionary.get('stigMode')
         syslog_servers = None
         if dictionary.get('syslogServers') != None:
@@ -250,7 +257,7 @@ class UpdateClusterParams(object):
         turbo_mode = dictionary.get('turboMode')
 
         # Return an object of this model
-        return cls(apps_settings,
+        return cls(apps_subnet,
                    banner_enabled,
                    cluster_audit_log_config,
                    dns_server_ips,
@@ -274,6 +281,7 @@ class UpdateClusterParams(object):
                    reverse_tunnel_enabled,
                    reverse_tunnel_end_time_msecs,
                    smb_ad_disabled,
+                   smb_multichannel_enabled,
                    stig_mode,
                    syslog_servers,
                    tenant_viewbox_sharing_enabled,

@@ -45,6 +45,8 @@ class OracleProtectionSource(object):
         shared_pool_size (string): Specifies Shared Pool Size for the current
             DB entity.
         size (long|int): Specifies database size.
+        tde_encrypted_ts_count (int|long): Specifies the number of TDE
+            encrypted tablespaces found in the database.
         temp_files_count (long|int): Specifies number of temporary files for
             the current DB entity.
         mtype (TypeOracleProtectionSourceEnum): Specifies the type of the
@@ -77,6 +79,7 @@ class OracleProtectionSource(object):
         "sga_target_size":'sgaTargetSize',
         "shared_pool_size":'sharedPoolSize',
         "size":'size',
+        "tde_encrypted_ts_count":'tdeEncryptedTsCount',
         "temp_files_count":'tempFilesCount',
         "mtype":'type',
         "uuid":'uuid',
@@ -98,6 +101,7 @@ class OracleProtectionSource(object):
                  sga_target_size=None,
                  shared_pool_size=None,
                  size=None,
+                 tde_encrypted_ts_count=None,
                  temp_files_count=None,
                  mtype=None,
                  uuid=None,
@@ -119,6 +123,7 @@ class OracleProtectionSource(object):
         self.sga_target_size = sga_target_size
         self.shared_pool_size = shared_pool_size
         self.size = size
+        self.tde_encrypted_ts_count = tde_encrypted_ts_count
         self.temp_files_count = temp_files_count
         self.mtype = mtype
         self.uuid = uuid
@@ -160,6 +165,7 @@ class OracleProtectionSource(object):
         owner_id = dictionary.get('ownerId')
         sga_target_size = dictionary.get('sgaTargetSize')
         shared_pool_size = dictionary.get('sharedPoolSize')
+        tde_encrypted_ts_count = dictionary.get('tdeEncryptedTsCount')
         size = dictionary.get('size')
         temp_files_count = dictionary.get('tempFilesCount')
         mtype = dictionary.get('type')
@@ -181,6 +187,7 @@ class OracleProtectionSource(object):
                    sga_target_size,
                    shared_pool_size,
                    size,
+                   tde_encrypted_ts_count,
                    temp_files_count,
                    mtype,
                    uuid,

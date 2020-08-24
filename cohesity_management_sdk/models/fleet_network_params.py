@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2020 Cohesity Inc.
 
-import cohesity_management_sdk.models.rds_params
-
 class FleetNetworkParams(object):
 
     """Implementation of the 'FleetNetworkParams' model.
@@ -10,6 +8,7 @@ class FleetNetworkParams(object):
     Specifies the various network params for the fleet.
 
     Attributes:
+        region (string): Specifies the region for the fleet.
         subnet (string): Specifies the subnet for the fleet.
         vpc (string): Specifies the vpc for the fleet.
 
@@ -17,16 +16,19 @@ class FleetNetworkParams(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "region":'region',
         "subnet":'subnet',
         "vpc":'vpc'
     }
 
     def __init__(self,
+                 region=None,
                  subnet=None,
                  vpc=None):
         """Constructor for the FleetNetworkParams class"""
 
         # Initialize members of the class
+        self.region = region
         self.subnet = subnet
         self.vpc = vpc
 
@@ -49,10 +51,11 @@ class FleetNetworkParams(object):
             return None
 
         # Extract variables from the dictionary
+        region = dictionary.get('region')
         subnet = dictionary.get('subnet', None)
         vpc = dictionary.get('vpc', None)
 
         # Return an object of this model
-        return cls(subnet, vpc)
+        return cls(region, subnet, vpc)
 
 

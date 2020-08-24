@@ -24,6 +24,7 @@ class ProtectionPoliciesController(BaseController):
                                 environments=None,
                                 vault_ids=None,
                                 origin=None,
+                                types=None,
                                 tenant_ids=None,
                                 all_under_hierarchy=None):
         """Does a GET request to /public/protectionPolicies.
@@ -47,9 +48,12 @@ class ProtectionPoliciesController(BaseController):
                 ids. Policies archiving to any of the specified vaults will be
                 returned.
             origin (OriginEnum, optional): Specifies the origin of the
-                protection policy of the protection policy. 'kHelios' means a
-                global policy which was created on Helios. 'kLocal' means a
-                local policy which was created on the cluster.
+                protection policy. 'kHelios' means a global policy which was
+                created on Helios. 'kLocal' means a local policy which was
+                created on the cluster.
+            types (TypeProtectionPolicyRequestEnum, optional): Specifies the
+                type of the protection policy. 'kRegular' means a regular
+                Protection Policy. 'kRPO' means an RPO Protection Policy.
             tenant_ids (list of string, optional): TenantIds contains ids of
                 the tenants for which objects are to be returned.
             all_under_hierarchy (bool, optional): AllUnderHierarchy specifies
@@ -81,6 +85,7 @@ class ProtectionPoliciesController(BaseController):
                 'environments': environments,
                 'vaultIds': vault_ids,
                 'origin': origin,
+                'types': types,
                 'tenantIds': tenant_ids,
                 'allUnderHierarchy': all_under_hierarchy
             }

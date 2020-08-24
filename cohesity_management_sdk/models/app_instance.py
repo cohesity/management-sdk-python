@@ -38,6 +38,7 @@ class AppInstance(object):
             app instance.
         https_ui (bool): Specifies app ui http config. If set to true, the
             App's UI uses https. Otherwise it uses http.
+        namespace (string): TODO: Type description here.
         node_ip (string): Specifies the ip of the node which can be used to
             contact app instance external services.
         node_port (long|int): Specifies the node port on which the app
@@ -83,6 +84,7 @@ class AppInstance(object):
         "health_detail":'healthDetail',
         "health_status":'healthStatus',
         "https_ui":'httpsUi',
+        "namespace":'namespace',
         "node_ip":'nodeIp',
         "node_port":'nodePort',
         "settings":'settings',
@@ -106,6 +108,7 @@ class AppInstance(object):
                  health_detail=None,
                  health_status=None,
                  https_ui=None,
+                 namespace=None,
                  node_ip=None,
                  node_port=None,
                  settings=None,
@@ -129,6 +132,7 @@ class AppInstance(object):
         self.health_detail = health_detail
         self.health_status = health_status
         self.https_ui = https_ui
+        self.namespace = namespace
         self.node_ip = node_ip
         self.node_port = node_port
         self.settings = settings
@@ -169,6 +173,7 @@ class AppInstance(object):
         health_detail = dictionary.get('healthDetail')
         health_status = dictionary.get('healthStatus') 
         https_ui = dictionary.get('httpsUi')
+        namespace = dictionary.get('namespace')
         node_ip = dictionary.get('nodeIp')
         node_port = dictionary.get('nodePort')
         settings = cohesity_management_sdk.models.app_instance_settings.AppInstanceSettings.from_dictionary(dictionary.get('settings')) if dictionary.get('settings') else None
@@ -195,6 +200,7 @@ class AppInstance(object):
                    health_detail,
                    health_status,
                    https_ui,
+                   namespace,
                    node_ip,
                    node_port,
                    settings,

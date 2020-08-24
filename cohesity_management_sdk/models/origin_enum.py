@@ -5,7 +5,9 @@ class OriginEnum(object):
 
     """Implementation of the 'origin' enum.
 
-    TODO: type enum description here.
+    Specifies the origin of the protection policy.
+    'kHelios' means a global policy which was created on Helios.
+    'kLocal' means a local policy which was created on the cluster.
 
     Attributes:
         KHELIOS: TODO: type description here.

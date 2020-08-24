@@ -34,7 +34,8 @@ class EntitySchemaProto(object):
             This is used to round up the timestamp to this flush interval secs
             during range scan.
         name (string): Specifies a name that uniquely identifies an entity
-            schema such as 'kBridgeClusterStats'.
+            schema such as 'kBridgeClusterStats'. Name cannot have ':' as
+            character.
         rollup_granularity_vec (list of EntitySchemaProto_Granularity): TODO:
             type description here.
         schema_descriptive_name (string): Specifies the name of the Schema as

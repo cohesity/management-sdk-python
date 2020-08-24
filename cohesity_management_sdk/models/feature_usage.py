@@ -9,27 +9,27 @@ class FeatureUsage(object):
     Structure to hold feature usage on cluster side.
 
     Attributes:
-        current_usage (int): Feature usage by the cluster.
+        current_usage_gib (long|int): Feature usage by the cluster.
         feature_name (string): Name of feature.
-        num_vm (int): Number of VM spinned.
+        num_vm (long|int): Number of VM spinned.
 
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "current_usage":'currentUsage',
+        "current_usage_gib":'currentUsageGiB',
         "feature_name":'featureName',
         "num_vm":'numVm'
     }
 
     def __init__(self,
-                 current_usage=None,
+                 current_usage_gib=None,
                  feature_name=None,
                  num_vm=None):
         """Constructor for the FeatureUsage class"""
 
         # Initialize members of the class
-        self.current_usage = current_usage
+        self.current_usage_gib = current_usage_gib
         self.feature_name = feature_name
         self.num_vm = num_vm
 
@@ -52,12 +52,12 @@ class FeatureUsage(object):
             return None
 
         # Extract variables from the dictionary
-        current_usage = dictionary.get('currentUsage')
+        current_usage_gib = dictionary.get('currentUsageGiB')
         feature_name = dictionary.get('featureName')
         num_vm = dictionary.get('numVm')
 
         # Return an object of this model
-        return cls(current_usage,
+        return cls(current_usage_gib,
                    feature_name,
                    num_vm)
 

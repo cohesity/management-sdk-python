@@ -41,6 +41,8 @@ class OracleDBChannelInfo(object):
             this. 3. If user has neither specified host_info_vec.num_channels
             nor num_channels we will calculate default channels with above
             formula.
+        rman_backup_type (int): Type of Oracle RMAN backup rquested (i.e
+            ImageCopy, BackupSets).
 
     """
 
@@ -52,7 +54,8 @@ class OracleDBChannelInfo(object):
         "enable_dg_primary_backup":'enableDgPrimaryBackup',
         "host_info_vec":'hostInfoVec',
         "max_num_host":'maxNumHost',
-        "num_channels":'numChannels'
+        "num_channels":'numChannels',
+        "rman_backup_type":'rmanBackupType'
     }
 
     def __init__(self,
@@ -62,7 +65,8 @@ class OracleDBChannelInfo(object):
                  enable_dg_primary_backup=None,
                  host_info_vec=None,
                  max_num_host=None,
-                 num_channels=None):
+                 num_channels=None,
+                 rman_backup_type=None):
         """Constructor for the OracleDBChannelInfo class"""
 
         # Initialize members of the class
@@ -73,6 +77,7 @@ class OracleDBChannelInfo(object):
         self.host_info_vec = host_info_vec
         self.max_num_host = max_num_host
         self.num_channels = num_channels
+        self.rman_backup_type = rman_backup_type
 
 
     @classmethod
@@ -104,6 +109,7 @@ class OracleDBChannelInfo(object):
                 host_info_vec.append(cohesity_management_sdk.models.oracle_db_channel_info_host_info.OracleDBChannelInfoHostInfo.from_dictionary(structure))
         max_num_host = dictionary.get('maxNumHost')
         num_channels = dictionary.get('numChannels')
+        rman_backup_type = dictionary.get('rmanBackupType')
 
         # Return an object of this model
         return cls(archivelog_keep_days,
@@ -112,6 +118,7 @@ class OracleDBChannelInfo(object):
                    enable_dg_primary_backup,
                    host_info_vec,
                    max_num_host,
-                   num_channels)
+                   num_channels,
+                   rman_backup_type)
 
 

@@ -14,6 +14,7 @@ import cohesity_management_sdk.models.registered_app_info
 import cohesity_management_sdk.models.throttling_policy_parameters
 import cohesity_management_sdk.models.throttling_policy_override
 import cohesity_management_sdk.models.vlan_parameters
+import cohesity_management_sdk.models.subnet
 
 class RegisteredSourceInfo(object):
 
@@ -36,6 +37,9 @@ class RegisteredSourceInfo(object):
             'kScheduled' indicates the authentication is scheduled.
             'kFinished' indicates the authentication is completed.
             'kRefreshInProgress' indicates the refresh is in progress.
+        blacklisted_ip_addresses (list of string): Specifies the list of IP
+            Addresses on the registered source to be blacklisted for doing any
+            type of IO operations.
         cassandra_params (CassandraConnectParams): Contains all the additional
             params specified by the user while registering the Cassandra
             source.
@@ -103,6 +107,7 @@ class RegisteredSourceInfo(object):
             given.
         office_365_credentials_list (list of Office365Credentials): Specifies the
             credentials to authenticate with Office365 account.
+        office_365_region (string): Specifies the region for Office365.
         password (string): Specifies password of the username to access the
             target source.
         refresh_error_message (string): Specifies a message if there was any
@@ -117,6 +122,9 @@ class RegisteredSourceInfo(object):
             source.
         registration_time_usecs (long|int): Specifies the Unix epoch time (in
             microseconds) when the Protection Source was registered.
+        subnets (list of Subnet): Specifies the list of subnets added during
+            creation or updation of vmare source. Currently, this field will
+            only be populated in case of VMware registration.
         throttling_policy (ThrottlingPolicyParameters): Specifies the
             throttling policy for a registered Protection Source.
         throttling_policy_overrides (list of ThrottlingPolicyOverride): Array
@@ -143,6 +151,7 @@ class RegisteredSourceInfo(object):
         "access_info":'accessInfo',
         "authentication_error_message":'authenticationErrorMessage',
         "authentication_status":'authenticationStatus',
+        "blacklisted_ip_addresses":'blacklistedIpAddresses',
         "cassandra_params":'cassandraParams',
         "couchbase_params":'couchbaseParams',
         "environments":'environments',
@@ -154,11 +163,13 @@ class RegisteredSourceInfo(object):
         "mongodb_params":'mongodbParams',
         "nas_mount_credentials":'nasMountCredentials',
         "office_365_credentials_list":'office365CredentialsList',
+        "office_365_region":'office365Region',
         "password":'password',
         "refresh_error_message":'refreshErrorMessage',
         "refresh_time_usecs":'refreshTimeUsecs',
         "registered_apps_info":'registeredAppsInfo',
         "registration_time_usecs":'registrationTimeUsecs',
+        "subnets":'subnets',
         "throttling_policy":'throttlingPolicy',
         "throttling_policy_overrides":'throttlingPolicyOverrides',
         "use_o_auth_for_exchange_online":'useOAuthForExchangeOnline',
@@ -172,6 +183,7 @@ class RegisteredSourceInfo(object):
                  access_info=None,
                  authentication_error_message=None,
                  authentication_status=None,
+                 blacklisted_ip_addresses=None,
                  cassandra_params= None,
                  couchbase_params=None,
                  environments=None,
@@ -183,11 +195,13 @@ class RegisteredSourceInfo(object):
                  mongodb_params=None,
                  nas_mount_credentials=None,
                  office_365_credentials_list=None,
+                 office_365_region=None,
                  password=None,
                  refresh_error_message=None,
                  refresh_time_usecs=None,
                  registered_apps_info=None,
                  registration_time_usecs=None,
+                 subnets=None,
                  throttling_policy=None,
                  throttling_policy_overrides=None,
                  use_o_auth_for_exchange_online=None,
@@ -201,6 +215,7 @@ class RegisteredSourceInfo(object):
         self.access_info = access_info
         self.authentication_error_message = authentication_error_message
         self.authentication_status = authentication_status
+        self.blacklisted_ip_addresses = blacklisted_ip_addresses
         self.cassandra_params = cassandra_params
         self.couchbase_params = couchbase_params
         self.environments = environments
@@ -212,11 +227,13 @@ class RegisteredSourceInfo(object):
         self.mongodb_params = mongodb_params
         self.nas_mount_credentials = nas_mount_credentials
         self.office_365_credentials_list = office_365_credentials_list
+        self.office_365_region = office_365_region
         self.password = password
         self.refresh_error_message = refresh_error_message
         self.refresh_time_usecs = refresh_time_usecs
         self.registered_apps_info = registered_apps_info
         self.registration_time_usecs = registration_time_usecs
+        self.subnets = subnets
         self.throttling_policy = throttling_policy
         self.throttling_policy_overrides = throttling_policy_overrides
         self.use_o_auth_for_exchange_online = use_o_auth_for_exchange_online
@@ -247,6 +264,7 @@ class RegisteredSourceInfo(object):
         access_info = cohesity_management_sdk.models.connector_parameters.ConnectorParameters.from_dictionary(dictionary.get('accessInfo')) if dictionary.get('accessInfo') else None
         authentication_error_message = dictionary.get('authenticationErrorMessage')
         authentication_status = dictionary.get('authenticationStatus')
+        blacklisted_ip_addresses = dictionary.get('blacklistedIpAddresses')
         cassandra_params = cohesity_management_sdk.models.cassandra_connect_params.CassandraConnectParams.from_dictionary(dictionary.get('cassandraParams')) if dictionary.get('cassandraParams') else None
         couchbase_params = cohesity_management_sdk.models.couchbase_connect_params.CouchbaseConnectParams.from_dictionary(dictionary.get('couchbaseParams')) if dictionary.get('couchbaseParams') else None
         environments = dictionary.get('environments')
@@ -262,6 +280,7 @@ class RegisteredSourceInfo(object):
             office_365_credentials_list = list()
             for structure in dictionary.get('office365CredentialsList'):
                 office_365_credentials_list.append(cohesity_management_sdk.models.office_365_credentials.Office365Credentials.from_dictionary(structure))
+        office_365_region = dictionary.get('office365Region')
         password = dictionary.get('password')
         refresh_error_message = dictionary.get('refreshErrorMessage')
         refresh_time_usecs = dictionary.get('refreshTimeUsecs')
@@ -271,6 +290,11 @@ class RegisteredSourceInfo(object):
             for structure in dictionary.get('registeredAppsInfo'):
                 registered_apps_info.append(cohesity_management_sdk.models.registered_app_info.RegisteredAppInfo.from_dictionary(structure))
         registration_time_usecs = dictionary.get('registrationTimeUsecs')
+        subnets = None
+        if dictionary.get('subnets') != None:
+            subnets = list()
+            for structure in dictionary.get('subnets'):
+                subnets.append(cohesity_management_sdk.models.subnet.Subnet.from_dictionary(structure))
         throttling_policy = cohesity_management_sdk.models.throttling_policy_parameters.ThrottlingPolicyParameters.from_dictionary(dictionary.get('throttlingPolicy')) if dictionary.get('throttlingPolicy') else None
         throttling_policy_overrides = None
         if dictionary.get('throttlingPolicyOverrides') != None:
@@ -287,6 +311,7 @@ class RegisteredSourceInfo(object):
         return cls(access_info,
                    authentication_error_message,
                    authentication_status,
+                   blacklisted_ip_addresses,
                    cassandra_params,
                    couchbase_params,
                    environments,
@@ -298,11 +323,13 @@ class RegisteredSourceInfo(object):
                    mongodb_params,
                    nas_mount_credentials,
                    office_365_credentials_list,
+                   office_365_region,
                    password,
                    refresh_error_message,
                    refresh_time_usecs,
                    registered_apps_info,
                    registration_time_usecs,
+                   subnets,
                    throttling_policy,
                    throttling_policy_overrides,
                    use_o_auth_for_exchange_online,

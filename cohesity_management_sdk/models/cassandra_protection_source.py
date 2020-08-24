@@ -18,7 +18,7 @@ class CassandraProtectionSource(object):
         name (string): Specifies the instance name of the Cassandra entity.
         mtype (TypeCassandraProtectionSourceEnum): Specifies the type of the
             managed Object in Cassandra Protection Source.
-            Specifies the type of an Cassandra source entity.
+            Replication strategy options for a keyspace.
             'kCluster' indicates a Cassandra cluster distributed over several
             physical nodes.
             'kKeyspace' indicates a Keyspace enclosing one or more tables.

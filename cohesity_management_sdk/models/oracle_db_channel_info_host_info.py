@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2020 Cohesity Inc.
 
+import cohesity_management_sdk.models.oracle_sbt_host_params
 
 class OracleDBChannelInfoHostInfo(object):
 
@@ -14,13 +15,15 @@ class OracleDBChannelInfoHostInfo(object):
     represented by the following proto.
 
     Attributes:
-        host (string): Host string from which we are allowed to take the
-            backup/restore.
+        host (string): 'agent_id' of the host from which we are allowed to
+            take the backup/restore.
         num_channels (int): Number of channels we need to create for this
             host. Default value for num_channels will be calculated as minimum
             of number of nodes in cohesity cluster, 2 * number of cpu on
             Oracle host.
         portnum (long|int): port number where database is listening.
+        sbt_host_params (OracleSbtHostParams): The necessury parameters for
+            SBT. This is set only when backup type is kSbt.
 
     """
 
@@ -28,19 +31,22 @@ class OracleDBChannelInfoHostInfo(object):
     _names = {
         "host":'host',
         "num_channels":'numChannels',
-        "portnum":'portnum'
+        "portnum":'portnum',
+        "sbt_host_params":'sbtHostParams'
     }
 
     def __init__(self,
                  host=None,
                  num_channels=None,
-                 portnum=None):
+                 portnum=None,
+                 sbt_host_params=None):
         """Constructor for the OracleDBChannelInfoHostInfo class"""
 
         # Initialize members of the class
         self.host = host
         self.num_channels = num_channels
         self.portnum = portnum
+        self.sbt_host_params = sbt_host_params
 
 
     @classmethod
@@ -64,10 +70,12 @@ class OracleDBChannelInfoHostInfo(object):
         host = dictionary.get('host')
         num_channels = dictionary.get('numChannels')
         portnum = dictionary.get('portnum')
+        sbt_host_params = cohesity_management_sdk.models.oracle_sbt_host_params.OracleSbtHostParams.from_dictionary(dictionary.get('sbtHostParams')) if dictionary.get('sbtHostParams') else None
 
         # Return an object of this model
         return cls(host,
                    num_channels,
-                   portnum)
+                   portnum,
+                   sbt_host_params)
 
 

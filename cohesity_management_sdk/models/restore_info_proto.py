@@ -53,6 +53,12 @@ class RestoreInfoProto(object):
     116
     exchange::RestoreInfo::exchange_restore_info exchange/exchange.proto
     117
+    imanis::RestoreInfo::nosql_recovery_info     imanis/nosql.proto
+    118
+    o365::RestoreInfo::o365_restore_info
+    o365/o365.proto           119
+    o365::RestoreInfo::o365_one_drive_restore_info
+    o365/o365.proto           120
     ===========================================================================
     ==
 
@@ -81,6 +87,10 @@ class RestoreInfoProto(object):
     108
     one_drive::RestoreEntityInfo::one_drive_restore_entity_info
     ms_graph/graph.proto       109
+    imanis::RestoreEntityInfo::nosql_restore_entity_info
+    imanis/nosql.proto         110
+    site::RestoreEntityInfo::site_restore_entity_info
+    ms_graph/graph.proto       111
     ===========================================================================
     ==
 

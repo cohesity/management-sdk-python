@@ -12,6 +12,8 @@ class GroupInfo(object):
         domain (string): Specifies domain name of the user.
         group_name (string): Specifies group name of the group.
         sid (string): Specifies unique Security ID (SID) of the user.
+        tenant_ids (list of string): Specifies the tenants to which the group
+            belongs to.
 
     """
 
@@ -19,19 +21,22 @@ class GroupInfo(object):
     _names = {
         "domain":'domain',
         "group_name":'groupName',
-        "sid":'sid'
+        "sid":'sid',
+        "tenant_ids":'tenantIds'
     }
 
     def __init__(self,
                  domain=None,
                  group_name=None,
-                 sid=None):
+                 sid=None,
+                 tenant_ids=None):
         """Constructor for the GroupInfo class"""
 
         # Initialize members of the class
         self.domain = domain
         self.group_name = group_name
         self.sid = sid
+        self.tenant_ids = tenant_ids
 
 
     @classmethod
@@ -55,10 +60,12 @@ class GroupInfo(object):
         domain = dictionary.get('domain')
         group_name = dictionary.get('groupName')
         sid = dictionary.get('sid')
+        tenant_ids = dictionary.get('tenantIds')
 
         # Return an object of this model
         return cls(domain,
                    group_name,
-                   sid)
+                   sid,
+                   tenant_ids)
 
 

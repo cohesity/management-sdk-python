@@ -18,6 +18,8 @@ class Vlan(object):
         all_tenant_access (bool): Specifies if this VLAN can be used by all
             tenants without explicit assignment to them. This option can only
             be set true for VLANs that are not assigned to any tenant.
+        app_ip_vec_in_use (bool): Set to true when ips are in use by Athena
+            Apps. Note: If it is true then vlan interface can't be deleted.
         appsips (list of string): Array of Athena Apps IPs. Specifies a list
             of Athena IPs in the VLAN.
         description (string): Specifies a description of the VLAN.
@@ -31,6 +33,8 @@ class Vlan(object):
         interface_name (string): Specifies the interface name
         ip_family (int|long): Specifies IP family. Based on this,
             subnet/gateway field contains V4 or V6 values. Used in Request.
+        ip_pool_map (dict<object, list of string>): IpPoolMap. Pool IPs to
+            program VIP followers.
         ip_range (IpRange):  IP Range for vip addition
         ips (list of string): Array of IPs.  Specifies a list of IPs in the
             VLAN.
@@ -52,6 +56,7 @@ class Vlan(object):
     _names = {
         "add_to_cluster_partition":'addToClusterPartition',
         "all_tenant_access":'allTenantAccess',
+        "app_ip_vec_in_use":'appIpVecInUse',
         "appsips":'appsips',
         "description":'description',
         "gateway":'gateway',
@@ -61,6 +66,7 @@ class Vlan(object):
         "iface_group_name":'ifaceGroupName',
         "interface_name":'interfaceName',
         "ip_family":'ipFamily',
+        "ip_pool_map":'ipPoolMap',
         "ip_range":'ipRange',
         "ips":'ips',
         "mtu":'mtu',
@@ -73,6 +79,7 @@ class Vlan(object):
     def __init__(self,
                  add_to_cluster_partition=None,
                  all_tenant_access=None,
+                 app_ip_vec_in_use=None,
                  appsips=None,
                  description=None,
                  gateway=None,
@@ -82,6 +89,7 @@ class Vlan(object):
                  iface_group_name=None,
                  interface_name=None,
                  ip_family=None,
+                 ip_pool_map=None,
                  ip_range=None,
                  ips=None,
                  mtu=None,
@@ -94,6 +102,7 @@ class Vlan(object):
         # Initialize members of the class
         self.add_to_cluster_partition = add_to_cluster_partition
         self.all_tenant_access = all_tenant_access
+        self.app_ip_vec_in_use = app_ip_vec_in_use
         self.appsips = appsips
         self.description = description
         self.gateway = gateway
@@ -103,6 +112,7 @@ class Vlan(object):
         self.iface_group_name = iface_group_name
         self.interface_name = interface_name
         self.ip_family = ip_family
+        self.ip_pool_map = ip_pool_map
         self.ip_range = ip_range
         self.ips = ips
         self.mtu = mtu
@@ -130,8 +140,10 @@ class Vlan(object):
             return None
 
         # Extract variables from the dictionary
+        print(dictionary)
         add_to_cluster_partition = dictionary.get('addToClusterPartition')
         all_tenant_access = dictionary.get('allTenantAccess')
+        app_ip_vec_in_use = dictionary.get('appIpVecInUse')
         appsips = dictionary.get('appsips')
         description = dictionary.get('description')
         gateway = dictionary.get('gateway')
@@ -141,6 +153,7 @@ class Vlan(object):
         iface_group_name = dictionary.get('ifaceGroupName')
         interface_name = dictionary.get('interfaceName')
         ip_family = dictionary.get('ipFamily')
+        ip_pool_map = dictionary.get('ipPoolMap')
         ip_range = cohesity_management_sdk.models.ip_range.IpRange.from_dictionary(dictionary.get('ipRange')) if  dictionary.get('ipRange') else None
         ips = dictionary.get('ips')
         mtu = dictionary.get('mtu')
@@ -152,6 +165,7 @@ class Vlan(object):
         # Return an object of this model
         return cls(add_to_cluster_partition,
                    all_tenant_access,
+                   app_ip_vec_in_use,
                    appsips,
                    description,
                    gateway,
@@ -161,6 +175,7 @@ class Vlan(object):
                    iface_group_name,
                    interface_name,
                    ip_family,
+                   ip_pool_map,
                    ip_range,
                    ips,
                    mtu,

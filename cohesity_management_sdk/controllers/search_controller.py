@@ -85,6 +85,10 @@ class SearchController(BaseController):
             raise
 
     def search_protection_sources(self,
+                                  office_365_protection_source_types=None,
+                                  department_list=None,
+                                  title_list=None,
+                                  country_list=None,
                                   search_string=None,
                                   protection_status=None,
                                   environments=None,
@@ -99,6 +103,16 @@ class SearchController(BaseController):
         information.
 
         Args:
+            office_365_protection_source_types (
+                Office365ProtectionSourceTypesEnum, optional): Specifies the
+                Array of Office365 source types. Specifies the type of Office
+                365 entity
+            department_list (list of string, optional): Specifies the list of
+                departments to which an Office365 user may belong.
+            title_list (list of string, optional): Specifies the list of
+                titles/desgination applicable to Office365 users.
+            country_list (list of string, optional): Specifies the list of
+                countries to which Office365 user belongs.
             search_string (string, optional): Specifies the search string to
                 query the name of the Protection Source or the name of the job
                 protecting a Protection Source.
@@ -150,6 +164,12 @@ class SearchController(BaseController):
                 environment. 'kElastifile' indicates Elastifile Protection
                 Source environment. 'kAD' indicates Active Directory Protection
                 Source environment. 'kRDSSnapshotManager' indicates AWS RDS
+                Protection Source environment. 'kCassandra' indicates Cassandra
+                Protection Source environment. 'kMongoDB' indicates MongoDB
+                Protection Source environment. 'kCouchbase' indicates Couchbase
+                Protection Source environment. 'kHdfs' indicates Hdfs
+                Protection Source environment. 'kHive' indicates Hive
+                Protection Source environment. 'kHBase' indicates HBase
                 Protection Source environment.
             last_protection_job_run_status (list of int, optional): Specifies
                 the last Protection Job run status of the object. If
@@ -199,6 +219,10 @@ class SearchController(BaseController):
             _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
+                'office365ProtectionSourceTypes': office_365_protection_source_types,
+                'departmentList': department_list,
+                'titleList': title_list,
+                'countryList': country_list,
                 'searchString': search_string,
                 'protectionStatus': protection_status,
                 'environments': environments,

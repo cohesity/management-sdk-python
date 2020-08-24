@@ -47,7 +47,13 @@ class ProtectObjectParameters(object):
             Protection Source environment. 'kElastifile' indicates Elastifile
             Protection Source environment. 'kAD' indicates Active Directory
             Protection Source environment. 'kRDSSnapshotManager' indicates AWS
-            RDS Protection Source environment.
+            RDS Protection Source environment. 'kCassandra' indicates
+            Cassandra Protection Source environment. 'kMongoDB' indicates
+            MongoDB Protection Source environment. 'kCouchbase' indicates
+            Couchbase Protection Source environment. 'kHdfs' indicates Hdfs
+            Protection Source environment. 'kHive' indicates Hive Protection
+            Source environment. 'kHBase' indicates HBase Protection Source
+            environment.
         protection_source_ids (list of long|int): Specifies the ids of the
             Protection Sources to protect.
         rpo_policy_id (string): Specifies the Rpo policy id.

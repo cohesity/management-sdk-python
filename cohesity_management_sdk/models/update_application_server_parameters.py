@@ -49,7 +49,12 @@ class UpdateApplicationServerParameters(object):
             environment. 'kElastifile' indicates Elastifile Protection Source
             environment. 'kAD' indicates Active Directory Protection Source
             environment. 'kRDSSnapshotManager' indicates AWS RDS Protection
-            Source environment.
+            Source environment. 'kCassandra' indicates Cassandra Protection
+            Source environment. 'kMongoDB' indicates MongoDB Protection Source
+            environment. 'kCouchbase' indicates Couchbase Protection Source
+            environment. 'kHdfs' indicates Hdfs Protection Source environment.
+            'kHive' indicates Hive Protection Source environment. 'kHBase'
+            indicates HBase Protection Source environment.
         has_persistent_agent (bool): Set this to true if a persistent agent is
             running on the host. If this is specified, then credentials would
             not be used to log into the host environment. This mechanism may

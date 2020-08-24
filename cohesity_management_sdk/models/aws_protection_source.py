@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 # Copyright 2020 Cohesity Inc.
 
+import cohesity_management_sdk.models.a_w_s_fleet_params
+import cohesity_management_sdk.models.fleet_network_params
 import cohesity_management_sdk.models.tag_attribute
 
 class AwsProtectionSource(object):
@@ -14,6 +16,16 @@ class AwsProtectionSource(object):
         amazon_resource_name (string): Specifies Amazon Resource Name (owner
             ID) of the IAM user, act as an unique identifier of as AWS
             entity.
+        auth_method (AuthMethodEnum): Specifies the iauth method used for the
+            request. See the Cohesity online help for the value to specify for
+            this field based on the current S3-compatible Vault (External
+            Target) type. Specifies the authentication method to be used for
+            API calls. 'kUseIAMUser' indicates a user based authentication.
+            'kUseIAMRole' indicates a role based authentication, used only for
+            AWS CE.
+        aws_fleet_params (AwsFleetParams): Specifies information related to
+            AWS fleets launched for various purposes. This will only be set
+            for kIAMUser entity.
         aws_type (AwsTypeEnum): Specifies the entity type such as 'kIAMUser'
             if the environment is kAWS. Specifies the type of an AWS source
             entity. 'kIAMUser' indicates a unique user within an AWS account.
@@ -31,6 +43,9 @@ class AwsProtectionSource(object):
             RDS parameter group. 'kRDSInstance' represents a RDS DB instance.
             'kRDSSubnet' represents a RDS subnet. 'kRDSTag' represents a tag
             attached to RDS instance.
+        cluster_network_info (FleetNetworkParams): Specifies information
+            related to cluster. This is only valid for CE clusters. This is
+            only populated for kIAMUser entity.
         db_engine_id (string): Specifies DB engine version info of the entity.
             This is populated only for RDSInstance, RDSOptionGroup and
             RDSParameterGroup entity types.
@@ -42,6 +57,10 @@ class AwsProtectionSource(object):
             indicates the Oracle Solaris operating system. 'kSapHana'
             indicates the Sap Hana database system developed by SAP SE.
             'kOther' indicates the other types of operating system.
+        iam_role_arn (string): Specifies the iam role arn Amazon service
+            account. See the Cohesity online help for the value to specify for
+            this field based on the current S3-compatible Vault (External
+            Target) type.
         ip_addresses (string): Specifies the IP address of the entity of type
             'kVirtualMachine'.
         name (string): Specifies the name of the Object set by the Cloud
@@ -112,9 +131,13 @@ class AwsProtectionSource(object):
     _names = {
         "access_key":'accessKey',
         "amazon_resource_name":'amazonResourceName',
+        "auth_method":'authMethod',
+        "aws_fleet_params":'awsFleetParams',
         "aws_type":'awsType',
+        "cluster_network_info":'clusterNetworkInfo',
         "db_engine_id":'dbEngineId',
         "host_type":'hostType',
+        "iam_role_arn":'iamRoleArn',
         "ip_addresses":'ipAddresses',
         "name":'name',
         "owner_id":'ownerId',
@@ -133,9 +156,13 @@ class AwsProtectionSource(object):
     def __init__(self,
                  access_key=None,
                  amazon_resource_name=None,
+                 auth_method=None,
+                 aws_fleet_params=None,
                  aws_type=None,
+                 cluster_network_info=None,
                  db_engine_id=None,
                  host_type=None,
+                 iam_role_arn=None,
                  ip_addresses=None,
                  name=None,
                  owner_id=None,
@@ -154,9 +181,13 @@ class AwsProtectionSource(object):
         # Initialize members of the class
         self.access_key = access_key
         self.amazon_resource_name = amazon_resource_name
+        self.auth_method = auth_method
+        self.aws_fleet_params = aws_fleet_params
         self.aws_type = aws_type
+        self.cluster_network_info = cluster_network_info
         self.db_engine_id = db_engine_id
         self.host_type = host_type
+        self.iam_role_arn = iam_role_arn
         self.ip_addresses = ip_addresses
         self.name = name
         self.owner_id = owner_id
@@ -192,9 +223,13 @@ class AwsProtectionSource(object):
         # Extract variables from the dictionary
         access_key = dictionary.get('accessKey')
         amazon_resource_name = dictionary.get('amazonResourceName')
+        auth_method = dictionary.get('authMethod')
+        aws_fleet_params = cohesity_management_sdk.models.a_w_s_fleet_params.AwsFleetParams.from_dictionary(dictionary.get('awsFleetParams')) if dictionary.get('awsFleetParams') else None
         aws_type = dictionary.get('awsType')
+        cluster_network_info = cohesity_management_sdk.models.fleet_network_params.FleetNetworkParams.from_dictionary(dictionary.get('clusterNetworkInfo')) if dictionary.get('clusterNetworkInfo') else None
         db_engine_id = dictionary.get('dbEngineId')
         host_type = dictionary.get('hostType')
+        iam_role_arn = dictionary.get('iamRoleArn')
         ip_addresses = dictionary.get('ipAddresses')
         name = dictionary.get('name')
         owner_id = dictionary.get('ownerId')
@@ -216,9 +251,13 @@ class AwsProtectionSource(object):
         # Return an object of this model
         return cls(access_key,
                    amazon_resource_name,
+                   auth_method,
+                   aws_fleet_params,
                    aws_type,
+                   cluster_network_info,
                    db_engine_id,
                    host_type,
+                   iam_role_arn,
                    ip_addresses,
                    name,
                    owner_id,

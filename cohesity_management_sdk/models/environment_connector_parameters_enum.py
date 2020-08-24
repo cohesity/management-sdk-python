@@ -81,6 +81,12 @@ class EnvironmentConnectorParametersEnum(object):
         KELASTIFILE: TODO: type description here.
         KAD: TODO: type description here.
         KRDSSNAPSHOTMANAGER: TODO: type description here.
+        KCASSANDRA: TODO: type description here.
+        KMONGODB: TODO: type description here.
+        KCOUCHBASE: TODO: type description here.
+        KHDFS: TODO: type description here.
+        KHIVE: TODO: type description here.
+        KHBASE: TODO: type description here.
 
     """
 
@@ -149,3 +155,15 @@ class EnvironmentConnectorParametersEnum(object):
     KAD = 'kAD'
 
     KRDSSNAPSHOTMANAGER = 'kRDSSnapshotManager'
+
+    KCASSANDRA = 'kCassandra'
+
+    KMONGODB = 'kMongoDB'
+
+    KCOUCHBASE = 'kCouchbase'
+
+    KHDFS = 'kHdfs'
+
+    KHIVE = 'kHive'
+
+    KHBASE = 'kHBase'

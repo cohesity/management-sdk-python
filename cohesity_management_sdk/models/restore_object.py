@@ -6,6 +6,7 @@ import cohesity_management_sdk.models.cloud_deploy_target
 import cohesity_management_sdk.models.entity_proto
 import cohesity_management_sdk.models.universal_id_proto
 import cohesity_management_sdk.models.restore_acropolis_vm_param
+import cohesity_management_sdk.models.no_sql_recover_params
 
 class RestoreObject(object):
 
@@ -33,6 +34,8 @@ class RestoreObject(object):
             the latest run is used. NOTE: This must be specified for
             RestoreFiles, RecoverDisks and GetVirtualDisks APIs.
         job_uid (UniversalIdProto): TODO: type description here.
+        nosql_recover_params (NoSqlRecoverParams): This field contains params
+            specific to the restore of a nosql entity.
         parent_source (EntityProto): Specifies the attributes and the latest
             statistics about an entity.
         point_in_time_restore_time_usecs (int): The time to which the object
@@ -67,6 +70,7 @@ class RestoreObject(object):
         "job_id":'jobId',
         "job_instance_id":'jobInstanceId',
         "job_uid":'jobUid',
+        "nosql_recover_params":'nosqlRecoverParams',
         "parent_source":'parentSource',
         "point_in_time_restore_time_usecs":'pointInTimeRestoreTimeUsecs',
         "restore_acropolis_vm_param":'restoreAcropolisVmParam',
@@ -85,6 +89,7 @@ class RestoreObject(object):
                  job_id=None,
                  job_instance_id=None,
                  job_uid=None,
+                 nosql_recover_params=None,
                  parent_source=None,
                  point_in_time_restore_time_usecs=None,
                  restore_acropolis_vm_param=None,
@@ -103,6 +108,7 @@ class RestoreObject(object):
         self.job_id = job_id
         self.job_instance_id = job_instance_id
         self.job_uid = job_uid
+        self.nosql_recover_params = nosql_recover_params
         self.parent_source = parent_source
         self.point_in_time_restore_time_usecs = point_in_time_restore_time_usecs
         self.restore_acropolis_vm_param = restore_acropolis_vm_param
@@ -138,6 +144,7 @@ class RestoreObject(object):
         job_id = dictionary.get('jobId')
         job_instance_id = dictionary.get('jobInstanceId')
         job_uid = cohesity_management_sdk.models.universal_id_proto.UniversalIdProto.from_dictionary(dictionary.get('jobUid')) if dictionary.get('jobUid') else None
+        nosql_recover_params = cohesity_management_sdk.models.no_sql_recover_params.NoSqlRecoverParams.from_dictionary(dictionary.get('nosqlRecoverParams')) if dictionary.get('nosqlRecoverParams') else None
         parent_source = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('parentSource')) if dictionary.get('parentSource') else None
         point_in_time_restore_time_usecs = dictionary.get('pointInTimeRestoreTimeUsecs')
         restore_acropolis_vm_param = cohesity_management_sdk.models.restore_acropolis_vm_param.RestoreAcropolisVMParam.from_dictionary(dictionary.get('restoreAcropolisVmParam')) if dictionary.get('restoreAcropolisVmParam') else None
@@ -155,6 +162,7 @@ class RestoreObject(object):
                    job_id,
                    job_instance_id,
                    job_uid,
+                   nosql_recover_params,
                    parent_source,
                    point_in_time_restore_time_usecs,
                    restore_acropolis_vm_param,

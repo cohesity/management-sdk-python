@@ -6,6 +6,8 @@ from cohesity_management_sdk.api_helper import APIHelper
 from cohesity_management_sdk.configuration import Configuration
 from cohesity_management_sdk.controllers.base_controller import BaseController
 from cohesity_management_sdk.http.auth.auth_manager import AuthManager
+from cohesity_management_sdk.models.api_key import ApiKey
+from cohesity_management_sdk.models.created_api_key import CreatedApiKey
 from cohesity_management_sdk.models.sources_for_sid import SourcesForSid
 from cohesity_management_sdk.models.principal import Principal
 from cohesity_management_sdk.models.user import User
@@ -683,6 +685,458 @@ class PrincipalsController(BaseController):
             return APIHelper.json_deserialize(
                 _context.response.raw_body,
                 NewS3SecretAccessKey.from_dictionary)
+
+        except Exception as e:
+            self.logger.error(e, exc_info=True)
+            raise
+
+    def get_user_api_keys(self, sid, ids=None):
+        """Does a GET request to /public/users/{sid}/apiKeys.
+
+        Fetch API keys for user.
+
+        Args:
+            sid (string): Specifies the user sid.
+            ids (list of string, optional): Specifies a list of API key ids.
+
+        Returns:
+            list of ApiKey: Response from the API. Get lock file status
+                response
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+        try:
+            self.logger.info('get_user_api_keys called.')
+
+            # Validate required parameters
+            self.logger.info(
+                'Validating required parameters for get_user_api_keys.'
+            )
+            self.validate_parameters(sid=sid)
+
+            # Prepare query URL
+            self.logger.info(
+                'Preparing query URL for get_user_api_keys.')
+            _url_path = '/public/users/{sid}/apiKeys'
+            _url_path = APIHelper.append_url_with_template_parameters(
+                _url_path, {'sid': sid})
+            _query_builder = self.config.get_base_uri()
+            _query_builder += _url_path
+            _query_parameters = {'ids': ids}
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
+            _query_url = APIHelper.clean_url(_query_builder)
+
+            # Prepare headers
+            self.logger.info(
+                'Preparing headers for get_user_api_keys.')
+            _headers = {'accept': 'application/json'}
+
+            # Prepare and execute request
+            self.logger.info(
+                'Preparing and executing request for get_user_api_keys.'
+            )
+            _request = self.http_client.get(_query_url, headers=_headers)
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='get_user_api_keys')
+
+            # Endpoint and global error handling using HTTP status codes.
+            self.logger.info(
+                'Validating response for get_user_api_keys.')
+            if _context.response.status_code == 0:
+                raise RequestErrorErrorException('Error', _context)
+            self.validate_response(_context)
+
+            # Return appropriate type
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              ApiKey.from_dictionary)
+
+        except Exception as e:
+            self.logger.error(e, exc_info=True)
+            raise
+
+    def create_user_api_key(self, sid, body):
+        """Does a POST request to /public/users/{sid}/apiKeys.
+
+         Create an API key for user.
+
+        Args:
+            sid (string): Specifies the user sid.
+            body (CreateApiKeyParams): Request to create an API key.
+
+        Returns:
+            CreatedApiKey: Response from the API. Get lock file status
+                response
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+        try:
+            self.logger.info('create_user_api_key called.')
+
+            # Validate required parameters
+            self.logger.info(
+                'Validating required parameters for create_user_api_key.')
+            self.validate_parameters(sid=sid, body=body)
+
+            # Prepare query URL
+            self.logger.info('Preparing query URL for create_user_api_key.')
+            _url_path = '/public/users/{sid}/apiKeys'
+            _url_path = APIHelper.append_url_with_template_parameters(
+                _url_path, {'sid': sid})
+            _query_builder = self.config.get_base_uri()
+            _query_builder += _url_path
+            _query_url = APIHelper.clean_url(_query_builder)
+
+            # Prepare headers
+            self.logger.info('Preparing headers for create_user_api_key.')
+            _headers = {
+                'accept': 'application/json',
+                'content-type': 'application/json; charset=utf-8'
+            }
+
+            # Prepare and execute request
+            self.logger.info(
+                'Preparing and executing request for create_user_api_key.')
+            _request = self.http_client.post(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='create_user_api_key')
+
+            # Endpoint and global error handling using HTTP status codes.
+            self.logger.info('Validating response for create_user_api_key.')
+            if _context.response.status_code == 0:
+                raise RequestErrorErrorException('Error', _context)
+            self.validate_response(_context)
+
+            # Return appropriate type
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              CreatedApiKey.from_dictionary)
+
+        except Exception as e:
+            self.logger.error(e, exc_info=True)
+            raise
+
+    def get_user_api_key_by_id(self, id, sid):
+        """Does a GET request to /public/users/{sid}/apiKeys/{id}.
+
+        Fetch an API key for user by its id.
+
+        Args:
+            id (string): Specifies the API key id.
+            sid (string): Specifies the user sid.
+
+        Returns:
+            ApiKey: Response from the API. Success
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+        try:
+            self.logger.info('get_user_api_key_by_id called.')
+
+            # Validate required parameters
+            self.logger.info(
+                'Validating required parameters for get_user_api_key_by_id.')
+            self.validate_parameters(id=id, sid=sid)
+
+            # Prepare query URL
+            self.logger.info('Preparing query URL for get_user_api_key_by_id.')
+            _url_path = '/public/users/{sid}/apiKeys/{id}'
+            _url_path = APIHelper.append_url_with_template_parameters(
+                _url_path, {'sid':sid, 'id': id})
+            _query_builder = self.config.get_base_uri()
+            _query_builder += _url_path
+            _query_url = APIHelper.clean_url(_query_builder)
+
+            # Prepare headers
+            self.logger.info('Preparing headers for get_user_api_key_by_id.')
+            _headers = {'accept': 'application/json'}
+
+            # Prepare and execute request
+            self.logger.info(
+                'Preparing and executing request for get_user_api_key_by_id.')
+            _request = self.http_client.get(_query_url, headers=_headers)
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request, name='get_user_api_key_by_id')
+
+            # Endpoint and global error handling using HTTP status codes.
+            self.logger.info('Validating response for get_user_api_key_by_id.')
+            if _context.response.status_code == 0:
+                raise RequestErrorErrorException('Error', _context)
+            self.validate_response(_context)
+
+            # Return appropriate type
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              ApiKey.from_dictionary)
+
+        except Exception as e:
+            self.logger.error(e, exc_info=True)
+            raise
+
+    def update_user_api_key(self, sid, id, body):
+        """Does a PUT request to /public/users/{sid}/apiKeys/{id}.
+
+        Update an API key.
+
+        Args:
+            sid (string): Specifies the user sid.
+            id (string): Specifies the API key id.
+            body (UpdateApiKeyParams): Request to update an API key.
+
+        Returns:
+            CreatedApiKey: Response from the API. Success
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+        try:
+            self.logger.info('update_user_api_key called.')
+
+            # Validate required parameters
+            self.logger.info(
+                'Validating required parameters for update_user_api_key.')
+            self.validate_parameters(sid=sid, id=id, body=body)
+
+            # Prepare query URL
+            self.logger.info('Preparing query URL for update_user_api_key.')
+            _url_path = '/public/users/{sid}/apiKeys/{id}'
+            _url_path = APIHelper.append_url_with_template_parameters(
+                _url_path, {'sid':sid, 'id': id})
+            _query_builder = self.config.get_base_uri()
+            _query_builder += _url_path
+            _query_url = APIHelper.clean_url(_query_builder)
+
+            # Prepare headers
+            self.logger.info('Preparing headers for update_user_api_key.')
+            _headers = {
+                'accept': 'application/json',
+                'content-type': 'application/json; charset=utf-8'
+            }
+
+            # Prepare and execute request
+            self.logger.info(
+                'Preparing and executing request for update_user_api_key.')
+            _request = self.http_client.put(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='update_user_api_key')
+
+            # Endpoint and global error handling using HTTP status codes.
+            self.logger.info('Validating response for update_user_api_key.')
+            if _context.response.status_code == 0:
+                raise RequestErrorErrorException('Error', _context)
+            self.validate_response(_context)
+
+            # Return appropriate type
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              CreatedApiKey.from_dictionary)
+
+        except Exception as e:
+            self.logger.error(e, exc_info=True)
+            raise
+
+    def delete_user_api_key(self, sid, id):
+        """Does a DELETE request to /public/users/{sid}/apiKeys/{id}.
+
+        Delete an API key for user.
+
+        Args:
+            sid (string): Specifies the user sid.
+            id (string): Specifies the API key id.
+
+        Returns:
+            void: Response from the API. No Content
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+        try:
+            self.logger.info('delete_user_api_key called.')
+
+            # Validate required parameters
+            self.logger.info('Validating required parameters for delete_user_api_key.')
+            self.validate_parameters(sid=sid, id=id)
+
+            # Prepare query URL
+            self.logger.info('Preparing query URL for delete_user_api_key.')
+            _url_path = '/public/users/{sid}/apiKeys/{id}'
+            _url_path = APIHelper.append_url_with_template_parameters(
+                _url_path, {'id': id, 'sid':sid})
+            _query_builder = self.config.get_base_uri()
+            _query_builder += _url_path
+            _query_url = APIHelper.clean_url(_query_builder)
+
+            # Prepare and execute request
+            self.logger.info(
+                'Preparing and executing request for delete_user_api_key.')
+            _request = self.http_client.delete(_query_url)
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request, name='delete_user_api_key')
+
+            # Endpoint and global error handling using HTTP status codes.
+            self.logger.info('Validating response for delete_user_api_key.')
+            if _context.response.status_code == 0:
+                raise RequestErrorErrorException('Error', _context)
+            self.validate_response(_context)
+
+        except Exception as e:
+            self.logger.error(e, exc_info=True)
+            raise
+
+    def rotate_user_api_key(self, id, sid):
+        """Does a POST request to /public/users/{sid}/apiKeys/{id}/rotate.
+
+        Fetch an API key for user by its id.
+
+        Args:
+            sid (string): Specifies the user sid.
+            id (string) Specifies the API key id.
+
+        Returns:
+            CreatedApiKey: Response from the API. Success
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+        try:
+            self.logger.info('rotate_user_api_key called.')
+
+            # Validate required parameters
+            self.logger.info(
+                'Validating required parameters for rotate_user_api_key.'
+            )
+            self.validate_parameters(sid=sid, id=id)
+
+            # Prepare query URL
+            self.logger.info(
+                'Preparing query URL for rotate_user_api_key.')
+            _url_path = '/public/users/{sid}/apiKeys/{id}/rotate'
+            _url_path = APIHelper.append_url_with_template_parameters(
+                _url_path, {'sid':sid, 'id': id})
+            _query_builder = self.config.get_base_uri()
+            _query_builder += _url_path
+            _query_url = APIHelper.clean_url(_query_builder)
+
+            # Prepare headers
+            self.logger.info(
+                'Preparing headers for rotate_user_api_key.')
+            _headers = {'accept': 'application/json'}
+
+            # Prepare and execute request
+            self.logger.info(
+                'Preparing and executing request for rotate_user_api_key.'
+            )
+            _request = self.http_client.post(_query_url, headers=_headers)
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(
+                _request, name='rotate_user_api_key')
+
+            # Endpoint and global error handling using HTTP status codes.
+            self.logger.info(
+                'Validating response for rotate_user_api_key.')
+            if _context.response.status_code == 0:
+                raise RequestErrorErrorException('Error', _context)
+            self.validate_response(_context)
+
+            # Return appropriate type
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                CreatedApiKey.from_dictionary)
+
+        except Exception as e:
+            self.logger.error(e, exc_info=True)
+            raise
+
+    def get_all_user_api_keys(self, user_sids=None):
+        """Does a GET request to /public/usersApiKeys.
+
+        Fetch API keys across all users.
+
+        Args:
+            user_sids (list of string, optional): Specifies a list of user
+                sids.
+
+        Returns:
+            ApiKey: Response from the API. Success
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+        try:
+            self.logger.info('get_all_user_api_keys called.')
+
+            # Prepare query URL
+            self.logger.info(
+                'Preparing query URL for get_all_user_api_keys.')
+            _url_path = '/public/usersApiKeys'
+            _query_builder = self.config.get_base_uri()
+            _query_builder += _url_path
+            _query_parameters = {'userSids': user_sids}
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
+            _query_url = APIHelper.clean_url(_query_builder)
+
+            # Prepare headers
+            self.logger.info('Preparing headers for get_all_user_api_keys.')
+            _headers = {'accept': 'application/json'}
+
+            # Prepare and execute request
+            self.logger.info(
+                'Preparing and executing request for get_all_user_api_keys.')
+            _request = self.http_client.get(_query_url, headers=_headers)
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='get_all_user_api_keys')
+
+            # Endpoint and global error handling using HTTP status codes.
+            self.logger.info(
+                'Validating response for get_all_user_api_keys.')
+            if _context.response.status_code == 0:
+                raise RequestErrorErrorException('Error', _context)
+            self.validate_response(_context)
+
+            # Return appropriate type
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              ApiKey.from_dictionary)
 
         except Exception as e:
             self.logger.error(e, exc_info=True)

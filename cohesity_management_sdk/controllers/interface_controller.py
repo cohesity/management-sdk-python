@@ -76,7 +76,11 @@ class InterfaceController(BaseController):
             self.logger.error(e, exc_info=True)
             raise
 
-    def list_interface(self, node_id=None, cache=None):
+    def list_interface(self,
+                       node_id=None,
+                       cache=None,
+                       bond_interface_only=None,
+                       iface_group_assigned_only=None):
         """Does a GET request to /public/interface.
 
         Show network interfaces.
@@ -84,6 +88,10 @@ class InterfaceController(BaseController):
         Args:
             node_id (int, optional): Specifies the id of the node.
             cache (bool, optional): Specifies if interface is cached info.
+            bond_interface_only (bool, optional): Specifies if only show bond
+                interface info.
+            iface_group_assigned_only (bool, optional): Specifies if only show
+                interface group assigned interface info.
 
         Returns:
             Interface: Response from the API. Success
@@ -105,7 +113,9 @@ class InterfaceController(BaseController):
             _query_builder += _url_path
             _query_parameters = {
                 'nodeId': node_id,
-                'cache': cache
+                'cache': cache,
+                'bondInterfaceOnly': bond_interface_only,
+                'ifaceGroupAssignedOnly': iface_group_assigned_only
             }
             _query_builder = APIHelper.append_url_with_query_parameters(
                 _query_builder, _query_parameters,

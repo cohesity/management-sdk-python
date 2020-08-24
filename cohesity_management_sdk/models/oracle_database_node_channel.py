@@ -31,6 +31,7 @@ class OracleDatabaseNodeChannel(object):
             up.
         max_node_count (int): Specifies the maximum number of nodes from which
             we are allowed to take backup/restore.
+        rman_backup_type (int): Specifies the type of Oracle RMAN backup.
 
     """
 
@@ -42,7 +43,8 @@ class OracleDatabaseNodeChannel(object):
         "database_uuid":'databaseUuid',
         "default_channel_count":'defaultChannelCount',
         "enable_dg_primary_backup":'enableDgPrimaryBackup',
-        "max_node_count":'maxNodeCount'
+        "max_node_count":'maxNodeCount',
+        "rman_backup_type":'rmanBackupType'
     }
 
     def __init__(self,
@@ -52,7 +54,8 @@ class OracleDatabaseNodeChannel(object):
                  database_uuid=None,
                  default_channel_count=None,
                  enable_dg_primary_backup=None,
-                 max_node_count=None):
+                 max_node_count=None,
+                 rman_backup_type=None):
         """Constructor for the OracleDatabaseNodeChannel class"""
 
         # Initialize members of the class
@@ -63,6 +66,7 @@ class OracleDatabaseNodeChannel(object):
         self.default_channel_count = default_channel_count
         self.enable_dg_primary_backup = enable_dg_primary_backup
         self.max_node_count = max_node_count
+        self.rman_backup_type = rman_backup_type
 
 
     @classmethod
@@ -94,6 +98,7 @@ class OracleDatabaseNodeChannel(object):
         default_channel_count = dictionary.get('defaultChannelCount')
         enable_dg_primary_backup = dictionary.get('enableDgPrimaryBackup')
         max_node_count = dictionary.get('maxNodeCount')
+        rman_backup_type = dictionary.get('rmanBackupType')
 
         # Return an object of this model
         return cls(archive_log_keep_days,
@@ -102,6 +107,7 @@ class OracleDatabaseNodeChannel(object):
                    database_uuid,
                    default_channel_count,
                    enable_dg_primary_backup,
-                   max_node_count)
+                   max_node_count,
+                   rman_backup_type)
 
 

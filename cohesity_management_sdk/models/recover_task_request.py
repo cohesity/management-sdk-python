@@ -13,6 +13,7 @@ import cohesity_management_sdk.models.update_view_param
 import cohesity_management_sdk.models.virtual_disk_restore_parameters
 import cohesity_management_sdk.models.vlan_parameters
 import cohesity_management_sdk.models.vmware_restore_parameters
+import cohesity_management_sdk.models.share_point_restore_parameters
 
 class RecoverTaskRequest(object):
 
@@ -81,6 +82,8 @@ class RecoverTaskRequest(object):
             needed for recovering Mailboxes in O365Outlook environment.
         restore_view_parameters (UpdateViewParam): Specifies the settings that
             define a View.
+        share_point_parameters (SharePointRestoreParameters): Specifies
+            additional parameters for 'kRecoverSites' restore objects.
         mtype (TypeRecoverTaskRequestEnum): Specifies the type of Restore Task
             such as 'kRecoverVMs' or 'kMountVolumes'. 'kRecoverVMs' specifies
             a Restore Task that recovers VMs. 'kMountVolumes' specifies a
@@ -115,6 +118,7 @@ class RecoverTaskRequest(object):
         "one_drive_parameters":'oneDriveParameters',
         "outlook_parameters":'outlookParameters',
         "restore_view_parameters":'restoreViewParameters',
+        "share_point_parameters":'sharePointParameters',
         "view_name":'viewName',
         "virtual_disk_restore_parameters":'virtualDiskRestoreParameters',
         "vlan_parameters":'vlanParameters',
@@ -136,6 +140,7 @@ class RecoverTaskRequest(object):
                  one_drive_parameters=None,
                  outlook_parameters=None,
                  restore_view_parameters=None,
+                 share_point_parameters=None,
                  view_name=None,
                  virtual_disk_restore_parameters=None,
                  vlan_parameters=None,
@@ -156,6 +161,7 @@ class RecoverTaskRequest(object):
         self.one_drive_parameters = one_drive_parameters
         self.outlook_parameters = outlook_parameters
         self.restore_view_parameters = restore_view_parameters
+        self.share_point_parameters = share_point_parameters
         self.mtype = mtype
         self.view_name = view_name
         self.virtual_disk_restore_parameters = virtual_disk_restore_parameters
@@ -199,6 +205,7 @@ class RecoverTaskRequest(object):
         one_drive_parameters = cohesity_management_sdk.models.one_drive_restore_parameters.OneDriveRestoreParameters.from_dictionary(dictionary.get('oneDriveParameters')) if dictionary.get('oneDriveParameters') else None
         outlook_parameters = cohesity_management_sdk.models.outlook_restore_parameters.OutlookRestoreParameters.from_dictionary(dictionary.get('outlookParameters')) if dictionary.get('outlookParameters') else None
         restore_view_parameters = cohesity_management_sdk.models.update_view_param.UpdateViewParam.from_dictionary(dictionary.get('restoreViewParameters')) if dictionary.get('restoreViewParameters') else None
+        share_point_parameters = cohesity_management_sdk.models.share_point_restore_parameters.SharePointRestoreParameters.from_dictionary(dictionary.get('sharePointParameters')) if dictionary.get('sharePointParameters') else None
         view_name = dictionary.get('viewName')
         virtual_disk_restore_parameters = cohesity_management_sdk.models.virtual_disk_restore_parameters.VirtualDiskRestoreParameters.from_dictionary(dictionary.get('virtualDiskRestoreParameters')) if dictionary.get('virtualDiskRestoreParameters') else None
         vlan_parameters = cohesity_management_sdk.models.vlan_parameters.VlanParameters.from_dictionary(dictionary.get('vlanParameters')) if dictionary.get('vlanParameters') else None
@@ -219,6 +226,7 @@ class RecoverTaskRequest(object):
                    one_drive_parameters,
                    outlook_parameters,
                    restore_view_parameters,
+                   share_point_parameters,
                    view_name,
                    virtual_disk_restore_parameters,
                    vlan_parameters,

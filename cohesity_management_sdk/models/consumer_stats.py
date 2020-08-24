@@ -79,6 +79,12 @@ class ConsumerStats(object):
             'kAD' indicates Active Directory Protection Source environment.
             'kRDSSnapshotManager' indicates AWS RDS Protection Source
             environment.
+            'kCassandra' indicates Cassandra Protection Source environment.
+            'kMongoDB' indicates MongoDB Protection Source environment.
+            'kCouchbase' indicates Couchbase Protection Source environment.
+            'kHdfs' indicates Hdfs Protection Source environment.
+            'kHive' indicates Hive Protection Source environment.
+            'kHBase' indicates HBase Protection Source environment.
         protection_policy_name (string): Specifies the name of the protection
             policy for 'kProtectionRuns' and 'kReplicationRuns' consumer.
         quota_hard_limit_bytes (long|int): Specifies the hard limit of logical

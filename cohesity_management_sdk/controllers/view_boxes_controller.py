@@ -25,7 +25,8 @@ class ViewBoxesController(BaseController):
                        names=None,
                        cluster_partition_ids=None,
                        fetch_stats=None,
-                       fetch_time_series_schema=None):
+                       fetch_time_series_schema=None,
+                       template_id=None):
         """Does a GET request to /public/viewBoxes.
 
         If no parameters are specified, all Domains (View Boxes) currently on
@@ -50,6 +51,10 @@ class ViewBoxesController(BaseController):
                 and performance statistics.
             fetch_time_series_schema (bool, optional): Specifies whether to
                 get time series schema info of the view box.
+            template_id (int|long, optional): Filter list of Storage Domain
+                (View Box) by the properties of the template like dedup,
+                compression. If empty, Storage Domains (View Boxes) are not
+                filtered.
 
         Returns:
             list of ViewBox: Response from the API. Success
@@ -76,7 +81,8 @@ class ViewBoxesController(BaseController):
                 'names': names,
                 'clusterPartitionIds': cluster_partition_ids,
                 'fetchStats': fetch_stats,
-                'fetchTimeSeriesSchema': fetch_time_series_schema
+                'fetchTimeSeriesSchema': fetch_time_series_schema,
+                'templateId': template_id
             }
             _query_builder = APIHelper.append_url_with_query_parameters(
                 _query_builder, _query_parameters,

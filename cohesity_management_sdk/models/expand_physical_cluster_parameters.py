@@ -11,6 +11,7 @@ class ExpandPhysicalClusterParameters(object):
     Edition Cluster.
 
     Attributes:
+        chassis_serial_to_rack_id_map (int|long): ChassisSerialToRackId Map.
         node_configs (list of PhysicalNodeConfiguration): Specifies the
             configuration details of the Nodes in the Cluster.
         vips (list of string): Specifies the virtual IPs to add to the
@@ -20,16 +21,19 @@ class ExpandPhysicalClusterParameters(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "chassis_serial_to_rack_id_map":'chassisSerialToRackIdMap',
         "node_configs":'nodeConfigs',
         "vips":'vips'
     }
 
     def __init__(self,
+                 chassis_serial_to_rack_id_map=None,
                  node_configs=None,
                  vips=None):
         """Constructor for the ExpandPhysicalClusterParameters class"""
 
         # Initialize members of the class
+        self.chassis_serial_to_rack_id_map = chassis_serial_to_rack_id_map
         self.node_configs = node_configs
         self.vips = vips
 
@@ -52,6 +56,7 @@ class ExpandPhysicalClusterParameters(object):
             return None
 
         # Extract variables from the dictionary
+        chassis_serial_to_rack_id_map = dictionary.get('chassisSerialToRackIdMap')
         node_configs = None
         if dictionary.get('nodeConfigs') != None:
             node_configs = list()
@@ -60,7 +65,8 @@ class ExpandPhysicalClusterParameters(object):
         vips = dictionary.get('vips')
 
         # Return an object of this model
-        return cls(node_configs,
+        return cls(chassis_serial_to_rack_id_map,
+                   node_configs,
                    vips)
 
 

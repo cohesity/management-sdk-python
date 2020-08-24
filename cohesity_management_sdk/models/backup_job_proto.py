@@ -80,12 +80,14 @@ class BackupJobProto(object):
             of incremental backup failure.
         global_include_exclude (PhysicalFileBackupParams_GlobalIncludeExclude):
             Determines global include and exclude filters
-            which are applied to all sources in a job.
+            which are applied to all sources in a physical job.
         indexing_policy (IndexingPolicyProto): Proto to encapsulate file level
             indexing policy for VMs in a backup job.
         is_active (bool): Whether the backup job is active or not. Details
             about what an active job is can be found here:
             https://goo.gl/1mLvS3.
+        is_continuous_snapshotting_enabled (bool): Indicates if Magneto should
+            continue taking source snapshots even if there is a pending run.
         is_deleted (bool): Tracks whether the backup job has actually been
             deleted.
         is_direct_archive_enabled (bool): This field is set to true if this is
@@ -122,6 +124,10 @@ class BackupJobProto(object):
             applicable.
         last_updated_username (string): The user who modified the job most
             recently.
+        leverage_san_transport (bool): This is set to true by the user in
+            order to backup the objects via a dedicated storage area network
+            (SAN), as opposed to transport via LAN or management network.
+            NOTE: Not all adapters support this method. Currently only VMware.
         leverage_storage_snapshots (bool): Whether to leverage the storage
             array based snapshots for this backup job. To leverage storage
             snapshots, the storage array has to be registered as a source. If
@@ -133,6 +139,10 @@ class BackupJobProto(object):
             false.
         log_backup_job_policy (JobPolicyProto): A message that specifies the
             policies to use for a job.
+        max_allowed_source_snapshots (int): Determines the maximum number of
+            source snapshots allowed for a given entity in the job. This is
+            only applicable if 'is_continuous_snapshotting_enabled' is set to
+            true.
         name (string): The name of this backup job. This must be unique across
             all jobs.
         num_snapshots_to_keep_on_primary (long|int): Specifies how many recent
@@ -201,6 +211,9 @@ class BackupJobProto(object):
             amount of time (after backup has started) in which backup is
             expected to finish for this job. An SLA violation is counted
             against this job if the amount of time taken exceeds this amount.
+        source_filters (SourceFilters): Determines include and exclude filters
+            which are applied to entities in a backup source. For SQL, this
+            will be applicable only for auto protect sources.
         sources (list of BackupJobProtoBackupSource): The list of sources that
             should be backed up. A source in this list could be a descendant
             of another source in the list (this will be used when specifying
@@ -259,6 +272,7 @@ class BackupJobProto(object):
         "global_include_exclude":'globalIncludeExclude',
         "indexing_policy":'indexingPolicy',
         "is_active":'isActive',
+        "is_continuous_snapshotting_enabled":'isContinuousSnapshottingEnabled',
         "is_deleted":'isDeleted',
         "is_direct_archive_enabled":'isDirectArchiveEnabled',
         "is_direct_archive_native_format_enabled":'isDirectArchiveNativeFormatEnabled',
@@ -272,9 +286,11 @@ class BackupJobProto(object):
         "last_pause_modification_time_usecs":'lastPauseModificationTimeUsecs',
         "last_pause_reason":'lastPauseReason',
         "last_updated_username":'lastUpdatedUsername',
+        "leverage_san_transport":'leverageSanTransport',
         "leverage_storage_snapshots":'leverageStorageSnapshots',
         "leverage_storage_snapshots_for_hyperflex":'leverageStorageSnapshotsForHyperflex',
         "log_backup_job_policy":'logBackupJobPolicy',
+        "max_allowed_source_snapshots":'maxAllowedSourceSnapshots',
         "name":'name',
         "num_snapshots_to_keep_on_primary":'numSnapshotsToKeepOnPrimary',
         "parent_source":'parentSource',
@@ -291,6 +307,7 @@ class BackupJobProto(object):
         "remote_view_name":'remoteViewName',
         "required_feature_vec":'requiredFeatureVec',
         "sla_time_mins":'slaTimeMins',
+        "source_filters":'sourceFilters',
         "sources":'sources',
         "start_time":'startTime',
         "stubbing_policy":'stubbingPolicy',
@@ -324,6 +341,7 @@ class BackupJobProto(object):
                  global_include_exclude=None,
                  indexing_policy=None,
                  is_active=None,
+                 is_continuous_snapshotting_enabled=None,
                  is_deleted=None,
                  is_direct_archive_enabled=None,
                  is_direct_archive_native_format_enabled=None,
@@ -337,9 +355,11 @@ class BackupJobProto(object):
                  last_pause_modification_time_usecs=None,
                  last_pause_reason=None,
                  last_updated_username=None,
+                 leverage_san_transport=None,
                  leverage_storage_snapshots=None,
                  leverage_storage_snapshots_for_hyperflex=None,
                  log_backup_job_policy=None,
+                 max_allowed_source_snapshots=None,
                  name=None,
                  num_snapshots_to_keep_on_primary=None,
                  parent_source=None,
@@ -356,6 +376,7 @@ class BackupJobProto(object):
                  remote_view_name=None,
                  required_feature_vec=None,
                  sla_time_mins=None,
+                 source_filters=None,
                  sources=None,
                  start_time=None,
                  stubbing_policy=None,
@@ -389,6 +410,7 @@ class BackupJobProto(object):
         self.global_include_exclude = global_include_exclude
         self.indexing_policy = indexing_policy
         self.is_active = is_active
+        self.is_continuous_snapshotting_enabled = is_continuous_snapshotting_enabled
         self.is_deleted = is_deleted
         self.is_direct_archive_enabled = is_direct_archive_enabled
         self.is_direct_archive_native_format_enabled = is_direct_archive_native_format_enabled
@@ -402,9 +424,11 @@ class BackupJobProto(object):
         self.last_pause_modification_time_usecs = last_pause_modification_time_usecs
         self.last_pause_reason = last_pause_reason
         self.last_updated_username = last_updated_username
+        self.leverage_san_transport = leverage_san_transport
         self.leverage_storage_snapshots = leverage_storage_snapshots
         self.leverage_storage_snapshots_for_hyperflex = leverage_storage_snapshots_for_hyperflex
         self.log_backup_job_policy = log_backup_job_policy
+        self.max_allowed_source_snapshots = max_allowed_source_snapshots
         self.name = name
         self.num_snapshots_to_keep_on_primary = num_snapshots_to_keep_on_primary
         self.parent_source = parent_source
@@ -421,6 +445,7 @@ class BackupJobProto(object):
         self.remote_view_name = remote_view_name
         self.required_feature_vec = required_feature_vec
         self.sla_time_mins = sla_time_mins
+        self.source_filters = source_filters
         self.sources = sources
         self.start_time = start_time
         self.stubbing_policy = stubbing_policy
@@ -487,6 +512,7 @@ class BackupJobProto(object):
         global_include_exclude = cohesity_management_sdk.models.physical_file_backup_params_global_include_exclude.PhysicalFileBackupParams_GlobalIncludeExclude.from_dictionary(dictionary.get('globalIncludeExclude')) if dictionary.get('globalIncludeExclude') else None
         indexing_policy = cohesity_management_sdk.models.indexing_policy_proto.IndexingPolicyProto.from_dictionary(dictionary.get('indexingPolicy')) if dictionary.get('indexingPolicy') else None
         is_active = dictionary.get('isActive')
+        is_continuous_snapshotting_enabled = dictionary.get('isContinuousSnapshottingEnabled')
         is_deleted = dictionary.get('isDeleted')
         is_direct_archive_enabled = dictionary.get('isDirectArchiveEnabled')
         is_direct_archive_native_format_enabled = dictionary.get('isDirectArchiveNativeFormatEnabled')
@@ -500,9 +526,11 @@ class BackupJobProto(object):
         last_pause_modification_time_usecs = dictionary.get('lastPauseModificationTimeUsecs')
         last_pause_reason = dictionary.get('lastPauseReason')
         last_updated_username = dictionary.get('lastUpdatedUsername')
+        leverage_san_transport = dictionary.get('leverageSanTransport')
         leverage_storage_snapshots = dictionary.get('leverageStorageSnapshots')
         leverage_storage_snapshots_for_hyperflex = dictionary.get('leverageStorageSnapshotsForHyperflex')
         log_backup_job_policy = cohesity_management_sdk.models.job_policy_proto.JobPolicyProto.from_dictionary(dictionary.get('logBackupJobPolicy')) if dictionary.get('logBackupJobPolicy') else None
+        max_allowed_source_snapshots = dictionary.get('maxAllowedSourceSnapshots')
         name = dictionary.get('name')
         num_snapshots_to_keep_on_primary = dictionary.get('numSnapshotsToKeepOnPrimary')
         parent_source = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('parentSource')) if dictionary.get('parentSource') else None
@@ -523,6 +551,7 @@ class BackupJobProto(object):
         remote_view_name = dictionary.get('remoteViewName')
         required_feature_vec = dictionary.get('requiredFeatureVec')
         sla_time_mins = dictionary.get('slaTimeMins')
+        source_filters = cohesity_management_sdk.models.source_filters.SourceFilters.from_dictionary(dictionary.get('sourceFilters')) if dictionary.get('sourceFilters') else None
         sources = None
         if dictionary.get('sources') != None:
             sources = list()
@@ -559,6 +588,7 @@ class BackupJobProto(object):
                    global_include_exclude,
                    indexing_policy,
                    is_active,
+                   is_continuous_snapshotting_enabled,
                    is_deleted,
                    is_direct_archive_enabled,
                    is_direct_archive_native_format_enabled,
@@ -572,9 +602,11 @@ class BackupJobProto(object):
                    last_pause_modification_time_usecs,
                    last_pause_reason,
                    last_updated_username,
+                   leverage_san_transport,
                    leverage_storage_snapshots,
                    leverage_storage_snapshots_for_hyperflex,
                    log_backup_job_policy,
+                   max_allowed_source_snapshots,
                    name,
                    num_snapshots_to_keep_on_primary,
                    parent_source,
@@ -591,6 +623,7 @@ class BackupJobProto(object):
                    remote_view_name,
                    required_feature_vec,
                    sla_time_mins,
+                   source_filters,
                    sources,
                    start_time,
                    stubbing_policy,

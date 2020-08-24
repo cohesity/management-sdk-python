@@ -56,6 +56,8 @@ class CreateViewBoxParams(object):
             there is also a mapping between LDAP provider and AD domain that
             is stored in AD provider config. It will be used if AD is not set
             on the view box.
+        nis_domain_name_vec (list of string): Specifies the NIS domain that
+            this view box is mapped to.
         name (string): Specifies the name of the Storage Domain (View Box).
         physical_quota (QuotaPolicy): Specifies an optional quota limit (in
             bytes) for the physical usage of this Storage Domain (View Box).
@@ -101,6 +103,7 @@ class CreateViewBoxParams(object):
         "default_view_quota_policy":'defaultViewQuotaPolicy',
         "direct_archive_enabled":'directArchiveEnabled',
         "ldap_provider_id":'ldapProviderId',
+        "nis_domain_name_vec":'nisDomainNameVec',
         "physical_quota":'physicalQuota',
         "s_3_buckets_allowed":'s3BucketsAllowed',
         "storage_policy":'storagePolicy',
@@ -118,6 +121,7 @@ class CreateViewBoxParams(object):
                  default_view_quota_policy=None,
                  direct_archive_enabled=None,
                  ldap_provider_id=None,
+                 nis_domain_name_vec=None,
                  physical_quota=None,
                  s_3_buckets_allowed=None,
                  storage_policy=None,
@@ -135,6 +139,7 @@ class CreateViewBoxParams(object):
         self.direct_archive_enabled = direct_archive_enabled
         self.ldap_provider_id = ldap_provider_id
         self.name = name
+        self.nis_domain_name_vec = nis_domain_name_vec
         self.physical_quota = physical_quota
         self.s_3_buckets_allowed = s_3_buckets_allowed
         self.storage_policy = storage_policy
@@ -173,6 +178,7 @@ class CreateViewBoxParams(object):
         default_view_quota_policy = cohesity_management_sdk.models.quota_policy.QuotaPolicy.from_dictionary(dictionary.get('defaultViewQuotaPolicy')) if dictionary.get('defaultViewQuotaPolicy') else None
         direct_archive_enabled = dictionary.get('directArchiveEnabled')
         ldap_provider_id = dictionary.get('ldapProviderId')
+        nis_domain_name_vec = dictionary.get('nisDomainNameVec')
         physical_quota = cohesity_management_sdk.models.quota_policy.QuotaPolicy.from_dictionary(dictionary.get('physicalQuota')) if dictionary.get('physicalQuota') else None
         s_3_buckets_allowed = dictionary.get('s3BucketsAllowed')
         storage_policy = cohesity_management_sdk.models.storage_policy.StoragePolicy.from_dictionary(dictionary.get('storagePolicy')) if dictionary.get('storagePolicy') else None
@@ -189,6 +195,7 @@ class CreateViewBoxParams(object):
                    default_view_quota_policy,
                    direct_archive_enabled,
                    ldap_provider_id,
+                   nis_domain_name_vec,
                    physical_quota,
                    s_3_buckets_allowed,
                    storage_policy,

@@ -104,7 +104,12 @@ class ProtectionSource(object):
             'kElastifile' indicates Elastifile Protection Source environment. 
             'kAD' indicates Active Directory Protection Source environment.
             'kRDSSnapshotManager' indicates AWS RDS Protection Source
-            environment.
+            environment. 'kCassandra' indicates Cassandra Protection Source
+            environment. 'kMongoDB' indicates MongoDB Protection Source
+            environment. 'kCouchbase' indicates Couchbase Protection Source
+            environment. 'kHdfs' indicates Hdfs Protection Source environment.
+            'kHive' indicates Hive Protection Source environment. 'kHBase'
+            indicates HBase Protection Source environment.
         flash_blade_protection_source (FlashBladeProtectionSource): Specifies
             details about a Pure Storage FlashBlade Protection Source when the
             environment is set to 'kFlashBlade'.

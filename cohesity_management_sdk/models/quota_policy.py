@@ -33,7 +33,7 @@ class QuotaPolicy(object):
             limit. This limit is optional and is specified in bytes. If no
             value is specified, there is no limit.
         alert_threshold_percentage (long|int): Supported only for user quota
-            policy. Specifies when the uage goes above an alert threshold
+            policy. Specifies when the usage goes above an alert threshold
             percentage which is: HardLimitBytes * AlertThresholdPercentage,
             eg: 80% of HardLimitBytes Can only be set if HardLimitBytes is
             set. Cannot be set if AlertLimitBytes is already set.

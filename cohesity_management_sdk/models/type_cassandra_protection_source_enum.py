@@ -6,7 +6,7 @@ class TypeCassandraProtectionSourceEnum(object):
     """Implementation of the 'Type_CassandraProtectionSource' enum.
 
     Specifies the type of the managed Object in Cassandra Protection Source.
-    Specifies the type of an Cassandra source entity.
+    Replication strategy options for a keyspace.
     'kCluster' indicates a Cassandra cluster distributed over several physical
     nodes.
     'kKeyspace' indicates a Keyspace enclosing one or more tables.

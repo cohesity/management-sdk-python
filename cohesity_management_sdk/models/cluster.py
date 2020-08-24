@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2020 Cohesity Inc.
 
-import cohesity_management_sdk.models.apps_config
+import cohesity_management_sdk.models.subnet
 import cohesity_management_sdk.models.cluster_audit_log_configuration
 import cohesity_management_sdk.models.eula_config
 import cohesity_management_sdk.models.filer_audit_log_configuration
@@ -19,7 +19,7 @@ class Cluster(object):
     Specifies information about the Cohesity Cluster.
 
     Attributes:
-        apps_settings (AppsConfig): TODO: type description here.
+        apps_subnet (Subnet): The subnet for Athena apps.
         assigned_racks_count (int): Specifies the number of racks in cluster
             with at least one rack assigned.
         available_metadata_space (long|int): Information about storage
@@ -144,6 +144,10 @@ class Cluster(object):
         smb_ad_disabled (bool): Specifies if Active Directory should be
             disabled for authentication of SMB shares. If 'true', Active
             Directory is disabled.
+        smb_multichannel_enabled (bool): Specifies whether SMB multichannel is
+            enabled on the cluster. When this is set to true, then any SMB3
+            multichannel enabled client can establish multiple TCP connection
+            per session to the Server.
         stats (ClusterStats): Specifies statistics about this Cohesity
             Cluster.
         stig_mode (bool): Specifies if STIG mode is enabled or not.
@@ -169,7 +173,7 @@ class Cluster(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "apps_settings":'appsSettings',
+        "apps_subnet":'appsSubnet',
         "assigned_racks_count":'assignedRacksCount',
         "available_metadata_space":'availableMetadataSpace',
         "banner_enabled":'bannerEnabled',
@@ -214,6 +218,7 @@ class Cluster(object):
         "reverse_tunnel_end_time_msecs":'reverseTunnelEndTimeMsecs',
         "schema_info_list":'schemaInfoList',
         "smb_ad_disabled":'smbAdDisabled',
+        "smb_multichannel_enabled":'smbMultichannelEnabled',
         "stats":'stats',
         "stig_mode":'stigMode',
         "supported_config":'supportedConfig',
@@ -225,7 +230,7 @@ class Cluster(object):
     }
 
     def __init__(self,
-                 apps_settings=None,
+                 apps_subnet=None,
                  assigned_racks_count=None,
                  available_metadata_space=None,
                  banner_enabled=None,
@@ -270,6 +275,7 @@ class Cluster(object):
                  reverse_tunnel_end_time_msecs=None,
                  schema_info_list=None,
                  smb_ad_disabled=None,
+                 smb_multichannel_enabled=None,
                  stats=None,
                  stig_mode=None,
                  supported_config=None,
@@ -281,7 +287,7 @@ class Cluster(object):
         """Constructor for the Cluster class"""
 
         # Initialize members of the class
-        self.apps_settings = apps_settings
+        self.apps_subnet = apps_subnet
         self.assigned_racks_count = assigned_racks_count
         self.available_metadata_space = available_metadata_space
         self.banner_enabled = banner_enabled
@@ -326,6 +332,7 @@ class Cluster(object):
         self.reverse_tunnel_end_time_msecs = reverse_tunnel_end_time_msecs
         self.schema_info_list = schema_info_list
         self.smb_ad_disabled = smb_ad_disabled
+        self.smb_multichannel_enabled = smb_multichannel_enabled
         self.stats = stats
         self.stig_mode = stig_mode
         self.supported_config = supported_config
@@ -354,7 +361,7 @@ class Cluster(object):
             return None
 
         # Extract variables from the dictionary
-        apps_settings = cohesity_management_sdk.models.apps_config.AppsConfig.from_dictionary(dictionary.get('appsSettings')) if dictionary.get('appsSettings') else None
+        apps_subnet = cohesity_management_sdk.models.subnet.Subnet.from_dictionary(dictionary.get('appsSubnet')) if dictionary.get('appsSubnet') else None
         assigned_racks_count = dictionary.get('assignedRacksCount', None)
         available_metadata_space = dictionary.get('availableMetadataSpace')
         banner_enabled = dictionary.get('bannerEnabled')
@@ -403,6 +410,7 @@ class Cluster(object):
             for structure in dictionary.get('schemaInfoList'):
                 schema_info_list.append(cohesity_management_sdk.models.schema_info.SchemaInfo.from_dictionary(structure))
         smb_ad_disabled = dictionary.get('smbAdDisabled')
+        smb_multichannel_enabled = dictionary.get('smbMultichannelEnabled')
         stats = cohesity_management_sdk.models.cluster_stats.ClusterStats.from_dictionary(dictionary.get('stats')) if dictionary.get('stats') else None
         stig_mode = dictionary.get('stigMode')
         supported_config = cohesity_management_sdk.models.supported_config.SupportedConfig.from_dictionary(dictionary.get('supportedConfig')) if dictionary.get('supportedConfig') else None
@@ -413,7 +421,7 @@ class Cluster(object):
         used_metadata_space_pct = dictionary.get('usedMetadataSpacePct')
 
         # Return an object of this model
-        return cls(apps_settings,
+        return cls(apps_subnet,
                    assigned_racks_count,
                    available_metadata_space,
                    banner_enabled,
@@ -458,6 +466,7 @@ class Cluster(object):
                    reverse_tunnel_end_time_msecs,
                    schema_info_list,
                    smb_ad_disabled,
+                   smb_multichannel_enabled,
                    stats,
                    stig_mode,
                    supported_config,

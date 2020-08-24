@@ -10,7 +10,7 @@ class Overusage(object):
 
     Attributes:
         feature_name (string):  Name of feature.
-        overused_gb (int|long): Feature overusage by the cluster.
+        overused_gib (int|long): Feature overusage by the cluster.
         overused_vm (int|long): Number of overused VM spinned.
 
     """
@@ -18,19 +18,19 @@ class Overusage(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "feature_name":'featureName',
-        "overused_gb":'overusedGB',
+        "overused_gib":'overusedGiB',
         "overused_vm":'overusedVm'
     }
 
     def __init__(self,
                  feature_name=None,
-                 overused_gb=None,
+                 overused_gib=None,
                  overused_vm=None):
         """Constructor for the Overusage class"""
 
         # Initialize members of the class
         self.feature_name = feature_name
-        self.overused_gb = overused_gb
+        self.overused_gib = overused_gib
         self.overused_vm = overused_vm
 
 
@@ -53,12 +53,12 @@ class Overusage(object):
 
         # Extract variables from the dictionary
         feature_name = dictionary.get('featureName')
-        overused_gb = dictionary.get('overusedGB')
+        overused_gib = dictionary.get('overusedGiB')
         overused_vm = dictionary.get('overusedVm')
 
         # Return an object of this model
         return cls(feature_name,
-                   overused_gb,
+                   overused_gib,
                    overused_vm)
 
 

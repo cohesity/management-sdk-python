@@ -9,7 +9,7 @@ class LicensedUsage(object):
     Structure to hold feature usage on cluster side.
 
     Attributes:
-        capacity_gb (int|long): Feature usage by the cluster.
+        capacity_gib (int|long): Feature usage by the cluster.
         expiry_time (int|long): Expiry time(epoch) of each feature.
             There could be multiple expiry time for the given SKU.
         feature_name (string): Name of feature.
@@ -20,7 +20,7 @@ class LicensedUsage(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "capacity_gb": 'capacityGB',
+        "capacity_gib": 'capacityGiB',
         "expiry_time": 'expiryTime',
         "feature_name": 'featureName',
         "license_type": 'licenseType',
@@ -28,7 +28,7 @@ class LicensedUsage(object):
     }
 
     def __init__(self,
-                 capacity_gb=None,
+                 capacity_gib=None,
                  expiry_time=None,
                  feature_name=None,
                  license_type=None,
@@ -36,7 +36,7 @@ class LicensedUsage(object):
         """Constructor for the LicensedUsage class"""
 
         # Initialize members of the class
-        self.capacity_gb = capacity_gb
+        self.capacity_gib = capacity_gib
         self.expiry_time = expiry_time
         self.feature_name = feature_name
         self.license_type = license_type
@@ -60,14 +60,14 @@ class LicensedUsage(object):
             return None
 
         # Extract variables from the dictionary
-        capacity_gb = dictionary.get('capacityGB')
+        capacity_gib = dictionary.get('capacityGiB')
         expiry_time = dictionary.get('expiryTime')
         feature_name = dictionary.get('featureName')
         license_type = dictionary.get('licenseType')
         num_vm = dictionary.get('numVm')
 
         # Return an object of this model
-        return cls(capacity_gb,
+        return cls(capacity_gib,
                    expiry_time,
                    feature_name,
                    license_type,

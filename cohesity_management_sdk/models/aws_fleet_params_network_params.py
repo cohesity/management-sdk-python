@@ -9,13 +9,15 @@ class AWSFleetParams_NetworkParams(object):
     Network params for the fleet.
 
     Attributes:
-        subnet (string): Subnet for the fleet.
-        vpc (string): VPC for the fleet.
+        region (string): Region for the VM.
+        subnet (string): Subnet for the VM.
+        vpc (string): VPC for the VM.
 
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "region": 'region',
         "subnet": 'subnet',
         "vpc": 'vpc'
     }
@@ -26,6 +28,7 @@ class AWSFleetParams_NetworkParams(object):
         """Constructor for the AWSFleetParams_NetworkParams class"""
 
         # Initialize members of the class
+        self.region = region
         self.subnet = subnet
         self.vpc = vpc
 
@@ -48,11 +51,13 @@ class AWSFleetParams_NetworkParams(object):
             return None
 
         # Extract variables from the dictionary
+        region = dictionary.get('region')
         subnet = dictionary.get('subnet', None)
         vpc = dictionary.get('vpc', None)
 
         # Return an object of this model
-        return cls(subnet,
+        return cls(region,
+                   subnet,
                    vpc)
 
 

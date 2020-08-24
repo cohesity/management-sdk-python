@@ -47,6 +47,13 @@ class TypeProtectionJobInfoEnum(object):
     'kAD' indicates Active Directory Protection Source environment.
     'kRDSSnapshotManager' indicates AWS RDS Protection Source
     environment.
+    'kCassandra' indicates Cassandra Protection Source environment.
+    'kMongoDB' indicates MongoDB Protection Source environment.
+    'kCouchbase' indicates Couchbase Protection Source environment.
+    'kHdfs' indicates Hdfs Protection Source environment.
+    'kHive' indicates Hive Protection Source environment.
+    'kHBase' indicates HBase Protection Source environment.
+
 
     Attributes:
         KVMWARE: TODO: type description here.
@@ -82,6 +89,12 @@ class TypeProtectionJobInfoEnum(object):
         KELASTIFILE: TODO: type description here.
         KAD: TODO: type description here.
         KRDSSNAPSHOTMANAGER: TODO: type description here.
+        KCASSANDRA: TODO: type description here.
+        KMONGODB: TODO: type description here.
+        KCOUCHBASE: TODO: type description here.
+        KHDFS: TODO: type description here.
+        KHIVE: TODO: type description here.
+        KHBASE: TODO: type description here.
 
     """
 
@@ -150,4 +163,16 @@ class TypeProtectionJobInfoEnum(object):
     KAD = 'kAD'
 
     KRDSSNAPSHOTMANAGER = 'kRDSSnapshotManager'
+
+    KCASSANDRA = 'kCassandra'
+
+    KMONGODB = 'kMongoDB'
+
+    KCOUCHBASE = 'kCouchbase'
+
+    KHDFS = 'kHdfs'
+
+    KHIVE = 'kHive'
+
+    KHBASE = 'kHBase'
 

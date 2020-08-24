@@ -10,21 +10,26 @@ class HdfsBackupJobParams(object):
     job level.
 
     Attributes:
-    hdfs_pattern (list of string): Any path/Glob pattern from HDFS that is to
-        protected.
+        hdfs_exclude_pattern (list of string): Any path/Glob pattern from HDFS
+            that is to excluded.
+        hdfs_protect_pattern (list of string): Any path/Glob pattern from HDFS
+            that is to protected.
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "hdfs_pattern":'hdfsPattern'
+        "hdfs_exclude_pattern":'hdfsExcludePattern',
+        "hdfs_protect_pattern":'hdfsProtectPattern'
     }
 
     def __init__(self,
-                 hdfs_pattern=None):
+                 hdfs_exclude_pattern=None,
+                 hdfs_protect_pattern=None):
         """Constructor for the HdfsBackupJobParams class"""
 
         # Initialize members of the class
-        self.hdfs_pattern = hdfs_pattern
+        self.hdfs_exclude_pattern = hdfs_exclude_pattern
+        self.hdfs_protect_pattern = hdfs_protect_pattern
 
 
     @classmethod
@@ -45,9 +50,11 @@ class HdfsBackupJobParams(object):
             return None
 
         # Extract variables from the dictionary
-        hdfs_pattern = dictionary.get('hdfsPattern')
+        hdfs_exclude_pattern = dictionary.get('hdfsExcludePattern')
+        hdfs_protect_pattern = dictionary.get('hdfsProtectPattern')
 
         # Return an object of this model
-        return cls(hdfs_pattern)
+        return cls(hdfs_exclude_pattern,
+                   hdfs_protect_pattern)
 
 

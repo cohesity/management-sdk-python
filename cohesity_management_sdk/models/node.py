@@ -23,11 +23,14 @@ class Node(object):
             cluster partition to which the Node belongs.
         cluster_partition_name (string): ClusterPartitionName is the name of
             the cluster to which the Node belongs.
+        cohesity_node_serial (string): Cohesity Node Serial Number of the
+            Node.
         disk_count (long|int): DiskCount is the number of disks in a node.
         disk_count_by_tier (list of CountByTier): DiskCountByTier describes
             the disk number of each storage tier.
         id (long|int): Id is the Id of the Node.
         ip (string): Ip is the IP address of the Node.
+        is_app_node (bool): Whether node is app node.
         is_marked_for_removal (bool): IsMarkedForRemoval specifies whether the
             node has been marked for removal.
         max_physical_capacity_bytes (long|int): MaxPhysicalCapacityBytes
@@ -80,10 +83,12 @@ class Node(object):
         "chassis_info":'chassisInfo',
         "cluster_partition_id":'clusterPartitionId',
         "cluster_partition_name":'clusterPartitionName',
+        "cohesity_node_serial":'cohesityNodeSerial',
         "disk_count":'diskCount',
         "disk_count_by_tier":'diskCountByTier',
         "id":'id',
         "ip":'ip',
+        "is_app_node":'isAppNode',
         "is_marked_for_removal":'isMarkedForRemoval',
         "max_physical_capacity_bytes":'maxPhysicalCapacityBytes',
         "node_hardware_info":'nodeHardwareInfo',
@@ -103,10 +108,12 @@ class Node(object):
                  chassis_info=None,
                  cluster_partition_id=None,
                  cluster_partition_name=None,
+                 cohesity_node_serial=None,
                  disk_count=None,
                  disk_count_by_tier=None,
                  id=None,
                  ip=None,
+                 is_app_node=None,
                  is_marked_for_removal=None,
                  max_physical_capacity_bytes=None,
                  node_hardware_info=None,
@@ -126,10 +133,12 @@ class Node(object):
         self.chassis_info = chassis_info
         self.cluster_partition_id = cluster_partition_id
         self.cluster_partition_name = cluster_partition_name
+        self.cohesity_node_serial = cohesity_node_serial
         self.disk_count = disk_count
         self.disk_count_by_tier = disk_count_by_tier
         self.id = id
         self.ip = ip
+        self.is_app_node = is_app_node
         self.is_marked_for_removal = is_marked_for_removal
         self.max_physical_capacity_bytes = max_physical_capacity_bytes
         self.node_hardware_info = node_hardware_info
@@ -170,6 +179,7 @@ class Node(object):
         chassis_info = cohesity_management_sdk.models.chassis_info.ChassisInfo.from_dictionary(dictionary.get('chassisInfo')) if dictionary.get('chassisInfo') else None
         cluster_partition_id = dictionary.get('clusterPartitionId')
         cluster_partition_name = dictionary.get('clusterPartitionName')
+        cohesity_node_serial = dictionary.get('cohesityNodeSerial')
         disk_count = dictionary.get('diskCount')
         disk_count_by_tier = None
         if dictionary.get('diskCountByTier') != None:
@@ -178,6 +188,7 @@ class Node(object):
                 disk_count_by_tier.append(cohesity_management_sdk.models.count_by_tier.CountByTier.from_dictionary(structure))
         id = dictionary.get('id')
         ip = dictionary.get('ip')
+        is_app_node = dictionary.get('isAppNode')
         is_marked_for_removal = dictionary.get('isMarkedForRemoval')
         max_physical_capacity_bytes = dictionary.get('maxPhysicalCapacityBytes')
         node_hardware_info = cohesity_management_sdk.models.node_hardware_info.NodeHardwareInfo.from_dictionary(dictionary.get('nodeHardwareInfo')) if dictionary.get('nodeHardwareInfo') else None
@@ -200,10 +211,12 @@ class Node(object):
                    chassis_info,
                    cluster_partition_id,
                    cluster_partition_name,
+                   cohesity_node_serial,
                    disk_count,
                    disk_count_by_tier,
                    id,
                    ip,
+                   is_app_node,
                    is_marked_for_removal,
                    max_physical_capacity_bytes,
                    node_hardware_info,

@@ -16,6 +16,7 @@ from cohesity_management_sdk.models.file_fstat_result import FileFstatResult
 from cohesity_management_sdk.models.file_snapshot_information import FileSnapshotInformation
 from cohesity_management_sdk.models.object_search_results import ObjectSearchResults
 from cohesity_management_sdk.models.restore_points_for_time_range import RestorePointsForTimeRange
+from cohesity_management_sdk.models.list_storage_profiles_response_body import ListStorageProfilesResponseBody
 from cohesity_management_sdk.models.virtual_disk_information import VirtualDiskInformation
 from cohesity_management_sdk.models.vm_directory_list_result import VmDirectoryListResult
 from cohesity_management_sdk.models.vm_volumes_information import VmVolumesInformation
@@ -1504,6 +1505,7 @@ class RestoreTasksController(BaseController):
                        registered_source_ids=None,
                        view_box_ids=None,
                        environments=None,
+                       office365_source_types=None,
                        start_time_usecs=None,
                        end_time_usecs=None,
                        start_index=None,
@@ -1544,6 +1546,9 @@ class RestoreTasksController(BaseController):
                 Filter by environment types such as 'kVMware', 'kView', etc.
                 Only items from the specified environment types are returned.
                 NOTE: 'kPuppeteer' refers to Cohesity's Remote Adapter.
+            office365_source_types (Office365SourceTypesEnum, optional): Filter
+                by Office365 types such as 'kUser', 'kSite', etc.
+                Only items from the specified source types are returned.
             start_time_usecs (long|int, optional): Filter by backup completion
                 time by specifying a backup completion start and end times.
                 Specified as a Unix epoch Timestamp (in microseconds). Only
@@ -1607,6 +1612,7 @@ class RestoreTasksController(BaseController):
                 'registeredSourceIds': registered_source_ids,
                 'viewBoxIds': view_box_ids,
                 'environments': environments,
+                'office365SourceTypes': office365_source_types,
                 'startTimeUsecs': start_time_usecs,
                 'endTimeUsecs': end_time_usecs,
                 'startIndex': start_index,
@@ -1773,6 +1779,95 @@ class RestoreTasksController(BaseController):
             # Return appropriate type
             return APIHelper.json_deserialize(
                 _context.response.raw_body, FileSearchResults.from_dictionary)
+
+        except Exception as e:
+            self.logger.error(e, exc_info=True)
+            raise
+
+    def get_sharepoint_documents(self,
+                                tenant_id=None,
+                                all_under_hierarchy=None,
+                                document_name=None,
+                                domain_ids=None,
+                                site_ids=None,
+                                protection_job_ids=None):
+        """Does a GET request to /public/restore/office365/sharepoint/documents.
+
+        Search for Sharepoint files and folder to recover that match the
+        specified
+        search and filter criterias on the Cohesity cluster.
+
+        Args:
+            tenant_id (string, optional): TenantId specifies the tenant whose
+                action resulted in the audit log.
+            all_under_hierarchy (bool, optional): AllUnderHierarchy specifies
+                if objects of all the tenants under the hierarchy of the
+                logged in user's organization should be returned.
+            document_name (string, optional): Specifies the document
+                (file/folder) name.
+            domain_ids (list of int|long, optional): Specifies the domain Ids
+                in which Sharepoint Site's are registered.
+            site_ids (list of int|long, optional): Specifies the Office365
+                Sharepoint Site Id.
+            protection_job_ids (list of int|long, optional): Specifies the
+                protection job Ids which have backed up sites containing the
+                documents.
+
+        Returns:
+            FileSearchResults: Response from the API. Success
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+        try:
+            self.logger.info('get_sharepoint_documents called.')
+
+            # Prepare query URL
+            self.logger.info(
+                'Preparing query URL for get_sharepoint_documents.')
+            _url_path = '/public/restore/office365/sharepoint/documents'
+            _query_builder = self.config.get_base_uri()
+            _query_builder += _url_path
+            _query_parameters = {
+                'tenantId': tenant_id,
+                'allUnderHierarchy': all_under_hierarchy,
+                'documentName': document_name,
+                'domainIds': domain_ids,
+                'siteIds': site_ids,
+                'protectionJobIds': protection_job_ids
+            }
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
+            _query_url = APIHelper.clean_url(_query_builder)
+
+            # Prepare headers
+            self.logger.info('Preparing headers for get_sharepoint_documents.')
+            _headers = {'accept': 'application/json'}
+
+            # Prepare and execute request
+            self.logger.info(
+                'Preparing and executing request for get_sharepoint_documents.')
+            _request = self.http_client.get(_query_url, headers=_headers)
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='get_sharepoint_documents')
+
+            # Endpoint and global error handling using HTTP status codes.
+            self.logger.info(
+                'Validating response for get_sharepoint_documents.')
+            if _context.response.status_code == 0:
+                raise RequestErrorErrorException('Error', _context)
+            self.validate_response(_context)
+
+            # Return appropriate type
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                FileSearchResults.from_dictionary)
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
@@ -2087,6 +2182,12 @@ Success
                 indicates Elastifile Protection Source environment.
                 'kAD' indicates Active Directory Protection Source environment.
                 'kRDSSnapshotManager' indicates AWS RDS Protection Source
+                environment. 'kCassandra' indicates Cassandra Protection Source
+                environment. 'kMongoDB' indicates MongoDB Protection Source
+                environment. 'kCouchbase' indicates Couchbase Protection Source
+                environment. 'kHdfs' indicates Hdfs Protection Source
+                environment. 'kHive' indicates Hive Protection Source
+                environment. 'kHBase' indicates HBase Protection Source
                 environment.
 
         Returns:
@@ -2264,9 +2365,16 @@ Success
             self.logger.error(e, exc_info=True)
             raise
 
-    def get_virtual_disk_information(self, cluster_id, cluster_incarnation_id,
-                                     job_id, job_run_id, start_time_usecs,
-                                     source_id):
+    def get_virtual_disk_information(self,
+                                     cluster_id,
+                                     cluster_incarnation_id,
+                                     job_id,
+                                     job_run_id,
+                                     start_time_usecs,
+                                     source_id,
+                                     vault_id=None,
+                                     vault_name=None,
+                                     vault_type=None):
         """Does a GET request to /public/restore/virtualDiskInformation.
 
         Fetches information of virtual disk.
@@ -2284,6 +2392,12 @@ Success
                 run as a Unix epoch Timestamp in microseconds.
             source_id (long|int): Specifies the Id of the Protection Source
                 object.
+            vault_id (int|long): Specifies the Id of the vault where snapshot
+                was taken.
+            vault_name (string): Specifies the name of the vault where snapshot
+                was taken.
+            vault_type (VaultTypeEnum): Specifes the type of the vault where
+                snapshot was taken.
 
         Returns:
             list of VirtualDiskInformation: Response from the API. Success
@@ -2322,7 +2436,10 @@ Success
                 'jobId': job_id,
                 'jobRunId': job_run_id,
                 'startTimeUsecs': start_time_usecs,
-                'sourceId': source_id
+                'sourceId': source_id,
+                'vaultId': vault_id,
+                'vaultName': vault_name,
+                'vaultType': vault_type
             }
             _query_builder = APIHelper.append_url_with_query_parameters(
                 _query_builder, _query_parameters,
@@ -2636,6 +2753,69 @@ Success
             return APIHelper.json_deserialize(
                 _context.response.raw_body,
                 VmVolumesInformation.from_dictionary)
+
+        except Exception as e:
+            self.logger.error(e, exc_info=True)
+            raise
+
+    def list_storage_profiles(self, id):
+        """Does a GET request to /public/virtualDatacenters/{id}/storageProfiles.
+
+        Fetches information of virtual disk.
+
+        Args:
+            id (int|long): Specifies a unique id for the VDC.
+
+        Returns:
+            ListStorageProfilesResponseBody: Response from the API. Success
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+        try:
+            self.logger.info('list_storage_profiles called.')
+
+            # Validate required parameters
+            self.logger.info(
+                'Validating required parameters for list_storage_profiles.')
+            self.validate_parameters(id=id)
+
+            # Prepare query URL
+            self.logger.info(
+                'Preparing query URL for list_storage_profiles.')
+            _url_path = '/public/virtualDatacenters/{id}/storageProfiles'
+            _url_path = APIHelper.append_url_with_template_parameters(
+                _url_path, {'id': id})
+            _query_builder = self.config.get_base_uri()
+            _query_builder += _url_path
+            _query_url = APIHelper.clean_url(_query_builder)
+
+            # Prepare headers
+            self.logger.info('Preparing headers for list_storage_profiles.')
+            _headers = {'accept': 'application/json'}
+
+            # Prepare and execute request
+            self.logger.info(
+                'Preparing and executing request for list_storage_profiles.')
+            _request = self.http_client.get(_query_url, headers=_headers)
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='list_storage_profiles')
+
+            # Endpoint and global error handling using HTTP status codes.
+            self.logger.info(
+                'Validating response for list_storage_profiles.')
+            if _context.response.status_code == 0:
+                raise RequestErrorErrorException('Error', _context)
+            self.validate_response(_context)
+
+            # Return appropriate type
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              ListStorageProfilesResponseBody.from_dictionary)
 
         except Exception as e:
             self.logger.error(e, exc_info=True)

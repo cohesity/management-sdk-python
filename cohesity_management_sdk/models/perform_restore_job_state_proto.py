@@ -4,11 +4,16 @@
 import cohesity_management_sdk.models.deploy_v_ms_to_cloud_task_state_proto
 import cohesity_management_sdk.models.error_proto
 import cohesity_management_sdk.models.connector_params
+import cohesity_management_sdk.models.no_sql_connect_params
+import cohesity_management_sdk.models.no_sql_recover_job_params
 import cohesity_management_sdk.models.power_state_config_proto
 import cohesity_management_sdk.models.rename_object_param_proto
 import cohesity_management_sdk.models.restore_acropolis_v_ms_params
 import cohesity_management_sdk.models.restore_kubernetes_namespaces_params
 import cohesity_management_sdk.models.restore_kvmv_ms_params
+import cohesity_management_sdk.models.restore_object
+import cohesity_management_sdk.models.restored_object_vcd_config_proto
+import cohesity_management_sdk.models.restore_site_params
 import cohesity_management_sdk.models.entity_proto
 import cohesity_management_sdk.models.perform_restore_job_state_proto_restore_task
 import cohesity_management_sdk.models.restore_vmware_vm_params
@@ -41,9 +46,21 @@ class PerformRestoreJobStateProto(object):
             contains the end time for the job.
         error (ErrorProto): TODO: type description here.
         name (string): The name of the restore job.
+        nosql_connect_params (NoSqlConnectParams): Parameters to connect to
+            destination nosql parent entity.
+        nosql_recover_job_params (NoSqlRecoverJobParams): Additional
+            parameters for the recovery job to send to imanis server.
+        objects (list of RestoreObject): Information on the exact set of
+            objects being restored (along with snapshots they are being
+            recovered from). Even if the user wanted to restore an entire job
+            form the latest snapshot, this will have individual objects and
+            the exact snapshot they are bein restored from. If specified, this
+            can only have leaf-level entities.
         parent_source_connection_params (ConnectorParams): Message that
             encapsulates the various params required to establish a connection
             with a particular environment.
+        physical_flr_parallel_restore (bool): If enabled, magneto physical
+            file restore will be enabled via job framework
         power_state_config (PowerStateConfigProto): TODO: type description
             here.
         preserve_tags (bool): Whether to preserve tags for the clone op.
@@ -54,6 +71,10 @@ class PerformRestoreJobStateProto(object):
             specify the prefix/suffix added to rename an object. At least one
             of prefix or suffix must be specified. Please note that both
             prefix and suffix can be specified.
+        rename_restored_vapp_param (RenameObjectParamProto): An optional
+            parameter to specify how restored vApps(kVirtualApp) are renamed.
+            Please refer to comments for the field
+            CreateRestoreTaskARg.rename_restored_vapp_param for more details.
         restore_acropolis_vms_params (RestoreAcropolisVMsParams): TODO: type
             description here.
         restore_job_id (long|int): A globally unique id for this restore job.
@@ -63,6 +84,8 @@ class PerformRestoreJobStateProto(object):
             here.
         restore_parent_source (EntityProto): Specifies the attributes and the
             latest statistics about an entity.
+        restore_site_params (RestoreSiteParams): This field defines o365 site
+            specific params for restore job of type kRecoverSites.
         restore_task_state_proto_tmpl (PerformRestoreTaskStateProto): This
             will be optionally populated for certain type of restores (FLR for
             now) and can be used as a template proto while creating the actual
@@ -86,6 +109,8 @@ class PerformRestoreJobStateProto(object):
             is permissioned for are returned. If both sid_vec & tenant_id are
             specified then an intersection of respective results should be
             returned.
+        vcd_config (RestoredObjectVCDConfigProto): The params to use while
+            recovering a vcd entity.
         view_box_id (long|int): The view box id to which the restore job
             belongs to.
         warnings (List of ErrorProto): Populate warnings on the job if any.
@@ -103,16 +128,22 @@ class PerformRestoreJobStateProto(object):
         "end_time_usecs":'endTimeUsecs',
         "error":'error',
         "name":'name',
+        "nosql_connect_params":'nosqlConnectParams',
+        "nosql_recover_job_params":'nosqlRecoverJobParams',
+        "objects":'objects',
         "parent_source_connection_params":'parentSourceConnectionParams',
+        "physical_flr_parallel_restore":'physicalFlrParallelRestore',
         "power_state_config":'powerStateConfig',
         "preserve_tags":'preserveTags',
         "progress_monitor_task_path":'progressMonitorTaskPath',
         "rename_restored_object_param":'renameRestoredObjectParam',
+        "rename_restored_vapp_param":'renameRestoredVappParam',
         "restore_acropolis_vms_params":'restoreAcropolisVmsParams',
         "restore_job_id":'restoreJobId',
         "restore_kubernetes_namespaces_params":'restoreKubernetesNamespacesParams',
         "restore_kvm_vms_params":'restoreKvmVmsParams',
         "restore_parent_source":'restoreParentSource',
+        "restore_site_params":'restoreSiteParams',
         "restore_task_state_proto_tmpl":'restoreTaskStateProtoTmpl',
         "restore_task_vec":'restoreTaskVec',
         "restore_vmware_vm_params":'restoreVmwareVmParams',
@@ -123,6 +154,7 @@ class PerformRestoreJobStateProto(object):
         "mtype":'type',
         "user":'user',
         "user_info":'userInfo',
+        "vcd_config":'vcdConfig',
         "view_box_id":'viewBoxId',
         "warnings":'warnings'
     }
@@ -135,16 +167,22 @@ class PerformRestoreJobStateProto(object):
                  end_time_usecs=None,
                  error=None,
                  name=None,
+                 nosql_connect_params=None,
+                 nosql_recover_job_params=None,
+                 objects=None,
                  parent_source_connection_params=None,
+                 physical_flr_parallel_restore=None,
                  power_state_config=None,
                  preserve_tags=None,
                  progress_monitor_task_path=None,
                  rename_restored_object_param=None,
+                 rename_restored_vapp_param=None,
                  restore_acropolis_vms_params=None,
                  restore_job_id=None,
                  restore_kubernetes_namespaces_params=None,
                  restore_kvm_vms_params=None,
                  restore_parent_source=None,
+                 restore_site_params=None,
                  restore_task_state_proto_tmpl=None,
                  restore_task_vec=None,
                  restore_vmware_vm_params=None,
@@ -155,6 +193,7 @@ class PerformRestoreJobStateProto(object):
                  mtype=None,
                  user=None,
                  user_info=None,
+                 vcd_config=None,
                  view_box_id=None,
                  warnings=None):
         """Constructor for the PerformRestoreJobStateProto class"""
@@ -167,16 +206,22 @@ class PerformRestoreJobStateProto(object):
         self.end_time_usecs = end_time_usecs
         self.error = error
         self.name = name
+        self.nosql_connect_params = nosql_connect_params
+        self.nosql_recover_job_params = nosql_recover_job_params
+        self.objects = objects
         self.parent_source_connection_params = parent_source_connection_params
+        self.physical_flr_parallel_restore = physical_flr_parallel_restore
         self.power_state_config = power_state_config
         self.preserve_tags = preserve_tags
         self.progress_monitor_task_path = progress_monitor_task_path
         self.rename_restored_object_param = rename_restored_object_param
+        self.rename_restored_vapp_param = rename_restored_vapp_param
         self.restore_acropolis_vms_params = restore_acropolis_vms_params
         self.restore_job_id = restore_job_id
         self.restore_kubernetes_namespaces_params = restore_kubernetes_namespaces_params
         self.restore_kvm_vms_params = restore_kvm_vms_params
         self.restore_parent_source = restore_parent_source
+        self.restore_site_params = restore_site_params
         self.restore_task_state_proto_tmpl = restore_task_state_proto_tmpl
         self.restore_task_vec = restore_task_vec
         self.restore_vmware_vm_params = restore_vmware_vm_params
@@ -187,6 +232,7 @@ class PerformRestoreJobStateProto(object):
         self.mtype = mtype
         self.user = user
         self.user_info = user_info
+        self.vcd_config = vcd_config
         self.view_box_id = view_box_id
         self.warnings = warnings
 
@@ -216,16 +262,26 @@ class PerformRestoreJobStateProto(object):
         end_time_usecs = dictionary.get('endTimeUsecs')
         error = cohesity_management_sdk.models.error_proto.ErrorProto.from_dictionary(dictionary.get('error')) if dictionary.get('error') else None
         name = dictionary.get('name')
+        nosql_connect_params = cohesity_management_sdk.models.no_sql_connect_params.NoSqlConnectParams.from_dictionary(dictionary.get('nosqlConnectParams')) if dictionary.get('nosqlConnectParams') else None
+        nosql_recover_job_params = cohesity_management_sdk.models.no_sql_recover_job_params.NoSqlRecoverJobParams.from_dictionary(dictionary.get('nosqlRecoverJobParams')) if dictionary.get('nosqlRecoverJobParams') else None
+        objects = None
+        if dictionary.get('objects') != None:
+            objects = list()
+            for structure in dictionary.get('objects'):
+                objects.append(cohesity_management_sdk.models.restore_object.RestoreObject.from_dictionary(structure))
         parent_source_connection_params = cohesity_management_sdk.models.connector_params.ConnectorParams.from_dictionary(dictionary.get('parentSourceConnectionParams')) if dictionary.get('parentSourceConnectionParams') else None
+        physical_flr_parallel_restore = dictionary.get('physicalFlrParallelRestore')
         power_state_config = cohesity_management_sdk.models.power_state_config_proto.PowerStateConfigProto.from_dictionary(dictionary.get('powerStateConfig')) if dictionary.get('powerStateConfig') else None
         preserve_tags = dictionary.get('preserveTags', None)
         progress_monitor_task_path = dictionary.get('progressMonitorTaskPath')
         rename_restored_object_param = cohesity_management_sdk.models.rename_object_param_proto.RenameObjectParamProto.from_dictionary(dictionary.get('renameRestoredObjectParam')) if dictionary.get('renameRestoredObjectParam') else None
+        rename_restored_vapp_param = cohesity_management_sdk.models.rename_object_param_proto.RenameObjectParamProto.from_dictionary(dictionary.get('renameRestoredVappParam')) if dictionary.get('renameRestoredVappParam') else None
         restore_acropolis_vms_params = cohesity_management_sdk.models.restore_acropolis_v_ms_params.RestoreAcropolisVMsParams.from_dictionary(dictionary.get('restoreAcropolisVmsParams')) if dictionary.get('restoreAcropolisVmsParams') else None
         restore_job_id = dictionary.get('restoreJobId')
         restore_kubernetes_namespaces_params = cohesity_management_sdk.models.restore_kubernetes_namespaces_params.RestoreKubernetesNamespacesParams.from_dictionary(dictionary.get('restoreKubernetesNamespacesParams')) if dictionary.get('restoreKubernetesNamespacesParams') else None
         restore_kvm_vms_params = cohesity_management_sdk.models.restore_kvmv_ms_params.RestoreKVMVMsParams.from_dictionary(dictionary.get('restoreKvmVmsParams')) if dictionary.get('restoreKvmVmsParams') else None
         restore_parent_source = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('restoreParentSource')) if dictionary.get('restoreParentSource') else None
+        restore_site_params = cohesity_management_sdk.models.restore_site_params.RestoreSiteParams.from_dictionary(dictionary.get('restoreSiteParams')) if dictionary.get('restoreSiteParams') else None
         restore_task_state_proto_tmpl = cohesity_management_sdk.models.perform_restore_task_state_proto.PerformRestoreTaskStateProto.from_dictionary(dictionary.get('restoreTaskStateProtoTmpl')) if dictionary.get('restoreTaskStateProtoTmpl') else None
         restore_task_vec = None
         if dictionary.get('restoreTaskVec') != None:
@@ -240,6 +296,7 @@ class PerformRestoreJobStateProto(object):
         mtype = dictionary.get('type')
         user = dictionary.get('user')
         user_info = cohesity_management_sdk.models.user_information.UserInformation.from_dictionary(dictionary.get('userInfo')) if dictionary.get('userInfo') else None
+        vcd_config = cohesity_management_sdk.models.restored_object_vcd_config_proto.RestoredObjectVCDConfigProto.from_dictionary(dictionary.get('vcdConfig')) if dictionary.get('vcdConfig') else None
         view_box_id = dictionary.get('viewBoxId')
         warnings = dictionary.get('warnings')
 
@@ -251,16 +308,22 @@ class PerformRestoreJobStateProto(object):
                    end_time_usecs,
                    error,
                    name,
+                   nosql_connect_params,
+                   nosql_recover_job_params,
+                   objects,
                    parent_source_connection_params,
+                   physical_flr_parallel_restore,
                    power_state_config,
                    preserve_tags,
                    progress_monitor_task_path,
                    rename_restored_object_param,
+                   rename_restored_vapp_param,
                    restore_acropolis_vms_params,
                    restore_job_id,
                    restore_kubernetes_namespaces_params,
                    restore_kvm_vms_params,
                    restore_parent_source,
+                   restore_site_params,
                    restore_task_state_proto_tmpl,
                    restore_task_vec,
                    restore_vmware_vm_params,
@@ -271,6 +334,7 @@ class PerformRestoreJobStateProto(object):
                    mtype,
                    user,
                    user_info,
+                   vcd_config,
                    view_box_id,
                    warnings)
 

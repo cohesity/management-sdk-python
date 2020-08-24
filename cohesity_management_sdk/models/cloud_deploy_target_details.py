@@ -26,8 +26,8 @@ class CloudDeployTargetDetails(object):
             Entity objects are exposed to Iris BE or to Yoda.
         mtype (TypeCloudDeployTargetDetailsEnum): Specifies the type of the
             CloudDeploy target. 'kAzure' indicates that Azure as a cloud
-            deploy target type. 'kAws' indicates that AWS as a cloud deploy
-            target type. 'kGcp' indicates that GCP as a cloud deploy target
+            deploy target type. 'kAWS' indicates that AWS as a cloud deploy
+            target type. 'kGCP' indicates that GCP as a cloud deploy target
             type.
 
     """

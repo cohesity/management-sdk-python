@@ -13,23 +13,28 @@ class EmailDeliveryTarget(object):
         email_address (string): TODO: type description here.
         locale (string): Specifies the language in which the emails sent to
             the above defined mail address should be in.
+        recipient_type (int): Specifies the recipient type on how the emails
+            are to received.
 
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
         "email_address":'emailAddress',
-        "locale":'locale'
+        "locale":'locale',
+        "recipient_type":'recipientType'
     }
 
     def __init__(self,
                  email_address=None,
-                 locale=None):
+                 locale=None,
+                 recipient_type=None):
         """Constructor for the EmailDeliveryTarget class"""
 
         # Initialize members of the class
         self.email_address = email_address
         self.locale = locale
+        self.recipient_type = recipient_type
 
 
     @classmethod
@@ -52,9 +57,11 @@ class EmailDeliveryTarget(object):
         # Extract variables from the dictionary
         email_address = dictionary.get('emailAddress')
         locale = dictionary.get('locale')
+        recipient_type = dictionary.get('recipientType')
 
         # Return an object of this model
         return cls(email_address,
-                   locale)
+                   locale,
+                   recipient_type)
 
 

@@ -127,7 +127,7 @@ class ReportsController(BaseController):
                 milliseconds).
                 If startTimeMsecs and endTimeMsecs are not specified,
                 the time period is the last 7 days.
-            vault_ids (list of int, optional): Filter by a list of Vault ids.
+            vault_ids (list of int, required): Filter by a list of Vault ids.
             output_format (string, optional): Specifies the format for the
                 output such as 'csv' or 'json'.
                 If not specified, the json format is returned.
@@ -151,6 +151,11 @@ class ReportsController(BaseController):
         """
         try:
             self.logger.info('get_data_transfer_from_vaults_report_request called.')
+
+            # Validate required parameters
+            self.logger.info(
+                'Validating required parameters for get_data_transfer_from_vaults_report_request.')
+            self.validate_parameters(vault_ids=vault_ids)
 
             # Prepare query URL
             self.logger.info('Preparing query URL for get_data_transfer_from_vaults_report_request.')
@@ -218,7 +223,7 @@ class ReportsController(BaseController):
                 milliseconds).
                 If startTimeMsecs and endTimeMsecs are not specified,
                 the time period is the last 7 days.
-            vault_ids (list of int, optional): Filter by a list of Vault ids.
+            vault_ids (list of int, required): Filter by a list of Vault ids.
             output_format (string, optional): Specifies the format for the
                 output such as 'csv' or 'json'.
                 If not specified, the json format is returned.
@@ -242,6 +247,11 @@ class ReportsController(BaseController):
         """
         try:
             self.logger.info('get_data_transfer_to_vaults_report_request called.')
+
+            # Validate required parameters
+            self.logger.info(
+                'Validating required parameters for get_data_transfer_to_vaults_report_request.')
+            self.validate_parameters(vault_ids=vault_ids)
 
             # Prepare query URL
             self.logger.info('Preparing query URL for get_data_transfer_to_vaults_report_request.')
@@ -468,6 +478,12 @@ class ReportsController(BaseController):
                 environment.
                 'kRDSSnapshotManager' indicates AWS RDS Protection Source
                 environment.
+                'kCassandra' indicates Cassandra Protection Source environment.
+                'kMongoDB' indicates MongoDB Protection Source environment.
+                'kCouchbase' indicates Couchbase Protection Source environment.
+                'kHdfs' indicates Hdfs Protection Source environment.
+                'kHive' indicates Hive Protection Source environment.
+                'kHBase' indicates HBase Protection Source environment.
             protected_object_ids (list of int|long, optional): Filter by a
                 list of leaf Protection Sources Objects (such as VMs).
             registered_source_id (int|long, optional): Specifies an id of a
@@ -547,6 +563,8 @@ class ReportsController(BaseController):
             raise
 
     def get_protection_sources_job_runs_report_request(self,
+                                tenant_ids=None,
+                                all_under_hierarchy=None,
                                 job_ids=None,
                                 start_time_usecs=None,
                                 end_time_usecs=None,
@@ -561,6 +579,11 @@ class ReportsController(BaseController):
         Protection Source Objects and match the specified filter criteria.
 
         Args:
+            tenant_ids (list of string, optional): TenantIds contains ids of
+                the tenants for which objects are to be returned.
+            all_under_hierarchy (bool, optional): AllUnderHierarchy specifies
+                if objects of all the tenants under the hierarchy of the
+                logged in user's organization should be returned.
             job_ids (list of int|long, optional): Filter by a list of Job ids.
                 Snapshots for the specified Protection Jobs are listed.
             start_time_usecs (int|long, optional): Filter by a start time.
@@ -619,6 +642,8 @@ class ReportsController(BaseController):
             _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
+                'tenantIds':tenant_ids,
+                'allUnderHierarchy':all_under_hierarchy,
                 'jobIds': job_ids,
                 'startTimeUsecs': start_time_usecs,
                 'endTimeUsecs': end_time_usecs,

@@ -11,6 +11,10 @@ class NasMountCredentialParams(object):
     Attributes:
         domain (string): Specifies the domain in which this credential is
             valid.
+        domain_controller (string): Specifies the domain controller for the
+            selected domain
+        manage_password_by_cohesity (bool): Specifies if Cohesity can manage
+            the password after registration
         nas_protocol (NasProtocolEnum): Specifies the protocol used by the NAS
             server. Specifies the protocol used by a NAS server. 'kNfs3'
             indicates NFS v3 protocol. 'kCifs1' indicates CIFS v1.0 protocol.
@@ -32,6 +36,8 @@ class NasMountCredentialParams(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "domain":'domain',
+        "domain_controller":'domainController',
+        "manage_password_by_cohesity":'managePasswordByCohesity',
         "nas_protocol":'nasProtocol',
         "nas_type":'nasType',
         "password":'password',
@@ -41,6 +47,8 @@ class NasMountCredentialParams(object):
 
     def __init__(self,
                  domain=None,
+                 domain_controller=None,
+                 manage_password_by_cohesity=None,
                  nas_protocol=None,
                  nas_type=None,
                  password=None,
@@ -50,6 +58,8 @@ class NasMountCredentialParams(object):
 
         # Initialize members of the class
         self.domain = domain
+        self.domain_controller = domain_controller
+        self.manage_password_by_cohesity = manage_password_by_cohesity
         self.nas_protocol = nas_protocol
         self.nas_type = nas_type
         self.password = password
@@ -76,6 +86,8 @@ class NasMountCredentialParams(object):
 
         # Extract variables from the dictionary
         domain = dictionary.get('domain')
+        domain_controller = dictionary.get('domainController')
+        manage_password_by_cohesity = dictionary.get('managePasswordByCohesity')
         nas_protocol = dictionary.get('nasProtocol')
         nas_type = dictionary.get('nasType')
         password = dictionary.get('password')
@@ -84,6 +96,8 @@ class NasMountCredentialParams(object):
 
         # Return an object of this model
         return cls(domain,
+                   domain_controller,
+                   manage_password_by_cohesity,
                    nas_protocol,
                    nas_type,
                    password,

@@ -151,6 +151,12 @@ class MonitoringController(BaseController):
                 environment. 'kElastifile' indicates Elastifile Protection
                 Source environment. 'kAD' indicates Active Directory Protection
                 Source environment. 'kRDSSnapshotManager' indicates AWS RDS
+                Protection Source environment. 'kCassandra' indicates Cassandra
+                Protection Source environment. 'kMongoDB' indicates MongoDB
+                Protection Source environment. 'kCouchbase' indicates
+                Couchbase Protection Source environment. 'kHdfs' indicates
+                Hdfs Protection Source environment. 'kHive' indicates Hive
+                Protection Source environment. 'kHBase' indicates HBase
                 Protection Source environment.
             page (int, optional): Specifies the page number in case of
                 pagination of response.

@@ -19,6 +19,9 @@ class DataTransferToVaultPerProtectionJob(object):
             to this Vault for this Protection Job.
         protection_job_name (string): Specifies the name of the Protection
             Job.
+        storage_consumed (long|int): Specifies the total number of storage
+            bytes consumed that are transferred from this Cohesity Cluster to
+            this vault for this Protection Job.
 
     """
 
@@ -26,19 +29,22 @@ class DataTransferToVaultPerProtectionJob(object):
     _names = {
         "num_logical_bytes_transferred":'numLogicalBytesTransferred',
         "num_physical_bytes_transferred":'numPhysicalBytesTransferred',
-        "protection_job_name":'protectionJobName'
+        "protection_job_name":'protectionJobName',
+        "storage_consumed":'storageConsumed'
     }
 
     def __init__(self,
                  num_logical_bytes_transferred=None,
                  num_physical_bytes_transferred=None,
-                 protection_job_name=None):
+                 protection_job_name=None,
+                 storage_consumed=None):
         """Constructor for the DataTransferToVaultPerProtectionJob class"""
 
         # Initialize members of the class
         self.num_logical_bytes_transferred = num_logical_bytes_transferred
         self.num_physical_bytes_transferred = num_physical_bytes_transferred
         self.protection_job_name = protection_job_name
+        self.storage_consumed = storage_consumed
 
 
     @classmethod
@@ -62,10 +68,12 @@ class DataTransferToVaultPerProtectionJob(object):
         num_logical_bytes_transferred = dictionary.get('numLogicalBytesTransferred')
         num_physical_bytes_transferred = dictionary.get('numPhysicalBytesTransferred')
         protection_job_name = dictionary.get('protectionJobName')
+        storage_consumed = dictionary.get('storageConsumed')
 
         # Return an object of this model
         return cls(num_logical_bytes_transferred,
                    num_physical_bytes_transferred,
-                   protection_job_name)
+                   protection_job_name,
+                   storage_consumed)
 
 

@@ -10,6 +10,9 @@ class HiveConnectParams(object):
     source.
 
     Attributes:
+        hdfs_entity_id (int|long): Specifies the entity id of the HDFS source
+            for this Hive
+        kerberos_principal (string): Specifies the kerberos principal.
         metastore (string): Specifies the Hive metastore host.
         thrift_port (int): Specifies the Hive metastore thrift Port
 
@@ -17,16 +20,22 @@ class HiveConnectParams(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "hdfs_entity_id":'hdfsEntityId',
+        "kerberos_principal":'kerberosPrincipal',
         "metastore": 'metastore',
         "thrift_port": 'thriftPort'
     }
 
     def __init__(self,
+                 hdfs_entity_id=None,
+                 kerberos_principal=None,
                  metastore=None,
                  thrift_port=None):
         """Constructor for the HiveConnectParams class"""
 
         # Initialize members of the class
+        self.hdfs_entity_id = hdfs_entity_id
+        self.kerberos_principal = kerberos_principal
         self.metastore = metastore
         self.thrift_port = thrift_port
 
@@ -49,11 +58,15 @@ class HiveConnectParams(object):
             return None
 
         # Extract variables from the dictionary
+        hdfs_entity_id = dictionary.get('hdfsEntityId')
+        kerberos_principal = dictionary.get('kerberosPrincipal')
         metastore = dictionary.get('metastore', None)
         thrift_port = dictionary.get('thriftPort', None)
 
         # Return an object of this model
-        return cls(metastore,
+        return cls(hdfs_entity_id,
+                   kerberos_principal,
+                   metastore,
                    thrift_port)
 
 

@@ -16,6 +16,7 @@ from cohesity_management_sdk.models.get_registration_info_response import GetReg
 from cohesity_management_sdk.models.sql_aag_host_and_databases import SqlAagHostAndDatabases
 from cohesity_management_sdk.exceptions.request_error_error_exception import RequestErrorErrorException
 from cohesity_management_sdk.models.exchange_dag_hosts_response import ExchangeDagHostsResponse
+from cohesity_management_sdk.models.download_cft_response import DownloadCftResponse
 
 
 class ProtectionSourcesController(BaseController):
@@ -207,12 +208,14 @@ class ProtectionSourcesController(BaseController):
                                 node_id=None,
                                 page_size=None,
                                 id=None,
+                                num_levels=None,
                                 exclude_types=None,
                                 exclude_office_365_types=None,
                                 exclude_aws_types=None,
                                 include_datastores=None,
                                 include_networks=None,
                                 include_vm_folders=None,
+                                include_system_v_apps=None,
                                 environments=None,
                                 environment=None,
                                 include_entity_permission_info=None,
@@ -246,6 +249,9 @@ class ProtectionSourcesController(BaseController):
                 entities to be returned within the page.
             id (long|int, optional): Return the Object subtree for the passed
                 in Protection Source id.
+            num_levels (int, optional): Specifies the expected number of levels
+                from the root node to be returned in the entity hierarchy
+                response.
             exclude_types (list of ExcludeTypeEnum, optional): Filter out the
                 Object types (and their subtrees) that match the passed in
                 types such as 'kVCenter', 'kFolder', 'kDatacenter',
@@ -273,6 +279,10 @@ class ProtectionSourcesController(BaseController):
                 are not returned.
             include_vm_folders (bool, optional): Set this parameter to true to
                 also return kVMFolder object types found in the Source in
+                addition to their Object subtrees. By default, VM folder
+                objects are not returned.
+            include_system_v_apps (bool, optional): Set this parameter to true
+                to also return system VApp object types found in the Source in
                 addition to their Object subtrees. By default, VM folder
                 objects are not returned.
             environments (list of EnvironmentListProtectionSourcesEnum,
@@ -322,12 +332,14 @@ class ProtectionSourcesController(BaseController):
                 'nodeId': node_id,
                 'pageSize': page_size,
                 'id': id,
+                'numLevels': num_levels,
                 'excludeTypes': exclude_types,
                 'excludeOffice365Types': exclude_office_365_types,
                 'excludeAwsTypes': exclude_aws_types,
                 'includeDatastores': include_datastores,
                 'includeNetworks': include_networks,
                 'includeVMFolders': include_vm_folders,
+                'includeSystemVApps': include_system_v_apps,
                 'environments': environments,
                 'environment': environment,
                 'includeEntityPermissionInfo': include_entity_permission_info,
@@ -422,10 +434,18 @@ class ProtectionSourcesController(BaseController):
                 Flex Protection Source environment. 'kGCPNative' indicates the
                 GCP Native Protection Source environment. 'kAzureNative'
                 indicates the Azure Native Protection Source environment.
-                'kKubernetes' indicates a Kubernetes Protection Source environment.
-                'kElastifile' indicates Elastifile Protection Source environment.
-                'kAD' indicates Active Directory Protection Source environment.
-                'kRDSSnapshotManager' indicates AWS RDS Protection Source environment.
+                'kKubernetes' indicates a Kubernetes Protection Source
+                environment. 'kElastifile' indicates Elastifile Protection
+                Source environment. 'kAD' indicates Active Directory
+                Protection Source environment. 'kRDSSnapshotManager'
+                indicates AWS RDS Protection Source environment. 'kCassandra'
+                indicates Cassandra Protection Source environment. 'kMongoDB'
+                indicates MongoDB Protection Source environment. 'kCouchbase'
+                indicates Couchbase Protection Source environment. 'kHdfs'
+                indicates Hdfs Protection Source environment. 'kHive'
+                indicates Hive Protection Source environment. 'kHBase'
+                indicates HBase Protection Source environment.
+
             protection_source_id (long|int, optional): Specifies the
                 Protection Source Id of the 'kPhysical' or 'kVMware' entity in
                 the Protection Source tree hosting the applications.
@@ -471,7 +491,14 @@ class ProtectionSourcesController(BaseController):
                 indicates Elastifile Protection Source environment.
                 'kAD' indicates Active Directory Protection Source environment.
                 'kRDSSnapshotManager' indicates AWS RDS Protection Source
+                environment. 'kCassandra' indicates Cassandra Protection Source
+                environment. 'kMongoDB' indicates MongoDB Protection Source
+                environment. 'kCouchbase' indicates Couchbase Protection Source
+                environment. 'kHdfs' indicates Hdfs Protection Source
+                environment. 'kHive' indicates Hive Protection Source
+                environment. 'kHBase' indicates HBase Protection Source
                 environment.
+
 
         Returns:
             list of RegisteredApplicationServer: Response from the API.
@@ -899,6 +926,61 @@ class ProtectionSourcesController(BaseController):
             self.logger.error(e, exc_info=True)
             raise
 
+    def download_cft_file(self, body=None):
+        """Does a GET request to /public/protectionSources/downloadCftFile.
+
+        TODO: Type description here.
+
+        Args:
+            body (DownloadCftParams): Specifies the request to download CFT.
+
+        Returns:
+            DownloadCftResponse: Response from the API. Success
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+        try:
+            self.logger.info('download_cft_file called.')
+
+            # Prepare query URL
+            self.logger.info('Preparing query URL for download_cft_file.')
+            _url_path = '/public/protectionSources/downloadCftFile'
+            _query_builder = self.config.get_base_uri()
+            _query_builder += _url_path
+            _query_url = APIHelper.clean_url(_query_builder)
+
+            # Prepare headers
+            self.logger.info('Preparing headers for download_cft_file.')
+            _headers = {'accept': 'application/json'}
+
+            # Prepare and execute request
+            self.logger.info(
+                'Preparing and executing request for download_cft_file.')
+            _request = self.http_client.get(_query_url, headers=_headers)
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='download_cft_file')
+
+            # Endpoint and global error handling using HTTP status codes.
+            self.logger.info('Validating response for download_cft_file.')
+            if _context.response.status_code == 0:
+                raise RequestErrorErrorException('Error', _context)
+            self.validate_response(_context)
+
+            # Return appropriate type
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                DownloadCftResponse.from_dictionary)
+
+        except Exception as e:
+            self.logger.error(e, exc_info=True)
+            raise
+
     def list_exchange_dag_hosts(self, endpoint=None, protection_source_id=None):
         """Does a GET request to /public/protectionSources/exchangeDagHosts.
 
@@ -1148,7 +1230,16 @@ class ProtectionSourcesController(BaseController):
                 Source environment. 'kAzureNative' indicates the Azure Native
                 Protection Source environment. 'kKubernetes' indicates a
                 Kubernetes Protection Source environment. 'kElastifile'
-                indicates Elastifile Protection Source environment.
+                indicates Elastifile Protection Source environment. 'kAD'
+                indicates Active Directory Protection Source environment.
+                'kRDSSnapshotManager' indicates AWS RDS Protection Source
+                environment. 'kCassandra' indicates Cassandra Protection
+                Source environment. 'kMongoDB' indicates MongoDB Protection
+                Source environment. 'kCouchbase' indicates Couchbase Protection
+                Source environment. 'kHdfs' indicates Hdfs Protection Source
+                environment. 'kHive' indicates Hive Protection Source
+                environment. 'kHBase' indicates HBase Protection Source
+                environment.
             id (long|int): Specifies the Id of a registered Protection Source
                 of the type given in environment.
             all_under_hierarchy (bool, optional): AllUnderHierarchy specifies
@@ -1374,6 +1465,7 @@ class ProtectionSourcesController(BaseController):
         ids=None,
         include_entity_permission_info=None,
         sids=None,
+        include_applications_tree_info=None,
         tenant_ids=None,
         all_under_hierarchy=None):
         """Does a GET request to /public/protectionSources/registrationInfo.
@@ -1399,6 +1491,8 @@ class ProtectionSourcesController(BaseController):
                 returned.
             sids (list of string, optional): Filter the registered root nodes
                 for the sids given in the list.
+            include_applications_tree_info (bool, optional): Specifies whether
+                to return applications tree info or not.
             tenant_ids (list of string, optional): TenantIds contains ids of
                 the tenants for which objects are to be returned.
             all_under_hierarchy (bool, optional): AllUnderHierarchy specifies
@@ -1431,6 +1525,7 @@ class ProtectionSourcesController(BaseController):
                 'ids': ids,
                 'includeEntityPermissionInfo': include_entity_permission_info,
                 'sids': sids,
+                'includeApplicationsTreeInfo':include_applications_tree_info,
                 'tenantIds': tenant_ids,
                 'allUnderHierarchy': all_under_hierarchy
             }

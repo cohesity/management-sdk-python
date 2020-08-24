@@ -17,6 +17,7 @@ class HdfsConnectParams(object):
             'CDH' indicates Hadoop distribution type Cloudera.
             'HDP' indicates Hadoop distribution type Hortonworks.
         hadoop_version (string): Specifies the Hadoop version
+        kerberos_principal (string): Specifies the kerberos principal.
         namenode (string): Specifies the Namenode host or Nameservice.
         port (int): Specifies the Webhdfs Port
     """
@@ -25,6 +26,7 @@ class HdfsConnectParams(object):
     _names = {
         "hadoop_distribution": 'hadoopDistribution',
         "hadoop_version": 'hadoopVersion',
+        "kerberos_principal":'kerberosPrincipal',
         "namenode": 'namenode',
         "port":'port'
     }
@@ -32,6 +34,7 @@ class HdfsConnectParams(object):
     def __init__(self,
                  hadoop_distribution=None,
                  hadoop_version=None,
+                 kerberos_principal=None,
                  namenode=None,
                  port=None):
         """Constructor for the HdfsConnectParams class"""
@@ -39,6 +42,7 @@ class HdfsConnectParams(object):
         # Initialize members of the class
         self.hadoop_distribution = hadoop_distribution
         self.hadoop_version = hadoop_version
+        self.kerberos_principal = kerberos_principal
         self.namenode = namenode
         self.port = port
 
@@ -63,12 +67,14 @@ class HdfsConnectParams(object):
         # Extract variables from the dictionary
         hadoop_distribution = dictionary.get('hadoopDistribution')
         hadoop_version = dictionary.get('hadoopVersion')
+        kerberos_principal = dictionary.get('kerberosPrincipal')
         namenode = dictionary.get('namenode')
         port = dictionary.get('port')
 
         # Return an object of this model
         return cls(hadoop_distribution,
                    hadoop_version,
+                   kerberos_principal,
                    namenode,
                    port)
 

@@ -10,36 +10,51 @@ class MongoDBConnectParams(object):
     source.
 
     Attributes:
+        auth_type (AuthTypeMongoDBConnectParamsEnum): Specifies whether
+            authentication is configured on this MongoDB cluster.
+            Specifies the type of an MongoDB source entity.
+            'SCRAM'
+            'LDAP'
+            'NONE'
         authenticating_database_name (string): Specifies the Authenticating
             Database for this MongoDB cluster.
-        has_authentication (bool): Specifies whether authentication is
-            configured on this MongoDB cluster.
         requires_ssl (bool): Specifies whether connection is allowed through
             SSL only in this cluster.
+        secondary_node_tag (string): MongoDB Secondary node tag. Required only
+            if 'useSecondaryForBackup' is true. The system will use this to
+            identify the secondary nodes for reading backup data.
         seeds (list of string): Specifies the seeds of this MongoDB Cluster.
+        use_secondary_for_backup (bool): Set this to true if you want the
+            system to peform backups from secondary nodes.
 
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "auth_type":'authType',
         "authenticating_database_name":'authenticatingDatabaseName',
-        "has_authentication":'hasAuthentication',
         "requires_ssl":'requiresSsl',
-        "seeds":'seeds'
+        "secondary_node_tag":'secondaryNodeTag',
+        "seeds":'seeds',
+        "use_secondary_for_backup":'useSecondaryForBackup'
     }
 
     def __init__(self,
+                 auth_type=None,
                  authenticating_database_name=None,
-                 has_authentication=None,
                  requires_ssl=None,
-                 seeds=None):
+                 secondary_node_tag=None,
+                 seeds=None,
+                 use_secondary_for_backup=None):
         """Constructor for the MongoDBConnectParams class"""
 
         # Initialize members of the class
+        self.auth_type = auth_type
         self.authenticating_database_name = authenticating_database_name
-        self.has_authentication = has_authentication
         self.requires_ssl = requires_ssl
+        self.secondary_node_tag = secondary_node_tag
         self.seeds = seeds
+        self.use_secondary_for_backup = use_secondary_for_backup
 
 
     @classmethod
@@ -60,15 +75,19 @@ class MongoDBConnectParams(object):
             return None
 
         # Extract variables from the dictionary
+        auth_type = dictionary.get('authType')
         authenticating_database_name = dictionary.get('authenticatingDatabaseName')
-        has_authentication = dictionary.get('hasAuthentication')
         requires_ssl = dictionary.get('requiresSsl')
+        secondary_node_tag = dictionary.get('secondaryNodeTag')
         seeds = dictionary.get('seeds')
+        use_secondary_for_backup = dictionary.get('useSecondaryForBackup')
 
         # Return an object of this model
-        return cls(authenticating_database_name,
-                   has_authentication,
+        return cls(auth_type,
+                   authenticating_database_name,
                    requires_ssl,
-                   seeds)
+                   secondary_node_tag,
+                   seeds,
+                   use_secondary_for_backup)
 
 

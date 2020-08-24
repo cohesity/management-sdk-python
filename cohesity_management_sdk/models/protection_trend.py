@@ -12,7 +12,7 @@ class ProtectionTrend(object):
     Attributes:
         cancelled (long|int): Specifies number of cancelled runs across
             trends.
-        environment (long|int): Specifies environment. Supported
+        environment (string): Specifies environment. Supported
             environment types such as 'kView', 'kSQL', 'kVMware', etc.
             NOTE: 'kPuppeteer' refers to Cohesity's Remote Adapter.
             'kVMware' indicates the VMware Protection Source environment.
@@ -70,6 +70,13 @@ class ProtectionTrend(object):
             environment.
             'kRDSSnapshotManager' indicates AWS RDS Protection Source
             environment.
+            'kCassandra' indicates Cassandra Protection Source environment.
+            'kMongoDB' indicates MongoDB Protection Source environment.
+            'kCouchbase' indicates Couchbase Protection Source environment.
+            'kHdfs' indicates Hdfs Protection Source environment.
+            'kHive' indicates Hive Protection Source environment.
+            'kHBase' indicates HBase Protection Source environment.
+
         failed (long|int): Specifies number of failed runs across trends.
         id (long|int): Specifies protected object's Id.
         name (string):  Specifies protected object's name.

@@ -8,6 +8,7 @@ import cohesity_management_sdk.models.file_level_data_lock_config
 import cohesity_management_sdk.models.quota_policy
 import cohesity_management_sdk.models.nfs_squash
 import cohesity_management_sdk.models.nfs_root_permissions
+import cohesity_management_sdk.models.nis_netgroup
 import cohesity_management_sdk.models.qo_s
 import cohesity_management_sdk.models.smb_permission
 import cohesity_management_sdk.models.smb_permissions_info
@@ -109,12 +110,19 @@ class View(object):
         logical_usage_bytes (long|int): LogicalUsageBytes is the logical usage
             in bytes for the view.
         name (string): Specifies the name of the View.
+        netgroup_whitelist (list of NisNetgroup): Array of Netgroups.
+          Specifies a list of Netgroups that have permissions to access the
+          View. (Overrides the Netgroups specified at the global Cohesity
+          Cluster level.)
         nfs_all_squash (NfsSquash): Specifies the NFS all squash config.
         nfs_mount_path (string): Specifies the path for mounting this View as
             an NFS share.
         nfs_root_permissions (NfsRootPermissions): Specifies the config of NFS
             root permission of a view file system.
         nfs_root_squash (NfsSquash): Specifies the NFS root squash config.
+        override_global_netgroup_whitelist (bool): Specifies whether view
+            level client netgroup whitelist overrides cluster and global
+            setting.
         override_global_whitelist (bool): Specifies whether view level client
             subnet whitelist overrides cluster and global setting.
         protocol_access (ProtocolAccessEnum): Specifies the supported
@@ -160,6 +168,9 @@ class View(object):
             Box) where the View is stored.
         view_id (long|int): Specifies an id of the View assigned by the
             Cohesity Cluster.
+        view_lock_enabled (bool): Specifies whether view lock is enabled. If
+            enabled the view cannot be modified or deleted until unlock. By
+            default it is disabled.
         view_protection (ViewProtection): Specifies information about the
             Protection Jobs that are protecting the View.
 
@@ -193,10 +204,12 @@ class View(object):
         "logical_quota":'logicalQuota',
         "logical_usage_bytes":'logicalUsageBytes',
         "name":'name',
+        "netgroup_whitelist":'netgroupWhitelist',
         "nfs_all_squash":'nfsAllSquash',
         "nfs_mount_path":'nfsMountPath',
         "nfs_root_permissions":'nfsRootPermissions',
         "nfs_root_squash":'nfsRootSquash',
+        "override_global_netgroup_whitelist":'overrideGlobalNetgroupWhitelist',
         "override_global_whitelist":'overrideGlobalWhitelist',
         "protocol_access":'protocolAccess',
         "qos":'qos',
@@ -217,6 +230,7 @@ class View(object):
         "view_box_id":'viewBoxId',
         "view_box_name":'viewBoxName',
         "view_id":'viewId',
+        "view_lock_enabled":'viewLockEnabled',
         "view_protection":'viewProtection'
     }
 
@@ -247,10 +261,12 @@ class View(object):
                  logical_quota=None,
                  logical_usage_bytes=None,
                  name=None,
+                 netgroup_whitelist=None,
                  nfs_all_squash=None,
                  nfs_mount_path=None,
                  nfs_root_permissions=None,
                  nfs_root_squash=None,
+                 override_global_netgroup_whitelist=None,
                  override_global_whitelist=None,
                  protocol_access=None,
                  qos=None,
@@ -271,6 +287,7 @@ class View(object):
                  view_box_id=None,
                  view_box_name=None,
                  view_id=None,
+                 view_lock_enabled=None,
                  view_protection=None):
         """Constructor for the View class"""
 
@@ -301,10 +318,12 @@ class View(object):
         self.logical_quota = logical_quota
         self.logical_usage_bytes = logical_usage_bytes
         self.name = name
+        self.netgroup_whitelist = netgroup_whitelist
         self.nfs_all_squash = nfs_all_squash
         self.nfs_mount_path = nfs_mount_path
         self.nfs_root_permissions = nfs_root_permissions
         self.nfs_root_squash = nfs_root_squash
+        self.override_global_netgroup_whitelist = override_global_netgroup_whitelist
         self.override_global_whitelist = override_global_whitelist
         self.protocol_access = protocol_access
         self.qos = qos
@@ -325,6 +344,7 @@ class View(object):
         self.view_box_id = view_box_id
         self.view_box_name = view_box_name
         self.view_id = view_id
+        self.view_lock_enabled = view_lock_enabled
         self.view_protection = view_protection
 
 
@@ -376,10 +396,16 @@ class View(object):
         logical_quota = cohesity_management_sdk.models.quota_policy.QuotaPolicy.from_dictionary(dictionary.get('logicalQuota')) if dictionary.get('logicalQuota') else None
         logical_usage_bytes = dictionary.get('logicalUsageBytes')
         name = dictionary.get('name')
+        netgroup_whitelist = None
+        if dictionary.get('netgroupWhitelist') != None:
+            netgroup_whitelist = list()
+            for structure in dictionary.get('netgroupWhitelist'):
+                netgroup_whitelist.append(cohesity_management_sdk.models.nis_netgroup.NisNetgroup.from_dictionary(structure))
         nfs_all_squash = cohesity_management_sdk.models.nfs_squash.NfsSquash.from_dictionary(dictionary.get('nfsAllSquash')) if dictionary.get('nfsAllSquash') else None
         nfs_mount_path = dictionary.get('nfsMountPath')
         nfs_root_permissions = cohesity_management_sdk.models.nfs_root_permissions.NfsRootPermissions.from_dictionary(dictionary.get('nfsRootPermissions')) if dictionary.get('nfsRootPermissions') else None
         nfs_root_squash = cohesity_management_sdk.models.nfs_squash.NfsSquash.from_dictionary(dictionary.get('nfsRootSquash')) if dictionary.get('nfsRootSquash') else None
+        override_global_netgroup_whitelist = dictionary.get('overrideGlobalNetgroupWhitelist')
         override_global_whitelist = dictionary.get('overrideGlobalWhitelist')
         protocol_access = dictionary.get('protocolAccess')
         qos = cohesity_management_sdk.models.qo_s.QoS.from_dictionary(dictionary.get('qos')) if dictionary.get('qos') else None
@@ -408,6 +434,7 @@ class View(object):
         view_box_id = dictionary.get('viewBoxId')
         view_box_name = dictionary.get('viewBoxName')
         view_id = dictionary.get('viewId')
+        view_lock_enabled = dictionary.get('viewLockEnabled')
         view_protection = cohesity_management_sdk.models.view_protection.ViewProtection.from_dictionary(dictionary.get('viewProtection')) if dictionary.get('viewProtection') else None
 
         # Return an object of this model
@@ -437,10 +464,12 @@ class View(object):
                    logical_quota,
                    logical_usage_bytes,
                    name,
+                   netgroup_whitelist,
                    nfs_all_squash,
                    nfs_mount_path,
                    nfs_root_permissions,
                    nfs_root_squash,
+                   override_global_netgroup_whitelist,
                    override_global_whitelist,
                    protocol_access,
                    qos,
@@ -461,6 +490,7 @@ class View(object):
                    view_box_id,
                    view_box_name,
                    view_id,
+                   view_lock_enabled,
                    view_protection)
 
 

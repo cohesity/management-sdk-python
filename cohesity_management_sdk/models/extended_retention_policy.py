@@ -9,6 +9,8 @@ class ExtendedRetentionPolicy(object):
     Specifies additional retention policies to apply to backup snapshots.
 
     Attributes:
+        id (string): Specified the Id for a snapshot copy policy. This is
+            generated when the policy is created.
         backup_run_type (BackupRunTypeEnum): The backup run type to which this
             extended retention applies to. If this is not set, the extended
             retention will be applicable to all non-log backup types.
@@ -48,6 +50,7 @@ class ExtendedRetentionPolicy(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "id":'Id',
         "backup_run_type":'backupRunType',
         "days_to_keep":'daysToKeep',
         "multiplier":'multiplier',
@@ -55,6 +58,7 @@ class ExtendedRetentionPolicy(object):
     }
 
     def __init__(self,
+                 id=None,
                  backup_run_type=None,
                  days_to_keep=None,
                  multiplier=None,
@@ -62,6 +66,7 @@ class ExtendedRetentionPolicy(object):
         """Constructor for the ExtendedRetentionPolicy class"""
 
         # Initialize members of the class
+        self.id = id
         self.backup_run_type = backup_run_type
         self.days_to_keep = days_to_keep
         self.multiplier = multiplier
@@ -86,13 +91,15 @@ class ExtendedRetentionPolicy(object):
             return None
 
         # Extract variables from the dictionary
+        id = dictionary.get('Id')
         backup_run_type = dictionary.get('backupRunType')
         days_to_keep = dictionary.get('daysToKeep')
         multiplier = dictionary.get('multiplier')
         periodicity = dictionary.get('periodicity')
 
         # Return an object of this model
-        return cls(backup_run_type,
+        return cls(id,
+                   backup_run_type,
                    days_to_keep,
                    multiplier,
                    periodicity)

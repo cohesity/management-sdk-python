@@ -8,7 +8,10 @@ import cohesity_management_sdk.models.cloud_deploy_info_proto
 import cohesity_management_sdk.models.entity_proto
 import cohesity_management_sdk.models.deploy_v_ms_to_cloud_task_state_proto
 import cohesity_management_sdk.models.mount_volumes_task_state_proto
+import cohesity_management_sdk.models.no_sql_connect_params
+import cohesity_management_sdk.models.no_sql_recover_job_params
 import cohesity_management_sdk.models.restore_object
+import cohesity_management_sdk.models.restore_site_params
 import cohesity_management_sdk.models.power_state_config_proto
 import cohesity_management_sdk.models.recover_disks_task_state_proto
 import cohesity_management_sdk.models.recover_volumes_task_state_proto
@@ -117,6 +120,10 @@ class PerformRestoreTaskStateProto(object):
             need to be copied in the target view/folder.
         mount_volumes_task_state (MountVolumesTaskStateProto): TODO: type
             description here.
+        nosql_connect_params (NoSqlConnectParams): Parameters to connect to
+            destination nosql parent entity.
+        nosql_recover_job_params (NoSqlRecoverJobParams): Additional
+            parameters for the recovery job to send to imanis server.
         object_name_deprecated (string): An optional name to give to the
             restored object.
         objects (list of RestoreObject): Information on the exact set of
@@ -142,10 +149,14 @@ class PerformRestoreTaskStateProto(object):
             hot-standy.  This will also be used by refresh op to mark the new
             clone as internal sub-task.
         path_prefix_deprecated (string): TODO: type description here.
+        physical_flr_parallel_restore (bool): If enabled, magneto physical
+            file restore will be enabled via job framework
+        physical_flr_use_new_locking_method (bool): If enabled, magneto
+            physical file restore will be enabled via job framework
         power_state_config (PowerStateConfigProto): TODO: type description
             here.
-        preserve_tags (bool): Whether to preserve tags for the clone op.
-          This field is currently used by HyperV and VMWare.
+        preserve_tags (bool): This field is currently used by HyperV and
+            VMWare.
         progress_monitor_task_path (string): Root path of a Pulse task
             tracking the progress of the restore task.
         recover_disks_task_state (RecoverDisksTaskStateProto): TODO: type
@@ -237,6 +248,8 @@ class PerformRestoreTaskStateProto(object):
             here.
         restore_parent_source (EntityProto): Specifies the attributes and the
             latest statistics about an entity.
+        restore_site_params (RestoreSiteParams): This field defines the O365
+            site specific params for restore task of type kRecoverSites.
         restore_sub_task_vec (list of long|int): Inside Magneto, these are
             represented as regular restore tasks with their own
             PerformRestoreTaskStateProto. Each restore sub-task will have its
@@ -276,12 +289,23 @@ class PerformRestoreTaskStateProto(object):
         retrieve_archive_view_name (string): The temporary view where the
             entities that have been retrieved from an archive have been placed
             in by Icebox.
+        selected_datastore_idx (long|int): In case of restore job with
+            multi-vm multi-datastore this field denotes the specific datastore
+            index in datastore_entity_vec to be selected for the task. Not
+            going for specific datastore allocation in datastore_entity_vec so
+            that we have required information in case of extensibility for
+            task level retries with different datastore
         stub_view_relative_dir_name (string): Relative directory inside the
             stub view that corresponds with the archive.
         vault_restore_params (VaultParamsRestoreParams): TODO: type
             description here.
         vcd_config (RestoredObjectVCDConfigProto): TODO: type description
             here.
+        vcd_storage_profile_datastore_moref_vec (list of string): This field
+            is applicable for VCD type recovery. It defines the compatible
+            datastores for recovery to alternate location. This field is
+            inferred using the storage profile in restore_vmware_vm_params
+            below.
         view_box_id (long|int): The view box id to which 'view_name' belongs
             to. In case the restore task corresponds to a backup job, this
             view box corresponds to the view box of the backup job.
@@ -315,12 +339,16 @@ class PerformRestoreTaskStateProto(object):
         "full_view_name":'fullViewName',
         "include_vm_config":'includeVmConfig',
         "mount_volumes_task_state":'mountVolumesTaskState',
+        "nosql_connect_params":'nosqlConnectParams',
+        "nosql_recover_job_params":'nosqlRecoverJobParams',
         "object_name_deprecated":'objectName_DEPRECATED',
         "objects":'objects',
         "objects_progress_monitor_task_paths":'objectsProgressMonitorTaskPaths',
         "parent_restore_job_id":'parentRestoreJobId',
         "parent_restore_task_id":'parentRestoreTaskId',
         "path_prefix_deprecated":'pathPrefix_DEPRECATED',
+        "physical_flr_parallel_restore":'physicalFlrParallelRestore',
+        "physical_flr_use_new_locking_method":'physicalFlrUseNewLockingMethod',
         "power_state_config":'powerStateConfig',
         "preserve_tags":'preserveTags',
         "progress_monitor_task_path":'progressMonitorTaskPath',
@@ -340,6 +368,7 @@ class PerformRestoreTaskStateProto(object):
         "restore_one_drive_params":'restoreOneDriveParams',
         "restore_outlook_params":'restoreOutlookParams',
         "restore_parent_source":'restoreParentSource',
+        "restore_site_params":'restoreSiteParams',
         "restore_sub_task_vec":'restoreSubTaskVec',
         "restore_task_purged":'restoreTaskPurged',
         "restore_view_datastore_entity":'restoreViewDatastoreEntity',
@@ -351,9 +380,11 @@ class PerformRestoreTaskStateProto(object):
         "retrieve_archive_task_uid_vec":'retrieveArchiveTaskUidVec',
         "retrieve_archive_task_vec":'retrieveArchiveTaskVec',
         "retrieve_archive_view_name":'retrieveArchiveViewName',
+        "selected_datastore_idx":'selectedDatastoreIdx',
         "stub_view_relative_dir_name":'stubViewRelativeDirName',
         "vault_restore_params":'vaultRestoreParams',
         "vcd_config":'vcdConfig',
+        "vcd_storage_profile_datastore_moref_vec":'vcdStorageProfileDatastoreMorefVec',
         "view_box_id":'viewBoxId',
         "view_name_deprecated":'viewName_DEPRECATED',
         "view_params":'viewParams',
@@ -380,12 +411,16 @@ class PerformRestoreTaskStateProto(object):
                  full_view_name=None,
                  include_vm_config=None,
                  mount_volumes_task_state=None,
+                 nosql_connect_params=None,
+                 nosql_recover_job_params=None,
                  object_name_deprecated=None,
                  objects=None,
                  objects_progress_monitor_task_paths=None,
                  parent_restore_job_id=None,
                  parent_restore_task_id=None,
                  path_prefix_deprecated=None,
+                 physical_flr_parallel_restore=None,
+                 physical_flr_use_new_locking_method=None,
                  power_state_config=None,
                  preserve_tags=None,
                  progress_monitor_task_path=None,
@@ -405,6 +440,7 @@ class PerformRestoreTaskStateProto(object):
                  restore_one_drive_params=None,
                  restore_outlook_params=None,
                  restore_parent_source=None,
+                 restore_site_params=None,
                  restore_sub_task_vec=None,
                  restore_task_purged=None,
                  restore_view_datastore_entity=None,
@@ -416,9 +452,11 @@ class PerformRestoreTaskStateProto(object):
                  retrieve_archive_task_uid_vec=None,
                  retrieve_archive_task_vec=None,
                  retrieve_archive_view_name=None,
+                 selected_datastore_idx=None,
                  stub_view_relative_dir_name=None,
                  vault_restore_params=None,
                  vcd_config=None,
+                 vcd_storage_profile_datastore_moref_vec=None,
                  view_box_id=None,
                  view_name_deprecated=None,
                  view_params=None,
@@ -445,12 +483,16 @@ class PerformRestoreTaskStateProto(object):
         self.full_view_name = full_view_name
         self.include_vm_config = include_vm_config
         self.mount_volumes_task_state = mount_volumes_task_state
+        self.nosql_connect_params = nosql_connect_params
+        self.nosql_recover_job_params = nosql_recover_job_params
         self.object_name_deprecated = object_name_deprecated
         self.objects = objects
         self.objects_progress_monitor_task_paths = objects_progress_monitor_task_paths
         self.parent_restore_job_id = parent_restore_job_id
         self.parent_restore_task_id = parent_restore_task_id
         self.path_prefix_deprecated = path_prefix_deprecated
+        self.physical_flr_parallel_restore = physical_flr_parallel_restore
+        self.physical_flr_use_new_locking_method = physical_flr_use_new_locking_method
         self.power_state_config = power_state_config
         self.preserve_tags = preserve_tags
         self.progress_monitor_task_path = progress_monitor_task_path
@@ -470,6 +512,7 @@ class PerformRestoreTaskStateProto(object):
         self.restore_one_drive_params = restore_one_drive_params
         self.restore_outlook_params = restore_outlook_params
         self.restore_parent_source = restore_parent_source
+        self.restore_site_params = restore_site_params
         self.restore_sub_task_vec = restore_sub_task_vec
         self.restore_task_purged = restore_task_purged
         self.restore_view_datastore_entity = restore_view_datastore_entity
@@ -481,9 +524,11 @@ class PerformRestoreTaskStateProto(object):
         self.retrieve_archive_task_uid_vec = retrieve_archive_task_uid_vec
         self.retrieve_archive_task_vec = retrieve_archive_task_vec
         self.retrieve_archive_view_name = retrieve_archive_view_name
+        self.selected_datastore_idx = selected_datastore_idx
         self.stub_view_relative_dir_name = stub_view_relative_dir_name
         self.vault_restore_params = vault_restore_params
         self.vcd_config = vcd_config
+        self.vcd_storage_profile_datastore_moref_vec = vcd_storage_profile_datastore_moref_vec
         self.view_box_id = view_box_id
         self.view_name_deprecated = view_name_deprecated
         self.view_params = view_params
@@ -531,6 +576,8 @@ class PerformRestoreTaskStateProto(object):
         full_view_name = dictionary.get('fullViewName')
         include_vm_config = dictionary.get('includeVmConfig')
         mount_volumes_task_state = cohesity_management_sdk.models.mount_volumes_task_state_proto.MountVolumesTaskStateProto.from_dictionary(dictionary.get('mountVolumesTaskState')) if dictionary.get('mountVolumesTaskState') else None
+        nosql_connect_params = cohesity_management_sdk.models.no_sql_connect_params.NoSqlConnectParams.from_dictionary(dictionary.get('nosqlConnectParams')) if dictionary.get('nosqlConnectParams') else None
+        nosql_recover_job_params = cohesity_management_sdk.models.no_sql_recover_job_params.NoSqlRecoverJobParams.from_dictionary(dictionary.get('nosqlRecoverJobParams')) if dictionary.get('nosqlRecoverJobParams') else None
         object_name_deprecated = dictionary.get('objectName_DEPRECATED')
         objects = None
         if dictionary.get('objects') != None:
@@ -541,6 +588,8 @@ class PerformRestoreTaskStateProto(object):
         parent_restore_job_id = dictionary.get('parentRestoreJobId')
         parent_restore_task_id = dictionary.get('parentRestoreTaskId')
         path_prefix_deprecated = dictionary.get('pathPrefix_DEPRECATED')
+        physical_flr_parallel_restore = dictionary.get('physicalFlrParallelRestore')
+        physical_flr_use_new_locking_method = dictionary.get('physicalFlrUseNewLockingMethod')
         power_state_config = cohesity_management_sdk.models.power_state_config_proto.PowerStateConfigProto.from_dictionary(dictionary.get('powerStateConfig')) if dictionary.get('powerStateConfig') else None
         preserve_tags = dictionary.get('preserveTags')
         progress_monitor_task_path = dictionary.get('progressMonitorTaskPath')
@@ -560,6 +609,7 @@ class PerformRestoreTaskStateProto(object):
         restore_one_drive_params = cohesity_management_sdk.models.restore_one_drive_params.RestoreOneDriveParams.from_dictionary(dictionary.get('restoreOneDriveParams')) if dictionary.get('restoreOneDriveParams') else None
         restore_outlook_params = cohesity_management_sdk.models.restore_outlook_params.RestoreOutlookParams.from_dictionary(dictionary.get('restoreOutlookParams')) if dictionary.get('restoreOutlookParams') else None
         restore_parent_source = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('restoreParentSource')) if dictionary.get('restoreParentSource') else None
+        restore_site_params = cohesity_management_sdk.models.restore_site_params.RestoreSiteParams.from_dictionary(dictionary.get('restoreSiteParams')) if dictionary.get('restoreSiteParams') else None
         restore_sub_task_vec = dictionary.get('restoreSubTaskVec')
         restore_task_purged = dictionary.get('restoreTaskPurged')
         restore_view_datastore_entity = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('restoreViewDatastoreEntity')) if dictionary.get('restoreViewDatastoreEntity') else None
@@ -579,9 +629,11 @@ class PerformRestoreTaskStateProto(object):
             for structure in dictionary.get('retrieveArchiveTaskVec'):
                 retrieve_archive_task_vec.append(cohesity_management_sdk.models.retrieve_archive_task_state_proto.RetrieveArchiveTaskStateProto.from_dictionary(structure))
         retrieve_archive_view_name = dictionary.get('retrieveArchiveViewName')
+        selected_datastore_idx = dictionary.get('selectedDatastoreIdx')
         stub_view_relative_dir_name = dictionary.get('stubViewRelativeDirName')
         vault_restore_params = cohesity_management_sdk.models.vault_params_restore_params.VaultParamsRestoreParams.from_dictionary(dictionary.get('vaultRestoreParams')) if dictionary.get('vaultRestoreParams') else None
         vcd_config = cohesity_management_sdk.models.restored_object_vcd_config_proto.RestoredObjectVCDConfigProto.from_dictionary(dictionary.get('vcdConfig')) if dictionary.get('vcdConfig') else None
+        vcd_storage_profile_datastore_moref_vec = dictionary.get('vcdStorageProfileDatastoreMorefVec')
         view_box_id = dictionary.get('viewBoxId')
         view_name_deprecated = dictionary.get('viewName_DEPRECATED')
         view_params = cohesity_management_sdk.models.view_params.ViewParams.from_dictionary(dictionary.get('viewParams')) if dictionary.get('viewParams') else None
@@ -611,12 +663,16 @@ class PerformRestoreTaskStateProto(object):
                    full_view_name,
                    include_vm_config,
                    mount_volumes_task_state,
+                   nosql_connect_params,
+                   nosql_recover_job_params,
                    object_name_deprecated,
                    objects,
                    objects_progress_monitor_task_paths,
                    parent_restore_job_id,
                    parent_restore_task_id,
                    path_prefix_deprecated,
+                   physical_flr_parallel_restore,
+                   physical_flr_use_new_locking_method,
                    power_state_config,
                    preserve_tags,
                    progress_monitor_task_path,
@@ -636,6 +692,7 @@ class PerformRestoreTaskStateProto(object):
                    restore_one_drive_params,
                    restore_outlook_params,
                    restore_parent_source,
+                   restore_site_params,
                    restore_sub_task_vec,
                    restore_task_purged,
                    restore_view_datastore_entity,
@@ -647,9 +704,11 @@ class PerformRestoreTaskStateProto(object):
                    retrieve_archive_task_uid_vec,
                    retrieve_archive_task_vec,
                    retrieve_archive_view_name,
+                   selected_datastore_idx,
                    stub_view_relative_dir_name,
                    vault_restore_params,
                    vcd_config,
+                   vcd_storage_profile_datastore_moref_vec,
                    view_box_id,
                    view_name_deprecated,
                    view_params,

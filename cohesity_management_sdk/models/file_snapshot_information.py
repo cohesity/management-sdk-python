@@ -2,6 +2,7 @@
 # Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.snapshot_attempt
+import cohesity_management_sdk.models.replica_info
 
 class FileSnapshotInformation(object):
 
@@ -21,6 +22,8 @@ class FileSnapshotInformation(object):
         modified_time_usecs (long|int): Specifies the time when the file or
             folder was last modified. Specified as a Unix epoch Timestamp (in
             microseconds).
+        replica_info_list (list of ReplicaInfo): Specifies the list of
+            replication information about the current snapshot.
         size_bytes (long|int): Specifies the size of the file or folder in
             bytes.
         snapshot (SnapshotAttempt): Specifies information about a single
@@ -34,6 +37,7 @@ class FileSnapshotInformation(object):
         "has_local_copy":'hasLocalCopy',
         "has_remote_copy":'hasRemoteCopy',
         "modified_time_usecs":'modifiedTimeUsecs',
+        "replica_info_list":'replicaInfoList',
         "size_bytes":'sizeBytes',
         "snapshot":'snapshot'
     }
@@ -43,6 +47,7 @@ class FileSnapshotInformation(object):
                  has_local_copy=None,
                  has_remote_copy=None,
                  modified_time_usecs=None,
+                 replica_info_list=None,
                  size_bytes=None,
                  snapshot=None):
         """Constructor for the FileSnapshotInformation class"""
@@ -52,6 +57,7 @@ class FileSnapshotInformation(object):
         self.has_local_copy = has_local_copy
         self.has_remote_copy = has_remote_copy
         self.modified_time_usecs = modified_time_usecs
+        self.replica_info_list = replica_info_list
         self.size_bytes = size_bytes
         self.snapshot = snapshot
 
@@ -78,6 +84,11 @@ class FileSnapshotInformation(object):
         has_local_copy = dictionary.get('hasLocalCopy')
         has_remote_copy = dictionary.get('hasRemoteCopy')
         modified_time_usecs = dictionary.get('modifiedTimeUsecs')
+        replica_info_list = None
+        if dictionary.get('replicaInfoList') != None:
+            replica_info_list = list()
+            for structure in dictionary.get('replicaInfoList'):
+                replica_info_list.append(cohesity_management_sdk.models.replica_info.ReplicaInfo.from_dictionary(structure))
         size_bytes = dictionary.get('sizeBytes')
         snapshot = cohesity_management_sdk.models.snapshot_attempt.SnapshotAttempt.from_dictionary(dictionary.get('snapshot')) if dictionary.get('snapshot') else None
 
@@ -86,6 +97,7 @@ class FileSnapshotInformation(object):
                    has_local_copy,
                    has_remote_copy,
                    modified_time_usecs,
+                   replica_info_list,
                    size_bytes,
                    snapshot)
 

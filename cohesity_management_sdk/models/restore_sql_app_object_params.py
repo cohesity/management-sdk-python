@@ -47,6 +47,10 @@ class RestoreSqlAppObjectParams(object):
             databases. If this is not set, the SQL database will be recovered
             to the full/incremental snapshot (specified in the owner's restore
             object in AppOwnerRestoreInfo).
+        resume_restore (bool): Resume restore if sql instance/database exist
+            in restore/recovering state. The database might be in
+            restore/recovering state if previous restore failed or previous
+            restore was attempted  with norecovery option.
         secondary_data_file_destination (string): Which directory to put the
             secondary data files of the database. Secondary data files are
             optional and are user defined. The recommended file name extension
@@ -85,6 +89,7 @@ class RestoreSqlAppObjectParams(object):
         "multi_stage_restore_options":'multiStageRestoreOptions',
         "new_database_name":'newDatabaseName',
         "restore_time_secs":'restoreTimeSecs',
+        "resume_restore":'resumeRestore',
         "secondary_data_file_destination":'secondaryDataFileDestination',
         "secondary_data_file_destination_vec":'secondaryDataFileDestinationVec',
         "with_clause":'withClause',
@@ -105,6 +110,7 @@ class RestoreSqlAppObjectParams(object):
                  multi_stage_restore_options=None,
                  new_database_name=None,
                  restore_time_secs=None,
+                 resume_restore=None,
                  secondary_data_file_destination=None,
                  secondary_data_file_destination_vec=None,
                  with_clause=None,
@@ -125,6 +131,7 @@ class RestoreSqlAppObjectParams(object):
         self.multi_stage_restore_options = multi_stage_restore_options
         self.new_database_name = new_database_name
         self.restore_time_secs = restore_time_secs
+        self.resume_restore = resume_restore
         self.secondary_data_file_destination = secondary_data_file_destination
         self.secondary_data_file_destination_vec = secondary_data_file_destination_vec
         self.with_clause = with_clause
@@ -162,6 +169,7 @@ class RestoreSqlAppObjectParams(object):
         multi_stage_restore_options = cohesity_management_sdk.models.sql_update_restore_task_options.SqlUpdateRestoreTaskOptions.from_dictionary(dictionary.get('multiStageRestoreOptions')) if dictionary.get('multiStageRestoreOptions') else None
         new_database_name = dictionary.get('newDatabaseName')
         restore_time_secs = dictionary.get('restoreTimeSecs')
+        resume_restore = dictionary.get('resumeRestore')
         secondary_data_file_destination = dictionary.get('secondaryDataFileDestination')
         secondary_data_file_destination_vec = None
         if dictionary.get('secondaryDataFileDestinationVec') != None:
@@ -185,6 +193,7 @@ class RestoreSqlAppObjectParams(object):
                    multi_stage_restore_options,
                    new_database_name,
                    restore_time_secs,
+                   resume_restore,
                    secondary_data_file_destination,
                    secondary_data_file_destination_vec,
                    with_clause,

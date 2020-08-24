@@ -2,13 +2,16 @@
 # Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.aws_credentials
+import cohesity_management_sdk.models.a_w_s_fleet_params
 import cohesity_management_sdk.models.azure_credentials
 import cohesity_management_sdk.models.exchange_dag_protection_preference
+import cohesity_management_sdk.models.fleet_network_params
 import cohesity_management_sdk.models.gcp_credentials
 import cohesity_management_sdk.models.kubernetes_credentials
 import cohesity_management_sdk.models.nas_mount_credential_params
 import cohesity_management_sdk.models.office_365_credentials
 import cohesity_management_sdk.models.ssl_verification
+import cohesity_management_sdk.models.subnet
 import cohesity_management_sdk.models.throttling_policy_parameters
 import cohesity_management_sdk.models.throttling_policy_override
 import cohesity_management_sdk.models.vlan_parameters
@@ -26,8 +29,17 @@ class RegisterProtectionSourceParameters(object):
             different from the source endpoint.
         aws_credentials (AwsCredentials): Specifies the credentials to
             authenticate with AWS Cloud Platform.
+        aws_fleet_params (AwsFleetParams): Specifies information related to
+            AWS fleets launched for various purposes. This will only be set
+            for kIAMUser entity.
         azure_credentials (AzureCredentials): Specifies the credentials to
             authenticate with Azure Cloud Platform.
+        blacklisted_ip_addresses (list of string): Specifies the list of IP
+            Addresses on the registered source to be blacklisted for doing any
+            type of IO operations.
+        cluster_network_info (FleetNetworkParams): Specifies information
+            related to cluster. This is only valid for CE clusters. This is
+            only populated for kIAMUser entity.
         endpoint (string): Specifies the network endpoint of the Protection
             Source where it is reachable. It could be an URL or hostname or an
             IP address of the Protection Source.
@@ -71,7 +83,12 @@ class RegisterProtectionSourceParameters(object):
             indicates Elastifile Protection Source environment. 'kAD'
             indicates Active Directory Protection Source environment.
             'kRDSSnapshotManager' indicates AWS RDS Protection Source
-            environment.
+            environment. 'kCassandra' indicates Cassandra Protection Source
+            environment. 'kMongoDB' indicates MongoDB Protection Source
+            environment. 'kCouchbase' indicates Couchbase Protection Source
+            environment. 'kHdfs' indicates Hdfs Protection Source environment.
+            'kHive' indicates Hive Protection Source environment. 'kHBase'
+            indicates HBase Protection Source environment.
         exchange_dag_protection_preference (ExchangeDAGProtectionPreference):
             Specifies information about the preference order while choosing
             between which database copy of the exchange database which is part
@@ -112,6 +129,7 @@ class RegisterProtectionSourceParameters(object):
 
             Specifies credentials needed to authenticate & authorize user for
             Office365 using MS Graph APIs.
+        office_365_region (string): Specifies the region for Office365.
         office_365_type (Office365TypeEnum): Specifies the entity type such as
             'kDomain', 'kOutlook', 'kMailbox', if the environment is kO365.
         password (string): Specifies password of the username to access the
@@ -129,6 +147,10 @@ class RegisterProtectionSourceParameters(object):
             applicable to VMware environment. It can be populated with the
             server's CA certificate or certificate chain and vCenter's
             certificate will be validated against this.
+        subnets (list of Subnet): Specifies the list of subnet IP addresses
+            and CIDR prefix for enabeling network data transfer. Currently,
+            only Subnet IP and NetbaskBits are valid input fields. All other
+            fields provided as input will be ignored.
         throttling_policy (ThrottlingPolicyParameters): Specifies the
             throttling policy that should be applied to this Source.
         throttling_policy_overrides (list of ThrottlingPolicyOverride): Array
@@ -155,7 +177,10 @@ class RegisterProtectionSourceParameters(object):
         "acropolis_type":'acropolisType',
         "agent_endpoint":'agentEndpoint',
         "aws_credentials":'awsCredentials',
+        "aws_fleet_params":'awsFleetParams',
         "azure_credentials":'azureCredentials',
+        "blacklisted_ip_addresses":'blacklistedIpAddresses',
+        "cluster_network_info":'clusterNetworkInfo',
         "endpoint":'endpoint',
         "environment":'environment',
         "exchange_dag_protection_preference":'exchangeDAGProtectionPreference',
@@ -170,12 +195,14 @@ class RegisterProtectionSourceParameters(object):
         "netapp_type":'netappType',
         "nimble_type":'nimbleType',
         "office365_credentials_list":"office365CredentialsList",
+        "office_365_region":'office365Region',
         "office_365_type":'office365Type',
         "password":'password',
         "physical_type":'physicalType',
         "pure_type":'pureType',
         "source_side_dedup_enabled":'sourceSideDedupEnabled',
         "ssl_verification":'sslVerification',
+        "subnets":'subnets',
         "throttling_policy":'throttlingPolicy',
         "throttling_policy_overrides":'throttlingPolicyOverrides',
         "use_o_auth_for_exchange_online":'useOAuthForExchangeOnline',
@@ -188,7 +215,10 @@ class RegisterProtectionSourceParameters(object):
                  acropolis_type=None,
                  agent_endpoint=None,
                  aws_credentials=None,
+                 aws_fleet_params=None,
                  azure_credentials=None,
+                 blacklisted_ip_addresses=None,
+                 cluster_network_info=None,
                  endpoint=None,
                  environment=None,
                  exchange_dag_protection_preference=None,
@@ -203,12 +233,14 @@ class RegisterProtectionSourceParameters(object):
                  netapp_type=None,
                  nimble_type=None,
                  office365_credentials_list=None,
+                 office_365_region=None,
                  office_365_type=None,
                  password=None,
                  physical_type=None,
                  pure_type=None,
                  source_side_dedup_enabled=None,
                  ssl_verification=None,
+                 subnets=None,
                  throttling_policy=None,
                  throttling_policy_overrides=None,
                  use_o_auth_for_exchange_online=None,
@@ -221,7 +253,10 @@ class RegisterProtectionSourceParameters(object):
         self.acropolis_type = acropolis_type
         self.agent_endpoint = agent_endpoint
         self.aws_credentials = aws_credentials
+        self.aws_fleet_params = aws_fleet_params
         self.azure_credentials = azure_credentials
+        self.blacklisted_ip_addresses = blacklisted_ip_addresses
+        self.cluster_network_info = cluster_network_info
         self.endpoint = endpoint
         self.environment = environment
         self.force_register = force_register
@@ -236,12 +271,14 @@ class RegisterProtectionSourceParameters(object):
         self.netapp_type = netapp_type
         self.nimble_type = nimble_type
         self.office365_credentials_list = office365_credentials_list
+        self.office_365_region = office_365_region
         self.office_365_type = office_365_type
         self.password = password
         self.physical_type = physical_type
         self.pure_type = pure_type
         self.source_side_dedup_enabled = source_side_dedup_enabled
         self.ssl_verification = ssl_verification
+        self.subnets = subnets
         self.throttling_policy = throttling_policy
         self.throttling_policy_overrides = throttling_policy_overrides
         self.use_o_auth_for_exchange_online = use_o_auth_for_exchange_online
@@ -271,7 +308,10 @@ class RegisterProtectionSourceParameters(object):
         acropolis_type = dictionary.get('acropolisType')
         agent_endpoint = dictionary.get('agentEndpoint')
         aws_credentials = cohesity_management_sdk.models.aws_credentials.AwsCredentials.from_dictionary(dictionary.get('awsCredentials')) if dictionary.get('awsCredentials') else None
+        aws_fleet_params = cohesity_management_sdk.models.a_w_s_fleet_params.AwsFleetParams.from_dictionary(dictionary.get('awsFleetParams')) if dictionary.get('awsFleetParams') else None
         azure_credentials = cohesity_management_sdk.models.azure_credentials.AzureCredentials.from_dictionary(dictionary.get('azureCredentials')) if dictionary.get('azureCredentials') else None
+        blacklisted_ip_addresses = dictionary.get('blacklistedIpAddresses')
+        cluster_network_info = cohesity_management_sdk.models.fleet_network_params.FleetNetworkParams.from_dictionary(dictionary.get('clusterNetworkInfo')) if dictionary.get('clusterNetworkInfo') else None
         endpoint = dictionary.get('endpoint')
         environment = dictionary.get('environment')
         exchange_dag_protection_preference = cohesity_management_sdk.models.exchange_dag_protection_preference.ExchangeDAGProtectionPreference.from_dictionary(dictionary.get('exchangeDAGProtectionPreference')) if dictionary.get('exchangeDAGProtectionPreference') else None
@@ -291,11 +331,17 @@ class RegisterProtectionSourceParameters(object):
             office365_credentials_list = list()
             for structure in dictionary.get('office365CredentialsList'):
                 office365_credentials_list.append(cohesity_management_sdk.office_365_credentials.Office365Credentials.from_dictionary(structure))
+        office_365_region = dictionary.get('office365Region')
         password = dictionary.get('password')
         physical_type = dictionary.get('physicalType')
         pure_type = dictionary.get('pureType')
         source_side_dedup_enabled = dictionary.get('sourceSideDedupEnabled')
         ssl_verification = cohesity_management_sdk.models.ssl_verification.SslVerification.from_dictionary(dictionary.get('sslVerification')) if dictionary.get('sslVerification') else None
+        subnets = None
+        if dictionary.get('subnets') != None:
+            subnets = list()
+            for structure in dictionary.get('subnets'):
+                subnets.append(cohesity_management_sdk.models.subnet.Subnet.from_dictionary(structure))
         throttling_policy = cohesity_management_sdk.models.throttling_policy_parameters.ThrottlingPolicyParameters.from_dictionary(dictionary.get('throttlingPolicy')) if dictionary.get('throttlingPolicy') else None
         throttling_policy_overrides = None
         if dictionary.get('throttlingPolicyOverrides') != None:
@@ -311,7 +357,10 @@ class RegisterProtectionSourceParameters(object):
         return cls(acropolis_type,
                    agent_endpoint,
                    aws_credentials,
+                   aws_fleet_params,
                    azure_credentials,
+                   blacklisted_ip_addresses,
+                   cluster_network_info,
                    endpoint,
                    environment,
                    exchange_dag_protection_preference,
@@ -326,12 +375,14 @@ class RegisterProtectionSourceParameters(object):
                    netapp_type,
                    nimble_type,
                    office365_credentials_list,
+                   office_365_region,
                    office_365_type,
                    password,
                    physical_type,
                    pure_type,
                    source_side_dedup_enabled,
                    ssl_verification,
+                   subnets,
                    throttling_policy,
                    throttling_policy_overrides,
                    use_o_auth_for_exchange_online,

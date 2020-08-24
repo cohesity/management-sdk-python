@@ -6,6 +6,7 @@ import cohesity_management_sdk.models.email_meta_data
 import cohesity_management_sdk.models.file_version
 import cohesity_management_sdk.models.universal_id
 import cohesity_management_sdk.models.protection_source
+import cohesity_management_sdk.models.sharepoint_document_metadata
 
 class FileSearchResult(object):
 
@@ -44,6 +45,8 @@ class FileSearchResult(object):
         registered_source_id (long|int): Specifies the id of the top-level
             registered source (such as a vCenter Server) where the source
             object that contains the the file or folder is stored.
+        sharepoint_document_metadata (SharepointDocumentMetadata): Specifies
+            the metadata about the Sharepoint documents.
         snapshot_tags (list of string): Snapshot tags present on this
             document.
         source_id (long|int): Specifies the source id of the object that
@@ -72,6 +75,7 @@ class FileSearchResult(object):
         "one_drive_document_metadata":'oneDriveDocumentMetadata',
         "protection_source":'protectionSource',
         "registered_source_id":'registeredSourceId',
+        "sharepoint_document_metadata":'sharepointDocumentMetadata',
         "snapshot_tags":'snapshotTags',
         "source_id":'sourceId',
         "tags":'tags',
@@ -92,6 +96,7 @@ class FileSearchResult(object):
                  one_drive_document_metadata=None,
                  protection_source=None,
                  registered_source_id=None,
+                 sharepoint_document_metadata=None,
                  snapshot_tags=None,
                  source_id=None,
                  tags=None,
@@ -112,6 +117,7 @@ class FileSearchResult(object):
         self.one_drive_document_metadata = one_drive_document_metadata
         self.protection_source = protection_source
         self.registered_source_id = registered_source_id
+        self.sharepoint_document_metadata = sharepoint_document_metadata
         self.snapshot_tags = snapshot_tags
         self.source_id = source_id
         self.tags = tags
@@ -153,6 +159,7 @@ class FileSearchResult(object):
         protection_source = cohesity_management_sdk.models.protection_source.ProtectionSource.from_dictionary(dictionary.get('protectionSource')) if dictionary.get('protectionSource') else None
         one_drive_document_metadata = cohesity_management_sdk.models.one_drive_document_metadata.OneDriveDocumentMetadata.from_dictionary(dictionary.get('oneDriveDocumentMetadata')) if dictionary.get('oneDriveDocumentMetadata') else None
         registered_source_id = dictionary.get('registeredSourceId')
+        sharepoint_document_metadata = cohesity_management_sdk.models.sharepoint_document_metadata.SharepointDocumentMetadata.from_dictionary(dictionary.get('sharepointDocumentMetadata')) if dictionary.get('sharepointDocumentMetadata') else None
         snapshot_tags = dictionary.get('snapshotTags', None)
         source_id = dictionary.get('sourceId')
         tags = dictionary.get('tags', None)
@@ -172,6 +179,7 @@ class FileSearchResult(object):
                    one_drive_document_metadata,
                    protection_source,
                    registered_source_id,
+                   sharepoint_document_metadata,
                    snapshot_tags,
                    source_id,
                    mtype,

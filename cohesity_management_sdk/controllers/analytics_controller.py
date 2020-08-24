@@ -279,7 +279,7 @@ class AnalyticsController(BaseController):
             self.logger.error(e, exc_info=True)
             raise
 
-    def update_application(self, id, body=None):
+    def update_application(self, id=None, body=None):
         """Does a PUT request to /public/analytics/apps/{id}.
 
         Returns the updated Application.
@@ -300,11 +300,6 @@ class AnalyticsController(BaseController):
         """
         try:
             self.logger.info('update_application called.')
-
-            # Validate required parameters
-            self.logger.info(
-                'Validating required parameters for update_application.')
-            self.validate_parameters(id=id)
 
             # Prepare query URL
             self.logger.info('Preparing query URL for update_application.')
@@ -1341,7 +1336,7 @@ class AnalyticsController(BaseController):
         Returns delete status upon completion.
 
         Args:
-            id (long|int)
+            id (long|int): TODO: Type description here.
 
         Returns:
             void: Response from the API. No Content
@@ -1462,7 +1457,8 @@ class AnalyticsController(BaseController):
         application.
 
         Args:
-            application_id (list of long|int): Specifies the application Id.
+            application_id (list of long|int, optional): Specifies the
+                application Id.
             application_data_type (list of string, optional): Specifies the
                 data type for which supported patterns can be fetched.
 

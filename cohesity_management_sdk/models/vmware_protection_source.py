@@ -3,6 +3,7 @@
 
 import cohesity_management_sdk.models.agent_information
 import cohesity_management_sdk.models.datastore_info
+import cohesity_management_sdk.models.ip_details
 import cohesity_management_sdk.models.vmware_object_id
 import cohesity_management_sdk.models.tag_attribute
 import cohesity_management_sdk.models.vcloud_director_info
@@ -55,6 +56,8 @@ class VmwareProtectionSource(object):
         id (VmwareObjectId): Specifies a unique Protection Source id across
             Cohesity Clusters. It is derived from the id of the VMware
             Protection Source.
+        ip_details (IpDetails): This field can be used to capture IP Addresses
+            for entities that have it.
         is_vm_template (bool): IsTemplate specifies if the VM is a template or
             not.
         name (string): Specifies a human readable name of the Protection
@@ -124,6 +127,7 @@ class VmwareProtectionSource(object):
         "has_persistent_agent":'hasPersistentAgent',
         "host_type":'hostType',
         "id":'id',
+        "ip_details":'ipDetails',
         "is_vm_template":'isVmTemplate',
         "name":'name',
         "tag_attributes":'tagAttributes',
@@ -143,6 +147,7 @@ class VmwareProtectionSource(object):
                  has_persistent_agent=None,
                  host_type=None,
                  id=None,
+                 ip_details=None,
                  is_vm_template=None,
                  name=None,
                  tag_attributes=None,
@@ -162,6 +167,7 @@ class VmwareProtectionSource(object):
         self.has_persistent_agent = has_persistent_agent
         self.host_type = host_type
         self.id = id
+        self.ip_details = ip_details
         self.is_vm_template = is_vm_template
         self.name = name
         self.tag_attributes = tag_attributes
@@ -202,6 +208,7 @@ class VmwareProtectionSource(object):
         has_persistent_agent = dictionary.get('hasPersistentAgent')
         host_type = dictionary.get('hostType')
         id = cohesity_management_sdk.models.vmware_object_id.VmwareObjectId.from_dictionary(dictionary.get('id')) if dictionary.get('id') else None
+        ip_details = cohesity_management_sdk.models.ip_details.IpDetails.from_dictionary(dictionary.get('ipDetails')) if dictionary.get('ipDetails') else None
         is_vm_template = dictionary.get('isVmTemplate')
         name = dictionary.get('name')
         tag_attributes = None
@@ -232,6 +239,7 @@ class VmwareProtectionSource(object):
                    has_persistent_agent,
                    host_type,
                    id,
+                   ip_details,
                    is_vm_template,
                    name,
                    tag_attributes,
