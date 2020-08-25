@@ -56,7 +56,7 @@ class SiteOwner(object):
         if dictionary.get('driveInfoList') != None:
             drive_info_list = list()
             for structure in dictionary.get('driveInfoList'):
-                drive_info_list.append(cohesity_management_sdk.models.restore_object_details.RestoreObjectDetails.from_dictionary(structure))
+                drive_info_list.append(cohesity_management_sdk.models.site_drive_info.SiteDriveInfo.from_dictionary(structure))
         site_detail_object = cohesity_management_sdk.models.restore_object_details.RestoreObjectDetails.from_dictionary(dictionary.get('siteDetailObject')) if dictionary.get('siteDetailObject') else None
 
         # Return an object of this model

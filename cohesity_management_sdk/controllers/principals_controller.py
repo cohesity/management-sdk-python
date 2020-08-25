@@ -1091,7 +1091,7 @@ class PrincipalsController(BaseController):
                 sids.
 
         Returns:
-            ApiKey: Response from the API. Success
+            list of ApiKey: Response from the API. Success
 
         Raises:
             APIException: When an error occurs while fetching the data from

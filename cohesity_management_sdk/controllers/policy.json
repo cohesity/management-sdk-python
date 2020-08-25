@@ -1,8 +1,0 @@
-{
-    "name": "trial",
-    "incrementalSchedulingPolicy": {
-        "periodicity": "kDaily",
-        "dailySchedule": {}
-    }
- }
- 

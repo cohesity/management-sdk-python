@@ -11,24 +11,24 @@ class IpDetails(object):
     type using this field.
 
     Attributes:
-        description (string): Details of the IP Addresses captured below
+        details (string): Details of the IP Addresses captured below
         ip_addresses (list of string): The IP Addresses
 
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "description": 'description',
+        "details": 'details',
         "ip_addresses": 'ipAddresses'
     }
 
     def __init__(self,
-                 description=None,
+                 details=None,
                  ip_addresses=None):
         """Constructor for the IpDetails class"""
 
         # Initialize members of the class
-        self.description = description
+        self.details = details
         self.ip_addresses = ip_addresses
 
 
@@ -50,11 +50,11 @@ class IpDetails(object):
             return None
 
         # Extract variables from the dictionary
-        description = dictionary.get('description', None)
+        details = dictionary.get('details', None)
         ip_addresses = dictionary.get('ipAddresses', None)
 
         # Return an object of this model
-        return cls(description,
+        return cls(details,
                    ip_addresses)
 
 

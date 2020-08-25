@@ -72,7 +72,7 @@ class SharePointRestoreParameters(object):
         if dictionary.get('siteOwnerList') != None:
             site_owner_list = list()
             for structure in dictionary.get('siteOwnerList'):
-                site_owner_list.append(cohesity_management_sdk.models.site_owner.from_dictionary(structure))
+                site_owner_list.append(cohesity_management_sdk.models.site_owner.SiteOwner.from_dictionary(structure))
         target_document_library_name = dictionary.get('targetDocumentLibraryName')
         target_document_library_prefix = dictionary.get('targetDocumentLibraryPrefix')
         target_site = cohesity_management_sdk.models.protection_source.ProtectionSource.from_dictionary(dictionary.get('targetSite')) if dictionary.get('targetSite') else None

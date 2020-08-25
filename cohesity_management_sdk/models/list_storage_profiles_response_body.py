@@ -50,7 +50,7 @@ class ListStorageProfilesResponseBody(object):
         if dictionary.get('storageProfiles') != None:
             storage_profiles = list()
             for structure in dictionary.get('storageProfiles'):
-                cohesity_management_sdk.models.vcd_storage_profile.VcdStorageProfile.from_dictionary(structure)
+                storage_profiles.append(cohesity_management_sdk.models.vcd_storage_profile.VcdStorageProfile.from_dictionary(structure))
 
         # Return an object of this model
         return cls(storage_profiles)
