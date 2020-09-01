@@ -12,6 +12,7 @@ harness the power of *Cohesity REST APIs* in your python applications.
 ## Table of contents :scroll:
 
  - [Getting Started](#get-started)
+ - [Documentation](#documentation)
  - [How to use](#howto)
  - [More samples](#sample)
  - [How can you contribute](#contribute)
@@ -51,8 +52,12 @@ To upgrade the package:
 To upgade the package to specific release:
 
 ```
-pip install cohesity-management-sdk==1.3.1
+pip install cohesity-management-sdk==1.5.0
 ```
+
+## <a name="documentation"></a> Documentation :books:
+
+<a href="https://developer.cohesity.com/versions.html">Refer Python docs for your cluster version. </a>
 
 ## <a name="howto"></a> How to Use: :mag_right:
 
@@ -87,4 +92,3 @@ Check out the scripts included under [`samples`](./samples) for reference.
 ## <a name ="suggest"></a> Questions or Feedback :raised_hand:
 
 We would love to hear from you. Please send your questions and feedback to: *cohesity-api-sdks@cohesity.com*
-
