@@ -1,4 +1,4 @@
-# [1.3.1] - 2020-08-12
+# [1.4.0] - 2020-09-01
 New version of Cohesity Management SDK is here!
 
 ### Added
