@@ -16,6 +16,7 @@ class CreateVirtualClusterParameters(object):
         encryption_config (EncryptionConfiguration): Specifies the parameters
             the user wants to use when configuring encryption for the new
             Cluster.
+        ip_preference (int): Specifies IP preference.
         metadata_fault_tolerance (int): Specifies the metadata fault
             tolerance.
         network_config (NetworkConfiguration): Specifies all of the parameters
@@ -31,7 +32,8 @@ class CreateVirtualClusterParameters(object):
         "network_config":'networkConfig',
         "node_configs":'nodeConfigs',
         "encryption_config":'encryptionConfig',
-        "metadata_fault_tolerance":'metadataFaultTolerance'
+        "metadata_fault_tolerance":'metadataFaultTolerance',
+        "ip_preference":'ipPreference'
     }
 
     def __init__(self,
@@ -39,12 +41,14 @@ class CreateVirtualClusterParameters(object):
                  network_config=None,
                  node_configs=None,
                  encryption_config=None,
-                 metadata_fault_tolerance=None):
+                 metadata_fault_tolerance=None,
+                 ip_preference=None):
         """Constructor for the CreateVirtualClusterParameters class"""
 
         # Initialize members of the class
         self.cluster_name = cluster_name
         self.encryption_config = encryption_config
+        self.ip_preference = ip_preference
         self.metadata_fault_tolerance = metadata_fault_tolerance
         self.network_config = network_config
         self.node_configs = node_configs
@@ -77,12 +81,14 @@ class CreateVirtualClusterParameters(object):
                 node_configs.append(cohesity_management_sdk.models.virtual_node_configuration.VirtualNodeConfiguration.from_dictionary(structure))
         encryption_config = cohesity_management_sdk.models.encryption_configuration.EncryptionConfiguration.from_dictionary(dictionary.get('encryptionConfig')) if dictionary.get('encryptionConfig') else None
         metadata_fault_tolerance = dictionary.get('metadataFaultTolerance')
+        ip_preference = dictionary.get('ipPreference')
 
         # Return an object of this model
         return cls(cluster_name,
                    network_config,
                    node_configs,
                    encryption_config,
-                   metadata_fault_tolerance)
+                   metadata_fault_tolerance,
+                   ip_preference)
 
 

@@ -26,8 +26,12 @@ class OracleDatabaseNodeChannel(object):
             use per host per db. This value is used on all
             OracleDatabaseNode's unless databaseNodeList item's channelCount
             is specified for the node.
+        enable_dg_primary_backup (bool): Specifies whether the database having
+            the Primary role within Data Guard configuration is to be backed
+            up.
         max_node_count (int): Specifies the maximum number of nodes from which
             we are allowed to take backup/restore.
+        rman_backup_type (int): Specifies the type of Oracle RMAN backup.
 
     """
 
@@ -38,7 +42,9 @@ class OracleDatabaseNodeChannel(object):
         "database_unique_name":'databaseUniqueName',
         "database_uuid":'databaseUuid',
         "default_channel_count":'defaultChannelCount',
-        "max_node_count":'maxNodeCount'
+        "enable_dg_primary_backup":'enableDgPrimaryBackup',
+        "max_node_count":'maxNodeCount',
+        "rman_backup_type":'rmanBackupType'
     }
 
     def __init__(self,
@@ -47,7 +53,9 @@ class OracleDatabaseNodeChannel(object):
                  database_unique_name=None,
                  database_uuid=None,
                  default_channel_count=None,
-                 max_node_count=None):
+                 enable_dg_primary_backup=None,
+                 max_node_count=None,
+                 rman_backup_type=None):
         """Constructor for the OracleDatabaseNodeChannel class"""
 
         # Initialize members of the class
@@ -56,7 +64,9 @@ class OracleDatabaseNodeChannel(object):
         self.database_unique_name = database_unique_name
         self.database_uuid = database_uuid
         self.default_channel_count = default_channel_count
+        self.enable_dg_primary_backup = enable_dg_primary_backup
         self.max_node_count = max_node_count
+        self.rman_backup_type = rman_backup_type
 
 
     @classmethod
@@ -86,7 +96,9 @@ class OracleDatabaseNodeChannel(object):
         database_unique_name = dictionary.get('databaseUniqueName')
         database_uuid = dictionary.get('databaseUuid')
         default_channel_count = dictionary.get('defaultChannelCount')
+        enable_dg_primary_backup = dictionary.get('enableDgPrimaryBackup')
         max_node_count = dictionary.get('maxNodeCount')
+        rman_backup_type = dictionary.get('rmanBackupType')
 
         # Return an object of this model
         return cls(archive_log_keep_days,
@@ -94,6 +106,8 @@ class OracleDatabaseNodeChannel(object):
                    database_unique_name,
                    database_uuid,
                    default_channel_count,
-                   max_node_count)
+                   enable_dg_primary_backup,
+                   max_node_count,
+                   rman_backup_type)
 
 

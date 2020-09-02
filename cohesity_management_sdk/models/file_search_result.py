@@ -6,6 +6,7 @@ import cohesity_management_sdk.models.email_meta_data
 import cohesity_management_sdk.models.file_version
 import cohesity_management_sdk.models.universal_id
 import cohesity_management_sdk.models.protection_source
+import cohesity_management_sdk.models.sharepoint_document_metadata
 
 class FileSearchResult(object):
 
@@ -36,14 +37,23 @@ class FileSearchResult(object):
             this field contains the id of the new Inactive Job.
         job_uid (UniversalId): Specifies the universal id of the Protection
             Job that backed up the object that contains the file or folder.
+        one_drive_document_metadata (OneDriveDocumentMetadata): Specifies the
+            metadata for the OneDrive document.
         protection_source (ProtectionSource): Specifies a generic structure
             that represents a node in the Protection Source tree. Node details
             will depend on the environment of the Protection Source.
         registered_source_id (long|int): Specifies the id of the top-level
             registered source (such as a vCenter Server) where the source
             object that contains the the file or folder is stored.
+        sharepoint_document_metadata (SharepointDocumentMetadata): Specifies
+            the metadata about the Sharepoint documents.
+        snapshot_tags (list of string): Snapshot tags present on this
+            document.
         source_id (long|int): Specifies the source id of the object that
             contains the file or folder.
+        tags (list of string): Tags present on this document.
+        tags_to_snapshots_map (dict<object, list of int>): Mapping from
+            snapshot tags to.
         mtype (TypeFileSearchResultEnum): Specifies the type of the file
             document such as KDirectory, kFile, etc.
         view_box_id (long|int): Specifies the id of the Domain (View Box)
@@ -62,9 +72,14 @@ class FileSearchResult(object):
         "is_folder":'isFolder',
         "job_id":'jobId',
         "job_uid":'jobUid',
+        "one_drive_document_metadata":'oneDriveDocumentMetadata',
         "protection_source":'protectionSource',
         "registered_source_id":'registeredSourceId',
+        "sharepoint_document_metadata":'sharepointDocumentMetadata',
+        "snapshot_tags":'snapshotTags',
         "source_id":'sourceId',
+        "tags":'tags',
+        "tags_to_snapshots_map":'tagsToSnapshotsMap',
         "mtype":'type',
         "view_box_id":'viewBoxId'
     }
@@ -78,9 +93,14 @@ class FileSearchResult(object):
                  is_folder=None,
                  job_id=None,
                  job_uid=None,
+                 one_drive_document_metadata=None,
                  protection_source=None,
                  registered_source_id=None,
+                 sharepoint_document_metadata=None,
+                 snapshot_tags=None,
                  source_id=None,
+                 tags=None,
+                 tags_to_snapshots_map= None,
                  mtype=None,
                  view_box_id=None):
         """Constructor for the FileSearchResult class"""
@@ -94,14 +114,19 @@ class FileSearchResult(object):
         self.is_folder = is_folder
         self.job_id = job_id
         self.job_uid = job_uid
+        self.one_drive_document_metadata = one_drive_document_metadata
         self.protection_source = protection_source
         self.registered_source_id = registered_source_id
+        self.sharepoint_document_metadata = sharepoint_document_metadata
+        self.snapshot_tags = snapshot_tags
         self.source_id = source_id
+        self.tags = tags
+        self.tags_to_snapshots_map = tags_to_snapshots_map
         self.mtype = mtype
         self.view_box_id = view_box_id
 
-
     @classmethod
+
     def from_dictionary(cls,
                         dictionary):
         """Creates an instance of this model from a dictionary
@@ -132,8 +157,13 @@ class FileSearchResult(object):
         job_id = dictionary.get('jobId')
         job_uid = cohesity_management_sdk.models.universal_id.UniversalId.from_dictionary(dictionary.get('jobUid')) if dictionary.get('jobUid') else None
         protection_source = cohesity_management_sdk.models.protection_source.ProtectionSource.from_dictionary(dictionary.get('protectionSource')) if dictionary.get('protectionSource') else None
+        one_drive_document_metadata = cohesity_management_sdk.models.one_drive_document_metadata.OneDriveDocumentMetadata.from_dictionary(dictionary.get('oneDriveDocumentMetadata')) if dictionary.get('oneDriveDocumentMetadata') else None
         registered_source_id = dictionary.get('registeredSourceId')
+        sharepoint_document_metadata = cohesity_management_sdk.models.sharepoint_document_metadata.SharepointDocumentMetadata.from_dictionary(dictionary.get('sharepointDocumentMetadata')) if dictionary.get('sharepointDocumentMetadata') else None
+        snapshot_tags = dictionary.get('snapshotTags', None)
         source_id = dictionary.get('sourceId')
+        tags = dictionary.get('tags', None)
+        tags_to_snapshots_map = dictionary.get('tagsToSnapshotsMap', None)
         mtype = dictionary.get('type')
         view_box_id = dictionary.get('viewBoxId')
 
@@ -146,10 +176,15 @@ class FileSearchResult(object):
                    is_folder,
                    job_id,
                    job_uid,
+                   one_drive_document_metadata,
                    protection_source,
                    registered_source_id,
+                   sharepoint_document_metadata,
+                   snapshot_tags,
                    source_id,
                    mtype,
+                   tags,
+                   tags_to_snapshots_map,
                    view_box_id)
 
 

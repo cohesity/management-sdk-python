@@ -11,7 +11,8 @@ class VolumeInfoLogicalVolumeInfo(object):
     or LDM.
 
     Attributes:
-        device_tree (DeviceTree): TODO: type description here.
+        device_tree (DeviceTree): The tree defining how to combine partitions
+            to create this logical volume.
         logical_volume_name (string): Logical volume name.
         logical_volume_uuid (string): Logical volume uuid.
         volume_group_name (string): Volume group name.

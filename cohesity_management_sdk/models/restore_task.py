@@ -16,6 +16,8 @@ import cohesity_management_sdk.models.restore_object_state
 import cohesity_management_sdk.models.virtual_disk_recover_task_state
 import cohesity_management_sdk.models.vlan_parameters
 import cohesity_management_sdk.models.vmware_restore_parameters
+import cohesity_management_sdk.models.share_point_restore_parameters
+
 
 class RestoreTask(object):
 
@@ -65,8 +67,8 @@ class RestoreTask(object):
         mount_volumes_state (MountVolumesState): Specifies the states of
             mounting all the volumes onto a mount target for a 'kRecoverVMs'
             Restore Task.
-        name (string): Specifies the name of the Restore Task. This field must
-            be set and must be a unique name.
+        name (string, required ): Specifies the name of the Restore Task. This
+            field must be set and must be a unique name.
         new_parent_id (long|int): Specify a new registered parent Protection
             Source. If specified the selected objects are cloned or recovered
             to this new Protection Source. If not specified, objects are
@@ -82,6 +84,8 @@ class RestoreTask(object):
         restore_object_state (list of RestoreObjectState): Array of Object
             States.  Specifies the states of all the objects for the
             'kRecoverVMs' and 'kCloneVMs' Restore Tasks.
+        share_point_parameters (SharePointRestoreParameters): Specifies
+            additional parameters for 'kRecoverSites' restore task.
         start_time_usecs (long|int): Specifies the start time for the Restore
             Task as a Unix epoch Timestamp (in microseconds).
         status (StatusRestoreTaskEnum): Specifies the overall status of the
@@ -165,6 +169,7 @@ class RestoreTask(object):
         "one_drive_parameters":'oneDriveParameters',
         "outlook_parameters":'outlookParameters',
         "restore_object_state":'restoreObjectState',
+        "share_point_parameters":'sharePointParameters',
         "start_time_usecs":'startTimeUsecs',
         "status":'status',
         "target_view_created":'targetViewCreated',
@@ -197,6 +202,7 @@ class RestoreTask(object):
                  one_drive_parameters=None,
                  outlook_parameters=None,
                  restore_object_state=None,
+                 share_point_parameters=None,
                  start_time_usecs=None,
                  status=None,
                  target_view_created=None,
@@ -229,6 +235,7 @@ class RestoreTask(object):
         self.one_drive_parameters = one_drive_parameters
         self.outlook_parameters = outlook_parameters
         self.restore_object_state = restore_object_state
+        self.share_point_parameters = share_point_parameters
         self.start_time_usecs = start_time_usecs
         self.status = status
         self.target_view_created = target_view_created
@@ -290,6 +297,7 @@ class RestoreTask(object):
             restore_object_state = list()
             for structure in dictionary.get('restoreObjectState'):
                 restore_object_state.append(cohesity_management_sdk.models.restore_object_state.RestoreObjectState.from_dictionary(structure))
+        share_point_parameters = cohesity_management_sdk.models.share_point_restore_parameters.SharePointRestoreParameters.from_dictionary(dictionary.get('sharePointParameters')) if dictionary.get('sharePointParameters') else None
         start_time_usecs = dictionary.get('startTimeUsecs')
         status = dictionary.get('status')
         target_view_created = dictionary.get('targetViewCreated')
@@ -321,6 +329,7 @@ class RestoreTask(object):
                    one_drive_parameters,
                    outlook_parameters,
                    restore_object_state,
+                   share_point_parameters,
                    start_time_usecs,
                    status,
                    target_view_created,

@@ -5,7 +5,8 @@ class AthenaSlowerIOPreferentialTierEnum(object):
 
     """Implementation of the 'AthenaSlowerIOPreferentialTier' enum.
 
-    TODO: type enum description here.
+    Specifies the list of perferred storage tiers used by Athena
+    for slower storage.
 
     Attributes:
         KPCIESSD: TODO: type description here.

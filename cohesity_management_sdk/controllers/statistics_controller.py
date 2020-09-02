@@ -16,9 +16,10 @@ from cohesity_management_sdk.exceptions.request_error_error_exception import Req
 
 class StatisticsController(BaseController):
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-    def __init__(self, client=None, call_back=None):
+    def __init__(self, config=None, client=None, call_back=None):
         super(StatisticsController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
+        self.config = config
 
     def get_entities(self,
                      schema_name,
@@ -67,7 +68,7 @@ class StatisticsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_entities.')
             _url_path = '/public/statistics/entities'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'schemaName': schema_name,
@@ -88,7 +89,7 @@ class StatisticsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_entities.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='get_entities')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -111,7 +112,7 @@ class StatisticsController(BaseController):
         An entity schema specifies the meta-data associated with entity such
         as
         the list of attributes and a time series of data.
-        For example for a Disk entity, the entity schema specifies the Node
+        For example, for a Disk entity, the entity schema specifies the Node
         that is
         using this Disk, the type of the Disk, and Metrics about the Disk such
         as Space
@@ -152,7 +153,7 @@ class StatisticsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_entities_schema.')
             _url_path = '/public/statistics/entitiesSchema'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'schemaNames': schema_names,
@@ -171,7 +172,7 @@ class StatisticsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_entities_schema.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_entities_schema')
 
@@ -195,7 +196,7 @@ class StatisticsController(BaseController):
         An entity schema specifies the meta-data associated with entity such
         as the
         list of attributes and a time series of data.
-        For example for a Disk entity, the entity schema specifies the Node
+        For example, for a Disk entity, the entity schema specifies the Node
         that is
         using this Disk, the type of the Disk, and Metrics about the Disk such
         as
@@ -234,7 +235,7 @@ class StatisticsController(BaseController):
             _url_path = '/public/statistics/entitiesSchema/{schemaName}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'schemaName': schema_name})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -248,7 +249,7 @@ class StatisticsController(BaseController):
                 'Preparing and executing request for get_entity_schema_by_name.'
             )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_entity_schema_by_name')
 
@@ -306,7 +307,7 @@ class StatisticsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_time_series_schema.')
             _url_path = '/public/statistics/timeSeriesSchema'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'entityType': entity_type,
@@ -326,7 +327,7 @@ class StatisticsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_time_series_schema.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_time_series_schema')
 
@@ -429,7 +430,7 @@ class StatisticsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_time_series_stats.')
             _url_path = '/public/statistics/timeSeriesStats'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'schemaName': schema_name,
@@ -454,7 +455,7 @@ class StatisticsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_time_series_stats.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_time_series_stats')
 
@@ -504,7 +505,7 @@ class StatisticsController(BaseController):
                 include subtasks. By default all subtasks of any task matching
                 a query will be returned.
             attributes (list of string, optional): If specified, tasks
-                matching the current query are futher filtered by these
+                matching the current query are further filtered by these
                 KeyValuePairs. This gives client an ability to search by
                 custom attributes that they specified during the task
                 creation. Only the Tasks having 'all' of the specified
@@ -529,7 +530,7 @@ class StatisticsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_tasks.')
             _url_path = '/public/tasks/status'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'taskPaths': task_paths,
@@ -552,7 +553,7 @@ class StatisticsController(BaseController):
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_tasks.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='get_tasks')
 
             # Endpoint and global error handling using HTTP status codes.

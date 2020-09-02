@@ -12,9 +12,10 @@ from cohesity_management_sdk.exceptions.request_error_error_exception import Req
 
 class AuditController(BaseController):
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-    def __init__(self, client=None, call_back=None):
+    def __init__(self, config=None, client=None, call_back=None):
         super(AuditController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
+        self.config = config
 
     def get_audit_logs_actions(self):
         """Does a GET request to /public/auditLogs/actions.
@@ -37,7 +38,7 @@ class AuditController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_audit_logs_actions.')
             _url_path = '/public/auditLogs/actions'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -49,7 +50,7 @@ class AuditController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_audit_logs_actions.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_audit_logs_actions')
 
@@ -88,7 +89,7 @@ class AuditController(BaseController):
             self.logger.info(
                 'Preparing query URL for get_audit_logs_categories.')
             _url_path = '/public/auditLogs/categories'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -102,7 +103,7 @@ class AuditController(BaseController):
                 'Preparing and executing request for get_audit_logs_categories.'
             )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_audit_logs_categories')
 
@@ -206,7 +207,7 @@ class AuditController(BaseController):
             self.logger.info(
                 'Preparing query URL for search_cluster_audit_logs.')
             _url_path = '/public/auditLogs/cluster'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'userNames': user_names,
@@ -237,7 +238,7 @@ class AuditController(BaseController):
                 'Preparing and executing request for search_cluster_audit_logs.'
             )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='search_cluster_audit_logs')
 

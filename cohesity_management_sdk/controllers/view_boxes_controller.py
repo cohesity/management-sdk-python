@@ -13,9 +13,10 @@ from cohesity_management_sdk.exceptions.api_exception import APIException
 
 class ViewBoxesController(BaseController):
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-    def __init__(self, client=None, call_back=None):
+    def __init__(self, config=None, client=None, call_back=None):
         super(ViewBoxesController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
+        self.config = config
 
     def get_view_boxes(self,
                        tenant_ids=None,
@@ -24,7 +25,8 @@ class ViewBoxesController(BaseController):
                        names=None,
                        cluster_partition_ids=None,
                        fetch_stats=None,
-                       fetch_time_series_schema=None):
+                       fetch_time_series_schema=None,
+                       template_id=None):
         """Does a GET request to /public/viewBoxes.
 
         If no parameters are specified, all Domains (View Boxes) currently on
@@ -49,6 +51,10 @@ class ViewBoxesController(BaseController):
                 and performance statistics.
             fetch_time_series_schema (bool, optional): Specifies whether to
                 get time series schema info of the view box.
+            template_id (int|long, optional): Filter list of Storage Domain
+                (View Box) by the properties of the template like dedup,
+                compression. If empty, Storage Domains (View Boxes) are not
+                filtered.
 
         Returns:
             list of ViewBox: Response from the API. Success
@@ -66,7 +72,7 @@ class ViewBoxesController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_view_boxes.')
             _url_path = '/public/viewBoxes'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'tenantIds': tenant_ids,
@@ -75,7 +81,8 @@ class ViewBoxesController(BaseController):
                 'names': names,
                 'clusterPartitionIds': cluster_partition_ids,
                 'fetchStats': fetch_stats,
-                'fetchTimeSeriesSchema': fetch_time_series_schema
+                'fetchTimeSeriesSchema': fetch_time_series_schema,
+                'templateId': template_id
             }
             _query_builder = APIHelper.append_url_with_query_parameters(
                 _query_builder, _query_parameters,
@@ -90,7 +97,7 @@ class ViewBoxesController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_view_boxes.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='get_view_boxes')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -137,7 +144,7 @@ class ViewBoxesController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for create_view_box.')
             _url_path = '/public/viewBoxes'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -155,7 +162,7 @@ class ViewBoxesController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='create_view_box')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -203,7 +210,7 @@ class ViewBoxesController(BaseController):
             _url_path = '/public/viewBoxes/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -211,7 +218,7 @@ class ViewBoxesController(BaseController):
             self.logger.info(
                 'Preparing and executing request for delete_view_box.')
             _request = self.http_client.delete(_query_url)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='delete_view_box')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -259,7 +266,7 @@ class ViewBoxesController(BaseController):
             _url_path = '/public/viewBoxes/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {'fetchStats': fetch_stats}
             _query_builder = APIHelper.append_url_with_query_parameters(
@@ -275,7 +282,7 @@ class ViewBoxesController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_view_box_by_id.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_view_box_by_id')
 
@@ -329,7 +336,7 @@ class ViewBoxesController(BaseController):
             _url_path = '/public/viewBoxes/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -347,7 +354,7 @@ class ViewBoxesController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='update_view_box')
 
             # Endpoint and global error handling using HTTP status codes.

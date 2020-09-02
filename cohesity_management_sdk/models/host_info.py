@@ -9,7 +9,7 @@ class HostInfo(object):
     Specifies the list of all hosts on which the certificate is deployed.
 
     Attributes:
-        password (string): Specifies the passsword of the host to establish
+        password (string): Specifies the password of the host to establish
             SSH connection. The certificate is copied to the host after
             generating the certificate on the cluster.
         server_name (string): Specifies the servername of the host where

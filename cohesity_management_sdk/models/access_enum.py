@@ -11,6 +11,7 @@ class AccessEnum(object):
     'kFullControl' indicates full administrative control of the SMB share.
     'kSpecialAccess' indicates custom permissions to the SMB share using
     access masks structures.
+    'kSuperUser' indicates root permissions ignoring all SMB ACLs.
 
     Attributes:
         KREADONLY: TODO: type description here.
@@ -18,6 +19,7 @@ class AccessEnum(object):
         KMODIFY: TODO: type description here.
         KFULLCONTROL: TODO: type description here.
         KSPECIALACCESS: TODO: type description here.
+        KSUPERUSER: TODO: type description here.
 
     """
 
@@ -30,4 +32,6 @@ class AccessEnum(object):
     KFULLCONTROL = 'kFullControl'
 
     KSPECIALACCESS = 'kSpecialAccess'
+
+    KSUPERUSER = 'kSuperUser'
 

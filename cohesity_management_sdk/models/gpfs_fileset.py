@@ -10,6 +10,8 @@ class GpfsFileset(object):
 
     Attributes:
         id (int): Specifies the id of the fileset.
+        is_independent_fileset (bool): If the given fileset is an Independent
+            fileset or not.
         name (string): Name of the filesystem associated with the fileset
         path (string): Specifies the absolute path of the fileset.
         protocols (list of ProtocolEnum): Specifies GPFS supported Protocol
@@ -22,6 +24,7 @@ class GpfsFileset(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "id":'id',
+        "is_independent_fileset":'isIndependentFileset',
         "name":'name',
         "path":'path',
         "protocols":'protocols'
@@ -29,6 +32,7 @@ class GpfsFileset(object):
 
     def __init__(self,
                  id=None,
+                 is_independent_fileset=None,
                  name=None,
                  path=None,
                  protocols=None):
@@ -36,6 +40,7 @@ class GpfsFileset(object):
 
         # Initialize members of the class
         self.id = id
+        self.is_independent_fileset = is_independent_fileset
         self.name = name
         self.path = path
         self.protocols = protocols
@@ -60,12 +65,14 @@ class GpfsFileset(object):
 
         # Extract variables from the dictionary
         id = dictionary.get('id')
+        is_independent_fileset = dictionary.get('isIndependentFileset')
         name = dictionary.get('name')
         path = dictionary.get('path')
         protocols = dictionary.get('protocols')
 
         # Return an object of this model
         return cls(id,
+                   is_independent_fileset,
                    name,
                    path,
                    protocols)

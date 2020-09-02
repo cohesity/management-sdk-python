@@ -14,8 +14,7 @@ class SourceAppParams(object):
     Attributes:
         is_vss_copy_only (bool): If the backup is a VSS full backup with the
             copy-only option specified.
-        ms_exchange_params (MSExchangeParams): All the params specific to MS
-            exchange application.
+        ms_exchange_params (MSExchangeParams): MS Exchange params.
 
     """
 

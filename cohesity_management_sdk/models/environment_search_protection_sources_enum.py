@@ -32,7 +32,6 @@ class EnvironmentSearchProtectionSourcesEnum(object):
         KGCP: TODO: type description here.
         KFLASHBLADE: TODO: type description here.
         KAWSNATIVE: TODO: type description here.
-        KVCD: TODO: type description here.
         KO365: TODO: type description here.
         KO365OUTLOOK: TODO: type description here.
         KHYPERFLEX: TODO: type description here.
@@ -40,6 +39,14 @@ class EnvironmentSearchProtectionSourcesEnum(object):
         KAZURENATIVE: TODO: type description here.
         KKUBERNETES: TODO: type description here.
         KELASTIFILE: TODO: type description here.
+        KAD: TODO: type description here.
+        KRDSSNAPSHOTMANAGER: TODO: type description here.
+        KCASSANDRA: TODO: type description here.
+        KMONGODB: TODO: type description here.
+        KCOUCHBASE: TODO: type description here.
+        KHDFS: TODO: type description here.
+        KHIVE: TODO: type description here.
+        KHBASE: TODO: type description here.
 
     """
 
@@ -91,8 +98,6 @@ class EnvironmentSearchProtectionSourcesEnum(object):
 
     KAWSNATIVE = 'kAWSNative'
 
-    KVCD = 'kVCD'
-
     KO365 = 'kO365'
 
     KO365OUTLOOK = 'kO365Outlook'
@@ -106,4 +111,20 @@ class EnvironmentSearchProtectionSourcesEnum(object):
     KKUBERNETES = 'kKubernetes'
 
     KELASTIFILE = 'kElastifile'
+
+    KAD = 'kAD'
+
+    KRDSSNAPSHOTMANAGER = 'kRDSSnapshotManager'
+
+    KCASSANDRA = 'kCassandra'
+
+    KMONGODB = 'kMongoDB'
+
+    KCOUCHBASE = 'kCouchbase'
+
+    KHDFS = 'kHdfs'
+
+    KHIVE = 'kHive'
+
+    KHBASE = 'kHBase'
 

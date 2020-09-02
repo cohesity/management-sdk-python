@@ -14,14 +14,14 @@ class VirtualDiskMappingResponse(object):
 
     Attributes:
         disk_to_overwrite (VirtualDiskIdInformation): Specifies information
-            about virtual disk which includes disk uuid, controller type, bus
-            number and unit number.
+            about disk which user wants to overwrite. If specified, then
+            powerOffVmBeforeRecovery must be true.
         source_disk (VirtualDiskIdInformation): Specifies information about
-            virtual disk which includes disk uuid, controller type, bus number
-            and unit number.
-        target_location (ProtectionSource): Specifies a generic structure that
-            represents a node in the Protection Source tree. Node details will
-            depend on the environment of the Protection Source.
+            the source disk.
+        target_location (ProtectionSource): Specifies the target location
+            information, for e.g. a datastore in VMware environment. If
+            diskToOverwrite is specified, then the target location is
+            automatically deduced.
 
     """
 

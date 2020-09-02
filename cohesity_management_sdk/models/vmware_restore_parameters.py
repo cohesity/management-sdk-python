@@ -53,12 +53,27 @@ class VmwareRestoreParameters(object):
             name to derive a new name for the recovered or cloned object. By
             default, cloned or recovered objects retain their original name.
             Length of this field is limited to 8 characters.
+        preserve_custom_attributes_during_clone (bool): Specifies whether or
+            not to preserve the custom attributes during the clone operation.
+            The default behavior is 'true'.
+        preserve_tags (bool): Specifies whether or not to preserve tags during
+            the clone operation. The default behavior is 'true'.
+        recovery_process_type (RecoveryProcessTypeEnum): Specifies the type of
+            recovery process to be performed. If unspecified, then an instant
+            recovery will be performed. Specifies the recovery process type to
+            be used.. 'kInstantRecovery' indicates that an instant recovery
+            should be performed. 'kCopyRecovery' indicates that a copy
+            recovery should be performed.
         resource_pool_id (long|int): Specifies the resource pool where the
             cloned or recovered objects are attached. This field is mandatory
             for kCloneVMs Restore Tasks always. For kRecoverVMs Restore Tasks,
             this field is mandatory only if newParentId field is specified. If
             this field is not specified, recovered objects are attached to the
             original resource pool under the original parent.
+        storage_profile_name (string): Specifies the name of the destination
+            storage profile while restoring to an alternate VCD location.
+        storage_profile_vcd_uuid (string): Specifies the UUID of the storage
+            profile while restoring to an alternate VCD location.
         suffix (string): Specifies a suffix to appended to the original source
             object name to derive a new name for the recovered or cloned
             object. By default, cloned or recovered objects retain their
@@ -80,7 +95,12 @@ class VmwareRestoreParameters(object):
         "network_mappings":'networkMappings',
         "powered_on":'poweredOn',
         "prefix":'prefix',
+        "preserve_custom_attributes_during_clone":'preserveCustomAttributesDuringClone',
+        "preserve_tags":'preserveTags',
+        "recovery_process_type":'recoveryProcessType',
         "resource_pool_id":'resourcePoolId',
+        "storage_profile_name":'storageProfileName',
+        "storage_profile_vcd_uuid":'storageProfileVcdUuid',
         "suffix":'suffix',
         "vm_folder_id":'vmFolderId'
     }
@@ -95,7 +115,12 @@ class VmwareRestoreParameters(object):
                  network_mappings=None,
                  powered_on=None,
                  prefix=None,
+                 preserve_custom_attributes_during_clone=None,
+                 preserve_tags=None,
+                 recovery_process_type=None,
                  resource_pool_id=None,
+                 storage_profile_name=None,
+                 storage_profile_vcd_uuid=None,
                  suffix=None,
                  vm_folder_id=None):
         """Constructor for the VmwareRestoreParameters class"""
@@ -110,7 +135,12 @@ class VmwareRestoreParameters(object):
         self.network_mappings = network_mappings
         self.powered_on = powered_on
         self.prefix = prefix
+        self.preserve_custom_attributes_during_clone = preserve_custom_attributes_during_clone
+        self.preserve_tags = preserve_tags
+        self.recovery_process_type = recovery_process_type
         self.resource_pool_id = resource_pool_id
+        self.storage_profile_name = storage_profile_name
+        self.storage_profile_vcd_uuid = storage_profile_vcd_uuid
         self.suffix = suffix
         self.vm_folder_id = vm_folder_id
 
@@ -146,7 +176,12 @@ class VmwareRestoreParameters(object):
                 network_mappings.append(cohesity_management_sdk.models.network_mapping.NetworkMapping.from_dictionary(structure))
         powered_on = dictionary.get('poweredOn')
         prefix = dictionary.get('prefix')
+        preserve_custom_attributes_during_clone = dictionary.get('preserveCustomAttributesDuringClone')
+        preserve_tags = dictionary.get('preserveTags')
+        recovery_process_type = dictionary.get('recoveryProcessType')
         resource_pool_id = dictionary.get('resourcePoolId')
+        storage_profile_name = dictionary.get('storageProfileName')
+        storage_profile_vcd_uuid = dictionary.get('storageProfileVcdUuid')
         suffix = dictionary.get('suffix')
         vm_folder_id = dictionary.get('vmFolderId')
 
@@ -160,7 +195,12 @@ class VmwareRestoreParameters(object):
                    network_mappings,
                    powered_on,
                    prefix,
+                   preserve_custom_attributes_during_clone,
+                   preserve_tags,
+                   recovery_process_type,
                    resource_pool_id,
+                   storage_profile_name,
+                   storage_profile_vcd_uuid,
                    suffix,
                    vm_folder_id)
 

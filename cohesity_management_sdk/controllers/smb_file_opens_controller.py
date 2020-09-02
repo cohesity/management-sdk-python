@@ -12,9 +12,10 @@ from cohesity_management_sdk.exceptions.request_error_error_exception import Req
 
 class SMBFileOpensController(BaseController):
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-    def __init__(self, client=None, call_back=None):
+    def __init__(self, config=None, client=None, call_back=None):
         super(SMBFileOpensController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
+        self.config = config
 
     def get_smb_file_opens(self,
                            file_path=None,
@@ -62,7 +63,7 @@ class SMBFileOpensController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_smb_file_opens.')
             _url_path = '/public/smbFileOpens'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'filePath': file_path,
@@ -83,7 +84,7 @@ class SMBFileOpensController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_smb_file_opens.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_smb_file_opens')
 
@@ -134,7 +135,7 @@ class SMBFileOpensController(BaseController):
             self.logger.info(
                 'Preparing query URL for create_close_smb_file_open.')
             _url_path = '/public/smbFileOpens'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -151,7 +152,7 @@ class SMBFileOpensController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='create_close_smb_file_open')
 

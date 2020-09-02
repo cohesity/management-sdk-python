@@ -2,6 +2,7 @@
 # Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.backup_task_info
+import cohesity_management_sdk.models.bulk_install_app_task_info
 import cohesity_management_sdk.models.clone_task_info
 import cohesity_management_sdk.models.basic_task_info
 import cohesity_management_sdk.models.recovery_task_info
@@ -13,7 +14,10 @@ class TaskNotification(object):
     Structure that captures Task Notifications for a user.
 
     Attributes:
-        backup_task (BackupTaskInfo): TODO: type description here.
+        backup_task (BackupTaskInfo): The notifications details of Backup
+            Task.
+        bulk_install_app_task (BulkInstallAppTaskInfo): The notifications
+            details of BulkInstall Task.
         clone_task (CloneTaskInfo): Parameters for a clone op.
         created_time_secs (long|int): Timestamp at which the notification was
             created.
@@ -24,7 +28,8 @@ class TaskNotification(object):
             all notifications at once. Nil or 0 value represents false.
         dismissed_time_secs (long|int): Timestamp at which user dismissed this
             notification event.
-        field_message_task (BasicTaskInfo): TODO: type description here.
+        field_message_task (BasicTaskInfo): The notification details of Field
+            Message Task.
         id (string): id identifies a user notification event uniquely. This
             can also be used to dismiss individual notifications.
         recovery_task (RecoveryTaskInfo): Parameters for a recovery op.
@@ -38,7 +43,8 @@ class TaskNotification(object):
             completion of Clone tasks. 'BackupNow' notification type is
             generated upon completion of Backup tasks. 'FieldMessage'
             notification type is generated when field message from Cohesity
-            support is created.
+            support is created. 'bulkInstallApp' notification type is
+            generated from bulk install app
         visited (bool): Visited keeps track of whether a notification has been
             seen or not.
         visited_time_secs (long|int): Timestamp at which user visited this
@@ -49,6 +55,7 @@ class TaskNotification(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "backup_task":'backupTask',
+        "bulk_install_app_task":'bulkInstallAppTask',
         "clone_task":'cloneTask',
         "created_time_secs":'createdTimeSecs',
         "description":'description',
@@ -65,6 +72,7 @@ class TaskNotification(object):
 
     def __init__(self,
                  backup_task=None,
+                 bulk_install_app_task=None,
                  clone_task=None,
                  created_time_secs=None,
                  description=None,
@@ -81,6 +89,7 @@ class TaskNotification(object):
 
         # Initialize members of the class
         self.backup_task = backup_task
+        self.bulk_install_app_task = bulk_install_app_task
         self.clone_task = clone_task
         self.created_time_secs = created_time_secs
         self.description = description
@@ -114,6 +123,7 @@ class TaskNotification(object):
 
         # Extract variables from the dictionary
         backup_task = cohesity_management_sdk.models.backup_task_info.BackupTaskInfo.from_dictionary(dictionary.get('backupTask')) if dictionary.get('backupTask') else None
+        bulk_install_app_task = cohesity_management_sdk.models.bulk_install_app_task_info.BulkInstallAppTaskInfo.from_dictionary(dictionary.get('bulkInstallAppTask')) if dictionary.get('bulkInstallAppTask') else None
         clone_task = cohesity_management_sdk.models.clone_task_info.CloneTaskInfo.from_dictionary(dictionary.get('cloneTask')) if dictionary.get('cloneTask') else None
         created_time_secs = dictionary.get('createdTimeSecs')
         description = dictionary.get('description')
@@ -129,6 +139,7 @@ class TaskNotification(object):
 
         # Return an object of this model
         return cls(backup_task,
+                   bulk_install_app_task,
                    clone_task,
                    created_time_secs,
                    description,

@@ -10,10 +10,10 @@ class IoPreferentialTier(object):
 
     Attributes:
         apollo_io_preferential_tier (list of ApolloIOPreferentialTierEnum):
-            Specifies the perferred storage tier used by Apollo as its working
+            Specifies the preferred storage tier used by Apollo as its working
             directory.
         apollo_wal_io_preferential_tier (list of
-            ApolloWalIOPreferentialTierEnum): Specifies the perferred storage
+            ApolloWalIOPreferentialTierEnum): Specifies the preferred storage
             tier used by Apollo as its actions WAL.
         athena_io_preferential_tier (list of AthenaIOPreferentialTierEnum):
             Specifies the list of perferred storage tiers used by Athena.
@@ -23,7 +23,7 @@ class IoPreferentialTier(object):
         down_tier_usage_percent_thresholds (list of int): Specifies the usage
             percentage thresholds for the correponding storage tier.
         groot_io_preferential_tier (list of GrootIOPreferentialTierEnum):
-            Specifies the perferred storage tier used by Groot as its working
+            Specifies the preferred storage tier used by Groot as its working
             directory.
         hydra_downtier_io_preferential_tier (list of
             HydraDowntierIOPreferentialTierEnum): Specifies the list of
@@ -39,7 +39,7 @@ class IoPreferentialTier(object):
         scribe_io_preferential_tier (list of ScribeIOPreferentialTierEnum):
             Specifies the list of perferred storage tiers used by Scribe.
         sequential_io_preferential_tier (list of
-            SequentialIOPreferentialTierEnum): Specifies the perferred storage
+            SequentialIOPreferentialTierEnum): Specifies the preferred storage
             tier for sequential IO operations.
         yoda_io_preferential_tier (list of YodaIOPreferentialTierEnum):
             Specifies the list of perferred storage tiers used by Yoda.

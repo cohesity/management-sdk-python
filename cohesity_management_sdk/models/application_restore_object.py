@@ -2,6 +2,7 @@
 # Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.ad_restore_parameters
+import cohesity_management_sdk.models.exchange_restore_parameters
 import cohesity_management_sdk.models.sql_restore_parameters
 
 class ApplicationRestoreObject(object):
@@ -16,6 +17,8 @@ class ApplicationRestoreObject(object):
             specific to Application domain controller.
         application_server_id (long|int): Specifies the Application Server to
             restore (for example, kSQL).
+        exchange_restore_parameters (ExchangeRestoreParameters): Specifies
+             parameters speicific to Exchange Application Server.
         sql_restore_parameters (SqlRestoreParameters): Specifies the
             parameters specific the Application Server instance.
         target_host_id (long|int): Specifies the target host if the
@@ -33,6 +36,7 @@ class ApplicationRestoreObject(object):
     _names = {
         "ad_restore_parameters":'adRestoreParameters',
         "application_server_id":'applicationServerId',
+        "exchange_restore_parameters":'exchangeRestoreParameters',
         "sql_restore_parameters":'sqlRestoreParameters',
         "target_host_id":'targetHostId',
         "target_root_node_id":'targetRootNodeId'
@@ -41,6 +45,7 @@ class ApplicationRestoreObject(object):
     def __init__(self,
                  ad_restore_parameters=None,
                  application_server_id=None,
+                 exchange_restore_parameters=None,
                  sql_restore_parameters=None,
                  target_host_id=None,
                  target_root_node_id=None):
@@ -49,6 +54,7 @@ class ApplicationRestoreObject(object):
         # Initialize members of the class
         self.ad_restore_parameters = ad_restore_parameters
         self.application_server_id = application_server_id
+        self.exchange_restore_parameters = exchange_restore_parameters
         self.sql_restore_parameters = sql_restore_parameters
         self.target_host_id = target_host_id
         self.target_root_node_id = target_root_node_id
@@ -77,10 +83,11 @@ class ApplicationRestoreObject(object):
         sql_restore_parameters = cohesity_management_sdk.models.sql_restore_parameters.SqlRestoreParameters.from_dictionary(dictionary.get('sqlRestoreParameters')) if dictionary.get('sqlRestoreParameters') else None
         target_host_id = dictionary.get('targetHostId')
         target_root_node_id = dictionary.get('targetRootNodeId')
-
+        exchange_restore_parameters = cohesity_management_sdk.models.exchange_restore_parameters.ExchangeRestoreParameters.from_dictionary(dictionary.get('exchangeRestoreParameters')) if dictionary.get('exchangeRestoreParameters') else None
         # Return an object of this model
         return cls(ad_restore_parameters,
                    application_server_id,
+                   exchange_restore_parameters,
                    sql_restore_parameters,
                    target_host_id,
                    target_root_node_id)

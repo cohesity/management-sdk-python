@@ -6,7 +6,7 @@ class PeriodicityExtendedRetentionPolicyEnum(object):
     """Implementation of the 'Periodicity_ExtendedRetentionPolicy' enum.
 
     Specifies the frequency that Snapshots should be copied to the
-    specified target. Used in combination with multipiler.
+    specified target. Used in combination with multiplier.
     'kEvery' means that the Snapshot copy occurs after the number of
     Job Runs equals the number specified in the multiplier.
     'kHour' means that the Snapshot copy occurs hourly at the frequency

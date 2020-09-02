@@ -5,7 +5,7 @@ class AthenaIOPreferentialTierEnum(object):
 
     """Implementation of the 'AthenaIOPreferentialTier' enum.
 
-    TODO: type enum description here.
+    Specifies the list of perferred storage tiers used by Athena.
 
     Attributes:
         KPCIESSD: TODO: type description here.

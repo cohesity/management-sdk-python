@@ -5,7 +5,7 @@ class ApolloWalIOPreferentialTierEnum(object):
 
     """Implementation of the 'ApolloWalIOPreferentialTier' enum.
 
-    TODO: type enum description here.
+    Specifies the preferred storage tier used by Apollo as its actions WAL.
 
     Attributes:
         KPCIESSD: TODO: type description here.

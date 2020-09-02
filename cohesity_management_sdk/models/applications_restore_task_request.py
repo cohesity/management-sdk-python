@@ -2,6 +2,7 @@
 # Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.application_restore_object
+import cohesity_management_sdk.models.protection_source_and_application_restore_objects
 import cohesity_management_sdk.models.restore_object_details
 import cohesity_management_sdk.models.vlan_parameters
 
@@ -30,7 +31,7 @@ class ApplicationsRestoreTaskRequest(object):
             Microsoft's Azure Protection Source environment. 'kNetapp'
             indicates the Netapp Protection Source environment. 'kAgent'
             indicates the Agent Protection Source environment. 'kGenericNas'
-            indicates the Genreric Network Attached Storage Protection Source
+            indicates the Generic Network Attached Storage Protection Source
             environment. 'kAcropolis' indicates the Acropolis Protection
             Source environment. 'kPhsicalFiles' indicates the Physical Files
             Protection Source environment. 'kIsilon' indicates the Dell EMC's
@@ -43,19 +44,28 @@ class ApplicationsRestoreTaskRequest(object):
             Source environment. 'kGCP' indicates the Google Cloud Platform
             Protection Source environment. 'kFlashBlade' indicates the Flash
             Blade Protection Source environment. 'kAWSNative' indicates the
-            AWS Native Protection Source environment. 'kVCD' indicates the
-            VMware's Virtual cloud Director Protection Source environment.
-            'kO365' indicates the Office 365 Protection Source environment.
-            'kO365Outlook' indicates Office 365 outlook Protection Source
-            environment. 'kHyperFlex' indicates the Hyper Flex Protection
-            Source environment. 'kGCPNative' indicates the GCP Native
-            Protection Source environment. 'kAzureNative' indicates the Azure
-            Native Protection Source environment. 'kKubernetes' indicates a
-            Kubernetes Protection Source environment. 'kElastifile' indicates
-            Elastifile Protection Source environment.
+            AWS Native Protection Source environment. 'kO365' indicates the
+            Office 365 Protection Source environment. 'kO365Outlook' indicates
+            Office 365 outlook Protection Source environment. 'kHyperFlex'
+            indicates the Hyper Flex Protection Source environment.
+            'kGCPNative' indicates the GCP Native Protection Source
+            environment. 'kAzureNative' indicates the Azure Native Protection
+            Source environment. 'kKubernetes' indicates a Kubernetes Protection
+            Source environment. 'kElastifile' indicates Elastifile Protection
+            Source environment. 'kAD' indicates Active Directory Protection
+            Source environment. 'kRDSSnapshotManager' indicates AWS RDS
+            Protection Source environment. 'kCassandra' indicates Cassandra
+            Protection Source environment. 'kMongoDB' indicates MongoDB
+            Protection Source environment. 'kCouchbase' indicates Couchbase
+            Protection Source environment. 'kHdfs' indicates Hdfs Protection
+            Source environment. 'kHive' indicates Hive Protection Source
+            environment. 'kHBase' indicates HBase Protection Source
+            environment.
         application_restore_objects (list of ApplicationRestoreObject):
             Specifies the Application Server objects whose data should be
-            restored and the restore parameters for each of them.
+            restored and the restore parameters for each of them. This field
+            will be deprecated. Use the field
+            ProtectionSourceAndApplicationRestoreObjects. deprecated: true
         hosting_protection_source (RestoreObjectDetails): Specifies an object
             to recover or clone or an object to restore files and folders
             from. A VM object can be recovered or cloned. A View object can be
@@ -67,6 +77,9 @@ class ApplicationsRestoreTaskRequest(object):
             tasks.
         password (string): Specifies password of the username to access the
             target source.
+        protection_source_and_application_objects (list of
+            protectionSourceAndApplicationObjects): Specifies the list of
+            hosting protection source and Application restore objects tuple.
         username (string): Specifies username to access the target source.
         vlan_parameters (VlanParameters): Specifies VLAN parameters for the
             restore operation.
@@ -80,6 +93,7 @@ class ApplicationsRestoreTaskRequest(object):
         "name":'name',
         "application_restore_objects":'applicationRestoreObjects',
         "password":'password',
+        "protection_source_and_application_objects":'protectionSourceAndApplicationObjects',
         "username":'username',
         "vlan_parameters":'vlanParameters'
     }
@@ -90,6 +104,7 @@ class ApplicationsRestoreTaskRequest(object):
                  name=None,
                  application_restore_objects=None,
                  password=None,
+                 protection_source_and_application_objects=None,
                  username=None,
                  vlan_parameters=None):
         """Constructor for the ApplicationsRestoreTaskRequest class"""
@@ -100,6 +115,7 @@ class ApplicationsRestoreTaskRequest(object):
         self.hosting_protection_source = hosting_protection_source
         self.name = name
         self.password = password
+        self.protection_source_and_application_objects = protection_source_and_application_objects
         self.username = username
         self.vlan_parameters = vlan_parameters
 
@@ -132,6 +148,11 @@ class ApplicationsRestoreTaskRequest(object):
                 application_restore_objects.append(cohesity_management_sdk.models.application_restore_object.ApplicationRestoreObject.from_dictionary(structure))
         password = dictionary.get('password')
         username = dictionary.get('username')
+        protection_source_and_application_objects = None
+        if dictionary.get('protectionSourceAndApplicationObjects') != None:
+            protection_source_and_application_objects = list()
+            for each_object in dictionary.get('protectionSourceAndApplicationObjects'):
+                protection_source_and_application_objects.append(cohesity_management_sdk.models.protection_source_and_application_restore_objects.ProtectionSourceAndApplicationRestoreObjects.from_dictionary(each_object))
         vlan_parameters = cohesity_management_sdk.models.vlan_parameters.VlanParameters.from_dictionary(dictionary.get('vlanParameters')) if dictionary.get('vlanParameters') else None
 
         # Return an object of this model
@@ -140,6 +161,7 @@ class ApplicationsRestoreTaskRequest(object):
                    name,
                    application_restore_objects,
                    password,
+                   protection_source_and_application_objects,
                    username,
                    vlan_parameters)
 

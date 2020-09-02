@@ -14,9 +14,10 @@ from cohesity_management_sdk.exceptions.request_error_error_exception import Req
 
 class CertificatesController(BaseController):
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-    def __init__(self, client=None, call_back=None):
+    def __init__(self, config=None, client=None, call_back=None):
         super(CertificatesController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
+        self.config = config
 
     def get_certificate_list(self):
         """Does a GET request to /public/certificates/global.
@@ -41,7 +42,7 @@ class CertificatesController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_certificate_list.')
             _url_path = '/public/certificates/global'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -53,7 +54,7 @@ class CertificatesController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_certificate_list.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_certificate_list')
 
@@ -98,7 +99,7 @@ class CertificatesController(BaseController):
             self.logger.info(
                 'Preparing query URL for create_deploy_host_certificate.')
             _url_path = '/public/certificates/global'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -118,7 +119,7 @@ class CertificatesController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='create_deploy_host_certificate')
 
@@ -159,7 +160,7 @@ class CertificatesController(BaseController):
             self.logger.info(
                 'Preparing query URL for delete_web_server_certificate.')
             _url_path = '/public/certificates/webServer'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -168,7 +169,7 @@ class CertificatesController(BaseController):
                 'Preparing and executing request for delete_web_server_certificate.'
             )
             _request = self.http_client.delete(_query_url)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='delete_web_server_certificate')
 
@@ -205,7 +206,7 @@ class CertificatesController(BaseController):
             self.logger.info(
                 'Preparing query URL for get_web_server_certificate.')
             _url_path = '/public/certificates/webServer'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -219,7 +220,7 @@ class CertificatesController(BaseController):
                 'Preparing and executing request for get_web_server_certificate.'
             )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_web_server_certificate')
 
@@ -265,7 +266,7 @@ class CertificatesController(BaseController):
             self.logger.info(
                 'Preparing query URL for update_web_server_certificate.')
             _url_path = '/public/certificates/webServer'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -285,7 +286,7 @@ class CertificatesController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='update_web_server_certificate')
 

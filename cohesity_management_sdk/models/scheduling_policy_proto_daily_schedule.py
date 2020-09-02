@@ -6,28 +6,34 @@ class SchedulingPolicyProtoDailySchedule(object):
 
     """Implementation of the 'SchedulingPolicyProto_DailySchedule' model.
 
-    The daily schedule encompasses weekly schedules as well. This has been
-    done so there is only one way of specifying a schedule (backing up daily
-    is the same as backing up weekly, but on all days of the week).
+    Sample protos:
+    Every n days (n >= 1)
+    Ex: For every 2 days, { frequency : 2 }
+    Weekly schedule (Few selected weekdays)
+    Ex: For every Monday, Tuesday { days : {kMonday, kTuesday} }
+    NOTE: Only one of the 'days' and 'frequency' should be populated.
 
     Attributes:
-        days (list of int): The days of the week backup must be performed. If
-            no days are specified, then the backup will be performed on all
-            days.
+        days (list of int): The list of weekdays for scheduling a backup. This
+            is populated only for selected weekday schedules.
+        frequency (long|int): This is set only for every-n-day schedules.
 
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "days":'days'
+        "days":'days',
+        "frequency":'frequency'
     }
 
     def __init__(self,
-                 days=None):
+                 days=None,
+                 frequency=None):
         """Constructor for the SchedulingPolicyProtoDailySchedule class"""
 
         # Initialize members of the class
         self.days = days
+        self.frequency = frequency
 
 
     @classmethod
@@ -49,8 +55,10 @@ class SchedulingPolicyProtoDailySchedule(object):
 
         # Extract variables from the dictionary
         days = dictionary.get('days')
+        frequency = dictionary.get('frequency')
 
         # Return an object of this model
-        return cls(days)
+        return cls(days,
+                   frequency)
 
 

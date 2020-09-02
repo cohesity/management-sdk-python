@@ -17,6 +17,14 @@ class RestoreFilesTaskRequest(object):
             fails. If true, the Cohesity Cluster ignores intermittent errors
             and recovers as many files and folders as possible. If false, the
             Restore Task stops recovering when a copy operation fails.
+        file_recovery_method (FileRecoveryMethodEnum): Specifies the type of
+            method to be used to perform file recovery.
+            'kAutoDeploy' indicates that file restore operation will be
+            performed using an ephemeral agent.
+            'kUseExistingAgent' indicates that file restore operation will be
+            performed using an persistent agent.
+            'kUseHypervisorAPIs' indicates that file restore operation will be
+            performed using an hypervisor API's.
         filenames (list of string): Array of Files or Folders.  Specifies the
             files and folders to recover from the snapshot.
         is_file_based_volume_restore (bool): Specifies whether this is a file
@@ -57,6 +65,10 @@ class RestoreFilesTaskRequest(object):
         target_source_id (long|int): Specifies the id of the target protection
             source (such as a VM) where the files and folders are recovered
             to.
+        use_existing_agent (bool): Specifies whether this will use an existing
+            agent on the target vm to do restore. Following field is
+            deprecated and shall not be used. Please refer to the
+            FileRecoveryMethod field for more information.
         username (string): Specifies username to access the target source.
 
     """
@@ -64,6 +76,7 @@ class RestoreFilesTaskRequest(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "continue_on_error":'continueOnError',
+        "file_recovery_method":'fileRecoveryMethod',
         "filenames":'filenames',
         "is_file_based_volume_restore":'isFileBasedVolumeRestore',
         "name":'name',
@@ -76,11 +89,13 @@ class RestoreFilesTaskRequest(object):
         "target_host_type":'targetHostType',
         "target_parent_source_id":'targetParentSourceId',
         "target_source_id":'targetSourceId',
+        "use_existing_agent":'useExistingAgent',
         "username":'username'
     }
 
     def __init__(self,
                  continue_on_error=None,
+                 file_recovery_method=None,
                  filenames=None,
                  is_file_based_volume_restore=None,
                  name=None,
@@ -93,11 +108,13 @@ class RestoreFilesTaskRequest(object):
                  target_host_type=None,
                  target_parent_source_id=None,
                  target_source_id=None,
+                 use_existing_agent=None,
                  username=None):
         """Constructor for the RestoreFilesTaskRequest class"""
 
         # Initialize members of the class
         self.continue_on_error = continue_on_error
+        self.file_recovery_method = file_recovery_method
         self.filenames = filenames
         self.is_file_based_volume_restore = is_file_based_volume_restore
         self.name = name
@@ -110,6 +127,7 @@ class RestoreFilesTaskRequest(object):
         self.target_host_type = target_host_type
         self.target_parent_source_id = target_parent_source_id
         self.target_source_id = target_source_id
+        self.use_existing_agent = use_existing_agent
         self.username = username
 
 
@@ -133,6 +151,7 @@ class RestoreFilesTaskRequest(object):
         # Extract variables from the dictionary
         continue_on_error = dictionary.get('continueOnError')
         filenames = dictionary.get('filenames')
+        file_recovery_method = dictionary.get('fileRecoveryMethod')
         is_file_based_volume_restore = dictionary.get('isFileBasedVolumeRestore')
         name = dictionary.get('name')
         new_base_directory = dictionary.get('newBaseDirectory')
@@ -148,10 +167,12 @@ class RestoreFilesTaskRequest(object):
         target_host_type = dictionary.get('targetHostType')
         target_parent_source_id = dictionary.get('targetParentSourceId')
         target_source_id = dictionary.get('targetSourceId')
+        use_existing_agent = dictionary.get('useExistingAgent')
         username = dictionary.get('username')
 
         # Return an object of this model
         return cls(continue_on_error,
+                   file_recovery_method,
                    filenames,
                    is_file_based_volume_restore,
                    name,
@@ -164,6 +185,7 @@ class RestoreFilesTaskRequest(object):
                    target_host_type,
                    target_parent_source_id,
                    target_source_id,
+                   use_existing_agent,
                    username)
 
 

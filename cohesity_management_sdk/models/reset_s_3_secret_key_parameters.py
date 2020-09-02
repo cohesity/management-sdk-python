@@ -13,7 +13,7 @@ class ResetS3SecretKeyParameters(object):
         domain (string): Specifies the fully qualified domain name (FQDN) of
             an Active Directory or LOCAL for the default LOCAL domain on the
             Cohesity Cluster. If not specified, it is assumed to be LOCAL.
-        tenant_id (string): Specifies the tenant for which the the users are
+        tenant_id (string): Specifies the tenant for which the users are
             to be deleted.
         username (string): Specifies the Cohesity user.
 

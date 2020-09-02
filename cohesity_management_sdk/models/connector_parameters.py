@@ -28,7 +28,7 @@ class ConnectorParameters(object):
             the Microsoft's Azure Protection Source environment. 'kNetapp'
             indicates the Netapp Protection Source environment. 'kAgent'
             indicates the Agent Protection Source environment. 'kGenericNas'
-            indicates the Genreric Network Attached Storage Protection Source
+            indicates the Generic Network Attached Storage Protection Source
             environment. 'kAcropolis' indicates the Acropolis Protection
             Source environment. 'kPhsicalFiles' indicates the Physical Files
             Protection Source environment. 'kIsilon' indicates the Dell EMC's
@@ -41,16 +41,23 @@ class ConnectorParameters(object):
             Source environment. 'kGCP' indicates the Google Cloud Platform
             Protection Source environment. 'kFlashBlade' indicates the Flash
             Blade Protection Source environment. 'kAWSNative' indicates the
-            AWS Native Protection Source environment. 'kVCD' indicates the
-            VMware's Virtual cloud Director Protection Source environment.
-            'kO365' indicates the Office 365 Protection Source environment.
-            'kO365Outlook' indicates Office 365 outlook Protection Source
-            environment. 'kHyperFlex' indicates the Hyper Flex Protection
-            Source environment. 'kGCPNative' indicates the GCP Native
-            Protection Source environment. 'kAzureNative' indicates the Azure
-            Native Protection Source environment. 'kKubernetes' indicates a
-            Kubernetes Protection Source environment. 'kElastifile' indicates
-            Elastifile Protection Source environment.
+            AWS Native Protection Source environment. 'kO365' indicates the
+            Office 365 Protection Source environment. 'kO365Outlook' indicates
+            Office 365 outlook Protection Source environment. 'kHyperFlex'
+            indicates the Hyper Flex Protection Source environment.
+            'kGCPNative' indicates the GCP Native Protection Source
+            environment. 'kAzureNative' indicates the Azure Native
+            Protection Source environment. 'kKubernetes' indicates a
+            Kubernetes Protection Source environment. 'kElastifile'
+            indicates Elastifile Protection Source environment. 'kAD'
+            indicates Active Directory Protection Source environment.
+            'kRDSSnapshotManager' indicates AWS RDS Protection Source
+            environment. 'kCassandra' indicates Cassandra Protection Source
+            environment. 'kMongoDB' indicates MongoDB Protection Source
+            environment. 'kCouchbase' indicates Couchbase Protection Source
+            environment. 'kHdfs' indicates Hdfs Protection Source environment.
+            'kHive' indicates Hive Protection Source environment. 'kHBase'
+            indicates HBase Protection Source environment.
         id (long|int): Specifies a Unique id that is generated when the Source
             is registered. This is a convenience field that is used to
             maintain an index to different connection params.

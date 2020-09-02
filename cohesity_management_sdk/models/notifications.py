@@ -8,7 +8,7 @@ class Notifications(object):
     """Implementation of the 'Notifications' model.
 
     All the Notification events generated for a given user. This is used for
-    for trasferring notifications over wire.
+    transferring notifications over wire.
 
     Attributes:
         count (long|int): Notification Count.

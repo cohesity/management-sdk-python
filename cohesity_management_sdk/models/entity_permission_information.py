@@ -15,6 +15,10 @@ class EntityPermissionInformation(object):
         entity_id (long|int): Specifies the entity id.
         groups (list of GroupInfo): Specifies groups that have access to
             entity in case of restricted user.
+        is_inferred (bool): Specifies whether the Entity Permission
+            Information is inferred or not. For example, SQL application
+            hosted over vCenter will have inferred entity permission
+            information.
         tenant (TenantInfo): Specifies struct with basic tenant details.
         users (list of UserInfo): Specifies users that have access to entity
             in case of restricted user.
@@ -25,6 +29,7 @@ class EntityPermissionInformation(object):
     _names = {
         "entity_id":'entityId',
         "groups":'groups',
+        "is_inferred":'isInferred',
         "tenant":'tenant',
         "users":'users'
     }
@@ -32,6 +37,7 @@ class EntityPermissionInformation(object):
     def __init__(self,
                  entity_id=None,
                  groups=None,
+                 is_inferred=None,
                  tenant=None,
                  users=None):
         """Constructor for the EntityPermissionInformation class"""
@@ -39,6 +45,7 @@ class EntityPermissionInformation(object):
         # Initialize members of the class
         self.entity_id = entity_id
         self.groups = groups
+        self.is_inferred = is_inferred
         self.tenant = tenant
         self.users = users
 
@@ -67,6 +74,7 @@ class EntityPermissionInformation(object):
             groups = list()
             for structure in dictionary.get('groups'):
                 groups.append(cohesity_management_sdk.models.group_info.GroupInfo.from_dictionary(structure))
+        is_inferred = dictionary.get('isInferred')
         tenant = cohesity_management_sdk.models.tenant_info.TenantInfo.from_dictionary(dictionary.get('tenant')) if dictionary.get('tenant') else None
         users = None
         if dictionary.get('users') != None:
@@ -77,6 +85,7 @@ class EntityPermissionInformation(object):
         # Return an object of this model
         return cls(entity_id,
                    groups,
+                   is_inferred,
                    tenant,
                    users)
 

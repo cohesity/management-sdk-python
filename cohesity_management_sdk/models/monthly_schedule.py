@@ -22,13 +22,13 @@ class MonthlySchedule(object):
             day count in the month to start the backup. For example if day
             count is set to 'kThird' and day is set to 'kMonday', a backup is
             performed on the third Monday of every month. 'kFirst' indicates
-            that the first week should be choosen for specified day of every
-            month. 'kSecond' indicates that the second week should be choosen
+            that the first week should be chosen for specified day of every
+            month. 'kSecond' indicates that the second week should be chosen
             for specified day of every month. 'kThird' indicates that the
-            third week should be choosen for specified day of every month.
-            'kFourth' indicates that the fourth week should be choosen for
-            specified day of every month. 'kLast' indicates that the last week
-            should be choosen for specified day of every month.
+            third week should be chosen for specified day of every month.
+            'kFourth' indicates that the fourth week should be chosen for
+            specified day of every month. 'kLast' indicates that the last
+            week should be chosen for specified day of every month.
 
     """
 

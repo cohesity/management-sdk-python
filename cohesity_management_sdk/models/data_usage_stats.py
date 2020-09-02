@@ -20,9 +20,10 @@ class DataUsageStats(object):
             and deduplication.
         cloud_total_physical_usage_bytes_timestamp_usec (long|int): Specifies
             Timestamp of CloudTotalPhysicalUsageBytes.
-        data_in_bytes (long|int): Specifies the data brought into the cluster.
-            This is the usage before data reduction.
-        data_in_bytes_after_dedup (long|int): Specifies the the the size of
+        data_in_bytes (long|int): Specifies the data read from the protected
+            objects by the Cohesity Cluster before any data reduction using
+            deduplication and compression.
+        data_in_bytes_after_dedup (long|int): Specifies the size of
             the data has been reduced by change-block tracking and
             deduplication but before compression or data is replicated to
             other nodes as per RF or Erasure Coding policy.
@@ -38,11 +39,9 @@ class DataUsageStats(object):
             data used by Data Protect on Cohesity cluster.
         data_protect_physical_usage_bytes_timestamp_usec (long|int): Specifies
             Timestamp of DataProtectPhysicalUsageBytes.
-        data_written_bytes (long|int): Specifies the total data written on
-            local and cloud tiers, as computed by the Cohesity Cluster, after
-            the size of the data has been reduced by change-block tracking,
-            deduplication and compression. This does not include resiliency
-            impact.
+        data_written_bytes (long|int): Specifies the data written after it has
+            been reduced by deduplication and compression. This does not
+            include resiliency impact.
         data_written_bytes_timestamp_usec (long|int): Specifies Timestamp of
             DataWrittenBytes.
         file_services_logical_usage_bytes (long|int): Specifies the logical
@@ -79,12 +78,13 @@ class DataUsageStats(object):
             deduplication. This includes resiliency impact.
         storage_consumed_bytes_timestamp_usec (long|int): Specifies Timestamp
             of StorageConsumedBytes.
-        total_logical_usage_bytes (long|int): Specifies the logical usage as
-            computed by the Cohesity Cluster. The size of the data without
-            reduction by change-block tracking, compression and
-            deduplication.
+        total_logical_usage_bytes (long|int): Provides the combined data
+            residing on protected objects. The size of data before reduction
+            by deduplication and compression.
         total_logical_usage_bytes_timestamp_usec (long|int): Specifies
             Timestamp of TotalLogicalUsageBytes.
+        unique_physical_data_bytes (int): pecifies the unique physical data
+            usage in bytes.
 
     """
 
@@ -118,7 +118,8 @@ class DataUsageStats(object):
         "storage_consumed_bytes":'storageConsumedBytes',
         "storage_consumed_bytes_timestamp_usec":'storageConsumedBytesTimestampUsec',
         "total_logical_usage_bytes":'totalLogicalUsageBytes',
-        "total_logical_usage_bytes_timestamp_usec":'totalLogicalUsageBytesTimestampUsec'
+        "total_logical_usage_bytes_timestamp_usec":'totalLogicalUsageBytesTimestampUsec',
+        "unique_physical_data_bytes":'uniquePhysicalDataBytes'
     }
 
     def __init__(self,
@@ -150,7 +151,8 @@ class DataUsageStats(object):
                  storage_consumed_bytes=None,
                  storage_consumed_bytes_timestamp_usec=None,
                  total_logical_usage_bytes=None,
-                 total_logical_usage_bytes_timestamp_usec=None):
+                 total_logical_usage_bytes_timestamp_usec=None,
+                 unique_physical_data_bytes=None):
         """Constructor for the DataUsageStats class"""
 
         # Initialize members of the class
@@ -183,6 +185,7 @@ class DataUsageStats(object):
         self.storage_consumed_bytes_timestamp_usec = storage_consumed_bytes_timestamp_usec
         self.total_logical_usage_bytes = total_logical_usage_bytes
         self.total_logical_usage_bytes_timestamp_usec = total_logical_usage_bytes_timestamp_usec
+        self.unique_physical_data_bytes = unique_physical_data_bytes
 
 
     @classmethod
@@ -232,6 +235,7 @@ class DataUsageStats(object):
         storage_consumed_bytes_timestamp_usec = dictionary.get('storageConsumedBytesTimestampUsec')
         total_logical_usage_bytes = dictionary.get('totalLogicalUsageBytes')
         total_logical_usage_bytes_timestamp_usec = dictionary.get('totalLogicalUsageBytesTimestampUsec')
+        unique_physical_data_bytes = dictionary.get('uniquePhysicalDataBytes')
 
         # Return an object of this model
         return cls(cloud_data_written_bytes,
@@ -262,6 +266,7 @@ class DataUsageStats(object):
                    storage_consumed_bytes,
                    storage_consumed_bytes_timestamp_usec,
                    total_logical_usage_bytes,
-                   total_logical_usage_bytes_timestamp_usec)
+                   total_logical_usage_bytes_timestamp_usec,
+                   unique_physical_data_bytes)
 
 

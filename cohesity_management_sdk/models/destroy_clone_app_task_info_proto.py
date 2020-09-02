@@ -25,6 +25,9 @@ class DestroyCloneAppTaskInfoProto(object):
     ad::DestroyTaskInfo::ad_destroy_app_task_info
     ad/ad.proto
     102
+    exchange::DestroyTaskInfo::exchange_destroy_app_task_info
+    exchange/exchange.proto
+    103
     ===========================================================================
     ==
 

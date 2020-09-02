@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 # Copyright 2020 Cohesity Inc.
 
+import cohesity_management_sdk.models.aws_kms_configuration
+import cohesity_management_sdk.models.cryptsoft_kms_config_response
 
 class KmsConfigurationResponse(object):
 
@@ -9,44 +11,46 @@ class KmsConfigurationResponse(object):
     Specifies response parameters to a KMS request.
 
     Attributes:
-        client_certificate_expiry_date (long|int): Specifies expiry date of
-            client certificate.
+        aws_kms (AwsKmsConfiguration): AWS KMS conifg response.
         connection_status (bool): Specifies if connection to this KMS exists.
-        kmip_protocol_version (string): Specifies protocol version used to
-            communicate with the KMS.
-        server_ip (string): Specifies the KMS IP address.
+        cryptsoft_kms (CryptsoftKmsConfigResponse): Specifies the config
+            response for cryptsoftKMS.
+        id (int): The Id of a KMS server.
         server_name (string): Specifies the name given to the KMS Server.
-        server_port (int): Specifies port on which the server is listening.
-            Default port is 5696.
+        server_type (ServerTypeEnum): Specifies the type of key mangement
+            system.
+            'kInternalKms' indicates an internal KMS object.
+            'kAwsKms' indicates an Aws KMS object.
+            'kCryptsoftKms' indicates a Cryptsoft KMS object.
 
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "client_certificate_expiry_date":'clientCertificateExpiryDate',
+        "aws_kms":'awsKms',
         "connection_status":'connectionStatus',
-        "kmip_protocol_version":'kmipProtocolVersion',
-        "server_ip":'serverIp',
+        "cryptsoft_kms":'cryptsoftKms',
+        "id":'id',
         "server_name":'serverName',
-        "server_port":'serverPort'
+        "server_type":'serverType'
     }
 
     def __init__(self,
-                 client_certificate_expiry_date=None,
+                 aws_kms=None,
                  connection_status=None,
-                 kmip_protocol_version=None,
-                 server_ip=None,
+                 cryptsoft_kms=None,
+                 id=None,
                  server_name=None,
-                 server_port=None):
+                 server_type=None):
         """Constructor for the KmsConfigurationResponse class"""
 
         # Initialize members of the class
-        self.client_certificate_expiry_date = client_certificate_expiry_date
+        self.aws_kms = aws_kms
         self.connection_status = connection_status
-        self.kmip_protocol_version = kmip_protocol_version
-        self.server_ip = server_ip
+        self.cryptsoft_kms = cryptsoft_kms
+        self.id = id
         self.server_name = server_name
-        self.server_port = server_port
+        self.server_type = server_type
 
 
     @classmethod
@@ -67,19 +71,19 @@ class KmsConfigurationResponse(object):
             return None
 
         # Extract variables from the dictionary
-        client_certificate_expiry_date = dictionary.get('clientCertificateExpiryDate')
+        aws_kms = cohesity_management_sdk.models.aws_kms_configuration.AwsKmsConfiguration.from_dictionary(dictionary.get('awsKms')) if dictionary.get('awsKms') else None
         connection_status = dictionary.get('connectionStatus')
-        kmip_protocol_version = dictionary.get('kmipProtocolVersion')
-        server_ip = dictionary.get('serverIp')
+        cryptsoft_kms =  cohesity_management_sdk.models.cryptsoft_kms_config_response.CryptsoftKmsConfigResponse.from_dictionary(dictionary.get('cryptsoftKms')) if dictionary.get('cryptsoftKms') else None
+        id = dictionary.get('id')
         server_name = dictionary.get('serverName')
-        server_port = dictionary.get('serverPort')
+        server_type = dictionary.get('serverType')
 
         # Return an object of this model
-        return cls(client_certificate_expiry_date,
+        return cls(aws_kms,
                    connection_status,
-                   kmip_protocol_version,
-                   server_ip,
+                   cryptsoft_kms,
+                   id,
                    server_name,
-                   server_port)
+                   server_type)
 
 

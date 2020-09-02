@@ -40,6 +40,8 @@ class Vault(object):
             /public/vaults/encryptionKey/{id} operation.
         dedup_enabled (bool): Specifies whether to deduplicate data before
             sending it to the Vault.
+        delete_vault_error (string): Specifies the error message when deleting
+            a vault.
         description (string): Specifies a description about the Vault.
         desired_wal_location (DesiredWalLocationEnum): Desired location for
             write ahead logs(wal). 'kHomePartition' indicates desired wal
@@ -92,6 +94,12 @@ class Vault(object):
             field is only populated if encryption is enabled for the Vault and
             customerManagingEncryptionKeys is true.
         name (string): Specifies the name of the Vault.
+        removal_state (RemovalStateVaultEnum): Specifies the state of the
+            vault to be removed. 'kDontRemove' means the state of object is
+            functional and it is not being removed. 'kMarkedForRemoval' means
+            the object is being removed. 'kOkToRemove' means the object has
+            been removed on the Cohesity Cluster and if the object is
+            physical, it can be removed from the Cohesity Cluster.
         mtype (TypeVaultEnum): Specifies the type of Vault. This field is
             deprecated. This field is split into ExternalTargetType in and
             TierType in respective credentials. Initialize those fields
@@ -132,6 +140,7 @@ class Vault(object):
         "config":'config',
         "customer_managing_encryption_keys":'customerManagingEncryptionKeys',
         "dedup_enabled":'dedupEnabled',
+        "delete_vault_error":'deleteVaultError',
         "description":'description',
         "desired_wal_location":'desiredWalLocation',
         "encryption_key_file_downloaded":'encryptionKeyFileDownloaded',
@@ -143,6 +152,7 @@ class Vault(object):
         "key_file_download_time_usecs":'keyFileDownloadTimeUsecs',
         "key_file_download_user":'keyFileDownloadUser',
         "name":'name',
+        "removal_state":'removalState',
         "mtype":'type',
         "usage_type":'usageType',
         "vault_bandwidth_limits":'vaultBandwidthLimits'
@@ -156,6 +166,7 @@ class Vault(object):
                  config=None,
                  customer_managing_encryption_keys=None,
                  dedup_enabled=None,
+                 delete_vault_error=None,
                  description=None,
                  desired_wal_location=None,
                  encryption_key_file_downloaded=None,
@@ -167,6 +178,7 @@ class Vault(object):
                  key_file_download_time_usecs=None,
                  key_file_download_user=None,
                  name=None,
+                 removal_state=None,
                  mtype=None,
                  usage_type=None,
                  vault_bandwidth_limits=None):
@@ -180,6 +192,7 @@ class Vault(object):
         self.config = config
         self.customer_managing_encryption_keys = customer_managing_encryption_keys
         self.dedup_enabled = dedup_enabled
+        self.delete_vault_error = delete_vault_error
         self.description = description
         self.desired_wal_location = desired_wal_location
         self.encryption_key_file_downloaded = encryption_key_file_downloaded
@@ -191,6 +204,7 @@ class Vault(object):
         self.key_file_download_time_usecs = key_file_download_time_usecs
         self.key_file_download_user = key_file_download_user
         self.name = name
+        self.removal_state = removal_state
         self.mtype = mtype
         self.usage_type = usage_type
         self.vault_bandwidth_limits = vault_bandwidth_limits
@@ -221,6 +235,7 @@ class Vault(object):
         config = cohesity_management_sdk.models.vault_config.VaultConfig.from_dictionary(dictionary.get('config')) if dictionary.get('config') else None
         customer_managing_encryption_keys = dictionary.get('customerManagingEncryptionKeys')
         dedup_enabled = dictionary.get('dedupEnabled')
+        delete_vault_error = dictionary.get('deleteVaultError')
         description = dictionary.get('description')
         desired_wal_location = dictionary.get('desiredWalLocation')
         encryption_key_file_downloaded = dictionary.get('encryptionKeyFileDownloaded')
@@ -232,6 +247,7 @@ class Vault(object):
         key_file_download_time_usecs = dictionary.get('keyFileDownloadTimeUsecs')
         key_file_download_user = dictionary.get('keyFileDownloadUser')
         name = dictionary.get('name')
+        removal_state = dictionary.get('removalState')
         mtype = dictionary.get('type')
         usage_type = dictionary.get('usageType')
         vault_bandwidth_limits = cohesity_management_sdk.models.vault_bandwidth_limits.VaultBandwidthLimits.from_dictionary(dictionary.get('vaultBandwidthLimits')) if dictionary.get('vaultBandwidthLimits') else None
@@ -244,6 +260,7 @@ class Vault(object):
                    config,
                    customer_managing_encryption_keys,
                    dedup_enabled,
+                   delete_vault_error,
                    description,
                    desired_wal_location,
                    encryption_key_file_downloaded,
@@ -255,6 +272,7 @@ class Vault(object):
                    key_file_download_time_usecs,
                    key_file_download_user,
                    name,
+                   removal_state,
                    mtype,
                    usage_type,
                    vault_bandwidth_limits)

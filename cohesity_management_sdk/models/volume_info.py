@@ -8,7 +8,7 @@ class VolumeInfo(object):
 
     """Implementation of the 'VolumeInfo' model.
 
-    TODO: type model description here.
+    Information about each logical volume (filesystem).
 
     Attributes:
         disk_vec (list of VolumeInfoDiskInfo): Information about all the disks

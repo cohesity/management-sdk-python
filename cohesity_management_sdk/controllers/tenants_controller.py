@@ -12,9 +12,10 @@ class TenantsController(BaseController):
 
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
 
-    def __init__(self, client=None, call_back=None):
+    def __init__(self, config=None, client=None, call_back=None):
         super(TenantsController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
+        self.config = config
 
     def get_download_tenants_proxy(self,
                                    id=None):
@@ -42,7 +43,7 @@ class TenantsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_download_tenants_proxy.')
             _url_path = '/public/tenants/proxy/image'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'id': id
@@ -60,7 +61,7 @@ class TenantsController(BaseController):
             # Prepare and execute request
             self.logger.info('Preparing and executing request for get_download_tenants_proxy.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name = 'get_download_tenants_proxy')
 
             # Endpoint and global error handling using HTTP status codes.

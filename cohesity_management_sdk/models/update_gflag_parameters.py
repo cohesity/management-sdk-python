@@ -15,6 +15,7 @@ class UpdateGflagParameters(object):
             overwritten if required. If no value for gflag is specified, this
             gflag will be reset to default value. If no gflag is specified,
             all gflags for this service will be reset to default value.
+        reason (string): Specifies the reason for clearing gflags.
         service_name (ServiceNameUpdateGflagParametersEnum): Specifies the
             service name. 'kApollo' is a service for reclaiming freed disk
             sectors on Nodes in the SnapFS distributed file system. 'kBridge'
@@ -60,16 +61,19 @@ class UpdateGflagParameters(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "service_name":'serviceName',
+        "reason":'reason',
         "gflags":'gflags'
     }
 
     def __init__(self,
-                 service_name=None,
-                 gflags=None):
+                 gflags=None,
+                 reason=None,
+                 service_name=None):
         """Constructor for the UpdateGflagParameters class"""
 
         # Initialize members of the class
         self.gflags = gflags
+        self.reason = reason
         self.service_name = service_name
 
 
@@ -92,6 +96,7 @@ class UpdateGflagParameters(object):
 
         # Extract variables from the dictionary
         service_name = dictionary.get('serviceName')
+        reason = dictionary.get('reason')
         gflags = None
         if dictionary.get('gflags') != None:
             gflags = list()
@@ -99,7 +104,6 @@ class UpdateGflagParameters(object):
                 gflags.append(cohesity_management_sdk.models.gflag.Gflag.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(service_name,
-                   gflags)
+        return cls(gflags, reason, service_name)
 
 

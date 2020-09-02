@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2020 Cohesity Inc.
 
-import cohesity_management_sdk.models.apps_config
+import cohesity_management_sdk.models.subnet
 import cohesity_management_sdk.models.cluster_audit_log_configuration
 import cohesity_management_sdk.models.eula_config
 import cohesity_management_sdk.models.filer_audit_log_configuration
@@ -11,7 +11,6 @@ import cohesity_management_sdk.models.ntp_settings_config
 import cohesity_management_sdk.models.schema_info
 import cohesity_management_sdk.models.cluster_stats
 import cohesity_management_sdk.models.supported_config
-import cohesity_management_sdk.models.syslog_server
 
 class Cluster(object):
 
@@ -20,12 +19,15 @@ class Cluster(object):
     Specifies information about the Cohesity Cluster.
 
     Attributes:
-        apps_settings (AppsConfig): TODO: type description here.
+        apps_subnet (Subnet): The subnet for Athena apps.
+        assigned_racks_count (int): Specifies the number of racks in cluster
+            with at least one rack assigned.
         available_metadata_space (long|int): Information about storage
             available for metadata
         banner_enabled (bool): Specifies whether UI banner is enabled on the
             cluster or not. When banner is enabled, UI will make an additional
             API call to fetch the banner and show at the login page.
+        chassis_count (int): Specifies the number of chassis in cluster.
         cluster_audit_log_config (ClusterAuditLogConfiguration): Specifies the
             settings of the Cluster audit log configuration.
         cluster_software_version (string): Specifies the current release of
@@ -79,6 +81,12 @@ class Cluster(object):
             the encryption keys are rotated every 77760000 seconds (30 days).
         eula_config (EulaConfig): Specifies the End User License Agreement
             (EULA) acceptance information.
+        fault_tolerance_level (FaultToleranceLevelEnum): Specifies the level
+            which 'MetadataFaultToleranceFactor' applies to. 'kNode' indicates
+            'MetadataFaultToleranceFactor' applies to Node level. 'kChassis'
+            indicates 'MetadataFaultToleranceFactor' applies to Chassis level.
+            'kRack' indicates 'MetadataFaultToleranceFactor' applies to Rack
+            level.
         filer_audit_log_config (FilerAuditLogConfiguration): Specifies the
             settings of the filer audit log configuration.
         fips_mode_enabled (bool): Specifies if the Cohesity Cluster should
@@ -93,6 +101,7 @@ class Cluster(object):
         id (long|int): Specifies the unique id of Cohesity Cluster.
         incarnation_id (long|int): Specifies the unique incarnation id of the
             Cohesity Cluster.
+        ip_preference (int): IP preference
         is_documentation_local (bool): Specifies what version of the
             documentation is used. If 'true', the version of documentation
             stored locally on the Cohesity Cluster is used. If 'false', the
@@ -121,6 +130,8 @@ class Cluster(object):
             Cluster.
         node_ips (string): IP addresses of nodes in the cluster
         ntp_settings (NtpSettingsConfig): TODO: type description here.
+        pcie_ssd_tier_rebalance_delay_secs (int): Specifies the rebalance
+            delay in seconds for cluster PcieSSD storage tier.
         proxy_vm_subnet (string): The subnet reserved for ProxyVM
         reverse_tunnel_enabled (bool): If 'true', Cohesity's Remote Tunnel is
             enabled. Cohesity can access the Cluster and provide remote
@@ -133,6 +144,10 @@ class Cluster(object):
         smb_ad_disabled (bool): Specifies if Active Directory should be
             disabled for authentication of SMB shares. If 'true', Active
             Directory is disabled.
+        smb_multichannel_enabled (bool): Specifies whether SMB multichannel is
+            enabled on the cluster. When this is set to true, then any SMB3
+            multichannel enabled client can establish multiple TCP connection
+            per session to the Server.
         stats (ClusterStats): Specifies statistics about this Cohesity
             Cluster.
         stig_mode (bool): Specifies if STIG mode is enabled or not.
@@ -140,8 +155,6 @@ class Cluster(object):
             options for the number of Nodes in the Cohesity Cluster. In
             addition, the minimum number of Nodes supported for this Cluster
             type is defined.
-        syslog_servers (list of SyslogServer): Array of Syslog Servers.
-            Specifies a list of Syslog servers to send audit logs to.
         target_software_version (string): Specifies the Cohesity release that
             this Cluster is being upgraded to if an upgrade operation is in
             progress.
@@ -160,9 +173,11 @@ class Cluster(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "apps_settings":'appsSettings',
+        "apps_subnet":'appsSubnet',
+        "assigned_racks_count":'assignedRacksCount',
         "available_metadata_space":'availableMetadataSpace',
         "banner_enabled":'bannerEnabled',
+        "chassis_count":'chassisCount',
         "cluster_audit_log_config":'clusterAuditLogConfig',
         "cluster_software_version":'clusterSoftwareVersion',
         "cluster_type":'clusterType',
@@ -177,6 +192,7 @@ class Cluster(object):
         "encryption_enabled":'encryptionEnabled',
         "encryption_key_rotation_period_secs":'encryptionKeyRotationPeriodSecs',
         "eula_config":'eulaConfig',
+        "fault_tolerance_level":'faultToleranceLevel',
         "filer_audit_log_config":'filerAuditLogConfig',
         "fips_mode_enabled":'fipsModeEnabled',
         "gateway":'gateway',
@@ -184,6 +200,7 @@ class Cluster(object):
         "hardware_info":'hardwareInfo',
         "id":'id',
         "incarnation_id":'incarnationId',
+        "ip_preference":'ipPreference',
         "is_documentation_local":'isDocumentationLocal',
         "language_locale":'languageLocale',
         "license_state":'licenseState',
@@ -195,15 +212,16 @@ class Cluster(object):
         "node_count":'nodeCount',
         "node_ips":'nodeIps',
         "ntp_settings":'ntpSettings',
+        "pcie_ssd_tier_rebalance_delay_secs":'pcieSsdTierRebalanceDelaySecs',
         "proxy_vm_subnet":'proxyVMSubnet',
         "reverse_tunnel_enabled":'reverseTunnelEnabled',
         "reverse_tunnel_end_time_msecs":'reverseTunnelEndTimeMsecs',
         "schema_info_list":'schemaInfoList',
         "smb_ad_disabled":'smbAdDisabled',
+        "smb_multichannel_enabled":'smbMultichannelEnabled',
         "stats":'stats',
         "stig_mode":'stigMode',
         "supported_config":'supportedConfig',
-        "syslog_servers":'syslogServers',
         "target_software_version":'targetSoftwareVersion',
         "tenant_viewbox_sharing_enabled":'tenantViewboxSharingEnabled',
         "timezone":'timezone',
@@ -212,9 +230,11 @@ class Cluster(object):
     }
 
     def __init__(self,
-                 apps_settings=None,
+                 apps_subnet=None,
+                 assigned_racks_count=None,
                  available_metadata_space=None,
                  banner_enabled=None,
+                 chassis_count=None,
                  cluster_audit_log_config=None,
                  cluster_software_version=None,
                  cluster_type=None,
@@ -229,6 +249,7 @@ class Cluster(object):
                  encryption_enabled=None,
                  encryption_key_rotation_period_secs=None,
                  eula_config=None,
+                 fault_tolerance_level=None,
                  filer_audit_log_config=None,
                  fips_mode_enabled=None,
                  gateway=None,
@@ -236,6 +257,7 @@ class Cluster(object):
                  hardware_info=None,
                  id=None,
                  incarnation_id=None,
+                 ip_preference=None,
                  is_documentation_local=None,
                  language_locale=None,
                  license_state=None,
@@ -247,15 +269,16 @@ class Cluster(object):
                  node_count=None,
                  node_ips=None,
                  ntp_settings=None,
+                 pcie_ssd_tier_rebalance_delay_secs=None,
                  proxy_vm_subnet=None,
                  reverse_tunnel_enabled=None,
                  reverse_tunnel_end_time_msecs=None,
                  schema_info_list=None,
                  smb_ad_disabled=None,
+                 smb_multichannel_enabled=None,
                  stats=None,
                  stig_mode=None,
                  supported_config=None,
-                 syslog_servers=None,
                  target_software_version=None,
                  tenant_viewbox_sharing_enabled=None,
                  timezone=None,
@@ -264,9 +287,11 @@ class Cluster(object):
         """Constructor for the Cluster class"""
 
         # Initialize members of the class
-        self.apps_settings = apps_settings
+        self.apps_subnet = apps_subnet
+        self.assigned_racks_count = assigned_racks_count
         self.available_metadata_space = available_metadata_space
         self.banner_enabled = banner_enabled
+        self.chassis_count = chassis_count
         self.cluster_audit_log_config = cluster_audit_log_config
         self.cluster_software_version = cluster_software_version
         self.cluster_type = cluster_type
@@ -281,6 +306,7 @@ class Cluster(object):
         self.encryption_enabled = encryption_enabled
         self.encryption_key_rotation_period_secs = encryption_key_rotation_period_secs
         self.eula_config = eula_config
+        self.fault_tolerance_level = fault_tolerance_level
         self.filer_audit_log_config = filer_audit_log_config
         self.fips_mode_enabled = fips_mode_enabled
         self.gateway = gateway
@@ -288,6 +314,7 @@ class Cluster(object):
         self.hardware_info = hardware_info
         self.id = id
         self.incarnation_id = incarnation_id
+        self.ip_preference = ip_preference
         self.is_documentation_local = is_documentation_local
         self.language_locale = language_locale
         self.license_state = license_state
@@ -299,15 +326,16 @@ class Cluster(object):
         self.node_count = node_count
         self.node_ips = node_ips
         self.ntp_settings = ntp_settings
+        self.pcie_ssd_tier_rebalance_delay_secs = pcie_ssd_tier_rebalance_delay_secs
         self.proxy_vm_subnet = proxy_vm_subnet
         self.reverse_tunnel_enabled = reverse_tunnel_enabled
         self.reverse_tunnel_end_time_msecs = reverse_tunnel_end_time_msecs
         self.schema_info_list = schema_info_list
         self.smb_ad_disabled = smb_ad_disabled
+        self.smb_multichannel_enabled = smb_multichannel_enabled
         self.stats = stats
         self.stig_mode = stig_mode
         self.supported_config = supported_config
-        self.syslog_servers = syslog_servers
         self.target_software_version = target_software_version
         self.tenant_viewbox_sharing_enabled = tenant_viewbox_sharing_enabled
         self.timezone = timezone
@@ -333,9 +361,11 @@ class Cluster(object):
             return None
 
         # Extract variables from the dictionary
-        apps_settings = cohesity_management_sdk.models.apps_config.AppsConfig.from_dictionary(dictionary.get('appsSettings')) if dictionary.get('appsSettings') else None
+        apps_subnet = cohesity_management_sdk.models.subnet.Subnet.from_dictionary(dictionary.get('appsSubnet')) if dictionary.get('appsSubnet') else None
+        assigned_racks_count = dictionary.get('assignedRacksCount', None)
         available_metadata_space = dictionary.get('availableMetadataSpace')
         banner_enabled = dictionary.get('bannerEnabled')
+        chassis_count = dictionary.get('chassisCount')
         cluster_audit_log_config = cohesity_management_sdk.models.cluster_audit_log_configuration.ClusterAuditLogConfiguration.from_dictionary(dictionary.get('clusterAuditLogConfig')) if dictionary.get('clusterAuditLogConfig') else None
         cluster_software_version = dictionary.get('clusterSoftwareVersion')
         cluster_type = dictionary.get('clusterType')
@@ -350,6 +380,7 @@ class Cluster(object):
         encryption_enabled = dictionary.get('encryptionEnabled')
         encryption_key_rotation_period_secs = dictionary.get('encryptionKeyRotationPeriodSecs')
         eula_config = cohesity_management_sdk.models.eula_config.EulaConfig.from_dictionary(dictionary.get('eulaConfig')) if dictionary.get('eulaConfig') else None
+        fault_tolerance_level = dictionary.get('faultToleranceLevel')
         filer_audit_log_config = cohesity_management_sdk.models.filer_audit_log_configuration.FilerAuditLogConfiguration.from_dictionary(dictionary.get('filerAuditLogConfig')) if dictionary.get('filerAuditLogConfig') else None
         fips_mode_enabled = dictionary.get('fipsModeEnabled')
         gateway = dictionary.get('gateway')
@@ -357,6 +388,7 @@ class Cluster(object):
         hardware_info = cohesity_management_sdk.models.cluster_hardware_info.ClusterHardwareInfo.from_dictionary(dictionary.get('hardwareInfo')) if dictionary.get('hardwareInfo') else None
         id = dictionary.get('id')
         incarnation_id = dictionary.get('incarnationId')
+        ip_preference = dictionary.get('ipPreference')
         is_documentation_local = dictionary.get('isDocumentationLocal')
         language_locale = dictionary.get('languageLocale')
         license_state = cohesity_management_sdk.models.license_state.LicenseState.from_dictionary(dictionary.get('licenseState')) if dictionary.get('licenseState') else None
@@ -368,6 +400,7 @@ class Cluster(object):
         node_count = dictionary.get('nodeCount')
         node_ips = dictionary.get('nodeIps')
         ntp_settings = cohesity_management_sdk.models.ntp_settings_config.NtpSettingsConfig.from_dictionary(dictionary.get('ntpSettings')) if dictionary.get('ntpSettings') else None
+        pcie_ssd_tier_rebalance_delay_secs = dictionary.get('pcieSsdTierRebalanceDelaySecs')
         proxy_vm_subnet = dictionary.get('proxyVMSubnet')
         reverse_tunnel_enabled = dictionary.get('reverseTunnelEnabled')
         reverse_tunnel_end_time_msecs = dictionary.get('reverseTunnelEndTimeMsecs')
@@ -377,14 +410,10 @@ class Cluster(object):
             for structure in dictionary.get('schemaInfoList'):
                 schema_info_list.append(cohesity_management_sdk.models.schema_info.SchemaInfo.from_dictionary(structure))
         smb_ad_disabled = dictionary.get('smbAdDisabled')
+        smb_multichannel_enabled = dictionary.get('smbMultichannelEnabled')
         stats = cohesity_management_sdk.models.cluster_stats.ClusterStats.from_dictionary(dictionary.get('stats')) if dictionary.get('stats') else None
         stig_mode = dictionary.get('stigMode')
         supported_config = cohesity_management_sdk.models.supported_config.SupportedConfig.from_dictionary(dictionary.get('supportedConfig')) if dictionary.get('supportedConfig') else None
-        syslog_servers = None
-        if dictionary.get('syslogServers') != None:
-            syslog_servers = list()
-            for structure in dictionary.get('syslogServers'):
-                syslog_servers.append(cohesity_management_sdk.models.syslog_server.SyslogServer.from_dictionary(structure))
         target_software_version = dictionary.get('targetSoftwareVersion')
         tenant_viewbox_sharing_enabled = dictionary.get('tenantViewboxSharingEnabled')
         timezone = dictionary.get('timezone')
@@ -392,9 +421,11 @@ class Cluster(object):
         used_metadata_space_pct = dictionary.get('usedMetadataSpacePct')
 
         # Return an object of this model
-        return cls(apps_settings,
+        return cls(apps_subnet,
+                   assigned_racks_count,
                    available_metadata_space,
                    banner_enabled,
+                   chassis_count,
                    cluster_audit_log_config,
                    cluster_software_version,
                    cluster_type,
@@ -409,6 +440,7 @@ class Cluster(object):
                    encryption_enabled,
                    encryption_key_rotation_period_secs,
                    eula_config,
+                   fault_tolerance_level,
                    filer_audit_log_config,
                    fips_mode_enabled,
                    gateway,
@@ -416,6 +448,7 @@ class Cluster(object):
                    hardware_info,
                    id,
                    incarnation_id,
+                   ip_preference,
                    is_documentation_local,
                    language_locale,
                    license_state,
@@ -427,15 +460,16 @@ class Cluster(object):
                    node_count,
                    node_ips,
                    ntp_settings,
+                   pcie_ssd_tier_rebalance_delay_secs,
                    proxy_vm_subnet,
                    reverse_tunnel_enabled,
                    reverse_tunnel_end_time_msecs,
                    schema_info_list,
                    smb_ad_disabled,
+                   smb_multichannel_enabled,
                    stats,
                    stig_mode,
                    supported_config,
-                   syslog_servers,
                    target_software_version,
                    tenant_viewbox_sharing_enabled,
                    timezone,

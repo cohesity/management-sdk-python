@@ -34,7 +34,7 @@ class FlashBladeFileSystem(object):
         smb_info (FlashBladeSmbInfo): Specifies information specific to SMB
             shares exposed by Pure Flash Blade file system.
         unique_used_bytes (long|int): Specifies the size of physical data
-            cconsumed by the file system itself not including the size of the
+            consumed by the file system itself not including the size of the
             snapshots.
 
     """

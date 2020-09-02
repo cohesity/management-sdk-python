@@ -18,6 +18,9 @@ class ProtectionJobRequestBody(object):
     Specifies information about a Protection Job.
 
     Attributes:
+        leverage_san_transport (bool): If this field is set to true, then the
+            backup for the objects will be performed using dedicated storage
+            area network (SAN) instead of LAN or managment network.
         abort_in_blackout_period (bool): If true, the Cohesity Cluster aborts
             any currently executing Job Runs of this Protection Job when a
             blackout period specified for this Job starts, even if the Job Run
@@ -65,7 +68,7 @@ class ProtectionJobRequestBody(object):
             environment. 'kAzure' indicates the Microsoft's Azure Protection
             Source environment. 'kNetapp' indicates the Netapp Protection
             Source environment. 'kAgent' indicates the Agent Protection Source
-            environment. 'kGenericNas' indicates the Genreric Network Attached
+            environment. 'kGenericNas' indicates the Generic Network Attached
             Storage Protection Source environment. 'kAcropolis' indicates the
             Acropolis Protection Source environment. 'kPhsicalFiles' indicates
             the Physical Files Protection Source environment. 'kIsilon'
@@ -79,16 +82,22 @@ class ProtectionJobRequestBody(object):
             Cloud Platform Protection Source environment. 'kFlashBlade'
             indicates the Flash Blade Protection Source environment.
             'kAWSNative' indicates the AWS Native Protection Source
-            environment. 'kVCD' indicates the VMware's Virtual cloud Director
-            Protection Source environment. 'kO365' indicates the Office 365
-            Protection Source environment. 'kO365Outlook' indicates Office 365
-            outlook Protection Source environment. 'kHyperFlex' indicates the
-            Hyper Flex Protection Source environment. 'kGCPNative' indicates
-            the GCP Native Protection Source environment. 'kAzureNative'
-            indicates the Azure Native Protection Source environment.
-            'kKubernetes' indicates a Kubernetes Protection Source
-            environment. 'kElastifile' indicates Elastifile Protection Source
-            environment.
+            environment. 'kO365' indicates the Office 365 Protection Source
+            environment. 'kO365Outlook' indicates Office 365 outlook
+            Source environment. 'kHyperFlex' indicates the Hyper Flex
+            Protection Source environment. 'kGCPNative' indicates the GCP
+            Native Protection Source environment. 'kAzureNative' indicates the
+            Azure Native Protection Source environment. 'kKubernetes'
+            indicates a Kubernetes Protection Source environment.
+            'kElastifile' indicates Elastifile Protection Source environment.
+            'kAD' indicates Active Directory Protection Source environment.
+            'kRDSSnapshotManager' indicates AWS RDS Protection Source
+            environment. 'kCassandra' indicates Cassandra Protection Source
+            environment. 'kMongoDB' indicates MongoDB Protection Source
+            environment. 'kCouchbase' indicates Couchbase Protection Source
+            environment. 'kHdfs' indicates Hdfs Protection Source environment.
+            'kHive' indicates Hive Protection Source environment. 'kHBase'
+            indicates HBase Protection Source environment.
         environment_parameters (EnvironmentTypeJobParameters): Specifies
             additional parameters that are common to all Protection Sources in
             a Protection Job created for a particular environment type.
@@ -215,7 +224,8 @@ class ProtectionJobRequestBody(object):
             example, you can specify a list of files and folders to protect
             instead of protecting the entire Physical Server. If this field's
             setting conflicts with environmentParameters, then this setting
-            will be used.
+            will be used. Specific volume selections must be passed in here to
+            take effect.
         start_time (TimeOfDay): Specifies the time of day to start the
             Protection Schedule. This is optional and only applicable if the
             Protection Policy defines a monthly or a daily Protection
@@ -259,6 +269,7 @@ class ProtectionJobRequestBody(object):
         "name":'name',
         "policy_id":'policyId',
         "view_box_id":'viewBoxId',
+        "leverage_san_transport":'LeverageSanTransport',
         "abort_in_blackout_period":'abortInBlackoutPeriod',
         "alerting_config":'alertingConfig',
         "alerting_policy":'alertingPolicy',
@@ -304,6 +315,7 @@ class ProtectionJobRequestBody(object):
                  name=None,
                  policy_id=None,
                  view_box_id=None,
+                 leverage_san_transport=None,
                  abort_in_blackout_period=None,
                  alerting_config=None,
                  alerting_policy=None,
@@ -346,6 +358,7 @@ class ProtectionJobRequestBody(object):
         """Constructor for the ProtectionJobRequestBody class"""
 
         # Initialize members of the class
+        self.leverage_san_transport = leverage_san_transport
         self.abort_in_blackout_period = abort_in_blackout_period
         self.alerting_config = alerting_config
         self.alerting_policy = alerting_policy
@@ -411,6 +424,7 @@ class ProtectionJobRequestBody(object):
         name = dictionary.get('name')
         policy_id = dictionary.get('policyId')
         view_box_id = dictionary.get('viewBoxId')
+        leverage_san_transport = dictionary.get('LeverageSanTransport')
         abort_in_blackout_period = dictionary.get('abortInBlackoutPeriod')
         alerting_config = cohesity_management_sdk.models.alerting_config.AlertingConfig.from_dictionary(dictionary.get('alertingConfig')) if dictionary.get('alertingConfig') else None
         alerting_policy = dictionary.get('alertingPolicy')
@@ -459,6 +473,7 @@ class ProtectionJobRequestBody(object):
         return cls(name,
                    policy_id,
                    view_box_id,
+                   leverage_san_transport,
                    abort_in_blackout_period,
                    alerting_config,
                    alerting_policy,

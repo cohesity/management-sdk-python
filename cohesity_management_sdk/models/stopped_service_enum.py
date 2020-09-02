@@ -38,6 +38,7 @@ class StoppedServiceEnum(object):
         KBIFROSTBROKER: TODO: type description here.
         KSMB2PROXY: TODO: type description here.
         KOS: TODO: type description here.
+        KATOM: TODO: type description here.
 
     """
 
@@ -101,3 +102,4 @@ class StoppedServiceEnum(object):
 
     KOS = 'kOs'
 
+    KATOM = 'kAtom'

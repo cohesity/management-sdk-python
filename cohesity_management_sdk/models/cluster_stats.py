@@ -15,10 +15,9 @@ class ClusterStats(object):
         cloud_usage_perf_stats (UsageAndPerformanceStats): Provides usage and
             performance statistics for the remote data stored on a Cloud Tier
             by the Cohesity Cluster.
-        data_reduction_ratio (float): Specifies the ratio of logical bytes
-            (not reduced by change-block tracking, compression and
-            deduplication) to physical bytes (reduced by change-block
-            tracking, compression and deduplication).
+        data_reduction_ratio (float): Provides the ratio of Cluster Logical
+            Data (totalLogicalUsageBytes) Managed to Cluster Storage Used
+            (totalPhysicalUsageBytes)
         data_usage_stats (DataUsageStats): Specifies the data usage metric of
             the data stored on the Cohesity Cluster or Storage Domains (View
             Boxes).

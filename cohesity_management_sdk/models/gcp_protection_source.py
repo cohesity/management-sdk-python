@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2020 Cohesity Inc.
 
+import cohesity_management_sdk.models.tag_attribute
 
 class GcpProtectionSource(object):
 
@@ -28,6 +29,12 @@ class GcpProtectionSource(object):
             represents a custom metadata present on instances. 'kTag'
             represents a network tag on instances. 'kVPCConnector' represents
             a VPC connector used for serverless VPC access.
+        host_project_id (string): Specifies the host project id. It is
+            populated in entities of type kSubnet if the subnet is part of a
+            shared VPC. This contains the ID of host project the subnet
+            belongs to. Populated in entities of type kProject if the
+            project is a service project in a Shared VPC setup. This contains
+            the ID of the host project it is attached to.
         host_type (HostTypeEnum): Specifies the OS type of the Protection
             Source of type 'kVirtualMachine' such as 'kWindows' or 'kLinux'.
             overrideDescription: true 'kLinux' indicates the Linux operating
@@ -73,6 +80,8 @@ class GcpProtectionSource(object):
             deploy" restore task. Restore entity associated with the above
             matched cloud entity has 'failed_over' flag set to true in its
             cloud extension.
+        tag_attributes (list of TagAttribute):  Specifies the list of GCP tag
+            attributes.
         mtype (TypeGcpProtectionSourceEnum): Specifies the type of an GCP
             Protection Source Object such as 'kIAMUser', 'kProject',
             'kRegion', etc. Specifies the type of a GCP source entity.
@@ -100,6 +109,7 @@ class GcpProtectionSource(object):
         "client_email_address":'clientEmailAddress',
         "client_private_key":'clientPrivateKey',
         "gcp_type":'gcpType',
+        "host_project_id":'hostProjectId',
         "host_type":'hostType',
         "ip_addresses_vm":'ipAddressesVM',
         "name":'name',
@@ -110,6 +120,7 @@ class GcpProtectionSource(object):
         "resource_id":'resourceId',
         "restore_task_id":'restoreTaskId',
         "mtype":'type',
+        "tag_attributes":'tagAttributes',
         "vpc_network":'vpcNetwork',
         "vpc_subnetwork":'vpcSubnetwork'
     }
@@ -118,6 +129,7 @@ class GcpProtectionSource(object):
                  client_email_address=None,
                  client_private_key=None,
                  gcp_type=None,
+                 host_project_id=None,
                  host_type=None,
                  ip_addresses_vm=None,
                  name=None,
@@ -128,6 +140,7 @@ class GcpProtectionSource(object):
                  resource_id=None,
                  restore_task_id=None,
                  mtype=None,
+                 tag_attributes=None,
                  vpc_network=None,
                  vpc_subnetwork=None):
         """Constructor for the GcpProtectionSource class"""
@@ -136,6 +149,7 @@ class GcpProtectionSource(object):
         self.client_email_address = client_email_address
         self.client_private_key = client_private_key
         self.gcp_type = gcp_type
+        self.host_project_id = host_project_id
         self.host_type = host_type
         self.ip_addresses_vm = ip_addresses_vm
         self.name = name
@@ -146,6 +160,7 @@ class GcpProtectionSource(object):
         self.resource_id = resource_id
         self.restore_task_id = restore_task_id
         self.mtype = mtype
+        self.tag_attributes = tag_attributes
         self.vpc_network = vpc_network
         self.vpc_subnetwork = vpc_subnetwork
 
@@ -171,6 +186,7 @@ class GcpProtectionSource(object):
         client_email_address = dictionary.get('clientEmailAddress')
         client_private_key = dictionary.get('clientPrivateKey')
         gcp_type = dictionary.get('gcpType')
+        host_project_id = dictionary.get('hostProjectId', None)
         host_type = dictionary.get('hostType')
         ip_addresses_vm = dictionary.get('ipAddressesVM')
         name = dictionary.get('name')
@@ -180,6 +196,11 @@ class GcpProtectionSource(object):
         region_id = dictionary.get('regionId')
         resource_id = dictionary.get('resourceId')
         restore_task_id = dictionary.get('restoreTaskId')
+        tag_attributes = None
+        if dictionary.get('tagAttributes') != None:
+            tag_attributes= list()
+            for structure in dictionary.get('tagAttributes'):
+                tag_attributes.append(cohesity_management_sdk.models.tag_attribute.TagAttribute.from_dictionary(structure))
         mtype = dictionary.get('type')
         vpc_network = dictionary.get('vpcNetwork')
         vpc_subnetwork = dictionary.get('vpcSubnetwork')
@@ -188,6 +209,7 @@ class GcpProtectionSource(object):
         return cls(client_email_address,
                    client_private_key,
                    gcp_type,
+                   host_project_id,
                    host_type,
                    ip_addresses_vm,
                    name,
@@ -198,6 +220,7 @@ class GcpProtectionSource(object):
                    resource_id,
                    restore_task_id,
                    mtype,
+                   tag_attributes,
                    vpc_network,
                    vpc_subnetwork)
 

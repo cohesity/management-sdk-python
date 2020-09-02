@@ -52,7 +52,7 @@ To upgrade the package:
 To upgade the package to specific release:
 
 ```
-pip install cohesity-management-sdk==1.1.3
+pip install cohesity-management-sdk==1.5.0
 ```
 
 ## <a name="documentation"></a> Documentation :books:

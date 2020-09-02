@@ -25,7 +25,7 @@ class SnapshotInfo(object):
             the Microsoft's Azure Protection Source environment. 'kNetapp'
             indicates the Netapp Protection Source environment. 'kAgent'
             indicates the Agent Protection Source environment. 'kGenericNas'
-            indicates the Genreric Network Attached Storage Protection Source
+            indicates the Generic Network Attached Storage Protection Source
             environment. 'kAcropolis' indicates the Acropolis Protection
             Source environment. 'kPhsicalFiles' indicates the Physical Files
             Protection Source environment. 'kIsilon' indicates the Dell EMC's
@@ -38,8 +38,7 @@ class SnapshotInfo(object):
             Source environment. 'kGCP' indicates the Google Cloud Platform
             Protection Source environment. 'kFlashBlade' indicates the Flash
             Blade Protection Source environment. 'kAWSNative' indicates the
-            AWS Native Protection Source environment. 'kVCD' indicates the
-            VMware's Virtual cloud Director Protection Source environment.
+            AWS Native Protection Source environment.
             'kO365' indicates the Office 365 Protection Source environment.
             'kO365Outlook' indicates Office 365 outlook Protection Source
             environment. 'kHyperFlex' indicates the Hyper Flex Protection
@@ -47,11 +46,24 @@ class SnapshotInfo(object):
             Protection Source environment. 'kAzureNative' indicates the Azure
             Native Protection Source environment. 'kKubernetes' indicates a
             Kubernetes Protection Source environment. 'kElastifile' indicates
-            Elastifile Protection Source environment.
+            Elastifile Protection Source environment. 'kAD' indicates Active
+            Directory Protection Source environment. 'kRDSSnapshotManager'
+            indicates AWS RDS Protection Source environment. 'kCassandra'
+            indicates Cassandra Protection Source environment. 'kMongoDB'
+            indicates MongoDB Protection Source environment. 'kCouchbase'
+            indicates Couchbase Protection Source environment. 'kHdfs'
+            indicates Hdfs Protection Source environment. 'kHive' indicates
+            Hive Protection Source environment. 'kHBase' indicates HBase
+            Protection Source environment.
         relative_snapshot_directory (string): Specifies the relative directory
             path from root path where the snapshot is stored.
         root_path (string): Specifies the root path where the snapshot is
             stored, using the following format: "/ViewBox/ViewName/fs".
+        source_snapshot_create_time_usecs (long|int): Specifies the snapshot
+            create time of the already created snapshot on the source
+        source_snapshot_name (string): Specifies the name of the snapshot
+            backed up in a Netapp Data-Protect Volume where we use already
+            created snapshot on the source
         view_name (string): Specifies the name of the View that is cloned.
             NOTE: This field is only populated for View cloning.
 
@@ -62,6 +74,8 @@ class SnapshotInfo(object):
         "environment":'environment',
         "relative_snapshot_directory":'relativeSnapshotDirectory',
         "root_path":'rootPath',
+        "source_snapshot_create_time_usecs":'sourceSnapshotCreateTimeUsecs',
+        "source_snapshot_name":'sourceSnapshotName',
         "view_name":'viewName'
     }
 
@@ -69,6 +83,8 @@ class SnapshotInfo(object):
                  environment=None,
                  relative_snapshot_directory=None,
                  root_path=None,
+                 source_snapshot_create_time_usecs=None,
+                 source_snapshot_name=None,
                  view_name=None):
         """Constructor for the SnapshotInfo class"""
 
@@ -76,6 +92,8 @@ class SnapshotInfo(object):
         self.environment = environment
         self.relative_snapshot_directory = relative_snapshot_directory
         self.root_path = root_path
+        self.source_snapshot_create_time_usecs = source_snapshot_create_time_usecs
+        self.source_snapshot_name = source_snapshot_name
         self.view_name = view_name
 
 
@@ -100,12 +118,16 @@ class SnapshotInfo(object):
         environment = dictionary.get('environment')
         relative_snapshot_directory = dictionary.get('relativeSnapshotDirectory')
         root_path = dictionary.get('rootPath')
+        source_snapshot_create_time_usecs = dictionary.get('sourceSnapshotCreateTimeUsecs')
+        source_snapshot_name = dictionary.get('sourceSnapshotName')
         view_name = dictionary.get('viewName')
 
         # Return an object of this model
         return cls(environment,
                    relative_snapshot_directory,
                    root_path,
+                   source_snapshot_create_time_usecs,
+                   source_snapshot_name,
                    view_name)
 
 

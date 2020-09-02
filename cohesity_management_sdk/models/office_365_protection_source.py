@@ -19,7 +19,12 @@ class Office365ProtectionSource(object):
             Office 365 entity. Specifies the type of Office 365 entity
             'kDomain' indicates the O365 domain through which authentication
             occurs. 'kOutlook' indicates the Exchange online entities.
-            'kMailbox' indicates the user's mailbox account.
+            'kMailbox' indicates the user's mailbox account. 'kUsers'
+            indicates the container for User entities. 'kGroups' indicates the
+            container for Group entities. 'kSites' indicates the container for
+            Site entities. 'kUser' indicates an Office365 User entity.
+            'kGroup' indicates an Office365 Group entity. 'kSite' indicates an
+            Office365 SharePoint Site entity.
         user_info (Office365UserInfo): Specifies information about an
             Office365 user.
         uuid (string): Specifies the UUID of the Office 365 entity.

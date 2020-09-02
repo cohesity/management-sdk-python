@@ -4,6 +4,27 @@
 class AlertCategoryListEnum(object):
 
     """Implementation of the 'AlertCategoryList' enum.
+    Specifies a list of Alert Categories to filter alert types by.
+    Specifies the category of an Alert.
+    kDisk - Alerts that are related to Disk.
+    kNode - Alerts that are related to Node.
+    kCluster - Alerts that are related to Cluster.
+    kNodeHealth - Alerts that are related to Node Health.
+    kClusterHealth - Alerts that are related to Cluster Health.
+    kBackupRestore - Alerts that are related to Backup/Restore.
+    kEncryption - Alerts that are related to Encryption.
+    kArchivalRestore - Alerts that are related to Archival/Restore.
+    kRemoteReplication - Alerts that are related to Remote Replication.
+    kQuota - Alerts that are related to Quota.
+    kLicense - Alerts that are related to License.
+    kHeliosProActiveWellness - Alerts that are related to Helios ProActive
+    Wellness.
+    kHeliosAnalyticsJobs - Alerts that are related to Helios Analytics Jobs.
+    kHeliosSignatureJobs - Alerts that are related to Helios Signature Jobs.
+    kSecurity - Alerts that are related to Security.
+    kAppsInfra - Alerts that are related to applications infra.
+    kAntivirus - Alerts that are related to antivirus.
+    kArchivalCopy - Alerts that are related to archival copies.
 
     TODO: type enum description here.
 
@@ -23,6 +44,9 @@ class AlertCategoryListEnum(object):
         KHELIOSANALYTICSJOBS: TODO: type description here.
         KHELIOSSIGNATUREJOBS: TODO: type description here.
         KSECURITY: TODO: type description here.
+        KAPPSINFRA: TODO: type description here.
+        KANTIVIRUS: TODO: type description here.
+        KARCHIVALCOPY: TODO: type description here.
 
     """
 
@@ -55,4 +79,10 @@ class AlertCategoryListEnum(object):
     KHELIOSSIGNATUREJOBS = 'kHeliosSignatureJobs'
 
     KSECURITY = 'kSecurity'
+
+    KAPPSINFRA = 'kAppsInfra'
+
+    KANTIVIRUS = 'kAntivirus'
+
+    KARCHIVALCOPY = 'kArchivalCopy'
 

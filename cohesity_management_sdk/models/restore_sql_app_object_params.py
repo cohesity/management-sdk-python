@@ -26,6 +26,9 @@ class RestoreSqlAppObjectParams(object):
         instance_name (string): The name of the SQL instance that we restore
             database to. If target_host is not empty, this also cannot be
             empty.
+        is_auto_sync_enabled (bool): The following field is set if auto_sync
+            for multi-stage SQL restore task is enabled. This field is valid
+            only if is_multi_state_restore is set to true.
         is_multi_stage_restore (bool): The following field is set if we are
             creating a multi-stage SQL restore task needed for features such
             as Hot-Standby.
@@ -43,8 +46,11 @@ class RestoreSqlAppObjectParams(object):
             to be restored. This allows for granular recovery of SQL
             databases. If this is not set, the SQL database will be recovered
             to the full/incremental snapshot (specified in the owner's restore
-            object in AppOwnerRestoreInfo). This is only applicable if
-            restoring to the original SQL instance.
+            object in AppOwnerRestoreInfo).
+        resume_restore (bool): Resume restore if sql instance/database exist
+            in restore/recovering state. The database might be in
+            restore/recovering state if previous restore failed or previous
+            restore was attempted  with norecovery option.
         secondary_data_file_destination (string): Which directory to put the
             secondary data files of the database. Secondary data files are
             optional and are user defined. The recommended file name extension
@@ -64,8 +70,7 @@ class RestoreSqlAppObjectParams(object):
             in magneto_sql_native_restore_with_clause gflag.
         with_no_recovery (bool): Set to true if we want to recover the
             database in "NO_RECOVERY" mode which does not bring it online
-            after restore.  Note: This is only applicable if we are restoring
-            the database back to its original location.
+            after restore.
 
     """
 
@@ -77,12 +82,14 @@ class RestoreSqlAppObjectParams(object):
         "db_restore_overwrite_policy":'dbRestoreOverwritePolicy',
         "enable_checksum":'enableChecksum',
         "instance_name":'instanceName',
+        "is_auto_sync_enabled":'isAutoSyncEnabled',
         "is_multi_stage_restore":'isMultiStageRestore',
         "keep_cdc":'keepCdc',
         "log_file_destination":'logFileDestination',
         "multi_stage_restore_options":'multiStageRestoreOptions',
         "new_database_name":'newDatabaseName',
         "restore_time_secs":'restoreTimeSecs',
+        "resume_restore":'resumeRestore',
         "secondary_data_file_destination":'secondaryDataFileDestination',
         "secondary_data_file_destination_vec":'secondaryDataFileDestinationVec',
         "with_clause":'withClause',
@@ -96,12 +103,14 @@ class RestoreSqlAppObjectParams(object):
                  db_restore_overwrite_policy=None,
                  enable_checksum=None,
                  instance_name=None,
+                 is_auto_sync_enabled=None,
                  is_multi_stage_restore=None,
                  keep_cdc=None,
                  log_file_destination=None,
                  multi_stage_restore_options=None,
                  new_database_name=None,
                  restore_time_secs=None,
+                 resume_restore=None,
                  secondary_data_file_destination=None,
                  secondary_data_file_destination_vec=None,
                  with_clause=None,
@@ -115,12 +124,14 @@ class RestoreSqlAppObjectParams(object):
         self.db_restore_overwrite_policy = db_restore_overwrite_policy
         self.enable_checksum = enable_checksum
         self.instance_name = instance_name
+        self.is_auto_sync_enabled = is_auto_sync_enabled
         self.is_multi_stage_restore = is_multi_stage_restore
         self.keep_cdc = keep_cdc
         self.log_file_destination = log_file_destination
         self.multi_stage_restore_options = multi_stage_restore_options
         self.new_database_name = new_database_name
         self.restore_time_secs = restore_time_secs
+        self.resume_restore = resume_restore
         self.secondary_data_file_destination = secondary_data_file_destination
         self.secondary_data_file_destination_vec = secondary_data_file_destination_vec
         self.with_clause = with_clause
@@ -151,12 +162,14 @@ class RestoreSqlAppObjectParams(object):
         db_restore_overwrite_policy = dictionary.get('dbRestoreOverwritePolicy')
         enable_checksum = dictionary.get('enableChecksum')
         instance_name = dictionary.get('instanceName')
+        is_auto_sync_enabled = dictionary.get('isAutoSyncEnabled')
         is_multi_stage_restore = dictionary.get('isMultiStageRestore')
         keep_cdc = dictionary.get('keepCdc')
         log_file_destination = dictionary.get('logFileDestination')
         multi_stage_restore_options = cohesity_management_sdk.models.sql_update_restore_task_options.SqlUpdateRestoreTaskOptions.from_dictionary(dictionary.get('multiStageRestoreOptions')) if dictionary.get('multiStageRestoreOptions') else None
         new_database_name = dictionary.get('newDatabaseName')
         restore_time_secs = dictionary.get('restoreTimeSecs')
+        resume_restore = dictionary.get('resumeRestore')
         secondary_data_file_destination = dictionary.get('secondaryDataFileDestination')
         secondary_data_file_destination_vec = None
         if dictionary.get('secondaryDataFileDestinationVec') != None:
@@ -173,12 +186,14 @@ class RestoreSqlAppObjectParams(object):
                    db_restore_overwrite_policy,
                    enable_checksum,
                    instance_name,
+                   is_auto_sync_enabled,
                    is_multi_stage_restore,
                    keep_cdc,
                    log_file_destination,
                    multi_stage_restore_options,
                    new_database_name,
                    restore_time_secs,
+                   resume_restore,
                    secondary_data_file_destination,
                    secondary_data_file_destination_vec,
                    with_clause,

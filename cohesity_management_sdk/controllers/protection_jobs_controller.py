@@ -14,9 +14,11 @@ from cohesity_management_sdk.exceptions.request_error_error_exception import Req
 
 class ProtectionJobsController(BaseController):
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-    def __init__(self, client=None, call_back=None):
+
+    def __init__(self, config=None, client=None, call_back=None):
         super(ProtectionJobsController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
+        self.config = config
 
     def change_protection_job_state(self, id, body=None):
         """Does a POST request to /public/protectionJobState/{id}.
@@ -64,7 +66,7 @@ class ProtectionJobsController(BaseController):
             _url_path = '/public/protectionJobState/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -81,7 +83,7 @@ class ProtectionJobsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='change_protection_job_state')
 
@@ -108,6 +110,7 @@ class ProtectionJobsController(BaseController):
                             include_rpo_snapshots=None,
                             is_last_run_sla_violated=None,
                             only_return_data_migration_jobs=None,
+                            prune_excluded_source_ids=None,
                             tenant_ids=None,
                             all_under_hierarchy=None):
         """Does a GET request to /public/protectionJobs.
@@ -158,6 +161,10 @@ class ProtectionJobsController(BaseController):
                 OnlyReturnDataMigrationJobs specifies if only data migration
                 jobs should be returned. If not set, no data migration job
                 will be returned.
+            prune_excluded_source_ids (bool, optional): If true, the list of
+                exclusion sources will be omitted from the response. This can
+                be used to improve performance when the exclusion sources are
+                not needed.
             tenant_ids (list of string, optional): TenantIds contains ids of
                 the tenants for which objects are to be returned.
             all_under_hierarchy (bool, optional): AllUnderHierarchy specifies
@@ -180,7 +187,7 @@ class ProtectionJobsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_protection_jobs.')
             _url_path = '/public/protectionJobs'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'ids': ids,
@@ -194,6 +201,7 @@ class ProtectionJobsController(BaseController):
                 'includeRpoSnapshots': include_rpo_snapshots,
                 'isLastRunSlaViolated': is_last_run_sla_violated,
                 'onlyReturnDataMigrationJobs': only_return_data_migration_jobs,
+                'pruneExcludedSourceIds': prune_excluded_source_ids,
                 'tenantIds': tenant_ids,
                 'allUnderHierarchy': all_under_hierarchy
             }
@@ -210,7 +218,7 @@ class ProtectionJobsController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_protection_jobs.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_protection_jobs')
 
@@ -258,7 +266,7 @@ class ProtectionJobsController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for create_protection_job.')
             _url_path = '/public/protectionJobs'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -276,7 +284,7 @@ class ProtectionJobsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='create_protection_job')
 
@@ -297,7 +305,7 @@ class ProtectionJobsController(BaseController):
     def create_run_protection_job(self, id, body):
         """Does a POST request to /public/protectionJobs/run/{id}.
 
-        Immediately excute a single Job Run and ignore the schedule defined
+        Immediately execute a single Job Run and ignore the schedule defined
         in the Policy.
         A Protection Policy associated with the Job may define up to three
         backup run types:
@@ -340,7 +348,7 @@ class ProtectionJobsController(BaseController):
             _url_path = '/public/protectionJobs/run/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -357,7 +365,7 @@ class ProtectionJobsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='create_run_protection_job')
 
@@ -408,7 +416,7 @@ class ProtectionJobsController(BaseController):
             self.logger.info(
                 'Preparing query URL for update_protection_jobs_state.')
             _url_path = '/public/protectionJobs/states'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -428,7 +436,7 @@ class ProtectionJobsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='update_protection_jobs_state')
 
@@ -481,7 +489,7 @@ class ProtectionJobsController(BaseController):
             _url_path = '/public/protectionJobs/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -496,7 +504,7 @@ class ProtectionJobsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='delete_protection_job')
 
@@ -542,7 +550,7 @@ class ProtectionJobsController(BaseController):
             _url_path = '/public/protectionJobs/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -555,7 +563,7 @@ class ProtectionJobsController(BaseController):
                 'Preparing and executing request for get_protection_job_by_id.'
             )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_protection_job_by_id')
 
@@ -607,7 +615,7 @@ class ProtectionJobsController(BaseController):
             _url_path = '/public/protectionJobs/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -625,7 +633,7 @@ class ProtectionJobsController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='update_protection_job')
 
@@ -675,7 +683,7 @@ class ProtectionJobsController(BaseController):
             _url_path = '/public/protectionJobs/{id}/auditTrail'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -688,7 +696,7 @@ class ProtectionJobsController(BaseController):
                 'Preparing and executing request for get_protection_job_audit.'
             )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_protection_job_audit')
 

@@ -21,6 +21,7 @@ class FreeNodeInformation(object):
             the Node in the Cluster creation page.
         num_slots_in_chassis (int): Specifies the number of Node slots present
             in the Chassis where this Node is installed.
+        product_model (string): Specifies the product model of the node.
         slot_number (string): Specifies the number of the slot the Node is
             installed in.
         software_version (string): Specifies the version of the software
@@ -38,6 +39,7 @@ class FreeNodeInformation(object):
         "node_serial":'nodeSerial',
         "node_ui_slot":'nodeUiSlot',
         "num_slots_in_chassis":'numSlotsInChassis',
+        "product_model":'productModel',
         "slot_number":'slotNumber',
         "software_version":'softwareVersion'
     }
@@ -51,6 +53,7 @@ class FreeNodeInformation(object):
                  node_serial=None,
                  node_ui_slot=None,
                  num_slots_in_chassis=None,
+                 product_model=None,
                  slot_number=None,
                  software_version=None):
         """Constructor for the FreeNodeInformation class"""
@@ -64,6 +67,7 @@ class FreeNodeInformation(object):
         self.node_serial = node_serial
         self.node_ui_slot = node_ui_slot
         self.num_slots_in_chassis = num_slots_in_chassis
+        self.product_model = product_model
         self.slot_number = slot_number
         self.software_version = software_version
 
@@ -94,6 +98,7 @@ class FreeNodeInformation(object):
         node_serial = dictionary.get('nodeSerial')
         node_ui_slot = dictionary.get('nodeUiSlot')
         num_slots_in_chassis = dictionary.get('numSlotsInChassis')
+        product_model = dictionary.get('productModel', None)
         slot_number = dictionary.get('slotNumber')
         software_version = dictionary.get('softwareVersion')
 
@@ -106,6 +111,7 @@ class FreeNodeInformation(object):
                    node_serial,
                    node_ui_slot,
                    num_slots_in_chassis,
+                   product_model,
                    slot_number,
                    software_version)
 

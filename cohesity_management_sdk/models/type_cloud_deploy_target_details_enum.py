@@ -7,8 +7,8 @@ class TypeCloudDeployTargetDetailsEnum(object):
 
     Specifies the type of the CloudDeploy target.
     'kAzure' indicates that Azure as a cloud deploy target type.
-    'kAws' indicates that AWS as a cloud deploy target type.
-    'kGcp' indicates that GCP as a cloud deploy target type.
+    'kAWS' indicates that AWS as a cloud deploy target type.
+    'kGCP' indicates that GCP as a cloud deploy target type.
 
     Attributes:
         KAZURE: TODO: type description here.
@@ -19,7 +19,7 @@ class TypeCloudDeployTargetDetailsEnum(object):
 
     KAZURE = 'kAzure'
 
-    KAWS = 'kAws'
+    KAWS = 'kAWS'
 
-    KGCP = 'kGcp'
+    KGCP = 'kGCP'
 

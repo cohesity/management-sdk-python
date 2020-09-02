@@ -20,8 +20,8 @@ class ProtectionJobSummaryForPolicies(object):
         copy_runs (list of CopyRun): Specifies details about the Copy tasks of
             the Job Run. A Copy task copies the captured snapshots to an
             external target or a Remote Cohesity Cluster.
-        protection_job (ProtectionJob): Provides details about a Protection
-            Job.
+        protection_job (ProtectionJob): Specifies the Protection job
+            information.
 
     """
 

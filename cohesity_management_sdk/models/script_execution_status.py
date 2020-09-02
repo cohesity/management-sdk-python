@@ -10,7 +10,7 @@ class ScriptExecutionStatus(object):
     TODO: type model description here.
 
     Attributes:
-        error (ErrorProto): TODO: type description here.
+        error (ErrorProto): Error that occurred during execution.
         executing (bool): Indicates if a script is executing. This is
             particularly useful when there is a cancellation request and
             Magneto crashes at that point before cleaning up the running

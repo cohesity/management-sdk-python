@@ -36,7 +36,10 @@ class AlertMetadata(object):
             ProActive Wellness. kHeliosAnalyticsJobs - Alerts that are related
             to Helios Analytics Jobs. kHeliosSignatureJobs - Alerts that are
             related to Helios Signature Jobs. kSecurity - Alerts that are
-            related to Security.
+            related to Security. kAppsInfra - Alerts that are related to
+            applications infra. kAntivirus - Alerts that are related to
+            antivirus. kArchivalCopy - Alerts that are related to archival
+            copies.
         dedup_interval_seconds (int): Specifies dedup interval in seconds. If
             the same alert is raised multiple times by any client in this
             duration, only one of them will be reported.
@@ -54,6 +57,8 @@ class AlertMetadata(object):
             notification for the alert.
         snmp_notification (bool): Specifies whether an SNMP notification is
             sent when an alert is raised.
+        syslog_notification (bool): Specifies whether an syslog notification
+            is sent when an alert is raised.
         version (int): Specifies version of the metadata.
 
     """
@@ -72,6 +77,7 @@ class AlertMetadata(object):
         "property_list":'propertyList',
         "send_support_notification":'sendSupportNotification',
         "snmp_notification":'snmpNotification',
+        "syslog_notification":'syslogNotification',
         "version":'version'
     }
 
@@ -88,6 +94,7 @@ class AlertMetadata(object):
                  property_list=None,
                  send_support_notification=None,
                  snmp_notification=None,
+                 syslog_notification=None,
                  version=None):
         """Constructor for the AlertMetadata class"""
 
@@ -104,6 +111,7 @@ class AlertMetadata(object):
         self.property_list = property_list
         self.send_support_notification = send_support_notification
         self.snmp_notification = snmp_notification
+        self.syslog_notification = syslog_notification
         self.version = version
 
 
@@ -141,6 +149,7 @@ class AlertMetadata(object):
         property_list = dictionary.get('propertyList')
         send_support_notification = dictionary.get('sendSupportNotification')
         snmp_notification = dictionary.get('snmpNotification')
+        syslog_notification = dictionary.get('syslogNotification')
         version = dictionary.get('version')
 
         # Return an object of this model
@@ -156,6 +165,7 @@ class AlertMetadata(object):
                    property_list,
                    send_support_notification,
                    snmp_notification,
+                   syslog_notification,
                    version)
 
 

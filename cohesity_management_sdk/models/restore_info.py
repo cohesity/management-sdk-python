@@ -26,6 +26,10 @@ class RestoreInfo(object):
         parent_source (ProtectionSource): Specifies a generic structure that
             represents a node in the Protection Source tree. Node details will
             depend on the environment of the Protection Source.
+        restore_time_usecs (int): This field specifies the time in to which
+            the object needs to be restored.
+            This filed is only applicable when object is being backeup using
+            CDP feature.
         snapshot_relative_dir_path (string): Specifies the relative path of
             the snapshot directory.
         source (ProtectionSource): Specifies a generic structure that
@@ -47,6 +51,7 @@ class RestoreInfo(object):
         "job_run_id":'jobRunId',
         "job_uid":'jobUid',
         "parent_source":'parentSource',
+        "restore_time_usecs":'restoreTimeUsecs',
         "snapshot_relative_dir_path":'snapshotRelativeDirPath',
         "source":'source',
         "start_time_usecs":'startTimeUsecs',
@@ -61,6 +66,7 @@ class RestoreInfo(object):
                  job_run_id=None,
                  job_uid=None,
                  parent_source=None,
+                 restore_time_usecs=None,
                  snapshot_relative_dir_path=None,
                  source=None,
                  start_time_usecs=None,
@@ -75,6 +81,7 @@ class RestoreInfo(object):
         self.job_run_id = job_run_id
         self.job_uid = job_uid
         self.parent_source = parent_source
+        self.restore_time_usecs = restore_time_usecs
         self.snapshot_relative_dir_path = snapshot_relative_dir_path
         self.source = source
         self.start_time_usecs = start_time_usecs
@@ -106,6 +113,7 @@ class RestoreInfo(object):
         job_run_id = dictionary.get('jobRunId')
         job_uid = cohesity_management_sdk.models.universal_id.UniversalId.from_dictionary(dictionary.get('jobUid')) if dictionary.get('jobUid') else None
         parent_source = cohesity_management_sdk.models.protection_source.ProtectionSource.from_dictionary(dictionary.get('parentSource')) if dictionary.get('parentSource') else None
+        restore_time_usecs = dictionary.get('restoreTimeUsecs')
         snapshot_relative_dir_path = dictionary.get('snapshotRelativeDirPath')
         source = cohesity_management_sdk.models.protection_source.ProtectionSource.from_dictionary(dictionary.get('source')) if dictionary.get('source') else None
         start_time_usecs = dictionary.get('startTimeUsecs')
@@ -119,6 +127,7 @@ class RestoreInfo(object):
                    job_run_id,
                    job_uid,
                    parent_source,
+                   restore_time_usecs,
                    snapshot_relative_dir_path,
                    source,
                    start_time_usecs,

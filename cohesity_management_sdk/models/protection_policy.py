@@ -21,6 +21,9 @@ class ProtectionPolicy(object):
             are not started. If a Job Run has been scheduled but not yet
             executed and the blackout period starts, the behavior depends on
             the policy field AbortInBlackoutPeriod.
+        cdp_scheduling_policy (SchedulingPolicy): Specifies the CDP backup
+            schedule of a Protection Job and how long log files captured by
+            this schedule are retained on the Cohesity Cluster.
         cloud_deploy_policies (list of SnapshotCloudCopyPolicy): Array of
             Cloud Deploy Policies.  Specifies settings for copying Snapshots
             to Cloud. CloudDeploy target where backup snapshots may be
@@ -108,6 +111,7 @@ class ProtectionPolicy(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "blackout_periods":'blackoutPeriods',
+        "cdp_scheduling_policy":'cdpSchedulingPolicy',
         "cloud_deploy_policies":'cloudDeployPolicies',
         "days_to_keep":'daysToKeep',
         "days_to_keep_log":'daysToKeepLog',
@@ -137,6 +141,7 @@ class ProtectionPolicy(object):
 
     def __init__(self,
                  blackout_periods=None,
+                 cdp_scheduling_policy=None,
                  cloud_deploy_policies=None,
                  days_to_keep=None,
                  days_to_keep_log=None,
@@ -166,6 +171,7 @@ class ProtectionPolicy(object):
 
         # Initialize members of the class
         self.blackout_periods = blackout_periods
+        self.cdp_scheduling_policy = cdp_scheduling_policy
         self.cloud_deploy_policies = cloud_deploy_policies
         self.days_to_keep = days_to_keep
         self.days_to_keep_log = days_to_keep_log
@@ -212,6 +218,7 @@ class ProtectionPolicy(object):
 
         # Extract variables from the dictionary
         blackout_periods = None
+        cdp_scheduling_policy = cohesity_management_sdk.models.scheduling_policy.SchedulingPolicy.from_dictionary(dictionary.get('cdpSchedulingPolicy')) if dictionary.get('cdpSchedulingPolicy') else None
         if dictionary.get('blackoutPeriods') != None:
             blackout_periods = list()
             for structure in dictionary.get('blackoutPeriods'):
@@ -260,6 +267,7 @@ class ProtectionPolicy(object):
 
         # Return an object of this model
         return cls(blackout_periods,
+                   cdp_scheduling_policy,
                    cloud_deploy_policies,
                    days_to_keep,
                    days_to_keep_log,

@@ -13,6 +13,9 @@ class VmwareBackupEnvParams(object):
         allow_crash_consistent_snapshot (bool): Whether to fallback to take a
             crash-consistent snapshot incase taking an app-consistent snapshot
             fails.
+        allow_nbdssl_transport_fallback (bool): Whether to fallback to use
+            NBDSSL transport for backup in case using SAN transport backup
+            fails.
         allow_vms_with_physical_rdm_disks (bool): Physical RDM disks cannot be
             backed up using VADP. By default the backups of such VMs will
             fail. If this is set to true, then such VMs in this backup job
@@ -28,18 +31,21 @@ class VmwareBackupEnvParams(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "allow_crash_consistent_snapshot":'allowCrashConsistentSnapshot',
+        "allow_nbdssl_transport_fallback":'allowNbdsslTransportFallback',
         "allow_vms_with_physical_rdm_disks":'allowVmsWithPhysicalRdmDisks',
         "vmware_disk_exclusion_info":'vmwareDiskExclusionInfo'
     }
 
     def __init__(self,
                  allow_crash_consistent_snapshot=None,
+                 allow_nbdssl_transport_fallback=None,
                  allow_vms_with_physical_rdm_disks=None,
                  vmware_disk_exclusion_info=None):
         """Constructor for the VmwareBackupEnvParams class"""
 
         # Initialize members of the class
         self.allow_crash_consistent_snapshot = allow_crash_consistent_snapshot
+        self.allow_nbdssl_transport_fallback = allow_nbdssl_transport_fallback
         self.allow_vms_with_physical_rdm_disks = allow_vms_with_physical_rdm_disks
         self.vmware_disk_exclusion_info = vmware_disk_exclusion_info
 
@@ -63,6 +69,7 @@ class VmwareBackupEnvParams(object):
 
         # Extract variables from the dictionary
         allow_crash_consistent_snapshot = dictionary.get('allowCrashConsistentSnapshot')
+        allow_nbdssl_transport_fallback = dictionary.get('allowNbdsslTransportFallback')
         allow_vms_with_physical_rdm_disks = dictionary.get('allowVmsWithPhysicalRdmDisks')
         vmware_disk_exclusion_info = None
         if dictionary.get('vmwareDiskExclusionInfo') != None:
@@ -72,6 +79,7 @@ class VmwareBackupEnvParams(object):
 
         # Return an object of this model
         return cls(allow_crash_consistent_snapshot,
+                   allow_nbdssl_transport_fallback,
                    allow_vms_with_physical_rdm_disks,
                    vmware_disk_exclusion_info)
 

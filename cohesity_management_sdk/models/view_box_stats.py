@@ -16,22 +16,16 @@ class ViewBoxStats(object):
             performance statistics for entities such as a disks, Nodes or
             Clusters.
         data_usage_stats (DataUsageStats): Specifies the data usage metric of
-            the data stored on the Cohesity Cluster or Storage Domains (View
-            Boxes).
+            the data stored on the Storage Domain (View Box).
         id (long|int): Specifies the id of the Storage Domain (View Box).
-        local_usage_perf_stats (UsageAndPerformanceStats): Provides usage and
-            performance statistics for entities such as a disks, Nodes or
-            Clusters.
-        logical_stats (LogicalStats): Provides logical statistics for logical
-            entities such as Clusters and Domains (View Boxes). The logical
-            size is the size of the data when it is fully hydrated or
-            expanded. The actual physical data stored on the Cohesity Cluster
-            is reduced by change-block tracking, compression and
-            deduplication.
+        local_usage_perf_stats (UsageAndPerformanceStats): Provides usage
+            statistics for the locally stored data on the Storage Domain (View
+            Box). Performance statistics are not populated.
+        logical_stats (LogicalStats): Provides the logical usage statistics
+            for the Storage Domain (View Box).
         usage_perf_stats (UsageAndPerformanceStats): Provides usage and
-            performance statistics for entities such as a disks, Nodes or
-            Clusters.
-
+            performance statistics for the Storage Domain (View Box)
+            (includes both local and cloud data).
     """
 
     # Create a mapping from Model property names to API property names

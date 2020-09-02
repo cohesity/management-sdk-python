@@ -15,12 +15,20 @@ class RestoredFileInfo(object):
         attached_disk_id (int): Disk information of where the source file is
             currently located.
         disk_partition_id (int): Disk partition to which the file belongs to.
+        fs_uuid (string): File system UUID on which file resides.
         is_directory (bool): Whether the path points to a directory.
         is_non_simple_ldm_vol (bool): This will be set to true for recovery
             workflows for non-simple volumes on Windows Dynamic Disks. In that
             case, we will use VolumeInfo instead of some of the details
             captured here (e.g. virtual_disk_file) for determining disk and
             volume related details.
+        restore_base_directory (string): This must be set to a directory path
+            if restore_to_original_paths is false and restore task has
+            multiple files which are not desired to be restore to one common
+            location. If this filed is populated, 'absolute_path' will be
+            restored under this location. If this field is not populated all
+            files in restore task will be restored to location specified in
+            RestoreFilesPreferences.
         restore_mount_point (string): Mount point of the volume on which the
             file to be restored is located. E.g.: c:\temp\vhd_mount_1234
         size_bytes (long|int): Size of the file in bytes. Required in FLR in
@@ -38,8 +46,10 @@ class RestoredFileInfo(object):
         "absolute_path":'absolutePath',
         "attached_disk_id":'attachedDiskId',
         "disk_partition_id":'diskPartitionId',
+        "fs_uuid":'fsUuid',
         "is_directory":'isDirectory',
         "is_non_simple_ldm_vol":'isNonSimpleLdmVol',
+        "restore_base_directory":'restoreBaseDirectory',
         "restore_mount_point":'restoreMountPoint',
         "size_bytes":'sizeBytes',
         "virtual_disk_file":'virtualDiskFile',
@@ -51,8 +61,10 @@ class RestoredFileInfo(object):
                  absolute_path=None,
                  attached_disk_id=None,
                  disk_partition_id=None,
+                 fs_uuid=None,
                  is_directory=None,
                  is_non_simple_ldm_vol=None,
+                 restore_base_directory=None,
                  restore_mount_point=None,
                  size_bytes=None,
                  virtual_disk_file=None,
@@ -64,8 +76,10 @@ class RestoredFileInfo(object):
         self.absolute_path = absolute_path
         self.attached_disk_id = attached_disk_id
         self.disk_partition_id = disk_partition_id
+        self.fs_uuid = fs_uuid
         self.is_directory = is_directory
         self.is_non_simple_ldm_vol = is_non_simple_ldm_vol
+        self.restore_base_directory = restore_base_directory
         self.restore_mount_point = restore_mount_point
         self.size_bytes = size_bytes
         self.virtual_disk_file = virtual_disk_file
@@ -94,8 +108,10 @@ class RestoredFileInfo(object):
         absolute_path = dictionary.get('absolutePath')
         attached_disk_id = dictionary.get('attachedDiskId')
         disk_partition_id = dictionary.get('diskPartitionId')
+        fs_uuid = dictionary.get('fsUuid')
         is_directory = dictionary.get('isDirectory')
         is_non_simple_ldm_vol = dictionary.get('isNonSimpleLdmVol')
+        restore_base_directory = dictionary.get('restoreBaseDirectory')
         restore_mount_point = dictionary.get('restoreMountPoint')
         size_bytes = dictionary.get('sizeBytes')
         virtual_disk_file = dictionary.get('virtualDiskFile')
@@ -106,8 +122,10 @@ class RestoredFileInfo(object):
         return cls(absolute_path,
                    attached_disk_id,
                    disk_partition_id,
+                   fs_uuid,
                    is_directory,
                    is_non_simple_ldm_vol,
+                   restore_base_directory,
                    restore_mount_point,
                    size_bytes,
                    virtual_disk_file,

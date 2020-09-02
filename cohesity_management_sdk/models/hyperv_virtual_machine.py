@@ -11,7 +11,7 @@ class HypervVirtualMachine(object):
 
     Attributes:
         is_highly_available (bool): Specifies whether the VM is Highly
-            Availabile or not.
+            Available or not.
         version (string): Specifies the version of the VM. For example, 8.0,
             5.0 etc.
         vm_backup_status (VmBackupStatusEnum): Specifies the status of the VM

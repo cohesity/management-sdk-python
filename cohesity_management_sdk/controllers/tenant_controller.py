@@ -23,9 +23,10 @@ from cohesity_management_sdk.exceptions.request_error_error_exception import Req
 
 class TenantController(BaseController):
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-    def __init__(self, client=None, call_back=None):
+    def __init__(self, config=None, client=None, call_back=None):
         super(TenantController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
+        self.config = config
 
     def delete_tenant(self, body=None):
         """Does a DELETE request to /public/tenants.
@@ -52,7 +53,7 @@ class TenantController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for delete_tenant.')
             _url_path = '/public/tenants'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -70,7 +71,7 @@ class TenantController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='delete_tenant')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -92,6 +93,7 @@ class TenantController(BaseController):
                     properties=None,
                     hierarchy=None,
                     include_self=None,
+                    skip_invalid_ids=None,
                     status=None):
         """Does a GET request to /public/tenants.
 
@@ -107,9 +109,12 @@ class TenantController(BaseController):
                 'Entity' indicates entity data for tenant. 'Views' indicates
                 view data for tenant. 'ActiveDirectory' indicates active
                 directory for tenant. 'LdapProvider' indicates ldap provider
-                for tenant.
+                for tenant. 'SwiftConfig' indicates Swift configuration for
+                tenant.
             hierarchy (bool, optional): TODO: type description here. Example:
                             include_self (bool, optional): TODO: type description here.
+                Example:
+            skip_invalid_ids (bool, optional): TODO: type description here.
                 Example:
             status (list of StatusGetTenantsEnum, optional): Filter by tenant
                 status.
@@ -130,13 +135,14 @@ class TenantController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_tenants.')
             _url_path = '/public/tenants'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'ids': ids,
                 'properties': properties,
                 'hierarchy': hierarchy,
                 'includeSelf': include_self,
+                'skipInvalidIds': skip_invalid_ids,
                 'status': status
             }
             _query_builder = APIHelper.append_url_with_query_parameters(
@@ -152,7 +158,7 @@ class TenantController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_tenants.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='get_tenants')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -172,11 +178,10 @@ class TenantController(BaseController):
     def create_tenant(self, body=None):
         """Does a POST request to /public/tenants.
 
-        A tenant is required to support MultiTenant architecture for service
-        provider
-        (SP) to facilitate data and view segregations in the Cohesity
-        Dashboard.
-        Returns the created/added tenant.
+        A Vault can provide an additional Cloud Tier where cold data of the
+        Cohesity Cluster is stored in the Cloud.
+        A Vault can also provide archive storage for backup data.
+        This archive data is stored on Tapes and in Cloud Vaults.
 
         Args:
             body (TenantCreateParameters, optional): Request to add or create
@@ -198,7 +203,7 @@ class TenantController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for create_tenant.')
             _url_path = '/public/tenants'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -216,7 +221,7 @@ class TenantController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='create_tenant')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -257,7 +262,7 @@ class TenantController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for update_tenant.')
             _url_path = '/public/tenants'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -275,7 +280,7 @@ class TenantController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='update_tenant')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -321,7 +326,7 @@ class TenantController(BaseController):
             self.logger.info(
                 'Preparing query URL for update_tenant_active_directory.')
             _url_path = '/public/tenants/activeDirectory'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -341,7 +346,7 @@ class TenantController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='update_tenant_active_directory')
 
@@ -389,7 +394,7 @@ class TenantController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for update_tenant_entity.')
             _url_path = '/public/tenants/entity'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -407,7 +412,7 @@ class TenantController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='update_tenant_entity')
 
@@ -452,7 +457,7 @@ class TenantController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for update_tenant_groups.')
             _url_path = '/public/tenants/groups'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -470,7 +475,7 @@ class TenantController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='update_tenant_groups')
 
@@ -517,7 +522,7 @@ class TenantController(BaseController):
             self.logger.info(
                 'Preparing query URL for update_tenant_ldap_provider.')
             _url_path = '/public/tenants/ldapProvider'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -537,7 +542,7 @@ class TenantController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='update_tenant_ldap_provider')
 
@@ -562,7 +567,7 @@ class TenantController(BaseController):
 
         Returns success if the update for protection policy permission data
         is
-        successful for specified tenant.
+        successful for the specified tenant.
 
         Args:
             body (TenantProtectionPolicyUpdateParameters, optional): Request
@@ -586,7 +591,7 @@ class TenantController(BaseController):
             self.logger.info(
                 'Preparing query URL for update_tenant_protection_policy.')
             _url_path = '/public/tenants/policy'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -606,7 +611,7 @@ class TenantController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='update_tenant_protection_policy')
 
@@ -655,7 +660,7 @@ class TenantController(BaseController):
             self.logger.info(
                 'Preparing query URL for update_tenant_protection_job.')
             _url_path = '/public/tenants/protectionJob'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -675,7 +680,7 @@ class TenantController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='update_tenant_protection_job')
 
@@ -721,7 +726,7 @@ class TenantController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_tenants_proxies.')
             _url_path = '/public/tenants/proxies'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {'ids': ids}
             _query_builder = APIHelper.append_url_with_query_parameters(
@@ -737,7 +742,7 @@ class TenantController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_tenants_proxies.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_tenants_proxies')
 
@@ -755,60 +760,6 @@ class TenantController(BaseController):
             self.logger.error(e, exc_info=True)
             raise
 
-    def get_tenants_proxy_config_request(self):
-        """Does a GET request to /public/tenants/proxy/config.
-
-        Returns the config for tenants proxy.
-
-        Returns:
-            list of int: Response from the API. Get Tenants Proxy Config
-                Response.
-
-        Raises:
-            APIException: When an error occurs while fetching the data from
-                the remote API. This exception includes the HTTP Response
-                code, an error message, and the HTTP body that was received in
-                the request.
-
-        """
-        try:
-            self.logger.info('get_tenants_proxy_config_request called.')
-
-            # Prepare query URL
-            self.logger.info(
-                'Preparing query URL for get_tenants_proxy_config_request.')
-            _url_path = '/public/tenants/proxy/config'
-            _query_builder = Configuration.get_base_uri()
-            _query_builder += _url_path
-            _query_url = APIHelper.clean_url(_query_builder)
-
-            # Prepare headers
-            self.logger.info(
-                'Preparing headers for get_tenants_proxy_config_request.')
-            _headers = {'accept': 'application/json'}
-
-            # Prepare and execute request
-            self.logger.info(
-                'Preparing and executing request for get_tenants_proxy_config_request.'
-            )
-            _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
-            _context = self.execute_request(
-                _request, name='get_tenants_proxy_config_request')
-
-            # Endpoint and global error handling using HTTP status codes.
-            self.logger.info(
-                'Validating response for get_tenants_proxy_config_request.')
-            if _context.response.status_code == 0:
-                raise RequestErrorErrorException('Error', _context)
-            self.validate_response(_context)
-
-            # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body)
-
-        except Exception as e:
-            self.logger.error(e, exc_info=True)
-            raise
 
     def get_download_tenants_proxy(self, id=None):
         """Does a GET request to /public/tenants/proxy/image.
@@ -836,7 +787,7 @@ class TenantController(BaseController):
             self.logger.info(
                 'Preparing query URL for get_download_tenants_proxy.')
             _url_path = '/public/tenants/proxy/image'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {'id': id}
             _query_builder = APIHelper.append_url_with_query_parameters(
@@ -854,13 +805,81 @@ class TenantController(BaseController):
                 'Preparing and executing request for get_download_tenants_proxy.'
             )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_download_tenants_proxy')
 
             # Endpoint and global error handling using HTTP status codes.
             self.logger.info(
                 'Validating response for get_download_tenants_proxy.')
+            if _context.response.status_code == 0:
+                raise RequestErrorErrorException('Error', _context)
+            self.validate_response(_context)
+
+            # Return appropriate type
+            return APIHelper.json_deserialize(_context.response.raw_body)
+
+        except Exception as e:
+            self.logger.error(e, exc_info=True)
+            raise
+
+
+    def get_tenants_proxy_config(self, id=None, validate_only=None):
+        """Does a GET request to /public/tenants/proxy/config.
+
+        Returns the config for tenants proxy.
+
+        Args:
+            id (string, optional): Specifies the id of the tenant.
+            validate_only (bool, optional): Specifies whether to only validate
+                the config request.
+
+        Returns:
+            list of int: Response from the API. Get Tenants Proxy Config
+                Response.
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+        try:
+            self.logger.info('get_tenants_proxy_config called.')
+
+            # Prepare query URL
+            self.logger.info(
+                'Preparing query URL for get_tenants_proxy_config.')
+            _url_path = '/public/tenants/proxy/config'
+            _query_builder = self.config.get_base_uri()
+            _query_builder += _url_path
+            _query_parameters = {
+                'id': id,
+                'validateOnly': validate_only
+                }
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
+            _query_url = APIHelper.clean_url(_query_builder)
+
+            # Prepare headers
+            self.logger.info(
+                'Preparing headers for get_tenants_proxy_config.')
+            _headers = {'accept': 'application/json'}
+
+            # Prepare and execute request
+            self.logger.info(
+                'Preparing and executing request for get_tenants_proxy_config.'
+            )
+            _request = self.http_client.get(_query_url, headers=_headers)
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='get_tenants_proxy_config')
+
+            # Endpoint and global error handling using HTTP status codes.
+            self.logger.info(
+                'Validating response for get_tenants_proxy_config.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
@@ -899,7 +918,7 @@ class TenantController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for update_tenant_users.')
             _url_path = '/public/tenants/users'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -917,7 +936,7 @@ class TenantController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='update_tenant_users')
 
@@ -963,7 +982,7 @@ class TenantController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for update_tenant_view.')
             _url_path = '/public/tenants/view'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -981,7 +1000,7 @@ class TenantController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='update_tenant_view')
 
@@ -1027,7 +1046,7 @@ class TenantController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for update_tenant_view_box.')
             _url_path = '/public/tenants/viewBox'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -1045,7 +1064,7 @@ class TenantController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='update_tenant_view_box')
 
@@ -1091,7 +1110,7 @@ class TenantController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for update_tenant_vlan.')
             _url_path = '/public/tenants/vlan'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -1109,7 +1128,7 @@ class TenantController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='update_tenant_vlan')
 

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2020 Cohesity Inc.
 
+import cohesity_management_sdk.models.restore_task_additional_params
 import cohesity_management_sdk.models.entity_proto
 import cohesity_management_sdk.models.restore_app_object_params
 
@@ -12,6 +13,8 @@ class RestoreAppObject(object):
     restored.
 
     Attributes:
+        additional_params (RestoreTaskAdditionalParams): Any additional
+            parameters associated with a restore task.
         app_entity (EntityProto): Specifies the attributes and the latest
             statistics about an entity.
         display_name (string): The proper display name of this object in the
@@ -23,18 +26,21 @@ class RestoreAppObject(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "additional_params":'additionalParams',
         "app_entity":'appEntity',
         "display_name":'displayName',
         "restore_params":'restoreParams'
     }
 
     def __init__(self,
+                 additional_params=None,
                  app_entity=None,
                  display_name=None,
                  restore_params=None):
         """Constructor for the RestoreAppObject class"""
 
         # Initialize members of the class
+        self.additional_params = additional_params
         self.app_entity = app_entity
         self.display_name = display_name
         self.restore_params = restore_params
@@ -58,12 +64,14 @@ class RestoreAppObject(object):
             return None
 
         # Extract variables from the dictionary
+        additional_params = cohesity_management_sdk.models.restore_task_additional_params.RestoreTaskAdditionalParams.from_dictionary(dictionary.get('additionalParams')) if dictionary.get('additionalParams') else None
         app_entity = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('appEntity')) if dictionary.get('appEntity') else None
         display_name = dictionary.get('displayName')
         restore_params = cohesity_management_sdk.models.restore_app_object_params.RestoreAppObjectParams.from_dictionary(dictionary.get('restoreParams')) if dictionary.get('restoreParams') else None
 
         # Return an object of this model
-        return cls(app_entity,
+        return cls(additional_params,
+                   app_entity,
                    display_name,
                    restore_params)
 

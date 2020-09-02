@@ -16,6 +16,7 @@ from cohesity_management_sdk.models.file_fstat_result import FileFstatResult
 from cohesity_management_sdk.models.file_snapshot_information import FileSnapshotInformation
 from cohesity_management_sdk.models.object_search_results import ObjectSearchResults
 from cohesity_management_sdk.models.restore_points_for_time_range import RestorePointsForTimeRange
+from cohesity_management_sdk.models.list_storage_profiles_response_body import ListStorageProfilesResponseBody
 from cohesity_management_sdk.models.virtual_disk_information import VirtualDiskInformation
 from cohesity_management_sdk.models.vm_directory_list_result import VmDirectoryListResult
 from cohesity_management_sdk.models.vm_volumes_information import VmVolumesInformation
@@ -24,9 +25,10 @@ from cohesity_management_sdk.exceptions.request_error_error_exception import Req
 
 class RestoreTasksController(BaseController):
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-    def __init__(self, client=None, call_back=None):
+    def __init__(self, config=None, client=None, call_back=None):
         super(RestoreTasksController, self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
+        self.config = config
 
     def get_ad_domain_root_topology(self, restore_task_id):
         """Does a GET request to /public/restore/adDomainRootTopology.
@@ -60,7 +62,7 @@ class RestoreTasksController(BaseController):
             self.logger.info(
                 'Preparing query URL for get_ad_domain_root_topology.')
             _url_path = '/public/restore/adDomainRootTopology'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {'restoreTaskId': restore_task_id}
             _query_builder = APIHelper.append_url_with_query_parameters(
@@ -78,7 +80,7 @@ class RestoreTasksController(BaseController):
                 'Preparing and executing request for get_ad_domain_root_topology.'
             )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_ad_domain_root_topology')
 
@@ -132,7 +134,7 @@ class RestoreTasksController(BaseController):
             self.logger.info(
                 'Preparing query URL for create_compare_ad_objects.')
             _url_path = '/public/restore/adObjectAttributes'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -152,7 +154,7 @@ class RestoreTasksController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='create_compare_ad_objects')
 
@@ -240,7 +242,7 @@ class RestoreTasksController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for search_ad_objects.')
             _url_path = '/public/restore/adObjects'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'restoreTaskId': restore_task_id,
@@ -265,7 +267,7 @@ class RestoreTasksController(BaseController):
             self.logger.info(
                 'Preparing and executing request for search_ad_objects.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='search_ad_objects')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -315,7 +317,7 @@ class RestoreTasksController(BaseController):
             self.logger.info(
                 'Preparing query URL for create_search_production_ad_objects.')
             _url_path = '/public/restore/adObjects'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -335,7 +337,7 @@ class RestoreTasksController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='create_search_production_ad_objects')
 
@@ -411,7 +413,7 @@ class RestoreTasksController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_ad_objects.')
             _url_path = '/public/restore/adObjects/searchResults'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'name': name,
@@ -438,7 +440,7 @@ class RestoreTasksController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_ad_objects.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='get_ad_objects')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -454,6 +456,96 @@ class RestoreTasksController(BaseController):
         except Exception as e:
             self.logger.error(e, exc_info=True)
             raise
+
+    def get_one_drive_documents(self,
+                                tenant_ids=None,
+                                all_under_hierarchy=None,
+                                document_name=None,
+                                domain_ids=None,
+                                mailbox_ids=None,
+                                protection_job_ids=None):
+        """Does a GET request to /public/restore/office365/onedrive/documents.
+
+        Search for OneDrive files and folder to recover that match the
+        specified
+        search and filter criterias on the Cohesity cluster.
+
+        Args:
+            tenant_ids (string, optional): TenantId specifies the tenant
+                whose action resulted in the audit log.
+            all_under_hierarchy (bool, optional): AllUnderHierarchy specifies
+                if logs of all the tenants under the hierarchy of tenant with
+                id TenantId should be returned.
+            document_name (string, optional): Specifies the document
+                (file/folder) name.
+            domain_ids (list of int, optional): Specifies the domain Ids in
+                which Users' OneDrives are registered.
+            mailbox_ids (list of int, optional): Specifies the Office365 User
+                Ids which is the owner of the OneDrive.
+            protection_job_ids (list of string, optional): Specifies the
+                protection job Ids which have backed up mailbox(es) contianing
+                emails/folders.
+
+        Returns:
+            FileSearchResults: Response from the API. Success
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+        try:
+            self.logger.info('get_one_drive_documents called.')
+
+            # Prepare query URL
+            self.logger.info(
+                'Preparing query URL for get_one_drive_documents.')
+            _url_path = '/public/restore/office365/onedrive/documents'
+            _query_builder = self.config.get_base_uri()
+            _query_builder += _url_path
+            _query_parameters = {
+                'tenantIds': tenant_ids,
+                'allUnderHierarchy': all_under_hierarchy,
+                'documentName': document_name,
+                'domainIds': domain_ids,
+                'mailboxIds': mailbox_ids,
+                'protectionJobIds': protection_job_ids
+            }
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
+            _query_url = APIHelper.clean_url(_query_builder)
+
+            # Prepare headers
+            self.logger.info('Preparing headers for get_one_drive_documents.')
+            _headers = {'accept': 'application/json'}
+
+            # Prepare and execute request
+            self.logger.info(
+                'Preparing and executing request for get_one_drive_documents.')
+            _request = self.http_client.get(_query_url, headers=_headers)
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='get_one_drive_documents')
+
+            # Endpoint and global error handling using HTTP status codes.
+            self.logger.info(
+                'Validating response for get_one_drive_documents.')
+            if _context.response.status_code == 0:
+                raise RequestErrorErrorException('Error', _context)
+            self.validate_response(_context)
+
+            # Return appropriate type
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                FileSearchResults.from_dictionary)
+
+        except Exception as e:
+            self.logger.error(e, exc_info=True)
+            raise
+
 
     def get_ad_objects_restore_status(self, restore_task_id=None):
         """Does a GET request to /public/restore/adObjects/status.
@@ -486,7 +578,7 @@ class RestoreTasksController(BaseController):
             self.logger.info(
                 'Preparing query URL for get_ad_objects_restore_status.')
             _url_path = '/public/restore/adObjects/status'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {'restoreTaskId': restore_task_id}
             _query_builder = APIHelper.append_url_with_query_parameters(
@@ -504,7 +596,7 @@ class RestoreTasksController(BaseController):
                 'Preparing and executing request for get_ad_objects_restore_status.'
             )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='get_ad_objects_restore_status')
 
@@ -556,7 +648,7 @@ class RestoreTasksController(BaseController):
             self.logger.info(
                 'Preparing query URL for create_applications_clone_task.')
             _url_path = '/public/restore/applicationsClone'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -576,7 +668,7 @@ class RestoreTasksController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='create_applications_clone_task')
 
@@ -628,7 +720,7 @@ class RestoreTasksController(BaseController):
             self.logger.info(
                 'Preparing query URL for create_applications_recover_task.')
             _url_path = '/public/restore/applicationsRecover'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -648,7 +740,7 @@ class RestoreTasksController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='create_applications_recover_task')
 
@@ -697,7 +789,7 @@ class RestoreTasksController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for create_clone_task.')
             _url_path = '/public/restore/clone'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -715,7 +807,7 @@ class RestoreTasksController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='create_clone_task')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -766,7 +858,7 @@ class RestoreTasksController(BaseController):
             _url_path = '/public/restore/clone/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -775,7 +867,7 @@ class RestoreTasksController(BaseController):
                 'Preparing and executing request for delete_public_destroy_clone_task.'
             )
             _request = self.http_client.delete(_query_url)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='delete_public_destroy_clone_task')
 
@@ -824,7 +916,7 @@ class RestoreTasksController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for create_deploy_task.')
             _url_path = '/public/restore/deploy'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -842,7 +934,7 @@ class RestoreTasksController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='create_deploy_task')
 
@@ -893,7 +985,7 @@ class RestoreTasksController(BaseController):
             self.logger.info(
                 'Preparing query URL for create_download_files_and_folders.')
             _url_path = '/public/restore/downloadFilesAndFolders'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -913,7 +1005,7 @@ class RestoreTasksController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='create_download_files_and_folders')
 
@@ -933,6 +1025,13 @@ class RestoreTasksController(BaseController):
             raise
 
     def search_restored_files(self,
+                              must_have_tags=None,
+                              might_have_tags=None,
+                              must_have_snapshot_tags=None,
+                              might_have_snapshot_tags=None,
+                              paginate=None,
+                              page_size=None,
+                              pagination_cookie=None,
                               search=None,
                               job_ids=None,
                               registered_source_ids=None,
@@ -959,6 +1058,28 @@ class RestoreTasksController(BaseController):
         in the source objects (such as VMs).
 
         Args:
+            must_have_tags(list of string, optional): Specifies tags which must
+                be all present in the document.
+            might_have_tags(list of string, optional): Specifies list of tags,
+                one of which might be present in the document. These are OR'ed
+                together and the resulting criteria AND'ed with the rest of the
+                query.
+            must_have_snapshot_tags(list of string, optional): Specifies
+                snapshot tags which must be all present in the document.
+            might_have_snapshot_tags(list of string, optional): Specifies list
+                of snapshot tags, one of which might be present in the
+                document. These are OR'ed together and the resulting criteria
+                AND'ed with the rest of the query.
+            paginate(bool, optional): Specifies bool to control pagination of
+                search results. Only valid for librarian queries. If this is
+                set to true and a pagination cookie is provided, search will be
+                resumed.
+            page_size(int , optional): Specifies pagesize for pagination. Only
+                valid for librarian queries. Effective only when Paginate is
+                set to true.
+            pagination_cookie(string, optional): Specifies cookie for resuming
+                search if pagination is being used. Only valid for librarian
+                queries. Effective only when Paginate is set to true.
             search (string, optional): Filter by searching for sub-strings in
                 the item name. The specified string can match any part of the
                 item name. For example: "vm" or "123" both match the item name
@@ -1026,9 +1147,16 @@ class RestoreTasksController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for search_restored_files.')
             _url_path = '/public/restore/files'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
+                'mustHaveTags': must_have_tags,
+                'mightHaveTags': might_have_tags,
+                'mustHaveSnapshotTags': must_have_snapshot_tags,
+                'mightHaveSnapshotTags': might_have_snapshot_tags,
+                'paginate': paginate,
+                'pageSize': page_size,
+                'paginationCookie': pagination_cookie,
                 'search': search,
                 'jobIds': job_ids,
                 'registeredSourceIds': registered_source_ids,
@@ -1056,7 +1184,7 @@ class RestoreTasksController(BaseController):
             self.logger.info(
                 'Preparing and executing request for search_restored_files.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='search_restored_files')
 
@@ -1106,7 +1234,7 @@ class RestoreTasksController(BaseController):
             self.logger.info(
                 'Preparing query URL for create_restore_files_task.')
             _url_path = '/public/restore/files'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -1126,7 +1254,7 @@ class RestoreTasksController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='create_restore_files_task')
 
@@ -1222,7 +1350,7 @@ class RestoreTasksController(BaseController):
             self.logger.info(
                 'Preparing query URL for get_file_fstat_information.')
             _url_path = '/public/restore/files/fstats'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'jobId': job_id,
@@ -1253,7 +1381,7 @@ class RestoreTasksController(BaseController):
                 'Preparing and executing request for get_file_fstat_information.'
             )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_file_fstat_information')
 
@@ -1327,7 +1455,7 @@ class RestoreTasksController(BaseController):
             self.logger.info(
                 'Preparing query URL for get_file_snapshots_information.')
             _url_path = '/public/restore/files/snapshotsInformation'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'jobId': job_id,
@@ -1351,7 +1479,7 @@ class RestoreTasksController(BaseController):
                 'Preparing and executing request for get_file_snapshots_information.'
             )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='get_file_snapshots_information')
 
@@ -1377,6 +1505,7 @@ class RestoreTasksController(BaseController):
                        registered_source_ids=None,
                        view_box_ids=None,
                        environments=None,
+                       office365_source_types=None,
                        start_time_usecs=None,
                        end_time_usecs=None,
                        start_index=None,
@@ -1417,6 +1546,9 @@ class RestoreTasksController(BaseController):
                 Filter by environment types such as 'kVMware', 'kView', etc.
                 Only items from the specified environment types are returned.
                 NOTE: 'kPuppeteer' refers to Cohesity's Remote Adapter.
+            office365_source_types (Office365SourceTypesEnum, optional): Filter
+                by Office365 types such as 'kUser', 'kSite', etc.
+                Only items from the specified source types are returned.
             start_time_usecs (long|int, optional): Filter by backup completion
                 time by specifying a backup completion start and end times.
                 Specified as a Unix epoch Timestamp (in microseconds). Only
@@ -1472,7 +1604,7 @@ class RestoreTasksController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for search_objects.')
             _url_path = '/public/restore/objects'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'search': search,
@@ -1480,6 +1612,7 @@ class RestoreTasksController(BaseController):
                 'registeredSourceIds': registered_source_ids,
                 'viewBoxIds': view_box_ids,
                 'environments': environments,
+                'office365SourceTypes': office365_source_types,
                 'startTimeUsecs': start_time_usecs,
                 'endTimeUsecs': end_time_usecs,
                 'startIndex': start_index,
@@ -1503,7 +1636,7 @@ class RestoreTasksController(BaseController):
             self.logger.info(
                 'Preparing and executing request for search_objects.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='search_objects')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -1599,7 +1732,7 @@ class RestoreTasksController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_outlook_emails.')
             _url_path = '/public/restore/office365/outlook/emails'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'hasAttachments': has_attachments,
@@ -1633,7 +1766,7 @@ class RestoreTasksController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_outlook_emails.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_outlook_emails')
 
@@ -1646,6 +1779,95 @@ class RestoreTasksController(BaseController):
             # Return appropriate type
             return APIHelper.json_deserialize(
                 _context.response.raw_body, FileSearchResults.from_dictionary)
+
+        except Exception as e:
+            self.logger.error(e, exc_info=True)
+            raise
+
+    def get_sharepoint_documents(self,
+                                tenant_id=None,
+                                all_under_hierarchy=None,
+                                document_name=None,
+                                domain_ids=None,
+                                site_ids=None,
+                                protection_job_ids=None):
+        """Does a GET request to /public/restore/office365/sharepoint/documents.
+
+        Search for Sharepoint files and folder to recover that match the
+        specified
+        search and filter criterias on the Cohesity cluster.
+
+        Args:
+            tenant_id (string, optional): TenantId specifies the tenant whose
+                action resulted in the audit log.
+            all_under_hierarchy (bool, optional): AllUnderHierarchy specifies
+                if objects of all the tenants under the hierarchy of the
+                logged in user's organization should be returned.
+            document_name (string, optional): Specifies the document
+                (file/folder) name.
+            domain_ids (list of int|long, optional): Specifies the domain Ids
+                in which Sharepoint Site's are registered.
+            site_ids (list of int|long, optional): Specifies the Office365
+                Sharepoint Site Id.
+            protection_job_ids (list of int|long, optional): Specifies the
+                protection job Ids which have backed up sites containing the
+                documents.
+
+        Returns:
+            FileSearchResults: Response from the API. Success
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+        try:
+            self.logger.info('get_sharepoint_documents called.')
+
+            # Prepare query URL
+            self.logger.info(
+                'Preparing query URL for get_sharepoint_documents.')
+            _url_path = '/public/restore/office365/sharepoint/documents'
+            _query_builder = self.config.get_base_uri()
+            _query_builder += _url_path
+            _query_parameters = {
+                'tenantId': tenant_id,
+                'allUnderHierarchy': all_under_hierarchy,
+                'documentName': document_name,
+                'domainIds': domain_ids,
+                'siteIds': site_ids,
+                'protectionJobIds': protection_job_ids
+            }
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
+            _query_url = APIHelper.clean_url(_query_builder)
+
+            # Prepare headers
+            self.logger.info('Preparing headers for get_sharepoint_documents.')
+            _headers = {'accept': 'application/json'}
+
+            # Prepare and execute request
+            self.logger.info(
+                'Preparing and executing request for get_sharepoint_documents.')
+            _request = self.http_client.get(_query_url, headers=_headers)
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='get_sharepoint_documents')
+
+            # Endpoint and global error handling using HTTP status codes.
+            self.logger.info(
+                'Validating response for get_sharepoint_documents.')
+            if _context.response.status_code == 0:
+                raise RequestErrorErrorException('Error', _context)
+            self.validate_response(_context)
+
+            # Return appropriate type
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                FileSearchResults.from_dictionary)
 
         except Exception as e:
             self.logger.error(e, exc_info=True)
@@ -1685,7 +1907,7 @@ class RestoreTasksController(BaseController):
                 'Preparing query URL for create_get_restore_points_for_time_range.'
             )
             _url_path = '/public/restore/pointsForTimeRange'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -1706,7 +1928,7 @@ class RestoreTasksController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='create_get_restore_points_for_time_range')
 
@@ -1776,7 +1998,7 @@ class RestoreTasksController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for create_recover_task.')
             _url_path = '/public/restore/recover'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -1794,7 +2016,7 @@ class RestoreTasksController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='create_recover_task')
 
@@ -1846,7 +2068,7 @@ Success
             # Prepare query URL
             self.logger.info('Preparing query URL for update_restore_task.')
             _url_path = '/public/restore/recover'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -1864,7 +2086,7 @@ Success
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='update_restore_task')
 
@@ -1934,7 +2156,7 @@ Success
                 Microsoft's Azure Protection Source environment. 'kNetapp'
                 indicates the Netapp Protection Source environment. 'kAgent'
                 indicates the Agent Protection Source environment.
-                'kGenericNas' indicates the Genreric Network Attached Storage
+                'kGenericNas' indicates the Generic Network Attached Storage
                 Protection Source environment. 'kAcropolis' indicates the
                 Acropolis Protection Source environment. 'kPhsicalFiles'
                 indicates the Physical Files Protection Source environment.
@@ -1949,8 +2171,7 @@ Success
                 Cloud Platform Protection Source environment. 'kFlashBlade'
                 indicates the Flash Blade Protection Source environment.
                 'kAWSNative' indicates the AWS Native Protection Source
-                environment. 'kVCD' indicates the VMware's Virtual cloud
-                Director Protection Source environment. 'kO365' indicates the
+                environment. 'kO365' indicates the
                 Office 365 Protection Source environment. 'kO365Outlook'
                 indicates Office 365 outlook Protection Source environment.
                 'kHyperFlex' indicates the Hyper Flex Protection Source
@@ -1959,6 +2180,15 @@ Success
                 Protection Source environment. 'kKubernetes' indicates a
                 Kubernetes Protection Source environment. 'kElastifile'
                 indicates Elastifile Protection Source environment.
+                'kAD' indicates Active Directory Protection Source environment.
+                'kRDSSnapshotManager' indicates AWS RDS Protection Source
+                environment. 'kCassandra' indicates Cassandra Protection Source
+                environment. 'kMongoDB' indicates MongoDB Protection Source
+                environment. 'kCouchbase' indicates Couchbase Protection Source
+                environment. 'kHdfs' indicates Hdfs Protection Source
+                environment. 'kHive' indicates Hive Protection Source
+                environment. 'kHBase' indicates HBase Protection Source
+                environment.
 
         Returns:
             list of RestoreTask: Response from the API. Success
@@ -1976,7 +2206,7 @@ Success
             # Prepare query URL
             self.logger.info('Preparing query URL for get_restore_tasks.')
             _url_path = '/public/restore/tasks'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'taskIds': task_ids,
@@ -1999,7 +2229,7 @@ Success
             self.logger.info(
                 'Preparing and executing request for get_restore_tasks.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='get_restore_tasks')
 
             # Endpoint and global error handling using HTTP status codes.
@@ -2049,7 +2279,7 @@ Success
             _url_path = '/public/restore/tasks/cancel/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -2058,7 +2288,7 @@ Success
                 'Preparing and executing request for update_cancel_restore_task.'
             )
             _request = self.http_client.put(_query_url)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='update_cancel_restore_task')
 
@@ -2105,7 +2335,7 @@ Success
             _url_path = '/public/restore/tasks/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -2117,7 +2347,7 @@ Success
             self.logger.info(
                 'Preparing and executing request for get_restore_task_by_id.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_restore_task_by_id')
 
@@ -2135,9 +2365,16 @@ Success
             self.logger.error(e, exc_info=True)
             raise
 
-    def get_virtual_disk_information(self, cluster_id, cluster_incarnation_id,
-                                     job_id, job_run_id, start_time_usecs,
-                                     source_id):
+    def get_virtual_disk_information(self,
+                                     cluster_id,
+                                     cluster_incarnation_id,
+                                     job_id,
+                                     job_run_id,
+                                     start_time_usecs,
+                                     source_id,
+                                     vault_id=None,
+                                     vault_name=None,
+                                     vault_type=None):
         """Does a GET request to /public/restore/virtualDiskInformation.
 
         Fetches information of virtual disk.
@@ -2155,6 +2392,12 @@ Success
                 run as a Unix epoch Timestamp in microseconds.
             source_id (long|int): Specifies the Id of the Protection Source
                 object.
+            vault_id (int|long): Specifies the Id of the vault where snapshot
+                was taken.
+            vault_name (string): Specifies the name of the vault where snapshot
+                was taken.
+            vault_type (VaultTypeEnum): Specifes the type of the vault where
+                snapshot was taken.
 
         Returns:
             list of VirtualDiskInformation: Response from the API. Success
@@ -2185,7 +2428,7 @@ Success
             self.logger.info(
                 'Preparing query URL for get_virtual_disk_information.')
             _url_path = '/public/restore/virtualDiskInformation'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'clusterId': cluster_id,
@@ -2193,7 +2436,10 @@ Success
                 'jobId': job_id,
                 'jobRunId': job_run_id,
                 'startTimeUsecs': start_time_usecs,
-                'sourceId': source_id
+                'sourceId': source_id,
+                'vaultId': vault_id,
+                'vaultName': vault_name,
+                'vaultType': vault_type
             }
             _query_builder = APIHelper.append_url_with_query_parameters(
                 _query_builder, _query_parameters,
@@ -2210,7 +2456,7 @@ Success
                 'Preparing and executing request for get_virtual_disk_information.'
             )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='get_virtual_disk_information')
 
@@ -2321,7 +2567,7 @@ Success
             # Prepare query URL
             self.logger.info('Preparing query URL for get_vm_directory_list.')
             _url_path = '/public/restore/vms/directoryList'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'jobId': job_id,
@@ -2353,7 +2599,7 @@ Success
             self.logger.info(
                 'Preparing and executing request for get_vm_directory_list.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_vm_directory_list')
 
@@ -2463,7 +2709,7 @@ Success
             self.logger.info(
                 'Preparing query URL for get_vm_volumes_information.')
             _url_path = '/public/restore/vms/volumesInformation'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'jobId': job_id,
@@ -2492,7 +2738,7 @@ Success
                 'Preparing and executing request for get_vm_volumes_information.'
             )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_vm_volumes_information')
 
@@ -2507,6 +2753,69 @@ Success
             return APIHelper.json_deserialize(
                 _context.response.raw_body,
                 VmVolumesInformation.from_dictionary)
+
+        except Exception as e:
+            self.logger.error(e, exc_info=True)
+            raise
+
+    def list_storage_profiles(self, id):
+        """Does a GET request to /public/virtualDatacenters/{id}/storageProfiles.
+
+        Fetches information of virtual disk.
+
+        Args:
+            id (int|long): Specifies a unique id for the VDC.
+
+        Returns:
+            ListStorageProfilesResponseBody: Response from the API. Success
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+        try:
+            self.logger.info('list_storage_profiles called.')
+
+            # Validate required parameters
+            self.logger.info(
+                'Validating required parameters for list_storage_profiles.')
+            self.validate_parameters(id=id)
+
+            # Prepare query URL
+            self.logger.info(
+                'Preparing query URL for list_storage_profiles.')
+            _url_path = '/public/virtualDatacenters/{id}/storageProfiles'
+            _url_path = APIHelper.append_url_with_template_parameters(
+                _url_path, {'id': id})
+            _query_builder = self.config.get_base_uri()
+            _query_builder += _url_path
+            _query_url = APIHelper.clean_url(_query_builder)
+
+            # Prepare headers
+            self.logger.info('Preparing headers for list_storage_profiles.')
+            _headers = {'accept': 'application/json'}
+
+            # Prepare and execute request
+            self.logger.info(
+                'Preparing and executing request for list_storage_profiles.')
+            _request = self.http_client.get(_query_url, headers=_headers)
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='list_storage_profiles')
+
+            # Endpoint and global error handling using HTTP status codes.
+            self.logger.info(
+                'Validating response for list_storage_profiles.')
+            if _context.response.status_code == 0:
+                raise RequestErrorErrorException('Error', _context)
+            self.validate_response(_context)
+
+            # Return appropriate type
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              ListStorageProfilesResponseBody.from_dictionary)
 
         except Exception as e:
             self.logger.error(e, exc_info=True)

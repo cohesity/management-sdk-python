@@ -3,6 +3,7 @@
 
 import cohesity_management_sdk.models.application_restore_object
 import cohesity_management_sdk.models.restore_object_details
+import cohesity_management_sdk.models.protection_source_and_application_restore_objects
 
 class ApplicationRestoreParameters(object):
 
@@ -26,7 +27,7 @@ class ApplicationRestoreParameters(object):
             environment. 'kAzure' indicates the Microsoft's Azure Protection
             Source environment. 'kNetapp' indicates the Netapp Protection
             Source environment. 'kAgent' indicates the Agent Protection Source
-            environment. 'kGenericNas' indicates the Genreric Network Attached
+            environment. 'kGenericNas' indicates the Generic Network Attached
             Storage Protection Source environment. 'kAcropolis' indicates the
             Acropolis Protection Source environment. 'kPhsicalFiles' indicates
             the Physical Files Protection Source environment. 'kIsilon'
@@ -40,16 +41,22 @@ class ApplicationRestoreParameters(object):
             Cloud Platform Protection Source environment. 'kFlashBlade'
             indicates the Flash Blade Protection Source environment.
             'kAWSNative' indicates the AWS Native Protection Source
-            environment. 'kVCD' indicates the VMware's Virtual cloud Director
-            Protection Source environment. 'kO365' indicates the Office 365
-            Protection Source environment. 'kO365Outlook' indicates Office 365
-            outlook Protection Source environment. 'kHyperFlex' indicates the
-            Hyper Flex Protection Source environment. 'kGCPNative' indicates
-            the GCP Native Protection Source environment. 'kAzureNative'
-            indicates the Azure Native Protection Source environment.
-            'kKubernetes' indicates a Kubernetes Protection Source
-            environment. 'kElastifile' indicates Elastifile Protection Source
-            environment.
+            environment. 'kO365' indicates the Office 365 Protection Source
+            environment. 'kO365Outlook' indicates Office 365 outlook Protection
+            Source environment. 'kHyperFlex' indicates the Hyper Flex
+            Protection Source environment. 'kGCPNative' indicates the GCP
+            Native Protection Source environment. 'kAzureNative' indicates the
+            Azure Native Protection Source environment. 'kKubernetes' indicates
+            a Kubernetes Protection Source environment. 'kElastifile' indicates
+            Elastifile Protection Source environment. 'kAD' indicates Active
+            Directory Protection Source environment. 'kRDSSnapshotManager'
+            indicates AWS RDS Protection Source environment. 'kCassandra'
+            indicates Cassandra Protection Source environment. 'kMongoDB'
+            indicates MongoDB Protection Source environment. 'kCouchbase'
+            indicates Couchbase Protection Source environment. 'kHdfs'
+            indicates Hdfs Protection Source environment. 'kHive' indicates
+            Hive Protection Source environment. 'kHBase' indicates HBase
+            Protection Source environment.
         application_restore_objects (list of ApplicationRestoreObject):
             Specifies the Application Server objects whose data should be
             restored.
@@ -59,6 +66,9 @@ class ApplicationRestoreParameters(object):
             cloned. To specify a particular snapshot, you must specify a
             jobRunId and a startTimeUsecs. If jobRunId and startTimeUsecs are
             not specified, the last Job Run of the specified Job is used.
+        protection_source_and_application_objects (list of 
+            ProtectionSourceAndApplicationRestoreObjects): Specifies the list of
+            hosting protection source and Application restore objects tuple.
 
     """
 
@@ -66,19 +76,22 @@ class ApplicationRestoreParameters(object):
     _names = {
         "application_environment":'applicationEnvironment',
         "application_restore_objects":'applicationRestoreObjects',
-        "hosting_protection_source":'hostingProtectionSource'
+        "hosting_protection_source":'hostingProtectionSource',
+        "protection_source_and_application_objects":'protectionSourceAndApplicationObjects'
     }
 
     def __init__(self,
                  application_environment=None,
                  application_restore_objects=None,
-                 hosting_protection_source=None):
+                 hosting_protection_source=None,
+                 protection_source_and_application_objects=None):
         """Constructor for the ApplicationRestoreParameters class"""
 
         # Initialize members of the class
         self.application_environment = application_environment
         self.application_restore_objects = application_restore_objects
         self.hosting_protection_source = hosting_protection_source
+        self.protection_source_and_application_objects = protection_source_and_application_objects
 
 
     @classmethod
@@ -106,10 +119,15 @@ class ApplicationRestoreParameters(object):
             for structure in dictionary.get('applicationRestoreObjects'):
                 application_restore_objects.append(cohesity_management_sdk.models.application_restore_object.ApplicationRestoreObject.from_dictionary(structure))
         hosting_protection_source = cohesity_management_sdk.models.restore_object_details.RestoreObjectDetails.from_dictionary(dictionary.get('hostingProtectionSource')) if dictionary.get('hostingProtectionSource') else None
-
+        protection_source_and_application_objects = None
+        if dictionary.get('protectionSourceAndApplicationObjects') != None:
+            protection_source_and_application_objects = list()
+            for each_object in dictionary.get('protectionSourceAndApplicationObjects'):
+                protection_source_and_application_objects.append(cohesity_management_sdk.models.protection_source_and_application_restore_objects.ProtectionSourceAndApplicationRestoreObjects.from_dictionary(each_object))
         # Return an object of this model
         return cls(application_environment,
                    application_restore_objects,
-                   hosting_protection_source)
+                   hosting_protection_source,
+                   protection_source_and_application_objects)
 
 

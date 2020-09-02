@@ -51,6 +51,10 @@ class ViewBox(object):
             on the cluster to an external target. The amount of data that can
             be stored on the viewbox can be specified using 'physical_quota'.
         id (long|int): Specifies the Id of the Storage Domain (View Box).
+        is_recommended (bool): Recommendation for the view if the template id
+            was passed during query. We say the view is to be recommended, if
+            the dedup and inlinecompression both are same as the template's
+            property.
         ldap_provider_id (long|int): When set, the following provides the LDAP
             provider the view box is mapped to. For any view from this view
             box, when accessed via NFS the following LDAP provider is looked
@@ -62,6 +66,8 @@ class ViewBox(object):
             is stored in AD provider config. It will be used if AD is not set
             on the view box.
         name (string): Specifies the name of the Storage Domain (View Box).
+        nis_domain_name_vec (list of string): Specifies the NIS domain that
+            this view box is mapped to.
         physical_quota (QuotaPolicy): Specifies an optional quota limit (in
             bytes) for the physical usage of this Storage Domain (View Box).
             This quota limit defines a physical limit for size of the data
@@ -126,7 +132,9 @@ class ViewBox(object):
         "default_view_quota_policy":'defaultViewQuotaPolicy',
         "direct_archive_enabled":'directArchiveEnabled',
         "id":'id',
+        "is_recommended":'isRecommended',
         "ldap_provider_id":'ldapProviderId',
+        "nis_domain_name_vec":'nisDomainNameVec',
         "physical_quota":'physicalQuota',
         "removal_state":'removalState',
         "s_3_buckets_allowed":'s3BucketsAllowed',
@@ -149,7 +157,9 @@ class ViewBox(object):
                  default_view_quota_policy=None,
                  direct_archive_enabled=None,
                  id=None,
+                 is_recommended=None,
                  ldap_provider_id=None,
+                 nis_domain_name_vec=None,
                  physical_quota=None,
                  removal_state=None,
                  s_3_buckets_allowed=None,
@@ -171,8 +181,10 @@ class ViewBox(object):
         self.default_view_quota_policy = default_view_quota_policy
         self.direct_archive_enabled = direct_archive_enabled
         self.id = id
+        self.is_recommended = is_recommended
         self.ldap_provider_id = ldap_provider_id
         self.name = name
+        self.nis_domain_name_vec = nis_domain_name_vec
         self.physical_quota = physical_quota
         self.removal_state = removal_state
         self.s_3_buckets_allowed = s_3_buckets_allowed
@@ -216,7 +228,9 @@ class ViewBox(object):
         default_view_quota_policy = cohesity_management_sdk.models.quota_policy.QuotaPolicy.from_dictionary(dictionary.get('defaultViewQuotaPolicy')) if dictionary.get('defaultViewQuotaPolicy') else None
         direct_archive_enabled = dictionary.get('directArchiveEnabled')
         id = dictionary.get('id')
+        is_recommended = dictionary.get('isRecommended')
         ldap_provider_id = dictionary.get('ldapProviderId')
+        nis_domain_name_vec = dictionary.get('nisDomainNameVec')
         physical_quota = cohesity_management_sdk.models.quota_policy.QuotaPolicy.from_dictionary(dictionary.get('physicalQuota')) if dictionary.get('physicalQuota') else None
         removal_state = dictionary.get('removalState')
         s_3_buckets_allowed = dictionary.get('s3BucketsAllowed')
@@ -242,7 +256,9 @@ class ViewBox(object):
                    default_view_quota_policy,
                    direct_archive_enabled,
                    id,
+                   is_recommended,
                    ldap_provider_id,
+                   nis_domain_name_vec,
                    physical_quota,
                    removal_state,
                    s_3_buckets_allowed,

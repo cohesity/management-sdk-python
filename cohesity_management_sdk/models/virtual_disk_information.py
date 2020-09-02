@@ -7,7 +7,7 @@ class VirtualDiskInformation(object):
 
     """Implementation of the 'VirtualDiskInformation' model.
 
-    TODO: type model description here.
+    Specifies information about the virtual disk.
 
     Attributes:
         bus_number (long|int): Specifies the Id of the controller bus that
@@ -17,9 +17,8 @@ class VirtualDiskInformation(object):
         disk_id (string): Specifies original disk id. This is sufficient to
             identify the disk information, but in some scenarios, user's may
             specify the controller option instead.
-        disk_location (ProtectionSource): Specifies a generic structure that
-            represents a node in the Protection Source tree. Node details will
-            depend on the environment of the Protection Source.
+        disk_location (ProtectionSource): Specifies location of the disk, e.g.
+            this will contain the location of datastore in VMware environment.
         disk_size_in_bytes (long|int): Specifies size of the virtual disk in
             bytes.
         file_path (string): Specifies the original file path if applicable.

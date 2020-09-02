@@ -42,6 +42,8 @@ class User(object):
         expired_time_msecs (long|int): Specifies the epoch time in
             milliseconds when the user becomes expired. After that, the user
             cannot log in.
+        force_password_change (bool): Specifies whether to force user to
+            change password.
         google_account (GoogleAccountInfo): Google Account Information of a
             Helios BaaS user.
         idp_user_info (IdpUserInfo): Specifies an IdP User's information
@@ -74,7 +76,8 @@ class User(object):
         s_3_secret_key (string): Specifies the S3 Account Secret Key.
         salesforce_account (SalesforceAccountInfo): Salesforce Account
             Information of a Helios user.
-        sid (string): Specifies the unique Security ID (SID) of the user.
+        sid (string): Specifies the unique Security ID (SID) of the user. This
+            field is mandatory in modifying user.
         tenant_id (string): Specifies the effective Tenant ID of the user.
         username (string): Specifies the login name of the user.
 
@@ -91,6 +94,7 @@ class User(object):
         "effective_time_msecs":'effectiveTimeMsecs',
         "email_address":'emailAddress',
         "expired_time_msecs":'expiredTimeMsecs',
+        "force_password_change":'forcePasswordChange',
         "google_account":'googleAccount',
         "idp_user_info":'idpUserInfo',
         "last_updated_time_msecs":'lastUpdatedTimeMsecs',
@@ -120,6 +124,7 @@ class User(object):
                  effective_time_msecs=None,
                  email_address=None,
                  expired_time_msecs=None,
+                 force_password_change=None,
                  google_account=None,
                  idp_user_info=None,
                  last_updated_time_msecs=None,
@@ -149,6 +154,7 @@ class User(object):
         self.effective_time_msecs = effective_time_msecs
         self.email_address = email_address
         self.expired_time_msecs = expired_time_msecs
+        self.force_password_change = force_password_change
         self.google_account = google_account
         self.idp_user_info = idp_user_info
         self.last_updated_time_msecs = last_updated_time_msecs
@@ -199,6 +205,7 @@ class User(object):
         effective_time_msecs = dictionary.get('effectiveTimeMsecs')
         email_address = dictionary.get('emailAddress')
         expired_time_msecs = dictionary.get('expiredTimeMsecs')
+        force_password_change = dictionary.get('forcePasswordChange')
         google_account = cohesity_management_sdk.models.google_account_info.GoogleAccountInfo.from_dictionary(dictionary.get('googleAccount')) if dictionary.get('googleAccount') else None
         idp_user_info = cohesity_management_sdk.models.idp_user_info.IdpUserInfo.from_dictionary(dictionary.get('idpUserInfo')) if dictionary.get('idpUserInfo') else None
         last_updated_time_msecs = dictionary.get('lastUpdatedTimeMsecs')
@@ -231,6 +238,7 @@ class User(object):
                    effective_time_msecs,
                    email_address,
                    expired_time_msecs,
+                   force_password_change,
                    google_account,
                    idp_user_info,
                    last_updated_time_msecs,

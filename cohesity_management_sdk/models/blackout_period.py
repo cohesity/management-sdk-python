@@ -12,6 +12,8 @@ class BlackoutPeriod(object):
     with a daily schedule could define a blackout period for Sunday.
 
     Attributes:
+        id (string): Specified the Id for a snapshot copy policy. This is
+            generated when the policy is created.
         day (DayBlackoutPeriodEnum): Blackout Day.  Specifies a day in the
             week when no new Job Runs should be started such as 'kSunday'. If
             not set, the time range applies to all days. Specifies a day in a
@@ -25,18 +27,21 @@ class BlackoutPeriod(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "Id":'id',
         "day":'day',
         "end_time":'endTime',
         "start_time":'startTime'
     }
 
     def __init__(self,
+                 id=None,
                  day=None,
                  end_time=None,
                  start_time=None):
         """Constructor for the BlackoutPeriod class"""
 
         # Initialize members of the class
+        self.id = id
         self.day = day
         self.end_time = end_time
         self.start_time = start_time
@@ -60,12 +65,14 @@ class BlackoutPeriod(object):
             return None
 
         # Extract variables from the dictionary
+        id = dictionary.get('Id')
         day = dictionary.get('day')
         end_time = cohesity_management_sdk.models.time_of_day.TimeOfDay.from_dictionary(dictionary.get('endTime')) if dictionary.get('endTime') else None
         start_time = cohesity_management_sdk.models.time_of_day.TimeOfDay.from_dictionary(dictionary.get('startTime')) if dictionary.get('startTime') else None
 
         # Return an object of this model
-        return cls(day,
+        return cls(id,
+                   day,
                    end_time,
                    start_time)
 

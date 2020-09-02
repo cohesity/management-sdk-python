@@ -10,7 +10,8 @@ class VmDirEntry(object):
     VmDirEntry is the struct to respresent a file or a folder on a VM.
 
     Attributes:
-        fstat_info (FileStatInfo): TODO: type description here.
+        fstat_info (FileStatInfo):  FstatInfo is the stat information for the
+            file.
         full_path (string): FullPath is the full path of the file/directory.
         name (string): Name is the name of the file or folder. For
             /test/file.txt, name will be file.txt.

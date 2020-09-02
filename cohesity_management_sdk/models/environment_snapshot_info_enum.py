@@ -20,7 +20,7 @@ class EnvironmentSnapshotInfoEnum(object):
     'kAzure' indicates the Microsoft's Azure Protection Source environment.
     'kNetapp' indicates the Netapp Protection Source environment.
     'kAgent' indicates the Agent Protection Source environment.
-    'kGenericNas' indicates the Genreric Network Attached Storage Protection
+    'kGenericNas' indicates the Generic Network Attached Storage Protection
     Source environment.
     'kAcropolis' indicates the Acropolis Protection Source environment.
     'kPhsicalFiles' indicates the Physical Files Protection Source
@@ -36,8 +36,6 @@ class EnvironmentSnapshotInfoEnum(object):
     'kGCP' indicates the Google Cloud Platform Protection Source environment.
     'kFlashBlade' indicates the Flash Blade Protection Source environment.
     'kAWSNative' indicates the AWS Native Protection Source environment.
-    'kVCD' indicates the VMware's Virtual cloud Director Protection Source
-    environment.
     'kO365' indicates the Office 365 Protection Source environment.
     'kO365Outlook' indicates Office 365 outlook Protection Source
     environment.
@@ -46,6 +44,15 @@ class EnvironmentSnapshotInfoEnum(object):
     'kAzureNative' indicates the Azure Native Protection Source environment.
     'kKubernetes' indicates a Kubernetes Protection Source environment.
     'kElastifile' indicates Elastifile Protection Source environment.
+    'kAD' indicates Active Directory Protection Source environment.
+    'kRDSSnapshotManager' indicates AWS RDS Protection Source
+    environment.
+    'kCassandra' indicates Cassandra Protection Source environment.
+    'kMongoDB' indicates MongoDB Protection Source environment.
+    'kCouchbase' indicates Couchbase Protection Source environment.
+    'kHdfs' indicates Hdfs Protection Source environment.
+    'kHive' indicates Hive Protection Source environment.
+    'kHBase' indicates HBase Protection Source environment.
 
     Attributes:
         KVMWARE: TODO: type description here.
@@ -72,7 +79,6 @@ class EnvironmentSnapshotInfoEnum(object):
         KGCP: TODO: type description here.
         KFLASHBLADE: TODO: type description here.
         KAWSNATIVE: TODO: type description here.
-        KVCD: TODO: type description here.
         KO365: TODO: type description here.
         KO365OUTLOOK: TODO: type description here.
         KHYPERFLEX: TODO: type description here.
@@ -80,6 +86,14 @@ class EnvironmentSnapshotInfoEnum(object):
         KAZURENATIVE: TODO: type description here.
         KKUBERNETES: TODO: type description here.
         KELASTIFILE: TODO: type description here.
+        KAD: TODO: type description here.
+        KRDSSNAPSHOTMANAGER: TODO: type description here.
+        KCASSANDRA: TODO: type description here.
+        KMONGODB: TODO: type description here.
+        KCOUCHBASE: TODO: type description here.
+        KHDFS: TODO: type description here.
+        KHIVE: TODO: type description here.
+        KHBASE: TODO: type description here.
 
     """
 
@@ -131,8 +145,6 @@ class EnvironmentSnapshotInfoEnum(object):
 
     KAWSNATIVE = 'kAWSNative'
 
-    KVCD = 'kVCD'
-
     KO365 = 'kO365'
 
     KO365OUTLOOK = 'kO365Outlook'
@@ -146,4 +158,20 @@ class EnvironmentSnapshotInfoEnum(object):
     KKUBERNETES = 'kKubernetes'
 
     KELASTIFILE = 'kElastifile'
+
+    KAD = 'kAD'
+
+    KRDSSNAPSHOTMANAGER = 'kRDSSnapshotManager'
+
+    KCASSANDRA = 'kCassandra'
+
+    KMONGODB = 'kMongoDB'
+
+    KCOUCHBASE = 'kCouchbase'
+
+    KHDFS = 'kHdfs'
+
+    KHIVE = 'kHive'
+
+    KHBASE = 'kHBase'
 

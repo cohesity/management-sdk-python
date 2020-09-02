@@ -17,10 +17,11 @@ from cohesity_management_sdk.exceptions.request_error_error_exception import Req
 
 class AntivirusServiceGroupController(BaseController):
     """A Controller to access Endpoints in the cohesity_management_sdk API."""
-    def __init__(self, client=None, call_back=None):
+    def __init__(self, config=None, client=None, call_back=None):
         super(AntivirusServiceGroupController,
               self).__init__(client, call_back)
         self.logger = logging.getLogger(__name__)
+        self.config = config
 
     def get_antivirus_service_group(self):
         """Does a GET request to /public/antivirusGroups.
@@ -44,7 +45,7 @@ class AntivirusServiceGroupController(BaseController):
             self.logger.info(
                 'Preparing query URL for get_antivirus_service_group.')
             _url_path = '/public/antivirusGroups'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -58,7 +59,7 @@ class AntivirusServiceGroupController(BaseController):
                 'Preparing and executing request for get_antivirus_service_group.'
             )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_antivirus_service_group')
 
@@ -110,7 +111,7 @@ class AntivirusServiceGroupController(BaseController):
             self.logger.info(
                 'Preparing query URL for create_antivirus_service_group.')
             _url_path = '/public/antivirusGroups'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -130,7 +131,7 @@ class AntivirusServiceGroupController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='create_antivirus_service_group')
 
@@ -182,7 +183,7 @@ class AntivirusServiceGroupController(BaseController):
             self.logger.info(
                 'Preparing query URL for update_antivirus_service_group.')
             _url_path = '/public/antivirusGroups'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -202,7 +203,7 @@ class AntivirusServiceGroupController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='update_antivirus_service_group')
 
@@ -249,7 +250,7 @@ class AntivirusServiceGroupController(BaseController):
                 'Preparing query URL for update_antivirus_service_group_state.'
             )
             _url_path = '/public/antivirusGroups/states'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -269,7 +270,7 @@ class AntivirusServiceGroupController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='update_antivirus_service_group_state')
 
@@ -323,7 +324,7 @@ class AntivirusServiceGroupController(BaseController):
             _url_path = '/public/antivirusGroups/{id}'
             _url_path = APIHelper.append_url_with_template_parameters(
                 _url_path, {'id': id})
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -332,7 +333,7 @@ class AntivirusServiceGroupController(BaseController):
                 'Preparing and executing request for delete_antivirus_service_group.'
             )
             _request = self.http_client.delete(_query_url)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(
                 _request, name='delete_antivirus_service_group')
 
@@ -374,7 +375,7 @@ class AntivirusServiceGroupController(BaseController):
             self.logger.info(
                 'Preparing query URL for get_icap_connection_status.')
             _url_path = '/public/icapConnectionStatus'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {'icapUris': icap_uris}
             _query_builder = APIHelper.append_url_with_query_parameters(
@@ -392,7 +393,7 @@ class AntivirusServiceGroupController(BaseController):
                 'Preparing and executing request for get_icap_connection_status.'
             )
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_icap_connection_status')
 
@@ -443,7 +444,7 @@ class AntivirusServiceGroupController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for delete_infected_files.')
             _url_path = '/public/infectedFiles'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -461,7 +462,7 @@ class AntivirusServiceGroupController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='delete_infected_files')
 
@@ -526,7 +527,7 @@ class AntivirusServiceGroupController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for get_infected_files.')
             _url_path = '/public/infectedFiles'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
                 'viewNames': view_names,
@@ -549,7 +550,7 @@ class AntivirusServiceGroupController(BaseController):
             self.logger.info(
                 'Preparing and executing request for get_infected_files.')
             _request = self.http_client.get(_query_url, headers=_headers)
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='get_infected_files')
 
@@ -598,7 +599,7 @@ class AntivirusServiceGroupController(BaseController):
             # Prepare query URL
             self.logger.info('Preparing query URL for update_infected_files.')
             _url_path = '/public/infectedFiles'
-            _query_builder = Configuration.get_base_uri()
+            _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
@@ -616,7 +617,7 @@ class AntivirusServiceGroupController(BaseController):
                 _query_url,
                 headers=_headers,
                 parameters=APIHelper.json_serialize(body))
-            AuthManager.apply(_request)
+            AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request,
                                             name='update_infected_files')
 

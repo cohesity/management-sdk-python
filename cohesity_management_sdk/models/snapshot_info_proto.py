@@ -63,6 +63,13 @@ class SnapshotInfoProto(object):
     120
     o365::SharepointSnapshotInfo::sharepoint_snapshot_info
     o365/o365.proto           121
+    MSGraph::SharepointListSnapshotInfo::sharepoint_list_snapshot_info
+    ms_graph/graph.proto      122
+    cdp::SnapshotInfo::cdp_snapshot_info           base/cdp.proto
+    123
+    imanis::SnapshotInfo::nosql_snapshot_info      imanis/nosql.proto
+    124
+
     ===========================================================================
     ==
 
@@ -79,10 +86,10 @@ class SnapshotInfoProto(object):
         num_app_objects (int): Number of application objects in total backed
             up by this task. For example, if the environment type is kSQL,
             this number is for all of the SQL server databases
-        post_backup_script_status (ScriptExecutionStatus): TODO: type
-            description here.
-        pre_backup_script_status (ScriptExecutionStatus): TODO: type
-            description here.
+        post_backup_script_status (ScriptExecutionStatus): Captures the
+            execution status of post backup script.
+        pre_backup_script_status (ScriptExecutionStatus): Captures the
+            execution status of pre backup script.
         relative_snapshot_dir (string): This is the path relative to
             'root_path' under which the snapshot lives. This does not begin
             with a '/' and is of the form foo/bar/baz.
@@ -97,9 +104,15 @@ class SnapshotInfoProto(object):
             key in that table where such state is stored.
         slave_task_start_time_usecs (long|int): This is the timestamp at which
             the slave task started.
-        snapshot_type (ObjectSnapshotType): TODO: type description here.
-        storage_snapshot_provider (StorageSnapshotProviderParams): TODO: type
-            description here.
+        snapshot_type (ObjectSnapshotType): Captures the snapshot type for
+            some objects such as VM.
+        source_snapshot_create_time_usecs (long|int): The source snapshot
+            create time.
+        source_snapshot_name (string): This filed is only applicable for NAS
+            when we do backup from Readonly/DataProtect volume where we use
+            already created snapshot on the source.
+        storage_snapshot_provider (StorageSnapshotProviderParams): Specifies
+            the parameters required for Storage Snapshot provider.
         target_type (int): Specifies the target type for the task. The field
             is only valid if the task has got a permit.
         total_bytes_read_from_source (long|int): Contains the information
@@ -149,6 +162,8 @@ class SnapshotInfoProto(object):
         "scribe_table_row":'scribeTableRow',
         "slave_task_start_time_usecs":'slaveTaskStartTimeUsecs',
         "snapshot_type":'snapshotType',
+        "source_snapshot_create_time_usecs":'sourceSnapshotCreateTimeUsecs',
+        "source_snapshot_name":'sourceSnapshotName',
         "storage_snapshot_provider":'storageSnapshotProvider',
         "target_type":'targetType',
         "total_bytes_read_from_source":'totalBytesReadFromSource',
@@ -177,6 +192,8 @@ class SnapshotInfoProto(object):
                  scribe_table_row=None,
                  slave_task_start_time_usecs=None,
                  snapshot_type=None,
+                 source_snapshot_create_time_usecs=None,
+                 source_snapshot_name=None,
                  storage_snapshot_provider=None,
                  target_type=None,
                  total_bytes_read_from_source=None,
@@ -205,6 +222,8 @@ class SnapshotInfoProto(object):
         self.scribe_table_row = scribe_table_row
         self.slave_task_start_time_usecs = slave_task_start_time_usecs
         self.snapshot_type = snapshot_type
+        self.source_snapshot_create_time_usecs = source_snapshot_create_time_usecs
+        self.source_snapshot_name = source_snapshot_name
         self.storage_snapshot_provider = storage_snapshot_provider
         self.target_type = target_type
         self.total_bytes_read_from_source = total_bytes_read_from_source
@@ -250,6 +269,8 @@ class SnapshotInfoProto(object):
         scribe_table_row = dictionary.get('scribeTableRow')
         slave_task_start_time_usecs = dictionary.get('slaveTaskStartTimeUsecs')
         snapshot_type = cohesity_management_sdk.models.object_snapshot_type.ObjectSnapshotType.from_dictionary(dictionary.get('snapshotType')) if dictionary.get('snapshotType') else None
+        source_snapshot_create_time_usecs = dictionary.get('sourceSnapshotCreateTimeUsecs')
+        source_snapshot_name = dictionary.get('sourceSnapshotName')
         storage_snapshot_provider = cohesity_management_sdk.models.storage_snapshot_provider_params.StorageSnapshotProviderParams.from_dictionary(dictionary.get('storageSnapshotProvider')) if dictionary.get('storageSnapshotProvider') else None
         target_type = dictionary.get('targetType')
         total_bytes_read_from_source = dictionary.get('totalBytesReadFromSource')
@@ -281,6 +302,8 @@ class SnapshotInfoProto(object):
                    scribe_table_row,
                    slave_task_start_time_usecs,
                    snapshot_type,
+                   source_snapshot_create_time_usecs,
+                   source_snapshot_name,
                    storage_snapshot_provider,
                    target_type,
                    total_bytes_read_from_source,

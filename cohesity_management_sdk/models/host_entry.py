@@ -10,6 +10,7 @@ class HostEntry(object):
     cluster's /etc/hosts file.
 
     Attributes:
+        description (string): Description the host entry.
         domain_names (list of string): Specifies the domain names of the
             host.
         ip (string): Specifies the IP address of the host.
@@ -18,16 +19,19 @@ class HostEntry(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "description":'description',
         "domain_names":'domainNames',
         "ip":'ip'
     }
 
     def __init__(self,
+                 description=None,
                  domain_names=None,
                  ip=None):
         """Constructor for the HostEntry class"""
 
         # Initialize members of the class
+        self.description = description
         self.domain_names = domain_names
         self.ip = ip
 
@@ -50,11 +54,13 @@ class HostEntry(object):
             return None
 
         # Extract variables from the dictionary
+        description = dictionary.get('description')
         domain_names = dictionary.get('domainNames')
         ip = dictionary.get('ip')
 
         # Return an object of this model
-        return cls(domain_names,
+        return cls(description,
+                   domain_names,
                    ip)
 
 

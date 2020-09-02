@@ -14,12 +14,14 @@ class TaskTypeEnum(object):
     tasks.
     'FieldMessage' notification type is generated when field message from
     Cohesity support is created.
+    'bulkInstallApp' notification type is generated from bulk install app
 
     Attributes:
         RESTORE: TODO: type description here.
         CLONE: TODO: type description here.
         BACKUPNOW: TODO: type description here.
         FIELDMESSAGE: TODO: type description here.
+        BULKINSTALLAPP: TODO: type description here.
 
     """
 
@@ -30,4 +32,6 @@ class TaskTypeEnum(object):
     BACKUPNOW = 'backupNow'
 
     FIELDMESSAGE = 'fieldMessage'
+
+    BULKINSTALLAPP = 'bulkInstallApp'
 

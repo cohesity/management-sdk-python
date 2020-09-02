@@ -11,6 +11,7 @@ class AdObjectMetaData(object):
     Attributes:
         distinguished_name (string): Specifies the Distinguished name of the
             AD object.
+        domain (string): Domain of the AD object.
         email (string): Specifies the email of the AD object of type user or
             group.
         guid (string): Specifies the Guid of the AD object.
@@ -25,6 +26,7 @@ class AdObjectMetaData(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "distinguished_name":'distinguishedName',
+        "domain":'domain',
         "email":'email',
         "guid":'guid',
         "name":'name',
@@ -34,6 +36,7 @@ class AdObjectMetaData(object):
 
     def __init__(self,
                  distinguished_name=None,
+                 domain=None,
                  email=None,
                  guid=None,
                  name=None,
@@ -43,6 +46,7 @@ class AdObjectMetaData(object):
 
         # Initialize members of the class
         self.distinguished_name = distinguished_name
+        self.domain = domain
         self.email = email
         self.guid = guid
         self.name = name
@@ -69,6 +73,7 @@ class AdObjectMetaData(object):
 
         # Extract variables from the dictionary
         distinguished_name = dictionary.get('distinguishedName')
+        domain = dictionary.get('domain')
         email = dictionary.get('email')
         guid = dictionary.get('guid')
         name = dictionary.get('name')
@@ -77,6 +82,7 @@ class AdObjectMetaData(object):
 
         # Return an object of this model
         return cls(distinguished_name,
+                   domain,
                    email,
                    guid,
                    name,

@@ -2,6 +2,7 @@
 # Copyright 2020 Cohesity Inc.
 
 import cohesity_management_sdk.models.oracle_db_config_redo_log_group_conf
+import cohesity_management_sdk.models.oracle_db_config_pfile_parameter_map_entry
 
 class OracleDBConfig(object):
 
@@ -24,6 +25,8 @@ class OracleDBConfig(object):
         fra_size_mb (int): FRA Size in MBs.
         num_tempfiles (int): How many tempfiles to use for the recovered
             database.
+        pfile_parameter_map (list of OracleDBConfig_PfileParameterMapEntry):
+            Map of pfile parameters to its values.
         redo_log_conf (OracleDBConfigRedoLogGroupConf): GROUP1 :
             {DST1/CH1.log, DST2/CH1.log} GROUP2 : {DST1/CH2.log, DST2/CH2.log}
             GROUP3 : {DST1/CH3.log, DST2/CH3.log}
@@ -45,6 +48,7 @@ class OracleDBConfig(object):
         "fra_dest":'fraDest',
         "fra_size_mb":'fraSizeMb',
         "num_tempfiles":'numTempfiles',
+        "pfile_parameter_map":'pfileParameterMap',
         "redo_log_conf":'redoLogConf',
         "sga_target_size":'sgaTargetSize',
         "shared_pool_size":'sharedPoolSize'
@@ -60,6 +64,7 @@ class OracleDBConfig(object):
                  fra_dest=None,
                  fra_size_mb=None,
                  num_tempfiles=None,
+                 pfile_parameter_map=None,
                  redo_log_conf=None,
                  sga_target_size=None,
                  shared_pool_size=None):
@@ -75,6 +80,7 @@ class OracleDBConfig(object):
         self.fra_dest = fra_dest
         self.fra_size_mb = fra_size_mb
         self.num_tempfiles = num_tempfiles
+        self.pfile_parameter_map = pfile_parameter_map
         self.redo_log_conf = redo_log_conf
         self.sga_target_size = sga_target_size
         self.shared_pool_size = shared_pool_size
@@ -107,6 +113,11 @@ class OracleDBConfig(object):
         fra_dest = dictionary.get('fraDest')
         fra_size_mb = dictionary.get('fraSizeMb')
         num_tempfiles = dictionary.get('numTempfiles')
+        pfile_parameter_map = None
+        if dictionary.get('pfileParameterMap') != None:
+            pfile_parameter_map = list()
+            for structure in dictionary.get('pfileParameterMap'):
+                pfile_parameter_map.append(cohesity_management_sdk.models.oracle_db_config_pfile_parameter_map_entry.OracleDBConfig_PfileParameterMapEntry.from_dictionary(structure))
         redo_log_conf = cohesity_management_sdk.models.oracle_db_config_redo_log_group_conf.OracleDBConfigRedoLogGroupConf.from_dictionary(dictionary.get('redoLogConf')) if dictionary.get('redoLogConf') else None
         sga_target_size = dictionary.get('sgaTargetSize')
         shared_pool_size = dictionary.get('sharedPoolSize')
@@ -121,6 +132,7 @@ class OracleDBConfig(object):
                    fra_dest,
                    fra_size_mb,
                    num_tempfiles,
+                   pfile_parameter_map,
                    redo_log_conf,
                    sga_target_size,
                    shared_pool_size)

@@ -23,7 +23,7 @@ class ComparedADObject(object):
             'kRestorePasswordRequired' indicates the AD Object is of 'User'
             object class type. when restoring this object from Snapshot AD to
             Priduction AD, a password is required. 'kMovedOnDestination'
-            indicates the the object has moved to another container or OU in
+            indicates the object has moved to another container or OU in
             production AD compared to AD snapshot. In this case, the
             distinguishedName will be different for these objects
             'kDestinationNotFound' indicates the object corresponding to

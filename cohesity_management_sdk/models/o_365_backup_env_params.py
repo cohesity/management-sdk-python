@@ -4,6 +4,7 @@
 import cohesity_management_sdk.models.filtering_policy_proto
 import cohesity_management_sdk.models.one_drive_backup_env_params
 import cohesity_management_sdk.models.outlook_backup_env_params
+import cohesity_management_sdk.models.sharep_point_site_backup_env_params
 
 class O365BackupEnvParams(object):
 
@@ -33,6 +34,9 @@ class O365BackupEnvParams(object):
         outlook_backup_params (OutlookBackupEnvParams): Message to capture any
             additional backup params for Outlook within Office365
             environment.
+        site_backup_params (SharepPointSiteBackupEnvParams): SharePoint
+            specific backup parameters. Refer 'SharepPointSiteBackupEnvParams'
+            for details.
 
     """
 
@@ -40,19 +44,22 @@ class O365BackupEnvParams(object):
     _names = {
         "filtering_policy":'filteringPolicy',
         "onedrive_backup_params":'onedriveBackupParams',
-        "outlook_backup_params":'outlookBackupParams'
+        "outlook_backup_params":'outlookBackupParams',
+        "site_backup_params":'siteBackupParams'
     }
 
     def __init__(self,
                  filtering_policy=None,
                  onedrive_backup_params=None,
-                 outlook_backup_params=None):
+                 outlook_backup_params=None,
+                 site_backup_params=None):
         """Constructor for the O365BackupEnvParams class"""
 
         # Initialize members of the class
         self.filtering_policy = filtering_policy
         self.onedrive_backup_params = onedrive_backup_params
         self.outlook_backup_params = outlook_backup_params
+        self.site_backup_params = site_backup_params
 
 
     @classmethod
@@ -76,10 +83,12 @@ class O365BackupEnvParams(object):
         filtering_policy = cohesity_management_sdk.models.filtering_policy_proto.FilteringPolicyProto.from_dictionary(dictionary.get('filteringPolicy')) if dictionary.get('filteringPolicy') else None
         onedrive_backup_params = cohesity_management_sdk.models.one_drive_backup_env_params.OneDriveBackupEnvParams.from_dictionary(dictionary.get('onedriveBackupParams')) if dictionary.get('onedriveBackupParams') else None
         outlook_backup_params = cohesity_management_sdk.models.outlook_backup_env_params.OutlookBackupEnvParams.from_dictionary(dictionary.get('outlookBackupParams')) if dictionary.get('outlookBackupParams') else None
+        site_backup_params = cohesity_management_sdk.models.sharep_point_site_backup_env_params.SharepPointSiteBackupEnvParams.from_dictionary(dictionary.get('siteBackupParams')) if dictionary.get('siteBackupParams') else None
 
         # Return an object of this model
         return cls(filtering_policy,
                    onedrive_backup_params,
-                   outlook_backup_params)
+                   outlook_backup_params,
+                   site_backup_params)
 
 
