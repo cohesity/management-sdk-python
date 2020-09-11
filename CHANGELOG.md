@@ -1,3 +1,18 @@
+# [1.5.1] - 2020-09-11
+Patch release for query params issue.
+
+### Added
+- None
+
+### Changed
+- None
+
+### Fixed
+- Fixed code to update the query params as a list of comma separated values.
+
+### Removed
+- None
+
 # [1.5.0] - 2020-09-01
 New version of Cohesity Management SDK is here!
 
