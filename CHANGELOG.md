@@ -1,3 +1,18 @@
+# [1.6.1] - 2020-09-17
+Patch release for JPMC release.
+
+### Added
+- Added "re_register" field for protection source source registration.
+
+### Changed
+- None
+
+### Fixed
+- None
+
+### Removed
+- None
+
 # [1.1.3] - 2019-11-05
 New version of Cohesity Management SDK is here!
 
