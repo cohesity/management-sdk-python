@@ -108,6 +108,7 @@ class RegisterProtectionSourceParameters(object):
             side dedup on the source or not. This is only applicable to
             Protection Sources which support source side dedup (e.g., Linux
             physical servers).
+        re_register (bool): TODO: Type description here.
         ssl_verification (SslVerification): Specifies information about SSL
             verification when registering certain sources.
         throttling_policy (ThrottlingPolicyParameters): Specifies the
@@ -175,6 +176,7 @@ class RegisterProtectionSourceParameters(object):
         "password":'password',
         "physical_type":'physicalType',
         "pure_type":'pureType',
+        "re_register":'reRegister',
         "source_side_dedup_enabled":'sourceSideDedupEnabled',
         "ssl_verification":'sslVerification',
         "throttling_policy":'throttlingPolicy',
@@ -200,6 +202,7 @@ class RegisterProtectionSourceParameters(object):
                  password=None,
                  physical_type=None,
                  pure_type=None,
+                 re_register=None,
                  source_side_dedup_enabled=None,
                  ssl_verification=None,
                  throttling_policy=None,
@@ -225,6 +228,7 @@ class RegisterProtectionSourceParameters(object):
         self.password = password
         self.physical_type = physical_type
         self.pure_type = pure_type
+        self.re_register = re_register
         self.source_side_dedup_enabled = source_side_dedup_enabled
         self.ssl_verification = ssl_verification
         self.throttling_policy = throttling_policy
@@ -267,6 +271,7 @@ class RegisterProtectionSourceParameters(object):
         password = dictionary.get('password')
         physical_type = dictionary.get('physicalType')
         pure_type = dictionary.get('pureType')
+        re_register = dictionary.get('reRegister')
         source_side_dedup_enabled = dictionary.get('sourceSideDedupEnabled')
         ssl_verification = cohesity_management_sdk.models.ssl_verification.SslVerification.from_dictionary(dictionary.get('sslVerification')) if dictionary.get('sslVerification') else None
         throttling_policy = cohesity_management_sdk.models.throttling_policy_parameters.ThrottlingPolicyParameters.from_dictionary(dictionary.get('throttlingPolicy')) if dictionary.get('throttlingPolicy') else None
@@ -295,6 +300,7 @@ class RegisterProtectionSourceParameters(object):
                    password,
                    physical_type,
                    pure_type,
+                   re_register,
                    source_side_dedup_enabled,
                    ssl_verification,
                    throttling_policy,
