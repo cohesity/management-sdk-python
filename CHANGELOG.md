@@ -1,4 +1,4 @@
-# [1.6.1] - 2020-09-17
+# [1.1.6] - 2020-09-17
 Patch release for JPMC release.
 
 ### Added
