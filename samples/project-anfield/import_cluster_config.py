@@ -30,6 +30,7 @@ from cohesity_management_sdk.models.nas_mount_credential_params import NasMountC
 from cohesity_management_sdk.models.nas_protocol_enum import NasProtocolEnum as nas_enum
 from cohesity_management_sdk.models.protection_job_request_body import ProtectionJobRequestBody
 from cohesity_management_sdk.models.protection_policy_request import ProtectionPolicyRequest
+from cohesity_management_sdk.models.register_application_servers_parameters import RegisterApplicationServersParameters
 from cohesity_management_sdk.models.register_remote_cluster import RegisterRemoteCluster
 from cohesity_management_sdk.models.register_protection_source_parameters import RegisterProtectionSourceParameters
 from cohesity_management_sdk.models.vault import Vault
@@ -98,6 +99,7 @@ else:
         sys.exit(1)
 
 # Variables to store resources and corresponding ids.
+
 view_mapping = {}
 policy_mapping = {}
 source_mapping = {}
@@ -108,7 +110,8 @@ imported_res_dict = defaultdict(list)
 export_config = cluster_dict["cluster_config"]
 import_config = library.get_cluster_config(cohesity_client)
 env_list = [env_enum.KGENERICNAS, env_enum.KISILON, env_enum.KPHYSICAL,
-            env_enum.KPHYSICALFILES, env_enum.KVIEW, env_enum.K_VMWARE]
+            env_enum.KPHYSICALFILES, env_enum.KVIEW, env_enum.K_VMWARE,
+            env_enum.KSQL]
 
 
 def import_cluster_config():
@@ -180,7 +183,17 @@ def create_sources(source, environment, node):
     try:
         body = RegisterProtectionSourceParameters()
         body.environment = environment
-        if environment == env_enum.KGENERICNAS:
+        if environment == env_enum.KSQL:
+            name =  node["protectionSource"]["name"]
+            body = RegisterApplicationServersParameters()
+            body.applications = [env_enum.KSQL]
+            id = node["protectionSource"]["id"]
+            body.protection_source_id = source_mapping[id]
+            resp = cohesity_client.protection_sources.create_register_application_servers(body)
+            time.sleep(30)
+            return
+
+        elif environment == env_enum.KGENERICNAS:
             source_id = node["protectionSource"]["id"]
             protect_source = node["protectionSource"]
             endpoint = protect_source["name"]
@@ -357,6 +370,12 @@ def create_protection_sources():
     """
     registered_source_list = {}
     sources = cluster_dict.get("sources", [])
+    # Fetch list of Sql servers available in the cluster.
+    sql_sources = cohesity_client.protection_sources.list_protection_sources(
+        environment=env_enum.KSQL)
+    if sql_sources:
+        sql_sources = [source["protectionSource"]["physicalProtectionSource"][
+        "name"] for source in sql_sources[0].nodes]
 
     try:
         existing_sources = library.get_protection_sources(cohesity_client)
@@ -389,6 +408,7 @@ def create_protection_sources():
                 # Views are not created as a part of sources.
                 continue
             nodes = cluster_dict.get("source_dct")[id]
+
             if environment in [env_enum.K_VMWARE, env_enum.KISILON]:
                 if source_name in registered_source_list.keys():
                     source_mapping[id] = registered_source_list[source_name]
@@ -405,7 +425,12 @@ def create_protection_sources():
             for node in nodes:
                 id = node["protectionSource"]["id"]
                 name = node["protectionSource"]["name"]
-                if name in registered_source_list.keys():
+                if environment == env_enum.KSQL:
+                    # Check the Sql source is already registered, if already
+                    # registered no changes are made.
+                    if name in sql_sources:
+                        continue
+                elif name in registered_source_list.keys():
                     source_mapping[id] = registered_source_list[name]
                     imported_res_dict["Protection Sources"].append(name)
                     if override:
@@ -527,9 +552,15 @@ def create_protection_jobs():
     """
     Creates protection job.
     """
+    sql_parent_source = None
     existing_job_list = {}
     active_protection_jobs = []
     active_protection_jobs = cluster_dict.get("protection_jobs", [])
+    # Fetch Sql parent source id.
+    sql_sources = cohesity_client.protection_sources.list_protection_sources(
+        environment=env_enum.KSQL)
+    if sql_sources:
+        sql_parent_source = sql_sources[0].protection_source.id
 
     existing_jobs = library.get_protection_jobs(cohesity_client)
     for job in existing_jobs:
@@ -543,13 +574,12 @@ def create_protection_jobs():
             job_name = protection_job.name
             environment = protection_job.environment
             parent_id = protection_job.parent_source_id
-
             if environment not in env_list:
                 continue
             if environment == env_enum.KVIEW:
                 if protection_job.view_box_id not in storage_domain_mapping.keys():
                     continue
-            elif environment not in [env_enum.KPHYSICAL, env_enum.KPHYSICALFILES, env_enum.KVIEW] and source_mapping.get(parent_id, None) == None:
+            elif environment not in [env_enum.KSQL, env_enum.KPHYSICAL, env_enum.KPHYSICALFILES, env_enum.KVIEW] and source_mapping.get(parent_id, None) == None:
                 err_msg = "Protection Source not available for job %s" % job_name
                 ERROR_LIST.append(err_msg)
                 continue
@@ -597,6 +627,7 @@ def create_protection_jobs():
             copy_env_list = copy.deepcopy(env_list)
             copy_env_list.pop(copy_env_list.index(env_enum.K_VMWARE))
             copy_env_list.pop(copy_env_list.index(env_enum.KISILON))
+            copy_env_list.pop(copy_env_list.index(env_enum.KSQL))
             to_proceed = True
 
             if not nodes and environment in copy_env_list:
@@ -696,6 +727,12 @@ def create_protection_jobs():
             # Check to break from loop.
             if not to_proceed:
                 continue
+
+            if environment == env_enum.KSQL:
+                source_list = [source_mapping[_id] for _id in protection_job.source_ids]
+                protection_job.parent_source_id = sql_parent_source
+                protection_job.source_ids = source_list
+
             if source_spl_params and environment == env_enum.K_VMWARE:
                 for param in source_spl_params:
                     if param.source_id in source_object_dct.keys():
