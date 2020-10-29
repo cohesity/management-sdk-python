@@ -189,9 +189,23 @@ def create_sources(source, environment, node):
             body.applications = [env_enum.KSQL]
             id = node["protectionSource"]["id"]
             body.protection_source_id = source_mapping[id]
-            resp = cohesity_client.protection_sources.create_register_application_servers(body)
-            time.sleep(30)
-            return
+            resp = cohesity_client.protection_sources.\
+                create_register_application_servers(body)
+            while True:
+                sources = cohesity_client.protection_sources.\
+                    list_protection_sources(environment="kSQL")
+                nodes = sources[0].nodes
+                for node in nodes:
+                    reg_info = node["registrationInfo"]
+                    if reg_info["accessInfo"]["endpoint"] == name:
+                        status = reg_info["authenticationStatus"]
+                        # Check for the registration status, if the process is
+                        # pending, sleep for 10sec and poll again.
+                        if status in ["kScheduled", "kPending"]:
+                            time.sleep(10)
+                            break
+                        else:
+                            return
 
         elif environment == env_enum.KGENERICNAS:
             source_id = node["protectionSource"]["id"]
@@ -556,6 +570,7 @@ def create_protection_jobs():
     existing_job_list = {}
     active_protection_jobs = []
     active_protection_jobs = cluster_dict.get("protection_jobs", [])
+
     # Fetch Sql parent source id.
     sql_sources = cohesity_client.protection_sources.list_protection_sources(
         environment=env_enum.KSQL)
@@ -593,7 +608,9 @@ def create_protection_jobs():
                 if not override:
                     continue
 
-            source_id_list = protection_job.source_ids
+            source_id_list = protection_job.source_ids  if \
+                protection_job.source_ids else []
+
             excluded_source_ids = protection_job.exclude_source_ids
             if not excluded_source_ids:
                 exclude_source_ids = []
