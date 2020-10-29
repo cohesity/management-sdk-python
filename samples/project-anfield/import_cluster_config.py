@@ -184,6 +184,7 @@ def create_sources(source, environment, node):
         body = RegisterProtectionSourceParameters()
         body.environment = environment
         if environment == env_enum.KSQL:
+            count = 6
             name =  node["protectionSource"]["name"]
             body = RegisterApplicationServersParameters()
             body.applications = [env_enum.KSQL]
@@ -191,7 +192,9 @@ def create_sources(source, environment, node):
             body.protection_source_id = source_mapping[id]
             resp = cohesity_client.protection_sources.\
                 create_register_application_servers(body)
-            while True:
+
+            # Fetch registration status every 10 seconds for one minute.
+            while True and count:
                 sources = cohesity_client.protection_sources.\
                     list_protection_sources(environment="kSQL")
                 nodes = sources[0].nodes
@@ -203,6 +206,7 @@ def create_sources(source, environment, node):
                         # pending, sleep for 10sec and poll again.
                         if status in ["kScheduled", "kPending"]:
                             time.sleep(10)
+                            count = count - 1
                             break
                         else:
                             return
