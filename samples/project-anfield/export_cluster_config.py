@@ -71,7 +71,8 @@ source_dct = {}
 
 # List of support environments.
 env_list = [env_enum.KGENERICNAS, env_enum.KISILON, env_enum.KPHYSICAL,
-            env_enum.KPHYSICALFILES, env_enum.KVIEW, env_enum.K_VMWARE]
+            env_enum.KPHYSICALFILES, env_enum.KVIEW, env_enum.K_VMWARE,
+            env_enum.KSQL]
 
 
 for source in cluster_dict["sources"]:
