@@ -63,7 +63,9 @@ cluster_dict = {
     "protection_sources": library.get_protection_sources(cohesity_client),
     "external_targets": library.get_external_targets(cohesity_client),
     "sources": library.get_protection_sources(cohesity_client),
-    "remote_clusters": library.get_remote_clusters(cohesity_client)
+    "remote_clusters": library.get_remote_clusters(cohesity_client),
+    "sql_entity_mapping": library.get_sql_entity_mapping(cohesity_client,
+                                                         env_enum.KSQL)
 }
 
 exported_res = library.debug()

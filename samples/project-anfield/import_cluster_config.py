@@ -21,6 +21,7 @@ import library
 from cohesity_management_sdk.cohesity_client import CohesityClient
 from cohesity_management_sdk.exceptions.request_error_error_exception import RequestErrorErrorException
 from cohesity_management_sdk.exceptions.api_exception import APIException
+from cohesity_management_sdk.models.application_special_parameters import ApplicationSpecialParameters
 from cohesity_management_sdk.models.change_protection_job_state_param import ChangeProtectionJobStateParam
 from cohesity_management_sdk.models.create_view_request import CreateViewRequest
 from cohesity_management_sdk.models.create_view_box_params import CreateViewBoxParams
@@ -194,7 +195,7 @@ def create_sources(source, environment, node):
                 create_register_application_servers(body)
 
             # Fetch registration status every 10 seconds for one minute.
-            while True and sleep_count:
+            while sleep_count != 0:
                 sources = cohesity_client.protection_sources.\
                     list_protection_sources(environment="kSQL")
                 nodes = sources[0].nodes
@@ -751,9 +752,32 @@ def create_protection_jobs():
                 continue
 
             if environment == env_enum.KSQL:
-                source_list = [source_mapping[_id] for _id in protection_job.source_ids]
+                exported_entity_mapping = cluster_dict["sql_entity_mapping"]
+                source_list = [
+                    source_mapping[_id] for _id in protection_job.source_ids]
+                if source_spl_params:
+                    for param in source_spl_params:
+                        instance_list = []
+                        entity_mapping = {}
+                        _source_id = param.source_id # exported source id.
+                        source_id = source_mapping[param.source_id]
+                        sources = \
+                            cohesity_client.protection_sources.\
+                                list_protection_sources(id=source_id)
+                        for nodes in sources[0].application_nodes:
+                            for node in nodes["nodes"]:
+                                entity_mapping[node["protectionSource"][
+                                    "name"]] = node["protectionSource"]["id"]
+                        param.source_id = source_id
+
+                        # Fetch list of databases protected through job.
+                        entity_ids = param.sql_special_parameters.application_entity_ids
+                        for _id in entity_ids:
+                            instance_name = exported_entity_mapping[_source_id][_id]
+                            instance_list.append(entity_mapping[instance_name])
+                        param.sql_special_parameters = ApplicationSpecialParameters()
+                        param.sql_special_parameters.application_entity_ids = instance_list
                 protection_job.parent_source_id = sql_parent_source
-                protection_job.source_ids = source_list
 
             if source_spl_params and environment == env_enum.K_VMWARE:
                 for param in source_spl_params:

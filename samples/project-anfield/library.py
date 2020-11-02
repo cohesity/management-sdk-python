@@ -92,9 +92,33 @@ def get_external_targets(cohesity_client):
     return external_target_list
 
 
-def get_remote_clusters(coheity_client):
-    remote_cluster_list = coheity_client.remote_cluster.get_remote_clusters()
+def get_remote_clusters(cohesity_client):
+    remote_cluster_list = cohesity_client.remote_cluster.get_remote_clusters()
     return remote_cluster_list
+
+
+def get_sql_entity_mapping(cohesity_client, env):
+    """
+    Function to fetch SQL sources available in the cluster along with instance
+    name and ids.
+    """
+    sql_mapping = {}
+    sources = cohesity_client.protection_sources.list_protection_sources(
+        environment=env)
+    if not sources:
+        return sql_mapping
+    # Iterate each node(sql server) and fetch database available in the
+    # server.
+    for source in sources[0].nodes:
+        _id = source["protectionSource"]["id"]
+        sql_mapping[_id] = {}
+        if source.get("applicationNodes"):
+            nodes = source["applicationNodes"]
+            for sql_node in nodes:
+                for node in sql_node["nodes"]:
+                    sql_mapping[_id][node["protectionSource"]["id"]] = node[
+                    "protectionSource"]["name"]
+    return sql_mapping
 
 
 def debug():
