@@ -53,7 +53,7 @@ class PrincipalsController(BaseController):
             _url_path = '/public/principals/protectionSources'
             _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
-            _query_parameters = {'sids': sids}
+            _query_parameters = {'sids': ",".join(sids)}
             _query_builder = APIHelper.append_url_with_query_parameters(
                 _query_builder, _query_parameters,
                 Configuration.array_serialization)
@@ -216,7 +216,7 @@ class PrincipalsController(BaseController):
                 'domain': domain,
                 'objectClass': object_class,
                 'search': search,
-                'sids': sids,
+                'sids': ",".join(sids),
                 'includeComputers': include_computers
             }
             _query_builder = APIHelper.append_url_with_query_parameters(
@@ -412,10 +412,10 @@ class PrincipalsController(BaseController):
             _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
-                'tenantIds': tenant_ids,
+                'tenantIds': ",".join(tenant_ids),
                 'allUnderHierarchy': all_under_hierarchy,
-                'usernames': usernames,
-                'emailAddresses': email_addresses,
+                'usernames': ",".join(usernames),
+                'emailAddresses': ",".join(email_addresses),
                 'domain': domain,
                 'partialMatch': partial_match
             }
@@ -724,7 +724,7 @@ class PrincipalsController(BaseController):
                 _url_path, {'sid': sid})
             _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
-            _query_parameters = {'ids': ids}
+            _query_parameters = {'ids': ",".join(ids)}
             _query_builder = APIHelper.append_url_with_query_parameters(
                 _query_builder, _query_parameters,
                 Configuration.array_serialization)
@@ -1114,7 +1114,7 @@ class PrincipalsController(BaseController):
             _url_path = '/public/usersApiKeys'
             _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
-            _query_parameters = {'userSids': user_sids}
+            _query_parameters = {'userSids': ",".join(user_sids)}
             _query_builder = APIHelper.append_url_with_query_parameters(
                 _query_builder, _query_parameters,
                 Configuration.array_serialization)
