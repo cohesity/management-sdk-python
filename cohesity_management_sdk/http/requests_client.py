@@ -30,7 +30,7 @@ class RequestsClient(HttpClient):
             timeout (float): The default global timeout(seconds).
 
         """
-        urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+        #urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
         self.timeout = timeout
         self.session = requests.session()
 
