@@ -20,7 +20,7 @@ class Configuration(object):
 
     # Set the array parameter serialization method
     # (allowed: indexed, unindexed, plain, csv, tsv, psv)
-    array_serialization = "indexed"
+    array_serialization = "csv"
 
     # True if the client should skip verification of SSL certificates
     skip_ssl_verification = True

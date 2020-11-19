@@ -1,3 +1,36 @@
+# [1.1.7] - 2020-11-19
+SDK Fix: Get API Query Parameters Issue
+
+### Added
+- None
+
+### Changed
+- None
+
+### Fixed
+- SDK generates query parameter API as follows:
+  /api/v1/public/protectionSources?environments[0]=kPhysical&environments[1]=kOracle
+  when it should be:
+  /api/v1/public/protectionSources?environments=kPhysical,kOracle
+
+### Removed
+- None
+
+# [1.1.6] - 2020-09-17
+Patch release for JPMC release.
+
+### Added
+- Added "re_register" field for protection source source registration.
+
+### Changed
+- None
+
+### Fixed
+- None
+
+### Removed
+- None
+
 # [1.1.3] - 2019-11-05
 New version of Cohesity Management SDK is here!
 
