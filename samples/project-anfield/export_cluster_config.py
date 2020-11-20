@@ -32,8 +32,8 @@ logger = logging.getLogger('export_app')
 # Fetch command line arguments.
 parser = argparse.ArgumentParser(
     description="Please provide export file location and filename")
-parser.add_argument("--file_location", "-l", default=os.getcwd(), action="store")
-parser.add_argument("--file_name", "-n",default='',  action="store")
+parser.add_argument("--file_location", default=os.getcwd(), action="store")
+parser.add_argument("--file_name", default='',  action="store")
 args = parser.parse_args()
 file_location = args.file_location
 file_name = args.file_name
