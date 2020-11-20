@@ -3,9 +3,11 @@
 # Python utility to export the cluster config.
 # Usage: python export_cluster_config.py
 
+import argparse
 import datetime
 import logging
 import pickle
+import os
 import requests
 import sys
 
@@ -26,6 +28,15 @@ else:
     import ConfigParser as configparser
 
 logger = logging.getLogger('export_app')
+
+# Fetch command line arguments.
+parser = argparse.ArgumentParser(
+    description="Please provide export file location and filename")
+parser.add_argument("--file_location", default=os.getcwd(), action="store")
+parser.add_argument("--file_name", default='',  action="store")
+args = parser.parse_args()
+file_location = args.file_location
+file_name = args.file_name
 
 # Fetch the Cluster credentials from config file.
 configparser = configparser.ConfigParser()
@@ -106,12 +117,22 @@ if code == 200:
     cluster_dict["gflag"] = resp.decode("utf-8")
 else:
     # Incase of cluster versions less than 6.3, API for fetching gflags is not
-    # avaialble.
+    # available.
     cluster_dict["gflag"] = []
 
+# File path is created using location and filename provided. If location and
+# filename is not provided by user, default location and filename is used.
+exported_config_file = "export-config-%s-%s" % (
+        cluster_dict['cluster_config'].name,
+        datetime.datetime.now().strftime("%Y-%m-%d-%H-%M"))
+if file_location and file_name:
+    exported_config_file = os.path.join(file_location, file_name)
+elif file_location:
+    exported_config_file = os.path.join(file_location, exported_config_file)
+elif file_name:
+    exported_config_file = file_name
+
 # Fetch all the resources and store the data in file.
-exported_config_file = "export-config-%s-%s" % (cluster_dict['cluster_config'].name,
-                                                datetime.datetime.now().strftime("%Y-%m-%d-%H-%M"))
 pickle.dump(cluster_dict, open(exported_config_file, "wb"))
 
 logger.info("Please find the imported resources summary.\n")
