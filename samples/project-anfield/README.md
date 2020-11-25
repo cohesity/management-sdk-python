@@ -98,6 +98,12 @@ python export_cluster_config.py
 ```
 The above command will generate a <export-config-ClusterName-timestamp> file (eg: export-config-Kursk-2020-04-17-12:15) which needs be provided while importing resources.
 
+Custom export file name and location can be provided as follows,
+```
+python export_cluster_config.py --file_location /tmp/ --file_name sample_export_config
+```
+The above command will generate sample_export_config file under /tmp folder.
+
 ### Ouput 
 ```
 INFO:export_app:Exporting resources from cluster 'Kursk'
