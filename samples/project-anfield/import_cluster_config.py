@@ -112,7 +112,7 @@ export_config = cluster_dict["cluster_config"]
 import_config = library.get_cluster_config(cohesity_client)
 env_list = [env_enum.KGENERICNAS, env_enum.KISILON, env_enum.KPHYSICAL,
             env_enum.KPHYSICALFILES, env_enum.KVIEW, env_enum.K_VMWARE,
-            env_enum.KSQL]
+            env_enum.KSQL, "kCassandra"]
 
 
 def import_cluster_config():
@@ -178,6 +178,39 @@ def create_vaults():
                                   "config.ini" % vault.name)
 
 
+def check_register_status(name, environment, sleep_count=6):
+    """
+    Fetch registration status after specific sleep time.
+    """
+    try:
+        status = None
+        while sleep_count != 0:
+            sources = cohesity_client.protection_sources.\
+                list_protection_sources(environment=environment)
+            if environment == "kCassandra":
+                for source in sources:
+                    if source.registration_info.access_info.endpoint == name:
+                        status = source.registration_info.authentication_status
+                        break
+            else:
+                nodes = sources[0].nodes
+                for node in nodes:
+                    reg_info = node["registrationInfo"]
+                    if reg_info["accessInfo"]["endpoint"] == name:
+                        status = reg_info["authenticationStatus"]
+                        break
+            # Check for the registration status, if the process is
+            # pending, sleep for 10sec and poll again.
+            if status in ["kScheduled", "kPending"]:
+                time.sleep(sleep_time*5)
+                sleep_count = sleep_count - 1
+            else:
+                # If the status is either success/failed return.
+                return
+    except Exception as err:
+        ERROR_LIST.append(err)
+
+
 def create_sources(source, environment, node):
     """
     """
@@ -185,7 +218,6 @@ def create_sources(source, environment, node):
         body = RegisterProtectionSourceParameters()
         body.environment = environment
         if environment == env_enum.KSQL:
-            sleep_count = 6
             name =  node["protectionSource"]["name"]
             body = RegisterApplicationServersParameters()
             body.applications = [env_enum.KSQL]
@@ -193,25 +225,26 @@ def create_sources(source, environment, node):
             body.protection_source_id = source_mapping[id]
             resp = cohesity_client.protection_sources.\
                 create_register_application_servers(body)
-
-            # Fetch registration status every 10 seconds for one minute.
-            while sleep_count != 0:
-                sources = cohesity_client.protection_sources.\
-                    list_protection_sources(environment="kSQL")
-                nodes = sources[0].nodes
-                for node in nodes:
-                    reg_info = node["registrationInfo"]
-                    if reg_info["accessInfo"]["endpoint"] == name:
-                        status = reg_info["authenticationStatus"]
-                        # Check for the registration status, if the process is
-                        # pending, sleep for 10sec and poll again.
-                        if status in ["kScheduled", "kPending"]:
-                            time.sleep(10)
-                            sleep_count = sleep_count - 1
-                            break
-                        else:
-                            # If the sttaus is either success/failed return.
-                            return
+            check_register_status(name, environment)
+            return
+            # # Fetch registration status every 10 seconds for one minute.
+            # while sleep_count != 0:
+            #     sources = cohesity_client.protection_sources.\
+            #         list_protection_sources(environment="kSQL")
+            #     nodes = sources[0].nodes
+            #     for node in nodes:
+            #         reg_info = node["registrationInfo"]
+            #         if reg_info["accessInfo"]["endpoint"] == name:
+            #             status = reg_info["authenticationStatus"]
+            #             # Check for the registration status, if the process is
+            #             # pending, sleep for 10sec and poll again.
+            #             if status in ["kScheduled", "kPending"]:
+            #                 time.sleep(sleep_time*5)
+            #                 sleep_count = sleep_count - 1
+            #                 break
+            #             else:
+            #                 # If the sttaus is either success/failed return.
+            #                 return
 
         elif environment == env_enum.KGENERICNAS:
             source_id = node["protectionSource"]["id"]
@@ -293,6 +326,50 @@ def create_sources(source, environment, node):
                 imported_res_dict["Protection Sources"].append(name)
             return
 
+        elif environment == 'kCassandra':
+            name = source.protection_source.name
+            source_id = source.protection_source.id
+            ssh_username = configparser[name].get('username', None)
+            ssh_password = configparser[name].get('password', None)
+            db_username = configparser[name].get('db_username', None)
+            db_password = configparser[name].get('db_password', None)
+            if not (ssh_password and ssh_username):
+                ERROR_LIST.append(
+                    "Please provide ssh credentials for %s" % name)
+                return
+            if not (db_password and db_username):
+                ERROR_LIST.append(
+                    "Please provide database credentials for %s" % name)
+                return
+            _cassandra_params = node["registrationInfo"]["cassandraParams"]
+            cassandra_params = dict(
+                configDirectory=_cassandra_params["configDirectory"],
+                sshPrivateKeyCredential=None,
+                jmxCredentials=None,
+                dataCenterNames=_cassandra_params["dataCenters"],
+                dseConfigurationDirectory=_cassandra_params[
+                    "dseConfigDirectory"],
+                isDseAuthenticator=_cassandra_params["isDseAuthenticator"],
+                isDseTieredStorage=_cassandra_params["isDseTieredStorage"],
+                dseSolrInfo= None,
+                kerberosPrincipal= None)
+            cassandra_params["seedNode"] = source.registration_info.\
+                access_info.endpoint
+            cassandra_params["sshPasswordCredentials"] = dict(
+                    username=ssh_username, password=ssh_password)
+            cassandra_params["cassandraCredentials"] = dict(
+                username=db_username, password=db_password)
+            body = dict(
+                environment="kCassandra",
+                cassandraParams=cassandra_params)
+            api = 'data-protect/sources/registrations'
+            status_code, resp = rest_obj.post(
+                api, version='v2', data=json.dumps(body))
+            if status_code == 201:
+                json_resp = json.loads(resp)
+                source_mapping[source_id] = json_resp["id"]
+                check_register_status(name, environment, sleep_count=10)
+
         elif environment in [env_enum.K_VMWARE, env_enum.KVIEW]:
             env = environment[1:].lower()
             name = source.protection_source.name
@@ -366,7 +443,6 @@ def create_storage_domains():
                     cohesity_client.view_boxes.update_view_box(
                         new_storage_domain_id, storage_domain)
                 continue
-
             try:
                 result = cohesity_client.view_boxes.create_view_box(
                     storage_domain)
@@ -399,7 +475,6 @@ def create_protection_sources():
 
     try:
         existing_sources = library.get_protection_sources(cohesity_client)
-
         for source in existing_sources:
             env = (source.protection_source.environment)
             if env not in env_list:
@@ -407,7 +482,7 @@ def create_protection_sources():
 
             id = source.protection_source.id
             name = source.protection_source.name
-            if env in [env_enum.KISILON, env_enum.K_VMWARE]:
+            if env in [env_enum.KISILON, env_enum.K_VMWARE, "kCassandra"]:
                 registered_source_list[name] = id
                 continue
 
@@ -429,7 +504,7 @@ def create_protection_sources():
                 continue
             nodes = cluster_dict.get("source_dct")[id]
 
-            if environment in [env_enum.K_VMWARE, env_enum.KISILON]:
+            if environment in [env_enum.K_VMWARE, env_enum.KISILON, 'kCassandra']:
                 if source_name in registered_source_list.keys():
                     source_mapping[id] = registered_source_list[source_name]
                     imported_res_dict["Protection Sources"].append(source_name)
@@ -437,8 +512,9 @@ def create_protection_sources():
                         cohesity_client.protection_sources.create_refresh_protection_source_by_id(
                             registered_source_list[source_name])
                     continue
-                elif environment == env_enum.KISILON:
-                    create_sources(source, environment, None)
+                elif environment in [env_enum.KISILON, 'kCassandra']:
+                    nodes = nodes[0] if nodes else None
+                    create_sources(source, environment, nodes)
                     continue
             if not nodes:
                 continue
@@ -595,6 +671,7 @@ def create_protection_jobs():
             job_name = protection_job.name
             environment = protection_job.environment
             parent_id = protection_job.parent_source_id
+
             if environment not in env_list:
                 continue
             if environment == env_enum.KVIEW:
@@ -632,7 +709,6 @@ def create_protection_jobs():
                 protection_job.view_box_id, None)
             protection_job.policy_id = policy_mapping.get(
                 protection_job.policy_id, None)
-
             if not protection_job.view_box_id:
                 ERROR_LIST.append(
                     "Viewbox not available for job %s" % job_name)
@@ -650,6 +726,7 @@ def create_protection_jobs():
             copy_env_list = copy.deepcopy(env_list)
             copy_env_list.pop(copy_env_list.index(env_enum.K_VMWARE))
             copy_env_list.pop(copy_env_list.index(env_enum.KISILON))
+            copy_env_list.pop(copy_env_list.index("kCassandra"))
             copy_env_list.pop(copy_env_list.index(env_enum.KSQL))
             to_proceed = True
 
@@ -700,15 +777,21 @@ def create_protection_jobs():
                     uuid_source_mapping[node["protectionSource"]["name"]] = \
                         node["protectionSource"]["isilonProtectionSource"][
                         "mountPoint"]["accessZoneName"]
+                if environment == "kCassandra" and node["protectionSource"][
+                        "id"] in source_id_list:
+                    uuid_list.append(node["protectionSource"][
+                        "cassandraProtectionSource"]["uuid"])
+
                 if len(uuid_list) == list_len:
                     break
             nodes = []
-
             if source_mapping.get(parent_id, None):
                 nodes = library.get_protection_source_by_id(
                     cohesity_client, source_mapping[parent_id], environment).nodes
+                nodes = [] if not nodes else nodes
             source_spl_params = protection_job.source_special_parameters
             source_object_dct = {}
+
             for node in nodes:
                 if node.get("nodes", []):
                     nodes.extend(node["nodes"])
@@ -745,6 +828,12 @@ def create_protection_jobs():
                                 "following protocol %s. Supported protocol is kNfs." % (
                                     job_name, name, ", ".join(protocol)))
                             break
+                if environment == "kCassandra":
+                    uuid = node["protectionSource"]["cassandraProtectionSource"].get("uuid")
+                    if uuid in uuid_list and node["protectionSource"][
+                            "parentId"] == source_mapping[parent_id]:
+                        id = node["protectionSource"]["id"]
+                        source_list.append(id)
                 if len(source_list) == list_len:
                     break
             # Check to break from loop.
@@ -851,7 +940,6 @@ def construct_view_box_pair(view_box_pair_info, body, remote_body):
 
 
 def create_remote_clusters():
-
     repl_list = {}
     remote_cluster_list = cluster_dict.get("remote_clusters", [])
     existing_cluster_list = library.get_remote_clusters(cohesity_client)
