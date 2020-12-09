@@ -56,6 +56,7 @@ logger.setLevel(logging.DEBUG)
 
 # Fetch the Cluster credentials from config file.
 ERROR_LIST = []
+KCASSANDRA = "kCassandra"
 configparser = configparser.ConfigParser()
 configparser.read("config.ini")
 
@@ -112,7 +113,7 @@ export_config = cluster_dict["cluster_config"]
 import_config = library.get_cluster_config(cohesity_client)
 env_list = [env_enum.KGENERICNAS, env_enum.KISILON, env_enum.KPHYSICAL,
             env_enum.KPHYSICALFILES, env_enum.KVIEW, env_enum.K_VMWARE,
-            env_enum.KSQL, "kCassandra"]
+            env_enum.KSQL, KCASSANDRA]
 
 
 def import_cluster_config():
@@ -187,7 +188,7 @@ def check_register_status(name, environment, sleep_count=6):
         while sleep_count != 0:
             sources = cohesity_client.protection_sources.\
                 list_protection_sources(environment=environment)
-            if environment == "kCassandra":
+            if environment == KCASSANDRA:
                 for source in sources:
                     if source.registration_info.access_info.endpoint == name:
                         status = source.registration_info.authentication_status
@@ -202,7 +203,7 @@ def check_register_status(name, environment, sleep_count=6):
             # Check for the registration status, if the process is
             # pending, sleep for 10sec and poll again.
             if status in ["kScheduled", "kPending"]:
-                time.sleep(sleep_time*5)
+                time.sleep(sleep_time * 5)
                 sleep_count = sleep_count - 1
             else:
                 # If the status is either success/failed return.
@@ -227,24 +228,6 @@ def create_sources(source, environment, node):
                 create_register_application_servers(body)
             check_register_status(name, environment)
             return
-            # # Fetch registration status every 10 seconds for one minute.
-            # while sleep_count != 0:
-            #     sources = cohesity_client.protection_sources.\
-            #         list_protection_sources(environment="kSQL")
-            #     nodes = sources[0].nodes
-            #     for node in nodes:
-            #         reg_info = node["registrationInfo"]
-            #         if reg_info["accessInfo"]["endpoint"] == name:
-            #             status = reg_info["authenticationStatus"]
-            #             # Check for the registration status, if the process is
-            #             # pending, sleep for 10sec and poll again.
-            #             if status in ["kScheduled", "kPending"]:
-            #                 time.sleep(sleep_time*5)
-            #                 sleep_count = sleep_count - 1
-            #                 break
-            #             else:
-            #                 # If the sttaus is either success/failed return.
-            #                 return
 
         elif environment == env_enum.KGENERICNAS:
             source_id = node["protectionSource"]["id"]
@@ -326,31 +309,38 @@ def create_sources(source, environment, node):
                 imported_res_dict["Protection Sources"].append(name)
             return
 
-        elif environment == 'kCassandra':
+        elif environment == KCASSANDRA:
             name = source.protection_source.name
             source_id = source.protection_source.id
-            ssh_username = configparser[name].get('username', None)
-            ssh_password = configparser[name].get('password', None)
-            db_username = configparser[name].get('db_username', None)
-            db_password = configparser[name].get('db_password', None)
+            if not configparser.has_section(name):
+                ERROR_LIST.append(
+                    "Please provide SSH and database credentials for "
+                    "Caassandra source %s" % name)
+                return
+            ssh_username = configparser[name].get("username", None)
+            ssh_password = configparser[name].get("password", None)
+            db_username = configparser[name].get("db_username", None)
+            db_password = configparser[name].get("db_password", None)
+
             if not (ssh_password and ssh_username):
                 ERROR_LIST.append(
                     "Please provide ssh credentials for %s" % name)
                 return
+
             if not (db_password and db_username):
                 ERROR_LIST.append(
                     "Please provide database credentials for %s" % name)
                 return
-            _cassandra_params = node["registrationInfo"]["cassandraParams"]
+            imported_params = node["registrationInfo"]["cassandraParams"]
             cassandra_params = dict(
-                configDirectory=_cassandra_params["configDirectory"],
+                configDirectory=imported_params["configDirectory"],
                 sshPrivateKeyCredential=None,
                 jmxCredentials=None,
-                dataCenterNames=_cassandra_params["dataCenters"],
-                dseConfigurationDirectory=_cassandra_params[
+                dataCenterNames=imported_params["dataCenters"],
+                dseConfigurationDirectory=imported_params[
                     "dseConfigDirectory"],
-                isDseAuthenticator=_cassandra_params["isDseAuthenticator"],
-                isDseTieredStorage=_cassandra_params["isDseTieredStorage"],
+                isDseAuthenticator=imported_params["isDseAuthenticator"],
+                isDseTieredStorage=imported_params["isDseTieredStorage"],
                 dseSolrInfo= None,
                 kerberosPrincipal= None)
             cassandra_params["seedNode"] = source.registration_info.\
@@ -360,15 +350,20 @@ def create_sources(source, environment, node):
             cassandra_params["cassandraCredentials"] = dict(
                 username=db_username, password=db_password)
             body = dict(
-                environment="kCassandra",
+                environment=KCASSANDRA,
                 cassandraParams=cassandra_params)
-            api = 'data-protect/sources/registrations'
+            api = "data-protect/sources/registrations"
             status_code, resp = rest_obj.post(
-                api, version='v2', data=json.dumps(body))
+                api, version="v2", data=json.dumps(body))
             if status_code == 201:
                 json_resp = json.loads(resp)
                 source_mapping[source_id] = json_resp["id"]
                 check_register_status(name, environment, sleep_count=10)
+            else:
+                ERROR_LIST.append(
+                    "Error adding source: %s Failed with error %s" % (
+                        name, resp))
+            return
 
         elif environment in [env_enum.K_VMWARE, env_enum.KVIEW]:
             env = environment[1:].lower()
@@ -482,7 +477,7 @@ def create_protection_sources():
 
             id = source.protection_source.id
             name = source.protection_source.name
-            if env in [env_enum.KISILON, env_enum.K_VMWARE, "kCassandra"]:
+            if env in [env_enum.KISILON, env_enum.K_VMWARE, KCASSANDRA]:
                 registered_source_list[name] = id
                 continue
 
@@ -504,7 +499,7 @@ def create_protection_sources():
                 continue
             nodes = cluster_dict.get("source_dct")[id]
 
-            if environment in [env_enum.K_VMWARE, env_enum.KISILON, 'kCassandra']:
+            if environment in [env_enum.K_VMWARE, env_enum.KISILON, KCASSANDRA]:
                 if source_name in registered_source_list.keys():
                     source_mapping[id] = registered_source_list[source_name]
                     imported_res_dict["Protection Sources"].append(source_name)
@@ -512,7 +507,7 @@ def create_protection_sources():
                         cohesity_client.protection_sources.create_refresh_protection_source_by_id(
                             registered_source_list[source_name])
                     continue
-                elif environment in [env_enum.KISILON, 'kCassandra']:
+                elif environment in [env_enum.KISILON, KCASSANDRA]:
                     nodes = nodes[0] if nodes else None
                     create_sources(source, environment, nodes)
                     continue
@@ -724,10 +719,10 @@ def create_protection_jobs():
                 nodes.extend(source.get("nodes", []))
 
             copy_env_list = copy.deepcopy(env_list)
-            copy_env_list.pop(copy_env_list.index(env_enum.K_VMWARE))
-            copy_env_list.pop(copy_env_list.index(env_enum.KISILON))
-            copy_env_list.pop(copy_env_list.index("kCassandra"))
-            copy_env_list.pop(copy_env_list.index(env_enum.KSQL))
+            for env in [env_enum.KISILON, env_enum.K_VMWARE, env_enum.KSQL,
+                        KCASSANDRA]:
+                copy_env_list.pop(copy_env_list.index(env))
+
             to_proceed = True
 
             if not nodes and environment in copy_env_list:
@@ -777,7 +772,7 @@ def create_protection_jobs():
                     uuid_source_mapping[node["protectionSource"]["name"]] = \
                         node["protectionSource"]["isilonProtectionSource"][
                         "mountPoint"]["accessZoneName"]
-                if environment == "kCassandra" and node["protectionSource"][
+                if environment == KCASSANDRA and node["protectionSource"][
                         "id"] in source_id_list:
                     uuid_list.append(node["protectionSource"][
                         "cassandraProtectionSource"]["uuid"])
@@ -828,7 +823,7 @@ def create_protection_jobs():
                                 "following protocol %s. Supported protocol is kNfs." % (
                                     job_name, name, ", ".join(protocol)))
                             break
-                if environment == "kCassandra":
+                if environment == KCASSANDRA:
                     uuid = node["protectionSource"]["cassandraProtectionSource"].get("uuid")
                     if uuid in uuid_list and node["protectionSource"][
                             "parentId"] == source_mapping[parent_id]:
@@ -1088,10 +1083,10 @@ def _get_sd_id(view_box_name):
 def update_gflags():
     # Update the Gflag values for services.
     try:
-        cluster_ip = configparser.get('import_cluster_config', 'cluster_ip')
-        username = configparser.get('import_cluster_config', 'username')
-        password = configparser.get('import_cluster_config', 'password')
-        domain = configparser.get('import_cluster_config', 'domain')
+        cluster_ip = configparser.get("import_cluster_config", "cluster_ip")
+        username = configparser.get("import_cluster_config", "username")
+        password = configparser.get("import_cluster_config", "password")
+        domain = configparser.get("import_cluster_config", "domain")
         # Update the flags from exported cluster.
         exported_gflags = json.loads(cluster_dict["gflag"])
         for body in exported_gflags:
