@@ -87,11 +87,12 @@ cluster_dict = {
 
 exported_res = library.debug()
 source_dct = {}
+KCASSANDRA = "kCassandra"
 
 # List of support environments.
 env_list = [env_enum.KGENERICNAS, env_enum.KISILON, env_enum.KPHYSICAL,
             env_enum.KPHYSICALFILES, env_enum.KVIEW, env_enum.K_VMWARE,
-            env_enum.KSQL, "kCassandra"]
+            env_enum.KSQL, KCASSANDRA]
 
 
 for source in cluster_dict["sources"]:
