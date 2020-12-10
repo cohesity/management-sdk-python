@@ -12,40 +12,52 @@ class RestClient:
         self.domain = domain
         self.api_prefix = "https://{}/irisservices/api/v1/".format(
             self.cluster_ip)
-        
+        self.v2_api_prefix = "https://{}/v2/".format(
+            self.cluster_ip)
         # Generate access token and use during rest api calls.
         self.token = None
         self.generate_access_token()
 
 
-    def get(self, api, headers={}):
+    def generate_api(self, api, version):
+        """
+        Generate API based on versions.
+        """
+        if version == 'v2':
+            api = self.v2_api_prefix + api
+        else:
+            api = self.api_prefix + api
+        return api
+
+
+    def get(self, api, version='v1', headers={}):
         """
         GET request.
         :returns exitcode, response
         """
-        api = self.api_prefix + api
+        api = self.generate_api(api=api, version=version)
         headers["Authorization"] = "Bearer {}".format(self.token)
         response = requests.get(url=api, headers=headers, verify=False)
         return response.status_code, response.content
 
 
-    def put(self, api, headers={}, **kwargs):
+    def put(self, api, version='v1', headers={}, **kwargs):
         """
         PUT request.
         :returns exitcode, response
         """
-        api = self.api_prefix + api
+        api = self.generate_api(api=api, version=version)
         headers["Authorization"] = "Bearer {}".format(self.token)
         response = requests.put(url=api, headers=headers, verify=False, **kwargs)
         return response.status_code, response.content
 
 
-    def post(self, api, headers={}, **kwargs):
+    def post(self, api, version='v1', headers={}, **kwargs):
         """
         POST request.
         :returns exitcode, response
         """
-        api = self.api_prefix + api
+        api = self.generate_api(api=api, version=version)
         if self.token and not headers:
             headers["Authorization"] = "Bearer {}".format(self.token)
         response = requests.post(

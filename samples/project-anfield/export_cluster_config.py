@@ -5,18 +5,21 @@
 
 import argparse
 import datetime
+import json
 import logging
 import pickle
 import os
 import requests
 import sys
+import library
 
 # Custom module import
 from cohesity_management_sdk.cohesity_client import CohesityClient
 from cohesity_management_sdk.exceptions.api_exception import APIException
 from cohesity_management_sdk.models.environment_register_protection_source_parameters_enum \
     import EnvironmentRegisterProtectionSourceParametersEnum as env_enum
-import library
+from library import RestClient
+
 
 # Disable python warnings.
 requests.packages.urllib3.disable_warnings()
@@ -43,14 +46,15 @@ configparser = configparser.ConfigParser()
 configparser.read('config.ini')
 
 try:
-    cohesity_client = CohesityClient(cluster_vip=configparser.get(
-        'export_cluster_config', 'cluster_ip'),
-        username=configparser.get(
-        'export_cluster_config', 'username'),
-        password=configparser.get(
-        'export_cluster_config', 'password'),
-        domain=configparser.get(
-        'export_cluster_config', 'domain'))
+    cluster_vip=configparser.get('export_cluster_config', 'cluster_ip')
+    username=configparser.get('export_cluster_config', 'username')
+    password=configparser.get('export_cluster_config', 'password')
+    domain=configparser.get('export_cluster_config', 'domain')
+
+    cohesity_client = CohesityClient(cluster_vip=cluster_vip,
+                                     username=username,
+                                     password=password,
+                                     domain=domain)
     # Make a function call to validate the credentials.
     cohesity_client.principals.get_user_privileges()
 except APIException as err:
@@ -60,10 +64,12 @@ except Exception as err:
     print("Authentication error occurred, error details: %s" % err)
     exit(1)
 
+
 logger.setLevel(logging.INFO)
 
 logger.info("Exporting resources from cluster '%s'" % (
     configparser.get('export_cluster_config', 'cluster_ip')))
+
 
 cluster_dict = {
     "cluster_config": library.get_cluster_config(cohesity_client),
@@ -81,21 +87,27 @@ cluster_dict = {
 
 exported_res = library.debug()
 source_dct = {}
+KCASSANDRA = "kCassandra"
 
 # List of support environments.
 env_list = [env_enum.KGENERICNAS, env_enum.KISILON, env_enum.KPHYSICAL,
             env_enum.KPHYSICALFILES, env_enum.KVIEW, env_enum.K_VMWARE,
-            env_enum.KSQL]
+            env_enum.KSQL, KCASSANDRA]
 
 
 for source in cluster_dict["sources"]:
     id = source.protection_source.id
     env = source.protection_source.environment
-    if env not in env_list:
-        continue
-    res = library.get_protection_source_by_id(cohesity_client, id, env)
-    source_dct[id] = res.nodes
-    if env in [env_enum.KVIEW, env_enum.K_VMWARE, env_enum.KISILON]:
+    rest_obj = RestClient(cluster_vip, username, password, domain)
+    if env == "kCassandra":
+        api = "public/protectionSources?id={}&environment={}".format(id, env)
+        _, resp = rest_obj.get(api=api)
+        resp = json.loads(resp)
+        source_dct[id] = resp
+    else:
+        res = library.get_protection_source_by_id(cohesity_client, id, env)
+        source_dct[id] = res.nodes
+    if env in [env_enum.KVIEW, env_enum.K_VMWARE, env_enum.KISILON, 'kCassandra']:
         name = source.protection_source.name
         exported_res["Protection Sources"].append(name)
     else:
@@ -107,11 +119,7 @@ for source in cluster_dict["sources"]:
 cluster_dict["source_dct"] = source_dct
 
 # Fetch all the gflags from the cluster.
-code, resp = library.gflag(
-    configparser.get('export_cluster_config', 'cluster_ip'),
-    configparser.get('export_cluster_config', 'username'),
-    configparser.get('export_cluster_config', 'password'),
-    configparser.get('export_cluster_config', 'domain'))
+code, resp = library.gflag(cluster_vip, username, password, domain)
 
 if code == 200:
     cluster_dict["gflag"] = resp.decode("utf-8")
