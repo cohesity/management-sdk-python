@@ -24,6 +24,7 @@ Current version fo the tooling supports export and import the cluster resources 
     * Cohesity Views
     * Isilon(NFS)
     * MsSql
+    * Cassandra
   * Protection Policies
   * Replicated Clusters
   * Gflags
