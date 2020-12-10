@@ -100,6 +100,9 @@ else:
         print("Import file does not exist")
         sys.exit(1)
 
+with open("resources.json") as file_obj:
+    resources_to_import = json.load(file_obj)
+
 # Variables to store resources and corresponding ids.
 
 view_mapping = {}
@@ -130,12 +133,18 @@ def import_cluster_config():
 def create_vaults():
     available_vaults_dict = {}
     vaults = cluster_dict.get("external_targets")
+    targets_to_import = resources_to_import.get("external_targets", [])
     available_vaults = library.get_external_targets(cohesity_client)
 
     for vault in available_vaults:
         available_vaults_dict[vault.name] = vault.id
 
     for vault in vaults:
+        if targets_to_import and vault.name not in targets_to_import:
+            # If target is not listed under required target list, target is
+            # not imported, if list is empty all the external targets are
+            # imported.
+            continue
         if vault.name in available_vaults_dict.keys():
             imported_res_dict["External Targets"].append(vault.name)
             continue
@@ -423,6 +432,7 @@ def create_storage_domains():
     """
     existing_storage_domain_list = {}
     try:
+        viewboxes_to_import = resources_to_import.get("viewboxes", [])
         existing_storage_domains = library.get_storage_domains(cohesity_client)
 
         for storage_domain in existing_storage_domains:
@@ -430,6 +440,10 @@ def create_storage_domains():
         storage_domain_list = cluster_dict.get("storage_domains", [])
 
         for storage_domain in storage_domain_list:
+            if viewboxes_to_import and storage_domain.name not in viewboxes_to_import:
+                # If viewbox is not listed under required viewboxes list, viewbox is
+                # not imported, if list is empty all the viewboxes are imported.
+                continue
             if storage_domain.name in existing_storage_domain_list.keys():
                 new_storage_domain_id = existing_storage_domain_list[storage_domain.name]
                 storage_domain_mapping[storage_domain.id] = new_storage_domain_id
@@ -469,6 +483,7 @@ def create_protection_sources():
         "name"] for source in sql_sources[0].nodes]
 
     try:
+        sources_to_import = resources_to_import.get("sources", [])
         existing_sources = library.get_protection_sources(cohesity_client)
         for source in existing_sources:
             env = (source.protection_source.environment)
@@ -492,6 +507,10 @@ def create_protection_sources():
             if environment not in env_list:
                 continue
             source_name = source.protection_source.name
+            if sources_to_import and source_name not in sources_to_import:
+                # If source is not listed under required sources list, source is
+                # not imported, if list is empty all the sources are imported.
+                continue
             id = source.protection_source.id
 
             if environment == env_enum.KVIEW:
@@ -541,11 +560,16 @@ def create_views():
     view is not available in exported list.
     """
     existing_view_dict = {}
+    views_to_import = resources_to_import.get("views", [])
     view_list = cluster_dict.get("views", [])
     existing_views = library.get_views(cohesity_client)
     for view in existing_views:
         existing_view_dict[view.name] = view.view_id
     for view in view_list:
+        if views_to_import and view.name not in views_to_import:
+            # If view is not listed under required views list, view is
+            # not imported, if list is empty all the views are imported.
+            continue
         try:
             if view.name in existing_view_dict.keys():
                 imported_res_dict["Protection Views"].append(view.name)
@@ -583,6 +607,7 @@ def create_protection_policies():
     """
     existing_policy_list = {}
     protection_policy_list = cluster_dict.get("policies", [])
+    policies_to_import = resources_to_import.get("policies", [])
     existing_policies = library.get_protection_policies(cohesity_client)
     for policy in existing_policies:
         existing_policy_list[policy.name] = policy.id
@@ -590,6 +615,10 @@ def create_protection_policies():
     for policy in protection_policy_list:
         is_policy_available = False
         try:
+            if policies_to_import and policy.name not in policies_to_import:
+                # If policy is not listed under required policy list, view is
+                # not imported, if list is empty all the policies are imported.
+                continue
             # If policy with same name is already available.
             if policy.name in existing_policy_list.keys():
                 is_policy_available = True
@@ -646,6 +675,9 @@ def create_protection_jobs():
     sql_parent_source = None
     existing_job_list = {}
     active_protection_jobs = []
+    job_prefix = configparser["import_cluster_config"]["job_prefix"]
+    job_suffix = configparser["import_cluster_config"]["job_suffix"]
+    jobs_to_import = resources_to_import.get("jobs", [])
     active_protection_jobs = cluster_dict.get("protection_jobs", [])
 
     # Fetch Sql parent source id.
@@ -664,6 +696,14 @@ def create_protection_jobs():
             _parent_id = None
             is_job_available = False
             job_name = protection_job.name
+            if jobs_to_import and job_name not in jobs_to_import:
+                # Check job is available in the json, if no jobs is added all
+                # the jobs are protected, or else only selected jobs are
+                # protected.
+                continue
+            if job_prefix or job_suffix:
+                job_name = job_prefix + job_name + job_suffix
+                protection_job.name = job_name
             environment = protection_job.environment
             parent_id = protection_job.parent_source_id
 
@@ -678,11 +718,11 @@ def create_protection_jobs():
                 continue
 
             # Check if the protection source is already available.
-            if protection_job.name in existing_job_list.keys():
+            if job_name in existing_job_list.keys():
                 imported_res_dict["Protection Jobs"].append(
-                    protection_job.name)
+                    job_name)
                 is_job_available = True
-                current_job_id = existing_job_list[protection_job.name]
+                current_job_id = existing_job_list[job_name]
                 if not override:
                     continue
 
@@ -942,12 +982,18 @@ def create_remote_clusters():
     for cluster in existing_cluster_list:
         repl_list[cluster.name] = cluster.cluster_id
 
+    remote_clusters_to_import = resources_to_import.get("remote_clusters", [])
     # If the remote cluster exists then get the ID.
     for cluster in remote_cluster_list:
         # Check the remote cluster registered is not the current cluster.
         if cluster.remote_ips[0] == import_cluster_ip:
             continue
-
+        if remote_clusters_to_import and cluster.remote_ips[0] not in \
+            remote_clusters_to_import:
+            # If cluster is not listed under required remote cluster list,
+            # cluster is not imported, if list is empty all the clusters are
+            # imported.
+            continue
         is_remote_cluster_available = False
         if cluster.name in repl_list.keys():
             if not override:
