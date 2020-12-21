@@ -660,8 +660,8 @@ def create_protection_jobs():
     sql_parent_source = None
     existing_job_list = {}
     active_protection_jobs = []
-    job_prefix = configparser.get("import_cluster_config", "job_prefix")
-    job_suffix = configparser.get("import_cluster_config", "job_suffix")
+    imported_job_prefix = configparser.get("import_cluster_config", "imported_job_prefix")
+    imported_job_suffix = configparser.get("import_cluster_config", "imported_job_suffix")
     active_protection_jobs = cluster_dict.get("protection_jobs", [])
 
     # Fetch Sql parent source id.
@@ -690,8 +690,8 @@ def create_protection_jobs():
                 # the jobs are protected, or else only selected jobs are
                 # protected.
                 continue
-            if job_prefix or job_suffix:
-                job_name = job_prefix + job_name + job_suffix
+            if imported_job_prefix or imported_job_suffix:
+                job_name = imported_job_prefix + job_name + imported_job_suffix
                 protection_job.name = job_name
             environment = protection_job.environment
             parent_id = protection_job.parent_source_id
