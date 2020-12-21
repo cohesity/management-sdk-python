@@ -143,7 +143,7 @@ elif file_name:
 # Fetch all the resources and store the data in file.
 pickle.dump(cluster_dict, open(exported_config_file, "wb"))
 
-logger.info("Please find the imported resources summary.\n")
+logger.info("Please find the exported resources summary.\n")
 for key, val in exported_res.items():
     logger.info("Successfully exported the following %s:\n%s\n" %
                 (key, ", ".join(val)))

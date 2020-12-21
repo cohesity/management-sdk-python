@@ -430,7 +430,18 @@ def create_storage_domains():
             existing_storage_domain_list[storage_domain.name] = storage_domain.id
         storage_domain_list = cluster_dict.get("storage_domains", [])
 
+        cluster_partitions = cohesity_client.cluster_partitions.get_cluster_partitions()
+        partition_id_mapping = {
+            partition.id : partition.name for partition in cluster_partitions}
+        partition_id, partition_name = partition_id_mapping.popitem()
         for storage_domain in storage_domain_list:
+            # For storage domain creation, cluster partition id is mandatory.
+            # Check partition is is available in the cluster id, if available
+            # use the same or else use available partition.
+            if storage_domain.cluster_partition_id not in partition_id_mapping.keys():
+                storage_domain.cluster_partition_id = partition_id
+                storage_domain.cluster_partition_name = partition_name
+
             if storage_domain.name in existing_storage_domain_list.keys():
                 new_storage_domain_id = existing_storage_domain_list[storage_domain.name]
                 storage_domain_mapping[storage_domain.id] = new_storage_domain_id
@@ -453,7 +464,9 @@ def create_storage_domains():
                     "Error adding storage domain %s, Failed with error %s" % (
                         storage_domain.name, e))
     except Exception as err:
-        ERROR_LIST.append("Error while adding storage domains")
+        ERROR_LIST.append(
+            "Error adding storage domain %s, Failed with error %s" % (
+                storage_domain.name, err))
 
 
 def create_protection_sources():
