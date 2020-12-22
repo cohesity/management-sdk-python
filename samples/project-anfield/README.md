@@ -91,6 +91,24 @@ This will work for Python 3 >=3.4.
 
 4. While importing Isilon sources, only NFS protocols are supported. If a job contains both NFS and SMB objects, only NFS objects are added to job.
 
+5. Imported Job prefix - While importing resources, job name will be prefixed with provided prefix name. For example, if job name is 'test' and imported_job_prefix is 'sample_', job will be imported under name 'sample_test'. If the field is empty, no prefix is added to the job name.
+
+    `imported_job_prefix=sample_`
+
+    `imported_job_prefix=` # No prefix is added
+
+6. Imported Job suffix - While importing resources, job name will be suffixed with provided suffix name. For example, if job name is 'test' and imported_job_suffix is '_job', job will be imported under name 'test_job'. If the field is empty, no suffix is added to the job name.
+
+    `imported_job_suffix=_import`
+    
+    `imported_job_suffix=` # No prefix is added
+
+7. Selected Jobs - Option to import specific list of jobs(Should be provided as list of comma separated jobs). If the field is empty all the jobs are imported or else only jobs specified in the selected_jobs field are imported.
+    
+    `selected_jobs=job1,job2,job3` # Only following jobs: job1, job2, job3 are imported to the target cluster.
+    
+    `selected_jobs=`. # All jobs are imported to the target cluster.
+
 ## Export 
 
 Run the following command to export resources.
