@@ -100,6 +100,7 @@ else:
         print("Import file does not exist")
         sys.exit(1)
 
+
 # Variables to store resources and corresponding ids.
 
 view_mapping = {}
@@ -429,7 +430,18 @@ def create_storage_domains():
             existing_storage_domain_list[storage_domain.name] = storage_domain.id
         storage_domain_list = cluster_dict.get("storage_domains", [])
 
+        cluster_partitions = cohesity_client.cluster_partitions.get_cluster_partitions()
+        partition_id_mapping = {
+            partition.id : partition.name for partition in cluster_partitions}
+        partition_id, partition_name = partition_id_mapping.popitem()
         for storage_domain in storage_domain_list:
+            # For storage domain creation, cluster partition id is mandatory.
+            # Check partition is is available in the cluster id, if available
+            # use the same or else use available partition.
+            if storage_domain.cluster_partition_id not in partition_id_mapping.keys():
+                storage_domain.cluster_partition_id = partition_id
+                storage_domain.cluster_partition_name = partition_name
+
             if storage_domain.name in existing_storage_domain_list.keys():
                 new_storage_domain_id = existing_storage_domain_list[storage_domain.name]
                 storage_domain_mapping[storage_domain.id] = new_storage_domain_id
@@ -452,7 +464,9 @@ def create_storage_domains():
                     "Error adding storage domain %s, Failed with error %s" % (
                         storage_domain.name, e))
     except Exception as err:
-        ERROR_LIST.append("Error while adding storage domains")
+        ERROR_LIST.append(
+            "Error adding storage domain %s, Failed with error %s" % (
+                storage_domain.name, err))
 
 
 def create_protection_sources():
@@ -646,6 +660,8 @@ def create_protection_jobs():
     sql_parent_source = None
     existing_job_list = {}
     active_protection_jobs = []
+    imported_job_prefix = configparser.get("import_cluster_config", "imported_job_prefix")
+    imported_job_suffix = configparser.get("import_cluster_config", "imported_job_suffix")
     active_protection_jobs = cluster_dict.get("protection_jobs", [])
 
     # Fetch Sql parent source id.
@@ -658,12 +674,25 @@ def create_protection_jobs():
     for job in existing_jobs:
         existing_job_list[job.name] = job.id
 
+
     try:
+        selected_jobs = configparser.get(
+            "import_cluster_config", "selected_jobs")
+        jobs_to_import = [
+            job.strip() for job in selected_jobs.split(",") if selected_jobs]
         for protection_job in active_protection_jobs:
             source_list = []
             _parent_id = None
             is_job_available = False
             job_name = protection_job.name
+            if jobs_to_import and job_name not in jobs_to_import:
+                # Check job is available in the json, if no jobs is added all
+                # the jobs are protected, or else only selected jobs are
+                # protected.
+                continue
+            if imported_job_prefix or imported_job_suffix:
+                job_name = imported_job_prefix + job_name + imported_job_suffix
+                protection_job.name = job_name
             environment = protection_job.environment
             parent_id = protection_job.parent_source_id
 
@@ -678,11 +707,11 @@ def create_protection_jobs():
                 continue
 
             # Check if the protection source is already available.
-            if protection_job.name in existing_job_list.keys():
+            if job_name in existing_job_list.keys():
                 imported_res_dict["Protection Jobs"].append(
-                    protection_job.name)
+                    job_name)
                 is_job_available = True
-                current_job_id = existing_job_list[protection_job.name]
+                current_job_id = existing_job_list[job_name]
                 if not override:
                     continue
 
@@ -947,7 +976,6 @@ def create_remote_clusters():
         # Check the remote cluster registered is not the current cluster.
         if cluster.remote_ips[0] == import_cluster_ip:
             continue
-
         is_remote_cluster_available = False
         if cluster.name in repl_list.keys():
             if not override:
