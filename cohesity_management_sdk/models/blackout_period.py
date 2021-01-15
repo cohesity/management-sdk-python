@@ -27,7 +27,7 @@ class BlackoutPeriod(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "Id":'id',
+        "id":'Id',
         "day":'day',
         "end_time":'endTime',
         "start_time":'startTime'

@@ -14,7 +14,7 @@ except(IOError, ImportError):
 
 setup(
     name='cohesity_management_sdk',
-    version='1.5.1',
+    version='1.5.2',
     description='This SDK provides operations for interfacing with the Cohesity Cluster.',
     long_description=long_description,
     long_description_content_type=long_description_content_type,

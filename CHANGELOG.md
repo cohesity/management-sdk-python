@@ -1,3 +1,18 @@
+# [1.5.2] - 2021-01-15
+Patch release for blackout policy issue fix
+
+### Added
+- None
+
+### Changed
+- None
+
+### Fixed
+- Fixed code for blackout policy issue.
+
+### Removed
+- None
+
 # [1.5.1] - 2020-09-11
 Patch release for query params issue.
 
