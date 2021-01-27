@@ -1,0 +1,9 @@
+--- 
+repos: 
+-  repo: https://github.com/psf/black
+   # Limits line length to 88, replace single quotes by double quotes, wrap function arguments.
+   rev: master
+   hooks: 
+    - id: black
+      language_version: python
+      args: [ --config=./pyproject.toml]
