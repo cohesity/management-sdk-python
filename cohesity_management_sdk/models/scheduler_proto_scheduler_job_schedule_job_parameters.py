@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2020 Cohesity Inc.
 
-import cohesity_management_sdk.models.scheduler_proto_scheduler_job_schedule_job_parameters_report_job_parameter
+import cohesity_management_sdk.models.scheduler_proto_scheduler_job_schedule__parameter
 
 class SchedulerProto_SchedulerJob_ScheduleJobParameters(object):
 
@@ -48,7 +48,7 @@ class SchedulerProto_SchedulerJob_ScheduleJobParameters(object):
             return None
 
         # Extract variables from the dictionary
-        report_job_parameter = cohesity_management_sdk.models.scheduler_proto_scheduler_job_schedule_job_parameters_report_job_parameter.SchedulerProto_SchedulerJob_ScheduleJobParameters_ReportJobParameter.from_dictionary(dictionary.get('reportJobParameter')) if dictionary.get('reportJobParameter') else None
+        report_job_parameter = cohesity_management_sdk.models.scheduler_proto_scheduler_job_schedule__parameter.SchedulerProto_SchedulerJob_ScheduleJobParameters_ReportJobParameter.from_dictionary(dictionary.get('reportJobParameter')) if dictionary.get('reportJobParameter') else None
 
         # Return an object of this model
         return cls(report_job_parameter)
