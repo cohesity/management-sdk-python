@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.application_restore_object
 import cohesity_management_sdk.models.protection_source_and_application_restore_objects
@@ -60,7 +60,8 @@ class ApplicationsRestoreTaskRequest(object):
             Protection Source environment. 'kHdfs' indicates Hdfs Protection
             Source environment. 'kHive' indicates Hive Protection Source
             environment. 'kHBase' indicates HBase Protection Source
-            environment.
+            environment. 'kUDA' indicates Universal Data Adapter Protection
+            Source environment.
         application_restore_objects (list of ApplicationRestoreObject):
             Specifies the Application Server objects whose data should be
             restored and the restore parameters for each of them. This field
@@ -78,7 +79,7 @@ class ApplicationsRestoreTaskRequest(object):
         password (string): Specifies password of the username to access the
             target source.
         protection_source_and_application_objects (list of
-            protectionSourceAndApplicationObjects): Specifies the list of
+            ProtectionSourceAndApplicationRestoreObjects): Specifies the list of
             hosting protection source and Application restore objects tuple.
         username (string): Specifies username to access the target source.
         vlan_parameters (VlanParameters): Specifies VLAN parameters for the

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.deploy_v_ms_to_cloud_task_state_proto
 import cohesity_management_sdk.models.error_proto
@@ -8,9 +8,12 @@ import cohesity_management_sdk.models.no_sql_connect_params
 import cohesity_management_sdk.models.no_sql_recover_job_params
 import cohesity_management_sdk.models.power_state_config_proto
 import cohesity_management_sdk.models.rename_object_param_proto
+import cohesity_management_sdk.models.restore_o_365_groups_params
 import cohesity_management_sdk.models.restore_acropolis_v_ms_params
 import cohesity_management_sdk.models.restore_kubernetes_namespaces_params
 import cohesity_management_sdk.models.restore_kvmv_ms_params
+import cohesity_management_sdk.models.restore_o_365_teams_params
+import cohesity_management_sdk.models.restore_o_365_public_folders_params
 import cohesity_management_sdk.models.restore_object
 import cohesity_management_sdk.models.restored_object_vcd_config_proto
 import cohesity_management_sdk.models.restore_site_params
@@ -20,6 +23,7 @@ import cohesity_management_sdk.models.restore_vmware_vm_params
 import cohesity_management_sdk.models.restored_object_network_config_proto
 import cohesity_management_sdk.models.perform_restore_task_state_proto
 import cohesity_management_sdk.models.user_information
+import cohesity_management_sdk.models.view_params
 
 class PerformRestoreJobStateProto(object):
 
@@ -77,6 +81,9 @@ class PerformRestoreJobStateProto(object):
             CreateRestoreTaskARg.rename_restored_vapp_param for more details.
         restore_acropolis_vms_params (RestoreAcropolisVMsParams): TODO: type
             description here.
+        restore_groups_params (RestoreO365GroupsParams): This field defines
+            o365 groups specific params for restore job of type
+            kRecoverO365Groups.
         restore_job_id (long|int): A globally unique id for this restore job.
         restore_kubernetes_namespaces_params
             (RestoreKubernetesNamespacesParams): TODO: type description here.
@@ -84,6 +91,9 @@ class PerformRestoreJobStateProto(object):
             here.
         restore_parent_source (EntityProto): Specifies the attributes and the
             latest statistics about an entity.
+        restore_public_folders_params (RestoreO365PublicFoldersParams): This
+            field defines the O365 Public Folders specific params for restore
+            task of type kRecoverO365PublicFolders.
         restore_site_params (RestoreSiteParams): This field defines o365 site
             specific params for restore job of type kRecoverSites.
         restore_task_state_proto_tmpl (PerformRestoreTaskStateProto): This
@@ -93,14 +103,29 @@ class PerformRestoreJobStateProto(object):
         restore_task_vec (list of PerformRestoreJobStateProtoRestoreTask):
             Even if the user wanted to restore an entire job from the latest
             snapshot, this will have info of all the individual objects.
+        restore_teams_params (RestoreO365TeamsParams): This field defines the
+            O365 Teams specific params for restore task of type
+            kRecoverO365Teams.
         restore_vmware_vm_params (RestoreVmwareVMParams): TODO: type
             description here.
         restored_objects_network_config (RestoredObjectNetworkConfigProto):
             TODO: type description here.
         restored_to_different_source (bool): Whether restore is being
             performed to a different parent source.
+        skip_image_deploy (bool): This flag can be set to true to just create
+            the image and not deploy the VM. This flag is set to true during
+            the DR operation that is invoked via runbooks, the creation of
+            image(AMI in case of AWS) and snapshots of the data disk is
+            achieved by invoking a restore of type kConvertAndDeployVMs
+            and orchestration of the VMs is achieved by runbooks.
         start_time_usecs (long|int): The start time for this restore job.
         status (int): Status of the restore job.
+        target_view_name (string): Name of the external view that the user
+            specifies for restore operations. This field will be used to
+            populate "full_view_name" field in PerformRestoreTaskStateProto so
+            that each restore task uses the same view to clone the files into.
+            This field currently only used for recovery type of kCloneVMs
+            backed up using CDP VMs.
         mtype (int): The type of restore being performed.
         user (string): The user who requested this restore job.
         user_info (UserInformation): A message to encapsulate information
@@ -113,6 +138,10 @@ class PerformRestoreJobStateProto(object):
             recovering a vcd entity.
         view_box_id (long|int): The view box id to which the restore job
             belongs to.
+        view_params (ViewParams): The params to use when cloning the view.
+            This contains information about the view that is created when the
+            user requests a clone operation. Information such as QoS,
+            whitelisting can be provided
         warnings (List of ErrorProto): Populate warnings on the job if any.
             The warning messages are propagated from the child restore tasks
             upon completion of the task.
@@ -139,23 +168,29 @@ class PerformRestoreJobStateProto(object):
         "rename_restored_object_param":'renameRestoredObjectParam',
         "rename_restored_vapp_param":'renameRestoredVappParam',
         "restore_acropolis_vms_params":'restoreAcropolisVmsParams',
+        "restore_groups_params":'restoreGroupsParams',
         "restore_job_id":'restoreJobId',
         "restore_kubernetes_namespaces_params":'restoreKubernetesNamespacesParams',
         "restore_kvm_vms_params":'restoreKvmVmsParams',
         "restore_parent_source":'restoreParentSource',
+        "restore_public_folders_params":'restorePublicFoldersParams',
         "restore_site_params":'restoreSiteParams',
         "restore_task_state_proto_tmpl":'restoreTaskStateProtoTmpl',
         "restore_task_vec":'restoreTaskVec',
+        "restore_teams_params":'restoreTeamsParams',
         "restore_vmware_vm_params":'restoreVmwareVmParams',
         "restored_objects_network_config":'restoredObjectsNetworkConfig',
         "restored_to_different_source":'restoredToDifferentSource',
+        "skip_image_deploy":'skipImageDeploy',
         "start_time_usecs":'startTimeUsecs',
         "status":'status',
+        "target_view_name":'targetViewName',
         "mtype":'type',
         "user":'user',
         "user_info":'userInfo',
         "vcd_config":'vcdConfig',
         "view_box_id":'viewBoxId',
+        "view_params":'viewParams',
         "warnings":'warnings'
     }
 
@@ -178,23 +213,29 @@ class PerformRestoreJobStateProto(object):
                  rename_restored_object_param=None,
                  rename_restored_vapp_param=None,
                  restore_acropolis_vms_params=None,
+                 restore_groups_params=None,
                  restore_job_id=None,
                  restore_kubernetes_namespaces_params=None,
                  restore_kvm_vms_params=None,
                  restore_parent_source=None,
+                 restore_public_folders_params=None,
                  restore_site_params=None,
                  restore_task_state_proto_tmpl=None,
                  restore_task_vec=None,
+                 restore_teams_params=None,
                  restore_vmware_vm_params=None,
                  restored_objects_network_config=None,
                  restored_to_different_source=None,
+                 skip_image_deploy=None,
                  start_time_usecs=None,
                  status=None,
+                 target_view_name=None,
                  mtype=None,
                  user=None,
                  user_info=None,
                  vcd_config=None,
                  view_box_id=None,
+                 view_params=None,
                  warnings=None):
         """Constructor for the PerformRestoreJobStateProto class"""
 
@@ -217,23 +258,29 @@ class PerformRestoreJobStateProto(object):
         self.rename_restored_object_param = rename_restored_object_param
         self.rename_restored_vapp_param = rename_restored_vapp_param
         self.restore_acropolis_vms_params = restore_acropolis_vms_params
+        self.restore_groups_params = restore_groups_params
         self.restore_job_id = restore_job_id
         self.restore_kubernetes_namespaces_params = restore_kubernetes_namespaces_params
         self.restore_kvm_vms_params = restore_kvm_vms_params
         self.restore_parent_source = restore_parent_source
+        self.restore_public_folders_params = restore_public_folders_params
         self.restore_site_params = restore_site_params
         self.restore_task_state_proto_tmpl = restore_task_state_proto_tmpl
         self.restore_task_vec = restore_task_vec
+        self.restore_teams_params = restore_teams_params
         self.restore_vmware_vm_params = restore_vmware_vm_params
         self.restored_objects_network_config = restored_objects_network_config
         self.restored_to_different_source = restored_to_different_source
+        self.skip_image_deploy = skip_image_deploy
         self.start_time_usecs = start_time_usecs
         self.status = status
+        self.target_view_name = target_view_name
         self.mtype = mtype
         self.user = user
         self.user_info = user_info
         self.vcd_config = vcd_config
         self.view_box_id = view_box_id
+        self.view_params = view_params
         self.warnings = warnings
 
 
@@ -277,10 +324,12 @@ class PerformRestoreJobStateProto(object):
         rename_restored_object_param = cohesity_management_sdk.models.rename_object_param_proto.RenameObjectParamProto.from_dictionary(dictionary.get('renameRestoredObjectParam')) if dictionary.get('renameRestoredObjectParam') else None
         rename_restored_vapp_param = cohesity_management_sdk.models.rename_object_param_proto.RenameObjectParamProto.from_dictionary(dictionary.get('renameRestoredVappParam')) if dictionary.get('renameRestoredVappParam') else None
         restore_acropolis_vms_params = cohesity_management_sdk.models.restore_acropolis_v_ms_params.RestoreAcropolisVMsParams.from_dictionary(dictionary.get('restoreAcropolisVmsParams')) if dictionary.get('restoreAcropolisVmsParams') else None
+        restore_groups_params = cohesity_management_sdk.models.restore_o_365_groups_params.RestoreO365GroupsParams.from_dictionary(dictionary.get('restoreGroupsParams')) if dictionary.get('restoreGroupsParams') else None
         restore_job_id = dictionary.get('restoreJobId')
         restore_kubernetes_namespaces_params = cohesity_management_sdk.models.restore_kubernetes_namespaces_params.RestoreKubernetesNamespacesParams.from_dictionary(dictionary.get('restoreKubernetesNamespacesParams')) if dictionary.get('restoreKubernetesNamespacesParams') else None
         restore_kvm_vms_params = cohesity_management_sdk.models.restore_kvmv_ms_params.RestoreKVMVMsParams.from_dictionary(dictionary.get('restoreKvmVmsParams')) if dictionary.get('restoreKvmVmsParams') else None
         restore_parent_source = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('restoreParentSource')) if dictionary.get('restoreParentSource') else None
+        restore_public_folders_params = cohesity_management_sdk.models.restore_o_365_public_folders_params.RestoreO365PublicFoldersParams.from_dictionary(dictionary.get('restorePublicFoldersParams')) if dictionary.get('restorePublicFoldersParams') else None
         restore_site_params = cohesity_management_sdk.models.restore_site_params.RestoreSiteParams.from_dictionary(dictionary.get('restoreSiteParams')) if dictionary.get('restoreSiteParams') else None
         restore_task_state_proto_tmpl = cohesity_management_sdk.models.perform_restore_task_state_proto.PerformRestoreTaskStateProto.from_dictionary(dictionary.get('restoreTaskStateProtoTmpl')) if dictionary.get('restoreTaskStateProtoTmpl') else None
         restore_task_vec = None
@@ -288,16 +337,20 @@ class PerformRestoreJobStateProto(object):
             restore_task_vec = list()
             for structure in dictionary.get('restoreTaskVec'):
                 restore_task_vec.append(cohesity_management_sdk.models.perform_restore_job_state_proto_restore_task.PerformRestoreJobStateProtoRestoreTask.from_dictionary(structure))
+        restore_teams_params = cohesity_management_sdk.models.restore_o_365_teams_params.RestoreO365TeamsParams.from_dictionary(dictionary.get('restoreTeamsParams')) if dictionary.get('restoreTeamsParams') else None
         restore_vmware_vm_params = cohesity_management_sdk.models.restore_vmware_vm_params.RestoreVmwareVMParams.from_dictionary(dictionary.get('restoreVmwareVmParams')) if dictionary.get('restoreVmwareVmParams') else None
         restored_objects_network_config = cohesity_management_sdk.models.restored_object_network_config_proto.RestoredObjectNetworkConfigProto.from_dictionary(dictionary.get('restoredObjectsNetworkConfig')) if dictionary.get('restoredObjectsNetworkConfig') else None
         restored_to_different_source = dictionary.get('restoredToDifferentSource')
+        skip_image_deploy = dictionary.get('skipImageDeploy')
         start_time_usecs = dictionary.get('startTimeUsecs')
         status = dictionary.get('status')
+        target_view_name = dictionary.get('targetViewName')
         mtype = dictionary.get('type')
         user = dictionary.get('user')
         user_info = cohesity_management_sdk.models.user_information.UserInformation.from_dictionary(dictionary.get('userInfo')) if dictionary.get('userInfo') else None
         vcd_config = cohesity_management_sdk.models.restored_object_vcd_config_proto.RestoredObjectVCDConfigProto.from_dictionary(dictionary.get('vcdConfig')) if dictionary.get('vcdConfig') else None
         view_box_id = dictionary.get('viewBoxId')
+        view_params = cohesity_management_sdk.models.view_params.ViewParams.from_dictionary(dictionary.get('viewParams')) if dictionary.get('viewParams') else None
         warnings = dictionary.get('warnings')
 
         # Return an object of this model
@@ -319,23 +372,29 @@ class PerformRestoreJobStateProto(object):
                    rename_restored_object_param,
                    rename_restored_vapp_param,
                    restore_acropolis_vms_params,
+                   restore_groups_params,
                    restore_job_id,
                    restore_kubernetes_namespaces_params,
                    restore_kvm_vms_params,
                    restore_parent_source,
+                   restore_public_folders_params,
                    restore_site_params,
                    restore_task_state_proto_tmpl,
                    restore_task_vec,
+                   restore_teams_params,
                    restore_vmware_vm_params,
                    restored_objects_network_config,
                    restored_to_different_source,
+                   skip_image_deploy,
                    start_time_usecs,
                    status,
+                   target_view_name,
                    mtype,
                    user,
                    user_info,
                    vcd_config,
                    view_box_id,
+                   view_params,
                    warnings)
 
 

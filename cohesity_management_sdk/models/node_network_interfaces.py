@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.network_interface
 
@@ -16,6 +16,7 @@ class NodeNetworkInterfaces(object):
         message (string): Specifies an optional message describing the result
             of the request pertaining to this Node.
         node_id (long|int): Specifies the ID of the Node.
+        node_ip (string): Specifies the IP of the Node.
         slot (long|int): Specifies the slot number the Node is located in.
 
     """
@@ -26,6 +27,7 @@ class NodeNetworkInterfaces(object):
         "interfaces":'interfaces',
         "message":'message',
         "node_id":'nodeId',
+        "node_ip":'nodeIp',
         "slot":'slot'
     }
 
@@ -34,6 +36,7 @@ class NodeNetworkInterfaces(object):
                  interfaces=None,
                  message=None,
                  node_id=None,
+                 node_ip=None,
                  slot=None):
         """Constructor for the NodeNetworkInterfaces class"""
 
@@ -42,6 +45,7 @@ class NodeNetworkInterfaces(object):
         self.interfaces = interfaces
         self.message = message
         self.node_id = node_id
+        self.node_ip = node_ip
         self.slot = slot
 
 
@@ -65,6 +69,7 @@ class NodeNetworkInterfaces(object):
         # Extract variables from the dictionary
         chassis_serial = dictionary.get('chassisSerial')
         node_id = dictionary.get('nodeId')
+        node_ip = dictionary.get('nodeIp')
         interfaces = None
         if dictionary.get('interfaces') != None:
             interfaces = list()
@@ -78,6 +83,7 @@ class NodeNetworkInterfaces(object):
                    interfaces,
                    message,
                    node_id,
+                   node_ip,
                    slot)
 
 

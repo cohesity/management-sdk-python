@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.filtering_policy_proto
+import cohesity_management_sdk.models.file_stubbing_params_target_view_map_entry
 
 class FileStubbingParams(object):
 
@@ -18,6 +19,7 @@ class FileStubbingParams(object):
             migrated.
         delete_orphan_data (bool): Delete migrated data if no symlink at
             source is pointing to it.
+        enable_audit_logging (bool): Audit log the file tiering activity.
         file_select_policy (int): File migrate policy based on file
             access/modify time and age.
         file_size (long|int): Gives the size criteria to be used for selecting
@@ -42,8 +44,22 @@ class FileStubbingParams(object):
         nfs_mount_path (string): Mount path where the Cohesity target view
             must be mounted on all NFS clients for accessing the migrated
             data.
+        nfs_mount_path_prefix (string): nfs_mount_path_prefix contains the
+            parent directory path where respective view name will be suffixed
+            to form a complete mount path where Cohesity target view will be
+            mounted on NFS clients for accessing the migrated data.
+        target_view_map (list of FileStubbingParams_TargetViewMapEntry): The
+            object's entity id to TargetViewData map where the data will be
+            migrated.
         target_view_name (string): The target view name to which the data will
             be migrated.
+        target_view_prefix (string): target_view_prefix is used to support
+            multiple objects in a single tiering job. It helps in generating
+            view name which are reasonably close to the original share name.
+        tiering_goal (long|int): Tiering Goal, i.e. the maximum amount of data
+            that should be present on source after downtiering.
+
+
 
     """
 
@@ -51,37 +67,52 @@ class FileStubbingParams(object):
     _names = {
         "cold_file_window":'coldFileWindow',
         "delete_orphan_data":'deleteOrphanData',
+        "enable_audit_logging":'enableAuditLogging',
         "file_select_policy":'fileSelectPolicy',
         "file_size":'fileSize',
         "file_size_policy":'fileSizePolicy',
         "filtering_policy":'filteringPolicy',
         "migrate_without_stub":'migrateWithoutStub',
         "nfs_mount_path":'nfsMountPath',
-        "target_view_name":'targetViewName'
+        "nfs_mount_path_prefix":'nfsMountPathPrefix',
+        "target_view_map":'targetViewMap',
+        "target_view_name":'targetViewName',
+        "target_view_prefix":'targetViewPrefix',
+        "tiering_goal":'tieringGoal'
     }
 
     def __init__(self,
                  cold_file_window=None,
                  delete_orphan_data=None,
+                 enable_audit_logging=None,
                  file_select_policy=None,
                  file_size=None,
                  file_size_policy=None,
                  filtering_policy=None,
                  migrate_without_stub=None,
                  nfs_mount_path=None,
-                 target_view_name=None):
+                 nfs_mount_path_prefix=None,
+                 target_view_map=None,
+                 target_view_name=None,
+                 target_view_prefix=None,
+                 tiering_goal=None):
         """Constructor for the FileStubbingParams class"""
 
         # Initialize members of the class
         self.cold_file_window = cold_file_window
         self.delete_orphan_data = delete_orphan_data
+        self.enable_audit_logging = enable_audit_logging
         self.file_select_policy = file_select_policy
         self.file_size = file_size
         self.file_size_policy = file_size_policy
         self.filtering_policy = filtering_policy
         self.migrate_without_stub = migrate_without_stub
         self.nfs_mount_path = nfs_mount_path
+        self.nfs_mount_path_prefix = nfs_mount_path_prefix
+        self.target_view_map = target_view_map
         self.target_view_name = target_view_name
+        self.target_view_prefix = target_view_prefix
+        self.tiering_goal = tiering_goal
 
 
     @classmethod
@@ -103,24 +134,38 @@ class FileStubbingParams(object):
 
         # Extract variables from the dictionary
         cold_file_window = dictionary.get('coldFileWindow')
-        delete_orphan_data = dictionary.get('deleteOrphanData', None)
+        delete_orphan_data = dictionary.get('deleteOrphanData')
+        enable_audit_logging = dictionary.get('enableAuditLogging')
         file_select_policy = dictionary.get('fileSelectPolicy')
         file_size = dictionary.get('fileSize')
         file_size_policy = dictionary.get('fileSizePolicy')
         filtering_policy = cohesity_management_sdk.models.filtering_policy_proto.FilteringPolicyProto.from_dictionary(dictionary.get('filteringPolicy')) if dictionary.get('filteringPolicy') else None
         migrate_without_stub = dictionary.get('migrateWithoutStub', None)
         nfs_mount_path = dictionary.get('nfsMountPath')
+        nfs_mount_path_prefix = dictionary.get('nfsMountPathPrefix')
+        target_view_map = None
+        if dictionary.get('targetViewMap') != None:
+            target_view_map = list()
+            for structure in dictionary.get('targetViewMap'):
+                target_view_map.append(cohesity_management_sdk.models.file_stubbing_params_target_view_map_entry.FileStubbingParams_TargetViewMapEntry.from_dictionary(structure))
         target_view_name = dictionary.get('targetViewName')
+        target_view_prefix = dictionary.get('targetViewPrefix')
+        tiering_goal = dictionary.get('tieringGoal')
 
         # Return an object of this model
         return cls(cold_file_window,
                    delete_orphan_data,
+                   enable_audit_logging,
                    file_select_policy,
                    file_size,
                    file_size_policy,
                    filtering_policy,
                    migrate_without_stub,
                    nfs_mount_path,
-                   target_view_name)
+                   nfs_mount_path_prefix,
+                   target_view_map,
+                   target_view_name,
+                   target_view_prefix,
+                   tiering_goal)
 
 

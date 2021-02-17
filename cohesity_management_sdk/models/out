@@ -1,0 +1,13 @@
+    Attributes:
+
+        KREADYTOSCHEDULE: TODO: type description here.
+        KADMITTED: TODO: type description here.
+        KFINISHED: TODO: type description here.
+
+    """
+    KREADYTOSCHEDULE = 'kReadyToSchedule'
+
+    KADMITTED = 'kAdmitted'
+
+    KFINISHED = 'kFinished'
+

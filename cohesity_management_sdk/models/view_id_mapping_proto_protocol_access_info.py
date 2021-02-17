@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 
 class ViewIdMappingProtoProtocolAccessInfo(object):
@@ -10,6 +10,8 @@ class ViewIdMappingProtoProtocolAccessInfo(object):
 
     Attributes:
         iscsi_access (int): Access control for iSCSI protocol for this view.
+        nfs4_access (int): Access control for NFSv4.1 protocol for this view.
+            NFSv4.1 will be disabled by default in all configurations.
         nfs_access (int): Access control for NFS protocol for this view.
         s_3_access (int): Access control for S3 protocol for this view.
         smb_access (int): Access control for SMB protocol for this view.
@@ -20,6 +22,7 @@ class ViewIdMappingProtoProtocolAccessInfo(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "iscsi_access":'iscsiAccess',
+        "nfs4_access":'nfs4Access',
         "nfs_access":'nfsAccess',
         "s_3_access":'s3Access',
         "smb_access":'smbAccess',
@@ -28,6 +31,7 @@ class ViewIdMappingProtoProtocolAccessInfo(object):
 
     def __init__(self,
                  iscsi_access=None,
+                 nfs4_access=None,
                  nfs_access=None,
                  s_3_access=None,
                  smb_access=None,
@@ -36,6 +40,7 @@ class ViewIdMappingProtoProtocolAccessInfo(object):
 
         # Initialize members of the class
         self.iscsi_access = iscsi_access
+        self.nfs4_access = nfs4_access
         self.nfs_access = nfs_access
         self.s_3_access = s_3_access
         self.smb_access = smb_access
@@ -61,6 +66,7 @@ class ViewIdMappingProtoProtocolAccessInfo(object):
 
         # Extract variables from the dictionary
         iscsi_access = dictionary.get('iscsiAccess')
+        nfs4_access = dictionary.get('nfs4Access')
         nfs_access = dictionary.get('nfsAccess')
         s_3_access = dictionary.get('s3Access')
         smb_access = dictionary.get('smbAccess')
@@ -68,6 +74,7 @@ class ViewIdMappingProtoProtocolAccessInfo(object):
 
         # Return an object of this model
         return cls(iscsi_access,
+                   nfs4_access,
                    nfs_access,
                    s_3_access,
                    smb_access,

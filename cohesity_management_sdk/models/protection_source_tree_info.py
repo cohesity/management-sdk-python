@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.application_info
 import cohesity_management_sdk.models.entity_permission_information
@@ -38,6 +38,10 @@ class ProtectionSourceTreeInfo(object):
         stats_by_env (list of ProtectionSummaryByEnv): Specifies the breakdown
             of the stats of protection by environment. overrideDescription:
             true
+        total_downtiered_size_in_bytes (long|int): Specifies the total bytes
+            downtiered from the source so far.
+        total_uptiered_size_in_bytes (long|int): Specifies the total bytes
+            uptiered to the source so far.
 
     """
 
@@ -49,7 +53,9 @@ class ProtectionSourceTreeInfo(object):
         "registration_info":'registrationInfo',
         "root_node":'rootNode',
         "stats":'stats',
-        "stats_by_env":'statsByEnv'
+        "stats_by_env":'statsByEnv',
+        "total_downtiered_size_in_bytes":'totalDowntieredSizeInBytes',
+        "total_uptiered_size_in_bytes":'totalUptieredSizeInBytes'
     }
 
     def __init__(self,
@@ -59,7 +65,9 @@ class ProtectionSourceTreeInfo(object):
                  registration_info=None,
                  root_node=None,
                  stats=None,
-                 stats_by_env=None):
+                 stats_by_env=None,
+                 total_downtiered_size_in_bytes=None,
+                 total_uptiered_size_in_bytes=None):
         """Constructor for the ProtectionSourceTreeInfo class"""
 
         # Initialize members of the class
@@ -70,6 +78,8 @@ class ProtectionSourceTreeInfo(object):
         self.root_node = root_node
         self.stats = stats
         self.stats_by_env = stats_by_env
+        self.total_downtiered_size_in_bytes = total_downtiered_size_in_bytes
+        self.total_uptiered_size_in_bytes = total_uptiered_size_in_bytes
 
 
     @classmethod
@@ -105,6 +115,8 @@ class ProtectionSourceTreeInfo(object):
             stats_by_env = list()
             for structure in dictionary.get('statsByEnv'):
                 stats_by_env.append(cohesity_management_sdk.models.protection_summary_by_env.ProtectionSummaryByEnv.from_dictionary(structure))
+        total_downtiered_size_in_bytes = dictionary.get('totalDowntieredSizeInBytes')
+        total_uptiered_size_in_bytes = dictionary.get('totalUptieredSizeInBytes')
 
         # Return an object of this model
         return cls(applications,
@@ -113,6 +125,8 @@ class ProtectionSourceTreeInfo(object):
                    registration_info,
                    root_node,
                    stats,
-                   stats_by_env)
+                   stats_by_env,
+                   total_downtiered_size_in_bytes,
+                   total_uptiered_size_in_bytes)
 
 

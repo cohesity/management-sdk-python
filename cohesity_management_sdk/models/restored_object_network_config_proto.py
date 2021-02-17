@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.network_mapping_proto
 import cohesity_management_sdk.models.entity_proto
+import cohesity_management_sdk.models.org_v_d_c_network
 
 class RestoredObjectNetworkConfigProto(object):
 
@@ -23,6 +24,8 @@ class RestoredObjectNetworkConfigProto(object):
         preserve_mac_address_on_new_network (bool): If this is true and we are
             attaching to a new network entity, then the VM's MAC address will
             be preserved on the new network.
+        vcd_network (OrgVDCNetwork): This will be populated for
+            kVirtualDatacenter.
         vnic_entity (EntityProto): Specifies the attributes and the latest
             statistics about an entity.
 
@@ -35,6 +38,7 @@ class RestoredObjectNetworkConfigProto(object):
         "mappings":'mappings',
         "network_entity":'networkEntity',
         "preserve_mac_address_on_new_network":'preserveMacAddressOnNewNetwork',
+        "vcd_network":'vcdNetwork',
         "vnic_entity":'vnicEntity'
     }
 
@@ -44,6 +48,7 @@ class RestoredObjectNetworkConfigProto(object):
                  mappings=None,
                  network_entity=None,
                  preserve_mac_address_on_new_network=None,
+                 vcd_network=None,
                  vnic_entity=None):
         """Constructor for the RestoredObjectNetworkConfigProto class"""
 
@@ -53,6 +58,7 @@ class RestoredObjectNetworkConfigProto(object):
         self.mappings = mappings
         self.network_entity = network_entity
         self.preserve_mac_address_on_new_network = preserve_mac_address_on_new_network
+        self.vcd_network = vcd_network
         self.vnic_entity = vnic_entity
 
 
@@ -83,6 +89,7 @@ class RestoredObjectNetworkConfigProto(object):
                 mappings.append(cohesity_management_sdk.models.network_mapping_proto.NetworkMappingProto.from_dictionary(structure))
         network_entity = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('networkEntity')) if dictionary.get('networkEntity') else None
         preserve_mac_address_on_new_network = dictionary.get('preserveMacAddressOnNewNetwork')
+        vcd_network = cohesity_management_sdk.models.org_v_d_c_network.OrgVDCNetwork.from_dictionary(dictionary.get('vcdNetwork')) if dictionary.get('vcdNetwork') else None
         vnic_entity = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('vnicEntity')) if dictionary.get('vnicEntity') else None
 
         # Return an object of this model
@@ -91,6 +98,7 @@ class RestoredObjectNetworkConfigProto(object):
                    mappings,
                    network_entity,
                    preserve_mac_address_on_new_network,
+                   vcd_network,
                    vnic_entity)
 
 

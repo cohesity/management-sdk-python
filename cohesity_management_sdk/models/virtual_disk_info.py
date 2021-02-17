@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 
 class VirtualDiskInfo(object):
@@ -15,6 +15,7 @@ class VirtualDiskInfo(object):
             IDE etc.
         filename (string): Specifies the host file name used as the virtual
             disk.
+        logical_size_bytes (long|int): Virtual disk size.
         unit_number (long|int): Specifies the disk file name. This is the VMDK
             name and not the flat file name.
 
@@ -25,6 +26,7 @@ class VirtualDiskInfo(object):
         "bus_number":'busNumber',
         "controller_type":'controllerType',
         "filename":'filename',
+        "logical_size_bytes":'logicalSizeBytes',
         "unit_number":'unitNumber'
     }
 
@@ -32,6 +34,7 @@ class VirtualDiskInfo(object):
                  bus_number=None,
                  controller_type=None,
                  filename=None,
+                 logical_size_bytes=None,
                  unit_number=None):
         """Constructor for the VirtualDiskInfo class"""
 
@@ -39,6 +42,7 @@ class VirtualDiskInfo(object):
         self.bus_number = bus_number
         self.controller_type = controller_type
         self.filename = filename
+        self.logical_size_bytes = logical_size_bytes
         self.unit_number = unit_number
 
 
@@ -63,12 +67,14 @@ class VirtualDiskInfo(object):
         bus_number = dictionary.get('busNumber')
         controller_type = dictionary.get('controllerType')
         filename = dictionary.get('filename')
+        logical_size_bytes = dictionary.get('logicalSizeBytes')
         unit_number = dictionary.get('unitNumber')
 
         # Return an object of this model
         return cls(bus_number,
                    controller_type,
                    filename,
+                   logical_size_bytes,
                    unit_number)
 
 

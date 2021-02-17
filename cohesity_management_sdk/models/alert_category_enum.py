@@ -1,66 +1,133 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 class AlertCategoryEnum(object):
 
     """Implementation of the 'AlertCategory' enum.
 
     Specifies the category of an Alert.
-    kDisk - Alerts that are related to Disk.
-    kNode - Alerts that are related to Node.
-    kCluster - Alerts that are related to Cluster.
-    kNodeHealth - Alerts that are related to Node Health.
-    kClusterHealth - Alerts that are related to Cluster Health.
-    kBackupRestore - Alerts that are related to Backup/Restore.
-    kEncryption - Alerts that are related to Encryption.
-    kArchivalRestore - Alerts that are related to Archival/Restore.
-    kRemoteReplication - Alerts that are related to Remote Replication.
-    kQuota - Alerts that are related to Quota.
-    kLicense - Alerts that are related to License.
-    kHeliosProActiveWellness - Alerts that are related to Helios ProActive
-    Wellness.
-    kHeliosAnalyticsJobs - Alerts that are related to Helios Analytics Jobs.
-    kHeliosSignatureJobs - Alerts that are related to Helios Signature Jobs.
-    kSecurity - Alerts that are related to Security.
-    kAppsInfra - Alerts that are related to applications infra.
-    kAntivirus - Alerts that are related to antivirus.
-    kArchivalCopy - Alerts that are related to archival copies.
+    kDisk - Alert associated with the disk.
+    kNode - Alert associated with general hardware on a specific node.
+    kCluster - Alert associated with general hardware in cluster level.
+    kChassis - Alert associated with the Chassis.
+    kPowerSupply - Alert associated with the power supply.
+    kCPU - Alert associated with the CPU usage.
+    kMemory - Alert associated with the RAM/Memory.
+    kTemperature - Alert associated with the temperature.
+    kFan - Alert associated with the fan.
+    kNIC - Alert associated with network chips and interfaces.
+    kFirmware - Alert associated with the firmware.
+    kNodeHealth - Alert associated with node health status.
+    kOperatingSystem - Alert associated with operating systems.
+    kDataPath - Alert associated with data management in the cluster.
+    kMetadata - Alert associated with metadata management.
+    kIndexing - Alert associated with indexing services.
+    kHelios - Alert associated with Helios.
+    kAppMarketPlace - Alert associated with App MarketPlace.
+    kLicense - Alert associated with licensing.
+    kSecurity - Alert associated with security.
+    kUpgrade - Alert associated with upgrade activities.
+    kClusterManagement - Alert associated with cluster management activities.
+    kAuditLog - Alert associated with audit log events.
+    kNetworking - Alert associated with networking issue.
+    kConfiguration - Alert associated with cluster or system configurations.
+    kStorageUsage - Alert associated with the disk/domain/cluster storage usage.
+    kFaultTolerance - Alert associated with the fault tolerance in different levels.
+    kBackupRestore - Alert associated with Backup-Restore job.
+    kArchivalRestore - Alert associated with Archival-Restore job.
+    kRemoteReplication - Alert associated with Replication job.
+    kQuota - Alert associated with Quotas.
 
     Attributes:
+
         KDISK: TODO: type description here.
         KNODE: TODO: type description here.
         KCLUSTER: TODO: type description here.
+        KCHASSIS: TODO: type description here.
+        KPOWERSUPPLY: TODO: type description here.
+        KCPU: TODO: type description here.
+        KMEMORY: TODO: type description here.
+        KTEMPERATURE: TODO: type description here.
+        KFAN: TODO: type description here.
+        KNIC: TODO: type description here.
+        KFIRMWARE: TODO: type description here.
         KNODEHEALTH: TODO: type description here.
-        KCLUSTERHEALTH: TODO: type description here.
+        KOPERATINGSYSTEM: TODO: type description here.
+        KDATAPATH: TODO: type description here.
+        KMETADATA: TODO: type description here.
+        KINDEXING: TODO: type description here.
+        KHELIOS: TODO: type description here.
+        KAPPMARKETPLACE: TODO: type description here.
+        KLICENSE: TODO: type description here.
+        KSECURITY: TODO: type description here.
+        KUPGRADE: TODO: type description here.
+        KCLUSTERMANAGEMENT: TODO: type description here.
+        KAUDITLOG: TODO: type description here.
+        KNETWORKING: TODO: type description here.
+        KCONFIGURATION: TODO: type description here.
+        KSTORAGEUSAGE: TODO: type description here.
+        KFAULTTOLERANCE: TODO: type description here.
         KBACKUPRESTORE: TODO: type description here.
-        KENCRYPTION: TODO: type description here.
         KARCHIVALRESTORE: TODO: type description here.
         KREMOTEREPLICATION: TODO: type description here.
         KQUOTA: TODO: type description here.
-        KLICENSE: TODO: type description here.
-        KHELIOSPROACTIVEWELLNESS: TODO: type description here.
-        KHELIOSANALYTICSJOBS: TODO: type description here.
-        KHELIOSSIGNATUREJOBS: TODO: type description here.
-        KSECURITY: TODO: type description here. 
-        KAPPSINFRA: TODO: type description here.
-        KANTIVIRUS: TODO: type description here.
-        KARCHIVALCOPY: TODO: type description here.
 
     """
-
     KDISK = 'kDisk'
 
     KNODE = 'kNode'
 
     KCLUSTER = 'kCluster'
 
+    KCHASSIS = 'kChassis'
+
+    KPOWERSUPPLY = 'kPowerSupply'
+
+    KCPU = 'kCPU'
+
+    KMEMORY = 'kMemory'
+
+    KTEMPERATURE = 'kTemperature'
+
+    KFAN = 'kFan'
+
+    KNIC = 'kNIC'
+
+    KFIRMWARE = 'kFirmware'
+
     KNODEHEALTH = 'kNodeHealth'
 
-    KCLUSTERHEALTH = 'kClusterHealth'
+    KOPERATINGSYSTEM = 'kOperatingSystem'
+
+    KDATAPATH = 'kDataPath'
+
+    KMETADATA = 'kMetadata'
+
+    KINDEXING = 'kIndexing'
+
+    KHELIOS = 'kHelios'
+
+    KAPPMARKETPLACE = 'kAppMarketPlace'
+
+    KLICENSE = 'kLicense'
+
+    KSECURITY = 'kSecurity'
+
+    KUPGRADE = 'kUpgrade'
+
+    KCLUSTERMANAGEMENT = 'kClusterManagement'
+
+    KAUDITLOG = 'kAuditLog'
+
+    KNETWORKING = 'kNetworking'
+
+    KCONFIGURATION = 'kConfiguration'
+
+    KSTORAGEUSAGE = 'kStorageUsage'
+
+    KFAULTTOLERANCE = 'kFaultTolerance'
 
     KBACKUPRESTORE = 'kBackupRestore'
-
-    KENCRYPTION = 'kEncryption'
 
     KARCHIVALRESTORE = 'kArchivalRestore'
 
@@ -68,18 +135,3 @@ class AlertCategoryEnum(object):
 
     KQUOTA = 'kQuota'
 
-    KLICENSE = 'kLicense'
-
-    KHELIOSPROACTIVEWELLNESS = 'kHeliosProActiveWellness'
-
-    KHELIOSANALYTICSJOBS = 'kHeliosAnalyticsJobs'
-
-    KHELIOSSIGNATUREJOBS = 'kHeliosSignatureJobs'
-
-    KSECURITY = 'kSecurity'
-
-    KAPPSINFRA = 'kAppsInfra'
-
-    KANTIVIRUS = 'kAntivirus'
-
-    KARCHIVALCOPY = 'kArchivalCopy'

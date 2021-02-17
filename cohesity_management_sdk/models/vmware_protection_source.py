@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.agent_information
 import cohesity_management_sdk.models.datastore_info
@@ -8,6 +8,7 @@ import cohesity_management_sdk.models.vmware_object_id
 import cohesity_management_sdk.models.tag_attribute
 import cohesity_management_sdk.models.vcloud_director_info
 import cohesity_management_sdk.models.virtual_disk_info
+import cohesity_management_sdk.models.vmware_cdp_protection_source_info
 
 class VmwareProtectionSource(object):
 
@@ -20,6 +21,9 @@ class VmwareProtectionSource(object):
         agents (list of AgentInformation): Specifies the list of agent
             information on the Virtual Machine. This is set only if the
             Virtual Machine has persistent agent.
+        cdp_info (VMwareCdpProtectionSourceInfo): This field contains the
+            details about Continuous Data Protection (CDP) of the Protection
+            Source.
         connection_state (ConnectionStateEnum): Specifies the connection state
             of the Object and are only valid for ESXi hosts ('kHostSystem') or
             Virtual Machines ('kVirtualMachine'). These enums are equivalent
@@ -60,6 +64,8 @@ class VmwareProtectionSource(object):
             for entities that have it.
         is_vm_template (bool): IsTemplate specifies if the VM is a template or
             not.
+        is_vmc_entity (bool): This field is used for indicating that
+            registered vmware source is a VMC (VMware Cloud) environment.
         name (string): Specifies a human readable name of the Protection
             Source.
         tag_attributes (list of TagAttribute): Specifies the optional list of
@@ -114,6 +120,9 @@ class VmwareProtectionSource(object):
         virtual_disks (list of VirtualDiskInfo): Specifies an array of virtual
             disks that are part of the Virtual Machine. This is populated for
             entities of type 'kVirtualMachine'.
+        vm_linking_info (VmLinkingInfo): This field contains information about
+            a VM that has been migrated from another vCenter. This is only
+            valid for the 'kVirtualMachine' type.
 
     """
 
@@ -121,6 +130,7 @@ class VmwareProtectionSource(object):
     _names = {
         "agent_id":'agentId',
         "agents":'agents',
+        "cdp_info":'cdpInfo',
         "connection_state":'connectionState',
         "datastore_info":'datastoreInfo',
         "folder_type":'folderType',
@@ -129,18 +139,21 @@ class VmwareProtectionSource(object):
         "id":'id',
         "ip_details":'ipDetails',
         "is_vm_template":'isVmTemplate',
+        "is_vmc_entity":'isVmcEntity',
         "name":'name',
         "tag_attributes":'tagAttributes',
         "tools_running_status":'toolsRunningStatus',
         "mtype":'type',
         "vcloud_director_info":'vCloudDirectorInfo',
         "version":'version',
-        "virtual_disks":'virtualDisks'
+        "virtual_disks":'virtualDisks',
+        "vm_linking_info":'vmLinkingInfo'
     }
 
     def __init__(self,
                  agent_id=None,
                  agents=None,
+                 cdp_info=None,
                  connection_state=None,
                  datastore_info=None,
                  folder_type=None,
@@ -149,18 +162,21 @@ class VmwareProtectionSource(object):
                  id=None,
                  ip_details=None,
                  is_vm_template=None,
+                 is_vmc_entity=None,
                  name=None,
                  tag_attributes=None,
                  tools_running_status=None,
                  mtype=None,
                  vcloud_director_info=None,
                  version=None,
-                 virtual_disks=None):
+                 virtual_disks=None,
+                 vm_linking_info=None):
         """Constructor for the VmwareProtectionSource class"""
 
         # Initialize members of the class
         self.agent_id = agent_id
         self.agents = agents
+        self.cdp_info = cdp_info
         self.connection_state = connection_state
         self.datastore_info = datastore_info
         self.folder_type = folder_type
@@ -169,6 +185,7 @@ class VmwareProtectionSource(object):
         self.id = id
         self.ip_details = ip_details
         self.is_vm_template = is_vm_template
+        self.is_vmc_entity = is_vmc_entity
         self.name = name
         self.tag_attributes = tag_attributes
         self.tools_running_status = tools_running_status
@@ -176,6 +193,7 @@ class VmwareProtectionSource(object):
         self.vcloud_director_info = vcloud_director_info
         self.version = version
         self.virtual_disks = virtual_disks
+        self.vm_linking_info = vm_linking_info
 
 
     @classmethod
@@ -202,6 +220,7 @@ class VmwareProtectionSource(object):
             agents = list()
             for structure in dictionary.get('agents'):
                 agents.append(cohesity_management_sdk.models.agent_information.AgentInformation.from_dictionary(structure))
+        cdp_info = cohesity_management_sdk.models.vmware_cdp_protection_source_info.VMwareCdpProtectionSourceInfo.from_dictionary(dictionary.get('cdpInfo')) if dictionary.get('cdpInfo') else None
         connection_state = dictionary.get('connectionState')
         datastore_info = cohesity_management_sdk.models.datastore_info.DatastoreInfo.from_dictionary(dictionary.get('datastoreInfo')) if dictionary.get('datastoreInfo') else None
         folder_type = dictionary.get('folderType')
@@ -210,6 +229,7 @@ class VmwareProtectionSource(object):
         id = cohesity_management_sdk.models.vmware_object_id.VmwareObjectId.from_dictionary(dictionary.get('id')) if dictionary.get('id') else None
         ip_details = cohesity_management_sdk.models.ip_details.IpDetails.from_dictionary(dictionary.get('ipDetails')) if dictionary.get('ipDetails') else None
         is_vm_template = dictionary.get('isVmTemplate')
+        is_vmc_entity = dictionary.get('isVmcEntity')
         name = dictionary.get('name')
         tag_attributes = None
         if dictionary.get('tagAttributes') != None:
@@ -229,10 +249,12 @@ class VmwareProtectionSource(object):
             virtual_disks = list()
             for structure in dictionary.get('virtualDisks'):
                 virtual_disks.append(cohesity_management_sdk.models.virtual_disk_info.VirtualDiskInfo.from_dictionary(structure))
+        vm_linking_info = cohesity_management_sdk.models.vm_linking_info.VmLinkingInfo.from_dictionary(dictionary.get('vmLinkingInfo')) if dictionary.get('vmLinkingInfo') else None
 
         # Return an object of this model
         return cls(agent_id,
                    agents,
+                   cdp_info,
                    connection_state,
                    datastore_info,
                    folder_type,
@@ -241,12 +263,14 @@ class VmwareProtectionSource(object):
                    id,
                    ip_details,
                    is_vm_template,
+                   is_vmc_entity,
                    name,
                    tag_attributes,
                    tools_running_status,
                    mtype,
                    vcloud_director_info,
                    version,
-                   virtual_disks)
+                   virtual_disks,
+                   vm_linking_info)
 
 

@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
+import cohesity_management_sdk.models.analysis_task_info
 import cohesity_management_sdk.models.backup_task_info
 import cohesity_management_sdk.models.bulk_install_app_task_info
 import cohesity_management_sdk.models.clone_task_info
 import cohesity_management_sdk.models.basic_task_info
 import cohesity_management_sdk.models.recovery_task_info
+import cohesity_management_sdk.models.tiering_task_info
 
 class TaskNotification(object):
 
@@ -14,6 +16,8 @@ class TaskNotification(object):
     Structure that captures Task Notifications for a user.
 
     Attributes:
+        analysis_task (AnalysisTaskInfo): The notifications details of
+            Analysis Task.
         backup_task (BackupTaskInfo): The notifications details of Backup
             Task.
         bulk_install_app_task (BulkInstallAppTaskInfo): The notifications
@@ -44,7 +48,11 @@ class TaskNotification(object):
             generated upon completion of Backup tasks. 'FieldMessage'
             notification type is generated when field message from Cohesity
             support is created. 'bulkInstallApp' notification type is
-            generated from bulk install app
+            generated from bulk install app. 'tiering' notification type is
+            generated upon completion of tiering tasks. 'analysis' notification
+            type is generated upon completion of analysis tasks.
+        tiering_task (TieringTaskInfo): The notifications details of Tiering
+            Task.
         visited (bool): Visited keeps track of whether a notification has been
             seen or not.
         visited_time_secs (long|int): Timestamp at which user visited this
@@ -54,6 +62,7 @@ class TaskNotification(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "analysis_task":'analysisTask',
         "backup_task":'backupTask',
         "bulk_install_app_task":'bulkInstallAppTask',
         "clone_task":'cloneTask',
@@ -66,11 +75,13 @@ class TaskNotification(object):
         "recovery_task":'recoveryTask',
         "status":'status',
         "task_type":'taskType',
+        "tiering_task":'tieringTask',
         "visited":'visited',
         "visited_time_secs":'visitedTimeSecs'
     }
 
     def __init__(self,
+                 analysis_task=None,
                  backup_task=None,
                  bulk_install_app_task=None,
                  clone_task=None,
@@ -83,11 +94,13 @@ class TaskNotification(object):
                  recovery_task=None,
                  status=None,
                  task_type=None,
+                 tiering_task=None,
                  visited=None,
                  visited_time_secs=None):
         """Constructor for the TaskNotification class"""
 
         # Initialize members of the class
+        self.analysis_task = analysis_task
         self.backup_task = backup_task
         self.bulk_install_app_task = bulk_install_app_task
         self.clone_task = clone_task
@@ -100,6 +113,7 @@ class TaskNotification(object):
         self.recovery_task = recovery_task
         self.status = status
         self.task_type = task_type
+        self.tiering_task = tiering_task
         self.visited = visited
         self.visited_time_secs = visited_time_secs
 
@@ -122,6 +136,7 @@ class TaskNotification(object):
             return None
 
         # Extract variables from the dictionary
+        analysis_task = cohesity_management_sdk.models.analysis_task_info.AnalysisTaskInfo.from_dictionary(dictionary.get('analysisTask')) if dictionary.get('analysisTask') else None
         backup_task = cohesity_management_sdk.models.backup_task_info.BackupTaskInfo.from_dictionary(dictionary.get('backupTask')) if dictionary.get('backupTask') else None
         bulk_install_app_task = cohesity_management_sdk.models.bulk_install_app_task_info.BulkInstallAppTaskInfo.from_dictionary(dictionary.get('bulkInstallAppTask')) if dictionary.get('bulkInstallAppTask') else None
         clone_task = cohesity_management_sdk.models.clone_task_info.CloneTaskInfo.from_dictionary(dictionary.get('cloneTask')) if dictionary.get('cloneTask') else None
@@ -134,11 +149,13 @@ class TaskNotification(object):
         recovery_task = cohesity_management_sdk.models.recovery_task_info.RecoveryTaskInfo.from_dictionary(dictionary.get('recoveryTask')) if dictionary.get('recoveryTask') else None
         status = dictionary.get('status')
         task_type = dictionary.get('taskType')
+        tiering_task = cohesity_management_sdk.models.tiering_task_info.TieringTaskInfo.from_dictionary(dictionary.get('tieringTask')) if dictionary.get('tieringTask') else None
         visited = dictionary.get('visited')
         visited_time_secs = dictionary.get('visitedTimeSecs')
 
         # Return an object of this model
-        return cls(backup_task,
+        return cls(analysis_task,
+                   backup_task,
                    bulk_install_app_task,
                    clone_task,
                    created_time_secs,
@@ -150,6 +167,7 @@ class TaskNotification(object):
                    recovery_task,
                    status,
                    task_type,
+                   tiering_task,
                    visited,
                    visited_time_secs)
 

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.acropolis_protection_source
 import cohesity_management_sdk.models.ad_protection_source
@@ -29,6 +29,7 @@ import cohesity_management_sdk.models.oracle_protection_source
 import cohesity_management_sdk.models.physical_protection_source
 import cohesity_management_sdk.models.pure_protection_source
 import cohesity_management_sdk.models.sql_protection_source
+import cohesity_management_sdk.models.uda_protection_source
 import cohesity_management_sdk.models.view_protection_source
 import cohesity_management_sdk.models.vmware_protection_source
 
@@ -109,7 +110,8 @@ class ProtectionSource(object):
             environment. 'kCouchbase' indicates Couchbase Protection Source
             environment. 'kHdfs' indicates Hdfs Protection Source environment.
             'kHive' indicates Hive Protection Source environment. 'kHBase'
-            indicates HBase Protection Source environment.
+            indicates HBase Protection Source environment. 'kUDA' indicates
+            Universal Data Adapter Protection Source environment.
         flash_blade_protection_source (FlashBladeProtectionSource): Specifies
             details about a Pure Storage FlashBlade Protection Source when the
             environment is set to 'kFlashBlade'.
@@ -167,6 +169,9 @@ class ProtectionSource(object):
             a Pure Protection Source when the environment is set to 'kPure'.
         sql_protection_source (SqlProtectionSource): Specifies details about a
             SQL Protection Source when the environment is set to 'kSQL'.
+        uda_protection_source (UdaProtectionSource): Specifies details about a
+            Universal Data Adapter Protection Source when the environment is
+            set to 'kUDA'.
         view_protection_source (ViewProtectionSource): Specifies details about
             a View Protection Source when the environment is set to 'kView'.
         vmware_protection_source (VmwareProtectionSource): Specifies details
@@ -209,6 +214,7 @@ class ProtectionSource(object):
         "physical_protection_source":'physicalProtectionSource',
         "pure_protection_source":'pureProtectionSource',
         "sql_protection_source":'sqlProtectionSource',
+        "uda_protection_source":'uda_protection_source',
         "view_protection_source":'viewProtectionSource',
         "vmware_protection_source":'vmWareProtectionSource'
     }
@@ -246,6 +252,7 @@ class ProtectionSource(object):
                  physical_protection_source=None,
                  pure_protection_source=None,
                  sql_protection_source=None,
+                 uda_protection_source=None,
                  view_protection_source=None,
                  vmware_protection_source=None):
         """Constructor for the ProtectionSource class"""
@@ -283,6 +290,7 @@ class ProtectionSource(object):
         self.physical_protection_source = physical_protection_source
         self.pure_protection_source = pure_protection_source
         self.sql_protection_source = sql_protection_source
+        self.uda_protection_source = uda_protection_source
         self.view_protection_source = view_protection_source
         self.vmware_protection_source = vmware_protection_source
 
@@ -337,6 +345,7 @@ class ProtectionSource(object):
         physical_protection_source = cohesity_management_sdk.models.physical_protection_source.PhysicalProtectionSource.from_dictionary(dictionary.get('physicalProtectionSource')) if dictionary.get('physicalProtectionSource') else None
         pure_protection_source = cohesity_management_sdk.models.pure_protection_source.PureProtectionSource.from_dictionary(dictionary.get('pureProtectionSource')) if dictionary.get('pureProtectionSource') else None
         sql_protection_source = cohesity_management_sdk.models.sql_protection_source.SqlProtectionSource.from_dictionary(dictionary.get('sqlProtectionSource')) if dictionary.get('sqlProtectionSource') else None
+        uda_protection_source = cohesity_management_sdk.models.uda_protection_source.UdaProtectionSource.from_dictionary(dictionary.get('udaProtectionSource')) if dictionary.get('udaProtectionSource') else None
         view_protection_source = cohesity_management_sdk.models.view_protection_source.ViewProtectionSource.from_dictionary(dictionary.get('viewProtectionSource')) if dictionary.get('viewProtectionSource') else None
         vmware_protection_source = cohesity_management_sdk.models.vmware_protection_source.VmwareProtectionSource.from_dictionary(dictionary.get('vmWareProtectionSource')) if dictionary.get('vmWareProtectionSource') else None
 
@@ -373,6 +382,7 @@ class ProtectionSource(object):
                    physical_protection_source,
                    pure_protection_source,
                    sql_protection_source,
+                   uda_protection_source,
                    view_protection_source,
                    vmware_protection_source)
 

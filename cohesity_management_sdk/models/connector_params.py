@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.additional_connector_params
 import cohesity_management_sdk.models.credentials
@@ -33,6 +33,11 @@ class ConnectorParams(object):
             is a convenience field and is used to maintain an index to
             different connection params. This is generated at the time when
             the source is registered with Magneto.
+        network_realm_id (long|int): The network-realm id of the tenant
+            through which this source isaccessible. This realm could be a
+            collection of hyxes. If this is set(>= 0), tenant_id must also be
+            set. Value of '0' has special semantics, refer
+            bifrost/base/constant.cc.
         populate_subnet_for_all_cluster_nodes (bool): If set to true, inter
             agent communcation will be enabled and for every GetAgentInfo call
             we will fill subnet information of all the nodes in clustered
@@ -59,6 +64,7 @@ class ConnectorParams(object):
         "entity":'entity',
         "host_type":'hostType',
         "id":'id',
+        "network_realm_id":'networkRealmId',
         "populate_subnet_for_all_cluster_nodes":'populateSubnetForAllClusterNodes',
         "port":'port',
         "tenant_id":'tenantId',
@@ -75,6 +81,7 @@ class ConnectorParams(object):
                  entity=None,
                  host_type=None,
                  id=None,
+                 network_realm_id=None,
                  populate_subnet_for_all_cluster_nodes=None,
                  port=None,
                  tenant_id=None,
@@ -91,6 +98,7 @@ class ConnectorParams(object):
         self.entity = entity
         self.host_type = host_type
         self.id = id
+        self.network_realm_id = network_realm_id
         self.populate_subnet_for_all_cluster_nodes = populate_subnet_for_all_cluster_nodes
         self.port = port
         self.tenant_id = tenant_id
@@ -123,6 +131,7 @@ class ConnectorParams(object):
         endpoint = dictionary.get('endpoint')
         entity = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('entity')) if dictionary.get('entity') else None
         host_type = dictionary.get('hostType')
+        network_realm_id = dictionary.get('networkRealmId')
         id = dictionary.get('id')
         populate_subnet_for_all_cluster_nodes = dictionary.get('populateSubnetForAllClusterNodes', None)
         port = dictionary.get('port')
@@ -139,6 +148,7 @@ class ConnectorParams(object):
                    entity,
                    host_type,
                    id,
+                   network_realm_id,
                    populate_subnet_for_all_cluster_nodes,
                    port,
                    tenant_id,

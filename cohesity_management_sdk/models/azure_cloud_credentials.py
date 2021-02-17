@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 
 class AzureCloudCredentials(object):
@@ -22,6 +22,8 @@ class AzureCloudCredentials(object):
             stored for at least 30 days. 'kAzureTierArchive' indicates a tier
             type of Azure properties that is accessed rarely and stored for at
             least 180 days.
+        tiers (list of string): Specifies the list of all tiers for Amazon
+            account.
 
     """
 
@@ -29,19 +31,22 @@ class AzureCloudCredentials(object):
     _names = {
         "storage_access_key":'storageAccessKey',
         "storage_account_name":'storageAccountName',
-        "tier_type":'tierType'
+        "tier_type":'tierType',
+        "tiers":'tiers'
     }
 
     def __init__(self,
                  storage_access_key=None,
                  storage_account_name=None,
-                 tier_type=None):
+                 tier_type=None,
+                 tiers=None):
         """Constructor for the AzureCloudCredentials class"""
 
         # Initialize members of the class
         self.storage_access_key = storage_access_key
         self.storage_account_name = storage_account_name
         self.tier_type = tier_type
+        self.tiers = tiers
 
 
     @classmethod
@@ -65,10 +70,12 @@ class AzureCloudCredentials(object):
         storage_access_key = dictionary.get('storageAccessKey')
         storage_account_name = dictionary.get('storageAccountName')
         tier_type = dictionary.get('tierType')
+        tiers = dictionary.get('tiers')
 
         # Return an object of this model
         return cls(storage_access_key,
                    storage_account_name,
-                   tier_type)
+                   tier_type,
+                   tiers)
 
 

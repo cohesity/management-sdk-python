@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.bandwidth_limit
 
@@ -11,6 +11,10 @@ class VaultBandwidthLimits(object):
     while uploading/downloading data to/from the external media.
 
     Attributes:
+        cloud_tier_download (BandwidthLimit): Specifies the max rate limit
+            at which we download the data to cloud tier vaults.
+        cloud_tier_upload (BandwidthLimit): Specifies the max rate limit at
+            which we upload the data to cloud tier vaults.
         download (BandwidthLimit): Specifies settings for limiting the data
             transfer rate between the local and remote Clusters.
         upload (BandwidthLimit): Specifies settings for limiting the data
@@ -20,16 +24,22 @@ class VaultBandwidthLimits(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "cloud_tier_download":'cloudTierDownload',
+        "cloud_tier_upload":'cloudTierUpload',
         "download":'download',
         "upload":'upload'
     }
 
     def __init__(self,
+                 cloud_tier_download=None,
+                 cloud_tier_upload=None,
                  download=None,
                  upload=None):
         """Constructor for the VaultBandwidthLimits class"""
 
         # Initialize members of the class
+        self.cloud_tier_download = cloud_tier_download
+        self.cloud_tier_upload = cloud_tier_upload
         self.download = download
         self.upload = upload
 
@@ -52,11 +62,15 @@ class VaultBandwidthLimits(object):
             return None
 
         # Extract variables from the dictionary
+        cloud_tier_download = cohesity_management_sdk.models.bandwidth_limit.BandwidthLimit.from_dictionary(dictionary.get('cloudTierDownload')) if dictionary.get('cloudTierDownload') else None
+        cloud_tier_upload = cohesity_management_sdk.models.bandwidth_limit.BandwidthLimit.from_dictionary(dictionary.get('cloudTierUpload')) if dictionary.get('cloudTierUpload') else None
         download = cohesity_management_sdk.models.bandwidth_limit.BandwidthLimit.from_dictionary(dictionary.get('download')) if dictionary.get('download') else None
         upload = cohesity_management_sdk.models.bandwidth_limit.BandwidthLimit.from_dictionary(dictionary.get('upload')) if dictionary.get('upload') else None
 
         # Return an object of this model
-        return cls(download,
+        return cls(cloud_tier_download,
+                   cloud_tier_upload,
+                   download,
                    upload)
 
 

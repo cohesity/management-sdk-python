@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 class StatusCopyRunEnum(object):
 
@@ -14,14 +14,21 @@ class StatusCopyRunEnum(object):
     'kCanceled' indicates the task has been canceled.
     'kSuccess' indicates the task was successful.
     'kFailure' indicates the task failed.
+    'kWarning' indicates the task has finished with warning.
+    'kOnHold' indicates the task is kept onHold.
+    'kMissed' indicates the task is missed.
 
     Attributes:
+
         KACCEPTED: TODO: type description here.
         KRUNNING: TODO: type description here.
         KCANCELING: TODO: type description here.
         KCANCELED: TODO: type description here.
         KSUCCESS: TODO: type description here.
         KFAILURE: TODO: type description here.
+        KWARNING: TODO: type description here.
+        KONHOLD: TODO: type description here.
+        KMISSED: TODO: type description here.
 
     """
 
@@ -36,4 +43,10 @@ class StatusCopyRunEnum(object):
     KSUCCESS = 'kSuccess'
 
     KFAILURE = 'kFailure'
+
+    KWARNING = 'kWarning'
+
+    KONHOLD = 'kOnHold'
+
+    KMISSED = 'kMissed'
 

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -138,6 +138,8 @@ class ClustersController(BaseController):
         Sends a request to destroy a Cohesity Cluster and returns some
         information
         about the operation and each Node.
+
+        WARNING: This is a destructive operation.
 
         Returns:
             void: Response from the API. No Content
@@ -760,6 +762,8 @@ class ClustersController(BaseController):
         services
         on a Cohesity Cluster and returns a message describing the result.
 
+        WARNING: This is a destructive operation.
+
         Args:
             body (ChangeServiceStateParameters): TODO: type description here.
                 Example:
@@ -962,11 +966,19 @@ class ClustersController(BaseController):
             self.logger.error(e, exc_info=True)
             raise
 
-    def get_external_client_subnets(self):
+    def get_external_client_subnets(self,
+                                    tenant_ids=None,
+                                    all_under_hierarchy=None):
         """Does a GET request to /public/externalClientSubnets.
 
         Returns the external Client Subnets for the cluster.
 
+        Args:
+            tenant_ids (list of string): TenantIds contains ids of the tenants
+                for which objects are to be returned.
+            all_under_hierarchy (bool): AllUnderHierarchy specifies if objects
+                of all the tenants under the hierarchy of the logged in user's
+                organization should be returned.
         Returns:
             ExternalClientSubnets: Response from the API. Success
 
@@ -986,6 +998,13 @@ class ClustersController(BaseController):
             _url_path = '/public/externalClientSubnets'
             _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
+            _query_parameters = {
+                'tenantIds': tenant_ids,
+                'allUnderHierarchy': all_under_hierarchy
+            }
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers

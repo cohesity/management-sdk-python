@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.network_mapping
+import cohesity_management_sdk.models.org_vdc_network
 
 class VmwareCloneParameters(object):
 
@@ -10,6 +11,8 @@ class VmwareCloneParameters(object):
     Specifies the information required for recovering or cloning VmWare VMs.
 
     Attributes:
+        attempt_differential_restore (bool): Specifies whether to attempt
+            differential restore.
         datastore_folder_id (long|int): Specifies the folder where the restore
             datastore should be created. This is applicable only when the VMs
             are being cloned.
@@ -39,6 +42,13 @@ class VmwareCloneParameters(object):
             configuration for a single network. Unless the support for mapping
             is available for all the entities old keys can be used to attach a
             new network. Supports 'kVMware' for now.
+        org_vdc_network (OrgVdcNetwork): Specifies the Org VDC Network to be
+            used for this recovery.
+        overwrite_existing_vm (bool): Specifies whether to overwrite the
+            existing VM for a recovery when rename parameters are not given.
+        power_off_and_rename_existing_vm (bool): Specifies whether to power off
+            and rename the existing VM as deprecated for recovery when rename
+            parameters are not given.
         powered_on (bool): Specifies the power state of the cloned or
             recovered objects. By default, the cloned or recovered objects are
             powered off.
@@ -71,6 +81,10 @@ class VmwareCloneParameters(object):
             object name to derive a new name for the recovered or cloned
             object. By default, cloned or recovered objects retain their
             original name. Length of this field is limited to 8 characters.
+        v_app_id (long|int): Specifies the ID of the vApp to which a VM should
+            be restored.
+        vdc_id (long|int): Specifies the ID of the VDC to which a VM should be
+            restored.
         vm_folder_id (long|int): Specifies a folder where the VMs should be
             restored. This is applicable only when the VMs are being restored
             to an alternate location or if clone is being performed.
@@ -79,11 +93,15 @@ class VmwareCloneParameters(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "attempt_differential_restore":'attemptDifferentialRestore',
         "datastore_folder_id":'datastoreFolderId',
         "detach_network":'detachNetwork',
         "disable_network":'disableNetwork',
         "network_id":'networkId',
         "network_mappings":'networkMappings',
+        "org_vdc_network":'orgVdcNetwork',
+        "overwrite_existing_vm":'overwriteExistingVm',
+        "power_off_and_rename_existing_vm":'powerOffAndRenameExistingVm',
         "powered_on":'poweredOn',
         "prefix":'prefix',
         "preserve_custom_attributes_during_clone":'preserveCustomAttributesDuringClone',
@@ -93,15 +111,21 @@ class VmwareCloneParameters(object):
         "storage_profile_name":'storageProfileName',
         "storage_profile_vcd_uuid":'storageProfileVcdUuid',
         "suffix":'suffix',
+        "v_app_id":'vAppId',
+        "vdc_id":'vdcId',
         "vm_folder_id":'vmFolderId'
     }
 
     def __init__(self,
+                 attempt_differential_restore=None,
                  datastore_folder_id=None,
                  detach_network=None,
                  disable_network=None,
                  network_id=None,
                  network_mappings=None,
+                 org_vdc_network=None,
+                 overwrite_existing_vm=None,
+                 power_off_and_rename_existing_vm=None,
                  powered_on=None,
                  prefix=None,
                  preserve_custom_attributes_during_clone=None,
@@ -111,15 +135,21 @@ class VmwareCloneParameters(object):
                  storage_profile_name=None,
                  storage_profile_vcd_uuid=None,
                  suffix=None,
+                 v_app_id=None,
+                 vdc_id=None,
                  vm_folder_id=None):
         """Constructor for the VmwareCloneParameters class"""
 
         # Initialize members of the class
+        self.attempt_differential_restore = attempt_differential_restore
         self.datastore_folder_id = datastore_folder_id
         self.detach_network = detach_network
         self.disable_network = disable_network
         self.network_id = network_id
         self.network_mappings = network_mappings
+        self.org_vdc_network = org_vdc_network
+        self.overwrite_existing_vm = overwrite_existing_vm
+        self.power_off_and_rename_existing_vm = power_off_and_rename_existing_vm
         self.powered_on = powered_on
         self.prefix = prefix
         self.preserve_custom_attributes_during_clone = preserve_custom_attributes_during_clone
@@ -129,6 +159,8 @@ class VmwareCloneParameters(object):
         self.storage_profile_name = storage_profile_name
         self.storage_profile_vcd_uuid = storage_profile_vcd_uuid
         self.suffix = suffix
+        self.v_app_id = v_app_id
+        self.vdc_id = vdc_id
         self.vm_folder_id = vm_folder_id
 
 
@@ -150,6 +182,7 @@ class VmwareCloneParameters(object):
             return None
 
         # Extract variables from the dictionary
+        attempt_differential_restore = dictionary.get('attemptDifferentialRestore')
         datastore_folder_id = dictionary.get('datastoreFolderId')
         detach_network = dictionary.get('detachNetwork')
         disable_network = dictionary.get('disableNetwork')
@@ -159,6 +192,9 @@ class VmwareCloneParameters(object):
             network_mappings = list()
             for structure in dictionary.get('networkMappings'):
                 network_mappings.append(cohesity_management_sdk.models.network_mapping.NetworkMapping.from_dictionary(structure))
+        org_vdc_network = cohesity_management_sdk.models.org_vdc_network.OrgVdcNetwork.from_dictionary(dictionary.get('orgVdcNetwork')) if dictionary.get('orgVdcNetwork') else None
+        overwrite_existing_vm = dictionary.get('overwriteExistingVm')
+        power_off_and_rename_existing_vm = dictionary.get('powerOffAndRenameExistingVm')
         powered_on = dictionary.get('poweredOn')
         prefix = dictionary.get('prefix')
         preserve_custom_attributes_during_clone = dictionary.get('preserveCustomAttributesDuringClone')
@@ -168,14 +204,20 @@ class VmwareCloneParameters(object):
         storage_profile_name = dictionary.get('storageProfileName')
         storage_profile_vcd_uuid = dictionary.get('storageProfileVcdUuid')
         suffix = dictionary.get('suffix')
+        v_app_id = dictionary.get('vAppId')
+        vdc_id = dictionary.get('vdcId')
         vm_folder_id = dictionary.get('vmFolderId')
 
         # Return an object of this model
-        return cls(datastore_folder_id,
+        return cls(attempt_differential_restore,
+                   datastore_folder_id,
                    detach_network,
                    disable_network,
                    network_id,
                    network_mappings,
+                   org_vdc_network,
+                   overwrite_existing_vm,
+                   power_off_and_rename_existing_vm,
                    powered_on,
                    prefix,
                    preserve_custom_attributes_during_clone,
@@ -185,6 +227,8 @@ class VmwareCloneParameters(object):
                    storage_profile_name,
                    storage_profile_vcd_uuid,
                    suffix,
+                   v_app_id,
+                   vdc_id,
                    vm_folder_id)
 
 

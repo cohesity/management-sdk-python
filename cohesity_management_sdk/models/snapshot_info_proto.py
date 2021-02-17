@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.script_execution_status
 import cohesity_management_sdk.models.object_snapshot_type
 import cohesity_management_sdk.models.storage_snapshot_provider_params
 import cohesity_management_sdk.models.error_proto
+import cohesity_management_sdk.models.size_info
 
 class SnapshotInfoProto(object):
 
@@ -69,7 +70,12 @@ class SnapshotInfoProto(object):
     123
     imanis::SnapshotInfo::nosql_snapshot_info      imanis/nosql.proto
     124
-
+    o365::PublicFolderSnapshotInfo::public_folder_snapshot_info
+    o365/o365.proto           125
+    SnapshotInfo::uda_snapshot_info                uda.proto                 126
+    o365::TeamsSnapshotInfo::teams_snapshot_info   o365/o365.proto           127
+    o365::O365GroupSnapshotInfo::o365_group_snapshot_info
+    o365/o365.proto           128
     ===========================================================================
     ==
 
@@ -80,6 +86,9 @@ class SnapshotInfoProto(object):
         file_walk_done (bool): This field is only applicable for NAS and file
             backup jobs. It indicates whether the file walk portion of the
             backup has completed.
+        front_end_size_info (SizeInfo): Front end size information. An example
+            use case is for billing purposes in "[Backup | Data Management] as
+            a Service" offering.
         num_app_instances (int): Number of application instances backed up by
             this task. For example, if the environment type is kSQL, this
             number is for the SQL server instances.
@@ -111,6 +120,11 @@ class SnapshotInfoProto(object):
         source_snapshot_name (string): This filed is only applicable for NAS
             when we do backup from Readonly/DataProtect volume where we use
             already created snapshot on the source.
+        source_snapshot_status (int): Indicates the state of the source
+            snapshot if it is being managed by the master op.
+            'source_snapshot_name' will be set to indicate the snapshot name.
+            At the moment, this feature is enabled only for Netapp & Isilon
+            adapters to support continuous snapshotting feature.
         storage_snapshot_provider (StorageSnapshotProviderParams): Specifies
             the parameters required for Storage Snapshot provider.
         target_type (int): Specifies the target type for the task. The field
@@ -118,6 +132,8 @@ class SnapshotInfoProto(object):
         total_bytes_read_from_source (long|int): Contains the information
             regarding number of bytes that are read from the source (such as
             VM) so far.
+        total_bytes_tiered (long|int): Total amount of data successfully
+            tiered from the NAS source.
         total_bytes_to_read_from_source (long|int): Contains the total number
             of bytes that will be read from the source (such as VM) for this
             snapshot.
@@ -152,6 +168,7 @@ class SnapshotInfoProto(object):
     _names = {
         "error_rocksdb_name":'errorRocksdbName',
         "file_walk_done":'fileWalkDone',
+        "front_end_size_info":'frontEndSizeInfo',
         "num_app_instances":'numAppInstances',
         "num_app_objects":'numAppObjects',
         "post_backup_script_status":'postBackupScriptStatus',
@@ -164,9 +181,11 @@ class SnapshotInfoProto(object):
         "snapshot_type":'snapshotType',
         "source_snapshot_create_time_usecs":'sourceSnapshotCreateTimeUsecs',
         "source_snapshot_name":'sourceSnapshotName',
+        "source_snapshot_status":'sourceSnapshotStatus',
         "storage_snapshot_provider":'storageSnapshotProvider',
         "target_type":'targetType',
         "total_bytes_read_from_source":'totalBytesReadFromSource',
+        "total_bytes_tiered":'totalBytesTiered',
         "total_bytes_to_read_from_source":'totalBytesToReadFromSource',
         "total_changed_entity_count":'totalChangedEntityCount',
         "total_entity_count":'totalEntityCount',
@@ -182,6 +201,7 @@ class SnapshotInfoProto(object):
     def __init__(self,
                  error_rocksdb_name=None,
                  file_walk_done=None,
+                 front_end_size_info=None,
                  num_app_instances=None,
                  num_app_objects=None,
                  post_backup_script_status=None,
@@ -194,9 +214,11 @@ class SnapshotInfoProto(object):
                  snapshot_type=None,
                  source_snapshot_create_time_usecs=None,
                  source_snapshot_name=None,
+                 source_snapshot_status=None,
                  storage_snapshot_provider=None,
                  target_type=None,
                  total_bytes_read_from_source=None,
+                 total_bytes_tiered=None,
                  total_bytes_to_read_from_source=None,
                  total_changed_entity_count=None,
                  total_entity_count=None,
@@ -212,6 +234,7 @@ class SnapshotInfoProto(object):
         # Initialize members of the class
         self.error_rocksdb_name = error_rocksdb_name
         self.file_walk_done = file_walk_done
+        self.front_end_size_info = front_end_size_info
         self.num_app_instances = num_app_instances
         self.num_app_objects = num_app_objects
         self.post_backup_script_status = post_backup_script_status
@@ -224,9 +247,11 @@ class SnapshotInfoProto(object):
         self.snapshot_type = snapshot_type
         self.source_snapshot_create_time_usecs = source_snapshot_create_time_usecs
         self.source_snapshot_name = source_snapshot_name
+        self.source_snapshot_status = source_snapshot_status
         self.storage_snapshot_provider = storage_snapshot_provider
         self.target_type = target_type
         self.total_bytes_read_from_source = total_bytes_read_from_source
+        self.total_bytes_tiered = total_bytes_tiered
         self.total_bytes_to_read_from_source = total_bytes_to_read_from_source
         self.total_changed_entity_count = total_changed_entity_count
         self.total_entity_count = total_entity_count
@@ -259,6 +284,7 @@ class SnapshotInfoProto(object):
         # Extract variables from the dictionary
         error_rocksdb_name = dictionary.get('errorRocksdbName')
         file_walk_done = dictionary.get('fileWalkDone')
+        front_end_size_info = cohesity_management_sdk.models.size_info.SizeInfo.from_dictionary(dictionary.get('frontEndSizeInfo')) if dictionary.get('frontEndSizeInfo') else None
         num_app_instances = dictionary.get('numAppInstances')
         num_app_objects = dictionary.get('numAppObjects')
         post_backup_script_status = cohesity_management_sdk.models.script_execution_status.ScriptExecutionStatus.from_dictionary(dictionary.get('postBackupScriptStatus')) if dictionary.get('postBackupScriptStatus') else None
@@ -271,9 +297,11 @@ class SnapshotInfoProto(object):
         snapshot_type = cohesity_management_sdk.models.object_snapshot_type.ObjectSnapshotType.from_dictionary(dictionary.get('snapshotType')) if dictionary.get('snapshotType') else None
         source_snapshot_create_time_usecs = dictionary.get('sourceSnapshotCreateTimeUsecs')
         source_snapshot_name = dictionary.get('sourceSnapshotName')
+        source_snapshot_status = dictionary.get('sourceSnapshotStatus')
         storage_snapshot_provider = cohesity_management_sdk.models.storage_snapshot_provider_params.StorageSnapshotProviderParams.from_dictionary(dictionary.get('storageSnapshotProvider')) if dictionary.get('storageSnapshotProvider') else None
         target_type = dictionary.get('targetType')
         total_bytes_read_from_source = dictionary.get('totalBytesReadFromSource')
+        total_bytes_tiered = dictionary.get('totalBytesTiered')
         total_bytes_to_read_from_source = dictionary.get('totalBytesToReadFromSource')
         total_changed_entity_count = dictionary.get('totalChangedEntityCount')
         total_entity_count = dictionary.get('totalEntityCount')
@@ -292,6 +320,7 @@ class SnapshotInfoProto(object):
         # Return an object of this model
         return cls(error_rocksdb_name,
                    file_walk_done,
+                   front_end_size_info,
                    num_app_instances,
                    num_app_objects,
                    post_backup_script_status,
@@ -304,9 +333,11 @@ class SnapshotInfoProto(object):
                    snapshot_type,
                    source_snapshot_create_time_usecs,
                    source_snapshot_name,
+                   source_snapshot_status,
                    storage_snapshot_provider,
                    target_type,
                    total_bytes_read_from_source,
+                   total_bytes_tiered,
                    total_bytes_to_read_from_source,
                    total_changed_entity_count,
                    total_entity_count,

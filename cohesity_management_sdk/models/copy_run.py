@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.copy_snapshot_task_status
 import cohesity_management_sdk.models.legal_holdings
@@ -41,7 +41,9 @@ class CopyRun(object):
             request to cancel the task has occurred but the task is not yet
             canceled. 'kCanceled' indicates the task has been canceled.
             'kSuccess' indicates the task was successful. 'kFailure' indicates
-            the task failed.
+            the task failed. 'kWarning' indicates the task has finished with warning.
+            'kOnHold' indicates the task is kept onHold.
+            'kMissed' indicates the task is missed.
         target (SnapshotTargetSettings): Specifies settings about a target
             where a copied Snapshot is stored. A target can be a Remote
             Cluster or an Archival External Target such as AWS or Tape.

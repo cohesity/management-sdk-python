@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.error_proto
 import cohesity_management_sdk.models.retrieve_archive_info_retrieved_entity
@@ -28,6 +28,8 @@ class RetrieveArchiveInfo(object):
             monitor for this task.
         retrieved_entity_vec (list of RetrieveArchiveInfoRetrievedEntity):
             Contains info about all retrieved entities.
+        skip_cloning_view (bool): If true, we will use the view directly
+            without cloning it and delete it when the restore is complete.
         start_time_usecs (long|int): Time when this retrieval task was started
             by Icebox. If not set, then retrieval has not been started yet.
         stub_view_name (string): The stub view that Icebox created. Stub view
@@ -56,6 +58,7 @@ class RetrieveArchiveInfo(object):
         "logical_size_bytes":'logicalSizeBytes',
         "progress_monitor_task_path":'progressMonitorTaskPath',
         "retrieved_entity_vec":'retrievedEntityVec',
+        "skip_cloning_view":'skipCloningView',
         "start_time_usecs":'startTimeUsecs',
         "stub_view_name":'stubViewName',
         "stub_view_relative_dir_name":'stubViewRelativeDirName',
@@ -72,6 +75,7 @@ class RetrieveArchiveInfo(object):
                  logical_size_bytes=None,
                  progress_monitor_task_path=None,
                  retrieved_entity_vec=None,
+                 skip_cloning_view=None,
                  start_time_usecs=None,
                  stub_view_name=None,
                  stub_view_relative_dir_name=None,
@@ -88,6 +92,7 @@ class RetrieveArchiveInfo(object):
         self.logical_size_bytes = logical_size_bytes
         self.progress_monitor_task_path = progress_monitor_task_path
         self.retrieved_entity_vec = retrieved_entity_vec
+        self.skip_cloning_view = skip_cloning_view
         self.start_time_usecs = start_time_usecs
         self.stub_view_name = stub_view_name
         self.stub_view_relative_dir_name = stub_view_relative_dir_name
@@ -125,6 +130,7 @@ class RetrieveArchiveInfo(object):
             retrieved_entity_vec = list()
             for structure in dictionary.get('retrievedEntityVec'):
                 retrieved_entity_vec.append(cohesity_management_sdk.models.retrieve_archive_info_retrieved_entity.RetrieveArchiveInfoRetrievedEntity.from_dictionary(structure))
+        skip_cloning_view = dictionary.get('skipCloningView')
         start_time_usecs = dictionary.get('startTimeUsecs')
         stub_view_name = dictionary.get('stubViewName')
         stub_view_relative_dir_name = dictionary.get('stubViewRelativeDirName')
@@ -139,7 +145,7 @@ class RetrieveArchiveInfo(object):
                    logical_bytes_transferred,
                    logical_size_bytes,
                    progress_monitor_task_path,
-                   retrieved_entity_vec,
+                   retrieved_entity_vec,skip_cloning_view,
                    start_time_usecs,
                    stub_view_name,
                    stub_view_relative_dir_name,

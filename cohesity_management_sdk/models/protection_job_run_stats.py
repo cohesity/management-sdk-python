@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 
 class ProtectionJobRunStats(object):
@@ -10,6 +10,13 @@ class ProtectionJobRunStats(object):
     This contains the Job Run level statistics.
 
     Attributes:
+        queue_duration_usecs (long|int): Specifies the duration between the
+            startTime and when gatekeeper permit is granted to the backup task.
+            If the backup task is rescheduled due to errors, the field is
+            updated considering the time when permit is granted again.
+            Queue duration = PermitGrantTimeUsecs - StartTimeUsecs
+        total_bytes_tiered (long|int): Specifies the total amount of data
+            successfully tiered from the source.
         admitted_time_usecs (long|int): Specifies the time the task was
             unqueued from the queue to start running. This field can be used
             to determine the following times: initial-wait-time =
@@ -26,8 +33,10 @@ class ProtectionJobRunStats(object):
             kSQL, this field contains the number of SQL Server instances.
         num_canceled_tasks (long|int): Specifies the number of backup tasks
             that were canceled.
-        num_failed_app_objects (int): Specifies the number of application
+        num_cancelled_app_objects (int): Specifies the number of application
             objects that were cancelled in this Run.
+        num_failed_app_objects (int): Specifies the number of application
+            objects that failed in this Run.
         num_failed_tasks (long|int): Specifies the number of backup tasks that
             failed.
         num_successful_app_objects (int): Specifies the number of application
@@ -36,6 +45,10 @@ class ProtectionJobRunStats(object):
             databases.
         num_successful_tasks (long|int): Specifies the number of backup tasks
             that completed successfully.
+        permit_grant_time_usecs (long|int): Specifies the time when gatekeeper
+            permit is granted to the backup task.
+            If the backup task is rescheduled due to errors, the field is
+            updated to the time when permit is granted again.
         start_time_usecs (long|int): Specifies the start time of the
             Protection Run. The start time is specified as a Unix epoch
             Timestamp (in microseconds). This time is when the task is queued
@@ -69,14 +82,18 @@ class ProtectionJobRunStats(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "queue_duration_usecs":'QueueDurationUsecs',
+        "total_bytes_tiered":'TotalBytesTiered',
         "admitted_time_usecs":'admittedTimeUsecs',
         "end_time_usecs":'endTimeUsecs',
         "num_app_instances":'numAppInstances',
         "num_canceled_tasks":'numCanceledTasks',
+        "num_cancelled_app_objects":'numCancelledAppObjects',
         "num_failed_app_objects":'numFailedAppObjects',
         "num_failed_tasks":'numFailedTasks',
         "num_successful_app_objects":'numSuccessfulAppObjects',
         "num_successful_tasks":'numSuccessfulTasks',
+        "permit_grant_time_usecs":'permitGrantTimeUsecs',
         "start_time_usecs":'startTimeUsecs',
         "time_taken_usecs":'timeTakenUsecs',
         "total_bytes_read_from_source":'totalBytesReadFromSource',
@@ -87,14 +104,18 @@ class ProtectionJobRunStats(object):
     }
 
     def __init__(self,
+                 queue_duration_usecs=None,
+                 total_bytes_tiered=None,
                  admitted_time_usecs=None,
                  end_time_usecs=None,
                  num_app_instances=None,
                  num_canceled_tasks=None,
+                 num_cancelled_app_objects=None,
                  num_failed_app_objects=None,
                  num_failed_tasks=None,
                  num_successful_app_objects=None,
                  num_successful_tasks=None,
+                 permit_grant_time_usecs=None,
                  start_time_usecs=None,
                  time_taken_usecs=None,
                  total_bytes_read_from_source=None,
@@ -105,14 +126,18 @@ class ProtectionJobRunStats(object):
         """Constructor for the ProtectionJobRunStats class"""
 
         # Initialize members of the class
+        self.queue_duration_usecs = queue_duration_usecs
+        self.total_bytes_tiered = total_bytes_tiered
         self.admitted_time_usecs = admitted_time_usecs
         self.end_time_usecs = end_time_usecs
         self.num_app_instances = num_app_instances
         self.num_canceled_tasks = num_canceled_tasks
+        self.num_cancelled_app_objects = num_cancelled_app_objects
         self.num_failed_app_objects = num_failed_app_objects
         self.num_failed_tasks = num_failed_tasks
         self.num_successful_app_objects = num_successful_app_objects
         self.num_successful_tasks = num_successful_tasks
+        self.permit_grant_time_usecs = permit_grant_time_usecs
         self.start_time_usecs = start_time_usecs
         self.time_taken_usecs = time_taken_usecs
         self.total_bytes_read_from_source = total_bytes_read_from_source
@@ -140,14 +165,18 @@ class ProtectionJobRunStats(object):
             return None
 
         # Extract variables from the dictionary
+        queue_duration_usecs = dictionary.get('QueueDurationUsecs')
+        total_bytes_tiered = dictionary.get('TotalBytesTiered')
         admitted_time_usecs = dictionary.get('admittedTimeUsecs')
         end_time_usecs = dictionary.get('endTimeUsecs')
         num_app_instances = dictionary.get('numAppInstances')
-        num_canceled_tasks = dictionary.get('numCanceledTasks')
         num_failed_app_objects = dictionary.get('numFailedAppObjects')
+        num_canceled_tasks = dictionary.get('numCanceledTasks')
+        num_cancelled_app_objects = dictionary.get('numCancelledAppObjects')
         num_failed_tasks = dictionary.get('numFailedTasks')
         num_successful_app_objects = dictionary.get('numSuccessfulAppObjects')
         num_successful_tasks = dictionary.get('numSuccessfulTasks')
+        permit_grant_time_usecs = dictionary.get('permitGrantTimeUsecs')
         start_time_usecs = dictionary.get('startTimeUsecs')
         time_taken_usecs = dictionary.get('timeTakenUsecs')
         total_bytes_read_from_source = dictionary.get('totalBytesReadFromSource')
@@ -157,14 +186,18 @@ class ProtectionJobRunStats(object):
         total_source_size_bytes = dictionary.get('totalSourceSizeBytes')
 
         # Return an object of this model
-        return cls(admitted_time_usecs,
+        return cls(queue_duration_usecs,
+                   total_bytes_tiered,
+                   admitted_time_usecs,
                    end_time_usecs,
                    num_app_instances,
                    num_canceled_tasks,
+                   num_cancelled_app_objects,
                    num_failed_app_objects,
                    num_failed_tasks,
                    num_successful_app_objects,
                    num_successful_tasks,
+                   permit_grant_time_usecs,
                    start_time_usecs,
                    time_taken_usecs,
                    total_bytes_read_from_source,

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 
 class AcropolisProtectionSource(object):
@@ -16,16 +16,18 @@ class AcropolisProtectionSource(object):
         mount_path (bool): Specifies whether the the VM is an agent VM. This
             is applicable to acropolis entity of type kVirtualMachine.
         name (string): Specifies the name of the Acropolis Object.
-        mtype (TypeEnum): Specifies the type of an Acropolis Protection Source
+        ngt_capabilities (list of int): Specifies enabled capabilities for NGT
+            on the VM. This is applicable to acropolis entity of type
+            kVirtualMachine.
+        ngt_enable_status (int): Specified if NGT is installed on the VM. This
+            is applicable to acropolis entity of type kVirtualMachine.
+        ngt_reachable (bool): Specifies if NGT on the VM is reachable from
+            Controller VM. This is applicable to acropolis entity of type
+            kVirtualMachine.
+        ngt_version (string): Specifies version of NGT installed on the VM.
+            This is applicable to acropolis entity of type kVirtualMachine.
+        mtype (int): Specifies the type of an Acropolis Protection Source
             Object such as 'kPrismCentral', 'kHost', 'kNetwork', etc.
-            Specifies the type of an Acropolis source entity. 'kPrismCentral'
-            indicates a collection of multiple Nutanix clusters.
-            'kStandaloneCluster' indicates a single Nutanix cluster.
-            'kCluster' indicates a Nutanix cluster managed by a Prism
-            Central. 'kHost' indicates an Acropolis host. 'kVirtualMachine'
-            indicates a Virtual Machine. 'kNetwork' indicates a Virtual
-            Machine network object. 'kStorageContainer' represents a storage
-            container object.
         uuid (string): Specifies the UUID of the Acropolis Object. This is
             unique within the cluster instance. Together with clusterUuid,
             this entity is unique within the Acropolis environment.
@@ -40,6 +42,10 @@ class AcropolisProtectionSource(object):
         "description":'description',
         "mount_path":'mountPath',
         "name":'name',
+        "ngt_capabilities":'ngtCapabilities',
+        "ngt_enable_status":'ngtInstallStatus',
+        "ngt_reachable":'ngtReachable',
+        "ngt_version":'ngtVersion',
         "mtype":'type',
         "uuid":'uuid',
         "version":'version'
@@ -50,6 +56,10 @@ class AcropolisProtectionSource(object):
                  description=None,
                  mount_path=None,
                  name=None,
+                 ngt_capabilities=None,
+                 ngt_enable_status=None,
+                 ngt_reachable=None,
+                 ngt_version=None,
                  mtype=None,
                  uuid=None,
                  version=None):
@@ -60,6 +70,10 @@ class AcropolisProtectionSource(object):
         self.description = description
         self.mount_path = mount_path
         self.name = name
+        self.ngt_capabilities = ngt_capabilities
+        self.ngt_enable_status = ngt_enable_status
+        self.ngt_reachable = ngt_reachable
+        self.ngt_version = ngt_version
         self.mtype = mtype
         self.uuid = uuid
         self.version = version
@@ -87,6 +101,10 @@ class AcropolisProtectionSource(object):
         description = dictionary.get('description')
         mount_path = dictionary.get('mountPath')
         name = dictionary.get('name')
+        ngt_capabilities = dictionary.get('ngtCapabilities')
+        ngt_enable_status = dictionary.get('ngtInstallStatus')
+        ngt_reachable = dictionary.get('ngtReachable')
+        ngt_version = dictionary.get('ngtVersion')
         mtype = dictionary.get('type')
         uuid = dictionary.get('uuid')
         version = dictionary.get('version')
@@ -96,6 +114,10 @@ class AcropolisProtectionSource(object):
                    description,
                    mount_path,
                    name,
+                   ngt_capabilities,
+                   ngt_enable_status,
+                   ngt_reachable,
+                   ngt_version,
                    mtype,
                    uuid,
                    version)

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 
 class ActiveAlertsStats(object):
@@ -9,6 +9,22 @@ class ActiveAlertsStats(object):
     Specifies the active alert statistics details.
 
     Attributes:
+        num_data_service_alerts (int|long): Specifies the count of active
+            service Alerts.
+        num_data_service_critical_alerts (long|int): Specifies the count of
+            active service critical Alerts.
+        num_data_service_info_alerts (long|int): Specifies the count of active
+            service info Alerts.
+        num_data_service_warning_alerts (long|int): Specifies the count of
+            active service warning Alerts.
+        num_maintenance_alerts (long|int): Specifies the count of active
+            Alerts of maintenance bucket
+        num_maintenance_critical_alerts (long|int): Specifies the count of
+            active other critical Alerts.
+        num_maintenance_info_alerts (long|int): Specifies the count of active
+            other info Alerts.
+        num_maintenance_warning_alerts (long|int): Specifies the count of
+            active other warning Alerts.
         num_critical_alerts (long|int): Specifies the count of active critical
             Alerts excluding alerts that belong to other bucket.
         num_critical_alerts_categories (long|int): Specifies the count of
@@ -25,22 +41,6 @@ class ActiveAlertsStats(object):
             Alerts excluding alerts that belong to other bucket.
         num_info_alerts_categories (long|int): Specifies the count of active
             info alerts categories.
-        num_other_alerts (long|int): Specifies the count of active Alerts of
-            other bucket
-        num_other_critical_alerts (long|int): Specifies the count of active
-            other critical Alerts.
-        num_other_info_alerts (long|int): Specifies the count of active other
-            info Alerts.
-        num_other_warning_alerts (long|int): Specifies the count of active
-            other warning Alerts.
-        num_service_alerts (long|int): Specifies the count of active service
-            Alerts.
-        num_service_critical_alerts (long|int): Specifies the count of active
-            service critical Alerts.
-        num_service_info_alerts (long|int): Specifies the count of active
-            service info Alerts.
-        num_service_warning_alerts (long|int): Specifies the count of active
-            service warning Alerts.
         num_software_alerts (long|int): Specifies the count of active software
             Alerts.
         num_software_critical_alerts (long|int): Specifies the count of active
@@ -58,6 +58,14 @@ class ActiveAlertsStats(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "num_data_service_alerts":'NumDataServiceAlerts',
+        "num_data_service_critical_alerts":'NumDataServiceCriticalAlerts',
+        "num_data_service_info_alerts":'NumDataServiceInfoAlerts',
+        "num_data_service_warning_alerts":'NumDataServiceWarningAlerts',
+        "num_maintenance_alerts":'NumMaintenanceAlerts',
+        "num_maintenance_critical_alerts":'NumMaintenanceCriticalAlerts',
+        "num_maintenance_info_alerts":'NumMaintenanceInfoAlerts',
+        "num_maintenance_warning_alerts":'NumMaintenanceWarningAlerts',
         "num_critical_alerts":'numCriticalAlerts',
         "num_critical_alerts_categories":'numCriticalAlertsCategories',
         "num_hardware_alerts":'numHardwareAlerts',
@@ -66,14 +74,6 @@ class ActiveAlertsStats(object):
         "num_hardware_warning_alerts":'numHardwareWarningAlerts',
         "num_info_alerts":'numInfoAlerts',
         "num_info_alerts_categories":'numInfoAlertsCategories',
-        "num_other_alerts":'numOtherAlerts',
-        "num_other_critical_alerts":'numOtherCriticalAlerts',
-        "num_other_info_alerts":'numOtherInfoAlerts',
-        "num_other_warning_alerts":'numOtherWarningAlerts',
-        "num_service_alerts":'numServiceAlerts',
-        "num_service_critical_alerts":'numServiceCriticalAlerts',
-        "num_service_info_alerts":'numServiceInfoAlerts',
-        "num_service_warning_alerts":'numServiceWarningAlerts',
         "num_software_alerts":'numSoftwareAlerts',
         "num_software_critical_alerts":'numSoftwareCriticalAlerts',
         "num_software_info_alerts":'numSoftwareInfoAlerts',
@@ -83,6 +83,14 @@ class ActiveAlertsStats(object):
     }
 
     def __init__(self,
+                 num_data_service_alerts=None,
+                 num_data_service_critical_alerts=None,
+                 num_data_service_info_alerts=None,
+                 num_data_service_warning_alerts=None,
+                 num_maintenance_alerts=None,
+                 num_maintenance_critical_alerts=None,
+                 num_maintenance_info_alerts=None,
+                 num_maintenance_warning_alerts=None,
                  num_critical_alerts=None,
                  num_critical_alerts_categories=None,
                  num_hardware_alerts=None,
@@ -91,14 +99,6 @@ class ActiveAlertsStats(object):
                  num_hardware_warning_alerts=None,
                  num_info_alerts=None,
                  num_info_alerts_categories=None,
-                 num_other_alerts=None,
-                 num_other_critical_alerts=None,
-                 num_other_info_alerts=None,
-                 num_other_warning_alerts=None,
-                 num_service_alerts=None,
-                 num_service_critical_alerts=None,
-                 num_service_info_alerts=None,
-                 num_service_warning_alerts=None,
                  num_software_alerts=None,
                  num_software_critical_alerts=None,
                  num_software_info_alerts=None,
@@ -108,6 +108,14 @@ class ActiveAlertsStats(object):
         """Constructor for the ActiveAlertsStats class"""
 
         # Initialize members of the class
+        self.num_data_service_alerts = num_data_service_alerts
+        self.num_data_service_critical_alerts = num_data_service_critical_alerts
+        self.num_data_service_info_alerts = num_data_service_info_alerts
+        self.num_data_service_warning_alerts = num_data_service_warning_alerts
+        self.num_maintenance_alerts = num_maintenance_alerts
+        self.num_maintenance_critical_alerts = num_maintenance_critical_alerts
+        self.num_maintenance_info_alerts = num_maintenance_info_alerts
+        self.num_maintenance_warning_alerts = num_maintenance_warning_alerts
         self.num_critical_alerts = num_critical_alerts
         self.num_critical_alerts_categories = num_critical_alerts_categories
         self.num_hardware_alerts = num_hardware_alerts
@@ -116,14 +124,6 @@ class ActiveAlertsStats(object):
         self.num_hardware_warning_alerts = num_hardware_warning_alerts
         self.num_info_alerts = num_info_alerts
         self.num_info_alerts_categories = num_info_alerts_categories
-        self.num_other_alerts = num_other_alerts
-        self.num_other_critical_alerts = num_other_critical_alerts
-        self.num_other_info_alerts = num_other_info_alerts
-        self.num_other_warning_alerts = num_other_warning_alerts
-        self.num_service_alerts = num_service_alerts
-        self.num_service_critical_alerts = num_service_critical_alerts
-        self.num_service_info_alerts = num_service_info_alerts
-        self.num_service_warning_alerts = num_service_warning_alerts
         self.num_software_alerts = num_software_alerts
         self.num_software_critical_alerts = num_software_critical_alerts
         self.num_software_info_alerts = num_software_info_alerts
@@ -150,6 +150,14 @@ class ActiveAlertsStats(object):
             return None
 
         # Extract variables from the dictionary
+        num_data_service_alerts = dictionary.get('NumDataServiceAlerts')
+        num_data_service_critical_alerts = dictionary.get('NumDataServiceCriticalAlerts')
+        num_data_service_info_alerts = dictionary.get('NumDataServiceInfoAlerts')
+        num_data_service_warning_alerts = dictionary.get('NumDataServiceWarningAlerts')
+        num_maintenance_alerts = dictionary.get('NumMaintenanceAlerts')
+        num_maintenance_critical_alerts = dictionary.get('NumMaintenanceCriticalAlerts')
+        num_maintenance_info_alerts = dictionary.get('NumMaintenanceInfoAlerts')
+        num_maintenance_warning_alerts = dictionary.get('NumMaintenanceWarningAlerts')
         num_critical_alerts = dictionary.get('numCriticalAlerts')
         num_critical_alerts_categories = dictionary.get('numCriticalAlertsCategories')
         num_hardware_alerts = dictionary.get('numHardwareAlerts')
@@ -158,14 +166,6 @@ class ActiveAlertsStats(object):
         num_hardware_warning_alerts = dictionary.get('numHardwareWarningAlerts')
         num_info_alerts = dictionary.get('numInfoAlerts')
         num_info_alerts_categories = dictionary.get('numInfoAlertsCategories')
-        num_other_alerts = dictionary.get('numOtherAlerts')
-        num_other_critical_alerts = dictionary.get('numOtherCriticalAlerts')
-        num_other_info_alerts = dictionary.get('numOtherInfoAlerts')
-        num_other_warning_alerts = dictionary.get('numOtherWarningAlerts')
-        num_service_alerts = dictionary.get('numServiceAlerts')
-        num_service_critical_alerts = dictionary.get('numServiceCriticalAlerts')
-        num_service_info_alerts = dictionary.get('numServiceInfoAlerts')
-        num_service_warning_alerts = dictionary.get('numServiceWarningAlerts')
         num_software_alerts = dictionary.get('numSoftwareAlerts')
         num_software_critical_alerts = dictionary.get('numSoftwareCriticalAlerts')
         num_software_info_alerts = dictionary.get('numSoftwareInfoAlerts')
@@ -174,7 +174,15 @@ class ActiveAlertsStats(object):
         num_warning_alerts_categories = dictionary.get('numWarningAlertsCategories')
 
         # Return an object of this model
-        return cls(num_critical_alerts,
+        return cls(num_data_service_alerts,
+                   num_data_service_critical_alerts,
+                   num_data_service_info_alerts,
+                   num_data_service_warning_alerts,
+                   num_maintenance_alerts,
+                   num_maintenance_critical_alerts,
+                   num_maintenance_info_alerts,
+                   num_maintenance_warning_alerts,
+                   num_critical_alerts,
                    num_critical_alerts_categories,
                    num_hardware_alerts,
                    num_hardware_critical_alerts,
@@ -182,14 +190,6 @@ class ActiveAlertsStats(object):
                    num_hardware_warning_alerts,
                    num_info_alerts,
                    num_info_alerts_categories,
-                   num_other_alerts,
-                   num_other_critical_alerts,
-                   num_other_info_alerts,
-                   num_other_warning_alerts,
-                   num_service_alerts,
-                   num_service_critical_alerts,
-                   num_service_info_alerts,
-                   num_service_warning_alerts,
                    num_software_alerts,
                    num_software_critical_alerts,
                    num_software_info_alerts,

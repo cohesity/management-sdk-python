@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
-
+# Copyright 2021 Cohesity Inc.
 
 class SmbPermission(object):
 
@@ -14,8 +13,7 @@ class SmbPermission(object):
             'kReadWrite' indicates read and write access to the SMB share.
             'kFullControl' indicates full administrative control of the SMB
             share. 'kSpecialAccess' indicates custom permissions to the SMB
-            share using access masks structures. 'kSuperUser' indicates root
-            permissions ignoring all SMB ACLs.
+            share using access masks structures.
         mode (ModeEnum): Specifies how the permission should be applied to
             folders and/or files. 'kFolderSubFoldersAndFiles' indicates that
             permissions are applied to a Folder and it's sub folders and

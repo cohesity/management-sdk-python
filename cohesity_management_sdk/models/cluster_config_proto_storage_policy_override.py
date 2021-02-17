@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 
 class ClusterConfigProtoStoragePolicyOverride(object):
@@ -9,6 +9,9 @@ class ClusterConfigProtoStoragePolicyOverride(object):
     TODO: type model description here.
 
     Attributes:
+        disable_dedup (bool): If the following id set to true, we would
+            disable dedup for writes made in this view irrespective of the
+            view box's storage policy.
         disable_inline_dedup_and_compression (bool): If this is set to true,
             we will not do inline dedup and compression even if
             deduplicate_compress_delay_secs is set to 0 in the view box's
@@ -18,14 +21,17 @@ class ClusterConfigProtoStoragePolicyOverride(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "disable_dedup":'disableDedup',
         "disable_inline_dedup_and_compression":'disableInlineDedupAndCompression'
     }
 
     def __init__(self,
+                 disable_dedup=None,
                  disable_inline_dedup_and_compression=None):
         """Constructor for the ClusterConfigProtoStoragePolicyOverride class"""
 
         # Initialize members of the class
+        self.disable_dedup = disable_dedup
         self.disable_inline_dedup_and_compression = disable_inline_dedup_and_compression
 
 
@@ -47,9 +53,10 @@ class ClusterConfigProtoStoragePolicyOverride(object):
             return None
 
         # Extract variables from the dictionary
+        disable_dedup = dictionary.get('disableDedup')
         disable_inline_dedup_and_compression = dictionary.get('disableInlineDedupAndCompression')
 
         # Return an object of this model
-        return cls(disable_inline_dedup_and_compression)
+        return cls(disable_dedup, disable_inline_dedup_and_compression)
 
 

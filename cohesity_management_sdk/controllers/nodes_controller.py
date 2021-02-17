@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -123,13 +123,37 @@ class NodesController(BaseController):
             self.logger.error(e, exc_info=True)
             raise
 
-    def get_nodes(self):
+    def get_nodes(self,
+                  ids=None, 
+                  include_marked_for_removal=None,
+                  include_only_unassigned_nodes=None,
+                  cluster_partition_ids=None,
+                  fetch_stats=None,
+                  show_system_disks=None):
         """Does a GET request to /public/nodes.
 
         If no parameters are specified, all Nodes currently on the Cohesity
         Cluster are
         returned.
         Specifying parameters filters the results that are returned.
+        Args:
+            ids (long|int, optional): IdList is the ids of nodes to be
+                returned. If empty, all nodes are returned.
+            include_marked_for_removal (bool, optional):
+                IncludeMarkedForRemoval is used to specify whether to
+                include nodes marked for removal.
+            include_only_unassigned_nodes (bool, optional):
+                IncludeOnlyUnassignedNodes will return nodes that are not yet
+                assigned to any cluster partition. If this parameter is
+                specified as true and ClusterPartitionIdList is also non-empty,
+                then no nodes will be returned.
+            cluster_partition_ids (long|int, optional):  ClusterPartitionIdList
+                specifies the list of Ids used to filter the nodes by specified
+                cluster partition.
+            fetch_stats (bool, optional): FetchStats is used to specify whether
+                to call Stats service to fetch the stats for the nodes.
+            show_system_disks (bool, optional): ShowSystemdisks is used to
+                specify whether to display system disks for the nodes.
 
         Returns:
             list of Node: Response from the API. Success
@@ -149,6 +173,17 @@ class NodesController(BaseController):
             _url_path = '/public/nodes'
             _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
+            _query_parameters = {
+                'ids': ids,
+                'includeMarkedForRemoval': include_marked_for_removal,
+                'includeOnlyUnassignedNodes': include_only_unassigned_nodes,
+                'clusterPartitionIds': cluster_partition_ids,
+                'fetchStats': fetch_stats,
+                'showSystemDisks': show_system_disks
+            }
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers

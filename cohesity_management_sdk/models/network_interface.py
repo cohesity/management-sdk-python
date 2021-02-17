@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
+import cohesity_management_sdk.models.bond_slave_info
 
 class NetworkInterface(object):
 
@@ -9,10 +10,14 @@ class NetworkInterface(object):
     Specifies the properties of a network interface.
 
     Attributes:
+        active_bond_slave (string): Current active slave. This is only valid
+            in active-backup mode.
         bond_slave_slot_types (list of string): Specifies the types of the
             slots of any slaves if this interface is a bond.
         bond_slaves (list of string): Specifies the names of any slaves if
             this interface is a bond.
+        bond_slaves_details (list of BondSlaveInfo): Specifies the details
+            of the bond slaves.
         bonding_mode (int): Specifies the bonding mode if this interface is
             a bond.
         gateway (string): Specifies the gateway of the interface.
@@ -45,8 +50,10 @@ class NetworkInterface(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "active_bond_slave":'activeBondSlave',
         "bond_slave_slot_types":'bondSlaveSlotTypes',
         "bond_slaves":'bondSlaves',
+        "bond_slaves_details":'bondSlavesDetails',
         "bonding_mode":'bondingMode',
         "gateway":'gateway',
         "gateway6":'gateway6',
@@ -70,8 +77,10 @@ class NetworkInterface(object):
     }
 
     def __init__(self,
+                 active_bond_slave=None,
                  bond_slave_slot_types=None,
                  bond_slaves=None,
+                 bond_slaves_details=None,
                  bonding_mode=None,
                  gateway=None,
                  gateway6=None,
@@ -95,8 +104,10 @@ class NetworkInterface(object):
         """Constructor for the NetworkInterface class"""
 
         # Initialize members of the class
+        self.active_bond_slave = active_bond_slave
         self.bond_slave_slot_types = bond_slave_slot_types
         self.bond_slaves = bond_slaves
+        self.bond_slaves_details = bond_slaves_details
         self.bonding_mode = bonding_mode
         self.gateway = gateway
         self.gateway6 = gateway6
@@ -137,8 +148,14 @@ class NetworkInterface(object):
             return None
 
         # Extract variables from the dictionary
+        active_bond_slave = dictionary.get('activeBondSlave')
         bond_slave_slot_types = dictionary.get('bondSlaveSlotTypes')
         bond_slaves = dictionary.get('bondSlaves')
+        bond_slaves_details = None
+        if dictionary.get('bondSlavesDetails') != None:
+            bond_slaves_details = list()
+            for structure in dictionary.get('bondSlavesDetails'):
+                bond_slaves_details.append(cohesity_management_sdk.models.bond_slave_info.BondSlaveInfo.from_dictiona(bond_slaves_details))
         bonding_mode = dictionary.get('bondingMode')
         gateway = dictionary.get('gateway')
         gateway6 = dictionary.get('gateway6')
@@ -161,8 +178,10 @@ class NetworkInterface(object):
         virtual_ip = dictionary.get('virtualIp')
 
         # Return an object of this model
-        return cls(bond_slave_slot_types,
+        return cls(active_bond_slave,
+                   bond_slave_slot_types,
                    bond_slaves,
+                   bond_slaves_details,
                    bonding_mode,
                    gateway,
                    gateway6,

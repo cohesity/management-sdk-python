@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.volume_info_disk_info
 import cohesity_management_sdk.models.volume_info_logical_volume_info
+import cohesity_management_sdk.models.volume_info_sub_volume_info
 
 class VolumeInfo(object):
 
@@ -23,9 +24,14 @@ class VolumeInfo(object):
         is_supported (bool): Is this a supported Volume (filesystem)?
         lv_info (VolumeInfoLogicalVolumeInfo): This is extra attribute which
             uniquely identifies a logical volume in LVM or LDM.
+        subvol_info (VolumeInfo_SubVolumeInfo): This is set to capture info
+            about any active subvolume for this volume.
         volume_guid (string): The guid of the volume represented by this
             virtual disk. This information will be originally populated by
             magneto for physical environments.
+        volume_identifier (int): We assign a unique number to every volume
+            within a VM which we see for the first time. The identifier will
+            be monotonically increasing number startin from 1.
         volume_type (int): Whether this volume is simple, lvm or ldm.
 
     """
@@ -41,7 +47,9 @@ class VolumeInfo(object):
         "is_dedup":'isDedup',
         "is_supported":'isSupported',
         "lv_info":'lvInfo',
+        "subvol_info":'subvolInfo',
         "volume_guid":'volumeGuid',
+        "volume_identifier":'volumeIdentifier',
         "volume_type":'volumeType'
     }
 
@@ -55,7 +63,9 @@ class VolumeInfo(object):
                  is_dedup=None,
                  is_supported=None,
                  lv_info=None,
+                 subvol_info=None,
                  volume_guid=None,
+                 volume_identifier=None,
                  volume_type=None):
         """Constructor for the VolumeInfo class"""
 
@@ -69,7 +79,9 @@ class VolumeInfo(object):
         self.is_dedup = is_dedup
         self.is_supported = is_supported
         self.lv_info = lv_info
+        self.subvol_info = subvol_info
         self.volume_guid = volume_guid
+        self.volume_identifier = volume_identifier
         self.volume_type = volume_type
 
 
@@ -104,7 +116,9 @@ class VolumeInfo(object):
         is_dedup = dictionary.get('isDedup')
         is_supported = dictionary.get('isSupported')
         lv_info = cohesity_management_sdk.models.volume_info_logical_volume_info.VolumeInfoLogicalVolumeInfo.from_dictionary(dictionary.get('lvInfo')) if dictionary.get('lvInfo') else None
+        subvol_info = cohesity_management_sdk.models.volume_info_sub_volume_info.from_dictionary(dictionary.get('subvolInfo')) if dictionary.get('subvolInfo') else None
         volume_guid = dictionary.get('volumeGuid')
+        volume_identifier = dictionary.get('volumeIdentifier')
         volume_type = dictionary.get('volumeType')
 
         # Return an object of this model
@@ -117,7 +131,9 @@ class VolumeInfo(object):
                    is_dedup,
                    is_supported,
                    lv_info,
+                   subvol_info,
                    volume_guid,
+                   volume_identifier,
                    volume_type)
 
 

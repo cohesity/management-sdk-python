@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.cassandra_backup_job_params
 import cohesity_management_sdk.models.couchbase_backup_job_params
@@ -41,6 +41,8 @@ class NoSqlBackupJobParams(object):
             gc ran for this jobs.
         mongodb_backup_job_params (mongodbBackupJobParams): Contains any additional
             mongodb environment specific backup params at the job level.
+        previous_protected_entity_ids_vec (list of str): List of Magneto entity
+            Ids for the entities that were protected in the previous run.
     """
 
     # Create a mapping from Model property names to API property names
@@ -57,7 +59,8 @@ class NoSqlBackupJobParams(object):
         "hive_backup_job_params":'hiveBackupJobParams',
         "last_compaction_run_time_usecs":'lastCompactionRunTimeUsecs',
         "last_gc_run_time_usecs":'lastGcRunTimeUsecs',
-        "mongodb_backup_job_params":'mongodbBackupJobParams'
+        "mongodb_backup_job_params":'mongodbBackupJobParams',
+        "previous_protected_entity_ids_vec":'previousProtectedEntityIdsVec'
         }
 
     def __init__(self,
@@ -73,7 +76,8 @@ class NoSqlBackupJobParams(object):
                  hive_backup_job_params=None,
                  last_compaction_run_time_usecs=None,
                  last_gc_run_time_usecs=None,
-                 mongodb_backup_job_params=None):
+                 mongodb_backup_job_params=None,
+                 previous_protected_entity_ids_vec=None):
         """Constructor for the NoSqlBackupJobParams class"""
 
         # Initialize members of the class
@@ -90,6 +94,7 @@ class NoSqlBackupJobParams(object):
         self.last_compaction_run_time_usecs = last_compaction_run_time_usecs
         self.last_gc_run_time_usecs = last_gc_run_time_usecs
         self.mongodb_backup_job_params = mongodb_backup_job_params
+        self.previous_protected_entity_ids_vec = previous_protected_entity_ids_vec
 
 
     @classmethod
@@ -123,6 +128,7 @@ class NoSqlBackupJobParams(object):
         last_compaction_run_time_usecs = dictionary.get('lastCompactionRunTimeUsecs')
         last_gc_run_time_usecs = dictionary.get('lastGcRunTimeUsecs')
         mongodb_backup_job_params = cohesity_management_sdk.models.mongoDB_backup_job_params.MongoDBBackupJobParams.from_dictionary(dictionary.get('mongodbBackupJobParams', None)) if dictionary.get('mongodbBackupJobParams', None) else None
+        previous_protected_entity_ids_vec = dictionary.get('previousProtectedEntityIdsVec')
 
         # Return an object of this model
         return cls(bandwidth_bytes_per_second,
@@ -137,6 +143,7 @@ class NoSqlBackupJobParams(object):
                    hive_backup_job_params,
                    last_compaction_run_time_usecs,
                    last_gc_run_time_usecs,
-                   mongodb_backup_job_params)
+                   mongodb_backup_job_params,
+                   previous_protected_entity_ids_vec)
 
 

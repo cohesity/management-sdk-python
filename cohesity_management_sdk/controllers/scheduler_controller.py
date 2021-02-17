@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -10,7 +10,7 @@ from cohesity_management_sdk.exceptions.request_error_error_exception import Req
 from cohesity_management_sdk.exceptions.error_exception import ErrorException
 from cohesity_management_sdk.models.scheduler_proto import SchedulerProto
 from cohesity_management_sdk.models.scheduler_proto_scheduler_job import SchedulerProto_SchedulerJob
-from cohesity_management_sdk.models.scheduler_proto_scheduler_job_schedule_job_parameters_report_job_parameter import SchedulerProto_SchedulerJob_ScheduleJobParameters_ReportJobParameter
+from cohesity_management_sdk.models.scheduler_proto_scheduler_job_schedule__parameter import SchedulerProto_SchedulerJob_ScheduleJobParameters_ReportJobParameter
 
 
 

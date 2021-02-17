@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -29,7 +29,8 @@ class ProtectionRunsController(BaseController):
                             source_id=None,
                             run_types=None,
                             exclude_error_runs=None,
-                            exclude_non_restoreable_runs=None):
+                            exclude_non_restoreable_runs=None,
+                            only_return_shell_info=None):
         """Does a GET request to /public/protectionRuns.
 
         If no parameters are specified, Job Runs currently
@@ -77,6 +78,10 @@ class ProtectionRunsController(BaseController):
                 runs that cannot be restored by setting this field to 'true'.
                 If not set or set to 'false', Runs without any successful
                 object will be returned. The default value is false.
+            only_return_shell_info (bool, optional): If passed as true, then
+                only returns the summary information about run including
+                details such as runs start time, status, type etc. It does not
+                include extra details such as attempt/task info etc.
 
         Returns:
             list of ProtectionRunInstance: Response from the API. Success
@@ -107,7 +112,8 @@ class ProtectionRunsController(BaseController):
                 'sourceId': source_id,
                 'runTypes': run_types,
                 'excludeErrorRuns': exclude_error_runs,
-                'excludeNonRestoreableRuns': exclude_non_restoreable_runs
+                'excludeNonRestoreableRuns': exclude_non_restoreable_runs,
+                'onlyReturnShellInfo': only_return_shell_info
             }
             _query_builder = APIHelper.append_url_with_query_parameters(
                 _query_builder, _query_parameters,

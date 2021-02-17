@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.connector_parameters
 import cohesity_management_sdk.models.cassandra_connect_params
@@ -10,9 +10,12 @@ import cohesity_management_sdk.models.hdfs_connect_params
 import cohesity_management_sdk.models.hive_connect_params
 import cohesity_management_sdk.models.mongo_db_connect_params
 import cohesity_management_sdk.models.office_365_credentials
+import cohesity_management_sdk.models.physical_params
 import cohesity_management_sdk.models.registered_app_info
+import cohesity_management_sdk.models.registered_protection_source_isilon_params
 import cohesity_management_sdk.models.throttling_policy_parameters
 import cohesity_management_sdk.models.throttling_policy_override
+import cohesity_management_sdk.models.uda_connect_params
 import cohesity_management_sdk.models.vlan_parameters
 import cohesity_management_sdk.models.subnet
 
@@ -25,6 +28,9 @@ class RegisteredSourceInfo(object):
     Attributes:
         access_info (ConnectorParameters): Specifies the parameters required
             to establish a connection with a particular environment.
+        allowed_ip_addresses (list of string): Specifies the list of IP
+            Addresses on the registered source to be exclusively allowed for
+            doing any type of IO operations.
         authentication_error_message (string): Specifies an authentication
             error message. This indicates the given credentials are rejected
             and the registration of the source is not successful.
@@ -37,15 +43,18 @@ class RegisteredSourceInfo(object):
             'kScheduled' indicates the authentication is scheduled.
             'kFinished' indicates the authentication is completed.
             'kRefreshInProgress' indicates the refresh is in progress.
-        blacklisted_ip_addresses (list of string): Specifies the list of IP
-            Addresses on the registered source to be blacklisted for doing any
-            type of IO operations.
+        blacklisted_ip_addresses (list of string):  This field is deprecated.
+            Use DeniedIpAddresses instead.
+            deprecated: true
         cassandra_params (CassandraConnectParams): Contains all the additional
             params specified by the user while registering the Cassandra
             source.
         couchbase_params (CouchbaseConnectParams): Contains all the additional
             params specified by the user while registering the Couchbase
             source.
+        denied_ip_addresses (list of string): Specifies the list of IP
+            Addresses on the registered source to be denied for doing any type
+            of IO operations.
         environments (list of EnvironmentRegisteredSourceInfoEnum): Specifies
             a list of applications environment that are registered with this
             Protection Source such as 'kSQL'. Supported environment types such
@@ -94,6 +103,9 @@ class RegisteredSourceInfo(object):
             specified by the user while registering the Hive source.
         is_db_authenticated (bool): Specifies if application entity
             dbAuthenticated or not. ex: oracle database.
+        isilon_params (RegisteredProtectionSourceIsilonParams): Contains all
+            the registered source params specified by the user while
+            configuring the Isilon source.
         minimum_free_space_gb (long|int): Specifies the minimum free space in
             GiB of the space expected to be available on the datastore where
             the virtual disks of the VM being backed up. If the amount of free
@@ -110,6 +122,8 @@ class RegisteredSourceInfo(object):
         office_365_region (string): Specifies the region for Office365.
         password (string): Specifies password of the username to access the
             target source.
+        physical_params (PhysicalParams): Contains all the additional params
+            specified by the user for source throttling configuration.
         refresh_error_message (string): Specifies a message if there was any
             error encountered during the last rebuild of the Protection Source
             tree. If there was no error during the last rebuild, this field is
@@ -132,6 +146,9 @@ class RegisteredSourceInfo(object):
             of Throttling Policy for datastores that override the common
             throttling policy specified for the registered Protection Source.
             For datastores not in this list, common policy will still apply.
+        uda_params (UdaConnectParams): Contains all the additional params
+            specified by the user while registering the Universal Data Adapter
+            source.
         use_o_auth_for_exchange_online (bool): Specifies whether OAuth should
             be used for authentication in case of Exchange Online.
         use_vm_bios_uuid (bool): Specifies if registered vCenter is using BIOS
@@ -149,22 +166,26 @@ class RegisteredSourceInfo(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "access_info":'accessInfo',
+        "allowed_ip_addresses":'allowedIpAddresses',
         "authentication_error_message":'authenticationErrorMessage',
         "authentication_status":'authenticationStatus',
         "blacklisted_ip_addresses":'blacklistedIpAddresses',
         "cassandra_params":'cassandraParams',
         "couchbase_params":'couchbaseParams',
+        "denied_ip_addresses":'deniedIpAddresses',
         "environments":'environments',
         "hbase_params":'hbaseParams',
         "hdfs_params":'hdfsParams',
         "hive_params":'hiveParams',
         "is_db_authenticated":'isDbAuthenticated',
+        "isilon_params":'isilonParams',
         "minimum_free_space_gb":'minimumFreeSpaceGB',
         "mongodb_params":'mongodbParams',
         "nas_mount_credentials":'nasMountCredentials',
         "office_365_credentials_list":'office365CredentialsList',
         "office_365_region":'office365Region',
         "password":'password',
+        "physical_params":'physicalParams',
         "refresh_error_message":'refreshErrorMessage',
         "refresh_time_usecs":'refreshTimeUsecs',
         "registered_apps_info":'registeredAppsInfo',
@@ -172,6 +193,7 @@ class RegisteredSourceInfo(object):
         "subnets":'subnets',
         "throttling_policy":'throttlingPolicy',
         "throttling_policy_overrides":'throttlingPolicyOverrides',
+        "uda_params":'udaParams',
         "use_o_auth_for_exchange_online":'useOAuthForExchangeOnline',
         "use_vm_bios_uuid":'useVmBiosUuid',
         "username":'username',
@@ -181,22 +203,26 @@ class RegisteredSourceInfo(object):
 
     def __init__(self,
                  access_info=None,
+                 allowed_ip_addresses=None,
                  authentication_error_message=None,
                  authentication_status=None,
                  blacklisted_ip_addresses=None,
                  cassandra_params= None,
                  couchbase_params=None,
+                 denied_ip_addresses=None,
                  environments=None,
                  hbase_params=None,
                  hdfs_params=None,
                  hive_params=None,
                  is_db_authenticated=None,
+                 isilon_params=None,
                  minimum_free_space_gb=None,
                  mongodb_params=None,
                  nas_mount_credentials=None,
                  office_365_credentials_list=None,
                  office_365_region=None,
                  password=None,
+                 physical_params=None,
                  refresh_error_message=None,
                  refresh_time_usecs=None,
                  registered_apps_info=None,
@@ -204,6 +230,7 @@ class RegisteredSourceInfo(object):
                  subnets=None,
                  throttling_policy=None,
                  throttling_policy_overrides=None,
+                 uda_params=None,
                  use_o_auth_for_exchange_online=None,
                  use_vm_bios_uuid=None,
                  username=None,
@@ -213,22 +240,26 @@ class RegisteredSourceInfo(object):
 
         # Initialize members of the class
         self.access_info = access_info
+        self.allowed_ip_addresses = allowed_ip_addresses
         self.authentication_error_message = authentication_error_message
         self.authentication_status = authentication_status
         self.blacklisted_ip_addresses = blacklisted_ip_addresses
         self.cassandra_params = cassandra_params
         self.couchbase_params = couchbase_params
+        self.denied_ip_addresses = denied_ip_addresses
         self.environments = environments
         self.hbase_params = hbase_params
         self.hdfs_params = hdfs_params
         self.hive_params = hive_params
         self.is_db_authenticated = is_db_authenticated
+        self.isilon_params = isilon_params
         self.minimum_free_space_gb = minimum_free_space_gb
         self.mongodb_params = mongodb_params
         self.nas_mount_credentials = nas_mount_credentials
         self.office_365_credentials_list = office_365_credentials_list
         self.office_365_region = office_365_region
         self.password = password
+        self.physical_params = physical_params
         self.refresh_error_message = refresh_error_message
         self.refresh_time_usecs = refresh_time_usecs
         self.registered_apps_info = registered_apps_info
@@ -236,6 +267,7 @@ class RegisteredSourceInfo(object):
         self.subnets = subnets
         self.throttling_policy = throttling_policy
         self.throttling_policy_overrides = throttling_policy_overrides
+        self.uda_params = uda_params
         self.use_o_auth_for_exchange_online = use_o_auth_for_exchange_online
         self.use_vm_bios_uuid = use_vm_bios_uuid
         self.username = username
@@ -262,16 +294,19 @@ class RegisteredSourceInfo(object):
 
         # Extract variables from the dictionary
         access_info = cohesity_management_sdk.models.connector_parameters.ConnectorParameters.from_dictionary(dictionary.get('accessInfo')) if dictionary.get('accessInfo') else None
+        allowed_ip_addresses = dictionary.get('allowedIpAddresses')
         authentication_error_message = dictionary.get('authenticationErrorMessage')
         authentication_status = dictionary.get('authenticationStatus')
         blacklisted_ip_addresses = dictionary.get('blacklistedIpAddresses')
         cassandra_params = cohesity_management_sdk.models.cassandra_connect_params.CassandraConnectParams.from_dictionary(dictionary.get('cassandraParams')) if dictionary.get('cassandraParams') else None
         couchbase_params = cohesity_management_sdk.models.couchbase_connect_params.CouchbaseConnectParams.from_dictionary(dictionary.get('couchbaseParams')) if dictionary.get('couchbaseParams') else None
+        denied_ip_addresses = dictionary.get('deniedIpAddresses')
         environments = dictionary.get('environments')
         hbase_params = cohesity_management_sdk.models.hbase_connect_params.HBaseConnectParams.from_dictionary(dictionary.get('hbaseParams')) if dictionary.get('hbaseParams') else None
         hdfs_params = cohesity_management_sdk.models.hdfs_connect_params.HdfsConnectParams.from_dictionary(dictionary.get('hdfsParams')) if dictionary.get('hdfsParams') else None
         hive_params = cohesity_management_sdk.models.hive_connect_params.HiveConnectParams.from_dictionary(dictionary.get('hiveParams')) if dictionary.get('hiveParams') else None
         is_db_authenticated = dictionary.get('isDbAuthenticated')
+        isilon_params = cohesity_management_sdk.models.registered_protection_source_isilon_params.RegisteredProtectionSourceIsilonParams.from_dictionary(dictionary.get('isilonParams')) if dictionary.get('isilonParams') else None
         minimum_free_space_gb = dictionary.get('minimumFreeSpaceGB')
         mongodb_params = cohesity_management_sdk.models.mongo_db_connect_params.MongoDBConnectParams.from_dictionary(dictionary.get('mongodbParams')) if dictionary.get('mongodbParams') else None
         nas_mount_credentials = cohesity_management_sdk.models.nas_mount_credential_params.NasMountCredentialParams.from_dictionary(dictionary.get('nasMountCredentials')) if dictionary.get('nasMountCredentials') else None
@@ -282,6 +317,7 @@ class RegisteredSourceInfo(object):
                 office_365_credentials_list.append(cohesity_management_sdk.models.office_365_credentials.Office365Credentials.from_dictionary(structure))
         office_365_region = dictionary.get('office365Region')
         password = dictionary.get('password')
+        physical_params = cohesity_management_sdk.models.physical_params.PhysicalParams.from_dictionary(dictionary.get('physicalParams')) if dictionary.get('physicalParams') else None
         refresh_error_message = dictionary.get('refreshErrorMessage')
         refresh_time_usecs = dictionary.get('refreshTimeUsecs')
         registered_apps_info = None
@@ -301,6 +337,7 @@ class RegisteredSourceInfo(object):
             throttling_policy_overrides = list()
             for structure in dictionary.get('throttlingPolicyOverrides'):
                 throttling_policy_overrides.append(cohesity_management_sdk.models.throttling_policy_override.ThrottlingPolicyOverride.from_dictionary(structure))
+        uda_params = cohesity_management_sdk.models.uda_connect_params.UdaConnectParams.from_dictionary(dictionary.get('udaParams')) if dictionary.get('udaParams') else None
         use_o_auth_for_exchange_online = dictionary.get('useOAuthForExchangeOnline')
         use_vm_bios_uuid = dictionary.get('useVmBiosUuid')
         username = dictionary.get('username')
@@ -309,22 +346,26 @@ class RegisteredSourceInfo(object):
 
         # Return an object of this model
         return cls(access_info,
+                   allowed_ip_addresses,
                    authentication_error_message,
                    authentication_status,
                    blacklisted_ip_addresses,
                    cassandra_params,
                    couchbase_params,
+                   denied_ip_addresses,
                    environments,
                    hbase_params,
                    hdfs_params,
                    hive_params,
                    is_db_authenticated,
+                   isilon_params,
                    minimum_free_space_gb,
                    mongodb_params,
                    nas_mount_credentials,
                    office_365_credentials_list,
                    office_365_region,
                    password,
+                   physical_params,
                    refresh_error_message,
                    refresh_time_usecs,
                    registered_apps_info,
@@ -332,6 +373,7 @@ class RegisteredSourceInfo(object):
                    subnets,
                    throttling_policy,
                    throttling_policy_overrides,
+                   uda_params,
                    use_o_auth_for_exchange_online,
                    use_vm_bios_uuid,
                    username,

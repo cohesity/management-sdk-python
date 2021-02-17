@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -8,7 +8,6 @@ from cohesity_management_sdk.controllers.base_controller import BaseController
 from cohesity_management_sdk.http.auth.auth_manager import AuthManager
 from cohesity_management_sdk.exceptions.request_error_error_exception import RequestErrorErrorException
 from cohesity_management_sdk.exceptions.error_exception import ErrorException
-from cohesity_management_sdk.models.banner_id_data import BannerIdData
 from cohesity_management_sdk.models.banner import Banner
 from cohesity_management_sdk.models.banner_update_parameters import BannerUpdateParameters
 
@@ -21,16 +20,13 @@ class BannerController(BaseController):
         self.logger = logging.getLogger(__name__)
         self.config = config
 
-    def get_banner(self, body=None):
+    def get_banner(self):
         """Does a GET request to /public/banners.
 
         Currently it returns a cluster specific banner for all requests.
         Later, depending on who is requesting it (which can be inferred from
         the URL), we would like to return most appropriate banner if set by
         the cluster admin (or Service Provider).
-
-        Args:
-            body (BannerIdData): Request to get the banner.
 
         Returns:
             Banner: Response from the API. Success

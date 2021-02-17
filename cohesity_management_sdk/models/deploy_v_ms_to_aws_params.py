@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.entity_proto
 import cohesity_management_sdk.models.deploy_db_instances_to_rds_params
@@ -12,6 +12,9 @@ class DeployVMsToAWSParams(object):
     when converting and deploying a VM to AWS.
 
     Attributes:
+        aurora_params (DeployDBInstancesToRDSParams): This field will be
+            populated for Aurora restores. Proto containing the parameters
+            required for restoring RDS Aurora cluster.
         instance_type (EntityProto): Specifies the attributes and the latest
             statistics about an entity.
         key_pair_name (EntityProto): Specifies the attributes and the latest
@@ -36,6 +39,7 @@ class DeployVMsToAWSParams(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "aurora_params":'auroraParams',
         "instance_type":'instanceType',
         "key_pair_name":'keyPairName',
         "network_security_groups":'networkSecurityGroups',
@@ -48,6 +52,7 @@ class DeployVMsToAWSParams(object):
     }
 
     def __init__(self,
+                 aurora_params=None,
                  instance_type=None,
                  key_pair_name=None,
                  network_security_groups=None,
@@ -60,6 +65,7 @@ class DeployVMsToAWSParams(object):
         """Constructor for the DeployVMsToAWSParams class"""
 
         # Initialize members of the class
+        self.aurora_params = aurora_params
         self.instance_type = instance_type
         self.key_pair_name = key_pair_name
         self.network_security_groups = network_security_groups
@@ -89,6 +95,7 @@ class DeployVMsToAWSParams(object):
             return None
 
         # Extract variables from the dictionary
+        aurora_params = ohesity_management_sdk.models.deploy_db_instances_to_rds_params.DeployDBInstancesToRDSParams.from_dictionary(dictionary.get('auroraParams')) if dictionary.get('auroraParams') else None
         instance_type = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('instanceType')) if dictionary.get('instanceType') else None
         key_pair_name = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('keyPairName')) if dictionary.get('keyPairName') else None
         network_security_groups = None
@@ -104,7 +111,8 @@ class DeployVMsToAWSParams(object):
         vpc = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('vpc')) if dictionary.get('vpc') else None
 
         # Return an object of this model
-        return cls(instance_type,
+        return cls(aurora_params,
+                   instance_type,
                    key_pair_name,
                    network_security_groups,
                    proxy_vm_subnet,

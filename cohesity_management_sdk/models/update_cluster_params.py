@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
+import cohesity_management_sdk.models.amqp_target_config
 import cohesity_management_sdk.models.subnet
 import cohesity_management_sdk.models.cluster_audit_log_configuration
 import cohesity_management_sdk.models.filer_audit_log_configuration
 import cohesity_management_sdk.models.ntp_settings_config
 import cohesity_management_sdk.models.syslog_server
+import cohesity_management_sdk.models.tiering_audit_log_configuration
 
 class UpdateClusterParams(object):
 
@@ -15,6 +17,7 @@ class UpdateClusterParams(object):
     Cohesity Cluster.
 
     Attributes:
+        amqp_target_config (AMQPTargetConfig): Specifies the AMQP target config.
         apps_subnet (Subnet): The subnet for Athena apps.
         banner_enabled (bool): Specifies whether UI banner is enabled on the
             cluster or not. When banner is enabled, UI will make an additional
@@ -32,6 +35,8 @@ class UpdateClusterParams(object):
         enable_active_monitoring (bool): Specifies if Cohesity can receive
             monitoring information from the Cohesity Cluster. If 'true',
             remote monitoring of the Cohesity Cluster is allowed.
+        enable_patches_download (bool): Specifies whether to enable
+            downloading patches from Cohesity download site.
         enable_upgrade_pkg_polling (bool): If 'true', Cohesity's upgrade
             server is polled for new releases.
         encryption_key_rotation_period_secs (long|int): Specifies the period
@@ -58,6 +63,8 @@ class UpdateClusterParams(object):
             is 'false'. Cohesity recommends accessing the Help from the
             Cohesity Web site which provides the newest and most complete
             version of Help.
+        kms_server_id (long|int): Specifies the KMS Server Id.
+            This can only be set when the encryption is enabled on cluster.
         language_locale (string): Specifies the language and locale for this
             Cohesity Cluster.
         local_auth_domain_name (string): Domain name for SMB local
@@ -97,20 +104,27 @@ class UpdateClusterParams(object):
             enabled, this flag controls whether multiple tenants can be placed
             on the same viewbox. Once set to true, this flag should never
             become false.
+        tiering_audit_log_config (TieringAuditLogConfiguration): Tiering Audit
+            Log Configuration.
         timezone (string): Specifies the timezone to use for showing time in
             emails, reports, filer audit logs, etc.
         turbo_mode (bool): Specifies if the cluster is in Turbo mode.
+        use_heimdall (bool): Specifies whether to enable Heimdall which tells
+            whether services should use temporary fleet instances to mount
+            disks by talking to Heimdall.
 
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "amqp_target_config": 'amqpTargetConfig',
         "apps_subnet":'appsSubnet',
         "banner_enabled":'bannerEnabled',
         "cluster_audit_log_config":'clusterAuditLogConfig',
         "dns_server_ips":'dnsServerIps',
         "domain_names":'domainNames',
         "enable_active_monitoring":'enableActiveMonitoring',
+        "enable_patches_download":'enablePatchesDownload',
         "enable_upgrade_pkg_polling":'enableUpgradePkgPolling',
         "encryption_key_rotation_period_secs":'encryptionKeyRotationPeriodSecs',
         "fault_tolerance_level":'faultToleranceLevel',
@@ -118,6 +132,7 @@ class UpdateClusterParams(object):
         "gateway":'gateway',
         "google_analytics_enabled":'googleAnalyticsEnabled',
         "is_documentation_local":'isDocumentationLocal',
+        "kms_server_id":'kmsServerId',
         "language_locale":'languageLocale',
         "local_auth_domain_name":'localAuthDomainName',
         "local_groups_enabled":'localGroupsEnabled',
@@ -133,17 +148,21 @@ class UpdateClusterParams(object):
         "stig_mode":'stigMode',
         "syslog_servers":'syslogServers',
         "tenant_viewbox_sharing_enabled":'tenantViewboxSharingEnabled',
+        "tiering_audit_log_config":'tieringAuditLogConfig',
         "timezone":'timezone',
-        "turbo_mode":'turboMode'
+        "turbo_mode":'turboMode',
+        "use_heimdall":'useHeimdall'
     }
 
     def __init__(self,
+                 amqp_target_config=None,
                  apps_subnet=None,
                  banner_enabled=None,
                  cluster_audit_log_config=None,
                  dns_server_ips=None,
                  domain_names=None,
                  enable_active_monitoring=None,
+                 enable_patches_download=None,
                  enable_upgrade_pkg_polling=None,
                  encryption_key_rotation_period_secs=None,
                  fault_tolerance_level=None,
@@ -151,6 +170,7 @@ class UpdateClusterParams(object):
                  gateway=None,
                  google_analytics_enabled=None,
                  is_documentation_local=None,
+                 kms_server_id=None,
                  language_locale=None,
                  local_auth_domain_name=None,
                  local_groups_enabled=None,
@@ -166,17 +186,21 @@ class UpdateClusterParams(object):
                  stig_mode=None,
                  syslog_servers=None,
                  tenant_viewbox_sharing_enabled=None,
+                 tiering_audit_log_config=None,
                  timezone=None,
-                 turbo_mode=None):
+                 turbo_mode=None,
+                 use_heimdall=None):
         """Constructor for the UpdateClusterParams class"""
 
         # Initialize members of the class
+        self.amqp_target_config = amqp_target_config
         self.apps_subnet = apps_subnet
         self.banner_enabled = banner_enabled
         self.cluster_audit_log_config = cluster_audit_log_config
         self.dns_server_ips = dns_server_ips
         self.domain_names = domain_names
         self.enable_active_monitoring = enable_active_monitoring
+        self.enable_patches_download = enable_patches_download
         self.enable_upgrade_pkg_polling = enable_upgrade_pkg_polling
         self.encryption_key_rotation_period_secs = encryption_key_rotation_period_secs
         self.fault_tolerance_level = fault_tolerance_level
@@ -184,6 +208,7 @@ class UpdateClusterParams(object):
         self.gateway = gateway
         self.google_analytics_enabled = google_analytics_enabled
         self.is_documentation_local = is_documentation_local
+        self.kms_server_id = kms_server_id
         self.language_locale = language_locale
         self.local_auth_domain_name = local_auth_domain_name
         self.local_groups_enabled = local_groups_enabled
@@ -199,8 +224,10 @@ class UpdateClusterParams(object):
         self.stig_mode = stig_mode
         self.syslog_servers = syslog_servers
         self.tenant_viewbox_sharing_enabled = tenant_viewbox_sharing_enabled
+        self.tiering_audit_log_config = tiering_audit_log_config
         self.timezone = timezone
         self.turbo_mode = turbo_mode
+        self.use_heimdall = use_heimdall
 
 
     @classmethod
@@ -221,12 +248,14 @@ class UpdateClusterParams(object):
             return None
 
         # Extract variables from the dictionary
+        amqp_target_config = cohesity_management_sdk.models.amqp_target_config.AMQPTargetConfig.from_dictionary(dictionary.get('amqpTargetConfig')) if dictionary.get('amqpTargetConfig') else None
         apps_subnet = cohesity_management_sdk.models.subnet.Subnet.from_dictionary(dictionary.get('appsSubnet')) if dictionary.get('appsSubnet') else None
         banner_enabled = dictionary.get('bannerEnabled')
         cluster_audit_log_config = cohesity_management_sdk.models.cluster_audit_log_configuration.ClusterAuditLogConfiguration.from_dictionary(dictionary.get('clusterAuditLogConfig')) if dictionary.get('clusterAuditLogConfig') else None
         dns_server_ips = dictionary.get('dnsServerIps')
         domain_names = dictionary.get('domainNames')
         enable_active_monitoring = dictionary.get('enableActiveMonitoring')
+        enable_patches_download = dictionary.get('enablePatchesDownload')
         enable_upgrade_pkg_polling = dictionary.get('enableUpgradePkgPolling')
         encryption_key_rotation_period_secs = dictionary.get('encryptionKeyRotationPeriodSecs')
         fault_tolerance_level = dictionary.get('faultToleranceLevel')
@@ -234,6 +263,7 @@ class UpdateClusterParams(object):
         gateway = dictionary.get('gateway')
         google_analytics_enabled = dictionary.get('googleAnalyticsEnabled')
         is_documentation_local = dictionary.get('isDocumentationLocal')
+        kms_server_id = dictionary.get('kmsServerId')
         language_locale = dictionary.get('languageLocale')
         local_auth_domain_name = dictionary.get('localAuthDomainName')
         local_groups_enabled = dictionary.get('localGroupsEnabled')
@@ -253,16 +283,20 @@ class UpdateClusterParams(object):
             for structure in dictionary.get('syslogServers'):
                 syslog_servers.append(cohesity_management_sdk.models.syslog_server.SyslogServer.from_dictionary(structure))
         tenant_viewbox_sharing_enabled = dictionary.get('tenantViewboxSharingEnabled')
+        tiering_audit_log_config = cohesity_management_sdk.models.tiering_audit_log_configuration.TieringAuditLogConfiguration.from_dictionary(dictionary.get('tieringAuditLogConfig')) if dictionary.get('tieringAuditLogConfig') else None
         timezone = dictionary.get('timezone')
         turbo_mode = dictionary.get('turboMode')
+        use_heimdall = dictionary.get('useHeimdall')
 
         # Return an object of this model
-        return cls(apps_subnet,
+        return cls(amqp_target_config,
+                   apps_subnet,
                    banner_enabled,
                    cluster_audit_log_config,
                    dns_server_ips,
                    domain_names,
                    enable_active_monitoring,
+                   enable_patches_download,
                    enable_upgrade_pkg_polling,
                    encryption_key_rotation_period_secs,
                    fault_tolerance_level,
@@ -270,6 +304,7 @@ class UpdateClusterParams(object):
                    gateway,
                    google_analytics_enabled,
                    is_documentation_local,
+                   kms_server_id,
                    language_locale,
                    local_auth_domain_name,
                    local_groups_enabled,
@@ -285,7 +320,9 @@ class UpdateClusterParams(object):
                    stig_mode,
                    syslog_servers,
                    tenant_viewbox_sharing_enabled,
+                   tiering_audit_log_config,
                    timezone,
-                   turbo_mode)
+                   turbo_mode,
+                   use_heimdall)
 
 
