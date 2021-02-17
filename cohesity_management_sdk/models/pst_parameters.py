@@ -54,11 +54,7 @@ class PstParameters(object):
 
         # Extract variables from the dictionary
         create_pst = dictionary.get('createPst')
-        pst_password = None
-        if dictionary.get('pstPassword') != None:
-            pst_password = list()
-            for structure in dictionary.get('pstPassword'):
-                pst_password.append(cohesity_management_sdk.models.task_notification.TaskNotification.from_dictionary(structure))
+        pst_password = dictionary.get('pstPassword')
         pst_size_threshold = dictionary.get('pstSizeThreshold')
 
         # Return an object of this model

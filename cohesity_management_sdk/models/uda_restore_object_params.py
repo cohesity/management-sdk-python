@@ -6,7 +6,7 @@ class UdaRestoreObjectParams(object):
     """Implementation of the 'UdaRestoreObjectParams' model.
 
     Attributes:
-        new_object_nam (string): The new name of the object, if it is going to
+        new_object_name (string): The new name of the object, if it is going to
             be renamed.
         overwrite (bool): Whether to overwrite or keep the object if the
             object being recovered already exists in the destination.
@@ -20,19 +20,19 @@ class UdaRestoreObjectParams(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "new_object_nam":'newObjectName',
+        "new_object_name":'newObjectName',
         "overwrite":'overwrite',
         "restore_time_secs":'restoreTimeSecs'
     }
 
     def __init__(self,
-                 new_object_nam=None,
+                 new_object_name=None,
                  overwrite=None,
                  restore_time_secs=None):
         """Constructor for the UdaRestoreObjectParams class"""
 
         # Initialize members of the class
-        self.new_object_nam = new_object_nam
+        self.new_object_name = new_object_name
         self.overwrite = overwrite
         self.restore_time_secs = restore_time_secs
 
@@ -55,12 +55,12 @@ class UdaRestoreObjectParams(object):
             return None
 
         # Extract variables from the dictionary
-        new_object_nam = dictionary.get('newObjectName')
+        new_object_name = dictionary.get('newObjectName')
         overwrite =  dictionary.get('overwrite')
         restore_time_secs = dictionary.get('restoreTimeSecs')
 
         # Return an object of this model
-        return cls(new_object_nam,
+        return cls(new_object_name,
                    overwrite,
                    restore_time_secs)
 

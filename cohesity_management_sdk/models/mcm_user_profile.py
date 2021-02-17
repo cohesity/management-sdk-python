@@ -77,7 +77,7 @@ class McmUserProfile(object):
         if dictionary.get('clusterIdentifiers') != None:
             cluster_identifiers = list()
             for structure in dictionary.get('clusterIdentifiers'):
-                cluster_identifiers.append(cohesity_management_sdk.models.cluster_identifier.ClusterIdentifier.from_dictionary(dictionary.get(structure)))
+                cluster_identifiers.append(cohesity_management_sdk.models.cluster_identifier.ClusterIdentifier.from_dictionary(structure))
         is_active = dictionary.get('isActive')
         is_deleted = dictionary.get('isDeleted')
         region_ids = dictionary.get('regionIds')

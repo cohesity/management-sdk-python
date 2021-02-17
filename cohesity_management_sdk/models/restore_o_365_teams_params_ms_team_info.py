@@ -12,24 +12,24 @@ class RestoreO365TeamsParams_MSTeamInfo(object):
     Attributes:
         is_full_team_required (bool): Specify if the entire Team is to be
             restored.
-        mobject (string): Start IP of the range
+        object (RestoreObject): Start IP of the range
 
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
         "is_full_team_required": 'isFullTeamRequired',
-        "mobject": 'object'
+        "object": 'object'
     }
 
     def __init__(self,
                  is_full_team_required=None,
-                 mobject=None):
+                 object=None):
         """Constructor for the RestoreO365TeamsParams_MSTeamInfo class"""
 
         # Initialize members of the class
         self.is_full_team_required = is_full_team_required
-        self.mobject = mobject
+        self.object = object
 
 
     @classmethod
@@ -51,10 +51,10 @@ class RestoreO365TeamsParams_MSTeamInfo(object):
 
         # Extract variables from the dictionary
         is_full_team_required = dictionary.get('isFullTeamRequired')
-        mobject = cohesity_management_sdk.models.restore_object.RestoreObject.from_dictionary(dictionary.get('object')) if dictionary.get('object') else None
+        object = cohesity_management_sdk.models.restore_object.RestoreObject.from_dictionary(dictionary.get('object')) if dictionary.get('object') else None
 
         # Return an object of this model
         return cls(is_full_team_required,
-                   mobject)
+                   object)
 
 

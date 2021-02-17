@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2021 Cohesity Inc.
 
-import cohesity_management_sdk.models.public_folder
-import cohesity_management_sdk.models.restore_object_details
-
 class PublicFolder(object):
 
     """Implementation of the 'PublicFolder' model.
@@ -59,14 +56,9 @@ class PublicFolder(object):
             return None
 
         # Extract variables from the dictionary
-        folder_id = None
-        if dictionary.get('folderId') != None:
-            folder_id = list()
-            for structure in dictionary.get('folderId'):
-                public_folder_item_id_list.append(cohesity_management_sdk.models.public_folder.PublicFolder.from_dictionary(structure))
-
+        folder_id = dictionary.get('folderId')
         public_folder_item_id_list = dictionary.get('publicFolderItemIdList')
-        restore_entire_folder = cohesity_management_sdk.models.restore_object_details.RestoreObjectDetails.from_dictionary(dictionary.get('restoreEntireFolder')) if dictionary.get('restoreEntireFolder') else None
+        restore_entire_folder = dictionary.get('restoreEntireFolder')
 
         # Return an object of this model
         return cls(folder_id,

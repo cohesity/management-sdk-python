@@ -23,19 +23,19 @@ class RestoreO365PublicFoldersParams_RootPublicFolder(object):
     _names = {
         "folder_vec":'folderVec',
         "is_entire_root_folder_required":'isEntireRootFolderRequired',
-        "mobject":'object'
+        "object":'object'
     }
 
     def __init__(self,
                  folder_vec=None,
                  is_entire_root_folder_required=None,
-                 mobject=None):
+                 object=None):
         """Constructor for the RestoreO365PublicFoldersParams_RootPublicFolder class"""
 
         # Initialize members of the class
         self.folder_vec = folder_vec
         self.is_entire_root_folder_required = is_entire_root_folder_required
-        self.mobject = mobject
+        self.object = object
 
 
     @classmethod
@@ -62,11 +62,11 @@ class RestoreO365PublicFoldersParams_RootPublicFolder(object):
             for structure in dictionary.get('folderVec'):
                 folder_vec.append(cohesity_management_sdk.models.restore_o_365_public_folders_params_public_folder.RestoreO365PublicFoldersParams_PublicFolder.from_dictionary(structure))
         is_entire_root_folder_required = dictionary.get('isEntireRootFolderRequired')
-        mobject = cohesity_management_sdk.models.restore_object.RestoreObject.from_dictionary(dictionary.get('object')) if dictionary.get('object') else None
+        object = cohesity_management_sdk.models.restore_object.RestoreObject.from_dictionary(dictionary.get('object')) if dictionary.get('object') else None
 
         # Return an object of this model
         return cls(folder_vec,
                    is_entire_root_folder_required,
-                   mobject)
+                   object)
 
 

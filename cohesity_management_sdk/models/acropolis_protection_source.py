@@ -19,7 +19,9 @@ class AcropolisProtectionSource(object):
         ngt_capabilities (list of int): Specifies enabled capabilities for NGT
             on the VM. This is applicable to acropolis entity of type
             kVirtualMachine.
-        ngt_enable_status (int): Specified if NGT is installed on the VM. This
+        ngt_enable_status (int): Specifies if NGT is enabled on the VM. This
+            is applicable to acropolis entity of type kVirtualMachine.
+        ngt_install_status (int): Specified if NGT is installed on the VM. This
             is applicable to acropolis entity of type kVirtualMachine.
         ngt_reachable (bool): Specifies if NGT on the VM is reachable from
             Controller VM. This is applicable to acropolis entity of type
@@ -43,7 +45,8 @@ class AcropolisProtectionSource(object):
         "mount_path":'mountPath',
         "name":'name',
         "ngt_capabilities":'ngtCapabilities',
-        "ngt_enable_status":'ngtInstallStatus',
+        "ngt_enable_status":'ngtEnableStatus',
+        "ngt_install_status":'ngtInstallStatus',
         "ngt_reachable":'ngtReachable',
         "ngt_version":'ngtVersion',
         "mtype":'type',
@@ -58,6 +61,7 @@ class AcropolisProtectionSource(object):
                  name=None,
                  ngt_capabilities=None,
                  ngt_enable_status=None,
+                 ngt_install_status=None,
                  ngt_reachable=None,
                  ngt_version=None,
                  mtype=None,
@@ -72,6 +76,7 @@ class AcropolisProtectionSource(object):
         self.name = name
         self.ngt_capabilities = ngt_capabilities
         self.ngt_enable_status = ngt_enable_status
+        self.ngt_install_status = ngt_install_status
         self.ngt_reachable = ngt_reachable
         self.ngt_version = ngt_version
         self.mtype = mtype
@@ -102,7 +107,8 @@ class AcropolisProtectionSource(object):
         mount_path = dictionary.get('mountPath')
         name = dictionary.get('name')
         ngt_capabilities = dictionary.get('ngtCapabilities')
-        ngt_enable_status = dictionary.get('ngtInstallStatus')
+        ngt_enable_status = dictionary.get('ngtEnableStatus')
+        ngt_install_status = dictionary.get('ngtInstallStatus')
         ngt_reachable = dictionary.get('ngtReachable')
         ngt_version = dictionary.get('ngtVersion')
         mtype = dictionary.get('type')
@@ -116,6 +122,7 @@ class AcropolisProtectionSource(object):
                    name,
                    ngt_capabilities,
                    ngt_enable_status,
+                   ngt_install_status,
                    ngt_reachable,
                    ngt_version,
                    mtype,

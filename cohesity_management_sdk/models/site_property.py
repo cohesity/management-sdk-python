@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2021 Cohesity Inc.
 
-import cohesity_management_sdk.models.task_notification
-
 class SiteProperty(object):
 
     """Implementation of the 'SiteProperty' model.

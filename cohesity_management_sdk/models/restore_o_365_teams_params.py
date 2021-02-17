@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2021 Cohesity Inc.
 
+import cohesity_management_sdk.models.restore_o_365_teams_params_ms_team_info
 
 class RestoreO365TeamsParams(object):
 

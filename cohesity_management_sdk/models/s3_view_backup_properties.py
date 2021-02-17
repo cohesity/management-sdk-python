@@ -61,11 +61,7 @@ class S3ViewBackupProperties(object):
 
         # Extract variables from the dictionary
         access_key = dictionary.get('accessKey')
-        s3_config = None
-        if dictionary.get('s3Config') != None:
-            s3_config = list()
-            for structure in dictionary.get('s3Config'):
-                s3_config.append(cohesity_management_sdk.models.s3_bucket_config_proto.S3BucketConfigProto.from_dictionary(structure))
+        s3_config = cohesity_management_sdk.models.s3_bucket_config_proto.S3BucketConfigProto.from_dictionary(dictionary.get('s3Config')) if dictionary.get('s3Config') else None
         secret_key = dictionary.get('secretKey')
 
         # Return an object of this model

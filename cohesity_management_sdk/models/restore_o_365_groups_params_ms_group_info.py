@@ -19,7 +19,7 @@ class RestoreO365GroupsParams_MSGroupInfo(object):
         mailbox_restore_type (int): Information of a Universal Data Adapter
             object, only valid for an entity of
         site_restore_type (int): Whether site restore is full or granular.
-        mobject (RestoreObject): This will store the details of the MS groups
+        object (RestoreObject): This will store the details of the MS groups
             to be restored.
 
     """
@@ -30,7 +30,7 @@ class RestoreO365GroupsParams_MSGroupInfo(object):
         "is_full_group_required":'isFullGroupRequired',
         "mailbox_restore_type":'mailboxRestoreType',
         "site_restore_type":'siteRestoreType',
-        "mobject":'object'
+        "object":'object'
     }
 
     def __init__(self,
@@ -38,7 +38,7 @@ class RestoreO365GroupsParams_MSGroupInfo(object):
                  is_full_group_required=None,
                  mailbox_restore_type=None,
                  site_restore_type=None,
-                 mobject=None):
+                 object=None):
         """Constructor for the RestoreO365GroupsParams_MSGroupInfo class"""
 
         # Initialize members of the class
@@ -46,7 +46,7 @@ class RestoreO365GroupsParams_MSGroupInfo(object):
         self.is_full_group_required = is_full_group_required
         self.mailbox_restore_type = mailbox_restore_type
         self.site_restore_type = site_restore_type
-        self.mobject = mobject
+        self.object = object
 
 
     @classmethod
@@ -70,7 +70,7 @@ class RestoreO365GroupsParams_MSGroupInfo(object):
         group_granular_params = cohesity_management_sdk.models.restore_o_365_groups_params_group_granular_params.RestoreO365GroupsParams_GroupGranularParams.from_dictionary(dictionary.get('groupGranularParams')) if dictionary.get('groupGranularParams') else None
         is_full_group_required = dictionary.get('isFullGroupRequired')
         mailbox_restore_type = dictionary.get('mailboxRestoreType')
-        mobject =  cohesity_management_sdk.models.restore_object.RestoreObject.from_dictionary(dictionary.get('object')) if dictionary.get('object') else None
+        object =  cohesity_management_sdk.models.restore_object.RestoreObject.from_dictionary(dictionary.get('object')) if dictionary.get('object') else None
         site_restore_type = dictionary.get('siteRestoreType')
 
         # Return an object of this model
@@ -78,6 +78,6 @@ class RestoreO365GroupsParams_MSGroupInfo(object):
                    is_full_group_required,
                    mailbox_restore_type,
                    site_restore_type,
-                   mobject)
+                   object)
 
 

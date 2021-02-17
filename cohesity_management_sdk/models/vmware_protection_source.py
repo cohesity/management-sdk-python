@@ -9,6 +9,7 @@ import cohesity_management_sdk.models.tag_attribute
 import cohesity_management_sdk.models.vcloud_director_info
 import cohesity_management_sdk.models.virtual_disk_info
 import cohesity_management_sdk.models.vmware_cdp_protection_source_info
+import cohesity_management_sdk.models.vm_linking_info
 
 class VmwareProtectionSource(object):
 
