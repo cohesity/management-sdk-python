@@ -5,7 +5,7 @@ import cohesity_management_sdk.models.agent_information
 import cohesity_management_sdk.models.universal_id
 import cohesity_management_sdk.models.networking_information
 import cohesity_management_sdk.models.physical_volume
-import cohesity_management_sdk.models.vss_writers
+import cohesity_management_sdk.models.vss_writer
 
 class PhysicalProtectionSource(object):
 

@@ -23,7 +23,7 @@ class Links(object):
         "mself":'self'
     }
 
-    def __init__(mself,
+    def __init__(self,
                  next=None,
                  previous=None,
                  mself=None):
