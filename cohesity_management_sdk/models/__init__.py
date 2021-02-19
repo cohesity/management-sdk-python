@@ -148,6 +148,7 @@ __all__ = [
     'credentials',
     'custom_unix_id_attributes',
     'daily_schedule',
+    'data_lock_config',
     'data_migration_job_parameters',
     'data_migration_policy',
     'data_transfer_from_vault_per_task',

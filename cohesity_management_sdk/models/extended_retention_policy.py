@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2020 Cohesity Inc.
 
+import cohesity_management_sdk.models.data_lock_config
 
 class ExtendedRetentionPolicy(object):
 
@@ -24,6 +25,8 @@ class ExtendedRetentionPolicy(object):
             time. 'kSystem' indicates a system backup. System backups are used
             to do bare metal recovery of the system to a specific point in
             time.
+        datalock_config (DataLockConfig): Specifies WORM retention type for
+            snapshots under extended retention.
         days_to_keep (long|int): Specifies the number of days to retain copied
             Snapshots on the target.
         multiplier (int): Specifies a factor to multiply the periodicity by,
@@ -49,6 +52,7 @@ class ExtendedRetentionPolicy(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "backup_run_type":'backupRunType',
+        "datalock_config":'datalockConfig',
         "days_to_keep":'daysToKeep',
         "multiplier":'multiplier',
         "periodicity":'periodicity'
@@ -56,6 +60,7 @@ class ExtendedRetentionPolicy(object):
 
     def __init__(self,
                  backup_run_type=None,
+                 datalock_config=None,
                  days_to_keep=None,
                  multiplier=None,
                  periodicity=None):
@@ -63,6 +68,7 @@ class ExtendedRetentionPolicy(object):
 
         # Initialize members of the class
         self.backup_run_type = backup_run_type
+        self.datalock_config = datalock_config
         self.days_to_keep = days_to_keep
         self.multiplier = multiplier
         self.periodicity = periodicity
@@ -87,12 +93,14 @@ class ExtendedRetentionPolicy(object):
 
         # Extract variables from the dictionary
         backup_run_type = dictionary.get('backupRunType')
+        datalock_config = cohesity_management_sdk.models.data_lock_config.DataLockConfig.from_dictionary(dictionary.get('datalockConfig')) if dictionary.get('datalockConfig') else None
         days_to_keep = dictionary.get('daysToKeep')
         multiplier = dictionary.get('multiplier')
         periodicity = dictionary.get('periodicity')
 
         # Return an object of this model
         return cls(backup_run_type,
+                   datalock_config,
                    days_to_keep,
                    multiplier,
                    periodicity)
