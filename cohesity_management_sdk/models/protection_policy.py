@@ -2,7 +2,6 @@
 # Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.blackout_period
-import cohesity_management_sdk.models.data_lock_config
 import cohesity_management_sdk.models.snapshot_cloud_copy_policy
 import cohesity_management_sdk.models.extended_retention_policy
 import cohesity_management_sdk.models.scheduling_policy
@@ -30,21 +29,6 @@ class ProtectionPolicy(object):
             to Cloud. CloudDeploy target where backup snapshots may be
             converted and stored. It also defines the retention of copied
             Snapshots on the Cloud.
-        datalock_config (DataLockConfig): Specifies WORM retention type for
-            the log snapshots. When a WORM retention type is specified, the
-            snapshots of the Protection Groups using this policy will be kept
-            for the last N days as specified in the duration of the datalock.
-            During that time, the snapshots cannot be deleted.
-        datalock_config_log (DataLockConfig): Specifies WORM retention type
-            for the log snapshots. When a WORM retention type is specified,the
-            snapshots of the Protection Groups using this policy will be kept
-            for the last N days as specified in the duration of the datalock.
-            During that time, the snapshots cannot be deleted.
-        datalock_config_system (DataLockConfig): Specifies WORM retention type
-            for the log snapshots. When a WORM retention type is specified,the
-            snapshots of the Protection Groups using this policy will be kept
-            for the last N days as specified in the duration of the datalock.
-            During that time, the snapshots cannot be deleted.
         days_to_keep (long|int): Specifies how many days to retain Snapshots
             on the Cohesity Cluster.
         days_to_keep_log (long|int): Specifies the number of days to retain
@@ -130,9 +114,6 @@ class ProtectionPolicy(object):
         "blackout_periods":'blackoutPeriods',
         "cdp_scheduling_policy":'cdpSchedulingPolicy',
         "cloud_deploy_policies":'cloudDeployPolicies',
-        "datalock_config":'datalockConfig',
-        "datalock_config_log":'datalockConfigLog',
-        "datalock_config_system":'datalockConfigSystem',
         "days_to_keep":'daysToKeep',
         "days_to_keep_log":'daysToKeepLog',
         "days_to_keep_system":'daysToKeepSystem',
@@ -164,9 +145,6 @@ class ProtectionPolicy(object):
                  blackout_periods=None,
                  cdp_scheduling_policy=None,
                  cloud_deploy_policies=None,
-                 datalock_config=None,
-                 datalock_config_log=None,
-                 datalock_config_system=None,
                  days_to_keep=None,
                  days_to_keep_log=None,
                  days_to_keep_system=None,
@@ -198,9 +176,6 @@ class ProtectionPolicy(object):
         self.blackout_periods = blackout_periods
         self.cdp_scheduling_policy = cdp_scheduling_policy
         self.cloud_deploy_policies = cloud_deploy_policies
-        self.datalock_config = datalock_config
-        self.datalock_config_log = datalock_config_log
-        self.datalock_config_system = datalock_config_system
         self.days_to_keep = days_to_keep
         self.days_to_keep_log = days_to_keep_log
         self.days_to_keep_system = days_to_keep_system
@@ -257,9 +232,6 @@ class ProtectionPolicy(object):
             cloud_deploy_policies = list()
             for structure in dictionary.get('cloudDeployPolicies'):
                 cloud_deploy_policies.append(cohesity_management_sdk.models.snapshot_cloud_copy_policy.SnapshotCloudCopyPolicy.from_dictionary(structure))
-        datalock_config = cohesity_management_sdk.models.data_lock_config.DataLockConfig.from_dictionary(dictionary.get('datalockConfig')) if dictionary.get('datalockConfig') else None
-        datalock_config_log = cohesity_management_sdk.models.data_lock_config.DataLockConfig.from_dictionary(dictionary.get('datalockConfigLog')) if dictionary.get('datalockConfigLog') else None
-        datalock_config_system = cohesity_management_sdk.models.data_lock_config.DataLockConfig.from_dictionary(dictionary.get('datalockConfigSystem')) if dictionary.get('datalockConfigSystem') else None
         days_to_keep = dictionary.get('daysToKeep')
         days_to_keep_log = dictionary.get('daysToKeepLog')
         days_to_keep_system = dictionary.get('daysToKeepSystem')
@@ -302,9 +274,6 @@ class ProtectionPolicy(object):
         return cls(blackout_periods,
                    cdp_scheduling_policy,
                    cloud_deploy_policies,
-                   datalock_config,
-                   datalock_config_log,
-                   datalock_config_system,
                    days_to_keep,
                    days_to_keep_log,
                    days_to_keep_system,
