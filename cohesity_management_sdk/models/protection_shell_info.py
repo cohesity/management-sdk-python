@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2021 Cohesity Inc.
 
-import cohesity_management_sdk.models.status
-
 class ProtectionShellInfo(object):
 
     """Implementation of the 'ProtectionShellInfo' model.
@@ -100,7 +98,7 @@ class ProtectionShellInfo(object):
         job_run_id = dictionary.get('jobRunId')
         run_type = dictionary.get('runType')
         start_time_usecs = dictionary.get('startTimeUsecs')
-        status = cohesity_management_sdk.models.status.status.from_dictionary(dictionary.get('status')) if dictionary.get('status') else None
+        status = dictionary.get('status')
 
         # Return an object of this model
         return cls(end_time_usecs,
