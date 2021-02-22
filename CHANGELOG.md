@@ -2,7 +2,7 @@
 Patch release for datalock config.
 
 ### Added
-- None
+- Aded datalock config for protection policies
 
 ### Changed
 - None
