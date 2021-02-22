@@ -328,7 +328,6 @@ __all__ = [
     'dashboard',
     'dashboard_response',
     'data_disk_type_enum',
-    'data_lock_config',
     'data_migration_job_parameters',
     'data_migration_policy',
     'data_protocol_enum',

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2019 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 from setuptools import setup, find_packages
 
@@ -14,7 +14,7 @@ except(IOError, ImportError):
 
 setup(
     name='cohesity_management_sdk',
-    version='1.5.3',
+    version='1.6.0',
     description='This SDK provides operations for interfacing with the Cohesity Cluster.',
     long_description=long_description,
     long_description_content_type=long_description_content_type,

@@ -1,5 +1,5 @@
-# [1.5.3] - 2021-02-22
-Patch release for datalock config for protection policy.
+# [1.6.0] - 2021-02-22
+New SDK for Cluster 6.6
 
 ### Added
 - None
@@ -8,7 +8,7 @@ Patch release for datalock config for protection policy.
 - None
 
 ### Fixed
-- Fixed code for datalock config - protection policy.
+- None
 
 ### Removed
 - None
