@@ -230,6 +230,7 @@ __all__ = [
     'daily_usage',
     'dashboard',
     'dashboard_response',
+    'data_lock_config',
     'data_migration_job_parameters',
     'data_migration_policy',
     'data_transfer_from_vault_per_task',

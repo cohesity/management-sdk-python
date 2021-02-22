@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.cloud_deploy_target_details
+import cohesity_management_sdk.models.data_lock_config
 import cohesity_management_sdk.models.replication_target_settings
 
 class SnapshotReplicationCopyPolicy(object):
@@ -28,6 +29,11 @@ class SnapshotReplicationCopyPolicy(object):
             Job Run occurring at the start of the replication schedule that
             was completely successful i.e. Snapshots for all the Objects in
             the Job were successfully captured.
+        datalock_config (DataLockConfig): Specifies WORM retention type for
+            the log snapshots. When a WORM retention type is specified, the
+            snapshots of the Protection Groups using this policy will be kept
+            for the last N days as specified in the duration of the datalock.
+            During that time, the snapshots cannot be deleted.
         days_to_keep (long|int): Specifies the number of days to retain copied
             Snapshots on the target.
         multiplier (int): Specifies a factor to multiply the periodicity by,
@@ -57,6 +63,7 @@ class SnapshotReplicationCopyPolicy(object):
         "id":'Id',
         "cloud_target":'cloudTarget',
         "copy_partial":'copyPartial',
+        "datalock_config":'datalockConfig',
         "days_to_keep":'daysToKeep',
         "multiplier":'multiplier',
         "periodicity":'periodicity',
@@ -67,6 +74,7 @@ class SnapshotReplicationCopyPolicy(object):
                  id=None,
                  cloud_target=None,
                  copy_partial=None,
+                 datalock_config=None,
                  days_to_keep=None,
                  multiplier=None,
                  periodicity=None,
@@ -77,6 +85,7 @@ class SnapshotReplicationCopyPolicy(object):
         self.id = id
         self.cloud_target = cloud_target
         self.copy_partial = copy_partial
+        self.datalock_config = datalock_config
         self.days_to_keep = days_to_keep
         self.multiplier = multiplier
         self.periodicity = periodicity
@@ -104,6 +113,7 @@ class SnapshotReplicationCopyPolicy(object):
         id = dictionary.get('Id')
         cloud_target = cohesity_management_sdk.models.cloud_deploy_target_details.CloudDeployTargetDetails.from_dictionary(dictionary.get('cloudTarget')) if dictionary.get('cloudTarget') else None
         copy_partial = dictionary.get('copyPartial')
+        datalock_config = cohesity_management_sdk.models.data_lock_config.DataLockConfig.from_dictionary(dictionary.get('datalockConfig')) if dictionary.get('datalockConfig') else None
         days_to_keep = dictionary.get('daysToKeep')
         multiplier = dictionary.get('multiplier')
         periodicity = dictionary.get('periodicity')
@@ -113,6 +123,7 @@ class SnapshotReplicationCopyPolicy(object):
         return cls(id,
                    cloud_target,
                    copy_partial,
+                   datalock_config,
                    days_to_keep,
                    multiplier,
                    periodicity,
