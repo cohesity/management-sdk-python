@@ -1,3 +1,18 @@
+# [1.5.3] - 2021-02-22
+Patch release for datalock config.
+
+### Added
+- None
+
+### Changed
+- None
+
+### Fixed
+- None
+
+### Removed
+- None
+
 # [1.5.2] - 2021-01-15
 Patch release for blackout policy issue fix
 
