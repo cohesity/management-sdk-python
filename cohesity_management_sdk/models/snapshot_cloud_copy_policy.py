@@ -25,6 +25,11 @@ class SnapshotCloudCopyPolicy(object):
             Job Run occurring at the start of the replication schedule that
             was completely successful i.e. Snapshots for all the Objects in
             the Job were successfully captured.
+        datalock_config (DataLockConfig): Specifies WORM retention type for
+            the log snapshots. When a WORM retention type is specified, the
+            snapshots of the Protection Groups using this policy will be kept
+            for the last N days as specified in the duration of the datalock.
+            During that time, the snapshots cannot be deleted.
         days_to_keep (long|int): Specifies the number of days to retain copied
             Snapshots on the target.
         multiplier (int): Specifies a factor to multiply the periodicity by,
@@ -54,6 +59,7 @@ class SnapshotCloudCopyPolicy(object):
     _names = {
         "id":'Id',
         "copy_partial":'copyPartial',
+        "datalock_config":'datalockConfig',
         "days_to_keep":'daysToKeep',
         "multiplier":'multiplier',
         "periodicity":'periodicity',
@@ -63,6 +69,7 @@ class SnapshotCloudCopyPolicy(object):
     def __init__(self,
                  id=None,
                  copy_partial=None,
+                 datalock_config=None,
                  days_to_keep=None,
                  multiplier=None,
                  periodicity=None,
@@ -72,6 +79,7 @@ class SnapshotCloudCopyPolicy(object):
         # Initialize members of the class
         self.id = id
         self.copy_partial = copy_partial
+        self.datalock_config = datalock_config
         self.days_to_keep = days_to_keep
         self.multiplier = multiplier
         self.periodicity = periodicity
@@ -98,6 +106,7 @@ class SnapshotCloudCopyPolicy(object):
         # Extract variables from the dictionary
         id = dictionary.get('Id')
         copy_partial = dictionary.get('copyPartial')
+        datalock_config = cohesity_management_sdk.models.data_lock_config.DataLockConfig.from_dictionary(dictionary.get('datalockConfig')) if dictionary.get('datalockConfig') else None
         days_to_keep = dictionary.get('daysToKeep')
         multiplier = dictionary.get('multiplier')
         periodicity = dictionary.get('periodicity')
@@ -106,6 +115,7 @@ class SnapshotCloudCopyPolicy(object):
         # Return an object of this model
         return cls(id,
                    copy_partial,
+                   datalock_config,
                    days_to_keep,
                    multiplier,
                    periodicity,
