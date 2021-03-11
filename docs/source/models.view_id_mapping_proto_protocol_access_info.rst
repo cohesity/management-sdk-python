@@ -1,0 +1,6 @@
+ViewIdMappingProtoProtocolAccessInfo
+====================================
+.. automodule:: models.view_id_mapping_proto_protocol_access_info
+   :members:
+   :undoc-members:
+   :show-inheritance:

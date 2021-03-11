@@ -1,0 +1,6 @@
+ModeFileExtensionFilterEnum
+===========================
+.. automodule:: models.mode_file_extension_filter_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

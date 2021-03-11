@@ -1,0 +1,6 @@
+RestoreTasksController
+======================
+.. automodule:: controllers.restore_tasks_controller
+   :members:
+   :undoc-members:
+   :show-inheritance:

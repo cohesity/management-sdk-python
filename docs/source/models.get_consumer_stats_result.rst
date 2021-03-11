@@ -1,0 +1,6 @@
+GetConsumerStatsResult
+======================
+.. automodule:: models.get_consumer_stats_result
+   :members:
+   :undoc-members:
+   :show-inheritance:

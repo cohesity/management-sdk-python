@@ -1,0 +1,6 @@
+BackupPolicyProtoScheduleEnd
+============================
+.. automodule:: models.backup_policy_proto_schedule_end
+   :members:
+   :undoc-members:
+   :show-inheritance:

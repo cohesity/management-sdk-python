@@ -1,0 +1,6 @@
+IdMappingInfo
+=============
+.. automodule:: models.id_mapping_info
+   :members:
+   :undoc-members:
+   :show-inheritance:

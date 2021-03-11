@@ -1,0 +1,6 @@
+NetappVserverInfo
+=================
+.. automodule:: models.netapp_vserver_info
+   :members:
+   :undoc-members:
+   :show-inheritance:

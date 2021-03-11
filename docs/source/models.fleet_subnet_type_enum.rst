@@ -1,0 +1,6 @@
+FleetSubnetTypeEnum
+===================
+.. automodule:: models.fleet_subnet_type_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,6 @@
+UpdateMachineAccountsParams
+===========================
+.. automodule:: models.update_machine_accounts_params
+   :members:
+   :undoc-members:
+   :show-inheritance:

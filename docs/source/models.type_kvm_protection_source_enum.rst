@@ -1,0 +1,6 @@
+TypeKvmProtectionSourceEnum
+===========================
+.. automodule:: models.type_kvm_protection_source_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

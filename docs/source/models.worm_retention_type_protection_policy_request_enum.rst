@@ -1,0 +1,6 @@
+WormRetentionTypeProtectionPolicyRequestEnum
+============================================
+.. automodule:: models.worm_retention_type_protection_policy_request_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

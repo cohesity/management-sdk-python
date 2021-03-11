@@ -1,0 +1,6 @@
+MonthlyUsage
+============
+.. automodule:: models.monthly_usage
+   :members:
+   :undoc-members:
+   :show-inheritance:

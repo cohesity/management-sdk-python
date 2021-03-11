@@ -1,0 +1,6 @@
+RestoreInfoProto
+================
+.. automodule:: models.restore_info_proto
+   :members:
+   :undoc-members:
+   :show-inheritance:

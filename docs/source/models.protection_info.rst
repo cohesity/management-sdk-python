@@ -1,0 +1,6 @@
+ProtectionInfo
+==============
+.. automodule:: models.protection_info
+   :members:
+   :undoc-members:
+   :show-inheritance:

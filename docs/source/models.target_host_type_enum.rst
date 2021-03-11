@@ -1,0 +1,6 @@
+TargetHostTypeEnum
+==================
+.. automodule:: models.target_host_type_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

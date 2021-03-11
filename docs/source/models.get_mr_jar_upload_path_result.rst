@@ -1,0 +1,6 @@
+GetMRJarUploadPathResult
+========================
+.. automodule:: models.get_mr_jar_upload_path_result
+   :members:
+   :undoc-members:
+   :show-inheritance:

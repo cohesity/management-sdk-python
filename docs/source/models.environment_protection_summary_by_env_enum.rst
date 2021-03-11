@@ -1,0 +1,6 @@
+EnvironmentProtectionSummaryByEnvEnum
+=====================================
+.. automodule:: models.environment_protection_summary_by_env_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

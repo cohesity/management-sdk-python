@@ -1,0 +1,6 @@
+MetricDataPoint
+===============
+.. automodule:: models.metric_data_point
+   :members:
+   :undoc-members:
+   :show-inheritance:

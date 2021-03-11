@@ -1,0 +1,6 @@
+DestroyClonedVMTaskInfoProto
+============================
+.. automodule:: models.destroy_cloned_vm_task_info_proto
+   :members:
+   :undoc-members:
+   :show-inheritance:

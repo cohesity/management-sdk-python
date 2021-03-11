@@ -1,0 +1,6 @@
+UpdateProtectionJobsState
+=========================
+.. automodule:: models.update_protection_jobs_state
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,6 @@
+MapReduceInstanceInputParam
+===========================
+.. automodule:: models.map_reduce_instance_input_param
+   :members:
+   :undoc-members:
+   :show-inheritance:

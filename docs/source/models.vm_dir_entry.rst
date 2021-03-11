@@ -1,0 +1,6 @@
+VmDirEntry
+==========
+.. automodule:: models.vm_dir_entry
+   :members:
+   :undoc-members:
+   :show-inheritance:

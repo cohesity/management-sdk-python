@@ -1,0 +1,6 @@
+ClusterHardwareInfo
+===================
+.. automodule:: models.cluster_hardware_info
+   :members:
+   :undoc-members:
+   :show-inheritance:

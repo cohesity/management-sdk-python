@@ -1,0 +1,6 @@
+TypeUserIdMappingEnum
+=====================
+.. automodule:: models.type_user_id_mapping_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

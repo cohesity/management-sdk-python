@@ -1,0 +1,6 @@
+HostTypePhysicalProtectionSourceEnum
+====================================
+.. automodule:: models.host_type_physical_protection_source_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

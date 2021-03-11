@@ -1,0 +1,6 @@
+CouchbaseConnectParams
+======================
+.. automodule:: models.couchbase_connect_params
+   :members:
+   :undoc-members:
+   :show-inheritance:

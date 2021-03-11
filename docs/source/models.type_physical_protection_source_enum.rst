@@ -1,0 +1,6 @@
+TypePhysicalProtectionSourceEnum
+================================
+.. automodule:: models.type_physical_protection_source_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

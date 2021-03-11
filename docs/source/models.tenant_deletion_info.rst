@@ -1,0 +1,6 @@
+TenantDeletionInfo
+==================
+.. automodule:: models.tenant_deletion_info
+   :members:
+   :undoc-members:
+   :show-inheritance:

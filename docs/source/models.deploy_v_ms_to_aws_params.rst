@@ -1,0 +1,6 @@
+DeployVMsToAWSParams
+====================
+.. automodule:: models.deploy_v_ms_to_aws_params
+   :members:
+   :undoc-members:
+   :show-inheritance:

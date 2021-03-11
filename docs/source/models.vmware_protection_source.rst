@@ -1,0 +1,6 @@
+VmwareProtectionSource
+======================
+.. automodule:: models.vmware_protection_source
+   :members:
+   :undoc-members:
+   :show-inheritance:

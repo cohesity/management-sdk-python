@@ -1,0 +1,6 @@
+FileSnapshotInformation
+=======================
+.. automodule:: models.file_snapshot_information
+   :members:
+   :undoc-members:
+   :show-inheritance:

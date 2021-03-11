@@ -1,0 +1,6 @@
+TenantProtectionPolicyUpdateParameters
+======================================
+.. automodule:: models.tenant_protection_policy_update_parameters
+   :members:
+   :undoc-members:
+   :show-inheritance:

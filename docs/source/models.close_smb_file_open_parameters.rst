@@ -1,0 +1,6 @@
+CloseSmbFileOpenParameters
+==========================
+.. automodule:: models.close_smb_file_open_parameters
+   :members:
+   :undoc-members:
+   :show-inheritance:

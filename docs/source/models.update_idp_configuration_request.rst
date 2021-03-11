@@ -1,0 +1,6 @@
+UpdateIdpConfigurationRequest
+=============================
+.. automodule:: models.update_idp_configuration_request
+   :members:
+   :undoc-members:
+   :show-inheritance:

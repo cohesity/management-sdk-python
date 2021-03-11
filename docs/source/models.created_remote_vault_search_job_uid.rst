@@ -1,0 +1,6 @@
+CreatedRemoteVaultSearchJobUid
+==============================
+.. automodule:: models.created_remote_vault_search_job_uid
+   :members:
+   :undoc-members:
+   :show-inheritance:

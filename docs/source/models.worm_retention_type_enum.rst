@@ -1,0 +1,6 @@
+WormRetentionTypeEnum
+=====================
+.. automodule:: models.worm_retention_type_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

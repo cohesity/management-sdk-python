@@ -1,0 +1,6 @@
+TypeVmDirEntryEnum
+==================
+.. automodule:: models.type_vm_dir_entry_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

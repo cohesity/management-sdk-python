@@ -1,0 +1,6 @@
+TapeMediaInformation
+====================
+.. automodule:: models.tape_media_information
+   :members:
+   :undoc-members:
+   :show-inheritance:

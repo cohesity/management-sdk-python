@@ -1,0 +1,6 @@
+CheckTypeEnum
+=============
+.. automodule:: models.check_type_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

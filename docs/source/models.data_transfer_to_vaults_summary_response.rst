@@ -1,0 +1,6 @@
+DataTransferToVaultsSummaryResponse
+===================================
+.. automodule:: models.data_transfer_to_vaults_summary_response
+   :members:
+   :undoc-members:
+   :show-inheritance:

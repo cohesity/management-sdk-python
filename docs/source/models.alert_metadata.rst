@@ -1,0 +1,6 @@
+AlertMetadata
+=============
+.. automodule:: models.alert_metadata
+   :members:
+   :undoc-members:
+   :show-inheritance:

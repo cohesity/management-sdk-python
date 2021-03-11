@@ -1,0 +1,6 @@
+RestorePointsForTimeRange
+=========================
+.. automodule:: models.restore_points_for_time_range
+   :members:
+   :undoc-members:
+   :show-inheritance:

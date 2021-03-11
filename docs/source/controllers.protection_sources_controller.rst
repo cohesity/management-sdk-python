@@ -1,0 +1,6 @@
+ProtectionSourcesController
+===========================
+.. automodule:: controllers.protection_sources_controller
+   :members:
+   :undoc-members:
+   :show-inheritance:

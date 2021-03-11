@@ -1,0 +1,6 @@
+ClusterAuditLogsSearchResult
+============================
+.. automodule:: models.cluster_audit_logs_search_result
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,6 @@
+DeployDBInstancesToRDSParamsPointInTimeRestoreParams
+====================================================
+.. automodule:: models.deploy_db_instances_to_rds_params_point_in_time_restore_params
+   :members:
+   :undoc-members:
+   :show-inheritance:

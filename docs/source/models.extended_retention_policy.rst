@@ -1,0 +1,6 @@
+ExtendedRetentionPolicy
+=======================
+.. automodule:: models.extended_retention_policy
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,6 @@
+ProtectedObjectsprivilegesTypeEnum
+==================================
+.. automodule:: models.protected_objectsprivileges_type_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

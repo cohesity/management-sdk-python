@@ -1,0 +1,6 @@
+UsageSchemaInfo
+===============
+.. automodule:: models.usage_schema_info
+   :members:
+   :undoc-members:
+   :show-inheritance:

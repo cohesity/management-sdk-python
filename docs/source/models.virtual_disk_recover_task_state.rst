@@ -1,0 +1,6 @@
+VirtualDiskRecoverTaskState
+===========================
+.. automodule:: models.virtual_disk_recover_task_state
+   :members:
+   :undoc-members:
+   :show-inheritance:

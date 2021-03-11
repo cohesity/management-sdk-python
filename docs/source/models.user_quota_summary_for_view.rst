@@ -1,0 +1,6 @@
+UserQuotaSummaryForView
+=======================
+.. automodule:: models.user_quota_summary_for_view
+   :members:
+   :undoc-members:
+   :show-inheritance:

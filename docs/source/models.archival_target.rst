@@ -1,0 +1,6 @@
+ArchivalTarget
+==============
+.. automodule:: models.archival_target
+   :members:
+   :undoc-members:
+   :show-inheritance:

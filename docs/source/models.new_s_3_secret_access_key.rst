@@ -1,0 +1,6 @@
+NewS3SecretAccessKey
+====================
+.. automodule:: models.new_s_3_secret_access_key
+   :members:
+   :undoc-members:
+   :show-inheritance:

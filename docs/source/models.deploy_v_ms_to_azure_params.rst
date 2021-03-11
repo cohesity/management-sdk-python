@@ -1,0 +1,6 @@
+DeployVMsToAzureParams
+======================
+.. automodule:: models.deploy_v_ms_to_azure_params
+   :members:
+   :undoc-members:
+   :show-inheritance:

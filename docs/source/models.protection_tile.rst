@@ -1,0 +1,6 @@
+ProtectionTile
+==============
+.. automodule:: models.protection_tile
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,6 @@
+EntitySchemaProtoTimeSeriesDescriptor
+=====================================
+.. automodule:: models.entity_schema_proto_time_series_descriptor
+   :members:
+   :undoc-members:
+   :show-inheritance:

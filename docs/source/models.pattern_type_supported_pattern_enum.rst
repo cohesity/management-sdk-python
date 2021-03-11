@@ -1,0 +1,6 @@
+PatternTypeSupportedPatternEnum
+===============================
+.. automodule:: models.pattern_type_supported_pattern_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

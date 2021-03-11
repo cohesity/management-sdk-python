@@ -1,0 +1,6 @@
+ExternalTargetTypeEnum
+======================
+.. automodule:: models.external_target_type_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

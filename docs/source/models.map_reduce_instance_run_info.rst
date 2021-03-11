@@ -1,0 +1,6 @@
+MapReduceInstance_RunInfo
+=========================
+.. automodule:: models.map_reduce_instance_run_info
+   :members:
+   :undoc-members:
+   :show-inheritance:

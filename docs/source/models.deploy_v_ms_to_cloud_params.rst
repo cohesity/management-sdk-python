@@ -1,0 +1,6 @@
+DeployVMsToCloudParams
+======================
+.. automodule:: models.deploy_v_ms_to_cloud_params
+   :members:
+   :undoc-members:
+   :show-inheritance:

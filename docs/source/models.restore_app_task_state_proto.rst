@@ -1,0 +1,6 @@
+RestoreAppTaskStateProto
+========================
+.. automodule:: models.restore_app_task_state_proto
+   :members:
+   :undoc-members:
+   :show-inheritance:

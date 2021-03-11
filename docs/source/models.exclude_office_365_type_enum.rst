@@ -1,0 +1,6 @@
+ExcludeOffice365TypeEnum
+========================
+.. automodule:: models.exclude_office_365_type_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

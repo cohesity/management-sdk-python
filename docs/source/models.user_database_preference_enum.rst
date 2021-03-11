@@ -1,0 +1,6 @@
+UserDatabasePreferenceEnum
+==========================
+.. automodule:: models.user_database_preference_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

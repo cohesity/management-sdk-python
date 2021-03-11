@@ -1,0 +1,6 @@
+GetMapReduceAppRunsParams
+=========================
+.. automodule:: models.get_map_reduce_app_runs_params
+   :members:
+   :undoc-members:
+   :show-inheritance:

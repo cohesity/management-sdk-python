@@ -1,0 +1,6 @@
+BackupJobPreOrPostScript
+========================
+.. automodule:: models.backup_job_pre_or_post_script
+   :members:
+   :undoc-members:
+   :show-inheritance:

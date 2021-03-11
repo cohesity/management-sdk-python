@@ -1,0 +1,6 @@
+PrivilegesTypeViewPrivilegesEnum
+================================
+.. automodule:: models.privileges_type_view_privileges_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:
