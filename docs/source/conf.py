@@ -10,8 +10,9 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-# import os
+import sphinx_rtd_theme
 import sys
+
 sys.path.insert(0, 'C:\\Users\\Naveena B\\management-sdk-python\\cohesity_management_sdk\\')
 
 
@@ -24,7 +25,6 @@ author = 'Cohesity'
 # The full version, including alpha/beta/rc tags
 release = '1.6.0'
 
-
 # -- General configuration ---------------------------------------------------
 
 # Add any Sphinx extension module names here, as strings. They can be
@@ -33,13 +33,8 @@ release = '1.6.0'
 extensions = [
     'sphinx.ext.viewcode',
     'sphinx.ext.autodoc',
-    'sphinx_search.extension',
-    "sphinx.ext.intersphinx"
+    'sphinx_search.extension'
 ]
-import sphinx_rtd_theme
-html_theme = "sphinx_rtd_theme"
-html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
-# html_theme_path = ["_themes", ]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -54,28 +49,20 @@ exclude_patterns = []
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-#html_theme = 'sphinx_rtd_theme'
 
-# import rtcat_sphinx_theme
-# html_theme = "rtcat_sphinx_theme"
-# html_theme_path = [rtcat_sphinx_theme.get_html_theme_path()]
-
+html_theme = "sphinx_rtd_theme"
+html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 html_theme_options = {
-    "display_version":True,
+    "navigation_depth": -1,
     "collapse_navigation":False,
+    "sticky_navigation":True
     }
 
-html_sidebar={'overflow':'auto'}
+html_show_sourcelink = False
+
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_css_files = ['custom.css']
 
-html_context = {
-    "display_github": True,
-    "github_user": "cohesity",
-    "github_repo": "management-sdk-python",
-    "github_version":"docs",
-    "conf_py_path":"/docs/source/"
-}
 html_static_path = ['_static']

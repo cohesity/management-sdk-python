@@ -5,7 +5,7 @@ from cohesity_management_sdk.exceptions.api_exception import APIException
 
 CLUSTER_USERNAME = 'cluster_username'
 CLUSTER_PASSWORD = 'cluster_password'
-CLUSTER_VIP = 'prod-cluster.cohesity.com'
+CLUSTER_VIP = 'cluster_vip'
 DOMAIN = 'LOCAL'
 
 def get_jobs(args):

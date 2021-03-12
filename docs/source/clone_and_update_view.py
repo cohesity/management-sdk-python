@@ -20,7 +20,7 @@ from cohesity_management_sdk.models.view import View
 
 CLUSTER_USERNAME = 'cluster_username'
 CLUSTER_PASSWORD = 'cluster_password'
-CLUSTER_VIP = 'prod-cluster.cohesity.com'
+CLUSTER_VIP = 'cluster_vip'
 DOMAIN = 'LOCAL'
 
 class CloneView(object):

@@ -8,7 +8,7 @@ harness the power of *Cohesity REST APIs* in your python applications.
 
 .. sidebar:: About Cohesity
 
-    * **Website**: `https://cohesity.com/ <https://cohesity.com/>`_
+    * **Website**: `www.cohesity.com/ <www.cohesity.com/>`_
     * **Source code**: `https://github.com/cohesity/management-sdk-python <https://github.com/cohesity/management-sdk-python>`_
     * **Twitter**: `@cohesity <https://twitter.com/cohesity>`_
 
@@ -100,12 +100,11 @@ To initialize the API client, the following parameters need to be passed.
     username = 'Username'
     password = 'Password'
     domain = 'Domain' #optional
-    cluster_vip = 'prod-cluster.eng.cohesity.com'
+    cluster_vip = 'cluster_vip'
     client = CohesityClient(cluster_vip, username, password, domain)
     cluster_controller = client.cluster
     result = cluster_controller.get_basic_cluster_info()
-    result_dict =  result.__dict__
-    print(result_dict['cluster_software_version'])
+    print(result_dict.cluster_software_version)
 
 
 **Output**

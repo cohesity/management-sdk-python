@@ -16,19 +16,21 @@ Get Cluster Info
 
 .. literalinclude:: get_cluster_info.py
     :linenos:
-    :emphasize-lines: 19
 
 List Protection jobs
 ++++++++++++++++++++
 
 .. literalinclude:: get_protection_jobs.py
+    :linenos:
 
 List Protection Sources
 +++++++++++++++++++++++
 
 .. literalinclude:: get_protection_sources.py
+    :linenos:
 
 Clone and Update View
 +++++++++++++++++++++
 
 .. literalinclude:: clone_and_update_view.py
+    :linenos:
