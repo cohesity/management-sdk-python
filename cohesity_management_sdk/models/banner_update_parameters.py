@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 
 class BannerUpdateParameters(object):
@@ -10,7 +10,8 @@ class BannerUpdateParameters(object):
 
     Attributes:
         content (string): Specifies the content of the banner.
-        description (string): Specifies the description of this banner.
+        description (string): description field is deprecated.
+            Specifies the description of this banner.
     """
 
     # Create a mapping from Model property names to API property names

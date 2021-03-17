@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 class PeriodicityEnum(object):
 
@@ -11,12 +11,14 @@ class PeriodicityEnum(object):
     'kContinuous' means new Job Runs repetitively start at the
     beginning of the specified time interval (in hours or minutes).
     'kContinuousRPO' means this is an RPO schedule.
+    'kCDP' means this is a continuous data protection policy.
 
     Attributes:
         KCONTINUOUS: TODO: type description here.
         KDAILY: TODO: type description here.
         KMONTHLY: TODO: type description here.
         KCONTINUOUSRPO: TODO: type description here.
+        KCDP: TODO: type description here.
 
     """
 
@@ -27,4 +29,6 @@ class PeriodicityEnum(object):
     KMONTHLY = 'kMonthly'
 
     KCONTINUOUSRPO = 'kContinuousRPO'
+
+    KCDP = 'kCDP'
 

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.pagination_parameters
 import cohesity_management_sdk.models.entity_permission_information
@@ -51,6 +51,10 @@ class ProtectionSourceNode(object):
             information for a root node in a Protection Sources tree. A root
             node represents a registered Source on the Cohesity Cluster, such
             as a vCenter Server.
+        total_downtiered_size_in_bytes (long|int): Specifies the total bytes
+            downtiered from the source so far.
+        total_uptiered_size_in_bytes (long|int): Specifies the total bytes
+            uptiered to the source so far.
         unprotected_sources_summary (list of AggregatedSubtreeInfo): Array of
             Unprotected Sources.  Specifies aggregated information about all
             the child Objects of this node that are not protected by any
@@ -73,6 +77,8 @@ class ProtectionSourceNode(object):
         "protected_sources_summary":'protectedSourcesSummary',
         "protection_source":'protectionSource',
         "registration_info":'registrationInfo',
+        "total_downtiered_size_in_bytes":'totalDowntieredSizeInBytes',
+        "total_uptiered_size_in_bytes":'totalUptieredSizeInBytes',
         "unprotected_sources_summary":'unprotectedSourcesSummary'
     }
 
@@ -85,6 +91,8 @@ class ProtectionSourceNode(object):
                  protected_sources_summary=None,
                  protection_source=None,
                  registration_info=None,
+                 total_downtiered_size_in_bytes=None,
+                 total_uptiered_size_in_bytes=None,
                  unprotected_sources_summary=None):
         """Constructor for the ProtectionSourceNode class"""
 
@@ -97,6 +105,8 @@ class ProtectionSourceNode(object):
         self.protected_sources_summary = protected_sources_summary
         self.protection_source = protection_source
         self.registration_info = registration_info
+        self.total_downtiered_size_in_bytes = total_downtiered_size_in_bytes
+        self.total_uptiered_size_in_bytes = total_uptiered_size_in_bytes
         self.unprotected_sources_summary = unprotected_sources_summary
 
 
@@ -130,6 +140,8 @@ class ProtectionSourceNode(object):
                 protected_sources_summary.append(cohesity_management_sdk.models.aggregated_subtree_info.AggregatedSubtreeInfo.from_dictionary(structure))
         protection_source = cohesity_management_sdk.models.protection_source.ProtectionSource.from_dictionary(dictionary.get('protectionSource')) if dictionary.get('protectionSource') else None
         registration_info = cohesity_management_sdk.models.registered_source_info.RegisteredSourceInfo.from_dictionary(dictionary.get('registrationInfo')) if dictionary.get('registrationInfo') else None
+        total_downtiered_size_in_bytes = dictionary.get('totalDowntieredSizeInBytes')
+        total_uptiered_size_in_bytes = dictionary.get('totalUptieredSizeInBytes')
         unprotected_sources_summary = None
         if dictionary.get('unprotectedSourcesSummary') != None:
             unprotected_sources_summary = list()
@@ -145,6 +157,8 @@ class ProtectionSourceNode(object):
                    protected_sources_summary,
                    protection_source,
                    registration_info,
+                   total_downtiered_size_in_bytes,
+                   total_uptiered_size_in_bytes,
                    unprotected_sources_summary)
 
 

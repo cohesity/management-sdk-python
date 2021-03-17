@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 
 class Consumer(object):
@@ -18,7 +18,9 @@ class Consumer(object):
             stats info of Protection Runs used per organization (tenant) per
             view box (storage domain). 'kReplicationRuns', indicates the stats
             info of Replication In used per organization (tenant) per view box
-            (storage domain).
+            (storage domain). 'kViewProtectionRuns', indicates the stats info
+            of View Protection Runs used per organization (tenant) per view
+            box (storage domain).
 
     """
 

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.file_restore_info
 import cohesity_management_sdk.models.restore_object_details
@@ -53,6 +53,8 @@ class RestoreSourceSummaryByObjectTypeElement(object):
             'kDownloadFiles' specifies a Restore Task that downloads the
             requested files and folders in zip format.
             'kRecoverEmails' specifies a Restore Task that recovers the
+            mailbox/email items.
+            'kConvertToPst' specifies a PST conversion task for selected
             mailbox/email items.
             'kRecoverDisks' specifies a Restore Task that recovers the
             virtual disks.

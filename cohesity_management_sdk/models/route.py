@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 
 class Route(object):
@@ -17,7 +17,10 @@ class Route(object):
         iface_group_name (string): Specifies the network interfaces group or
             interface group with vlan id to use for communicating with the
             destination network.
+        mtu (int): Specifies MTU setting per route.
         next_hop (string): Specifies the next hop to the destination network.
+        node_group_name (string): Specifies the network node group to
+            represent a group of nodes.
 
     """
 
@@ -27,7 +30,9 @@ class Route(object):
         "dest_network":'destNetwork',
         "if_name":'ifName',
         "iface_group_name":'ifaceGroupName',
-        "next_hop":'nextHop'
+        "mtu":'mtu',
+        "next_hop":'nextHop',
+        "node_group_name":'nodeGroupName'
     }
 
     def __init__(self,
@@ -35,7 +40,9 @@ class Route(object):
                  dest_network=None,
                  if_name=None,
                  iface_group_name=None,
-                 next_hop=None):
+                 mtu=None,
+                 next_hop=None,
+                 node_group_name=None):
         """Constructor for the Route class"""
 
         # Initialize members of the class
@@ -43,7 +50,9 @@ class Route(object):
         self.dest_network = dest_network
         self.if_name = if_name
         self.iface_group_name = iface_group_name
+        self.mtu = mtu
         self.next_hop = next_hop
+        self.node_group_name = node_group_name
 
 
     @classmethod
@@ -68,13 +77,17 @@ class Route(object):
         dest_network = dictionary.get('destNetwork')
         if_name = dictionary.get('ifName')
         iface_group_name = dictionary.get('ifaceGroupName')
+        mtu = dictionary.get('mtu')
         next_hop = dictionary.get('nextHop')
+        node_group_name = dictionary.get('nodeGroupName')
 
         # Return an object of this model
         return cls(description,
                    dest_network,
                    if_name,
                    iface_group_name,
-                   next_hop)
+                   mtu,
+                   next_hop,
+                   node_group_name)
 
 

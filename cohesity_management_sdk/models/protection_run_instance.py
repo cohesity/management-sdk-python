@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.backup_run
 import cohesity_management_sdk.models.copy_run
@@ -26,6 +26,9 @@ class ProtectionRunInstance(object):
             was run.
         job_uid (UniversalId): Specifies the globally unique id of the
             Protection Job that was run.
+        protection_shell_info (ProtectionShellInfo): Specifies the shell
+            information about the protection run. This will only be populated
+            if OnlyReturnShellInfo is sent as true.
         view_box_id (long|int): Specifies the Storage Domain (View Box) to
             store the backed up data. Specify the id of the Storage Domain
             (View Box).

@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.latency_thresholds
+import cohesity_management_sdk.models.nas_source_throttling_params
 
 class ThrottlingPolicyParameters(object):
 
@@ -32,6 +33,9 @@ class ThrottlingPolicyParameters(object):
             streams Cohesity cluster will make concurrently to the datastores
             of the registered entity. This limit is enforced only when the
             flag enforceMaxStreams is set to true.
+        nas_source_params (NasSourceThrottlingParams): Specifies the NAS
+            specific source throttling parameters during source registration
+            of the source.
         registered_source_max_concurrent_backups (int): Specifies the limit on
             the number of backups Cohesity cluster will make concurrently to
             the registered entity. This limit is enforced only when the flag
@@ -46,6 +50,7 @@ class ThrottlingPolicyParameters(object):
         "is_enabled":'isEnabled',
         "latency_thresholds":'latencyThresholds',
         "max_concurrent_streams":'maxConcurrentStreams',
+        "nas_source_params":'nasSourceParams',
         "registered_source_max_concurrent_backups":'registeredSourceMaxConcurrentBackups'
     }
 
@@ -55,6 +60,7 @@ class ThrottlingPolicyParameters(object):
                  is_enabled=None,
                  latency_thresholds=None,
                  max_concurrent_streams=None,
+                 nas_source_params=None,
                  registered_source_max_concurrent_backups=None):
         """Constructor for the ThrottlingPolicyParameters class"""
 
@@ -64,6 +70,7 @@ class ThrottlingPolicyParameters(object):
         self.is_enabled = is_enabled
         self.latency_thresholds = latency_thresholds
         self.max_concurrent_streams = max_concurrent_streams
+        self.nas_source_params = nas_source_params
         self.registered_source_max_concurrent_backups = registered_source_max_concurrent_backups
 
 
@@ -90,6 +97,7 @@ class ThrottlingPolicyParameters(object):
         is_enabled = dictionary.get('isEnabled')
         latency_thresholds = cohesity_management_sdk.models.latency_thresholds.LatencyThresholds.from_dictionary(dictionary.get('latencyThresholds')) if dictionary.get('latencyThresholds') else None
         max_concurrent_streams = dictionary.get('maxConcurrentStreams')
+        nas_source_params = cohesity_management_sdk.models.nas_source_throttling_params.NasSourceThrottlingParams.from_dictionary(dictionary.get('nasSourceParams')) if dictionary.get('nasSourceParams') else None
         registered_source_max_concurrent_backups = dictionary.get('registeredSourceMaxConcurrentBackups')
 
         # Return an object of this model
@@ -98,6 +106,7 @@ class ThrottlingPolicyParameters(object):
                    is_enabled,
                    latency_thresholds,
                    max_concurrent_streams,
+                   nas_source_params,
                    registered_source_max_concurrent_backups)
 
 

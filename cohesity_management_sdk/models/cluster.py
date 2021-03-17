@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
+import cohesity_management_sdk.models.amqp_target_config
 import cohesity_management_sdk.models.subnet
 import cohesity_management_sdk.models.cluster_audit_log_configuration
 import cohesity_management_sdk.models.eula_config
@@ -11,6 +12,7 @@ import cohesity_management_sdk.models.ntp_settings_config
 import cohesity_management_sdk.models.schema_info
 import cohesity_management_sdk.models.cluster_stats
 import cohesity_management_sdk.models.supported_config
+import cohesity_management_sdk.models.tiering_audit_log_configuration
 
 class Cluster(object):
 
@@ -19,6 +21,8 @@ class Cluster(object):
     Specifies information about the Cohesity Cluster.
 
     Attributes:
+        amqp_target_config (AMQPTargetConfig): Specifies the AMQP target
+            config.
         apps_subnet (Subnet): The subnet for Athena apps.
         assigned_racks_count (int): Specifies the number of racks in cluster
             with at least one rack assigned.
@@ -72,6 +76,8 @@ class Cluster(object):
         enable_active_monitoring (bool): Specifies if Cohesity can receive
             monitoring information from the Cohesity Cluster. If 'true',
             remote monitoring of the Cohesity Cluster is allowed.
+        enable_patches_download (bool): Specifies whether to enable downloading
+            patches from Cohesity download site.
         enable_upgrade_pkg_polling (bool): If 'true', Cohesity's upgrade
             server is polled for new releases.
         encryption_enabled (bool): If 'true', the entire Cohesity Cluster is
@@ -109,6 +115,8 @@ class Cluster(object):
             is 'false'. Cohesity recommends accessing the Help from the
             Cohesity Web site which provides the newest and most complete
             version of Help.
+        kms_server_id (long|int): Specifies the KMS Server Id.
+            This can only be set when the encryption is enabled on cluster.
         language_locale (string): Specifies the language and locale for this
             Cohesity Cluster.
         license_state (LicenseState): Specifies the Licensing State
@@ -162,9 +170,14 @@ class Cluster(object):
             enabled, this flag controls whether multiple tenants can be placed
             on the same viewbox. Once set to true, this flag should never
             become false.
+        tiering_audit_log_config (TieringAuditLogConfiguration): Tiering Audit
+            Log Configuration.
         timezone (string): Specifies the timezone to use for showing time in
             emails, reports, filer audit logs, etc.
         turbo_mode (bool): Specifies if the cluster is in Turbo mode.
+        use_heimdall (bool): Specifies whether to enable Heimdall which tells
+            whether services should use temporary fleet instances to mount
+            disks by talking to Heimdall.
         used_metadata_space_pct (float): UsedMetadataSpacePct measures the
             percentage about storage used for metadata over the total storage
             available for metadata
@@ -173,6 +186,7 @@ class Cluster(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "amqp_target_config":'amqpTargetConfig',
         "apps_subnet":'appsSubnet',
         "assigned_racks_count":'assignedRacksCount',
         "available_metadata_space":'availableMetadataSpace',
@@ -188,6 +202,7 @@ class Cluster(object):
         "dns_server_ips":'dnsServerIps',
         "domain_names":'domainNames',
         "enable_active_monitoring":'enableActiveMonitoring',
+        "enable_patches_download":'enablePatchesDownload',
         "enable_upgrade_pkg_polling":'enableUpgradePkgPolling',
         "encryption_enabled":'encryptionEnabled',
         "encryption_key_rotation_period_secs":'encryptionKeyRotationPeriodSecs',
@@ -202,6 +217,7 @@ class Cluster(object):
         "incarnation_id":'incarnationId',
         "ip_preference":'ipPreference',
         "is_documentation_local":'isDocumentationLocal',
+        "kms_server_id":'kmsServerId',
         "language_locale":'languageLocale',
         "license_state":'licenseState',
         "local_auth_domain_name":'localAuthDomainName',
@@ -224,12 +240,15 @@ class Cluster(object):
         "supported_config":'supportedConfig',
         "target_software_version":'targetSoftwareVersion',
         "tenant_viewbox_sharing_enabled":'tenantViewboxSharingEnabled',
+        "tiering_audit_log_config":'tieringAuditLogConfig',
         "timezone":'timezone',
         "turbo_mode":'turboMode',
+        "use_heimdall":'useHeimdall',
         "used_metadata_space_pct":'usedMetadataSpacePct'
     }
 
     def __init__(self,
+                 amqp_target_config=None,
                  apps_subnet=None,
                  assigned_racks_count=None,
                  available_metadata_space=None,
@@ -245,6 +264,7 @@ class Cluster(object):
                  dns_server_ips=None,
                  domain_names=None,
                  enable_active_monitoring=None,
+                 enable_patches_download=None,
                  enable_upgrade_pkg_polling=None,
                  encryption_enabled=None,
                  encryption_key_rotation_period_secs=None,
@@ -259,6 +279,7 @@ class Cluster(object):
                  incarnation_id=None,
                  ip_preference=None,
                  is_documentation_local=None,
+                 kms_server_id=None,
                  language_locale=None,
                  license_state=None,
                  local_auth_domain_name=None,
@@ -281,12 +302,15 @@ class Cluster(object):
                  supported_config=None,
                  target_software_version=None,
                  tenant_viewbox_sharing_enabled=None,
+                 tiering_audit_log_config=None,
                  timezone=None,
                  turbo_mode=None,
+                 use_heimdall=None,
                  used_metadata_space_pct=None):
         """Constructor for the Cluster class"""
 
         # Initialize members of the class
+        self.amqp_target_config = amqp_target_config
         self.apps_subnet = apps_subnet
         self.assigned_racks_count = assigned_racks_count
         self.available_metadata_space = available_metadata_space
@@ -302,6 +326,7 @@ class Cluster(object):
         self.dns_server_ips = dns_server_ips
         self.domain_names = domain_names
         self.enable_active_monitoring = enable_active_monitoring
+        self.enable_patches_download = enable_patches_download
         self.enable_upgrade_pkg_polling = enable_upgrade_pkg_polling
         self.encryption_enabled = encryption_enabled
         self.encryption_key_rotation_period_secs = encryption_key_rotation_period_secs
@@ -316,6 +341,7 @@ class Cluster(object):
         self.incarnation_id = incarnation_id
         self.ip_preference = ip_preference
         self.is_documentation_local = is_documentation_local
+        self.kms_server_id = kms_server_id
         self.language_locale = language_locale
         self.license_state = license_state
         self.local_auth_domain_name = local_auth_domain_name
@@ -339,7 +365,9 @@ class Cluster(object):
         self.target_software_version = target_software_version
         self.tenant_viewbox_sharing_enabled = tenant_viewbox_sharing_enabled
         self.timezone = timezone
+        self.tiering_audit_log_config = tiering_audit_log_config
         self.turbo_mode = turbo_mode
+        self.use_heimdall = use_heimdall
         self.used_metadata_space_pct = used_metadata_space_pct
 
 
@@ -361,6 +389,7 @@ class Cluster(object):
             return None
 
         # Extract variables from the dictionary
+        amqp_target_config = cohesity_management_sdk.models.amqp_target_config.AMQPTargetConfig.from_dictionary(dictionary.get('amqpTargetConfig')) if dictionary.get('amqpTargetConfig') else None
         apps_subnet = cohesity_management_sdk.models.subnet.Subnet.from_dictionary(dictionary.get('appsSubnet')) if dictionary.get('appsSubnet') else None
         assigned_racks_count = dictionary.get('assignedRacksCount', None)
         available_metadata_space = dictionary.get('availableMetadataSpace')
@@ -376,6 +405,7 @@ class Cluster(object):
         dns_server_ips = dictionary.get('dnsServerIps')
         domain_names = dictionary.get('domainNames')
         enable_active_monitoring = dictionary.get('enableActiveMonitoring')
+        enable_patches_download = dictionary.get('enablePatchesDownload')
         enable_upgrade_pkg_polling = dictionary.get('enableUpgradePkgPolling')
         encryption_enabled = dictionary.get('encryptionEnabled')
         encryption_key_rotation_period_secs = dictionary.get('encryptionKeyRotationPeriodSecs')
@@ -390,6 +420,7 @@ class Cluster(object):
         incarnation_id = dictionary.get('incarnationId')
         ip_preference = dictionary.get('ipPreference')
         is_documentation_local = dictionary.get('isDocumentationLocal')
+        kms_server_id = dictionary.get('kmsServerId')
         language_locale = dictionary.get('languageLocale')
         license_state = cohesity_management_sdk.models.license_state.LicenseState.from_dictionary(dictionary.get('licenseState')) if dictionary.get('licenseState') else None
         local_auth_domain_name = dictionary.get('localAuthDomainName')
@@ -417,11 +448,14 @@ class Cluster(object):
         target_software_version = dictionary.get('targetSoftwareVersion')
         tenant_viewbox_sharing_enabled = dictionary.get('tenantViewboxSharingEnabled')
         timezone = dictionary.get('timezone')
+        tiering_audit_log_config = cohesity_management_sdk.models.tiering_audit_log_configuration.TieringAuditLogConfiguration.from_dictionary(dictionary.get('tieringAuditLogConfig')) if dictionary.get('tieringAuditLogConfig') else None
         turbo_mode = dictionary.get('turboMode')
+        use_heimdall = dictionary.get('useHeimdall')
         used_metadata_space_pct = dictionary.get('usedMetadataSpacePct')
 
         # Return an object of this model
-        return cls(apps_subnet,
+        return cls(amqp_target_config,
+                   apps_subnet,
                    assigned_racks_count,
                    available_metadata_space,
                    banner_enabled,
@@ -436,6 +470,7 @@ class Cluster(object):
                    dns_server_ips,
                    domain_names,
                    enable_active_monitoring,
+                   enable_patches_download,
                    enable_upgrade_pkg_polling,
                    encryption_enabled,
                    encryption_key_rotation_period_secs,
@@ -450,6 +485,7 @@ class Cluster(object):
                    incarnation_id,
                    ip_preference,
                    is_documentation_local,
+                   kms_server_id,
                    language_locale,
                    license_state,
                    local_auth_domain_name,
@@ -472,8 +508,9 @@ class Cluster(object):
                    supported_config,
                    target_software_version,
                    tenant_viewbox_sharing_enabled,
+                   tiering_audit_log_config,
                    timezone,
                    turbo_mode,
+                   use_heimdall,
                    used_metadata_space_pct)
-
 

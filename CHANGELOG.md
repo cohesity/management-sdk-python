@@ -1,3 +1,18 @@
+# [1.6.0] - 2021-02-22
+New SDK for Cluster 6.6
+
+### Added
+- None
+
+### Changed
+- None
+
+### Fixed
+- None
+
+### Removed
+- None
+
 # [1.5.2] - 2021-01-15
 Patch release for blackout policy issue fix
 

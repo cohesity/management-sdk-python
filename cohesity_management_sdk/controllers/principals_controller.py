@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -8,8 +8,11 @@ from cohesity_management_sdk.controllers.base_controller import BaseController
 from cohesity_management_sdk.http.auth.auth_manager import AuthManager
 from cohesity_management_sdk.models.api_key import ApiKey
 from cohesity_management_sdk.models.created_api_key import CreatedApiKey
+from cohesity_management_sdk.models.linux_support_user_bash_shell_access_result import LinuxSupportUserBashShellAccessResult
+from cohesity_management_sdk.models.linux_support_user_sudo_access_result import LinuxSupportUserSudoAccessResult
 from cohesity_management_sdk.models.sources_for_sid import SourcesForSid
 from cohesity_management_sdk.models.principal import Principal
+from cohesity_management_sdk.models.update_linux_password_result import UpdateLinuxPasswordResult
 from cohesity_management_sdk.models.user import User
 from cohesity_management_sdk.models.new_s_3_secret_access_key import NewS3SecretAccessKey
 from cohesity_management_sdk.exceptions.request_error_error_exception import RequestErrorErrorException
@@ -1137,6 +1140,200 @@ class PrincipalsController(BaseController):
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body,
                                               ApiKey.from_dictionary)
+
+        except Exception as e:
+            self.logger.error(e, exc_info=True)
+            raise
+
+
+    def update_linux_credentials(self, body):
+        """Does a PUT request to /public/users/linuxPassword.
+
+        Update linux user password.
+
+        Args:
+            body (UpdateLinuxPasswordReqParams): Request to update a View.
+
+        Returns:
+            UpdateLinuxPasswordResult: Response from the API. Success
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+        try:
+            self.logger.info('update_linux_credentials called.')
+
+            # Validate required parameters
+            self.logger.info(
+                'Validating required parameters for update_linux_credentials.')
+            self.validate_parameters(body=body)
+
+            # Prepare query URL
+            self.logger.info('Preparing query URL for update_linux_credentials.')
+            _url_path = '/public/users/linuxPassword'
+            _query_builder = self.config.get_base_uri()
+            _query_builder += _url_path
+            _query_url = APIHelper.clean_url(_query_builder)
+
+            # Prepare headers
+            self.logger.info('Preparing headers for update_linux_credentials.')
+            _headers = {
+                'accept': 'application/json',
+                'content-type': 'application/json; charset=utf-8'
+            }
+
+            # Prepare and execute request
+            self.logger.info(
+                'Preparing and executing request for update_linux_credentials.')
+            _request = self.http_client.put(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request, name='update_linux_credentials')
+
+            # Endpoint and global error handling using HTTP status codes.
+            self.logger.info('Validating response for update_linux_credentials.')
+            if _context.response.status_code == 0:
+                raise RequestErrorErrorException('Error', _context)
+            self.validate_response(_context)
+
+            # Return appropriate type
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              UpdateLinuxPasswordResult.from_dictionary)
+
+        except Exception as e:
+            self.logger.error(e, exc_info=True)
+            raise
+
+
+    def linux_support_user_bash_shell_access(self, body):
+        """Does a PUT request to /public/users/linuxSupportUserBashShellAccess.
+
+        Requests Linux 'support' user bash shell access.
+
+        Args:
+            body (LinuxSupportUserBashShellAccessReqParams): Request to update a View.
+
+        Returns:
+            LinuxSupportUserBashShellAccessResult: Response from the API. Success
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+        try:
+            self.logger.info('linux_support_user_bash_shell_access called.')
+
+            # Validate required parameters
+            self.logger.info(
+                'Validating required parameters for linux_support_user_bash_shell_access.')
+            self.validate_parameters(body=body)
+
+            # Prepare query URL
+            self.logger.info('Preparing query URL for linux_support_user_bash_shell_access.')
+            _url_path = '/public/users/linuxSupportUserBashShellAccess'
+            _query_builder = self.config.get_base_uri()
+            _query_builder += _url_path
+            _query_url = APIHelper.clean_url(_query_builder)
+
+            # Prepare headers
+            self.logger.info('Preparing headers for linux_support_user_bash_shell_access.')
+            _headers = {
+                'accept': 'application/json',
+                'content-type': 'application/json; charset=utf-8'
+            }
+
+            # Prepare and execute request
+            self.logger.info(
+                'Preparing and executing request for linux_support_user_bash_shell_access.')
+            _request = self.http_client.put(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request, name='linux_support_user_bash_shell_access')
+
+            # Endpoint and global error handling using HTTP status codes.
+            self.logger.info('Validating response for linux_support_user_bash_shell_access.')
+            if _context.response.status_code == 0:
+                raise RequestErrorErrorException('Error', _context)
+            self.validate_response(_context)
+
+            # Return appropriate type
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              LinuxSupportUserBashShellAccessResult.from_dictionary)
+
+        except Exception as e:
+            self.logger.error(e, exc_info=True)
+            raise
+
+    def linux_support_user_sudo_access(self, body):
+        """Does a PUT request to /public/users/linuxSupportUserSudoAccess.
+
+        Requests Linux 'support' user sudo access.
+
+        Args:
+            body (LinuxSupportUserSudoAccessReqParams): Request to update a View.
+
+        Returns:
+            LinuxSupportUserSudoAccessResult: Response from the API. Success
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+        try:
+            self.logger.info('linux_support_user_sudo_access called.')
+
+            # Validate required parameters
+            self.logger.info(
+                'Validating required parameters for linux_support_user_sudo_access.')
+            self.validate_parameters(body=body)
+
+            # Prepare query URL
+            self.logger.info('Preparing query URL for linux_support_user_sudo_access.')
+            _url_path = '/public/users/linuxSupportUserSudoAccess'
+            _query_builder = self.config.get_base_uri()
+            _query_builder += _url_path
+            _query_url = APIHelper.clean_url(_query_builder)
+
+            # Prepare headers
+            self.logger.info('Preparing headers for linux_support_user_sudo_access.')
+            _headers = {
+                'accept': 'application/json',
+                'content-type': 'application/json; charset=utf-8'
+            }
+
+            # Prepare and execute request
+            self.logger.info(
+                'Preparing and executing request for linux_support_user_sudo_access.')
+            _request = self.http_client.put(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request, name='linux_support_user_sudo_access')
+
+            # Endpoint and global error handling using HTTP status codes.
+            self.logger.info('Validating response for linux_support_user_sudo_access.')
+            if _context.response.status_code == 0:
+                raise RequestErrorErrorException('Error', _context)
+            self.validate_response(_context)
+
+            # Return appropriate type
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              LinuxSupportUserSudoAccessResult.from_dictionary)
 
         except Exception as e:
             self.logger.error(e, exc_info=True)

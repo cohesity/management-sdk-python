@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 
 class CloneAppViewParams(object):
@@ -14,20 +14,25 @@ class CloneAppViewParams(object):
         mount_path_identifier (string): Mount path identifier, which
             identifies the sub-dir where the cohesity view for App recovery
             will be mounted.
+        read_only_view_expose (bool): Read only view expose param, if this is
+            set, the expose view will be mounted with read only.
 
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "mount_path_identifier":'mountPathIdentifier'
+        "mount_path_identifier":'mountPathIdentifier',
+        "read_only_view_expose":'readOnlyViewExpose'
     }
 
     def __init__(self,
-                 mount_path_identifier=None):
+                 mount_path_identifier=None,
+                 read_only_view_expose=None):
         """Constructor for the CloneAppViewParams class"""
 
         # Initialize members of the class
         self.mount_path_identifier = mount_path_identifier
+        self.read_only_view_expose = read_only_view_expose
 
 
     @classmethod
@@ -49,8 +54,10 @@ class CloneAppViewParams(object):
 
         # Extract variables from the dictionary
         mount_path_identifier = dictionary.get('mountPathIdentifier')
+        read_only_view_expose = dictionary.get('readOnlyViewExpose')
 
         # Return an object of this model
-        return cls(mount_path_identifier)
+        return cls(mount_path_identifier,
+                   read_only_view_expose)
 
 

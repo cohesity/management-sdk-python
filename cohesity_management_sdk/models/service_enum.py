@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 class ServiceEnum(object):
 
@@ -53,6 +53,9 @@ class ServiceEnum(object):
     'kSmb2Proxy' is a new SMB protocol service.
     'kOs' can be specified in order to do a full reboot.
     'kAtom' is a service for receiving data for the Continuous Data Protection.
+    'kPatch' is a service for downloading and applying patches.
+    'kCompass' is a service for serving dns request for external and internal
+    traffic.
 
     Attributes:
         KAPOLLO: TODO: type description here.
@@ -86,6 +89,8 @@ class ServiceEnum(object):
         KSMB2PROXY: TODO: type description here.
         KOS: TODO: type description here.
         KATOM: TODO: type description here.
+        KPATCH: TODO: type description here.
+        KCOMPASS: TODO: type description here.
 
     """
 
@@ -150,4 +155,8 @@ class ServiceEnum(object):
     KOS = 'kOs'
 
     KATOM = 'kAtom'
+
+    KPATCH = 'kPatch'
+
+    KCOMPASS = 'kCompass'
 

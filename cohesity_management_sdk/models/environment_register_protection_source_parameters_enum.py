@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 class EnvironmentRegisterProtectionSourceParametersEnum(object):
 
@@ -53,6 +53,7 @@ class EnvironmentRegisterProtectionSourceParametersEnum(object):
     'kHdfs' indicates Hdfs Protection Source environment.
     'kHive' indicates Hive Protection Source environment.
     'kHBase' indicates HBase Protection Source environment.
+    'kUDA' indicates Universal Data Adapter Protection Source environment.
 
     Attributes:
         KVMWARE: TODO: type description here.
@@ -94,6 +95,7 @@ class EnvironmentRegisterProtectionSourceParametersEnum(object):
         KHDFS: TODO: type description here.
         KHIVE: TODO: type description here.
         KHBASE: TODO: type description here.
+        KUDA: TODO: type description here.
 
     """
 
@@ -174,4 +176,6 @@ class EnvironmentRegisterProtectionSourceParametersEnum(object):
     KHIVE = 'kHive'
 
     KHBASE = 'kHBase'
+
+    KUDA = 'kUDA'
 

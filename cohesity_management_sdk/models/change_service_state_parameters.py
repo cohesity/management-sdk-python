@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 
 class ChangeServiceStateParameters(object):
@@ -58,6 +58,9 @@ class ChangeServiceStateParameters(object):
             multitenancy. 'kSmb2Proxy' is a new SMB protocol service. 'kOs'
             can be specified in order to do a full reboot. 'kAtom' is a
             service for receiving data for the Continuous Data Protection.
+            'kPatch' is a service for downloading and applying patches.
+            'kCompass' is a service for serving dns request for external and
+            internal traffic.
     """
 
     # Create a mapping from Model property names to API property names

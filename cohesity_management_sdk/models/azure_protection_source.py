@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
+import cohesity_management_sdk.models.tag_attribute
 
 class AzureProtectionSource(object):
 
@@ -31,6 +32,8 @@ class AzureProtectionSource(object):
             subnet within the virtual network. 'kComputeOptions' indicates the
             number of CPU cores and memory size available for a type of a
             Virtual Machine.
+        domain_name (string): Specifies Azure stack hub domain name for where
+            the given subscription is present.
         host_type (HostTypeEnum): Specifies the OS type of the Protection
             Source of type 'kVirtualMachine' such as 'kWindows' or 'kLinux'.
             overrideDescription: true 'kLinux' indicates the Linux operating
@@ -55,6 +58,8 @@ class AzureProtectionSource(object):
         physical_source_id (long|int): Specifies the Protection Source id of
             the registered Physical Host. If the cloud entity is protected
             using a Physical Agent, it must be registered as a physical host.
+        region (string): Specifies the region in which the Azure Stack will
+            be registered.
         resource_id (string): Specifies the unique Id of the resource given by
             the cloud provider.
         restore_task_id (long|int): Specifies the id of the "convert and
@@ -78,11 +83,15 @@ class AzureProtectionSource(object):
             Azure account where a customer allows us to create VMs, storage
             account etc.
         subscription_type (SubscriptionTypeAzureProtectionSourceEnum):
-            Specifies the subscription type of Azure such as
-            'kAzureCommercial' or 'kAzureGovCloud'. Specifies the subscription
-            type of an Azure source entity. 'kAzureCommercial' indicates a
-            standard Azure subscription. 'kAzureGovCloud' indicates a govt
-            Azure subscription.
+            Specifies the subscription type of Azure such as 'kAzureCommercial',
+            'kAzureGovCloud' or 'kAzureStackCommercial'
+            Specifies the subscription type of an Azure source entity.
+            'kAzureCommercial' indicates a standard Azure subscription.
+            'kAzureGovCloud' indicates a govt Azure subscription.
+            'kAzureStackCommercial' indicates a stack commercial Azure
+                subscription.
+        tag_attributes (list of TagAttribute): Specifies the list of Azure tag
+            attributes.
         tenant_id (string): Specifies Tenant Id of the active directory of
             Azure account.
         mtype (TypeAzureProtectionSourceEnum): Specifies the type of an Azure
@@ -112,6 +121,7 @@ class AzureProtectionSource(object):
         "application_id":'applicationId',
         "application_key":'applicationKey',
         "azure_type":'azureType',
+        "domain_name":'domainName',
         "host_type":'hostType',
         "ip_addresses":'ipAddresses',
         "is_managed_vm":'isManagedVm',
@@ -120,10 +130,12 @@ class AzureProtectionSource(object):
         "name":'name',
         "num_cores":'numCores',
         "physical_source_id":'physicalSourceId',
+        "region":'region',
         "resource_id":'resourceId',
         "restore_task_id":'restoreTaskId',
         "subscription_id":'subscriptionId',
         "subscription_type":'subscriptionType',
+        "tag_attributes":'tag_attributes',
         "tenant_id":'tenantId',
         "mtype":'type'
     }
@@ -132,6 +144,7 @@ class AzureProtectionSource(object):
                  application_id=None,
                  application_key=None,
                  azure_type=None,
+                 domain_name=None,
                  host_type=None,
                  ip_addresses=None,
                  is_managed_vm=None,
@@ -140,10 +153,12 @@ class AzureProtectionSource(object):
                  name=None,
                  num_cores=None,
                  physical_source_id=None,
+                 region=None,
                  resource_id=None,
                  restore_task_id=None,
                  subscription_id=None,
                  subscription_type=None,
+                 tag_attributes=None,
                  tenant_id=None,
                  mtype=None):
         """Constructor for the AzureProtectionSource class"""
@@ -152,6 +167,7 @@ class AzureProtectionSource(object):
         self.application_id = application_id
         self.application_key = application_key
         self.azure_type = azure_type
+        self.domain_name = domain_name
         self.host_type = host_type
         self.ip_addresses = ip_addresses
         self.is_managed_vm = is_managed_vm
@@ -160,10 +176,12 @@ class AzureProtectionSource(object):
         self.name = name
         self.num_cores = num_cores
         self.physical_source_id = physical_source_id
+        self.region = region
         self.resource_id = resource_id
         self.restore_task_id = restore_task_id
         self.subscription_id = subscription_id
         self.subscription_type = subscription_type
+        self.tag_attributes = tag_attributes
         self.tenant_id = tenant_id
         self.mtype = mtype
 
@@ -189,6 +207,7 @@ class AzureProtectionSource(object):
         application_id = dictionary.get('applicationId')
         application_key = dictionary.get('applicationKey')
         azure_type = dictionary.get('azureType')
+        domain_name = dictionary.get('domainName')
         host_type = dictionary.get('hostType')
         ip_addresses = dictionary.get('ipAddresses')
         is_managed_vm = dictionary.get('isManagedVm')
@@ -197,10 +216,16 @@ class AzureProtectionSource(object):
         name = dictionary.get('name')
         num_cores = dictionary.get('numCores')
         physical_source_id = dictionary.get('physicalSourceId')
+        region = dictionary.get('region')
         resource_id = dictionary.get('resourceId')
         restore_task_id = dictionary.get('restoreTaskId')
         subscription_id = dictionary.get('subscriptionId')
         subscription_type = dictionary.get('subscriptionType')
+        tag_attributes = None
+        if dictionary.get('tag_attributes')!= None:
+            tag_attributes = list()
+            for structure in dictionary.get('tag_attributes'):
+                tag_attributes.append(cohesity_management_sdk.models.tag_attribute.TagAttribute.from_dictionary(structure))
         tenant_id = dictionary.get('tenantId')
         mtype = dictionary.get('type')
 
@@ -208,6 +233,7 @@ class AzureProtectionSource(object):
         return cls(application_id,
                    application_key,
                    azure_type,
+                   domain_name,
                    host_type,
                    ip_addresses,
                    is_managed_vm,
@@ -216,10 +242,12 @@ class AzureProtectionSource(object):
                    name,
                    num_cores,
                    physical_source_id,
+                   region,
                    resource_id,
                    restore_task_id,
                    subscription_id,
                    subscription_type,
+                   tag_attributes,
                    tenant_id,
                    mtype)
 

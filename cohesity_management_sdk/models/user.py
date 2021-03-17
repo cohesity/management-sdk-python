@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.cluster_identifier
 import cohesity_management_sdk.models.google_account_info
 import cohesity_management_sdk.models.idp_user_info
+import cohesity_management_sdk.models.mcm_user_profile
 import cohesity_management_sdk.models.tenant_config
 import cohesity_management_sdk.models.preferences
 import cohesity_management_sdk.models.salesforce_account_info
@@ -30,6 +31,8 @@ class User(object):
         created_time_msecs (long|int): Specifies the epoch time in
             milliseconds when the user account was created on the Cohesity
             Cluster.
+        current_password (string): Specifies the current password when
+            updating the password.
         description (string): Specifies a description about the user.
         domain (string): Specifies the fully qualified domain name (FQDN) of
             an Active Directory or LOCAL for the default LOCAL domain on the
@@ -46,12 +49,29 @@ class User(object):
             change password.
         google_account (GoogleAccountInfo): Google Account Information of a
             Helios BaaS user.
+        group_roles (list of string): Specifies the Cohesity roles to
+            associate with the user' group. These roles can only be edited
+            from group.
         idp_user_info (IdpUserInfo): Specifies an IdP User's information
             logged in using an IdP. This information is not stored on the
             Cluster.
+        is_account_locked (bool): Specifies whether the user account is locked.
+        is_active (bool): IsActive specifies whether or not a user is active,
+            or has been disactivated by the customer. The default behavior is
+            'true'.
+        last_successful_login_time_msecs (long|int): Specifies the epoch time
+            in milliseconds when the user was last logged in successfully.
         last_updated_time_msecs (long|int): Specifies the epoch time in
             milliseconds when the user account was last modified on the
             Cohesity Cluster.
+        lockout_reason (LockoutReasonUserEnum): Specifies the lockout reason
+            of the user if it is locked.
+            'NotLocked' implies the user is not locked.
+            'FailedLoginAttempts' the account is locked due to
+            many failed login attempts.
+            'LockedByAdmin' implies the account is locked by the admin user.
+            'Inactivity' implies the account is locked due to long time of
+            inactivity.
         org_membership (list of TenantConfig): OrgMembership contains the list
             of all available tenantIds for this user to switch to. Only when
             creating the session user, this field is populated on the fly. We
@@ -65,6 +85,8 @@ class User(object):
             populated based on the union of all privileges in roles. Type for
             unique privilege Id values. All below enum values specify a value
             for all uniquely defined privileges in Cohesity.
+        profiles (list of McmUserProfile): Specifies the user profiles.
+            NOTE: Currently used for Helios.
         restricted (bool): Whether the user is a restricted user. A restricted
             user can only view the objects he has permissions to.
         roles (list of string): Array of Roles.  Specifies the Cohesity roles
@@ -89,6 +111,7 @@ class User(object):
         "authentication_type":'authenticationType',
         "cluster_identifiers":'clusterIdentifiers',
         "created_time_msecs":'createdTimeMsecs',
+        "current_password":'currentPassword',
         "description":'description',
         "domain":'domain',
         "effective_time_msecs":'effectiveTimeMsecs',
@@ -96,13 +119,19 @@ class User(object):
         "expired_time_msecs":'expiredTimeMsecs',
         "force_password_change":'forcePasswordChange',
         "google_account":'googleAccount',
+        "group_roles":'groupRoles',
         "idp_user_info":'idpUserInfo',
+        "is_account_locked":'isAccountLocked',
+        "is_active":'isActive',
+        "last_successful_login_time_msecs":'lastSuccessfulLoginTimeMsecs',
         "last_updated_time_msecs":'lastUpdatedTimeMsecs',
+        "lockout_reason":'lockoutReason',
         "org_membership":'orgMembership',
         "password":'password',
         "preferences":'preferences',
         "primary_group_name":'primaryGroupName',
         "privilege_ids":'privilegeIds',
+        "profiles":'profiles',
         "restricted":'restricted',
         "roles":'roles',
         "s_3_access_key_id":'s3AccessKeyId',
@@ -119,6 +148,7 @@ class User(object):
                  authentication_type=None,
                  cluster_identifiers=None,
                  created_time_msecs=None,
+                 current_password=None,
                  description=None,
                  domain=None,
                  effective_time_msecs=None,
@@ -126,13 +156,19 @@ class User(object):
                  expired_time_msecs=None,
                  force_password_change=None,
                  google_account=None,
+                 group_roles=None,
                  idp_user_info=None,
+                 is_account_locked=None,
+                 is_active=None,
+                 last_successful_login_time_msecs=None,
                  last_updated_time_msecs=None,
+                 lockout_reason=None,
                  org_membership=None,
                  password=None,
                  preferences=None,
                  primary_group_name=None,
                  privilege_ids=None,
+                 profiles=None,
                  restricted=None,
                  roles=None,
                  s_3_access_key_id=None,
@@ -149,6 +185,7 @@ class User(object):
         self.authentication_type = authentication_type
         self.cluster_identifiers = cluster_identifiers
         self.created_time_msecs = created_time_msecs
+        self.current_password = current_password
         self.description = description
         self.domain = domain
         self.effective_time_msecs = effective_time_msecs
@@ -156,13 +193,19 @@ class User(object):
         self.expired_time_msecs = expired_time_msecs
         self.force_password_change = force_password_change
         self.google_account = google_account
+        self.group_roles = group_roles
         self.idp_user_info = idp_user_info
+        self.is_account_locked = is_account_locked
+        self.is_active = is_active
+        self.last_successful_login_time_msecs = last_successful_login_time_msecs
         self.last_updated_time_msecs = last_updated_time_msecs
+        self.lockout_reason = lockout_reason
         self.org_membership = org_membership
         self.password = password
         self.preferences = preferences
         self.primary_group_name = primary_group_name
         self.privilege_ids = privilege_ids
+        self.profiles = profiles
         self.restricted = restricted
         self.roles = roles
         self.s_3_access_key_id = s_3_access_key_id
@@ -200,6 +243,7 @@ class User(object):
             for structure in dictionary.get('clusterIdentifiers'):
                 cluster_identifiers.append(cohesity_management_sdk.models.cluster_identifier.ClusterIdentifier.from_dictionary(structure))
         created_time_msecs = dictionary.get('createdTimeMsecs')
+        current_password = dictionary.get('currentPassword')
         description = dictionary.get('description')
         domain = dictionary.get('domain')
         effective_time_msecs = dictionary.get('effectiveTimeMsecs')
@@ -207,8 +251,13 @@ class User(object):
         expired_time_msecs = dictionary.get('expiredTimeMsecs')
         force_password_change = dictionary.get('forcePasswordChange')
         google_account = cohesity_management_sdk.models.google_account_info.GoogleAccountInfo.from_dictionary(dictionary.get('googleAccount')) if dictionary.get('googleAccount') else None
+        group_roles = dictionary.get('groupRoles')
         idp_user_info = cohesity_management_sdk.models.idp_user_info.IdpUserInfo.from_dictionary(dictionary.get('idpUserInfo')) if dictionary.get('idpUserInfo') else None
+        is_account_locked = dictionary.get('isAccountLocked')
+        is_active = dictionary.get('isActive')
+        last_successful_login_time_msecs = dictionary.get('lastSuccessfulLoginTimeMsecs')
         last_updated_time_msecs = dictionary.get('lastUpdatedTimeMsecs')
+        lockout_reason = dictionary.get('lockoutReason')
         org_membership = None
         if dictionary.get('orgMembership') != None:
             org_membership = list()
@@ -218,6 +267,11 @@ class User(object):
         preferences = cohesity_management_sdk.models.preferences.Preferences.from_dictionary(dictionary.get('preferences')) if dictionary.get('preferences') else None
         primary_group_name = dictionary.get('primaryGroupName')
         privilege_ids = dictionary.get('privilegeIds')
+        profiles = None
+        if dictionary.get('profiles') != None:
+            profiles = list()
+            for structure in dictionary.get('profiles'):
+                profiles.append(cohesity_management_sdk.models.mcm_user_profile.McmUserProfile.from_dictionary(structure))
         restricted = dictionary.get('restricted')
         roles = dictionary.get('roles')
         s_3_access_key_id = dictionary.get('s3AccessKeyId')
@@ -233,6 +287,7 @@ class User(object):
                    authentication_type,
                    cluster_identifiers,
                    created_time_msecs,
+                   current_password,
                    description,
                    domain,
                    effective_time_msecs,
@@ -240,13 +295,19 @@ class User(object):
                    expired_time_msecs,
                    force_password_change,
                    google_account,
+                   group_roles,
                    idp_user_info,
+                   is_account_locked,
+                   is_active,
+                   last_successful_login_time_msecs,
                    last_updated_time_msecs,
+                   lockout_reason,
                    org_membership,
                    password,
                    preferences,
                    primary_group_name,
                    privilege_ids,
+                   profiles,
                    restricted,
                    roles,
                    s_3_access_key_id,

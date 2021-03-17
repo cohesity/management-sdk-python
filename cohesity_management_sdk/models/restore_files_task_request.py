@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
+import cohesity_management_sdk.models.filter_ip_config
 import cohesity_management_sdk.models.restored_file_info_list
 import cohesity_management_sdk.models.restore_object_details
 
@@ -27,8 +28,14 @@ class RestoreFilesTaskRequest(object):
             performed using an hypervisor API's.
         filenames (list of string): Array of Files or Folders.  Specifies the
             files and folders to recover from the snapshot.
+        filter_ip_config (FilterIpConfig): Specifies the list of IP addresses
+            that are allowed or denied during restore. Allowed IPs and Denied
+            IPs cannot be used together.
         is_file_based_volume_restore (bool): Specifies whether this is a file
             based volume restore.
+        mount_disks_on_vm (bool): Sepcifies whether this will attach disks or
+            mount disks on the VM side OR use Storage Proxy RPCs to stream
+            data
         name (string): Specifies the name of the Restore Task. This field must
             be set and must be a unique name.
         new_base_directory (string): Specifies an optional root folder where
@@ -78,7 +85,9 @@ class RestoreFilesTaskRequest(object):
         "continue_on_error":'continueOnError',
         "file_recovery_method":'fileRecoveryMethod',
         "filenames":'filenames',
+        "filter_ip_config":'filterIpConfig',
         "is_file_based_volume_restore":'isFileBasedVolumeRestore',
+        "mount_disks_on_vm":'mountDisksOnVm',
         "name":'name',
         "new_base_directory":'newBaseDirectory',
         "overwrite":'overwrite',
@@ -97,7 +106,9 @@ class RestoreFilesTaskRequest(object):
                  continue_on_error=None,
                  file_recovery_method=None,
                  filenames=None,
+                 filter_ip_config=None,
                  is_file_based_volume_restore=None,
+                 mount_disks_on_vm=None,
                  name=None,
                  new_base_directory=None,
                  overwrite=None,
@@ -116,7 +127,9 @@ class RestoreFilesTaskRequest(object):
         self.continue_on_error = continue_on_error
         self.file_recovery_method = file_recovery_method
         self.filenames = filenames
+        self.filter_ip_config = filter_ip_config
         self.is_file_based_volume_restore = is_file_based_volume_restore
+        self.mount_disks_on_vm = mount_disks_on_vm
         self.name = name
         self.new_base_directory = new_base_directory
         self.overwrite = overwrite
@@ -152,7 +165,9 @@ class RestoreFilesTaskRequest(object):
         continue_on_error = dictionary.get('continueOnError')
         filenames = dictionary.get('filenames')
         file_recovery_method = dictionary.get('fileRecoveryMethod')
+        filter_ip_config = cohesity_management_sdk.models.filter_ip_config.FilterIpConfig.from_dictionary(dictionary.get('filterIpConfig')) if dictionary.get('filterIpConfig') else None
         is_file_based_volume_restore = dictionary.get('isFileBasedVolumeRestore')
+        mount_disks_on_vm = dictionary.get('mountDisksOnVm')
         name = dictionary.get('name')
         new_base_directory = dictionary.get('newBaseDirectory')
         overwrite = dictionary.get('overwrite')
@@ -174,7 +189,9 @@ class RestoreFilesTaskRequest(object):
         return cls(continue_on_error,
                    file_recovery_method,
                    filenames,
+                   filter_ip_config,
                    is_file_based_volume_restore,
+                   mount_disks_on_vm,
                    name,
                    new_base_directory,
                    overwrite,

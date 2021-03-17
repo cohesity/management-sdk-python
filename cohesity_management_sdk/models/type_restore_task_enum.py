@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 class TypeRestoreTaskEnum(object):
 
@@ -26,6 +26,8 @@ class TypeRestoreTaskEnum(object):
     files and folders in zip format.
     'kRecoverEmails' specifies a Restore Task that recovers the mailbox/email
     items.
+    'kConvertToPst' specifies a PST conversion task for selected mailbox/email
+    items.
     'kRecoverDisks' specifies a Restore Task that recovers the virtual disks.
     'kRecoverNamespaces' specifies a Restore Task that recovers Kubernetes
     namespaces.
@@ -47,6 +49,7 @@ class TypeRestoreTaskEnum(object):
         KDEPLOYVMS: TODO: type description here.
         KDOWNLOADFILES: TODO: type description here.
         KRECOVEREMAILS: TODO: type description here.
+        KCONVERTTOPST: TODO: type description here.
         KRECOVERDISKS: TODO: type description here.
         KRECOVERNAMESPACES: TODO: type description here.
         KCLONEVMSTOVIEW: TODO: type description here.
@@ -82,6 +85,8 @@ class TypeRestoreTaskEnum(object):
     KDOWNLOADFILES = 'kDownloadFiles'
 
     KRECOVEREMAILS = 'kRecoverEmails'
+
+    KCONVERTTOPST = 'kConvertToPst'
 
     KRECOVERDISKS = 'kRecoverDisks'
 

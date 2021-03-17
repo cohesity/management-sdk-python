@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.archival_external_target
 import cohesity_management_sdk.models.cloud_deploy_target_details
@@ -69,7 +69,8 @@ class RestoreObjectDetails(object):
             environment. 'kCouchbase' indicates Couchbase Protection Source
             environment. 'kHdfs' indicates Hdfs Protection Source environment.
             'kHive' indicates Hive Protection Source environment. 'kHBase'
-            indicates HBase Protection Source environment.
+            indicates HBase Protection Source environment. 'kUDA' indicates
+            Universal Data Adapter Protection Source environment.
         job_id (long|int): Protection Job Id.  Specifies id of the Protection
             Job that backed up the objects to be restored.
         job_run_id (long|int): Specifies the id of the Job Run that captured
@@ -77,6 +78,9 @@ class RestoreObjectDetails(object):
         job_uid (UniversalId): Specifies the universal id of the Protection
             Job that backed up the objects to recover or clone or the objects
             that contain the files or folders to recover.
+        point_in_time_usecs (long|int): Specifies the timestamp (in
+            microseconds. from epoch) for recovering to a point-in-time in the
+            past.
         protection_source_id (long|int): Specifies the id of the leaf object
             to recover, clone or recover files/folders from.
         source_name (string): Specifies the name of the Protection Source.
@@ -94,6 +98,7 @@ class RestoreObjectDetails(object):
         "job_id":'jobId',
         "job_run_id":'jobRunId',
         "job_uid":'jobUid',
+        "point_in_time_usecs":'pointInTimeUsecs',
         "protection_source_id":'protectionSourceId',
         "source_name":'sourceName',
         "started_time_usecs":'startedTimeUsecs'
@@ -106,6 +111,7 @@ class RestoreObjectDetails(object):
                  job_id=None,
                  job_run_id=None,
                  job_uid=None,
+                 point_in_time_usecs=None,
                  protection_source_id=None,
                  source_name=None,
                  started_time_usecs=None):
@@ -118,6 +124,7 @@ class RestoreObjectDetails(object):
         self.job_id = job_id
         self.job_run_id = job_run_id
         self.job_uid = job_uid
+        self.point_in_time_usecs = point_in_time_usecs
         self.protection_source_id = protection_source_id
         self.source_name = source_name
         self.started_time_usecs = started_time_usecs
@@ -147,6 +154,7 @@ class RestoreObjectDetails(object):
         job_id = dictionary.get('jobId')
         job_run_id = dictionary.get('jobRunId')
         job_uid = cohesity_management_sdk.models.universal_id.UniversalId.from_dictionary(dictionary.get('jobUid')) if dictionary.get('jobUid') else None
+        point_in_time_usecs = dictionary.get('pointInTimeUsecs')
         protection_source_id = dictionary.get('protectionSourceId')
         source_name = dictionary.get('sourceName')
         started_time_usecs = dictionary.get('startedTimeUsecs')
@@ -158,6 +166,7 @@ class RestoreObjectDetails(object):
                    job_id,
                    job_run_id,
                    job_uid,
+                   point_in_time_usecs,
                    protection_source_id,
                    source_name,
                    started_time_usecs)

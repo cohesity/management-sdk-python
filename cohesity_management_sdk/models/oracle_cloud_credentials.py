@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 
 class OracleCloudCredentials(object):
@@ -27,6 +27,8 @@ class OracleCloudCredentials(object):
             properties that requires fast, immediate and frequent access.
             'kOracleTierArchive' indicates a tier type of Oracle properties
             that is rarely accesed and preserved for long times.
+        tiers (list of string): Specifies the list of all tiers for Amazon
+            account.
 
     """
 
@@ -36,7 +38,8 @@ class OracleCloudCredentials(object):
         "region":'region',
         "secret_access_key":'secretAccessKey',
         "tenant":'tenant',
-        "tier_type":'tierType'
+        "tier_type":'tierType',
+        "tiers":'tiers'
     }
 
     def __init__(self,
@@ -44,7 +47,8 @@ class OracleCloudCredentials(object):
                  region=None,
                  secret_access_key=None,
                  tenant=None,
-                 tier_type=None):
+                 tier_type=None,
+                 tiers=None):
         """Constructor for the OracleCloudCredentials class"""
 
         # Initialize members of the class
@@ -53,6 +57,7 @@ class OracleCloudCredentials(object):
         self.secret_access_key = secret_access_key
         self.tenant = tenant
         self.tier_type = tier_type
+        self.tiers = tiers
 
 
     @classmethod
@@ -78,12 +83,14 @@ class OracleCloudCredentials(object):
         secret_access_key = dictionary.get('secretAccessKey')
         tenant = dictionary.get('tenant')
         tier_type = dictionary.get('tierType')
+        tiers = dictionary.get('tiers')
 
         # Return an object of this model
         return cls(access_key_id,
                    region,
                    secret_access_key,
                    tenant,
-                   tier_type)
+                   tier_type,
+                   tiers)
 
 

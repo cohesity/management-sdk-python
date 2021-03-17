@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 class EnvironmentListProtectedObjectsEnum(object):
 
@@ -47,6 +47,7 @@ class EnvironmentListProtectedObjectsEnum(object):
         KHDFS: TODO: type description here.
         KHIVE: TODO: type description here.
         KHBASE: TODO: type description here.
+        KUDA: TODO: type description here.
 
     """
 
@@ -127,4 +128,6 @@ class EnvironmentListProtectedObjectsEnum(object):
     KHIVE = 'kHive'
 
     KHBASE = 'kHBase'
+
+    KUDA = 'kUDA'
 

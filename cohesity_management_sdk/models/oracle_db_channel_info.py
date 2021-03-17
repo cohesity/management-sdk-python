@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
+import cohesity_management_sdk.models.credentials
 import cohesity_management_sdk.models.oracle_db_channel_info_host_info
 
 class OracleDBChannelInfo(object):
@@ -16,6 +17,8 @@ class OracleDBChannelInfo(object):
         archivelog_keep_days (int): Archived log deletion policy for this
             unique Oracle database. 1: keep archived log forever 0: delete
             archived log immediately n>0: delete archived log after n days
+        credentials (Credentials): The credentials to be used for this
+            database.
         db_unique_name (string): The unique name of the database.
         db_uuid (string): Database id, internal field, is filled by magneto
             master based on corresponding app entity id.
@@ -49,6 +52,7 @@ class OracleDBChannelInfo(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "archivelog_keep_days":'archivelogKeepDays',
+        "credentials":'credentials',
         "db_unique_name":'dbUniqueName',
         "db_uuid":'dbUuid',
         "enable_dg_primary_backup":'enableDgPrimaryBackup',
@@ -60,6 +64,7 @@ class OracleDBChannelInfo(object):
 
     def __init__(self,
                  archivelog_keep_days=None,
+                 credentials=None,
                  db_unique_name=None,
                  db_uuid=None,
                  enable_dg_primary_backup=None,
@@ -71,6 +76,7 @@ class OracleDBChannelInfo(object):
 
         # Initialize members of the class
         self.archivelog_keep_days = archivelog_keep_days
+        self.credentials = credentials
         self.db_unique_name = db_unique_name
         self.db_uuid = db_uuid
         self.enable_dg_primary_backup = enable_dg_primary_backup
@@ -99,6 +105,7 @@ class OracleDBChannelInfo(object):
 
         # Extract variables from the dictionary
         archivelog_keep_days = dictionary.get('archivelogKeepDays')
+        credentials = cohesity_management_sdk.models.credentials.Credentials.from_dictionary(dictionary.get('credentials')) if dictionary.get('credentials') else None
         db_unique_name = dictionary.get('dbUniqueName')
         db_uuid = dictionary.get('dbUuid')
         enable_dg_primary_backup = dictionary.get('enableDgPrimaryBackup')
@@ -113,6 +120,7 @@ class OracleDBChannelInfo(object):
 
         # Return an object of this model
         return cls(archivelog_keep_days,
+                   credentials,
                    db_unique_name,
                    db_uuid,
                    enable_dg_primary_backup,

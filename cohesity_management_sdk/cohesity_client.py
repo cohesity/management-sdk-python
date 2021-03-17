@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 from cohesity_management_sdk.decorators import lazy_property
 from cohesity_management_sdk.configuration import Configuration
@@ -24,9 +24,7 @@ from cohesity_management_sdk.controllers.idps_controller import IdpsController
 from cohesity_management_sdk.controllers.interface_controller import InterfaceController
 from cohesity_management_sdk.controllers.interface_group_controller import InterfaceGroupController
 from cohesity_management_sdk.controllers.ip_controller import IpController
-from cohesity_management_sdk.controllers.kms_configuration_response_controller import KmsConfigurationResponseController
 from cohesity_management_sdk.controllers.kms_configuration_controller import KmsConfigurationController
-from cohesity_management_sdk.controllers.kms_update_request_parameters_controller import KmsUpdateRequestParametersController
 from cohesity_management_sdk.controllers.ldap_provider_controller import LdapProviderController
 from cohesity_management_sdk.controllers.license_controller import LicenseController
 from cohesity_management_sdk.controllers.monitoring_controller import MonitoringController
@@ -151,14 +149,6 @@ class CohesityClient(object):
     @lazy_property
     def kms_configuration(self):
         return KmsConfigurationController(self.config)
-
-    @lazy_property
-    def kms_configuration_response(self):
-        return KmsConfigurationResponseController(self.config)
-
-    @lazy_property
-    def kms_update_request_parameters(self):
-        return KmsUpdateRequestParametersController(self.config)
 
     @lazy_property
     def ldap_provider(self):

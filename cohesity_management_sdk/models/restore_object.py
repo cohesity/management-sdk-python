@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.archival_target
 import cohesity_management_sdk.models.cloud_deploy_target
@@ -7,6 +7,7 @@ import cohesity_management_sdk.models.entity_proto
 import cohesity_management_sdk.models.universal_id_proto
 import cohesity_management_sdk.models.restore_acropolis_vm_param
 import cohesity_management_sdk.models.no_sql_recover_params
+import cohesity_management_sdk.models.uda_recover_params
 
 class RestoreObject(object):
 
@@ -42,6 +43,8 @@ class RestoreObject(object):
             needs to be restored. If this is not set, then the object will be
             restored to the full/incremental snapshot. This is applicable only
             if the object is protected using CDP.
+        recover_from_standby (bool): This field indicates if the object should
+            be recovered from standby if it is enabled.
         restore_acropolis_vm_param (RestoreAcropolisVMParam): TODO: type
             description here.
         snapshot_relative_dir_path (string): The relative path to the
@@ -52,6 +55,8 @@ class RestoreObject(object):
             the job, and this is how the master pulls up a specific run. NOTE:
             This must be specified for RestoreFiles, RecoverDisks and
             GetVirtualDisks APIs
+        uda_recover_params (UdaRecoverParams): This field contains params
+            specific to the restore of a Uda entities.
         view_name (string): The name of the view where the object's snapshot
             is located.
         vm_had_independent_disks (bool): This is applicable only to VMs and is
@@ -73,9 +78,11 @@ class RestoreObject(object):
         "nosql_recover_params":'nosqlRecoverParams',
         "parent_source":'parentSource',
         "point_in_time_restore_time_usecs":'pointInTimeRestoreTimeUsecs',
+        "recover_from_standby":'recoverFromStandby',
         "restore_acropolis_vm_param":'restoreAcropolisVmParam',
         "snapshot_relative_dir_path":'snapshotRelativeDirPath',
         "start_time_usecs":'startTimeUsecs',
+        "uda_recover_params":'udaRecoverParams',
         "view_name":'viewName',
         "vm_had_independent_disks":'vmHadIndependentDisks'
     }
@@ -92,9 +99,11 @@ class RestoreObject(object):
                  nosql_recover_params=None,
                  parent_source=None,
                  point_in_time_restore_time_usecs=None,
+                 recover_from_standby=None,
                  restore_acropolis_vm_param=None,
                  snapshot_relative_dir_path=None,
                  start_time_usecs=None,
+                 uda_recover_params=None,
                  view_name=None,
                  vm_had_independent_disks=None):
         """Constructor for the RestoreObject class"""
@@ -111,9 +120,11 @@ class RestoreObject(object):
         self.nosql_recover_params = nosql_recover_params
         self.parent_source = parent_source
         self.point_in_time_restore_time_usecs = point_in_time_restore_time_usecs
+        self.recover_from_standby = recover_from_standby
         self.restore_acropolis_vm_param = restore_acropolis_vm_param
         self.snapshot_relative_dir_path = snapshot_relative_dir_path
         self.start_time_usecs = start_time_usecs
+        self.uda_recover_params = uda_recover_params
         self.view_name = view_name
         self.vm_had_independent_disks = vm_had_independent_disks
 
@@ -147,9 +158,11 @@ class RestoreObject(object):
         nosql_recover_params = cohesity_management_sdk.models.no_sql_recover_params.NoSqlRecoverParams.from_dictionary(dictionary.get('nosqlRecoverParams')) if dictionary.get('nosqlRecoverParams') else None
         parent_source = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('parentSource')) if dictionary.get('parentSource') else None
         point_in_time_restore_time_usecs = dictionary.get('pointInTimeRestoreTimeUsecs')
+        recover_from_standby = dictionary.get('recoverFromStandby')
         restore_acropolis_vm_param = cohesity_management_sdk.models.restore_acropolis_vm_param.RestoreAcropolisVMParam.from_dictionary(dictionary.get('restoreAcropolisVmParam')) if dictionary.get('restoreAcropolisVmParam') else None
         snapshot_relative_dir_path = dictionary.get('snapshotRelativeDirPath')
         start_time_usecs = dictionary.get('startTimeUsecs')
+        uda_recover_params = cohesity_management_sdk.models.uda_recover_params.UdaRecoverParams.from_dictionary(dictionary.get('udaRecoverParams')) if dictionary.get('udaRecoverParams') else None
         view_name = dictionary.get('viewName')
         vm_had_independent_disks = dictionary.get('vmHadIndependentDisks')
 
@@ -165,9 +178,11 @@ class RestoreObject(object):
                    nosql_recover_params,
                    parent_source,
                    point_in_time_restore_time_usecs,
+                   recover_from_standby,
                    restore_acropolis_vm_param,
                    snapshot_relative_dir_path,
                    start_time_usecs,
+                   uda_recover_params,
                    view_name,
                    vm_had_independent_disks)
 

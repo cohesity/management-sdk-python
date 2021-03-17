@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 class TaskTypeEnum(object):
 
@@ -15,6 +15,8 @@ class TaskTypeEnum(object):
     'FieldMessage' notification type is generated when field message from
     Cohesity support is created.
     'bulkInstallApp' notification type is generated from bulk install app
+    'tiering' notification type is generated upon completion of tiering tasks.
+    'analysis' notification type is generated upon completion of analysis tasks.
 
     Attributes:
         RESTORE: TODO: type description here.
@@ -22,6 +24,8 @@ class TaskTypeEnum(object):
         BACKUPNOW: TODO: type description here.
         FIELDMESSAGE: TODO: type description here.
         BULKINSTALLAPP: TODO: type description here.
+        TIERING: TODO: type description here.
+        ANALYSIS: TODO: type description here.
 
     """
 
@@ -34,4 +38,8 @@ class TaskTypeEnum(object):
     FIELDMESSAGE = 'fieldMessage'
 
     BULKINSTALLAPP = 'bulkInstallApp'
+
+    TIERING = 'tiering'
+
+    ANALYSIS = 'analysis'
 

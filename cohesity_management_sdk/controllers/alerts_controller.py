@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -598,7 +598,7 @@ class AlertsController(BaseController):
             self.logger.error(e, exc_info=True)
             raise
 
-    def get_alert_types(self):
+    def get_alert_types(self, alert_category_list=None):
         """Does a GET request to /public/alertTypes.
 
         Returns registered alerts in the Cohesity cluster that match the
@@ -606,6 +606,11 @@ class AlertsController(BaseController):
         criteria specified using parameters. If no filter parameters are
         specified,
         all registered alerts in the Cohesity cluster are returned.
+
+        Args:
+            alert_category_list (list of AlertCategoryListEnum, optional):
+                Specifies a list of Alert Categories to filter alert types by.
+                Specifies the category of an Alert.
 
         Returns:
             list of AlertMetadata: Response from the API. Success
@@ -625,6 +630,12 @@ class AlertsController(BaseController):
             _url_path = '/public/alertTypes'
             _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
+            _query_parameters = {
+                'alertCategoryList': alert_category_list
+            }
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
@@ -702,11 +713,7 @@ class AlertsController(BaseController):
                 Specifies list of Alert severity to filter alerts by.
             alert_type_bucket_list (list of AlertTypeBucketListEnum,
                 optional): Specifies the list of Alert type bucket. Specifies
-                the Alert type bucket. kSoftware - Alerts which are related to
-                Cohesity services. kHardware - Alerts related to hardware on
-                which Cohesity software is running. kService - Alerts related
-                to other external services. kOther - Alerts not of one of
-                above categories.
+                the Alert type bucket.
             resolution_id_list (list of long|int, optional): Specifies alert
                 resolution ids to filter alerts by.
             tenant_ids (list of string, optional): TenantIds contains ids of

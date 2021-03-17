@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.acropolis_restore_parameters
 import cohesity_management_sdk.models.application_restore_parameters
@@ -12,6 +12,7 @@ import cohesity_management_sdk.models.mount_volumes_state
 import cohesity_management_sdk.models.restore_object_details
 import cohesity_management_sdk.models.one_drive_restore_parameters
 import cohesity_management_sdk.models.outlook_restore_parameters
+import cohesity_management_sdk.models.public_folders_restore_parameters
 import cohesity_management_sdk.models.restore_object_state
 import cohesity_management_sdk.models.virtual_disk_recover_task_state
 import cohesity_management_sdk.models.vlan_parameters
@@ -39,6 +40,8 @@ class RestoreTask(object):
             Restore Task that retrieves objects from an archive. This field is
             only populated when objects must be retrieved from an archive
             before being restored. overrideDescription:true
+        can_tear_down (bool): Specifies whether it is possible to tear down
+            the objects created by the recovery.
         clone_view_parameters (UpdateViewParam): Specifies the View settings
             used when cloning a View.
         continue_on_error (bool): Specifies if the Restore Task should
@@ -81,6 +84,9 @@ class RestoreTask(object):
             information needed for recovering Drive(s) & Drive items.
         outlook_parameters (OutlookRestoreParameters): Specifies information
             needed for recovering Mailboxes in O365Outlook environment.
+        public_folders_parameters (PublicFoldersRestoreParameters): Specifies
+            additional parameters for 'kRecoverO365PublicFolders' restore
+            task.
         restore_object_state (list of RestoreObjectState): Array of Object
             States.  Specifies the states of all the objects for the
             'kRecoverVMs' and 'kCloneVMs' Restore Tasks.
@@ -111,6 +117,14 @@ class RestoreTask(object):
         target_view_created (bool): Is true if a new View was created by a
             'kCloneVMs' Restore Task. This field is only set for a 'kCloneVMs'
             Restore Task.
+        tear_down_error_message (string): Specifies the error message about
+            the tear down operation if it fails. 
+        tear_down_status (TearDownStatusEnum): Specifies the status of the
+            tear down operation. This is only set when the
+            field 'CanTearDown' is set to true.
+            'kReadyToSchedule' indicates that the task is waiting to be scheduled.
+            'kAdmitted' indicates that the task has been admitted.
+            'kFinished' indicates that the task is finished with or without error.
         mtype (TypeRestoreTaskEnum): Specifies the type of Restore Task.
             'kRecoverVMs' specifies a Restore Task that recovers VMs.
             'kCloneVMs' specifies a Restore Task that clones VMs. 'kCloneView'
@@ -129,11 +143,12 @@ class RestoreTask(object):
             that deployes volumes to a target environment. 'kDownloadFiles'
             specifies a Restore Task that downloads the requested files and
             folders in zip format. 'kRecoverEmails' specifies a Restore Task
-            that recovers the mailbox/email items. 'kRecoverDisks' specifies a
-            Restore Task that recovers the virtual disks. 'kRecoverNamespaces'
-            specifies a Restore Task that recovers Kubernetes namespaces.
-            'kCloneVMsToView' specifies a Restore Task that clones VMs into a
-            View.
+            that recovers the mailbox/email items. 'kConvertToPst' specifies
+            a PST conversion task for selected mailbox/email items.
+            'kRecoverDisks' specifies a Restore Task that recovers the
+            virtual disks. 'kRecoverNamespaces' specifies a Restore Task that
+            recovers Kubernetes namespaces. 'kCloneVMsToView' specifies a
+            Restore Task that clones VMs into a View.
         username (string): Specifies the Cohesity user who requested this
             Restore Task.
         view_box_id (long|int): Specifies the id of the Domain (View Box)
@@ -154,6 +169,7 @@ class RestoreTask(object):
         "application_parameters":'applicationParameters',
         "archive_task_uid":'archiveTaskUid',
         "archive_task_uids":'archiveTaskUids',
+        "can_tear_down":'canTearDown',
         "clone_view_parameters":'cloneViewParameters',
         "continue_on_error":'continueOnError',
         "datastore_id":'datastoreId',
@@ -168,11 +184,14 @@ class RestoreTask(object):
         "objects":'objects',
         "one_drive_parameters":'oneDriveParameters',
         "outlook_parameters":'outlookParameters',
+        "public_folders_parameters":'publicFoldersParameters',
         "restore_object_state":'restoreObjectState',
         "share_point_parameters":'sharePointParameters',
         "start_time_usecs":'startTimeUsecs',
         "status":'status',
         "target_view_created":'targetViewCreated',
+        "tear_down_error_message":'tearDownErrorMessage',
+        "tear_down_status":'tearDownStatus',
         "mtype":'type',
         "username":'username',
         "view_box_id":'viewBoxId',
@@ -187,6 +206,7 @@ class RestoreTask(object):
                  application_parameters=None,
                  archive_task_uid=None,
                  archive_task_uids=None,
+                 can_tear_down=None,
                  clone_view_parameters=None,
                  continue_on_error=None,
                  datastore_id=None,
@@ -201,11 +221,14 @@ class RestoreTask(object):
                  objects=None,
                  one_drive_parameters=None,
                  outlook_parameters=None,
+                 public_folders_parameters=None,
                  restore_object_state=None,
                  share_point_parameters=None,
                  start_time_usecs=None,
                  status=None,
                  target_view_created=None,
+                 tear_down_error_message=None,
+                 tear_down_status=None,
                  mtype=None,
                  username=None,
                  view_box_id=None,
@@ -219,6 +242,7 @@ class RestoreTask(object):
         self.application_parameters = application_parameters
         self.archive_task_uid = archive_task_uid
         self.archive_task_uids = archive_task_uids
+        self.can_tear_down = can_tear_down
         self.clone_view_parameters = clone_view_parameters
         self.continue_on_error = continue_on_error
         self.datastore_id = datastore_id
@@ -234,11 +258,14 @@ class RestoreTask(object):
         self.objects = objects
         self.one_drive_parameters = one_drive_parameters
         self.outlook_parameters = outlook_parameters
+        self.public_folders_parameters = public_folders_parameters
         self.restore_object_state = restore_object_state
         self.share_point_parameters = share_point_parameters
         self.start_time_usecs = start_time_usecs
         self.status = status
         self.target_view_created = target_view_created
+        self.tear_down_error_message = tear_down_error_message
+        self.tear_down_status = tear_down_status
         self.mtype = mtype
         self.username = username
         self.view_box_id = view_box_id
@@ -274,6 +301,7 @@ class RestoreTask(object):
             archive_task_uids = list()
             for structure in dictionary.get('archiveTaskUids'):
                 archive_task_uids.append(cohesity_management_sdk.models.universal_id.UniversalId.from_dictionary(structure))
+        can_tear_down = dictionary.get('canTearDown')
         clone_view_parameters = cohesity_management_sdk.models.update_view_param.UpdateViewParam.from_dictionary(dictionary.get('cloneViewParameters')) if dictionary.get('cloneViewParameters') else None
         continue_on_error = dictionary.get('continueOnError')
         datastore_id = dictionary.get('datastoreId')
@@ -292,6 +320,7 @@ class RestoreTask(object):
                 objects.append(cohesity_management_sdk.models.restore_object_details.RestoreObjectDetails.from_dictionary(structure))
         one_drive_parameters = cohesity_management_sdk.models.one_drive_restore_parameters.OneDriveRestoreParameters.from_dictionary(dictionary.get('oneDriveParameters')) if dictionary.get('oneDriveParameters') else None
         outlook_parameters = cohesity_management_sdk.models.outlook_restore_parameters.OutlookRestoreParameters.from_dictionary(dictionary.get('outlookParameters')) if dictionary.get('outlookParameters') else None
+        public_folders_parameters = cohesity_management_sdk.models.public_folders_restore_parameters.PublicFoldersRestoreParameters.from_dictionary(dictionary.get('publicFoldersParameters')) if dictionary.get('publicFoldersParameters') else None
         restore_object_state = None
         if dictionary.get('restoreObjectState') != None:
             restore_object_state = list()
@@ -301,6 +330,8 @@ class RestoreTask(object):
         start_time_usecs = dictionary.get('startTimeUsecs')
         status = dictionary.get('status')
         target_view_created = dictionary.get('targetViewCreated')
+        tear_down_error_message = dictionary.get('tearDownErrorMessage')
+        tear_down_status = dictionary.get('tearDownStatus')
         mtype = dictionary.get('type')
         username = dictionary.get('username')
         view_box_id = dictionary.get('viewBoxId')
@@ -314,6 +345,7 @@ class RestoreTask(object):
                    application_parameters,
                    archive_task_uid,
                    archive_task_uids,
+                   can_tear_down,
                    clone_view_parameters,
                    continue_on_error,
                    datastore_id,
@@ -328,11 +360,14 @@ class RestoreTask(object):
                    objects,
                    one_drive_parameters,
                    outlook_parameters,
+                   public_folders_parameters,
                    restore_object_state,
                    share_point_parameters,
                    start_time_usecs,
                    status,
                    target_view_created,
+                   tear_down_error_message,
+                   tear_down_status,
                    mtype,
                    username,
                    view_box_id,

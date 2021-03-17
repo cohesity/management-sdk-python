@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -659,7 +659,9 @@ class StatsController(BaseController):
                 Protection Runs used per organization (tenant) per view box
                 (storage domain). 'kReplicationRuns', indicates the stats info
                 of Replication In used per organization (tenant) per view box
-                (storage domain).
+                (storage domain). 'kViewProtectionRuns', indicates the stats
+                info of View Protection Runs used per organization (tenant)
+                per view box (storage domain).
             skip_group_by_tenant (bool, optional): Specifies if we should skip
                 grouping by tenant. If false, and tenant has multiple storage
                 domains, then the stats for the storage domains will be

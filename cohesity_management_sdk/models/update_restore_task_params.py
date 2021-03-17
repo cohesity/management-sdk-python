@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.ad_restore_options
+import cohesity_management_sdk.models.oracle_update_restore_task_options
 
 class UpdateRestoreTaskParams(object):
 
@@ -11,6 +12,8 @@ class UpdateRestoreTaskParams(object):
     Magneto.
 
     Attributes:
+        oracle_options (OracleUpdateRestoreTaskOptions): Specifies the oracle
+            options to update the Restore Task with.
         ad_options (AdRestoreOptions): AdRestoreOptions are the AD specific
             options for the restore task being updated
         enable_auto_sync (bool): Enables Auto Sync feature for SQL Multi-stage
@@ -27,6 +30,7 @@ class UpdateRestoreTaskParams(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "oracle_options":'OracleOptions',
         "ad_options":'adOptions',
         "enable_auto_sync":'enableAutoSync',
         "restore_task_id":'restoreTaskId',
@@ -34,6 +38,7 @@ class UpdateRestoreTaskParams(object):
     }
 
     def __init__(self,
+                 oracle_options=None,
                  ad_options=None,
                  enable_auto_sync=None,
                  restore_task_id=None,
@@ -41,6 +46,7 @@ class UpdateRestoreTaskParams(object):
         """Constructor for the UpdateRestoreTaskParams class"""
 
         # Initialize members of the class
+        self.oracle_options = oracle_options
         self.ad_options = ad_options
         self.enable_auto_sync = enable_auto_sync
         self.restore_task_id = restore_task_id
@@ -65,13 +71,15 @@ class UpdateRestoreTaskParams(object):
             return None
 
         # Extract variables from the dictionary
+        oracle_options = cohesity_management_sdk.models.oracle_update_restore_task_options.OracleUpdateRestoreTaskOptions.from_dictionary(dictionary.get('OracleOptions')) if dictionary.get('OracleOptions') else None
         ad_options = cohesity_management_sdk.models.ad_restore_options.AdRestoreOptions.from_dictionary(dictionary.get('adOptions')) if dictionary.get('adOptions') else None
         enable_auto_sync = dictionary.get('enableAutoSync')
         restore_task_id = dictionary.get('restoreTaskId')
         sql_options = dictionary.get('sqlOptions')
 
         # Return an object of this model
-        return cls(ad_options,
+        return cls(oracle_options,
+                   ad_options,
                    enable_auto_sync,
                    restore_task_id,
                    sql_options)

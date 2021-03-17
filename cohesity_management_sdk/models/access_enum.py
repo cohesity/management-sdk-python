@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 class AccessEnum(object):
 
@@ -11,7 +11,6 @@ class AccessEnum(object):
     'kFullControl' indicates full administrative control of the SMB share.
     'kSpecialAccess' indicates custom permissions to the SMB share using
     access masks structures.
-    'kSuperUser' indicates root permissions ignoring all SMB ACLs.
 
     Attributes:
         KREADONLY: TODO: type description here.
@@ -19,7 +18,6 @@ class AccessEnum(object):
         KMODIFY: TODO: type description here.
         KFULLCONTROL: TODO: type description here.
         KSPECIALACCESS: TODO: type description here.
-        KSUPERUSER: TODO: type description here.
 
     """
 
@@ -33,5 +31,4 @@ class AccessEnum(object):
 
     KSPECIALACCESS = 'kSpecialAccess'
 
-    KSUPERUSER = 'kSuperUser'
 

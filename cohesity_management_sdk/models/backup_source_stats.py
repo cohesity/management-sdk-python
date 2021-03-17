@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 
 class BackupSourceStats(object):
@@ -12,6 +12,13 @@ class BackupSourceStats(object):
     stats of a Backup tasks in a Protection Job Run.
 
     Attributes:
+        queue_duration_usecs (long|int): "Specifies the duration between the
+            startTime and when gatekeeper permit is granted to the backup
+            task. If the backup task is rescheduled due to errors, the field
+            is updated considering the time when permit is granted again.
+            Queue duration = PermitGrantTimeUsecs - StartTimeUsecs"
+        total_bytes_tiered (long|int): Specifies the total amount of data
+            successfully tiered from the source.
         admitted_time_usecs (long|int): Specifies the time the task was
             unqueued from the queue to start running. This field can be used
             to determine the following times: initial-wait-time =
@@ -23,6 +30,10 @@ class BackupSourceStats(object):
         end_time_usecs (long|int): Specifies the end time of the Protection
             Run. The end time is specified as a Unix epoch Timestamp (in
             microseconds).
+        permit_grant_time_usecs (long|int): Specifies the time when gatekeeper
+            permit is granted to the backup task. If the backup task is
+            rescheduled due to errors, the field is updated to
+            the time when permit is granted again.
         start_time_usecs (long|int): Specifies the start time of the
             Protection Run. The start time is specified as a Unix epoch
             Timestamp (in microseconds). This time is when the task is queued
@@ -56,8 +67,11 @@ class BackupSourceStats(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "queue_duration_usecs":'QueueDurationUsecs',
+        "total_bytes_tiered":'TotalBytesTiered',
         "admitted_time_usecs":'admittedTimeUsecs',
         "end_time_usecs":'endTimeUsecs',
+        "permit_grant_time_usecs":'permitGrantTimeUsecs',
         "start_time_usecs":'startTimeUsecs',
         "time_taken_usecs":'timeTakenUsecs',
         "total_bytes_read_from_source":'totalBytesReadFromSource',
@@ -68,8 +82,11 @@ class BackupSourceStats(object):
     }
 
     def __init__(self,
+                 queue_duration_usecs=None,
+                 total_bytes_tiered=None,
                  admitted_time_usecs=None,
                  end_time_usecs=None,
+                 permit_grant_time_usecs=None,
                  start_time_usecs=None,
                  time_taken_usecs=None,
                  total_bytes_read_from_source=None,
@@ -80,8 +97,11 @@ class BackupSourceStats(object):
         """Constructor for the BackupSourceStats class"""
 
         # Initialize members of the class
+        self.queue_duration_usecs = queue_duration_usecs
+        self.total_bytes_tiered = total_bytes_tiered
         self.admitted_time_usecs = admitted_time_usecs
         self.end_time_usecs = end_time_usecs
+        self.permit_grant_time_usecs = permit_grant_time_usecs
         self.start_time_usecs = start_time_usecs
         self.time_taken_usecs = time_taken_usecs
         self.total_bytes_read_from_source = total_bytes_read_from_source
@@ -109,8 +129,11 @@ class BackupSourceStats(object):
             return None
 
         # Extract variables from the dictionary
+        queue_duration_usecs = dictionary.get('QueueDurationUsecs')
+        total_bytes_tiered = dictionary.get('TotalBytesTiered')
         admitted_time_usecs = dictionary.get('admittedTimeUsecs')
         end_time_usecs = dictionary.get('endTimeUsecs')
+        permit_grant_time_usecs = dictionary.get('permitGrantTimeUsecs')
         start_time_usecs = dictionary.get('startTimeUsecs')
         time_taken_usecs = dictionary.get('timeTakenUsecs')
         total_bytes_read_from_source = dictionary.get('totalBytesReadFromSource')
@@ -120,8 +143,11 @@ class BackupSourceStats(object):
         total_source_size_bytes = dictionary.get('totalSourceSizeBytes')
 
         # Return an object of this model
-        return cls(admitted_time_usecs,
+        return cls(queue_duration_usecs,
+        total_bytes_tiered,
+                   admitted_time_usecs,
                    end_time_usecs,
+                   permit_grant_time_usecs,
                    start_time_usecs,
                    time_taken_usecs,
                    total_bytes_read_from_source,

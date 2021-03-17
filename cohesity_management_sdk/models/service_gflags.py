@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.gflag
 
@@ -49,7 +49,9 @@ class ServiceGflags(object):
             applications on the Cohesity Data Platform. 'kBifrostBroker' is a
             service for communicating with the Cohesity proxies for
             multitenancy. 'kSmb2Proxy' is a new SMB protocol service. 'kOs'
-            can be specified in order to do a full reboot.
+            can be specified in order to do a full reboot.'kPatch' is a
+            service for downloading and applying patches. 'kCompass' is a
+            service for serving dns request for external and internal traffic.
 
     """
 

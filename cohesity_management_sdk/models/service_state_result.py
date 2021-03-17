@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 
 class ServiceStateResult(object):
@@ -48,7 +48,10 @@ class ServiceStateResult(object):
             applications on the Cohesity Data Platform. 'kBifrostBroker' is a
             service for communicating with the Cohesity proxies for
             multitenancy. 'kSmb2Proxy' is a new SMB protocol service. 'kOs'
-            can be specified in order to do a full reboot.
+            can be specified in order to do a full reboot. 'kPatch' is a
+            service for downloading and applying patches.
+           'kCompass' is a service for serving dns request for external and
+            internal traffic.
         state (StateServiceStateResultEnum): Specifies the state of the
             service. 'kServiceStopped' indicates that the service has been
             stopped. 'kServiceRunning' indicates that the service is currently

@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 
 class VaultDeleteParams(object):
 
     """Implementation of the 'VaultDeleteParams' model.
 
-    TODO: Add model description here.
+    VaultDeleteParams represents the parameters needed to delete a specific
+    vault.
 
     Attributes:
         force_delete (bool): Specifies whether to force delete the vault. If

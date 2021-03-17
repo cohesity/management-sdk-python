@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.gflag
 
@@ -10,6 +10,9 @@ class UpdateGflagParameters(object):
     Specifies the parameters for updating service gflags.
 
     Attributes:
+        effective_now (bool): Specifies whether to apply the change
+            immediately. If set to true, the gflag change will work without
+            restarting the service.
         gflags (list of Gflag): Specifies a list of gflags. These will be
             added to the existing flags for the service. The values will be
             overwritten if required. If no value for gflag is specified, this
@@ -55,23 +58,31 @@ class UpdateGflagParameters(object):
             service for communicating with the Cohesity proxies for
             multitenancy. 'kSmb2Proxy' is a new SMB protocol service. 'kOs'
             can be specified in order to do a full reboot.
+            'kAtom' is a service for receiving data for the Continuous Data
+            Protection.
+            'kPatch' is a service for downloading and applying patches.
+            'kCompass' is a service for serving dns request for external and
+            internal traffic.
 
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "effective_now":'effectiveNow',
         "service_name":'serviceName',
         "reason":'reason',
         "gflags":'gflags'
     }
 
     def __init__(self,
+                 effective_now=None,
                  gflags=None,
                  reason=None,
                  service_name=None):
         """Constructor for the UpdateGflagParameters class"""
 
         # Initialize members of the class
+        self.effective_now = effective_now
         self.gflags = gflags
         self.reason = reason
         self.service_name = service_name
@@ -95,6 +106,7 @@ class UpdateGflagParameters(object):
             return None
 
         # Extract variables from the dictionary
+        effective_now = dictionary.get('effectiveNow')
         service_name = dictionary.get('serviceName')
         reason = dictionary.get('reason')
         gflags = None
@@ -104,6 +116,6 @@ class UpdateGflagParameters(object):
                 gflags.append(cohesity_management_sdk.models.gflag.Gflag.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(gflags, reason, service_name)
+        return cls(effective_now, gflags, reason, service_name)
 
 

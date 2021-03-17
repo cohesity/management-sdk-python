@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.error_proto
 import cohesity_management_sdk.models.connector_params
@@ -18,6 +18,8 @@ class RestoreTaskStateBaseProto(object):
         end_time_usecs (long|int): If the restore task has finished, this
             field contains the end time for the task.
         error (ErrorProto): TODO: type description here.
+        is_internal (bool): Whether the restore task is internal. This is
+            currently used by standby restore tasks.
         name (string): The name of the restore task.
         parent_source_connection_params (ConnectorParams): Message that
             encapsulates the various params required to establish a connection
@@ -62,6 +64,7 @@ class RestoreTaskStateBaseProto(object):
         "cancellation_requested":'cancellationRequested',
         "end_time_usecs":'endTimeUsecs',
         "error":'error',
+        "is_internal":'isInternal',
         "name":'name',
         "parent_source_connection_params":'parentSourceConnectionParams',
         "public_status":'publicStatus',
@@ -85,6 +88,7 @@ class RestoreTaskStateBaseProto(object):
                  cancellation_requested=None,
                  end_time_usecs=None,
                  error=None,
+                 is_internal=None,
                  name=None,
                  parent_source_connection_params=None,
                  public_status=None,
@@ -108,6 +112,7 @@ class RestoreTaskStateBaseProto(object):
         self.cancellation_requested = cancellation_requested
         self.end_time_usecs = end_time_usecs
         self.error = error
+        self.is_internal = is_internal
         self.name = name
         self.parent_source_connection_params = parent_source_connection_params
         self.public_status = public_status
@@ -148,6 +153,7 @@ class RestoreTaskStateBaseProto(object):
         cancellation_requested = dictionary.get('cancellationRequested')
         end_time_usecs = dictionary.get('endTimeUsecs')
         error = cohesity_management_sdk.models.error_proto.ErrorProto.from_dictionary(dictionary.get('error')) if dictionary.get('error') else None
+        is_internal = dictionary.get('isInternal')
         name = dictionary.get('name')
         parent_source_connection_params = cohesity_management_sdk.models.connector_params.ConnectorParams.from_dictionary(dictionary.get('parentSourceConnectionParams')) if dictionary.get('parentSourceConnectionParams') else None
         public_status = dictionary.get('publicStatus')
@@ -174,6 +180,7 @@ class RestoreTaskStateBaseProto(object):
         return cls(cancellation_requested,
                    end_time_usecs,
                    error,
+                   is_internal,
                    name,
                    parent_source_connection_params,
                    public_status,
