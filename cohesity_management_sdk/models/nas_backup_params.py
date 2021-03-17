@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.filtering_policy_proto
+import cohesity_management_sdk.models.s3_view_backup_properties
+import cohesity_management_sdk.models.nas_throttling_params
 import cohesity_management_sdk.models.view_id_mapping_proto_file_level_data_lock_config
 
 class NasBackupParams(object):
@@ -17,8 +19,8 @@ class NasBackupParams(object):
             When set to true, backend will be using existing oldest snapshot
             for the first backup. Each incremental will be selected in
             ascending of snapshot create time on the source.
-        blacklisted_ip_addrs (list of string): A list of IP addresses that
-            should not be used.
+        blacklisted_ip_addrs (list of string): Job level list of IP addresses
+            that should not be used.
         continue_on_error (bool): Whether the backup job should continue on
             errors for snapshot based backups. For non-snapshot-based generic
             NAS backup jobs, Magneto always continues on errors.
@@ -48,12 +50,23 @@ class NasBackupParams(object):
         incremental_backup_snapshot_label (string): Only used when we backup
             using discovered snapshots. This prefix is to figure out which
             discovered snapshot we need to use for incremental backup.
+        is_source_initiated_backup (bool): Source initiated backup when the
+            source sends pushes the data like for example snapmirror based
+            backup for netapp.
         mixed_mode_preference (int): If the target entity is a mixed mode
             volume, which NAS protocol type the user prefer to backup. This
             does not apply to generic NAS and will be ignored.
+        s3_viewbackupproperties (S3ViewBackupProperties): This message captures
+            all the details needed by NAS Backup to create S3 views and also
+            details needed by Netapp to access the S3 bucket.
         snapshot_change_enabled (bool): Whether this backup job should utilize
             changelist like API when available for faster incremental
             backups.
+        throttling_params (NasThrottlingParams): NAS throttling params for full
+            and incremental backups. This overrides corresponding source level
+            parameters.
+        whitelisted_ip_addrs (list of string): Job level list of IP addresses
+            that should be used exclusively.
 
     """
 
@@ -67,8 +80,12 @@ class NasBackupParams(object):
         "fld_config":'fldConfig',
         "full_backup_snapshot_label":'fullBackupSnapshotLabel',
         "incremental_backup_snapshot_label":'incrementalBackupSnapshotLabel',
+        "is_source_initiated_backup":'isSourceInitiatedBackup',
         "mixed_mode_preference":'mixedModePreference',
-        "snapshot_change_enabled":'snapshotChangeEnabled'
+        "s3_viewbackupproperties":'s3Viewbackupproperties',
+        "snapshot_change_enabled":'snapshotChangeEnabled',
+        "throttling_params":'throttlingParams',
+        "whitelisted_ip_addrs":'whitelistedIpAddrs'
     }
 
     def __init__(self,
@@ -80,8 +97,12 @@ class NasBackupParams(object):
                  fld_config=None,
                  full_backup_snapshot_label=None,
                  incremental_backup_snapshot_label=None,
+                 is_source_initiated_backup=None,
                  mixed_mode_preference=None,
-                 snapshot_change_enabled=None):
+                 s3_viewbackupproperties=None,
+                 snapshot_change_enabled=None,
+                 throttling_params=None,
+                 whitelisted_ip_addrs=None):
         """Constructor for the NasBackupParams class"""
 
         # Initialize members of the class
@@ -93,8 +114,12 @@ class NasBackupParams(object):
         self.fld_config = fld_config
         self.full_backup_snapshot_label = full_backup_snapshot_label
         self.incremental_backup_snapshot_label = incremental_backup_snapshot_label
+        self.is_source_initiated_backup = is_source_initiated_backup
         self.mixed_mode_preference = mixed_mode_preference
+        self.s3_viewbackupproperties = s3_viewbackupproperties
         self.snapshot_change_enabled = snapshot_change_enabled
+        self.throttling_params = throttling_params
+        self.whitelisted_ip_addrs = whitelisted_ip_addrs
 
 
     @classmethod
@@ -123,8 +148,12 @@ class NasBackupParams(object):
         fld_config = cohesity_management_sdk.models.view_id_mapping_proto_file_level_data_lock_config.ViewIdMappingProto_FileLevelDataLockConfig.from_dictionary(dictionary.get('fldConfig')) if dictionary.get('fldConfig') else None
         full_backup_snapshot_label = dictionary.get('fullBackupSnapshotLabel')
         incremental_backup_snapshot_label = dictionary.get('incrementalBackupSnapshotLabel')
+        is_source_initiated_backup = dictionary.get('isSourceInitiatedBackup')
         mixed_mode_preference = dictionary.get('mixedModePreference')
+        s3_viewbackupproperties = cohesity_management_sdk.models.s3_view_backup_properties.S3ViewBackupProperties.from_dictionary(dictionary.get('s3Viewbackupproperties')) if dictionary.get('s3Viewbackupproperties') else None
         snapshot_change_enabled = dictionary.get('snapshotChangeEnabled')
+        throttling_params = cohesity_management_sdk.models.nas_throttling_params.NasThrottlingParams.from_dictionary(dictionary.get('throttlingParams')) if dictionary.get('throttlingParams') else None
+        whitelisted_ip_addrs = dictionary.get('whitelistedIpAddrs')
 
         # Return an object of this model
         return cls(backup_existing_snapshot,
@@ -135,7 +164,11 @@ class NasBackupParams(object):
                    fld_config,
                    full_backup_snapshot_label,
                    incremental_backup_snapshot_label,
+                   is_source_initiated_backup,
                    mixed_mode_preference,
-                   snapshot_change_enabled)
+                   s3_viewbackupproperties,
+                   snapshot_change_enabled,
+                   throttling_params,
+                   whitelisted_ip_addrs)
 
 

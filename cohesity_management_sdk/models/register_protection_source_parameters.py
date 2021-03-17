@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.aws_credentials
 import cohesity_management_sdk.models.a_w_s_fleet_params
@@ -7,13 +7,16 @@ import cohesity_management_sdk.models.azure_credentials
 import cohesity_management_sdk.models.exchange_dag_protection_preference
 import cohesity_management_sdk.models.fleet_network_params
 import cohesity_management_sdk.models.gcp_credentials
+import cohesity_management_sdk.models.registered_protection_source_isilon_params
 import cohesity_management_sdk.models.kubernetes_credentials
 import cohesity_management_sdk.models.nas_mount_credential_params
 import cohesity_management_sdk.models.office_365_credentials
+import cohesity_management_sdk.models.physical_params
 import cohesity_management_sdk.models.ssl_verification
 import cohesity_management_sdk.models.subnet
 import cohesity_management_sdk.models.throttling_policy_parameters
 import cohesity_management_sdk.models.throttling_policy_override
+import cohesity_management_sdk.models.vmware_params
 import cohesity_management_sdk.models.vlan_parameters
 
 class RegisterProtectionSourceParameters(object):
@@ -27,6 +30,9 @@ class RegisterProtectionSourceParameters(object):
             environment is kAcropolis. overrideDescription: true
         agent_endpoint (string): Specifies the agent endpoint if it is
             different from the source endpoint.
+        allowed_ip_addresses (list of string): Specifies the list of IP
+            Addresses on the registered source to be exclusively allowed for
+            doing any type of IO operations.
         aws_credentials (AwsCredentials): Specifies the credentials to
             authenticate with AWS Cloud Platform.
         aws_fleet_params (AwsFleetParams): Specifies information related to
@@ -34,12 +40,19 @@ class RegisterProtectionSourceParameters(object):
             for kIAMUser entity.
         azure_credentials (AzureCredentials): Specifies the credentials to
             authenticate with Azure Cloud Platform.
-        blacklisted_ip_addresses (list of string): Specifies the list of IP
-            Addresses on the registered source to be blacklisted for doing any
-            type of IO operations.
+        blacklisted_ip_addresses (list of string): This field is deprecated.
+            Use DeniedIpAddresses instead.
+            deprecated: true
         cluster_network_info (FleetNetworkParams): Specifies information
             related to cluster. This is only valid for CE clusters. This is
             only populated for kIAMUser entity.
+        denied_ip_addresses (list of string): Specifies the list of IP
+            Addresses on the registered source to be denied for doing any
+            type of IO operations.
+        encryption_key (string): If set, user has encrypted the credential with
+            'user_ecryption_key'. It is assumed that credentials are first
+            encrypted using internal magento key and then encrypted using user
+            encryption key.
         endpoint (string): Specifies the network endpoint of the Protection
             Source where it is reachable. It could be an URL or hostname or an
             IP address of the Protection Source.
@@ -111,6 +124,12 @@ class RegisterProtectionSourceParameters(object):
             SE. 'kOther' indicates the other types of operating system.
         hyperv_type (HypervTypeEnum): Specifies the entity type if the
             environment is kHyperV. overrideDescription: true
+        is_internal_encrypted (bool): Set to true if credentials are encrypted
+            by internal magneto key.
+        is_proxy_host (bool): Specifies if the physical host has to be
+            registered as a proxy host.
+        isilon_params (RegisteredProtectionSourceIsilonParams): Specifies the
+            registered protection source params for Isilon Source
         kubernetes_credentials (KubernetesCredentials): Specifies the
             credentials to authenticate with a Kubernetes Cluster.
         kubernetes_type (KubernetesTypeEnum): Specifies the entity type if the
@@ -134,9 +153,15 @@ class RegisterProtectionSourceParameters(object):
             'kDomain', 'kOutlook', 'kMailbox', if the environment is kO365.
         password (string): Specifies password of the username to access the
             target source.
+        physical_params (PhysicalParams): Contains all params specified by
+            the user while registering a physical entity.
         physical_type (PhysicalTypeEnum): Specifies the entity type such as
             'kPhysicalHost' if the environment is kPhysical.
             overrideDescription: true
+        proxy_host_source_id_list (list of long|int): Specifies the list of
+            the protection source id of the windows physical host which will
+            be used during the protection and recovery of the sites that
+            belong to a office365 domain.
         pure_type (PureTypeEnum): Specifies the entity type such as
             'kStorageArray' if the environment is kPure.
         source_side_dedup_enabled (bool): This controls whether to use source
@@ -166,6 +191,8 @@ class RegisterProtectionSourceParameters(object):
             selection for restoring the same. For restores, the VLAN
             parameters specifed here can be overridden. Currently, this is
             only applicable for Physical hosts running Oracle.
+        vmware_params (VmwareParams): Contains all params specified by the
+            user while registering a Vmware entity.
         vmware_type (VmwareTypeEnum): Specifies the entity type such as
             'kVCenter' if the environment is kVMware.
             overrideDescription: true
@@ -176,18 +203,24 @@ class RegisterProtectionSourceParameters(object):
     _names = {
         "acropolis_type":'acropolisType',
         "agent_endpoint":'agentEndpoint',
+        "allowed_ip_addresses":'allowedIpAddresses',
         "aws_credentials":'awsCredentials',
         "aws_fleet_params":'awsFleetParams',
         "azure_credentials":'azureCredentials',
         "blacklisted_ip_addresses":'blacklistedIpAddresses',
         "cluster_network_info":'clusterNetworkInfo',
+        "denied_ip_addresses":'deniedIpAddresses',
         "endpoint":'endpoint',
+        "encryption_key":'encryptionKey',
         "environment":'environment',
         "exchange_dag_protection_preference":'exchangeDAGProtectionPreference',
         "force_register":'forceRegister',
         "gcp_credentials":'gcpCredentials',
         "host_type":'hostType',
         "hyperv_type":'hyperVType',
+        "is_internal_encrypted":'isInternalEncrypted',
+        "is_proxy_host":'isProxyHost',
+        "isilon_params":'isilonParams',
         "kubernetes_credentials":'kubernetesCredentials',
         "kubernetes_type":'kubernetesType',
         "kvm_type":'kvmType',
@@ -198,7 +231,9 @@ class RegisterProtectionSourceParameters(object):
         "office_365_region":'office365Region',
         "office_365_type":'office365Type',
         "password":'password',
+        "physical_params":'physicalParams',
         "physical_type":'physicalType',
+        "proxy_host_source_id_list":'proxyHostSourceIdList',
         "pure_type":'pureType',
         "source_side_dedup_enabled":'sourceSideDedupEnabled',
         "ssl_verification":'sslVerification',
@@ -207,18 +242,22 @@ class RegisterProtectionSourceParameters(object):
         "throttling_policy_overrides":'throttlingPolicyOverrides',
         "use_o_auth_for_exchange_online":'useOAuthForExchangeOnline',
         "username":'username',
-        "vlan_params":"vlanParams",
+        "vlan_params":'vlanParams',
+        "vmware_params":'vmwareParams',
         "vmware_type":'vmwareType'
     }
 
     def __init__(self,
                  acropolis_type=None,
                  agent_endpoint=None,
+                 allowed_ip_addresses=None,
                  aws_credentials=None,
                  aws_fleet_params=None,
                  azure_credentials=None,
                  blacklisted_ip_addresses=None,
                  cluster_network_info=None,
+                 denied_ip_addresses=None,
+                 encryption_key=None,
                  endpoint=None,
                  environment=None,
                  exchange_dag_protection_preference=None,
@@ -226,6 +265,9 @@ class RegisterProtectionSourceParameters(object):
                  gcp_credentials=None,
                  host_type=None,
                  hyperv_type=None,
+                 is_internal_encrypted=None,
+                 is_proxy_host=None,
+                 isilon_params=None,
                  kubernetes_credentials=None,
                  kubernetes_type=None,
                  kvm_type=None,
@@ -236,7 +278,9 @@ class RegisterProtectionSourceParameters(object):
                  office_365_region=None,
                  office_365_type=None,
                  password=None,
+                 physical_params=None,
                  physical_type=None,
+                 proxy_host_source_id_list=None,
                  pure_type=None,
                  source_side_dedup_enabled=None,
                  ssl_verification=None,
@@ -246,17 +290,21 @@ class RegisterProtectionSourceParameters(object):
                  use_o_auth_for_exchange_online=None,
                  username=None,
                  vlan_params=None,
+                 vmware_params=None,
                  vmware_type=None):
         """Constructor for the RegisterProtectionSourceParameters class"""
 
         # Initialize members of the class
         self.acropolis_type = acropolis_type
         self.agent_endpoint = agent_endpoint
+        self.allowed_ip_addresses = allowed_ip_addresses
         self.aws_credentials = aws_credentials
         self.aws_fleet_params = aws_fleet_params
         self.azure_credentials = azure_credentials
         self.blacklisted_ip_addresses = blacklisted_ip_addresses
         self.cluster_network_info = cluster_network_info
+        self.denied_ip_addresses = denied_ip_addresses
+        self.encryption_key = encryption_key
         self.endpoint = endpoint
         self.environment = environment
         self.force_register = force_register
@@ -264,6 +312,9 @@ class RegisterProtectionSourceParameters(object):
         self.gcp_credentials = gcp_credentials
         self.host_type = host_type
         self.hyperv_type = hyperv_type
+        self.is_internal_encrypted = is_internal_encrypted
+        self.is_proxy_host = is_proxy_host
+        self.isilon_params = isilon_params
         self.kubernetes_credentials = kubernetes_credentials
         self.kubernetes_type = kubernetes_type
         self.kvm_type = kvm_type
@@ -274,7 +325,9 @@ class RegisterProtectionSourceParameters(object):
         self.office_365_region = office_365_region
         self.office_365_type = office_365_type
         self.password = password
+        self.physical_params = physical_params
         self.physical_type = physical_type
+        self.proxy_host_source_id_list = proxy_host_source_id_list
         self.pure_type = pure_type
         self.source_side_dedup_enabled = source_side_dedup_enabled
         self.ssl_verification = ssl_verification
@@ -284,6 +337,7 @@ class RegisterProtectionSourceParameters(object):
         self.use_o_auth_for_exchange_online = use_o_auth_for_exchange_online
         self.username = username
         self.vlan_params = vlan_params
+        self.vmware_params = vmware_params
         self.vmware_type = vmware_type
 
 
@@ -307,11 +361,14 @@ class RegisterProtectionSourceParameters(object):
         # Extract variables from the dictionary
         acropolis_type = dictionary.get('acropolisType')
         agent_endpoint = dictionary.get('agentEndpoint')
+        allowed_ip_addresses = dictionary.get('allowedIpAddresses')
         aws_credentials = cohesity_management_sdk.models.aws_credentials.AwsCredentials.from_dictionary(dictionary.get('awsCredentials')) if dictionary.get('awsCredentials') else None
         aws_fleet_params = cohesity_management_sdk.models.a_w_s_fleet_params.AwsFleetParams.from_dictionary(dictionary.get('awsFleetParams')) if dictionary.get('awsFleetParams') else None
         azure_credentials = cohesity_management_sdk.models.azure_credentials.AzureCredentials.from_dictionary(dictionary.get('azureCredentials')) if dictionary.get('azureCredentials') else None
         blacklisted_ip_addresses = dictionary.get('blacklistedIpAddresses')
         cluster_network_info = cohesity_management_sdk.models.fleet_network_params.FleetNetworkParams.from_dictionary(dictionary.get('clusterNetworkInfo')) if dictionary.get('clusterNetworkInfo') else None
+        denied_ip_addresses = dictionary.get('deniedIpAddresses')
+        encryption_key = dictionary.get('encryptionKey')
         endpoint = dictionary.get('endpoint')
         environment = dictionary.get('environment')
         exchange_dag_protection_preference = cohesity_management_sdk.models.exchange_dag_protection_preference.ExchangeDAGProtectionPreference.from_dictionary(dictionary.get('exchangeDAGProtectionPreference')) if dictionary.get('exchangeDAGProtectionPreference') else None
@@ -319,6 +376,9 @@ class RegisterProtectionSourceParameters(object):
         gcp_credentials = cohesity_management_sdk.models.gcp_credentials.GcpCredentials.from_dictionary(dictionary.get('gcpCredentials')) if dictionary.get('gcpCredentials') else None
         host_type = dictionary.get('hostType')
         hyperv_type = dictionary.get('hyperVType')
+        is_internal_encrypted = dictionary.get('isInternalEncrypted')
+        is_proxy_host = dictionary.get('isProxyHost')
+        isilon_params = cohesity_management_sdk.models.registered_protection_source_isilon_params.RegisteredProtectionSourceIsilonParams.from_dictionary(dictionary.get('isilonParams')) if dictionary.get('isilonParams') else None
         kubernetes_credentials = cohesity_management_sdk.models.kubernetes_credentials.KubernetesCredentials.from_dictionary(dictionary.get('kubernetesCredentials')) if dictionary.get('kubernetesCredentials') else None
         kubernetes_type = dictionary.get('kubernetesType')
         kvm_type = dictionary.get('kvmType')
@@ -330,10 +390,12 @@ class RegisterProtectionSourceParameters(object):
         if dictionary.get('office365CredentialsList') != None:
             office365_credentials_list = list()
             for structure in dictionary.get('office365CredentialsList'):
-                office365_credentials_list.append(cohesity_management_sdk.office_365_credentials.Office365Credentials.from_dictionary(structure))
+                office365_credentials_list.append(cohesity_management_sdk.models.office_365_credentials.Office365Credentials.from_dictionary(structure))
         office_365_region = dictionary.get('office365Region')
         password = dictionary.get('password')
+        physical_params = cohesity_management_sdk.models.physical_params.PhysicalParams.from_dictionary(dictionary.get('physicalParams')) if dictionary.get('physicalParams') else None
         physical_type = dictionary.get('physicalType')
+        proxy_host_source_id_list = dictionary.get('proxyHostSourceIdList')
         pure_type = dictionary.get('pureType')
         source_side_dedup_enabled = dictionary.get('sourceSideDedupEnabled')
         ssl_verification = cohesity_management_sdk.models.ssl_verification.SslVerification.from_dictionary(dictionary.get('sslVerification')) if dictionary.get('sslVerification') else None
@@ -351,16 +413,20 @@ class RegisterProtectionSourceParameters(object):
         use_o_auth_for_exchange_online = dictionary.get('useOAuthForExchangeOnline')
         username = dictionary.get('username')
         vlan_params = cohesity_management_sdk.models.vlan_parameters.VlanParameters.from_dictionary(dictionary.get('vlanParams')) if dictionary.get('vlanParams') else None
+        vmware_params = cohesity_management_sdk.models.vmware_params.VmwareParams.from_dictionary(dictionary.get('vmwareParams')) if dictionary.get('vmwareParams') else None
         vmware_type = dictionary.get('vmwareType')
 
         # Return an object of this model
         return cls(acropolis_type,
                    agent_endpoint,
+                   allowed_ip_addresses,
                    aws_credentials,
                    aws_fleet_params,
                    azure_credentials,
                    blacklisted_ip_addresses,
                    cluster_network_info,
+                   denied_ip_addresses,
+                   encryption_key,
                    endpoint,
                    environment,
                    exchange_dag_protection_preference,
@@ -368,6 +434,9 @@ class RegisterProtectionSourceParameters(object):
                    gcp_credentials,
                    host_type,
                    hyperv_type,
+                   is_internal_encrypted,
+                   is_proxy_host,
+                   isilon_params,
                    kubernetes_credentials,
                    kubernetes_type,
                    kvm_type,
@@ -378,7 +447,9 @@ class RegisterProtectionSourceParameters(object):
                    office_365_region,
                    office_365_type,
                    password,
+                   physical_params,
                    physical_type,
+                   proxy_host_source_id_list,
                    pure_type,
                    source_side_dedup_enabled,
                    ssl_verification,
@@ -388,6 +459,7 @@ class RegisterProtectionSourceParameters(object):
                    use_o_auth_for_exchange_online,
                    username,
                    vlan_params,
+                   vmware_params,
                    vmware_type)
 
 

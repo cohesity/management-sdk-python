@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 
 class Banner(object):
@@ -16,10 +16,12 @@ class Banner(object):
             If this field is nil, the it is assumed to be the cluster_id.
             The content is stored against this 'row' in Scribe.
         content (string): Specifies the content of the banner.
-        created_time_msecs (int|long): Timestamp at which banner was created.
-        description (string): Specifies the description of this banner.
-        last_updated_time_msecs (int|long): Timestamp at which banner was last
-            updated.
+        created_time_msecs (int|long): createdTimeMsecs field is deprecated.
+            Timestamp at which banner was created.
+        description (string): description field is deprecated. Specifies the
+            description of this banner.
+        last_updated_time_msecs (int|long): lastUpdatedTimeMsecs field is
+            deprecated. Timestamp at which banner was last updated.
 
     """
 

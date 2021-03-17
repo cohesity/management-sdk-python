@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -207,10 +207,11 @@ class ProtectionSourcesController(BaseController):
                                 before_cursor_entity_id=None,
                                 node_id=None,
                                 page_size=None,
+                                has_valid_mailbox=None,
+                                has_valid_onedrive=None,
                                 id=None,
                                 num_levels=None,
                                 exclude_types=None,
-                                exclude_office_365_types=None,
                                 exclude_aws_types=None,
                                 include_datastores=None,
                                 include_networks=None,
@@ -220,6 +221,8 @@ class ProtectionSourcesController(BaseController):
                                 environment=None,
                                 include_entity_permission_info=None,
                                 sids=None,
+                                include_source_credentials=None,
+                                encryption_key=None,
                                 tenant_ids=None,
                                 all_under_hierarchy=None):
         """Does a GET request to /public/protectionSources.
@@ -247,6 +250,10 @@ class ProtectionSourcesController(BaseController):
                 are to be paginated.
             page_size (long|int, optional): Specifies the maximum number of
                 entities to be returned within the page.
+            has_valid_mailbox (bool, optional): If set to true, users with
+                valid mailbox will be returned.
+            has_valid_onedrive (bool, optional): If set to true, users with
+                valid onedrive will be returned.
             id (long|int, optional): Return the Object subtree for the passed
                 in Protection Source id.
             num_levels (int, optional): Specifies the expected number of levels
@@ -259,11 +266,6 @@ class ProtectionSourcesController(BaseController):
                 'kHostSystem', 'kVirtualMachine', etc. For example, set this
                 parameter to 'kResourcePool' to exclude Resource Pool Objects
                 from being returned.
-            exclude_office_365_types (list of ExcludeOffice365TypeEnum,
-                optional): Specifies the Object types to be filtered out for
-                Office 365 that match the passed in types such as 'kDomain',
-                'kOutlook', 'kMailbox', etc. For example, set this parameter
-                to 'kMailbox' to exclude Mailbox Objects from being returned.
             exclude_aws_types (list of ExcludeAwsTypeEnum, optional): Specifies
                 the Object types to be filtered out for AWS that match the
                 passed in types such as 'kEC2Instance', 'kRDSInstance' etc.
@@ -301,6 +303,13 @@ class ProtectionSourcesController(BaseController):
                 returned.
             sids (list of string, optional): Filter the object subtree for the
                 sids given in the list.
+            include_source_credentials (bool, optional): If specified, then
+                crednetial for the registered sources will be included.
+                Credential is first encrypted with internal key and then
+                reencrypted with user supplied 'encryption_key'.
+            encryption_key (string, optional): Key to be used to encrypt the
+                source credential. If include_source_credentials is set to true
+                this key must be specified.
             tenant_ids (list of string, optional): TenantIds contains ids of
                 the tenants for which objects are to be returned.
             all_under_hierarchy (bool, optional): AllUnderHierarchy specifies
@@ -331,10 +340,11 @@ class ProtectionSourcesController(BaseController):
                 'beforeCursorEntityId': before_cursor_entity_id,
                 'nodeId': node_id,
                 'pageSize': page_size,
+                'hasValidMailbox': has_valid_mailbox,
+                'hasValidOnedrive': has_valid_onedrive,
                 'id': id,
                 'numLevels': num_levels,
                 'excludeTypes': exclude_types,
-                'excludeOffice365Types': exclude_office_365_types,
                 'excludeAwsTypes': exclude_aws_types,
                 'includeDatastores': include_datastores,
                 'includeNetworks': include_networks,
@@ -344,6 +354,8 @@ class ProtectionSourcesController(BaseController):
                 'environment': environment,
                 'includeEntityPermissionInfo': include_entity_permission_info,
                 'sids': sids,
+                'includeSourceCredentials': include_source_credentials,
+                'encryptionKey': encryption_key,
                 'tenantIds': tenant_ids,
                 'allUnderHierarchy': all_under_hierarchy
             }
@@ -1465,6 +1477,8 @@ class ProtectionSourcesController(BaseController):
         ids=None,
         include_entity_permission_info=None,
         sids=None,
+        include_source_credentials=None,
+        encryption_key=None,
         include_applications_tree_info=None,
         tenant_ids=None,
         all_under_hierarchy=None):
@@ -1491,6 +1505,13 @@ class ProtectionSourcesController(BaseController):
                 returned.
             sids (list of string, optional): Filter the registered root nodes
                 for the sids given in the list.
+            include_source_credentials (bool, optional): If specified, then
+                crednetial for the registered sources will be included.
+                Credential is first encrypted with internal key and then
+                    reencrypted with user supplied 'encryption_key'.
+            encryption_key (string, optional): Key to be used to encrypt the
+                source credential. If include_source_credentials is set to true
+                this key must be specified.
             include_applications_tree_info (bool, optional): Specifies whether
                 to return applications tree info or not.
             tenant_ids (list of string, optional): TenantIds contains ids of
@@ -1525,6 +1546,8 @@ class ProtectionSourcesController(BaseController):
                 'ids': ids,
                 'includeEntityPermissionInfo': include_entity_permission_info,
                 'sids': sids,
+                'includeSourceCredentials': include_source_credentials,
+                'encryptionKey': encryption_key,
                 'includeApplicationsTreeInfo':include_applications_tree_info,
                 'tenantIds': tenant_ids,
                 'allUnderHierarchy': all_under_hierarchy

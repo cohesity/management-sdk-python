@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -824,7 +824,10 @@ class TenantController(BaseController):
             raise
 
 
-    def get_tenants_proxy_config(self, id=None, validate_only=None):
+    def get_tenants_proxy_config(self,
+                                 id=None,
+                                 validate_only=None,
+                                 connection_id=None):
         """Does a GET request to /public/tenants/proxy/config.
 
         Returns the config for tenants proxy.
@@ -833,6 +836,8 @@ class TenantController(BaseController):
             id (string, optional): Specifies the id of the tenant.
             validate_only (bool, optional): Specifies whether to only validate
                 the config request.
+            connection_id (long|int, optional): Specifies the id of the
+                connection.
 
         Returns:
             list of int: Response from the API. Get Tenants Proxy Config
@@ -856,7 +861,8 @@ class TenantController(BaseController):
             _query_builder += _url_path
             _query_parameters = {
                 'id': id,
-                'validateOnly': validate_only
+                'validateOnly': validate_only,
+                'connectionId': connection_id
                 }
             _query_builder = APIHelper.append_url_with_query_parameters(
                 _query_builder, _query_parameters,

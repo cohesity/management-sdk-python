@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.exchange_backup_job_params
 import cohesity_management_sdk.models.file_stubbing_params
 import cohesity_management_sdk.models.file_uptiering_params
 import cohesity_management_sdk.models.hyperv_backup_env_params
+import cohesity_management_sdk.models.isilon_env_params
 import cohesity_management_sdk.models.nas_backup_params
+import cohesity_management_sdk.models.nas_analysis_job_params
 import cohesity_management_sdk.models.no_sql_backup_job_params
 import cohesity_management_sdk.models.o_365_backup_env_params
 import cohesity_management_sdk.models.oracle_backup_job_params
@@ -13,6 +15,7 @@ import cohesity_management_sdk.models.outlook_backup_env_params
 import cohesity_management_sdk.models.physical_backup_env_params
 import cohesity_management_sdk.models.snapshot_manager_params
 import cohesity_management_sdk.models.sql_backup_job_params
+import cohesity_management_sdk.models.uda_backup_job_params
 import cohesity_management_sdk.models.vmware_backup_env_params
 
 class EnvBackupParams(object):
@@ -33,6 +36,10 @@ class EnvBackupParams(object):
             for NAS migration.
         hyperv_backup_params (HypervBackupEnvParams): Message to capture any
             additional backup params for a HyperV environment.
+        isilon_env_params (IsilonEnvParams): This is applicable to Isilon type
+            of environments.
+        nas_analysis_job_params (NasAnalysisJobParams): This is applicable to
+            analysis of NAS environments.
         nas_backup_params (NasBackupParams): Message to capture any additional
             backup params for a NAS environment.
         no_sql_backup_job_params (NoSqlBackupJobParams): Contains backup params
@@ -51,6 +58,8 @@ class EnvBackupParams(object):
             description here.
         sql_backup_job_params (SqlBackupJobParams): Message to capture
             additional backup job params specific to SQL.
+        uda_backup_job_params (UdaBackupJobParams): This is applicable to UDA
+            environments.
         vmware_backup_params (VmwareBackupEnvParams): Message to capture any
             additional backup params for a VMware environment.
 
@@ -62,6 +71,8 @@ class EnvBackupParams(object):
         "file_stubbing_params":'fileStubbingParams',
         "file_uptiering_params":'fileUptieringParams',
         "hyperv_backup_params":'hypervBackupParams',
+        "isilon_env_params":'isilonEnvParams',
+        "nas_analysis_job_params":'nasAnalysisJobParams',
         "nas_backup_params":'nasBackupParams',
         "no_sql_backup_job_params": 'nosqlBackupJobParams',
         "o_365_backup_params":'o365BackupParams',
@@ -70,6 +81,7 @@ class EnvBackupParams(object):
         "physical_backup_params":'physicalBackupParams',
         "snapshot_manager_params":'snapshotManagerParams',
         "sql_backup_job_params":'sqlBackupJobParams',
+        "uda_backup_job_params":'udaBackupJobParams',
         "vmware_backup_params":'vmwareBackupParams'
     }
 
@@ -78,6 +90,8 @@ class EnvBackupParams(object):
                  file_stubbing_params=None,
                  file_uptiering_params=None,
                  hyperv_backup_params=None,
+                 isilon_env_params=None,
+                 nas_analysis_job_params=None,
                  nas_backup_params=None,
                  no_sql_backup_job_params=None,
                  o_365_backup_params=None,
@@ -86,6 +100,7 @@ class EnvBackupParams(object):
                  physical_backup_params=None,
                  snapshot_manager_params=None,
                  sql_backup_job_params=None,
+                 uda_backup_job_params=None,
                  vmware_backup_params=None):
         """Constructor for the EnvBackupParams class"""
 
@@ -94,6 +109,8 @@ class EnvBackupParams(object):
         self.file_stubbing_params = file_stubbing_params
         self.file_uptiering_params = file_uptiering_params
         self.hyperv_backup_params = hyperv_backup_params
+        self.isilon_env_params = isilon_env_params
+        self.nas_analysis_job_params = nas_analysis_job_params
         self.nas_backup_params = nas_backup_params
         self.no_sql_backup_job_params = no_sql_backup_job_params
         self.o_365_backup_params = o_365_backup_params
@@ -102,6 +119,7 @@ class EnvBackupParams(object):
         self.physical_backup_params = physical_backup_params
         self.snapshot_manager_params = snapshot_manager_params
         self.sql_backup_job_params = sql_backup_job_params
+        self.uda_backup_job_params = uda_backup_job_params
         self.vmware_backup_params = vmware_backup_params
 
 
@@ -127,6 +145,8 @@ class EnvBackupParams(object):
         file_stubbing_params = cohesity_management_sdk.models.file_stubbing_params.FileStubbingParams.from_dictionary(dictionary.get('fileStubbingParams')) if dictionary.get('fileStubbingParams') else None
         file_uptiering_params = cohesity_management_sdk.models.file_uptiering_params.FileUptieringParams.from_dictionary(dictionary.get('fileUptieringParams')) if dictionary.get('fileUptieringParams') else None
         hyperv_backup_params = cohesity_management_sdk.models.hyperv_backup_env_params.HypervBackupEnvParams.from_dictionary(dictionary.get('hypervBackupParams')) if dictionary.get('hypervBackupParams') else None
+        isilon_env_params = cohesity_management_sdk.models.isilon_env_params.IsilonEnvParams.from_dictionary(dictionary.get('isilonEnvParams')) if dictionary.get('isilonEnvParams') else None
+        nas_analysis_job_params = cohesity_management_sdk.models.nas_analysis_job_params.NasAnalysisJobParams.from_dictionary(dictionary.get('nasAnalysisJobParams')) if dictionary.get('nasAnalysisJobParams') else None
         nas_backup_params = cohesity_management_sdk.models.nas_backup_params.NasBackupParams.from_dictionary(dictionary.get('nasBackupParams')) if dictionary.get('nasBackupParams') else None
         no_sql_backup_job_params = cohesity_management_sdk.models.no_sql_backup_job_params.NoSqlBackupJobParams.from_dictionary(dictionary.get('nosqlBackupJobParams')) if dictionary.get('noSqlBackupJobParams') else None
         o_365_backup_params = cohesity_management_sdk.models.o_365_backup_env_params.O365BackupEnvParams.from_dictionary(dictionary.get('o365BackupParams')) if dictionary.get('o365BackupParams') else None
@@ -135,6 +155,7 @@ class EnvBackupParams(object):
         physical_backup_params = cohesity_management_sdk.models.physical_backup_env_params.PhysicalBackupEnvParams.from_dictionary(dictionary.get('physicalBackupParams')) if dictionary.get('physicalBackupParams') else None
         snapshot_manager_params = cohesity_management_sdk.models.snapshot_manager_params.SnapshotManagerParams.from_dictionary(dictionary.get('snapshotManagerParams')) if dictionary.get('snapshotManagerParams') else None
         sql_backup_job_params = cohesity_management_sdk.models.sql_backup_job_params.SqlBackupJobParams.from_dictionary(dictionary.get('sqlBackupJobParams')) if dictionary.get('sqlBackupJobParams') else None
+        uda_backup_job_params = cohesity_management_sdk.models.uda_backup_job_params.UdaBackupJobParams.from_dictionary(dictionary.get('udaBackupJobParams')) if dictionary.get('udaBackupJobParams') else None
         vmware_backup_params = cohesity_management_sdk.models.vmware_backup_env_params.VmwareBackupEnvParams.from_dictionary(dictionary.get('vmwareBackupParams')) if dictionary.get('vmwareBackupParams') else None
 
         # Return an object of this model
@@ -142,6 +163,8 @@ class EnvBackupParams(object):
                    file_stubbing_params,
                    file_uptiering_params,
                    hyperv_backup_params,
+                   isilon_env_params,
+                   nas_analysis_job_params,
                    nas_backup_params,
                    no_sql_backup_job_params,
                    o_365_backup_params,
@@ -150,6 +173,7 @@ class EnvBackupParams(object):
                    physical_backup_params,
                    snapshot_manager_params,
                    sql_backup_job_params,
+                   uda_backup_job_params,
                    vmware_backup_params)
 
 

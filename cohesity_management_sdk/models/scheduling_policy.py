@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.continuous_schedule
 import cohesity_management_sdk.models.daily_schedule
@@ -26,7 +26,8 @@ class SchedulingPolicy(object):
             'kMonthly' means new Job Runs start monthly. 'kContinuous' means
             new Job Runs repetitively start at the beginning of the specified
             time interval (in hours or minutes). 'kContinuousRPO' means this
-            is an RPO schedule.
+            is an RPO schedule. 'kCDP' means this is a continuous data
+            protection policy.
         rpo_schedule (RpoSchedule): Specifies an RPO backup schedule. Set if
             periodicity is kContinuousRPO.
 

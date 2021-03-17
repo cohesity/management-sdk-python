@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 
 class GoogleCloudCredentials(object):
@@ -27,6 +27,8 @@ class GoogleCloudCredentials(object):
             region. 'kGoogleMultiRegional' indicates a tier type of Google
             properties that is frequently accessed ("hot" objects) around the
             world.
+        tiers (list of string): Specifies the list of all tiers for Google
+            account.
 
     """
 
@@ -35,14 +37,16 @@ class GoogleCloudCredentials(object):
         "client_email_address":'clientEmailAddress',
         "client_private_key":'clientPrivateKey',
         "project_id":'projectId',
-        "tier_type":'tierType'
+        "tier_type":'tierType',
+        "tiers":'tiers'
     }
 
     def __init__(self,
                  client_email_address=None,
                  client_private_key=None,
                  project_id=None,
-                 tier_type=None):
+                 tier_type=None,
+                 tiers=None):
         """Constructor for the GoogleCloudCredentials class"""
 
         # Initialize members of the class
@@ -50,6 +54,7 @@ class GoogleCloudCredentials(object):
         self.client_private_key = client_private_key
         self.project_id = project_id
         self.tier_type = tier_type
+        self.tiers = tiers
 
 
     @classmethod
@@ -74,11 +79,13 @@ class GoogleCloudCredentials(object):
         client_private_key = dictionary.get('clientPrivateKey')
         project_id = dictionary.get('projectId')
         tier_type = dictionary.get('tierType')
+        tiers = dictionary.get('tiers')
 
         # Return an object of this model
         return cls(client_email_address,
                    client_private_key,
                    project_id,
-                   tier_type)
+                   tier_type,
+                   tiers)
 
 

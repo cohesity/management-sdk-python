@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -15,6 +15,7 @@ from cohesity_management_sdk.models.restore_task import RestoreTask
 from cohesity_management_sdk.models.file_fstat_result import FileFstatResult
 from cohesity_management_sdk.models.file_snapshot_information import FileSnapshotInformation
 from cohesity_management_sdk.models.object_search_results import ObjectSearchResults
+from cohesity_management_sdk.models.org_vdc_network import OrgVdcNetwork
 from cohesity_management_sdk.models.restore_points_for_time_range import RestorePointsForTimeRange
 from cohesity_management_sdk.models.list_storage_profiles_response_body import ListStorageProfilesResponseBody
 from cohesity_management_sdk.models.virtual_disk_information import VirtualDiskInformation
@@ -2110,7 +2111,8 @@ Success
                           end_time_usecs=None,
                           page_count=None,
                           task_types=None,
-                          environment=None):
+                          environment=None,
+                          storage_domain_ids=None):
         """Does a GET request to /public/restore/tasks.
 
         If no parameters are specified, all Restore Tasks found
@@ -2188,7 +2190,12 @@ Success
                 environment. 'kHdfs' indicates Hdfs Protection Source
                 environment. 'kHive' indicates Hive Protection Source
                 environment. 'kHBase' indicates HBase Protection Source
-                environment.
+                environment. 'kUDA' indicates Universal Data Adapter Protection
+                Source environment.
+            storage_domain_ids (long|int): Filter by a list of Storage Domain
+                IDs. This field applies only if 'TaskTypes' includes
+                'kCloneView'. Only task writing data to these storage domains
+                will be returned.
 
         Returns:
             list of RestoreTask: Response from the API. Success
@@ -2214,7 +2221,8 @@ Success
                 'endTimeUsecs': end_time_usecs,
                 'pageCount': page_count,
                 'taskTypes': task_types,
-                'environment': environment
+                'environment': environment,
+                'storageDomainIds': storage_domain_ids
             }
             _query_builder = APIHelper.append_url_with_query_parameters(
                 _query_builder, _query_parameters,
@@ -2372,6 +2380,7 @@ Success
                                      job_run_id,
                                      start_time_usecs,
                                      source_id,
+                                     point_in_time_usecs=None,
                                      vault_id=None,
                                      vault_name=None,
                                      vault_type=None):
@@ -2392,6 +2401,9 @@ Success
                 run as a Unix epoch Timestamp in microseconds.
             source_id (long|int): Specifies the Id of the Protection Source
                 object.
+            point_in_time_usecs (long|int): PointInTimeUsecs is the time to
+                get volume virtual disk info from previously available
+                full/incremental snapshot.
             vault_id (int|long): Specifies the Id of the vault where snapshot
                 was taken.
             vault_name (string): Specifies the name of the vault where snapshot
@@ -2437,6 +2449,7 @@ Success
                 'jobRunId': job_run_id,
                 'startTimeUsecs': start_time_usecs,
                 'sourceId': source_id,
+                "pointInTimeUsecs": point_in_time_usecs,
                 'vaultId': vault_id,
                 'vaultName': vault_name,
                 'vaultType': vault_type
@@ -2816,6 +2829,71 @@ Success
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body,
                                               ListStorageProfilesResponseBody.from_dictionary)
+
+        except Exception as e:
+            self.logger.error(e, exc_info=True)
+            raise
+
+    def list_org_vdc_networks(self, id):
+        """Does a GET request to /public/virtualDatacenters/{id}/orgVdcNetworks.
+
+        Returns the Org VDC Network under a VDC in a VMware environment.
+
+        Args:
+            id (long|int): Specifies the ID of the virtual datacenter.
+
+        Returns:
+            list of OrgVdcNetwork: Response from the API. Success
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+        try:
+            self.logger.info('list_org_vdc_networks called.')
+
+            # Validate required parameters
+            self.logger.info(
+                'Validating required parameters for get_user_api_key_by_id.')
+            self.validate_parameters(id=id)
+
+            # Prepare query URL
+            self.logger.info(
+                'Preparing query URL for list_org_vdc_networks.')
+            _url_path = '/public/virtualDatacenters/{id}/orgVdcNetworks'
+            _url_path = APIHelper.append_url_with_template_parameters(
+                _url_path, {'id': id})
+            _query_builder = self.config.get_base_uri()
+            _query_builder += _url_path
+            _query_url = APIHelper.clean_url(_query_builder)
+
+            # Prepare headers
+            self.logger.info(
+                'Preparing headers for list_org_vdc_networks.')
+            _headers = {'accept': 'application/json'}
+
+            # Prepare and execute request
+            self.logger.info(
+                'Preparing and executing request for list_org_vdc_networks.'
+            )
+            _request = self.http_client.get(_query_url, headers=_headers)
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='list_org_vdc_networks')
+
+            # Endpoint and global error handling using HTTP status codes.
+            self.logger.info(
+                'Validating response for list_org_vdc_networks.')
+            if _context.response.status_code == 0:
+                raise RequestErrorErrorException('Error', _context)
+            self.validate_response(_context)
+
+            # Return appropriate type
+            return APIHelper.json_deserialize(_context.response.raw_body,
+                                              OrgVdcNetwork.from_dictionary)
 
         except Exception as e:
             self.logger.error(e, exc_info=True)

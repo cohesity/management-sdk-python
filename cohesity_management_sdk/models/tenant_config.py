@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 
 class TenantConfig(object):
@@ -9,6 +9,8 @@ class TenantConfig(object):
     Specifies struct with basic tenant specific configuration.
 
     Attributes:
+        bifrost_enabled (bool): Specifies if this tenant is bifrost enabled or
+            not.
         name (string): Specifies name of the tenant.
         restricted (bool): Whether the user is a restricted user. A restricted
             user can only view the objects he has permissions to.
@@ -22,6 +24,7 @@ class TenantConfig(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "bifrost_enabled":'bifrostEnabled',
         "name":'name',
         "restricted":'restricted',
         "roles":'roles',
@@ -29,6 +32,7 @@ class TenantConfig(object):
     }
 
     def __init__(self,
+                 bifrost_enabled,
                  name=None,
                  restricted=None,
                  roles=None,
@@ -36,6 +40,7 @@ class TenantConfig(object):
         """Constructor for the TenantConfig class"""
 
         # Initialize members of the class
+        self.bifrost_enabled = bifrost_enabled
         self.name = name
         self.restricted = restricted
         self.roles = roles
@@ -60,13 +65,15 @@ class TenantConfig(object):
             return None
 
         # Extract variables from the dictionary
+        bifrost_enabled = dictionary.get('bifrostEnabled')
         name = dictionary.get('name')
         restricted = dictionary.get('restricted')
         roles = dictionary.get('roles')
         tenant_id = dictionary.get('tenantId')
 
         # Return an object of this model
-        return cls(name,
+        return cls(bifrost_enabled,
+                   name,
                    restricted,
                    roles,
                    tenant_id)

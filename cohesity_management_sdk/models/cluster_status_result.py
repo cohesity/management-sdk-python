@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.node_status_result
+import cohesity_management_sdk.models.system_app_status_result
 
 class ClusterStatusResult(object):
 
@@ -78,7 +79,11 @@ class ClusterStatusResult(object):
             with the Cohesity proxies for multitenancy. 'kSmb2Proxy' is a new
             SMB protocol service. 'kOs' can be specified in order to do a full
             reboot. 'kAtom' is a service for receiving data for the Continuous
-            Data Protection.
+            Data Protection. 'kPatch' is a service for downloading and
+            applying patches. 'kCompass' is a service for serving dns request
+            for external and internal traffic.
+        system_app_status (list of SystemAppStatusResult): Specifies the status
+            of each system app on the Cluster
     """
 
     # Create a mapping from Model property names to API property names
@@ -92,7 +97,8 @@ class ClusterStatusResult(object):
         "removal_state":'removalState',
         "services_synced":'servicesSynced',
         "software_version":'softwareVersion',
-        "stopped_services":'stoppedServices'
+        "stopped_services":'stoppedServices',
+        "system_app_status":'systemAppStatus'
     }
 
     def __init__(self,
@@ -105,7 +111,8 @@ class ClusterStatusResult(object):
                  removal_state=None,
                  services_synced=None,
                  software_version=None,
-                 stopped_services=None):
+                 stopped_services=None,
+                 system_app_status=None):
         """Constructor for the ClusterStatusResult class"""
 
         # Initialize members of the class
@@ -119,6 +126,7 @@ class ClusterStatusResult(object):
         self.services_synced = services_synced
         self.software_version = software_version
         self.stopped_services = stopped_services
+        self.system_app_status = system_app_status
 
 
     @classmethod
@@ -153,6 +161,11 @@ class ClusterStatusResult(object):
         services_synced = dictionary.get('servicesSynced')
         software_version = dictionary.get('softwareVersion')
         stopped_services = dictionary.get('stoppedServices')
+        system_app_status = None
+        if dictionary.get('systemAppStatus') != None:
+            system_app_status = list()
+            for structure in dictionary.get('systemAppStatus'):
+                system_app_status.append(cohesity_management_sdk.models.system_app_status_result.SystemAppStatusResult.from_dictionary(structure))
 
         # Return an object of this model
         return cls(cluster_id,
@@ -164,6 +177,7 @@ class ClusterStatusResult(object):
                    removal_state,
                    services_synced,
                    software_version,
-                   stopped_services)
+                   stopped_services,
+                   system_app_status)
 
 

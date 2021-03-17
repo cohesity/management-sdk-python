@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.restore_oracle_app_object_params_alternate_location_params
 import cohesity_management_sdk.models.clone_app_view_params
 import cohesity_management_sdk.models.oracle_source_params
+import cohesity_management_sdk.models.oracle_update_restore_task_options
 import cohesity_management_sdk.models.restore_oracle_app_object_params_key_value_pair
 
 class RestoreOracleAppObjectParams(object):
@@ -24,6 +25,11 @@ class RestoreOracleAppObjectParams(object):
             workflow. Ex mountpoint identifier specified by User from UI.
         oracle_target_params (OracleSourceParams): Message to capture
             additional backup/restore params for a Oracle source.
+        oracle_update_restore_options (OracleUpdateRestoreTaskOptions): Contains
+            parameter information about any update task which needed to be
+            performed on a sucessful restore/clone task. Ex Instant restore of
+            Clone.
+
         parallel_op_enabled (bool): If set to true, parallel
             backups/restores/clones are enabled on same host.
         restore_time_secs (long|int): The time to which the Oracle database
@@ -44,6 +50,7 @@ class RestoreOracleAppObjectParams(object):
         "no_open_mode":'noOpenMode',
         "oracle_clone_app_view_params_vec":'oracleCloneAppViewParamsVec',
         "oracle_target_params":'oracleTargetParams',
+        "oracle_update_restore_options":'oracleUpdateRestoreOptions',
         "parallel_op_enabled":'parallelOpEnabled',
         "restore_time_secs":'restoreTimeSecs',
         "shell_environment_vec":'shellEnvironmentVec'
@@ -54,6 +61,7 @@ class RestoreOracleAppObjectParams(object):
                  no_open_mode=None,
                  oracle_clone_app_view_params_vec=None,
                  oracle_target_params=None,
+                 oracle_update_restore_options=None,
                  parallel_op_enabled=None,
                  restore_time_secs=None,
                  shell_environment_vec=None):
@@ -64,6 +72,7 @@ class RestoreOracleAppObjectParams(object):
         self.no_open_mode = no_open_mode
         self.oracle_clone_app_view_params_vec = oracle_clone_app_view_params_vec
         self.oracle_target_params = oracle_target_params
+        self.oracle_update_restore_options = oracle_update_restore_options
         self.parallel_op_enabled = parallel_op_enabled
         self.restore_time_secs = restore_time_secs
         self.shell_environment_vec = shell_environment_vec
@@ -95,6 +104,7 @@ class RestoreOracleAppObjectParams(object):
             for structure in dictionary.get('oracleCloneAppViewParamsVec'):
                 oracle_clone_app_view_params_vec.append(cohesity_management_sdk.models.clone_app_view_params.CloneAppViewParams.from_dictionary(structure))
         oracle_target_params = cohesity_management_sdk.models.oracle_source_params.OracleSourceParams.from_dictionary(dictionary.get('oracleTargetParams')) if dictionary.get('oracleTargetParams') else None
+        oracle_update_restore_options = cohesity_management_sdk.models.oracle_update_restore_task_options.OracleUpdateRestoreTaskOptions.from_dictionary(dictionary.get('oracleUpdateRestoreOptions')) if dictionary.get('oracleUpdateRestoreOptions') else None
         parallel_op_enabled = dictionary.get('parallelOpEnabled')
         restore_time_secs = dictionary.get('restoreTimeSecs')
         shell_environment_vec = None
@@ -108,6 +118,7 @@ class RestoreOracleAppObjectParams(object):
                    no_open_mode,
                    oracle_clone_app_view_params_vec,
                    oracle_target_params,
+                   oracle_update_restore_options,
                    parallel_op_enabled,
                    restore_time_secs,
                    shell_environment_vec)

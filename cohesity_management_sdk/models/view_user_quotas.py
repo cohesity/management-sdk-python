@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.quota_and_usage_in_view
 import cohesity_management_sdk.models.user_quota_summary_for_user

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -80,7 +80,9 @@ class InterfaceController(BaseController):
                        node_id=None,
                        cache=None,
                        bond_interface_only=None,
-                       iface_group_assigned_only=None):
+                       iface_group_assigned_only=None,
+                       include_uplink_switch_info=None,
+                       include_bond_slave_details=None):
         """Does a GET request to /public/interface.
 
         Show network interfaces.
@@ -92,6 +94,10 @@ class InterfaceController(BaseController):
                 interface info.
             iface_group_assigned_only (bool, optional): Specifies if only show
                 interface group assigned interface info.
+            include_uplink_switch_info (bool, optional): Specifies if include
+                uplink switch info.
+            include_bond_slave_details (bool, optional): Specifies if include
+                bond slave detailed info.
 
         Returns:
             Interface: Response from the API. Success
@@ -115,7 +121,9 @@ class InterfaceController(BaseController):
                 'nodeId': node_id,
                 'cache': cache,
                 'bondInterfaceOnly': bond_interface_only,
-                'ifaceGroupAssignedOnly': iface_group_assigned_only
+                'ifaceGroupAssignedOnly': iface_group_assigned_only,
+                'includeUplinkSwitchInfo': include_uplink_switch_info,
+                'includeBondSlaveDetails': include_bond_slave_details
             }
             _query_builder = APIHelper.append_url_with_query_parameters(
                 _query_builder, _query_parameters,
@@ -132,7 +140,7 @@ class InterfaceController(BaseController):
             # Prepare and execute request
             self.logger.info(
                 'Preparing and executing request for list_interface.')
-            _request = self.http_client.put(_query_url, headers=_headers)
+            _request = self.http_client.get(_query_url, headers=_headers)
             AuthManager.apply(_request, self.config)
             _context = self.execute_request(_request, name='list_interface')
 

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 class StoppedServiceEnum(object):
 
@@ -39,6 +39,8 @@ class StoppedServiceEnum(object):
         KSMB2PROXY: TODO: type description here.
         KOS: TODO: type description here.
         KATOM: TODO: type description here.
+        KPATCH: TODO: type description here.
+        KCOMPASS: TODO: type description here.
 
     """
 
@@ -103,3 +105,8 @@ class StoppedServiceEnum(object):
     KOS = 'kOs'
 
     KATOM = 'kAtom'
+
+    KPATCH = 'kPatch'
+
+    KCOMPASS = 'kCompass'
+

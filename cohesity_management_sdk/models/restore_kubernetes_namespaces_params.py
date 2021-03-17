@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.entity_proto
 import cohesity_management_sdk.models.rename_object_param_proto
@@ -11,6 +11,8 @@ class RestoreKubernetesNamespacesParams(object):
     TODO: type model description here.
 
     Attributes:
+        backup_cluster_id (long|int): Cluster id of the cluster which
+            performed the backup.
         backup_job_name (string): Backup job that needs to be used for
             recovering the namespace.
         cluster_entity (EntityProto): Specifies the attributes and the latest
@@ -26,6 +28,7 @@ class RestoreKubernetesNamespacesParams(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "backup_cluster_id":'backupClusterId',
         "backup_job_name":'backupJobName',
         "cluster_entity":'clusterEntity',
         "management_namespace":'managementNamespace',
@@ -33,6 +36,7 @@ class RestoreKubernetesNamespacesParams(object):
     }
 
     def __init__(self,
+                 backup_cluster_id=None,
                  backup_job_name=None,
                  cluster_entity=None,
                  management_namespace=None,
@@ -40,6 +44,7 @@ class RestoreKubernetesNamespacesParams(object):
         """Constructor for the RestoreKubernetesNamespacesParams class"""
 
         # Initialize members of the class
+        self.backup_cluster_id = backup_cluster_id
         self.backup_job_name = backup_job_name
         self.cluster_entity = cluster_entity
         self.management_namespace = management_namespace
@@ -64,13 +69,15 @@ class RestoreKubernetesNamespacesParams(object):
             return None
 
         # Extract variables from the dictionary
+        backup_cluster_id = dictionary.get('backupClusterId')
         backup_job_name = dictionary.get('backupJobName')
         cluster_entity = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('clusterEntity')) if dictionary.get('clusterEntity') else None
         management_namespace = dictionary.get('managementNamespace')
         rename_restored_object_param = cohesity_management_sdk.models.rename_object_param_proto.RenameObjectParamProto.from_dictionary(dictionary.get('renameRestoredObjectParam')) if dictionary.get('renameRestoredObjectParam') else None
 
         # Return an object of this model
-        return cls(backup_job_name,
+        return cls(backup_cluster_id,
+                   backup_job_name,
                    cluster_entity,
                    management_namespace,
                    rename_restored_object_param)

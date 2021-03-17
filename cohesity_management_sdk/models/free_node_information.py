@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 
 class FreeNodeInformation(object):
@@ -14,8 +14,11 @@ class FreeNodeInformation(object):
         connected_to (bool): Specifies whether or not this is the Node that is
             sending the response.
         id (long|int): Specifies the ID of the node.
-        ip (string): Specifies the IP address of the Node.
+        ip (string): Deprecated. Specifies the IP address of the Node.
         ipmi_ip (string): Specifies the IPMI IP of the Node.
+        ips (list of string): List of discovered ipv4/ipv6 addresses of the
+            node. Ip field returns ips as comma separated single string which
+            is incorrect.
         node_serial (string): Specifies the serial number of the Node.
         node_ui_slot (string): Specifies the postition for the UI to display
             the Node in the Cluster creation page.
@@ -36,6 +39,7 @@ class FreeNodeInformation(object):
         "id":'id',
         "ip":'ip',
         "ipmi_ip":'ipmiIp',
+        "ips":'ips',
         "node_serial":'nodeSerial',
         "node_ui_slot":'nodeUiSlot',
         "num_slots_in_chassis":'numSlotsInChassis',
@@ -50,6 +54,7 @@ class FreeNodeInformation(object):
                  id=None,
                  ip=None,
                  ipmi_ip=None,
+                 ips=None,
                  node_serial=None,
                  node_ui_slot=None,
                  num_slots_in_chassis=None,
@@ -64,6 +69,7 @@ class FreeNodeInformation(object):
         self.id = id
         self.ip = ip
         self.ipmi_ip = ipmi_ip
+        self.ips = ips
         self.node_serial = node_serial
         self.node_ui_slot = node_ui_slot
         self.num_slots_in_chassis = num_slots_in_chassis
@@ -95,6 +101,7 @@ class FreeNodeInformation(object):
         id = dictionary.get('id')
         ip = dictionary.get('ip')
         ipmi_ip = dictionary.get('ipmiIp')
+        ips = dictionary.get('ips')
         node_serial = dictionary.get('nodeSerial')
         node_ui_slot = dictionary.get('nodeUiSlot')
         num_slots_in_chassis = dictionary.get('numSlotsInChassis')
@@ -108,6 +115,7 @@ class FreeNodeInformation(object):
                    id,
                    ip,
                    ipmi_ip,
+                   ips,
                    node_serial,
                    node_ui_slot,
                    num_slots_in_chassis,

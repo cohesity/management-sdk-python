@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 class ConsumerTypeEnum(object):
 
@@ -14,11 +14,14 @@ class ConsumerTypeEnum(object):
     organization (tenant) per view box (storage domain).
     'kReplicationRuns', indicates the stats info of Replication In used per
     organization (tenant) per view box (storage domain).
+    'kViewProtectionRuns', indicates the stats info of View Protection Runs
+    used per organization (tenant) per view box (storage domain).
 
     Attributes:
         KVIEWS: TODO: type description here.
         KPROTECTIONRUNS: TODO: type description here.
         KREPLICATIONRUNS: TODO: type description here.
+        KVIEWPROTECTIONRUNS: TODO: type description here.
 
     """
 
@@ -27,4 +30,6 @@ class ConsumerTypeEnum(object):
     KPROTECTIONRUNS = 'kProtectionRuns'
 
     KREPLICATIONRUNS = 'kReplicationRuns'
+
+    KVIEWPROTECTIONRUNS = 'kViewProtectionRuns'
 

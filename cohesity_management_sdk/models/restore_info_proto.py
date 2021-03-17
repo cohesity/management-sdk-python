@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.restore_info_proto_restore_entity
 import cohesity_management_sdk.models.script_execution_status
@@ -56,9 +56,16 @@ class RestoreInfoProto(object):
     imanis::RestoreInfo::nosql_recovery_info     imanis/nosql.proto
     118
     o365::RestoreInfo::o365_restore_info
-    o365/o365.proto           119
+    o365/o365.proto      119
     o365::RestoreInfo::o365_one_drive_restore_info
-    o365/o365.proto           120
+    o365/o365.proto      120
+    o365::PublicFolderRestoreInfoProto::public_folder_restore_info
+    o365/o365.proto            121
+    uda::RestoreInfo::uda_recovery_info          uda/uda.proto              122
+    outlook::RestoreInfo::pst_convert_info       outlook/outlook.proto      123
+    o365::GroupRestoreInfo::group_restore_info   o365/o365.proto            124
+    o365::TeamsRestoreInfoProto::teams_restore_info
+    o365/o365.proto            125
     ===========================================================================
     ==
 
@@ -91,6 +98,8 @@ class RestoreInfoProto(object):
     imanis/nosql.proto         110
     site::RestoreEntityInfo::site_restore_entity_info
     ms_graph/graph.proto       111
+    uda::RestoreEntityInfo::uda_restore_entity_info
+    uda/uda.proto              112
     ===========================================================================
     ==
 

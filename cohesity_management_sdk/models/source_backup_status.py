@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
+import cohesity_management_sdk.models.app_entity_backup_status_info
 import cohesity_management_sdk.models.snapshot_info
 import cohesity_management_sdk.models.protection_source
 import cohesity_management_sdk.models.backup_source_stats
@@ -12,6 +13,8 @@ class SourceBackupStatus(object):
     Specifies the source object to protect and the current backup status.
 
     Attributes:
+        apps_backup_status (list of AppEntityBackupStatusInfo): Specifies the
+            backup status at app/DB level.
         current_snapshot_info (SnapshotInfo): Specifies details about the
             snapshot task created to backup or copy one source object like a
             VM.
@@ -54,6 +57,9 @@ class SourceBackupStatus(object):
             has occurred but the task is not yet canceled. 'kCanceled'
             indicates the task has been canceled. 'kSuccess' indicates the
             task was successful. 'kFailure' indicates the task failed.
+            'kWarning' indicates the task has finished with warning.
+            'kOnHold' indicates the task is kept onHold.
+            'kMissed' indicates the task is missed.
         warnings (list of string): Array of Warnings.  Specifies the warnings
             that occurred (if any) while running this task.
 
@@ -61,6 +67,7 @@ class SourceBackupStatus(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "apps_backup_status":'appsBackupStatus',
         "current_snapshot_info":'currentSnapshotInfo',
         "error":'error',
         "is_full_backup":'isFullBackup',
@@ -76,6 +83,7 @@ class SourceBackupStatus(object):
     }
 
     def __init__(self,
+                 apps_backup_status=None,
                  current_snapshot_info=None,
                  error=None,
                  is_full_backup=None,
@@ -91,6 +99,7 @@ class SourceBackupStatus(object):
         """Constructor for the SourceBackupStatus class"""
 
         # Initialize members of the class
+        self.apps_backup_status = apps_backup_status
         self.current_snapshot_info = current_snapshot_info
         self.error = error
         self.is_full_backup = is_full_backup
@@ -123,6 +132,11 @@ class SourceBackupStatus(object):
             return None
 
         # Extract variables from the dictionary
+        apps_backup_status = None
+        if dictionary.get('appsBackupStatus') != None:
+            apps_backup_status = list()
+            for structure in dictionary.get('appsBackupStatus'):
+                apps_backup_status.append(cohesity_management_sdk.models.app_entity_backup_status_info.AppEntityBackupStatusInfo.from_dictionary(structure))
         current_snapshot_info = cohesity_management_sdk.models.snapshot_info.SnapshotInfo.from_dictionary(dictionary.get('currentSnapshotInfo')) if dictionary.get('currentSnapshotInfo') else None
         error = dictionary.get('error')
         is_full_backup = dictionary.get('isFullBackup')
@@ -137,7 +151,8 @@ class SourceBackupStatus(object):
         warnings = dictionary.get('warnings')
 
         # Return an object of this model
-        return cls(current_snapshot_info,
+        return cls(apps_backup_status,
+                   current_snapshot_info,
                    error,
                    is_full_backup,
                    num_restarts,

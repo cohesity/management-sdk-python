@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.view_alias
 import cohesity_management_sdk.models.antivirus_scan_config
@@ -92,6 +92,9 @@ class View(object):
         file_lock_config (FileLevelDataLockConfig): Specifies a config to lock
             files in a view - to protect from malicious or an accidental
             attempt to delete or modify the files in this view.
+        is_read_only (bool): Specifies if the view is a read only view. User
+            will no longer be able to write to this view if this is set to
+            true.
         is_target_for_migrated_data (bool): Specifies if a view contains
             migrated data.
         logical_quota (QuotaPolicy): Specifies an optional logical quota limit
@@ -157,6 +160,8 @@ class View(object):
             of Subnets with IP addresses that have permissions to access the
             View. (Overrides the Subnets specified at the global Cohesity
             Cluster level.)
+        super_user_sids (list of string): Specifies a list of user sids who
+            have Superuser access to this view.
         swift_project_domain (string): Specifies the Keystone project domain.
         swift_project_name (string): Specifies the Keystone project name.
         swift_user_domain (string): Specifies the Keystone user domain.
@@ -200,6 +205,7 @@ class View(object):
         "enforce_smb_encryption":'enforceSmbEncryption',
         "file_extension_filter":'fileExtensionFilter',
         "file_lock_config":'fileLockConfig',
+        "is_read_only":'isReadOnly',
         "is_target_for_migrated_data":'isTargetForMigratedData',
         "logical_quota":'logicalQuota',
         "logical_usage_bytes":'logicalUsageBytes',
@@ -222,6 +228,7 @@ class View(object):
         "stats":'stats',
         "storage_policy_override":'storagePolicyOverride',
         "subnet_whitelist":'subnetWhitelist',
+        "super_user_sids":'superUserSids',
         "swift_project_domain":'swiftProjectDomain',
         "swift_project_name":'swiftProjectName',
         "swift_user_domain":'swiftUserDomain',
@@ -257,6 +264,7 @@ class View(object):
                  enforce_smb_encryption=None,
                  file_extension_filter=None,
                  file_lock_config=None,
+                 is_read_only=None,
                  is_target_for_migrated_data=None,
                  logical_quota=None,
                  logical_usage_bytes=None,
@@ -279,6 +287,7 @@ class View(object):
                  stats=None,
                  storage_policy_override=None,
                  subnet_whitelist=None,
+                 super_user_sids=None,
                  swift_project_domain=None,
                  swift_project_name=None,
                  swift_user_domain=None,
@@ -314,6 +323,7 @@ class View(object):
         self.enforce_smb_encryption = enforce_smb_encryption
         self.file_extension_filter = file_extension_filter
         self.file_lock_config = file_lock_config
+        self.is_read_only = is_read_only
         self.is_target_for_migrated_data = is_target_for_migrated_data
         self.logical_quota = logical_quota
         self.logical_usage_bytes = logical_usage_bytes
@@ -336,6 +346,7 @@ class View(object):
         self.stats = stats
         self.storage_policy_override = storage_policy_override
         self.subnet_whitelist = subnet_whitelist
+        self.super_user_sids = super_user_sids
         self.swift_project_domain = swift_project_domain
         self.swift_project_name = swift_project_name
         self.swift_user_domain = swift_user_domain
@@ -392,6 +403,7 @@ class View(object):
         enforce_smb_encryption = dictionary.get('enforceSmbEncryption')
         file_extension_filter = cohesity_management_sdk.models.file_extension_filter.FileExtensionFilter.from_dictionary(dictionary.get('fileExtensionFilter')) if dictionary.get('fileExtensionFilter') else None
         file_lock_config = cohesity_management_sdk.models.file_level_data_lock_config.FileLevelDataLockConfig.from_dictionary(dictionary.get('fileLockConfig')) if dictionary.get('fileLockConfig') else None
+        is_read_only = dictionary.get('isReadOnly')
         is_target_for_migrated_data = dictionary.get('isTargetForMigratedData')
         logical_quota = cohesity_management_sdk.models.quota_policy.QuotaPolicy.from_dictionary(dictionary.get('logicalQuota')) if dictionary.get('logicalQuota') else None
         logical_usage_bytes = dictionary.get('logicalUsageBytes')
@@ -426,6 +438,7 @@ class View(object):
             subnet_whitelist = list()
             for structure in dictionary.get('subnetWhitelist'):
                 subnet_whitelist.append(cohesity_management_sdk.models.subnet.Subnet.from_dictionary(structure))
+        super_user_sids = dictionary.get('superUserSids')
         swift_project_domain = dictionary.get('swiftProjectDomain', None)
         swift_project_name = dictionary.get('swiftProjectName', None)
         swift_user_domain = dictionary.get('swiftUserDomain')
@@ -460,6 +473,7 @@ class View(object):
                    enforce_smb_encryption,
                    file_extension_filter,
                    file_lock_config,
+                   is_read_only,
                    is_target_for_migrated_data,
                    logical_quota,
                    logical_usage_bytes,
@@ -482,6 +496,7 @@ class View(object):
                    stats,
                    storage_policy_override,
                    subnet_whitelist,
+                   super_user_sids,
                    swift_project_domain,
                    swift_project_name,
                    swift_user_domain,

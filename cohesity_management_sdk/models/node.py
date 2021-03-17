@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.capacity_by_tier
 import cohesity_management_sdk.models.chassis_info
@@ -49,12 +49,15 @@ class Node(object):
             version of Cohesity software installed on a node.
         node_type (string): Node type: StorageNode, AllFlashNode, RoboNode,
             AppNode, etc.
+        offline_disk_count (long|int): OfflineDiskCount is the number of
+            offline disks in a node.
         offline_mount_paths_of_disks (list of string):
             OfflineMountPathsOfDisks provides the corresponding mount paths
             for direct attached disks that are currently offline - access to
             these were detected to hang sometime in the past. After these
             disks have been fixed, their mount paths needs to be removed from
             the following list before these will be accessed again.
+        product_model (string): Specifies the product model of the node.
         removal_reason (list of RemovalReasonNodeEnum): RemovalReason
             specifies the removal reason of the node. 'kAutoHealthCheck' means
             the entity health is bad. 'kUserGracefulRemoval' means user
@@ -95,7 +98,9 @@ class Node(object):
         "node_incarnation_id":'nodeIncarnationId',
         "node_software_version":'nodeSoftwareVersion',
         "node_type":'nodeType',
+        "offline_disk_count":'offlineDiskCount',
         "offline_mount_paths_of_disks":'offlineMountPathsOfDisks',
+        "product_model":'productModel',
         "removal_reason":'removalReason',
         "removal_state":'removalState',
         "slot_number":'slotNumber',
@@ -120,7 +125,9 @@ class Node(object):
                  node_incarnation_id=None,
                  node_software_version=None,
                  node_type=None,
+                 offline_disk_count=None,
                  offline_mount_paths_of_disks=None,
+                 product_model=None,
                  removal_reason=None,
                  removal_state=None,
                  slot_number=None,
@@ -145,7 +152,9 @@ class Node(object):
         self.node_incarnation_id = node_incarnation_id
         self.node_software_version = node_software_version
         self.node_type = node_type
+        self.offline_disk_count = offline_disk_count
         self.offline_mount_paths_of_disks = offline_mount_paths_of_disks
+        self.product_model = product_model
         self.removal_reason = removal_reason
         self.removal_state = removal_state
         self.slot_number = slot_number
@@ -195,7 +204,9 @@ class Node(object):
         node_incarnation_id = dictionary.get('nodeIncarnationId')
         node_software_version = dictionary.get('nodeSoftwareVersion')
         node_type = dictionary.get('nodeType')
+        offline_disk_count = dictionary.get('offlineDiskCount')
         offline_mount_paths_of_disks = dictionary.get('offlineMountPathsOfDisks')
+        product_model = dictionary.get('productModel')
         removal_reason = dictionary.get('removalReason')
         removal_state = dictionary.get('removalState')
         slot_number = dictionary.get('slotNumber')
@@ -223,7 +234,9 @@ class Node(object):
                    node_incarnation_id,
                    node_software_version,
                    node_type,
+                   offline_disk_count,
                    offline_mount_paths_of_disks,
+                   product_model,
                    removal_reason,
                    removal_state,
                    slot_number,

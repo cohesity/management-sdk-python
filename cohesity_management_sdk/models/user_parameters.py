@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.cluster_identifier
+import cohesity_management_sdk.models.mcm_user_profile
 
 class UserParameters(object):
 
@@ -36,6 +37,8 @@ class UserParameters(object):
             This will be populated based on the union of all privileges in
             roles. Type for unique privilege Id values. All below enum values
             specify a value for all uniquely defined privileges in Cohesity.
+        profiles (list of McmUserProfile): Specifies the user profiles.
+            NOTE: Currently used for Helios.
         restricted (bool): Whether the user is a restricted user. A restricted
             user can only view the objects he has permissions to.
         roles (list of string): Array of Roles.  Specifies the Cohesity roles
@@ -58,6 +61,7 @@ class UserParameters(object):
         "password":'password',
         "primary_group_name":'primaryGroupName',
         "privilege_ids":'privilegeIds',
+        "profiles":'profiles',
         "restricted":'restricted',
         "roles":'roles',
         "username":'username'
@@ -74,6 +78,7 @@ class UserParameters(object):
                  password=None,
                  primary_group_name=None,
                  privilege_ids=None,
+                 profiles=None,
                  restricted=None,
                  roles=None,
                  username=None):
@@ -90,6 +95,7 @@ class UserParameters(object):
         self.password = password
         self.primary_group_name = primary_group_name
         self.privilege_ids = privilege_ids
+        self.profiles = profiles
         self.restricted = restricted
         self.roles = roles
         self.username = username
@@ -127,6 +133,11 @@ class UserParameters(object):
         password = dictionary.get('password')
         primary_group_name = dictionary.get('primaryGroupName')
         privilege_ids = dictionary.get('privilegeIds')
+        profiles = None
+        if dictionary.get('profiles') != None:
+            profiles = list()
+            for structure in dictionary.get('profiles'):
+                profiles.append(cohesity_management_sdk.models.mcm_user_profile.McmUserProfile.from_dictionary(structure))
         restricted = dictionary.get('restricted')
         roles = dictionary.get('roles')
         username = dictionary.get('username')
@@ -142,6 +153,7 @@ class UserParameters(object):
                    password,
                    primary_group_name,
                    privilege_ids,
+                   profiles,
                    restricted,
                    roles,
                    username)

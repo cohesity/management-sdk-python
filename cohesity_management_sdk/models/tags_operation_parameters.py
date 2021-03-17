@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 
 class TagsOperationParameters(object):
@@ -20,9 +20,12 @@ class TagsOperationParameters(object):
         job_id (int|long):  JobId is the Id of the job that took the snapshot.
         job_instance_ids (list of int|long): JobInstanceIds to tag
             corresponding snapshots.
+        tag_ids (list of string): Tags are list of tags uuids that will be
+            operated on to corresponding objects.
         tags (list of string): Tags are list of tags that will be operated on
             to corresponding objects.
-
+            This is deprecated. Use tagIds instead.
+            deprecated: true
     """
 
     # Create a mapping from Model property names to API property names
@@ -33,6 +36,7 @@ class TagsOperationParameters(object):
         "entity_id": 'entityId',
         "job_id":'jobId',
         "job_instance_ids":'jobInstanceIds',
+        "tag_ids":'tagIds',
         "tags":'tags'
     }
 
@@ -43,6 +47,7 @@ class TagsOperationParameters(object):
                  entity_id=None,
                  job_id=None,
                  job_instance_ids=None,
+                 tag_ids=None,
                  tags=None):
         """Constructor for the TagsOperationParameters class"""
 
@@ -53,6 +58,7 @@ class TagsOperationParameters(object):
         self.entity_id = entity_id
         self.job_id = job_id
         self.job_instance_ids = job_instance_ids
+        self.tag_ids = tag_ids
         self.tags = tags
 
     @classmethod
@@ -79,6 +85,7 @@ class TagsOperationParameters(object):
         entity_id = dictionary.get('entityId')
         job_id = dictionary.get('jobId')
         job_instance_ids = dictionary.get('jobInstanceIds')
+        tag_ids = dictionary.get('tagIds')
         tags = dictionary.get('tags')
 
         # Return an object of this model
@@ -88,6 +95,7 @@ class TagsOperationParameters(object):
                    entity_id,
                    job_id,
                    job_instance_ids,
+                   tag_ids,
                    tags)
 
 

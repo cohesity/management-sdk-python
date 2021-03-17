@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.entity_schema_proto_time_series_descriptor_metric_unit
 
@@ -29,8 +29,12 @@ class EntitySchemaProtoTimeSeriesDescriptor(object):
             speed. 9 specifies a percentage such as CPU or memory usage.
         raw_metric_publish_interval_hint_secs (int): Specifies a suggestion
             for the interval to collect raw data points.
-        time_to_live_secs (long|int): Specifies how long the data point will
-            be stored.
+        time_to_live_secs (long|int): Specifies how long the data point will be
+            stored. Note: In statsv2, as timeseries data of an entity is stored
+            per scribe row with metrics as columns, it is good to have
+            time_to_live_secs per schema(defined below)
+            For existing schemas, we will consider highest time_to_live_secs
+            of all metrics as expiration time for all metrics defined in schema.
         value_type (int): Specifies the value type for this metric. A metric
             of type 'string" is not supported, instead use 'bytes'. Note that
             an aggregate metric of type 'bytes' is not supported. 0 specifies

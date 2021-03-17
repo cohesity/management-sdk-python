@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
+import cohesity_management_sdk.models.run_now_physical_parameters
 
 class RunNowParameters(object):
 
@@ -12,6 +13,8 @@ class RunNowParameters(object):
     Attributes:
         database_ids (list of long|int): Specifies the ids of the DB's to
             perform run now on.
+        physical_params (RunNowPhysicalParameters): Specifies optional
+            physical parameters for a specific source id.
         source_id (long|int): Specifies the source id of the Databases to
             perform the Run Now operation on.
 
@@ -20,16 +23,19 @@ class RunNowParameters(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "database_ids":'databaseIds',
+        "physical_params":'physicalParams',
         "source_id":'sourceId'
     }
 
     def __init__(self,
                  database_ids=None,
+                 physical_params=None,
                  source_id=None):
         """Constructor for the RunNowParameters class"""
 
         # Initialize members of the class
         self.database_ids = database_ids
+        self.physical_params = physical_params
         self.source_id = source_id
 
 
@@ -52,10 +58,12 @@ class RunNowParameters(object):
 
         # Extract variables from the dictionary
         database_ids = dictionary.get('databaseIds')
+        physical_params = cohesity_management_sdk.models.run_now_physical_parameters.RunNowPhysicalParameters.from_dictionary(dictionary.get('physicalParams')) if dictionary.get('physicalParams') else None
         source_id = dictionary.get('sourceId')
 
         # Return an object of this model
         return cls(database_ids,
+                   physical_params,
                    source_id)
 
 

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.blackout_period
 import cohesity_management_sdk.models.snapshot_cloud_copy_policy
@@ -51,6 +51,7 @@ class ProtectionPolicy(object):
             CBT-based backup schedule of a Protection Job and how long
             Snapshots captured by this schedule are retained on the Cohesity
             Cluster.
+        is_replicated (bool): Specifies the policy is replicated policy.
         is_usable (bool): Specifies if the policy can be used to create a
             job.
         last_modified_time_msecs (long|int): Specifies the epoch time (in
@@ -121,6 +122,7 @@ class ProtectionPolicy(object):
         "full_scheduling_policy":'fullSchedulingPolicy',
         "id":'id',
         "incremental_scheduling_policy":'incrementalSchedulingPolicy',
+        "is_replicated":'isReplicated',
         "is_usable":'isUsable',
         "last_modified_time_msecs":'lastModifiedTimeMsecs',
         "log_scheduling_policy":'logSchedulingPolicy',
@@ -151,6 +153,7 @@ class ProtectionPolicy(object):
                  full_scheduling_policy=None,
                  id=None,
                  incremental_scheduling_policy=None,
+                 is_replicated=None,
                  is_usable=None,
                  last_modified_time_msecs=None,
                  log_scheduling_policy=None,
@@ -181,6 +184,7 @@ class ProtectionPolicy(object):
         self.full_scheduling_policy = full_scheduling_policy
         self.id = id
         self.incremental_scheduling_policy = incremental_scheduling_policy
+        self.is_replicated = is_replicated
         self.is_usable = is_usable
         self.last_modified_time_msecs = last_modified_time_msecs
         self.log_scheduling_policy = log_scheduling_policy
@@ -240,6 +244,7 @@ class ProtectionPolicy(object):
         full_scheduling_policy = cohesity_management_sdk.models.scheduling_policy.SchedulingPolicy.from_dictionary(dictionary.get('fullSchedulingPolicy')) if dictionary.get('fullSchedulingPolicy') else None
         id = dictionary.get('id')
         incremental_scheduling_policy = cohesity_management_sdk.models.scheduling_policy.SchedulingPolicy.from_dictionary(dictionary.get('incrementalSchedulingPolicy')) if dictionary.get('incrementalSchedulingPolicy') else None
+        is_replicated = dictionary.get('isReplicated')
         is_usable = dictionary.get('isUsable')
         last_modified_time_msecs = dictionary.get('lastModifiedTimeMsecs')
         log_scheduling_policy = cohesity_management_sdk.models.scheduling_policy.SchedulingPolicy.from_dictionary(dictionary.get('logSchedulingPolicy')) if dictionary.get('logSchedulingPolicy') else None
@@ -277,6 +282,7 @@ class ProtectionPolicy(object):
                    full_scheduling_policy,
                    id,
                    incremental_scheduling_policy,
+                   is_replicated,
                    is_usable,
                    last_modified_time_msecs,
                    log_scheduling_policy,

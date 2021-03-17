@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.c_2_s_access_portal
 
@@ -12,6 +12,10 @@ class AmazonCloudCredentials(object):
     credentials.
 
     Attributes:
+        is_lambda_based_g_c_enabled (bool): Specifies whether this vault
+            supports AWS Lambda based GC. A Lambdafunction needs to be
+            deployed in the customer's AWS environment or the IAM user should
+            have permissions to create one.
         access_key_id (string): Specifies the access key for Amazon service
             account. See the Cohesity online help for the value to specify for
             this field based on the current S3 Compatible Vault (External
@@ -31,6 +35,10 @@ class AmazonCloudCredentials(object):
             account. See the Cohesity online help for the value to specify for
             this field based on the current S3-compatible Vault (External
             Target) type.
+        read_only_iam_role_arn (string): Specifies a read-only iam role arn
+            Amazon service account. See the Cohesity online help for the value
+            to specify for this field based on the current S3-compatible Vault
+            (External Target) type.
         region (string): Specifies the region to use for the Amazon service
             account.
         secret_access_key (string): Specifies the secret access key for Amazon
@@ -65,6 +73,8 @@ class AmazonCloudCredentials(object):
             properties for data that provides secure, durable object storage
             for long-term data retention and digital preservation. It provides
             two access options ranging from 12 to 48 hours.
+        tiers (list of string): Specifies the list of all tiers for Amazon
+            account.
         use_https (bool): Specifies whether to use http or https to connect to
             the service. If true, a secure connection (https) is used. This
             field is only significant for S3-compatible cloud services.
@@ -73,41 +83,50 @@ class AmazonCloudCredentials(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "is_lambda_based_g_c_enabled":'IsLambdaBasedGCEnabled',
         "access_key_id":'accessKeyId',
         "auth_method":'authMethod',
         "c_2_s_access_portal":'c2sAccessPortal',
         "iam_role_arn":'iamRoleArn',
+        "read_only_iam_role_arn":'readOnlyIamRoleArn',
         "region":'region',
         "secret_access_key":'secretAccessKey',
         "service_url":'serviceUrl',
         "signature_version":'signatureVersion',
         "tier_type":'tierType',
+        "tiers":'tiers',
         "use_https":'useHttps'
     }
 
     def __init__(self,
+                 is_lambda_based_g_c_enabled=None,
                  access_key_id=None,
                  auth_method=None,
                  c_2_s_access_portal=None,
                  iam_role_arn=None,
+                 read_only_iam_role_arn=None,
                  region=None,
                  secret_access_key=None,
                  service_url=None,
                  signature_version=None,
                  tier_type=None,
+                 tiers=None,
                  use_https=None):
         """Constructor for the AmazonCloudCredentials class"""
 
         # Initialize members of the class
+        self.is_lambda_based_g_c_enabled = is_lambda_based_g_c_enabled
         self.access_key_id = access_key_id
         self.auth_method = auth_method
         self.c_2_s_access_portal = c_2_s_access_portal
         self.iam_role_arn = iam_role_arn
+        self.read_only_iam_role_arn = read_only_iam_role_arn
         self.region = region
         self.secret_access_key = secret_access_key
         self.service_url = service_url
         self.signature_version = signature_version
         self.tier_type = tier_type
+        self.tiers = tiers
         self.use_https = use_https
 
 
@@ -129,27 +148,33 @@ class AmazonCloudCredentials(object):
             return None
 
         # Extract variables from the dictionary
+        is_lambda_based_g_c_enabled = dictionary.get('IsLambdaBasedGCEnabled')
         access_key_id = dictionary.get('accessKeyId')
         auth_method = dictionary.get('authMethod')
         c_2_s_access_portal = cohesity_management_sdk.models.c_2_s_access_portal.C2SAccessPortal.from_dictionary(dictionary.get('c2sAccessPortal')) if dictionary.get('c2sAccessPortal') else None
         iam_role_arn = dictionary.get('iamRoleArn')
+        read_only_iam_role_arn = dictionary.get('readOnlyIamRoleArn')
         region = dictionary.get('region')
         secret_access_key = dictionary.get('secretAccessKey')
         service_url = dictionary.get('serviceUrl')
         signature_version = dictionary.get('signatureVersion')
         tier_type = dictionary.get('tierType')
+        tiers = dictionary.get('tiers')
         use_https = dictionary.get('useHttps')
 
         # Return an object of this model
-        return cls(access_key_id,
+        return cls(is_lambda_based_g_c_enabled,
+                   access_key_id,
                    auth_method,
                    c_2_s_access_portal,
                    iam_role_arn,
+                   read_only_iam_role_arn,
                    region,
                    secret_access_key,
                    service_url,
                    signature_version,
                    tier_type,
+                   tiers,
                    use_https)
 
 

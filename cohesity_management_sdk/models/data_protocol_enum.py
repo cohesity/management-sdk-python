@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 class DataProtocolEnum(object):
 
@@ -16,6 +16,7 @@ class DataProtocolEnum(object):
         KHTTP: TODO: type description here.
         KNDMP: TODO: type description here.
         KMANAGEMENT: TODO: type description here.
+        KNVME: TODO: type description here.
 
     """
 
@@ -34,4 +35,6 @@ class DataProtocolEnum(object):
     KNDMP = 'kNdmp'
 
     KMANAGEMENT = 'kManagement'
+
+    KNVME = 'kNvme'
 

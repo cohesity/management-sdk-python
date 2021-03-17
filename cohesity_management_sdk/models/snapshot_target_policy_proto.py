@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
+import cohesity_management_sdk.models.extended_retention_policy_proto
 import cohesity_management_sdk.models.granularity_bucket
 import cohesity_management_sdk.models.retention_policy_proto
 import cohesity_management_sdk.models.snapshot_target
@@ -21,6 +22,11 @@ class SnapshotTargetPolicyProto(object):
             time granularity will be considered for being copied. If this is
             true, then snapshots from the first partially successful run will
             also be eligible to be copied.
+        extended_retention_policy_vec (list of ExtendedRetentionPolicyProto):
+            Specifies additional retention policies that should be applied to
+            the copy snapshot. A copy snapshot will be retained up to a time
+            that is the maximum of all retention policies that are applicable
+            to it.
         granularity_bucket (GranularityBucket): Message that specifies the
             frequency granularity at which to copy the snapshots from a backup
             job's runs.
@@ -44,6 +50,7 @@ class SnapshotTargetPolicyProto(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "copy_partially_successful_run":'copyPartiallySuccessfulRun',
+        "extended_retention_policy_vec":'extendedRetentionPolicyVec',
         "granularity_bucket":'granularityBucket',
         "id":'id',
         "num_days_to_keep":'numDaysToKeep',
@@ -53,6 +60,7 @@ class SnapshotTargetPolicyProto(object):
 
     def __init__(self,
                  copy_partially_successful_run=None,
+                 extended_retention_policy_vec=None,
                  granularity_bucket=None,
                  id=None,
                  num_days_to_keep=None,
@@ -62,6 +70,7 @@ class SnapshotTargetPolicyProto(object):
 
         # Initialize members of the class
         self.copy_partially_successful_run = copy_partially_successful_run
+        self.extended_retention_policy_vec = extended_retention_policy_vec
         self.granularity_bucket = granularity_bucket
         self.id = id
         self.num_days_to_keep = num_days_to_keep
@@ -88,6 +97,11 @@ class SnapshotTargetPolicyProto(object):
 
         # Extract variables from the dictionary
         copy_partially_successful_run = dictionary.get('copyPartiallySuccessfulRun')
+        extended_retention_policy_vec = None
+        if dictionary.get('extendedRetentionPolicyVec') != None:
+            extended_retention_policy_vec = list()
+            for structure in dictionary.get('extendedRetentionPolicyVec'):
+                extended_retention_policy_vec.append(cohesity_management_sdk.models.extended_retention_policy_proto.ExtendedRetentionPolicyProto.from_dictionary(structure))
         granularity_bucket = cohesity_management_sdk.models.granularity_bucket.GranularityBucket.from_dictionary(dictionary.get('granularityBucket')) if dictionary.get('granularityBucket') else None
         id = dictionary.get('id')
         num_days_to_keep = dictionary.get('numDaysToKeep')
@@ -96,6 +110,7 @@ class SnapshotTargetPolicyProto(object):
 
         # Return an object of this model
         return cls(copy_partially_successful_run,
+                   extended_retention_policy_vec,
                    granularity_bucket,
                    id,
                    num_days_to_keep,

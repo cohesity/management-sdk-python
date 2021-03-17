@@ -22,8 +22,6 @@ __all__ = [
     'interface_group_controller',
     'ip_controller',
     'kms_configuration_controller',
-    'kms_configuration_response_controller',
-    'kms_update_request_parameters_controller',
     'ldap_provider_controller',
     'license_controller',
     'monitoring_controller',
