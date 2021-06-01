@@ -1,0 +1,936 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>controllers.analytics_controller module &mdash; Cohesity Python SDK 1.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="controllers.antivirus_service_group_controller module" href="controllers.antivirus_service_group_controller.html" />
+    <link rel="prev" title="controllers.alerts_controller module" href="controllers.alerts_controller.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Cohesity Python SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#upgrade">Upgrade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#how-to-use">How to Use</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#questions-or-feedback">Questions or Feedback</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Endpoints</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="controllers.html">V1 Controllers</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="controllers.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="controllers.access_tokens_controller.html">controllers.access_tokens_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.active_directory_controller.html">controllers.active_directory_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.alerts_controller.html">controllers.alerts_controller module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">controllers.analytics_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.antivirus_service_group_controller.html">controllers.antivirus_service_group_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.app_controller.html">controllers.app_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.app_instance_controller.html">controllers.app_instance_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.audit_controller.html">controllers.audit_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.banner_controller.html">controllers.banner_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.base_controller.html">controllers.base_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.certificates_controller.html">controllers.certificates_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.clone_refresh_tasks_controller.html">controllers.clone_refresh_tasks_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.cluster_controller.html">controllers.cluster_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.cluster_partitions_controller.html">controllers.cluster_partitions_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.clusters_controller.html">controllers.clusters_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.custom_reporting_controller.html">controllers.custom_reporting_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.dashboard_controller.html">controllers.dashboard_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.groups_controller.html">controllers.groups_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.idps_controller.html">controllers.idps_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.interface_controller.html">controllers.interface_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.interface_group_controller.html">controllers.interface_group_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.ip_controller.html">controllers.ip_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.kms_configuration_controller.html">controllers.kms_configuration_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.ldap_provider_controller.html">controllers.ldap_provider_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.license_controller.html">controllers.license_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.monitoring_controller.html">controllers.monitoring_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.network_controller.html">controllers.network_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.nodes_controller.html">controllers.nodes_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.notifications_controller.html">controllers.notifications_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.packages_controller.html">controllers.packages_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.preferences_controller.html">controllers.preferences_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.principals_controller.html">controllers.principals_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.privileges_controller.html">controllers.privileges_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.protection_jobs_controller.html">controllers.protection_jobs_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.protection_objects_controller.html">controllers.protection_objects_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.protection_policies_controller.html">controllers.protection_policies_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.protection_runs_controller.html">controllers.protection_runs_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.protection_sources_controller.html">controllers.protection_sources_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.remote_cluster_controller.html">controllers.remote_cluster_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.remote_restore_controller.html">controllers.remote_restore_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.reports_controller.html">reports_controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.restore_tasks_controller.html">controllers.restore_tasks_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.roles_controller.html">controllers.roles_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.routes_controller.html">controllers.routes_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.scheduler_controller.html">controllers.scheduler_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.search_controller.html">controllers.search_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.smb_file_opens_controller.html">controllers.smb_file_opens_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.static_route_controller.html">controllers.static_route_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.statistics_controller.html">controllers.statistics_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.stats_controller.html">controllers.stats_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.tags_controller.html">controllers.tags_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.tenant_controller.html">controllers.tenant_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.tenants_controller.html">controllers.tenants_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.vaults_controller.html">controllers.vaults_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.view_boxes_controller.html">controllers.view_boxes_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.views_controller.html">controllers.views_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.vlan_controller.html">controllers.vlan_controller module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="controllers_v2.html">V2 Controllers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="controllers_v2.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.active_directory_controller.html">controllers_v2.active_directory_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.audit_log_controller.html">controllers_v2.audit_log_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.base_controller.html">controllers_v2.base_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.data_migration_controller.html">controllers_v2.data_migration_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.keystone_controller.html">controllers_v2.keystone_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.miscellaneous_controller.html">controllers_v2.miscellaneous_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.network_information_service_nis_controller.html">controllers_v2.network_information_service_nis_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.objects_controller.html">controllers_v2.objects_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.patches_controller.html">controllers_v2.patches_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.platform_controller.html">controllers_v2.platform_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.protection_groups_controller.html">controllers_v2.protection_groups_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.protection_policies_controller.html">controllers_v2.protection_policies_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.protection_sources_controller.html">controllers_v2.protection_sources_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.recoveries_controller.html">controllers_v2.recoveries_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.search_controller.html">controllers_v2.search_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.security_controller.html">controllers_v2.security_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.stats_controller.html">controllers_v2.stats_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.tasks_controller.html">controllers_v2.tasks_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.tenants_controller.html">controllers_v2.tenants_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.test_data_management_controller.html">controllers_v2.test_data_management_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.users_controller.html">controllers_v2.users_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.views_controller.html">controllers_v2.views_controller module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="controllers_v2.html#module-controllers_v2">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Cohesity Python SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="controllers.html">controllers package</a> &raquo;</li>
+        
+      <li>controllers.analytics_controller module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/controllers.analytics_controller.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-controllers.analytics_controller">
+<span id="controllers-analytics-controller-module"></span><h1>controllers.analytics_controller module<a class="headerlink" href="#module-controllers.analytics_controller" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="controllers.analytics_controller.AnalyticsController">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">controllers.analytics_controller.</span></code><code class="sig-name descname"><span class="pre">AnalyticsController</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">call_back</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/analytics_controller.html#AnalyticsController"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.analytics_controller.AnalyticsController" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cohesity_management_sdk.controllers.base_controller.BaseController</span></code></p>
+<p>A Controller to access Endpoints in the cohesity_management_sdk API.</p>
+<dl class="py method">
+<dt id="controllers.analytics_controller.AnalyticsController.analyze_jar">
+<code class="sig-name descname"><span class="pre">analyze_jar</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/analytics_controller.html#AnalyticsController.analyze_jar"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.analytics_controller.AnalyticsController.analyze_jar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a POST request to /public/analytics/analyzeJar.</p>
+<blockquote>
+<div><p>Returns the result of the jar analysis.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>body (AnalyseJarArg, optional): Create Notification Rule</dt><dd><p>argument.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>AnalyseJarResult: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.analytics_controller.AnalyticsController.cancel_map_reduce_instance_run">
+<code class="sig-name descname"><span class="pre">cancel_map_reduce_instance_run</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/analytics_controller.html#AnalyticsController.cancel_map_reduce_instance_run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.analytics_controller.AnalyticsController.cancel_map_reduce_instance_run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a PUT request to /public/analytics/cancelAppInstanceRun/{id}.</p>
+<p>Cancel a specific map reduce instance run.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>id (long|int): TODO: Type description here.</p>
+</dd>
+<dt>Returns:</dt><dd><p>KillMapReduceInstanceResult: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.analytics_controller.AnalyticsController.create_application">
+<code class="sig-name descname"><span class="pre">create_application</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/analytics_controller.html#AnalyticsController.create_application"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.analytics_controller.AnalyticsController.create_application" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a POST request to /public/analytics/apps.</p>
+<p>Returns the created application.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>body (MapReduceInfo): Create an Application.</p>
+</dd>
+<dt>Returns:</dt><dd><p>MapReduceInfo: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.analytics_controller.AnalyticsController.create_mapper">
+<code class="sig-name descname"><span class="pre">create_mapper</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/analytics_controller.html#AnalyticsController.create_mapper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.analytics_controller.AnalyticsController.create_mapper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a POST request to /public/analytics/mappers.</p>
+<p>Returns the created mapper.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>body (MapperInfo): Create an Application.</p>
+</dd>
+<dt>Returns:</dt><dd><p>MapperInfo: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.analytics_controller.AnalyticsController.create_reducer">
+<code class="sig-name descname"><span class="pre">create_reducer</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/analytics_controller.html#AnalyticsController.create_reducer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.analytics_controller.AnalyticsController.create_reducer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a POST request to /public/analytics/reducers.</p>
+<p>Returns the created reducer.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>body (ReducerInfo): Request to create a reducer</p>
+</dd>
+<dt>Returns:</dt><dd><p>ReducerInfo: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.analytics_controller.AnalyticsController.delete_application">
+<code class="sig-name descname"><span class="pre">delete_application</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/analytics_controller.html#AnalyticsController.delete_application"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.analytics_controller.AnalyticsController.delete_application" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a DELETE request to /public/analytics/apps/{id}.</p>
+<p>Returns delete status upon completion.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>id (long|int): TODO: Type description here.</p>
+</dd>
+<dt>Returns:</dt><dd><p>void: Response from the API. No Content</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.analytics_controller.AnalyticsController.delete_map_reduce_instance_run">
+<code class="sig-name descname"><span class="pre">delete_map_reduce_instance_run</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/analytics_controller.html#AnalyticsController.delete_map_reduce_instance_run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.analytics_controller.AnalyticsController.delete_map_reduce_instance_run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a DELETE request to /public/analytics/mrAppRun/{id}</p>
+<p>Delete a Map-Reduce Application Instance Run.</p>
+<p>Returns delete status upon completion.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>id (long|int): TODO: Type description here.</p>
+</dd>
+<dt>Returns:</dt><dd><p>void: Response from the API. No Content</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.analytics_controller.AnalyticsController.delete_mapper">
+<code class="sig-name descname"><span class="pre">delete_mapper</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/analytics_controller.html#AnalyticsController.delete_mapper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.analytics_controller.AnalyticsController.delete_mapper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a DELETE request to /public/analytics/mappers/{id}</p>
+<p>Returns delete status upon completion.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>id (long|int): TODO: Type description here.</p>
+</dd>
+<dt>Returns:</dt><dd><p>void: Response from the API. No Content</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.analytics_controller.AnalyticsController.delete_reducer">
+<code class="sig-name descname"><span class="pre">delete_reducer</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/analytics_controller.html#AnalyticsController.delete_reducer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.analytics_controller.AnalyticsController.delete_reducer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a DELETE request to /public/analytics/reducers/{id}.</p>
+<p>Returns delete status upon completion.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>id (long|int): TODO: Type description here.</p>
+</dd>
+<dt>Returns:</dt><dd><p>void: Response from the API. No Content</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.analytics_controller.AnalyticsController.delete_uploaded_jar">
+<code class="sig-name descname"><span class="pre">delete_uploaded_jar</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/analytics_controller.html#AnalyticsController.delete_uploaded_jar"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.analytics_controller.AnalyticsController.delete_uploaded_jar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a DELETE request to /public/analytics/uploadJar.</p>
+<p>Returns delete status upon completion.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>body (UploadMRJarViewPathWrapper)</p>
+</dd>
+<dt>Returns:</dt><dd><p>void: Response from the API. No Content</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.analytics_controller.AnalyticsController.download_mr_base_jar">
+<code class="sig-name descname"><span class="pre">download_mr_base_jar</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/analytics_controller.html#AnalyticsController.download_mr_base_jar"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.analytics_controller.AnalyticsController.download_mr_base_jar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/analytics/mrBaseJar.</p>
+<p>Returns a struct containing the map reduce base jar from the cluster.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>ExtractFileRangeResult: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.analytics_controller.AnalyticsController.download_mr_output_files">
+<code class="sig-name descname"><span class="pre">download_mr_output_files</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">is_nfs_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">partition_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">view_box_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">view_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">length_bytes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/analytics_controller.html#AnalyticsController.download_mr_output_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.analytics_controller.AnalyticsController.download_mr_output_files" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/analytics/mrOutputfiles.</p>
+<p>Returns a struct containing the map reduce instance run output
+files from Yoda.</p>
+<p>Download map reduce base instance run output files from Yoda.</p>
+<dl>
+<dt>Args:</dt><dd><dl class="simple">
+<dt>is_nfs_file (bool, optional): If true, then extracts file from</dt><dd><p>NFS, else from local file system.</p>
+</dd>
+<dt>partition_id (int, optional): Cluster partition id for the file</dt><dd><p>to be read.</p>
+</dd>
+<dt>view_box_id (int, optional):  View box id for the file to be read.</dt><dd><p>Required for nfs files only.</p>
+</dd>
+<dt>view_name (string, optional): View name for the file to be read.</dt><dd><p>Required for nfs files only.</p>
+</dd>
+</dl>
+<p>file_path (string, optional): filepath of the file on NFS.
+start_offset (int, optional): start offset from where bytes will</p>
+<blockquote>
+<div><p>be read.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>length_bytes (int, optional): Number of bytes to be read from</dt><dd><p>start_offset.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>ExtractFileRangeResult: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.analytics_controller.AnalyticsController.get_application_by_id">
+<code class="sig-name descname"><span class="pre">get_application_by_id</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/analytics_controller.html#AnalyticsController.get_application_by_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.analytics_controller.AnalyticsController.get_application_by_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/analytics/apps/{id}</p>
+<p>Returns the Application corresponding to the specified Application
+Id.</p>
+<p>List details about a single Application.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>id (long|int): TODO: Type description here.</p>
+</dd>
+<dt>Returns:</dt><dd><p>MapReduceInfo: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.analytics_controller.AnalyticsController.get_applications">
+<code class="sig-name descname"><span class="pre">get_applications</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/analytics_controller.html#AnalyticsController.get_applications"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.analytics_controller.AnalyticsController.get_applications" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/analytics/apps.</p>
+<p>If no parameters are specified, all Applications currently on
+the Cohesity Cluster are returned.
+Specifying parameters filters the results that are returned.</p>
+<p>List Applications filtered by the specified parameters.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>ApplicationsWrapper: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.analytics_controller.AnalyticsController.get_map_reduce_app_runs">
+<code class="sig-name descname"><span class="pre">get_map_reduce_app_runs</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/analytics_controller.html#AnalyticsController.get_map_reduce_app_runs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.analytics_controller.AnalyticsController.get_map_reduce_app_runs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/analytics/mrAppRuns.</p>
+<p>List map reduce application runs filtered by the specified parameters.</p>
+<p>If no parameters are specified, all map reduce application instance
+runs currently on the Cohesity Cluster are returned.
+Specifying parameters filters the results that are returned.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>body(GetMapReduceAppRunsParams): TODO Type description here.</p>
+</dd>
+<dt>Returns:</dt><dd><p>list of AppRunHistory: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.analytics_controller.AnalyticsController.get_map_reduce_file_formats">
+<code class="sig-name descname"><span class="pre">get_map_reduce_file_formats</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">result_file_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">storage_domain_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">view_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/analytics_controller.html#AnalyticsController.get_map_reduce_file_formats"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.analytics_controller.AnalyticsController.get_map_reduce_file_formats" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/analytics/mrFileFormats.</p>
+<p>The Analytics workbench generates output files from map reduce
+instances run for a particular application. This API returns the
+output file formats available to the user for download.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>result_file_path (string, optional): Specifies the path where the</dt><dd><p>map reduce instance has the result. file generated.</p>
+</dd>
+<dt>storage_domain_id (int, optional): Specifies the ID of the storage</dt><dd><p>domain.</p>
+</dd>
+<dt>view_name (int, optional): Specifies the maximum number of NLM</dt><dd><p>locks to return in the response. This field cannot be set
+above 1000. If this is not set, maximum of 1000 entries are
+returned.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>MapReduceFileFormats: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.analytics_controller.AnalyticsController.get_mapper_by_id">
+<code class="sig-name descname"><span class="pre">get_mapper_by_id</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/analytics_controller.html#AnalyticsController.get_mapper_by_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.analytics_controller.AnalyticsController.get_mapper_by_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/analytics/mappers/{id}</p>
+<p>Returns the Mapper corresponding to the specified Mapper Id.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>id (string): TODO: Type description here.</p>
+</dd>
+<dt>Returns:</dt><dd><p>MapperInfo: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.analytics_controller.AnalyticsController.get_mappers">
+<code class="sig-name descname"><span class="pre">get_mappers</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/analytics_controller.html#AnalyticsController.get_mappers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.analytics_controller.AnalyticsController.get_mappers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/analytics/mappers.</p>
+<p>If no parameters are specified, all Mappers currently on the Cohesity
+Cluster are returned.
+Specifying parameters filters the results that are returned.</p>
+<p>List Mappers filtered by the specified parameters.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>list of MappersWrapper: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.analytics_controller.AnalyticsController.get_mr_upload_jar_path">
+<code class="sig-name descname"><span class="pre">get_mr_upload_jar_path</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/analytics_controller.html#AnalyticsController.get_mr_upload_jar_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.analytics_controller.AnalyticsController.get_mr_upload_jar_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/analytics/uploadJarPath.</p>
+<p>Returns the mounted path to upload Jars.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>GetMRJarUploadPathResult: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.analytics_controller.AnalyticsController.get_reducer_by_id">
+<code class="sig-name descname"><span class="pre">get_reducer_by_id</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/analytics_controller.html#AnalyticsController.get_reducer_by_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.analytics_controller.AnalyticsController.get_reducer_by_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/analytics/reducers/{id}.</p>
+<p>Returns the Reducer corresponding to the specified Reducer Id.</p>
+<p>List details about a single Reducer.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>id (long|int): Specifies the reducer id.</p>
+</dd>
+<dt>Returns:</dt><dd><p>ReducerInfo: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.analytics_controller.AnalyticsController.get_reducers">
+<code class="sig-name descname"><span class="pre">get_reducers</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/analytics_controller.html#AnalyticsController.get_reducers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.analytics_controller.AnalyticsController.get_reducers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/analytics/reducers.</p>
+<p>If no parameters are specified, all Reducers currently on the Cohesity
+Cluster are returned.
+Specifying parameters filters the results that are returned.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>ReducersWrapper: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.analytics_controller.AnalyticsController.get_supported_patterns">
+<code class="sig-name descname"><span class="pre">get_supported_patterns</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">application_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">application_data_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/analytics_controller.html#AnalyticsController.get_supported_patterns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.analytics_controller.AnalyticsController.get_supported_patterns" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/analytics/supportedPatterns.</p>
+<p>The Analytics workbench has ability to search for patterns which can
+be system defined or can be user defined. This API returns the
+patterns available for search.</p>
+<p>Used to retrieve supported patterns available for search in an
+application.</p>
+<dl>
+<dt>Args:</dt><dd><p>application_id (list of long|int): Specifies the application Id.
+application_data_type (list of string, optional): Specifies the</p>
+<blockquote>
+<div><p>data type for which supported patterns can be fetched.</p>
+</div></blockquote>
+</dd>
+<dt>Returns:</dt><dd><p>list of SupportedPattern: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.analytics_controller.AnalyticsController.run_map_reduce_app_instance">
+<code class="sig-name descname"><span class="pre">run_map_reduce_app_instance</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/analytics_controller.html#AnalyticsController.run_map_reduce_app_instance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.analytics_controller.AnalyticsController.run_map_reduce_app_instance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a PUT request to /public/analytics/runAppInstance.</p>
+<p>Returns the updated Application.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>body (RunMapReduceParams): Request to update a View.</p>
+</dd>
+<dt>Returns:</dt><dd><p>RunMapReduceInstanceResult: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.analytics_controller.AnalyticsController.save_pattern">
+<code class="sig-name descname"><span class="pre">save_pattern</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/analytics_controller.html#AnalyticsController.save_pattern"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.analytics_controller.AnalyticsController.save_pattern" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a PUT request to /public/analytics/supportedPatterns.</p>
+<p>The Analytics workbench has ability to search for patterns which can
+be system defined or can be user defined. This API enables the user to
+save patterns for searching.</p>
+<p>Used to save user patterns for search in an application.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>body (PatternRequestBody): Request to update a View.</p>
+</dd>
+<dt>Returns:</dt><dd><p>void: Response from the API. No Content</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.analytics_controller.AnalyticsController.update_application">
+<code class="sig-name descname"><span class="pre">update_application</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/analytics_controller.html#AnalyticsController.update_application"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.analytics_controller.AnalyticsController.update_application" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a PUT request to /public/analytics/apps/{id}.</p>
+<p>Returns the updated Application.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>id (long|int): TODO: Type description here.
+body (MapReduceInfo, optional): TODO: Type description here.</p>
+</dd>
+<dt>Returns:</dt><dd><p>MapReduceInfo: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.analytics_controller.AnalyticsController.update_mapper">
+<code class="sig-name descname"><span class="pre">update_mapper</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/analytics_controller.html#AnalyticsController.update_mapper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.analytics_controller.AnalyticsController.update_mapper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a PUT request to /public/analytics/apps/{id}.</p>
+<p>Returns the updated Application.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>id (long|int): TODO: Type description here.
+body (MapperInfo): TODO: Type description here.</p>
+</dd>
+<dt>Returns:</dt><dd><p>MapperInfo: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.analytics_controller.AnalyticsController.update_reducer">
+<code class="sig-name descname"><span class="pre">update_reducer</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/analytics_controller.html#AnalyticsController.update_reducer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.analytics_controller.AnalyticsController.update_reducer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a PUT request to /public/analytics/reducers/{id}.</p>
+<p>Update a Reducer.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>id (long|int): TODO: Type description here.
+body (ReducerInfo): Request to update reducer.</p>
+</dd>
+<dt>Returns:</dt><dd><p>ReducerInfo: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.analytics_controller.AnalyticsController.upload_jar">
+<code class="sig-name descname"><span class="pre">upload_jar</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/analytics_controller.html#AnalyticsController.upload_jar"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.analytics_controller.AnalyticsController.upload_jar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a POST request to /public/analytics/uploadJar.</p>
+<p>Returns a struct containing the jar name and local mount path where
+the jar will be uploaded.</p>
+<p>Upload a jar to pre-specified Yoda internal view.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>UploadMRJarViewPathWrapper: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="controllers.antivirus_service_group_controller.html" class="btn btn-neutral float-right" title="controllers.antivirus_service_group_controller module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="controllers.alerts_controller.html" class="btn btn-neutral float-left" title="controllers.alerts_controller module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Cohesity.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

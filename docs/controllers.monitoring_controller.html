@@ -1,0 +1,450 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>controllers.monitoring_controller module &mdash; Cohesity Python SDK 1.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="controllers.network_controller module" href="controllers.network_controller.html" />
+    <link rel="prev" title="controllers.license_controller module" href="controllers.license_controller.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Cohesity Python SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#upgrade">Upgrade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#how-to-use">How to Use</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#questions-or-feedback">Questions or Feedback</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Endpoints</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="controllers.html">V1 Controllers</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="controllers.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="controllers.access_tokens_controller.html">controllers.access_tokens_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.active_directory_controller.html">controllers.active_directory_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.alerts_controller.html">controllers.alerts_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.analytics_controller.html">controllers.analytics_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.antivirus_service_group_controller.html">controllers.antivirus_service_group_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.app_controller.html">controllers.app_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.app_instance_controller.html">controllers.app_instance_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.audit_controller.html">controllers.audit_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.banner_controller.html">controllers.banner_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.base_controller.html">controllers.base_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.certificates_controller.html">controllers.certificates_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.clone_refresh_tasks_controller.html">controllers.clone_refresh_tasks_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.cluster_controller.html">controllers.cluster_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.cluster_partitions_controller.html">controllers.cluster_partitions_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.clusters_controller.html">controllers.clusters_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.custom_reporting_controller.html">controllers.custom_reporting_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.dashboard_controller.html">controllers.dashboard_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.groups_controller.html">controllers.groups_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.idps_controller.html">controllers.idps_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.interface_controller.html">controllers.interface_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.interface_group_controller.html">controllers.interface_group_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.ip_controller.html">controllers.ip_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.kms_configuration_controller.html">controllers.kms_configuration_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.ldap_provider_controller.html">controllers.ldap_provider_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.license_controller.html">controllers.license_controller module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">controllers.monitoring_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.network_controller.html">controllers.network_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.nodes_controller.html">controllers.nodes_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.notifications_controller.html">controllers.notifications_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.packages_controller.html">controllers.packages_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.preferences_controller.html">controllers.preferences_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.principals_controller.html">controllers.principals_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.privileges_controller.html">controllers.privileges_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.protection_jobs_controller.html">controllers.protection_jobs_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.protection_objects_controller.html">controllers.protection_objects_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.protection_policies_controller.html">controllers.protection_policies_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.protection_runs_controller.html">controllers.protection_runs_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.protection_sources_controller.html">controllers.protection_sources_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.remote_cluster_controller.html">controllers.remote_cluster_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.remote_restore_controller.html">controllers.remote_restore_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.reports_controller.html">reports_controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.restore_tasks_controller.html">controllers.restore_tasks_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.roles_controller.html">controllers.roles_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.routes_controller.html">controllers.routes_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.scheduler_controller.html">controllers.scheduler_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.search_controller.html">controllers.search_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.smb_file_opens_controller.html">controllers.smb_file_opens_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.static_route_controller.html">controllers.static_route_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.statistics_controller.html">controllers.statistics_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.stats_controller.html">controllers.stats_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.tags_controller.html">controllers.tags_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.tenant_controller.html">controllers.tenant_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.tenants_controller.html">controllers.tenants_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.vaults_controller.html">controllers.vaults_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.view_boxes_controller.html">controllers.view_boxes_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.views_controller.html">controllers.views_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.vlan_controller.html">controllers.vlan_controller module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="controllers_v2.html">V2 Controllers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="controllers_v2.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.active_directory_controller.html">controllers_v2.active_directory_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.audit_log_controller.html">controllers_v2.audit_log_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.base_controller.html">controllers_v2.base_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.data_migration_controller.html">controllers_v2.data_migration_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.keystone_controller.html">controllers_v2.keystone_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.miscellaneous_controller.html">controllers_v2.miscellaneous_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.network_information_service_nis_controller.html">controllers_v2.network_information_service_nis_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.objects_controller.html">controllers_v2.objects_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.patches_controller.html">controllers_v2.patches_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.platform_controller.html">controllers_v2.platform_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.protection_groups_controller.html">controllers_v2.protection_groups_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.protection_policies_controller.html">controllers_v2.protection_policies_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.protection_sources_controller.html">controllers_v2.protection_sources_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.recoveries_controller.html">controllers_v2.recoveries_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.search_controller.html">controllers_v2.search_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.security_controller.html">controllers_v2.security_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.stats_controller.html">controllers_v2.stats_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.tasks_controller.html">controllers_v2.tasks_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.tenants_controller.html">controllers_v2.tenants_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.test_data_management_controller.html">controllers_v2.test_data_management_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.users_controller.html">controllers_v2.users_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.views_controller.html">controllers_v2.views_controller module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="controllers_v2.html#module-controllers_v2">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Cohesity Python SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="controllers.html">controllers package</a> &raquo;</li>
+        
+      <li>controllers.monitoring_controller module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/controllers.monitoring_controller.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-controllers.monitoring_controller">
+<span id="controllers-monitoring-controller-module"></span><h1>controllers.monitoring_controller module<a class="headerlink" href="#module-controllers.monitoring_controller" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="controllers.monitoring_controller.MonitoringController">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">controllers.monitoring_controller.</span></code><code class="sig-name descname"><span class="pre">MonitoringController</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">call_back</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/monitoring_controller.html#MonitoringController"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.monitoring_controller.MonitoringController" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cohesity_management_sdk.controllers.base_controller.BaseController</span></code></p>
+<p>A Controller to access Endpoints in the cohesity_management_sdk API.</p>
+<dl class="py method">
+<dt id="controllers.monitoring_controller.MonitoringController.get_all_job_runs">
+<code class="sig-name descname"><span class="pre">get_all_job_runs</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_time_msecs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_time_msecs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/monitoring_controller.html#MonitoringController.get_all_job_runs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.monitoring_controller.MonitoringController.get_all_job_runs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/monitoring/jobs.</p>
+<p>Returns the job runs for the filters.
+Specifying parameters can alter the results that are returned.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>start_time_msecs (long|int): Specifies the start time of the time</dt><dd><p>range of interest.</p>
+</dd>
+<dt>end_time_msecs (long|int): Specifies the end time of the time</dt><dd><p>range of interest.</p>
+</dd>
+<dt>job_types (list of string, optional): Specifies the job types for</dt><dd><p>which runs are needed.</p>
+</dd>
+<dt>env_types (list of EnvTypeGetAllJobRunsEnum, optional): Specifies</dt><dd><p>the environment types of the job. Supported environment types
+such as ‘kView’, ‘kSQL’, ‘kVMware’, etc. NOTE: ‘kPuppeteer’
+refers to Cohesity’s Remote Adapter. ‘kVMware’ indicates the
+VMware Protection Source environment. ‘kHyperV’ indicates the
+HyperV Protection Source environment. ‘kSQL’ indicates the SQL
+Protection Source environment. ‘kView’ indicates the View
+Protection Source environment. ‘kPuppeteer’ indicates the
+Cohesity’s Remote Adapter. ‘kPhysical’ indicates the physical
+Protection Source environment. ‘kPure’ indicates the Pure
+Storage Protection Source environment. ‘Nimble’ indicates the
+Nimble Storage Protection Source environment. ‘kAzure’
+indicates the Microsoft’s Azure Protection Source environment.
+‘kNetapp’ indicates the Netapp Protection Source environment.
+‘kAgent’ indicates the Agent Protection Source environment.
+‘kGenericNas’ indicates the Generic Network Attached Storage
+Protection Source environment. ‘kAcropolis’ indicates the
+Acropolis Protection Source environment. ‘kPhsicalFiles’
+indicates the Physical Files Protection Source environment.
+‘kIsilon’ indicates the Dell EMC’s Isilon Protection Source
+environment. ‘kGPFS’ indicates IBM’s GPFS Protection Source
+environment. ‘kKVM’ indicates the KVM Protection Source
+environment. ‘kAWS’ indicates the AWS Protection Source
+environment. ‘kExchange’ indicates the Exchange Protection
+Source environment. ‘kHyperVVSS’ indicates the HyperV VSS
+Protection Source environment. ‘kOracle’ indicates the Oracle
+Protection Source environment. ‘kGCP’ indicates the Google
+Cloud Platform Protection Source environment. ‘kFlashBlade’
+indicates the Flash Blade Protection Source environment.
+‘kAWSNative’ indicates the AWS Native Protection Source
+environment. ‘kO365’ indicates the Office 365 Protection Source
+environment. ‘kO365Outlook’ indicates Office 365 outlook
+Protection Source environment. ‘kHyperFlex’ indicates the Hyper
+Flex Protection Source environment. ‘kGCPNative’ indicates the
+GCP Native Protection Source environment. ‘kAzureNative’
+indicates the Azure Native Protection Source environment.
+‘kKubernetes’ indicates a Kubernetes Protection Source
+environment. ‘kElastifile’ indicates Elastifile Protection
+Source environment. ‘kAD’ indicates Active Directory Protection
+Source environment. ‘kRDSSnapshotManager’ indicates AWS RDS
+Protection Source environment. ‘kCassandra’ indicates Cassandra
+Protection Source environment. ‘kMongoDB’ indicates MongoDB
+Protection Source environment. ‘kCouchbase’ indicates
+Couchbase Protection Source environment. ‘kHdfs’ indicates
+Hdfs Protection Source environment. ‘kHive’ indicates Hive
+Protection Source environment. ‘kHBase’ indicates HBase
+Protection Source environment.</p>
+</dd>
+<dt>page (int, optional): Specifies the page number in case of</dt><dd><p>pagination of response.</p>
+</dd>
+<dt>page_size (int, optional): Specifies the size of the page in case</dt><dd><p>of pagination of response.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>list of GetAllJobRunsResult: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.monitoring_controller.MonitoringController.get_job_run_info">
+<code class="sig-name descname"><span class="pre">get_job_run_info</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">job_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_run_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/monitoring_controller.html#MonitoringController.get_job_run_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.monitoring_controller.MonitoringController.get_job_run_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/monitoring/jobRunInfo.</p>
+<p>Returns the run details for the job run.</p>
+<dl>
+<dt>Args:</dt><dd><p>job_type (string): Specifies the job type of the needed run.
+job_id (long|int): Specifies the job id of the needed run.
+job_run_id (long|int): Specifies the job run id of the needed</p>
+<blockquote>
+<div><p>run.</p>
+</div></blockquote>
+</dd>
+<dt>Returns:</dt><dd><p>GetJobRunInfoResult: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.monitoring_controller.MonitoringController.get_run_objects_details">
+<code class="sig-name descname"><span class="pre">get_run_objects_details</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">job_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_run_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/monitoring_controller.html#MonitoringController.get_run_objects_details"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.monitoring_controller.MonitoringController.get_run_objects_details" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/monitoring/objectDetails.</p>
+<p>Returns the objects details for the job run.</p>
+<dl>
+<dt>Args:</dt><dd><p>job_type (string): Specifies the job type of the needed run.
+job_id (long|int): Specifies the job id of the needed run.
+job_run_id (long|int): Specifies the job run id of the needed</p>
+<blockquote>
+<div><p>run.</p>
+</div></blockquote>
+</dd>
+<dt>Returns:</dt><dd><p>list of GetObjectsDetailsResult: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="controllers.network_controller.html" class="btn btn-neutral float-right" title="controllers.network_controller module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="controllers.license_controller.html" class="btn btn-neutral float-left" title="controllers.license_controller module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Cohesity.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

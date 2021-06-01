@@ -1,0 +1,1237 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>controllers.views_controller module &mdash; Cohesity Python SDK 1.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="controllers.vlan_controller module" href="controllers.vlan_controller.html" />
+    <link rel="prev" title="controllers.view_boxes_controller module" href="controllers.view_boxes_controller.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Cohesity Python SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#upgrade">Upgrade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#how-to-use">How to Use</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#questions-or-feedback">Questions or Feedback</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Endpoints</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="controllers.html">V1 Controllers</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="controllers.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="controllers.access_tokens_controller.html">controllers.access_tokens_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.active_directory_controller.html">controllers.active_directory_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.alerts_controller.html">controllers.alerts_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.analytics_controller.html">controllers.analytics_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.antivirus_service_group_controller.html">controllers.antivirus_service_group_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.app_controller.html">controllers.app_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.app_instance_controller.html">controllers.app_instance_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.audit_controller.html">controllers.audit_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.banner_controller.html">controllers.banner_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.base_controller.html">controllers.base_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.certificates_controller.html">controllers.certificates_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.clone_refresh_tasks_controller.html">controllers.clone_refresh_tasks_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.cluster_controller.html">controllers.cluster_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.cluster_partitions_controller.html">controllers.cluster_partitions_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.clusters_controller.html">controllers.clusters_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.custom_reporting_controller.html">controllers.custom_reporting_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.dashboard_controller.html">controllers.dashboard_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.groups_controller.html">controllers.groups_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.idps_controller.html">controllers.idps_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.interface_controller.html">controllers.interface_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.interface_group_controller.html">controllers.interface_group_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.ip_controller.html">controllers.ip_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.kms_configuration_controller.html">controllers.kms_configuration_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.ldap_provider_controller.html">controllers.ldap_provider_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.license_controller.html">controllers.license_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.monitoring_controller.html">controllers.monitoring_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.network_controller.html">controllers.network_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.nodes_controller.html">controllers.nodes_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.notifications_controller.html">controllers.notifications_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.packages_controller.html">controllers.packages_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.preferences_controller.html">controllers.preferences_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.principals_controller.html">controllers.principals_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.privileges_controller.html">controllers.privileges_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.protection_jobs_controller.html">controllers.protection_jobs_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.protection_objects_controller.html">controllers.protection_objects_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.protection_policies_controller.html">controllers.protection_policies_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.protection_runs_controller.html">controllers.protection_runs_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.protection_sources_controller.html">controllers.protection_sources_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.remote_cluster_controller.html">controllers.remote_cluster_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.remote_restore_controller.html">controllers.remote_restore_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.reports_controller.html">reports_controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.restore_tasks_controller.html">controllers.restore_tasks_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.roles_controller.html">controllers.roles_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.routes_controller.html">controllers.routes_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.scheduler_controller.html">controllers.scheduler_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.search_controller.html">controllers.search_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.smb_file_opens_controller.html">controllers.smb_file_opens_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.static_route_controller.html">controllers.static_route_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.statistics_controller.html">controllers.statistics_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.stats_controller.html">controllers.stats_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.tags_controller.html">controllers.tags_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.tenant_controller.html">controllers.tenant_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.tenants_controller.html">controllers.tenants_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.vaults_controller.html">controllers.vaults_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.view_boxes_controller.html">controllers.view_boxes_controller module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">controllers.views_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.vlan_controller.html">controllers.vlan_controller module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="controllers_v2.html">V2 Controllers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="controllers_v2.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.active_directory_controller.html">controllers_v2.active_directory_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.audit_log_controller.html">controllers_v2.audit_log_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.base_controller.html">controllers_v2.base_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.data_migration_controller.html">controllers_v2.data_migration_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.keystone_controller.html">controllers_v2.keystone_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.miscellaneous_controller.html">controllers_v2.miscellaneous_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.network_information_service_nis_controller.html">controllers_v2.network_information_service_nis_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.objects_controller.html">controllers_v2.objects_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.patches_controller.html">controllers_v2.patches_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.platform_controller.html">controllers_v2.platform_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.protection_groups_controller.html">controllers_v2.protection_groups_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.protection_policies_controller.html">controllers_v2.protection_policies_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.protection_sources_controller.html">controllers_v2.protection_sources_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.recoveries_controller.html">controllers_v2.recoveries_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.search_controller.html">controllers_v2.search_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.security_controller.html">controllers_v2.security_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.stats_controller.html">controllers_v2.stats_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.tasks_controller.html">controllers_v2.tasks_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.tenants_controller.html">controllers_v2.tenants_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.test_data_management_controller.html">controllers_v2.test_data_management_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.users_controller.html">controllers_v2.users_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.views_controller.html">controllers_v2.views_controller module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="controllers_v2.html#module-controllers_v2">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Cohesity Python SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="controllers.html">controllers package</a> &raquo;</li>
+        
+      <li>controllers.views_controller module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/controllers.views_controller.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-controllers.views_controller">
+<span id="controllers-views-controller-module"></span><h1>controllers.views_controller module<a class="headerlink" href="#module-controllers.views_controller" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="controllers.views_controller.ViewsController">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">controllers.views_controller.</span></code><code class="sig-name descname"><span class="pre">ViewsController</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">call_back</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/views_controller.html#ViewsController"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.views_controller.ViewsController" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cohesity_management_sdk.controllers.base_controller.BaseController</span></code></p>
+<p>A Controller to access Endpoints in the cohesity_management_sdk API.</p>
+<dl class="py method">
+<dt id="controllers.views_controller.ViewsController.create_activate_view_aliases">
+<code class="sig-name descname"><span class="pre">create_activate_view_aliases</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/views_controller.html#ViewsController.create_activate_view_aliases"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.views_controller.ViewsController.create_activate_view_aliases" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a POST request to /public/viewAliases/{name}/activate.</p>
+<p>Returns error if op fails.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>name (string): Specifies the View name.</p>
+</dd>
+<dt>Returns:</dt><dd><p>ActivateViewAliasesResult: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.views_controller.ViewsController.create_clone_directory">
+<code class="sig-name descname"><span class="pre">create_clone_directory</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/views_controller.html#ViewsController.create_clone_directory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.views_controller.ViewsController.create_clone_directory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a POST request to /public/views/cloneDirectory.</p>
+<p>Returns error if op fails.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>body (CloneDirectoryParams): Request to clone a directory.</p>
+</dd>
+<dt>Returns:</dt><dd><p>void: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.views_controller.ViewsController.create_clone_view">
+<code class="sig-name descname"><span class="pre">create_clone_view</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/views_controller.html#ViewsController.create_clone_view"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.views_controller.ViewsController.create_clone_view" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a POST request to /public/views/clone.</p>
+<p>Returns the cloned View.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>body (CloneViewRequest): Request to clone a View.</p>
+</dd>
+<dt>Returns:</dt><dd><p>View: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.views_controller.ViewsController.create_lock_file">
+<code class="sig-name descname"><span class="pre">create_lock_file</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/views_controller.html#ViewsController.create_lock_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.views_controller.ViewsController.create_lock_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a POST request to /public/views/{name}/fileLocks.</p>
+<p>Returns error if op fails.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>name (string): Specifies the View name.
+body (LockFileParams, optional): Request to lock a file.</p>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>FileLockStatus: Response from the API. Get lock file status</dt><dd><p>response</p>
+</dd>
+</dl>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.views_controller.ViewsController.create_lock_file_by_id">
+<code class="sig-name descname"><span class="pre">create_lock_file_by_id</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/views_controller.html#ViewsController.create_lock_file_by_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.views_controller.ViewsController.create_lock_file_by_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a POST request to /public/views/id/{id}/fileLocks.</p>
+<p>Returns error if op fails.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>id (long|int): Specifies the View id.
+body (LockFileParams, optional): Request to lock a file.</p>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>FileLockStatus: Response from the API. Get lock file status</dt><dd><p>response</p>
+</dd>
+</dl>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.views_controller.ViewsController.create_overwrite_view">
+<code class="sig-name descname"><span class="pre">create_overwrite_view</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/views_controller.html#ViewsController.create_overwrite_view"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.views_controller.ViewsController.create_overwrite_view" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a POST request to /public/views/overwrite.</p>
+<p>Specifies source and target view names as params.
+Returns the modified Target View.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>body (OverwriteViewParam): Request to overwrite a Target view with</dt><dd><p>contents of a Source view.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>View: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.views_controller.ViewsController.create_rename_view">
+<code class="sig-name descname"><span class="pre">create_rename_view</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/views_controller.html#ViewsController.create_rename_view"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.views_controller.ViewsController.create_rename_view" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a POST request to /public/views/rename/{name}.</p>
+<p>Specify original name of the View in the ‘name’ parameter.
+Returns the renamed View.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>body (RenameViewParam): Request to rename a View.
+name (string): Specifies the View name.</p>
+</dd>
+<dt>Returns:</dt><dd><p>View: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.views_controller.ViewsController.create_rename_view_by_id">
+<code class="sig-name descname"><span class="pre">create_rename_view_by_id</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/views_controller.html#ViewsController.create_rename_view_by_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.views_controller.ViewsController.create_rename_view_by_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a POST request to /public/views/rename/id/{id}.</p>
+<p>Specify unique id of the View in the ‘id’ parameter.
+Returns the renamed View.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>body (RenameViewParam): Request to rename a View.
+id (long|int): Specifies the View id.</p>
+</dd>
+<dt>Returns:</dt><dd><p>View: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.views_controller.ViewsController.create_view">
+<code class="sig-name descname"><span class="pre">create_view</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/views_controller.html#ViewsController.create_view"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.views_controller.ViewsController.create_view" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a POST request to /public/views.</p>
+<p>Returns the created View.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>body (CreateViewRequest): Request to create a View.</p>
+</dd>
+<dt>Returns:</dt><dd><p>View: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.views_controller.ViewsController.create_view_alias">
+<code class="sig-name descname"><span class="pre">create_view_alias</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/views_controller.html#ViewsController.create_view_alias"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.views_controller.ViewsController.create_view_alias" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a POST request to /public/viewAliases.</p>
+<p>Returns the created View Alias.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>body (ViewAlias): Request to create a View Alias.</p>
+</dd>
+<dt>Returns:</dt><dd><p>ViewAlias: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.views_controller.ViewsController.create_view_user_quota">
+<code class="sig-name descname"><span class="pre">create_view_user_quota</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/views_controller.html#ViewsController.create_view_user_quota"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.views_controller.ViewsController.create_view_user_quota" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a POST request to /public/viewUserQuotas.</p>
+<p>Returns error if op fails.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>body (ViewUserQuotaParameters, optional): update user quota</dt><dd><p>params.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>UserQuotaAndUsage: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.views_controller.ViewsController.delete_clear_nlm_locks">
+<code class="sig-name descname"><span class="pre">delete_clear_nlm_locks</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/views_controller.html#ViewsController.delete_clear_nlm_locks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.views_controller.ViewsController.delete_clear_nlm_locks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a DELETE request to /public/nlmLocks.</p>
+<p>Returns nothing upon success.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>body (ClearNlmLocksParameters): Request to clear NLM locks.</p>
+</dd>
+<dt>Returns:</dt><dd><p>void: Response from the API. No Content</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.views_controller.ViewsController.delete_view">
+<code class="sig-name descname"><span class="pre">delete_view</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/views_controller.html#ViewsController.delete_view"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.views_controller.ViewsController.delete_view" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a DELETE request to /public/views/{name}.</p>
+<p>Returns delete status upon completion.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>name (string): Specifies the View name.</p>
+</dd>
+<dt>Returns:</dt><dd><p>void: Response from the API. No Content</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.views_controller.ViewsController.delete_view_alias">
+<code class="sig-name descname"><span class="pre">delete_view_alias</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/views_controller.html#ViewsController.delete_view_alias"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.views_controller.ViewsController.delete_view_alias" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a DELETE request to /public/viewAliases/{name}.</p>
+<p>Returns delete status upon completion.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>name (string): Specifies the View Alias name.</p>
+</dd>
+<dt>Returns:</dt><dd><p>void: Response from the API. No Content</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.views_controller.ViewsController.delete_view_by_id">
+<code class="sig-name descname"><span class="pre">delete_view_by_id</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/views_controller.html#ViewsController.delete_view_by_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.views_controller.ViewsController.delete_view_by_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a DELETE request to /public/views/id/{id}.</p>
+<p>Returns delete status upon completion.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>id (long|int): Specifies the View id.</p>
+</dd>
+<dt>Returns:</dt><dd><p>void: Response from the API. No Content</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.views_controller.ViewsController.delete_view_users_quota">
+<code class="sig-name descname"><span class="pre">delete_view_users_quota</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/views_controller.html#ViewsController.delete_view_users_quota"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.views_controller.ViewsController.delete_view_users_quota" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a DELETE request to /public/viewUserQuotas.</p>
+<p>Returns error if op fails.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>body (DeleteViewUsersQuotaParameters, optional): update user quota</dt><dd><p>params.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>void: Response from the API. No Content</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.views_controller.ViewsController.get_file_lock_status">
+<code class="sig-name descname"><span class="pre">get_file_lock_status</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/views_controller.html#ViewsController.get_file_lock_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.views_controller.ViewsController.get_file_lock_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/views/{name}/fileLocks.</p>
+<p>Returns error if op fails.</p>
+<dl>
+<dt>Args:</dt><dd><p>name (string): Specifies the View name.
+path (string, optional): Specifies the file path that needs to be</p>
+<blockquote>
+<div><p>locked.</p>
+</div></blockquote>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>FileLockStatus: Response from the API. Get lock file status</dt><dd><p>response</p>
+</dd>
+</dl>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.views_controller.ViewsController.get_file_lock_status_by_id">
+<code class="sig-name descname"><span class="pre">get_file_lock_status_by_id</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/views_controller.html#ViewsController.get_file_lock_status_by_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.views_controller.ViewsController.get_file_lock_status_by_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/views/id/{id}/fileLocks.</p>
+<p>Returns error if op fails.</p>
+<dl>
+<dt>Args:</dt><dd><p>id (long|int): Specifies the View id.
+path (string, optional): Specifies the file path that needs to be</p>
+<blockquote>
+<div><p>locked.</p>
+</div></blockquote>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>FileLockStatus: Response from the API. Get lock file status</dt><dd><p>response</p>
+</dd>
+</dl>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.views_controller.ViewsController.get_nfs_connections">
+<code class="sig-name descname"><span class="pre">get_nfs_connections</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">view_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">view_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_count</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/views_controller.html#ViewsController.get_nfs_connections"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.views_controller.ViewsController.get_nfs_connections" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/nfsConnections.</p>
+<p>Returns error if op fails.</p>
+<dl>
+<dt>Args:</dt><dd><dl class="simple">
+<dt>view_names (list of string, optional): Parameters to get Nfs</dt><dd><p>List of names of views whose connections are to be fetched.</p>
+</dd>
+<dt>view_ids (list of long|int, optional): List of ids of</dt><dd><p>views whose connections are to be fetched.</p>
+</dd>
+</dl>
+<p>max_count (int): Maximum number of results to return.</p>
+</dd>
+<dt>Returns:</dt><dd><p>list of NfsConnection: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.views_controller.ViewsController.get_qo_s_policies">
+<code class="sig-name descname"><span class="pre">get_qo_s_policies</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/views_controller.html#ViewsController.get_qo_s_policies"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.views_controller.ViewsController.get_qo_s_policies" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/qosPolicies.</p>
+<p>Returns error if op fails.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>ids (list of long|int, optional): Specifies the Ids of QoS</dt><dd><p>Policies to filter by.</p>
+</dd>
+<dt>names (list of string, optional): Specifies the names of QoS</dt><dd><p>Policies to filter by.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>list of QoSPolicy: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.views_controller.ViewsController.get_smb_connections">
+<code class="sig-name descname"><span class="pre">get_smb_connections</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">view_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">view_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_count</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_sid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/views_controller.html#ViewsController.get_smb_connections"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.views_controller.ViewsController.get_smb_connections" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/smbConnections.</p>
+<p>Returns error if op fails.</p>
+<dl>
+<dt>Args:</dt><dd><dl class="simple">
+<dt>view_names (list of string, optional): Parameters to get Smb</dt><dd><p>Connections. List of names of views whose connections are to
+be fetched.</p>
+</dd>
+<dt>view_ids (list of long|int, optional): List of ids of views whose</dt><dd><p>connections are to be fetched.</p>
+</dd>
+</dl>
+<p>max_count (int, optional): Maximum number of results to return.
+include_sid (bool, optional): Specifies whether to include list of</p>
+<blockquote>
+<div><p>sids in the result.</p>
+</div></blockquote>
+</dd>
+<dt>Returns:</dt><dd><p>list of SmbConnection: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.views_controller.ViewsController.get_view_by_id">
+<code class="sig-name descname"><span class="pre">get_view_by_id</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/views_controller.html#ViewsController.get_view_by_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.views_controller.ViewsController.get_view_by_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/views/id/{id}.</p>
+<p>Returns the View corresponding to the specified View id.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>id (long|int): Specifies the View id.</p>
+</dd>
+<dt>Returns:</dt><dd><p>View: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.views_controller.ViewsController.get_view_by_name">
+<code class="sig-name descname"><span class="pre">get_view_by_name</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/views_controller.html#ViewsController.get_view_by_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.views_controller.ViewsController.get_view_by_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/views/{name}.</p>
+<p>Returns the View corresponding to the specified View name.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>name (string): Specifies the View name.</p>
+</dd>
+<dt>Returns:</dt><dd><p>View: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.views_controller.ViewsController.get_view_dir_quota_info">
+<code class="sig-name descname"><span class="pre">get_view_dir_quota_info</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">view_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/views_controller.html#ViewsController.get_view_dir_quota_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.views_controller.ViewsController.get_view_dir_quota_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/viewDirectoryQuotas.</p>
+<p>Gets directory quota info for a view. Returns error if op fails.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>view_name (string): The name of the view.</p>
+</dd>
+<dt>Returns:</dt><dd><p>DirQuotaInfo: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.views_controller.ViewsController.get_view_user_quotas">
+<code class="sig-name descname"><span class="pre">get_view_user_quotas</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">view_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_usage</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_user_with_quota_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude_users_within_alert_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unix_uid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_unix_ids_for_view</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_sids_for_view</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">view_names_for_user</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">summary_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page_count</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_view_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cookie</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/views_controller.html#ViewsController.get_view_user_quotas"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.views_controller.ViewsController.get_view_user_quotas" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/viewUserQuotas.</p>
+<p>Returns error if op fails.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>view_name (string, optional): Specifies the name of the input</dt><dd><p>view. If given, there could be three scenarios with the
+viewName input parameter: It gives the user quota overrides
+for this view, and the user quota settings. Returns
+‘usersQuotaAndUsage’. If given along with the user id, it
+returns the quota policy for this user on this view. Returns
+‘usersQuotaAndUsage’. If given along with SummaryOnly as true,
+a user quota summary for this view would be returned. Returns
+‘summaryForView’. If not given, then the user id is checked.</p>
+</dd>
+<dt>include_usage (bool, optional): If set to true, the logical usage</dt><dd><p>info is included only for users with quota overrides. By
+default, it is set to false.</p>
+</dd>
+<dt>include_user_with_quota_only (bool, optional): If set to true, the</dt><dd><p>result will only contain user with user quota enabled. By
+default, this field is set to false, and it’s only in effect
+when ‘SummaryOnly’ is set to false and ‘ViewName’ is
+specified.</p>
+</dd>
+<dt>exclude_users_within_alert_threshold (bool, optional): This field</dt><dd><p>can be set only when includeUsage is set to true. By default,
+all the users with logical usage &gt; 0 will be returned in the
+result. If this field is set to true, only the list of users
+who has exceeded the alert threshold will be returned.</p>
+</dd>
+<dt>unix_uid (int, optional): If interested in a user via</dt><dd><p>unix-identifier, include UnixUid. Otherwise, If a valid unix-id
+to SID mappings are available (i.e., when mixed mode is
+enabled) the server will perform the necessary id mapping and
+return the correct usage irrespective of whether the unix id /
+SID is provided.</p>
+</dd>
+<dt>sid (string, optional): If interested in a user via smb_client,</dt><dd><p>include SID. Otherwise, If a valid unix-id to SID mappings are
+available (i.e., when mixed mode is enabled) the server will
+perform the necessary id mapping and return the correct usage
+irrespective of whether the unix id / SID is provided. The
+string is of following format -
+S-1-IdentifierAuthority-SubAuthority1-SubAuthority2-…-SubAuth
+orityn.</p>
+</dd>
+<dt>user_unix_ids_for_view (list of int, optional): While making a</dt><dd><p>query for a view, this specifies a list of specific users with
+their unix uid for the result.</p>
+</dd>
+<dt>user_sids_for_view (list of string, optional): While making a</dt><dd><p>query for a view, this specifies a list of specific users with
+their Sid for the result.</p>
+</dd>
+<dt>view_names_for_user (list of string, optional): While making a</dt><dd><p>query for a user, this specifies a list of specific views for
+the result.</p>
+</dd>
+<dt>summary_only (bool, optional): Specifies a flag to just return a</dt><dd><p>summary. If set to true, and if ViewName is not nil, it
+returns the summary of users for a view. Otherwise if UserId
+not nil, and ViewName is nil then it fetches the summary for a
+user in his views.  By default, it is set to false.</p>
+</dd>
+<dt>page_count (long|int, optional): Specifies the max entries that</dt><dd><p>should be returned in the result.</p>
+</dd>
+<dt>max_view_id (long|int, optional): Related to fetching a particular</dt><dd><p>user’s quota and usage in all his views. It only pertains to
+the scenario where either UnixUid or Sid is specified, and
+ViewName is nil. Specify the maxViewId for All the views
+returned would have view_id’s less than or equal to the given
+MaxViewId if it is &gt;= 0.</p>
+</dd>
+<dt>cookie (string, optional): Cookie should be used from previous</dt><dd><p>call to list user quota overrides. It resumes (or gives the
+next set of values) from the result of the previous call.</p>
+</dd>
+<dt>output_format (string, optional): OutputFormat is the Output</dt><dd><p>format for the output. If it is not specified, default is
+json.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>ViewUserQuotas: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.views_controller.ViewsController.get_views">
+<code class="sig-name descname"><span class="pre">get_views</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tenant_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_under_hierarchy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">view_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">view_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">view_box_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">view_box_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">match_partial_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_count</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_protection_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_view_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_inactive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort_by_logical_usage</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">match_alias_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_views_with_antivirus_enabled_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_stats</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_views_with_data_lock_enabled_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/views_controller.html#ViewsController.get_views"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.views_controller.ViewsController.get_views" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/views.</p>
+<p>If no parameters are specified, all Views on the Cohesity Cluster are
+returned.
+Specifying parameters filters the results that are returned.
+NOTE: If maxCount is set and the number of Views returned exceeds the
+maxCount,
+there are more Views to return.
+To get the next set of Views, send another request and specify the id
+of the
+last View returned in viewList from the previous response.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>tenant_ids (list of string, optional): TenantIds contains ids of</dt><dd><p>the tenants for which objects are to be returned.</p>
+</dd>
+<dt>all_under_hierarchy (bool, optional): AllUnderHierarchy specifies</dt><dd><p>if objects of all the tenants under the hierarchy of the
+logged in user’s organization should be returned.</p>
+</dd>
+<dt>view_names (list of string, optional): Filter by a list of View</dt><dd><p>names.</p>
+</dd>
+<dt>view_ids (list of long|int, optional): Filter by a list of View</dt><dd><p>ids.</p>
+</dd>
+<dt>view_box_ids (list of long|int, optional): Filter by a list of</dt><dd><p>Storage Domains (View Boxes) specified by id.</p>
+</dd>
+<dt>view_box_names (list of string, optional): Filter by a list of</dt><dd><p>View Box names.</p>
+</dd>
+<dt>match_partial_names (bool, optional): If true, the names in</dt><dd><p>viewNames are matched by prefix rather than exactly matched.</p>
+</dd>
+<dt>max_count (int, optional): Specifies a limit on the number of</dt><dd><p>Views returned.</p>
+</dd>
+<dt>include_protection_jobs (bool, optional): Specifies if Protection</dt><dd><p>Jobs information needs to be returned along with view
+metadata. By default, if not set or set to true, Job
+information is returned.</p>
+</dd>
+<dt>max_view_id (long|int, optional): If the number of Views to return</dt><dd><p>exceeds the maxCount specified in the original request,
+specify the id of the last View from the viewList in the
+previous response to get the next set of Views.</p>
+</dd>
+<dt>include_inactive (bool, optional): Specifies if inactive Views on</dt><dd><p>this Remote Cluster (which have Snapshots copied by
+replication) should also be returned. Inactive Views are not
+counted towards the maxCount. By default, this field is set to
+false.</p>
+</dd>
+<dt>job_ids (list of long|int, optional): Filter by Protection Job</dt><dd><p>ids. Return Views that are being protected by listed Jobs,
+which are specified by ids.</p>
+</dd>
+<dt>sort_by_logical_usage (bool, optional): If set to true, the list</dt><dd><p>is sorted descending by logical usage.</p>
+</dd>
+<dt>match_alias_names (bool, optional): If true, view aliases are also</dt><dd><p>matched with the names in viewNames.</p>
+</dd>
+<dt>include_views_with_antivirus_enabled_only (bool, optional): If set</dt><dd><p>to true, the list will contain only the views for which
+antivirus scan is enabled.</p>
+</dd>
+<dt>include_stats (bool, optional): If set to true, stats of views</dt><dd><p>will be returned. By default this parameter is set to false.</p>
+</dd>
+<dt>include_views_with_data_lock_enabled_only (bool, optional): If set</dt><dd><p>to true, the list will contain only the views for which either
+file level data lock is enabled or view level data lock is
+enabled.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>GetViewsResult: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.views_controller.ViewsController.get_views_by_share_name">
+<code class="sig-name descname"><span class="pre">get_views_by_share_name</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tenant_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_under_hierarchy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">share_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_count</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pagination_cookie</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">match_partial_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/views_controller.html#ViewsController.get_views_by_share_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.views_controller.ViewsController.get_views_by_share_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/shares.</p>
+<p>If no parameters are specified, all shares on the Cohesity Cluster
+are
+returned. Specifying share name/prefix filters the results that are
+returned.
+NOTE: If maxCount is set and the number of Views returned exceeds the
+maxCount,
+there are more Views to return.
+To get the next set of Views, send another request and specify the
+pagination
+cookie from the previous response.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>tenant_ids (list of string, optional): TenantIds contains ids of</dt><dd><p>the tenants for which objects are to be returned.</p>
+</dd>
+<dt>all_under_hierarchy (bool, optional): AllUnderHierarchy specifies</dt><dd><p>if objects of all the tenants under the hierarchy of the
+logged in user’s organization should be returned.</p>
+</dd>
+<dt>share_name (string, optional): The share name(substring) that</dt><dd><p>needs to be searched against existing views and aliases.</p>
+</dd>
+<dt>max_count (int, optional): Specifies a limit on the number of</dt><dd><p>Views returned.</p>
+</dd>
+<dt>pagination_cookie (string, optional): Expected to be empty in the</dt><dd><p>first call to GetViewsByShareName. To get the next set of
+results, set this value to the pagination cookie value
+returned  in the response of the previous call.</p>
+</dd>
+<dt>match_partial_names (bool, optional): If true, the names in</dt><dd><p>viewNames are matched by prefix rather than exactly matched.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>GetViewsByShareNameResult: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.views_controller.ViewsController.list_nlm_locks">
+<code class="sig-name descname"><span class="pre">list_nlm_locks</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">view_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page_count</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cookie</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/views_controller.html#ViewsController.list_nlm_locks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.views_controller.ViewsController.list_nlm_locks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/nlmLocks.</p>
+<p>If no parameters are specified, all NLM locks currently on the
+Cohesity Cluster
+are returned. Specifying parameters filters the results that are
+returned.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>file_path (string, optional): Specifies the filepath in the view</dt><dd><p>relative to the root filesystem. If this field is specified,
+viewName field must also be specified.</p>
+</dd>
+<dt>view_name (string, optional): Specifies the name of the View in</dt><dd><p>which to search. If a view name is not specified, all the
+views in the Cluster is searched. This field is mandatory if
+filePath field is specified.</p>
+</dd>
+<dt>page_count (int, optional): Specifies the maximum number of NLM</dt><dd><p>locks to return in the response. This field cannot be set
+above 1000. If this is not set, maximum of 1000 entries are
+returned.</p>
+</dd>
+<dt>cookie (string, optional): Specifies the opaque string returned in</dt><dd><p>the previous response. If this is set, next set of active
+opens just after the previous response are returned. If this
+is not set, first set of NLM locks are returned.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>ListNlmLocksResponse: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.views_controller.ViewsController.update_user_quota_settings">
+<code class="sig-name descname"><span class="pre">update_user_quota_settings</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/views_controller.html#ViewsController.update_user_quota_settings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.views_controller.ViewsController.update_user_quota_settings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a PUT request to /public/viewUserQuotasSettings.</p>
+<p>Returns error if op fails.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>body (UpdateUserQuotaSettingsForView, optional): update user quota</dt><dd><p>metadata params.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>UserQuotaSettings: Response from the API. The User Quota settings</dt><dd><p>applied to a view.</p>
+</dd>
+</dl>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.views_controller.ViewsController.update_view">
+<code class="sig-name descname"><span class="pre">update_view</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/views_controller.html#ViewsController.update_view"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.views_controller.ViewsController.update_view" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a PUT request to /public/views.</p>
+<p>Returns the updated View.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>body (UpdateViewParam): Request to update a view.</p>
+</dd>
+<dt>Returns:</dt><dd><p>View: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.views_controller.ViewsController.update_view_alias">
+<code class="sig-name descname"><span class="pre">update_view_alias</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/views_controller.html#ViewsController.update_view_alias"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.views_controller.ViewsController.update_view_alias" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a PUT request to /public/viewAliases.</p>
+<p>Returns the updated View Alias.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>body (UpdateViewAliasParam): Request to update a View.</p>
+</dd>
+<dt>Returns:</dt><dd><p>ViewAlias: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.views_controller.ViewsController.update_view_by_name">
+<code class="sig-name descname"><span class="pre">update_view_by_name</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/views_controller.html#ViewsController.update_view_by_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.views_controller.ViewsController.update_view_by_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a PUT request to /public/views/{name}.</p>
+<p>Returns the updated View.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>name (string): Specifies the View name.
+body (UpdateViewParam): Request to update a view.</p>
+</dd>
+<dt>Returns:</dt><dd><p>View: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.views_controller.ViewsController.update_view_dir_quota">
+<code class="sig-name descname"><span class="pre">update_view_dir_quota</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/views_controller.html#ViewsController.update_view_dir_quota"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.views_controller.ViewsController.update_view_dir_quota" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a PUT request to /public/viewDirectoryQuotas.</p>
+<p>Updates a directory quota policy for a view. Returns error if op
+fails.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>body (UpdateDirQuotaArgs): Request to update view directory quota</dt><dd><p>policy.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>DirQuotaInfo: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.views_controller.ViewsController.update_view_user_quota">
+<code class="sig-name descname"><span class="pre">update_view_user_quota</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/views_controller.html#ViewsController.update_view_user_quota"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.views_controller.ViewsController.update_view_user_quota" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a PUT request to /public/viewUserQuotas.</p>
+<p>Returns error if op fails.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>body (ViewUserQuotaParameters, optional): update user quota</dt><dd><p>params.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>UserQuotaAndUsage: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="controllers.vlan_controller.html" class="btn btn-neutral float-right" title="controllers.vlan_controller module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="controllers.view_boxes_controller.html" class="btn btn-neutral float-left" title="controllers.view_boxes_controller module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Cohesity.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

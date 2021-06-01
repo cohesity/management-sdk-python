@@ -1,0 +1,1230 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>controllers.protection_sources_controller module &mdash; Cohesity Python SDK 1.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="controllers.remote_cluster_controller module" href="controllers.remote_cluster_controller.html" />
+    <link rel="prev" title="controllers.protection_runs_controller module" href="controllers.protection_runs_controller.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Cohesity Python SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#upgrade">Upgrade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#how-to-use">How to Use</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#questions-or-feedback">Questions or Feedback</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Endpoints</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="controllers.html">V1 Controllers</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="controllers.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="controllers.access_tokens_controller.html">controllers.access_tokens_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.active_directory_controller.html">controllers.active_directory_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.alerts_controller.html">controllers.alerts_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.analytics_controller.html">controllers.analytics_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.antivirus_service_group_controller.html">controllers.antivirus_service_group_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.app_controller.html">controllers.app_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.app_instance_controller.html">controllers.app_instance_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.audit_controller.html">controllers.audit_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.banner_controller.html">controllers.banner_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.base_controller.html">controllers.base_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.certificates_controller.html">controllers.certificates_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.clone_refresh_tasks_controller.html">controllers.clone_refresh_tasks_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.cluster_controller.html">controllers.cluster_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.cluster_partitions_controller.html">controllers.cluster_partitions_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.clusters_controller.html">controllers.clusters_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.custom_reporting_controller.html">controllers.custom_reporting_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.dashboard_controller.html">controllers.dashboard_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.groups_controller.html">controllers.groups_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.idps_controller.html">controllers.idps_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.interface_controller.html">controllers.interface_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.interface_group_controller.html">controllers.interface_group_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.ip_controller.html">controllers.ip_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.kms_configuration_controller.html">controllers.kms_configuration_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.ldap_provider_controller.html">controllers.ldap_provider_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.license_controller.html">controllers.license_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.monitoring_controller.html">controllers.monitoring_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.network_controller.html">controllers.network_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.nodes_controller.html">controllers.nodes_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.notifications_controller.html">controllers.notifications_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.packages_controller.html">controllers.packages_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.preferences_controller.html">controllers.preferences_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.principals_controller.html">controllers.principals_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.privileges_controller.html">controllers.privileges_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.protection_jobs_controller.html">controllers.protection_jobs_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.protection_objects_controller.html">controllers.protection_objects_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.protection_policies_controller.html">controllers.protection_policies_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.protection_runs_controller.html">controllers.protection_runs_controller module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">controllers.protection_sources_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.remote_cluster_controller.html">controllers.remote_cluster_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.remote_restore_controller.html">controllers.remote_restore_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.reports_controller.html">reports_controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.restore_tasks_controller.html">controllers.restore_tasks_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.roles_controller.html">controllers.roles_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.routes_controller.html">controllers.routes_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.scheduler_controller.html">controllers.scheduler_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.search_controller.html">controllers.search_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.smb_file_opens_controller.html">controllers.smb_file_opens_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.static_route_controller.html">controllers.static_route_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.statistics_controller.html">controllers.statistics_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.stats_controller.html">controllers.stats_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.tags_controller.html">controllers.tags_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.tenant_controller.html">controllers.tenant_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.tenants_controller.html">controllers.tenants_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.vaults_controller.html">controllers.vaults_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.view_boxes_controller.html">controllers.view_boxes_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.views_controller.html">controllers.views_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.vlan_controller.html">controllers.vlan_controller module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="controllers_v2.html">V2 Controllers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="controllers_v2.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.active_directory_controller.html">controllers_v2.active_directory_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.audit_log_controller.html">controllers_v2.audit_log_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.base_controller.html">controllers_v2.base_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.data_migration_controller.html">controllers_v2.data_migration_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.keystone_controller.html">controllers_v2.keystone_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.miscellaneous_controller.html">controllers_v2.miscellaneous_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.network_information_service_nis_controller.html">controllers_v2.network_information_service_nis_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.objects_controller.html">controllers_v2.objects_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.patches_controller.html">controllers_v2.patches_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.platform_controller.html">controllers_v2.platform_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.protection_groups_controller.html">controllers_v2.protection_groups_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.protection_policies_controller.html">controllers_v2.protection_policies_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.protection_sources_controller.html">controllers_v2.protection_sources_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.recoveries_controller.html">controllers_v2.recoveries_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.search_controller.html">controllers_v2.search_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.security_controller.html">controllers_v2.security_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.stats_controller.html">controllers_v2.stats_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.tasks_controller.html">controllers_v2.tasks_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.tenants_controller.html">controllers_v2.tenants_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.test_data_management_controller.html">controllers_v2.test_data_management_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.users_controller.html">controllers_v2.users_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.views_controller.html">controllers_v2.views_controller module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="controllers_v2.html#module-controllers_v2">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Cohesity Python SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="controllers.html">controllers package</a> &raquo;</li>
+        
+      <li>controllers.protection_sources_controller module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/controllers.protection_sources_controller.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-controllers.protection_sources_controller">
+<span id="controllers-protection-sources-controller-module"></span><h1>controllers.protection_sources_controller module<a class="headerlink" href="#module-controllers.protection_sources_controller" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="controllers.protection_sources_controller.ProtectionSourcesController">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">controllers.protection_sources_controller.</span></code><code class="sig-name descname"><span class="pre">ProtectionSourcesController</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">call_back</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/protection_sources_controller.html#ProtectionSourcesController"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.protection_sources_controller.ProtectionSourcesController" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cohesity_management_sdk.controllers.base_controller.BaseController</span></code></p>
+<p>A Controller to access Endpoints in the cohesity_management_sdk API.</p>
+<dl class="py method">
+<dt id="controllers.protection_sources_controller.ProtectionSourcesController.create_refresh_protection_source_by_id">
+<code class="sig-name descname"><span class="pre">create_refresh_protection_source_by_id</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/protection_sources_controller.html#ProtectionSourcesController.create_refresh_protection_source_by_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.protection_sources_controller.ProtectionSourcesController.create_refresh_protection_source_by_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a POST request to /public/protectionSources/refresh/{id}.</p>
+<p>Force an immediate refresh between the specified Protection Source
+tree
+on the Cohesity Cluster and the Inventory tree
+in the associated vCenter Server.</p>
+<p>For example if a new VM is added to the vCenter Server, after a
+refresh,
+a new Protection Source node for this VM is added to the Protection
+Sources
+tree.</p>
+<p>Success indicates the forced refresh has been completed. For larger
+sources it
+is possible for the operation to timeout before the force refresh has
+been
+completed. This timeout can be increased by modifying the
+‘iris_post_timeout_msecs_to_magneto’ gflag on the Iris service.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>id (long|int): Id of the root node of the Protection Sources tree</dt><dd><p>to refresh.  Force a refresh of the Object hierarchy for the
+passed in Protection Sources Id.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>void: Response from the API. No Content</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.protection_sources_controller.ProtectionSourcesController.create_register_application_servers">
+<code class="sig-name descname"><span class="pre">create_register_application_servers</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/protection_sources_controller.html#ProtectionSourcesController.create_register_application_servers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.protection_sources_controller.ProtectionSourcesController.create_register_application_servers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a POST request to /public/protectionSources/applicationServers.</p>
+<p>Registering Application Servers will help Cohesity Cluster such that
+any
+application specific data can be backed up.
+Returns the Protection Source registered upon success.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>body (RegisterApplicationServersParameters): Request to register</dt><dd><p>Application Servers in a Protection Source.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>ProtectionSource: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.protection_sources_controller.ProtectionSourcesController.create_register_protection_source">
+<code class="sig-name descname"><span class="pre">create_register_protection_source</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/protection_sources_controller.html#ProtectionSourcesController.create_register_protection_source"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.protection_sources_controller.ProtectionSourcesController.create_register_protection_source" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a POST request to /public/protectionSources/register.</p>
+<p>Register a Protection Source on the Cohesity Cluster.
+It could be the root node of a vCenter Server or a physical server.
+Returns the newly registered Protection Source upon success.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>body (RegisterProtectionSourceParameters): Request to register a</dt><dd><p>protection source.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>ProtectionSource: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.protection_sources_controller.ProtectionSourcesController.create_upgrade_physical_agents">
+<code class="sig-name descname"><span class="pre">create_upgrade_physical_agents</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/protection_sources_controller.html#ProtectionSourcesController.create_upgrade_physical_agents"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.protection_sources_controller.ProtectionSourcesController.create_upgrade_physical_agents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a POST request to /public/physicalAgents/upgrade.</p>
+<p>If the request is successful, the Cohesity agents on the specified
+Physical Servers are upgraded to the agent release
+currently available from this Cohesity Cluster.
+For example if the Cluster is upgraded from 3.7.1 to 4.0,
+the agents on the specified Physical Servers can be upgraded to 4.0
+using
+this POST operation.
+To get the agentIds to pass into this operation, call
+GET /public/protectionSources with the environment set to
+‘KPhysical’.
+In addition this GET operation returns the agentUpgradability field,
+that
+indicates if an agent can be upgraded. Use the agentUpgradability
+field
+to determine which Physical Servers to upgrade using this
+POST /public/physicalAgents/upgrade operation.
+WARNING: Only agents at a particular Cohesity release can be
+upgraded using this operation.
+See the Cohesity online help for details.
+Returns the status of the upgrade initiation.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>body (UpgradePhysicalServerAgents, optional): Request to upgrade</dt><dd><p>agents on Physical Servers.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>UpgradePhysicalAgentsMessage: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.protection_sources_controller.ProtectionSourcesController.delete_unregister_application_servers">
+<code class="sig-name descname"><span class="pre">delete_unregister_application_servers</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/protection_sources_controller.html#ProtectionSourcesController.delete_unregister_application_servers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.protection_sources_controller.ProtectionSourcesController.delete_unregister_application_servers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a DELETE request to /public/protectionSources/applicationServers/{id}.</p>
+<p>Unregistering Application Servers will fail if the Protection Source
+is
+currently being backed up.
+Returns the Protection Source whose Application Servers are
+unregistered upon
+success.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>body (UnRegisterApplicationServersParameters): Request to register</dt><dd><p>a protection source.</p>
+</dd>
+<dt>id (long|int): Specifies a unique id of the Protection Source to</dt><dd><p>unregister the Application Servers. If the Protection Source
+is currently being backed up, unregister operation will fail.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>ProtectionSource: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.protection_sources_controller.ProtectionSourcesController.delete_unregister_protection_source">
+<code class="sig-name descname"><span class="pre">delete_unregister_protection_source</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/protection_sources_controller.html#ProtectionSourcesController.delete_unregister_protection_source"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.protection_sources_controller.ProtectionSourcesController.delete_unregister_protection_source" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a DELETE request to /public/protectionSources/{id}.</p>
+<p>Unregister a previously registered Protection Source.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>id (long|int): Specifies a unique id of the Protection Source to</dt><dd><p>unregister. If the Protection Source is currently being backed
+up, unregister operation will fail.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>void: Response from the API. No Content</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.protection_sources_controller.ProtectionSourcesController.download_cft_file">
+<code class="sig-name descname"><span class="pre">download_cft_file</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/protection_sources_controller.html#ProtectionSourcesController.download_cft_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.protection_sources_controller.ProtectionSourcesController.download_cft_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/protectionSources/downloadCftFile.</p>
+<p>TODO: Type description here.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>body (DownloadCftParams): Specifies the request to download CFT.</p>
+</dd>
+<dt>Returns:</dt><dd><p>DownloadCftResponse: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.protection_sources_controller.ProtectionSourcesController.get_download_physical_agent">
+<code class="sig-name descname"><span class="pre">get_download_physical_agent</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">host_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pkg_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">agent_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/protection_sources_controller.html#ProtectionSourcesController.get_download_physical_agent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.protection_sources_controller.ProtectionSourcesController.get_download_physical_agent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/physicalAgents/download.</p>
+<p>Host type could be Linux, Windows, AIX.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>host_type (HostTypeDownloadPhysicalAgentEnum): Specifies the host</dt><dd><p>type for which user wants to download the physical agent.
+‘kLinux’ indicates the Linux operating system. ‘kWindows’
+indicates the Microsoft Windows operating system. ‘kAix’
+indicates the IBM AIX operating system. ‘kSolaris’ indicates
+the Oracle Solaris operating system. ‘kSapHana’ indicates the
+Sap Hana database system developed by SAP SE. ‘kOther’
+indicates the other types of operating system.</p>
+</dd>
+<dt>pkg_type (PkgTypeEnum, optional): Specifies the Linux installer</dt><dd><p>package type applicable only to Linux OS and the value can be
+any of (“kScript”,”kRPM”, “kSuseRPM”, “kDEB”) ‘kScript’
+indicates a script based agent installer. ‘kRPM’ indicates a
+RPM agent installer. ‘kSuseRPM’ indicates a Open Suse RPM
+installer. ‘kDEB’ indicates a Debian agent installer.</p>
+</dd>
+<dt>agent_type (AgentTypeEnum, optional): Specifies agent type. Can be</dt><dd><p>“kGo” for go agent and “kJava” for java agent and “kCpp” for
+c++ agent. ‘kCpp’ indicates a c++ agent. ‘kJava’ indicates a
+java agent. ‘kGo’ indicates a go agent.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>list of int: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.protection_sources_controller.ProtectionSourcesController.get_protection_sources_object_by_id">
+<code class="sig-name descname"><span class="pre">get_protection_sources_object_by_id</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/protection_sources_controller.html#ProtectionSourcesController.get_protection_sources_object_by_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.protection_sources_controller.ProtectionSourcesController.get_protection_sources_object_by_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/protectionSources/objects/{id}.</p>
+<p>Returns the Protection Source object corresponding to the specified
+id.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>id (long|int): Specifies a unique id of the Protection Source to</dt><dd><p>return.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>ProtectionSource: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.protection_sources_controller.ProtectionSourcesController.get_protection_sources_objects">
+<code class="sig-name descname"><span class="pre">get_protection_sources_objects</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/protection_sources_controller.html#ProtectionSourcesController.get_protection_sources_objects"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.protection_sources_controller.ProtectionSourcesController.get_protection_sources_objects" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/protectionSources/objects.</p>
+<p>Returns the Protection Source objects corresponding to the specified
+ids.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>object_ids (list of long|int, optional): Specifies the ids of the</dt><dd><p>Protection Source objects to return.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>list of ProtectionSource: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.protection_sources_controller.ProtectionSourcesController.list_application_servers">
+<code class="sig-name descname"><span class="pre">list_application_servers</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">protection_sources_root_node_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">environment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">protection_source_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">application</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/protection_sources_controller.html#ProtectionSourcesController.list_application_servers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.protection_sources_controller.ProtectionSourcesController.list_application_servers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/protectionSources/applicationServers.</p>
+<p>Given the root node id of a Protection Source tree, returns the list
+of
+Application Servers registered under that tree based on the filters.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>protection_sources_root_node_id (long|int, optional): Specifies</dt><dd><p>the Protection Source Id of the root node of a Protection
+Sources tree. A root node represents a registered Source on
+the Cohesity Cluster, such as a vCenter Server.</p>
+</dd>
+<dt>environment (EnvironmentListApplicationServersEnum, optional):</dt><dd><p>Specifies the environment such as ‘kPhysical’ or ‘kVMware’ of
+the Protection Source tree. overrideDescription: true
+Supported environment types such as ‘kView’, ‘kSQL’,
+‘kVMware’, etc. NOTE: ‘kPuppeteer’ refers to Cohesity’s Remote
+Adapter. ‘kVMware’ indicates the VMware Protection Source
+environment. ‘kHyperV’ indicates the HyperV Protection Source
+environment. ‘kSQL’ indicates the SQL Protection Source
+environment. ‘kView’ indicates the View Protection Source
+environment. ‘kPuppeteer’ indicates the Cohesity’s Remote
+Adapter. ‘kPhysical’ indicates the physical Protection Source
+environment. ‘kPure’ indicates the Pure Storage Protection
+Source environment. ‘Nimble’ indicates the Nimble Storage
+Protection Source environment. ‘kAzure’ indicates the
+Microsoft’s Azure Protection Source environment. ‘kNetapp’
+indicates the Netapp Protection Source environment. ‘kAgent’
+indicates the Agent Protection Source environment.
+‘kGenericNas’ indicates the Generic Network Attached Storage
+Protection Source environment. ‘kAcropolis’ indicates the
+Acropolis Protection Source environment. ‘kPhsicalFiles’
+indicates the Physical Files Protection Source environment.
+‘kIsilon’ indicates the Dell EMC’s Isilon Protection Source
+environment. ‘kGPFS’ indicates IBM’s GPFS Protection Source
+environment. ‘kKVM’ indicates the KVM Protection Source
+environment. ‘kAWS’ indicates the AWS Protection Source
+environment. ‘kExchange’ indicates the Exchange Protection
+Source environment. ‘kHyperVVSS’ indicates the HyperV VSS
+Protection Source environment. ‘kOracle’ indicates the Oracle
+Protection Source environment. ‘kGCP’ indicates the Google
+Cloud Platform Protection Source environment. ‘kFlashBlade’
+indicates the Flash Blade Protection Source environment.
+‘kAWSNative’ indicates the AWS Native Protection Source
+environment. ‘kO365’ indicates the Office 365 Protection Source
+environment. ‘kO365Outlook’ indicates Office 365 outlook
+Protection Source environment. ‘kHyperFlex’ indicates the Hyper
+Flex Protection Source environment. ‘kGCPNative’ indicates the
+GCP Native Protection Source environment. ‘kAzureNative’
+indicates the Azure Native Protection Source environment.
+‘kKubernetes’ indicates a Kubernetes Protection Source
+environment. ‘kElastifile’ indicates Elastifile Protection
+Source environment. ‘kAD’ indicates Active Directory
+Protection Source environment. ‘kRDSSnapshotManager’
+indicates AWS RDS Protection Source environment. ‘kCassandra’
+indicates Cassandra Protection Source environment. ‘kMongoDB’
+indicates MongoDB Protection Source environment. ‘kCouchbase’
+indicates Couchbase Protection Source environment. ‘kHdfs’
+indicates Hdfs Protection Source environment. ‘kHive’
+indicates Hive Protection Source environment. ‘kHBase’
+indicates HBase Protection Source environment.</p>
+</dd>
+<dt>protection_source_id (long|int, optional): Specifies the</dt><dd><p>Protection Source Id of the ‘kPhysical’ or ‘kVMware’ entity in
+the Protection Source tree hosting the applications.</p>
+</dd>
+<dt>application (ApplicationEnum, optional): Specifies the application</dt><dd><p>such as ‘kSQL’, ‘kExchange’ running on the Protection Source.
+overrideDescription: true Supported environment types such as
+‘kView’, ‘kSQL’, ‘kVMware’, etc. NOTE: ‘kPuppeteer’ refers to
+Cohesity’s Remote Adapter. ‘kVMware’ indicates the VMware
+Protection Source environment. ‘kHyperV’ indicates the HyperV
+Protection Source environment. ‘kSQL’ indicates the SQL
+Protection Source environment. ‘kView’ indicates the View
+Protection Source environment. ‘kPuppeteer’ indicates the
+Cohesity’s Remote Adapter. ‘kPhysical’ indicates the physical
+Protection Source environment. ‘kPure’ indicates the Pure
+Storage Protection Source environment. ‘Nimble’ indicates the
+Nimble Storage Protection Source environment. ‘kAzure’
+indicates the Microsoft’s Azure Protection Source environment.
+‘kNetapp’ indicates the Netapp Protection Source environment.
+‘kAgent’ indicates the Agent Protection Source environment.
+‘kGenericNas’ indicates the Generic Network Attached Storage
+Protection Source environment. ‘kAcropolis’ indicates the
+Acropolis Protection Source environment. ‘kPhsicalFiles’
+indicates the Physical Files Protection Source environment.
+‘kIsilon’ indicates the Dell EMC’s Isilon Protection Source
+environment. ‘kGPFS’ indicates IBM’s GPFS Protection Source
+environment. ‘kKVM’ indicates the KVM Protection Source
+environment. ‘kAWS’ indicates the AWS Protection Source
+environment. ‘kExchange’ indicates the Exchange Protection
+Source environment. ‘kHyperVVSS’ indicates the HyperV VSS
+Protection Source environment. ‘kOracle’ indicates the Oracle
+Protection Source environment. ‘kGCP’ indicates the Google
+Cloud Platform Protection Source environment. ‘kFlashBlade’
+indicates the Flash Blade Protection Source environment.
+‘kAWSNative’ indicates the AWS Native Protection Source
+environment. ‘kO365’ indicates the
+Office 365 Protection Source environment. ‘kO365Outlook’
+indicates Office 365 outlook Protection Source environment.
+‘kHyperFlex’ indicates the Hyper Flex Protection Source
+environment. ‘kGCPNative’ indicates the GCP Native Protection
+Source environment. ‘kAzureNative’ indicates the Azure Native
+Protection Source environment. ‘kKubernetes’ indicates a
+Kubernetes Protection Source environment. ‘kElastifile’
+indicates Elastifile Protection Source environment.
+‘kAD’ indicates Active Directory Protection Source environment.
+‘kRDSSnapshotManager’ indicates AWS RDS Protection Source
+environment. ‘kCassandra’ indicates Cassandra Protection Source
+environment. ‘kMongoDB’ indicates MongoDB Protection Source
+environment. ‘kCouchbase’ indicates Couchbase Protection Source
+environment. ‘kHdfs’ indicates Hdfs Protection Source
+environment. ‘kHive’ indicates Hive Protection Source
+environment. ‘kHBase’ indicates HBase Protection Source
+environment.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>list of RegisteredApplicationServer: Response from the API.</dt><dd><p>Success</p>
+</dd>
+</dl>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.protection_sources_controller.ProtectionSourcesController.list_data_store_information">
+<code class="sig-name descname"><span class="pre">list_data_store_information</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/protection_sources_controller.html#ProtectionSourcesController.list_data_store_information"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.protection_sources_controller.ProtectionSourcesController.list_data_store_information" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/protectionSources/datastores.</p>
+<p>Returns the datastore information in VMware environment.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>source_id (long|int): Specifies the id of the virtual machine in</dt><dd><p>vmware environment.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>list of ProtectionSource: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.protection_sources_controller.ProtectionSourcesController.list_exchange_dag_hosts">
+<code class="sig-name descname"><span class="pre">list_exchange_dag_hosts</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">endpoint</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">protection_source_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/protection_sources_controller.html#ProtectionSourcesController.list_exchange_dag_hosts"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.protection_sources_controller.ProtectionSourcesController.list_exchange_dag_hosts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/protectionSources/exchangeDagHosts.</p>
+<p>Returns information about all the exchange hosts that belong to an
+Exchange
+DAG.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>endpoint (string, optional): Specifies the endpoint of Exchange</dt><dd><p>DAG or a host which is member of Exchange DAG or a standalone
+exchange server.</p>
+</dd>
+<dt>protection_source_id (int): Specifies the Protection Source Id of</dt><dd><p>the Exchange DAG source.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>ExchangeDagHostsResponse: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.protection_sources_controller.ProtectionSourcesController.list_protected_objects">
+<code class="sig-name descname"><span class="pre">list_protected_objects</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">environment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_under_hierarchy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_rpo_snapshots</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/protection_sources_controller.html#ProtectionSourcesController.list_protected_objects"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.protection_sources_controller.ProtectionSourcesController.list_protected_objects" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/protectionSources/protectedObjects.</p>
+<p>Returns the list of protected Objects in a registered Protection
+Source.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>environment (EnvironmentListProtectedObjectsEnum): Specifies the</dt><dd><p>environment type of the registered Protection Source such as
+‘kVMware’, ‘kSQL’, ‘kView’ ‘kPhysical’, ‘kPuppeteer’, ‘kPure’,
+‘kNetapp’, ‘kGenericNas’, ‘kHyperV’, ‘kAcropolis’, or
+‘kAzure’. For example, set this parameter to ‘kVMware’ if the
+registered Protection Source is of ‘kVMware’ environment type.
+Supported environment types such as ‘kView’, ‘kSQL’,
+‘kVMware’, etc. NOTE: ‘kPuppeteer’ refers to Cohesity’s Remote
+Adapter. ‘kVMware’ indicates the VMware Protection Source
+environment. ‘kHyperV’ indicates the HyperV Protection Source
+environment. ‘kSQL’ indicates the SQL Protection Source
+environment. ‘kView’ indicates the View Protection Source
+environment. ‘kPuppeteer’ indicates the Cohesity’s Remote
+Adapter. ‘kPhysical’ indicates the physical Protection Source
+environment. ‘kPure’ indicates the Pure Storage Protection
+Source environment. ‘Nimble’ indicates the Nimble Storage
+Protection Source environment. ‘kAzure’ indicates the
+Microsoft’s Azure Protection Source environment. ‘kNetapp’
+indicates the Netapp Protection Source environment. ‘kAgent’
+indicates the Agent Protection Source environment.
+‘kGenericNas’ indicates the Generic Network Attached Storage
+Protection Source environment. ‘kAcropolis’ indicates the
+Acropolis Protection Source environment. ‘kPhsicalFiles’
+indicates the Physical Files Protection Source environment.
+‘kIsilon’ indicates the Dell EMC’s Isilon Protection Source
+environment. ‘kGPFS’ indicates IBM’s GPFS Protection Source
+environment. ‘kKVM’ indicates the KVM Protection Source
+environment. ‘kAWS’ indicates the AWS Protection Source
+environment. ‘kExchange’ indicates the Exchange Protection
+Source environment. ‘kHyperVVSS’ indicates the HyperV VSS
+Protection Source environment. ‘kOracle’ indicates the Oracle
+Protection Source environment. ‘kGCP’ indicates the Google
+Cloud Platform Protection Source environment. ‘kFlashBlade’
+indicates the Flash Blade Protection Source environment.
+‘kAWSNative’ indicates the AWS Native Protection Source
+environment. ‘kO365’ indicates the
+Office 365 Protection Source environment. ‘kO365Outlook’
+indicates Office 365 outlook Protection Source environment.
+‘kHyperFlex’ indicates the Hyper Flex Protection Source
+environment. ‘kGCPNative’ indicates the GCP Native Protection
+Source environment. ‘kAzureNative’ indicates the Azure Native
+Protection Source environment. ‘kKubernetes’ indicates a
+Kubernetes Protection Source environment. ‘kElastifile’
+indicates Elastifile Protection Source environment. ‘kAD’
+indicates Active Directory Protection Source environment.
+‘kRDSSnapshotManager’ indicates AWS RDS Protection Source
+environment. ‘kCassandra’ indicates Cassandra Protection
+Source environment. ‘kMongoDB’ indicates MongoDB Protection
+Source environment. ‘kCouchbase’ indicates Couchbase Protection
+Source environment. ‘kHdfs’ indicates Hdfs Protection Source
+environment. ‘kHive’ indicates Hive Protection Source
+environment. ‘kHBase’ indicates HBase Protection Source
+environment.</p>
+</dd>
+<dt>id (long|int): Specifies the Id of a registered Protection Source</dt><dd><p>of the type given in environment.</p>
+</dd>
+<dt>all_under_hierarchy (bool, optional): AllUnderHierarchy specifies</dt><dd><p>if objects of all the tenants under the hierarchy of the
+logged in user’s organization should be returned.</p>
+</dd>
+<dt>include_rpo_snapshots (bool, optional): If true, then the</dt><dd><p>Protected Objects protected by RPO policies will also be
+returned.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>list of ProtectedVmInfo: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.protection_sources_controller.ProtectionSourcesController.list_protection_sources">
+<code class="sig-name descname"><span class="pre">list_protection_sources</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">after_cursor_entity_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">before_cursor_entity_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">has_valid_mailbox</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">has_valid_onedrive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_levels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude_aws_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_datastores</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_networks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_vm_folders</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_system_v_apps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">environments</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">environment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_entity_permission_info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_source_credentials</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encryption_key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tenant_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_under_hierarchy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/protection_sources_controller.html#ProtectionSourcesController.list_protection_sources"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.protection_sources_controller.ProtectionSourcesController.list_protection_sources" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/protectionSources.</p>
+<p>If no parameters are specified, all Protection Sources that are
+registered
+on the Cohesity Cluster are returned.
+In addition, an Object subtree gathered from each Source is returned.
+For example, the Cohesity Cluster interrogates a Source VMware vCenter
+Server
+and creates an hierarchical Object subtree that mirrors the
+Inventory tree on vCenter Server.
+The contents of the Object tree are returned as a “nodes” hierarchy
+of “protectionSource”s.
+Specifying parameters can alter the results that are returned.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>after_cursor_entity_id (long|int, optional): Specifies the entity</dt><dd><p>id starting from which the items are to be returned.</p>
+</dd>
+<dt>before_cursor_entity_id (long|int, optional): Specifies the entity</dt><dd><p>id upto which the items are to be returned.</p>
+</dd>
+<dt>node_id (long|int, optional): Specifies the entity id for the Node</dt><dd><p>at any level within the Source entity hierarchy whose children
+are to be paginated.</p>
+</dd>
+<dt>page_size (long|int, optional): Specifies the maximum number of</dt><dd><p>entities to be returned within the page.</p>
+</dd>
+<dt>has_valid_mailbox (bool, optional): If set to true, users with</dt><dd><p>valid mailbox will be returned.</p>
+</dd>
+<dt>has_valid_onedrive (bool, optional): If set to true, users with</dt><dd><p>valid onedrive will be returned.</p>
+</dd>
+<dt>id (long|int, optional): Return the Object subtree for the passed</dt><dd><p>in Protection Source id.</p>
+</dd>
+<dt>num_levels (int, optional): Specifies the expected number of levels</dt><dd><p>from the root node to be returned in the entity hierarchy
+response.</p>
+</dd>
+<dt>exclude_types (list of ExcludeTypeEnum, optional): Filter out the</dt><dd><p>Object types (and their subtrees) that match the passed in
+types such as ‘kVCenter’, ‘kFolder’, ‘kDatacenter’,
+‘kComputeResource’, ‘kResourcePool’, ‘kDatastore’,
+‘kHostSystem’, ‘kVirtualMachine’, etc. For example, set this
+parameter to ‘kResourcePool’ to exclude Resource Pool Objects
+from being returned.</p>
+</dd>
+<dt>exclude_aws_types (list of ExcludeAwsTypeEnum, optional): Specifies</dt><dd><p>the Object types to be filtered out for AWS that match the
+passed in types such as ‘kEC2Instance’, ‘kRDSInstance’ etc.
+For example, set this parameter to ‘kEC2Instance’ to exclude
+ec2 instance from being returned.</p>
+</dd>
+<dt>include_datastores (bool, optional): Set this parameter to true to</dt><dd><p>also return kDatastore object types found in the Source in
+addition to their Object subtrees. By default, datastores are
+not returned.</p>
+</dd>
+<dt>include_networks (bool, optional): Set this parameter to true to</dt><dd><p>also return kNetwork object types found in the Source in
+addition to their Object subtrees. By default, network objects
+are not returned.</p>
+</dd>
+<dt>include_vm_folders (bool, optional): Set this parameter to true to</dt><dd><p>also return kVMFolder object types found in the Source in
+addition to their Object subtrees. By default, VM folder
+objects are not returned.</p>
+</dd>
+<dt>include_system_v_apps (bool, optional): Set this parameter to true</dt><dd><p>to also return system VApp object types found in the Source in
+addition to their Object subtrees. By default, VM folder
+objects are not returned.</p>
+</dd>
+<dt>environments (list of EnvironmentListProtectionSourcesEnum,</dt><dd><p>optional): Return only Protection Sources that match the
+passed in environment type such as ‘kVMware’, ‘kSQL’, ‘kView’
+‘kPhysical’, ‘kPuppeteer’, ‘kPure’, ‘kNetapp’, ‘kGenericNas’,
+‘kHyperV’, ‘kAcropolis’, or ‘kAzure’. For example, set this
+parameter to ‘kVMware’ to only return the Sources (and their
+Object subtrees) found in the ‘kVMware’ (VMware vCenter
+Server) environment.  NOTE: ‘kPuppeteer’ refers to Cohesity’s
+Remote Adapter.</p>
+</dd>
+<dt>environment (string, optional): This field is deprecated. Use</dt><dd><p>environments instead. deprecated: true</p>
+</dd>
+<dt>include_entity_permission_info (bool, optional): If specified,</dt><dd><p>then a list of entites with permissions assigned to them are
+returned.</p>
+</dd>
+<dt>sids (list of string, optional): Filter the object subtree for the</dt><dd><p>sids given in the list.</p>
+</dd>
+<dt>include_source_credentials (bool, optional): If specified, then</dt><dd><p>crednetial for the registered sources will be included.
+Credential is first encrypted with internal key and then
+reencrypted with user supplied ‘encryption_key’.</p>
+</dd>
+<dt>encryption_key (string, optional): Key to be used to encrypt the</dt><dd><p>source credential. If include_source_credentials is set to true
+this key must be specified.</p>
+</dd>
+<dt>tenant_ids (list of string, optional): TenantIds contains ids of</dt><dd><p>the tenants for which objects are to be returned.</p>
+</dd>
+<dt>all_under_hierarchy (bool, optional): AllUnderHierarchy specifies</dt><dd><p>if objects of all the tenants under the hierarchy of the
+logged in user’s organization should be returned.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>list of ProtectionSourceNode: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.protection_sources_controller.ProtectionSourcesController.list_protection_sources_registration_info">
+<code class="sig-name descname"><span class="pre">list_protection_sources_registration_info</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">environments</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_entity_permission_info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_source_credentials</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encryption_key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_applications_tree_info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tenant_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_under_hierarchy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/protection_sources_controller.html#ProtectionSourcesController.list_protection_sources_registration_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.protection_sources_controller.ProtectionSourcesController.list_protection_sources_registration_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/protectionSources/registrationInfo.</p>
+<p>Returns the registration and protection information of the registered
+Protection Sources.</p>
+<dl>
+<dt>Args:</dt><dd><dl>
+<dt>environments (list of</dt><dd><p>EnvironmentListProtectionSourcesRegistrationInfoEnum,
+optional): Return only Protection Sources that match the
+passed in environment type such as ‘kVMware’, ‘kSQL’, ‘kView’
+‘kPhysical’, ‘kPuppeteer’, ‘kPure’, ‘kNetapp’, ‘kGenericNas’,
+‘kHyperV’, ‘kAcropolis’, or ‘kAzure’. For example, set this
+parameter to ‘kVMware’ to only return the Sources (and their
+Object subtrees) found in the ‘kVMware’ (VMware vCenter
+Server) environment.  NOTE: ‘kPuppeteer’ refers to Cohesity’s
+Remote Adapter.</p>
+</dd>
+<dt>ids (list of long|int, optional): Return only the registered root</dt><dd><p>nodes whose Ids are given in the list.</p>
+</dd>
+<dt>include_entity_permission_info (bool, optional): If specified,</dt><dd><p>then a list of entities with permissions assigned to them are
+returned.</p>
+</dd>
+<dt>sids (list of string, optional): Filter the registered root nodes</dt><dd><p>for the sids given in the list.</p>
+</dd>
+<dt>include_source_credentials (bool, optional): If specified, then</dt><dd><p>crednetial for the registered sources will be included.
+Credential is first encrypted with internal key and then</p>
+<blockquote>
+<div><p>reencrypted with user supplied ‘encryption_key’.</p>
+</div></blockquote>
+</dd>
+<dt>encryption_key (string, optional): Key to be used to encrypt the</dt><dd><p>source credential. If include_source_credentials is set to true
+this key must be specified.</p>
+</dd>
+<dt>include_applications_tree_info (bool, optional): Specifies whether</dt><dd><p>to return applications tree info or not.</p>
+</dd>
+<dt>tenant_ids (list of string, optional): TenantIds contains ids of</dt><dd><p>the tenants for which objects are to be returned.</p>
+</dd>
+<dt>all_under_hierarchy (bool, optional): AllUnderHierarchy specifies</dt><dd><p>if objects of all the tenants under the hierarchy of the
+logged in user’s organization should be returned.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>GetRegistrationInfoResponse: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.protection_sources_controller.ProtectionSourcesController.list_protection_sources_root_nodes">
+<code class="sig-name descname"><span class="pre">list_protection_sources_root_nodes</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">environments</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">environment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/protection_sources_controller.html#ProtectionSourcesController.list_protection_sources_root_nodes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.protection_sources_controller.ProtectionSourcesController.list_protection_sources_root_nodes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/protectionSources/rootNodes.</p>
+<p>Returns the root Protection Sources and the registration information
+for
+each of these Sources.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>id (long|int, optional): Return the registration information for</dt><dd><p>the Protection Source id.</p>
+</dd>
+<dt>environments (list of</dt><dd><p>EnvironmentListProtectionSourcesRootNodesEnum, optional):
+Return only the root Protection Sources that match the passed
+in environment type such as ‘kVMware’, ‘kSQL’, ‘kView’,
+‘kPuppeteer’, ‘kPhysical’, ‘kPure’, ‘kNetapp’, ‘kGenericNas’,
+‘kHyperV’, ‘kAcropolis’ ‘kAzure’. For example, set this
+parameter to ‘kVMware’ to only return the root Protection
+Sources found in the ‘kVMware’ (VMware vCenter) environment.
+In addition, the registration information for each Source is
+returned.  NOTE: ‘kPuppeteer’ refers to Cohesity’s Remote
+Adapter.</p>
+</dd>
+<dt>environment (string, optional): This field is deprecated. Use</dt><dd><p>environments instead. deprecated: true</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>list of ProtectionSourceNode: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.protection_sources_controller.ProtectionSourcesController.list_sql_aag_hosts_and_databases">
+<code class="sig-name descname"><span class="pre">list_sql_aag_hosts_and_databases</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sql_protection_source_ids</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/protection_sources_controller.html#ProtectionSourcesController.list_sql_aag_hosts_and_databases"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.protection_sources_controller.ProtectionSourcesController.list_sql_aag_hosts_and_databases" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/protectionSources/sqlAagHostsAndDatabases.</p>
+<blockquote>
+<div><p>Given a list of Protection Source Ids registered as SQL servers,
+returns
+AAGs found and the databases in AAG(Always on Availablity Group).</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>sql_protection_source_ids (list of long|int): Specifies a list of</dt><dd><p>Ids of Protection Sources registered as SQL servers. These
+sources may have one or more SQL databases in them. Some of
+them may be part of AAGs(Always on Availability Group).</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>list of SqlAagHostAndDatabases: Response from the API. List SQL</dt><dd><p>AAG hosts and databases response.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+<p>Success</p>
+<blockquote>
+<div><dl class="simple">
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.protection_sources_controller.ProtectionSourcesController.list_virtual_machines">
+<code class="sig-name descname"><span class="pre">list_virtual_machines</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v_center_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uuids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">protected</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/protection_sources_controller.html#ProtectionSourcesController.list_virtual_machines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.protection_sources_controller.ProtectionSourcesController.list_virtual_machines" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/protectionSources/virtualMachines.</p>
+<p>Returns all Virtual Machines found in all the vCenter Servers
+registered
+on the Cohesity Cluster that match the filter criteria specified
+using
+parameters.
+If an id is specified, only VMs found in the specified vCenter Server
+are returned.
+Only VM Objects are returned.
+Other VMware Objects such as datacenters are not returned.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>v_center_id (long|int, optional): Limit the VMs returned to the</dt><dd><p>set of VMs found in a specific vCenter Server. Pass in the
+root Protection Source id for the vCenter Server to search for
+VMs.</p>
+</dd>
+<dt>names (list of string, optional): Limit the returned VMs to those</dt><dd><p>that exactly match the passed in VM name. To match multiple VM
+names, specify multiple “names” parameters that each specify a
+single VM name. The string must exactly match the passed in VM
+name and wild cards are not supported.</p>
+</dd>
+<dt>uuids (list of string, optional): Limit the returned VMs to those</dt><dd><p>that exactly match the passed in UUIDs.</p>
+</dd>
+<dt>protected (bool, optional): Limit the returned VMs to those that</dt><dd><p>have been protected by a Protection Job. By default, both
+protected and unprotected VMs are returned.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>list of ProtectionSource: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.protection_sources_controller.ProtectionSourcesController.run_diagnostics">
+<code class="sig-name descname"><span class="pre">run_diagnostics</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/protection_sources_controller.html#ProtectionSourcesController.run_diagnostics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.protection_sources_controller.ProtectionSourcesController.run_diagnostics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a POST request to /public/protectionSources/diagnostics/{id}</p>
+<p>If the request is successful, the diagnostics script is triggered on
+Cohesity
+agent which generates a tarball containing various diagnostics and
+uploads it
+to the Cohesity cluster. Host type could be Linux, Windows.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>id (int): Specifies the entity id.</p>
+</dd>
+<dt>Returns:</dt><dd><p>RunDiagnosticsMessage: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.protection_sources_controller.ProtectionSourcesController.update_application_servers">
+<code class="sig-name descname"><span class="pre">update_application_servers</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/protection_sources_controller.html#ProtectionSourcesController.update_application_servers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.protection_sources_controller.ProtectionSourcesController.update_application_servers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a PUT request to /public/protectionSources/applicationServers.</p>
+<p>Returns the Protection Source whose registration parameters of its
+Application Servers are modified upon success.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>body (UpdateApplicationServerParameters): Request to modify the</dt><dd><p>Application Servers registration of a Protection Source.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>ProtectionSource: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.protection_sources_controller.ProtectionSourcesController.update_protection_source">
+<code class="sig-name descname"><span class="pre">update_protection_source</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/protection_sources_controller.html#ProtectionSourcesController.update_protection_source"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.protection_sources_controller.ProtectionSourcesController.update_protection_source" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a PATCH request to /public/protectionSources/{id}.</p>
+<p>Update a previously registered Protection Source with new details.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>id (long|int): Specifies a unique id of the Protection Source to</dt><dd><p>update.</p>
+</dd>
+<dt>body (UpdateProtectionSourceParameters, optional): Request to</dt><dd><p>update protection source.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>ProtectionSourceNode: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="controllers.remote_cluster_controller.html" class="btn btn-neutral float-right" title="controllers.remote_cluster_controller module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="controllers.protection_runs_controller.html" class="btn btn-neutral float-left" title="controllers.protection_runs_controller module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Cohesity.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

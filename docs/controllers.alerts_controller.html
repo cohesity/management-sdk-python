@@ -1,0 +1,644 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>controllers.alerts_controller module &mdash; Cohesity Python SDK 1.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="controllers.analytics_controller module" href="controllers.analytics_controller.html" />
+    <link rel="prev" title="controllers.active_directory_controller module" href="controllers.active_directory_controller.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Cohesity Python SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#upgrade">Upgrade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#how-to-use">How to Use</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#questions-or-feedback">Questions or Feedback</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Endpoints</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="controllers.html">V1 Controllers</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="controllers.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="controllers.access_tokens_controller.html">controllers.access_tokens_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.active_directory_controller.html">controllers.active_directory_controller module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">controllers.alerts_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.analytics_controller.html">controllers.analytics_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.antivirus_service_group_controller.html">controllers.antivirus_service_group_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.app_controller.html">controllers.app_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.app_instance_controller.html">controllers.app_instance_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.audit_controller.html">controllers.audit_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.banner_controller.html">controllers.banner_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.base_controller.html">controllers.base_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.certificates_controller.html">controllers.certificates_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.clone_refresh_tasks_controller.html">controllers.clone_refresh_tasks_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.cluster_controller.html">controllers.cluster_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.cluster_partitions_controller.html">controllers.cluster_partitions_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.clusters_controller.html">controllers.clusters_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.custom_reporting_controller.html">controllers.custom_reporting_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.dashboard_controller.html">controllers.dashboard_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.groups_controller.html">controllers.groups_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.idps_controller.html">controllers.idps_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.interface_controller.html">controllers.interface_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.interface_group_controller.html">controllers.interface_group_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.ip_controller.html">controllers.ip_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.kms_configuration_controller.html">controllers.kms_configuration_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.ldap_provider_controller.html">controllers.ldap_provider_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.license_controller.html">controllers.license_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.monitoring_controller.html">controllers.monitoring_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.network_controller.html">controllers.network_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.nodes_controller.html">controllers.nodes_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.notifications_controller.html">controllers.notifications_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.packages_controller.html">controllers.packages_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.preferences_controller.html">controllers.preferences_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.principals_controller.html">controllers.principals_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.privileges_controller.html">controllers.privileges_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.protection_jobs_controller.html">controllers.protection_jobs_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.protection_objects_controller.html">controllers.protection_objects_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.protection_policies_controller.html">controllers.protection_policies_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.protection_runs_controller.html">controllers.protection_runs_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.protection_sources_controller.html">controllers.protection_sources_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.remote_cluster_controller.html">controllers.remote_cluster_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.remote_restore_controller.html">controllers.remote_restore_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.reports_controller.html">reports_controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.restore_tasks_controller.html">controllers.restore_tasks_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.roles_controller.html">controllers.roles_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.routes_controller.html">controllers.routes_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.scheduler_controller.html">controllers.scheduler_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.search_controller.html">controllers.search_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.smb_file_opens_controller.html">controllers.smb_file_opens_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.static_route_controller.html">controllers.static_route_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.statistics_controller.html">controllers.statistics_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.stats_controller.html">controllers.stats_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.tags_controller.html">controllers.tags_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.tenant_controller.html">controllers.tenant_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.tenants_controller.html">controllers.tenants_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.vaults_controller.html">controllers.vaults_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.view_boxes_controller.html">controllers.view_boxes_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.views_controller.html">controllers.views_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.vlan_controller.html">controllers.vlan_controller module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="controllers_v2.html">V2 Controllers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="controllers_v2.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.active_directory_controller.html">controllers_v2.active_directory_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.audit_log_controller.html">controllers_v2.audit_log_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.base_controller.html">controllers_v2.base_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.data_migration_controller.html">controllers_v2.data_migration_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.keystone_controller.html">controllers_v2.keystone_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.miscellaneous_controller.html">controllers_v2.miscellaneous_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.network_information_service_nis_controller.html">controllers_v2.network_information_service_nis_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.objects_controller.html">controllers_v2.objects_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.patches_controller.html">controllers_v2.patches_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.platform_controller.html">controllers_v2.platform_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.protection_groups_controller.html">controllers_v2.protection_groups_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.protection_policies_controller.html">controllers_v2.protection_policies_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.protection_sources_controller.html">controllers_v2.protection_sources_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.recoveries_controller.html">controllers_v2.recoveries_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.search_controller.html">controllers_v2.search_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.security_controller.html">controllers_v2.security_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.stats_controller.html">controllers_v2.stats_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.tasks_controller.html">controllers_v2.tasks_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.tenants_controller.html">controllers_v2.tenants_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.test_data_management_controller.html">controllers_v2.test_data_management_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.users_controller.html">controllers_v2.users_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.views_controller.html">controllers_v2.views_controller module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="controllers_v2.html#module-controllers_v2">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Cohesity Python SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="controllers.html">controllers package</a> &raquo;</li>
+        
+      <li>controllers.alerts_controller module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/controllers.alerts_controller.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-controllers.alerts_controller">
+<span id="controllers-alerts-controller-module"></span><h1>controllers.alerts_controller module<a class="headerlink" href="#module-controllers.alerts_controller" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="controllers.alerts_controller.AlertsController">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">controllers.alerts_controller.</span></code><code class="sig-name descname"><span class="pre">AlertsController</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">call_back</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/alerts_controller.html#AlertsController"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.alerts_controller.AlertsController" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cohesity_management_sdk.controllers.base_controller.BaseController</span></code></p>
+<p>A Controller to access Endpoints in the cohesity_management_sdk API.</p>
+<dl class="py method">
+<dt id="controllers.alerts_controller.AlertsController.create_notification_rule">
+<code class="sig-name descname"><span class="pre">create_notification_rule</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/alerts_controller.html#AlertsController.create_notification_rule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.alerts_controller.AlertsController.create_notification_rule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a POST request to /public/alertNotificationRules.</p>
+<p>Creates a new notification rule with provided delivery targets such as
+email
+addresses and external apis.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>body (NotificationRule, optional): Create Notification Rule</dt><dd><p>argument.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>NotificationRule: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.alerts_controller.AlertsController.create_resolution">
+<code class="sig-name descname"><span class="pre">create_resolution</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/alerts_controller.html#AlertsController.create_resolution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.alerts_controller.AlertsController.create_resolution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a POST request to /public/alertResolutions.</p>
+<p>Create an Alert Resolution and apply it to one or more Alerts.
+Mark the Alerts as resolved.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>body (AlertResolutionRequest): Request to create an Alert</dt><dd><p>Resolution and apply it to the specified Alerts.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>AlertResolution: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.alerts_controller.AlertsController.delete_notification_rule">
+<code class="sig-name descname"><span class="pre">delete_notification_rule</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rule_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/alerts_controller.html#AlertsController.delete_notification_rule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.alerts_controller.AlertsController.delete_notification_rule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a DELETE request to /public/alertNotificationRules/{ruleId}.</p>
+<p>Deletes an existing alert notification rule matching the rule id.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>rule_id (long|int): Specifies the rule id.</p>
+</dd>
+<dt>Returns:</dt><dd><p>void: Response from the API. No Content</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.alerts_controller.AlertsController.get_alert_by_id">
+<code class="sig-name descname"><span class="pre">get_alert_by_id</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/alerts_controller.html#AlertsController.get_alert_by_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.alerts_controller.AlertsController.get_alert_by_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/alerts/{id}.</p>
+<p>Returns the Alert object corresponding to the specified id.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>id (string): Unique id of the Alert to return.</p>
+</dd>
+<dt>Returns:</dt><dd><p>Alert: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.alerts_controller.AlertsController.get_alert_categories">
+<code class="sig-name descname"><span class="pre">get_alert_categories</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/alerts_controller.html#AlertsController.get_alert_categories"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.alerts_controller.AlertsController.get_alert_categories" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/alertCategories.</p>
+<p>Returns alert categories in Cohesity cluster.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>list of AlertCategoryName: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.alerts_controller.AlertsController.get_alert_types">
+<code class="sig-name descname"><span class="pre">get_alert_types</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alert_category_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/alerts_controller.html#AlertsController.get_alert_types"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.alerts_controller.AlertsController.get_alert_types" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/alertTypes.</p>
+<p>Returns registered alerts in the Cohesity cluster that match the
+filter
+criteria specified using parameters. If no filter parameters are
+specified,
+all registered alerts in the Cohesity cluster are returned.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>alert_category_list (list of AlertCategoryListEnum, optional):</dt><dd><p>Specifies a list of Alert Categories to filter alert types by.
+Specifies the category of an Alert.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>list of AlertMetadata: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.alerts_controller.AlertsController.get_alerts">
+<code class="sig-name descname"><span class="pre">get_alerts</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_alerts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alert_id_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alert_type_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alert_category_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">property_key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">property_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_date_usecs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date_usecs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alert_state_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alert_severity_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alert_type_bucket_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolution_id_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tenant_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_under_hierarchy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/alerts_controller.html#AlertsController.get_alerts"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.alerts_controller.AlertsController.get_alerts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/alerts.</p>
+<p>Returns all Alert objects found on the Cohesity Cluster that
+match the filter criteria specified using parameters.
+The Cohesity Cluster creates an Alert when a potential problem
+is found or when a threshold has been exceeded on the Cohesity
+Cluster.
+If no filter parameters are specified, all Alert objects are
+returned.
+Each object provides details about the Alert such as the Status and
+Severity.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>max_alerts (int): Specifies the number of returned Alerts to be</dt><dd><p>returned. The newest Alerts are returned.</p>
+</dd>
+<dt>alert_id_list (list of string, optional): Specifies list of Alert</dt><dd><p>ids to filter alerts by.</p>
+</dd>
+<dt>alert_type_list (list of int, optional): Specifies list of Alert</dt><dd><p>Types to filter alerts by.</p>
+</dd>
+<dt>alert_category_list (list of AlertCategoryListGetAlertsEnum,</dt><dd><p>optional): Specifies list of Alert Categories.</p>
+</dd>
+<dt>property_key (string, optional): Specifies name of the property to</dt><dd><p>filter alerts by.</p>
+</dd>
+<dt>property_value (string, optional): Specifies value of the property</dt><dd><p>to filter alerts by.</p>
+</dd>
+<dt>start_date_usecs (long|int, optional): Specifies start time Unix</dt><dd><p>epoch time in microseconds to filter alerts by.</p>
+</dd>
+<dt>end_date_usecs (long|int, optional): Specifies end time Unix epoch</dt><dd><p>time in microseconds to filter alerts by.</p>
+</dd>
+<dt>alert_state_list (list of AlertStateListEnum, optional): Specifies</dt><dd><p>list of Alert States to filter alerts by.</p>
+</dd>
+<dt>alert_severity_list (list of AlertSeverityListEnum, optional):</dt><dd><p>Specifies list of Alert severity to filter alerts by.</p>
+</dd>
+<dt>alert_type_bucket_list (list of AlertTypeBucketListEnum,</dt><dd><p>optional): Specifies the list of Alert type bucket. Specifies
+the Alert type bucket.</p>
+</dd>
+<dt>resolution_id_list (list of long|int, optional): Specifies alert</dt><dd><p>resolution ids to filter alerts by.</p>
+</dd>
+<dt>tenant_ids (list of string, optional): TenantIds contains ids of</dt><dd><p>the tenants for which objects are to be returned.</p>
+</dd>
+<dt>all_under_hierarchy (bool, optional): AllUnderHierarchy specifies</dt><dd><p>if objects of all the tenants under the hierarchy of the
+logged in user’s organization should be returned.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>list of Alert: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.alerts_controller.AlertsController.get_notification_rules">
+<code class="sig-name descname"><span class="pre">get_notification_rules</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/alerts_controller.html#AlertsController.get_notification_rules"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.alerts_controller.AlertsController.get_notification_rules" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/alertNotificationRules.</p>
+<p>Gets all alert notification rules containing criteria to deliver
+notification
+to delivery targets such as email addresses, invoking external apis
+etc.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>list of NotificationRule: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.alerts_controller.AlertsController.get_resolution_by_id">
+<code class="sig-name descname"><span class="pre">get_resolution_by_id</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/alerts_controller.html#AlertsController.get_resolution_by_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.alerts_controller.AlertsController.get_resolution_by_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/alertResolutions/{id}.</p>
+<p>Returns the Alert Resolution object corresponding to passed in Alert
+Resolution Id.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>id (long|int): Unique id of the Alert Resolution to return.</p>
+</dd>
+<dt>Returns:</dt><dd><p>AlertResolution: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.alerts_controller.AlertsController.get_resolutions">
+<code class="sig-name descname"><span class="pre">get_resolutions</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_resolutions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolution_id_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alert_id_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_date_usecs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date_usecs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tenant_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_under_hierarchy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/alerts_controller.html#AlertsController.get_resolutions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.alerts_controller.AlertsController.get_resolutions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/alertResolutions.</p>
+<p>Returns all Alert Resolution objects found on the Cohesity Cluster
+that match the filter criteria specified using parameters.
+If no filter parameters are specified,
+all Alert Resolution objects are returned.
+Each object provides details about the Alert Resolution such as
+the resolution summary and details.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>max_resolutions (int): Specifies the number of returned</dt><dd><p>Resolutions to be returned. The newest Resolutions are
+returned.</p>
+</dd>
+<dt>resolution_id_list (list of long|int, optional): Specifies list of</dt><dd><p>Alert Resolution ids to filter resolutions by.</p>
+</dd>
+<dt>alert_id_list (list of string, optional): Specifies list of Alert</dt><dd><p>Resolution ids to filter resolutions by.</p>
+</dd>
+<dt>start_date_usecs (long|int, optional): Specifies Start Time Unix</dt><dd><p>epoch in microseconds to filter resolutions by.</p>
+</dd>
+<dt>end_date_usecs (long|int, optional): Specifies End Time Unix epoch</dt><dd><p>in microseconds to filter resolutions by.</p>
+</dd>
+<dt>tenant_ids (list of string, optional): TenantIds contains ids of</dt><dd><p>the tenants for which objects are to be returned.</p>
+</dd>
+<dt>all_under_hierarchy (bool, optional): AllUnderHierarchy specifies</dt><dd><p>if objects of all the tenants under the hierarchy of the
+logged in user’s organization should be returned.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>list of AlertResolution: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.alerts_controller.AlertsController.update_notification_rule">
+<code class="sig-name descname"><span class="pre">update_notification_rule</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/alerts_controller.html#AlertsController.update_notification_rule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.alerts_controller.AlertsController.update_notification_rule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a PUT request to /public/alertNotificationRules.</p>
+<p>Updates delivery targets such as email addresses and external apis in
+an
+existing notification rule.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>NotificationRule: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.alerts_controller.AlertsController.update_resolution">
+<code class="sig-name descname"><span class="pre">update_resolution</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/alerts_controller.html#AlertsController.update_resolution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.alerts_controller.AlertsController.update_resolution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a PUT request to /public/alertResolutions/{id}.</p>
+<p>Apply an existing Alert Resolution to one or more additional Alerts.
+Mark those additional Alerts as resolved.</p>
+<dl>
+<dt>Args:</dt><dd><p>id (long|int): Unique id of the Alert Resolution to return.
+body (UpdateResolutionParams): Request to apply an existing</p>
+<blockquote>
+<div><p>resolution to the specified Alerts.</p>
+</div></blockquote>
+</dd>
+<dt>Returns:</dt><dd><p>AlertResolution: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="controllers.analytics_controller.html" class="btn btn-neutral float-right" title="controllers.analytics_controller module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="controllers.active_directory_controller.html" class="btn btn-neutral float-left" title="controllers.active_directory_controller module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Cohesity.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,608 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>controllers.protection_jobs_controller module &mdash; Cohesity Python SDK 1.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="controllers.protection_objects_controller module" href="controllers.protection_objects_controller.html" />
+    <link rel="prev" title="controllers.privileges_controller module" href="controllers.privileges_controller.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Cohesity Python SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#upgrade">Upgrade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#how-to-use">How to Use</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#questions-or-feedback">Questions or Feedback</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Endpoints</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="controllers.html">V1 Controllers</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="controllers.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="controllers.access_tokens_controller.html">controllers.access_tokens_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.active_directory_controller.html">controllers.active_directory_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.alerts_controller.html">controllers.alerts_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.analytics_controller.html">controllers.analytics_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.antivirus_service_group_controller.html">controllers.antivirus_service_group_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.app_controller.html">controllers.app_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.app_instance_controller.html">controllers.app_instance_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.audit_controller.html">controllers.audit_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.banner_controller.html">controllers.banner_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.base_controller.html">controllers.base_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.certificates_controller.html">controllers.certificates_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.clone_refresh_tasks_controller.html">controllers.clone_refresh_tasks_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.cluster_controller.html">controllers.cluster_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.cluster_partitions_controller.html">controllers.cluster_partitions_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.clusters_controller.html">controllers.clusters_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.custom_reporting_controller.html">controllers.custom_reporting_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.dashboard_controller.html">controllers.dashboard_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.groups_controller.html">controllers.groups_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.idps_controller.html">controllers.idps_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.interface_controller.html">controllers.interface_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.interface_group_controller.html">controllers.interface_group_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.ip_controller.html">controllers.ip_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.kms_configuration_controller.html">controllers.kms_configuration_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.ldap_provider_controller.html">controllers.ldap_provider_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.license_controller.html">controllers.license_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.monitoring_controller.html">controllers.monitoring_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.network_controller.html">controllers.network_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.nodes_controller.html">controllers.nodes_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.notifications_controller.html">controllers.notifications_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.packages_controller.html">controllers.packages_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.preferences_controller.html">controllers.preferences_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.principals_controller.html">controllers.principals_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.privileges_controller.html">controllers.privileges_controller module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">controllers.protection_jobs_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.protection_objects_controller.html">controllers.protection_objects_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.protection_policies_controller.html">controllers.protection_policies_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.protection_runs_controller.html">controllers.protection_runs_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.protection_sources_controller.html">controllers.protection_sources_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.remote_cluster_controller.html">controllers.remote_cluster_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.remote_restore_controller.html">controllers.remote_restore_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.reports_controller.html">reports_controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.restore_tasks_controller.html">controllers.restore_tasks_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.roles_controller.html">controllers.roles_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.routes_controller.html">controllers.routes_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.scheduler_controller.html">controllers.scheduler_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.search_controller.html">controllers.search_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.smb_file_opens_controller.html">controllers.smb_file_opens_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.static_route_controller.html">controllers.static_route_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.statistics_controller.html">controllers.statistics_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.stats_controller.html">controllers.stats_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.tags_controller.html">controllers.tags_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.tenant_controller.html">controllers.tenant_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.tenants_controller.html">controllers.tenants_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.vaults_controller.html">controllers.vaults_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.view_boxes_controller.html">controllers.view_boxes_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.views_controller.html">controllers.views_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.vlan_controller.html">controllers.vlan_controller module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="controllers_v2.html">V2 Controllers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="controllers_v2.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.active_directory_controller.html">controllers_v2.active_directory_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.audit_log_controller.html">controllers_v2.audit_log_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.base_controller.html">controllers_v2.base_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.data_migration_controller.html">controllers_v2.data_migration_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.keystone_controller.html">controllers_v2.keystone_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.miscellaneous_controller.html">controllers_v2.miscellaneous_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.network_information_service_nis_controller.html">controllers_v2.network_information_service_nis_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.objects_controller.html">controllers_v2.objects_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.patches_controller.html">controllers_v2.patches_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.platform_controller.html">controllers_v2.platform_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.protection_groups_controller.html">controllers_v2.protection_groups_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.protection_policies_controller.html">controllers_v2.protection_policies_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.protection_sources_controller.html">controllers_v2.protection_sources_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.recoveries_controller.html">controllers_v2.recoveries_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.search_controller.html">controllers_v2.search_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.security_controller.html">controllers_v2.security_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.stats_controller.html">controllers_v2.stats_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.tasks_controller.html">controllers_v2.tasks_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.tenants_controller.html">controllers_v2.tenants_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.test_data_management_controller.html">controllers_v2.test_data_management_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.users_controller.html">controllers_v2.users_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.views_controller.html">controllers_v2.views_controller module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="controllers_v2.html#module-controllers_v2">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Cohesity Python SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="controllers.html">controllers package</a> &raquo;</li>
+        
+      <li>controllers.protection_jobs_controller module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/controllers.protection_jobs_controller.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-controllers.protection_jobs_controller">
+<span id="controllers-protection-jobs-controller-module"></span><h1>controllers.protection_jobs_controller module<a class="headerlink" href="#module-controllers.protection_jobs_controller" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="controllers.protection_jobs_controller.ProtectionJobsController">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">controllers.protection_jobs_controller.</span></code><code class="sig-name descname"><span class="pre">ProtectionJobsController</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">call_back</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/protection_jobs_controller.html#ProtectionJobsController"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.protection_jobs_controller.ProtectionJobsController" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cohesity_management_sdk.controllers.base_controller.BaseController</span></code></p>
+<p>A Controller to access Endpoints in the cohesity_management_sdk API.</p>
+<dl class="py method">
+<dt id="controllers.protection_jobs_controller.ProtectionJobsController.change_protection_job_state">
+<code class="sig-name descname"><span class="pre">change_protection_job_state</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/protection_jobs_controller.html#ProtectionJobsController.change_protection_job_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.protection_jobs_controller.ProtectionJobsController.change_protection_job_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a POST request to /public/protectionJobState/{id}.</p>
+<p>If the Protection Job is currently running (not paused) and true is
+passed in,
+this operation stops any new Runs of this Protection Job
+from stating and executing.
+However, any existing Runs that were already executing will continue
+to run.
+If this Projection Job is paused and false is passed in, this
+operation
+restores the Job to a running state and new Runs are started as
+defined
+by the schedule in the Policy associated with the Job.
+Returns success if the paused state is changed.</p>
+<dl>
+<dt>Args:</dt><dd><p>id (long|int): Specifies a unique id of the Protection Job.
+body (ChangeProtectionJobStateParam, optional): TODO: type</p>
+<blockquote>
+<div><p>description here. Example:</p>
+</div></blockquote>
+</dd>
+<dt>Returns:</dt><dd><p>void: Response from the API. No Content</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.protection_jobs_controller.ProtectionJobsController.create_protection_job">
+<code class="sig-name descname"><span class="pre">create_protection_job</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/protection_jobs_controller.html#ProtectionJobsController.create_protection_job"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.protection_jobs_controller.ProtectionJobsController.create_protection_job" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a POST request to /public/protectionJobs.</p>
+<p>Returns the created Protection Job.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>body (ProtectionJobRequestBody): Request to create a Protection</dt><dd><p>Job.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>ProtectionJob: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.protection_jobs_controller.ProtectionJobsController.create_run_protection_job">
+<code class="sig-name descname"><span class="pre">create_run_protection_job</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/protection_jobs_controller.html#ProtectionJobsController.create_run_protection_job"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.protection_jobs_controller.ProtectionJobsController.create_run_protection_job" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a POST request to /public/protectionJobs/run/{id}.</p>
+<p>Immediately execute a single Job Run and ignore the schedule defined
+in the Policy.
+A Protection Policy associated with the Job may define up to three
+backup run types:
+1) Regular (CBT utilized), 2) Full (CBT not utilized) and 3) Log.
+The passed in run type defines what type of backup is done by the Job
+Run.
+The schedule defined in the Policy for the backup run type is ignored
+but
+other settings such as the snapshot retention and retry settings are
+used.
+Returns success if the Job Run starts.</p>
+<dl>
+<dt>Args:</dt><dd><p>id (long|int): Specifies a unique id of the Protection Job.
+body (RunProtectionJobParam): Specifies the type of backup. If not</p>
+<blockquote>
+<div><p>specified, the ‘kRegular’ backup is run.</p>
+</div></blockquote>
+</dd>
+<dt>Returns:</dt><dd><p>void: Response from the API. No Content</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.protection_jobs_controller.ProtectionJobsController.delete_protection_job">
+<code class="sig-name descname"><span class="pre">delete_protection_job</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/protection_jobs_controller.html#ProtectionJobsController.delete_protection_job"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.protection_jobs_controller.ProtectionJobsController.delete_protection_job" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a DELETE request to /public/protectionJobs/{id}.</p>
+<p>Returns Success if the Protection Job is deleted.</p>
+<dl>
+<dt>Args:</dt><dd><p>id (long|int): Specifies a unique id of the Protection Job.
+body (DeleteProtectionJobParam, optional): Request to delete a</p>
+<blockquote>
+<div><p>protection job.</p>
+</div></blockquote>
+</dd>
+<dt>Returns:</dt><dd><p>void: Response from the API. No Content</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.protection_jobs_controller.ProtectionJobsController.get_protection_job_audit">
+<code class="sig-name descname"><span class="pre">get_protection_job_audit</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/protection_jobs_controller.html#ProtectionJobsController.get_protection_job_audit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.protection_jobs_controller.ProtectionJobsController.get_protection_job_audit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/protectionJobs/{id}/auditTrail.</p>
+<p>Returns the audit of specific protection job edit history.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>id (long|int): Specifies a unique id of the Protection Job.</p>
+</dd>
+<dt>Returns:</dt><dd><p>list of ProtectionJobAuditTrail: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.protection_jobs_controller.ProtectionJobsController.get_protection_job_by_id">
+<code class="sig-name descname"><span class="pre">get_protection_job_by_id</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/protection_jobs_controller.html#ProtectionJobsController.get_protection_job_by_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.protection_jobs_controller.ProtectionJobsController.get_protection_job_by_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/protectionJobs/{id}.</p>
+<p>Returns the Protection Job corresponding to the specified Job id.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>id (long|int): Specifies a unique id of the Protection Job.</p>
+</dd>
+<dt>Returns:</dt><dd><p>ProtectionJob: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.protection_jobs_controller.ProtectionJobsController.get_protection_jobs">
+<code class="sig-name descname"><span class="pre">get_protection_jobs</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">policy_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">environments</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_active</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_deleted</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_return_basic_summary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_last_run_and_stats</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_rpo_snapshots</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_last_run_sla_violated</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_return_data_migration_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prune_excluded_source_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tenant_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_under_hierarchy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/protection_jobs_controller.html#ProtectionJobsController.get_protection_jobs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.protection_jobs_controller.ProtectionJobsController.get_protection_jobs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/protectionJobs.</p>
+<p>If no parameters are specified, all Protection Jobs currently
+on the Cohesity Cluster are returned.
+Specifying parameters filters the results that are returned.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>ids (list of long|int, optional): Filter by a list of Protection</dt><dd><p>Job ids.</p>
+</dd>
+<dt>names (list of string, optional): Filter by a list of Protection</dt><dd><p>Job names.</p>
+</dd>
+<dt>policy_ids (list of string, optional): Filter by Policy ids that</dt><dd><p>are associated with Protection Jobs. Only Jobs associated with
+the specified Policy ids, are returned.</p>
+</dd>
+<dt>environments (list of EnvironmentGetProtectionJobsEnum, optional):</dt><dd><p>Filter by environment types such as ‘kVMware’, ‘kView’, etc.
+Only Jobs protecting the specified environment types are
+returned. NOTE: ‘kPuppeteer’ refers to Cohesity’s Remote
+Adapter.</p>
+</dd>
+<dt>is_active (bool, optional): Filter by Inactive or Active Jobs. If</dt><dd><p>not set, all Inactive and Active Jobs are returned. If true,
+only Active Jobs are returned. If false, only Inactive Jobs
+are returned. When you create a Protection Job on a Primary
+Cluster with a replication schedule, the Cluster creates an
+Inactive copy of the Job on the Remote Cluster. In addition,
+when an Active and running Job is deactivated, the Job becomes
+Inactive.</p>
+</dd>
+<dt>is_deleted (bool, optional): If true, return only Protection Jobs</dt><dd><p>that have been deleted but still have Snapshots associated
+with them. If false, return all Protection Jobs except those
+Jobs that have been deleted and still have Snapshots
+associated with them. A Job that is deleted with all its
+Snapshots is not returned for either of these cases.</p>
+</dd>
+<dt>only_return_basic_summary (bool, optional): if true then only job</dt><dd><p>descriptions and the most recent run of the job will be
+returned.</p>
+</dd>
+<dt>include_last_run_and_stats (bool, optional): If true, return the</dt><dd><p>last Protection Run of the Job and the summary stats.</p>
+</dd>
+<dt>include_rpo_snapshots (bool, optional): If true, then the</dt><dd><p>Protected Objects protected by RPO policies will also be
+returned.</p>
+</dd>
+<dt>is_last_run_sla_violated (bool, optional): IsLastRunSlaViolated is</dt><dd><p>the parameter to filter the Protection Jobs based on the SLA
+violation status of the last Protection Run.</p>
+</dd>
+<dt>only_return_data_migration_jobs (bool, optional):</dt><dd><p>OnlyReturnDataMigrationJobs specifies if only data migration
+jobs should be returned. If not set, no data migration job
+will be returned.</p>
+</dd>
+<dt>prune_excluded_source_ids (bool, optional): If true, the list of</dt><dd><p>exclusion sources will be omitted from the response. This can
+be used to improve performance when the exclusion sources are
+not needed.</p>
+</dd>
+<dt>tenant_ids (list of string, optional): TenantIds contains ids of</dt><dd><p>the tenants for which objects are to be returned.</p>
+</dd>
+<dt>all_under_hierarchy (bool, optional): AllUnderHierarchy specifies</dt><dd><p>if objects of all the tenants under the hierarchy of the
+logged in user’s organization should be returned.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>list of ProtectionJob: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.protection_jobs_controller.ProtectionJobsController.update_protection_job">
+<code class="sig-name descname"><span class="pre">update_protection_job</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/protection_jobs_controller.html#ProtectionJobsController.update_protection_job"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.protection_jobs_controller.ProtectionJobsController.update_protection_job" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a PUT request to /public/protectionJobs/{id}.</p>
+<p>Returns the updated Protection Job.</p>
+<dl>
+<dt>Args:</dt><dd><dl class="simple">
+<dt>body (ProtectionJobRequestBody): Request to update a protection</dt><dd><p>job.</p>
+</dd>
+</dl>
+<p>id (long|int): Specifies a unique id of the Protection Job.</p>
+</dd>
+<dt>Returns:</dt><dd><p>ProtectionJob: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.protection_jobs_controller.ProtectionJobsController.update_protection_jobs_state">
+<code class="sig-name descname"><span class="pre">update_protection_jobs_state</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/protection_jobs_controller.html#ProtectionJobsController.update_protection_jobs_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.protection_jobs_controller.ProtectionJobsController.update_protection_jobs_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a POST request to /public/protectionJobs/states.</p>
+<p>Note that the pause or resume actions will take effect from next
+Protection
+Run. Also, user can specify only one type of action on all the
+Protection Jobs.
+Deactivate and activate actions are independent of pause and resume
+state.
+Deactivate and activate actions are useful in case of failover
+situations.
+Returns success if the state of all the Protection Jobs state is
+changed
+successfully.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>body (UpdateProtectionJobsStateRequestBody, optional): TODO: type</dt><dd><p>description here. Example:</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>UpdateProtectionJobsState: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="controllers.protection_objects_controller.html" class="btn btn-neutral float-right" title="controllers.protection_objects_controller module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="controllers.privileges_controller.html" class="btn btn-neutral float-left" title="controllers.privileges_controller module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Cohesity.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

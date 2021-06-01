@@ -1,0 +1,1564 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>controllers.restore_tasks_controller module &mdash; Cohesity Python SDK 1.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="controllers.roles_controller module" href="controllers.roles_controller.html" />
+    <link rel="prev" title="reports_controller" href="controllers.reports_controller.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Cohesity Python SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#upgrade">Upgrade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#how-to-use">How to Use</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#questions-or-feedback">Questions or Feedback</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Endpoints</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="controllers.html">V1 Controllers</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="controllers.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="controllers.access_tokens_controller.html">controllers.access_tokens_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.active_directory_controller.html">controllers.active_directory_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.alerts_controller.html">controllers.alerts_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.analytics_controller.html">controllers.analytics_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.antivirus_service_group_controller.html">controllers.antivirus_service_group_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.app_controller.html">controllers.app_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.app_instance_controller.html">controllers.app_instance_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.audit_controller.html">controllers.audit_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.banner_controller.html">controllers.banner_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.base_controller.html">controllers.base_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.certificates_controller.html">controllers.certificates_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.clone_refresh_tasks_controller.html">controllers.clone_refresh_tasks_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.cluster_controller.html">controllers.cluster_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.cluster_partitions_controller.html">controllers.cluster_partitions_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.clusters_controller.html">controllers.clusters_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.custom_reporting_controller.html">controllers.custom_reporting_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.dashboard_controller.html">controllers.dashboard_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.groups_controller.html">controllers.groups_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.idps_controller.html">controllers.idps_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.interface_controller.html">controllers.interface_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.interface_group_controller.html">controllers.interface_group_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.ip_controller.html">controllers.ip_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.kms_configuration_controller.html">controllers.kms_configuration_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.ldap_provider_controller.html">controllers.ldap_provider_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.license_controller.html">controllers.license_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.monitoring_controller.html">controllers.monitoring_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.network_controller.html">controllers.network_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.nodes_controller.html">controllers.nodes_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.notifications_controller.html">controllers.notifications_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.packages_controller.html">controllers.packages_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.preferences_controller.html">controllers.preferences_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.principals_controller.html">controllers.principals_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.privileges_controller.html">controllers.privileges_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.protection_jobs_controller.html">controllers.protection_jobs_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.protection_objects_controller.html">controllers.protection_objects_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.protection_policies_controller.html">controllers.protection_policies_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.protection_runs_controller.html">controllers.protection_runs_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.protection_sources_controller.html">controllers.protection_sources_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.remote_cluster_controller.html">controllers.remote_cluster_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.remote_restore_controller.html">controllers.remote_restore_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.reports_controller.html">reports_controller</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">controllers.restore_tasks_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.roles_controller.html">controllers.roles_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.routes_controller.html">controllers.routes_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.scheduler_controller.html">controllers.scheduler_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.search_controller.html">controllers.search_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.smb_file_opens_controller.html">controllers.smb_file_opens_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.static_route_controller.html">controllers.static_route_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.statistics_controller.html">controllers.statistics_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.stats_controller.html">controllers.stats_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.tags_controller.html">controllers.tags_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.tenant_controller.html">controllers.tenant_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.tenants_controller.html">controllers.tenants_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.vaults_controller.html">controllers.vaults_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.view_boxes_controller.html">controllers.view_boxes_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.views_controller.html">controllers.views_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.vlan_controller.html">controllers.vlan_controller module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="controllers_v2.html">V2 Controllers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="controllers_v2.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.active_directory_controller.html">controllers_v2.active_directory_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.audit_log_controller.html">controllers_v2.audit_log_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.base_controller.html">controllers_v2.base_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.data_migration_controller.html">controllers_v2.data_migration_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.keystone_controller.html">controllers_v2.keystone_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.miscellaneous_controller.html">controllers_v2.miscellaneous_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.network_information_service_nis_controller.html">controllers_v2.network_information_service_nis_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.objects_controller.html">controllers_v2.objects_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.patches_controller.html">controllers_v2.patches_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.platform_controller.html">controllers_v2.platform_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.protection_groups_controller.html">controllers_v2.protection_groups_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.protection_policies_controller.html">controllers_v2.protection_policies_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.protection_sources_controller.html">controllers_v2.protection_sources_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.recoveries_controller.html">controllers_v2.recoveries_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.search_controller.html">controllers_v2.search_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.security_controller.html">controllers_v2.security_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.stats_controller.html">controllers_v2.stats_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.tasks_controller.html">controllers_v2.tasks_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.tenants_controller.html">controllers_v2.tenants_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.test_data_management_controller.html">controllers_v2.test_data_management_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.users_controller.html">controllers_v2.users_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.views_controller.html">controllers_v2.views_controller module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="controllers_v2.html#module-controllers_v2">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Cohesity Python SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="controllers.html">controllers package</a> &raquo;</li>
+        
+      <li>controllers.restore_tasks_controller module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/controllers.restore_tasks_controller.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-controllers.restore_tasks_controller">
+<span id="controllers-restore-tasks-controller-module"></span><h1>controllers.restore_tasks_controller module<a class="headerlink" href="#module-controllers.restore_tasks_controller" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="controllers.restore_tasks_controller.RestoreTasksController">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">controllers.restore_tasks_controller.</span></code><code class="sig-name descname"><span class="pre">RestoreTasksController</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">call_back</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/restore_tasks_controller.html#RestoreTasksController"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.restore_tasks_controller.RestoreTasksController" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cohesity_management_sdk.controllers.base_controller.BaseController</span></code></p>
+<p>A Controller to access Endpoints in the cohesity_management_sdk API.</p>
+<dl class="py method">
+<dt id="controllers.restore_tasks_controller.RestoreTasksController.create_applications_clone_task">
+<code class="sig-name descname"><span class="pre">create_applications_clone_task</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/restore_tasks_controller.html#RestoreTasksController.create_applications_clone_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.restore_tasks_controller.RestoreTasksController.create_applications_clone_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a POST request to /public/restore/applicationsClone.</p>
+<p>Returns the created Restore Task.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>body (ApplicationsRestoreTaskRequest): Request to create a Restore</dt><dd><p>Task for cloning Applications like SQL DB.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>RestoreTask: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.restore_tasks_controller.RestoreTasksController.create_applications_recover_task">
+<code class="sig-name descname"><span class="pre">create_applications_recover_task</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/restore_tasks_controller.html#RestoreTasksController.create_applications_recover_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.restore_tasks_controller.RestoreTasksController.create_applications_recover_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a POST request to /public/restore/applicationsRecover.</p>
+<p>Returns the created Restore Task.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>body (ApplicationsRestoreTaskRequest): Request to create a Restore</dt><dd><p>Task for recovering Applications like SQL DB. volumes to mount
+points.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>RestoreTask: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.restore_tasks_controller.RestoreTasksController.create_clone_task">
+<code class="sig-name descname"><span class="pre">create_clone_task</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/restore_tasks_controller.html#RestoreTasksController.create_clone_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.restore_tasks_controller.RestoreTasksController.create_clone_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a POST request to /public/restore/clone.</p>
+<p>Returns the created Restore Task that clones VMs or a View.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>body (CloneTaskRequest): Request to create a Restore Task for</dt><dd><p>cloning VMs or a View.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>RestoreTask: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.restore_tasks_controller.RestoreTasksController.create_compare_ad_objects">
+<code class="sig-name descname"><span class="pre">create_compare_ad_objects</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/restore_tasks_controller.html#RestoreTasksController.create_compare_ad_objects"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.restore_tasks_controller.RestoreTasksController.create_compare_ad_objects" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a POST request to /public/restore/adObjectAttributes.</p>
+<p>Returns the list of AD Objects after comparing attributes of AD Object
+from
+both Snapshot and Production AD.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>body (CompareAdObjectsRequest): Specifies the Request to compare</dt><dd><p>the AD Objects from both Snapshot and Production AD.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>list of ComparedADObject: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.restore_tasks_controller.RestoreTasksController.create_deploy_task">
+<code class="sig-name descname"><span class="pre">create_deploy_task</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/restore_tasks_controller.html#RestoreTasksController.create_deploy_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.restore_tasks_controller.RestoreTasksController.create_deploy_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a POST request to /public/restore/deploy.</p>
+<p>Returns the created Restore Task that deploys VMs on cloud. This
+operation
+returns the target where cloud is deployed. Currently, VMs can be
+deployed
+in either AWS target or Azure target.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>body (DeployTaskRequest): Request to create a Restore Task for</dt><dd><p>deploying VMs or a View on cloud.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>RestoreTask: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.restore_tasks_controller.RestoreTasksController.create_download_files_and_folders">
+<code class="sig-name descname"><span class="pre">create_download_files_and_folders</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/restore_tasks_controller.html#RestoreTasksController.create_download_files_and_folders"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.restore_tasks_controller.RestoreTasksController.create_download_files_and_folders" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a POST request to /public/restore/downloadFilesAndFolders.</p>
+<p>Returns the created download Task information that downloads files and
+folders.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>body (DownloadFilesAndFoldersParams): Request to create a task for</dt><dd><p>downloading list of files or folders.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>RestoreTask: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.restore_tasks_controller.RestoreTasksController.create_get_restore_points_for_time_range">
+<code class="sig-name descname"><span class="pre">create_get_restore_points_for_time_range</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/restore_tasks_controller.html#RestoreTasksController.create_get_restore_points_for_time_range"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.restore_tasks_controller.RestoreTasksController.create_get_restore_points_for_time_range" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a POST request to /public/restore/pointsForTimeRange.</p>
+<p>Returns the snapshots in the time range specified.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>body (RestorePointsForTimeRangeParam): TODO: type description</dt><dd><p>here. Example:</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>RestorePointsForTimeRange: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.restore_tasks_controller.RestoreTasksController.create_recover_task">
+<code class="sig-name descname"><span class="pre">create_recover_task</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/restore_tasks_controller.html#RestoreTasksController.create_recover_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.restore_tasks_controller.RestoreTasksController.create_recover_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a POST request to /public/restore/recover.</p>
+<p>Returns the created Restore Task. This operation returns the
+following
+types of Restore Tasks: 1) A Restore Task that recovers VMs back to
+the
+original location or a new location. 2) A Restore Task that mounts
+the
+volumes of a Server (such as a VM or Physical Server) onto the
+specified
+target system. The Snapshots of the Server that contains the volumes
+that are mounted is determined by Array of Objects.
+The content of the Server is available from the mount point
+for the Granular Level Recovery (GLR) of application data. For
+example
+recovering Microsoft Exchange data using Kroll Ontrack®
+PowerControls™.
+NOTE: Volumes are mounted “instantly” if the Snapshot is stored
+locally on the
+Cohesity Cluster. If the Snapshot is archival target, it will take
+longer
+because it must be retrieved.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>body (RecoverTaskRequest): Request to create a Restore Task for</dt><dd><p>recovering VMs or mounting volumes to mount points.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>RestoreTask: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.restore_tasks_controller.RestoreTasksController.create_restore_files_task">
+<code class="sig-name descname"><span class="pre">create_restore_files_task</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/restore_tasks_controller.html#RestoreTasksController.create_restore_files_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.restore_tasks_controller.RestoreTasksController.create_restore_files_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a POST request to /public/restore/files.</p>
+<p>Returns the created Restore Task that recovers files and folders.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>body (RestoreFilesTaskRequest): Request to create a Restore Task</dt><dd><p>for recovering files or folders.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>RestoreTask: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.restore_tasks_controller.RestoreTasksController.create_search_production_ad_objects">
+<code class="sig-name descname"><span class="pre">create_search_production_ad_objects</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/restore_tasks_controller.html#RestoreTasksController.create_search_production_ad_objects"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.restore_tasks_controller.RestoreTasksController.create_search_production_ad_objects" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a POST request to /public/restore/adObjects.</p>
+<p>Returns the list of AD Objects that match the list of object guids,
+sam account names and distinguished names provided in the request.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>body (SearchProductionAdObjectsRequest): Specifies the Request to</dt><dd><p>search the AD Objects from Production AD.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>list of ADObject: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.restore_tasks_controller.RestoreTasksController.delete_public_destroy_clone_task">
+<code class="sig-name descname"><span class="pre">delete_public_destroy_clone_task</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/restore_tasks_controller.html#RestoreTasksController.delete_public_destroy_clone_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.restore_tasks_controller.RestoreTasksController.delete_public_destroy_clone_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a DELETE request to /public/restore/clone/{id}.</p>
+<p>Destroy a clone task with specified id.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>id (long|int): Specifies a unique id of the Clone Task to</dt><dd><p>destroy.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>void: Response from the API. No Content</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.restore_tasks_controller.RestoreTasksController.get_ad_domain_root_topology">
+<code class="sig-name descname"><span class="pre">get_ad_domain_root_topology</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">restore_task_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/restore_tasks_controller.html#RestoreTasksController.get_ad_domain_root_topology"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.restore_tasks_controller.RestoreTasksController.get_ad_domain_root_topology" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/restore/adDomainRootTopology.</p>
+<p>Returns the root topology for an AD domain.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>restore_task_id (long|int): Specifies the restoreTaskId</dt><dd><p>corresponding to which we need to get the ad topology.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>list of AdRootTopologyObject: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.restore_tasks_controller.RestoreTasksController.get_ad_objects">
+<code class="sig-name descname"><span class="pre">get_ad_objects</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sam_account_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">email</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">registered_source_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">view_box_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tenant_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_under_hierarchy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/restore_tasks_controller.html#RestoreTasksController.get_ad_objects"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.restore_tasks_controller.RestoreTasksController.get_ad_objects" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/restore/adObjects/searchResults.</p>
+<p>Search for AD objects to recover that match the specified search and
+filter criterias
+provided in the request.</p>
+<dl>
+<dt>Args:</dt><dd><p>name (string, optional): Specifies the name of the AD object.
+sam_account_name (string, optional): Specifies the sam account</p>
+<blockquote>
+<div><p>name of the AD object.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>object_type (string, optional): Specifies the type of the AD</dt><dd><p>Object. The type may be user, computer, group or
+ou(organizational unit).</p>
+</dd>
+<dt>email (string, optional): Specifies the email of the AD object of</dt><dd><p>type user or group.</p>
+</dd>
+<dt>registered_source_ids (list of long|int, optional): Specifies the</dt><dd><p>Active Directory Application Server Ids which contains the AD
+objects.</p>
+</dd>
+<dt>job_ids (list of long|int, optional): Specifies the protection job</dt><dd><p>Ids which have backed up Active Directory Application Server.</p>
+</dd>
+<dt>view_box_ids (list of long|int, optional): Filter by a list of</dt><dd><p>Domains (View Boxes) ids. Only items stored in the listed
+Domains (View Boxes) are returned.</p>
+</dd>
+</dl>
+<p>domain (string, optional): domain of the AD object.
+tenant_id (string, optional): TenantId specifies the tenant whose</p>
+<blockquote>
+<div><p>action resulted in the audit log.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>all_under_hierarchy (bool, optional): AllUnderHierarchy specifies</dt><dd><p>if logs of all the tenants under the hierarchy of tenant with
+id TenantId should be returned.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>FileSearchResults: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.restore_tasks_controller.RestoreTasksController.get_ad_objects_restore_status">
+<code class="sig-name descname"><span class="pre">get_ad_objects_restore_status</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">restore_task_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/restore_tasks_controller.html#RestoreTasksController.get_ad_objects_restore_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.restore_tasks_controller.RestoreTasksController.get_ad_objects_restore_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/restore/adObjects/status.</p>
+<p>Returns the Restore status of the AD objects which were restored from
+the
+snapshot AD to production AD as part of the restore task id specified
+in the
+parameters.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>restore_task_id (long|int, optional): Specifies the restoreTaskId</dt><dd><p>corresponding to which we need to get information about the
+restore of the AD objects.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>AdObjectsRestoreStatus: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.restore_tasks_controller.RestoreTasksController.get_file_fstat_information">
+<code class="sig-name descname"><span class="pre">get_file_fstat_information</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">job_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_uid_object_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">entity_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_instance_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_start_time_usecs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attempt_num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">volume_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">view_box_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">view_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">volume_info_cookie</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_librarian</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/restore_tasks_controller.html#RestoreTasksController.get_file_fstat_information"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.restore_tasks_controller.RestoreTasksController.get_file_fstat_information" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/restore/files/fstats.</p>
+<p>Get the fstat information about file provided using query parameters.</p>
+<dl>
+<dt>Args:</dt><dd><dl class="simple">
+<dt>job_id (long|int): JobId is the id of the local job that took the</dt><dd><p>snapshot, which may or may not match the JobUidObjectId below
+depending on whether the object originally belonged to this
+local job or to a different remote job.</p>
+</dd>
+<dt>job_uid_object_id (long|int): JobUidObjectId is the globally</dt><dd><p>unique id of the job that the object originally belonged to.
+If this object originally belonged to a job from a remote
+cluster, this field will contain the JobId of the remote job,
+else it will contain the JobId of the local job.</p>
+</dd>
+</dl>
+<p>entity_id (long|int): EntityId is the Id of the VM.
+job_instance_id (long|int): JobInstanceId is the Id of the job run</p>
+<blockquote>
+<div><p>that backed up the entity.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>job_start_time_usecs (long|int): JobStartTimeUsecs is the start</dt><dd><p>time in usecs of the job run that backed up the entity.</p>
+</dd>
+<dt>file_path (string): FilePath is the full path of the file or</dt><dd><p>directory whose stat needed.</p>
+</dd>
+<dt>attempt_num (long|int, optional): AttemptNum is the attempt number</dt><dd><p>of the run that successfully created the snapshot.</p>
+</dd>
+<dt>volume_name (string, optional): VolumeName is the name of the</dt><dd><p>volume that needs to be browsed. This should match the name
+returned in VolumeInfo.</p>
+</dd>
+<dt>view_box_id (long|int, optional): Id of the View Box if a View is</dt><dd><p>being browsed.</p>
+</dd>
+<dt>view_name (string, optional): Name of the View if a View is being</dt><dd><p>browsed.</p>
+</dd>
+<dt>volume_info_cookie (int, optional): VolumeInfoCookie is the cookie</dt><dd><p>to be passed in calls to reading a VM dir for this volume.</p>
+</dd>
+<dt>use_librarian (bool, optional): Specifies whether to use Librarian</dt><dd><p>for file stat. This will be true if the browse is enabled via
+librarian.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>FileFstatResult: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.restore_tasks_controller.RestoreTasksController.get_file_snapshots_information">
+<code class="sig-name descname"><span class="pre">get_file_snapshots_information</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">job_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster_incarnation_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/restore_tasks_controller.html#RestoreTasksController.get_file_snapshots_information"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.restore_tasks_controller.RestoreTasksController.get_file_snapshots_information" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/restore/files/snapshotsInformation.</p>
+<p>Get the information about snapshots that contain the specified file or
+folder. In addition, information about the file or folder is
+provided.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>job_id (long|int): Specifies the id of the Job that captured the</dt><dd><p>snapshots. These snapshots are searched for the specified
+files or folders. This field is required.</p>
+</dd>
+<dt>cluster_id (long|int): Specifies the Cohesity Cluster id where the</dt><dd><p>Job was created. This field is required.</p>
+</dd>
+<dt>cluster_incarnation_id (long|int): Specifies the incarnation id of</dt><dd><p>the Cohesity Cluster where the Job was created. An incarnation
+id is generated when a Cohesity Cluster is initially created.
+This field is required.</p>
+</dd>
+<dt>source_id (long|int): Specifies the id of the Protection Source</dt><dd><p>object (such as a VM) to search. When a Job Run executes,
+snapshots of the specified Protection Source object are
+captured. This operation searches the snapshots of the object
+for the file or folder. This field is required.</p>
+</dd>
+<dt>filename (string): Specifies the name of the file or folder to</dt><dd><p>find in the snapshots. This field is required.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>list of FileSnapshotInformation: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.restore_tasks_controller.RestoreTasksController.get_one_drive_documents">
+<code class="sig-name descname"><span class="pre">get_one_drive_documents</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tenant_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_under_hierarchy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">document_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mailbox_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">protection_job_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/restore_tasks_controller.html#RestoreTasksController.get_one_drive_documents"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.restore_tasks_controller.RestoreTasksController.get_one_drive_documents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/restore/office365/onedrive/documents.</p>
+<p>Search for OneDrive files and folder to recover that match the
+specified
+search and filter criterias on the Cohesity cluster.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>tenant_ids (string, optional): TenantId specifies the tenant</dt><dd><p>whose action resulted in the audit log.</p>
+</dd>
+<dt>all_under_hierarchy (bool, optional): AllUnderHierarchy specifies</dt><dd><p>if logs of all the tenants under the hierarchy of tenant with
+id TenantId should be returned.</p>
+</dd>
+<dt>document_name (string, optional): Specifies the document</dt><dd><p>(file/folder) name.</p>
+</dd>
+<dt>domain_ids (list of int, optional): Specifies the domain Ids in</dt><dd><p>which Users’ OneDrives are registered.</p>
+</dd>
+<dt>mailbox_ids (list of int, optional): Specifies the Office365 User</dt><dd><p>Ids which is the owner of the OneDrive.</p>
+</dd>
+<dt>protection_job_ids (list of string, optional): Specifies the</dt><dd><p>protection job Ids which have backed up mailbox(es) contianing
+emails/folders.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>FileSearchResults: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.restore_tasks_controller.RestoreTasksController.get_outlook_emails">
+<code class="sig-name descname"><span class="pre">get_outlook_emails</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">has_attachments</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sender_address</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recipient_addresses</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cc_recipient_addresses</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bcc_recipient_addresses</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sent_time_seconds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">received_time_seconds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">received_start_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">received_end_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">email_subject</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">folder_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_only_email_folders</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mailbox_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">protection_job_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tenant_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_under_hierarchy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/restore_tasks_controller.html#RestoreTasksController.get_outlook_emails"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.restore_tasks_controller.RestoreTasksController.get_outlook_emails" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/restore/office365/outlook/emails.</p>
+<p>Search for Emails and Emails’ folders to recover that match the
+specified
+search and filter criterias on the Cohesity cluster.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>has_attachments (bool, optional): Specifies whether the emails</dt><dd><p>have any attachments.</p>
+</dd>
+<dt>sender_address (string, optional): Specifies the email address of</dt><dd><p>the sender.</p>
+</dd>
+<dt>recipient_addresses (list of string, optional): Specifies the</dt><dd><p>email addresses of the recipients.</p>
+</dd>
+<dt>cc_recipient_addresses (list of string, optional): Specifies the</dt><dd><p>email addresses of the cc recipients.</p>
+</dd>
+<dt>bcc_recipient_addresses (list of string, optional): Specifies the</dt><dd><p>email addresses of the bcc recipients.</p>
+</dd>
+<dt>sent_time_seconds (long|int, optional): Specifies the unix time</dt><dd><p>when the email was sent.</p>
+</dd>
+<dt>received_time_seconds (long|int, optional): Specifies the unix</dt><dd><p>time when the email was received.</p>
+</dd>
+<dt>received_start_time (long|int, optional): Specifies the unix start</dt><dd><p>time for querying on email’s received time.</p>
+</dd>
+<dt>received_end_time (long|int, optional): Specifies the unix end</dt><dd><p>time for querying on email’s received time.</p>
+</dd>
+<dt>email_subject (string, optional): Specifies the subject of the</dt><dd><p>email.</p>
+</dd>
+<dt>folder_name (string, optional): Specifies the parent folder name</dt><dd><p>of the email.</p>
+</dd>
+<dt>show_only_email_folders (bool, optional): Specifies whether the</dt><dd><p>query result should include only Email folders.</p>
+</dd>
+<dt>domain_ids (list of long|int, optional): Specifies the domain Ids</dt><dd><p>in which mailboxes are registered.</p>
+</dd>
+<dt>mailbox_ids (list of long|int, optional): Specifies the mailbox</dt><dd><p>Ids which contains the emails/folders.</p>
+</dd>
+<dt>protection_job_ids (list of long|int, optional): Specifies the</dt><dd><p>protection job Ids which have backed up mailbox(es) continaing
+emails/folders.</p>
+</dd>
+<dt>tenant_id (string, optional): TenantId specifies the tenant whose</dt><dd><p>action resulted in the audit log.</p>
+</dd>
+<dt>all_under_hierarchy (bool, optional): AllUnderHierarchy specifies</dt><dd><p>if logs of all the tenants under the hierarchy of tenant with
+id TenantId should be returned.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>FileSearchResults: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.restore_tasks_controller.RestoreTasksController.get_restore_task_by_id">
+<code class="sig-name descname"><span class="pre">get_restore_task_by_id</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/restore_tasks_controller.html#RestoreTasksController.get_restore_task_by_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.restore_tasks_controller.RestoreTasksController.get_restore_task_by_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/restore/tasks/{id}.</p>
+<p>Returns the Restore Task corresponding to the specified Restore Task
+id.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>id (long|int): Specifies a unique id for the Restore Task.</p>
+</dd>
+<dt>Returns:</dt><dd><p>RestoreTask: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.restore_tasks_controller.RestoreTasksController.get_restore_tasks">
+<code class="sig-name descname"><span class="pre">get_restore_tasks</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_time_usecs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_time_usecs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page_count</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">environment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">storage_domain_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/restore_tasks_controller.html#RestoreTasksController.get_restore_tasks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.restore_tasks_controller.RestoreTasksController.get_restore_tasks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/restore/tasks.</p>
+<p>If no parameters are specified, all Restore Tasks found
+on the Cohesity Cluster are returned. Both running and completed
+Restore Tasks are reported.
+Specifying parameters filters the results that are returned.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>task_ids (list of long|int, optional): Filter by a list of Restore</dt><dd><p>Task ids.</p>
+</dd>
+<dt>start_time_usecs (long|int, optional): Filter by a start time</dt><dd><p>specified as a Unix epoch Timestamp (in microseconds). All
+Restore Tasks (both completed and running) on the Cohesity
+Cluster that started after the specified start time but before
+the specified end time are returned. If not set, the start
+time is creation time of the Cohesity Cluster.</p>
+</dd>
+<dt>end_time_usecs (long|int, optional): Filter by an end time</dt><dd><p>specified as a Unix epoch Timestamp (in microseconds). All
+Restore Tasks (both completed and running) on the Cohesity
+Cluster that started after the specified start time but before
+the specified end time are returned. If not set, the end time
+is the current time.</p>
+</dd>
+<dt>page_count (long|int, optional): Specifies the number of completed</dt><dd><p>Restore Tasks to return in the response for pagination
+purposes. Running Restore Tasks are always returned. The
+newest completed Restore Tasks are returned.</p>
+</dd>
+<dt>task_types (list of string, optional): Filter by the types of</dt><dd><p>Restore Tasks such as ‘kRecoverVMs’, ‘kCloneVMs’, ‘kCloneView’
+or ‘kMountVolumes’.</p>
+</dd>
+<dt>environment (EnvironmentGetRestoreTasksEnum, optional): Specifies</dt><dd><p>the environment like VMware, SQL, where the Protection Source
+exists. Supported environment types such as ‘kView’, ‘kSQL’,
+‘kVMware’, etc. NOTE: ‘kPuppeteer’ refers to Cohesity’s Remote
+Adapter. ‘kVMware’ indicates the VMware Protection Source
+environment. ‘kHyperV’ indicates the HyperV Protection Source
+environment. ‘kSQL’ indicates the SQL Protection Source
+environment. ‘kView’ indicates the View Protection Source
+environment. ‘kPuppeteer’ indicates the Cohesity’s Remote
+Adapter. ‘kPhysical’ indicates the physical Protection Source
+environment. ‘kPure’ indicates the Pure Storage Protection
+Source environment. ‘Nimble’ indicates the Nimble Storage
+Protection Source environment. ‘kAzure’ indicates the
+Microsoft’s Azure Protection Source environment. ‘kNetapp’
+indicates the Netapp Protection Source environment. ‘kAgent’
+indicates the Agent Protection Source environment.
+‘kGenericNas’ indicates the Generic Network Attached Storage
+Protection Source environment. ‘kAcropolis’ indicates the
+Acropolis Protection Source environment. ‘kPhsicalFiles’
+indicates the Physical Files Protection Source environment.
+‘kIsilon’ indicates the Dell EMC’s Isilon Protection Source
+environment. ‘kGPFS’ indicates IBM’s GPFS Protection Source
+environment. ‘kKVM’ indicates the KVM Protection Source
+environment. ‘kAWS’ indicates the AWS Protection Source
+environment. ‘kExchange’ indicates the Exchange Protection
+Source environment. ‘kHyperVVSS’ indicates the HyperV VSS
+Protection Source environment. ‘kOracle’ indicates the Oracle
+Protection Source environment. ‘kGCP’ indicates the Google
+Cloud Platform Protection Source environment. ‘kFlashBlade’
+indicates the Flash Blade Protection Source environment.
+‘kAWSNative’ indicates the AWS Native Protection Source
+environment. ‘kO365’ indicates the
+Office 365 Protection Source environment. ‘kO365Outlook’
+indicates Office 365 outlook Protection Source environment.
+‘kHyperFlex’ indicates the Hyper Flex Protection Source
+environment. ‘kGCPNative’ indicates the GCP Native Protection
+Source environment. ‘kAzureNative’ indicates the Azure Native
+Protection Source environment. ‘kKubernetes’ indicates a
+Kubernetes Protection Source environment. ‘kElastifile’
+indicates Elastifile Protection Source environment.
+‘kAD’ indicates Active Directory Protection Source environment.
+‘kRDSSnapshotManager’ indicates AWS RDS Protection Source
+environment. ‘kCassandra’ indicates Cassandra Protection Source
+environment. ‘kMongoDB’ indicates MongoDB Protection Source
+environment. ‘kCouchbase’ indicates Couchbase Protection Source
+environment. ‘kHdfs’ indicates Hdfs Protection Source
+environment. ‘kHive’ indicates Hive Protection Source
+environment. ‘kHBase’ indicates HBase Protection Source
+environment. ‘kUDA’ indicates Universal Data Adapter Protection
+Source environment.</p>
+</dd>
+<dt>storage_domain_ids (long|int): Filter by a list of Storage Domain</dt><dd><p>IDs. This field applies only if ‘TaskTypes’ includes
+‘kCloneView’. Only task writing data to these storage domains
+will be returned.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>list of RestoreTask: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.restore_tasks_controller.RestoreTasksController.get_sharepoint_documents">
+<code class="sig-name descname"><span class="pre">get_sharepoint_documents</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tenant_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_under_hierarchy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">document_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domain_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">site_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">protection_job_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/restore_tasks_controller.html#RestoreTasksController.get_sharepoint_documents"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.restore_tasks_controller.RestoreTasksController.get_sharepoint_documents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/restore/office365/sharepoint/documents.</p>
+<p>Search for Sharepoint files and folder to recover that match the
+specified
+search and filter criterias on the Cohesity cluster.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>tenant_id (string, optional): TenantId specifies the tenant whose</dt><dd><p>action resulted in the audit log.</p>
+</dd>
+<dt>all_under_hierarchy (bool, optional): AllUnderHierarchy specifies</dt><dd><p>if objects of all the tenants under the hierarchy of the
+logged in user’s organization should be returned.</p>
+</dd>
+<dt>document_name (string, optional): Specifies the document</dt><dd><p>(file/folder) name.</p>
+</dd>
+<dt>domain_ids (list of int|long, optional): Specifies the domain Ids</dt><dd><p>in which Sharepoint Site’s are registered.</p>
+</dd>
+<dt>site_ids (list of int|long, optional): Specifies the Office365</dt><dd><p>Sharepoint Site Id.</p>
+</dd>
+<dt>protection_job_ids (list of int|long, optional): Specifies the</dt><dd><p>protection job Ids which have backed up sites containing the
+documents.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>FileSearchResults: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.restore_tasks_controller.RestoreTasksController.get_virtual_disk_information">
+<code class="sig-name descname"><span class="pre">get_virtual_disk_information</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cluster_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster_incarnation_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_run_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_time_usecs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point_in_time_usecs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vault_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vault_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vault_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/restore_tasks_controller.html#RestoreTasksController.get_virtual_disk_information"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.restore_tasks_controller.RestoreTasksController.get_virtual_disk_information" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/restore/virtualDiskInformation.</p>
+<p>Fetches information of virtual disk.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>cluster_id (long|int): Specifies the Cohesity Cluster id where the</dt><dd><p>Job was created.</p>
+</dd>
+<dt>cluster_incarnation_id (long|int): Specifies the incarnation id of</dt><dd><p>the Cohesity Cluster where the Job was created.</p>
+</dd>
+<dt>job_id (long|int): Specifies the id of the Job that captured the</dt><dd><p>snapshot.</p>
+</dd>
+<dt>job_run_id (long|int): Specifies the id of the Job Run that</dt><dd><p>captured the snapshot.</p>
+</dd>
+<dt>start_time_usecs (long|int): Specifies the start time of the job</dt><dd><p>run as a Unix epoch Timestamp in microseconds.</p>
+</dd>
+<dt>source_id (long|int): Specifies the Id of the Protection Source</dt><dd><p>object.</p>
+</dd>
+<dt>point_in_time_usecs (long|int): PointInTimeUsecs is the time to</dt><dd><p>get volume virtual disk info from previously available
+full/incremental snapshot.</p>
+</dd>
+<dt>vault_id (int|long): Specifies the Id of the vault where snapshot</dt><dd><p>was taken.</p>
+</dd>
+<dt>vault_name (string): Specifies the name of the vault where snapshot</dt><dd><p>was taken.</p>
+</dd>
+<dt>vault_type (VaultTypeEnum): Specifes the type of the vault where</dt><dd><p>snapshot was taken.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>list of VirtualDiskInformation: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.restore_tasks_controller.RestoreTasksController.get_vm_directory_list">
+<code class="sig-name descname"><span class="pre">get_vm_directory_list</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">job_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_uid_object_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">entity_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_instance_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_start_time_usecs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dir_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attempt_num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">volume_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">view_box_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">view_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_entries</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">volume_info_cookie</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cookie</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stat_file_entries</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">browse_indexed_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/restore_tasks_controller.html#RestoreTasksController.get_vm_directory_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.restore_tasks_controller.RestoreTasksController.get_vm_directory_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/restore/vms/directoryList.</p>
+<p>Get the directory list based on the given directory name and other
+query parameters.</p>
+<dl>
+<dt>Args:</dt><dd><dl class="simple">
+<dt>job_id (long|int): JobId is the id of the local job that took the</dt><dd><p>snapshot, which may or may not match the JobUidObjectId below
+depending on whether the object originally belonged to this
+local job or to a different remote job.</p>
+</dd>
+<dt>job_uid_object_id (long|int): JobUidObjectId is the globally</dt><dd><p>unique id of the job that the object originally belonged to.
+If this object originally belonged to a job from a remote
+cluster, this field will contain the JobId of the remote job,
+else it will contain the JobId of the local job.</p>
+</dd>
+</dl>
+<p>entity_id (long|int): EntityId is the Id of the VM.
+job_instance_id (long|int): JobInstanceId is the Id of the job run</p>
+<blockquote>
+<div><p>that backed up the entity.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>job_start_time_usecs (long|int): JobStartTimeUsecs is the start</dt><dd><p>time in usecs of the job run that backed up the entity.</p>
+</dd>
+<dt>dir_path (string): DirPath is the full path of the directory whose</dt><dd><p>contents need to be listed.</p>
+</dd>
+<dt>attempt_num (long|int, optional): AttemptNum is the attempt number</dt><dd><p>of the run that successfully created the snapshot.</p>
+</dd>
+<dt>volume_name (string, optional): VolumeName is the name of the</dt><dd><p>volume that needs to be browsed. This should match the name
+returned in VolumeInfo.</p>
+</dd>
+<dt>view_box_id (long|int, optional): Id of the View Box if a View is</dt><dd><p>being browsed.</p>
+</dd>
+<dt>view_name (string, optional): Name of the View if a View is being</dt><dd><p>browsed.</p>
+</dd>
+<dt>max_entries (int, optional): MaxEntries is the maximum number of</dt><dd><p>entries to return in this call. If there are more entries,
+server will return a cookie in the response that can be used
+to continue enumeration from the last call.</p>
+</dd>
+<dt>volume_info_cookie (int, optional): VolumeInfoCookie is the cookie</dt><dd><p>to be passed in calls to reading a VM dir for this volume.</p>
+</dd>
+<dt>cookie (string, optional): Cookie is used for paginating results.</dt><dd><p>If ReadDirResult returned partial results, it will also return
+a cookie that can be used to resume the listing. The value
+returned in ReadDirResult should be passed in the next call.
+The first call should not have this value set. Note that this
+value is only a suggestion and server is free to do a short
+read (return fewer entries along with a cookie).</p>
+</dd>
+<dt>stat_file_entries (bool, optional): StatFileEntries specifies</dt><dd><p>whether file stat data is returned.</p>
+</dd>
+<dt>browse_indexed_data (bool, optional): Specifies whether to use</dt><dd><p>indexed data in Librarian for browse.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>VmDirectoryListResult: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.restore_tasks_controller.RestoreTasksController.get_vm_volumes_information">
+<code class="sig-name descname"><span class="pre">get_vm_volumes_information</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">job_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster_incarnation_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_run_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">started_time_usecs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">original_job_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attempt_number</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">supported_volumes_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compute_volume_info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/restore_tasks_controller.html#RestoreTasksController.get_vm_volumes_information"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.restore_tasks_controller.RestoreTasksController.get_vm_volumes_information" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/restore/vms/volumesInformation.</p>
+<p>All required fields must be specified for this operation.
+To get values for these fields, invoke the GET
+/public/restore/objects
+operation.
+A specific Job Run is defined by the jobRunId, startedTimeUsecs, and
+attemptNumber fields.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>job_id (long|int): Specifies the Job id for the Protection Job</dt><dd><p>that is currently associated with the object. If the object
+was backed up on current Cohesity Cluster, this field contains
+the id for the Job that captured this backup object. If the
+object was backed up on a Primary Cluster and replicated to
+this Cohesity Cluster, a new Inactive Job is created, the
+object is now associated with new Inactive Job, and this field
+contains the id of the new Inactive Job.</p>
+</dd>
+<dt>cluster_id (long|int): Specifies the Cohesity Cluster id where the</dt><dd><p>Job was created.</p>
+</dd>
+<dt>cluster_incarnation_id (long|int): Specifies the incarnation id of</dt><dd><p>the Cohesity Cluster where the Job was created. An incarnation
+id is generated when a Cohesity Cluster is initially created.</p>
+</dd>
+<dt>job_run_id (long|int): Specifies the id of the Job Run that</dt><dd><p>captured the snapshot.</p>
+</dd>
+<dt>started_time_usecs (long|int): Specifies the time when the Job Run</dt><dd><p>starts capturing a snapshot. Specified as a Unix epoch
+Timestamp (in microseconds).</p>
+</dd>
+<dt>source_id (long|int): Specifies the id of the VM object to search</dt><dd><p>for volumes.</p>
+</dd>
+<dt>original_job_id (long|int): Specifies the id for the Protection</dt><dd><p>Job that originally captured the snapshots of the original
+object. If the object was backed up on a Primary Cluster
+replicated to this Cohesity Cluster, and a new Inactive Job is
+created, this field still contains the id of the original Job
+and NOT the id of the new Inactive Job. This field is used in
+combination with the clusterId and clusterIncarnationId to
+uniquely identify a Job.</p>
+</dd>
+<dt>attempt_number (long|int, optional): Specifies the number of the</dt><dd><p>attempts made by the Job Run to capture a snapshot of the
+object. For example, if an snapshot is successfully captured
+after three attempts, this field equals 3.</p>
+</dd>
+<dt>supported_volumes_only (bool, optional): Specifies to return only</dt><dd><p>supported volumes information. Unsupported volumes are not
+returned if this flag is set to true. Default is false.</p>
+</dd>
+<dt>compute_volume_info (bool, optional): Specifies whether to compute</dt><dd><p>volume information if it is not found. If <cite>ComputeVolumeInfo</cite>
+is false and volume information is not found it skips
+computation of volume information and returns KNotFound.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>list of VmVolumesInformation: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.restore_tasks_controller.RestoreTasksController.list_org_vdc_networks">
+<code class="sig-name descname"><span class="pre">list_org_vdc_networks</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/restore_tasks_controller.html#RestoreTasksController.list_org_vdc_networks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.restore_tasks_controller.RestoreTasksController.list_org_vdc_networks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/virtualDatacenters/{id}/orgVdcNetworks.</p>
+<p>Returns the Org VDC Network under a VDC in a VMware environment.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>id (long|int): Specifies the ID of the virtual datacenter.</p>
+</dd>
+<dt>Returns:</dt><dd><p>list of OrgVdcNetwork: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.restore_tasks_controller.RestoreTasksController.list_storage_profiles">
+<code class="sig-name descname"><span class="pre">list_storage_profiles</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/restore_tasks_controller.html#RestoreTasksController.list_storage_profiles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.restore_tasks_controller.RestoreTasksController.list_storage_profiles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/virtualDatacenters/{id}/storageProfiles.</p>
+<p>Fetches information of virtual disk.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>id (int|long): Specifies a unique id for the VDC.</p>
+</dd>
+<dt>Returns:</dt><dd><p>ListStorageProfilesResponseBody: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.restore_tasks_controller.RestoreTasksController.search_ad_objects">
+<code class="sig-name descname"><span class="pre">search_ad_objects</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">restore_task_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_objects</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">search_base_dn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subtree_search_scope</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compare_objects</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude_system_properties</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">record_offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/restore_tasks_controller.html#RestoreTasksController.search_ad_objects"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.restore_tasks_controller.RestoreTasksController.search_ad_objects" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/restore/adObjects.</p>
+<p>Returns the list of AD Objects along with status whether they are
+missing in
+Production AD, equal or not equal.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>restore_task_id (long|int): Specifies the restoreTaskId</dt><dd><p>corresponding to which we need to search AD objects.</p>
+</dd>
+<dt>num_objects (int, optional): Specifies the number of AD Objects to</dt><dd><p>be fetched.</p>
+</dd>
+<dt>search_base_dn (string, optional): Specifies the search base</dt><dd><p>distinguished name from where the search should begin in the
+hierarchy of the AD in both Production and Snapshot AD.</p>
+</dd>
+<dt>subtree_search_scope (bool, optional): Specifies the search scope</dt><dd><p>for the request. If subtree search scope is true all the
+children of Search Base DN are returned from given offset. If
+subtree search scope is false only all objects which are one
+level from the Search Base DN are returned.</p>
+</dd>
+<dt>compare_objects (bool, optional): Specifies the option to compare</dt><dd><p>the properties from Snapshot AD and Production AD if specifed
+and sets kNotEqual flag in the result when there is mismatch.</p>
+</dd>
+<dt>exclude_system_properties (bool, optional): Specifies the option</dt><dd><p>to exclude the system attributes while comparing the the
+objects from the Production AD and Snapshot AD.</p>
+</dd>
+<dt>filter (string, optional): Specifies the filter which can be used</dt><dd><p>for searching the AD Objects from given Search Base DN. There
+are two types of filters supported. They are: 1) If the string
+does not contain LDAP delimiters ‘(‘ and ‘)’, then it is
+assumed to be ANR search “(anr=&lt;ldap_filter&gt;)” Eg: “a” will
+result in query to return all ANR fields with “a” characters
+(case insensitive) in them 2) Search with OR and AND
+combination: “(<a href="#id1"><span class="problematic" id="id2">|</span></a>(&amp;(objectClass=user)(distinguishedName=CN=Jone
+Doe,OU=Users,DC=corp,DC=cohesity,DC=com))(&amp;(objectClass=user)
+(sAMAccountName=jdoe)))”</p>
+</dd>
+<dt>record_offset (int, optional): Specifies the offset from which AD</dt><dd><p>objects should be searched in both the Snapshot and Production
+AD.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>list of ADObject: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.restore_tasks_controller.RestoreTasksController.search_objects">
+<code class="sig-name descname"><span class="pre">search_objects</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">search</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">registered_source_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">view_box_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">environments</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">office365_source_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_time_usecs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_time_usecs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page_count</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">operating_systems</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">application</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">owner_entity_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tenant_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_under_hierarchy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/restore_tasks_controller.html#RestoreTasksController.search_objects"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.restore_tasks_controller.RestoreTasksController.search_objects" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/restore/objects.</p>
+<p>If no search pattern or filter parameters are specified, all backup
+objects
+currently found on the Cohesity Cluster are returned.
+Only leaf objects that have been protected by a Job are returned such
+as VMs,
+Views and databases.
+Specify a search pattern or parameters to filter the results that
+are returned.
+The term “items” below refers to leaf backup objects such as VMs,
+Views and databases.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>search (string, optional): Filter by searching for sub-strings in</dt><dd><p>the item name. The specified string can match any part of the
+item name. For example: “vm” or “123” both match the item name
+of “vm-123”.</p>
+</dd>
+<dt>job_ids (list of long|int, optional): Filter by a list of</dt><dd><p>Protection Job ids. Only items backed up by the specified Jobs
+are listed.</p>
+</dd>
+<dt>registered_source_ids (list of long|int, optional): Filter by a</dt><dd><p>list of Registered Sources ids. Only items from the listed
+Registered Sources are returned.</p>
+</dd>
+<dt>view_box_ids (list of long|int, optional): Filter by a list of</dt><dd><p>Domains (View Boxes) ids. Only items stored in the listed
+Domains (View Boxes) are returned.</p>
+</dd>
+<dt>environments (list of EnvironmentSearchObjectsEnum, optional):</dt><dd><p>Filter by environment types such as ‘kVMware’, ‘kView’, etc.
+Only items from the specified environment types are returned.
+NOTE: ‘kPuppeteer’ refers to Cohesity’s Remote Adapter.</p>
+</dd>
+<dt>office365_source_types (Office365SourceTypesEnum, optional): Filter</dt><dd><p>by Office365 types such as ‘kUser’, ‘kSite’, etc.
+Only items from the specified source types are returned.</p>
+</dd>
+<dt>start_time_usecs (long|int, optional): Filter by backup completion</dt><dd><p>time by specifying a backup completion start and end times.
+Specified as a Unix epoch Timestamp (in microseconds). Only
+items created by backups that completed between the specified
+start and end times are returned.</p>
+</dd>
+<dt>end_time_usecs (long|int, optional): Filter by backup completion</dt><dd><p>time by specify a backup completion start and end times.
+Specified as a Unix epoch Timestamp (in microseconds). Only
+items created by backups that completed between the specified
+start and end times are returned.</p>
+</dd>
+<dt>start_index (long|int, optional): Specifies an index number that</dt><dd><p>can be used to return subsets of items in multiple requests.
+Break up the items to return into multiple requests by setting
+pageCount and using startIndex to return a subsets of items.
+For example, set startIndex to 0 to get the first set of items
+for the first request. Increment startIndex by pageCount to
+get the next set of items for a next request. Continue until
+all items are returned and therefore the total number of
+returned items is equal to totalCount.</p>
+</dd>
+<dt>page_count (long|int, optional): Limit the number of items to</dt><dd><p>return in the response for pagination purposes.</p>
+</dd>
+<dt>operating_systems (list of string, optional): Filter by the</dt><dd><p>Operating Systems running on VMs and Physical Servers. This
+filter is applicable only to VMs and physical servers.</p>
+</dd>
+<dt>application (string, optional): Filter by application when the</dt><dd><p>environment type is kSQL. For example, if SQL is specified the
+SQL databases are returned.</p>
+</dd>
+<dt>owner_entity_id (long|int, optional): Filter objects by the Entity</dt><dd><p>id of the owner VM. For example, if a ownerEntityId is
+provided while searching for SQL databases, only SQL databases
+belonging to the VM with the specified id are returned.
+ownerEntityId is only significant if application is set to
+SQL.</p>
+</dd>
+<dt>tenant_id (string, optional): TenantId specifies the tenant whose</dt><dd><p>action resulted in the audit log.</p>
+</dd>
+<dt>all_under_hierarchy (bool, optional): AllUnderHierarchy specifies</dt><dd><p>if logs of all the tenants under the hierarchy of tenant with
+id TenantId should be returned.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>ObjectSearchResults: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.restore_tasks_controller.RestoreTasksController.search_restored_files">
+<code class="sig-name descname"><span class="pre">search_restored_files</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">must_have_tags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">might_have_tags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">must_have_snapshot_tags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">might_have_snapshot_tags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">paginate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pagination_cookie</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">search</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">registered_source_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">view_box_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">environments</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_time_usecs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_time_usecs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page_count</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">folder_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tenant_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_under_hierarchy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/restore_tasks_controller.html#RestoreTasksController.search_restored_files"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.restore_tasks_controller.RestoreTasksController.search_restored_files" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/restore/files.</p>
+<p>Use the files and folders returned by this operation to populate the
+list of files and folders to recover in the
+POST /public/restore/files operation.
+If no search pattern or filter parameters are specified, all files
+and folders currently found on the Cohesity Cluster are returned.
+Specify a search pattern or parameters to filter the results that
+are returned.
+The term “items” below refers to files and folders that are found
+in the source objects (such as VMs).</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>must_have_tags(list of string, optional): Specifies tags which must</dt><dd><p>be all present in the document.</p>
+</dd>
+<dt>might_have_tags(list of string, optional): Specifies list of tags,</dt><dd><p>one of which might be present in the document. These are OR’ed
+together and the resulting criteria AND’ed with the rest of the
+query.</p>
+</dd>
+<dt>must_have_snapshot_tags(list of string, optional): Specifies</dt><dd><p>snapshot tags which must be all present in the document.</p>
+</dd>
+<dt>might_have_snapshot_tags(list of string, optional): Specifies list</dt><dd><p>of snapshot tags, one of which might be present in the
+document. These are OR’ed together and the resulting criteria
+AND’ed with the rest of the query.</p>
+</dd>
+<dt>paginate(bool, optional): Specifies bool to control pagination of</dt><dd><p>search results. Only valid for librarian queries. If this is
+set to true and a pagination cookie is provided, search will be
+resumed.</p>
+</dd>
+<dt>page_size(int , optional): Specifies pagesize for pagination. Only</dt><dd><p>valid for librarian queries. Effective only when Paginate is
+set to true.</p>
+</dd>
+<dt>pagination_cookie(string, optional): Specifies cookie for resuming</dt><dd><p>search if pagination is being used. Only valid for librarian
+queries. Effective only when Paginate is set to true.</p>
+</dd>
+<dt>search (string, optional): Filter by searching for sub-strings in</dt><dd><p>the item name. The specified string can match any part of the
+item name. For example: “vm” or “123” both match the item name
+of “vm-123”.</p>
+</dd>
+<dt>job_ids (list of long|int, optional): Filter by a list of</dt><dd><p>Protection Job ids. Only items backed up by the specified Jobs
+are listed.</p>
+</dd>
+<dt>registered_source_ids (list of long|int, optional): Filter by a</dt><dd><p>list of Registered Sources ids. Only items from the listed
+Registered Sources are returned.</p>
+</dd>
+<dt>view_box_ids (list of long|int, optional): Filter by a list of</dt><dd><p>Domains (View Boxes) ids. Only items stored in the listed
+Domains (View Boxes) are returned.</p>
+</dd>
+<dt>environments (list of EnvironmentSearchRestoredFilesEnum,</dt><dd><p>optional): Filter by environment types such as ‘kVMware’,
+‘kView’, etc. Only items from the specified environment types
+are returned. NOTE: ‘kPuppeteer’ refers to Cohesity’s Remote
+Adapter.</p>
+</dd>
+<dt>start_time_usecs (long|int, optional): Filter by backup completion</dt><dd><p>time by specifying a backup completion start and end times.
+Specified as a Unix epoch Timestamp (in microseconds). Only
+items created by backups that completed between the specified
+start and end times are returned.</p>
+</dd>
+<dt>end_time_usecs (long|int, optional): Filter by backup completion</dt><dd><p>time by specify a backup completion start and end times.
+Specified as a Unix epoch Timestamp (in microseconds). Only
+items created by backups that completed between the specified
+start and end times are returned.</p>
+</dd>
+<dt>start_index (long|int, optional): Specifies an index number that</dt><dd><p>can be used to return subsets of items in multiple requests.
+Break up the items to return into multiple requests by setting
+pageCount and using startIndex to return a subsets of items.
+For example, set startIndex to 0 to get the first set of items
+for the first request. Increment startIndex by pageCount to
+get the next set of items for a next request. Continue until
+all items are returned and therefore the total number of
+returned items is equal to totalCount.</p>
+</dd>
+<dt>page_count (long|int, optional): Limit the number of items to</dt><dd><p>return in the response for pagination purposes.</p>
+</dd>
+<dt>source_ids (list of long|int, optional): Filter by source ids.</dt><dd><p>Only files and folders found in the listed sources (such as
+VMs) are returned.</p>
+</dd>
+<dt>folder_only (bool, optional): Filter by folders or files. If true,</dt><dd><p>only folders are returned. If false, only files are returned.
+If not specified, both files and folders are returned.</p>
+</dd>
+<dt>tenant_id (string, optional): TenantId specifies the tenant whose</dt><dd><p>action resulted in the audit log.</p>
+</dd>
+<dt>all_under_hierarchy (bool, optional): AllUnderHierarchy specifies</dt><dd><p>if logs of all the tenants under the hierarchy of tenant with
+id TenantId should be returned.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>FileSearchResults: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.restore_tasks_controller.RestoreTasksController.update_cancel_restore_task">
+<code class="sig-name descname"><span class="pre">update_cancel_restore_task</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/restore_tasks_controller.html#RestoreTasksController.update_cancel_restore_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.restore_tasks_controller.RestoreTasksController.update_cancel_restore_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a PUT request to /public/restore/tasks/cancel/{id}.</p>
+<p>Cancel a recover or clone task with specified id.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>id (long|int): Specifies a unique id for the Restore Task.</p>
+</dd>
+<dt>Returns:</dt><dd><p>void: Response from the API. Success Response</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.restore_tasks_controller.RestoreTasksController.update_restore_task">
+<code class="sig-name descname"><span class="pre">update_restore_task</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/restore_tasks_controller.html#RestoreTasksController.update_restore_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.restore_tasks_controller.RestoreTasksController.update_restore_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a PUT request to /public/restore/recover.</p>
+<blockquote>
+<div><p>Updates an existing restore task with additional params which are
+needed for
+features like Hot-Standby.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>body (UpdateRestoreTaskParams): TODO: type description here.</dt><dd><p>Example:</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>RestoreTask: Response from the API. Specifies the response of the</dt><dd><p>UpdateRestoreTask API.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+<p>Success</p>
+<blockquote>
+<div><dl class="simple">
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="controllers.roles_controller.html" class="btn btn-neutral float-right" title="controllers.roles_controller module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="controllers.reports_controller.html" class="btn btn-neutral float-left" title="reports_controller" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Cohesity.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

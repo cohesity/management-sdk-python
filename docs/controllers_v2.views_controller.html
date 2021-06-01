@@ -1,0 +1,598 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>controllers_v2.views_controller module &mdash; Cohesity Python SDK 1.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="controllers_v2.users_controller module" href="controllers_v2.users_controller.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Cohesity Python SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#upgrade">Upgrade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#how-to-use">How to Use</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#questions-or-feedback">Questions or Feedback</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Endpoints</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="controllers.html">V1 Controllers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="controllers.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="controllers.access_tokens_controller.html">controllers.access_tokens_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.active_directory_controller.html">controllers.active_directory_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.alerts_controller.html">controllers.alerts_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.analytics_controller.html">controllers.analytics_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.antivirus_service_group_controller.html">controllers.antivirus_service_group_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.app_controller.html">controllers.app_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.app_instance_controller.html">controllers.app_instance_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.audit_controller.html">controllers.audit_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.banner_controller.html">controllers.banner_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.base_controller.html">controllers.base_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.certificates_controller.html">controllers.certificates_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.clone_refresh_tasks_controller.html">controllers.clone_refresh_tasks_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.cluster_controller.html">controllers.cluster_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.cluster_partitions_controller.html">controllers.cluster_partitions_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.clusters_controller.html">controllers.clusters_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.custom_reporting_controller.html">controllers.custom_reporting_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.dashboard_controller.html">controllers.dashboard_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.groups_controller.html">controllers.groups_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.idps_controller.html">controllers.idps_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.interface_controller.html">controllers.interface_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.interface_group_controller.html">controllers.interface_group_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.ip_controller.html">controllers.ip_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.kms_configuration_controller.html">controllers.kms_configuration_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.ldap_provider_controller.html">controllers.ldap_provider_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.license_controller.html">controllers.license_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.monitoring_controller.html">controllers.monitoring_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.network_controller.html">controllers.network_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.nodes_controller.html">controllers.nodes_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.notifications_controller.html">controllers.notifications_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.packages_controller.html">controllers.packages_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.preferences_controller.html">controllers.preferences_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.principals_controller.html">controllers.principals_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.privileges_controller.html">controllers.privileges_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.protection_jobs_controller.html">controllers.protection_jobs_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.protection_objects_controller.html">controllers.protection_objects_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.protection_policies_controller.html">controllers.protection_policies_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.protection_runs_controller.html">controllers.protection_runs_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.protection_sources_controller.html">controllers.protection_sources_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.remote_cluster_controller.html">controllers.remote_cluster_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.remote_restore_controller.html">controllers.remote_restore_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.reports_controller.html">reports_controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.restore_tasks_controller.html">controllers.restore_tasks_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.roles_controller.html">controllers.roles_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.routes_controller.html">controllers.routes_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.scheduler_controller.html">controllers.scheduler_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.search_controller.html">controllers.search_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.smb_file_opens_controller.html">controllers.smb_file_opens_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.static_route_controller.html">controllers.static_route_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.statistics_controller.html">controllers.statistics_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.stats_controller.html">controllers.stats_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.tags_controller.html">controllers.tags_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.tenant_controller.html">controllers.tenant_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.tenants_controller.html">controllers.tenants_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.vaults_controller.html">controllers.vaults_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.view_boxes_controller.html">controllers.view_boxes_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.views_controller.html">controllers.views_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.vlan_controller.html">controllers.vlan_controller module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="controllers_v2.html">V2 Controllers</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="controllers_v2.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.active_directory_controller.html">controllers_v2.active_directory_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.audit_log_controller.html">controllers_v2.audit_log_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.base_controller.html">controllers_v2.base_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.data_migration_controller.html">controllers_v2.data_migration_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.keystone_controller.html">controllers_v2.keystone_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.miscellaneous_controller.html">controllers_v2.miscellaneous_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.network_information_service_nis_controller.html">controllers_v2.network_information_service_nis_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.objects_controller.html">controllers_v2.objects_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.patches_controller.html">controllers_v2.patches_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.platform_controller.html">controllers_v2.platform_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.protection_groups_controller.html">controllers_v2.protection_groups_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.protection_policies_controller.html">controllers_v2.protection_policies_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.protection_sources_controller.html">controllers_v2.protection_sources_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.recoveries_controller.html">controllers_v2.recoveries_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.search_controller.html">controllers_v2.search_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.security_controller.html">controllers_v2.security_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.stats_controller.html">controllers_v2.stats_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.tasks_controller.html">controllers_v2.tasks_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.tenants_controller.html">controllers_v2.tenants_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.test_data_management_controller.html">controllers_v2.test_data_management_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.users_controller.html">controllers_v2.users_controller module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">controllers_v2.views_controller module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="controllers_v2.html#module-controllers_v2">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Cohesity Python SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="controllers_v2.html">controllers_v2 package</a> &raquo;</li>
+        
+      <li>controllers_v2.views_controller module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/controllers_v2.views_controller.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-controllers_v2.views_controller">
+<span id="controllers-v2-views-controller-module"></span><h1>controllers_v2.views_controller module<a class="headerlink" href="#module-controllers_v2.views_controller" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="controllers_v2.views_controller.ViewsController">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">controllers_v2.views_controller.</span></code><code class="sig-name descname"><span class="pre">ViewsController</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">call_back</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers_v2/views_controller.html#ViewsController"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers_v2.views_controller.ViewsController" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cohesity_management_sdk.controllers_v2.base_controller.BaseController</span></code></p>
+<p>A Controller to access Endpoints in the cohesity_management_sdk API.</p>
+<dl class="py method">
+<dt id="controllers_v2.views_controller.ViewsController.create_view">
+<code class="sig-name descname"><span class="pre">create_view</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers_v2/views_controller.html#ViewsController.create_view"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers_v2.views_controller.ViewsController.create_view" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a POST request to /file-services/views.</p>
+<p>Create a View.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>body (CreateViewRequest): Request to create a View.</p>
+</dd>
+<dt>Returns:</dt><dd><p>View1: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers_v2.views_controller.ViewsController.create_view_template">
+<code class="sig-name descname"><span class="pre">create_view_template</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers_v2/views_controller.html#ViewsController.create_view_template"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers_v2.views_controller.ViewsController.create_view_template" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a POST request to /file-services/view-template.</p>
+<p>Create a view template.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>body (Template): Request to create a view template.</p>
+</dd>
+<dt>Returns:</dt><dd><p>Template: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers_v2.views_controller.ViewsController.delete_view">
+<code class="sig-name descname"><span class="pre">delete_view</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers_v2/views_controller.html#ViewsController.delete_view"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers_v2.views_controller.ViewsController.delete_view" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a DELETE request to /file-services/views/{id}.</p>
+<p>Deletes a View based on given view id.”</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>id (long|int): Specifies a unique id of the View to delete.</p>
+</dd>
+<dt>Returns:</dt><dd><p>void: Response from the API. No Content</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers_v2.views_controller.ViewsController.delete_view_template">
+<code class="sig-name descname"><span class="pre">delete_view_template</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers_v2/views_controller.html#ViewsController.delete_view_template"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers_v2.views_controller.ViewsController.delete_view_template" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a DELETE request to /file-services/view-template/{id}.</p>
+<p>Deletes a view template based on given template id.”</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>id (long|int): Specifies a unique id of the view template to</dt><dd><p>delete.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>void: Response from the API. No Content</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers_v2.views_controller.ViewsController.get_view_by_id">
+<code class="sig-name descname"><span class="pre">get_view_by_id</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers_v2/views_controller.html#ViewsController.get_view_by_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers_v2.views_controller.ViewsController.get_view_by_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /file-services/views/{id}.</p>
+<p>Get a View based on given view Id.”</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>id (long|int): Specifies a unique id of the View to delete.</p>
+</dd>
+<dt>Returns:</dt><dd><p>View1: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers_v2.views_controller.ViewsController.get_views">
+<code class="sig-name descname"><span class="pre">get_views</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">view_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">view_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">storage_domain_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">storage_domain_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">protocol_accesses</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">match_partial_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_count</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_internal_views</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_protection_groups</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_view_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_inactive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">protection_group_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">view_count_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort_by_logical_usage</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">internal_access_sids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">match_alias_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tenant_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_tenants</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_stats</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_views_with_antivirus_enabled_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_views_with_data_lock_enabled_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filer_audit_log_enabled</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers_v2/views_controller.html#ViewsController.get_views"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers_v2.views_controller.ViewsController.get_views" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /file-services/views.</p>
+<p>If no parameters are specified, all Views on the Cohesity Cluster are
+returned.
+Specifying parameters filters the results that are returned.
+NOTE: If maxCount is set and the number of Views returned exceeds the
+maxCount,
+there are more Views to return.
+To get the next set of Views, send another request and specify the id
+of the
+last View returned in viewList from the previous response.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>view_names (list of string, optional): Filter by a list of View</dt><dd><p>names.</p>
+</dd>
+<dt>view_ids (list of long|int, optional): Filter by a list of View</dt><dd><p>ids.</p>
+</dd>
+<dt>storage_domain_ids (list of long|int, optional): Filter by a list</dt><dd><p>of Storage Domains (View Boxes) specified by id.</p>
+</dd>
+<dt>storage_domain_names (list of string, optional): Filter by a list</dt><dd><p>of View Box names.</p>
+</dd>
+<dt>protocol_accesses (list of ProtocolAccessEnum, optional): Filter</dt><dd><p>by a list of protocol accesses. Only views with protocol
+accesses in these specified accesses list will be returned.</p>
+</dd>
+<dt>match_partial_names (bool, optional): If true, the names in</dt><dd><p>viewNames are matched by any partial rather than exactly
+matched.</p>
+</dd>
+<dt>max_count (int, optional): Specifies a limit on the number of</dt><dd><p>Views returned.</p>
+</dd>
+<dt>include_internal_views (bool, optional): Specifies if internal</dt><dd><p>Views created by the Cohesity Cluster are also returned. In
+addition, regular Views are returned.</p>
+</dd>
+<dt>include_protection_groups (bool, optional): Specifies if</dt><dd><p>Protection Groups information needs to be returned along with
+view metadata. By default, if not set or set to true, Group
+information is returned.</p>
+</dd>
+<dt>max_view_id (long|int, optional): If the number of Views to return</dt><dd><p>exceeds the maxCount specified in the original request,
+specify the id of the last View from the viewList in the
+previous response to get the next set of Views.</p>
+</dd>
+<dt>include_inactive (bool, optional): Specifies if inactive Views on</dt><dd><p>this Remote Cluster (which have Snapshots copied by
+replication) should also be returned. Inactive Views are not
+counted towards the maxCount. By default, this field is set to
+false.</p>
+</dd>
+<dt>protection_group_ids (list of long|int, optional): Filter by</dt><dd><p>Protection Group ids. Return Views that are being protected by
+listed Groups, which are specified by ids.</p>
+</dd>
+<dt>view_count_only (bool, optional): Whether to get just the total</dt><dd><p>number of views with the given input filters. If the flag is
+true, we ignore the parameter ‘maxViews’ for the count. Also,
+if flag is true, list of views will not be returned. hidden:
+true</p>
+</dd>
+<dt>sort_by_logical_usage (bool, optional): If set to true, the list</dt><dd><p>is sorted descending by logical usage.</p>
+</dd>
+<dt>internal_access_sids (list of string, optional): Sids of</dt><dd><p>restricted principals who can access the view. This is an
+internal field and therefore does not have json tag. hidden:
+true</p>
+</dd>
+<dt>match_alias_names (bool, optional): If true, view aliases are also</dt><dd><p>matched with the names in viewNames.</p>
+</dd>
+<dt>tenant_ids (list of string, optional): TenantIds contains ids of</dt><dd><p>the tenants for which objects are to be returned.</p>
+</dd>
+<dt>include_tenants (bool, optional): IncludeTenants specifies if</dt><dd><p>objects of all the tenants under the hierarchy of the logged
+in user’s organization should be returned.</p>
+</dd>
+<dt>include_stats (bool, optional): If set to true, stats of views</dt><dd><p>will be returned. By default this parameter is set to false.</p>
+</dd>
+<dt>include_views_with_antivirus_enabled_only (bool, optional): If set</dt><dd><p>to true, the list will contain only the views for which
+antivirus scan is enabled.</p>
+</dd>
+<dt>include_views_with_data_lock_enabled_only (bool, optional): If set</dt><dd><p>to true, the list will contain only the views for which either
+file level data lock is enabled or view level data lock is
+enabled.</p>
+</dd>
+<dt>filer_audit_log_enabled (bool, optional): If set to true, only</dt><dd><p>views with filer audit log enabled will be returned. If set to
+false, only views with filer audit log disabled will be
+returned.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>GetViewsResult: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers_v2.views_controller.ViewsController.read_view_template_by_id">
+<code class="sig-name descname"><span class="pre">read_view_template_by_id</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers_v2/views_controller.html#ViewsController.read_view_template_by_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers_v2.views_controller.ViewsController.read_view_template_by_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /file-services/view-template/{id}.</p>
+<p>Reads a view template based on given template id.”</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>id (long|int): Specifies a unique id of the view template.</p>
+</dd>
+<dt>Returns:</dt><dd><p>Template: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers_v2.views_controller.ViewsController.read_view_templates">
+<code class="sig-name descname"><span class="pre">read_view_templates</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers_v2/views_controller.html#ViewsController.read_view_templates"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers_v2.views_controller.ViewsController.read_view_templates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /file-services/view-template.</p>
+<p>All view templates on the Cohesity Cluster are returned.
+Specifying parameters filters the results that are returned.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>GetViewTemplatesResult: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers_v2.views_controller.ViewsController.update_view">
+<code class="sig-name descname"><span class="pre">update_view</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers_v2/views_controller.html#ViewsController.update_view"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers_v2.views_controller.ViewsController.update_view" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a PUT request to /file-services/views/{id}.</p>
+<p>Returns the updated View.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>id (long|int): Specifies a unique id of the View to update.
+body (View1): Request to update a view.</p>
+</dd>
+<dt>Returns:</dt><dd><p>View1: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers_v2.views_controller.ViewsController.update_view_template">
+<code class="sig-name descname"><span class="pre">update_view_template</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers_v2/views_controller.html#ViewsController.update_view_template"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers_v2.views_controller.ViewsController.update_view_template" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a PUT request to /file-services/view-template/{id}.</p>
+<p>Updates the view template.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>id (long|int): Specifies a unique id of the view template.
+body (Template): Request to update a view template.</p>
+</dd>
+<dt>Returns:</dt><dd><p>Template: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="controllers_v2.users_controller.html" class="btn btn-neutral float-left" title="controllers_v2.users_controller module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Cohesity.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

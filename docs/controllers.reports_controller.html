@@ -1,0 +1,782 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>reports_controller &mdash; Cohesity Python SDK 1.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="controllers.restore_tasks_controller module" href="controllers.restore_tasks_controller.html" />
+    <link rel="prev" title="controllers.remote_restore_controller module" href="controllers.remote_restore_controller.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Cohesity Python SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#upgrade">Upgrade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#how-to-use">How to Use</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#questions-or-feedback">Questions or Feedback</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Endpoints</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="controllers.html">V1 Controllers</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="controllers.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="controllers.access_tokens_controller.html">controllers.access_tokens_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.active_directory_controller.html">controllers.active_directory_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.alerts_controller.html">controllers.alerts_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.analytics_controller.html">controllers.analytics_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.antivirus_service_group_controller.html">controllers.antivirus_service_group_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.app_controller.html">controllers.app_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.app_instance_controller.html">controllers.app_instance_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.audit_controller.html">controllers.audit_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.banner_controller.html">controllers.banner_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.base_controller.html">controllers.base_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.certificates_controller.html">controllers.certificates_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.clone_refresh_tasks_controller.html">controllers.clone_refresh_tasks_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.cluster_controller.html">controllers.cluster_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.cluster_partitions_controller.html">controllers.cluster_partitions_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.clusters_controller.html">controllers.clusters_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.custom_reporting_controller.html">controllers.custom_reporting_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.dashboard_controller.html">controllers.dashboard_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.groups_controller.html">controllers.groups_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.idps_controller.html">controllers.idps_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.interface_controller.html">controllers.interface_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.interface_group_controller.html">controllers.interface_group_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.ip_controller.html">controllers.ip_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.kms_configuration_controller.html">controllers.kms_configuration_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.ldap_provider_controller.html">controllers.ldap_provider_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.license_controller.html">controllers.license_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.monitoring_controller.html">controllers.monitoring_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.network_controller.html">controllers.network_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.nodes_controller.html">controllers.nodes_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.notifications_controller.html">controllers.notifications_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.packages_controller.html">controllers.packages_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.preferences_controller.html">controllers.preferences_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.principals_controller.html">controllers.principals_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.privileges_controller.html">controllers.privileges_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.protection_jobs_controller.html">controllers.protection_jobs_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.protection_objects_controller.html">controllers.protection_objects_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.protection_policies_controller.html">controllers.protection_policies_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.protection_runs_controller.html">controllers.protection_runs_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.protection_sources_controller.html">controllers.protection_sources_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.remote_cluster_controller.html">controllers.remote_cluster_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.remote_restore_controller.html">controllers.remote_restore_controller module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">reports_controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.restore_tasks_controller.html">controllers.restore_tasks_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.roles_controller.html">controllers.roles_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.routes_controller.html">controllers.routes_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.scheduler_controller.html">controllers.scheduler_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.search_controller.html">controllers.search_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.smb_file_opens_controller.html">controllers.smb_file_opens_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.static_route_controller.html">controllers.static_route_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.statistics_controller.html">controllers.statistics_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.stats_controller.html">controllers.stats_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.tags_controller.html">controllers.tags_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.tenant_controller.html">controllers.tenant_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.tenants_controller.html">controllers.tenants_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.vaults_controller.html">controllers.vaults_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.view_boxes_controller.html">controllers.view_boxes_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.views_controller.html">controllers.views_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.vlan_controller.html">controllers.vlan_controller module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="controllers_v2.html">V2 Controllers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="controllers_v2.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.active_directory_controller.html">controllers_v2.active_directory_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.audit_log_controller.html">controllers_v2.audit_log_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.base_controller.html">controllers_v2.base_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.data_migration_controller.html">controllers_v2.data_migration_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.keystone_controller.html">controllers_v2.keystone_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.miscellaneous_controller.html">controllers_v2.miscellaneous_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.network_information_service_nis_controller.html">controllers_v2.network_information_service_nis_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.objects_controller.html">controllers_v2.objects_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.patches_controller.html">controllers_v2.patches_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.platform_controller.html">controllers_v2.platform_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.protection_groups_controller.html">controllers_v2.protection_groups_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.protection_policies_controller.html">controllers_v2.protection_policies_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.protection_sources_controller.html">controllers_v2.protection_sources_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.recoveries_controller.html">controllers_v2.recoveries_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.search_controller.html">controllers_v2.search_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.security_controller.html">controllers_v2.security_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.stats_controller.html">controllers_v2.stats_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.tasks_controller.html">controllers_v2.tasks_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.tenants_controller.html">controllers_v2.tenants_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.test_data_management_controller.html">controllers_v2.test_data_management_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.users_controller.html">controllers_v2.users_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.views_controller.html">controllers_v2.views_controller module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="controllers_v2.html#module-controllers_v2">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Cohesity Python SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="controllers.html">controllers package</a> &raquo;</li>
+        
+      <li>reports_controller</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/controllers.reports_controller.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-controllers.reports_controller">
+<span id="reports-controller"></span><h1>reports_controller<a class="headerlink" href="#module-controllers.reports_controller" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="controllers.reports_controller.ReportsController">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">controllers.reports_controller.</span></code><code class="sig-name descname"><span class="pre">ReportsController</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">call_back</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/reports_controller.html#ReportsController"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.reports_controller.ReportsController" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cohesity_management_sdk.controllers.base_controller.BaseController</span></code></p>
+<p>A Controller to access Endpoints in the cohesity_management_sdk API.</p>
+<dl class="py method">
+<dt id="controllers.reports_controller.ReportsController.get_agent_deployment_report">
+<code class="sig-name descname"><span class="pre">get_agent_deployment_report</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">host_os_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compact_version</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">health_status</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/reports_controller.html#ReportsController.get_agent_deployment_report"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.reports_controller.ReportsController.get_agent_deployment_report" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/reports/agents.</p>
+<p>Get the list of all the installed agents which includes the health
+status and upgradability of the agent.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>host_os_type (HostOsTypeEnum, optional):  Specifies the host type</dt><dd><p>on which the Cohesity agent is installed.</p>
+</dd>
+<dt>compact_version (string, optional): Specifies the compact version</dt><dd><p>of Cohesity agent. For example, 6.0.1.
+Setting this parameter will filter the response based on
+installed agent version.</p>
+</dd>
+<dt>output_format (string):  Specifies the format for the</dt><dd><p>output such as ‘csv’ or ‘json’.
+If not specified, the json format is returned.
+If ‘csv’ is specified, a comma-separated list with a heading
+row is returned.</p>
+</dd>
+<dt>health_status (HealthStatusEnum): Specifies the health status of</dt><dd><p>the Cohesity agent.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>list of AgentDeploymentStatusResponse: Response from the API.</dt><dd><p>Successful Response</p>
+</dd>
+</dl>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.reports_controller.ReportsController.get_cloud_archive_report_request">
+<code class="sig-name descname"><span class="pre">get_cloud_archive_report_request</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/reports_controller.html#ReportsController.get_cloud_archive_report_request"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.reports_controller.ReportsController.get_cloud_archive_report_request" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/reports/cloudArchiveReport.</p>
+<p>last run status by each protection job.
+Cohesity Cluster to Vaults (External Targets).</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>CloudArchiveSummary: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.reports_controller.ReportsController.get_data_transfer_from_vaults_report_request">
+<code class="sig-name descname"><span class="pre">get_data_transfer_from_vaults_report_request</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_time_msecs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_time_msecs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vault_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_by</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/reports_controller.html#ReportsController.get_data_transfer_from_vaults_report_request"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.reports_controller.ReportsController.get_data_transfer_from_vaults_report_request" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/reports/dataTransferFromVaults.</p>
+<p>A Vault can provide an additional Cloud Tier where cold data of the
+Cohesity Cluster is stored in the Cloud.
+A Vault can also provide archive storage for backup data.
+This archive data is stored on Tapes and in Cloud Vaults.</p>
+<dl>
+<dt>Args:</dt><dd><dl class="simple">
+<dt>start_time_msecs (int|long, optional): Filter by a start time.</dt><dd><p>Specify the start time as a Unix epoch Timestamp (in
+milliseconds).
+If startTimeMsecs and endTimeMsecs are not specified, the time
+period is the last 7 days.</p>
+</dd>
+<dt>end_time_msecs (int|long, optional): Filter by end time.</dt><dd><p>Specify the end time as a Unix epoch Timestamp (in
+milliseconds).
+If startTimeMsecs and endTimeMsecs are not specified,
+the time period is the last 7 days.</p>
+</dd>
+</dl>
+<p>vault_ids (list of int, required): Filter by a list of Vault ids.
+output_format (string, optional): Specifies the format for the</p>
+<blockquote>
+<div><p>output such as ‘csv’ or ‘json’.
+If not specified, the json format is returned.
+If ‘csv’ is specified, a comma-separated list with a heading
+row is returned.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>group_by (string, optional): Specifies wheather the report should</dt><dd><p>be grouped by target when scheduled or downloaded. If not set
+or set to false, report is grouped by protection jobs. It is
+ignored if outformat is not “csv” and response contains whole
+report.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>list of DataTransferFromVaultsSummaryResponse: Response from the API.</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.reports_controller.ReportsController.get_data_transfer_to_vaults_report_request">
+<code class="sig-name descname"><span class="pre">get_data_transfer_to_vaults_report_request</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_time_msecs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_time_msecs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vault_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_by</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/reports_controller.html#ReportsController.get_data_transfer_to_vaults_report_request"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.reports_controller.ReportsController.get_data_transfer_to_vaults_report_request" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/reports/dataTransferToVaults.</p>
+<p>A Vault can provide an additional Cloud Tier where cold data of the
+Cohesity Cluster can be stored in the Cloud.
+A Vault can also provide archive storage for backup data.
+This archive data is stored on Tapes and in Cloud Vaults.</p>
+<dl>
+<dt>Args:</dt><dd><dl class="simple">
+<dt>start_time_msecs (int|long, optional): Filter by a start time.</dt><dd><p>Specify the start time as a Unix epoch Timestamp (in
+milliseconds).
+If startTimeMsecs and endTimeMsecs are not specified, the time
+period is the last 7 days.</p>
+</dd>
+<dt>end_time_msecs (int|long, optional): Filter by end time.</dt><dd><p>Specify the end time as a Unix epoch Timestamp (in
+milliseconds).
+If startTimeMsecs and endTimeMsecs are not specified,
+the time period is the last 7 days.</p>
+</dd>
+</dl>
+<p>vault_ids (list of int, required): Filter by a list of Vault ids.
+output_format (string, optional): Specifies the format for the</p>
+<blockquote>
+<div><p>output such as ‘csv’ or ‘json’.
+If not specified, the json format is returned.
+If ‘csv’ is specified, a comma-separated list with a heading
+row is returned.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>group_by (string, optional): Specifies wheather the report should</dt><dd><p>be grouped by target when scheduled or downloaded. If not set
+or set to false, report is grouped by protection jobs. It is
+ignored if outformat is not “csv” and response contains whole
+report.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>list of DataTransferToVaultsSummaryResponse: Response from the API.</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.reports_controller.ReportsController.get_gdpr_report">
+<code class="sig-name descname"><span class="pre">get_gdpr_report</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">accessible_users</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent_source_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">actions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">search</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_time_usecs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_time_usecs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/reports_controller.html#ReportsController.get_gdpr_report"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.reports_controller.ReportsController.get_gdpr_report" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/reports/gdpr.</p>
+<p>Returns the GDPR report information.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>id (list of int|long): Specifies the objects for which to</dt><dd><p>get the gdpr information.</p>
+</dd>
+<dt>accessible_users (list of string, optional): Specifies the users</dt><dd><p>for which to get the accessible objects.</p>
+</dd>
+<dt>parent_source_id (list of int|long, optional): Specifies the</dt><dd><p>parent sources of objects for which to get info for.</p>
+</dd>
+<dt>output_format (string, optional): Specifies the format for</dt><dd><p>the output such as ‘csv’ or ‘json’.
+If not specified, the json format is returned.
+If ‘csv’ is specified, a comma-separated list with a heading
+row is returned.</p>
+</dd>
+<dt>actions (list of string, optional): Specifies the action for the</dt><dd><p>audit logs.</p>
+</dd>
+<dt>search (string, optional): Specifies the search string for the</dt><dd><p>audit logs.</p>
+</dd>
+<dt>start_time_usecs (long|int, optional): Specifies the start time</dt><dd><p>for the audit logs as a Unix epoch Timestamp (in
+microseconds).</p>
+</dd>
+<dt>end_time_usecs (long|int, optional): Specifies the end time for</dt><dd><p>the audit logsas a Unix epoch Timestamp (in microseconds).</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>list of ObjectInformation: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.reports_controller.ReportsController.get_protected_objects_trends_report_request">
+<code class="sig-name descname"><span class="pre">get_protected_objects_trends_report_request</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">job_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_time_usecs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timezone</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_time_usecs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">environments</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">protected_object_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">registered_source_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rollup</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tenant_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_under_hierarchy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/reports_controller.html#ReportsController.get_protected_objects_trends_report_request"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.reports_controller.ReportsController.get_protected_objects_trends_report_request" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/reports/protectedObjectsTrends.</p>
+<p>This gives a summary of protection trend for protected resources
+during the given time range.
+If no roll up is specified, then the trends will be grouped by days.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>job_ids (list of int|long, optional): Filter by a list of Job ids.</dt><dd><p>Snapshots summary statistics for the specified Protection Jobs
+are reported.</p>
+</dd>
+<dt>start_time_usecs (int|long, optional): Filter by a start time.</dt><dd><p>Snapshot summary statistics for Job Runs that started after
+the specified time are reported. Specify the start time as a
+Unix epoch Timestamp (in microseconds).</p>
+</dd>
+<dt>timezone (string, required): Specifies the timezone to use when</dt><dd><p>calculating day/week/month Specify the timezone in the
+following format: “Area/Location”, for example:”America/New_York”.</p>
+</dd>
+<dt>end_time_usecs (int|long, optional): Filter by end time.</dt><dd><p>Snapshot summary statistics</p>
+</dd>
+<dt>environments (EnvironmentEnum, optional): Filter by a list of</dt><dd><p>environment types suchas ‘kVMware’, ‘kView’, etc.
+Supported environment types such as ‘kView’, ‘kSQL’,
+‘kVMware’, etc.
+NOTE: ‘kPuppeteer’ refers to Cohesity’s Remote Adapter.
+‘kVMware’ indicates the VMware Protection Source environment.
+‘kHyperV’ indicates the HyperV Protection Source environment.
+‘kSQL’ indicates the SQL Protection Source environment.
+‘kView’ indicates the View Protection Source environment.
+‘kPuppeteer’ indicates the Cohesity’s Remote Adapter.
+‘kPhysical’ indicates the physical Protection Source
+environment.
+‘kPure’ indicates the Pure Storage Protection Source
+environment.
+‘Nimble’ indicates the Nimble Storage Protection Source
+environment.
+‘kAzure’ indicates the Microsoft’s Azure Protection Source
+environment.
+‘kNetapp’ indicates the Netapp Protection Source environment.
+‘kAgent’ indicates the Agent Protection Source environment.
+‘kGenericNas’ indicates the Generic Network Attached Storage
+Protection
+Source environment.
+‘kAcropolis’ indicates the Acropolis Protection Source
+environment.
+‘kPhsicalFiles’ indicates the Physical Files Protection Source
+environment.
+‘kIsilon’ indicates the Dell EMC’s Isilon Protection Source
+environment.
+‘kGPFS’ indicates IBM’s GPFS Protection Source environment.
+‘kKVM’ indicates the KVM Protection Source environment.
+‘kAWS’ indicates the AWS Protection Source environment.
+‘kExchange’ indicates the Exchange Protection Source environment.
+‘kHyperVVSS’ indicates the HyperV VSS Protection Source
+environment.
+‘kOracle’ indicates the Oracle Protection Source environment.
+‘kGCP’ indicates the Google Cloud Platform Protection Source
+environment.
+‘kFlashBlade’ indicates the Flash Blade Protection Source
+environment.
+‘kAWSNative’ indicates the AWS Native Protection Source
+environment.
+‘kO365’ indicates the Office 365 Protection Source
+environment.
+‘kO365Outlook’ indicates Office 365 outlook Protection Source
+environment.
+‘kHyperFlex’ indicates the Hyper Flex Protection Source
+environment.
+‘kGCPNative’ indicates the GCP Native Protection Source
+environment.
+‘kAzureNative’ indicates the Azure Native Protection Source
+environment.
+‘kKubernetes’ indicates a Kubernetes Protection Source
+environment.
+‘kElastifile’ indicates Elastifile Protection Source
+environment.
+‘kAD’ indicates Active Directory Protection Source
+environment.
+‘kRDSSnapshotManager’ indicates AWS RDS Protection Source
+environment.
+‘kCassandra’ indicates Cassandra Protection Source environment.
+‘kMongoDB’ indicates MongoDB Protection Source environment.
+‘kCouchbase’ indicates Couchbase Protection Source environment.
+‘kHdfs’ indicates Hdfs Protection Source environment.
+‘kHive’ indicates Hive Protection Source environment.
+‘kHBase’ indicates HBase Protection Source environment.</p>
+</dd>
+<dt>protected_object_ids (list of int|long, optional): Filter by a</dt><dd><p>list of leaf Protection Sources Objects (such as VMs).</p>
+</dd>
+<dt>registered_source_id (int|long, optional): Specifies an id of a</dt><dd><p>top level Registered Source such as a vCenter Server. If
+specified, Snapshot summary statistics for all the leaf
+Protection Sources (such as VMs) that are children of this
+Registered Source are reported.
+NOTE: If specified, filtering by other fields is not
+supported.</p>
+</dd>
+<dt>rollup (string, optional): Roll up type for grouping. Valid values</dt><dd><p>are day, week, month</p>
+</dd>
+<dt>tenant_ids (list of string, optional): TenantIds contains ids of</dt><dd><p>the tenants for which objects are to be returned.</p>
+</dd>
+<dt>all_under_hierarchy (bool, optional): AllUnderHierarchy specifies</dt><dd><p>if objects of all the tenants under the hierarchy of the
+logged in user’s organization should be returned.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>list of ProtectionTrend: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.reports_controller.ReportsController.get_protection_sources_job_runs_report_request">
+<code class="sig-name descname"><span class="pre">get_protection_sources_job_runs_report_request</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tenant_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_under_hierarchy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_time_usecs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_time_usecs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">environments</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">protection_source_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page_count</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_status</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/reports_controller.html#ReportsController.get_protection_sources_job_runs_report_request"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.reports_controller.ReportsController.get_protection_sources_job_runs_report_request" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/reports/protectionSourcesJobRuns.</p>
+<p>Returns the Snapshots that contain backups of the specified
+Protection Source Objects and match the specified filter criteria.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>tenant_ids (list of string, optional): TenantIds contains ids of</dt><dd><p>the tenants for which objects are to be returned.</p>
+</dd>
+<dt>all_under_hierarchy (bool, optional): AllUnderHierarchy specifies</dt><dd><p>if objects of all the tenants under the hierarchy of the
+logged in user’s organization should be returned.</p>
+</dd>
+<dt>job_ids (list of int|long, optional): Filter by a list of Job ids.</dt><dd><p>Snapshots for the specified Protection Jobs are listed.</p>
+</dd>
+<dt>start_time_usecs (int|long, optional): Filter by a start time.</dt><dd><p>Snapshots that started after the specified time are returned.
+Specify the end time as a Unix epoch Timestamp (in
+microseconds).</p>
+</dd>
+<dt>end_time_usecs (int|long, optional): Filter by a end time.</dt><dd><p>Snapshots that ended before the specified time are returned.
+Specify the end time as a Unix epoch Timestamp (in
+microseconds).</p>
+</dd>
+<dt>environments (EnvironmentEnum, optional): Filter by a list of</dt><dd><p>environment types such as ‘kVMware’, ‘kView’, etc.</p>
+</dd>
+<dt>protection_source_ids (int|long, required): Filter by a list of</dt><dd><p>leaf Protection Sources Objects (such as VMs). Snapshots of
+the specified Protection Source Objects are returned.</p>
+</dd>
+<dt>output_format (string, optional): Specifies the format for the</dt><dd><p>output such as ‘cvs’ or ‘json’.
+If not specified, the json format is returned.
+If ‘csv’ is specified, a comma-separated list with a heading
+row is returned.</p>
+</dd>
+<dt>page_count (int, optional): Specifies the number of Snapshots to</dt><dd><p>return in the response for pagination purposes. Used in
+combination with the paginationCookie in the response to
+return multiple sets of Snapshots.</p>
+</dd>
+<dt>run_status (RunStatusEnum, optional): Filter by a list of run</dt><dd><p>statuses such as ‘kRunning’,
+‘kSuccess’, ‘kFailure’ etc.
+Snapshots of Job Runs with the specified run statuses are
+reported.
+‘kSuccess’ indicates that the Job Run was successful.
+‘kRunning’ indicates that the Job Run is currently running.
+‘kWarning’ indicates that the Job Run was successful but
+warnings were issued.
+‘kCancelled’ indicates that the Job Run was canceled.
+‘kError’ indicates the Job Run encountered an error and did
+not run to completion.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>list of ProtectionSourcesJobRunsReportElement: Response from the</dt><dd><p>API. Success</p>
+</dd>
+</dl>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers.reports_controller.ReportsController.get_protection_sources_jobs_summary_report_request">
+<code class="sig-name descname"><span class="pre">get_protection_sources_jobs_summary_report_request</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">job_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_time_usecs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_time_usecs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">environments</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">protection_source_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">statuses</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">registered_source_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">consecutive_failures</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tenant_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_under_hierarchy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers/reports_controller.html#ReportsController.get_protection_sources_jobs_summary_report_request"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers.reports_controller.ReportsController.get_protection_sources_jobs_summary_report_request" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /public/reports/protectionSourcesJobsSummary.</p>
+<p>For example, if two Job ids are passed in, Snapshot summary statistics
+about all the leaf Objects that have been protected by the two
+specified Jobs are reported.
+For example, if a top level registered Source id is passed in, summary
+statistics about all the Snapshots backing up leaf Objects in
+the specified Source are reported.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>job_ids (list of int|long, optional): Filter by a list of Job ids.</dt><dd><p>Snapshots summary statistics for the specified Protection Jobs
+are reported.</p>
+</dd>
+<dt>start_time_usecs (int|long, optional): Filter by a start time.</dt><dd><p>Snapshot summary statistics for Job Runs that started after
+the specified time are reported. Specify the start time as a
+Unix epoch Timestamp (in microseconds).</p>
+</dd>
+<dt>end_time_usecs (int|long, optional): Filter by end time. Snapshot</dt><dd><p>summary statistics for Job Runs that ended before the
+specified time are returned. Specify the end time as a Unix
+epoch Timestamp (in microseconds).</p>
+</dd>
+<dt>environments (EnvironmentEnum, optional): Filter by a list of</dt><dd><p>environment types such as ‘kVMware’, ‘kView’, etc.
+NOTE: ‘kPuppeteer’ refers to Cohesity’s Remote Adapter.</p>
+</dd>
+<dt>protection_source_ids (list of long|int, optional): Filter by a list of</dt><dd><p>leaf Protection Sources Objects (such as VMs). Snapshot
+summary statistics for the listed Protection Source Objects
+are reported.</p>
+</dd>
+<dt>statuses (RunStatusEnum, optional): Filter by a list of run</dt><dd><p>statuses.
+‘kSuccess’ indicates that the Job Run was successful.
+‘kRunning’ indicates that the Job Run is currently running.
+‘kWarning’ indicates that the Job Run was successful but
+warnings were issued.
+‘kCancelled’ indicates that the Job Run was canceled.
+‘kError’ indicates the Job Run encountered an error and did
+not run to completion.</p>
+</dd>
+<dt>output_format (string, optional): Specifies the format for</dt><dd><p>the output such as ‘csv’ or ‘json’.
+If not specified, the json format is returned.
+If ‘csv’ is specified, a comma-separated list with a heading
+row is returned.</p>
+</dd>
+<dt>registered_source_id (int, optional): Specifies an id of a top level</dt><dd><p>Registered Source such as a vCenter Server. If specified,
+Snapshot summary statistics for allthe leaf Protection
+Sources (such as VMs) that are children of this Registered
+Source are reported.
+NOTE: If specified, filtering by other fields is not
+supported.</p>
+</dd>
+<dt>consecutive_failures (int, optional): Filters out those jobs</dt><dd><p>which have number of consecutive run failures less than
+consecutiveFailures.</p>
+</dd>
+<dt>report_name (string, optional): Specifies the custom report name</dt><dd><p>the user wants to set for this report.</p>
+</dd>
+<dt>report_type (int, optional): Specifies the report type that will</dt><dd><p>be used to set the right label &amp; subject line for the report
+when downloaded or emailed because same API is used for 3
+reports currently
+1. kAvailableLocalSnapshotsReport
+2. kFailedObjectsReport
+3. kProtectionSummaryByObjectTypeReport</p>
+</dd>
+<dt>tenant_ids (list of string, optional): TenantIds contains ids of</dt><dd><p>the tenants for which objects are to be returned.</p>
+</dd>
+<dt>all_under_hierarchy (bool, optional): AllUnderHierarchy specifies</dt><dd><p>if objects of all the tenants under the hierarchy of the
+logged in user’s organization should be returned.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>ProtectionSourcesJobsSummaryReportResponseWrapper: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="controllers.restore_tasks_controller.html" class="btn btn-neutral float-right" title="controllers.restore_tasks_controller module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="controllers.remote_restore_controller.html" class="btn btn-neutral float-left" title="controllers.remote_restore_controller module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Cohesity.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

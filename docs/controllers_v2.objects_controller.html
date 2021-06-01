@@ -1,0 +1,769 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>controllers_v2.objects_controller module &mdash; Cohesity Python SDK 1.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="controllers_v2.patches_controller module" href="controllers_v2.patches_controller.html" />
+    <link rel="prev" title="controllers_v2.network_information_service_nis_controller module" href="controllers_v2.network_information_service_nis_controller.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Cohesity Python SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#upgrade">Upgrade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#how-to-use">How to Use</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#questions-or-feedback">Questions or Feedback</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Endpoints</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="controllers.html">V1 Controllers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="controllers.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="controllers.access_tokens_controller.html">controllers.access_tokens_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.active_directory_controller.html">controllers.active_directory_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.alerts_controller.html">controllers.alerts_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.analytics_controller.html">controllers.analytics_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.antivirus_service_group_controller.html">controllers.antivirus_service_group_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.app_controller.html">controllers.app_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.app_instance_controller.html">controllers.app_instance_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.audit_controller.html">controllers.audit_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.banner_controller.html">controllers.banner_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.base_controller.html">controllers.base_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.certificates_controller.html">controllers.certificates_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.clone_refresh_tasks_controller.html">controllers.clone_refresh_tasks_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.cluster_controller.html">controllers.cluster_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.cluster_partitions_controller.html">controllers.cluster_partitions_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.clusters_controller.html">controllers.clusters_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.custom_reporting_controller.html">controllers.custom_reporting_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.dashboard_controller.html">controllers.dashboard_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.groups_controller.html">controllers.groups_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.idps_controller.html">controllers.idps_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.interface_controller.html">controllers.interface_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.interface_group_controller.html">controllers.interface_group_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.ip_controller.html">controllers.ip_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.kms_configuration_controller.html">controllers.kms_configuration_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.ldap_provider_controller.html">controllers.ldap_provider_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.license_controller.html">controllers.license_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.monitoring_controller.html">controllers.monitoring_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.network_controller.html">controllers.network_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.nodes_controller.html">controllers.nodes_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.notifications_controller.html">controllers.notifications_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.packages_controller.html">controllers.packages_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.preferences_controller.html">controllers.preferences_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.principals_controller.html">controllers.principals_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.privileges_controller.html">controllers.privileges_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.protection_jobs_controller.html">controllers.protection_jobs_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.protection_objects_controller.html">controllers.protection_objects_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.protection_policies_controller.html">controllers.protection_policies_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.protection_runs_controller.html">controllers.protection_runs_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.protection_sources_controller.html">controllers.protection_sources_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.remote_cluster_controller.html">controllers.remote_cluster_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.remote_restore_controller.html">controllers.remote_restore_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.reports_controller.html">reports_controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.restore_tasks_controller.html">controllers.restore_tasks_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.roles_controller.html">controllers.roles_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.routes_controller.html">controllers.routes_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.scheduler_controller.html">controllers.scheduler_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.search_controller.html">controllers.search_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.smb_file_opens_controller.html">controllers.smb_file_opens_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.static_route_controller.html">controllers.static_route_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.statistics_controller.html">controllers.statistics_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.stats_controller.html">controllers.stats_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.tags_controller.html">controllers.tags_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.tenant_controller.html">controllers.tenant_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.tenants_controller.html">controllers.tenants_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.vaults_controller.html">controllers.vaults_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.view_boxes_controller.html">controllers.view_boxes_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.views_controller.html">controllers.views_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers.vlan_controller.html">controllers.vlan_controller module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="controllers_v2.html">V2 Controllers</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="controllers_v2.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.active_directory_controller.html">controllers_v2.active_directory_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.audit_log_controller.html">controllers_v2.audit_log_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.base_controller.html">controllers_v2.base_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.data_migration_controller.html">controllers_v2.data_migration_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.keystone_controller.html">controllers_v2.keystone_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.miscellaneous_controller.html">controllers_v2.miscellaneous_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.network_information_service_nis_controller.html">controllers_v2.network_information_service_nis_controller module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">controllers_v2.objects_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.patches_controller.html">controllers_v2.patches_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.platform_controller.html">controllers_v2.platform_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.protection_groups_controller.html">controllers_v2.protection_groups_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.protection_policies_controller.html">controllers_v2.protection_policies_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.protection_sources_controller.html">controllers_v2.protection_sources_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.recoveries_controller.html">controllers_v2.recoveries_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.search_controller.html">controllers_v2.search_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.security_controller.html">controllers_v2.security_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.stats_controller.html">controllers_v2.stats_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.tasks_controller.html">controllers_v2.tasks_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.tenants_controller.html">controllers_v2.tenants_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.test_data_management_controller.html">controllers_v2.test_data_management_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.users_controller.html">controllers_v2.users_controller module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_v2.views_controller.html">controllers_v2.views_controller module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="controllers_v2.html#module-controllers_v2">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Cohesity Python SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="controllers_v2.html">controllers_v2 package</a> &raquo;</li>
+        
+      <li>controllers_v2.objects_controller module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/controllers_v2.objects_controller.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-controllers_v2.objects_controller">
+<span id="controllers-v2-objects-controller-module"></span><h1>controllers_v2.objects_controller module<a class="headerlink" href="#module-controllers_v2.objects_controller" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="controllers_v2.objects_controller.ObjectsController">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">controllers_v2.objects_controller.</span></code><code class="sig-name descname"><span class="pre">ObjectsController</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">call_back</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers_v2/objects_controller.html#ObjectsController"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers_v2.objects_controller.ObjectsController" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">cohesity_management_sdk.controllers_v2.base_controller.BaseController</span></code></p>
+<p>A Controller to access Endpoints in the cohesity_management_sdk API.</p>
+<dl class="py method">
+<dt id="controllers_v2.objects_controller.ObjectsController.get_indexed_object_snapshots">
+<code class="sig-name descname"><span class="pre">get_indexed_object_snapshots</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">protection_group_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indexed_object_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_indexed_snapshots_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">from_time_usecs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_time_usecs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers_v2/objects_controller.html#ObjectsController.get_indexed_object_snapshots"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers_v2.objects_controller.ObjectsController.get_indexed_object_snapshots" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /data-protect/objects/{objectId}/protection-groups/{protectionGroupId}/indexed-objects/snapshots.</p>
+<p>Get snapshots of indexed object.</p>
+<dl>
+<dt>Args:</dt><dd><p>protection_group_id (string): Specifies the protection group id.
+object_id (long|int): Specifies the object id.
+indexed_object_name (string): Specifies the indexed object name.
+include_indexed_snapshots_only (bool, optional): Specifies whether</p>
+<blockquote>
+<div><p>to only return snapshots which are indexed. In an indexed
+snapshots file are guaranteened to exist, while in a
+non-indexed snapshots file may not exist.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>from_time_usecs (long|int, optional): Specifies the timestamp in</dt><dd><p>Unix time epoch in microseconds to filter indexed object’s
+snapshots which are taken after this value.</p>
+</dd>
+<dt>to_time_usecs (long|int, optional): Specifies the timestamp in</dt><dd><p>Unix time epoch in microseconds to filter indexed object’s
+snapshots which are taken before this value.</p>
+</dd>
+<dt>run_types (list of RunType6Enum, optional): Filter by run type.</dt><dd><p>Only protection run matching the specified types will be
+returned. By default, CDP hydration snapshots are not
+included, unless explicitly queried using this field.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>GetIndexedObjectSnapshotsResponseBody: Response from the API.</dt><dd><p>Success</p>
+</dd>
+</dl>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers_v2.objects_controller.ObjectsController.get_object_by_id">
+<code class="sig-name descname"><span class="pre">get_object_by_id</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_tenants</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers_v2/objects_controller.html#ObjectsController.get_object_by_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers_v2.objects_controller.ObjectsController.get_object_by_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /data-protect/objects/{id}.</p>
+<p>Get an object by object id.</p>
+<dl>
+<dt>Args:</dt><dd><p>id (long|int): Specifies the id of Object.
+include_tenants (bool, optional): If true, the response will</p>
+<blockquote>
+<div><p>include Objects which belongs to all tenants which the current
+user has permission to see.</p>
+</div></blockquote>
+</dd>
+<dt>Returns:</dt><dd><p>ObjectInformation: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers_v2.objects_controller.ObjectsController.get_object_runs">
+<code class="sig-name descname"><span class="pre">get_object_runs</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_time_usecs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_time_usecs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tenant_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_tenants</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local_backup_run_status</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replication_run_status</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">archival_run_status</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cloud_spin_run_status</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_runs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude_non_restorable_runs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers_v2/objects_controller.html#ObjectsController.get_object_runs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers_v2.objects_controller.ObjectsController.get_object_runs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /data-protect/objects/{id}/runs.</p>
+<p>Get the runs for a particular object.</p>
+<dl>
+<dt>Args:</dt><dd><p>id (long|int): Specifies a unique id of the object.
+run_id (string, optional): Specifies the protection run id.
+start_time_usecs (long|int, optional): Filter by a start time.</p>
+<blockquote>
+<div><p>Specify the start time as a Unix epoch Timestamp (in
+microseconds).</p>
+</div></blockquote>
+<dl class="simple">
+<dt>end_time_usecs (long|int, optional): Filter by a end time. Specify</dt><dd><p>the start time as a Unix epoch Timestamp (in microseconds).</p>
+</dd>
+<dt>tenant_ids (list of string, optional): TenantIds contains ids of</dt><dd><p>the tenants for which objects are to be returned.</p>
+</dd>
+<dt>include_tenants (bool, optional): If true, the response will</dt><dd><p>include Protection Group Runs which were created by all
+tenants which the current user has permission to see. If
+false, then only Protection Group Runs created by the current
+user will be returned.</p>
+</dd>
+<dt>run_types (list of RunType5Enum, optional): Filter by run type.</dt><dd><p>Only protection run matching the specified types will be
+returned.</p>
+</dd>
+<dt>local_backup_run_status (list of LocalBackupRunStatusEnum,</dt><dd><p>optional): Specifies a list of local backup status, runs
+matching the status will be returned.&lt;br&gt; ‘Running’ indicates
+that the run is still running.&lt;br&gt; ‘Canceled’ indicates that
+the run has been canceled.&lt;br&gt; ‘Canceling’ indicates that the
+run is in the process of being canceled.&lt;br&gt; ‘Failed’
+indicates that the run has failed.&lt;br&gt; ‘Missed’ indicates that
+the run was unable to take place at the scheduled time because
+the previous run was still happening.&lt;br&gt; ‘Succeeded’
+indicates that the run has finished successfully.&lt;br&gt;
+‘SucceededWithWarning’ indicates that the run finished
+successfully, but there were some warning messages.</p>
+</dd>
+<dt>replication_run_status (list of ReplicationRunStatusEnum,</dt><dd><p>optional): Specifies a list of replication status, runs
+matching the status will be returned.&lt;br&gt; ‘Running’ indicates
+that the run is still running.&lt;br&gt; ‘Canceled’ indicates that
+the run has been canceled.&lt;br&gt; ‘Canceling’ indicates that the
+run is in the process of being canceled.&lt;br&gt; ‘Failed’
+indicates that the run has failed.&lt;br&gt; ‘Missed’ indicates that
+the run was unable to take place at the scheduled time because
+the previous run was still happening.&lt;br&gt; ‘Succeeded’
+indicates that the run has finished successfully.&lt;br&gt;
+‘SucceededWithWarning’ indicates that the run finished
+successfully, but there were some warning messages.</p>
+</dd>
+<dt>archival_run_status (list of ArchivalRunStatusEnum, optional):</dt><dd><p>Specifies a list of archival status, runs matching the status
+will be returned.&lt;br&gt; ‘Running’ indicates that the run is
+still running.&lt;br&gt; ‘Canceled’ indicates that the run has been
+canceled.&lt;br&gt; ‘Canceling’ indicates that the run is in the
+process of being canceled.&lt;br&gt; ‘Failed’ indicates that the run
+has failed.&lt;br&gt; ‘Missed’ indicates that the run was unable to
+take place at the scheduled time because the previous run was
+still happening.&lt;br&gt; ‘Succeeded’ indicates that the run has
+finished successfully.&lt;br&gt; ‘SucceededWithWarning’ indicates
+that the run finished successfully, but there were some
+warning messages.</p>
+</dd>
+<dt>cloud_spin_run_status (list of CloudSpinRunStatusEnum, optional):</dt><dd><p>Specifies a list of cloud spin status, runs matching the
+status will be returned.&lt;br&gt; ‘Running’ indicates that the run
+is still running.&lt;br&gt; ‘Canceled’ indicates that the run has
+been canceled.&lt;br&gt; ‘Canceling’ indicates that the run is in
+the process of being canceled.&lt;br&gt; ‘Failed’ indicates that the
+run has failed.&lt;br&gt; ‘Missed’ indicates that the run was unable
+to take place at the scheduled time because the previous run
+was still happening.&lt;br&gt; ‘Succeeded’ indicates that the run
+has finished successfully.&lt;br&gt; ‘SucceededWithWarning’
+indicates that the run finished successfully, but there were
+some warning messages.</p>
+</dd>
+<dt>num_runs (long|int, optional): Specifies the max number of runs.</dt><dd><p>If not specified, at most 100 runs will be returned.</p>
+</dd>
+<dt>exclude_non_restorable_runs (bool, optional): Specifies whether to</dt><dd><p>exclude non restorable runs. Run is treated restorable only if
+there is atleast one object snapshot (which may be either a
+local or an archival snapshot) which is not deleted or
+expired. Default value is false.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>ObjectRuns: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers_v2.objects_controller.ObjectsController.get_object_snapshot_info">
+<code class="sig-name descname"><span class="pre">get_object_snapshot_info</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">snapshot_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers_v2/objects_controller.html#ObjectsController.get_object_snapshot_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers_v2.objects_controller.ObjectsController.get_object_snapshot_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /data-protect/snapshots/{snapshotId}.</p>
+<p>Get details of object snapshot.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>snapshot_id (string): Specifies the snapshot id.</p>
+</dd>
+<dt>Returns:</dt><dd><p>ObjectSnapshot: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers_v2.objects_controller.ObjectsController.get_object_snapshot_volume_info">
+<code class="sig-name descname"><span class="pre">get_object_snapshot_volume_info</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">snapshot_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_supported_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers_v2/objects_controller.html#ObjectsController.get_object_snapshot_volume_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers_v2.objects_controller.ObjectsController.get_object_snapshot_volume_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /data-protect/snapshots/{snapshotId}/volume.</p>
+<p>Get volume info of object snapshot.</p>
+<dl>
+<dt>Args:</dt><dd><p>snapshot_id (string): Specifies the snapshot id.
+include_supported_only (bool, optional): Specifies whether to only</p>
+<blockquote>
+<div><p>return supported volumes.</p>
+</div></blockquote>
+</dd>
+<dt>Returns:</dt><dd><p>CommonObjectSnapshotVolumeParams: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers_v2.objects_controller.ObjectsController.get_object_snapshots">
+<code class="sig-name descname"><span class="pre">get_object_snapshots</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">from_time_usecs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_time_usecs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_instance_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">protection_group_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers_v2/objects_controller.html#ObjectsController.get_object_snapshots"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers_v2.objects_controller.ObjectsController.get_object_snapshots" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /data-protect/objects/{id}/snapshots.</p>
+<p>List the snapshots for a given object.</p>
+<dl>
+<dt>Args:</dt><dd><p>id (long|int): Specifies the id of the Object.
+from_time_usecs (long|int, optional): Specifies the timestamp in</p>
+<blockquote>
+<div><p>Unix time epoch in microseconds to filter Object’s snapshots
+which are taken after this value.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>to_time_usecs (long|int, optional): Specifies the timestamp in</dt><dd><p>Unix time epoch in microseconds to filter Object’s snapshots
+which are taken before this value.</p>
+</dd>
+<dt>run_types (list of RunType6Enum, optional): Filter by run type.</dt><dd><p>Only protection run matching the specified types will be
+returned. By default, CDP hydration snapshots are not
+included, unless explicitly queried using this field.</p>
+</dd>
+<dt>run_instance_ids (list of long|int, optional): Filter by a list</dt><dd><p>run instance ids. If specified, only snapshots created by
+these protection runs will be returned.</p>
+</dd>
+<dt>protection_group_ids (list of string, optional): If specified,</dt><dd><p>this returns only the snapshots of the specified object ID,
+which belong to the provided protection group IDs.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>ObjectSnapshots: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers_v2.objects_controller.ObjectsController.get_object_tree">
+<code class="sig-name descname"><span class="pre">get_object_tree</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers_v2/objects_controller.html#ObjectsController.get_object_tree"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers_v2.objects_controller.ObjectsController.get_object_tree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /data-protect/objects/{id}/tree.</p>
+<p>Get the objects tree hierarchy for for an Object. If the object does
+not have a hierarchy then a single object will be returned.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>id (long|int): Specifies the id of the Object.</p>
+</dd>
+<dt>Returns:</dt><dd><p>ObjectInformation1: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers_v2.objects_controller.ObjectsController.get_objects">
+<code class="sig-name descname"><span class="pre">get_objects</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">environments</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tenant_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_tenants</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers_v2/objects_controller.html#ObjectsController.get_objects"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers_v2.objects_controller.ObjectsController.get_objects" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /data-protect/objects.</p>
+<p>List objects which can be used for data protection.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>environments (list of Environment20Enum, optional): Specifies the</dt><dd><p>environment type to filter objects.</p>
+</dd>
+<dt>tenant_ids (list of string, optional): TenantIds contains ids of</dt><dd><p>the tenants for which objects are to be returned.</p>
+</dd>
+<dt>include_tenants (bool, optional): If true, the response will</dt><dd><p>include Objects which belongs to all tenants which the current
+user has permission to see.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>Objects: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers_v2.objects_controller.ObjectsController.get_source_hierarchy_objects">
+<code class="sig-name descname"><span class="pre">get_source_hierarchy_objects</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tenant_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_tenants</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vmware_object_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">netapp_object_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">o_365_object_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cassandra_object_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mongodb_object_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">couchbase_object_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hdfs_object_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hbase_object_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hive_object_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperv_object_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">azure_object_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kvm_object_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aws_object_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gcp_object_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">acropolis_object_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generic_nas_object_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">isilon_object_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flashblade_object_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elastifile_object_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gpfs_object_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pure_object_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nimble_object_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">physical_object_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kubernetes_object_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exchange_object_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ad_object_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mssql_object_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oracle_object_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers_v2/objects_controller.html#ObjectsController.get_source_hierarchy_objects"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers_v2.objects_controller.ObjectsController.get_source_hierarchy_objects" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a GET request to /data-protect/sources/{sourceId}/objects.</p>
+<p>List objects which can be used for data protection.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>source_id (long|int): Specifies the source ID for which objects</dt><dd><p>should be returned.</p>
+</dd>
+<dt>parent_id (long|int, optional): Specifies the parent ID under</dt><dd><p>which objects should be returned.</p>
+</dd>
+<dt>tenant_ids (list of string, optional): TenantIds contains ids of</dt><dd><p>the tenants for which objects are to be returned.</p>
+</dd>
+<dt>include_tenants (bool, optional): If true, the response will</dt><dd><p>include Objects which belongs to all tenants which the current
+user has permission to see.</p>
+</dd>
+<dt>vmware_object_types (list of VmwareObjectTypeEnum, optional):</dt><dd><p>Specifies the VMware object types to filter objects.</p>
+</dd>
+<dt>netapp_object_types (list of NetappObjectTypeEnum, optional):</dt><dd><p>Specifies the Netapp object types to filter objects.</p>
+</dd>
+<dt>o_365_object_types (list of O365ObjectTypeEnum, optional):</dt><dd><p>Specifies the Office 365 object types to filter objects.</p>
+</dd>
+<dt>cassandra_object_types (list of CassandraObjectType1Enum,</dt><dd><p>optional): Specifies the Cassandra object types to filter
+objects.</p>
+</dd>
+<dt>mongodb_object_types (list of MongodbObjectType1Enum, optional):</dt><dd><p>Specifies the Mongo DB object types to filter objects.</p>
+</dd>
+<dt>couchbase_object_types (list of CouchbaseObjectType1Enum,</dt><dd><p>optional): Specifies the Couchbase object types to filter
+objects.</p>
+</dd>
+<dt>hdfs_object_types (list of HdfsObjectTypeEnum, optional):</dt><dd><p>Specifies the HDFS object types to filter objects.</p>
+</dd>
+<dt>hbase_object_types (list of HbaseObjectType1Enum, optional):</dt><dd><p>Specifies the Hbase object types to filter objects.</p>
+</dd>
+<dt>hive_object_types (list of HiveObjectType1Enum, optional):</dt><dd><p>Specifies the Hive object types to filter objects.</p>
+</dd>
+<dt>hyperv_object_types (list of HypervObjectTypeEnum, optional):</dt><dd><p>Specifies the HyperV object types to filter objects.</p>
+</dd>
+<dt>azure_object_types (list of AzureObjectTypeEnum, optional):</dt><dd><p>Specifies the Azure object types to filter objects.</p>
+</dd>
+<dt>kvm_object_types (list of KvmObjectTypeEnum, optional): Specifies</dt><dd><p>the KVM object types to filter objects.</p>
+</dd>
+<dt>aws_object_types (list of AwsObjectTypeEnum, optional): Specifies</dt><dd><p>the AWS object types to filter objects.</p>
+</dd>
+<dt>gcp_object_types (list of GcpObjectTypeEnum, optional): Specifies</dt><dd><p>the GCP object types to filter objects.</p>
+</dd>
+<dt>acropolis_object_types (list of AcropolisObjectTypeEnum,</dt><dd><p>optional): Specifies the Acropolis object types to filter
+objects.</p>
+</dd>
+<dt>generic_nas_object_types (list of GenericNasObjectTypeEnum,</dt><dd><p>optional): Specifies the generic NAS object types to filter
+objects.</p>
+</dd>
+<dt>isilon_object_types (list of IsilonObjectTypeEnum, optional):</dt><dd><p>Specifies the Isilon object types to filter objects.</p>
+</dd>
+<dt>flashblade_object_types (list of FlashbladeObjectTypeEnum,</dt><dd><p>optional): Specifies the Flashblade object types to filter
+objects.</p>
+</dd>
+<dt>elastifile_object_types (list of ElastifileObjectTypeEnum,</dt><dd><p>optional): Specifies the Elastifile object types to filter
+objects.</p>
+</dd>
+<dt>gpfs_object_types (list of GpfsObjectTypeEnum, optional):</dt><dd><p>Specifies the GPFS object types to filter objects.</p>
+</dd>
+<dt>pure_object_types (list of PureObjectTypeEnum, optional):</dt><dd><p>Specifies the Pure object types to filter objects.</p>
+</dd>
+<dt>nimble_object_types (list of NimbleObjectTypeEnum, optional):</dt><dd><p>Specifies the Nimble object types to filter objects.</p>
+</dd>
+<dt>physical_object_types (list of PhysicalObjectTypeEnum, optional):</dt><dd><p>Specifies the Physical object types to filter objects.</p>
+</dd>
+<dt>kubernetes_object_types (list of KubernetesObjectTypeEnum,</dt><dd><p>optional): Specifies the Kubernetes object types to filter
+objects.</p>
+</dd>
+<dt>exchange_object_types (list of ExchangeObjectTypeEnum, optional):</dt><dd><p>Specifies the Exchange object types to filter objects.</p>
+</dd>
+<dt>ad_object_types (list of AdObjectTypeEnum, optional): Specifies</dt><dd><p>the AD object types to filter objects.</p>
+</dd>
+<dt>mssql_object_types (list of MssqlObjectTypeEnum, optional):</dt><dd><p>Specifies the MSSQL object types to filter objects.</p>
+</dd>
+<dt>oracle_object_types (list of OracleObjectTypeEnum, optional):</dt><dd><p>Specifies the Oracle object types to filter objects.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>ObjectSummaries: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers_v2.objects_controller.ObjectsController.perform_action_on_object">
+<code class="sig-name descname"><span class="pre">perform_action_on_object</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers_v2/objects_controller.html#ObjectsController.perform_action_on_object"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers_v2.objects_controller.ObjectsController.perform_action_on_object" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a POST request to /data-protect/objects/{id}/actions.</p>
+<p>Perform an action on an object. Depending on the object environment
+type, different actions are available.</p>
+<dl>
+<dt>Args:</dt><dd><p>id (long|int): Specifies the id of the Object.
+body (PeformAnActionOnAnObject): Specifies the parameters to</p>
+<blockquote>
+<div><p>perform an action on an object.</p>
+</div></blockquote>
+</dd>
+<dt>Returns:</dt><dd><p>void: Response from the API. No Content</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="controllers_v2.objects_controller.ObjectsController.update_object_snapshot">
+<code class="sig-name descname"><span class="pre">update_object_snapshot</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">snapshot_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controllers_v2/objects_controller.html#ObjectsController.update_object_snapshot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#controllers_v2.objects_controller.ObjectsController.update_object_snapshot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a PUT request to /data-protect/objects/{id}/snapshots/{snapshotId}.</p>
+<p>Update an object snapshot.</p>
+<dl>
+<dt>Args:</dt><dd><p>id (long|int): Specifies the id of the Object.
+snapshot_id (string): Specifies the id of the snapshot.&lt;br&gt; Note:</p>
+<blockquote>
+<div><p>1. If the snapshotid of one of the apps is specified, it
+applies for all the databases in the Protection Run.&lt;br&gt; 2. In
+case of volume based jobs, please specify the snapshotid of
+the source not the database. if source snapshot is specified,
+applied to source snapshot. if database snapshotid is
+specified in case of volume based jobs, then it is applicable
+for host’s snapshot.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>body (UpdateObjectSnapshotRequest): Specifies the parameters</dt><dd><p>update an object snapshot.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>ObjectSnapshot: Response from the API. Success</p>
+</dd>
+<dt>Raises:</dt><dd><dl class="simple">
+<dt>APIException: When an error occurs while fetching the data from</dt><dd><p>the remote API. This exception includes the HTTP Response
+code, an error message, and the HTTP body that was received in
+the request.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="controllers_v2.patches_controller.html" class="btn btn-neutral float-right" title="controllers_v2.patches_controller module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="controllers_v2.network_information_service_nis_controller.html" class="btn btn-neutral float-left" title="controllers_v2.network_information_service_nis_controller module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Cohesity.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
