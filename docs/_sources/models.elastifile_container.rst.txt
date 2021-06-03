@@ -1,0 +1,7 @@
+models.elastifile\_container module
+===================================
+
+.. automodule:: models.elastifile_container
+   :members:
+   :undoc-members:
+   :show-inheritance:

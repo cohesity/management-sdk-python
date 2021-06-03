@@ -1,0 +1,7 @@
+models.analysis\_task\_info module
+==================================
+
+.. automodule:: models.analysis_task_info
+   :members:
+   :undoc-members:
+   :show-inheritance:

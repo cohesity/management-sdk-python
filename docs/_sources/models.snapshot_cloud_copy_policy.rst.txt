@@ -1,0 +1,7 @@
+models.snapshot\_cloud\_copy\_policy module
+===========================================
+
+.. automodule:: models.snapshot_cloud_copy_policy
+   :members:
+   :undoc-members:
+   :show-inheritance:

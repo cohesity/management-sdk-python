@@ -1,0 +1,7 @@
+models.hive\_connect\_params module
+===================================
+
+.. automodule:: models.hive_connect_params
+   :members:
+   :undoc-members:
+   :show-inheritance:

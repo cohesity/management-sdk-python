@@ -1,0 +1,7 @@
+models.user\_information module
+===============================
+
+.. automodule:: models.user_information
+   :members:
+   :undoc-members:
+   :show-inheritance:

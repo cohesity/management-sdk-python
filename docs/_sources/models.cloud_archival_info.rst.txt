@@ -1,0 +1,7 @@
+models.cloud\_archival\_info module
+===================================
+
+.. automodule:: models.cloud_archival_info
+   :members:
+   :undoc-members:
+   :show-inheritance:

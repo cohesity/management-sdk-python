@@ -1,0 +1,7 @@
+models.added\_active\_directory\_principal module
+=================================================
+
+.. automodule:: models.added_active_directory_principal
+   :members:
+   :undoc-members:
+   :show-inheritance:

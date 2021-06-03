@@ -1,0 +1,7 @@
+models.object\_class\_search\_active\_directory\_principals\_enum module
+========================================================================
+
+.. automodule:: models.object_class_search_active_directory_principals_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

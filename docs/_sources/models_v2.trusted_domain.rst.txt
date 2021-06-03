@@ -1,0 +1,7 @@
+models\_v2.trusted\_domain module
+=================================
+
+.. automodule:: models_v2.trusted_domain
+   :members:
+   :undoc-members:
+   :show-inheritance:

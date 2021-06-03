@@ -1,0 +1,7 @@
+models\_v2.unit\_5\_enum module
+===============================
+
+.. automodule:: models_v2.unit_5_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

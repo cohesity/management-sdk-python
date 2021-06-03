@@ -1,0 +1,7 @@
+models.required\_privileges\_enum module
+========================================
+
+.. automodule:: models.required_privileges_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

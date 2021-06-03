@@ -1,0 +1,7 @@
+models\_v2.remote\_adapter\_host module
+=======================================
+
+.. automodule:: models_v2.remote_adapter_host
+   :members:
+   :undoc-members:
+   :show-inheritance:

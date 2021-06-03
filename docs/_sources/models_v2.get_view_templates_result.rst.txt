@@ -1,0 +1,7 @@
+models\_v2.get\_view\_templates\_result module
+==============================================
+
+.. automodule:: models_v2.get_view_templates_result
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+models.vmware\_standby\_resource module
+=======================================
+
+.. automodule:: models.vmware_standby_resource
+   :members:
+   :undoc-members:
+   :show-inheritance:

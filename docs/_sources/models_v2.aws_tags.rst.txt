@@ -1,0 +1,7 @@
+models\_v2.aws\_tags module
+===========================
+
+.. automodule:: models_v2.aws_tags
+   :members:
+   :undoc-members:
+   :show-inheritance:

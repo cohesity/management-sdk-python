@@ -1,0 +1,7 @@
+models.consumer\_stats module
+=============================
+
+.. automodule:: models.consumer_stats
+   :members:
+   :undoc-members:
+   :show-inheritance:

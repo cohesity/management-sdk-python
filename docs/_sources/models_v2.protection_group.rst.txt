@@ -1,0 +1,7 @@
+models\_v2.protection\_group module
+===================================
+
+.. automodule:: models_v2.protection_group
+   :members:
+   :undoc-members:
+   :show-inheritance:

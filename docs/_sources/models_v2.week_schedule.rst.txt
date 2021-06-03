@@ -1,0 +1,7 @@
+models\_v2.week\_schedule module
+================================
+
+.. automodule:: models_v2.week_schedule
+   :members:
+   :undoc-members:
+   :show-inheritance:

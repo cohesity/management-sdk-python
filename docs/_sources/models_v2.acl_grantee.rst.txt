@@ -1,0 +1,7 @@
+models\_v2.acl\_grantee module
+==============================
+
+.. automodule:: models_v2.acl_grantee
+   :members:
+   :undoc-members:
+   :show-inheritance:

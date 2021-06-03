@@ -1,0 +1,7 @@
+models.update\_resolution\_params module
+========================================
+
+.. automodule:: models.update_resolution_params
+   :members:
+   :undoc-members:
+   :show-inheritance:

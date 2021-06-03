@@ -1,0 +1,7 @@
+models\_v2.remote\_adapter\_replication\_parameters module
+==========================================================
+
+.. automodule:: models_v2.remote_adapter_replication_parameters
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+models.alert\_document module
+=============================
+
+.. automodule:: models.alert_document
+   :members:
+   :undoc-members:
+   :show-inheritance:

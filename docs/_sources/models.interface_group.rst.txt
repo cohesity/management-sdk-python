@@ -1,0 +1,7 @@
+models.interface\_group module
+==============================
+
+.. automodule:: models.interface_group
+   :members:
+   :undoc-members:
+   :show-inheritance:

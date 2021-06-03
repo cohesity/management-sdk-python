@@ -1,0 +1,7 @@
+models.controllers.stats\_controller module
+===========================================
+
+.. automodule:: models.controllers.stats_controller
+   :members:
+   :undoc-members:
+   :show-inheritance:

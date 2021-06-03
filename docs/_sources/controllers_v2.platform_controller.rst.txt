@@ -1,0 +1,7 @@
+controllers\_v2.platform\_controller module
+===========================================
+
+.. automodule:: controllers_v2.platform_controller
+   :members:
+   :undoc-members:
+   :show-inheritance:

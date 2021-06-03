@@ -1,0 +1,7 @@
+models.cassandra\_keyspace module
+=================================
+
+.. automodule:: models.cassandra_keyspace
+   :members:
+   :undoc-members:
+   :show-inheritance:

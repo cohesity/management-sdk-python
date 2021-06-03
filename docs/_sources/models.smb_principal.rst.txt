@@ -1,0 +1,7 @@
+models.smb\_principal module
+============================
+
+.. automodule:: models.smb_principal
+   :members:
+   :undoc-members:
+   :show-inheritance:

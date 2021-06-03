@@ -1,0 +1,7 @@
+models.banner\_update\_parameters module
+========================================
+
+.. automodule:: models.banner_update_parameters
+   :members:
+   :undoc-members:
+   :show-inheritance:

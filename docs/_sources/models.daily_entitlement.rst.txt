@@ -1,0 +1,7 @@
+models.daily\_entitlement module
+================================
+
+.. automodule:: models.daily_entitlement
+   :members:
+   :undoc-members:
+   :show-inheritance:

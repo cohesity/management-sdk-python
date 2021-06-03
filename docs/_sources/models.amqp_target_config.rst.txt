@@ -1,0 +1,7 @@
+models.amqp\_target\_config module
+==================================
+
+.. automodule:: models.amqp_target_config
+   :members:
+   :undoc-members:
+   :show-inheritance:

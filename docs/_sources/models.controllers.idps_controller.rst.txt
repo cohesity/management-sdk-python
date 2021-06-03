@@ -1,0 +1,7 @@
+models.controllers.idps\_controller module
+==========================================
+
+.. automodule:: models.controllers.idps_controller
+   :members:
+   :undoc-members:
+   :show-inheritance:

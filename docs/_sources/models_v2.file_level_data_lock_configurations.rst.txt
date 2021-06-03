@@ -1,0 +1,7 @@
+models\_v2.file\_level\_data\_lock\_configurations module
+=========================================================
+
+.. automodule:: models_v2.file_level_data_lock_configurations
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+models.vmware\_object\_id module
+================================
+
+.. automodule:: models.vmware_object_id
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+models.algorithm\_enum module
+=============================
+
+.. automodule:: models.algorithm_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

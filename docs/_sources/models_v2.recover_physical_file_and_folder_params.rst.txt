@@ -1,0 +1,7 @@
+models\_v2.recover\_physical\_file\_and\_folder\_params module
+==============================================================
+
+.. automodule:: models_v2.recover_physical_file_and_folder_params
+   :members:
+   :undoc-members:
+   :show-inheritance:

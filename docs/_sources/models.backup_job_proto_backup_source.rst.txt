@@ -1,0 +1,7 @@
+models.backup\_job\_proto\_backup\_source module
+================================================
+
+.. automodule:: models.backup_job_proto_backup_source
+   :members:
+   :undoc-members:
+   :show-inheritance:

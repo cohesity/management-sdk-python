@@ -1,0 +1,7 @@
+models.bulk\_install\_app\_task\_info module
+============================================
+
+.. automodule:: models.bulk_install_app_task_info
+   :members:
+   :undoc-members:
+   :show-inheritance:

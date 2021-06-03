@@ -1,0 +1,66 @@
+controllers package
+===================
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   controllers.access_tokens_controller
+   controllers.active_directory_controller
+   controllers.alerts_controller
+   controllers.analytics_controller
+   controllers.antivirus_service_group_controller
+   controllers.app_controller
+   controllers.app_instance_controller
+   controllers.audit_controller
+   controllers.banner_controller
+   controllers.base_controller
+   controllers.certificates_controller
+   controllers.clone_refresh_tasks_controller
+   controllers.cluster_controller
+   controllers.cluster_partitions_controller
+   controllers.clusters_controller
+   controllers.custom_reporting_controller
+   controllers.dashboard_controller
+   controllers.groups_controller
+   controllers.idps_controller
+   controllers.interface_controller
+   controllers.interface_group_controller
+   controllers.ip_controller
+   controllers.kms_configuration_controller
+   controllers.ldap_provider_controller
+   controllers.license_controller
+   controllers.monitoring_controller
+   controllers.network_controller
+   controllers.nodes_controller
+   controllers.notifications_controller
+   controllers.packages_controller
+   controllers.preferences_controller
+   controllers.principals_controller
+   controllers.privileges_controller
+   controllers.protection_jobs_controller
+   controllers.protection_objects_controller
+   controllers.protection_policies_controller
+   controllers.protection_runs_controller
+   controllers.protection_sources_controller
+   controllers.remote_cluster_controller
+   controllers.remote_restore_controller
+   controllers.reports_controller
+   controllers.restore_tasks_controller
+   controllers.roles_controller
+   controllers.routes_controller
+   controllers.scheduler_controller
+   controllers.search_controller
+   controllers.smb_file_opens_controller
+   controllers.static_route_controller
+   controllers.statistics_controller
+   controllers.stats_controller
+   controllers.tags_controller
+   controllers.tenant_controller
+   controllers.tenants_controller
+   controllers.vaults_controller
+   controllers.view_boxes_controller
+   controllers.views_controller
+   controllers.vlan_controller

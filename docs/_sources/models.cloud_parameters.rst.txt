@@ -1,0 +1,7 @@
+models.cloud\_parameters module
+===============================
+
+.. automodule:: models.cloud_parameters
+   :members:
+   :undoc-members:
+   :show-inheritance:

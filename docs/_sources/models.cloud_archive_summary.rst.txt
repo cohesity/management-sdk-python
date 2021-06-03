@@ -1,0 +1,7 @@
+models.cloud\_archive\_summary module
+=====================================
+
+.. automodule:: models.cloud_archive_summary
+   :members:
+   :undoc-members:
+   :show-inheritance:

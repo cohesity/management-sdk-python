@@ -1,0 +1,7 @@
+models.vault\_stats\_info module
+================================
+
+.. automodule:: models.vault_stats_info
+   :members:
+   :undoc-members:
+   :show-inheritance:

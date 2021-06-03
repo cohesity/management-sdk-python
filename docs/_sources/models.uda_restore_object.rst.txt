@@ -1,0 +1,7 @@
+models.uda\_restore\_object module
+==================================
+
+.. automodule:: models.uda_restore_object
+   :members:
+   :undoc-members:
+   :show-inheritance:

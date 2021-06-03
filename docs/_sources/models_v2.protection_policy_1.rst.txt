@@ -1,0 +1,7 @@
+models\_v2.protection\_policy\_1 module
+=======================================
+
+.. automodule:: models_v2.protection_policy_1
+   :members:
+   :undoc-members:
+   :show-inheritance:

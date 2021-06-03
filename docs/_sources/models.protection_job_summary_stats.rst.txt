@@ -1,0 +1,7 @@
+models.protection\_job\_summary\_stats module
+=============================================
+
+.. automodule:: models.protection_job_summary_stats
+   :members:
+   :undoc-members:
+   :show-inheritance:

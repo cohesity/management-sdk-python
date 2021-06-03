@@ -1,0 +1,7 @@
+models\_v2.hdfs\_type\_enum module
+==================================
+
+.. automodule:: models_v2.hdfs_type_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

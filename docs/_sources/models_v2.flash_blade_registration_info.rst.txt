@@ -1,0 +1,7 @@
+models\_v2.flash\_blade\_registration\_info module
+==================================================
+
+.. automodule:: models_v2.flash_blade_registration_info
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+models.object\_information module
+=================================
+
+.. automodule:: models.object_information
+   :members:
+   :undoc-members:
+   :show-inheritance:

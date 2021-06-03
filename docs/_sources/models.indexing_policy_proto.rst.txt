@@ -1,0 +1,7 @@
+models.indexing\_policy\_proto module
+=====================================
+
+.. automodule:: models.indexing_policy_proto
+   :members:
+   :undoc-members:
+   :show-inheritance:

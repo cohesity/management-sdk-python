@@ -1,0 +1,7 @@
+models.restore\_count\_by\_object\_type module
+==============================================
+
+.. automodule:: models.restore_count_by_object_type
+   :members:
+   :undoc-members:
+   :show-inheritance:

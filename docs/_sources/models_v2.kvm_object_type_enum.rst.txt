@@ -1,0 +1,7 @@
+models\_v2.kvm\_object\_type\_enum module
+=========================================
+
+.. automodule:: models_v2.kvm_object_type_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

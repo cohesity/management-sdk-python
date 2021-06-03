@@ -1,0 +1,7 @@
+models.exceptions.api\_exception module
+=======================================
+
+.. automodule:: models.exceptions.api_exception
+   :members:
+   :undoc-members:
+   :show-inheritance:

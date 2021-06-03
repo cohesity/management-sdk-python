@@ -1,0 +1,7 @@
+models.keystone\_acl\_proto\_grantees\_project\_users\_map\_entry module
+========================================================================
+
+.. automodule:: models.keystone_acl_proto_grantees_project_users_map_entry
+   :members:
+   :undoc-members:
+   :show-inheritance:

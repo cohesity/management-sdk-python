@@ -1,0 +1,7 @@
+models.user\_quota module
+=========================
+
+.. automodule:: models.user_quota
+   :members:
+   :undoc-members:
+   :show-inheritance:

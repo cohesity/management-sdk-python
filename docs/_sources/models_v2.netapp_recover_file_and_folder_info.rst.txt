@@ -1,0 +1,7 @@
+models\_v2.netapp\_recover\_file\_and\_folder\_info module
+==========================================================
+
+.. automodule:: models_v2.netapp_recover_file_and_folder_info
+   :members:
+   :undoc-members:
+   :show-inheritance:

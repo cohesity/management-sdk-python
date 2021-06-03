@@ -1,0 +1,7 @@
+models.api\_key module
+======================
+
+.. automodule:: models.api_key
+   :members:
+   :undoc-members:
+   :show-inheritance:

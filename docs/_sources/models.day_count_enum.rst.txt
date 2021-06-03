@@ -1,0 +1,7 @@
+models.day\_count\_enum module
+==============================
+
+.. automodule:: models.day_count_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

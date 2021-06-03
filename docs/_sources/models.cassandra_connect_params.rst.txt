@@ -1,0 +1,7 @@
+models.cassandra\_connect\_params module
+========================================
+
+.. automodule:: models.cassandra_connect_params
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+models.physical\_protection\_source module
+==========================================
+
+.. automodule:: models.physical_protection_source
+   :members:
+   :undoc-members:
+   :show-inheritance:

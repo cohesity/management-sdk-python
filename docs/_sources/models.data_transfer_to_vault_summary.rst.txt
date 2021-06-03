@@ -1,0 +1,7 @@
+models.data\_transfer\_to\_vault\_summary module
+================================================
+
+.. automodule:: models.data_transfer_to_vault_summary
+   :members:
+   :undoc-members:
+   :show-inheritance:

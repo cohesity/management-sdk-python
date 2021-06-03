@@ -1,0 +1,7 @@
+models.storage\_stats module
+============================
+
+.. automodule:: models.storage_stats
+   :members:
+   :undoc-members:
+   :show-inheritance:

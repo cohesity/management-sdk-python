@@ -1,0 +1,7 @@
+models.throttling\_configuration module
+=======================================
+
+.. automodule:: models.throttling_configuration
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+models.index\_and\_snapshots module
+===================================
+
+.. automodule:: models.index_and_snapshots
+   :members:
+   :undoc-members:
+   :show-inheritance:

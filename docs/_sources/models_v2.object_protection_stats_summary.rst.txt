@@ -1,0 +1,7 @@
+models\_v2.object\_protection\_stats\_summary module
+====================================================
+
+.. automodule:: models_v2.object_protection_stats_summary
+   :members:
+   :undoc-members:
+   :show-inheritance:

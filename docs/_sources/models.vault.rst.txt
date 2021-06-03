@@ -1,0 +1,7 @@
+models.vault module
+===================
+
+.. automodule:: models.vault
+   :members:
+   :undoc-members:
+   :show-inheritance:

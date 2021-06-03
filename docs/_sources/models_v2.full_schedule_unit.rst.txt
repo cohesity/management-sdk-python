@@ -1,0 +1,7 @@
+models\_v2.full\_schedule\_unit module
+======================================
+
+.. automodule:: models_v2.full_schedule_unit
+   :members:
+   :undoc-members:
+   :show-inheritance:

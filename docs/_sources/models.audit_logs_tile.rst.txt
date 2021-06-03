@@ -1,0 +1,7 @@
+models.audit\_logs\_tile module
+===============================
+
+.. automodule:: models.audit_logs_tile
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+models.snapshot\_label module
+=============================
+
+.. automodule:: models.snapshot_label
+   :members:
+   :undoc-members:
+   :show-inheritance:

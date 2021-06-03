@@ -1,0 +1,7 @@
+models.account\_entitlement module
+==================================
+
+.. automodule:: models.account_entitlement
+   :members:
+   :undoc-members:
+   :show-inheritance:

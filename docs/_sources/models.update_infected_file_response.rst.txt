@@ -1,0 +1,7 @@
+models.update\_infected\_file\_response module
+==============================================
+
+.. automodule:: models.update_infected_file_response
+   :members:
+   :undoc-members:
+   :show-inheritance:

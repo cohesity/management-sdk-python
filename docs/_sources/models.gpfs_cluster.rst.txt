@@ -1,0 +1,7 @@
+models.gpfs\_cluster module
+===========================
+
+.. automodule:: models.gpfs_cluster
+   :members:
+   :undoc-members:
+   :show-inheritance:

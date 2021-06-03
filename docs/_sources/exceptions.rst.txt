@@ -1,0 +1,9 @@
+exceptions package
+==================
+
+.. toctree::
+   :maxdepth: 4
+
+   exceptions.api_exception
+   exceptions.error_exception
+   exceptions.request_error_error_exception

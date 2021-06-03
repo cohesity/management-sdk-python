@@ -1,0 +1,7 @@
+models.s3\_view\_backup\_properties module
+==========================================
+
+.. automodule:: models.s3_view_backup_properties
+   :members:
+   :undoc-members:
+   :show-inheritance:

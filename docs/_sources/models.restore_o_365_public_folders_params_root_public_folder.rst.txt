@@ -1,0 +1,7 @@
+models.restore\_o\_365\_public\_folders\_params\_root\_public\_folder module
+============================================================================
+
+.. automodule:: models.restore_o_365_public_folders_params_root_public_folder
+   :members:
+   :undoc-members:
+   :show-inheritance:

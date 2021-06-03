@@ -1,0 +1,7 @@
+models.datastore\_info module
+=============================
+
+.. automodule:: models.datastore_info
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+models.privilege\_id\_enum module
+=================================
+
+.. automodule:: models.privilege_id_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

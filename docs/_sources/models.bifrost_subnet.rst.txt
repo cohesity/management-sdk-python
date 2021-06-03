@@ -1,0 +1,7 @@
+models.bifrost\_subnet module
+=============================
+
+.. automodule:: models.bifrost_subnet
+   :members:
+   :undoc-members:
+   :show-inheritance:

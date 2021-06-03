@@ -1,0 +1,7 @@
+models.tenant\_update module
+============================
+
+.. automodule:: models.tenant_update
+   :members:
+   :undoc-members:
+   :show-inheritance:

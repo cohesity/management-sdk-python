@@ -1,0 +1,7 @@
+models.domain module
+====================
+
+.. automodule:: models.domain
+   :members:
+   :undoc-members:
+   :show-inheritance:

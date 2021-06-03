@@ -1,0 +1,7 @@
+models.oracle\_database\_node\_channel module
+=============================================
+
+.. automodule:: models.oracle_database_node_channel
+   :members:
+   :undoc-members:
+   :show-inheritance:

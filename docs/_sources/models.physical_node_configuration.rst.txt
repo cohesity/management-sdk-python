@@ -1,0 +1,7 @@
+models.physical\_node\_configuration module
+===========================================
+
+.. automodule:: models.physical_node_configuration
+   :members:
+   :undoc-members:
+   :show-inheritance:

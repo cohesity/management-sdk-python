@@ -1,0 +1,7 @@
+models.role\_create\_parameters module
+======================================
+
+.. automodule:: models.role_create_parameters
+   :members:
+   :undoc-members:
+   :show-inheritance:

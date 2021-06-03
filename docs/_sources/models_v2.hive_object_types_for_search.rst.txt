@@ -1,0 +1,7 @@
+models\_v2.hive\_object\_types\_for\_search module
+==================================================
+
+.. automodule:: models_v2.hive_object_types_for_search
+   :members:
+   :undoc-members:
+   :show-inheritance:

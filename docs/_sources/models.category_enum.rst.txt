@@ -1,0 +1,7 @@
+models.category\_enum module
+============================
+
+.. automodule:: models.category_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

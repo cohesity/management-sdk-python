@@ -1,0 +1,7 @@
+models.dashboard\_response module
+=================================
+
+.. automodule:: models.dashboard_response
+   :members:
+   :undoc-members:
+   :show-inheritance:

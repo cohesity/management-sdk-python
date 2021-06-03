@@ -1,0 +1,7 @@
+models.certificate\_details module
+==================================
+
+.. automodule:: models.certificate_details
+   :members:
+   :undoc-members:
+   :show-inheritance:

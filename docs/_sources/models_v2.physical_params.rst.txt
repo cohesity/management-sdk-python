@@ -1,0 +1,7 @@
+models\_v2.physical\_params module
+==================================
+
+.. automodule:: models_v2.physical_params
+   :members:
+   :undoc-members:
+   :show-inheritance:

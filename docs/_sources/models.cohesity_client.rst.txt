@@ -1,0 +1,7 @@
+models.cohesity\_client module
+==============================
+
+.. automodule:: models.cohesity_client
+   :members:
+   :undoc-members:
+   :show-inheritance:

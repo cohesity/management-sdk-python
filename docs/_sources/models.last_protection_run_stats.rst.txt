@@ -1,0 +1,7 @@
+models.last\_protection\_run\_stats module
+==========================================
+
+.. automodule:: models.last_protection_run_stats
+   :members:
+   :undoc-members:
+   :show-inheritance:

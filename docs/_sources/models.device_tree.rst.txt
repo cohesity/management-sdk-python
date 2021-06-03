@@ -1,0 +1,7 @@
+models.device\_tree module
+==========================
+
+.. automodule:: models.device_tree
+   :members:
+   :undoc-members:
+   :show-inheritance:

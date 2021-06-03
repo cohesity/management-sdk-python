@@ -1,0 +1,7 @@
+models.protection\_runs\_stats module
+=====================================
+
+.. automodule:: models.protection_runs_stats
+   :members:
+   :undoc-members:
+   :show-inheritance:

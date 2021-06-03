@@ -1,0 +1,7 @@
+models.tenant\_view\_box\_update module
+=======================================
+
+.. automodule:: models.tenant_view_box_update
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+models.backup\_policy\_proto\_continuous\_schedule module
+=========================================================
+
+.. automodule:: models.backup_policy_proto_continuous_schedule
+   :members:
+   :undoc-members:
+   :show-inheritance:

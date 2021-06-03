@@ -1,0 +1,7 @@
+models\_v2.public\_folder\_item module
+======================================
+
+.. automodule:: models_v2.public_folder_item
+   :members:
+   :undoc-members:
+   :show-inheritance:

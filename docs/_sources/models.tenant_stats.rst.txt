@@ -1,0 +1,7 @@
+models.tenant\_stats module
+===========================
+
+.. automodule:: models.tenant_stats
+   :members:
+   :undoc-members:
+   :show-inheritance:

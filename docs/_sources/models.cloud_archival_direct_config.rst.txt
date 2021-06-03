@@ -1,0 +1,7 @@
+models.cloud\_archival\_direct\_config module
+=============================================
+
+.. automodule:: models.cloud_archival_direct_config
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+models\_v2.month\_schedule module
+=================================
+
+.. automodule:: models_v2.month_schedule
+   :members:
+   :undoc-members:
+   :show-inheritance:

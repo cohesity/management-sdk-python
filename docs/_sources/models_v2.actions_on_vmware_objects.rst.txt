@@ -1,0 +1,7 @@
+models\_v2.actions\_on\_vmware\_objects module
+==============================================
+
+.. automodule:: models_v2.actions_on_vmware_objects
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+models\_v2.filename\_pattern\_to\_directory module
+==================================================
+
+.. automodule:: models_v2.filename_pattern_to_directory
+   :members:
+   :undoc-members:
+   :show-inheritance:

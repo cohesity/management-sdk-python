@@ -1,0 +1,7 @@
+controllers\_v2.miscellaneous\_controller module
+================================================
+
+.. automodule:: controllers_v2.miscellaneous_controller
+   :members:
+   :undoc-members:
+   :show-inheritance:

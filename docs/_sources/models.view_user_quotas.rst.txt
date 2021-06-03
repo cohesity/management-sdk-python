@@ -1,0 +1,7 @@
+models.view\_user\_quotas module
+================================
+
+.. automodule:: models.view_user_quotas
+   :members:
+   :undoc-members:
+   :show-inheritance:

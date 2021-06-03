@@ -1,0 +1,7 @@
+models.registered\_app\_info module
+===================================
+
+.. automodule:: models.registered_app_info
+   :members:
+   :undoc-members:
+   :show-inheritance:

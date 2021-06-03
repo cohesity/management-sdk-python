@@ -1,0 +1,7 @@
+models.dir\_quota\_info module
+==============================
+
+.. automodule:: models.dir_quota_info
+   :members:
+   :undoc-members:
+   :show-inheritance:

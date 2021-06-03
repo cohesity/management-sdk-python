@@ -1,0 +1,7 @@
+models\_v2.recover\_volume\_mapping module
+==========================================
+
+.. automodule:: models_v2.recover_volume_mapping
+   :members:
+   :undoc-members:
+   :show-inheritance:

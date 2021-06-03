@@ -1,0 +1,32 @@
+models.http package
+===================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   models.http.auth
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   models.http.http_call_back
+   models.http.http_client
+   models.http.http_context
+   models.http.http_method_enum
+   models.http.http_request
+   models.http.http_response
+   models.http.requests_client
+
+Module contents
+---------------
+
+.. automodule:: models.http
+   :members:
+   :undoc-members:
+   :show-inheritance:

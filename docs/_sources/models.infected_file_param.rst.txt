@@ -1,0 +1,7 @@
+models.infected\_file\_param module
+===================================
+
+.. automodule:: models.infected_file_param
+   :members:
+   :undoc-members:
+   :show-inheritance:

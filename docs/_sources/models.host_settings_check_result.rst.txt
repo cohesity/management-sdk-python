@@ -1,0 +1,7 @@
+models.host\_settings\_check\_result module
+===========================================
+
+.. automodule:: models.host_settings_check_result
+   :members:
+   :undoc-members:
+   :show-inheritance:

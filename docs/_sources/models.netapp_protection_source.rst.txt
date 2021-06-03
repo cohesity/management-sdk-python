@@ -1,0 +1,7 @@
+models.netapp\_protection\_source module
+========================================
+
+.. automodule:: models.netapp_protection_source
+   :members:
+   :undoc-members:
+   :show-inheritance:

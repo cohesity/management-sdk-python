@@ -1,0 +1,7 @@
+models.protected\_source\_summary module
+========================================
+
+.. automodule:: models.protected_source_summary
+   :members:
+   :undoc-members:
+   :show-inheritance:

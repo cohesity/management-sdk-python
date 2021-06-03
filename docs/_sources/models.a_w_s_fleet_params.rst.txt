@@ -1,0 +1,7 @@
+models.a\_w\_s\_fleet\_params module
+====================================
+
+.. automodule:: models.a_w_s_fleet_params
+   :members:
+   :undoc-members:
+   :show-inheritance:

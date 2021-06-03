@@ -1,0 +1,7 @@
+models.trending\_data module
+============================
+
+.. automodule:: models.trending_data
+   :members:
+   :undoc-members:
+   :show-inheritance:

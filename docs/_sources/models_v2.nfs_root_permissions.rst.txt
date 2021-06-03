@@ -1,0 +1,7 @@
+models\_v2.nfs\_root\_permissions module
+========================================
+
+.. automodule:: models_v2.nfs_root_permissions
+   :members:
+   :undoc-members:
+   :show-inheritance:

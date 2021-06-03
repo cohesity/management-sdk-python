@@ -1,0 +1,7 @@
+models.physical\_file\_backup\_params\_backup\_path\_info module
+================================================================
+
+.. automodule:: models.physical_file_backup_params_backup_path_info
+   :members:
+   :undoc-members:
+   :show-inheritance:

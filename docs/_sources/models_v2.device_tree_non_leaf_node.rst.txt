@@ -1,0 +1,7 @@
+models\_v2.device\_tree\_non\_leaf\_node module
+===============================================
+
+.. automodule:: models_v2.device_tree_non_leaf_node
+   :members:
+   :undoc-members:
+   :show-inheritance:

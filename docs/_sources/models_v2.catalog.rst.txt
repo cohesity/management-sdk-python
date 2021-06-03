@@ -1,0 +1,7 @@
+models\_v2.catalog module
+=========================
+
+.. automodule:: models_v2.catalog
+   :members:
+   :undoc-members:
+   :show-inheritance:

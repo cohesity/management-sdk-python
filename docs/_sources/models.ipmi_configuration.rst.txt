@@ -1,0 +1,7 @@
+models.ipmi\_configuration module
+=================================
+
+.. automodule:: models.ipmi_configuration
+   :members:
+   :undoc-members:
+   :show-inheritance:

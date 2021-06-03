@@ -1,0 +1,7 @@
+models.archival\_external\_target module
+========================================
+
+.. automodule:: models.archival_external_target
+   :members:
+   :undoc-members:
+   :show-inheritance:

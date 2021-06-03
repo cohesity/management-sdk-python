@@ -1,0 +1,7 @@
+controllers.ip\_controller module
+=================================
+
+.. automodule:: controllers.ip_controller
+   :members:
+   :undoc-members:
+   :show-inheritance:

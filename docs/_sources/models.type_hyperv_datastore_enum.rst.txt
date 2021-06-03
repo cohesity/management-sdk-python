@@ -1,0 +1,7 @@
+models.type\_hyperv\_datastore\_enum module
+===========================================
+
+.. automodule:: models.type_hyperv_datastore_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

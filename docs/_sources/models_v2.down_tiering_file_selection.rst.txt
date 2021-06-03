@@ -1,0 +1,7 @@
+models\_v2.down\_tiering\_file\_selection module
+================================================
+
+.. automodule:: models_v2.down_tiering_file_selection
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+models.nis\_netgroup module
+===========================
+
+.. automodule:: models.nis_netgroup
+   :members:
+   :undoc-members:
+   :show-inheritance:

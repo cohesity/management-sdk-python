@@ -1,0 +1,7 @@
+models.vmware\_special\_parameters module
+=========================================
+
+.. automodule:: models.vmware_special_parameters
+   :members:
+   :undoc-members:
+   :show-inheritance:

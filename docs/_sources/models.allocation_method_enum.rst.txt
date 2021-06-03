@@ -1,0 +1,7 @@
+models.allocation\_method\_enum module
+======================================
+
+.. automodule:: models.allocation_method_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

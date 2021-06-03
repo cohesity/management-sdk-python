@@ -1,0 +1,7 @@
+models.create\_bond\_parameters module
+======================================
+
+.. automodule:: models.create_bond_parameters
+   :members:
+   :undoc-members:
+   :show-inheritance:

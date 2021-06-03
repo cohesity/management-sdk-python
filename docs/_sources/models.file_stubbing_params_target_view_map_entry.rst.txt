@@ -1,0 +1,7 @@
+models.file\_stubbing\_params\_target\_view\_map\_entry module
+==============================================================
+
+.. automodule:: models.file_stubbing_params_target_view_map_entry
+   :members:
+   :undoc-members:
+   :show-inheritance:

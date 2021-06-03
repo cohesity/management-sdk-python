@@ -1,0 +1,7 @@
+models\_v2.source\_hierarchy\_object\_summaries module
+======================================================
+
+.. automodule:: models_v2.source_hierarchy_object_summaries
+   :members:
+   :undoc-members:
+   :show-inheritance:

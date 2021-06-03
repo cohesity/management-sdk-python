@@ -1,0 +1,7 @@
+models.hdfs\_backup\_job\_params module
+=======================================
+
+.. automodule:: models.hdfs_backup_job_params
+   :members:
+   :undoc-members:
+   :show-inheritance:

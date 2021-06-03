@@ -1,0 +1,7 @@
+models.app module
+=================
+
+.. automodule:: models.app
+   :members:
+   :undoc-members:
+   :show-inheritance:

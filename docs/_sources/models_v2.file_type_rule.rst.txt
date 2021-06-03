@@ -1,0 +1,7 @@
+models\_v2.file\_type\_rule module
+==================================
+
+.. automodule:: models_v2.file_type_rule
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+models\_v2.archival\_data\_statistics module
+============================================
+
+.. automodule:: models_v2.archival_data_statistics
+   :members:
+   :undoc-members:
+   :show-inheritance:

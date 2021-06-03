@@ -1,0 +1,7 @@
+models.mcm\_user\_profile module
+================================
+
+.. automodule:: models.mcm_user_profile
+   :members:
+   :undoc-members:
+   :show-inheritance:

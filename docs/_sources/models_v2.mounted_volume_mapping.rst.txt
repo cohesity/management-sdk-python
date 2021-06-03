@@ -1,0 +1,7 @@
+models\_v2.mounted\_volume\_mapping module
+==========================================
+
+.. automodule:: models_v2.mounted_volume_mapping
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+models\_v2.physical\_volume\_protection\_group\_object\_params module
+=====================================================================
+
+.. automodule:: models_v2.physical_volume_protection_group_object_params
+   :members:
+   :undoc-members:
+   :show-inheritance:

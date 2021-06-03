@@ -1,0 +1,7 @@
+models.alerting\_policy\_proto module
+=====================================
+
+.. automodule:: models.alerting_policy_proto
+   :members:
+   :undoc-members:
+   :show-inheritance:

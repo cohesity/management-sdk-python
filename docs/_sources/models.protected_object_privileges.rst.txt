@@ -1,0 +1,7 @@
+models.protected\_object\_privileges module
+===========================================
+
+.. automodule:: models.protected_object_privileges
+   :members:
+   :undoc-members:
+   :show-inheritance:

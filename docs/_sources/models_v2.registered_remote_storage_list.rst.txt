@@ -1,0 +1,7 @@
+models\_v2.registered\_remote\_storage\_list module
+===================================================
+
+.. automodule:: models_v2.registered_remote_storage_list
+   :members:
+   :undoc-members:
+   :show-inheritance:

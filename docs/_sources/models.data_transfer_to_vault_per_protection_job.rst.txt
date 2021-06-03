@@ -1,0 +1,7 @@
+models.data\_transfer\_to\_vault\_per\_protection\_job module
+=============================================================
+
+.. automodule:: models.data_transfer_to_vault_per_protection_job
+   :members:
+   :undoc-members:
+   :show-inheritance:

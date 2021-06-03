@@ -1,0 +1,7 @@
+models\_v2.recover\_physical\_volumes\_params module
+====================================================
+
+.. automodule:: models_v2.recover_physical_volumes_params
+   :members:
+   :undoc-members:
+   :show-inheritance:

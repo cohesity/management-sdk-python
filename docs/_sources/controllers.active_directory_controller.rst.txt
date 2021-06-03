@@ -1,0 +1,7 @@
+controllers.active\_directory\_controller module
+================================================
+
+.. automodule:: controllers.active_directory_controller
+   :members:
+   :undoc-members:
+   :show-inheritance:

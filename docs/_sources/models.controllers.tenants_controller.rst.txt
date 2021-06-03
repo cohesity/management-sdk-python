@@ -1,0 +1,7 @@
+models.controllers.tenants\_controller module
+=============================================
+
+.. automodule:: models.controllers.tenants_controller
+   :members:
+   :undoc-members:
+   :show-inheritance:

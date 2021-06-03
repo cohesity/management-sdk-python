@@ -1,0 +1,7 @@
+models.clone\_app\_view\_info\_proto module
+===========================================
+
+.. automodule:: models.clone_app_view_info_proto
+   :members:
+   :undoc-members:
+   :show-inheritance:

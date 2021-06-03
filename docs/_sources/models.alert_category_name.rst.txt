@@ -1,0 +1,7 @@
+models.alert\_category\_name module
+===================================
+
+.. automodule:: models.alert_category_name
+   :members:
+   :undoc-members:
+   :show-inheritance:

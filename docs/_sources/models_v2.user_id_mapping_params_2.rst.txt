@@ -1,0 +1,7 @@
+models\_v2.user\_id\_mapping\_params\_2 module
+==============================================
+
+.. automodule:: models_v2.user_id_mapping_params_2
+   :members:
+   :undoc-members:
+   :show-inheritance:

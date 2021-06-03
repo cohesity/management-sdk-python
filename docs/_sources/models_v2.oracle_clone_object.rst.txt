@@ -1,0 +1,7 @@
+models\_v2.oracle\_clone\_object module
+=======================================
+
+.. automodule:: models_v2.oracle_clone_object
+   :members:
+   :undoc-members:
+   :show-inheritance:

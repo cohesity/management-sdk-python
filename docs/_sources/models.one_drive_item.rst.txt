@@ -1,0 +1,7 @@
+models.one\_drive\_item module
+==============================
+
+.. automodule:: models.one_drive_item
+   :members:
+   :undoc-members:
+   :show-inheritance:

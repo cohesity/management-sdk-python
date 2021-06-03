@@ -1,0 +1,7 @@
+models.replica\_info module
+===========================
+
+.. automodule:: models.replica_info
+   :members:
+   :undoc-members:
+   :show-inheritance:

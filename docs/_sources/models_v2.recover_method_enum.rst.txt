@@ -1,0 +1,7 @@
+models\_v2.recover\_method\_enum module
+=======================================
+
+.. automodule:: models_v2.recover_method_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

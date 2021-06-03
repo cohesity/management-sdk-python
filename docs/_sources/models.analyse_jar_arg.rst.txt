@@ -1,0 +1,7 @@
+models.analyse\_jar\_arg module
+===============================
+
+.. automodule:: models.analyse_jar_arg
+   :members:
+   :undoc-members:
+   :show-inheritance:

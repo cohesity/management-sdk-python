@@ -1,0 +1,7 @@
+models.oracle\_app\_params module
+=================================
+
+.. automodule:: models.oracle_app_params
+   :members:
+   :undoc-members:
+   :show-inheritance:

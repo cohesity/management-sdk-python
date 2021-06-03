@@ -1,0 +1,7 @@
+models\_v2.azure\_parameters module
+===================================
+
+.. automodule:: models_v2.azure_parameters
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+models.vm\_info module
+======================
+
+.. automodule:: models.vm_info
+   :members:
+   :undoc-members:
+   :show-inheritance:

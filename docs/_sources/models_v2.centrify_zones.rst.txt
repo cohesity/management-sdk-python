@@ -1,0 +1,7 @@
+models\_v2.centrify\_zones module
+=================================
+
+.. automodule:: models_v2.centrify_zones
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+models.s3\_access\_enum module
+==============================
+
+.. automodule:: models.s3_access_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

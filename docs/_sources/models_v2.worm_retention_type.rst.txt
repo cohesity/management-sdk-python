@@ -1,0 +1,7 @@
+models\_v2.worm\_retention\_type module
+=======================================
+
+.. automodule:: models_v2.worm_retention_type
+   :members:
+   :undoc-members:
+   :show-inheritance:

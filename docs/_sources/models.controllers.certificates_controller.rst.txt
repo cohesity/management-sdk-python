@@ -1,0 +1,7 @@
+models.controllers.certificates\_controller module
+==================================================
+
+.. automodule:: models.controllers.certificates_controller
+   :members:
+   :undoc-members:
+   :show-inheritance:

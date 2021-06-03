@@ -1,0 +1,7 @@
+models.error\_proto module
+==========================
+
+.. automodule:: models.error_proto
+   :members:
+   :undoc-members:
+   :show-inheritance:

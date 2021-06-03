@@ -1,0 +1,7 @@
+models\_v2.vdc\_catalog module
+==============================
+
+.. automodule:: models_v2.vdc_catalog
+   :members:
+   :undoc-members:
+   :show-inheritance:

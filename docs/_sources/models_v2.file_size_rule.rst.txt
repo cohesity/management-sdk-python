@@ -1,0 +1,7 @@
+models\_v2.file\_size\_rule module
+==================================
+
+.. automodule:: models_v2.file_size_rule
+   :members:
+   :undoc-members:
+   :show-inheritance:

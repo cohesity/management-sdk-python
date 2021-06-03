@@ -1,0 +1,7 @@
+models.public\_folder module
+============================
+
+.. automodule:: models.public_folder
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+models\_v2.data\_center module
+==============================
+
+.. automodule:: models_v2.data_center
+   :members:
+   :undoc-members:
+   :show-inheritance:

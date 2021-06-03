@@ -1,0 +1,7 @@
+models\_v2.object\_backup\_snapshot\_status\_type module
+========================================================
+
+.. automodule:: models_v2.object_backup_snapshot_status_type
+   :members:
+   :undoc-members:
+   :show-inheritance:

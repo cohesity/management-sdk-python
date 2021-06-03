@@ -1,0 +1,7 @@
+models.tile\_types\_enum module
+===============================
+
+.. automodule:: models.tile_types_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

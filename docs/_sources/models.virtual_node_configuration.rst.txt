@@ -1,0 +1,7 @@
+models.virtual\_node\_configuration module
+==========================================
+
+.. automodule:: models.virtual_node_configuration
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+models.view module
+==================
+
+.. automodule:: models.view
+   :members:
+   :undoc-members:
+   :show-inheritance:

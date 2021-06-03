@@ -1,0 +1,7 @@
+models.map\_reduce\_file\_formats module
+========================================
+
+.. automodule:: models.map_reduce_file_formats
+   :members:
+   :undoc-members:
+   :show-inheritance:

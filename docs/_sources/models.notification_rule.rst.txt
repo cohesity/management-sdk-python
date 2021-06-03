@@ -1,0 +1,7 @@
+models.notification\_rule module
+================================
+
+.. automodule:: models.notification_rule
+   :members:
+   :undoc-members:
+   :show-inheritance:

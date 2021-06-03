@@ -1,0 +1,7 @@
+models\_v2.original\_target\_config\_6 module
+=============================================
+
+.. automodule:: models_v2.original_target_config_6
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,20 @@
+models.exceptions package
+=========================
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   models.exceptions.api_exception
+   models.exceptions.error_exception
+   models.exceptions.request_error_error_exception
+
+Module contents
+---------------
+
+.. automodule:: models.exceptions
+   :members:
+   :undoc-members:
+   :show-inheritance:

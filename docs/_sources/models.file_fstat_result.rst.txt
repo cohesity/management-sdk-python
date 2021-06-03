@@ -1,0 +1,7 @@
+models.file\_fstat\_result module
+=================================
+
+.. automodule:: models.file_fstat_result
+   :members:
+   :undoc-members:
+   :show-inheritance:

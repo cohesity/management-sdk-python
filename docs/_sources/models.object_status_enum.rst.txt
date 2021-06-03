@@ -1,0 +1,7 @@
+models.object\_status\_enum module
+==================================
+
+.. automodule:: models.object_status_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

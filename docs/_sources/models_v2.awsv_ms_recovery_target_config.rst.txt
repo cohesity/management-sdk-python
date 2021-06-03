@@ -1,0 +1,7 @@
+models\_v2.awsv\_ms\_recovery\_target\_config module
+====================================================
+
+.. automodule:: models_v2.awsv_ms_recovery_target_config
+   :members:
+   :undoc-members:
+   :show-inheritance:

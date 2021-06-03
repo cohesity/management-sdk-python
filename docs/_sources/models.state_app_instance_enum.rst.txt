@@ -1,0 +1,7 @@
+models.state\_app\_instance\_enum module
+========================================
+
+.. automodule:: models.state_app_instance_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

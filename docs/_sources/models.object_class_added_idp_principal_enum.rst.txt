@@ -1,0 +1,7 @@
+models.object\_class\_added\_idp\_principal\_enum module
+========================================================
+
+.. automodule:: models.object_class_added_idp_principal_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

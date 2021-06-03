@@ -1,0 +1,7 @@
+models.controllers.protection\_jobs\_controller module
+======================================================
+
+.. automodule:: models.controllers.protection_jobs_controller
+   :members:
+   :undoc-members:
+   :show-inheritance:

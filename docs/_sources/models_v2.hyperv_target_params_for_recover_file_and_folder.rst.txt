@@ -1,0 +1,7 @@
+models\_v2.hyperv\_target\_params\_for\_recover\_file\_and\_folder module
+=========================================================================
+
+.. automodule:: models_v2.hyperv_target_params_for_recover_file_and_folder
+   :members:
+   :undoc-members:
+   :show-inheritance:

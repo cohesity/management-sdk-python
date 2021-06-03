@@ -1,0 +1,7 @@
+models.gpfs\_fileset module
+===========================
+
+.. automodule:: models.gpfs_fileset
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+models\_v2.mongodb\_object\_type\_1\_enum module
+================================================
+
+.. automodule:: models_v2.mongodb_object_type_1_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

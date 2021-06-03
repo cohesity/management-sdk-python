@@ -1,0 +1,7 @@
+models.get\_alert\_types\_params module
+=======================================
+
+.. automodule:: models.get_alert_types_params
+   :members:
+   :undoc-members:
+   :show-inheritance:

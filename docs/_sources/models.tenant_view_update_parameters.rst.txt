@@ -1,0 +1,7 @@
+models.tenant\_view\_update\_parameters module
+==============================================
+
+.. automodule:: models.tenant_view_update_parameters
+   :members:
+   :undoc-members:
+   :show-inheritance:

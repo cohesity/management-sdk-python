@@ -1,0 +1,7 @@
+models.recover\_virtual\_disk\_info\_proto module
+=================================================
+
+.. automodule:: models.recover_virtual_disk_info_proto
+   :members:
+   :undoc-members:
+   :show-inheritance:

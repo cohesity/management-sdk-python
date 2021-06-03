@@ -1,0 +1,7 @@
+models.storage\_policy module
+=============================
+
+.. automodule:: models.storage_policy
+   :members:
+   :undoc-members:
+   :show-inheritance:

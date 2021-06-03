@@ -1,0 +1,7 @@
+models\_v2.sfu\_30\_type\_params module
+=======================================
+
+.. automodule:: models_v2.sfu_30_type_params
+   :members:
+   :undoc-members:
+   :show-inheritance:

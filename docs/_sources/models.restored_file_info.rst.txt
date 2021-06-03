@@ -1,0 +1,7 @@
+models.restored\_file\_info module
+==================================
+
+.. automodule:: models.restored_file_info
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+models.last\_protection\_run\_summary module
+============================================
+
+.. automodule:: models.last_protection_run_summary
+   :members:
+   :undoc-members:
+   :show-inheritance:

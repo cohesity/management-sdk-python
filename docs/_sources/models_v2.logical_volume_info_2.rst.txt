@@ -1,0 +1,7 @@
+models\_v2.logical\_volume\_info\_2 module
+==========================================
+
+.. automodule:: models_v2.logical_volume_info_2
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+models.alert\_property module
+=============================
+
+.. automodule:: models.alert_property
+   :members:
+   :undoc-members:
+   :show-inheritance:

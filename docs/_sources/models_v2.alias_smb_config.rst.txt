@@ -1,0 +1,7 @@
+models\_v2.alias\_smb\_config module
+====================================
+
+.. automodule:: models_v2.alias_smb_config
+   :members:
+   :undoc-members:
+   :show-inheritance:

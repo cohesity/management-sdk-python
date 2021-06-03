@@ -1,0 +1,7 @@
+models.pdb\_entity\_info module
+===============================
+
+.. automodule:: models.pdb_entity_info
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+models.get\_view\_box\_stats\_result module
+===========================================
+
+.. automodule:: models.get_view_box_stats_result
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+models\_v2.mssql\_file\_protection\_group\_object\_params module
+================================================================
+
+.. automodule:: models_v2.mssql_file_protection_group_object_params
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+models\_v2.non\_leaf\_node\_params module
+=========================================
+
+.. automodule:: models_v2.non_leaf_node_params
+   :members:
+   :undoc-members:
+   :show-inheritance:

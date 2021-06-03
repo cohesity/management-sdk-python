@@ -1,0 +1,7 @@
+models.smb\_access\_enum module
+===============================
+
+.. automodule:: models.smb_access_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

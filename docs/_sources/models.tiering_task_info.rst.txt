@@ -1,0 +1,7 @@
+models.tiering\_task\_info module
+=================================
+
+.. automodule:: models.tiering_task_info
+   :members:
+   :undoc-members:
+   :show-inheritance:

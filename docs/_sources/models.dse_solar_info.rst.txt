@@ -1,0 +1,7 @@
+models.dse\_solar\_info module
+==============================
+
+.. automodule:: models.dse_solar_info
+   :members:
+   :undoc-members:
+   :show-inheritance:

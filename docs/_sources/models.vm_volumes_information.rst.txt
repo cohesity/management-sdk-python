@@ -1,0 +1,7 @@
+models.vm\_volumes\_information module
+======================================
+
+.. automodule:: models.vm_volumes_information
+   :members:
+   :undoc-members:
+   :show-inheritance:

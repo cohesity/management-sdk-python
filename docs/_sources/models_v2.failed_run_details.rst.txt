@@ -1,0 +1,7 @@
+models\_v2.failed\_run\_details module
+======================================
+
+.. automodule:: models_v2.failed_run_details
+   :members:
+   :undoc-members:
+   :show-inheritance:

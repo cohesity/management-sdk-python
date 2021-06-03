@@ -1,0 +1,7 @@
+models.alert\_resolution module
+===============================
+
+.. automodule:: models.alert_resolution
+   :members:
+   :undoc-members:
+   :show-inheritance:

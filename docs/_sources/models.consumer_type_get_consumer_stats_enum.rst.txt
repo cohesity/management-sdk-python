@@ -1,0 +1,7 @@
+models.consumer\_type\_get\_consumer\_stats\_enum module
+========================================================
+
+.. automodule:: models.consumer_type_get_consumer_stats_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+models.ad\_domain module
+========================
+
+.. automodule:: models.ad_domain
+   :members:
+   :undoc-members:
+   :show-inheritance:

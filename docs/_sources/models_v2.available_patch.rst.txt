@@ -1,0 +1,7 @@
+models\_v2.available\_patch module
+==================================
+
+.. automodule:: models_v2.available_patch
+   :members:
+   :undoc-members:
+   :show-inheritance:

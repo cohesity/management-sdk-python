@@ -1,0 +1,7 @@
+models.metric\_value module
+===========================
+
+.. automodule:: models.metric_value
+   :members:
+   :undoc-members:
+   :show-inheritance:

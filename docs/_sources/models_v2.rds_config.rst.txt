@@ -1,0 +1,7 @@
+models\_v2.rds\_config module
+=============================
+
+.. automodule:: models_v2.rds_config
+   :members:
+   :undoc-members:
+   :show-inheritance:

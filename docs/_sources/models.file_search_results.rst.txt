@@ -1,0 +1,7 @@
+models.file\_search\_results module
+===================================
+
+.. automodule:: models.file_search_results
+   :members:
+   :undoc-members:
+   :show-inheritance:

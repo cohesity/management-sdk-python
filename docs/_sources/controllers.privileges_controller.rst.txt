@@ -1,0 +1,7 @@
+controllers.privileges\_controller module
+=========================================
+
+.. automodule:: controllers.privileges_controller
+   :members:
+   :undoc-members:
+   :show-inheritance:

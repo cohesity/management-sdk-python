@@ -1,0 +1,7 @@
+models.setup\_restore\_disk\_task\_info\_proto module
+=====================================================
+
+.. automodule:: models.setup_restore_disk_task_info_proto
+   :members:
+   :undoc-members:
+   :show-inheritance:

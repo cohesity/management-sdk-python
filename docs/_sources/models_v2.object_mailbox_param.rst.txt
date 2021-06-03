@@ -1,0 +1,7 @@
+models\_v2.object\_mailbox\_param module
+========================================
+
+.. automodule:: models_v2.object_mailbox_param
+   :members:
+   :undoc-members:
+   :show-inheritance:

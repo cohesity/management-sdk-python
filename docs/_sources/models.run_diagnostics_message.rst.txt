@@ -1,0 +1,7 @@
+models.run\_diagnostics\_message module
+=======================================
+
+.. automodule:: models.run_diagnostics_message
+   :members:
+   :undoc-members:
+   :show-inheritance:

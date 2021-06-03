@@ -1,0 +1,7 @@
+models.remote\_view\_config module
+==================================
+
+.. automodule:: models.remote_view_config
+   :members:
+   :undoc-members:
+   :show-inheritance:

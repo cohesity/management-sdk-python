@@ -1,0 +1,7 @@
+models.view\_stats\_snapshot module
+===================================
+
+.. automodule:: models.view_stats_snapshot
+   :members:
+   :undoc-members:
+   :show-inheritance:

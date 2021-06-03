@@ -1,0 +1,7 @@
+models.update\_notifications module
+===================================
+
+.. automodule:: models.update_notifications
+   :members:
+   :undoc-members:
+   :show-inheritance:

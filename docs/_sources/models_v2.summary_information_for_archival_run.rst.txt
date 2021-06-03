@@ -1,0 +1,7 @@
+models\_v2.summary\_information\_for\_archival\_run module
+==========================================================
+
+.. automodule:: models_v2.summary_information_for_archival_run
+   :members:
+   :undoc-members:
+   :show-inheritance:

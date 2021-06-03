@@ -1,0 +1,7 @@
+models\_v2.specifies\_the\_response\_of\_updation\_of\_state\_of\_multiple\_protection\_groups module
+=====================================================================================================
+
+.. automodule:: models_v2.specifies_the_response_of_updation_of_state_of_multiple_protection_groups
+   :members:
+   :undoc-members:
+   :show-inheritance:

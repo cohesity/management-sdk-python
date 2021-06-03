@@ -1,0 +1,7 @@
+models.oracle\_special\_parameters module
+=========================================
+
+.. automodule:: models.oracle_special_parameters
+   :members:
+   :undoc-members:
+   :show-inheritance:

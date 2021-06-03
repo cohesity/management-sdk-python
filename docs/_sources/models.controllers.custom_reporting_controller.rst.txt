@@ -1,0 +1,7 @@
+models.controllers.custom\_reporting\_controller module
+=======================================================
+
+.. automodule:: models.controllers.custom_reporting_controller
+   :members:
+   :undoc-members:
+   :show-inheritance:

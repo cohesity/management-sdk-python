@@ -1,0 +1,7 @@
+models.controllers.interface\_group\_controller module
+======================================================
+
+.. automodule:: models.controllers.interface_group_controller
+   :members:
+   :undoc-members:
+   :show-inheritance:

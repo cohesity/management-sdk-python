@@ -1,0 +1,7 @@
+models\_v2.kvm\_protection\_group\_params module
+================================================
+
+.. automodule:: models_v2.kvm_protection_group_params
+   :members:
+   :undoc-members:
+   :show-inheritance:

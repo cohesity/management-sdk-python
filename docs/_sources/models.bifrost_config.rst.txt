@@ -1,0 +1,7 @@
+models.bifrost\_config module
+=============================
+
+.. automodule:: models.bifrost_config
+   :members:
+   :undoc-members:
+   :show-inheritance:

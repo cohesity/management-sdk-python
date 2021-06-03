@@ -1,0 +1,7 @@
+models.subscription\_type\_azure\_protection\_source\_enum module
+=================================================================
+
+.. automodule:: models.subscription_type_azure_protection_source_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

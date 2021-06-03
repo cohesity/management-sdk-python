@@ -1,0 +1,7 @@
+models.usage\_and\_performance\_stats module
+============================================
+
+.. automodule:: models.usage_and_performance_stats
+   :members:
+   :undoc-members:
+   :show-inheritance:

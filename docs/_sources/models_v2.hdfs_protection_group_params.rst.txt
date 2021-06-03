@@ -1,0 +1,7 @@
+models\_v2.hdfs\_protection\_group\_params module
+=================================================
+
+.. automodule:: models_v2.hdfs_protection_group_params
+   :members:
+   :undoc-members:
+   :show-inheritance:

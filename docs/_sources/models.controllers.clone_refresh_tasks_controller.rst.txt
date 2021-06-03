@@ -1,0 +1,7 @@
+models.controllers.clone\_refresh\_tasks\_controller module
+===========================================================
+
+.. automodule:: models.controllers.clone_refresh_tasks_controller
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+models.cassandra\_additional\_params module
+===========================================
+
+.. automodule:: models.cassandra_additional_params
+   :members:
+   :undoc-members:
+   :show-inheritance:

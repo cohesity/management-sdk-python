@@ -1,0 +1,7 @@
+models\_v2.filer\_audit\_log\_configs module
+============================================
+
+.. automodule:: models_v2.filer_audit_log_configs
+   :members:
+   :undoc-members:
+   :show-inheritance:

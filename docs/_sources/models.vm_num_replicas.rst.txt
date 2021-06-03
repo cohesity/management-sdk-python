@@ -1,0 +1,7 @@
+models.vm\_num\_replicas module
+===============================
+
+.. automodule:: models.vm_num_replicas
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+models.protection\_trend module
+===============================
+
+.. automodule:: models.protection_trend
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+models\_v2.kubernetes\_target\_params\_for\_recover\_namespace module
+=====================================================================
+
+.. automodule:: models_v2.kubernetes_target_params_for_recover_namespace
+   :members:
+   :undoc-members:
+   :show-inheritance:

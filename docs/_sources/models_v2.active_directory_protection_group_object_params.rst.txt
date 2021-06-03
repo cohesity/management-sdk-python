@@ -1,0 +1,7 @@
+models\_v2.active\_directory\_protection\_group\_object\_params module
+======================================================================
+
+.. automodule:: models_v2.active_directory_protection_group_object_params
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+models.remote\_host module
+==========================
+
+.. automodule:: models.remote_host
+   :members:
+   :undoc-members:
+   :show-inheritance:

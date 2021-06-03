@@ -1,0 +1,7 @@
+models\_v2.cluster\_type module
+===============================
+
+.. automodule:: models_v2.cluster_type
+   :members:
+   :undoc-members:
+   :show-inheritance:

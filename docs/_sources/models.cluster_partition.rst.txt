@@ -1,0 +1,7 @@
+models.cluster\_partition module
+================================
+
+.. automodule:: models.cluster_partition
+   :members:
+   :undoc-members:
+   :show-inheritance:

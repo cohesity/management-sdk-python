@@ -1,0 +1,7 @@
+models\_v2.source\_registrations module
+=======================================
+
+.. automodule:: models_v2.source_registrations
+   :members:
+   :undoc-members:
+   :show-inheritance:

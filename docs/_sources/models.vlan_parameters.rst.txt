@@ -1,0 +1,7 @@
+models.vlan\_parameters module
+==============================
+
+.. automodule:: models.vlan_parameters
+   :members:
+   :undoc-members:
+   :show-inheritance:

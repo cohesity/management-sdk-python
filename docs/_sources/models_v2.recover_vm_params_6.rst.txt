@@ -1,0 +1,7 @@
+models\_v2.recover\_vm\_params\_6 module
+========================================
+
+.. automodule:: models_v2.recover_vm_params_6
+   :members:
+   :undoc-members:
+   :show-inheritance:

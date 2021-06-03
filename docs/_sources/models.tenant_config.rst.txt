@@ -1,0 +1,7 @@
+models.tenant\_config module
+============================
+
+.. automodule:: models.tenant_config
+   :members:
+   :undoc-members:
+   :show-inheritance:

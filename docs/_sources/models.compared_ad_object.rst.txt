@@ -1,0 +1,7 @@
+models.compared\_ad\_object module
+==================================
+
+.. automodule:: models.compared_ad_object
+   :members:
+   :undoc-members:
+   :show-inheritance:

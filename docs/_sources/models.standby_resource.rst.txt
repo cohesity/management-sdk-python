@@ -1,0 +1,7 @@
+models.standby\_resource module
+===============================
+
+.. automodule:: models.standby_resource
+   :members:
+   :undoc-members:
+   :show-inheritance:

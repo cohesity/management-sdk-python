@@ -1,0 +1,7 @@
+models.active\_directory\_entry module
+======================================
+
+.. automodule:: models.active_directory_entry
+   :members:
+   :undoc-members:
+   :show-inheritance:

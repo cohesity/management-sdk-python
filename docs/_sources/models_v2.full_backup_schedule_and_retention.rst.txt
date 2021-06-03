@@ -1,0 +1,7 @@
+models\_v2.full\_backup\_schedule\_and\_retention module
+========================================================
+
+.. automodule:: models_v2.full_backup_schedule_and_retention
+   :members:
+   :undoc-members:
+   :show-inheritance:

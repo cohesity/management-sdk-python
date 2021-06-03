@@ -1,0 +1,7 @@
+models.throttling\_policy\_parameters module
+============================================
+
+.. automodule:: models.throttling_policy_parameters
+   :members:
+   :undoc-members:
+   :show-inheritance:

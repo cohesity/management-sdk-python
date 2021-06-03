@@ -1,0 +1,7 @@
+models.controllers.scheduler\_controller module
+===============================================
+
+.. automodule:: models.controllers.scheduler_controller
+   :members:
+   :undoc-members:
+   :show-inheritance:

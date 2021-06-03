@@ -1,0 +1,7 @@
+models.upgrade\_cluster\_parameters module
+==========================================
+
+.. automodule:: models.upgrade_cluster_parameters
+   :members:
+   :undoc-members:
+   :show-inheritance:

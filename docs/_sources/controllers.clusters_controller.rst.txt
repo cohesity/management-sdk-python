@@ -1,0 +1,7 @@
+controllers.clusters\_controller module
+=======================================
+
+.. automodule:: controllers.clusters_controller
+   :members:
+   :undoc-members:
+   :show-inheritance:

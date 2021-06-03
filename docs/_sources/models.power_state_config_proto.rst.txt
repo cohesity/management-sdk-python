@@ -1,0 +1,7 @@
+models.power\_state\_config\_proto module
+=========================================
+
+.. automodule:: models.power_state_config_proto
+   :members:
+   :undoc-members:
+   :show-inheritance:

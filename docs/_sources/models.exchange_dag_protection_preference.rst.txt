@@ -1,0 +1,7 @@
+models.exchange\_dag\_protection\_preference module
+===================================================
+
+.. automodule:: models.exchange_dag_protection_preference
+   :members:
+   :undoc-members:
+   :show-inheritance:

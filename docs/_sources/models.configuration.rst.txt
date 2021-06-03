@@ -1,0 +1,7 @@
+models.configuration module
+===========================
+
+.. automodule:: models.configuration
+   :members:
+   :undoc-members:
+   :show-inheritance:

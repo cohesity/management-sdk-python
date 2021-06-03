@@ -1,0 +1,7 @@
+models\_v2.data\_migration\_task\_file\_size\_rule\_condition\_type module
+==========================================================================
+
+.. automodule:: models_v2.data_migration_task_file_size_rule_condition_type
+   :members:
+   :undoc-members:
+   :show-inheritance:

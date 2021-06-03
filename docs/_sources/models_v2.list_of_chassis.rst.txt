@@ -1,0 +1,7 @@
+models\_v2.list\_of\_chassis module
+===================================
+
+.. automodule:: models_v2.list_of_chassis
+   :members:
+   :undoc-members:
+   :show-inheritance:

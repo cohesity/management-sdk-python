@@ -1,0 +1,7 @@
+models\_v2.nis\_providers module
+================================
+
+.. automodule:: models_v2.nis_providers
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+models.list\_nlm\_locks\_response module
+========================================
+
+.. automodule:: models.list_nlm_locks_response
+   :members:
+   :undoc-members:
+   :show-inheritance:

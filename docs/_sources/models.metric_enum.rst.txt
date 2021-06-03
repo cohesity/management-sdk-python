@@ -1,0 +1,7 @@
+models.metric\_enum module
+==========================
+
+.. automodule:: models.metric_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

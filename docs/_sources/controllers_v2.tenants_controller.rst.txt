@@ -1,0 +1,7 @@
+controllers\_v2.tenants\_controller module
+==========================================
+
+.. automodule:: controllers_v2.tenants_controller
+   :members:
+   :undoc-members:
+   :show-inheritance:

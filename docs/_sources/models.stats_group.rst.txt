@@ -1,0 +1,7 @@
+models.stats\_group module
+==========================
+
+.. automodule:: models.stats_group
+   :members:
+   :undoc-members:
+   :show-inheritance:

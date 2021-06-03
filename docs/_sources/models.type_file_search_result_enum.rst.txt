@@ -1,0 +1,7 @@
+models.type\_file\_search\_result\_enum module
+==============================================
+
+.. automodule:: models.type_file_search_result_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+models.access\_token module
+===========================
+
+.. automodule:: models.access_token
+   :members:
+   :undoc-members:
+   :show-inheritance:

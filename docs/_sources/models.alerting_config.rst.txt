@@ -1,0 +1,7 @@
+models.alerting\_config module
+==============================
+
+.. automodule:: models.alerting_config
+   :members:
+   :undoc-members:
+   :show-inheritance:

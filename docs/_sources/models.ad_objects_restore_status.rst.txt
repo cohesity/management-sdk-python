@@ -1,0 +1,7 @@
+models.ad\_objects\_restore\_status module
+==========================================
+
+.. automodule:: models.ad_objects_restore_status
+   :members:
+   :undoc-members:
+   :show-inheritance:

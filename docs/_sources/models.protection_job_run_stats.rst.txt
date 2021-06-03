@@ -1,0 +1,7 @@
+models.protection\_job\_run\_stats module
+=========================================
+
+.. automodule:: models.protection_job_run_stats
+   :members:
+   :undoc-members:
+   :show-inheritance:

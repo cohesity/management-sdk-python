@@ -1,0 +1,7 @@
+models\_v2.language module
+==========================
+
+.. automodule:: models_v2.language
+   :members:
+   :undoc-members:
+   :show-inheritance:

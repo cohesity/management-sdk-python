@@ -1,0 +1,7 @@
+models.append\_hosts\_parameters module
+=======================================
+
+.. automodule:: models.append_hosts_parameters
+   :members:
+   :undoc-members:
+   :show-inheritance:

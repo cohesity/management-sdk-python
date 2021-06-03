@@ -1,0 +1,7 @@
+models.map\_reduce\_instance\_run\_info module
+==============================================
+
+.. automodule:: models.map_reduce_instance_run_info
+   :members:
+   :undoc-members:
+   :show-inheritance:

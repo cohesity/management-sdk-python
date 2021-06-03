@@ -1,0 +1,7 @@
+controllers\_v2.network\_information\_service\_nis\_controller module
+=====================================================================
+
+.. automodule:: controllers_v2.network_information_service_nis_controller
+   :members:
+   :undoc-members:
+   :show-inheritance:

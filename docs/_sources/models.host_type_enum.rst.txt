@@ -1,0 +1,7 @@
+models.host\_type\_enum module
+==============================
+
+.. automodule:: models.host_type_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

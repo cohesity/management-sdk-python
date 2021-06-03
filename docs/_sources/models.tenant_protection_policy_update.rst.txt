@@ -1,0 +1,7 @@
+models.tenant\_protection\_policy\_update module
+================================================
+
+.. automodule:: models.tenant_protection_policy_update
+   :members:
+   :undoc-members:
+   :show-inheritance:

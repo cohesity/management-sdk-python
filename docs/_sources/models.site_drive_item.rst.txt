@@ -1,0 +1,7 @@
+models.site\_drive\_item module
+===============================
+
+.. automodule:: models.site_drive_item
+   :members:
+   :undoc-members:
+   :show-inheritance:

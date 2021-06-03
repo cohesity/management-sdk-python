@@ -1,0 +1,7 @@
+models.storage\_efficiency\_tile module
+=======================================
+
+.. automodule:: models.storage_efficiency_tile
+   :members:
+   :undoc-members:
+   :show-inheritance:

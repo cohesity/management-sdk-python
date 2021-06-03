@@ -1,0 +1,7 @@
+models.snapshot\_target\_settings module
+========================================
+
+.. automodule:: models.snapshot_target_settings
+   :members:
+   :undoc-members:
+   :show-inheritance:

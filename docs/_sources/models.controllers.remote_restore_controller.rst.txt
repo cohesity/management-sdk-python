@@ -1,0 +1,7 @@
+models.controllers.remote\_restore\_controller module
+=====================================================
+
+.. automodule:: models.controllers.remote_restore_controller
+   :members:
+   :undoc-members:
+   :show-inheritance:

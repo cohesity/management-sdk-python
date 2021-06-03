@@ -1,0 +1,7 @@
+models.controllers.vaults\_controller module
+============================================
+
+.. automodule:: models.controllers.vaults_controller
+   :members:
+   :undoc-members:
+   :show-inheritance:

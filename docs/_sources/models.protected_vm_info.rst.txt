@@ -1,0 +1,7 @@
+models.protected\_vm\_info module
+=================================
+
+.. automodule:: models.protected_vm_info
+   :members:
+   :undoc-members:
+   :show-inheritance:

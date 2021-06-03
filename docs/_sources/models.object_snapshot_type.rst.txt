@@ -1,0 +1,7 @@
+models.object\_snapshot\_type module
+====================================
+
+.. automodule:: models.object_snapshot_type
+   :members:
+   :undoc-members:
+   :show-inheritance:

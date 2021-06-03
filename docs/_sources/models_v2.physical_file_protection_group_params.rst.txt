@@ -1,0 +1,7 @@
+models\_v2.physical\_file\_protection\_group\_params module
+===========================================================
+
+.. automodule:: models_v2.physical_file_protection_group_params
+   :members:
+   :undoc-members:
+   :show-inheritance:

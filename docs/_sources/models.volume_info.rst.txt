@@ -1,0 +1,7 @@
+models.volume\_info module
+==========================
+
+.. automodule:: models.volume_info
+   :members:
+   :undoc-members:
+   :show-inheritance:

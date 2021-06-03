@@ -1,0 +1,7 @@
+models.controllers.app\_instance\_controller module
+===================================================
+
+.. automodule:: models.controllers.app_instance_controller
+   :members:
+   :undoc-members:
+   :show-inheritance:

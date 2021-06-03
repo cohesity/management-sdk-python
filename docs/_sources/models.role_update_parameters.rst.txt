@@ -1,0 +1,7 @@
+models.role\_update\_parameters module
+======================================
+
+.. automodule:: models.role_update_parameters
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+controllers\_v2.base\_controller module
+=======================================
+
+.. automodule:: controllers_v2.base_controller
+   :members:
+   :undoc-members:
+   :show-inheritance:

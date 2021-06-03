@@ -1,0 +1,7 @@
+models\_v2.hbase\_indexed\_object module
+========================================
+
+.. automodule:: models_v2.hbase_indexed_object
+   :members:
+   :undoc-members:
+   :show-inheritance:

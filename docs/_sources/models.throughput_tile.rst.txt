@@ -1,0 +1,7 @@
+models.throughput\_tile module
+==============================
+
+.. automodule:: models.throughput_tile
+   :members:
+   :undoc-members:
+   :show-inheritance:

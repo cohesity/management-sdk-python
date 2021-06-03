@@ -1,0 +1,7 @@
+models.update\_bond\_parameters module
+======================================
+
+.. automodule:: models.update_bond_parameters
+   :members:
+   :undoc-members:
+   :show-inheritance:

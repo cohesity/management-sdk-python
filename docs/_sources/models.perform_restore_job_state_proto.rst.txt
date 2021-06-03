@@ -1,0 +1,7 @@
+models.perform\_restore\_job\_state\_proto module
+=================================================
+
+.. automodule:: models.perform_restore_job_state_proto
+   :members:
+   :undoc-members:
+   :show-inheritance:

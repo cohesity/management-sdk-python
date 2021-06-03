@@ -1,0 +1,7 @@
+models.full\_snapshot\_info module
+==================================
+
+.. automodule:: models.full_snapshot_info
+   :members:
+   :undoc-members:
+   :show-inheritance:

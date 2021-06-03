@@ -1,0 +1,7 @@
+models\_v2.vnic\_profile module
+===============================
+
+.. automodule:: models_v2.vnic_profile
+   :members:
+   :undoc-members:
+   :show-inheritance:

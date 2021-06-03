@@ -1,0 +1,7 @@
+models\_v2.virtual\_cluster\_params module
+==========================================
+
+.. automodule:: models_v2.virtual_cluster_params
+   :members:
+   :undoc-members:
+   :show-inheritance:

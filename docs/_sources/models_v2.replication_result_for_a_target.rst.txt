@@ -1,0 +1,7 @@
+models\_v2.replication\_result\_for\_a\_target module
+=====================================================
+
+.. automodule:: models_v2.replication_result_for_a_target
+   :members:
+   :undoc-members:
+   :show-inheritance:

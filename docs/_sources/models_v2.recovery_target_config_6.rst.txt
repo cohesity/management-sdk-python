@@ -1,0 +1,7 @@
+models\_v2.recovery\_target\_config\_6 module
+=============================================
+
+.. automodule:: models_v2.recovery_target_config_6
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+controllers.view\_boxes\_controller module
+==========================================
+
+.. automodule:: controllers.view_boxes_controller
+   :members:
+   :undoc-members:
+   :show-inheritance:

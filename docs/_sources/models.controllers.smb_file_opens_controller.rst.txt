@@ -1,0 +1,7 @@
+models.controllers.smb\_file\_opens\_controller module
+======================================================
+
+.. automodule:: models.controllers.smb_file_opens_controller
+   :members:
+   :undoc-members:
+   :show-inheritance:

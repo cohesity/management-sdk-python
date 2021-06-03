@@ -1,0 +1,7 @@
+models.uda\_objects module
+==========================
+
+.. automodule:: models.uda_objects
+   :members:
+   :undoc-members:
+   :show-inheritance:

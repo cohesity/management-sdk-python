@@ -1,0 +1,7 @@
+models\_v2.register\_vmware\_es\_xi\_host\_request\_parameters module
+=====================================================================
+
+.. automodule:: models_v2.register_vmware_es_xi_host_request_parameters
+   :members:
+   :undoc-members:
+   :show-inheritance:

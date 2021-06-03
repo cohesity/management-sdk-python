@@ -1,0 +1,7 @@
+models\_v2.nimble\_protection\_group\_object\_params module
+===========================================================
+
+.. automodule:: models_v2.nimble_protection_group_object_params
+   :members:
+   :undoc-members:
+   :show-inheritance:

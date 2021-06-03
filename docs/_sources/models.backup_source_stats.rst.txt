@@ -1,0 +1,7 @@
+models.backup\_source\_stats module
+===================================
+
+.. automodule:: models.backup_source_stats
+   :members:
+   :undoc-members:
+   :show-inheritance:

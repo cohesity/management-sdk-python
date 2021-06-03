@@ -1,0 +1,7 @@
+models\_v2.tier\_enum module
+============================
+
+.. automodule:: models_v2.tier_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

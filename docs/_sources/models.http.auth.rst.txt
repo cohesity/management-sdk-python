@@ -1,0 +1,18 @@
+models.http.auth package
+========================
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   models.http.auth.auth_manager
+
+Module contents
+---------------
+
+.. automodule:: models.http.auth
+   :members:
+   :undoc-members:
+   :show-inheritance:

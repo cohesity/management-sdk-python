@@ -1,0 +1,7 @@
+models.remote\_script\_path\_and\_params module
+===============================================
+
+.. automodule:: models.remote_script_path_and_params
+   :members:
+   :undoc-members:
+   :show-inheritance:

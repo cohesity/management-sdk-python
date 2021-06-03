@@ -1,0 +1,7 @@
+models\_v2.bug\_fix module
+==========================
+
+.. automodule:: models_v2.bug_fix
+   :members:
+   :undoc-members:
+   :show-inheritance:

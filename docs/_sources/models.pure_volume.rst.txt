@@ -1,0 +1,7 @@
+models.pure\_volume module
+==========================
+
+.. automodule:: models.pure_volume
+   :members:
+   :undoc-members:
+   :show-inheritance:

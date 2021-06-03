@@ -1,0 +1,7 @@
+models.analyse\_jar\_result module
+==================================
+
+.. automodule:: models.analyse_jar_result
+   :members:
+   :undoc-members:
+   :show-inheritance:

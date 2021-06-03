@@ -1,0 +1,7 @@
+models.file\_path\_filter module
+================================
+
+.. automodule:: models.file_path_filter
+   :members:
+   :undoc-members:
+   :show-inheritance:

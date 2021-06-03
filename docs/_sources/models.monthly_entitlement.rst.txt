@@ -1,0 +1,7 @@
+models.monthly\_entitlement module
+==================================
+
+.. automodule:: models.monthly_entitlement
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+models\_v2.recover\_public\_folders\_params module
+==================================================
+
+.. automodule:: models_v2.recover_public_folders_params
+   :members:
+   :undoc-members:
+   :show-inheritance:

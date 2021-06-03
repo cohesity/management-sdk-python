@@ -1,0 +1,7 @@
+models.cdb\_entity\_info module
+===============================
+
+.. automodule:: models.cdb_entity_info
+   :members:
+   :undoc-members:
+   :show-inheritance:

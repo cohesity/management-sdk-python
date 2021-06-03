@@ -1,0 +1,7 @@
+models.grantee\_proto module
+============================
+
+.. automodule:: models.grantee_proto
+   :members:
+   :undoc-members:
+   :show-inheritance:

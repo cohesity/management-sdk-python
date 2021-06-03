@@ -1,0 +1,7 @@
+controllers\_v2.stats\_controller module
+========================================
+
+.. automodule:: controllers_v2.stats_controller
+   :members:
+   :undoc-members:
+   :show-inheritance:

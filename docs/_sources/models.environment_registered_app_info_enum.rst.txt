@@ -1,0 +1,7 @@
+models.environment\_registered\_app\_info\_enum module
+======================================================
+
+.. automodule:: models.environment_registered_app_info_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

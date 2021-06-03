@@ -1,0 +1,7 @@
+models.cluster module
+=====================
+
+.. automodule:: models.cluster
+   :members:
+   :undoc-members:
+   :show-inheritance:

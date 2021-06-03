@@ -1,0 +1,7 @@
+models.schema\_info module
+==========================
+
+.. automodule:: models.schema_info
+   :members:
+   :undoc-members:
+   :show-inheritance:

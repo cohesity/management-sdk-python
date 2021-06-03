@@ -1,0 +1,7 @@
+models.file\_size\_policy\_enum module
+======================================
+
+.. automodule:: models.file_size_policy_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

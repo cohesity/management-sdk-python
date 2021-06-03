@@ -1,0 +1,31 @@
+controllers\_v2 package
+=======================
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   controllers_v2.active_directory_controller
+   controllers_v2.audit_log_controller
+   controllers_v2.base_controller
+   controllers_v2.data_migration_controller
+   controllers_v2.keystone_controller
+   controllers_v2.miscellaneous_controller
+   controllers_v2.network_information_service_nis_controller
+   controllers_v2.objects_controller
+   controllers_v2.patches_controller
+   controllers_v2.platform_controller
+   controllers_v2.protection_groups_controller
+   controllers_v2.protection_policies_controller
+   controllers_v2.protection_sources_controller
+   controllers_v2.recoveries_controller
+   controllers_v2.search_controller
+   controllers_v2.security_controller
+   controllers_v2.stats_controller
+   controllers_v2.tasks_controller
+   controllers_v2.tenants_controller
+   controllers_v2.test_data_management_controller
+   controllers_v2.users_controller
+   controllers_v2.views_controller

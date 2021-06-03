@@ -1,0 +1,7 @@
+models\_v2.fleet\_subnet\_type module
+=====================================
+
+.. automodule:: models_v2.fleet_subnet_type
+   :members:
+   :undoc-members:
+   :show-inheritance:

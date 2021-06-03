@@ -1,0 +1,7 @@
+models.email\_meta\_data module
+===============================
+
+.. automodule:: models.email_meta_data
+   :members:
+   :undoc-members:
+   :show-inheritance:

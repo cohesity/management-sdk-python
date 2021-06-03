@@ -1,0 +1,7 @@
+models.ad\_attribute module
+===========================
+
+.. automodule:: models.ad_attribute
+   :members:
+   :undoc-members:
+   :show-inheritance:

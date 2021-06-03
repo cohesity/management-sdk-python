@@ -1,0 +1,7 @@
+models\_v2.couchbase\_indexed\_object module
+============================================
+
+.. automodule:: models_v2.couchbase_indexed_object
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+models.controllers.monitoring\_controller module
+================================================
+
+.. automodule:: models.controllers.monitoring_controller
+   :members:
+   :undoc-members:
+   :show-inheritance:

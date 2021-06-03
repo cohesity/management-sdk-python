@@ -1,0 +1,7 @@
+models.granularity\_bucket module
+=================================
+
+.. automodule:: models.granularity_bucket
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+controllers.search\_controller module
+=====================================
+
+.. automodule:: controllers.search_controller
+   :members:
+   :undoc-members:
+   :show-inheritance:

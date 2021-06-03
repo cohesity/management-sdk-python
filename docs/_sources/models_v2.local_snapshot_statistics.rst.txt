@@ -1,0 +1,7 @@
+models\_v2.local\_snapshot\_statistics module
+=============================================
+
+.. automodule:: models_v2.local_snapshot_statistics
+   :members:
+   :undoc-members:
+   :show-inheritance:

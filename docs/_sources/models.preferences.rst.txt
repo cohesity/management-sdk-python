@@ -1,0 +1,7 @@
+models.preferences module
+=========================
+
+.. automodule:: models.preferences
+   :members:
+   :undoc-members:
+   :show-inheritance:

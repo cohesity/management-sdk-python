@@ -1,0 +1,7 @@
+models.file\_stat\_info module
+==============================
+
+.. automodule:: models.file_stat_info
+   :members:
+   :undoc-members:
+   :show-inheritance:

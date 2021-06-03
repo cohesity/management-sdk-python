@@ -1,0 +1,7 @@
+controllers.app\_controller module
+==================================
+
+.. automodule:: controllers.app_controller
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+models\_v2.target\_root\_public\_folder module
+==============================================
+
+.. automodule:: models_v2.target_root_public_folder
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+models.application\_enum module
+===============================
+
+.. automodule:: models.application_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

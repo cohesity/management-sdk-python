@@ -1,0 +1,7 @@
+models\_v2.hive\_additional\_params module
+==========================================
+
+.. automodule:: models_v2.hive_additional_params
+   :members:
+   :undoc-members:
+   :show-inheritance:

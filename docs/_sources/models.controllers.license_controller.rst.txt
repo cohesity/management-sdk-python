@@ -1,0 +1,7 @@
+models.controllers.license\_controller module
+=============================================
+
+.. automodule:: models.controllers.license_controller
+   :members:
+   :undoc-members:
+   :show-inheritance:

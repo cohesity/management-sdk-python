@@ -1,0 +1,7 @@
+models.time\_of\_a\_week module
+===============================
+
+.. automodule:: models.time_of_a_week
+   :members:
+   :undoc-members:
+   :show-inheritance:

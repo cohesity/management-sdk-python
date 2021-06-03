@@ -1,0 +1,7 @@
+models.oracle\_session module
+=============================
+
+.. automodule:: models.oracle_session
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+models.principal module
+=======================
+
+.. automodule:: models.principal
+   :members:
+   :undoc-members:
+   :show-inheritance:

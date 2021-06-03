@@ -1,0 +1,7 @@
+models\_v2.rename\_recovered\_namespaces\_params module
+=======================================================
+
+.. automodule:: models_v2.rename_recovered_namespaces_params
+   :members:
+   :undoc-members:
+   :show-inheritance:

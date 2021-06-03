@@ -1,0 +1,7 @@
+models\_v2.base\_create\_view\_request module
+=============================================
+
+.. automodule:: models_v2.base_create_view_request
+   :members:
+   :undoc-members:
+   :show-inheritance:

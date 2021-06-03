@@ -1,0 +1,7 @@
+models.restore\_files\_preferences module
+=========================================
+
+.. automodule:: models.restore_files_preferences
+   :members:
+   :undoc-members:
+   :show-inheritance:

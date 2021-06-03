@@ -1,0 +1,7 @@
+models.controllers.protection\_objects\_controller module
+=========================================================
+
+.. automodule:: models.controllers.protection_objects_controller
+   :members:
+   :undoc-members:
+   :show-inheritance:

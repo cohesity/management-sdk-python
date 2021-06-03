@@ -1,0 +1,7 @@
+models.file\_nlm\_locks module
+==============================
+
+.. automodule:: models.file_nlm_locks
+   :members:
+   :undoc-members:
+   :show-inheritance:

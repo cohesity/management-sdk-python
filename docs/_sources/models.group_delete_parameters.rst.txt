@@ -1,0 +1,7 @@
+models.group\_delete\_parameters module
+=======================================
+
+.. automodule:: models.group_delete_parameters
+   :members:
+   :undoc-members:
+   :show-inheritance:

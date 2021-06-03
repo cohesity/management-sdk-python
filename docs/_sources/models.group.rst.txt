@@ -1,0 +1,7 @@
+models.group module
+===================
+
+.. automodule:: models.group
+   :members:
+   :undoc-members:
+   :show-inheritance:

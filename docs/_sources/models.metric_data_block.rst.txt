@@ -1,0 +1,7 @@
+models.metric\_data\_block module
+=================================
+
+.. automodule:: models.metric_data_block
+   :members:
+   :undoc-members:
+   :show-inheritance:

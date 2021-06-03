@@ -1,0 +1,7 @@
+models\_v2.remote\_disk module
+==============================
+
+.. automodule:: models_v2.remote_disk
+   :members:
+   :undoc-members:
+   :show-inheritance:

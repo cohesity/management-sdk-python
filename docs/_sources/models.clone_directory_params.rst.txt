@@ -1,0 +1,7 @@
+models.clone\_directory\_params module
+======================================
+
+.. automodule:: models.clone_directory_params
+   :members:
+   :undoc-members:
+   :show-inheritance:

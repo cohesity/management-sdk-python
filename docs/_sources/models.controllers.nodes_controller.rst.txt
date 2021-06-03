@@ -1,0 +1,7 @@
+models.controllers.nodes\_controller module
+===========================================
+
+.. automodule:: models.controllers.nodes_controller
+   :members:
+   :undoc-members:
+   :show-inheritance:

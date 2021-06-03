@@ -1,0 +1,7 @@
+models.controllers.preferences\_controller module
+=================================================
+
+.. automodule:: models.controllers.preferences_controller
+   :members:
+   :undoc-members:
+   :show-inheritance:

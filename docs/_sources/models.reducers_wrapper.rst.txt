@@ -1,0 +1,7 @@
+models.reducers\_wrapper module
+===============================
+
+.. automodule:: models.reducers_wrapper
+   :members:
+   :undoc-members:
+   :show-inheritance:

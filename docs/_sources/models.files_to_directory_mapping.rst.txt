@@ -1,0 +1,7 @@
+models.files\_to\_directory\_mapping module
+===========================================
+
+.. automodule:: models.files_to_directory_mapping
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+models.hyperv\_datastore module
+===============================
+
+.. automodule:: models.hyperv_datastore
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+models.hyperv\_virtual\_machine module
+======================================
+
+.. automodule:: models.hyperv_virtual_machine
+   :members:
+   :undoc-members:
+   :show-inheritance:

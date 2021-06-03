@@ -1,0 +1,7 @@
+models\_v2.indexed\_object\_snapshot module
+===========================================
+
+.. automodule:: models_v2.indexed_object_snapshot
+   :members:
+   :undoc-members:
+   :show-inheritance:

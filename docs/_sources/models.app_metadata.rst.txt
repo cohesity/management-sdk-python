@@ -1,0 +1,7 @@
+models.app\_metadata module
+===========================
+
+.. automodule:: models.app_metadata
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+models.continuous\_schedule module
+==================================
+
+.. automodule:: models.continuous_schedule
+   :members:
+   :undoc-members:
+   :show-inheritance:

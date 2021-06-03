@@ -1,0 +1,7 @@
+models.file\_partition\_block module
+====================================
+
+.. automodule:: models.file_partition_block
+   :members:
+   :undoc-members:
+   :show-inheritance:

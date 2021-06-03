@@ -1,0 +1,7 @@
+models.licensed\_usage module
+=============================
+
+.. automodule:: models.licensed_usage
+   :members:
+   :undoc-members:
+   :show-inheritance:

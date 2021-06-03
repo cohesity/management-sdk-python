@@ -1,0 +1,7 @@
+models.uda\_source\_capabilities module
+=======================================
+
+.. automodule:: models.uda_source_capabilities
+   :members:
+   :undoc-members:
+   :show-inheritance:

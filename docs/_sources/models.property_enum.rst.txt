@@ -1,0 +1,7 @@
+models.property\_enum module
+============================
+
+.. automodule:: models.property_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

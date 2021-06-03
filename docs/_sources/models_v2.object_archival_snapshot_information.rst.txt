@@ -1,0 +1,7 @@
+models\_v2.object\_archival\_snapshot\_information module
+=========================================================
+
+.. automodule:: models_v2.object_archival_snapshot_information
+   :members:
+   :undoc-members:
+   :show-inheritance:

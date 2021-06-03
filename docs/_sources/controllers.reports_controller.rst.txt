@@ -1,0 +1,7 @@
+reports_controller
+==================
+
+.. automodule:: controllers.reports_controller
+   :members:
+   :undoc-members:
+   :show-inheritance:

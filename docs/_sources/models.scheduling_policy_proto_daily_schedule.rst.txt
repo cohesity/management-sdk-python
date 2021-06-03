@@ -1,0 +1,7 @@
+models.scheduling\_policy\_proto\_daily\_schedule module
+========================================================
+
+.. automodule:: models.scheduling_policy_proto_daily_schedule
+   :members:
+   :undoc-members:
+   :show-inheritance:

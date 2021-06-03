@@ -1,0 +1,7 @@
+models.cluster\_audit\_log\_configuration module
+================================================
+
+.. automodule:: models.cluster_audit_log_configuration
+   :members:
+   :undoc-members:
+   :show-inheritance:

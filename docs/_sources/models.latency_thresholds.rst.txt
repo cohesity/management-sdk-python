@@ -1,0 +1,7 @@
+models.latency\_thresholds module
+=================================
+
+.. automodule:: models.latency_thresholds
+   :members:
+   :undoc-members:
+   :show-inheritance:

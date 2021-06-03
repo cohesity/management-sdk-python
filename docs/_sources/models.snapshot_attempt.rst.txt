@@ -1,0 +1,7 @@
+models.snapshot\_attempt module
+===============================
+
+.. automodule:: models.snapshot_attempt
+   :members:
+   :undoc-members:
+   :show-inheritance:

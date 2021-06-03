@@ -1,0 +1,7 @@
+models.job\_policy\_proto module
+================================
+
+.. automodule:: models.job_policy_proto
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+models.package\_details module
+==============================
+
+.. automodule:: models.package_details
+   :members:
+   :undoc-members:
+   :show-inheritance:

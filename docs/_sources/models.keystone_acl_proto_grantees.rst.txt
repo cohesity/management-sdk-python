@@ -1,0 +1,7 @@
+models.keystone\_acl\_proto\_grantees module
+============================================
+
+.. automodule:: models.keystone_acl_proto_grantees
+   :members:
+   :undoc-members:
+   :show-inheritance:

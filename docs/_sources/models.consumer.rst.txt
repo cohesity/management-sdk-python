@@ -1,0 +1,7 @@
+models.consumer module
+======================
+
+.. automodule:: models.consumer
+   :members:
+   :undoc-members:
+   :show-inheritance:

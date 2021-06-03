@@ -1,0 +1,7 @@
+models\_v2.cdp\_local\_backup\_info module
+==========================================
+
+.. automodule:: models_v2.cdp_local_backup_info
+   :members:
+   :undoc-members:
+   :show-inheritance:

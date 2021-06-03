@@ -1,0 +1,7 @@
+models.map\_reduce\_info\_app\_property module
+==============================================
+
+.. automodule:: models.map_reduce_info_app_property
+   :members:
+   :undoc-members:
+   :show-inheritance:

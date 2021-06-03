@@ -1,0 +1,7 @@
+models.vault\_group\_enum module
+================================
+
+.. automodule:: models.vault_group_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

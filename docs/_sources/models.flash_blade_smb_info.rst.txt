@@ -1,0 +1,7 @@
+models.flash\_blade\_smb\_info module
+=====================================
+
+.. automodule:: models.flash_blade_smb_info
+   :members:
+   :undoc-members:
+   :show-inheritance:

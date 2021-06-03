@@ -1,0 +1,7 @@
+models.partition\_table\_format\_enum module
+============================================
+
+.. automodule:: models.partition_table_format_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

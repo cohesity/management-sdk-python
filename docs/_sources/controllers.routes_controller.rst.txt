@@ -1,0 +1,7 @@
+controllers.routes\_controller module
+=====================================
+
+.. automodule:: controllers.routes_controller
+   :members:
+   :undoc-members:
+   :show-inheritance:

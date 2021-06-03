@@ -1,0 +1,7 @@
+models.tenant\_vlan\_update\_parameters module
+==============================================
+
+.. automodule:: models.tenant_vlan_update_parameters
+   :members:
+   :undoc-members:
+   :show-inheritance:

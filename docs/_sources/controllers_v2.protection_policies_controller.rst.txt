@@ -1,0 +1,7 @@
+controllers\_v2.protection\_policies\_controller module
+=======================================================
+
+.. automodule:: controllers_v2.protection_policies_controller
+   :members:
+   :undoc-members:
+   :show-inheritance:

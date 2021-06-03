@@ -1,0 +1,7 @@
+models.task\_attribute module
+=============================
+
+.. automodule:: models.task_attribute
+   :members:
+   :undoc-members:
+   :show-inheritance:

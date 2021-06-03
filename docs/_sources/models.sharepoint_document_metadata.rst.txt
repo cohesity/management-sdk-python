@@ -1,0 +1,7 @@
+models.sharepoint\_document\_metadata module
+============================================
+
+.. automodule:: models.sharepoint_document_metadata
+   :members:
+   :undoc-members:
+   :show-inheritance:

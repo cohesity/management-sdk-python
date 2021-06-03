@@ -1,0 +1,7 @@
+models.deploy\_vms\_to\_cloud module
+====================================
+
+.. automodule:: models.deploy_vms_to_cloud
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+controllers\_v2.tasks\_controller module
+========================================
+
+.. automodule:: controllers_v2.tasks_controller
+   :members:
+   :undoc-members:
+   :show-inheritance:

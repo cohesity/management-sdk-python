@@ -1,0 +1,7 @@
+models.view\_privileges module
+==============================
+
+.. automodule:: models.view_privileges
+   :members:
+   :undoc-members:
+   :show-inheritance:

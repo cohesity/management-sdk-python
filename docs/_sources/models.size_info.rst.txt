@@ -1,0 +1,7 @@
+models.size\_info module
+========================
+
+.. automodule:: models.size_info
+   :members:
+   :undoc-members:
+   :show-inheritance:

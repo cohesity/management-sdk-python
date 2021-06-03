@@ -1,0 +1,7 @@
+models.linux\_support\_user\_bash\_shell\_access\_req\_params module
+====================================================================
+
+.. automodule:: models.linux_support_user_bash_shell_access_req_params
+   :members:
+   :undoc-members:
+   :show-inheritance:

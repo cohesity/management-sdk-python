@@ -1,0 +1,7 @@
+models.tenant\_create\_parameters module
+========================================
+
+.. automodule:: models.tenant_create_parameters
+   :members:
+   :undoc-members:
+   :show-inheritance:

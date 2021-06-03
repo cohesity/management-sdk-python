@@ -1,0 +1,7 @@
+controllers.alerts\_controller module
+=====================================
+
+.. automodule:: controllers.alerts_controller
+   :members:
+   :undoc-members:
+   :show-inheritance:

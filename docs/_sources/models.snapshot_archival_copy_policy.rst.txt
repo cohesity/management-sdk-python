@@ -1,0 +1,7 @@
+models.snapshot\_archival\_copy\_policy module
+==============================================
+
+.. automodule:: models.snapshot_archival_copy_policy
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+models.supported\_config module
+===============================
+
+.. automodule:: models.supported_config
+   :members:
+   :undoc-members:
+   :show-inheritance:

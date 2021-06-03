@@ -1,0 +1,7 @@
+models.recover\_volumes\_params\_mapping module
+===============================================
+
+.. automodule:: models.recover_volumes_params_mapping
+   :members:
+   :undoc-members:
+   :show-inheritance:

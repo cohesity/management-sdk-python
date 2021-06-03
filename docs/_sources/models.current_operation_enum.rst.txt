@@ -1,0 +1,7 @@
+models.current\_operation\_enum module
+======================================
+
+.. automodule:: models.current_operation_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

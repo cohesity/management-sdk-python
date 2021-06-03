@@ -1,0 +1,7 @@
+models.http.auth.auth\_manager module
+=====================================
+
+.. automodule:: models.http.auth.auth_manager
+   :members:
+   :undoc-members:
+   :show-inheritance:

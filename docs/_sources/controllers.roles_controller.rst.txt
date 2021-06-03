@@ -1,0 +1,7 @@
+controllers.roles\_controller module
+====================================
+
+.. automodule:: controllers.roles_controller
+   :members:
+   :undoc-members:
+   :show-inheritance:

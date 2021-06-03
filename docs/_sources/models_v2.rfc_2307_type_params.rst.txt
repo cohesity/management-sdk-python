@@ -1,0 +1,7 @@
+models\_v2.rfc\_2307\_type\_params module
+=========================================
+
+.. automodule:: models_v2.rfc_2307_type_params
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+models.daily\_schedule module
+=============================
+
+.. automodule:: models.daily_schedule
+   :members:
+   :undoc-members:
+   :show-inheritance:

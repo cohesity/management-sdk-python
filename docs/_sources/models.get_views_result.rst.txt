@@ -1,0 +1,7 @@
+models.get\_views\_result module
+================================
+
+.. automodule:: models.get_views_result
+   :members:
+   :undoc-members:
+   :show-inheritance:

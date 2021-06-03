@@ -1,0 +1,7 @@
+models\_v2.hyperv\_mount\_volumes\_new\_target\_config module
+=============================================================
+
+.. automodule:: models_v2.hyperv_mount_volumes_new_target_config
+   :members:
+   :undoc-members:
+   :show-inheritance:

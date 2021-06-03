@@ -1,0 +1,7 @@
+models.environment\_protected\_objects\_summary\_by\_env\_enum module
+=====================================================================
+
+.. automodule:: models.environment_protected_objects_summary_by_env_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

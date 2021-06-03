@@ -1,0 +1,7 @@
+models.alert\_category\_enum module
+===================================
+
+.. automodule:: models.alert_category_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

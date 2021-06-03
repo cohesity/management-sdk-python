@@ -1,0 +1,7 @@
+models.hbase\_table module
+==========================
+
+.. automodule:: models.hbase_table
+   :members:
+   :undoc-members:
+   :show-inheritance:

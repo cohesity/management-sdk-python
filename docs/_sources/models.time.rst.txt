@@ -1,0 +1,7 @@
+models.time module
+==================
+
+.. automodule:: models.time
+   :members:
+   :undoc-members:
+   :show-inheritance:

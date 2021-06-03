@@ -1,0 +1,7 @@
+models\_v2.protection\_type\_7\_enum module
+===========================================
+
+.. automodule:: models_v2.protection_type_7_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

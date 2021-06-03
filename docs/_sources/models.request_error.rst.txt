@@ -1,0 +1,7 @@
+models.request\_error module
+============================
+
+.. automodule:: models.request_error
+   :members:
+   :undoc-members:
+   :show-inheritance:

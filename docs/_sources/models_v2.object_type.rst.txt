@@ -1,0 +1,7 @@
+models\_v2.object\_type module
+==============================
+
+.. automodule:: models_v2.object_type
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+models\_v2.vm\_folder module
+============================
+
+.. automodule:: models_v2.vm_folder
+   :members:
+   :undoc-members:
+   :show-inheritance:

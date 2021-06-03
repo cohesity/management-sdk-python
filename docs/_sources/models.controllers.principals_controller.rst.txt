@@ -1,0 +1,7 @@
+models.controllers.principals\_controller module
+================================================
+
+.. automodule:: models.controllers.principals_controller
+   :members:
+   :undoc-members:
+   :show-inheritance:

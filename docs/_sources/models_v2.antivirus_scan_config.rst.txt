@@ -1,0 +1,7 @@
+models\_v2.antivirus\_scan\_config module
+=========================================
+
+.. automodule:: models_v2.antivirus_scan_config
+   :members:
+   :undoc-members:
+   :show-inheritance:

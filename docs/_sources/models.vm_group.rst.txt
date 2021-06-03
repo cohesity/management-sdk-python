@@ -1,0 +1,7 @@
+models.vm\_group module
+=======================
+
+.. automodule:: models.vm_group
+   :members:
+   :undoc-members:
+   :show-inheritance:

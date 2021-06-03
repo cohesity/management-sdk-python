@@ -1,0 +1,7 @@
+models.scheduler\_proto module
+==============================
+
+.. automodule:: models.scheduler_proto
+   :members:
+   :undoc-members:
+   :show-inheritance:

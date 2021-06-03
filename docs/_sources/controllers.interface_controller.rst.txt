@@ -1,0 +1,7 @@
+controllers.interface\_controller module
+========================================
+
+.. automodule:: controllers.interface_controller
+   :members:
+   :undoc-members:
+   :show-inheritance:

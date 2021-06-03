@@ -1,0 +1,7 @@
+models\_v2.cassandra\_specific\_port\_info module
+=================================================
+
+.. automodule:: models_v2.cassandra_specific_port_info
+   :members:
+   :undoc-members:
+   :show-inheritance:

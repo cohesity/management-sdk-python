@@ -1,0 +1,7 @@
+models.exchange\_database\_copy\_info module
+============================================
+
+.. automodule:: models.exchange_database_copy_info
+   :members:
+   :undoc-members:
+   :show-inheritance:

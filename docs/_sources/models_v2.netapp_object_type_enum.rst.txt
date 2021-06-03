@@ -1,0 +1,7 @@
+models\_v2.netapp\_object\_type\_enum module
+============================================
+
+.. automodule:: models_v2.netapp_object_type_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

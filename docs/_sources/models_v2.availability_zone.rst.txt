@@ -1,0 +1,7 @@
+models\_v2.availability\_zone module
+====================================
+
+.. automodule:: models_v2.availability_zone
+   :members:
+   :undoc-members:
+   :show-inheritance:

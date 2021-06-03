@@ -1,0 +1,7 @@
+models\_v2.log\_backup\_databases\_schedule\_and\_retention module
+==================================================================
+
+.. automodule:: models_v2.log_backup_databases_schedule_and_retention
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+models\_v2.fleet\_config module
+===============================
+
+.. automodule:: models_v2.fleet_config
+   :members:
+   :undoc-members:
+   :show-inheritance:

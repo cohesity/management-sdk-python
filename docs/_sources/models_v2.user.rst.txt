@@ -1,0 +1,7 @@
+models\_v2.user module
+======================
+
+.. automodule:: models_v2.user
+   :members:
+   :undoc-members:
+   :show-inheritance:

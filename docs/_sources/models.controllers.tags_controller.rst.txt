@@ -1,0 +1,7 @@
+models.controllers.tags\_controller module
+==========================================
+
+.. automodule:: models.controllers.tags_controller
+   :members:
+   :undoc-members:
+   :show-inheritance:

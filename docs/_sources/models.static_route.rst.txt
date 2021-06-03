@@ -1,0 +1,7 @@
+models.static\_route module
+===========================
+
+.. automodule:: models.static_route
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+models.upload\_mr\_jar\_view\_path\_wrapper module
+==================================================
+
+.. automodule:: models.upload_mr_jar_view_path_wrapper
+   :members:
+   :undoc-members:
+   :show-inheritance:

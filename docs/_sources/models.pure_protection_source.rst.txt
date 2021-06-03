@@ -1,0 +1,7 @@
+models.pure\_protection\_source module
+======================================
+
+.. automodule:: models.pure_protection_source
+   :members:
+   :undoc-members:
+   :show-inheritance:

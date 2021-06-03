@@ -1,0 +1,7 @@
+models.cloud\_deploy\_target module
+===================================
+
+.. automodule:: models.cloud_deploy_target
+   :members:
+   :undoc-members:
+   :show-inheritance:

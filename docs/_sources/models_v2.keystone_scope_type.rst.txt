@@ -1,0 +1,7 @@
+models\_v2.keystone\_scope\_type module
+=======================================
+
+.. automodule:: models_v2.keystone_scope_type
+   :members:
+   :undoc-members:
+   :show-inheritance:

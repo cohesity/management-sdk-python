@@ -1,0 +1,7 @@
+models.vault\_bandwidth\_limits module
+======================================
+
+.. automodule:: models.vault_bandwidth_limits
+   :members:
+   :undoc-members:
+   :show-inheritance:

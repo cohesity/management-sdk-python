@@ -1,0 +1,7 @@
+models\_v2.ip\_preference\_1\_enum module
+=========================================
+
+.. automodule:: models_v2.ip_preference_1_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

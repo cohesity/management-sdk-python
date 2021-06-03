@@ -1,0 +1,7 @@
+models.protection\_policy\_summary module
+=========================================
+
+.. automodule:: models.protection_policy_summary
+   :members:
+   :undoc-members:
+   :show-inheritance:

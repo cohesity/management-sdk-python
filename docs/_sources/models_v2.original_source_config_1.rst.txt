@@ -1,0 +1,7 @@
+models\_v2.original\_source\_config\_1 module
+=============================================
+
+.. automodule:: models_v2.original_source_config_1
+   :members:
+   :undoc-members:
+   :show-inheritance:

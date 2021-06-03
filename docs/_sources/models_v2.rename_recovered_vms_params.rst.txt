@@ -1,0 +1,7 @@
+models\_v2.rename\_recovered\_vms\_params module
+================================================
+
+.. automodule:: models_v2.rename_recovered_vms_params
+   :members:
+   :undoc-members:
+   :show-inheritance:

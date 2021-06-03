@@ -1,0 +1,7 @@
+models.periodicity\_enum module
+===============================
+
+.. automodule:: models.periodicity_enum
+   :members:
+   :undoc-members:
+   :show-inheritance:

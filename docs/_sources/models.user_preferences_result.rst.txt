@@ -1,0 +1,7 @@
+models.user\_preferences\_result module
+=======================================
+
+.. automodule:: models.user_preferences_result
+   :members:
+   :undoc-members:
+   :show-inheritance:

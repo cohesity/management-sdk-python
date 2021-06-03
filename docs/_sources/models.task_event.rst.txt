@@ -1,0 +1,7 @@
+models.task\_event module
+=========================
+
+.. automodule:: models.task_event
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+models.physical\_snapshot\_params module
+========================================
+
+.. automodule:: models.physical_snapshot_params
+   :members:
+   :undoc-members:
+   :show-inheritance:

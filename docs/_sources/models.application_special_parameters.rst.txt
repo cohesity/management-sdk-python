@@ -1,0 +1,7 @@
+models.application\_special\_parameters module
+==============================================
+
+.. automodule:: models.application_special_parameters
+   :members:
+   :undoc-members:
+   :show-inheritance:

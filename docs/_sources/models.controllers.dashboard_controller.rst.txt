@@ -1,0 +1,7 @@
+models.controllers.dashboard\_controller module
+===============================================
+
+.. automodule:: models.controllers.dashboard_controller
+   :members:
+   :undoc-members:
+   :show-inheritance:

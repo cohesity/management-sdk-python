@@ -1,0 +1,7 @@
+models\_v2.create\_aws\_snapshot\_manager\_protection\_group\_request\_body module
+==================================================================================
+
+.. automodule:: models_v2.create_aws_snapshot_manager_protection_group_request_body
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,7 @@
+models.controllers.audit\_controller module
+===========================================
+
+.. automodule:: models.controllers.audit_controller
+   :members:
+   :undoc-members:
+   :show-inheritance:

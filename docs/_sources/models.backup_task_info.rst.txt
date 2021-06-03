@@ -1,0 +1,7 @@
+models.backup\_task\_info module
+================================
+
+.. automodule:: models.backup_task_info
+   :members:
+   :undoc-members:
+   :show-inheritance:

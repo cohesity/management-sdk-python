@@ -1,0 +1,7 @@
+models\_v2.protection\_group\_priority\_type module
+===================================================
+
+.. automodule:: models_v2.protection_group_priority_type
+   :members:
+   :undoc-members:
+   :show-inheritance:

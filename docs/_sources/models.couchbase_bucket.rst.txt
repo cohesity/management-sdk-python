@@ -1,0 +1,7 @@
+models.couchbase\_bucket module
+===============================
+
+.. automodule:: models.couchbase_bucket
+   :members:
+   :undoc-members:
+   :show-inheritance:
