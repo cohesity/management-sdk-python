@@ -82,12 +82,12 @@ except Exception as err:
     exit(1)
 
 # Check for the flags for pause jobs and override.
-override = configparser.get(
-    "import_cluster_config", "override").capitalize() == "True"
-pause_jobs = configparser.get(
-    "import_cluster_config", "pause_jobs").capitalize() == "True"
-gflag_import = configparser.get(
-    "import_cluster_config", "gflag").capitalize() == "True"
+override = configparser.getboolean(
+    "import_cluster_config", "override")
+pause_jobs = configparser.getboolean(
+    "import_cluster_config", "pause_jobs")
+gflag_import = configparser.getboolean(
+    "import_cluster_config", "gflag")
 
 # Read the imported cluster configurations from file.
 if len(sys.argv) != 2:
@@ -107,6 +107,7 @@ view_mapping = {}
 policy_mapping = {}
 source_mapping = {}
 remote_cluster_mapping = {}
+exported_remote_cluster_mapping = {}
 storage_domain_mapping = {}
 
 imported_res_dict = defaultdict(list)
@@ -629,6 +630,14 @@ def create_protection_policies():
                 continue
             body = ProtectionPolicyRequest()
             _construct_body(body, policy)
+            if policy.snapshot_replication_copy_policies:
+                for remote_cluster in policy.snapshot_replication_copy_policies:
+                    cluster_name = remote_cluster.target.cluster_name
+                    cluster_ip = exported_remote_cluster_mapping.get('cluster_name','')
+                    cluster_id = remote_cluster_mapping.get('cluster_ip', None)
+                    if cluster_id:
+                        remote_cluster.target.cluster_id = cluster_id
+
             if policy.snapshot_archival_copy_policies and len(
                     policy.snapshot_archival_copy_policies) != 0:
                 for ext_target in policy.snapshot_archival_copy_policies:
@@ -970,9 +979,10 @@ def create_remote_clusters():
     import_cluster_ip = configparser.get("import_cluster_config", "cluster_ip")
     for cluster in existing_cluster_list:
         repl_list[cluster.name] = cluster.cluster_id
-
+        remote_cluster_mapping[cluster.remote_ips[0]] = cluster.cluster_id
     # If the remote cluster exists then get the ID.
     for cluster in remote_cluster_list:
+        exported_remote_cluster_mapping[remote_cluster_list[0].name] = remote_cluster_list[0].remote_ips[0]
         # Check the remote cluster registered is not the current cluster.
         if cluster.remote_ips[0] == import_cluster_ip:
             continue
@@ -1049,7 +1059,13 @@ def create_remote_clusters():
             interfaces = cohesity_client.interface_group.get_interface_groups()
             if interfaces:
                 ifaces = [iface.name for iface in interfaces]
-            iface_grp = body.network_interface_group
+
+            # In newer cluster versions, network_interface_group is renamed as
+            # network_interface.
+            if 'network_interface' in dir(body):
+                iface_grp = body.network_interface
+            else:
+                iface_grp = body.network_interface_group
             body.network_interface_group = ifaces.pop() if iface_grp not in \
                 ifaces else iface_grp
 
@@ -1059,6 +1075,7 @@ def create_remote_clusters():
             else:
                 cohesity_client.remote_cluster.create_remote_cluster(body)
             imported_res_dict["Remote Clusters"].append(cluster.name)
+            remote_cluster_mapping[cluster.remote_ips[0]] = cluster.cluster_id
 
         except RequestErrorErrorException as e:
             ERROR_LIST.append(e)

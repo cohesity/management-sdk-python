@@ -70,13 +70,15 @@ logger.setLevel(logging.INFO)
 logger.info("Exporting resources from cluster '%s'" % (
     configparser.get('export_cluster_config', 'cluster_ip')))
 
+# Skip paused jobs and failover ready jobs by setting this flag to true in config file.
+skip_jobs = configparser.getboolean('export_cluster_config', 'skip_jobs')
 
 cluster_dict = {
     "cluster_config": library.get_cluster_config(cohesity_client),
     "views": library.get_views(cohesity_client),
     "storage_domains": library.get_storage_domains(cohesity_client),
     "policies": library.get_protection_policies(cohesity_client),
-    "protection_jobs": library.get_protection_jobs(cohesity_client),
+    "protection_jobs": library.get_protection_jobs(cohesity_client, skip_jobs),
     "protection_sources": library.get_protection_sources(cohesity_client),
     "external_targets": library.get_external_targets(cohesity_client),
     "sources": library.get_protection_sources(cohesity_client),
