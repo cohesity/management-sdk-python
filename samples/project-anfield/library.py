@@ -61,11 +61,15 @@ def get_views(cohesity_client):
     return views_list
 
 
-def get_protection_jobs(cohesity_client):
+def get_protection_jobs(cohesity_client, skip_jobs=False):
     protection_job_list = cohesity_client.protection_jobs.get_protection_jobs()
     active_job_list = []
     for job in protection_job_list:
-        if job.is_deleted or job.is_active == False:
+        # Jobs which are deleted are ignored.
+        if job.is_deleted:
+            continue
+        # Skip jobs which are paused or in-active(failover ready).
+        if skip_jobs and (job.is_paused or job.is_active == False):
             continue
         active_job_list.append(job)
         exported_res_dict["Protection Jobs"].append(job.name)
