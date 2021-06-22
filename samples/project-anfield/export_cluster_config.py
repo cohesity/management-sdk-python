@@ -73,6 +73,7 @@ logger.info("Exporting resources from cluster '%s'" % (
 # Skip paused jobs and failover ready jobs by setting this flag to true in config file.
 skip_jobs = configparser.getboolean('export_cluster_config', 'skip_jobs')
 
+
 cluster_dict = {
     "cluster_config": library.get_cluster_config(cohesity_client),
     "views": library.get_views(cohesity_client),
@@ -84,7 +85,10 @@ cluster_dict = {
     "sources": library.get_protection_sources(cohesity_client),
     "remote_clusters": library.get_remote_clusters(cohesity_client),
     "sql_entity_mapping": library.get_sql_entity_mapping(cohesity_client,
-                                                         env_enum.KSQL)
+                                                         env_enum.KSQL),
+    "ad": library.get_ad_entries(cohesity_client),
+    "ad_objects": library.get_ad_objects(cohesity_client),
+    "roles": cohesity_client.roles.get_roles()
 }
 
 exported_res = library.debug()
@@ -94,13 +98,14 @@ KCASSANDRA = "kCassandra"
 # List of support environments.
 env_list = [env_enum.KGENERICNAS, env_enum.KISILON, env_enum.KPHYSICAL,
             env_enum.KPHYSICALFILES, env_enum.KVIEW, env_enum.K_VMWARE,
-            env_enum.KSQL, KCASSANDRA]
+            env_enum.KSQL, KCASSANDRA, env_enum.KAD]
 
 
 for source in cluster_dict["sources"]:
     id = source.protection_source.id
     env = source.protection_source.environment
     rest_obj = RestClient(cluster_vip, username, password, domain)
+
     if env == "kCassandra":
         api = "public/protectionSources?id={}&environment={}".format(id, env)
         _, resp = rest_obj.get(api=api)

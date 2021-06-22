@@ -115,7 +115,7 @@ export_config = cluster_dict["cluster_config"]
 import_config = library.get_cluster_config(cohesity_client)
 env_list = [env_enum.KGENERICNAS, env_enum.KISILON, env_enum.KPHYSICAL,
             env_enum.KPHYSICALFILES, env_enum.KVIEW, env_enum.K_VMWARE,
-            env_enum.KSQL, KCASSANDRA]
+            env_enum.KSQL, KCASSANDRA, env_enum.KAD]
 
 
 def import_cluster_config():
@@ -220,10 +220,11 @@ def create_sources(source, environment, node):
     try:
         body = RegisterProtectionSourceParameters()
         body.environment = environment
-        if environment == env_enum.KSQL:
+
+        if environment in [env_enum.KAD, env_enum.KSQL]:
             name =  node["protectionSource"]["name"]
             body = RegisterApplicationServersParameters()
-            body.applications = [env_enum.KSQL]
+            body.applications = [environment]
             id = node["protectionSource"]["id"]
             body.protection_source_id = source_mapping[id]
             resp = cohesity_client.protection_sources.\
@@ -483,6 +484,12 @@ def create_protection_sources():
         sql_sources = [source["protectionSource"]["physicalProtectionSource"][
         "name"] for source in sql_sources[0].nodes]
 
+    ad_sources = cohesity_client.protection_sources.list_protection_sources(
+        environment=env_enum.KAD)
+    if ad_sources:
+        ad_sources = [source["protectionSource"]["physicalProtectionSource"][
+        "name"] for source in ad_sources[0].nodes]
+
     try:
         existing_sources = library.get_protection_sources(cohesity_client)
         for source in existing_sources:
@@ -531,12 +538,12 @@ def create_protection_sources():
             for node in nodes:
                 id = node["protectionSource"]["id"]
                 name = node["protectionSource"]["name"]
-                if environment == env_enum.KSQL:
-                    # Check the Sql source is already registered, if already
+                if (environment == env_enum.KSQL and name in sql_sources) or\
+                    (environment == env_enum.KAD and name in ad_sources):
+                    # Check the Sql/AD source is already registered, if already
                     # registered no changes are made.
-                    if name in sql_sources:
-                        continue
-                elif name in registered_source_list.keys():
+                    continue
+                elif environment not in[env_enum.KAD, env_enum.KSQL] and name in registered_source_list.keys():
                     source_mapping[id] = registered_source_list[name]
                     imported_res_dict["Protection Sources"].append(name)
                     if override:
@@ -1108,6 +1115,81 @@ def create_remote_clusters():
                               "error: %s" % (cluster.name, e.args[0]))
 
 
+def add_active_directory():
+    """
+    Function to add active directory to the cluster. AD credentials are fetched
+    from config.ini file.
+    """
+    existing_ad_list = list()
+    ad_resp = library.get_ad_entries(cohesity_client)
+    if ad_resp:
+        existing_ad_list = [ad.domain_name for ad in ad_resp]
+    for domain in cluster_dict.get("ad", []):
+        try:
+            domain_name = domain.domain_name
+            if not configparser.has_section(domain_name):
+                ERROR_LIST.append(
+                    "Please update credentials for active directory '%s'" % domain_name)
+                continue
+            if domain_name not in existing_ad_list:
+                domain.user_name = configparser[domain_name]["username"]
+                domain.password =  configparser[domain_name]["password"]
+                if configparser[domain_name].get("machine_accounts", None):
+                    domain.machine_accounts = configparser[
+                            domain_name]["machine_accounts"].split(",")
+                domain.overwrite_existing_accounts = True
+                cohesity_client.active_directory.create_active_directory_entry(domain)
+            imported_res_dict["Active Directory"].append(domain_name)
+        except APIException as err:
+            ERROR_LIST.append(
+                "Error while adding active directory '%s', err msg %s" % (domain_name, err))
+
+
+def create_roles():
+    """
+    Function to create roles.
+    """
+    existing_roles = [role.label for role in cohesity_client.roles.get_roles()]
+    for role in cluster_dict.get("roles", []):
+        name = role.label
+        try:
+            if name not in existing_roles:
+                cohesity_client.roles.create_role(role)
+            imported_res_dict["Roles"].append(name)
+        except APIException as err:
+            ERROR_LIST.append(
+                "Error while adding Role '%s', err msg %s" % (name, err))
+
+
+def create_ad_objects():
+    """
+    """
+    resp = library.get_ad_objects(cohesity_client, cluster_dict.get(
+        "ad_objects").keys())
+    for domain, objects in cluster_dict.get("ad_objects").items():
+        users = objects["users"]
+        groups = objects["groups"]
+
+        # Fetch active directory users and groups available in the cluster.
+        avl_objects = resp[domain]
+        existing_users = [user.username for user in avl_objects.get("users", [])]
+        existing_groups = [group.name for group in avl_objects.get("groups", [])]
+
+        for user in users:
+            try:
+                if user.username not in existing_users:
+                    cohesity_client.principals.create_user(user)
+            except APIException as err:
+                ERROR_LIST.append(
+                    "Error while creating AD user '%s', err msg %s" % (user.username, err))
+        for group in groups:
+            try:
+                if group.name not in existing_groups:
+                    cohesity_client.groups.create_group(group)
+            except APIException as err:
+                ERROR_LIST.append(
+                    "Error while creating AD group '%s', err msg %s" % (group.name, err))
+
 def _construct_body(body, entity):
     items = [item for item in dir(entity)if not item.startswith("__") and not
              item.startswith("_")]
@@ -1168,6 +1250,12 @@ if __name__ == "__main__":
     create_protection_policies()
     logger.info("Importing Jobs  \n\n")
     create_protection_jobs()
+    logger.info("Importing Active directories  \n\n")
+    add_active_directory()
+    logger.info("Importing roles  \n\n")
+    create_roles()
+    logger.info("Importing AD groups and users \n\n")
+    create_ad_objects()
 
 
 logger.info("Imported resources summary.")
@@ -1181,3 +1269,4 @@ if ERROR_LIST:
     for E in ERROR_LIST:
         logger.error("\t  %s: %s\n" % (i, E))
         i = i + 1
+
