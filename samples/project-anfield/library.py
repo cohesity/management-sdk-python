@@ -7,9 +7,12 @@ from rest_client import RestClient
 
 import json
 import logging
+
 logger = logging.getLogger(__file__)
 logger.setLevel(logging.INFO)
 
+global ad_list
+ad_list = list()
 exported_res_dict = defaultdict(list)
 
 
@@ -119,11 +122,51 @@ def get_sql_entity_mapping(cohesity_client, env):
         if source.get("applicationNodes"):
             nodes = source["applicationNodes"]
             for sql_node in nodes:
-                for node in sql_node["nodes"]:
+                for node in sql_node.get("nodes", []):
                     sql_mapping[_id][node["protectionSource"]["id"]] = node[
                     "protectionSource"]["name"]
     return sql_mapping
 
 
+def get_ad_entity_mapping(cohesity_client, env):
+    """
+    Function to fetch SQL/AD sources available in the cluster along with instance
+    name and ids.
+    """
+    mapping = {}
+    sources = cohesity_client.protection_sources.list_protection_sources(
+        environment=env)
+    if not sources:
+        return mapping
+
+    for source in sources[0].nodes:
+        _id = source["protectionSource"]["id"]
+        mapping[_id] = {}
+        for node in source.get("applicationNodes", []):
+            mapping[_id][node["protectionSource"]["id"]] = \
+                node["protectionSource"]["name"]
+    return mapping
+
+
+def get_ad_entries(cohesity_client):
+    resp = cohesity_client.active_directory.get_active_directory_entry()
+    if resp:
+        ad_list = [ad.domain_name for ad in resp]
+        exported_res_dict["Active directories"] = ad_list
+    return resp
+
+
+def get_ad_objects(cohesity_client, ad_list=ad_list):
+    ad_objects = defaultdict(dict)
+    for domain in ad_list:
+        # Fetch list of groups and users added to the cluster.
+        users = cohesity_client.principals.get_users(domain=domain)
+        groups = cohesity_client.groups.get_groups(domain=domain)
+        ad_objects[domain]["users"] = users
+        ad_objects[domain]["groups"] = groups
+    return ad_objects
+
+
 def debug():
     return exported_res_dict
+

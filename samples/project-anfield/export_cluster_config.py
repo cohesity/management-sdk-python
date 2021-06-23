@@ -30,6 +30,8 @@ if float(sys.version[:3]) >= 3:
 else:
     import ConfigParser as configparser
 
+from configparser import NoSectionError, NoOptionError
+
 logger = logging.getLogger('export_app')
 
 # Fetch command line arguments.
@@ -70,8 +72,15 @@ logger.setLevel(logging.INFO)
 logger.info("Exporting resources from cluster '%s'" % (
     configparser.get('export_cluster_config', 'cluster_ip')))
 
-# Skip paused jobs and failover ready jobs by setting this flag to true in config file.
-skip_jobs = configparser.getboolean('export_cluster_config', 'skip_jobs')
+try:
+    # Skip paused jobs and failover ready jobs by setting this flag to true
+    # in config file.
+    skip_jobs = configparser.getboolean('export_cluster_config', 'skip_jobs')
+    export_access_mgmnt = configparser.getboolean(
+            'export_cluster_config', 'export_access_management')
+except (NoSectionError, NoOptionError) as err:
+    print("Error while fetching 'config.ini' content, error msg %s" % err)
+
 
 cluster_dict = {
     "cluster_config": library.get_cluster_config(cohesity_client),
@@ -84,8 +93,16 @@ cluster_dict = {
     "sources": library.get_protection_sources(cohesity_client),
     "remote_clusters": library.get_remote_clusters(cohesity_client),
     "sql_entity_mapping": library.get_sql_entity_mapping(cohesity_client,
-                                                         env_enum.KSQL)
+                                                         env_enum.KSQL),
+    "ad_entity_mapping": library.get_ad_entity_mapping(cohesity_client,
+                                                         env_enum.KAD)
 }
+
+# Export Active directory entries and AD users and groups along with roles.
+if export_access_mgmnt:
+    cluster_dict["ad"] = library.get_ad_entries(cohesity_client)
+    cluster_dict["ad_objects"] = library.get_ad_objects(cohesity_client)
+    cluster_dict["roles"] = cohesity_client.roles.get_roles()
 
 exported_res = library.debug()
 source_dct = {}
@@ -94,13 +111,14 @@ KCASSANDRA = "kCassandra"
 # List of support environments.
 env_list = [env_enum.KGENERICNAS, env_enum.KISILON, env_enum.KPHYSICAL,
             env_enum.KPHYSICALFILES, env_enum.KVIEW, env_enum.K_VMWARE,
-            env_enum.KSQL, KCASSANDRA]
+            env_enum.KSQL, KCASSANDRA, env_enum.KAD]
 
 
 for source in cluster_dict["sources"]:
     id = source.protection_source.id
     env = source.protection_source.environment
     rest_obj = RestClient(cluster_vip, username, password, domain)
+
     if env == "kCassandra":
         api = "public/protectionSources?id={}&environment={}".format(id, env)
         _, resp = rest_obj.get(api=api)
