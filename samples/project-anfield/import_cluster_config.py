@@ -43,10 +43,11 @@ from library import RestClient
 # Check for python version
 if float(sys.version[:3]) >= 3:
     import configparser as configparser
-    from configparser import NoSectionError
 else:
     import ConfigParser as configparser
-    from ConfigParser import NoSectionError
+
+from configparser import NoSectionError, NoOptionError
+
 # Disable python warnings.
 requests.packages.urllib3.disable_warnings()
 
@@ -60,7 +61,6 @@ KCASSANDRA = "kCassandra"
 configparser = configparser.ConfigParser()
 configparser.read("config.ini")
 
-sleep_time = int(configparser.get("import_cluster_config", "api_pause_time"))
 try:
     cluster_ip = configparser.get("import_cluster_config", "cluster_ip")
     username = configparser.get("import_cluster_config", "username")
@@ -82,12 +82,21 @@ except Exception as err:
     exit(1)
 
 # Check for the flags for pause jobs and override.
-override = configparser.getboolean(
-    "import_cluster_config", "override")
-pause_jobs = configparser.getboolean(
-    "import_cluster_config", "pause_jobs")
-gflag_import = configparser.getboolean(
-    "import_cluster_config", "gflag")
+try:
+    override = configparser.getboolean(
+        "import_cluster_config", "override")
+    pause_jobs = configparser.getboolean(
+        "import_cluster_config", "pause_jobs")
+    gflag_import = configparser.getboolean(
+        "import_cluster_config", "gflag")
+    access_mgmnt = configparser.getboolean(
+        "export_cluster_config", "export_access_management")
+    sleep_time = configparser.getint(
+        "import_cluster_config", "api_pause_time")
+except (NoOptionError, NoSectionError) as err:
+    print("Error while fetching value from config.ini file, err_msg"
+          " '%s'" % err)
+    exit()
 
 # Read the imported cluster configurations from file.
 if len(sys.argv) != 2:
@@ -141,6 +150,22 @@ def create_vaults():
         if vault.name in available_vaults_dict.keys():
             imported_res_dict["External Targets"].append(vault.name)
             continue
+        if vault.config.qstar: # Qstar target.
+            try:
+                body = Vault()
+                _construct_body(body, vault)
+                password = configparser.get(vault.name, "password")
+                body.config.qstar.password = password
+                cohesity_client.vaults.create_vault(body)
+                imported_res_dict["External Targets"].append(body.name)
+                time.sleep(sleep_time)
+            except (APIException, RequestErrorErrorException) as e:
+                ERROR_LIST.append(
+                    "Error Adding Qstar Target: %s, Failed with error: %s" % (
+                        vault.name, e))
+            except Exception as err:
+                ERROR_LIST.append("Please add correct config for %s in "
+                                  "config.ini, err is %s" % (vault.name, err))
 
         if vault.config.amazon:  # Amazon s3 targets
             try:
@@ -1250,12 +1275,13 @@ if __name__ == "__main__":
     create_protection_policies()
     logger.info("Importing Jobs  \n\n")
     create_protection_jobs()
-    logger.info("Importing Active directories  \n\n")
-    add_active_directory()
-    logger.info("Importing roles  \n\n")
-    create_roles()
-    logger.info("Importing AD groups and users \n\n")
-    create_ad_objects()
+    if access_mgmnt:
+        logger.info("Importing Active directories  \n\n")
+        add_active_directory()
+        logger.info("Importing roles  \n\n")
+        create_roles()
+        logger.info("Importing AD groups and users \n\n")
+        create_ad_objects()
 
 
 logger.info("Imported resources summary.")

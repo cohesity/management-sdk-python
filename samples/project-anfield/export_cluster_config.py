@@ -30,6 +30,8 @@ if float(sys.version[:3]) >= 3:
 else:
     import ConfigParser as configparser
 
+from configparser import NoSectionError, NoOptionError
+
 logger = logging.getLogger('export_app')
 
 # Fetch command line arguments.
@@ -70,8 +72,14 @@ logger.setLevel(logging.INFO)
 logger.info("Exporting resources from cluster '%s'" % (
     configparser.get('export_cluster_config', 'cluster_ip')))
 
-# Skip paused jobs and failover ready jobs by setting this flag to true in config file.
-skip_jobs = configparser.getboolean('export_cluster_config', 'skip_jobs')
+try:
+    # Skip paused jobs and failover ready jobs by setting this flag to true
+    # in config file.
+    skip_jobs = configparser.getboolean('export_cluster_config', 'skip_jobs')
+    export_access_mgmnt = configparser.getboolean(
+            'export_cluster_config', 'export_access_management')
+except (NoSectionError, NoOptionError) as err:
+    print("Error while fetching 'config.ini' content, error msg %s" % err)
 
 
 cluster_dict = {
@@ -85,11 +93,14 @@ cluster_dict = {
     "sources": library.get_protection_sources(cohesity_client),
     "remote_clusters": library.get_remote_clusters(cohesity_client),
     "sql_entity_mapping": library.get_sql_entity_mapping(cohesity_client,
-                                                         env_enum.KSQL),
-    "ad": library.get_ad_entries(cohesity_client),
-    "ad_objects": library.get_ad_objects(cohesity_client),
-    "roles": cohesity_client.roles.get_roles()
+                                                         env_enum.KSQL)
 }
+
+# Export Active directory entries and AD users and groups along with roles.
+if export_access_mgmnt:
+    cluster_dict["ad"] = library.get_ad_entries(cohesity_client)
+    cluster_dict["ad_objects"] = library.get_ad_objects(cohesity_client)
+    cluster_dict["roles"] = cohesity_client.roles.get_roles()
 
 exported_res = library.debug()
 source_dct = {}
