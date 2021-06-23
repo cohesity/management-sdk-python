@@ -11,7 +11,7 @@ This Project helps take Cohesity Cluster's configuration export and import it in
 Current version fo the tooling supports export and import the cluster resources namely:
   * Cohesity Views
   * Storage Domains 
-  * External targets(NAS, s3) 
+  * External targets(NAS, s3, Qstar) 
   * Cluster Configs
     * DNS
     * NTP Servers
@@ -28,6 +28,10 @@ Current version fo the tooling supports export and import the cluster resources 
   * Protection Policies
   * Replicated Clusters
   * Gflags
+  * Access Management
+    * Active Directory
+    * AD groups
+    * Roles
   
 ## Installation
 ```
