@@ -93,7 +93,9 @@ cluster_dict = {
     "sources": library.get_protection_sources(cohesity_client),
     "remote_clusters": library.get_remote_clusters(cohesity_client),
     "sql_entity_mapping": library.get_sql_entity_mapping(cohesity_client,
-                                                         env_enum.KSQL)
+                                                         env_enum.KSQL),
+    "ad_entity_mapping": library.get_ad_entity_mapping(cohesity_client,
+                                                         env_enum.KAD)
 }
 
 # Export Active directory entries and AD users and groups along with roles.

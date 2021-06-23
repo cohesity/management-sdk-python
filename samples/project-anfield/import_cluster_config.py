@@ -59,7 +59,7 @@ logger.setLevel(logging.DEBUG)
 ERROR_LIST = []
 KCASSANDRA = "kCassandra"
 configparser = configparser.ConfigParser()
-configparser.read("config.ini")
+configparser.read("backup_config.ini")
 
 try:
     cluster_ip = configparser.get("import_cluster_config", "cluster_ip")
@@ -139,6 +139,8 @@ def import_cluster_config():
 
 
 def create_vaults():
+    global external_targets
+    external_targets = dict()
     available_vaults_dict = {}
     vaults = cluster_dict.get("external_targets")
     available_vaults = library.get_external_targets(cohesity_client)
@@ -148,6 +150,7 @@ def create_vaults():
 
     for vault in vaults:
         if vault.name in available_vaults_dict.keys():
+            external_targets[vault.id] = available_vaults_dict[vault.name]
             imported_res_dict["External Targets"].append(vault.name)
             continue
         if vault.config.qstar: # Qstar target.
@@ -156,7 +159,8 @@ def create_vaults():
                 _construct_body(body, vault)
                 password = configparser.get(vault.name, "password")
                 body.config.qstar.password = password
-                cohesity_client.vaults.create_vault(body)
+                resp = cohesity_client.vaults.create_vault(body)
+                external_targets[vault.id] = resp.id
                 imported_res_dict["External Targets"].append(body.name)
                 time.sleep(sleep_time)
             except (APIException, RequestErrorErrorException) as e:
@@ -173,7 +177,8 @@ def create_vaults():
                 _construct_body(body, vault)
                 secret_key = configparser.get(vault.name, "secret_access_key")
                 body.config.amazon.secret_access_key = secret_key
-                cohesity_client.vaults.create_vault(body)
+                resp = cohesity_client.vaults.create_vault(body)
+                external_targets[vault.id] = resp.id
                 imported_res_dict["External Targets"].append(body.name)
                 time.sleep(sleep_time)
             except RequestErrorErrorException as e:
@@ -191,7 +196,8 @@ def create_vaults():
             body = Vault()
             _construct_body(body, vault)
             try:
-                cohesity_client.vaults.create_vault(body)
+                resp = cohesity_client.vaults.create_vault(body)
+                external_targets[vault.id] = resp.id
                 imported_res_dict["External Targets"].append(body.name)
             except RequestErrorErrorException as e:
                 ERROR_LIST.append(
@@ -521,7 +527,6 @@ def create_protection_sources():
             env = (source.protection_source.environment)
             if env not in env_list:
                 continue
-
             id = source.protection_source.id
             name = source.protection_source.name
             if env in [env_enum.KISILON, env_enum.K_VMWARE, KCASSANDRA]:
@@ -656,10 +661,6 @@ def create_protection_policies():
                 if not policy.full_scheduling_policy.daily_schedule:
                     policy.full_scheduling_policy.daily_schedule = {"days": []}
 
-            if is_policy_available:
-                cohesity_client.protection_policies.update_protection_policy(
-                    policy, policy_id)
-                continue
             body = ProtectionPolicyRequest()
             _construct_body(body, policy)
             if policy.snapshot_replication_copy_policies:
@@ -673,10 +674,17 @@ def create_protection_policies():
             if policy.snapshot_archival_copy_policies and len(
                     policy.snapshot_archival_copy_policies) != 0:
                 for ext_target in policy.snapshot_archival_copy_policies:
+                    vault_id = ext_target.target.vault_id
+                    if external_targets.get(vault_id, None):
+                        ext_target.target.vault_id = external_targets[vault_id]
                     try:
                         del ext_target._names["id"]
                     except KeyError:
                         pass
+            if is_policy_available:
+                cohesity_client.protection_policies.update_protection_policy(
+                    policy, policy_id)
+                continue
             result = cohesity_client.protection_policies.create_protection_policy(
                 body)
             imported_res_dict["Protection Policies"].append(policy.name)
@@ -694,11 +702,18 @@ def create_protection_policies():
                               "%s" % (policy.name, e))
 
 
+def get_parent_source_id(environment):
+    parent_source = None
+    sources = cohesity_client.protection_sources.list_protection_sources(
+        environment=environment)
+    if sources:
+        parent_source = sources[0].protection_source.id
+    return parent_source
+
 def create_protection_jobs():
     """
     Creates protection job.
     """
-    sql_parent_source = None
     existing_job_list = {}
     active_protection_jobs = []
     imported_job_prefix = configparser.get("import_cluster_config", "imported_job_prefix")
@@ -706,15 +721,14 @@ def create_protection_jobs():
     active_protection_jobs = cluster_dict.get("protection_jobs", [])
 
     # Fetch Sql parent source id.
-    sql_sources = cohesity_client.protection_sources.list_protection_sources(
-        environment=env_enum.KSQL)
-    if sql_sources:
-        sql_parent_source = sql_sources[0].protection_source.id
+    sql_parent_source = get_parent_source_id(env_enum.KSQL)
+
+    # Fetch AD parent source id.
+    ad_parent_source = get_parent_source_id(env_enum.KAD)
 
     existing_jobs = library.get_protection_jobs(cohesity_client)
     for job in existing_jobs:
         existing_job_list[job.name] = job.id
-
 
     try:
         selected_jobs = configparser.get(
@@ -742,7 +756,7 @@ def create_protection_jobs():
             if environment == env_enum.KVIEW:
                 if protection_job.view_box_id not in storage_domain_mapping.keys():
                     continue
-            elif environment not in [env_enum.KSQL, env_enum.KPHYSICAL, env_enum.KPHYSICALFILES, env_enum.KVIEW] and source_mapping.get(parent_id, None) == None:
+            elif environment not in [env_enum.KAD, env_enum.KSQL, env_enum.KPHYSICAL, env_enum.KPHYSICALFILES, env_enum.KVIEW] and source_mapping.get(parent_id, None) == None:
                 err_msg = "Protection Source not available for job %s" % job_name
                 ERROR_LIST.append(err_msg)
                 continue
@@ -790,7 +804,7 @@ def create_protection_jobs():
 
             copy_env_list = copy.deepcopy(env_list)
             for env in [env_enum.KISILON, env_enum.K_VMWARE, env_enum.KSQL,
-                        KCASSANDRA]:
+                        KCASSANDRA, env_enum.KAD]:
                 copy_env_list.pop(copy_env_list.index(env))
 
             to_proceed = True
@@ -905,8 +919,19 @@ def create_protection_jobs():
             if not to_proceed:
                 continue
 
-            if environment == env_enum.KSQL:
-                exported_entity_mapping = cluster_dict["sql_entity_mapping"]
+            if environment == env_enum.KAD:
+                print(dir(protection_job))
+                protection_job.parent_source_id = ad_parent_source
+                #ad_sources = list()
+                for each_id in source_id_list:
+                    print(each_id, source_mapping)
+                source_list = [source_mapping[each_id] for each_id in protection_job.source_ids]
+                #protection_job.source_ids = ad_sources
+            import   pdb;pdb.set_trace()
+
+            if environment in [env_enum.KAD, env_enum.KSQL]:
+                exported_entity_mapping = cluster_dict["sql_entity_mapping"] \
+                    if environment == env_enum.KSQL else cluster_dict["ad_entity_mapping"]
                 source_list = [
                     source_mapping[_id] for _id in protection_job.source_ids]
                 if source_spl_params:
@@ -919,19 +944,28 @@ def create_protection_jobs():
                             cohesity_client.protection_sources.\
                                 list_protection_sources(id=source_id)
                         for nodes in sources[0].application_nodes:
-                            for node in nodes["nodes"]:
+                            if environment == env_enum.KAD:
+                                entity_mapping[nodes["protectionSource"]["name"]] = \
+                                    nodes["protectionSource"]["id"]
+                            for node in nodes.get("nodes", []):
                                 entity_mapping[node["protectionSource"][
                                     "name"]] = node["protectionSource"]["id"]
                         param.source_id = source_id
 
                         # Fetch list of databases protected through job.
-                        entity_ids = param.sql_special_parameters.application_entity_ids
+                        entity_ids = param.sql_special_parameters.application_entity_ids if \
+                            environment==env_enum.KSQL else param.ad_special_parameters.application_entity_ids
                         for _id in entity_ids:
                             instance_name = exported_entity_mapping[_source_id][_id]
                             instance_list.append(entity_mapping[instance_name])
-                        param.sql_special_parameters = ApplicationSpecialParameters()
-                        param.sql_special_parameters.application_entity_ids = instance_list
-                protection_job.parent_source_id = sql_parent_source
+                        if environment == env_enum.KSQL:
+                            param.sql_special_parameters = ApplicationSpecialParameters()
+                            param.sql_special_parameters.application_entity_ids = instance_list
+                        else:
+                            param.ad_special_parameters = ApplicationSpecialParameters()
+                            param.ad_special_parameters.application_entity_ids = instance_list
+                protection_job.parent_source_id = \
+                    sql_parent_source if environment == env_enum.KSQL else ad_parent_source
 
             if source_spl_params and environment == env_enum.K_VMWARE:
                 for param in source_spl_params:
@@ -1261,6 +1295,13 @@ if __name__ == "__main__":
     if gflag_import:
         logger.info("Importing gflags \n\n")
         update_gflags()
+    if access_mgmnt:
+        logger.info("Importing Active directories  \n\n")
+        add_active_directory()
+        logger.info("Importing roles  \n\n")
+        create_roles()
+        logger.info("Importing AD groups and users \n\n")
+        create_ad_objects()
     logger.info("Importing Storage domains \n\n")
     create_storage_domains()
     logger.info("Importing remote clusters  \n\n")
@@ -1275,13 +1316,6 @@ if __name__ == "__main__":
     create_protection_policies()
     logger.info("Importing Jobs  \n\n")
     create_protection_jobs()
-    if access_mgmnt:
-        logger.info("Importing Active directories  \n\n")
-        add_active_directory()
-        logger.info("Importing roles  \n\n")
-        create_roles()
-        logger.info("Importing AD groups and users \n\n")
-        create_ad_objects()
 
 
 logger.info("Imported resources summary.")

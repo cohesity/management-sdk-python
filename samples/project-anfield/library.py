@@ -122,10 +122,30 @@ def get_sql_entity_mapping(cohesity_client, env):
         if source.get("applicationNodes"):
             nodes = source["applicationNodes"]
             for sql_node in nodes:
-                for node in sql_node["nodes"]:
+                for node in sql_node.get("nodes", []):
                     sql_mapping[_id][node["protectionSource"]["id"]] = node[
                     "protectionSource"]["name"]
     return sql_mapping
+
+
+def get_ad_entity_mapping(cohesity_client, env):
+    """
+    Function to fetch SQL/AD sources available in the cluster along with instance
+    name and ids.
+    """
+    mapping = {}
+    sources = cohesity_client.protection_sources.list_protection_sources(
+        environment=env)
+    if not sources:
+        return mapping
+
+    for source in sources[0].nodes:
+        _id = source["protectionSource"]["id"]
+        mapping[_id] = {}
+        for node in source.get("applicationNodes", []):
+            mapping[_id][node["protectionSource"]["id"]] = \
+                node["protectionSource"]["name"]
+    return mapping
 
 
 def get_ad_entries(cohesity_client):
