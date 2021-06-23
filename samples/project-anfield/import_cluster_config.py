@@ -59,7 +59,7 @@ logger.setLevel(logging.DEBUG)
 ERROR_LIST = []
 KCASSANDRA = "kCassandra"
 configparser = configparser.ConfigParser()
-configparser.read("backup_config.ini")
+configparser.read("config.ini")
 
 try:
     cluster_ip = configparser.get("import_cluster_config", "cluster_ip")
@@ -919,16 +919,6 @@ def create_protection_jobs():
             if not to_proceed:
                 continue
 
-            if environment == env_enum.KAD:
-                print(dir(protection_job))
-                protection_job.parent_source_id = ad_parent_source
-                #ad_sources = list()
-                for each_id in source_id_list:
-                    print(each_id, source_mapping)
-                source_list = [source_mapping[each_id] for each_id in protection_job.source_ids]
-                #protection_job.source_ids = ad_sources
-            import   pdb;pdb.set_trace()
-
             if environment in [env_enum.KAD, env_enum.KSQL]:
                 exported_entity_mapping = cluster_dict["sql_entity_mapping"] \
                     if environment == env_enum.KSQL else cluster_dict["ad_entity_mapping"]
@@ -1224,7 +1214,9 @@ def create_ad_objects():
     """
     """
     resp = library.get_ad_objects(cohesity_client, cluster_dict.get(
-        "ad_objects").keys())
+        "ad_objects", {}).keys())
+    if not resp:
+        return
     for domain, objects in cluster_dict.get("ad_objects").items():
         users = objects["users"]
         groups = objects["groups"]
