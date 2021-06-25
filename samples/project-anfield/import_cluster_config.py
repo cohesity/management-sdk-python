@@ -9,7 +9,6 @@ import json
 import logging
 import pickle
 import random
-import requests
 import sys
 import time
 
@@ -18,33 +17,45 @@ from os import path
 
 # Custom module import
 import library
-from cohesity_management_sdk.cohesity_client import CohesityClient
-from cohesity_management_sdk.exceptions.request_error_error_exception import RequestErrorErrorException
-from cohesity_management_sdk.exceptions.api_exception import APIException
-from cohesity_management_sdk.models.application_special_parameters import ApplicationSpecialParameters
-from cohesity_management_sdk.models.change_protection_job_state_param import ChangeProtectionJobStateParam
-from cohesity_management_sdk.models.create_view_request import CreateViewRequest
-from cohesity_management_sdk.models.create_view_box_params import CreateViewBoxParams
-from cohesity_management_sdk.models.environment_register_protection_source_parameters_enum \
-    import EnvironmentRegisterProtectionSourceParametersEnum as env_enum
-from cohesity_management_sdk.models.nas_mount_credential_params import NasMountCredentialParams
-from cohesity_management_sdk.models.nas_protocol_enum import NasProtocolEnum as nas_enum
-from cohesity_management_sdk.models.protection_job_request_body import ProtectionJobRequestBody
-from cohesity_management_sdk.models.protection_policy_request import ProtectionPolicyRequest
-from cohesity_management_sdk.models.register_application_servers_parameters import RegisterApplicationServersParameters
-from cohesity_management_sdk.models.register_remote_cluster import RegisterRemoteCluster
-from cohesity_management_sdk.models.register_protection_source_parameters import RegisterProtectionSourceParameters
-from cohesity_management_sdk.models.vault import Vault
-from cohesity_management_sdk.models.view_box_pair_info import ViewBoxPairInfo
-from cohesity_management_sdk.models.vmware_type_enum import VmwareTypeEnum as vmware_enum
-from cohesity_management_sdk.models.type_view_protection_source_enum import TypeViewProtectionSourceEnum as view_enum
+try:
+    from cohesity_management_sdk.cohesity_client import CohesityClient
+    from cohesity_management_sdk.exceptions.request_error_error_exception import RequestErrorErrorException
+    from cohesity_management_sdk.exceptions.api_exception import APIException
+    from cohesity_management_sdk.models.application_special_parameters import ApplicationSpecialParameters
+    from cohesity_management_sdk.models.change_protection_job_state_param import ChangeProtectionJobStateParam
+    from cohesity_management_sdk.models.create_view_request import CreateViewRequest
+    from cohesity_management_sdk.models.create_view_box_params import CreateViewBoxParams
+    from cohesity_management_sdk.models.environment_register_protection_source_parameters_enum \
+        import EnvironmentRegisterProtectionSourceParametersEnum as env_enum
+    from cohesity_management_sdk.models.nas_mount_credential_params import NasMountCredentialParams
+    from cohesity_management_sdk.models.nas_protocol_enum import NasProtocolEnum as nas_enum
+    from cohesity_management_sdk.models.protection_job_request_body import ProtectionJobRequestBody
+    from cohesity_management_sdk.models.protection_policy_request import ProtectionPolicyRequest
+    from cohesity_management_sdk.models.register_application_servers_parameters import RegisterApplicationServersParameters
+    from cohesity_management_sdk.models.register_remote_cluster import RegisterRemoteCluster
+    from cohesity_management_sdk.models.register_protection_source_parameters import RegisterProtectionSourceParameters
+    from cohesity_management_sdk.models.vault import Vault
+    from cohesity_management_sdk.models.view_box_pair_info import ViewBoxPairInfo
+    from cohesity_management_sdk.models.vmware_type_enum import VmwareTypeEnum as vmware_enum
+    from cohesity_management_sdk.models.type_view_protection_source_enum import TypeViewProtectionSourceEnum as view_enum
+except ImportError as err:
+    print("Please install Cohesity Python SDK and try again.")
+    print("To install Python SDK, run 'pip install cohesity-management-sdk'")
+    exit()
+
 from library import RestClient
 
-# Check for python version
-if float(sys.version[:3]) >= 3:
-    import configparser as configparser
-else:
-    import ConfigParser as configparser
+try:
+    import requests
+    # Check for python version
+    if float(sys.version[:3]) >= 3:
+        import configparser as configparser
+    else:
+        import ConfigParser as configparser
+except ImportError as err:
+    print("Please install dependency packages and try again.")
+    print("To run dependencies, run 'sh setup.sh'.")
+    exit()
 
 from configparser import NoSectionError, NoOptionError
 

@@ -3,23 +3,28 @@
 # Python utility to export the cluster config.
 # Usage: python export_cluster_config.py
 
-import argparse
-import datetime
-import json
-import logging
-import pickle
-import os
-import requests
-import sys
-import library
+try:
+    import argparse
+    import datetime
+    import json
+    import logging
+    import pickle
+    import os
+    import requests
+    import sys
+    import library
 
-# Custom module import
-from cohesity_management_sdk.cohesity_client import CohesityClient
-from cohesity_management_sdk.exceptions.api_exception import APIException
-from cohesity_management_sdk.models.environment_register_protection_source_parameters_enum \
-    import EnvironmentRegisterProtectionSourceParametersEnum as env_enum
-from library import RestClient
-
+    # Custom module import
+    from cohesity_management_sdk.cohesity_client import CohesityClient
+    from cohesity_management_sdk.exceptions.api_exception import APIException
+    from cohesity_management_sdk.models.environment_register_protection_source_parameters_enum \
+        import EnvironmentRegisterProtectionSourceParametersEnum as env_enum
+    from library import RestClient
+except ImportError as err:
+    print("Please ensure Cohesity Python SDK and dependency packages are installed to continue.")
+    print("To install Python SDK, run 'pip install cohesity-management-sdk'")
+    print("To install dependencies, run 'sh setup.py'")
+    exit()
 
 # Disable python warnings.
 requests.packages.urllib3.disable_warnings()
