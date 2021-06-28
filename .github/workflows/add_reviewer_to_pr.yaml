@@ -1,0 +1,13 @@
+name: Add reviewer(s) and assignee for Pull requests.
+on: pull_request
+jobs:
+  pull-request:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check for event name
+        run: echo "${{ github.event_name }}"
+      - name: Check for event action
+        if: ${{ github.event.action == 'opened' || github.event.action == 'reopened'}}
+        run: echo "${{ github.event.action }}"
+      - name: Add assignees
+        uses: kentaro-m/auto-assign-action@v1.1.2
