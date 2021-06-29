@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.restore_files_params_directory_name_security_style_map_entry
 import cohesity_management_sdk.models.entity_proto
 import cohesity_management_sdk.models.file_uptiering_params
+import cohesity_management_sdk.models.isilon_env_params
 import cohesity_management_sdk.models.restore_files_preferences
 import cohesity_management_sdk.models.restored_file_info
 import cohesity_management_sdk.models.credentials
@@ -33,6 +34,8 @@ class RestoreFilesParams(object):
             use of existing agent.
         is_mount_based_flr (bool): Whether this is a mount based file restore
             operation
+        isilon_env_params (IsilonEnvParams): This is applicable if target
+            entity is of kIsilon type.
         mount_disks_on_vm (bool): Whether this will attach disks or mount
             disks on the VM side OR use Storage Proxy RPCs to stream data.
         nas_backup_params (NasBackupParams): Used to determining
@@ -70,6 +73,8 @@ class RestoreFilesParams(object):
             uptier operation.
         vpc_connector_entity (EntityProto): Specifies the attributes and the
             latest statistics about an entity.
+        whitelisted_ip_addrs (list of string): A list of target IP addresses
+            that should be used exclusively.
 
     """
 
@@ -80,6 +85,7 @@ class RestoreFilesParams(object):
         "is_archive_flr":'isArchiveFlr',
         "is_file_volume_restore":'isFileVolumeRestore',
         "is_mount_based_flr":'isMountBasedFlr',
+        "isilon_env_params":'isilonEnvParams',
         "mount_disks_on_vm":'mountDisksOnVm',
         "nas_backup_params":'nasBackupParams',
         "nas_protocol_type_vec":'nasProtocolTypeVec',
@@ -95,7 +101,8 @@ class RestoreFilesParams(object):
         "target_host_entity":'targetHostEntity',
         "target_host_type":'targetHostType',
         "uptier_params":'uptierParams',
-        "vpc_connector_entity":'vpcConnectorEntity'
+        "vpc_connector_entity":'vpcConnectorEntity',
+        "whitelisted_ip_addrs":'whitelistedIpAddrs'
     }
 
     def __init__(self,
@@ -104,6 +111,7 @@ class RestoreFilesParams(object):
                  is_archive_flr=None,
                  is_file_volume_restore=None,
                  is_mount_based_flr=None,
+                 isilon_env_params=None,
                  mount_disks_on_vm=None,
                  nas_backup_params=None,
                  nas_protocol_type_vec=None,
@@ -119,7 +127,8 @@ class RestoreFilesParams(object):
                  target_host_entity=None,
                  target_host_type=None,
                  uptier_params=None,
-                 vpc_connector_entity=None):
+                 vpc_connector_entity=None,
+                 whitelisted_ip_addrs=None):
         """Constructor for the RestoreFilesParams class"""
 
         # Initialize members of the class
@@ -128,6 +137,7 @@ class RestoreFilesParams(object):
         self.is_archive_flr = is_archive_flr
         self.is_file_volume_restore = is_file_volume_restore
         self.is_mount_based_flr = is_mount_based_flr
+        self.isilon_env_params = isilon_env_params
         self.mount_disks_on_vm = mount_disks_on_vm
         self.nas_backup_params = nas_backup_params
         self.nas_protocol_type_vec = nas_protocol_type_vec
@@ -144,6 +154,7 @@ class RestoreFilesParams(object):
         self.target_host_type = target_host_type
         self.uptier_params = uptier_params
         self.vpc_connector_entity = vpc_connector_entity
+        self.whitelisted_ip_addrs = whitelisted_ip_addrs
 
 
     @classmethod
@@ -173,6 +184,7 @@ class RestoreFilesParams(object):
         is_archive_flr = dictionary.get('isArchiveFlr')
         is_file_volume_restore = dictionary.get('isFileVolumeRestore')
         is_mount_based_flr = dictionary.get('isMountBasedFlr')
+        isilon_env_params = cohesity_management_sdk.models.isilon_env_params.IsilonEnvParams.from_dictionary(dictionary.get('isilonEnvParams')) if dictionary.get('isilonEnvParams') else None
         mount_disks_on_vm = dictionary.get('mountDisksOnVm')
         nas_backup_params = cohesity_management_sdk.models.nas_backup_params.NasBackupParams.from_dictionary(dictionary.get('nasBackupParams')) if dictionary.get('nasBackupParams') else None
         nas_protocol_type_vec = dictionary.get('nasProtocolTypeVec')
@@ -193,6 +205,7 @@ class RestoreFilesParams(object):
         target_host_type = dictionary.get('targetHostType')
         uptier_params = cohesity_management_sdk.models.file_uptiering_params.FileUptieringParams.from_dictionary(dictionary.get('uptierParams')) if dictionary.get('uptierParams') else None
         vpc_connector_entity = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('vpcConnectorEntity')) if dictionary.get('vpcConnectorEntity') else None
+        whitelisted_ip_addrs = dictionary.get('whitelistedIpAddrs')
 
         # Return an object of this model
         return cls(blacklisted_ip_addrs,
@@ -200,6 +213,7 @@ class RestoreFilesParams(object):
                    is_archive_flr,
                    is_file_volume_restore,
                    is_mount_based_flr,
+                   isilon_env_params,
                    mount_disks_on_vm,
                    nas_backup_params,
                    nas_protocol_type_vec,
@@ -215,6 +229,7 @@ class RestoreFilesParams(object):
                    target_host_entity,
                    target_host_type,
                    uptier_params,
-                   vpc_connector_entity)
+                   vpc_connector_entity,
+                   whitelisted_ip_addrs)
 
 

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 
 class AwsCredentials(object):
@@ -36,7 +36,7 @@ class AwsCredentials(object):
             configuring database features. 'kRDSParameterGroup' represents a
             RDS parameter group. 'kRDSInstance' represents a RDS DB instance.
             'kRDSSubnet' represents a RDS subnet. 'kRDSTag' represents a tag
-            attached to RDS instance.
+            attached to RDS instance. 'kAuroraCluster' represents an Aurora cluster.
         iam_role_arn (string): Specifies the iam role arn Amazon service
             account. See the Cohesity online help for the value to specify for
             this field based on the current S3-compatible Vault (External

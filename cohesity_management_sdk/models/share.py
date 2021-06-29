@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.smb_permission
 import cohesity_management_sdk.models.subnet
@@ -41,6 +41,8 @@ class Share(object):
             addresses that have permissions to access the View Alias.
             (Overrides the Subnets specified at the global Cohesity Cluster
             level and View level.)
+        super_user_sids (list of string): Specifies a list of user sids who:
+            ave Superuser access to this share.
         tenant_id (string): Specifies the unique id of the tenant.
         view_name (string): Specifies the view name this share belongs to.
 
@@ -59,6 +61,7 @@ class Share(object):
         "share_permissions":'sharePermissions',
         "smb_mount_path":'smbMountPath',
         "subnet_whitelist":'subnetWhitelist',
+        "super_user_sids":'superUserSids',
         "tenant_id":'tenantId',
         "view_name":'viewName'
     }
@@ -75,6 +78,7 @@ class Share(object):
                  share_permissions=None,
                  smb_mount_path=None,
                  subnet_whitelist=None,
+                 super_user_sids=None,
                  tenant_id=None,
                  view_name=None):
         """Constructor for the Share class"""
@@ -91,6 +95,7 @@ class Share(object):
         self.share_permissions = share_permissions
         self.smb_mount_path = smb_mount_path
         self.subnet_whitelist = subnet_whitelist
+        self.super_user_sids = super_user_sids
         self.tenant_id = tenant_id
         self.view_name = view_name
 
@@ -132,6 +137,7 @@ class Share(object):
             subnet_whitelist = list()
             for structure in dictionary.get('subnetWhitelist'):
                 subnet_whitelist.append(cohesity_management_sdk.models.subnet.Subnet.from_dictionary(structure))
+        super_user_sids = dictionary.get('superUserSids')
         tenant_id = dictionary.get('tenantId')
         view_name = dictionary.get('viewName')
 
@@ -147,6 +153,7 @@ class Share(object):
                    share_permissions,
                    smb_mount_path,
                    subnet_whitelist,
+                   super_user_sids,
                    tenant_id,
                    view_name)
 

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 
 class MongoDBConnectParams(object):
@@ -16,6 +16,7 @@ class MongoDBConnectParams(object):
             'SCRAM'
             'LDAP'
             'NONE'
+            'KERBEROS'
         authenticating_database_name (string): Specifies the Authenticating
             Database for this MongoDB cluster.
         requires_ssl (bool): Specifies whether connection is allowed through

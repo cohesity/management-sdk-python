@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.oracle_source_params
 import cohesity_management_sdk.models.physical_backup_source_params
@@ -19,6 +19,8 @@ class BackupSourceParams(object):
             implies that we are protecting all app entities on the source.
         oracle_params (OracleSourceParams): Message to capture additional
             backup/restore params for a Oracle source.
+            NOTE: For logging this proto use GetProtoString(oracle_params);
+            to removecredentials from DB information.
         physical_params (PhysicalBackupSourceParams): Message to capture
             additional backup params for a Physical type source.
         skip_indexing (bool): Set to true, if indexing is not required for

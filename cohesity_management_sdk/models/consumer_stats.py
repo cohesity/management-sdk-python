@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.stats_group
 import cohesity_management_sdk.models.usage_schema_info
@@ -21,7 +21,9 @@ class ConsumerStats(object):
             stats info of Protection Runs used per organization (tenant) per
             view box (storage domain). 'kReplicationRuns', indicates the stats
             info of Replication In used per organization (tenant) per view box
-            (storage domain).
+            (storage domain). 'kViewProtectionRuns', indicates the stats info
+            of View Protection Runs used per organization (tenant) per view
+            box (storage domain).
         group_list (list of StatsGroup): Specifies a list of groups associated
             to this consumer.
         id (long|int): Specifies the id of the consumer.

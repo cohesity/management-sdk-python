@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.email_delivery_target
 import cohesity_management_sdk.models.web_hook_delivery_target
@@ -17,23 +17,40 @@ class NotificationRule(object):
             applicable to.
         categories (list of CategoryNotificationRuleEnum): Specifies alert
             categories this rule is applicable to. Specifies the category of
-            an Alert. kDisk - Alerts that are related to Disk. kNode - Alerts
-            that are related to Node. kCluster - Alerts that are related to
-            Cluster. kNodeHealth - Alerts that are related to Node Health.
-            kClusterHealth - Alerts that are related to Cluster Health.
-            kBackupRestore - Alerts that are related to Backup/Restore.
-            kEncryption - Alerts that are related to Encryption.
-            kArchivalRestore - Alerts that are related to Archival/Restore.
-            kRemoteReplication - Alerts that are related to Remote
-            Replication. kQuota - Alerts that are related to Quota. kLicense -
-            Alerts that are related to License. kHeliosProActiveWellness -
-            Alerts that are related to Helios ProActive Wellness.
-            kHeliosAnalyticsJobs - Alerts that are related to Helios Analytics
-            Jobs. kHeliosSignatureJobs - Alerts that are related to Helios
-            Signature Jobs. kSecurity - Alerts that are related to Security.
-            kAppsInfra - Alerts that are related to applications infra.
-            kAntivirus - Alerts that are related to antivirus. kArchivalCopy -
-            Alerts that are related to archival copies.
+            an Alert. kDisk - Alert associated with the disk.
+            kNode - Alert associated with general hardware on a specific node.
+            kCluster - Alert associated with general hardware in cluster level.
+            kChassis - Alert associated with the Chassis.
+            kPowerSupply - Alert associated with the power supply.
+            kCPU - Alert associated with the CPU usage.
+            kMemory - Alert associated with the RAM/Memory.
+            kTemperature - Alert associated with the temperature.
+            kFan - Alert associated with the fan.
+            kNIC - Alert associated with network chips and interfaces.
+            kFirmware - Alert associated with the firmware.
+            kNodeHealth - Alert associated with node health status.
+            kOperatingSystem - Alert associated with operating systems.
+            kDataPath - Alert associated with data management in the cluster.
+            kMetadata - Alert associated with metadata management.
+            kIndexing - Alert associated with indexing services.
+            kHelios - Alert associated with Helios.
+            kAppMarketPlace - Alert associated with App MarketPlace.
+            kLicense - Alert associated with licensing.
+            kSecurity - Alert associated with security.
+            kUpgrade - Alert associated with upgrade activities.
+            kClusterManagement - Alert associated with cluster management
+            activities. kAuditLog - Alert associated with audit log events.
+            kNetworking - Alert associated with networking issue.
+            kConfiguration - Alert associated with cluster or system
+            configurations.
+            kStorageUsage - Alert associated with the disk/domain/cluster
+            storage usage.
+            kFaultTolerance - Alert associated with the fault tolerance in
+            different levels.
+            kBackupRestore - Alert associated with Backup-Restore job.
+            kArchivalRestore - Alert associated with Archival-Restore job.
+            kRemoteReplication - Alert associated with Replication job.
+            kQuota - Alert associated with Quotas.
         email_delivery_targets (list of EmailDeliveryTarget): Specifies email
             addresses to be notified when an alert matching this rule is
             generated.

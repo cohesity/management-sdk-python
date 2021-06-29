@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.alert_document
 import cohesity_management_sdk.models.alert_property
@@ -13,21 +13,43 @@ class Alert(object):
     the Cohesity Cluster, number of duplicates, severity, etc.
 
     Attributes:
-        alert_category (AlertCategoryEnum): Specifies the category of an
-            Alert. kDisk - Alerts that are related to Disk. kNode - Alerts
-            that are related to Node. kCluster - Alerts that are related to
-            Cluster. kNodeHealth - Alerts that are related to Node Health.
-            kClusterHealth - Alerts that are related to Cluster Health.
-            kBackupRestore - Alerts that are related to Backup/Restore.
-            kEncryption - Alerts that are related to Encryption.
-            kArchivalRestore - Alerts that are related to Archival/Restore.
-            kRemoteReplication - Alerts that are related to Remote
-            Replication. kQuota - Alerts that are related to Quota. kLicense -
-            Alerts that are related to License. kHeliosProActiveWellness -
-            Alerts that are related to Helios ProActive Wellness.
-            kHeliosAnalyticsJobs - Alerts that are related to Helios Analytics
-            Jobs. kHeliosSignatureJobs - Alerts that are related to Helios
-            Signature Jobs. kSecurity - Alerts that are related to Security.
+        alert_category (AlertCategoryEnum): Specifies the category of an Alert.
+            kDisk - Alert associated with the disk.
+            kNode - Alert associated with general hardware on a specific node.
+            kCluster - Alert associated with general hardware in cluster level.
+            kChassis - Alert associated with the Chassis.
+            kPowerSupply - Alert associated with the power supply.
+            kCPU - Alert associated with the CPU usage.
+            kMemory - Alert associated with the RAM/Memory.
+            kTemperature - Alert associated with the temperature.
+            kFan - Alert associated with the fan.
+            kNIC - Alert associated with network chips and interfaces.
+            kFirmware - Alert associated with the firmware.
+            kNodeHealth - Alert associated with node health status.
+            kOperatingSystem - Alert associated with operating systems.
+            kDataPath - Alert associated with data management in the cluster.
+            kMetadata - Alert associated with metadata management.
+            kIndexing - Alert associated with indexing services.
+            kHelios - Alert associated with Helios.
+            kAppMarketPlace - Alert associated with App MarketPlace.
+            kLicense - Alert associated with licensing.
+            kSecurity - Alert associated with security.
+            kUpgrade - Alert associated with upgrade activities.
+            kClusterManagement - Alert associated with cluster management
+            activities.
+            kAuditLog - Alert associated with audit log events.
+            kNetworking - Alert associated with networking issue.
+            kConfiguration - Alert associated with cluster or system
+            configurations.
+            kStorageUsage - Alert associated with the disk/domain/cluster
+            storage usage.
+            kFaultTolerance - Alert associated with the fault tolerance in
+            different levels.
+            kBackupRestore - Alert associated with Backup-Restore job.
+            kArchivalRestore - Alert associated with Archival-Restore job.
+            kRemoteReplication - Alert associated with Replication job.
+            kQuota - Alert associated with Quotas.
+
         alert_code (string): Specifies a unique code that categorizes the
             Alert, for example: CE00200014, where CE stands for Cohesity
             Error, the alert state next 3 digits is the id of the Alert
@@ -44,11 +66,13 @@ class Alert(object):
             Type, such as 00014 for 'kNodeHighCpuUsage'. This id is used in
             alertCode.
         alert_type_bucket (AlertTypeBucketEnum): Specifies the Alert type
-            bucket. Specifies the Alert type bucket. kSoftware - Alerts which
-            are related to Cohesity services. kHardware - Alerts related to
-            hardware on which Cohesity software is running. kService - Alerts
-            related to other external services. kOther - Alerts not of one of
-            above categories.
+            bucket.
+            Specifies the Alert type bucket.
+            kHardware - Alerts related to hardware on which Cohesity software
+            is running.
+            kSoftware - Alerts which are related to software components.
+            kDataService - Alerts related to data services.
+            kMaintenance - Alerts relates to maintenance activities.
         cluster_id (long|int): Specifies id of the cluster where the alert was
             raised.
         cluster_name (string): Specifies name of the cluster where the alert

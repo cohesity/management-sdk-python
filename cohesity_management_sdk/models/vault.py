@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
+import cohesity_management_sdk.models.cloud_archival_direct_config
 import cohesity_management_sdk.models.vault_config
 import cohesity_management_sdk.models.vault_bandwidth_limits
 
@@ -23,6 +24,8 @@ class Vault(object):
             This certificate is in pem format.
         client_private_key (string): Specifies the client private key. This
             certificate is in pem format.
+        cloud_archival_direct_config (CloudArchivalDirectConfig): Specifies the
+            vault config used for Cloud Archival Direct.
         compression_policy (CompressionPolicyVaultEnum): Specifies whether to
             send data to the Vault in a compressed format. 'kCompressionNone'
             indicates that data is not compressed. 'kCompressionLow' indicates
@@ -40,6 +43,12 @@ class Vault(object):
             /public/vaults/encryptionKey/{id} operation.
         dedup_enabled (bool): Specifies whether to deduplicate data before
             sending it to the Vault.
+        dek_rotation_enabled (bool): Specifies whether DEK(Data Encryption Key)
+            rotation is enabled for this vault. This is applicable only when
+            the viewbox uses AWS or similar KMS in which the KEK (Key
+            Encryption Key) is not created and maintained by Cohesity. For
+            Internal KMS and keys stored in Safenet servers, DEK rotation will
+            not be performed.
         delete_vault_error (string): Specifies the error message when deleting
             a vault.
         description (string): Specifies a description about the Vault.
@@ -85,6 +94,10 @@ class Vault(object):
             incremental archival when sending data to the Vault. If false,
             only full backups are performed. If true, incremental backups are
             performed between the full backups.
+        is_forever_incremental_archive_enabled (bool): Specifies whether
+            forever incremental archival is enabled on this vault.
+        is_password_encrypted (bool): Specifies if given password is not
+            encrypted or not in the cluster
         key_file_download_time_usecs (long|int): Specifies the time (in
             microseconds) when the encryption key file was downloaded from the
             Cohesity Dashboard (Cohesity UI). An encryption key can only be
@@ -93,6 +106,7 @@ class Vault(object):
             encryption key from the Cohesity Dashboard (Cohesity UI). This
             field is only populated if encryption is enabled for the Vault and
             customerManagingEncryptionKeys is true.
+        kms_server_id (long|int): Specifies the associated KMS Server ID.
         name (string): Specifies the name of the Vault.
         removal_state (RemovalStateVaultEnum): Specifies the state of the
             vault to be removed. 'kDontRemove' means the state of object is
@@ -121,6 +135,8 @@ class Vault(object):
             Vault. 'kOracleTierArchive' indicates an Oracle Tier Archive
             Vault. 'kAmazonC2S' indicates an Amazon Commercial Cloud Services
             Vault.
+        tenant_ids (list of string): Specifies the list of tenants which will
+            have a access to current vault.
         usage_type (UsageTypeEnum): Specifies the usage type of the Vault.
             'kArchival' indicates the Vault provides archive storage for
             backup data. 'kCloudSpill' indicates the Vault provides additional
@@ -136,10 +152,12 @@ class Vault(object):
         "ca_trusted_certificate":'caTrustedCertificate',
         "client_certificate":'clientCertificate',
         "client_private_key":'clientPrivateKey',
+        "cloud_archival_direct_config":'cloudArchivalDirectConfig',
         "compression_policy":'compressionPolicy',
         "config":'config',
         "customer_managing_encryption_keys":'customerManagingEncryptionKeys',
         "dedup_enabled":'dedupEnabled',
+        "dek_rotation_enabled":'dekRotationEnabled',
         "delete_vault_error":'deleteVaultError',
         "description":'description',
         "desired_wal_location":'desiredWalLocation',
@@ -149,11 +167,15 @@ class Vault(object):
         "full_archive_interval_days":'fullArchiveIntervalDays',
         "id":'id',
         "incremental_archives_enabled":'incrementalArchivesEnabled',
+        "is_forever_incremental_archive_enabled":'isForeverIncrementalArchiveEnabled',
+        "is_password_encrypted":'isPasswordEncrypted',
         "key_file_download_time_usecs":'keyFileDownloadTimeUsecs',
         "key_file_download_user":'keyFileDownloadUser',
+        "kms_server_id":'kmsServerId',
         "name":'name',
         "removal_state":'removalState',
         "mtype":'type',
+        "tenant_ids":'tenantIds',
         "usage_type":'usageType',
         "vault_bandwidth_limits":'vaultBandwidthLimits'
     }
@@ -162,10 +184,12 @@ class Vault(object):
                  ca_trusted_certificate=None,
                  client_certificate=None,
                  client_private_key=None,
+                 cloud_archival_direct_config=None,
                  compression_policy=None,
                  config=None,
                  customer_managing_encryption_keys=None,
                  dedup_enabled=None,
+                 dek_rotation_enabled=None,
                  delete_vault_error=None,
                  description=None,
                  desired_wal_location=None,
@@ -175,11 +199,15 @@ class Vault(object):
                  full_archive_interval_days=None,
                  id=None,
                  incremental_archives_enabled=None,
+                 is_forever_incremental_archive_enabled=None,
+                 is_password_encrypted=None,
                  key_file_download_time_usecs=None,
                  key_file_download_user=None,
+                 kms_server_id=None,
                  name=None,
                  removal_state=None,
                  mtype=None,
+                 tenant_ids=None,
                  usage_type=None,
                  vault_bandwidth_limits=None):
         """Constructor for the Vault class"""
@@ -188,10 +216,12 @@ class Vault(object):
         self.ca_trusted_certificate = ca_trusted_certificate
         self.client_certificate = client_certificate
         self.client_private_key = client_private_key
+        self.cloud_archival_direct_config = cloud_archival_direct_config
         self.compression_policy = compression_policy
         self.config = config
         self.customer_managing_encryption_keys = customer_managing_encryption_keys
         self.dedup_enabled = dedup_enabled
+        self.dek_rotation_enabled = dek_rotation_enabled
         self.delete_vault_error = delete_vault_error
         self.description = description
         self.desired_wal_location = desired_wal_location
@@ -201,11 +231,15 @@ class Vault(object):
         self.full_archive_interval_days = full_archive_interval_days
         self.id = id
         self.incremental_archives_enabled = incremental_archives_enabled
+        self.is_forever_incremental_archive_enabled = is_forever_incremental_archive_enabled
+        self.is_password_encrypted = is_password_encrypted
         self.key_file_download_time_usecs = key_file_download_time_usecs
         self.key_file_download_user = key_file_download_user
+        self.kms_server_id = kms_server_id
         self.name = name
         self.removal_state = removal_state
         self.mtype = mtype
+        self.tenant_ids = tenant_ids
         self.usage_type = usage_type
         self.vault_bandwidth_limits = vault_bandwidth_limits
 
@@ -231,10 +265,12 @@ class Vault(object):
         ca_trusted_certificate = dictionary.get('caTrustedCertificate')
         client_certificate = dictionary.get('clientCertificate')
         client_private_key = dictionary.get('clientPrivateKey')
+        cloud_archival_direct_config = cohesity_management_sdk.models.cloud_archival_direct_config.CloudArchivalDirectConfig.from_dictionary(dictionary.get('cloudArchivalDirectConfig')) if dictionary.get('cloudArchivalDirectConfig') else None
         compression_policy = dictionary.get('compressionPolicy')
         config = cohesity_management_sdk.models.vault_config.VaultConfig.from_dictionary(dictionary.get('config')) if dictionary.get('config') else None
         customer_managing_encryption_keys = dictionary.get('customerManagingEncryptionKeys')
         dedup_enabled = dictionary.get('dedupEnabled')
+        dek_rotation_enabled = dictionary.get('dekRotationEnabled')
         delete_vault_error = dictionary.get('deleteVaultError')
         description = dictionary.get('description')
         desired_wal_location = dictionary.get('desiredWalLocation')
@@ -244,11 +280,15 @@ class Vault(object):
         full_archive_interval_days = dictionary.get('fullArchiveIntervalDays')
         id = dictionary.get('id')
         incremental_archives_enabled = dictionary.get('incrementalArchivesEnabled')
+        is_forever_incremental_archive_enabled = dictionary.get('isForeverIncrementalArchiveEnabled')
+        is_password_encrypted = dictionary.get('isPasswordEncrypted')
         key_file_download_time_usecs = dictionary.get('keyFileDownloadTimeUsecs')
         key_file_download_user = dictionary.get('keyFileDownloadUser')
+        kms_server_id = dictionary.get('kmsServerId')
         name = dictionary.get('name')
         removal_state = dictionary.get('removalState')
         mtype = dictionary.get('type')
+        tenant_ids = dictionary.get('tenantIds')
         usage_type = dictionary.get('usageType')
         vault_bandwidth_limits = cohesity_management_sdk.models.vault_bandwidth_limits.VaultBandwidthLimits.from_dictionary(dictionary.get('vaultBandwidthLimits')) if dictionary.get('vaultBandwidthLimits') else None
 
@@ -256,10 +296,12 @@ class Vault(object):
         return cls(ca_trusted_certificate,
                    client_certificate,
                    client_private_key,
+                   cloud_archival_direct_config,
                    compression_policy,
                    config,
                    customer_managing_encryption_keys,
                    dedup_enabled,
+                   dek_rotation_enabled,
                    delete_vault_error,
                    description,
                    desired_wal_location,
@@ -269,11 +311,15 @@ class Vault(object):
                    full_archive_interval_days,
                    id,
                    incremental_archives_enabled,
+                   is_forever_incremental_archive_enabled,
+                   is_password_encrypted,
                    key_file_download_time_usecs,
                    key_file_download_user,
+                   kms_server_id,
                    name,
                    removal_state,
                    mtype,
+                   tenant_ids,
                    usage_type,
                    vault_bandwidth_limits)
 

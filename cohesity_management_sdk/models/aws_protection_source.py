@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.a_w_s_fleet_params
 import cohesity_management_sdk.models.fleet_network_params
@@ -42,7 +42,8 @@ class AwsProtectionSource(object):
             configuring database features. 'kRDSParameterGroup' represents a
             RDS parameter group. 'kRDSInstance' represents a RDS DB instance.
             'kRDSSubnet' represents a RDS subnet. 'kRDSTag' represents a tag
-            attached to RDS instance.
+            attached to RDS instance. 'kAuroraCluster' represents an Aurora
+            cluster.
         cluster_network_info (FleetNetworkParams): Specifies information
             related to cluster. This is only valid for CE clusters. This is
             only populated for kIAMUser entity.

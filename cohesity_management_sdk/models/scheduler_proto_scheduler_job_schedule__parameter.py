@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
-import cohesity_management_sdk.models.scheduler_proto_scheduler_job_schedule_job_parameters_report_job_parameter_report
+import cohesity_management_sdk.models.scheduler_proto_scheduler_job_schedule__report
 
 class SchedulerProto_SchedulerJob_ScheduleJobParameters_ReportJobParameter(object):
 
@@ -57,7 +57,7 @@ class SchedulerProto_SchedulerJob_ScheduleJobParameters_ReportJobParameter(objec
         if dictionary.get('reports') != None:
             reports = list()
             for structure in dictionary.get('reports'):
-                reports.append(cohesity_management_sdk.models.scheduler_proto_scheduler_job_schedule_job_parameters_report_job_parameter_report.SchedulerProto_SchedulerJob_ScheduleJobParameters_ReportJobParameter_Report.from_dictionary(structure))
+                reports.append(cohesity_management_sdk.models.scheduler_proto_scheduler_job_schedule__report.SchedulerProto_SchedulerJob_ScheduleJobParameters_ReportJobParameter_Report.from_dictionary(structure))
 
         # Return an object of this model
         return cls(receiver_emails,

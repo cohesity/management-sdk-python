@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.replica_info
 
@@ -138,7 +138,7 @@ class SnapshotVersion(object):
         replica_info_list = None
         if dictionary.get('replicaInfoList') != None:
             replica_info_list = list()
-            for structure in dictionary('replicaInfoList'):
+            for structure in dictionary.get('replicaInfoList'):
                 replica_info_list.append(cohesity_management_sdk.models.replica_info.ReplicaInfo.from_dictionary(structure))
         started_time_usecs = dictionary.get('startedTimeUsecs')
 

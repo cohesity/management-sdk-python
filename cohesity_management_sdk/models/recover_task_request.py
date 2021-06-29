@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.acropolis_restore_parameters
 import cohesity_management_sdk.models.deploy_vms_to_cloud
@@ -9,6 +9,7 @@ import cohesity_management_sdk.models.mount_volumes_parameters
 import cohesity_management_sdk.models.restore_object_details
 import cohesity_management_sdk.models.one_drive_restore_parameters
 import cohesity_management_sdk.models.outlook_restore_parameters
+import cohesity_management_sdk.models.public_folders_restore_parameters
 import cohesity_management_sdk.models.update_view_param
 import cohesity_management_sdk.models.virtual_disk_restore_parameters
 import cohesity_management_sdk.models.vlan_parameters
@@ -23,6 +24,9 @@ class RecoverTaskRequest(object):
     mount points.
 
     Attributes:
+        public_folders_parameters (PublicFoldersRestoreParameters): Specifies
+            additional parameters for 'kRecoverO365PublicFolders' restore
+            objects.
         acropolis_parameters (AcropolisRestoreParameters): This field defines
             the Acropolis specific params for restore tasks of type
             kRecoverVMs.
@@ -106,6 +110,7 @@ class RecoverTaskRequest(object):
     _names = {
         "name":'name',
         "mtype":'type',
+        "public_folders_parameters":'PublicFoldersParameters',
         "acropolis_parameters":'acropolisParameters',
         "continue_on_error":'continueOnError',
         "deploy_vms_to_cloud":'deployVmsToCloud',
@@ -128,6 +133,7 @@ class RecoverTaskRequest(object):
     def __init__(self,
                  name=None,
                  mtype=None,
+                 public_folders_parameters=None,
                  acropolis_parameters=None,
                  continue_on_error=None,
                  deploy_vms_to_cloud=None,
@@ -148,6 +154,7 @@ class RecoverTaskRequest(object):
         """Constructor for the RecoverTaskRequest class"""
 
         # Initialize members of the class
+        self.public_folders_parameters = public_folders_parameters
         self.acropolis_parameters = acropolis_parameters
         self.continue_on_error = continue_on_error
         self.deploy_vms_to_cloud = deploy_vms_to_cloud
@@ -189,6 +196,7 @@ class RecoverTaskRequest(object):
         # Extract variables from the dictionary
         name = dictionary.get('name')
         mtype = dictionary.get('type')
+        public_folders_parameters = cohesity_management_sdk.models.public_folders_restore_parameters.PublicFoldersRestoreParameters.from_dictionary(dictionary.get('PublicFoldersParameters')) if dictionary.get('PublicFoldersParameters') else None
         acropolis_parameters = cohesity_management_sdk.models.acropolis_restore_parameters.AcropolisRestoreParameters.from_dictionary(dictionary.get('acropolisParameters')) if dictionary.get('acropolisParameters') else None
         continue_on_error = dictionary.get('continueOnError')
         deploy_vms_to_cloud = cohesity_management_sdk.models.deploy_vms_to_cloud.DeployVmsToCloud.from_dictionary(dictionary.get('deployVmsToCloud')) if dictionary.get('deployVmsToCloud') else None
@@ -214,6 +222,7 @@ class RecoverTaskRequest(object):
         # Return an object of this model
         return cls(name,
                    mtype,
+                   public_folders_parameters,
                    acropolis_parameters,
                    continue_on_error,
                    deploy_vms_to_cloud,

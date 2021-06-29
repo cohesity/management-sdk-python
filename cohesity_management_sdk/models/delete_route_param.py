@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 
 class DeleteRouteParam(object):
@@ -16,6 +16,8 @@ class DeleteRouteParam(object):
         iface_group_name (string): Specifies the network interfaces group or
             vlan interface group to use for communicating with the destination
             network.
+        node_group_name (string): Specifies the network node group to represent
+            a group of nodes.
 
     """
 
@@ -23,19 +25,22 @@ class DeleteRouteParam(object):
     _names = {
         "dest_network":'destNetwork',
         "if_name":'ifName',
-        "iface_group_name":'ifaceGroupName'
+        "iface_group_name":'ifaceGroupName',
+        "node_group_name":'nodeGroupName'
     }
 
     def __init__(self,
                  dest_network=None,
                  if_name=None,
-                 iface_group_name=None):
+                 iface_group_name=None,
+                 node_group_name=None):
         """Constructor for the DeleteRouteParam class"""
 
         # Initialize members of the class
         self.dest_network = dest_network
         self.if_name = if_name
         self.iface_group_name = iface_group_name
+        self.node_group_name = node_group_name
 
 
     @classmethod
@@ -59,10 +64,12 @@ class DeleteRouteParam(object):
         dest_network = dictionary.get('destNetwork')
         if_name = dictionary.get('ifName')
         iface_group_name = dictionary.get('ifaceGroupName')
+        node_group_name = dictionary.get('nodeGroupName')
 
         # Return an object of this model
         return cls(dest_network,
                    if_name,
-                   iface_group_name)
+                   iface_group_name,
+                   node_group_name)
 
 

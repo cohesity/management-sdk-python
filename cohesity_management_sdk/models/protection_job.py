@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.alerting_config
 import cohesity_management_sdk.models.cloud_parameters
@@ -10,6 +10,7 @@ import cohesity_management_sdk.models.indexing_policy
 import cohesity_management_sdk.models.protection_run_instance
 import cohesity_management_sdk.models.backup_script
 import cohesity_management_sdk.models.remote_job_script
+import cohesity_management_sdk.models.remote_view_config
 import cohesity_management_sdk.models.source_special_parameter
 import cohesity_management_sdk.models.protection_job_summary_stats
 import cohesity_management_sdk.models.universal_id
@@ -177,6 +178,12 @@ class ProtectionJob(object):
             continue to execute.
         last_run (ProtectionRunInstance): Specifies the status of one Job Run.
             A Job Run can have one Backup Run and zero or more Copy Runs.
+        leverage_nutanix_snapshots (bool): Specifies whether to leverage
+            nutanix API to take snapshots for this backup job. To leverage
+            nutanix snapshot a prism endpoint on which the vcenter is
+            registered as a management server has to be registered as a
+            source. If nutanix snapshot can not be taken, job will fall back
+            to default mode.
         leverage_storage_snapshots (bool): Specifies whether to leverage the
             storage array based snapshots for this backup job. To leverage
             storage snapshots, the storage array has to be registered as a
@@ -237,8 +244,14 @@ class ProtectionJob(object):
             Job, this field specifies the settings about the remote script
             that will be executed by this Job. Only specify this field for
             Remote Adapter 'kPuppeteer' Jobs.
+        remote_view_config_list (list of RemoteViewConfig): Sepcifies the
+            remote view names for the views that are being protected in the
+            view job. Use this field only when job has a replication policy.
         remote_view_name (string): Specifies the remote view name to use for
-            view overwrite.
+            view overwrite. This field is deprecated. Remote view names will
+            automatically be used for all view jobs with replication policy.
+            Use RemoteViewConfigList to setup remote view names.
+            deprecated: true
         source_ids (list of long|int): Array of Protected Source Objects.
             Specifies the list of Object ids from the Protection Source to
             protect (or back up) by the Protection Job. An Object in this list
@@ -279,6 +292,8 @@ class ProtectionJob(object):
             Specify this field when creating a Protection Job for the first
             time for a View. If this field is specified, ParentSourceId,
             SourceIds, and ExcludeSourceIds should not be specified.
+            This field is deprecated for view backups. Use sourceIds to
+            specify list of view ids instead.
         vm_tag_ids (list of long|int): Array of Arrays of VMs Tags Ids that
             Specify VMs to Protect.  Optionally specify a list of VMs to
             protect by listing Protection Source ids of VM Tags in this two
@@ -330,6 +345,7 @@ class ProtectionJob(object):
         "is_native_format":'isNativeFormat',
         "is_paused":'isPaused',
         "last_run":'lastRun',
+        "leverage_nutanix_snapshots":'leverageNutanixSnapshots',
         "leverage_storage_snapshots":'leverageStorageSnapshots',
         "leverage_storage_snapshots_for_hyperflex":'leverageStorageSnapshotsForHyperflex',
         "modification_time_usecs":'modificationTimeUsecs',
@@ -343,6 +359,7 @@ class ProtectionJob(object):
         "qos_type":'qosType',
         "quiesce":'quiesce',
         "remote_script":'remoteScript',
+        "remote_view_config_list":'remoteViewConfigList',
         "remote_view_name":'remoteViewName',
         "source_ids":'sourceIds',
         "source_special_parameters":'sourceSpecialParameters',
@@ -388,6 +405,7 @@ class ProtectionJob(object):
                  is_native_format=None,
                  is_paused=None,
                  last_run=None,
+                 leverage_nutanix_snapshots=None,
                  leverage_storage_snapshots=None,
                  leverage_storage_snapshots_for_hyperflex=None,
                  modification_time_usecs=None,
@@ -401,6 +419,7 @@ class ProtectionJob(object):
                  qos_type=None,
                  quiesce=None,
                  remote_script=None,
+                 remote_view_config_list=None,
                  remote_view_name=None,
                  source_ids=None,
                  source_special_parameters=None,
@@ -443,6 +462,7 @@ class ProtectionJob(object):
         self.is_native_format = is_native_format
         self.is_paused = is_paused
         self.last_run = last_run
+        self.leverage_nutanix_snapshots = leverage_nutanix_snapshots
         self.leverage_storage_snapshots = leverage_storage_snapshots
         self.leverage_storage_snapshots_for_hyperflex = leverage_storage_snapshots_for_hyperflex
         self.modification_time_usecs = modification_time_usecs
@@ -458,6 +478,7 @@ class ProtectionJob(object):
         self.qos_type = qos_type
         self.quiesce = quiesce
         self.remote_script = remote_script
+        self.remote_view_config_list = remote_view_config_list
         self.remote_view_name = remote_view_name
         self.source_ids = source_ids
         self.source_special_parameters = source_special_parameters
@@ -521,6 +542,7 @@ class ProtectionJob(object):
         is_native_format = dictionary.get('isNativeFormat')
         is_paused = dictionary.get('isPaused')
         last_run = cohesity_management_sdk.models.protection_run_instance.ProtectionRunInstance.from_dictionary(dictionary.get('lastRun')) if dictionary.get('lastRun') else None
+        leverage_nutanix_snapshots = dictionary.get('leverageNutanixSnapshots')
         leverage_storage_snapshots = dictionary.get('leverageStorageSnapshots')
         leverage_storage_snapshots_for_hyperflex = dictionary.get('leverageStorageSnapshotsForHyperflex')
         modification_time_usecs = dictionary.get('modificationTimeUsecs')
@@ -534,6 +556,11 @@ class ProtectionJob(object):
         qos_type = dictionary.get('qosType')
         quiesce = dictionary.get('quiesce')
         remote_script = cohesity_management_sdk.models.remote_job_script.RemoteJobScript.from_dictionary(dictionary.get('remoteScript')) if dictionary.get('remoteScript') else None
+        remote_view_config_list = None
+        if dictionary.get('remoteViewConfigList') != None:
+            remote_view_config_list = list()
+            for structure in dictionary.get('remoteViewConfigList'):
+                remote_view_config_list.append(cohesity_management_sdk.models.remote_view_config.RemoteViewConfig.from_dictionary(structure))
         remote_view_name = dictionary.get('remoteViewName')
         source_ids = dictionary.get('sourceIds')
         source_special_parameters = None
@@ -582,6 +609,7 @@ class ProtectionJob(object):
                    is_native_format,
                    is_paused,
                    last_run,
+                   leverage_nutanix_snapshots,
                    leverage_storage_snapshots,
                    leverage_storage_snapshots_for_hyperflex,
                    modification_time_usecs,
@@ -595,6 +623,7 @@ class ProtectionJob(object):
                    qos_type,
                    quiesce,
                    remote_script,
+                   remote_view_config_list,
                    remote_view_name,
                    source_ids,
                    source_special_parameters,

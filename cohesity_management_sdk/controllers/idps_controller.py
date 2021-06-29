@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -19,7 +19,7 @@ class IdpsController(BaseController):
         self.config = config
 
     def add_active_idp_principals(self):
-        """Does a POST request to /public/idp/principals.
+        """Does a POST request to /public/idps/principals.
 
         After a group or user has been added to a Cohesity Cluster,
         the referenced Idp principal can be used by the Cohesity Cluster.
@@ -56,7 +56,7 @@ class IdpsController(BaseController):
             # Prepare query URL
             self.logger.info(
                 'Preparing query URL for add_active_idp_principals.')
-            _url_path = '/public/idp/principals'
+            _url_path = '/public/idps/principals'
             _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 
 class NtpSettingsConfig(object):
@@ -9,6 +9,8 @@ class NtpSettingsConfig(object):
     TODO: type model description here.
 
     Attributes:
+        ntp_authentication_enabled (bool): Flag to specify if the cluster is
+            using NTP with authentication.
         ntp_servers_internal (bool): Flag to specify if the NTP servers are on
             internal network or not.
 
@@ -16,14 +18,17 @@ class NtpSettingsConfig(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "ntp_authentication_enabled":'ntpAuthenticationEnabled',
         "ntp_servers_internal":'ntpServersInternal'
     }
 
     def __init__(self,
+                 ntp_authentication_enabled=None,
                  ntp_servers_internal=None):
         """Constructor for the NtpSettingsConfig class"""
 
         # Initialize members of the class
+        self.ntp_authentication_enabled = ntp_authentication_enabled
         self.ntp_servers_internal = ntp_servers_internal
 
 
@@ -45,9 +50,11 @@ class NtpSettingsConfig(object):
             return None
 
         # Extract variables from the dictionary
+        ntp_authentication_enabled = dictionary.get('ntpAuthenticationEnabled')
         ntp_servers_internal = dictionary.get('ntpServersInternal')
 
         # Return an object of this model
-        return cls(ntp_servers_internal)
+        return cls(ntp_authentication_enabled,
+                   ntp_servers_internal)
 
 

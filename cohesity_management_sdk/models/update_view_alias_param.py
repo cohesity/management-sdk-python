@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.smb_permission
 import cohesity_management_sdk.models.subnet
@@ -12,6 +12,8 @@ class UpdateViewAliasParam(object):
 
     Attributes:
         alias_name (string): Name of the alias to be updated.
+        enable_filer_audit_log (bool): Specifies whether to enable filer audit
+            log on this view alias.
         enable_smb_encryption (bool): Specifies the SMB encryption for the
             View Alias. If set, it enables the SMB encryption for the View
             Alias. Encryption is supported only by SMB 3.x dialects. Dialects
@@ -29,35 +31,43 @@ class UpdateViewAliasParam(object):
             addresses that have permissions to access the View Alias.
             (Overrides the Subnets specified at the global Cohesity Cluster
             level and View level.)
+        super_user_sids (list of string): Specifies a list of user sids who
+            have Superuser access to this alias.
 
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
         "alias_name":'aliasName',
+        "enable_filer_audit_log":'enableFilerAuditLog',
         "enable_smb_encryption":'enableSmbEncryption',
         "enable_smb_view_discovery":'enableSmbViewDiscovery',
         "enforce_smb_encryption":'enforceSmbEncryption',
         "share_permissions":'sharePermissions',
-        "subnet_whitelist":'subnetWhitelist'
+        "subnet_whitelist":'subnetWhitelist',
+        "super_user_sids":'superUserSids'
     }
 
     def __init__(self,
                  alias_name=None,
+                 enable_filer_audit_log=None,
                  enable_smb_encryption=None,
                  enable_smb_view_discovery=None,
                  enforce_smb_encryption=None,
                  share_permissions=None,
-                 subnet_whitelist=None):
+                 subnet_whitelist=None,
+                 super_user_sids=None):
         """Constructor for the UpdateViewAliasParam class"""
 
         # Initialize members of the class
         self.alias_name = alias_name
+        self.enable_filer_audit_log = enable_filer_audit_log
         self.enable_smb_encryption = enable_smb_encryption
         self.enable_smb_view_discovery = enable_smb_view_discovery
         self.enforce_smb_encryption = enforce_smb_encryption
         self.share_permissions = share_permissions
         self.subnet_whitelist = subnet_whitelist
+        self.super_user_sids = super_user_sids
 
 
     @classmethod
@@ -79,6 +89,7 @@ class UpdateViewAliasParam(object):
 
         # Extract variables from the dictionary
         alias_name = dictionary.get('aliasName')
+        enable_filer_audit_log = dictionary.get('enableFilerAuditLog')
         enable_smb_encryption = dictionary.get('enableSmbEncryption')
         enable_smb_view_discovery = dictionary.get('enableSmbViewDiscovery')
         enforce_smb_encryption = dictionary.get('enforceSmbEncryption')
@@ -92,13 +103,16 @@ class UpdateViewAliasParam(object):
             subnet_whitelist = list()
             for structure in dictionary.get('subnetWhitelist'):
                 subnet_whitelist.append(cohesity_management_sdk.models.subnet.Subnet.from_dictionary(structure))
+        super_user_sids = dictionary.get('superUserSids')
 
         # Return an object of this model
         return cls(alias_name,
+                   enable_filer_audit_log,
                    enable_smb_encryption,
                    enable_smb_view_discovery,
                    enforce_smb_encryption,
                    share_permissions,
-                   subnet_whitelist)
+                   subnet_whitelist,
+                   super_user_sids)
 
 

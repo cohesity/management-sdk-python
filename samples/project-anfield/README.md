@@ -11,7 +11,7 @@ This Project helps take Cohesity Cluster's configuration export and import it in
 Current version fo the tooling supports export and import the cluster resources namely:
   * Cohesity Views
   * Storage Domains 
-  * External targets(NAS, s3) 
+  * External targets(NAS, s3, Qstar) 
   * Cluster Configs
     * DNS
     * NTP Servers
@@ -24,9 +24,14 @@ Current version fo the tooling supports export and import the cluster resources 
     * Cohesity Views
     * Isilon(NFS)
     * MsSql
+    * Cassandra
   * Protection Policies
   * Replicated Clusters
   * Gflags
+  * Access Management
+    * Active Directory
+    * AD groups
+    * Roles
   
 ## Installation
 ```
@@ -90,6 +95,24 @@ This will work for Python 3 >=3.4.
 
 4. While importing Isilon sources, only NFS protocols are supported. If a job contains both NFS and SMB objects, only NFS objects are added to job.
 
+5. Imported Job prefix - While importing resources, job name will be prefixed with provided prefix name. For example, if job name is 'test' and imported_job_prefix is 'sample_', job will be imported under name 'sample_test'. If the field is empty, no prefix is added to the job name.
+
+    `imported_job_prefix=sample_`
+
+    `imported_job_prefix=` # No prefix is added
+
+6. Imported Job suffix - While importing resources, job name will be suffixed with provided suffix name. For example, if job name is 'test' and imported_job_suffix is '_job', job will be imported under name 'test_job'. If the field is empty, no suffix is added to the job name.
+
+    `imported_job_suffix=_import`
+    
+    `imported_job_suffix=` # No prefix is added
+
+7. Selected Jobs - Option to import specific list of jobs(Should be provided as list of comma separated jobs). If the field is empty all the jobs are imported or else only jobs specified in the selected_jobs field are imported.
+    
+    `selected_jobs=job1,job2,job3` # Only following jobs: job1, job2, job3 are imported to the target cluster.
+    
+    `selected_jobs=`. # All jobs are imported to the target cluster.
+
 ## Export 
 
 Run the following command to export resources.
@@ -97,6 +120,12 @@ Run the following command to export resources.
 python export_cluster_config.py
 ```
 The above command will generate a <export-config-ClusterName-timestamp> file (eg: export-config-Kursk-2020-04-17-12:15) which needs be provided while importing resources.
+
+Custom export file name and location can be provided as follows,
+```
+python export_cluster_config.py --file_location /tmp/ --file_name sample_export_config
+```
+The above command will generate sample_export_config file under /tmp folder.
 
 ### Ouput 
 ```

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 
 class TenantInfo(object):
@@ -9,6 +9,8 @@ class TenantInfo(object):
     Specifies struct with basic tenant details.
 
     Attributes:
+        bifrost_enabled (bool): Specifies if this tenant is bifrost enabled or
+            not.
         name (string): Specifies name of the tenant.
         tenant_id (string): Specifies the unique id of the tenant.
 
@@ -16,16 +18,19 @@ class TenantInfo(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "bifrost_enabled":'bifrostEnabled',
         "name":'name',
         "tenant_id":'tenantId'
     }
 
     def __init__(self,
+                 bifrost_enabled=None,
                  name=None,
                  tenant_id=None):
         """Constructor for the TenantInfo class"""
 
         # Initialize members of the class
+        self.bifrost_enabled = bifrost_enabled
         self.name = name
         self.tenant_id = tenant_id
 
@@ -48,11 +53,13 @@ class TenantInfo(object):
             return None
 
         # Extract variables from the dictionary
+        bifrost_enabled = dictionary.get('bifrostEnabled')
         name = dictionary.get('name')
         tenant_id = dictionary.get('tenantId')
 
         # Return an object of this model
-        return cls(name,
+        return cls(bifrost_enabled,
+                   name,
                    tenant_id)
 
 

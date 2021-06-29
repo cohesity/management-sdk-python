@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 class EnvironmentGetProtectionJobsEnum(object):
 
@@ -38,6 +38,7 @@ class EnvironmentGetProtectionJobsEnum(object):
         KGCPNATIVE: TODO: type description here.
         KKUBERNETES: TODO: type description here.
         KELASTIFILE: TODO: type description here.
+        KUDA: TODO: type description here.
 
     """
 
@@ -101,3 +102,4 @@ class EnvironmentGetProtectionJobsEnum(object):
 
     KELASTIFILE = 'kElastifile'
 
+    KUDA = 'kUDA'

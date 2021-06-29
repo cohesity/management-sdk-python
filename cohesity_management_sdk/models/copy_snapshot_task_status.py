@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.protection_source
 import cohesity_management_sdk.models.copy_run_stats
@@ -27,6 +27,9 @@ class CopySnapshotTaskStatus(object):
             has occurred but the task is not yet canceled. 'kCanceled'
             indicates the task has been canceled. 'kSuccess' indicates the
             task was successful. 'kFailure' indicates the task failed.
+            'kWarning' indicates the task has finished with warning.
+            'kOnHold' indicates the task is kept onHold.
+            'kMissed' indicates the task is missed.
         task_end_time_usecs (long|int): Specifies the end time of the copy
             task. The end time is specified as a Unix epoch Timestamp (in
             microseconds).

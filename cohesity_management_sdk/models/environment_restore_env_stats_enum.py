@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 class EnvironmentRestoreEnvStatsEnum(object):
 
@@ -39,6 +39,7 @@ class EnvironmentRestoreEnvStatsEnum(object):
         KAZURENATIVE: TODO: type description here.
         KAD: TODO: type description here.
         KRDSSNAPSHOTMANAGER: TODO: type description here.
+        KUDA: TODO: type description here.
 
     """
 
@@ -105,4 +106,6 @@ class EnvironmentRestoreEnvStatsEnum(object):
     KAD = 'kAD'
 
     KRDSSNAPSHOTMANAGER = 'kRDSSnapshotManager'
+
+    KUDA = 'kUDA'
 

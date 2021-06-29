@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.vserver_network_interface
 import cohesity_management_sdk.models.cifs_share_info
@@ -20,7 +20,7 @@ class NetappVserverInfo(object):
             Fiber Channel connections. 'kFcache' indicates Flex Cache
             connections. 'kHttp' indicates HTTP connections. 'kNdmp' indicates
             NDMP connections. 'kManagement' indicates non-data connections
-            used for management purposes.
+            used for management purposes. 'kNvme' indicates NVMe connections.
         interfaces (list of VserverNetworkInterface): Array of Interfaces.
             Specifies information about all interfaces on this Vserver.
         root_cifs_share (CifsShareInfo): Specifies information about a CIFS

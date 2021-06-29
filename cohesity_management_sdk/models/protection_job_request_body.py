@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.alerting_config
 import cohesity_management_sdk.models.cloud_parameters
@@ -9,6 +9,7 @@ import cohesity_management_sdk.models.time_of_day
 import cohesity_management_sdk.models.indexing_policy
 import cohesity_management_sdk.models.backup_script
 import cohesity_management_sdk.models.remote_job_script
+import cohesity_management_sdk.models.remote_view_config
 import cohesity_management_sdk.models.source_special_parameter
 
 class ProtectionJobRequestBody(object):
@@ -42,7 +43,14 @@ class ProtectionJobRequestBody(object):
         continue_on_quiesce_failure (bool): Whether to continue backing up on
             quiesce failure.
         create_remote_view (bool): Specifies whether to create a remote view
-            name to use for view overwrite.
+            name to use for view overwrite. This field is deprecated. Remote
+            view names will automatically be used for all view jobs with
+            replication policy. Use RemoteViewConfigList to setup remote view
+            names.
+          deprecated: true
+            This field is deprecated. Remote view names will automatically be
+            used for all view jobs with replication policy. Use
+            RemoteViewConfigList to setup remote view names.
         data_migration_policy (DataMigrationPolicy): Specifies settings for
             data migration in NAS environment. This also specifies the
             retention policy that should be applied to files after they have
@@ -157,6 +165,15 @@ class ProtectionJobRequestBody(object):
             archive backup job.
         is_native_format (bool): Specifies if native format should be used for
             archiving, applicable for only direct archive jobs.
+        is_paused (bool): Specifies if the Protection Job is paused, which
+            means that no new Job Runs are started but any existing Job Runs
+            continue to execute.
+        leverage_nutanix_snapshots (bool): Specifies whether to leverage
+            nutanix API to take snapshots for this backup job. To leverage
+            nutanix snapshot a prism endpoint on which the vcenter is
+            registered as a management server has to be registered as a source.
+            If nutanix snapshot can not be taken, job will fall back to
+            default mode.
         leverage_storage_snapshots (bool): Specifies whether to leverage the
             storage array based snapshots for this backup job. To leverage
             storage snapshots, the storage array has to be registered as a
@@ -209,6 +226,9 @@ class ProtectionJobRequestBody(object):
             Job, this field specifies the settings about the remote script
             that will be executed by this Job. Only specify this field for
             Remote Adapter 'kPuppeteer' Jobs.
+        remote_view_config_list (list of RemoteViewConfig): Sepcifies the
+            remote view names for the views that are being protected in the
+            view job. Use this field only when job has a replication policy.
         remote_view_name (string): Specifies the remote view name to use for
             view overwrite.
         source_ids (list of long|int): Array of Protected Source Objects.
@@ -246,6 +266,8 @@ class ProtectionJobRequestBody(object):
             Specify this field when creating a Protection Job for the first
             time for a View. If this field is specified, ParentSourceId,
             SourceIds, and ExcludeSourceIds should not be specified.
+            This field is deprecated for view backups. Use sourceIds to
+            specify list of view ids instead.
         vm_tag_ids (list of long|int): Array of Arrays of VMs Tags Ids that
             Specify VMs to Protect.  Optionally specify a list of VMs to
             protect by listing Protection Source ids of VM Tags in this two
@@ -291,6 +313,8 @@ class ProtectionJobRequestBody(object):
         "indexing_policy":'indexingPolicy',
         "is_direct_archive_enabled":'isDirectArchiveEnabled',
         "is_native_format":'isNativeFormat',
+        "is_paused":'isPaused',
+        "leverage_nutanix_snapshots":'leverageNutanixSnapshots',
         "leverage_storage_snapshots":'leverageStorageSnapshots',
         "leverage_storage_snapshots_for_hyperflex":'leverageStorageSnapshotsForHyperflex',
         "parent_source_id":'parentSourceId',
@@ -301,6 +325,7 @@ class ProtectionJobRequestBody(object):
         "qos_type":'qosType',
         "quiesce":'quiesce',
         "remote_script":'remoteScript',
+        "remote_view_config_list":'remoteViewConfigList',
         "remote_view_name":'remoteViewName',
         "source_ids":'sourceIds',
         "source_special_parameters":'sourceSpecialParameters',
@@ -337,6 +362,8 @@ class ProtectionJobRequestBody(object):
                  indexing_policy=None,
                  is_direct_archive_enabled=None,
                  is_native_format=None,
+                 is_paused=None,
+                 leverage_nutanix_snapshots=None,
                  leverage_storage_snapshots=None,
                  leverage_storage_snapshots_for_hyperflex=None,
                  parent_source_id=None,
@@ -347,6 +374,7 @@ class ProtectionJobRequestBody(object):
                  qos_type=None,
                  quiesce=None,
                  remote_script=None,
+                 remote_view_config_list=None,
                  remote_view_name=None,
                  source_ids=None,
                  source_special_parameters=None,
@@ -380,6 +408,8 @@ class ProtectionJobRequestBody(object):
         self.indexing_policy = indexing_policy
         self.is_direct_archive_enabled = is_direct_archive_enabled
         self.is_native_format = is_native_format
+        self.is_paused = is_paused
+        self.leverage_nutanix_snapshots = leverage_nutanix_snapshots
         self.leverage_storage_snapshots = leverage_storage_snapshots
         self.leverage_storage_snapshots_for_hyperflex = leverage_storage_snapshots_for_hyperflex
         self.name = name
@@ -392,6 +422,7 @@ class ProtectionJobRequestBody(object):
         self.qos_type = qos_type
         self.quiesce = quiesce
         self.remote_script = remote_script
+        self.remote_view_config_list = remote_view_config_list
         self.remote_view_name = remote_view_name
         self.source_ids = source_ids
         self.source_special_parameters = source_special_parameters
@@ -446,6 +477,8 @@ class ProtectionJobRequestBody(object):
         indexing_policy = cohesity_management_sdk.models.indexing_policy.IndexingPolicy.from_dictionary(dictionary.get('indexingPolicy')) if dictionary.get('indexingPolicy') else None
         is_direct_archive_enabled = dictionary.get('isDirectArchiveEnabled')
         is_native_format = dictionary.get('isNativeFormat')
+        is_paused = dictionary.get('isPaused')
+        leverage_nutanix_snapshots = dictionary.get('leverageNutanixSnapshots')
         leverage_storage_snapshots = dictionary.get('leverageStorageSnapshots')
         leverage_storage_snapshots_for_hyperflex = dictionary.get('leverageStorageSnapshotsForHyperflex')
         parent_source_id = dictionary.get('parentSourceId')
@@ -456,6 +489,11 @@ class ProtectionJobRequestBody(object):
         qos_type = dictionary.get('qosType')
         quiesce = dictionary.get('quiesce')
         remote_script = cohesity_management_sdk.models.remote_job_script.RemoteJobScript.from_dictionary(dictionary.get('remoteScript')) if dictionary.get('remoteScript') else None
+        remote_view_config_list = None
+        if dictionary.get('remoteViewConfigList') != None:
+            remote_view_config_list = list()
+            for structure in dictionary.get('remoteViewConfigList'):
+                remote_view_config_list.append(cohesity_management_sdk.models.remote_view_config.RemoteViewConfig.from_dictionary(structure))
         remote_view_name = dictionary.get('remoteViewName')
         source_ids = dictionary.get('sourceIds')
         source_special_parameters = None
@@ -495,6 +533,8 @@ class ProtectionJobRequestBody(object):
                    indexing_policy,
                    is_direct_archive_enabled,
                    is_native_format,
+                   is_paused,
+                   leverage_nutanix_snapshots,
                    leverage_storage_snapshots,
                    leverage_storage_snapshots_for_hyperflex,
                    parent_source_id,
@@ -505,6 +545,7 @@ class ProtectionJobRequestBody(object):
                    qos_type,
                    quiesce,
                    remote_script,
+                   remote_view_config_list,
                    remote_view_name,
                    source_ids,
                    source_special_parameters,

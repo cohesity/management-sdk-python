@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -582,29 +582,14 @@ class VaultsController(BaseController):
             raise
 
 
-    def delete_vault(self,
-                     id,
-                     force_delete=None,
-                     retry=None,
-                     include_marked_for_removal=None,
-                     body=None):
+    def delete_vault(self, id, body):
         """Does a DELETE request to /public/vaults/{id}.
 
         Returns delete status upon completion.
         A Vault is equivalent to an External Target in the Cohesity Dashboard.
 
         Args:
-            force_delete (bool, optional): Specifies whether to force delete
-                the vault. If the flag is set to true, the RemovalState of the
-                vault is changed to 'kMarkedForRemoval' and Eventually vault
-                is removed from cluster config and archived metadata from
-                scribe is removed without necessarily deleting the associated
-                archived data.
-            retry (bool, optional): Specifies whether to retry a request after
-                failure.
             id (long|int): Specifies a unique id of the Vault.
-            include_marked_for_removal (bool): Specifies if Vaults that are
-                marked for removal should be returned.
             body (VaultDeleteParams): Request to delete vault.
 
         Returns:
@@ -623,7 +608,7 @@ class VaultsController(BaseController):
             # Validate required parameters
             self.logger.info(
                 'Validating required parameters for delete_vault.')
-            self.validate_parameters(id=id)
+            self.validate_parameters(id=id, body=body)
 
             # Prepare query URL
             self.logger.info('Preparing query URL for delete_vault.')
@@ -632,14 +617,6 @@ class VaultsController(BaseController):
                 _url_path, {'id': id})
             _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
-            _query_parameters = {
-                'forceDelete': force_delete,
-                'retry': retry,
-                'includeMarkedForRemoval': include_marked_for_removal
-                }
-            _query_builder = APIHelper.append_url_with_query_parameters(
-                _query_builder, _query_parameters,
-                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers

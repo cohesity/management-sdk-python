@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 class EnvironmentRestorePointsForTimeRangeParamEnum(object):
 
@@ -46,6 +46,7 @@ class EnvironmentRestorePointsForTimeRangeParamEnum(object):
     'kAD' indicates Active Directory Protection Source environment.
     'kRDSSnapshotManager' indicates AWS RDS Protection Source
     environment.
+    'kUDA' indicates Universal Data Adapter Protection Source environment.
 
     Attributes:
         KVMWARE: TODO: type description here.
@@ -81,6 +82,7 @@ class EnvironmentRestorePointsForTimeRangeParamEnum(object):
         KELASTIFILE: TODO: type description here.
         KAD: TODO: type description here.
         KRDSSNAPSHOTMANAGER: TODO: type description here.
+        KUDA: TODO: type description here.
 
     """
 
@@ -149,3 +151,5 @@ class EnvironmentRestorePointsForTimeRangeParamEnum(object):
     KAD = 'kAD'
 
     KRDSSNAPSHOTMANAGER = 'kRDSSnapshotManager'
+
+    KUDA = 'kUDA'

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.subnet
 import cohesity_management_sdk.models.quota_policy
@@ -14,6 +14,7 @@ class CreateViewBoxParams(object):
     Attributes:
         ad_domain_name (string): Specifies an active directory domain that
             this view box is mapped to.
+        brick_size (int): Specifies the default brick size used by the viewbox.
         client_subnet_white_list (list of Subnet): Array of Subnets.
             Specifies the Subnets from which this Storage Domain (View Box)
             accepts requests.
@@ -42,10 +43,19 @@ class CreateViewBoxParams(object):
             there may be delay before the Cohesity Cluster allows more data to
             be written to the Storage Domain (View Box), as the Cluster is
             calculating the usage across Nodes.
+        dek_rotation_enabled (bool): Specifies whether DEK(Data Encryption Key)
+            rotation is enabled for this viewbox. This is applicable only when
+            the viewbox uses AWS or similar KMS in which the KEK (Key
+            Encryption Key) is not created and maintained by Cohesity. For
+            Internal KMS and keys stored in Safenet servers, DEK rotation will
+            not be performed.
         direct_archive_enabled (bool): Specifies whether this viewbox can be
             used as a staging area while copying a largedataset that can't fit
             on the cluster to an external target. The amount of data that can
             be stored on the viewbox can be specified using 'physical_quota'.
+        kerberos_realm_name (string): Specifies the Kerberos domain that this
+            view box is mapped to.
+        kms_server_id (long|int): Specifies the associated KMS Server ID.
         ldap_provider_id (long|int): When set, the following provides the LDAP
             provider the view box is mapped to. For any view from this view
             box, when accessed via NFS the following LDAP provider is looked
@@ -88,12 +98,15 @@ class CreateViewBoxParams(object):
             is allowed, there shall be at most one item in this list. Note
             that if all tenant may be deleted - such viewboxes must be garbage
             collected. This is currently done by a background thread in iris.
+        updated_brick_size (int): Specifies the brick size to be used by the
+            viewbox for creating any new blobs.
 
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
         "cluster_partition_id":'clusterPartitionId',
+        "brick_size":'brickSize',
         "name":'name',
         "ad_domain_name":'adDomainName',
         "client_subnet_white_list":'clientSubnetWhiteList',
@@ -101,42 +114,55 @@ class CreateViewBoxParams(object):
         "cloud_down_waterfall_threshold_secs":'cloudDownWaterfallThresholdSecs',
         "default_user_quota_policy":'defaultUserQuotaPolicy',
         "default_view_quota_policy":'defaultViewQuotaPolicy',
+        "dek_rotation_enabled":'dekRotationEnabled',
         "direct_archive_enabled":'directArchiveEnabled',
+        "kms_server_id":'kmsServerId',
+        "kerberos_realm_name":'kerberosRealmName',
         "ldap_provider_id":'ldapProviderId',
         "nis_domain_name_vec":'nisDomainNameVec',
         "physical_quota":'physicalQuota',
         "s_3_buckets_allowed":'s3BucketsAllowed',
         "storage_policy":'storagePolicy',
-        "tenant_id_vec":'tenantIdVec'
+        "tenant_id_vec":'tenantIdVec',
+        "updated_brick_size":'updatedBrickSize'
     }
 
     def __init__(self,
                  cluster_partition_id=None,
                  name=None,
                  ad_domain_name=None,
+                 brick_size=None,
                  client_subnet_white_list=None,
                  cloud_down_waterfall_threshold_pct=None,
                  cloud_down_waterfall_threshold_secs=None,
                  default_user_quota_policy=None,
                  default_view_quota_policy=None,
+                 dek_rotation_enabled=None,
                  direct_archive_enabled=None,
+                 kerberos_realm_name=None,
+                 kms_server_id=None,
                  ldap_provider_id=None,
                  nis_domain_name_vec=None,
                  physical_quota=None,
                  s_3_buckets_allowed=None,
                  storage_policy=None,
-                 tenant_id_vec=None):
+                 tenant_id_vec=None,
+                 updated_brick_size=None):
         """Constructor for the CreateViewBoxParams class"""
 
         # Initialize members of the class
         self.ad_domain_name = ad_domain_name
+        self.brick_size = brick_size
         self.client_subnet_white_list = client_subnet_white_list
         self.cloud_down_waterfall_threshold_pct = cloud_down_waterfall_threshold_pct
         self.cloud_down_waterfall_threshold_secs = cloud_down_waterfall_threshold_secs
         self.cluster_partition_id = cluster_partition_id
         self.default_user_quota_policy = default_user_quota_policy
         self.default_view_quota_policy = default_view_quota_policy
+        self.dek_rotation_enabled = dek_rotation_enabled
         self.direct_archive_enabled = direct_archive_enabled
+        self.kerberos_realm_name = kerberos_realm_name
+        self.kms_server_id = kms_server_id
         self.ldap_provider_id = ldap_provider_id
         self.name = name
         self.nis_domain_name_vec = nis_domain_name_vec
@@ -144,6 +170,7 @@ class CreateViewBoxParams(object):
         self.s_3_buckets_allowed = s_3_buckets_allowed
         self.storage_policy = storage_policy
         self.tenant_id_vec = tenant_id_vec
+        self.updated_brick_size = updated_brick_size
 
 
     @classmethod
@@ -167,6 +194,7 @@ class CreateViewBoxParams(object):
         cluster_partition_id = dictionary.get('clusterPartitionId')
         name = dictionary.get('name')
         ad_domain_name = dictionary.get('adDomainName')
+        brick_size = dictionary.get('brickSize')
         client_subnet_white_list = None
         if dictionary.get('clientSubnetWhiteList') != None:
             client_subnet_white_list = list()
@@ -176,29 +204,38 @@ class CreateViewBoxParams(object):
         cloud_down_waterfall_threshold_secs = dictionary.get('cloudDownWaterfallThresholdSecs')
         default_user_quota_policy = cohesity_management_sdk.models.quota_policy.QuotaPolicy.from_dictionary(dictionary.get('defaultUserQuotaPolicy')) if dictionary.get('defaultUserQuotaPolicy') else None
         default_view_quota_policy = cohesity_management_sdk.models.quota_policy.QuotaPolicy.from_dictionary(dictionary.get('defaultViewQuotaPolicy')) if dictionary.get('defaultViewQuotaPolicy') else None
+        dek_rotation_enabled = dictionary.get('dekRotationEnabled')
         direct_archive_enabled = dictionary.get('directArchiveEnabled')
+        kerberos_realm_name = dictionary.get('kerberosRealmName')
+        kms_server_id = dictionary.get('kmsServerId')
         ldap_provider_id = dictionary.get('ldapProviderId')
         nis_domain_name_vec = dictionary.get('nisDomainNameVec')
         physical_quota = cohesity_management_sdk.models.quota_policy.QuotaPolicy.from_dictionary(dictionary.get('physicalQuota')) if dictionary.get('physicalQuota') else None
         s_3_buckets_allowed = dictionary.get('s3BucketsAllowed')
         storage_policy = cohesity_management_sdk.models.storage_policy.StoragePolicy.from_dictionary(dictionary.get('storagePolicy')) if dictionary.get('storagePolicy') else None
         tenant_id_vec = dictionary.get('tenantIdVec')
+        updated_brick_size = dictionary.get('updatedBrickSize')
 
         # Return an object of this model
         return cls(cluster_partition_id,
                    name,
                    ad_domain_name,
+                   brick_size,
                    client_subnet_white_list,
                    cloud_down_waterfall_threshold_pct,
                    cloud_down_waterfall_threshold_secs,
                    default_user_quota_policy,
                    default_view_quota_policy,
+                   dek_rotation_enabled,
                    direct_archive_enabled,
+                   kerberos_realm_name,
+                   kms_server_id,
                    ldap_provider_id,
                    nis_domain_name_vec,
                    physical_quota,
                    s_3_buckets_allowed,
                    storage_policy,
-                   tenant_id_vec)
+                   tenant_id_vec,
+                   updated_brick_size)
 
 

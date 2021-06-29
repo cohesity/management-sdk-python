@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 class AuthTypeMongoDBConnectParamsEnum(object):
 
@@ -15,6 +15,7 @@ class AuthTypeMongoDBConnectParamsEnum(object):
         SCRAM: TODO: type description here.
         LDAP: TODO: type description here.
         NONE: TODO: type description here.
+        KERBEROS: TODO: type description here.
 
     """
 
@@ -23,4 +24,6 @@ class AuthTypeMongoDBConnectParamsEnum(object):
     LDAP = 'LDAP'
 
     NONE = 'NONE'
+
+    KERBEROS = 'KERBEROS'
 

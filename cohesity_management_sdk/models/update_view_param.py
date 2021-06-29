@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.antivirus_scan_config
 import cohesity_management_sdk.models.file_extension_filter
@@ -65,6 +65,9 @@ class UpdateViewParam(object):
         file_lock_config (FileLevelDataLockConfig): Specifies a config to lock
             files in a view - to protect from malicious or an accidental
             attempt to delete or modify the files in this view.
+        is_read_only (bool): Specifies if the view is a read only view. User
+            will no longer be able to write to this view if this is set to
+            true.
         logical_quota (QuotaPolicy): Specifies an optional logical quota limit
             (in bytes) for the usage allowed on this View. (Logical data is
             when the data is fully hydrated and expanded.) This limit
@@ -114,6 +117,8 @@ class UpdateViewParam(object):
             of Subnets with IP addresses that have permissions to access the
             View. (Overrides the Subnets specified at the global Cohesity
             Cluster level.)
+        super_user_sids (string): Specifies a list of user sids who have
+            Superuser access to this view.
         swift_project_domain (string): Specifies the Keystone project domain.
         swift_project_name (string): Specifies the Keystone project name.
         tenant_id (string): Optional tenant id who has access to this View.
@@ -141,6 +146,7 @@ class UpdateViewParam(object):
         "enforce_smb_encryption":'enforceSmbEncryption',
         "file_extension_filter":'fileExtensionFilter',
         "file_lock_config":'fileLockConfig',
+        "is_read_only":'isReadOnly',
         "logical_quota":'logicalQuota',
         "netgroup_whitelist":'netgroupWhitelist',
         "nfs_all_squash":'nfsAllSquash',
@@ -155,6 +161,7 @@ class UpdateViewParam(object):
         "smb_permissions_info":'smbPermissionsInfo',
         "storage_policy_override":'storagePolicyOverride',
         "subnet_whitelist":'subnetWhitelist',
+        "super_user_sids":'superUserSids',
         "swift_project_domain":'swiftProjectDomain',
         "swift_project_name":'swiftProjectName',
         "tenant_id":'tenantId',
@@ -178,6 +185,7 @@ class UpdateViewParam(object):
                  enforce_smb_encryption=None,
                  file_extension_filter=None,
                  file_lock_config=None,
+                 is_read_only=None,
                  logical_quota=None,
                  netgroup_whitelist=None,
                  nfs_all_squash=None,
@@ -192,6 +200,7 @@ class UpdateViewParam(object):
                  smb_permissions_info=None,
                  storage_policy_override=None,
                  subnet_whitelist=None,
+                 super_user_sids=None,
                  swift_project_domain=None,
                  swift_project_name=None,
                  tenant_id=None,
@@ -215,6 +224,7 @@ class UpdateViewParam(object):
         self.enforce_smb_encryption = enforce_smb_encryption
         self.file_extension_filter = file_extension_filter
         self.file_lock_config = file_lock_config
+        self.is_read_only = is_read_only
         self.logical_quota = logical_quota
         self.netgroup_whitelist = netgroup_whitelist
         self.nfs_all_squash = nfs_all_squash
@@ -229,6 +239,7 @@ class UpdateViewParam(object):
         self.smb_permissions_info = smb_permissions_info
         self.storage_policy_override = storage_policy_override
         self.subnet_whitelist = subnet_whitelist
+        self.super_user_sids = super_user_sids
         self.swift_project_domain = swift_project_domain
         self.swift_project_name = swift_project_name
         self.tenant_id = tenant_id
@@ -269,6 +280,7 @@ class UpdateViewParam(object):
         enforce_smb_encryption = dictionary.get('enforceSmbEncryption')
         file_extension_filter = cohesity_management_sdk.models.file_extension_filter.FileExtensionFilter.from_dictionary(dictionary.get('fileExtensionFilter')) if dictionary.get('fileExtensionFilter') else None
         file_lock_config = cohesity_management_sdk.models.file_level_data_lock_config.FileLevelDataLockConfig.from_dictionary(dictionary.get('fileLockConfig')) if dictionary.get('fileLockConfig') else None
+        is_read_only = dictionary.get('isReadOnly')
         logical_quota = cohesity_management_sdk.models.quota_policy.QuotaPolicy.from_dictionary(dictionary.get('logicalQuota')) if dictionary.get('logicalQuota') else None
         netgroup_whitelist = None
         if dictionary.get('netgroupWhitelist') != None:
@@ -291,6 +303,7 @@ class UpdateViewParam(object):
         smb_permissions_info = cohesity_management_sdk.models.smb_permissions_info.SmbPermissionsInfo.from_dictionary(dictionary.get('smbPermissionsInfo')) if dictionary.get('smbPermissionsInfo') else None
         storage_policy_override = cohesity_management_sdk.models.storage_policy_override.StoragePolicyOverride.from_dictionary(dictionary.get('storagePolicyOverride')) if dictionary.get('storagePolicyOverride') else None
         subnet_whitelist = None
+        super_user_sids = dictionary.get('superUserSids')
         if dictionary.get('subnetWhitelist') != None:
             subnet_whitelist = list()
             for structure in dictionary.get('subnetWhitelist'):
@@ -317,6 +330,7 @@ class UpdateViewParam(object):
                    enforce_smb_encryption,
                    file_extension_filter,
                    file_lock_config,
+                   is_read_only,
                    logical_quota,
                    netgroup_whitelist,
                    nfs_all_squash,
@@ -331,6 +345,7 @@ class UpdateViewParam(object):
                    smb_permissions_info,
                    storage_policy_override,
                    subnet_whitelist,
+                   super_user_sids,
                    swift_project_domain,
                    swift_project_name,
                    tenant_id,

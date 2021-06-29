@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
-import cohesity_management_sdk.models.ad_guid_pair
+import cohesity_management_sdk.models.restore_ad_guid_pair
 
 class AdObjectAttributeParameters(object):
 
@@ -11,7 +11,7 @@ class AdObjectAttributeParameters(object):
     or more AD objects
 
     Attributes:
-        ad_guid_pairs (list of AdGuidPair): Specifies the array of source and
+        ad_guid_pairs (list of RestoreAdGuidPair): Specifies the array of source and
             destination object guid pairs to restore attributes.
         exclude_ldap_properties (list of string): Specifies the array of LDAP
             property names to excluded from 'property_vec'. Excluded property
@@ -82,7 +82,7 @@ class AdObjectAttributeParameters(object):
         if dictionary.get('adGuidPairs') != None:
             ad_guid_pairs = list()
             for structure in dictionary.get('adGuidPairs'):
-                ad_guid_pairs.append(cohesity_management_sdk.models.ad_guid_pair.AdGuidPair.from_dictionary(structure))
+                ad_guid_pairs.append(cohesity_management_sdk.models.restore_ad_guid_pair.RestoreAdGuidPair.from_dictionary(structure))
         exclude_ldap_properties = dictionary.get('excludeLdapProperties')
         ldap_properties = dictionary.get('ldapProperties')
         merge_multi_val_properties = dictionary.get('mergeMultiValProperties')

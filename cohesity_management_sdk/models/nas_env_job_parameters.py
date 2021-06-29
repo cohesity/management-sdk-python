@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.data_migration_job_parameters
 import cohesity_management_sdk.models.data_uptier_job_parameters
 import cohesity_management_sdk.models.file_path_filter
 import cohesity_management_sdk.models.file_level_data_lock_config
+import cohesity_management_sdk.models.filter_ip_config
 import cohesity_management_sdk.models.snapshot_label
+import cohesity_management_sdk.models.nas_source_throttling_params
 
 class NasEnvJobParameters(object):
 
@@ -48,6 +50,9 @@ class NasEnvJobParameters(object):
             Filters: "/tmp", "*.mp4" Using such a policy will include
             everything under the root directory except the /tmp directory and
             all the mp4 files.
+        filter_ip_config (FilterIpConfig): Specifies the list of IP addresses
+            that are allowed or denied at the job level. Allowed IPs and
+            Denied IPs cannot be used together.
         nas_protocol (NasProtocolNasEnvJobParametersEnum): Specifies the
             preferred protocol to use for backup. This does not apply to
             generic NAS and will be ignored. Specifies the protocol used by a
@@ -58,6 +63,9 @@ class NasEnvJobParameters(object):
             set , incremental and full snapshot label has to be provided. If
             field is not set, the snapshot label will be automatically set
             using timestamp.
+        throttling_config (NasSourceThrottlingParams): Specifies the NAS
+            specific source throttling parameters during full or incremental
+            backup of the source.
 
     """
 
@@ -70,8 +78,10 @@ class NasEnvJobParameters(object):
         "encryption_enabled":'encryptionEnabled',
         "file_lock_config":'fileLockConfig',
         "file_path_filters":'filePathFilters',
+        "filter_ip_config":'filterIpConfig',
         "nas_protocol":'nasProtocol',
-        "snapshot_label":'snapshotLabel'
+        "snapshot_label":'snapshotLabel',
+        "throttling_config":'throttlingConfig'
     }
 
     def __init__(self,
@@ -82,8 +92,10 @@ class NasEnvJobParameters(object):
                  encryption_enabled=None,
                  file_lock_config=None,
                  file_path_filters=None,
+                 filter_ip_config=None,
                  nas_protocol=None,
-                 snapshot_label=None):
+                 snapshot_label=None,
+                 throttling_config=None):
         """Constructor for the NasEnvJobParameters class"""
 
         # Initialize members of the class
@@ -94,8 +106,10 @@ class NasEnvJobParameters(object):
         self.encryption_enabled = encryption_enabled
         self.file_lock_config = file_lock_config
         self.file_path_filters = file_path_filters
+        self.filter_ip_config = filter_ip_config
         self.nas_protocol = nas_protocol
         self.snapshot_label = snapshot_label
+        self.throttling_config = throttling_config
 
 
     @classmethod
@@ -123,8 +137,10 @@ class NasEnvJobParameters(object):
         encryption_enabled = dictionary.get('encryptionEnabled')
         file_lock_config = cohesity_management_sdk.models.file_level_data_lock_config.FileLevelDataLockConfig.from_dictionary(dictionary.get('fileLockConfig')) if dictionary.get('fileLockConfig') else None
         file_path_filters = cohesity_management_sdk.models.file_path_filter.FilePathFilter.from_dictionary(dictionary.get('filePathFilters')) if dictionary.get('filePathFilters') else None
+        filter_ip_config = cohesity_management_sdk.models.filter_ip_config.FilterIpConfig.from_dictionary(dictionary.get('filterIpConfig')) if dictionary.get('filterIpConfig') else None
         nas_protocol = dictionary.get('nasProtocol')
         snapshot_label = cohesity_management_sdk.models.snapshot_label.SnapshotLabel.from_dictionary(dictionary.get('snapshotLabel')) if dictionary.get('snapshotLabel') else None
+        throttling_config = cohesity_management_sdk.models.nas_source_throttling_params.NasSourceThrottlingParams.from_dictionary(dictionary.get('throttlingConfig')) if dictionary.get('throttlingConfig') else None
 
         # Return an object of this model
         return cls(continue_on_error,
@@ -134,7 +150,9 @@ class NasEnvJobParameters(object):
                    encryption_enabled,
                    file_lock_config,
                    file_path_filters,
+                   filter_ip_config,
                    nas_protocol,
-                   snapshot_label)
+                   snapshot_label,
+                   throttling_config)
 
 

@@ -45,6 +45,7 @@ except ImportError as err:
 
 from library import RestClient
 
+
 try:
     import requests
     # Check for python version

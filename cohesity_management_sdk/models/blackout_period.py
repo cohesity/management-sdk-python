@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.time_of_day
 
@@ -27,7 +27,7 @@ class BlackoutPeriod(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "Id":'id',
+        "id":'Id',
         "day":'day',
         "end_time":'endTime',
         "start_time":'startTime'

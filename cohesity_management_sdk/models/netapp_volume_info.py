@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.cifs_share_info
 import cohesity_management_sdk.models.volume_security_info
@@ -26,7 +26,7 @@ class NetappVolumeInfo(object):
             Fiber Channel connections. 'kFcache' indicates Flex Cache
             connections. 'kHttp' indicates HTTP connections. 'kNdmp' indicates
             NDMP connections. 'kManagement' indicates non-data connections
-            used for management purposes.
+            used for management purposes. 'kNvme' indicates NVMe connections.
         export_policy_name (string): Specifies the name of the export policy
             (which defines the access permissions for the mount client) that
             has been assigned to this volume.

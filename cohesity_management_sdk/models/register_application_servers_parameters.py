@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 
 class RegisterApplicationServersParameters(object):
@@ -55,6 +55,10 @@ class RegisterApplicationServersParameters(object):
             environment. 'kHdfs' indicates Hdfs Protection Source environment.
             'kHive' indicates Hive Protection Source environment. 'kHBase'
             indicates HBase Protection Source environment.
+        encryption_key (string): If set, user has encrypted the credential with
+            'user_ecryption_key'. It is assumed that credentials are first
+            encrypted using internal magento key and then encrypted using user
+            encryption key.
         has_persistent_agent (bool): Set this to true if a persistent agent is
             running on the host. If this is specified, then credentials would
             not be used to log into the host environment. This mechanism may
@@ -62,6 +66,8 @@ class RegisterApplicationServersParameters(object):
             permission issues by running the agent as a service with the right
             credentials. If this field is not specified, credentials must be
             specified.
+        is_internal_encrypted (bool): Set to true if credentials are encrypted
+            by internal magneto key.
         password (string): Specifies password of the username to access the
             target source.
         protection_source_id (long|int): Specifies the Id of the Protection
@@ -74,7 +80,9 @@ class RegisterApplicationServersParameters(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "applications":'applications',
+        "encryption_key":'encryptionKey',
         "has_persistent_agent":'hasPersistentAgent',
+        "is_internal_encrypted":'isInternalEncrypted',
         "password":'password',
         "protection_source_id":'protectionSourceId',
         "username":'username'
@@ -82,7 +90,9 @@ class RegisterApplicationServersParameters(object):
 
     def __init__(self,
                  applications=None,
+                 encryption_key=None,
                  has_persistent_agent=None,
+                 is_internal_encrypted=None,
                  password=None,
                  protection_source_id=None,
                  username=None):
@@ -90,7 +100,9 @@ class RegisterApplicationServersParameters(object):
 
         # Initialize members of the class
         self.applications = applications
+        self.encryption_key = encryption_key
         self.has_persistent_agent = has_persistent_agent
+        self.is_internal_encrypted = is_internal_encrypted
         self.password = password
         self.protection_source_id = protection_source_id
         self.username = username
@@ -115,14 +127,18 @@ class RegisterApplicationServersParameters(object):
 
         # Extract variables from the dictionary
         applications = dictionary.get('applications')
+        encryption_key = dictionary.get('encryptionKey')
         has_persistent_agent = dictionary.get('hasPersistentAgent')
+        is_internal_encrypted = dictionary.get('isInternalEncrypted')
         password = dictionary.get('password')
         protection_source_id = dictionary.get('protectionSourceId')
         username = dictionary.get('username')
 
         # Return an object of this model
         return cls(applications,
+                   encryption_key,
                    has_persistent_agent,
+                   is_internal_encrypted,
                    password,
                    protection_source_id,
                    username)

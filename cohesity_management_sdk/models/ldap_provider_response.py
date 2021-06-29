@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2020 Cohesity Inc.
+# Copyright 2021 Cohesity Inc.
 
 
 class LdapProviderResponse(object):
@@ -11,6 +11,16 @@ class LdapProviderResponse(object):
     Attributes:
         ad_domain_name (string): Specifies the domain name of an Active
             Directory which is mapped to this LDAP provider
+        attribute_common_name (string): Name of the LDAP attribute used for
+            common name of an object.
+        attribute_gid (string): Name of the attribute used to lookup unix GID
+            of an LDAP user.
+        attribute_member_of (string): Name of the LDAP attribute used to lookup
+            members of a group.
+        attribute_uid (string): Name of the attribute used to lookup unix UID
+            of an LDAP user.
+        attribute_user_name (string): Name of the LDAP attribute used to
+            lookup a user by user ID.
         auth_type (AuthTypeEnum): Specifies the authentication type used while
             connecting to LDAP servers. Authentication level. 'kAnonymous'
             indicates LDAP authentication type 'Anonymous' 'kSimple' indicates
@@ -21,6 +31,10 @@ class LdapProviderResponse(object):
             for querying LDAP servers from DNS. If PreferredLdapServerList is
             set, then DomainName field is ignored.
         id (long|int): Specifies the ID of the LDAP provider.
+        object_class_group (string): Name of the LDAP group object class for
+            user accounts.
+        object_class_user (string): Name of the LDAP user object class for user
+            accounts.
         name (string): Specifies the name of the LDAP provider.
         port (int): Specifies LDAP server port.
         preferred_ldap_server_list (list of string): Specifies the preferred
@@ -39,11 +53,18 @@ class LdapProviderResponse(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "ad_domain_name":'adDomainName',
+        "attribute_common_name":'attributeCommonName',
+        "attribute_gid":'attributeGid',
+        "attribute_member_of":'attributeMemberOf',
+        "attribute_uid":'attributeUid',
+        "attribute_user_name":'attributeUserName',
         "auth_type":'authType',
         "base_distinguished_name":'baseDistinguishedName',
         "domain_name":'domainName',
         "id":'id',
         "name":'name',
+        "object_class_group":'objectClassGroup',
+        "object_class_user":'objectClassUser',
         "port":'port',
         "preferred_ldap_server_list":'preferredLdapServerList',
         "tenant_id":'tenantId',
@@ -54,11 +75,18 @@ class LdapProviderResponse(object):
 
     def __init__(self,
                  ad_domain_name=None,
+                 attribute_common_name=None,
+                 attribute_gid=None,
+                 attribute_member_of=None,
+                 attribute_uid=None,
+                 attribute_user_name=None,
                  auth_type=None,
                  base_distinguished_name=None,
                  domain_name=None,
                  id=None,
                  name=None,
+                 object_class_group=None,
+                 object_class_user=None,
                  port=None,
                  preferred_ldap_server_list=None,
                  tenant_id=None,
@@ -69,10 +97,17 @@ class LdapProviderResponse(object):
 
         # Initialize members of the class
         self.ad_domain_name = ad_domain_name
+        self.attribute_common_name = attribute_common_name
+        self.attribute_gid = attribute_gid
+        self.attribute_member_of = attribute_member_of
+        self.attribute_uid = attribute_uid
+        self.attribute_user_name = attribute_user_name
         self.auth_type = auth_type
         self.base_distinguished_name = base_distinguished_name
         self.domain_name = domain_name
         self.id = id
+        self.object_class_group = object_class_group
+        self.object_class_user = object_class_user
         self.name = name
         self.port = port
         self.preferred_ldap_server_list = preferred_ldap_server_list
@@ -101,11 +136,18 @@ class LdapProviderResponse(object):
 
         # Extract variables from the dictionary
         ad_domain_name = dictionary.get('adDomainName')
+        attribute_common_name = dictionary.get('attributeCommonName')
+        attribute_gid = dictionary.get('attributeGid')
+        attribute_member_of = dictionary.get('attributeMemberOf')
+        attribute_uid = dictionary.get('attributeUid')
+        attribute_user_name = dictionary.get('attributeUserName')
         auth_type = dictionary.get('authType')
         base_distinguished_name = dictionary.get('baseDistinguishedName')
         domain_name = dictionary.get('domainName')
         id = dictionary.get('id')
         name = dictionary.get('name')
+        object_class_group = dictionary.get('objectClassGroup')
+        object_class_user = dictionary.get('objectClassUser')
         port = dictionary.get('port')
         preferred_ldap_server_list = dictionary.get('preferredLdapServerList')
         tenant_id = dictionary.get('tenantId')
@@ -115,11 +157,18 @@ class LdapProviderResponse(object):
 
         # Return an object of this model
         return cls(ad_domain_name,
+                   attribute_common_name,
+                   attribute_gid,
+                   attribute_member_of,
+                   attribute_uid,
+                   attribute_user_name,
                    auth_type,
                    base_distinguished_name,
                    domain_name,
                    id,
                    name,
+                   object_class_group,
+                   object_class_user,
                    port,
                    preferred_ldap_server_list,
                    tenant_id,
