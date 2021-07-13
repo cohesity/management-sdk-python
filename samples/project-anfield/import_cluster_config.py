@@ -44,8 +44,6 @@ except ImportError as err:
     exit()
 
 from library import RestClient
-
-
 try:
     import requests
     # Check for python version
@@ -287,8 +285,11 @@ def create_sources(source, environment, node):
             body.endpoint = endpoint
             body.nas_type = res_type
             body.nas_mount_credentials = NasMountCredentialParams()
+
             body.nas_mount_credentials.nas_protocol = host_type
             body.nas_mount_credentials.nas_type = res_type
+            body.nas_mount_credentials.skip_validation = True
+
             if host_type != nas_enum.KNFS3:
                 # Nfs file system doesn't require credentials
                 username = node["registrationInfo"]["nasMountCredentials"].get(
@@ -298,6 +299,12 @@ def create_sources(source, environment, node):
                         "import_cluster_config", "password")
                 else:
                     password = configparser.get(endpoint, "password")
+                    domain = "LOCAL"
+                    if configparser.has_option(endpoint, "domain"):
+                        # If the NAS user belongs to different domain other
+                        # than LOCAL, update domain field in config file.
+                        domain = configparser.get("domain")
+                    body.nas_mount_credentials.domain = domain
                 body.nas_mount_credentials.username = username
                 body.nas_mount_credentials.password = password
 
@@ -438,8 +445,8 @@ def create_sources(source, environment, node):
         register_sources(body, name, source_id)
         time.sleep(sleep_time)
     except NoSectionError as e:
-        ERROR_LIST.append("Please provide password for source %s " % (
-            name))
+        ERROR_LIST.append("Error while fetching data from config file"
+        " for source %s, err msg %s " % (name, e))
     except Exception as e:
         ERROR_LIST.append("Error adding source : %s failed with error : %s" % (
             name, e))
@@ -557,6 +564,7 @@ def create_protection_sources():
                 continue
             source_name = source.protection_source.name
             id = source.protection_source.id
+
 
             if environment == env_enum.KVIEW:
                 # Views are not created as a part of sources.
@@ -762,13 +770,12 @@ def create_protection_jobs():
                 protection_job.name = job_name
             environment = protection_job.environment
             parent_id = protection_job.parent_source_id
-
             if environment not in env_list:
                 continue
             if environment == env_enum.KVIEW:
                 if protection_job.view_box_id not in storage_domain_mapping.keys():
                     continue
-            elif environment not in [env_enum.KAD, env_enum.KSQL, env_enum.KPHYSICAL, env_enum.KPHYSICALFILES, env_enum.KVIEW] and source_mapping.get(parent_id, None) == None:
+            elif environment not in [env_enum.KAD,env_enum.KGENERICNAS, env_enum.KSQL, env_enum.KPHYSICAL, env_enum.KPHYSICALFILES, env_enum.KVIEW] and source_mapping.get(parent_id, None) == None:
                 err_msg = "Protection Source not available for job %s" % job_name
                 ERROR_LIST.append(err_msg)
                 continue
@@ -979,6 +986,18 @@ def create_protection_jobs():
 
             if source_mapping.get(parent_id, ""):
                 protection_job.parent_source_id = source_mapping[parent_id]
+
+            # For PhysicalFiles, Update source side deduplication excluded
+            # source ids.
+            if environment == env_enum.KPHYSICAL and \
+                protection_job.perform_source_side_dedup:
+                if protection_job.dedup_disabled_source_ids:
+                    disabled_sources = list()
+                    for source_id in protection_job.dedup_disabled_source_ids:
+                        if source_mapping.get(source_id, None):
+                            disabled_sources.append(source_mapping[source_id])
+                    protection_job.dedup_disabled_source_ids = disabled_sources
+
 
             try:
                 if override and is_job_available:
@@ -1306,14 +1325,14 @@ if __name__ == "__main__":
         create_roles()
         logger.info("Importing AD groups and users \n\n")
         create_ad_objects()
+    logger.info("Importing Targets  \n\n")
+    create_vaults()
     logger.info("Importing Storage domains \n\n")
     create_storage_domains()
     logger.info("Importing remote clusters  \n\n")
     create_remote_clusters()
     logger.info("Importing Views  \n\n")
     create_views()
-    logger.info("Importing Targets  \n\n")
-    create_vaults()
     logger.info("Importing Sources  \n\n")
     create_protection_sources()
     logger.info("Importing Policies  \n\n")
