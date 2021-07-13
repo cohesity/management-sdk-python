@@ -46,8 +46,9 @@ This will work for Python 3 >=3.4.
             a. Exported Cluster credentials.
             b. Imported Cluster credentials.
             c. Replicated cluster credentials. 
-            d. Protection sources such as vCenter credentials.
-            3. S3 Secret Access key. 
+            d. Protection sources such as vCenter, NAS-SMB, Isilon, Cassandra source credentials.
+            e. External target(Qstar) Credentials.
+            3. S3 Secret Access key.
 ```
 ## Note
 
@@ -112,6 +113,8 @@ This will work for Python 3 >=3.4.
     `selected_jobs=job1,job2,job3` # Only following jobs: job1, job2, job3 are imported to the target cluster.
     
     `selected_jobs=`. # All jobs are imported to the target cluster.
+
+8. Export Access Management - To export and import active directory, AD users and AD groups. By default, access management resources are not exported. To export and import access management, set `export_access_management=True`
 
 ## Export 
 
