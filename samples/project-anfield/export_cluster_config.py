@@ -64,6 +64,7 @@ try:
                                      domain=domain)
     # Make a function call to validate the credentials.
     cohesity_client.principals.get_user_privileges()
+    rest_obj = RestClient(cluster_vip, username, password, domain)
 except APIException as err:
     print("Authentication error occurred, error details: %s" % err)
     exit(1)
@@ -85,6 +86,34 @@ try:
             'export_cluster_config', 'export_access_management')
 except (NoSectionError, NoOptionError) as err:
     print("Error while fetching 'config.ini' content, error msg %s" % err)
+
+
+def get_whitelist_settings(cohesity_client):
+    """"
+    Function to fetch available subnet whitelists and NIS netgroups.
+    """
+    try:
+        settings = dict()
+        subnets = cohesity_client.clusters.get_external_client_subnets(\
+            ).client_subnets
+        settings["subnets"] = subnets if subnets else []
+        exported_res["Subnet whitelists"] = [
+            subnet.ip for subnet in settings["subnets"]]
+
+        api = "nis-providers"
+        _, resp = rest_obj.get(api, version="v2")
+        settings["nis_providers"] = json.loads(resp)["nisProviders"]
+
+        api = "nis-netgroups"
+        _, resp = rest_obj.get(api, version="v2")
+        netgroups = json.loads(resp)["nisNetgroups"]
+        settings["netgroups"] = netgroups if netgroups else []
+        exported_res["NIS Netgroups"] = [
+            group["name"] for group in settings["netgroups"]]
+        return settings
+    except Exception as err:
+        print(
+            "Error while impoting global whitelist settings, err msg %s" % err)
 
 
 cluster_dict = {
@@ -110,6 +139,9 @@ if export_access_mgmnt:
     cluster_dict["roles"] = cohesity_client.roles.get_roles()
 
 exported_res = library.debug()
+
+cluster_dict["whitelist_settings"] = get_whitelist_settings(cohesity_client)
+
 source_dct = {}
 KCASSANDRA = "kCassandra"
 
@@ -122,7 +154,6 @@ env_list = [env_enum.KGENERICNAS, env_enum.KISILON, env_enum.KPHYSICAL,
 for source in cluster_dict["sources"]:
     id = source.protection_source.id
     env = source.protection_source.environment
-    rest_obj = RestClient(cluster_vip, username, password, domain)
 
     if env == "kCassandra":
         api = "public/protectionSources?id={}&environment={}".format(id, env)

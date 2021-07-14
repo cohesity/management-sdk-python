@@ -27,6 +27,7 @@ try:
     from cohesity_management_sdk.models.create_view_box_params import CreateViewBoxParams
     from cohesity_management_sdk.models.environment_register_protection_source_parameters_enum \
         import EnvironmentRegisterProtectionSourceParametersEnum as env_enum
+    from cohesity_management_sdk.models.external_client_subnets import ExternalClientSubnets
     from cohesity_management_sdk.models.nas_mount_credential_params import NasMountCredentialParams
     from cohesity_management_sdk.models.nas_protocol_enum import NasProtocolEnum as nas_enum
     from cohesity_management_sdk.models.protection_job_request_body import ProtectionJobRequestBody
@@ -103,6 +104,8 @@ try:
         "export_cluster_config", "export_access_management")
     sleep_time = configparser.getint(
         "import_cluster_config", "api_pause_time")
+    global_whitelists = configparser.getboolean(
+        "import_cluster_config", "global_whitelists")
 except (NoOptionError, NoSectionError) as err:
     print("Error while fetching value from config.ini file, err_msg"
           " '%s'" % err)
@@ -135,6 +138,68 @@ import_config = library.get_cluster_config(cohesity_client)
 env_list = [env_enum.KGENERICNAS, env_enum.KISILON, env_enum.KPHYSICAL,
             env_enum.KPHYSICALFILES, env_enum.KVIEW, env_enum.K_VMWARE,
             env_enum.KSQL, KCASSANDRA, env_enum.KAD]
+
+
+def update_whitelist_settings():
+    try:
+        settings = cluster_dict["whitelist_settings"]
+        print(settings)
+        if settings["subnets"]:
+            try:
+                body = ExternalClientSubnets()
+                body.client_subnets = list()
+                # Fetch existing subnets available in the cluster, inorder to avoid
+                # overwriting existing subnets.
+                resp = cohesity_client.clusters.get_external_client_subnets()
+                if resp.client_subnets:
+                    existing_subnets = [subnet.ip for subnet in resp.client_subnets]
+                    for subnet in settings["subnets"]:
+                        if subnet.ip not in existing_subnets:
+                            body.client_subnets.append(subnet)
+                if len(body.client_subnets) > 0:
+                    cohesity_client.clusters.update_external_client_subnets(body)
+                imported_res_dict["Subnet whitelist"] = [
+                    subnet.ip for subnet in settings["subnets"]]
+            except Exception as e:
+                ERROR_LIST.append(
+                    "Error while updating subnet whitelists, err msg: %s" % e)
+
+        if settings["nis_providers"]:
+            api = "nis-providers"
+            _, resp = rest_obj.get(api, version="v2")
+            nisproviders = json.loads(resp)["nisProviders"]
+            nis_servers = [nis["masterServerHostname"] for nis in nisproviders] \
+                if nisproviders else []
+            for nis in settings["nis_providers"]:
+                if nis["masterServerHostname"] in nis_servers:
+                    continue
+                code, resp = rest_obj.post(
+                    api, version="v2", data=json.dumps(nis))
+                if code != 201:
+                    ERROR_LIST.append(
+                        "Error while adding NIS provider, err msg: %s" % resp)
+
+        if settings["netgroups"]:
+            api = "nis-netgroups"
+            _, resp = rest_obj.get(api, version="v2")
+            groups = json.loads(resp)["nisNetgroups"]
+            existing_groups = [
+                group["name"] for group in groups] if groups else []
+            for group in settings["netgroups"]:
+                if group["name"] in existing_groups:
+                    imported_res_dict["Nis Netgroups"].append(group["name"])
+                    continue
+                code, resp = rest_obj.post(
+                    api, version="v2", data=json.dumps(group))
+                if code != 201:
+                    ERROR_LIST.append(
+                        "Error while adding Netgroup %s, err msg: %s" % (
+                            group["name"], resp))
+                imported_res_dict["Nis Netgroups"].append(group["name"])
+
+    except Exception as err:
+        ERROR_LIST.append(
+            "Error occured while importing whitelists, err msg: %s" % err)
 
 
 def import_cluster_config():
@@ -987,9 +1052,9 @@ def create_protection_jobs():
             if source_mapping.get(parent_id, ""):
                 protection_job.parent_source_id = source_mapping[parent_id]
 
-            # For PhysicalFiles, Update source side deduplication excluded
+            # For Physical sources, Update source side deduplication excluded
             # source ids.
-            if environment == env_enum.KPHYSICAL and \
+            if environment in [env_enum.KPHYSICALFILES, env_enum.KPHYSICAL] and \
                 protection_job.perform_source_side_dedup:
                 if protection_job.dedup_disabled_source_ids:
                     disabled_sources = list()
@@ -1327,6 +1392,9 @@ if __name__ == "__main__":
         create_ad_objects()
     logger.info("Importing Targets  \n\n")
     create_vaults()
+    if global_whitelists:
+        logger.info("Update Global whitelist settings \n\n")
+        update_whitelist_settings()
     logger.info("Importing Storage domains \n\n")
     create_storage_domains()
     logger.info("Importing remote clusters  \n\n")
