@@ -99,12 +99,12 @@ def get_whitelist_settings(cohesity_client):
         exported_res["Subnet whitelists"] = [
             subnet.ip for subnet in settings["subnets"]]
 
-        api = "nis-providers"
-        _, resp = rest_obj.get(api, version="v2")
+        NIS_PROVIDER_API = "nis-providers"
+        _, resp = rest_obj.get(NIS_PROVIDER_API, version="v2")
         settings["nis_providers"] = json.loads(resp)["nisProviders"]
 
-        api = "nis-netgroups"
-        _, resp = rest_obj.get(api, version="v2")
+        NIS_NETGROUPS_API = "nis-netgroups"
+        _, resp = rest_obj.get(NIS_NETGROUPS_API, version="v2")
         netgroups = json.loads(resp)["nisNetgroups"]
         settings["netgroups"] = netgroups if netgroups else []
         exported_res["NIS Netgroups"] = [

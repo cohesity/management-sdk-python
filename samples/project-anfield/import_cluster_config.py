@@ -178,8 +178,8 @@ def update_whitelist_settings():
                     "Error while updating subnet whitelists, err msg: %s" % e)
 
         if settings["nis_providers"]:
-            api = "nis-providers"
-            _, resp = rest_obj.get(api, version="v2")
+            NIS_PROVIDERS_API = "nis-providers"
+            _, resp = rest_obj.get(NIS_PROVIDERS_API, version="v2")
             nisproviders = json.loads(resp)["nisProviders"]
             nis_servers = [nis["masterServerHostname"] for nis in nisproviders] \
                 if nisproviders else []
@@ -187,14 +187,14 @@ def update_whitelist_settings():
                 if nis["masterServerHostname"] in nis_servers:
                     continue
                 code, resp = rest_obj.post(
-                    api, version="v2", data=json.dumps(nis))
+                    NIS_PROVIDERS_API, version="v2", data=json.dumps(nis))
                 if code != 201:
                     ERROR_LIST.append(
                         "Error while adding NIS provider, err msg: %s" % resp)
 
         if settings["netgroups"]:
-            api = "nis-netgroups"
-            _, resp = rest_obj.get(api, version="v2")
+            NIS_NETGROUPS_API = "nis-netgroups"
+            _, resp = rest_obj.get(NIS_NETGROUPS_API, version="v2")
             groups = json.loads(resp)["nisNetgroups"]
             existing_groups = [
                 group["name"] for group in groups] if groups else []
@@ -203,7 +203,7 @@ def update_whitelist_settings():
                     imported_res_dict["Nis Netgroups"].append(group["name"])
                     continue
                 code, resp = rest_obj.post(
-                    api, version="v2", data=json.dumps(group))
+                    NIS_NETGROUPS_API, version="v2", data=json.dumps(group))
                 if code != 201:
                     ERROR_LIST.append(
                         "Error while adding Netgroup %s, err msg: %s" % (
