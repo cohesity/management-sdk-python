@@ -72,7 +72,6 @@ except Exception as err:
     print("Authentication error occurred, error details: %s" % err)
     exit(1)
 
-
 logger.setLevel(logging.INFO)
 
 logger.info("Exporting resources from cluster '%s'" % (
@@ -129,7 +128,9 @@ cluster_dict = {
     "sql_entity_mapping": library.get_sql_entity_mapping(cohesity_client,
                                                          env_enum.KSQL),
     "ad_entity_mapping": library.get_ad_entity_mapping(cohesity_client,
-                                                         env_enum.KAD)
+                                                         env_enum.KAD),
+    "vlans": library.get_vlans(cohesity_client),
+    "iface_groups": library.get_interface_groups(cohesity_client)
 }
 
 # Export Active directory entries and AD users and groups along with roles.

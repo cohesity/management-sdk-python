@@ -167,6 +167,19 @@ def get_ad_objects(cohesity_client, ad_list=ad_list):
     return ad_objects
 
 
+def get_interface_groups(cohesity_client):
+    iface_groups = cohesity_client.interface_group.get_interface_groups()
+    iface_groups = [] if not iface_groups else iface_groups
+    return iface_groups
+
+def get_vlans(cohesity_client):
+    vlans = cohesity_client.vlan.get_vlans()
+    vlans = vlans if vlans else []
+    for vlan in vlans:
+        exported_res_dict["Vlans"].append(vlan.iface_group_name)
+    return vlans
+
+
 def debug():
     return exported_res_dict
 

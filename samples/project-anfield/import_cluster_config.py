@@ -15,6 +15,7 @@ import time
 from collections import defaultdict
 from os import path
 
+
 # Custom module import
 import library
 try:
@@ -27,7 +28,9 @@ try:
     from cohesity_management_sdk.models.create_view_box_params import CreateViewBoxParams
     from cohesity_management_sdk.models.environment_register_protection_source_parameters_enum \
         import EnvironmentRegisterProtectionSourceParametersEnum as env_enum
+    from cohesity_management_sdk.models.exclude_type_enum import ExcludeTypeEnum
     from cohesity_management_sdk.models.external_client_subnets import ExternalClientSubnets
+    from cohesity_management_sdk.models.latency_thresholds import LatencyThresholds
     from cohesity_management_sdk.models.nas_mount_credential_params import NasMountCredentialParams
     from cohesity_management_sdk.models.nas_protocol_enum import NasProtocolEnum as nas_enum
     from cohesity_management_sdk.models.protection_job_request_body import ProtectionJobRequestBody
@@ -35,8 +38,13 @@ try:
     from cohesity_management_sdk.models.register_application_servers_parameters import RegisterApplicationServersParameters
     from cohesity_management_sdk.models.register_remote_cluster import RegisterRemoteCluster
     from cohesity_management_sdk.models.register_protection_source_parameters import RegisterProtectionSourceParameters
+    from cohesity_management_sdk.models.subnet import Subnet
+    from cohesity_management_sdk.models.throttling_policy_override import ThrottlingPolicyOverride
+    from cohesity_management_sdk.models.throttling_policy_parameters import ThrottlingPolicyParameters
+    from cohesity_management_sdk.models.update_protection_source_parameters import UpdateProtectionSourceParameters
     from cohesity_management_sdk.models.vault import Vault
     from cohesity_management_sdk.models.view_box_pair_info import ViewBoxPairInfo
+    from cohesity_management_sdk.models.vlan_parameters import VlanParameters
     from cohesity_management_sdk.models.vmware_type_enum import VmwareTypeEnum as vmware_enum
     from cohesity_management_sdk.models.type_view_protection_source_enum import TypeViewProtectionSourceEnum as view_enum
 except ImportError as err:
@@ -106,6 +114,8 @@ try:
         "import_cluster_config", "api_pause_time")
     global_whitelists = configparser.getboolean(
         "import_cluster_config", "global_whitelists")
+    vlans = configparser.getboolean(
+        "import_cluster_config", "vlans")
 except (NoOptionError, NoSectionError) as err:
     print("Error while fetching value from config.ini file, err_msg"
           " '%s'" % err)
@@ -143,19 +153,22 @@ env_list = [env_enum.KGENERICNAS, env_enum.KISILON, env_enum.KPHYSICAL,
 def update_whitelist_settings():
     try:
         settings = cluster_dict["whitelist_settings"]
-        print(settings)
         if settings["subnets"]:
             try:
                 body = ExternalClientSubnets()
                 body.client_subnets = list()
-                # Fetch existing subnets available in the cluster, inorder to avoid
+                existing_subnets = list()
+                # Fetch existing subnets available in the cluster, to avoid
                 # overwriting existing subnets.
                 resp = cohesity_client.clusters.get_external_client_subnets()
                 if resp.client_subnets:
-                    existing_subnets = [subnet.ip for subnet in resp.client_subnets]
-                    for subnet in settings["subnets"]:
-                        if subnet.ip not in existing_subnets:
-                            body.client_subnets.append(subnet)
+                    # Existing subnets are not updated.
+                    body.client_subnets.extend(resp.client_subnets)
+                    existing_subnets = [
+                        subnet.ip for subnet in resp.client_subnets]
+                for subnet in settings["subnets"]:
+                    if subnet.ip not in existing_subnets:
+                        body.client_subnets.append(subnet)
                 if len(body.client_subnets) > 0:
                     cohesity_client.clusters.update_external_client_subnets(body)
                 imported_res_dict["Subnet whitelist"] = [
@@ -324,6 +337,7 @@ def create_sources(source, environment, node):
     """
     """
     try:
+        update_source = False
         body = RegisterProtectionSourceParameters()
         body.environment = environment
 
@@ -496,6 +510,16 @@ def create_sources(source, environment, node):
                 if env in attr:
                     attribute = attr
                     break
+            registration_info = source.registration_info
+            if registration_info.throttling_policy:
+                body.throttling_policy = registration_info.throttling_policy
+            if registration_info.subnets:
+                body.subnets = registration_info.subnets
+            # Option to add minimum free space and throttling policy override
+            # is not available during source registration. Sources are updated.
+            if registration_info.minimum_free_space_gb or \
+                registration_info.throttling_policy_overrides:
+                update_source = True
             env_type = getattr(source.protection_source, attribute).mtype
             if env_type.lower() == vmware_enum.K_VCLOUD_DIRECTOR.lower():
                 # Since environment type returns kvCloudDirector and enum
@@ -509,12 +533,79 @@ def create_sources(source, environment, node):
                 body.view_type = view_enum.KVIEWBOX
         register_sources(body, name, source_id)
         time.sleep(sleep_time)
+
+        # Update source is only for VMware Vcenter, to update source settings.
+        if update_source:
+            update_protection_source(registration_info, name, source_mapping[source_id])
     except NoSectionError as e:
         ERROR_LIST.append("Error while fetching data from config file"
         " for source %s, err msg %s " % (name, e))
     except Exception as e:
         ERROR_LIST.append("Error adding source : %s failed with error : %s" % (
             name, e))
+
+
+def datastore_mapping(source_id):
+    """
+    Fetch datastores available in the Vcenter source and create a mapping of
+    datastore name and id.
+    """
+    try:
+        result = dict()
+        response = cohesity_client.protection_sources.list_protection_sources(
+            id=source_id, include_datastores=True,
+            exclude_types=ExcludeTypeEnum.KVIRTUALMACHINE)
+        if not response:
+            ERROR_LIST.append("Vcenter with id %s not available" % source_id)
+            return
+        nodes = response[0].nodes
+        for node in nodes:
+            if "nodes" in node.keys():
+                nodes.extend(node["nodes"])
+            elif node["protectionSource"]["vmWareProtectionSource"].get(
+                "type", None) == "kDatastore":
+                vm_source = node["protectionSource"]["vmWareProtectionSource"]
+                result[vm_source["name"]] = node["protectionSource"]["id"]
+        return result
+    except Exception as err:
+        ERROR_LIST.append(
+            "Error while fetching datastores for Vcenter "
+            "with id: %s, err msg %s." % (source_id, err))
+
+
+def update_protection_source(registration_info, name, source_id):
+    """
+    Update the protection source.
+    """
+    try:
+        body = UpdateProtectionSourceParameters()
+        if registration_info.throttling_policy_overrides:
+            body.throttling_policy = registration_info.throttling_policy
+            body.throttling_policy_overrides = list()
+            datastore_dict = datastore_mapping(source_id)
+            for policy in registration_info.throttling_policy_overrides:
+                override = ThrottlingPolicyOverride()
+                datastore_name = policy.datastore_name
+                override.datastore_id = datastore_dict[datastore_name]
+                override.datastore_name = datastore_name
+                throttling_policy = ThrottlingPolicyParameters()
+                throttling_policy.enforce_max_streams = True
+                throttling_policy.max_concurrent_streams = policy.throttling_policy.max_concurrent_streams
+                throttling_policy.latency_thresholds = LatencyThresholds()
+                throttling_policy.latency_thresholds.active_task_msecs = 30
+                throttling_policy.latency_thresholds.new_task_msecs = 30
+                override.throttling_policy = throttling_policy
+                body.throttling_policy_overrides.append(override)
+        if registration_info.subnets:
+            subnets = registration_info.subnets
+        if registration_info.minimum_free_space_gb:
+            body.minimum_free_space_gb = registration_info.minimum_free_space_gb
+        result = cohesity_client.protection_sources.update_protection_source(
+            source_id, body)
+    except Exception as e:
+        ERROR_LIST.append(
+            "Error while updating source : %s, failed with error : %s" % (
+                name, e))
 
 
 def register_sources(body, name, source_id):
@@ -625,7 +716,7 @@ def create_protection_sources():
 
         for source in sources:
             environment = source.protection_source.environment
-            if environment not in env_list:
+            if environment not in [env_enum.K_VMWARE]: #env_list:
                 continue
             source_name = source.protection_source.name
             id = source.protection_source.id
@@ -1306,6 +1397,41 @@ def create_roles():
                 "Error while adding Role '%s', err msg %s" % (name, err))
 
 
+def create_vlans():
+    """
+    Function to import Vlans.
+    """
+    # Importing interface groups before importing Vlans.
+    iface_groups = library.get_interface_groups(cohesity_client)
+    existing_iface_groups = [group.name for group in iface_groups]
+    for group in cluster_dict.get("iface_groups", []):
+        if group.name in existing_iface_groups:
+            continue
+        try:
+            cohesity_client.interface_group.create_interface_group(group)
+        except Exception as err:
+            ERROR_LIST.append(
+                "Error while creating interface group %s, err msg: %s" % (
+                    group.name, err))
+    existing_vlans = [
+        vlan.iface_group_name for vlan in library.get_vlans(cohesity_client)]
+    exported_vlans = cluster_dict.get("vlans", [])
+    for vlan in exported_vlans:
+        try:
+            import pdb;pdb.set_trace()
+            vlan_name = vlan.iface_group_name
+            if vlan_name not in existing_vlans:
+                # Subnet mask bits and subnet mask IP4 cannot be
+                # specified at the same time.
+                if vlan.subnet.netmask_ip_4 and vlan.subnet.netmask_bits:
+                    vlan.subnet.netmask_ip_4=None
+                cohesity_client.vlan.create_vlan(vlan)
+            imported_res_dict["Vlans"].append(vlan_name)
+        except Exception as err:
+            ERROR_LIST.append("Error while creating Vlan %s, err msg %s" % (
+                vlan_name, err))
+
+
 def create_ad_objects():
     """
     """
@@ -1390,6 +1516,9 @@ if __name__ == "__main__":
         create_roles()
         logger.info("Importing AD groups and users \n\n")
         create_ad_objects()
+    if vlans:
+        logger.info("Importing Vlans\n\n")
+        create_vlans()
     logger.info("Importing Targets  \n\n")
     create_vaults()
     if global_whitelists:
