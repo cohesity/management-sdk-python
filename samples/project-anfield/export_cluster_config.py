@@ -87,34 +87,6 @@ except (NoSectionError, NoOptionError) as err:
     print("Error while fetching 'config.ini' content, error msg %s" % err)
 
 
-def get_whitelist_settings(cohesity_client):
-    """"
-    Function to fetch available subnet whitelists and NIS netgroups.
-    """
-    try:
-        settings = dict()
-        subnets = cohesity_client.clusters.get_external_client_subnets(\
-            ).client_subnets
-        settings["subnets"] = subnets if subnets else []
-        exported_res["Subnet whitelists"] = [
-            subnet.ip for subnet in settings["subnets"]]
-
-        NIS_PROVIDER_API = "nis-providers"
-        _, resp = rest_obj.get(NIS_PROVIDER_API, version="v2")
-        settings["nis_providers"] = json.loads(resp)["nisProviders"]
-
-        NIS_NETGROUPS_API = "nis-netgroups"
-        _, resp = rest_obj.get(NIS_NETGROUPS_API, version="v2")
-        netgroups = json.loads(resp)["nisNetgroups"]
-        settings["netgroups"] = netgroups if netgroups else []
-        exported_res["NIS Netgroups"] = [
-            group["name"] for group in settings["netgroups"]]
-        return settings
-    except Exception as err:
-        print(
-            "Error while impoting global whitelist settings, err msg %s" % err)
-
-
 cluster_dict = {
     "cluster_config": library.get_cluster_config(cohesity_client),
     "views": library.get_views(cohesity_client),
@@ -129,6 +101,8 @@ cluster_dict = {
                                                          env_enum.KSQL),
     "ad_entity_mapping": library.get_ad_entity_mapping(cohesity_client,
                                                          env_enum.KAD),
+    "whitelist_settings": library.get_whitelist_settings(cohesity_client,
+                                                         rest_obj),
     "vlans": library.get_vlans(cohesity_client),
     "iface_groups": library.get_interface_groups(cohesity_client)
 }
@@ -140,8 +114,6 @@ if export_access_mgmnt:
     cluster_dict["roles"] = cohesity_client.roles.get_roles()
 
 exported_res = library.debug()
-
-cluster_dict["whitelist_settings"] = get_whitelist_settings(cohesity_client)
 
 source_dct = {}
 KCASSANDRA = "kCassandra"

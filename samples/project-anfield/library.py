@@ -172,6 +172,35 @@ def get_interface_groups(cohesity_client):
     iface_groups = [] if not iface_groups else iface_groups
     return iface_groups
 
+
+def get_whitelist_settings(cohesity_client, rest_obj):
+    """"
+    Function to fetch available subnet whitelists and NIS netgroups.
+    """
+    try:
+        settings = dict()
+        subnets = cohesity_client.clusters.get_external_client_subnets(\
+            ).client_subnets
+        settings["subnets"] = subnets if subnets else []
+        exported_res_dict["Subnet whitelists"] = [
+            subnet.ip for subnet in settings["subnets"]]
+
+        NIS_PROVIDER_API = "nis-providers"
+        _, resp = rest_obj.get(NIS_PROVIDER_API, version="v2")
+        settings["nis_providers"] = json.loads(resp)["nisProviders"]
+
+        NIS_NETGROUPS_API = "nis-netgroups"
+        _, resp = rest_obj.get(NIS_NETGROUPS_API, version="v2")
+        netgroups = json.loads(resp)["nisNetgroups"]
+        settings["netgroups"] = netgroups if netgroups else []
+        exported_res_dict["NIS Netgroups"] = [
+            group["name"] for group in settings["netgroups"]]
+        return settings
+    except Exception as err:
+        print(
+            "Error while impoting global whitelist settings, err msg %s" % err)
+
+
 def get_vlans(cohesity_client):
     vlans = cohesity_client.vlan.get_vlans()
     vlans = vlans if vlans else []

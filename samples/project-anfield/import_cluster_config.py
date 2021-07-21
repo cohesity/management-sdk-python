@@ -346,6 +346,11 @@ def create_sources(source, environment, node):
             body = RegisterApplicationServersParameters()
             body.applications = [environment]
             id = node["protectionSource"]["id"]
+            if not source_mapping.get(id, None):
+                ERROR_LIST.append(
+                    "Skipping %s registration, since Physical Source '%s' "
+                    "registration failed." % (environment[1:], name))
+                return
             body.protection_source_id = source_mapping[id]
             resp = cohesity_client.protection_sources.\
                 create_register_application_servers(body)
@@ -716,7 +721,7 @@ def create_protection_sources():
 
         for source in sources:
             environment = source.protection_source.environment
-            if environment not in [env_enum.K_VMWARE]: #env_list:
+            if environment not in env_list:
                 continue
             source_name = source.protection_source.name
             id = source.protection_source.id
@@ -1098,7 +1103,12 @@ def create_protection_jobs():
                 exported_entity_mapping = cluster_dict["sql_entity_mapping"] \
                     if environment == env_enum.KSQL else cluster_dict["ad_entity_mapping"]
                 source_list = [
-                    source_mapping[_id] for _id in protection_job.source_ids]
+                    source_mapping[_id] for _id in protection_job.source_ids \
+                        if source_mapping.get(_id, None)]
+                if not source_list:
+                    ERROR_LIST.append(
+                        "Protection Source not available for job %s" % job_name)
+                    continue
                 if source_spl_params:
                     for param in source_spl_params:
                         instance_list = []
@@ -1418,7 +1428,6 @@ def create_vlans():
     exported_vlans = cluster_dict.get("vlans", [])
     for vlan in exported_vlans:
         try:
-            import pdb;pdb.set_trace()
             vlan_name = vlan.iface_group_name
             if vlan_name not in existing_vlans:
                 # Subnet mask bits and subnet mask IP4 cannot be
