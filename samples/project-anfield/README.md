@@ -32,7 +32,26 @@ Current version fo the tooling supports export and import the cluster resources 
     * Active Directory
     * AD groups
     * Roles
-  
+  * Vlans
+  * Global Whitelists
+
+| Resources | Export| Import |
+| :---: | :---: | :---: |
+| Access Management | :wavy_dash: | :wavy_dash: |
+| Custer Config | :heavy_check_mark: | :heavy_check_mark: |
+| External Targets | :heavy_check_mark: | :heavy_check_mark: |
+| Gflags | :heavy_check_mark: | :wavy_dash: |
+| Global Settings | :heavy_check_mark: | :wavy_dash: |
+| Protection Job | :heavy_check_mark: | :heavy_check_mark: |
+| Protection Policy | :heavy_check_mark: | :heavy_check_mark: |
+| Protection Sources | :heavy_check_mark: | :heavy_check_mark: |
+| Replicated Clusters | :heavy_check_mark: | :heavy_check_mark: |
+| Strorage domains | :heavy_check_mark: | :heavy_check_mark: |
+| Vlans | :heavy_check_mark: | :wavy_dash: |
+| Views | :heavy_check_mark: | :heavy_check_mark: |
+
+**Note:** <br /> :heavy_check_mark: - Resources are imported/exported by default.<br /> :wavy_dash: - Resources are not imported/exported by default. Please refer config.ini for the right fields to enable import/export.
+
 ## Installation
 ```
 pip install cohesity_management_sdk configparser 
@@ -46,8 +65,9 @@ This will work for Python 3 >=3.4.
             a. Exported Cluster credentials.
             b. Imported Cluster credentials.
             c. Replicated cluster credentials. 
-            d. Protection sources such as vCenter credentials.
-            3. S3 Secret Access key. 
+            d. Protection sources such as vCenter, NAS-SMB, Isilon, Cassandra source credentials.
+            e. External target(Qstar) Credentials.
+            3. S3 Secret Access key.
 ```
 ## Note
 
@@ -112,6 +132,14 @@ This will work for Python 3 >=3.4.
     `selected_jobs=job1,job2,job3` # Only following jobs: job1, job2, job3 are imported to the target cluster.
     
     `selected_jobs=`. # All jobs are imported to the target cluster.
+
+8. Export Access Management - To export and import active directory, AD users and AD groups. By default, access management resources are not exported. To export and import access management, set `export_access_management=True`
+
+9. Vlans - Flag to import Vlans from exported cluster.
+   `vlans=yes/no`
+    
+10. Global whitelist - Flag to import global whitelists(subnets and netgroups).
+    `global_whitelists=yes\no`
 
 ## Export 
 

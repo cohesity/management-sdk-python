@@ -3,23 +3,28 @@
 # Python utility to export the cluster config.
 # Usage: python export_cluster_config.py
 
-import argparse
-import datetime
-import json
-import logging
-import pickle
-import os
-import requests
-import sys
-import library
+try:
+    import argparse
+    import datetime
+    import json
+    import logging
+    import pickle
+    import os
+    import requests
+    import sys
+    import library
 
-# Custom module import
-from cohesity_management_sdk.cohesity_client import CohesityClient
-from cohesity_management_sdk.exceptions.api_exception import APIException
-from cohesity_management_sdk.models.environment_register_protection_source_parameters_enum \
-    import EnvironmentRegisterProtectionSourceParametersEnum as env_enum
-from library import RestClient
-
+    # Custom module import
+    from cohesity_management_sdk.cohesity_client import CohesityClient
+    from cohesity_management_sdk.exceptions.api_exception import APIException
+    from cohesity_management_sdk.models.environment_register_protection_source_parameters_enum \
+        import EnvironmentRegisterProtectionSourceParametersEnum as env_enum
+    from library import RestClient
+except ImportError as err:
+    print("Please ensure Cohesity Python SDK and dependency packages are installed to continue.")
+    print("To install Python SDK, run 'pip install cohesity-management-sdk'")
+    print("To install dependencies, run 'sh setup.py'")
+    exit()
 
 # Disable python warnings.
 requests.packages.urllib3.disable_warnings()
@@ -59,13 +64,13 @@ try:
                                      domain=domain)
     # Make a function call to validate the credentials.
     cohesity_client.principals.get_user_privileges()
+    rest_obj = RestClient(cluster_vip, username, password, domain)
 except APIException as err:
     print("Authentication error occurred, error details: %s" % err)
     exit(1)
 except Exception as err:
     print("Authentication error occurred, error details: %s" % err)
     exit(1)
-
 
 logger.setLevel(logging.INFO)
 
@@ -95,7 +100,11 @@ cluster_dict = {
     "sql_entity_mapping": library.get_sql_entity_mapping(cohesity_client,
                                                          env_enum.KSQL),
     "ad_entity_mapping": library.get_ad_entity_mapping(cohesity_client,
-                                                         env_enum.KAD)
+                                                         env_enum.KAD),
+    "whitelist_settings": library.get_whitelist_settings(cohesity_client,
+                                                         rest_obj),
+    "vlans": library.get_vlans(cohesity_client),
+    "iface_groups": library.get_interface_groups(cohesity_client)
 }
 
 # Export Active directory entries and AD users and groups along with roles.
@@ -105,6 +114,7 @@ if export_access_mgmnt:
     cluster_dict["roles"] = cohesity_client.roles.get_roles()
 
 exported_res = library.debug()
+
 source_dct = {}
 KCASSANDRA = "kCassandra"
 
@@ -117,7 +127,6 @@ env_list = [env_enum.KGENERICNAS, env_enum.KISILON, env_enum.KPHYSICAL,
 for source in cluster_dict["sources"]:
     id = source.protection_source.id
     env = source.protection_source.environment
-    rest_obj = RestClient(cluster_vip, username, password, domain)
 
     if env == "kCassandra":
         api = "public/protectionSources?id={}&environment={}".format(id, env)
