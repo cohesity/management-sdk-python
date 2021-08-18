@@ -1,3 +1,18 @@
+# [1.7.0] - 2021-08-18
+Paatch release with updated requirements
+
+### Added
+- None
+
+### Changed
+- Removed jsonpickle dependency, replaced with Json.
+
+### Fixed
+- None
+
+### Removed
+- None
+
 # [1.6.0] - 2021-02-22
 New SDK for Cluster 6.6
 

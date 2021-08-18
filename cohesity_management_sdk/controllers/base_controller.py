@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2021 Cohesity Inc.
 import json
-import jsonpickle
 from cohesity_management_sdk.api_helper import APIHelper
 from cohesity_management_sdk.http.http_context import HttpContext
 from cohesity_management_sdk.http.requests_client import RequestsClient
@@ -27,7 +26,7 @@ class BaseController(object):
 
     http_call_back = None
 
-    global_headers = {'user-agent': 'cohesity-python/1.6.0'}
+    global_headers = {'user-agent': 'cohesity-python/1.7.0'}
 
     def __init__(self, config=None, client=None, call_back=None):
         if client != None:
@@ -106,7 +105,7 @@ class BaseController(object):
         if (context.response.status_code < 200) or (
                 context.response.status_code > 208):  # [200,208] = HTTP OK
             status = context.response.status_code
-            message = jsonpickle.decode(context.response.raw_body)['message']
+            message = json.loads(context.response.raw_body)['message']
             raise_except = APIException(
                 'Response status code: %s, Response message: %s' %
                 (status, message), context)

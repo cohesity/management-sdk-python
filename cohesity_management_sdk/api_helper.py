@@ -8,7 +8,7 @@ import calendar
 import email.utils as eut
 from time import mktime
 
-import jsonpickle
+import json
 import dateutil.parser
 from requests.utils import quote
 
@@ -69,10 +69,10 @@ class APIHelper(object):
             if hasattr(obj, "_names"):
                 obj = APIHelper.to_dictionary(obj)
 
-        return jsonpickle.encode(obj, False)
+        return json.dumps(obj)
 
     @staticmethod
-    def json_deserialize(json, unboxing_function=None):
+    def json_deserialize(json_data, unboxing_function=None):
         """JSON Deerialization of a given string.
 
         Args:
@@ -83,13 +83,13 @@ class APIHelper(object):
                 JSON serialized string.
 
         """
-        if json is None:
+        if json_data is None:
             return None
 
         try:
-            decoded = jsonpickle.decode(json)
+            decoded = json.loads(json_data)
         except:
-            return json
+            return json_data
 
         if unboxing_function is None:
             return decoded
