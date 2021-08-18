@@ -41,6 +41,7 @@ class PhysicalFileBackupParams(object):
                  backup_path_info_vec=None,
                  metadata_file_path=None,
                  skip_nested_volumes_vec=None,
+                 symlink_follow_nas_target=None,
                  uses_skip_nested_volumes_vec=None):
         """Constructor for the PhysicalFileBackupParams class"""
 

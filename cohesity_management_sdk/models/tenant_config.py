@@ -32,7 +32,7 @@ class TenantConfig(object):
     }
 
     def __init__(self,
-                 bifrost_enabled,
+                 bifrost_enabled=None,
                  name=None,
                  restricted=None,
                  roles=None,

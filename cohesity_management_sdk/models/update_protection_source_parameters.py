@@ -153,6 +153,7 @@ class UpdateProtectionSourceParameters(object):
 
     def __init__(self,
                  agent_endpoint=None,
+                 allowed_ip_addresses=None,
                  aws_credentials=None,
                  aws_fleet_params=None,
                  azure_credentials=None,

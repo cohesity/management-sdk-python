@@ -23,6 +23,7 @@ class AWSFleetParams_NetworkParams(object):
     }
 
     def __init__(self,
+                 region=None,
                  subnet=None,
                  vpc=None):
         """Constructor for the AWSFleetParams_NetworkParams class"""

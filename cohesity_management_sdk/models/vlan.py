@@ -162,7 +162,6 @@ class Vlan(object):
             return None
 
         # Extract variables from the dictionary
-        print(dictionary)
         add_to_cluster_partition = dictionary.get('addToClusterPartition')
         all_tenant_access = dictionary.get('allTenantAccess')
         app_ip_vec_in_use = dictionary.get('appIpVecInUse')

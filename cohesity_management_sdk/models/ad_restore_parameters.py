@@ -32,7 +32,7 @@ class AdRestoreParameters(object):
     }
 
     def __init__(self,
-                 ad_port=None,
+                 ad_options=None,
                  credentials=None,
                  mount_and_restore=None,
                  port=None):

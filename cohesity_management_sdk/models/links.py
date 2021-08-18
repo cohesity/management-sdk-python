@@ -30,9 +30,9 @@ class Links(object):
         """Constructor for the Links class"""
 
         # Initialize members of the class
-        mself.next = next
-        mself.previous = previous
-        mself.mself = mself
+        self.next = next
+        self.previous = previous
+        self.mself = mself
 
 
     @classmethod

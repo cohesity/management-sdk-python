@@ -49,7 +49,6 @@ class MonthlyEntitlement(object):
             return None
 
         # Extract variables from the dictionary
-        print(dictionary)
         feature_name = dictionary.get('featureName', None)
         monthly_avg_entitlement = dictionary.get('monthlyAvgEntitlement', None)
 

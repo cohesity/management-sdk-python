@@ -34,7 +34,7 @@ class TagAttribute(object):
     }
 
     def __init__(self,
-                 gcp_tag_type,
+                 gcp_tag_type=None,
                  id=None,
                  name=None,
                  uuid=None):
