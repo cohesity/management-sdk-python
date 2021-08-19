@@ -14,7 +14,7 @@ except(IOError, ImportError):
 
 setup(
     name='cohesity_management_sdk',
-    version='1.6.0',
+    version='1.7.0',
     description='This SDK provides operations for interfacing with the Cohesity Cluster.',
     long_description=long_description,
     long_description_content_type=long_description_content_type,
@@ -24,7 +24,6 @@ setup(
     packages=find_packages(),
     install_requires=[
         'requests>=2.9.1, <3.0',
-        'jsonpickle>=0.7.1, <1.0',
         'cachecontrol>=0.11.7, <1.0',
         'python-dateutil>=2.5.3, <3.0'
     ]
