@@ -1,6 +1,5 @@
-models.cluster\_creation\_progress\_result module
-=================================================
-
+models.cluster_creation_progress_result module
+==============================================
 .. automodule:: models.cluster_creation_progress_result
    :members:
    :undoc-members:

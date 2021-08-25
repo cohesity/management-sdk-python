@@ -1,6 +1,5 @@
-models.backup\_job\_proto\_remote\_view\_params\_remote\_view\_params\_per\_view module
-=======================================================================================
-
+models.backup_job_proto_remote_view_params_remote_view_params_per_view module
+=============================================================================
 .. automodule:: models.backup_job_proto_remote_view_params_remote_view_params_per_view
    :members:
    :undoc-members:

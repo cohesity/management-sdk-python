@@ -1,6 +1,5 @@
-models\_v2.alert\_target module
-===============================
-
+models_v2.alert_target module
+=============================
 .. automodule:: models_v2.alert_target
    :members:
    :undoc-members:

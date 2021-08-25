@@ -1,6 +1,5 @@
-models\_v2.gpfs\_params module
-==============================
-
+models_v2.gpfs_params module
+============================
 .. automodule:: models_v2.gpfs_params
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.rename\_view\_param module
-=================================
-
+models.rename_view_param module
+===============================
 .. automodule:: models.rename_view_param
    :members:
    :undoc-members:

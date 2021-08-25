@@ -1,6 +1,5 @@
-models.uda\_cluster module
-==========================
-
+models.uda_cluster module
+=========================
 .. automodule:: models.uda_cluster
    :members:
    :undoc-members:

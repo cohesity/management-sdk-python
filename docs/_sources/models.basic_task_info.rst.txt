@@ -1,6 +1,5 @@
-models.basic\_task\_info module
-===============================
-
+models.basic_task_info module
+=============================
 .. automodule:: models.basic_task_info
    :members:
    :undoc-members:

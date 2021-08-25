@@ -1,6 +1,5 @@
-models.one\_drive\_owner module
-===============================
-
+models.one_drive_owner module
+=============================
 .. automodule:: models.one_drive_owner
    :members:
    :undoc-members:

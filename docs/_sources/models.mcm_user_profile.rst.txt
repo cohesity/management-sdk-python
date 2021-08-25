@@ -1,6 +1,5 @@
-models.mcm\_user\_profile module
-================================
-
+models.mcm_user_profile module
+==============================
 .. automodule:: models.mcm_user_profile
    :members:
    :undoc-members:

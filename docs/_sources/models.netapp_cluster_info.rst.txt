@@ -1,6 +1,5 @@
-models.netapp\_cluster\_info module
-===================================
-
+models.netapp_cluster_info module
+=================================
 .. automodule:: models.netapp_cluster_info
    :members:
    :undoc-members:

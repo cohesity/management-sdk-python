@@ -1,6 +1,5 @@
-models.office\_365\_user\_info module
-=====================================
-
+models.office_365_user_info module
+==================================
 .. automodule:: models.office_365_user_info
    :members:
    :undoc-members:

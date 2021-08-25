@@ -1,6 +1,5 @@
-models.smb\_principal module
-============================
-
+models.smb_principal module
+===========================
 .. automodule:: models.smb_principal
    :members:
    :undoc-members:

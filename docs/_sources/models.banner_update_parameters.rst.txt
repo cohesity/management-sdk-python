@@ -1,6 +1,5 @@
-models.banner\_update\_parameters module
-========================================
-
+models.banner_update_parameters module
+======================================
 .. automodule:: models.banner_update_parameters
    :members:
    :undoc-members:

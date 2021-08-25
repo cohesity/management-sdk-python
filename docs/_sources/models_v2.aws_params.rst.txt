@@ -1,6 +1,5 @@
-models\_v2.aws\_params module
-=============================
-
+models_v2.aws_params module
+===========================
 .. automodule:: models_v2.aws_params
    :members:
    :undoc-members:

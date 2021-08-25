@@ -1,6 +1,5 @@
-models\_v2.recover\_netapp\_to\_netapp\_volume\_target\_params module
-=====================================================================
-
+models_v2.recover_netapp_to_netapp_volume_target_params module
+==============================================================
 .. automodule:: models_v2.recover_netapp_to_netapp_volume_target_params
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models\_v2.view\_data\_migration\_parameters module
-===================================================
-
+models_v2.view_data_migration_parameters module
+===============================================
 .. automodule:: models_v2.view_data_migration_parameters
    :members:
    :undoc-members:

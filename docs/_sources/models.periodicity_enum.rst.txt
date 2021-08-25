@@ -1,6 +1,5 @@
-models.periodicity\_enum module
-===============================
-
+models.periodicity_enum module
+==============================
 .. automodule:: models.periodicity_enum
    :members:
    :undoc-members:

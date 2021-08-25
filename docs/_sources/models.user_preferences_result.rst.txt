@@ -1,6 +1,5 @@
-models.user\_preferences\_result module
-=======================================
-
+models.user_preferences_result module
+=====================================
 .. automodule:: models.user_preferences_result
    :members:
    :undoc-members:

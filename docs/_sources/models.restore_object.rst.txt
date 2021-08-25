@@ -1,6 +1,5 @@
-models.restore\_object module
-=============================
-
+models.restore_object module
+============================
 .. automodule:: models.restore_object
    :members:
    :undoc-members:

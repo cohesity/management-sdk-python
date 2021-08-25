@@ -1,6 +1,5 @@
-models\_v2.subnet module
-========================
-
+models_v2.subnet module
+=======================
 .. automodule:: models_v2.subnet
    :members:
    :undoc-members:

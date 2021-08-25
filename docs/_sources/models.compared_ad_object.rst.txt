@@ -1,6 +1,5 @@
-models.compared\_ad\_object module
-==================================
-
+models.compared_ad_object module
+================================
 .. automodule:: models.compared_ad_object
    :members:
    :undoc-members:

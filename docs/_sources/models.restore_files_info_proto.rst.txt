@@ -1,6 +1,5 @@
-models.restore\_files\_info\_proto module
-=========================================
-
+models.restore_files_info_proto module
+======================================
 .. automodule:: models.restore_files_info_proto
    :members:
    :undoc-members:

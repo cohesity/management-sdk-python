@@ -1,6 +1,5 @@
-models.outlook\_env\_job\_parameters module
-===========================================
-
+models.outlook_env_job_parameters module
+========================================
 .. automodule:: models.outlook_env_job_parameters
    :members:
    :undoc-members:

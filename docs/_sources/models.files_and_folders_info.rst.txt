@@ -1,6 +1,5 @@
-models.files\_and\_folders\_info module
-=======================================
-
+models.files_and_folders_info module
+====================================
 .. automodule:: models.files_and_folders_info
    :members:
    :undoc-members:

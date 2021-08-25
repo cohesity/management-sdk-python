@@ -1,6 +1,5 @@
-models.infected\_files module
-=============================
-
+models.infected_files module
+============================
 .. automodule:: models.infected_files
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models\_v2.owner\_info\_1 module
-================================
-
+models_v2.owner_info_1 module
+=============================
 .. automodule:: models_v2.owner_info_1
    :members:
    :undoc-members:

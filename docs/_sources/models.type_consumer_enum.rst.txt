@@ -1,6 +1,5 @@
-models.type\_consumer\_enum module
-==================================
-
+models.type_consumer_enum module
+================================
 .. automodule:: models.type_consumer_enum
    :members:
    :undoc-members:

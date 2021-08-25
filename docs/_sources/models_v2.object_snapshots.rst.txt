@@ -1,6 +1,5 @@
-models\_v2.object\_snapshots module
-===================================
-
+models_v2.object_snapshots module
+=================================
 .. automodule:: models_v2.object_snapshots
    :members:
    :undoc-members:

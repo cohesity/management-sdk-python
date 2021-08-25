@@ -1,6 +1,5 @@
-models\_v2.common\_oracle\_clone\_params module
-===============================================
-
+models_v2.common_oracle_clone_params module
+===========================================
 .. automodule:: models_v2.common_oracle_clone_params
    :members:
    :undoc-members:

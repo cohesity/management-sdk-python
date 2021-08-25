@@ -1,0 +1,6 @@
+models_v2.data_tiering_schedule module
+======================================
+.. automodule:: models_v2.data_tiering_schedule
+   :members:
+   :undoc-members:
+   :show-inheritance:

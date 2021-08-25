@@ -1,6 +1,5 @@
-models\_v2.node\_specific\_params module
-========================================
-
+models_v2.node_specific_params module
+=====================================
 .. automodule:: models_v2.node_specific_params
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.clone\_view\_request module
-==================================
-
+models.clone_view_request module
+================================
 .. automodule:: models.clone_view_request
    :members:
    :undoc-members:

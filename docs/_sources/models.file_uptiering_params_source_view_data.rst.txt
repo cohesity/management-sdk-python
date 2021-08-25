@@ -1,6 +1,5 @@
-models.file\_uptiering\_params\_source\_view\_data module
-=========================================================
-
+models.file_uptiering_params_source_view_data module
+====================================================
 .. automodule:: models.file_uptiering_params_source_view_data
    :members:
    :undoc-members:

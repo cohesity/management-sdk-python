@@ -1,6 +1,5 @@
-models\_v2.fallback\_option module
-==================================
-
+models_v2.fallback_option module
+================================
 .. automodule:: models_v2.fallback_option
    :members:
    :undoc-members:

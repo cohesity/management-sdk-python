@@ -1,6 +1,5 @@
-models.throttling\_configuration module
-=======================================
-
+models.throttling_configuration module
+======================================
 .. automodule:: models.throttling_configuration
    :members:
    :undoc-members:

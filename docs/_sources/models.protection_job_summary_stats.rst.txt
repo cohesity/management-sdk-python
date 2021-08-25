@@ -1,6 +1,5 @@
-models.protection\_job\_summary\_stats module
-=============================================
-
+models.protection_job_summary_stats module
+==========================================
 .. automodule:: models.protection_job_summary_stats
    :members:
    :undoc-members:

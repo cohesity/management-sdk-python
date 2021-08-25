@@ -1,6 +1,5 @@
-models.device\_node module
-==========================
-
+models.device_node module
+=========================
 .. automodule:: models.device_node
    :members:
    :undoc-members:

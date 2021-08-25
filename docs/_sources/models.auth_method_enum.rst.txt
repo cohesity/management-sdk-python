@@ -1,6 +1,5 @@
-models.auth\_method\_enum module
-================================
-
+models.auth_method_enum module
+==============================
 .. automodule:: models.auth_method_enum
    :members:
    :undoc-members:

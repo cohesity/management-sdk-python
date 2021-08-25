@@ -1,6 +1,5 @@
-models\_v2.vmware\_target\_params\_1 module
-===========================================
-
+models_v2.vmware_target_params_1 module
+=======================================
 .. automodule:: models_v2.vmware_target_params_1
    :members:
    :undoc-members:

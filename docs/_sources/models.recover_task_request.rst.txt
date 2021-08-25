@@ -1,6 +1,5 @@
-models.recover\_task\_request module
-====================================
-
+models.recover_task_request module
+==================================
 .. automodule:: models.recover_task_request
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.source\_special\_parameter module
-========================================
-
+models.source_special_parameter module
+======================================
 .. automodule:: models.source_special_parameter
    :members:
    :undoc-members:

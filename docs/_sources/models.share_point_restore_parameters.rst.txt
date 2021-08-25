@@ -1,6 +1,5 @@
-models.share\_point\_restore\_parameters module
-===============================================
-
+models.share_point_restore_parameters module
+============================================
 .. automodule:: models.share_point_restore_parameters
    :members:
    :undoc-members:

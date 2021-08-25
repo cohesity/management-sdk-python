@@ -1,6 +1,5 @@
-models.uda\_recover\_job\_params module
-=======================================
-
+models.uda_recover_job_params module
+====================================
 .. automodule:: models.uda_recover_job_params
    :members:
    :undoc-members:

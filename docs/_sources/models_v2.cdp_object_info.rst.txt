@@ -1,6 +1,5 @@
-models\_v2.cdp\_object\_info module
-===================================
-
+models_v2.cdp_object_info module
+================================
 .. automodule:: models_v2.cdp_object_info
    :members:
    :undoc-members:

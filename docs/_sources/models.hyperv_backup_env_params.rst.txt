@@ -1,6 +1,5 @@
-models.hyperv\_backup\_env\_params module
-=========================================
-
+models.hyperv_backup_env_params module
+======================================
 .. automodule:: models.hyperv_backup_env_params
    :members:
    :undoc-members:

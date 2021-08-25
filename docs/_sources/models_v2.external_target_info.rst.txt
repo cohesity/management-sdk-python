@@ -1,6 +1,5 @@
-models\_v2.external\_target\_info module
-========================================
-
+models_v2.external_target_info module
+=====================================
 .. automodule:: models_v2.external_target_info
    :members:
    :undoc-members:

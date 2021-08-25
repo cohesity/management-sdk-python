@@ -1,6 +1,5 @@
-models.backup\_script module
-============================
-
+models.backup_script module
+===========================
 .. automodule:: models.backup_script
    :members:
    :undoc-members:

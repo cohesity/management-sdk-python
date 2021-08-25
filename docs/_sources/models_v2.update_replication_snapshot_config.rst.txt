@@ -1,6 +1,5 @@
-models\_v2.update\_replication\_snapshot\_config module
-=======================================================
-
+models_v2.update_replication_snapshot_config module
+===================================================
 .. automodule:: models_v2.update_replication_snapshot_config
    :members:
    :undoc-members:

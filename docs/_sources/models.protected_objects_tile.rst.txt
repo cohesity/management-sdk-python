@@ -1,6 +1,5 @@
-models.protected\_objects\_tile module
-======================================
-
+models.protected_objects_tile module
+====================================
 .. automodule:: models.protected_objects_tile
    :members:
    :undoc-members:

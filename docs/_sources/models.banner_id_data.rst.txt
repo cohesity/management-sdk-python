@@ -1,6 +1,5 @@
-models.banner\_id\_data module
-==============================
-
+models.banner_id_data module
+============================
 .. automodule:: models.banner_id_data
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.mount\_volumes\_parameters module
-========================================
-
+models.mount_volumes_parameters module
+======================================
 .. automodule:: models.mount_volumes_parameters
    :members:
    :undoc-members:

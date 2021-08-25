@@ -1,6 +1,5 @@
-controllers.active\_directory\_controller module
-================================================
-
+controllers.active_directory_controller module
+==============================================
 .. automodule:: controllers.active_directory_controller
    :members:
    :undoc-members:

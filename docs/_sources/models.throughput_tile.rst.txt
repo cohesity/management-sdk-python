@@ -1,6 +1,5 @@
-models.throughput\_tile module
-==============================
-
+models.throughput_tile module
+=============================
 .. automodule:: models.throughput_tile
    :members:
    :undoc-members:

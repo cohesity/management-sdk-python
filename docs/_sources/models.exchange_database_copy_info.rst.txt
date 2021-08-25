@@ -1,6 +1,5 @@
-models.exchange\_database\_copy\_info module
-============================================
-
+models.exchange_database_copy_info module
+=========================================
 .. automodule:: models.exchange_database_copy_info
    :members:
    :undoc-members:

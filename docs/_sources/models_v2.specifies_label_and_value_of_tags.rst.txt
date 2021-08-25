@@ -1,0 +1,6 @@
+models_v2.specifies_label_and_value_of_tags module
+==================================================
+.. automodule:: models_v2.specifies_label_and_value_of_tags
+   :members:
+   :undoc-members:
+   :show-inheritance:

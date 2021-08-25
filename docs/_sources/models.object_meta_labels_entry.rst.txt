@@ -1,0 +1,6 @@
+models.object_meta_labels_entry module
+======================================
+.. automodule:: models.object_meta_labels_entry
+   :members:
+   :undoc-members:
+   :show-inheritance:

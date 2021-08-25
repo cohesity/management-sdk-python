@@ -1,6 +1,5 @@
-controllers.banner\_controller module
-=====================================
-
+controllers.banner_controller module
+====================================
 .. automodule:: controllers.banner_controller
    :members:
    :undoc-members:

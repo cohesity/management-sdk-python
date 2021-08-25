@@ -1,6 +1,5 @@
-models.restore\_site\_params module
-===================================
-
+models.restore_site_params module
+=================================
 .. automodule:: models.restore_site_params
    :members:
    :undoc-members:

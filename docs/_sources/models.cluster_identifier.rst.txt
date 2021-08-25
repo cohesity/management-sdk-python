@@ -1,6 +1,5 @@
-models.cluster\_identifier module
-=================================
-
+models.cluster_identifier module
+================================
 .. automodule:: models.cluster_identifier
    :members:
    :undoc-members:

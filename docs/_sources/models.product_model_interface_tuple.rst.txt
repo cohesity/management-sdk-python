@@ -1,6 +1,5 @@
-models.product\_model\_interface\_tuple module
-==============================================
-
+models.product_model_interface_tuple module
+===========================================
 .. automodule:: models.product_model_interface_tuple
    :members:
    :undoc-members:

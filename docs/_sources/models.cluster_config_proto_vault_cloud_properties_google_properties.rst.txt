@@ -1,6 +1,5 @@
-models.cluster\_config\_proto\_vault\_cloud\_properties\_google\_properties module
-==================================================================================
-
+models.cluster_config_proto_vault_cloud_properties_google_properties module
+===========================================================================
 .. automodule:: models.cluster_config_proto_vault_cloud_properties_google_properties
    :members:
    :undoc-members:

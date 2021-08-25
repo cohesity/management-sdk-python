@@ -1,6 +1,5 @@
-models.pure\_protection\_source module
-======================================
-
+models.pure_protection_source module
+====================================
 .. automodule:: models.pure_protection_source
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.smb\_connection module
-=============================
-
+models.smb_connection module
+============================
 .. automodule:: models.smb_connection
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models\_v2.daily\_schedule module
-=================================
-
+models_v2.daily_schedule module
+===============================
 .. automodule:: models_v2.daily_schedule
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models\_v2.action\_5\_enum module
-=================================
-
+models_v2.action_5_enum module
+==============================
 .. automodule:: models_v2.action_5_enum
    :members:
    :undoc-members:

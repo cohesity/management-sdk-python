@@ -1,6 +1,5 @@
-models.restore\_acropolis\_vm\_param\_network\_config\_info module
-==================================================================
-
+models.restore_acropolis_vm_param_network_config_info module
+============================================================
 .. automodule:: models.restore_acropolis_vm_param_network_config_info
    :members:
    :undoc-members:

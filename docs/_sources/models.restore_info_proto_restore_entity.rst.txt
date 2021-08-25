@@ -1,6 +1,5 @@
-models.restore\_info\_proto\_restore\_entity module
-===================================================
-
+models.restore_info_proto_restore_entity module
+===============================================
 .. automodule:: models.restore_info_proto_restore_entity
    :members:
    :undoc-members:

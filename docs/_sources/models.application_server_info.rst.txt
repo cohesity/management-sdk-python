@@ -1,6 +1,5 @@
-models.application\_server\_info module
-=======================================
-
+models.application_server_info module
+=====================================
 .. automodule:: models.application_server_info
    :members:
    :undoc-members:

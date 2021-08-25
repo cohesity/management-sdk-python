@@ -1,6 +1,5 @@
-models\_v2.recover\_as\_fleet\_config module
-============================================
-
+models_v2.recover_as_fleet_config module
+========================================
 .. automodule:: models_v2.recover_as_fleet_config
    :members:
    :undoc-members:

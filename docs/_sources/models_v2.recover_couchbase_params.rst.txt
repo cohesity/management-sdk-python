@@ -1,6 +1,5 @@
-models\_v2.recover\_couchbase\_params module
-============================================
-
+models_v2.recover_couchbase_params module
+=========================================
 .. automodule:: models_v2.recover_couchbase_params
    :members:
    :undoc-members:

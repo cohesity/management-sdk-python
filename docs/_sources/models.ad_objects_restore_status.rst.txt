@@ -1,6 +1,5 @@
-models.ad\_objects\_restore\_status module
-==========================================
-
+models.ad_objects_restore_status module
+=======================================
 .. automodule:: models.ad_objects_restore_status
    :members:
    :undoc-members:

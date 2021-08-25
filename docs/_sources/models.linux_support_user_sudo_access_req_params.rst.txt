@@ -1,6 +1,5 @@
-models.linux\_support\_user\_sudo\_access\_req\_params module
-=============================================================
-
+models.linux_support_user_sudo_access_req_params module
+=======================================================
 .. automodule:: models.linux_support_user_sudo_access_req_params
    :members:
    :undoc-members:

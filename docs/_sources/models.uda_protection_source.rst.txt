@@ -1,6 +1,5 @@
-models.uda\_protection\_source module
-=====================================
-
+models.uda_protection_source module
+===================================
 .. automodule:: models.uda_protection_source
    :members:
    :undoc-members:

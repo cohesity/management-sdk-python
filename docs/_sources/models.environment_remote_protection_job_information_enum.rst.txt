@@ -1,6 +1,5 @@
-models.environment\_remote\_protection\_job\_information\_enum module
-=====================================================================
-
+models.environment_remote_protection_job_information_enum module
+================================================================
 .. automodule:: models.environment_remote_protection_job_information_enum
    :members:
    :undoc-members:

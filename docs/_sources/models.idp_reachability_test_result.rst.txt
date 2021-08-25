@@ -1,6 +1,5 @@
-models.idp\_reachability\_test\_result module
-=============================================
-
+models.idp_reachability_test_result module
+==========================================
 .. automodule:: models.idp_reachability_test_result
    :members:
    :undoc-members:

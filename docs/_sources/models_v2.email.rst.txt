@@ -1,6 +1,5 @@
-models\_v2.email module
-=======================
-
+models_v2.email module
+======================
 .. automodule:: models_v2.email
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.c\_2\_s\_access\_portal module
-=====================================
-
+models.c_2_s_access_portal module
+=================================
 .. automodule:: models.c_2_s_access_portal
    :members:
    :undoc-members:

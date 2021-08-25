@@ -1,6 +1,5 @@
-controllers.antivirus\_service\_group\_controller module
-========================================================
-
+controllers.antivirus_service_group_controller module
+=====================================================
 .. automodule:: controllers.antivirus_service_group_controller
    :members:
    :undoc-members:

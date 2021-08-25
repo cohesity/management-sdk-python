@@ -1,6 +1,5 @@
-models\_v2.protection\_group\_priority\_enum module
-===================================================
-
+models_v2.protection_group_priority_enum module
+===============================================
 .. automodule:: models_v2.protection_group_priority_enum
    :members:
    :undoc-members:

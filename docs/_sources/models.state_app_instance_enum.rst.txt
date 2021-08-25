@@ -1,6 +1,5 @@
-models.state\_app\_instance\_enum module
-========================================
-
+models.state_app_instance_enum module
+=====================================
 .. automodule:: models.state_app_instance_enum
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models\_v2.common\_file\_and\_folder\_info module
-=================================================
-
+models_v2.common_file_and_folder_info module
+============================================
 .. automodule:: models_v2.common_file_and_folder_info
    :members:
    :undoc-members:

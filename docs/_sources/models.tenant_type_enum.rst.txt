@@ -1,6 +1,5 @@
-models.tenant\_type\_enum module
-================================
-
+models.tenant_type_enum module
+==============================
 .. automodule:: models.tenant_type_enum
    :members:
    :undoc-members:

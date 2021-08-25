@@ -1,0 +1,6 @@
+models_v2.security_config_certificate_based_auth module
+=======================================================
+.. automodule:: models_v2.security_config_certificate_based_auth
+   :members:
+   :undoc-members:
+   :show-inheritance:

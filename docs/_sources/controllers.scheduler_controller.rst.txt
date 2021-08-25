@@ -1,6 +1,5 @@
-controllers.scheduler\_controller module
-========================================
-
+controllers.scheduler_controller module
+=======================================
 .. automodule:: controllers.scheduler_controller
    :members:
    :undoc-members:

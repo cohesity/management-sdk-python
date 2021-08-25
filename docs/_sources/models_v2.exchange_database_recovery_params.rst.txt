@@ -1,6 +1,5 @@
-models\_v2.exchange\_database\_recovery\_params module
-======================================================
-
+models_v2.exchange_database_recovery_params module
+==================================================
 .. automodule:: models_v2.exchange_database_recovery_params
    :members:
    :undoc-members:

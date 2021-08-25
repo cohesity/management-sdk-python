@@ -1,6 +1,5 @@
-models.gpfs\_cluster module
-===========================
-
+models.gpfs_cluster module
+==========================
 .. automodule:: models.gpfs_cluster
    :members:
    :undoc-members:

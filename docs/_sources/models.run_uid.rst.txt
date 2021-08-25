@@ -1,6 +1,5 @@
-models.run\_uid module
-======================
-
+models.run_uid module
+=====================
 .. automodule:: models.run_uid
    :members:
    :undoc-members:

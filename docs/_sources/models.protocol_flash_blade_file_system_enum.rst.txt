@@ -1,6 +1,5 @@
-models.protocol\_flash\_blade\_file\_system\_enum module
-========================================================
-
+models.protocol_flash_blade_file_system_enum module
+===================================================
 .. automodule:: models.protocol_flash_blade_file_system_enum
    :members:
    :undoc-members:

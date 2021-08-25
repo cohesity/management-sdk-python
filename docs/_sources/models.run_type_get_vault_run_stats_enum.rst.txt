@@ -1,6 +1,5 @@
-models.run\_type\_get\_vault\_run\_stats\_enum module
-=====================================================
-
+models.run_type_get_vault_run_stats_enum module
+===============================================
 .. automodule:: models.run_type_get_vault_run_stats_enum
    :members:
    :undoc-members:

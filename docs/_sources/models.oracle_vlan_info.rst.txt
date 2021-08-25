@@ -1,6 +1,5 @@
-models.oracle\_vlan\_info module
-================================
-
+models.oracle_vlan_info module
+==============================
 .. automodule:: models.oracle_vlan_info
    :members:
    :undoc-members:

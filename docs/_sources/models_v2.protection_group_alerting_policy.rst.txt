@@ -1,6 +1,5 @@
-models\_v2.protection\_group\_alerting\_policy module
-=====================================================
-
+models_v2.protection_group_alerting_policy module
+=================================================
 .. automodule:: models_v2.protection_group_alerting_policy
    :members:
    :undoc-members:

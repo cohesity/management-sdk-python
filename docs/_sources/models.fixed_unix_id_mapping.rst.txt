@@ -1,6 +1,5 @@
-models.fixed\_unix\_id\_mapping module
-======================================
-
+models.fixed_unix_id_mapping module
+===================================
 .. automodule:: models.fixed_unix_id_mapping
    :members:
    :undoc-members:

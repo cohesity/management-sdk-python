@@ -1,6 +1,5 @@
-models.removal\_state\_enum module
-==================================
-
+models.removal_state_enum module
+================================
 .. automodule:: models.removal_state_enum
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models\_v2.protection\_group\_info module
-=========================================
-
+models_v2.protection_group_info module
+======================================
 .. automodule:: models_v2.protection_group_info
    :members:
    :undoc-members:

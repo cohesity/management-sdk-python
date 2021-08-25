@@ -1,6 +1,5 @@
-models\_v2.cloud\_spin\_target\_configuration module
-====================================================
-
+models_v2.cloud_spin_target_configuration module
+================================================
 .. automodule:: models_v2.cloud_spin_target_configuration
    :members:
    :undoc-members:

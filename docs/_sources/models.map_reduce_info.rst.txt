@@ -1,6 +1,5 @@
-models.map\_reduce\_info module
-===============================
-
+models.map_reduce_info module
+=============================
 .. automodule:: models.map_reduce_info
    :members:
    :undoc-members:

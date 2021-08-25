@@ -1,6 +1,5 @@
-models.metric\_enum module
-==========================
-
+models.metric_enum module
+=========================
 .. automodule:: models.metric_enum
    :members:
    :undoc-members:

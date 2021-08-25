@@ -1,6 +1,5 @@
-models.cloud\_deploy\_info\_proto\_cloud\_deploy\_entity module
-===============================================================
-
+models.cloud_deploy_info_proto_cloud_deploy_entity module
+=========================================================
 .. automodule:: models.cloud_deploy_info_proto_cloud_deploy_entity
    :members:
    :undoc-members:

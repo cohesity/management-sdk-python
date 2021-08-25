@@ -1,6 +1,5 @@
-models\_v2.domain\_controllers\_response module
-===============================================
-
+models_v2.domain_controllers_response module
+============================================
 .. automodule:: models_v2.domain_controllers_response
    :members:
    :undoc-members:

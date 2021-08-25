@@ -1,6 +1,5 @@
-models.worm\_retention\_proto module
-====================================
-
+models.worm_retention_proto module
+==================================
 .. automodule:: models.worm_retention_proto
    :members:
    :undoc-members:

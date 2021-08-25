@@ -1,6 +1,5 @@
-models.static\_route module
-===========================
-
+models.static_route module
+==========================
 .. automodule:: models.static_route
    :members:
    :undoc-members:

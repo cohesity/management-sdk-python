@@ -1,6 +1,5 @@
-models.datastore\_info module
-=============================
-
+models.datastore_info module
+============================
 .. automodule:: models.datastore_info
    :members:
    :undoc-members:

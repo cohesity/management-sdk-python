@@ -1,6 +1,5 @@
-models.restore\_file\_copy\_stats module
-========================================
-
+models.restore_file_copy_stats module
+=====================================
 .. automodule:: models.restore_file_copy_stats
    :members:
    :undoc-members:

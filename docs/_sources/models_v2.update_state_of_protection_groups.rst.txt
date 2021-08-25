@@ -1,6 +1,5 @@
-models\_v2.update\_state\_of\_protection\_groups module
-=======================================================
-
+models_v2.update_state_of_protection_groups module
+==================================================
 .. automodule:: models_v2.update_state_of_protection_groups
    :members:
    :undoc-members:

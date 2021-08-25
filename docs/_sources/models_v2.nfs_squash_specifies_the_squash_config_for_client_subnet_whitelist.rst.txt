@@ -1,6 +1,5 @@
-models\_v2.nfs\_squash\_specifies\_the\_squash\_config\_for\_client\_subnet\_whitelist module
-=============================================================================================
-
+models_v2.nfs_squash_specifies_the_squash_config_for_client_subnet_whitelist module
+===================================================================================
 .. automodule:: models_v2.nfs_squash_specifies_the_squash_config_for_client_subnet_whitelist
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.privilege\_id\_enum module
-=================================
-
+models.privilege_id_enum module
+===============================
 .. automodule:: models.privilege_id_enum
    :members:
    :undoc-members:

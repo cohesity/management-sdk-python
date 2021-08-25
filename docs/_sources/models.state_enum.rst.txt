@@ -1,6 +1,5 @@
-models.state\_enum module
-=========================
-
+models.state_enum module
+========================
 .. automodule:: models.state_enum
    :members:
    :undoc-members:

@@ -1,0 +1,6 @@
+models_v2.node_removal_parameters module
+========================================
+.. automodule:: models_v2.node_removal_parameters
+   :members:
+   :undoc-members:
+   :show-inheritance:

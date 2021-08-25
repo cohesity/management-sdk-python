@@ -1,6 +1,5 @@
-models.view\_box\_stats module
-==============================
-
+models.view_box_stats module
+============================
 .. automodule:: models.view_box_stats
    :members:
    :undoc-members:

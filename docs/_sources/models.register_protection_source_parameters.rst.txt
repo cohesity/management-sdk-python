@@ -1,6 +1,5 @@
-models.register\_protection\_source\_parameters module
-======================================================
-
+models.register_protection_source_parameters module
+===================================================
 .. automodule:: models.register_protection_source_parameters
    :members:
    :undoc-members:

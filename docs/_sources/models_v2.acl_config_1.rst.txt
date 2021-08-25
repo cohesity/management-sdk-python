@@ -1,6 +1,5 @@
-models\_v2.acl\_config\_1 module
-================================
-
+models_v2.acl_config_1 module
+=============================
 .. automodule:: models_v2.acl_config_1
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.application\_parameters module
-=====================================
-
+models.application_parameters module
+====================================
 .. automodule:: models.application_parameters
    :members:
    :undoc-members:

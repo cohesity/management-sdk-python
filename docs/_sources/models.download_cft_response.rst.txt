@@ -1,6 +1,5 @@
-models.download\_cft\_response module
-=====================================
-
+models.download_cft_response module
+===================================
 .. automodule:: models.download_cft_response
    :members:
    :undoc-members:

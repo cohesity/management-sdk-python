@@ -1,6 +1,5 @@
-models\_v2.vmware\_source\_type module
-======================================
-
+models_v2.vmware_source_type module
+===================================
 .. automodule:: models_v2.vmware_source_type
    :members:
    :undoc-members:

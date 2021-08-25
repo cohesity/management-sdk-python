@@ -1,6 +1,5 @@
-models.agent\_deployment\_status\_response module
-=================================================
-
+models.agent_deployment_status_response module
+==============================================
 .. automodule:: models.agent_deployment_status_response
    :members:
    :undoc-members:

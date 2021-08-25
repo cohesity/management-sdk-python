@@ -1,6 +1,5 @@
-models.physical\_file\_backup\_params module
-============================================
-
+models.physical_file_backup_params module
+=========================================
 .. automodule:: models.physical_file_backup_params
    :members:
    :undoc-members:

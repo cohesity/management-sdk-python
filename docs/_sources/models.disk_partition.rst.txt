@@ -1,6 +1,5 @@
-models.disk\_partition module
-=============================
-
+models.disk_partition module
+============================
 .. automodule:: models.disk_partition
    :members:
    :undoc-members:

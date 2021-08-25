@@ -1,6 +1,5 @@
-models.uda\_restore\_object module
-==================================
-
+models.uda_restore_object module
+================================
 .. automodule:: models.uda_restore_object
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-controllers.custom\_reporting\_controller module
-================================================
-
+controllers.custom_reporting_controller module
+==============================================
 .. automodule:: controllers.custom_reporting_controller
    :members:
    :undoc-members:

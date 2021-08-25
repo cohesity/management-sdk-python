@@ -1,6 +1,5 @@
-models.protection\_run\_response module
-=======================================
-
+models.protection_run_response module
+=====================================
 .. automodule:: models.protection_run_response
    :members:
    :undoc-members:

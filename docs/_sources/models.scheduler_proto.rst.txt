@@ -1,6 +1,5 @@
-models.scheduler\_proto module
-==============================
-
+models.scheduler_proto module
+=============================
 .. automodule:: models.scheduler_proto
    :members:
    :undoc-members:

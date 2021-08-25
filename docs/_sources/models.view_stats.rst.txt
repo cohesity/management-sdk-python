@@ -1,6 +1,5 @@
-models.view\_stats module
-=========================
-
+models.view_stats module
+========================
 .. automodule:: models.view_stats
    :members:
    :undoc-members:

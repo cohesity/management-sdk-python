@@ -1,6 +1,5 @@
-models\_v2.gpfs\_target\_params\_10 module
-==========================================
-
+models_v2.gpfs_target_params_10 module
+======================================
 .. automodule:: models_v2.gpfs_target_params_10
    :members:
    :undoc-members:

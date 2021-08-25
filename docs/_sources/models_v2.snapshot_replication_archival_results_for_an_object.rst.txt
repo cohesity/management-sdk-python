@@ -1,6 +1,5 @@
-models\_v2.snapshot\_replication\_archival\_results\_for\_an\_object module
-===========================================================================
-
+models_v2.snapshot_replication_archival_results_for_an_object module
+====================================================================
 .. automodule:: models_v2.snapshot_replication_archival_results_for_an_object
    :members:
    :undoc-members:

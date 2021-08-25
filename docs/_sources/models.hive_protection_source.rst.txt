@@ -1,6 +1,5 @@
-models.hive\_protection\_source module
-======================================
-
+models.hive_protection_source module
+====================================
 .. automodule:: models.hive_protection_source
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.get\_alert\_types\_params module
-=======================================
-
+models.get_alert_types_params module
+====================================
 .. automodule:: models.get_alert_types_params
    :members:
    :undoc-members:

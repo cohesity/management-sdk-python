@@ -1,6 +1,5 @@
-models.quota\_and\_usage\_in\_view module
-=========================================
-
+models.quota_and_usage_in_view module
+=====================================
 .. automodule:: models.quota_and_usage_in_view
    :members:
    :undoc-members:

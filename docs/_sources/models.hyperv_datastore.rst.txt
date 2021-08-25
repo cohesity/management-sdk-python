@@ -1,6 +1,5 @@
-models.hyperv\_datastore module
-===============================
-
+models.hyperv_datastore module
+==============================
 .. automodule:: models.hyperv_datastore
    :members:
    :undoc-members:

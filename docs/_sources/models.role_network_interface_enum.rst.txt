@@ -1,6 +1,5 @@
-models.role\_network\_interface\_enum module
-============================================
-
+models.role_network_interface_enum module
+=========================================
 .. automodule:: models.role_network_interface_enum
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models\_v2.protection\_policy module
-====================================
-
+models_v2.protection_policy module
+==================================
 .. automodule:: models_v2.protection_policy
    :members:
    :undoc-members:

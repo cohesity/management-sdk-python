@@ -1,6 +1,5 @@
-models.dir\_quota\_config module
-================================
-
+models.dir_quota_config module
+==============================
 .. automodule:: models.dir_quota_config
    :members:
    :undoc-members:

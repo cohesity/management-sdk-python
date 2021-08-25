@@ -1,6 +1,5 @@
-models.action\_update\_protection\_jobs\_state\_request\_body\_enum module
-==========================================================================
-
+models.action_update_protection_jobs_state_request_body_enum module
+===================================================================
 .. automodule:: models.action_update_protection_jobs_state_request_body_enum
    :members:
    :undoc-members:

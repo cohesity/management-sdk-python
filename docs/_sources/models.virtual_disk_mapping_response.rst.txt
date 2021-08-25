@@ -1,6 +1,5 @@
-models.virtual\_disk\_mapping\_response module
-==============================================
-
+models.virtual_disk_mapping_response module
+===========================================
 .. automodule:: models.virtual_disk_mapping_response
    :members:
    :undoc-members:

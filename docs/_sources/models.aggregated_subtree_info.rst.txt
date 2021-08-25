@@ -1,6 +1,5 @@
-models.aggregated\_subtree\_info module
-=======================================
-
+models.aggregated_subtree_info module
+=====================================
 .. automodule:: models.aggregated_subtree_info
    :members:
    :undoc-members:

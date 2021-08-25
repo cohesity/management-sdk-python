@@ -1,6 +1,5 @@
-models.encryption\_configuration module
-=======================================
-
+models.encryption_configuration module
+======================================
 .. automodule:: models.encryption_configuration
    :members:
    :undoc-members:

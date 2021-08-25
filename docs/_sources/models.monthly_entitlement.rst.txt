@@ -1,6 +1,5 @@
-models.monthly\_entitlement module
-==================================
-
+models.monthly_entitlement module
+=================================
 .. automodule:: models.monthly_entitlement
    :members:
    :undoc-members:

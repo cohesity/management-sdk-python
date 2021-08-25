@@ -1,6 +1,5 @@
-models.object\_snapshot\_info module
-====================================
-
+models.object_snapshot_info module
+==================================
 .. automodule:: models.object_snapshot_info
    :members:
    :undoc-members:

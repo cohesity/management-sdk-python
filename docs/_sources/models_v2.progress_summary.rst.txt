@@ -1,6 +1,5 @@
-models\_v2.progress\_summary module
-===================================
-
+models_v2.progress_summary module
+=================================
 .. automodule:: models_v2.progress_summary
    :members:
    :undoc-members:

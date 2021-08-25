@@ -1,6 +1,5 @@
-models.tenant\_config module
-============================
-
+models.tenant_config module
+===========================
 .. automodule:: models.tenant_config
    :members:
    :undoc-members:

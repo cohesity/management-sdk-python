@@ -1,6 +1,5 @@
-models\_v2.protection\_source module
-====================================
-
+models_v2.protection_source module
+==================================
 .. automodule:: models_v2.protection_source
    :members:
    :undoc-members:

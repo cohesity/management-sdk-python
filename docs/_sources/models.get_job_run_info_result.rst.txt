@@ -1,6 +1,5 @@
-models.get\_job\_run\_info\_result module
-=========================================
-
+models.get_job_run_info_result module
+=====================================
 .. automodule:: models.get_job_run_info_result
    :members:
    :undoc-members:

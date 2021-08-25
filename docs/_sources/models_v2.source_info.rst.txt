@@ -1,6 +1,5 @@
-models\_v2.source\_info module
-==============================
-
+models_v2.source_info module
+============================
 .. automodule:: models_v2.source_info
    :members:
    :undoc-members:

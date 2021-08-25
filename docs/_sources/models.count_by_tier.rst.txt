@@ -1,6 +1,5 @@
-models.count\_by\_tier module
-=============================
-
+models.count_by_tier module
+===========================
 .. automodule:: models.count_by_tier
    :members:
    :undoc-members:

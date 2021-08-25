@@ -1,6 +1,5 @@
-models\_v2.vmware\_app\_protection\_parameters module
-=====================================================
-
+models_v2.vmware_app_protection_parameters module
+=================================================
 .. automodule:: models_v2.vmware_app_protection_parameters
    :members:
    :undoc-members:

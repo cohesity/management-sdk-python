@@ -1,6 +1,5 @@
-models.vmware\_params module
-============================
-
+models.vmware_params module
+===========================
 .. automodule:: models.vmware_params
    :members:
    :undoc-members:

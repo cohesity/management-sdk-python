@@ -1,6 +1,5 @@
-models.bifrost\_subnet module
-=============================
-
+models.bifrost_subnet module
+============================
 .. automodule:: models.bifrost_subnet
    :members:
    :undoc-members:

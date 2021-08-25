@@ -1,6 +1,5 @@
-models\_v2.flashblade\_protocol\_type module
-============================================
-
+models_v2.flashblade_protocol_type module
+=========================================
 .. automodule:: models_v2.flashblade_protocol_type
    :members:
    :undoc-members:

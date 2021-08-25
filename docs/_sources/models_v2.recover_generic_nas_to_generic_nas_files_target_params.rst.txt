@@ -1,6 +1,5 @@
-models\_v2.recover\_generic\_nas\_to\_generic\_nas\_files\_target\_params module
-================================================================================
-
+models_v2.recover_generic_nas_to_generic_nas_files_target_params module
+=======================================================================
 .. automodule:: models_v2.recover_generic_nas_to_generic_nas_files_target_params
    :members:
    :undoc-members:

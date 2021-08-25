@@ -1,6 +1,5 @@
-models.network\_interface module
-================================
-
+models.network_interface module
+===============================
 .. automodule:: models.network_interface
    :members:
    :undoc-members:

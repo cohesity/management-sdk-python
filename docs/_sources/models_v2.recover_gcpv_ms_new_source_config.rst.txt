@@ -1,6 +1,5 @@
-models\_v2.recover\_gcpv\_ms\_new\_source\_config module
-========================================================
-
+models_v2.recover_gcpv_ms_new_source_config module
+==================================================
 .. automodule:: models_v2.recover_gcpv_ms_new_source_config
    :members:
    :undoc-members:

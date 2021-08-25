@@ -1,6 +1,5 @@
-models\_v2.recover\_vmware\_v\_app\_template\_params module
-===========================================================
-
+models_v2.recover_vmware_v_app_template_params module
+=====================================================
 .. automodule:: models_v2.recover_vmware_v_app_template_params
    :members:
    :undoc-members:

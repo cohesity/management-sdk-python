@@ -1,6 +1,5 @@
-models.restored\_object\_network\_config\_proto module
-======================================================
-
+models.restored_object_network_config_proto module
+==================================================
 .. automodule:: models.restored_object_network_config_proto
    :members:
    :undoc-members:

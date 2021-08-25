@@ -1,6 +1,5 @@
-models.oracle\_database\_node\_channel module
-=============================================
-
+models.oracle_database_node_channel module
+==========================================
 .. automodule:: models.oracle_database_node_channel
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.protection\_environment\_enum module
-===========================================
-
+models.protection_environment_enum module
+=========================================
 .. automodule:: models.protection_environment_enum
    :members:
    :undoc-members:

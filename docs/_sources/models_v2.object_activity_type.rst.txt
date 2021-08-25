@@ -1,0 +1,6 @@
+models_v2.object_activity_type module
+=====================================
+.. automodule:: models_v2.object_activity_type
+   :members:
+   :undoc-members:
+   :show-inheritance:

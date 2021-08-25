@@ -1,6 +1,5 @@
-models.physical\_env\_job\_parameters module
-============================================
-
+models.physical_env_job_parameters module
+=========================================
 .. automodule:: models.physical_env_job_parameters
    :members:
    :undoc-members:

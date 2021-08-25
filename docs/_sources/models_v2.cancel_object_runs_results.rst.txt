@@ -1,0 +1,6 @@
+models_v2.cancel_object_runs_results module
+===========================================
+.. automodule:: models_v2.cancel_object_runs_results
+   :members:
+   :undoc-members:
+   :show-inheritance:

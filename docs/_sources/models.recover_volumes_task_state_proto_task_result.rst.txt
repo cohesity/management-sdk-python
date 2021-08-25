@@ -1,6 +1,5 @@
-models.recover\_volumes\_task\_state\_proto\_task\_result module
-================================================================
-
+models.recover_volumes_task_state_proto_task_result module
+==========================================================
 .. automodule:: models.recover_volumes_task_state_proto_task_result
    :members:
    :undoc-members:

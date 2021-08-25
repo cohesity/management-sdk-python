@@ -1,6 +1,5 @@
-models.view\_id\_mapping\_proto\_protocol\_access\_info module
-==============================================================
-
+models.view_id_mapping_proto_protocol_access_info module
+========================================================
 .. automodule:: models.view_id_mapping_proto_protocol_access_info
    :members:
    :undoc-members:

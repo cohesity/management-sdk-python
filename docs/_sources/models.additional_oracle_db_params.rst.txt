@@ -1,6 +1,5 @@
-models.additional\_oracle\_db\_params module
-============================================
-
+models.additional_oracle_db_params module
+=========================================
 .. automodule:: models.additional_oracle_db_params
    :members:
    :undoc-members:

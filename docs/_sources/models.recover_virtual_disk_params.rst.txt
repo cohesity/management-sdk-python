@@ -1,6 +1,5 @@
-models.recover\_virtual\_disk\_params module
-============================================
-
+models.recover_virtual_disk_params module
+=========================================
 .. automodule:: models.recover_virtual_disk_params
    :members:
    :undoc-members:

@@ -1,0 +1,6 @@
+models_v2.ad_user_auth_mapping module
+=====================================
+.. automodule:: models_v2.ad_user_auth_mapping
+   :members:
+   :undoc-members:
+   :show-inheritance:

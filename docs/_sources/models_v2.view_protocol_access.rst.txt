@@ -1,6 +1,5 @@
-models\_v2.view\_protocol\_access module
-========================================
-
+models_v2.view_protocol_access module
+=====================================
 .. automodule:: models_v2.view_protocol_access
    :members:
    :undoc-members:

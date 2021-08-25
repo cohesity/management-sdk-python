@@ -1,6 +1,5 @@
-models.hyper\_flex\_protection\_source module
-=============================================
-
+models.hyper_flex_protection_source module
+==========================================
 .. automodule:: models.hyper_flex_protection_source
    :members:
    :undoc-members:

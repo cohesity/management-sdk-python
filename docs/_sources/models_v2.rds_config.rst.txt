@@ -1,6 +1,5 @@
-models\_v2.rds\_config module
-=============================
-
+models_v2.rds_config module
+===========================
 .. automodule:: models_v2.rds_config
    :members:
    :undoc-members:

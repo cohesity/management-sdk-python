@@ -1,6 +1,5 @@
-models.remediation\_state\_update\_infected\_file\_params\_enum module
-======================================================================
-
+models.remediation_state_update_infected_file_params_enum module
+================================================================
 .. automodule:: models.remediation_state_update_infected_file_params_enum
    :members:
    :undoc-members:

@@ -1,0 +1,6 @@
+models.object_meta module
+=========================
+.. automodule:: models.object_meta
+   :members:
+   :undoc-members:
+   :show-inheritance:

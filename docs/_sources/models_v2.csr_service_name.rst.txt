@@ -1,6 +1,5 @@
-models\_v2.csr\_service\_name module
-====================================
-
+models_v2.csr_service_name module
+=================================
 .. automodule:: models_v2.csr_service_name
    :members:
    :undoc-members:

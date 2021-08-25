@@ -1,6 +1,5 @@
-models\_v2.summary\_information\_for\_local\_snapshot\_run module
-=================================================================
-
+models_v2.summary_information_for_local_snapshot_run module
+===========================================================
 .. automodule:: models_v2.summary_information_for_local_snapshot_run
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.vm\_directory\_list\_result module
-=========================================
-
+models.vm_directory_list_result module
+======================================
 .. automodule:: models.vm_directory_list_result
    :members:
    :undoc-members:

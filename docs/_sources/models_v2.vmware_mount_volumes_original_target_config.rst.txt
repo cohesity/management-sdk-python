@@ -1,6 +1,5 @@
-models\_v2.vmware\_mount\_volumes\_original\_target\_config module
-==================================================================
-
+models_v2.vmware_mount_volumes_original_target_config module
+============================================================
 .. automodule:: models_v2.vmware_mount_volumes_original_target_config
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.key\_value\_pair module
-==============================
-
+models.key_value_pair module
+============================
 .. automodule:: models.key_value_pair
    :members:
    :undoc-members:

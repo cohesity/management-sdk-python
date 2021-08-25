@@ -1,6 +1,5 @@
-models.archival\_target module
-==============================
-
+models.archival_target module
+=============================
 .. automodule:: models.archival_target
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.storage\_domain\_stats module
-====================================
-
+models.storage_domain_stats module
+==================================
 .. automodule:: models.storage_domain_stats
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.type\_cloud\_deploy\_target\_details\_enum module
-========================================================
-
+models.type_cloud_deploy_target_details_enum module
+===================================================
 .. automodule:: models.type_cloud_deploy_target_details_enum
    :members:
    :undoc-members:

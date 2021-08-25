@@ -1,6 +1,5 @@
-models\_v2.script\_host\_type module
-====================================
-
+models_v2.script_host_type module
+=================================
 .. automodule:: models_v2.script_host_type
    :members:
    :undoc-members:

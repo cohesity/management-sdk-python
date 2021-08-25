@@ -1,6 +1,5 @@
-models.nas\_analysis\_job\_params\_file\_size\_bucket module
-============================================================
-
+models.nas_analysis_job_params_file_size_bucket module
+======================================================
 .. automodule:: models.nas_analysis_job_params_file_size_bucket
    :members:
    :undoc-members:

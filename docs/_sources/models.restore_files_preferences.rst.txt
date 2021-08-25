@@ -1,6 +1,5 @@
-models.restore\_files\_preferences module
-=========================================
-
+models.restore_files_preferences module
+=======================================
 .. automodule:: models.restore_files_preferences
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.interval\_unit\_enum module
-==================================
-
+models.interval_unit_enum module
+================================
 .. automodule:: models.interval_unit_enum
    :members:
    :undoc-members:

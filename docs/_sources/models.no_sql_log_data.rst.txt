@@ -1,6 +1,5 @@
-models.no\_sql\_log\_data module
-================================
-
+models.no_sql_log_data module
+=============================
 .. automodule:: models.no_sql_log_data
    :members:
    :undoc-members:

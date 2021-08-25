@@ -1,0 +1,6 @@
+exceptions.error_error_exception module
+=======================================
+.. automodule:: exceptions.error_error_exception
+   :members:
+   :undoc-members:
+   :show-inheritance:

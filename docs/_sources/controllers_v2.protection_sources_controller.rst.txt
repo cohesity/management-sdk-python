@@ -1,6 +1,5 @@
-controllers\_v2.protection\_sources\_controller module
-======================================================
-
+controllers_v2.protection_sources_controller module
+===================================================
 .. automodule:: controllers_v2.protection_sources_controller
    :members:
    :undoc-members:

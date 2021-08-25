@@ -1,6 +1,5 @@
-models.vm\_info module
-======================
-
+models.vm_info module
+=====================
 .. automodule:: models.vm_info
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models\_v2.scheduled\_backup\_type module
-=========================================
-
+models_v2.scheduled_backup_type module
+======================================
 .. automodule:: models_v2.scheduled_backup_type
    :members:
    :undoc-members:

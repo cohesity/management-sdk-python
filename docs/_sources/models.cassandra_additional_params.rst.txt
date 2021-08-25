@@ -1,6 +1,5 @@
-models.cassandra\_additional\_params module
-===========================================
-
+models.cassandra_additional_params module
+=========================================
 .. automodule:: models.cassandra_additional_params
    :members:
    :undoc-members:

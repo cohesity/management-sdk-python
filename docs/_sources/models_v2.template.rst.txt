@@ -1,6 +1,5 @@
-models\_v2.template module
-==========================
-
+models_v2.template module
+=========================
 .. automodule:: models_v2.template
    :members:
    :undoc-members:

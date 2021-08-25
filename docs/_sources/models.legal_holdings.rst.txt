@@ -1,6 +1,5 @@
-models.legal\_holdings module
-=============================
-
+models.legal_holdings module
+============================
 .. automodule:: models.legal_holdings
    :members:
    :undoc-members:

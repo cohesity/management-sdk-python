@@ -1,6 +1,5 @@
-models.disk\_block module
-=========================
-
+models.disk_block module
+========================
 .. automodule:: models.disk_block
    :members:
    :undoc-members:

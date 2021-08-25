@@ -1,6 +1,5 @@
-models.cryptsoft\_kms\_config\_response module
-==============================================
-
+models.cryptsoft_kms_config_response module
+===========================================
 .. automodule:: models.cryptsoft_kms_config_response
    :members:
    :undoc-members:

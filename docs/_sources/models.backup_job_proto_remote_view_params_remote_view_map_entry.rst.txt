@@ -1,6 +1,5 @@
-models.backup\_job\_proto\_remote\_view\_params\_remote\_view\_map\_entry module
-================================================================================
-
+models.backup_job_proto_remote_view_params_remote_view_map_entry module
+=======================================================================
 .. automodule:: models.backup_job_proto_remote_view_params_remote_view_map_entry
    :members:
    :undoc-members:

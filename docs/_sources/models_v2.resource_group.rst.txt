@@ -1,6 +1,5 @@
-models\_v2.resource\_group module
-=================================
-
+models_v2.resource_group module
+===============================
 .. automodule:: models_v2.resource_group
    :members:
    :undoc-members:

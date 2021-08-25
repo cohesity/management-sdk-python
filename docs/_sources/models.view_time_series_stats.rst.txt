@@ -1,6 +1,5 @@
-models.view\_time\_series\_stats module
-=======================================
-
+models.view_time_series_stats module
+====================================
 .. automodule:: models.view_time_series_stats
    :members:
    :undoc-members:

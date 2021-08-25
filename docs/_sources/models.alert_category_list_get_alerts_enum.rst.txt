@@ -1,6 +1,5 @@
-models.alert\_category\_list\_get\_alerts\_enum module
-======================================================
-
+models.alert_category_list_get_alerts_enum module
+=================================================
 .. automodule:: models.alert_category_list_get_alerts_enum
    :members:
    :undoc-members:

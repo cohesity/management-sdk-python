@@ -1,6 +1,5 @@
-models.oracle\_db\_config module
-================================
-
+models.oracle_db_config module
+==============================
 .. automodule:: models.oracle_db_config
    :members:
    :undoc-members:

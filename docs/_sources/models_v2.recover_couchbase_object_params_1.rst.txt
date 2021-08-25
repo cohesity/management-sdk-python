@@ -1,0 +1,6 @@
+models_v2.recover_couchbase_object_params_1 module
+==================================================
+.. automodule:: models_v2.recover_couchbase_object_params_1
+   :members:
+   :undoc-members:
+   :show-inheritance:

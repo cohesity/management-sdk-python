@@ -1,6 +1,5 @@
-models\_v2.cdp\_object\_last\_run\_info module
-==============================================
-
+models_v2.cdp_object_last_run_info module
+=========================================
 .. automodule:: models_v2.cdp_object_last_run_info
    :members:
    :undoc-members:

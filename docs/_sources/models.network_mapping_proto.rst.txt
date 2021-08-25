@@ -1,6 +1,5 @@
-models.network\_mapping\_proto module
-=====================================
-
+models.network_mapping_proto module
+===================================
 .. automodule:: models.network_mapping_proto
    :members:
    :undoc-members:

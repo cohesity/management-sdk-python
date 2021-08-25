@@ -1,6 +1,5 @@
-models.mongodb\_protection\_source module
-=========================================
-
+models.mongodb_protection_source module
+=======================================
 .. automodule:: models.mongodb_protection_source
    :members:
    :undoc-members:

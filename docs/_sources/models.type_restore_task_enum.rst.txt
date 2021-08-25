@@ -1,6 +1,5 @@
-models.type\_restore\_task\_enum module
-=======================================
-
+models.type_restore_task_enum module
+====================================
 .. automodule:: models.type_restore_task_enum
    :members:
    :undoc-members:

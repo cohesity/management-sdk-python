@@ -1,6 +1,5 @@
-models.run\_now\_parameters module
-==================================
-
+models.run_now_parameters module
+================================
 .. automodule:: models.run_now_parameters
    :members:
    :undoc-members:

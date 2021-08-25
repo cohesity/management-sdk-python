@@ -1,6 +1,5 @@
-models.environment\_protection\_summary\_by\_env\_enum module
-=============================================================
-
+models.environment_protection_summary_by_env_enum module
+========================================================
 .. automodule:: models.environment_protection_summary_by_env_enum
    :members:
    :undoc-members:

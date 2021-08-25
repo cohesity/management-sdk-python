@@ -1,6 +1,5 @@
-models.device\_tree\_partition\_slice module
-============================================
-
+models.device_tree_partition_slice module
+=========================================
 .. automodule:: models.device_tree_partition_slice
    :members:
    :undoc-members:

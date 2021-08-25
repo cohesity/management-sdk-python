@@ -1,6 +1,5 @@
-models.sql\_source\_id module
-=============================
-
+models.sql_source_id module
+===========================
 .. automodule:: models.sql_source_id
    :members:
    :undoc-members:

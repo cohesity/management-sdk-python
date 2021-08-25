@@ -1,6 +1,5 @@
-models.delivery\_rule\_proto\_delivery\_target module
-=====================================================
-
+models.delivery_rule_proto_delivery_target module
+=================================================
 .. automodule:: models.delivery_rule_proto_delivery_target
    :members:
    :undoc-members:

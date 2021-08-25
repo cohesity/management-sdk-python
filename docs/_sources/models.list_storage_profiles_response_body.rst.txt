@@ -1,6 +1,5 @@
-models.list\_storage\_profiles\_response\_body module
-=====================================================
-
+models.list_storage_profiles_response_body module
+=================================================
 .. automodule:: models.list_storage_profiles_response_body
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.update\_application\_server\_parameters module
-=====================================================
-
+models.update_application_server_parameters module
+==================================================
 .. automodule:: models.update_application_server_parameters
    :members:
    :undoc-members:

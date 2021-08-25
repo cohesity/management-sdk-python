@@ -1,6 +1,5 @@
-controllers\_v2.objects\_controller module
-==========================================
-
+controllers_v2.objects_controller module
+========================================
 .. automodule:: controllers_v2.objects_controller
    :members:
    :undoc-members:

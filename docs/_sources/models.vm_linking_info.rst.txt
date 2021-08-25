@@ -1,6 +1,5 @@
-models.vm\_linking\_info module
-===============================
-
+models.vm_linking_info module
+=============================
 .. automodule:: models.vm_linking_info
    :members:
    :undoc-members:

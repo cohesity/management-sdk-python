@@ -1,6 +1,5 @@
-models\_v2.vmware\_recover\_files\_new\_target\_config module
-=============================================================
-
+models_v2.vmware_recover_files_new_target_config module
+=======================================================
 .. automodule:: models_v2.vmware_recover_files_new_target_config
    :members:
    :undoc-members:

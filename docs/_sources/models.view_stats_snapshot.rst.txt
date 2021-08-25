@@ -1,6 +1,5 @@
-models.view\_stats\_snapshot module
-===================================
-
+models.view_stats_snapshot module
+=================================
 .. automodule:: models.view_stats_snapshot
    :members:
    :undoc-members:

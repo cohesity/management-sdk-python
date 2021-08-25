@@ -1,6 +1,5 @@
-models.vault\_stats\_info module
-================================
-
+models.vault_stats_info module
+==============================
 .. automodule:: models.vault_stats_info
    :members:
    :undoc-members:

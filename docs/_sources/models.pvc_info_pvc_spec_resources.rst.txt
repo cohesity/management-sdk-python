@@ -1,0 +1,6 @@
+models.pvc_info_pvc_spec_resources module
+=========================================
+.. automodule:: models.pvc_info_pvc_spec_resources
+   :members:
+   :undoc-members:
+   :show-inheritance:

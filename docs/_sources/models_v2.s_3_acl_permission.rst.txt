@@ -1,6 +1,5 @@
-models\_v2.s\_3\_acl\_permission module
-=======================================
-
+models_v2.s_3_acl_permission module
+===================================
 .. automodule:: models_v2.s_3_acl_permission
    :members:
    :undoc-members:

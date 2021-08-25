@@ -1,6 +1,5 @@
-models.latest\_protection\_job\_run\_info module
-================================================
-
+models.latest_protection_job_run_info module
+============================================
 .. automodule:: models.latest_protection_job_run_info
    :members:
    :undoc-members:

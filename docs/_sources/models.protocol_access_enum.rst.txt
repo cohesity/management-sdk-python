@@ -1,6 +1,5 @@
-models.protocol\_access\_enum module
-====================================
-
+models.protocol_access_enum module
+==================================
 .. automodule:: models.protocol_access_enum
    :members:
    :undoc-members:

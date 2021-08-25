@@ -1,6 +1,5 @@
-models.cifs\_share\_info module
-===============================
-
+models.cifs_share_info module
+=============================
 .. automodule:: models.cifs_share_info
    :members:
    :undoc-members:

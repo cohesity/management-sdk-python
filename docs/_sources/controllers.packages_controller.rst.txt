@@ -1,6 +1,5 @@
-controllers.packages\_controller module
-=======================================
-
+controllers.packages_controller module
+======================================
 .. automodule:: controllers.packages_controller
    :members:
    :undoc-members:

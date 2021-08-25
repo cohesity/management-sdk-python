@@ -1,6 +1,5 @@
-models.disk\_unit module
-========================
-
+models.disk_unit module
+=======================
 .. automodule:: models.disk_unit
    :members:
    :undoc-members:

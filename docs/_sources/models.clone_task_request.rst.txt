@@ -1,6 +1,5 @@
-models.clone\_task\_request module
-==================================
-
+models.clone_task_request module
+================================
 .. automodule:: models.clone_task_request
    :members:
    :undoc-members:

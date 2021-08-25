@@ -1,6 +1,5 @@
-models\_v2.view\_category\_enum module
-======================================
-
+models_v2.view_category_enum module
+===================================
 .. automodule:: models_v2.view_category_enum
    :members:
    :undoc-members:

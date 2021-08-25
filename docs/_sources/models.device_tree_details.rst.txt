@@ -1,6 +1,5 @@
-models.device\_tree\_details module
-===================================
-
+models.device_tree_details module
+=================================
 .. automodule:: models.device_tree_details
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.physical\_params module
-==============================
-
+models.physical_params module
+=============================
 .. automodule:: models.physical_params
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models\_v2.bmr\_schedule module
-===============================
-
+models_v2.bmr_schedule module
+=============================
 .. automodule:: models_v2.bmr_schedule
    :members:
    :undoc-members:

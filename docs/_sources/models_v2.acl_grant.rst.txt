@@ -1,6 +1,5 @@
-models\_v2.acl\_grant module
-============================
-
+models_v2.acl_grant module
+==========================
 .. automodule:: models_v2.acl_grant
    :members:
    :undoc-members:

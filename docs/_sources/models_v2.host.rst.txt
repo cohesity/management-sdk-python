@@ -1,6 +1,5 @@
-models\_v2.host module
-======================
-
+models_v2.host module
+=====================
 .. automodule:: models_v2.host
    :members:
    :undoc-members:

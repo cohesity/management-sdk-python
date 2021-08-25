@@ -1,6 +1,5 @@
-models\_v2.object\_local\_snapshot\_information module
-======================================================
-
+models_v2.object_local_snapshot_information module
+==================================================
 .. automodule:: models_v2.object_local_snapshot_information
    :members:
    :undoc-members:

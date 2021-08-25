@@ -1,6 +1,5 @@
-models.restore\_kubernetes\_namespaces\_params module
-=====================================================
-
+models.restore_kubernetes_namespaces_params module
+==================================================
 .. automodule:: models.restore_kubernetes_namespaces_params
    :members:
    :undoc-members:

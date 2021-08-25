@@ -1,6 +1,5 @@
-models.account\_entitlement module
-==================================
-
+models.account_entitlement module
+=================================
 .. automodule:: models.account_entitlement
    :members:
    :undoc-members:

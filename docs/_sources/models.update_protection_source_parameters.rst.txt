@@ -1,6 +1,5 @@
-models.update\_protection\_source\_parameters module
-====================================================
-
+models.update_protection_source_parameters module
+=================================================
 .. automodule:: models.update_protection_source_parameters
    :members:
    :undoc-members:

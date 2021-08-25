@@ -1,0 +1,6 @@
+models_v2.objects_last_run module
+=================================
+.. automodule:: models_v2.objects_last_run
+   :members:
+   :undoc-members:
+   :show-inheritance:

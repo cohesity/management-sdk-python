@@ -1,6 +1,5 @@
-models.pdb\_entity\_info module
-===============================
-
+models.pdb_entity_info module
+=============================
 .. automodule:: models.pdb_entity_info
    :members:
    :undoc-members:

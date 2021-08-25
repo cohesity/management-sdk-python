@@ -1,6 +1,5 @@
-models.protection\_sources\_summary\_stats module
-=================================================
-
+models.protection_sources_summary_stats module
+==============================================
 .. automodule:: models.protection_sources_summary_stats
    :members:
    :undoc-members:

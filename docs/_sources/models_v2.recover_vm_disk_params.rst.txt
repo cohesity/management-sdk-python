@@ -1,6 +1,5 @@
-models\_v2.recover\_vm\_disk\_params module
-===========================================
-
+models_v2.recover_vm_disk_params module
+=======================================
 .. automodule:: models_v2.recover_vm_disk_params
    :members:
    :undoc-members:

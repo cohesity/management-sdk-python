@@ -1,6 +1,5 @@
-models\_v2.isilon\_target\_params\_5 module
-===========================================
-
+models_v2.isilon_target_params_5 module
+=======================================
 .. automodule:: models_v2.isilon_target_params_5
    :members:
    :undoc-members:

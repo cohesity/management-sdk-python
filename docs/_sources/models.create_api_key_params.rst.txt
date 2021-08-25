@@ -1,6 +1,5 @@
-models.create\_api\_key\_params module
-======================================
-
+models.create_api_key_params module
+===================================
 .. automodule:: models.create_api_key_params
    :members:
    :undoc-members:

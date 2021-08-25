@@ -1,0 +1,6 @@
+models_v2.object_protection_run_summary module
+==============================================
+.. automodule:: models_v2.object_protection_run_summary
+   :members:
+   :undoc-members:
+   :show-inheritance:

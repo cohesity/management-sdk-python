@@ -1,6 +1,5 @@
-models\_v2.keystone\_scope\_type\_1\_enum module
-================================================
-
+models_v2.keystone_scope_type_1_enum module
+===========================================
 .. automodule:: models_v2.keystone_scope_type_1_enum
    :members:
    :undoc-members:

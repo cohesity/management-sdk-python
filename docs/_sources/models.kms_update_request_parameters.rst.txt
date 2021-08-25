@@ -1,6 +1,5 @@
-models.kms\_update\_request\_parameters module
-==============================================
-
+models.kms_update_request_parameters module
+===========================================
 .. automodule:: models.kms_update_request_parameters
    :members:
    :undoc-members:

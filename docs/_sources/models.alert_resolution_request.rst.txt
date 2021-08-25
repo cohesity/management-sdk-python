@@ -1,6 +1,5 @@
-models.alert\_resolution\_request module
-========================================
-
+models.alert_resolution_request module
+======================================
 .. automodule:: models.alert_resolution_request
    :members:
    :undoc-members:

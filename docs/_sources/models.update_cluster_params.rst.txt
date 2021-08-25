@@ -1,6 +1,5 @@
-models.update\_cluster\_params module
-=====================================
-
+models.update_cluster_params module
+===================================
 .. automodule:: models.update_cluster_params
    :members:
    :undoc-members:

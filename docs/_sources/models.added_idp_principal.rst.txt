@@ -1,6 +1,5 @@
-models.added\_idp\_principal module
-===================================
-
+models.added_idp_principal module
+=================================
 .. automodule:: models.added_idp_principal
    :members:
    :undoc-members:

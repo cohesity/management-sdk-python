@@ -1,6 +1,5 @@
-models.list\_org\_vdc\_networks\_response module
-================================================
-
+models.list_org_vdc_networks_response module
+============================================
 .. automodule:: models.list_org_vdc_networks_response
    :members:
    :undoc-members:

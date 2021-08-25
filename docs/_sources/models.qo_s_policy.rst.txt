@@ -1,6 +1,5 @@
-models.qo\_s\_policy module
-===========================
-
+models.qo_s_policy module
+=========================
 .. automodule:: models.qo_s_policy
    :members:
    :undoc-members:

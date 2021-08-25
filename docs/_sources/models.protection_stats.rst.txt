@@ -1,6 +1,5 @@
-models.protection\_stats module
-===============================
-
+models.protection_stats module
+==============================
 .. automodule:: models.protection_stats
    :members:
    :undoc-members:

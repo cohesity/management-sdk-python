@@ -1,6 +1,5 @@
-models.nfs\_squash module
-=========================
-
+models.nfs_squash module
+========================
 .. automodule:: models.nfs_squash
    :members:
    :undoc-members:

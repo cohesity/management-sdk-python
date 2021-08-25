@@ -1,6 +1,5 @@
-models.user\_delete\_parameters module
-======================================
-
+models.user_delete_parameters module
+====================================
 .. automodule:: models.user_delete_parameters
    :members:
    :undoc-members:

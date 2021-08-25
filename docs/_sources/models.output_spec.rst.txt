@@ -1,6 +1,5 @@
-models.output\_spec module
-==========================
-
+models.output_spec module
+=========================
 .. automodule:: models.output_spec
    :members:
    :undoc-members:

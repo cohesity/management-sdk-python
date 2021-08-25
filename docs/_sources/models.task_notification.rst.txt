@@ -1,6 +1,5 @@
-models.task\_notification module
-================================
-
+models.task_notification module
+===============================
 .. automodule:: models.task_notification
    :members:
    :undoc-members:

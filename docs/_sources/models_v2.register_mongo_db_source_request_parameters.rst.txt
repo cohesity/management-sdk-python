@@ -1,6 +1,5 @@
-models\_v2.register\_mongo\_db\_source\_request\_parameters module
-==================================================================
-
+models_v2.register_mongo_db_source_request_parameters module
+============================================================
 .. automodule:: models_v2.register_mongo_db_source_request_parameters
    :members:
    :undoc-members:

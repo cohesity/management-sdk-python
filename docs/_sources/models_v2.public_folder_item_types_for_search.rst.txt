@@ -1,6 +1,5 @@
-models\_v2.public\_folder\_item\_types\_for\_search module
-==========================================================
-
+models_v2.public_folder_item_types_for_search module
+====================================================
 .. automodule:: models_v2.public_folder_item_types_for_search
    :members:
    :undoc-members:

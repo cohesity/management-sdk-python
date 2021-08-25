@@ -1,6 +1,5 @@
-models.deploy\_cert\_parameters module
-======================================
-
+models.deploy_cert_parameters module
+====================================
 .. automodule:: models.deploy_cert_parameters
    :members:
    :undoc-members:

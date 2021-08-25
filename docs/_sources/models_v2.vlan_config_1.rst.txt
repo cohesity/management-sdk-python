@@ -1,6 +1,5 @@
-models\_v2.vlan\_config\_1 module
-=================================
-
+models_v2.vlan_config_1 module
+==============================
 .. automodule:: models_v2.vlan_config_1
    :members:
    :undoc-members:

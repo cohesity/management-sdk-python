@@ -1,6 +1,5 @@
-models\_v2.bmr\_backup\_physical\_schedule\_and\_retention module
-=================================================================
-
+models_v2.bmr_backup_physical_schedule_and_retention module
+===========================================================
 .. automodule:: models_v2.bmr_backup_physical_schedule_and_retention
    :members:
    :undoc-members:

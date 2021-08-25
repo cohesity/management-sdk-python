@@ -1,6 +1,5 @@
-models\_v2.oracle\_protection\_group\_vlan\_info module
-=======================================================
-
+models_v2.oracle_protection_group_vlan_info module
+==================================================
 .. automodule:: models_v2.oracle_protection_group_vlan_info
    :members:
    :undoc-members:

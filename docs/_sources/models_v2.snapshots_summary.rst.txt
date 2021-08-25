@@ -1,0 +1,6 @@
+models_v2.snapshots_summary module
+==================================
+.. automodule:: models_v2.snapshots_summary
+   :members:
+   :undoc-members:
+   :show-inheritance:

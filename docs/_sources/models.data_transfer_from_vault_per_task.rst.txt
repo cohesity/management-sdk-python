@@ -1,6 +1,5 @@
-models.data\_transfer\_from\_vault\_per\_task module
-====================================================
-
+models.data_transfer_from_vault_per_task module
+===============================================
 .. automodule:: models.data_transfer_from_vault_per_task
    :members:
    :undoc-members:

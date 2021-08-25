@@ -1,6 +1,5 @@
-models.role\_create\_parameters module
-======================================
-
+models.role_create_parameters module
+====================================
 .. automodule:: models.role_create_parameters
    :members:
    :undoc-members:

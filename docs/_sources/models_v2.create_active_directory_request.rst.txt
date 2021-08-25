@@ -1,6 +1,5 @@
-models\_v2.create\_active\_directory\_request module
-====================================================
-
+models_v2.create_active_directory_request module
+================================================
 .. automodule:: models_v2.create_active_directory_request
    :members:
    :undoc-members:

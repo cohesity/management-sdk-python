@@ -1,6 +1,5 @@
-models\_v2.recover\_view\_environment\_params module
-====================================================
-
+models_v2.recover_view_environment_params module
+================================================
 .. automodule:: models_v2.recover_view_environment_params
    :members:
    :undoc-members:

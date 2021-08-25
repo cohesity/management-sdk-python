@@ -1,6 +1,5 @@
-models\_v2.update\_protection\_group\_run\_request\_body module
-===============================================================
-
+models_v2.update_protection_group_run_request_body module
+=========================================================
 .. automodule:: models_v2.update_protection_group_run_request_body
    :members:
    :undoc-members:

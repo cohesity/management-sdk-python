@@ -1,6 +1,5 @@
-models.remote\_protection\_job\_information module
-==================================================
-
+models.remote_protection_job_information module
+===============================================
 .. automodule:: models.remote_protection_job_information
    :members:
    :undoc-members:

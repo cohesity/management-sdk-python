@@ -1,6 +1,5 @@
-models.analysis\_task\_info module
-==================================
-
+models.analysis_task_info module
+================================
 .. automodule:: models.analysis_task_info
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models\_v2.encryption\_enum module
-==================================
-
+models_v2.encryption_enum module
+================================
 .. automodule:: models_v2.encryption_enum
    :members:
    :undoc-members:

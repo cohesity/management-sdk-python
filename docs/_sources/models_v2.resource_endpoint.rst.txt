@@ -1,0 +1,6 @@
+models_v2.resource_endpoint module
+==================================
+.. automodule:: models_v2.resource_endpoint
+   :members:
+   :undoc-members:
+   :show-inheritance:

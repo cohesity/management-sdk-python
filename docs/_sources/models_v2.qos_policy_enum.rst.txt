@@ -1,6 +1,5 @@
-models\_v2.qos\_policy\_enum module
-===================================
-
+models_v2.qos_policy_enum module
+================================
 .. automodule:: models_v2.qos_policy_enum
    :members:
    :undoc-members:

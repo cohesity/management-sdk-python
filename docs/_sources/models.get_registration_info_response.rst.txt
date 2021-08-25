@@ -1,6 +1,5 @@
-models.get\_registration\_info\_response module
-===============================================
-
+models.get_registration_info_response module
+============================================
 .. automodule:: models.get_registration_info_response
    :members:
    :undoc-members:

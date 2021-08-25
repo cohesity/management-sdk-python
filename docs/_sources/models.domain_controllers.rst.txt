@@ -1,6 +1,5 @@
-models.domain\_controllers module
-=================================
-
+models.domain_controllers module
+================================
 .. automodule:: models.domain_controllers
    :members:
    :undoc-members:

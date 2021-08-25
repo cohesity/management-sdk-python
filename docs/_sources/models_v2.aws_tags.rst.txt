@@ -1,6 +1,5 @@
-models\_v2.aws\_tags module
-===========================
-
+models_v2.aws_tags module
+=========================
 .. automodule:: models_v2.aws_tags
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.pure\_volume module
-==========================
-
+models.pure_volume module
+=========================
 .. automodule:: models.pure_volume
    :members:
    :undoc-members:

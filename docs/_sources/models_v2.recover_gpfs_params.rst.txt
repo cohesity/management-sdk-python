@@ -1,6 +1,5 @@
-models\_v2.recover\_gpfs\_params module
-=======================================
-
+models_v2.recover_gpfs_params module
+====================================
 .. automodule:: models_v2.recover_gpfs_params
    :members:
    :undoc-members:

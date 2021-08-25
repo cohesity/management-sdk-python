@@ -1,6 +1,5 @@
-models.aag\_preference\_enum module
-===================================
-
+models.aag_preference_enum module
+=================================
 .. automodule:: models.aag_preference_enum
    :members:
    :undoc-members:

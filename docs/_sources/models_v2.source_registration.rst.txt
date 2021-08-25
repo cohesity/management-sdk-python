@@ -1,6 +1,5 @@
-models\_v2.source\_registration module
-======================================
-
+models_v2.source_registration module
+====================================
 .. automodule:: models_v2.source_registration
    :members:
    :undoc-members:

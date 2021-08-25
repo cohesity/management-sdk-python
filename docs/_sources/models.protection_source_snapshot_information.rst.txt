@@ -1,6 +1,5 @@
-models.protection\_source\_snapshot\_information module
-=======================================================
-
+models.protection_source_snapshot_information module
+====================================================
 .. automodule:: models.protection_source_snapshot_information
    :members:
    :undoc-members:

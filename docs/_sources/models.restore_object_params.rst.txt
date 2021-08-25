@@ -1,6 +1,5 @@
-models.restore\_object\_params module
-=====================================
-
+models.restore_object_params module
+===================================
 .. automodule:: models.restore_object_params
    :members:
    :undoc-members:

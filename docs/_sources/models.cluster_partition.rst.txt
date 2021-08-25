@@ -1,6 +1,5 @@
-models.cluster\_partition module
-================================
-
+models.cluster_partition module
+===============================
 .. automodule:: models.cluster_partition
    :members:
    :undoc-members:

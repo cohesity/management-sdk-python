@@ -1,6 +1,5 @@
-models.idp\_user\_info module
-=============================
-
+models.idp_user_info module
+===========================
 .. automodule:: models.idp_user_info
    :members:
    :undoc-members:

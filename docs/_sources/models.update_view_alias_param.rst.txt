@@ -1,6 +1,5 @@
-models.update\_view\_alias\_param module
-========================================
-
+models.update_view_alias_param module
+=====================================
 .. automodule:: models.update_view_alias_param
    :members:
    :undoc-members:

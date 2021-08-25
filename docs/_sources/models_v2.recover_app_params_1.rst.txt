@@ -1,6 +1,5 @@
-models\_v2.recover\_app\_params\_1 module
-=========================================
-
+models_v2.recover_app_params_1 module
+=====================================
 .. automodule:: models_v2.recover_app_params_1
    :members:
    :undoc-members:

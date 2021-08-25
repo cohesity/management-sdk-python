@@ -1,6 +1,5 @@
-controllers.search\_controller module
-=====================================
-
+controllers.search_controller module
+====================================
 .. automodule:: controllers.search_controller
    :members:
    :undoc-members:

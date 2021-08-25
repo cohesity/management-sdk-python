@@ -1,6 +1,5 @@
-models.access\_token module
-===========================
-
+models.access_token module
+==========================
 .. automodule:: models.access_token
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.latest\_protection\_run module
-=====================================
-
+models.latest_protection_run module
+===================================
 .. automodule:: models.latest_protection_run
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.create\_view\_request module
-===================================
-
+models.create_view_request module
+=================================
 .. automodule:: models.create_view_request
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.user\_parameters module
-==============================
-
+models.user_parameters module
+=============================
 .. automodule:: models.user_parameters
    :members:
    :undoc-members:

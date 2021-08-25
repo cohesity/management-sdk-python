@@ -1,6 +1,5 @@
-models\_v2.authentication\_details\_for\_dse\_solr module
-=========================================================
-
+models_v2.authentication_details_for_dse_solr module
+====================================================
 .. automodule:: models_v2.authentication_details_for_dse_solr
    :members:
    :undoc-members:

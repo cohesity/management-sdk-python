@@ -1,6 +1,5 @@
-models.one\_drive\_document\_metadata module
-============================================
-
+models.one_drive_document_metadata module
+=========================================
 .. automodule:: models.one_drive_document_metadata
    :members:
    :undoc-members:

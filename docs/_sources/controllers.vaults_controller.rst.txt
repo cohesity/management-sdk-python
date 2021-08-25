@@ -1,6 +1,5 @@
-controllers.vaults\_controller module
-=====================================
-
+controllers.vaults_controller module
+====================================
 .. automodule:: controllers.vaults_controller
    :members:
    :undoc-members:

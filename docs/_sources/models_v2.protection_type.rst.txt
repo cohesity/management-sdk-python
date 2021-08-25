@@ -1,0 +1,6 @@
+models_v2.protection_type module
+================================
+.. automodule:: models_v2.protection_type
+   :members:
+   :undoc-members:
+   :show-inheritance:

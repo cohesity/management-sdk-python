@@ -1,6 +1,5 @@
-models.granularity\_bucket module
-=================================
-
+models.granularity_bucket module
+================================
 .. automodule:: models.granularity_bucket
    :members:
    :undoc-members:

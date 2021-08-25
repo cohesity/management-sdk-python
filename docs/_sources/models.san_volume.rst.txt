@@ -1,6 +1,5 @@
-models.san\_volume module
-=========================
-
+models.san_volume module
+========================
 .. automodule:: models.san_volume
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.notification\_rule module
-================================
-
+models.notification_rule module
+===============================
 .. automodule:: models.notification_rule
    :members:
    :undoc-members:

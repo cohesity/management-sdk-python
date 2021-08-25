@@ -1,6 +1,5 @@
-models.day\_count\_enum module
-==============================
-
+models.day_count_enum module
+============================
 .. automodule:: models.day_count_enum
    :members:
    :undoc-members:

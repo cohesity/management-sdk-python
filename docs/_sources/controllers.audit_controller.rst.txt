@@ -1,6 +1,5 @@
-controllers.audit\_controller module
-====================================
-
+controllers.audit_controller module
+===================================
 .. automodule:: controllers.audit_controller
    :members:
    :undoc-members:

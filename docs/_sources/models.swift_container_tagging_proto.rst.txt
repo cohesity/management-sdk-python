@@ -1,6 +1,5 @@
-models.swift\_container\_tagging\_proto module
-==============================================
-
+models.swift_container_tagging_proto module
+===========================================
 .. automodule:: models.swift_container_tagging_proto
    :members:
    :undoc-members:

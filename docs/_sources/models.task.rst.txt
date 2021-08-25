@@ -1,6 +1,5 @@
 models.task module
 ==================
-
 .. automodule:: models.task
    :members:
    :undoc-members:

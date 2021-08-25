@@ -1,6 +1,5 @@
-models.created\_api\_key module
-===============================
-
+models.created_api_key module
+=============================
 .. automodule:: models.created_api_key
    :members:
    :undoc-members:

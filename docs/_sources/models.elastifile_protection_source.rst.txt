@@ -1,6 +1,5 @@
-models.elastifile\_protection\_source module
-============================================
-
+models.elastifile_protection_source module
+==========================================
 .. automodule:: models.elastifile_protection_source
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models\_v2.network\_config\_8 module
-====================================
-
+models_v2.network_config_8 module
+=================================
 .. automodule:: models_v2.network_config_8
    :members:
    :undoc-members:

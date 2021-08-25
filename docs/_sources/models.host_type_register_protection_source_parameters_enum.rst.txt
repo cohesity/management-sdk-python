@@ -1,6 +1,5 @@
-models.host\_type\_register\_protection\_source\_parameters\_enum module
-========================================================================
-
+models.host_type_register_protection_source_parameters_enum module
+==================================================================
 .. automodule:: models.host_type_register_protection_source_parameters_enum
    :members:
    :undoc-members:

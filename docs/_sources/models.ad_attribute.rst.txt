@@ -1,6 +1,5 @@
-models.ad\_attribute module
-===========================
-
+models.ad_attribute module
+==========================
 .. automodule:: models.ad_attribute
    :members:
    :undoc-members:

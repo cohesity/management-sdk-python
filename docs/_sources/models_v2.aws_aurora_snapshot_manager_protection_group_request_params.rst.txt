@@ -1,0 +1,6 @@
+models_v2.aws_aurora_snapshot_manager_protection_group_request_params module
+============================================================================
+.. automodule:: models_v2.aws_aurora_snapshot_manager_protection_group_request_params
+   :members:
+   :undoc-members:
+   :show-inheritance:

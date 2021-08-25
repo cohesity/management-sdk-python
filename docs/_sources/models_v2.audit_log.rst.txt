@@ -1,6 +1,5 @@
-models\_v2.audit\_log module
-============================
-
+models_v2.audit_log module
+==========================
 .. automodule:: models_v2.audit_log
    :members:
    :undoc-members:

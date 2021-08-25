@@ -1,6 +1,5 @@
-models.object\_information module
-=================================
-
+models.object_information module
+================================
 .. automodule:: models.object_information
    :members:
    :undoc-members:

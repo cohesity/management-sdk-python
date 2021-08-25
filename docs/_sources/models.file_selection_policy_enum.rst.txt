@@ -1,6 +1,5 @@
-models.file\_selection\_policy\_enum module
-===========================================
-
+models.file_selection_policy_enum module
+========================================
 .. automodule:: models.file_selection_policy_enum
    :members:
    :undoc-members:

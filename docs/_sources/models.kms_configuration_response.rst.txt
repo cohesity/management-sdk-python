@@ -1,6 +1,5 @@
-models.kms\_configuration\_response module
-==========================================
-
+models.kms_configuration_response module
+========================================
 .. automodule:: models.kms_configuration_response
    :members:
    :undoc-members:

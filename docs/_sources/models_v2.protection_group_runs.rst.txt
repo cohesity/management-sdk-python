@@ -1,6 +1,5 @@
-models\_v2.protection\_group\_runs module
-=========================================
-
+models_v2.protection_group_runs module
+======================================
 .. automodule:: models_v2.protection_group_runs
    :members:
    :undoc-members:

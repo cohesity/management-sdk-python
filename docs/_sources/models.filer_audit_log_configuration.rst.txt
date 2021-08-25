@@ -1,6 +1,5 @@
-models.filer\_audit\_log\_configuration module
-==============================================
-
+models.filer_audit_log_configuration module
+===========================================
 .. automodule:: models.filer_audit_log_configuration
    :members:
    :undoc-members:

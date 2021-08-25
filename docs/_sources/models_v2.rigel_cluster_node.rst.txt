@@ -1,0 +1,6 @@
+models_v2.rigel_cluster_node module
+===================================
+.. automodule:: models_v2.rigel_cluster_node
+   :members:
+   :undoc-members:
+   :show-inheritance:

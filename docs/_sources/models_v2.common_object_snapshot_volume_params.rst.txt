@@ -1,6 +1,5 @@
-models\_v2.common\_object\_snapshot\_volume\_params module
-==========================================================
-
+models_v2.common_object_snapshot_volume_params module
+=====================================================
 .. automodule:: models_v2.common_object_snapshot_volume_params
    :members:
    :undoc-members:

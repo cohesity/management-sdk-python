@@ -1,6 +1,5 @@
-models.uda\_objects module
-==========================
-
+models.uda_objects module
+=========================
 .. automodule:: models.uda_objects
    :members:
    :undoc-members:

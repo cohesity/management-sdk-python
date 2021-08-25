@@ -1,6 +1,5 @@
-models.action\_update\_protection\_jobs\_state\_params\_enum module
-===================================================================
-
+models.action_update_protection_jobs_state_params_enum module
+=============================================================
 .. automodule:: models.action_update_protection_jobs_state_params_enum
    :members:
    :undoc-members:

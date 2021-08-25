@@ -1,6 +1,5 @@
-models.restore\_app\_params module
-==================================
-
+models.restore_app_params module
+================================
 .. automodule:: models.restore_app_params
    :members:
    :undoc-members:

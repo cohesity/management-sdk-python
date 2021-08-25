@@ -1,6 +1,5 @@
-models.extended\_retention\_policy module
-=========================================
-
+models.extended_retention_policy module
+=======================================
 .. automodule:: models.extended_retention_policy
    :members:
    :undoc-members:

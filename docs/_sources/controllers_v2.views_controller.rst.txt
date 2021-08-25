@@ -1,6 +1,5 @@
-controllers\_v2.views\_controller module
-========================================
-
+controllers_v2.views_controller module
+======================================
 .. automodule:: controllers_v2.views_controller
    :members:
    :undoc-members:

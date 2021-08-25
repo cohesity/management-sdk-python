@@ -1,6 +1,5 @@
-models.scheduling\_policy module
-================================
-
+models.scheduling_policy module
+===============================
 .. automodule:: models.scheduling_policy
    :members:
    :undoc-members:

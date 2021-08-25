@@ -1,6 +1,5 @@
-models\_v2.recover\_vmware\_v\_ms\_vcloud\_director\_source\_config module
-==========================================================================
-
+models_v2.recover_vmware_v_ms_vcloud_director_source_config module
+==================================================================
 .. automodule:: models_v2.recover_vmware_v_ms_vcloud_director_source_config
    :members:
    :undoc-members:

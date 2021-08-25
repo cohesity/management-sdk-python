@@ -1,6 +1,5 @@
-models.input\_spec module
-=========================
-
+models.input_spec module
+========================
 .. automodule:: models.input_spec
    :members:
    :undoc-members:

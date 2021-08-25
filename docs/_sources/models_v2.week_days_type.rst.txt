@@ -1,6 +1,5 @@
-models\_v2.week\_days\_type module
-==================================
-
+models_v2.week_days_type module
+===============================
 .. automodule:: models_v2.week_days_type
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.external\_client\_subnets module
-=======================================
-
+models.external_client_subnets module
+=====================================
 .. automodule:: models.external_client_subnets
    :members:
    :undoc-members:

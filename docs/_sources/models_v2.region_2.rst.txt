@@ -1,6 +1,5 @@
-models\_v2.region\_2 module
-===========================
-
+models_v2.region_2 module
+=========================
 .. automodule:: models_v2.region_2
    :members:
    :undoc-members:

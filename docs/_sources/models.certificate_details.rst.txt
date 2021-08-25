@@ -1,6 +1,5 @@
-models.certificate\_details module
-==================================
-
+models.certificate_details module
+=================================
 .. automodule:: models.certificate_details
    :members:
    :undoc-members:

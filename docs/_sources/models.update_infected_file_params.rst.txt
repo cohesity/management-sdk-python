@@ -1,6 +1,5 @@
-models.update\_infected\_file\_params module
-============================================
-
+models.update_infected_file_params module
+=========================================
 .. automodule:: models.update_infected_file_params
    :members:
    :undoc-members:

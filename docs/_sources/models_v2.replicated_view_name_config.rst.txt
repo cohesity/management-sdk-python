@@ -1,0 +1,6 @@
+models_v2.replicated_view_name_config module
+============================================
+.. automodule:: models_v2.replicated_view_name_config
+   :members:
+   :undoc-members:
+   :show-inheritance:

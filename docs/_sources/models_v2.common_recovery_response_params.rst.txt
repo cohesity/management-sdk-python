@@ -1,6 +1,5 @@
-models\_v2.common\_recovery\_response\_params module
-====================================================
-
+models_v2.common_recovery_response_params module
+================================================
 .. automodule:: models_v2.common_recovery_response_params
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.remote\_view\_config module
-==================================
-
+models.remote_view_config module
+================================
 .. automodule:: models.remote_view_config
    :members:
    :undoc-members:

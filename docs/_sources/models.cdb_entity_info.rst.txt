@@ -1,6 +1,5 @@
-models.cdb\_entity\_info module
-===============================
-
+models.cdb_entity_info module
+=============================
 .. automodule:: models.cdb_entity_info
    :members:
    :undoc-members:

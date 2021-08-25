@@ -1,6 +1,5 @@
-models.cluster\_hardware\_info module
-=====================================
-
+models.cluster_hardware_info module
+===================================
 .. automodule:: models.cluster_hardware_info
    :members:
    :undoc-members:

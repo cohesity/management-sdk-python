@@ -1,6 +1,5 @@
-models.cloud\_network\_configuration module
-===========================================
-
+models.cloud_network_configuration module
+=========================================
 .. automodule:: models.cloud_network_configuration
    :members:
    :undoc-members:

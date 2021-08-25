@@ -1,6 +1,5 @@
-models.cluster\_config\_proto\_subnet module
-============================================
-
+models.cluster_config_proto_subnet module
+=========================================
 .. automodule:: models.cluster_config_proto_subnet
    :members:
    :undoc-members:

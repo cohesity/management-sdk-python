@@ -1,6 +1,5 @@
-models.hbase\_connect\_params module
-====================================
-
+models.hbase_connect_params module
+==================================
 .. automodule:: models.hbase_connect_params
    :members:
    :undoc-members:

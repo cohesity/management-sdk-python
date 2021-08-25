@@ -1,6 +1,5 @@
-models.recovery\_model\_enum module
-===================================
-
+models.recovery_model_enum module
+=================================
 .. automodule:: models.recovery_model_enum
    :members:
    :undoc-members:

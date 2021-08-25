@@ -1,6 +1,5 @@
-models.severity\_enum module
-============================
-
+models.severity_enum module
+===========================
 .. automodule:: models.severity_enum
    :members:
    :undoc-members:

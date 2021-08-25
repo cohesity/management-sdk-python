@@ -1,6 +1,5 @@
-models.get\_views\_by\_share\_name\_result module
-=================================================
-
+models.get_views_by_share_name_result module
+============================================
 .. automodule:: models.get_views_by_share_name_result
    :members:
    :undoc-members:

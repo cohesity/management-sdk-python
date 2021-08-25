@@ -1,6 +1,5 @@
-models.create\_view\_box\_params module
-=======================================
-
+models.create_view_box_params module
+====================================
 .. automodule:: models.create_view_box_params
    :members:
    :undoc-members:

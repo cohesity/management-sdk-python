@@ -1,6 +1,5 @@
-models.vmware\_backup\_source\_params module
-============================================
-
+models.vmware_backup_source_params module
+=========================================
 .. automodule:: models.vmware_backup_source_params
    :members:
    :undoc-members:

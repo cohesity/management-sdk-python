@@ -1,6 +1,5 @@
-models\_v2.recover\_gcpvm\_params module
-========================================
-
+models_v2.recover_gcpvm_params module
+=====================================
 .. automodule:: models_v2.recover_gcpvm_params
    :members:
    :undoc-members:

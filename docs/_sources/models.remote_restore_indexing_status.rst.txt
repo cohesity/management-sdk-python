@@ -1,6 +1,5 @@
-models.remote\_restore\_indexing\_status module
-===============================================
-
+models.remote_restore_indexing_status module
+============================================
 .. automodule:: models.remote_restore_indexing_status
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models\_v2.virtual\_switch module
-=================================
-
+models_v2.virtual_switch module
+===============================
 .. automodule:: models_v2.virtual_switch
    :members:
    :undoc-members:

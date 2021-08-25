@@ -1,6 +1,5 @@
-models\_v2.security\_mode\_enum module
-======================================
-
+models_v2.security_mode_enum module
+===================================
 .. automodule:: models_v2.security_mode_enum
    :members:
    :undoc-members:

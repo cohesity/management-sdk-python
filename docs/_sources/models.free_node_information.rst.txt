@@ -1,6 +1,5 @@
-models.free\_node\_information module
-=====================================
-
+models.free_node_information module
+===================================
 .. automodule:: models.free_node_information
    :members:
    :undoc-members:

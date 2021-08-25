@@ -1,6 +1,5 @@
-controllers.remote\_restore\_controller module
-==============================================
-
+controllers.remote_restore_controller module
+============================================
 .. automodule:: controllers.remote_restore_controller
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models\_v2.flashblade\_object\_params module
-============================================
-
+models_v2.flashblade_object_params module
+=========================================
 .. automodule:: models_v2.flashblade_object_params
    :members:
    :undoc-members:

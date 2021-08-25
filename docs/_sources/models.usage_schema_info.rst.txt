@@ -1,6 +1,5 @@
-models.usage\_schema\_info module
-=================================
-
+models.usage_schema_info module
+===============================
 .. automodule:: models.usage_schema_info
    :members:
    :undoc-members:

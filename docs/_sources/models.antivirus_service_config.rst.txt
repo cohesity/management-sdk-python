@@ -1,6 +1,5 @@
-models.antivirus\_service\_config module
-========================================
-
+models.antivirus_service_config module
+======================================
 .. automodule:: models.antivirus_service_config
    :members:
    :undoc-members:

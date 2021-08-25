@@ -1,6 +1,5 @@
-models.restore\_wrapper\_proto module
-=====================================
-
+models.restore_wrapper_proto module
+===================================
 .. automodule:: models.restore_wrapper_proto
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.external\_network\_info module
-=====================================
-
+models.external_network_info module
+===================================
 .. automodule:: models.external_network_info
    :members:
    :undoc-members:

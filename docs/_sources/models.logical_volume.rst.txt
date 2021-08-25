@@ -1,6 +1,5 @@
-models.logical\_volume module
-=============================
-
+models.logical_volume module
+============================
 .. automodule:: models.logical_volume
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.restore\_site\_params\_site\_owner\_drive module
-=======================================================
-
+models.restore_site_params_site_owner_drive module
+==================================================
 .. automodule:: models.restore_site_params_site_owner_drive
    :members:
    :undoc-members:

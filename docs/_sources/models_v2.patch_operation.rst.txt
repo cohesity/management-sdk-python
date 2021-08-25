@@ -1,0 +1,6 @@
+models_v2.patch_operation module
+================================
+.. automodule:: models_v2.patch_operation
+   :members:
+   :undoc-members:
+   :show-inheritance:

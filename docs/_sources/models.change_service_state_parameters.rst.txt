@@ -1,6 +1,5 @@
-models.change\_service\_state\_parameters module
-================================================
-
+models.change_service_state_parameters module
+=============================================
 .. automodule:: models.change_service_state_parameters
    :members:
    :undoc-members:

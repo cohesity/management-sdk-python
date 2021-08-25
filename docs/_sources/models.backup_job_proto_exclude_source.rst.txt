@@ -1,6 +1,5 @@
-models.backup\_job\_proto\_exclude\_source module
-=================================================
-
+models.backup_job_proto_exclude_source module
+=============================================
 .. automodule:: models.backup_job_proto_exclude_source
    :members:
    :undoc-members:

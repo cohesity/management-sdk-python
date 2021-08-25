@@ -1,6 +1,5 @@
-models.ad\_protection\_source module
-====================================
-
+models.ad_protection_source module
+==================================
 .. automodule:: models.ad_protection_source
    :members:
    :undoc-members:

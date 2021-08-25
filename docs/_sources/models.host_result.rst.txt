@@ -1,6 +1,5 @@
-models.host\_result module
-==========================
-
+models.host_result module
+=========================
 .. automodule:: models.host_result
    :members:
    :undoc-members:

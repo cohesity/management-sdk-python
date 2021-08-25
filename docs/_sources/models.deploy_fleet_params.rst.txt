@@ -1,6 +1,5 @@
-models.deploy\_fleet\_params module
-===================================
-
+models.deploy_fleet_params module
+=================================
 .. automodule:: models.deploy_fleet_params
    :members:
    :undoc-members:

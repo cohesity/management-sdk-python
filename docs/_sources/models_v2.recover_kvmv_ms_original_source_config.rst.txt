@@ -1,6 +1,5 @@
-models\_v2.recover\_kvmv\_ms\_original\_source\_config module
-=============================================================
-
+models_v2.recover_kvmv_ms_original_source_config module
+=======================================================
 .. automodule:: models_v2.recover_kvmv_ms_original_source_config
    :members:
    :undoc-members:

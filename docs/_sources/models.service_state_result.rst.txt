@@ -1,6 +1,5 @@
-models.service\_state\_result module
-====================================
-
+models.service_state_result module
+==================================
 .. automodule:: models.service_state_result
    :members:
    :undoc-members:

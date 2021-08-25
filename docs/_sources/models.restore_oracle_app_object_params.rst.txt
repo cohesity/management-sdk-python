@@ -1,6 +1,5 @@
-models.restore\_oracle\_app\_object\_params module
-==================================================
-
+models.restore_oracle_app_object_params module
+==============================================
 .. automodule:: models.restore_oracle_app_object_params
    :members:
    :undoc-members:

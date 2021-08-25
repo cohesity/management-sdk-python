@@ -1,6 +1,5 @@
-models\_v2.project\_scope\_params module
-========================================
-
+models_v2.project_scope_params module
+=====================================
 .. automodule:: models_v2.project_scope_params
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.snapshot\_task\_status\_enum module
-==========================================
-
+models.snapshot_task_status_enum module
+=======================================
 .. automodule:: models.snapshot_task_status_enum
    :members:
    :undoc-members:

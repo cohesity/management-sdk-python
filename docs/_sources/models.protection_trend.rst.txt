@@ -1,6 +1,5 @@
-models.protection\_trend module
-===============================
-
+models.protection_trend module
+==============================
 .. automodule:: models.protection_trend
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-controllers\_v2.test\_data\_management\_controller module
-=========================================================
-
+controllers_v2.test_data_management_controller module
+=====================================================
 .. automodule:: controllers_v2.test_data_management_controller
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models\_v2.cdp\_retention module
-================================
-
+models_v2.cdp_retention module
+==============================
 .. automodule:: models_v2.cdp_retention
    :members:
    :undoc-members:

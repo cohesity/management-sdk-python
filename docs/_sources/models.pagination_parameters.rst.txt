@@ -1,6 +1,5 @@
-models.pagination\_parameters module
-====================================
-
+models.pagination_parameters module
+===================================
 .. automodule:: models.pagination_parameters
    :members:
    :undoc-members:

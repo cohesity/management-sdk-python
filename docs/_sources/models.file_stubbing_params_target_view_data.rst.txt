@@ -1,6 +1,5 @@
-models.file\_stubbing\_params\_target\_view\_data module
-========================================================
-
+models.file_stubbing_params_target_view_data module
+===================================================
 .. automodule:: models.file_stubbing_params_target_view_data
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.stubbing\_policy\_proto module
-=====================================
-
+models.stubbing_policy_proto module
+===================================
 .. automodule:: models.stubbing_policy_proto
    :members:
    :undoc-members:

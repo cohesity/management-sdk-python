@@ -1,6 +1,5 @@
-models\_v2.exchange\_protection\_group\_object\_params module
-=============================================================
-
+models_v2.exchange_protection_group_object_params module
+========================================================
 .. automodule:: models_v2.exchange_protection_group_object_params
    :members:
    :undoc-members:

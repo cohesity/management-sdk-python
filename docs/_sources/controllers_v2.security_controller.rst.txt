@@ -1,6 +1,5 @@
-controllers\_v2.security\_controller module
-===========================================
-
+controllers_v2.security_controller module
+=========================================
 .. automodule:: controllers_v2.security_controller
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.hbase\_table module
-==========================
-
+models.hbase_table module
+=========================
 .. automodule:: models.hbase_table
    :members:
    :undoc-members:

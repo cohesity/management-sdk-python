@@ -1,6 +1,5 @@
 models.alert module
 ===================
-
 .. automodule:: models.alert
    :members:
    :undoc-members:

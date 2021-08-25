@@ -1,6 +1,5 @@
-models\_v2.test\_connection\_response\_parameters module
-========================================================
-
+models_v2.test_connection_response_parameters module
+====================================================
 .. automodule:: models_v2.test_connection_response_parameters
    :members:
    :undoc-members:

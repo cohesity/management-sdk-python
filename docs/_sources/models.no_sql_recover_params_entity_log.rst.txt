@@ -1,6 +1,5 @@
-models.no\_sql\_recover\_params\_entity\_log module
-===================================================
-
+models.no_sql_recover_params_entity_log module
+==============================================
 .. automodule:: models.no_sql_recover_params_entity_log
    :members:
    :undoc-members:

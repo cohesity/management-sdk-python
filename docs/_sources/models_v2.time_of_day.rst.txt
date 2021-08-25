@@ -1,6 +1,5 @@
-models\_v2.time\_of\_day module
-===============================
-
+models_v2.time_of_day module
+============================
 .. automodule:: models_v2.time_of_day
    :members:
    :undoc-members:

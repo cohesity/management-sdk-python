@@ -1,6 +1,5 @@
-models.update\_protection\_jobs\_state\_request\_body module
-============================================================
-
+models.update_protection_jobs_state_request_body module
+=======================================================
 .. automodule:: models.update_protection_jobs_state_request_body
    :members:
    :undoc-members:

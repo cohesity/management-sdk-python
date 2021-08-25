@@ -1,6 +1,5 @@
-models\_v2.recover\_target module
-=================================
-
+models_v2.recover_target module
+===============================
 .. automodule:: models_v2.recover_target
    :members:
    :undoc-members:

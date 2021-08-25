@@ -1,6 +1,5 @@
-models.email\_meta\_data module
-===============================
-
+models.email_meta_data module
+=============================
 .. automodule:: models.email_meta_data
    :members:
    :undoc-members:

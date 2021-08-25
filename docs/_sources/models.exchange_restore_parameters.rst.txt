@@ -1,6 +1,5 @@
-models.exchange\_restore\_parameters module
-===========================================
-
+models.exchange_restore_parameters module
+=========================================
 .. automodule:: models.exchange_restore_parameters
    :members:
    :undoc-members:

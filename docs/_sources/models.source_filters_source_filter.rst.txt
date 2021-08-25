@@ -1,6 +1,5 @@
-models.source\_filters\_source\_filter module
-=============================================
-
+models.source_filters_source_filter module
+==========================================
 .. automodule:: models.source_filters_source_filter
    :members:
    :undoc-members:

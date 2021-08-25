@@ -1,6 +1,5 @@
-models.tiering\_task\_info module
-=================================
-
+models.tiering_task_info module
+===============================
 .. automodule:: models.tiering_task_info
    :members:
    :undoc-members:

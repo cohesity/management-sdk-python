@@ -1,0 +1,6 @@
+models_v2.time_range module
+===========================
+.. automodule:: models_v2.time_range
+   :members:
+   :undoc-members:
+   :show-inheritance:

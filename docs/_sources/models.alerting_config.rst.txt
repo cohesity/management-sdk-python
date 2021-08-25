@@ -1,6 +1,5 @@
-models.alerting\_config module
-==============================
-
+models.alerting_config module
+=============================
 .. automodule:: models.alerting_config
    :members:
    :undoc-members:

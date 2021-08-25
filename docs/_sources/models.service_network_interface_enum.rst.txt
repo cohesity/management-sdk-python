@@ -1,6 +1,5 @@
-models.service\_network\_interface\_enum module
-===============================================
-
+models.service_network_interface_enum module
+============================================
 .. automodule:: models.service_network_interface_enum
    :members:
    :undoc-members:

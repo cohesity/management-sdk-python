@@ -1,6 +1,5 @@
-models.update\_ignored\_trusted\_domains\_params module
-=======================================================
-
+models.update_ignored_trusted_domains_params module
+===================================================
 .. automodule:: models.update_ignored_trusted_domains_params
    :members:
    :undoc-members:

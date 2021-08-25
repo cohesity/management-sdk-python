@@ -1,6 +1,5 @@
-models.restore\_files\_params module
-====================================
-
+models.restore_files_params module
+==================================
 .. automodule:: models.restore_files_params
    :members:
    :undoc-members:

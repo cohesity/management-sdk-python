@@ -1,6 +1,5 @@
-models\_v2.hbase\_params module
-===============================
-
+models_v2.hbase_params module
+=============================
 .. automodule:: models_v2.hbase_params
    :members:
    :undoc-members:

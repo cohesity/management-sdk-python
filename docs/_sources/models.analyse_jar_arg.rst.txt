@@ -1,6 +1,5 @@
-models.analyse\_jar\_arg module
-===============================
-
+models.analyse_jar_arg module
+=============================
 .. automodule:: models.analyse_jar_arg
    :members:
    :undoc-members:

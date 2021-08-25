@@ -1,6 +1,5 @@
-models.vault\_type\_enum module
-===============================
-
+models.vault_type_enum module
+=============================
 .. automodule:: models.vault_type_enum
    :members:
    :undoc-members:

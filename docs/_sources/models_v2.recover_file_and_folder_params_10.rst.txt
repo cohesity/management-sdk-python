@@ -1,6 +1,5 @@
-models\_v2.recover\_file\_and\_folder\_params\_10 module
-========================================================
-
+models_v2.recover_file_and_folder_params_10 module
+==================================================
 .. automodule:: models_v2.recover_file_and_folder_params_10
    :members:
    :undoc-members:

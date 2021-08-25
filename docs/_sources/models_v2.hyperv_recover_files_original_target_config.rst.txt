@@ -1,6 +1,5 @@
-models\_v2.hyperv\_recover\_files\_original\_target\_config module
-==================================================================
-
+models_v2.hyperv_recover_files_original_target_config module
+============================================================
 .. automodule:: models_v2.hyperv_recover_files_original_target_config
    :members:
    :undoc-members:

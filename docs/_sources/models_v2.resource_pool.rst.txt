@@ -1,6 +1,5 @@
-models\_v2.resource\_pool module
-================================
-
+models_v2.resource_pool module
+==============================
 .. automodule:: models_v2.resource_pool
    :members:
    :undoc-members:

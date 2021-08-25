@@ -1,6 +1,5 @@
-models.view\_privileges module
-==============================
-
+models.view_privileges module
+=============================
 .. automodule:: models.view_privileges
    :members:
    :undoc-members:

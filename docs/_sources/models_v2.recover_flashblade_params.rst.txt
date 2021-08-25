@@ -1,6 +1,5 @@
-models\_v2.recover\_flashblade\_params module
-=============================================
-
+models_v2.recover_flashblade_params module
+==========================================
 .. automodule:: models_v2.recover_flashblade_params
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.delete\_infected\_file\_response module
-==============================================
-
+models.delete_infected_file_response module
+===========================================
 .. automodule:: models.delete_infected_file_response
    :members:
    :undoc-members:

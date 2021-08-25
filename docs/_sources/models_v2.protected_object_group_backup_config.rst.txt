@@ -1,0 +1,6 @@
+models_v2.protected_object_group_backup_config module
+=====================================================
+.. automodule:: models_v2.protected_object_group_backup_config
+   :members:
+   :undoc-members:
+   :show-inheritance:

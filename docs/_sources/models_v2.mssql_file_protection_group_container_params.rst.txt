@@ -1,6 +1,5 @@
-models\_v2.mssql\_file\_protection\_group\_container\_params module
-===================================================================
-
+models_v2.mssql_file_protection_group_container_params module
+=============================================================
 .. automodule:: models_v2.mssql_file_protection_group_container_params
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.google\_account\_info module
-===================================
-
+models.google_account_info module
+=================================
 .. automodule:: models.google_account_info
    :members:
    :undoc-members:

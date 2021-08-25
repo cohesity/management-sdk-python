@@ -1,6 +1,5 @@
-models.network\_params module
-=============================
-
+models.network_params module
+============================
 .. automodule:: models.network_params
    :members:
    :undoc-members:

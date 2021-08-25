@@ -1,6 +1,5 @@
-models.file\_path\_parameters module
-====================================
-
+models.file_path_parameters module
+==================================
 .. automodule:: models.file_path_parameters
    :members:
    :undoc-members:

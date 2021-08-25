@@ -1,6 +1,5 @@
-models.marketplace\_apps\_mode\_enum module
-===========================================
-
+models.marketplace_apps_mode_enum module
+========================================
 .. automodule:: models.marketplace_apps_mode_enum
    :members:
    :undoc-members:

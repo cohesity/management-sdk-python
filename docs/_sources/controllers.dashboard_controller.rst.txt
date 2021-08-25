@@ -1,6 +1,5 @@
-controllers.dashboard\_controller module
-========================================
-
+controllers.dashboard_controller module
+=======================================
 .. automodule:: controllers.dashboard_controller
    :members:
    :undoc-members:

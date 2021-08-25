@@ -1,6 +1,5 @@
-models.vm\_num\_replicas module
-===============================
-
+models.vm_num_replicas module
+=============================
 .. automodule:: models.vm_num_replicas
    :members:
    :undoc-members:

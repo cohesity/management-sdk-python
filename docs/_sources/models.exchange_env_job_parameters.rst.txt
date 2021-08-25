@@ -1,6 +1,5 @@
-models.exchange\_env\_job\_parameters module
-============================================
-
+models.exchange_env_job_parameters module
+=========================================
 .. automodule:: models.exchange_env_job_parameters
    :members:
    :undoc-members:

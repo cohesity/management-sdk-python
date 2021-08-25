@@ -1,6 +1,5 @@
-models.type\_certificate\_details\_enum module
-==============================================
-
+models.type_certificate_details_enum module
+===========================================
 .. automodule:: models.type_certificate_details_enum
    :members:
    :undoc-members:

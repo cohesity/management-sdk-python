@@ -1,6 +1,5 @@
-models.standby\_resource module
-===============================
-
+models.standby_resource module
+==============================
 .. automodule:: models.standby_resource
    :members:
    :undoc-members:

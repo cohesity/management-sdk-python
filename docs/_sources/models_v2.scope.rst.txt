@@ -1,6 +1,5 @@
-models\_v2.scope module
-=======================
-
+models_v2.scope module
+======================
 .. automodule:: models_v2.scope
    :members:
    :undoc-members:

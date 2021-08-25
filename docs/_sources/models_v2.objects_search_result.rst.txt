@@ -1,0 +1,6 @@
+models_v2.objects_search_result module
+======================================
+.. automodule:: models_v2.objects_search_result
+   :members:
+   :undoc-members:
+   :show-inheritance:

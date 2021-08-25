@@ -1,6 +1,5 @@
-models\_v2.recover\_azure\_files\_and\_folders\_params module
-=============================================================
-
+models_v2.recover_azure_files_and_folders_params module
+=======================================================
 .. automodule:: models_v2.recover_azure_files_and_folders_params
    :members:
    :undoc-members:

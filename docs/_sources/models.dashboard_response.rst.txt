@@ -1,6 +1,5 @@
-models.dashboard\_response module
-=================================
-
+models.dashboard_response module
+================================
 .. automodule:: models.dashboard_response
    :members:
    :undoc-members:

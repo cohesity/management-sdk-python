@@ -1,6 +1,5 @@
-models.ms\_exchange\_params module
-==================================
-
+models.ms_exchange_params module
+================================
 .. automodule:: models.ms_exchange_params
    :members:
    :undoc-members:

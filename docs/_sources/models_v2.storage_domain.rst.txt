@@ -1,6 +1,5 @@
-models\_v2.storage\_domain module
-=================================
-
+models_v2.storage_domain module
+===============================
 .. automodule:: models_v2.storage_domain
    :members:
    :undoc-members:

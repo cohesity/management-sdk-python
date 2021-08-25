@@ -1,6 +1,5 @@
-models.removal\_reason\_node\_enum module
-=========================================
-
+models.removal_reason_node_enum module
+======================================
 .. automodule:: models.removal_reason_node_enum
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.activate\_view\_aliases\_result module
-=============================================
-
+models.activate_view_aliases_result module
+==========================================
 .. automodule:: models.activate_view_aliases_result
    :members:
    :undoc-members:

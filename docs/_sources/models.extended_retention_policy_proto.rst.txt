@@ -1,6 +1,5 @@
-models.extended\_retention\_policy\_proto module
-================================================
-
+models.extended_retention_policy_proto module
+=============================================
 .. automodule:: models.extended_retention_policy_proto
    :members:
    :undoc-members:

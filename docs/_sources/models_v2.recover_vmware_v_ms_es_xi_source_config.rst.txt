@@ -1,6 +1,5 @@
-models\_v2.recover\_vmware\_v\_ms\_es\_xi\_source\_config module
-================================================================
-
+models_v2.recover_vmware_v_ms_es_xi_source_config module
+========================================================
 .. automodule:: models_v2.recover_vmware_v_ms_es_xi_source_config
    :members:
    :undoc-members:

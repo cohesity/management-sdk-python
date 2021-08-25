@@ -1,6 +1,5 @@
-models\_v2.recipient\_type\_enum module
-=======================================
-
+models_v2.recipient_type_enum module
+====================================
 .. automodule:: models_v2.recipient_type_enum
    :members:
    :undoc-members:

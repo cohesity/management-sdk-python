@@ -1,6 +1,5 @@
-models.volume\_info\_disk\_info\_partition\_info module
-=======================================================
-
+models.volume_info_disk_info_partition_info module
+==================================================
 .. automodule:: models.volume_info_disk_info_partition_info
    :members:
    :undoc-members:

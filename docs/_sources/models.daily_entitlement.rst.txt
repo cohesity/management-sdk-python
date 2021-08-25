@@ -1,6 +1,5 @@
-models.daily\_entitlement module
-================================
-
+models.daily_entitlement module
+===============================
 .. automodule:: models.daily_entitlement
    :members:
    :undoc-members:

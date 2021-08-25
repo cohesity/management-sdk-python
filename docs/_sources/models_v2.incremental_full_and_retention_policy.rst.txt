@@ -1,6 +1,5 @@
-models\_v2.incremental\_full\_and\_retention\_policy module
-===========================================================
-
+models_v2.incremental_full_and_retention_policy module
+======================================================
 .. automodule:: models_v2.incremental_full_and_retention_policy
    :members:
    :undoc-members:

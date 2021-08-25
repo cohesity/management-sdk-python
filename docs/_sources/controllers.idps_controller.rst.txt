@@ -1,6 +1,5 @@
-controllers.idps\_controller module
-===================================
-
+controllers.idps_controller module
+==================================
 .. automodule:: controllers.idps_controller
    :members:
    :undoc-members:

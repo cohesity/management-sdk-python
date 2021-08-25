@@ -1,6 +1,5 @@
-models.send\_snmp\_test\_trap\_result module
-============================================
-
+models.send_snmp_test_trap_result module
+========================================
 .. automodule:: models.send_snmp_test_trap_result
    :members:
    :undoc-members:

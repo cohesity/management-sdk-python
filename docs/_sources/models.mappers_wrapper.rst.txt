@@ -1,6 +1,5 @@
-models.mappers\_wrapper module
-==============================
-
+models.mappers_wrapper module
+=============================
 .. automodule:: models.mappers_wrapper
    :members:
    :undoc-members:

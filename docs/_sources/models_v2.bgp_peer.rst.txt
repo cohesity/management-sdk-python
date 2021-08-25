@@ -1,0 +1,6 @@
+models_v2.bgp_peer module
+=========================
+.. automodule:: models_v2.bgp_peer
+   :members:
+   :undoc-members:
+   :show-inheritance:

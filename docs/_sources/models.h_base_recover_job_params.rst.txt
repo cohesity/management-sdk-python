@@ -1,6 +1,5 @@
-models.h\_base\_recover\_job\_params module
-===========================================
-
+models.h_base_recover_job_params module
+=======================================
 .. automodule:: models.h_base_recover_job_params
    :members:
    :undoc-members:

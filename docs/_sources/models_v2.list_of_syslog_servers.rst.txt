@@ -1,0 +1,6 @@
+models_v2.list_of_syslog_servers module
+=======================================
+.. automodule:: models_v2.list_of_syslog_servers
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,6 +1,5 @@
-models.restore\_task\_state\_base\_proto module
-===============================================
-
+models.restore_task_state_base_proto module
+===========================================
 .. automodule:: models.restore_task_state_base_proto
    :members:
    :undoc-members:

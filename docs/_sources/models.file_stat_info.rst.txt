@@ -1,6 +1,5 @@
-models.file\_stat\_info module
-==============================
-
+models.file_stat_info module
+============================
 .. automodule:: models.file_stat_info
    :members:
    :undoc-members:

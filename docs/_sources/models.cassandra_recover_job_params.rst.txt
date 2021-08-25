@@ -1,6 +1,5 @@
-models.cassandra\_recover\_job\_params module
-=============================================
-
+models.cassandra_recover_job_params module
+==========================================
 .. automodule:: models.cassandra_recover_job_params
    :members:
    :undoc-members:

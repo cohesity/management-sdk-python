@@ -1,6 +1,5 @@
-models.backup\_policy\_proto module
-===================================
-
+models.backup_policy_proto module
+=================================
 .. automodule:: models.backup_policy_proto
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.update\_bond\_result module
-==================================
-
+models.update_bond_result module
+================================
 .. automodule:: models.update_bond_result
    :members:
    :undoc-members:

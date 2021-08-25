@@ -1,6 +1,5 @@
-models.node\_status module
-==========================
-
+models.node_status module
+=========================
 .. automodule:: models.node_status
    :members:
    :undoc-members:

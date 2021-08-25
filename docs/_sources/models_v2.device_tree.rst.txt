@@ -1,6 +1,5 @@
-models\_v2.device\_tree module
-==============================
-
+models_v2.device_tree module
+============================
 .. automodule:: models_v2.device_tree
    :members:
    :undoc-members:

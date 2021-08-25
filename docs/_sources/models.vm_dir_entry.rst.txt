@@ -1,6 +1,5 @@
-models.vm\_dir\_entry module
-============================
-
+models.vm_dir_entry module
+==========================
 .. automodule:: models.vm_dir_entry
    :members:
    :undoc-members:

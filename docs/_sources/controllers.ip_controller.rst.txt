@@ -1,6 +1,5 @@
-controllers.ip\_controller module
-=================================
-
+controllers.ip_controller module
+================================
 .. automodule:: controllers.ip_controller
    :members:
    :undoc-members:

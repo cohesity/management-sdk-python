@@ -1,6 +1,5 @@
-models.copy\_snapshot\_task\_status module
-==========================================
-
+models.copy_snapshot_task_status module
+=======================================
 .. automodule:: models.copy_snapshot_task_status
    :members:
    :undoc-members:

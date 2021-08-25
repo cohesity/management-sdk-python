@@ -1,6 +1,5 @@
-models.snapshot\_version module
-===============================
-
+models.snapshot_version module
+==============================
 .. automodule:: models.snapshot_version
    :members:
    :undoc-members:

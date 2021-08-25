@@ -1,6 +1,5 @@
-models.protection\_shell\_info module
-=====================================
-
+models.protection_shell_info module
+===================================
 .. automodule:: models.protection_shell_info
    :members:
    :undoc-members:

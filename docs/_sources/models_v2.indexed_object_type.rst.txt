@@ -1,6 +1,5 @@
-models\_v2.indexed\_object\_type module
-=======================================
-
+models_v2.indexed_object_type module
+====================================
 .. automodule:: models_v2.indexed_object_type
    :members:
    :undoc-members:

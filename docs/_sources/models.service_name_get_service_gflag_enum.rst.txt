@@ -1,6 +1,5 @@
-models.service\_name\_get\_service\_gflag\_enum module
-======================================================
-
+models.service_name_get_service_gflag_enum module
+=================================================
 .. automodule:: models.service_name_get_service_gflag_enum
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models\_v2.ad\_custom\_attributes\_type\_params module
-======================================================
-
+models_v2.ad_custom_attributes_type_params module
+=================================================
 .. automodule:: models_v2.ad_custom_attributes_type_params
    :members:
    :undoc-members:

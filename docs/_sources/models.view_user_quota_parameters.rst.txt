@@ -1,6 +1,5 @@
-models.view\_user\_quota\_parameters module
-===========================================
-
+models.view_user_quota_parameters module
+========================================
 .. automodule:: models.view_user_quota_parameters
    :members:
    :undoc-members:

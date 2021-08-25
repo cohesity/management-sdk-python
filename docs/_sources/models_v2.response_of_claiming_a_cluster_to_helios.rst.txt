@@ -1,0 +1,6 @@
+models_v2.response_of_claiming_a_cluster_to_helios module
+=========================================================
+.. automodule:: models_v2.response_of_claiming_a_cluster_to_helios
+   :members:
+   :undoc-members:
+   :show-inheritance:

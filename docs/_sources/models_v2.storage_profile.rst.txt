@@ -1,6 +1,5 @@
-models\_v2.storage\_profile module
-==================================
-
+models_v2.storage_profile module
+================================
 .. automodule:: models_v2.storage_profile
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models\_v2.recover\_awsrds\_new\_source\_network\_configuration module
-======================================================================
-
+models_v2.recover_awsrds_new_source_network_configuration module
+================================================================
 .. automodule:: models_v2.recover_awsrds_new_source_network_configuration
    :members:
    :undoc-members:

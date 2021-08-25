@@ -1,6 +1,5 @@
-models.throttling\_policy\_parameters module
-============================================
-
+models.throttling_policy_parameters module
+==========================================
 .. automodule:: models.throttling_policy_parameters
    :members:
    :undoc-members:

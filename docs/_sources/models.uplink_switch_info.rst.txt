@@ -1,6 +1,5 @@
-models.uplink\_switch\_info module
-==================================
-
+models.uplink_switch_info module
+================================
 .. automodule:: models.uplink_switch_info
    :members:
    :undoc-members:

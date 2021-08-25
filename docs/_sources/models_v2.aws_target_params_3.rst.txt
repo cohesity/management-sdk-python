@@ -1,0 +1,6 @@
+models_v2.aws_target_params_3 module
+====================================
+.. automodule:: models_v2.aws_target_params_3
+   :members:
+   :undoc-members:
+   :show-inheritance:

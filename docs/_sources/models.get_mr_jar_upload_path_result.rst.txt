@@ -1,6 +1,5 @@
-models.get\_mr\_jar\_upload\_path\_result module
-================================================
-
+models.get_mr_jar_upload_path_result module
+===========================================
 .. automodule:: models.get_mr_jar_upload_path_result
    :members:
    :undoc-members:

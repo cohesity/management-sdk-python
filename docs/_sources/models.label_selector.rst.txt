@@ -1,0 +1,6 @@
+models.label_selector module
+============================
+.. automodule:: models.label_selector
+   :members:
+   :undoc-members:
+   :show-inheritance:

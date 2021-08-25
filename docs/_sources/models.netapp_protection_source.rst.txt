@@ -1,6 +1,5 @@
-models.netapp\_protection\_source module
-========================================
-
+models.netapp_protection_source module
+======================================
 .. automodule:: models.netapp_protection_source
    :members:
    :undoc-members:

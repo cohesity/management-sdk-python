@@ -1,6 +1,5 @@
-models\_v2.security\_principal module
-=====================================
-
+models_v2.security_principal module
+===================================
 .. automodule:: models_v2.security_principal
    :members:
    :undoc-members:

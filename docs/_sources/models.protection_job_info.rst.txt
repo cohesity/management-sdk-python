@@ -1,6 +1,5 @@
-models.protection\_job\_info module
-===================================
-
+models.protection_job_info module
+=================================
 .. automodule:: models.protection_job_info
    :members:
    :undoc-members:

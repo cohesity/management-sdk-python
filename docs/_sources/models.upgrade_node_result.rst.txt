@@ -1,6 +1,5 @@
-models.upgrade\_node\_result module
-===================================
-
+models.upgrade_node_result module
+=================================
 .. automodule:: models.upgrade_node_result
    :members:
    :undoc-members:

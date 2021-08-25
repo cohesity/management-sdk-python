@@ -1,0 +1,6 @@
+models_v2.enumeration_of_all_the_supported_os_types_for_the_universal_data_adapter module
+=========================================================================================
+.. automodule:: models_v2.enumeration_of_all_the_supported_os_types_for_the_universal_data_adapter
+   :members:
+   :undoc-members:
+   :show-inheritance:

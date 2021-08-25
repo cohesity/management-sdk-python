@@ -1,6 +1,5 @@
-models.virtual\_disk\_restore\_response module
-==============================================
-
+models.virtual_disk_restore_response module
+===========================================
 .. automodule:: models.virtual_disk_restore_response
    :members:
    :undoc-members:

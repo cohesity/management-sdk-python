@@ -1,6 +1,5 @@
-models\_v2.elastifile\_object\_type\_enum module
-================================================
-
+models_v2.elastifile_object_type_enum module
+============================================
 .. automodule:: models_v2.elastifile_object_type_enum
    :members:
    :undoc-members:

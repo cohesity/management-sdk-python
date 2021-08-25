@@ -1,6 +1,5 @@
-models\_v2.source\_registration\_update\_parameters module
-==========================================================
-
+models_v2.source_registration_update_parameters module
+======================================================
 .. automodule:: models_v2.source_registration_update_parameters
    :members:
    :undoc-members:

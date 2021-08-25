@@ -1,6 +1,5 @@
-models.view\_protocol\_stats module
-===================================
-
+models.view_protocol_stats module
+=================================
 .. automodule:: models.view_protocol_stats
    :members:
    :undoc-members:

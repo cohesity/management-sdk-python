@@ -1,6 +1,5 @@
-models.view\_params module
-==========================
-
+models.view_params module
+=========================
 .. automodule:: models.view_params
    :members:
    :undoc-members:

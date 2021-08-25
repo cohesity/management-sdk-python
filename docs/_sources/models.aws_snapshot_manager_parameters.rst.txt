@@ -1,6 +1,5 @@
-models.aws\_snapshot\_manager\_parameters module
-================================================
-
+models.aws_snapshot_manager_parameters module
+=============================================
 .. automodule:: models.aws_snapshot_manager_parameters
    :members:
    :undoc-members:

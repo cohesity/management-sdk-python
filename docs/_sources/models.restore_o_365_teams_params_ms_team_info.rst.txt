@@ -1,6 +1,5 @@
-models.restore\_o\_365\_teams\_params\_ms\_team\_info module
-============================================================
-
+models.restore_o_365_teams_params_ms_team_info module
+=====================================================
 .. automodule:: models.restore_o_365_teams_params_ms_team_info
    :members:
    :undoc-members:

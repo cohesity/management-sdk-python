@@ -1,6 +1,5 @@
-models.script\_execution\_status module
-=======================================
-
+models.script_execution_status module
+=====================================
 .. automodule:: models.script_execution_status
    :members:
    :undoc-members:

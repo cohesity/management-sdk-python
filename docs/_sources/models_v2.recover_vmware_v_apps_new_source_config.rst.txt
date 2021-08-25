@@ -1,6 +1,5 @@
-models\_v2.recover\_vmware\_v\_apps\_new\_source\_config module
-===============================================================
-
+models_v2.recover_vmware_v_apps_new_source_config module
+========================================================
 .. automodule:: models_v2.recover_vmware_v_apps_new_source_config
    :members:
    :undoc-members:

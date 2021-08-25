@@ -1,6 +1,5 @@
-models.hyperv\_virtual\_machine module
-======================================
-
+models.hyperv_virtual_machine module
+====================================
 .. automodule:: models.hyperv_virtual_machine
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models\_v2.data\_migration\_task\_up\_tiering\_file\_selection\_type module
-===========================================================================
-
+models_v2.data_migration_task_up_tiering_file_selection_type module
+===================================================================
 .. automodule:: models_v2.data_migration_task_up_tiering_file_selection_type
    :members:
    :undoc-members:

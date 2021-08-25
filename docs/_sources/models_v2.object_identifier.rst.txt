@@ -1,0 +1,6 @@
+models_v2.object_identifier module
+==================================
+.. automodule:: models_v2.object_identifier
+   :members:
+   :undoc-members:
+   :show-inheritance:

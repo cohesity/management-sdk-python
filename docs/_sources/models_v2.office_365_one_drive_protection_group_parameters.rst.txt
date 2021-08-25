@@ -1,6 +1,5 @@
-models\_v2.office\_365\_one\_drive\_protection\_group\_parameters module
-========================================================================
-
+models_v2.office_365_one_drive_protection_group_parameters module
+=================================================================
 .. automodule:: models_v2.office_365_one_drive_protection_group_parameters
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models\_v2.up\_tiering\_file\_selection module
-==============================================
-
+models_v2.up_tiering_file_selection module
+==========================================
 .. automodule:: models_v2.up_tiering_file_selection
    :members:
    :undoc-members:

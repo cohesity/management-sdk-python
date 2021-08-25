@@ -1,6 +1,5 @@
-models\_v2.azure\_recovery\_target\_params module
-=================================================
-
+models_v2.azure_recovery_target_params module
+=============================================
 .. automodule:: models_v2.azure_recovery_target_params
    :members:
    :undoc-members:

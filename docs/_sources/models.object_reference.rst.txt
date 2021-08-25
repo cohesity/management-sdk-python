@@ -1,0 +1,6 @@
+models.object_reference module
+==============================
+.. automodule:: models.object_reference
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,6 +1,5 @@
-models.registered\_app\_info module
-===================================
-
+models.registered_app_info module
+=================================
 .. automodule:: models.registered_app_info
    :members:
    :undoc-members:

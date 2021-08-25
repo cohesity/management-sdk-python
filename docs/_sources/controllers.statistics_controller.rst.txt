@@ -1,6 +1,5 @@
-controllers.statistics\_controller module
-=========================================
-
+controllers.statistics_controller module
+========================================
 .. automodule:: controllers.statistics_controller
    :members:
    :undoc-members:

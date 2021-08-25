@@ -1,6 +1,5 @@
-controllers.certificates\_controller module
-===========================================
-
+controllers.certificates_controller module
+==========================================
 .. automodule:: controllers.certificates_controller
    :members:
    :undoc-members:

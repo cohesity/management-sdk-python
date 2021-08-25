@@ -1,6 +1,5 @@
-models.licensed\_usage module
-=============================
-
+models.licensed_usage module
+============================
 .. automodule:: models.licensed_usage
    :members:
    :undoc-members:

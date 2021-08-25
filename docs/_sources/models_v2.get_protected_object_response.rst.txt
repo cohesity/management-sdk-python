@@ -1,0 +1,6 @@
+models_v2.get_protected_object_response module
+==============================================
+.. automodule:: models_v2.get_protected_object_response
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,6 +1,5 @@
-models.vault\_group\_enum module
-================================
-
+models.vault_group_enum module
+==============================
 .. automodule:: models.vault_group_enum
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.restore\_source\_summary\_by\_object\_type\_element module
-=================================================================
-
+models.restore_source_summary_by_object_type_element module
+===========================================================
 .. automodule:: models.restore_source_summary_by_object_type_element
    :members:
    :undoc-members:

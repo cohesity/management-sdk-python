@@ -1,6 +1,5 @@
-models.bonding\_mode\_update\_bond\_parameters\_enum module
-===========================================================
-
+models.bonding_mode_update_bond_parameters_enum module
+======================================================
 .. automodule:: models.bonding_mode_update_bond_parameters_enum
    :members:
    :undoc-members:

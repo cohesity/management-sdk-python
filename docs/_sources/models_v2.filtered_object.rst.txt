@@ -1,6 +1,5 @@
-models\_v2.filtered\_object module
-==================================
-
+models_v2.filtered_object module
+================================
 .. automodule:: models_v2.filtered_object
    :members:
    :undoc-members:

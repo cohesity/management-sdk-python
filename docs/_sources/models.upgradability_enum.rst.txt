@@ -1,6 +1,5 @@
-models.upgradability\_enum module
-=================================
-
+models.upgradability_enum module
+================================
 .. automodule:: models.upgradability_enum
    :members:
    :undoc-members:

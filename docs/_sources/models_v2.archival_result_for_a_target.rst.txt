@@ -1,6 +1,5 @@
-models\_v2.archival\_result\_for\_a\_target module
-==================================================
-
+models_v2.archival_result_for_a_target module
+=============================================
 .. automodule:: models_v2.archival_result_for_a_target
    :members:
    :undoc-members:

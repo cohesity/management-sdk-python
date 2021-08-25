@@ -1,6 +1,5 @@
-models.ad\_object\_restore\_information module
-==============================================
-
+models.ad_object_restore_information module
+===========================================
 .. automodule:: models.ad_object_restore_information
    :members:
    :undoc-members:

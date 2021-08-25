@@ -1,6 +1,5 @@
-models.backup\_type\_sql\_env\_job\_parameters\_enum module
-===========================================================
-
+models.backup_type_sql_env_job_parameters_enum module
+=====================================================
 .. automodule:: models.backup_type_sql_env_job_parameters_enum
    :members:
    :undoc-members:

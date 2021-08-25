@@ -1,6 +1,5 @@
-models.mode\_enum module
-========================
-
+models.mode_enum module
+=======================
 .. automodule:: models.mode_enum
    :members:
    :undoc-members:

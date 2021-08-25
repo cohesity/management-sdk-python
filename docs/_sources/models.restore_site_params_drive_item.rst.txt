@@ -1,6 +1,5 @@
-models.restore\_site\_params\_drive\_item module
-================================================
-
+models.restore_site_params_drive_item module
+============================================
 .. automodule:: models.restore_site_params_drive_item
    :members:
    :undoc-members:

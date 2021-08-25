@@ -1,6 +1,5 @@
-models.oracle\_db\_config\_redo\_log\_group\_conf module
-========================================================
-
+models.oracle_db_config_redo_log_group_conf module
+==================================================
 .. automodule:: models.oracle_db_config_redo_log_group_conf
    :members:
    :undoc-members:

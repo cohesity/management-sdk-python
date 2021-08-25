@@ -1,6 +1,5 @@
-models.tenant\_info module
-==========================
-
+models.tenant_info module
+=========================
 .. automodule:: models.tenant_info
    :members:
    :undoc-members:

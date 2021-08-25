@@ -1,6 +1,5 @@
-models.virtual\_disk\_recover\_task\_state module
-=================================================
-
+models.virtual_disk_recover_task_state module
+=============================================
 .. automodule:: models.virtual_disk_recover_task_state
    :members:
    :undoc-members:

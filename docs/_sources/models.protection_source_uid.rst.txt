@@ -1,6 +1,5 @@
-models.protection\_source\_uid module
-=====================================
-
+models.protection_source_uid module
+===================================
 .. automodule:: models.protection_source_uid
    :members:
    :undoc-members:

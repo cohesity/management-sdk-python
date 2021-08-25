@@ -1,6 +1,5 @@
-models.qos\_type\_rpo\_policy\_settings\_enum module
-====================================================
-
+models.qos_type_rpo_policy_settings_enum module
+===============================================
 .. automodule:: models.qos_type_rpo_policy_settings_enum
    :members:
    :undoc-members:

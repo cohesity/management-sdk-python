@@ -1,6 +1,5 @@
-models\_v2.id\_mapping\_params module
-=====================================
-
+models_v2.id_mapping_params module
+==================================
 .. automodule:: models_v2.id_mapping_params
    :members:
    :undoc-members:

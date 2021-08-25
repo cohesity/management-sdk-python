@@ -1,6 +1,5 @@
-models\_v2.down\_tiering\_inclusion\_policy module
-==================================================
-
+models_v2.down_tiering_inclusion_policy module
+==============================================
 .. automodule:: models_v2.down_tiering_inclusion_policy
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.networking\_information module
-=====================================
-
+models.networking_information module
+====================================
 .. automodule:: models.networking_information
    :members:
    :undoc-members:

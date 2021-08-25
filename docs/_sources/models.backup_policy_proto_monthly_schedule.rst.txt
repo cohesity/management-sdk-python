@@ -1,6 +1,5 @@
-models.backup\_policy\_proto\_monthly\_schedule module
-======================================================
-
+models.backup_policy_proto_monthly_schedule module
+==================================================
 .. automodule:: models.backup_policy_proto_monthly_schedule
    :members:
    :undoc-members:

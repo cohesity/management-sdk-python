@@ -1,6 +1,5 @@
-models.ad\_object\_restore\_status\_ad\_attribute\_restore\_status module
-=========================================================================
-
+models.ad_object_restore_status_ad_attribute_restore_status module
+==================================================================
 .. automodule:: models.ad_object_restore_status_ad_attribute_restore_status
    :members:
    :undoc-members:

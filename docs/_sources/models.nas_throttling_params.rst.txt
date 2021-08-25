@@ -1,6 +1,5 @@
-models.nas\_throttling\_params module
-=====================================
-
+models.nas_throttling_params module
+===================================
 .. automodule:: models.nas_throttling_params
    :members:
    :undoc-members:

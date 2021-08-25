@@ -1,6 +1,5 @@
-models.public\_status\_cloud\_archival\_info\_enum module
-=========================================================
-
+models.public_status_cloud_archival_info_enum module
+====================================================
 .. automodule:: models.public_status_cloud_archival_info_enum
    :members:
    :undoc-members:

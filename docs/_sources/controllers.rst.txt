@@ -64,3 +64,4 @@ Submodules
    controllers.view_boxes_controller
    controllers.views_controller
    controllers.vlan_controller
+

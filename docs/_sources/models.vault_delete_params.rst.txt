@@ -1,6 +1,5 @@
-models.vault\_delete\_params module
-===================================
-
+models.vault_delete_params module
+=================================
 .. automodule:: models.vault_delete_params
    :members:
    :undoc-members:

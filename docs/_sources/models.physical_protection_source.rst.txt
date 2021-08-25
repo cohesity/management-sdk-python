@@ -1,6 +1,5 @@
-models.physical\_protection\_source module
-==========================================
-
+models.physical_protection_source module
+========================================
 .. automodule:: models.physical_protection_source
    :members:
    :undoc-members:

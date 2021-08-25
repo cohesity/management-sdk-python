@@ -1,6 +1,5 @@
-models\_v2.flashblade\_target\_params\_6 module
-===============================================
-
+models_v2.flashblade_target_params_6 module
+===========================================
 .. automodule:: models_v2.flashblade_target_params_6
    :members:
    :undoc-members:

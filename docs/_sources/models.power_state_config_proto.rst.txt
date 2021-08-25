@@ -1,6 +1,5 @@
-models.power\_state\_config\_proto module
-=========================================
-
+models.power_state_config_proto module
+======================================
 .. automodule:: models.power_state_config_proto
    :members:
    :undoc-members:

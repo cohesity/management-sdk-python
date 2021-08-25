@@ -1,6 +1,5 @@
-models.alert\_metadata module
-=============================
-
+models.alert_metadata module
+============================
 .. automodule:: models.alert_metadata
    :members:
    :undoc-members:

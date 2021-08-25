@@ -1,6 +1,5 @@
-models.cluster\_info module
-===========================
-
+models.cluster_info module
+==========================
 .. automodule:: models.cluster_info
    :members:
    :undoc-members:

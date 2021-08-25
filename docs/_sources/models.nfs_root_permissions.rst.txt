@@ -1,6 +1,5 @@
-models.nfs\_root\_permissions module
-====================================
-
+models.nfs_root_permissions module
+==================================
 .. automodule:: models.nfs_root_permissions
    :members:
    :undoc-members:

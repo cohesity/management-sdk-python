@@ -1,6 +1,5 @@
-models.tenant\_id\_data module
-==============================
-
+models.tenant_id_data module
+============================
 .. automodule:: models.tenant_id_data
    :members:
    :undoc-members:

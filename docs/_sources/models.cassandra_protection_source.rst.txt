@@ -1,6 +1,5 @@
-models.cassandra\_protection\_source module
-===========================================
-
+models.cassandra_protection_source module
+=========================================
 .. automodule:: models.cassandra_protection_source
    :members:
    :undoc-members:

@@ -1,0 +1,6 @@
+models_v2.helios_frequency_schedule module
+==========================================
+.. automodule:: models_v2.helios_frequency_schedule
+   :members:
+   :undoc-members:
+   :show-inheritance:

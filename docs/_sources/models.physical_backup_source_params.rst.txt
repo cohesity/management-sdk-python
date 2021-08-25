@@ -1,6 +1,5 @@
-models.physical\_backup\_source\_params module
-==============================================
-
+models.physical_backup_source_params module
+===========================================
 .. automodule:: models.physical_backup_source_params
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.o\_365\_backup\_env\_params module
-=========================================
-
+models.o_365_backup_env_params module
+=====================================
 .. automodule:: models.o_365_backup_env_params
    :members:
    :undoc-members:

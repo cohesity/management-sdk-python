@@ -1,6 +1,5 @@
-models.sql\_server\_instance\_version module
-============================================
-
+models.sql_server_instance_version module
+=========================================
 .. automodule:: models.sql_server_instance_version
    :members:
    :undoc-members:

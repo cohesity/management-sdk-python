@@ -1,6 +1,5 @@
-models.type\_hbase\_protection\_source\_enum module
-===================================================
-
+models.type_hbase_protection_source_enum module
+===============================================
 .. automodule:: models.type_hbase_protection_source_enum
    :members:
    :undoc-members:

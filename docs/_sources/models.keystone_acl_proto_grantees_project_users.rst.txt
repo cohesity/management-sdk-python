@@ -1,6 +1,5 @@
-models.keystone\_acl\_proto\_grantees\_project\_users module
-============================================================
-
+models.keystone_acl_proto_grantees_project_users module
+=======================================================
 .. automodule:: models.keystone_acl_proto_grantees_project_users
    :members:
    :undoc-members:

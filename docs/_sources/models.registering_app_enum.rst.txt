@@ -1,6 +1,5 @@
-models.registering\_app\_enum module
-====================================
-
+models.registering_app_enum module
+==================================
 .. automodule:: models.registering_app_enum
    :members:
    :undoc-members:

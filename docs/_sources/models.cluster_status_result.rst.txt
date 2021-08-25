@@ -1,6 +1,5 @@
-models.cluster\_status\_result module
-=====================================
-
+models.cluster_status_result module
+===================================
 .. automodule:: models.cluster_status_result
    :members:
    :undoc-members:

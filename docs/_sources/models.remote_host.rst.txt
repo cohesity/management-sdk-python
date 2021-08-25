@@ -1,6 +1,5 @@
-models.remote\_host module
-==========================
-
+models.remote_host module
+=========================
 .. automodule:: models.remote_host
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.tiering\_audit\_log\_configuration module
-================================================
-
+models.tiering_audit_log_configuration module
+=============================================
 .. automodule:: models.tiering_audit_log_configuration
    :members:
    :undoc-members:

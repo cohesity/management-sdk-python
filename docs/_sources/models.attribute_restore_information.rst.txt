@@ -1,6 +1,5 @@
-models.attribute\_restore\_information module
-=============================================
-
+models.attribute_restore_information module
+===========================================
 .. automodule:: models.attribute_restore_information
    :members:
    :undoc-members:

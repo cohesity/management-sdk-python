@@ -1,6 +1,5 @@
-models.hdfs\_connect\_params module
-===================================
-
+models.hdfs_connect_params module
+=================================
 .. automodule:: models.hdfs_connect_params
    :members:
    :undoc-members:

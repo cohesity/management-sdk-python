@@ -1,6 +1,5 @@
-models.data\_transfer\_to\_vault\_summary module
-================================================
-
+models.data_transfer_to_vault_summary module
+============================================
 .. automodule:: models.data_transfer_to_vault_summary
    :members:
    :undoc-members:

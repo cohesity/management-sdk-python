@@ -1,6 +1,5 @@
-models.indexing\_policy module
-==============================
-
+models.indexing_policy module
+=============================
 .. automodule:: models.indexing_policy
    :members:
    :undoc-members:

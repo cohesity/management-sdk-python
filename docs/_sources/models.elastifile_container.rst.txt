@@ -1,6 +1,5 @@
-models.elastifile\_container module
-===================================
-
+models.elastifile_container module
+==================================
 .. automodule:: models.elastifile_container
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.get\_objects\_details\_result module
-===========================================
-
+models.get_objects_details_result module
+========================================
 .. automodule:: models.get_objects_details_result
    :members:
    :undoc-members:

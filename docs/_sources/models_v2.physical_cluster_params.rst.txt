@@ -1,6 +1,5 @@
-models\_v2.physical\_cluster\_params module
-===========================================
-
+models_v2.physical_cluster_params module
+========================================
 .. automodule:: models_v2.physical_cluster_params
    :members:
    :undoc-members:

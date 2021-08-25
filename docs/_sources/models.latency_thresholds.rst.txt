@@ -1,6 +1,5 @@
-models.latency\_thresholds module
-=================================
-
+models.latency_thresholds module
+================================
 .. automodule:: models.latency_thresholds
    :members:
    :undoc-members:

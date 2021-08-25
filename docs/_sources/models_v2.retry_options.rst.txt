@@ -1,6 +1,5 @@
-models\_v2.retry\_options module
-================================
-
+models_v2.retry_options module
+==============================
 .. automodule:: models_v2.retry_options
    :members:
    :undoc-members:

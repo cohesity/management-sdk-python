@@ -1,6 +1,5 @@
 models.node module
 ==================
-
 .. automodule:: models.node
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-exceptions.api\_exception module
-================================
-
+exceptions.api_exception module
+===============================
 .. automodule:: exceptions.api_exception
    :members:
    :undoc-members:

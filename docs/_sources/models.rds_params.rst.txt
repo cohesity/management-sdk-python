@@ -1,6 +1,5 @@
-models.rds\_params module
-=========================
-
+models.rds_params module
+========================
 .. automodule:: models.rds_params
    :members:
    :undoc-members:

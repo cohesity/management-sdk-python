@@ -1,6 +1,5 @@
-reports_controller
-==================
-
+controllers.reports_controller module
+=====================================
 .. automodule:: controllers.reports_controller
    :members:
    :undoc-members:

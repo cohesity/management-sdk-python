@@ -1,6 +1,5 @@
-controllers.alerts\_controller module
-=====================================
-
+controllers.alerts_controller module
+====================================
 .. automodule:: controllers.alerts_controller
    :members:
    :undoc-members:

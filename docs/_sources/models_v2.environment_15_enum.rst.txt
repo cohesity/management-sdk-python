@@ -1,6 +1,5 @@
-models\_v2.environment\_15\_enum module
-=======================================
-
+models_v2.environment_15_enum module
+====================================
 .. automodule:: models_v2.environment_15_enum
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.mongoDB\_additional\_params module
-=========================================
-
+models.mongoDB_additional_params module
+=======================================
 .. automodule:: models.mongoDB_additional_params
    :members:
    :undoc-members:

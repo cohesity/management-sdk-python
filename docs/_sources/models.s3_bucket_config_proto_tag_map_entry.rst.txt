@@ -1,6 +1,5 @@
-models.s3\_bucket\_config\_proto\_tag\_map\_entry module
-========================================================
-
+models.s3_bucket_config_proto_tag_map_entry module
+==================================================
 .. automodule:: models.s3_bucket_config_proto_tag_map_entry
    :members:
    :undoc-members:

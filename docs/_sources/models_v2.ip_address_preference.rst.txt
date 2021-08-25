@@ -1,6 +1,5 @@
-models\_v2.ip\_address\_preference module
-=========================================
-
+models_v2.ip_address_preference module
+======================================
 .. automodule:: models_v2.ip_address_preference
    :members:
    :undoc-members:

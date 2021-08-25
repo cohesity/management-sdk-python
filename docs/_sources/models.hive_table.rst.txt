@@ -1,6 +1,5 @@
-models.hive\_table module
-=========================
-
+models.hive_table module
+========================
 .. automodule:: models.hive_table
    :members:
    :undoc-members:

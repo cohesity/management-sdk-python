@@ -1,6 +1,5 @@
-models.bifrost\_config module
-=============================
-
+models.bifrost_config module
+============================
 .. automodule:: models.bifrost_config
    :members:
    :undoc-members:

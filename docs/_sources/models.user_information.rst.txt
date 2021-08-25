@@ -1,6 +1,5 @@
-models.user\_information module
-===============================
-
+models.user_information module
+==============================
 .. automodule:: models.user_information
    :members:
    :undoc-members:

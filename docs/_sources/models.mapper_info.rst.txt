@@ -1,6 +1,5 @@
-models.mapper\_info module
-==========================
-
+models.mapper_info module
+=========================
 .. automodule:: models.mapper_info
    :members:
    :undoc-members:

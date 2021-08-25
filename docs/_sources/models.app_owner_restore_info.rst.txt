@@ -1,6 +1,5 @@
-models.app\_owner\_restore\_info module
-=======================================
-
+models.app_owner_restore_info module
+====================================
 .. automodule:: models.app_owner_restore_info
    :members:
    :undoc-members:

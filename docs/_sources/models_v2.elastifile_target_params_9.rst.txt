@@ -1,6 +1,5 @@
-models\_v2.elastifile\_target\_params\_9 module
-===============================================
-
+models_v2.elastifile_target_params_9 module
+===========================================
 .. automodule:: models_v2.elastifile_target_params_9
    :members:
    :undoc-members:

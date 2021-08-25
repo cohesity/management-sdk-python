@@ -1,6 +1,5 @@
-models\_v2.vdc\_catalogs module
-===============================
-
+models_v2.vdc_catalogs module
+=============================
 .. automodule:: models_v2.vdc_catalogs
    :members:
    :undoc-members:

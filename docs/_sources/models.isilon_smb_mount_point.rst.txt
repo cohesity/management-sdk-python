@@ -1,6 +1,5 @@
-models.isilon\_smb\_mount\_point module
-=======================================
-
+models.isilon_smb_mount_point module
+====================================
 .. automodule:: models.isilon_smb_mount_point
    :members:
    :undoc-members:

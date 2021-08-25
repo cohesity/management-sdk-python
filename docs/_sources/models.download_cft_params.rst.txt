@@ -1,6 +1,5 @@
-models.download\_cft\_params module
-===================================
-
+models.download_cft_params module
+=================================
 .. automodule:: models.download_cft_params
    :members:
    :undoc-members:

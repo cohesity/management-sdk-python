@@ -1,6 +1,5 @@
-models.sources\_for\_sid module
-===============================
-
+models.sources_for_sid module
+=============================
 .. automodule:: models.sources_for_sid
    :members:
    :undoc-members:

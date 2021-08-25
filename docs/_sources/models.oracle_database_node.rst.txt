@@ -1,6 +1,5 @@
-models.oracle\_database\_node module
-====================================
-
+models.oracle_database_node module
+==================================
 .. automodule:: models.oracle_database_node
    :members:
    :undoc-members:

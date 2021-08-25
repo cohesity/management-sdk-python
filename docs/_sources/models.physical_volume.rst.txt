@@ -1,6 +1,5 @@
-models.physical\_volume module
-==============================
-
+models.physical_volume module
+=============================
 .. automodule:: models.physical_volume
    :members:
    :undoc-members:

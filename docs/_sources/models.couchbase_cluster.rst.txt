@@ -1,6 +1,5 @@
-models.couchbase\_cluster module
-================================
-
+models.couchbase_cluster module
+===============================
 .. automodule:: models.couchbase_cluster
    :members:
    :undoc-members:

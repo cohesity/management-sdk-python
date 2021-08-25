@@ -1,6 +1,5 @@
-models.deploy\_task\_request module
-===================================
-
+models.deploy_task_request module
+=================================
 .. automodule:: models.deploy_task_request
    :members:
    :undoc-members:

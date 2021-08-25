@@ -1,6 +1,5 @@
-models.replication\_encryption\_key\_reponse module
-===================================================
-
+models.replication_encryption_key_reponse module
+================================================
 .. automodule:: models.replication_encryption_key_reponse
    :members:
    :undoc-members:

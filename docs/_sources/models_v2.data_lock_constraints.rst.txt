@@ -1,6 +1,5 @@
-models\_v2.data\_lock\_constraints module
-=========================================
-
+models_v2.data_lock_constraints module
+======================================
 .. automodule:: models_v2.data_lock_constraints
    :members:
    :undoc-members:

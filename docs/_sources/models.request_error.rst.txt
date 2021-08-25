@@ -1,6 +1,5 @@
-models.request\_error module
-============================
-
+models.request_error module
+===========================
 .. automodule:: models.request_error
    :members:
    :undoc-members:

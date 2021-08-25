@@ -1,6 +1,5 @@
-models.oracle\_update\_restore\_task\_options module
-====================================================
-
+models.oracle_update_restore_task_options module
+================================================
 .. automodule:: models.oracle_update_restore_task_options
    :members:
    :undoc-members:

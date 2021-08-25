@@ -1,6 +1,5 @@
-models.gcp\_protection\_source module
-=====================================
-
+models.gcp_protection_source module
+===================================
 .. automodule:: models.gcp_protection_source
    :members:
    :undoc-members:

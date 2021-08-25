@@ -1,6 +1,5 @@
-models.scheduling\_policy\_proto\_continuous\_schedule module
-=============================================================
-
+models.scheduling_policy_proto_continuous_schedule module
+=========================================================
 .. automodule:: models.scheduling_policy_proto_continuous_schedule
    :members:
    :undoc-members:

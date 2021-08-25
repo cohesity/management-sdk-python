@@ -1,6 +1,5 @@
-models.vault\_run\_info module
-==============================
-
+models.vault_run_info module
+============================
 .. automodule:: models.vault_run_info
    :members:
    :undoc-members:

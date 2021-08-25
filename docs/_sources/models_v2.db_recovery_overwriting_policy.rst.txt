@@ -1,6 +1,5 @@
-models\_v2.db\_recovery\_overwriting\_policy module
-===================================================
-
+models_v2.db_recovery_overwriting_policy module
+===============================================
 .. automodule:: models_v2.db_recovery_overwriting_policy
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models\_v2.permissions\_information module
-==========================================
-
+models_v2.permissions_information module
+========================================
 .. automodule:: models_v2.permissions_information
    :members:
    :undoc-members:

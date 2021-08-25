@@ -1,6 +1,5 @@
-models.origin\_enum module
-==========================
-
+models.origin_enum module
+=========================
 .. automodule:: models.origin_enum
    :members:
    :undoc-members:

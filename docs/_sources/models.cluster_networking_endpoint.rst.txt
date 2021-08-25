@@ -1,6 +1,5 @@
-models.cluster\_networking\_endpoint module
-===========================================
-
+models.cluster_networking_endpoint module
+=========================================
 .. automodule:: models.cluster_networking_endpoint
    :members:
    :undoc-members:

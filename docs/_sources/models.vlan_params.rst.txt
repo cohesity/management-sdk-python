@@ -1,6 +1,5 @@
-models.vlan\_params module
-==========================
-
+models.vlan_params module
+=========================
 .. automodule:: models.vlan_params
    :members:
    :undoc-members:

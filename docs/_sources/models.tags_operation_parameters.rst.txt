@@ -1,6 +1,5 @@
-models.tags\_operation\_parameters module
-=========================================
-
+models.tags_operation_parameters module
+=======================================
 .. automodule:: models.tags_operation_parameters
    :members:
    :undoc-members:

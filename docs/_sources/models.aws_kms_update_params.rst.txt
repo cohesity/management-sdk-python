@@ -1,6 +1,5 @@
-models.aws\_kms\_update\_params module
-======================================
-
+models.aws_kms_update_params module
+===================================
 .. automodule:: models.aws_kms_update_params
    :members:
    :undoc-members:

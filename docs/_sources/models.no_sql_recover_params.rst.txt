@@ -1,6 +1,5 @@
-models.no\_sql\_recover\_params module
-======================================
-
+models.no_sql_recover_params module
+===================================
 .. automodule:: models.no_sql_recover_params
    :members:
    :undoc-members:

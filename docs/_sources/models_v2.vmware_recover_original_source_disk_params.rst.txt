@@ -1,6 +1,5 @@
-models\_v2.vmware\_recover\_original\_source\_disk\_params module
-=================================================================
-
+models_v2.vmware_recover_original_source_disk_params module
+===========================================================
 .. automodule:: models_v2.vmware_recover_original_source_disk_params
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models\_v2.entity\_types module
-===============================
-
+models_v2.entity_types module
+=============================
 .. automodule:: models_v2.entity_types
    :members:
    :undoc-members:

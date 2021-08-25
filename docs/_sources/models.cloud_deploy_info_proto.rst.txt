@@ -1,6 +1,5 @@
-models.cloud\_deploy\_info\_proto module
-========================================
-
+models.cloud_deploy_info_proto module
+=====================================
 .. automodule:: models.cloud_deploy_info_proto
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models\_v2.search\_public\_folder\_request\_params module
-=========================================================
-
+models_v2.search_public_folder_request_params module
+====================================================
 .. automodule:: models_v2.search_public_folder_request_params
    :members:
    :undoc-members:

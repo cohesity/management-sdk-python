@@ -1,6 +1,5 @@
-models.job\_policy\_proto module
-================================
-
+models.job_policy_proto module
+==============================
 .. automodule:: models.job_policy_proto
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.file\_uptiering\_params module
-=====================================
-
+models.file_uptiering_params module
+===================================
 .. automodule:: models.file_uptiering_params
    :members:
    :undoc-members:

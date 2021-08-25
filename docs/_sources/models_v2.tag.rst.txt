@@ -1,0 +1,6 @@
+models_v2.tag module
+====================
+.. automodule:: models_v2.tag
+   :members:
+   :undoc-members:
+   :show-inheritance:

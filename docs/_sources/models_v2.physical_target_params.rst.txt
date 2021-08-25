@@ -1,6 +1,5 @@
-models\_v2.physical\_target\_params module
-==========================================
-
+models_v2.physical_target_params module
+=======================================
 .. automodule:: models_v2.physical_target_params
    :members:
    :undoc-members:

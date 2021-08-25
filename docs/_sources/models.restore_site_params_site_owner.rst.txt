@@ -1,6 +1,5 @@
-models.restore\_site\_params\_site\_owner module
-================================================
-
+models.restore_site_params_site_owner module
+============================================
 .. automodule:: models.restore_site_params_site_owner
    :members:
    :undoc-members:

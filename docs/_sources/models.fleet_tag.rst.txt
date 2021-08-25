@@ -1,6 +1,5 @@
-models.fleet\_tag module
-========================
-
+models.fleet_tag module
+=======================
 .. automodule:: models.fleet_tag
    :members:
    :undoc-members:

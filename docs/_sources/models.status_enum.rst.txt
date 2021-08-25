@@ -1,6 +1,5 @@
-models.status\_enum module
-==========================
-
+models.status_enum module
+=========================
 .. automodule:: models.status_enum
    :members:
    :undoc-members:

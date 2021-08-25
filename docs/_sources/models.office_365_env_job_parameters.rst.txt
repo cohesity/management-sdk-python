@@ -1,6 +1,5 @@
-models.office\_365\_env\_job\_parameters module
-===============================================
-
+models.office_365_env_job_parameters module
+===========================================
 .. automodule:: models.office_365_env_job_parameters
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.active\_operation\_enum module
-=====================================
-
+models.active_operation_enum module
+===================================
 .. automodule:: models.active_operation_enum
    :members:
    :undoc-members:

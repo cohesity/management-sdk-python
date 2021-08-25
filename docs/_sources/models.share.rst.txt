@@ -1,6 +1,5 @@
 models.share module
 ===================
-
 .. automodule:: models.share
    :members:
    :undoc-members:

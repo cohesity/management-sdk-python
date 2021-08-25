@@ -1,6 +1,5 @@
-models\_v2.protected\_objects\_search\_result module
-====================================================
-
+models_v2.protected_objects_search_result module
+================================================
 .. automodule:: models_v2.protected_objects_search_result
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.netapp\_type\_enum module
-================================
-
+models.netapp_type_enum module
+==============================
 .. automodule:: models.netapp_type_enum
    :members:
    :undoc-members:

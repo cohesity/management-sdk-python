@@ -1,6 +1,5 @@
-models.update\_cluster\_params\_fault\_tolerance\_level\_enum module
-====================================================================
-
+models.update_cluster_params_fault_tolerance_level_enum module
+==============================================================
 .. automodule:: models.update_cluster_params_fault_tolerance_level_enum
    :members:
    :undoc-members:

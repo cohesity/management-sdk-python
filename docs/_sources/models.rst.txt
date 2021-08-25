@@ -98,7 +98,6 @@ Submodules
    models.antivirus_service_group
    models.antivirus_service_group_params
    models.antivirus_service_group_state_params
-   models.api_helper
    models.api_key
    models.apollo_io_preferential_tier_enum
    models.apollo_wal_io_preferential_tier_enum
@@ -145,8 +144,11 @@ Submodules
    models.aws_fleet_params_tag
    models.aws_kms_configuration
    models.aws_kms_update_params
+   models.aws_native_backup_source_params
+   models.aws_native_env_params
    models.aws_params
    models.aws_protection_source
+   models.aws_snapshot_manager_backup_source_params
    models.aws_snapshot_manager_parameters
    models.aws_snapshot_manager_params
    models.aws_type_enum
@@ -198,6 +200,8 @@ Submodules
    models.bonding_mode_update_bond_parameters_enum
    models.bonding_opts
    models.bulk_install_app_task_info
+   models.c2s_access_portal
+   models.c2s_server_info
    models.c_2_s_access_portal
    models.cancel_protection_job_run_param
    models.capacity_by_tier
@@ -227,6 +231,7 @@ Submodules
    models.check_type_enum
    models.cifs_share_info
    models.clear_nlm_locks_parameters
+   models.client_type_enum
    models.clone_app_view_info_oracle
    models.clone_app_view_info_proto
    models.clone_app_view_params
@@ -275,7 +280,6 @@ Submodules
    models.cluster_status_result
    models.cluster_type_cluster_enum
    models.cluster_type_enum
-   models.cohesity_client
    models.combine_method_enum
    models.common_acl_proto
    models.common_acl_proto_grantees
@@ -286,7 +290,6 @@ Submodules
    models.compared_ad_object
    models.compression_policy_enum
    models.compression_policy_vault_enum
-   models.configuration
    models.connection_state_enum
    models.connector_parameters
    models.connector_params
@@ -339,6 +342,8 @@ Submodules
    models.dashboard
    models.dashboard_response
    models.data_disk_type_enum
+   models.data_lock_config
+   models.data_lock_constraints
    models.data_migration_job_parameters
    models.data_migration_policy
    models.data_protocol_enum
@@ -358,7 +363,6 @@ Submodules
    models.day_monthly_schedule_enum
    models.db_file_info
    models.db_type_enum
-   models.decorators
    models.delete_infected_file_params
    models.delete_infected_file_response
    models.delete_ip_config_parameters
@@ -408,6 +412,8 @@ Submodules
    models.download_package_parameters
    models.download_package_result
    models.dse_solar_info
+   models.ebs_volume_exclusion_params
+   models.ebs_volume_info
    models.edit_hosts_parameters
    models.elastifile_cluster
    models.elastifile_container
@@ -478,6 +484,8 @@ Submodules
    models.exchange_protection_source
    models.exchange_restore_parameters
    models.exchange_restore_view_parameters
+   models.exclude_aws_types_enum
+   models.exclude_kubernetes_types_enum
    models.exclude_office_365_type_enum
    models.exclude_type_enum
    models.exclude_type_get_protected_objects_summary_enum
@@ -488,6 +496,10 @@ Submodules
    models.external_client_subnets
    models.external_network_info
    models.external_target_type_enum
+   models.externally_triggered_env_job_parameters
+   models.externally_triggered_job_params
+   models.externally_triggered_job_params_externally_triggered_sbt_params
+   models.externally_triggered_sbt_parameters
    models.extract_file_range_result
    models.fault_tolerance_level_enum
    models.feature_usage
@@ -676,11 +688,14 @@ Submodules
    models.kms_delete_params
    models.kms_update_request_parameters
    models.kubernetes_credentials
+   models.kubernetes_label_attribute
    models.kubernetes_protection_source
    models.kubernetes_restore_parameters
    models.kubernetes_type_enum
    models.kvm_protection_source
    models.kvm_type_enum
+   models.label_selector
+   models.label_selector_match_labels_entry
    models.last_protection_run_stats
    models.last_protection_run_stats_by_env
    models.last_protection_run_summary
@@ -696,6 +711,7 @@ Submodules
    models.librarian_io_preferential_tier_enum
    models.license_account_usage_rsp
    models.license_state
+   models.license_types_enum
    models.licensed_usage
    models.lifecycle_config_proto
    models.links
@@ -797,6 +813,7 @@ Submodules
    models.nfs_connection
    models.nfs_root_permissions
    models.nfs_squash
+   models.nfs_version_preference_enum
    models.nimble_protection_source
    models.nimble_type_enum
    models.nis_netgroup
@@ -832,6 +849,10 @@ Submodules
    models.object_class_search_active_directory_principals_enum
    models.object_class_search_principals_enum
    models.object_information
+   models.object_meta
+   models.object_meta_annotations_entry
+   models.object_meta_labels_entry
+   models.object_reference
    models.object_search_results
    models.object_snapshot_info
    models.object_snapshot_type
@@ -846,6 +867,7 @@ Submodules
    models.office_365_source_type_enum
    models.office_365_type_enum
    models.office_365_user_info
+   models.old_syslog_server
    models.one_drive_backup_env_params
    models.one_drive_document_metadata
    models.one_drive_env_job_parameters
@@ -1001,6 +1023,10 @@ Submodules
    models.pure_storage_array
    models.pure_type_enum
    models.pure_volume
+   models.pvc_info
+   models.pvc_info_pvc_spec
+   models.pvc_info_pvc_spec_resources
+   models.pvc_info_pvc_spec_resources_requests_entry
    models.q_star_server_credentials
    models.qo_s
    models.qo_s_policy
@@ -1625,3 +1651,4 @@ Submodules
    models.worm_retention_type_protection_policy_request_enum
    models.yoda_io_preferential_tier_enum
    models.zone_config
+

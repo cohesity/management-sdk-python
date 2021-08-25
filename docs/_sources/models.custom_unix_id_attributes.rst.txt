@@ -1,6 +1,5 @@
-models.custom\_unix\_id\_attributes module
-==========================================
-
+models.custom_unix_id_attributes module
+=======================================
 .. automodule:: models.custom_unix_id_attributes
    :members:
    :undoc-members:

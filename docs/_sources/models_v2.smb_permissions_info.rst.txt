@@ -1,0 +1,6 @@
+models_v2.smb_permissions_info module
+=====================================
+.. automodule:: models_v2.smb_permissions_info
+   :members:
+   :undoc-members:
+   :show-inheritance:

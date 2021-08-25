@@ -1,6 +1,5 @@
-models\_v2.protected\_objects\_search\_metadata module
-======================================================
-
+models_v2.protected_objects_search_metadata module
+==================================================
 .. automodule:: models_v2.protected_objects_search_metadata
    :members:
    :undoc-members:

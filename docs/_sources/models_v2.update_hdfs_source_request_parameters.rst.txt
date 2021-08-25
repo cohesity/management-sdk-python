@@ -1,6 +1,5 @@
-models\_v2.update\_hdfs\_source\_request\_parameters module
-===========================================================
-
+models_v2.update_hdfs_source_request_parameters module
+======================================================
 .. automodule:: models_v2.update_hdfs_source_request_parameters
    :members:
    :undoc-members:

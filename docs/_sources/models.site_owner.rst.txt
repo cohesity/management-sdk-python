@@ -1,6 +1,5 @@
-models.site\_owner module
-=========================
-
+models.site_owner module
+========================
 .. automodule:: models.site_owner
    :members:
    :undoc-members:

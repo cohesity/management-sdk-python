@@ -1,6 +1,5 @@
-models.remote\_job\_script module
-=================================
-
+models.remote_job_script module
+===============================
 .. automodule:: models.remote_job_script
    :members:
    :undoc-members:

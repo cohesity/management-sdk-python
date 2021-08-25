@@ -1,6 +1,5 @@
-models\_v2.tdm\_object\_timeline\_events module
-===============================================
-
+models_v2.tdm_object_timeline_events module
+===========================================
 .. automodule:: models_v2.tdm_object_timeline_events
    :members:
    :undoc-members:

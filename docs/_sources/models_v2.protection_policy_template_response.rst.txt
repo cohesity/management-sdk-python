@@ -1,6 +1,5 @@
-models\_v2.protection\_policy\_template\_response module
-========================================================
-
+models_v2.protection_policy_template_response module
+====================================================
 .. automodule:: models_v2.protection_policy_template_response
    :members:
    :undoc-members:

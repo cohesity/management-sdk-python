@@ -1,6 +1,5 @@
-models.io\_preferential\_tier module
-====================================
-
+models.io_preferential_tier module
+==================================
 .. automodule:: models.io_preferential_tier
    :members:
    :undoc-members:

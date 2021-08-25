@@ -1,6 +1,5 @@
-models.create\_cluster\_result module
-=====================================
-
+models.create_cluster_result module
+===================================
 .. automodule:: models.create_cluster_result
    :members:
    :undoc-members:

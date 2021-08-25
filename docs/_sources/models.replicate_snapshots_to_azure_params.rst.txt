@@ -1,6 +1,5 @@
-models.replicate\_snapshots\_to\_azure\_params module
-=====================================================
-
+models.replicate_snapshots_to_azure_params module
+=================================================
 .. automodule:: models.replicate_snapshots_to_azure_params
    :members:
    :undoc-members:

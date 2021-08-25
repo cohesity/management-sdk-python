@@ -1,6 +1,5 @@
-models.common\_acl\_proto module
-================================
-
+models.common_acl_proto module
+==============================
 .. automodule:: models.common_acl_proto
    :members:
    :undoc-members:

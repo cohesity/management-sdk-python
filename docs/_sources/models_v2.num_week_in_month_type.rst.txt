@@ -1,6 +1,5 @@
-models\_v2.num\_week\_in\_month\_type module
-============================================
-
+models_v2.num_week_in_month_type module
+=======================================
 .. automodule:: models_v2.num_week_in_month_type
    :members:
    :undoc-members:

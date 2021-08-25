@@ -1,6 +1,5 @@
-models.pdb\_restore\_param\_rename\_pdb\_map\_entry module
-==========================================================
-
+models.pdb_restore_param_rename_pdb_map_entry module
+====================================================
 .. automodule:: models.pdb_restore_param_rename_pdb_map_entry
    :members:
    :undoc-members:

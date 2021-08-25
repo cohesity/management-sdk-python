@@ -1,6 +1,5 @@
-models.created\_remote\_vault\_search\_job\_uid module
-======================================================
-
+models.created_remote_vault_search_job_uid module
+=================================================
 .. automodule:: models.created_remote_vault_search_job_uid
    :members:
    :undoc-members:

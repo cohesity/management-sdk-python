@@ -1,6 +1,5 @@
-models.magneto\_instance\_id module
-===================================
-
+models.magneto_instance_id module
+=================================
 .. automodule:: models.magneto_instance_id
    :members:
    :undoc-members:

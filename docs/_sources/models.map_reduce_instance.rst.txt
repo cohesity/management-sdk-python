@@ -1,6 +1,5 @@
-models.map\_reduce\_instance module
-===================================
-
+models.map_reduce_instance module
+=================================
 .. automodule:: models.map_reduce_instance
    :members:
    :undoc-members:

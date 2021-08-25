@@ -1,6 +1,5 @@
-models\_v2.oracle\_rman\_backup\_enum module
-============================================
-
+models_v2.oracle_rman_backup_enum module
+========================================
 .. automodule:: models_v2.oracle_rman_backup_enum
    :members:
    :undoc-members:

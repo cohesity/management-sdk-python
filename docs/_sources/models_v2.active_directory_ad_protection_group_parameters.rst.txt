@@ -1,6 +1,5 @@
-models\_v2.active\_directory\_ad\_protection\_group\_parameters module
-======================================================================
-
+models_v2.active_directory_ad_protection_group_parameters module
+================================================================
 .. automodule:: models_v2.active_directory_ad_protection_group_parameters
    :members:
    :undoc-members:

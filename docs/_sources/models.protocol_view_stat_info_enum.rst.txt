@@ -1,6 +1,5 @@
-models.protocol\_view\_stat\_info\_enum module
-==============================================
-
+models.protocol_view_stat_info_enum module
+==========================================
 .. automodule:: models.protocol_view_stat_info_enum
    :members:
    :undoc-members:

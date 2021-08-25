@@ -1,6 +1,5 @@
-models.launch\_app\_instance module
-===================================
-
+models.launch_app_instance module
+=================================
 .. automodule:: models.launch_app_instance
    :members:
    :undoc-members:

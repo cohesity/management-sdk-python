@@ -1,6 +1,5 @@
-models.hyperv\_clone\_parameters module
-=======================================
-
+models.hyperv_clone_parameters module
+=====================================
 .. automodule:: models.hyperv_clone_parameters
    :members:
    :undoc-members:

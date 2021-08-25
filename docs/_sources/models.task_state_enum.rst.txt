@@ -1,6 +1,5 @@
-models.task\_state\_enum module
-===============================
-
+models.task_state_enum module
+=============================
 .. automodule:: models.task_state_enum
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models\_v2.creation\_info module
-================================
-
+models_v2.creation_info module
+==============================
 .. automodule:: models_v2.creation_info
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.recover\_volumes\_params module
-======================================
-
+models.recover_volumes_params module
+====================================
 .. automodule:: models.recover_volumes_params
    :members:
    :undoc-members:

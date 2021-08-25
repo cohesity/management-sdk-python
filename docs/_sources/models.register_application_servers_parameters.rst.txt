@@ -1,6 +1,5 @@
-models.register\_application\_servers\_parameters module
-========================================================
-
+models.register_application_servers_parameters module
+=====================================================
 .. automodule:: models.register_application_servers_parameters
    :members:
    :undoc-members:

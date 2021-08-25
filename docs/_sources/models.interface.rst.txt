@@ -1,6 +1,5 @@
 models.interface module
 =======================
-
 .. automodule:: models.interface
    :members:
    :undoc-members:

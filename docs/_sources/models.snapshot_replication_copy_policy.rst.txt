@@ -1,6 +1,5 @@
-models.snapshot\_replication\_copy\_policy module
-=================================================
-
+models.snapshot_replication_copy_policy module
+==============================================
 .. automodule:: models.snapshot_replication_copy_policy
    :members:
    :undoc-members:

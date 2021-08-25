@@ -1,6 +1,5 @@
-controllers.app\_controller module
-==================================
-
+controllers.app_controller module
+=================================
 .. automodule:: controllers.app_controller
    :members:
    :undoc-members:

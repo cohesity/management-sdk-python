@@ -1,6 +1,5 @@
-controllers.notifications\_controller module
-============================================
-
+controllers.notifications_controller module
+===========================================
 .. automodule:: controllers.notifications_controller
    :members:
    :undoc-members:

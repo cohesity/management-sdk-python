@@ -1,6 +1,5 @@
-models.category\_enum module
-============================
-
+models.category_enum module
+===========================
 .. automodule:: models.category_enum
    :members:
    :undoc-members:

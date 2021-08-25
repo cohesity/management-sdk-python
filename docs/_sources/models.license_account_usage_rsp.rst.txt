@@ -1,6 +1,5 @@
-models.license\_account\_usage\_rsp module
-==========================================
-
+models.license_account_usage_rsp module
+=======================================
 .. automodule:: models.license_account_usage_rsp
    :members:
    :undoc-members:

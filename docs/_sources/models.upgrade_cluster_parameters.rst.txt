@@ -1,6 +1,5 @@
-models.upgrade\_cluster\_parameters module
-==========================================
-
+models.upgrade_cluster_parameters module
+========================================
 .. automodule:: models.upgrade_cluster_parameters
    :members:
    :undoc-members:

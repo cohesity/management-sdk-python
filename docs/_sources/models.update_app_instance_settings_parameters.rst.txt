@@ -1,6 +1,5 @@
-models.update\_app\_instance\_settings\_parameters module
-=========================================================
-
+models.update_app_instance_settings_parameters module
+=====================================================
 .. automodule:: models.update_app_instance_settings_parameters
    :members:
    :undoc-members:

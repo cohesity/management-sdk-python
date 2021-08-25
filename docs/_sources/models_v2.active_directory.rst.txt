@@ -1,6 +1,5 @@
-models\_v2.active\_directory module
-===================================
-
+models_v2.active_directory module
+=================================
 .. automodule:: models_v2.active_directory
    :members:
    :undoc-members:

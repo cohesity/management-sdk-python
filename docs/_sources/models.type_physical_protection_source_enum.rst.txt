@@ -1,6 +1,5 @@
-models.type\_physical\_protection\_source\_enum module
-======================================================
-
+models.type_physical_protection_source_enum module
+==================================================
 .. automodule:: models.type_physical_protection_source_enum
    :members:
    :undoc-members:

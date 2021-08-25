@@ -1,6 +1,5 @@
-models.flash\_blade\_network\_interface module
-==============================================
-
+models.flash_blade_network_interface module
+===========================================
 .. automodule:: models.flash_blade_network_interface
    :members:
    :undoc-members:

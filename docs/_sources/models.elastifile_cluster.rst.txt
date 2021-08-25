@@ -1,6 +1,5 @@
-models.elastifile\_cluster module
-=================================
-
+models.elastifile_cluster module
+================================
 .. automodule:: models.elastifile_cluster
    :members:
    :undoc-members:

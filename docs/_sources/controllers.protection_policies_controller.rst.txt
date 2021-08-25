@@ -1,6 +1,5 @@
-controllers.protection\_policies\_controller module
-===================================================
-
+controllers.protection_policies_controller module
+=================================================
 .. automodule:: controllers.protection_policies_controller
    :members:
    :undoc-members:

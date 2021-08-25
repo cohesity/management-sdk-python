@@ -1,6 +1,5 @@
-models.search\_production\_ad\_objects\_request module
-======================================================
-
+models.search_production_ad_objects_request module
+==================================================
 .. automodule:: models.search_production_ad_objects_request
    :members:
    :undoc-members:

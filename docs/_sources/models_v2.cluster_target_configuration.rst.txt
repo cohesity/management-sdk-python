@@ -1,6 +1,5 @@
-models\_v2.cluster\_target\_configuration module
-================================================
-
+models_v2.cluster_target_configuration module
+=============================================
 .. automodule:: models_v2.cluster_target_configuration
    :members:
    :undoc-members:

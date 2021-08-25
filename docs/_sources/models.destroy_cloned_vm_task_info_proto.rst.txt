@@ -1,6 +1,5 @@
-models.destroy\_cloned\_vm\_task\_info\_proto module
-====================================================
-
+models.destroy_cloned_vm_task_info_proto module
+===============================================
 .. automodule:: models.destroy_cloned_vm_task_info_proto
    :members:
    :undoc-members:

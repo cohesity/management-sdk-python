@@ -1,6 +1,5 @@
-models.flash\_blade\_file\_system module
-========================================
-
+models.flash_blade_file_system module
+=====================================
 .. automodule:: models.flash_blade_file_system
    :members:
    :undoc-members:

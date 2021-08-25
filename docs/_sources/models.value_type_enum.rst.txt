@@ -1,6 +1,5 @@
-models.value\_type\_enum module
-===============================
-
+models.value_type_enum module
+=============================
 .. automodule:: models.value_type_enum
    :members:
    :undoc-members:

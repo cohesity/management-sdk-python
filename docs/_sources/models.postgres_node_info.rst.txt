@@ -1,6 +1,5 @@
-models.postgres\_node\_info module
-==================================
-
+models.postgres_node_info module
+================================
 .. automodule:: models.postgres_node_info
    :members:
    :undoc-members:

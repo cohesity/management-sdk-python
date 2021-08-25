@@ -1,6 +1,5 @@
-models\_v2.vpc module
-=====================
-
+models_v2.vpc module
+====================
 .. automodule:: models_v2.vpc
    :members:
    :undoc-members:

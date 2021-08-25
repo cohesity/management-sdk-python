@@ -1,6 +1,5 @@
-models\_v2.cluster module
-=========================
-
+models_v2.cluster module
+========================
 .. automodule:: models_v2.cluster
    :members:
    :undoc-members:

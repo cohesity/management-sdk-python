@@ -1,6 +1,5 @@
-models\_v2.recover\_netapp\_params module
-=========================================
-
+models_v2.recover_netapp_params module
+======================================
 .. automodule:: models_v2.recover_netapp_params
    :members:
    :undoc-members:

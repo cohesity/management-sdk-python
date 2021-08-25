@@ -1,6 +1,5 @@
-models.backup\_policy\_proto\_exclusion\_time\_range module
-===========================================================
-
+models.backup_policy_proto_exclusion_time_range module
+======================================================
 .. automodule:: models.backup_policy_proto_exclusion_time_range
    :members:
    :undoc-members:

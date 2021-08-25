@@ -1,6 +1,5 @@
-models.file\_lock\_status\_params module
-========================================
-
+models.file_lock_status_params module
+=====================================
 .. automodule:: models.file_lock_status_params
    :members:
    :undoc-members:

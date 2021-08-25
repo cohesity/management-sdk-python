@@ -1,6 +1,5 @@
-models.oracle\_host module
-==========================
-
+models.oracle_host module
+=========================
 .. automodule:: models.oracle_host
    :members:
    :undoc-members:

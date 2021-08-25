@@ -1,6 +1,5 @@
-models.additional\_connector\_params module
-===========================================
-
+models.additional_connector_params module
+=========================================
 .. automodule:: models.additional_connector_params
    :members:
    :undoc-members:

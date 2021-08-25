@@ -1,6 +1,5 @@
-models.restore\_o\_365\_teams\_params module
-============================================
-
+models.restore_o_365_teams_params module
+========================================
 .. automodule:: models.restore_o_365_teams_params
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models\_v2.log\_schedule module
-===============================
-
+models_v2.log_schedule module
+=============================
 .. automodule:: models_v2.log_schedule
    :members:
    :undoc-members:

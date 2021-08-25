@@ -1,6 +1,5 @@
-models.retrieve\_archive\_info module
-=====================================
-
+models.retrieve_archive_info module
+===================================
 .. automodule:: models.retrieve_archive_info
    :members:
    :undoc-members:

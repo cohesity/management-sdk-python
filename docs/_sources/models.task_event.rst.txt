@@ -1,6 +1,5 @@
-models.task\_event module
-=========================
-
+models.task_event module
+========================
 .. automodule:: models.task_event
    :members:
    :undoc-members:

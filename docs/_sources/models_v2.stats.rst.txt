@@ -1,0 +1,6 @@
+models_v2.stats module
+======================
+.. automodule:: models_v2.stats
+   :members:
+   :undoc-members:
+   :show-inheritance:

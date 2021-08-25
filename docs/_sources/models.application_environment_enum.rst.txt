@@ -1,6 +1,5 @@
-models.application\_environment\_enum module
-============================================
-
+models.application_environment_enum module
+==========================================
 .. automodule:: models.application_environment_enum
    :members:
    :undoc-members:

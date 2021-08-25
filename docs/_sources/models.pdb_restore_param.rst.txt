@@ -1,6 +1,5 @@
-models.pdb\_restore\_param module
-=================================
-
+models.pdb_restore_param module
+===============================
 .. automodule:: models.pdb_restore_param
    :members:
    :undoc-members:

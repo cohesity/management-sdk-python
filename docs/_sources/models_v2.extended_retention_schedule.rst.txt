@@ -1,6 +1,5 @@
-models\_v2.extended\_retention\_schedule module
-===============================================
-
+models_v2.extended_retention_schedule module
+============================================
 .. automodule:: models_v2.extended_retention_schedule
    :members:
    :undoc-members:

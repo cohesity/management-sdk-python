@@ -1,6 +1,5 @@
-models.change\_enum module
-==========================
-
+models.change_enum module
+=========================
 .. automodule:: models.change_enum
    :members:
    :undoc-members:

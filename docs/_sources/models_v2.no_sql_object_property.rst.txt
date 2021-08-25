@@ -1,6 +1,5 @@
-models\_v2.no\_sql\_object\_property module
-===========================================
-
+models_v2.no_sql_object_property module
+=======================================
 .. automodule:: models_v2.no_sql_object_property
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.user\_ssh\_key module
-============================
-
+models.user_ssh_key module
+==========================
 .. automodule:: models.user_ssh_key
    :members:
    :undoc-members:

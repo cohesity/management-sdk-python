@@ -1,6 +1,5 @@
-models.recoveries\_tile module
-==============================
-
+models.recoveries_tile module
+=============================
 .. automodule:: models.recoveries_tile
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models\_v2.protection\_run\_summary module
-==========================================
-
+models_v2.protection_run_summary module
+=======================================
 .. automodule:: models_v2.protection_run_summary
    :members:
    :undoc-members:

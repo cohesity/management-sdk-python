@@ -1,6 +1,5 @@
-models.pure\_type\_enum module
-==============================
-
+models.pure_type_enum module
+============================
 .. automodule:: models.pure_type_enum
    :members:
    :undoc-members:

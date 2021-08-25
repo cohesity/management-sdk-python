@@ -1,6 +1,5 @@
-models.restore\_o\_365\_groups\_params module
-=============================================
-
+models.restore_o_365_groups_params module
+=========================================
 .. automodule:: models.restore_o_365_groups_params
    :members:
    :undoc-members:

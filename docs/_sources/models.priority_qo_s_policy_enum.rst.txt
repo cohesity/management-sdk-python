@@ -1,6 +1,5 @@
-models.priority\_qo\_s\_policy\_enum module
-===========================================
-
+models.priority_qo_s_policy_enum module
+=======================================
 .. automodule:: models.priority_qo_s_policy_enum
    :members:
    :undoc-members:

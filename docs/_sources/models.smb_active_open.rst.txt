@@ -1,6 +1,5 @@
-models.smb\_active\_open module
-===============================
-
+models.smb_active_open module
+=============================
 .. automodule:: models.smb_active_open
    :members:
    :undoc-members:

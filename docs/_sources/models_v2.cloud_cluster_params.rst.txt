@@ -1,6 +1,5 @@
-models\_v2.cloud\_cluster\_params module
-========================================
-
+models_v2.cloud_cluster_params module
+=====================================
 .. automodule:: models_v2.cloud_cluster_params
    :members:
    :undoc-members:

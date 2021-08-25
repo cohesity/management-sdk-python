@@ -1,6 +1,5 @@
-models.no\_sql\_recover\_job\_params module
-===========================================
-
+models.no_sql_recover_job_params module
+=======================================
 .. automodule:: models.no_sql_recover_job_params
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.protected\_vm\_info module
-=================================
-
+models.protected_vm_info module
+===============================
 .. automodule:: models.protected_vm_info
    :members:
    :undoc-members:

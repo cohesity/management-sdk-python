@@ -1,6 +1,5 @@
-models\_v2.cassandra\_security\_info module
-===========================================
-
+models_v2.cassandra_security_info module
+========================================
 .. automodule:: models_v2.cassandra_security_info
    :members:
    :undoc-members:

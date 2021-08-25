@@ -1,6 +1,5 @@
-models.azure\_type\_enum module
-===============================
-
+models.azure_type_enum module
+=============================
 .. automodule:: models.azure_type_enum
    :members:
    :undoc-members:

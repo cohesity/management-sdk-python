@@ -1,6 +1,5 @@
-models.keystone\_acl\_proto module
-==================================
-
+models.keystone_acl_proto module
+================================
 .. automodule:: models.keystone_acl_proto
    :members:
    :undoc-members:

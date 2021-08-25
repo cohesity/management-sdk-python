@@ -1,6 +1,5 @@
-models.registered\_source\_info module
-======================================
-
+models.registered_source_info module
+====================================
 .. automodule:: models.registered_source_info
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models\_v2.create\_cluster\_response module
-===========================================
-
+models_v2.create_cluster_response module
+========================================
 .. automodule:: models_v2.create_cluster_response
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models\_v2.logical\_volume\_info module
-=======================================
-
+models_v2.logical_volume_info module
+====================================
 .. automodule:: models_v2.logical_volume_info
    :members:
    :undoc-members:

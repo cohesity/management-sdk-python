@@ -1,6 +1,5 @@
-controllers.interface\_controller module
-========================================
-
+controllers.interface_controller module
+=======================================
 .. automodule:: controllers.interface_controller
    :members:
    :undoc-members:

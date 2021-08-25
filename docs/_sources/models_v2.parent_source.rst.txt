@@ -1,6 +1,5 @@
-models\_v2.parent\_source module
-================================
-
+models_v2.parent_source module
+==============================
 .. automodule:: models_v2.parent_source
    :members:
    :undoc-members:

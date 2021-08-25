@@ -1,6 +1,5 @@
-models\_v2.quota\_policy module
-===============================
-
+models_v2.quota_policy module
+=============================
 .. automodule:: models_v2.quota_policy
    :members:
    :undoc-members:

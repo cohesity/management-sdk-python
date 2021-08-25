@@ -1,6 +1,5 @@
-models\_v2.common\_pre\_post\_script\_params module
-===================================================
-
+models_v2.common_pre_post_script_params module
+==============================================
 .. automodule:: models_v2.common_pre_post_script_params
    :members:
    :undoc-members:

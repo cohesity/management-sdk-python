@@ -1,6 +1,5 @@
-models.couchbase\_protection\_source module
-===========================================
-
+models.couchbase_protection_source module
+=========================================
 .. automodule:: models.couchbase_protection_source
    :members:
    :undoc-members:

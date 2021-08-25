@@ -1,6 +1,5 @@
-models.vcloud\_director\_info module
-====================================
-
+models.vcloud_director_info module
+==================================
 .. automodule:: models.vcloud_director_info
    :members:
    :undoc-members:

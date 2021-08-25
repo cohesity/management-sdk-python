@@ -1,6 +1,5 @@
-models.type\_isilon\_protection\_source\_enum module
-====================================================
-
+models.type_isilon_protection_source_enum module
+================================================
 .. automodule:: models.type_isilon_protection_source_enum
    :members:
    :undoc-members:

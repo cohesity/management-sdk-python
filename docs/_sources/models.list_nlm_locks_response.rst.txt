@@ -1,6 +1,5 @@
-models.list\_nlm\_locks\_response module
-========================================
-
+models.list_nlm_locks_response module
+=====================================
 .. automodule:: models.list_nlm_locks_response
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models\_v2.database\_source module
-==================================
-
+models_v2.database_source module
+================================
 .. automodule:: models_v2.database_source
    :members:
    :undoc-members:

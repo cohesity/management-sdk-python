@@ -1,6 +1,5 @@
-models.cloud\_deploy\_target\_details module
-============================================
-
+models.cloud_deploy_target_details module
+=========================================
 .. automodule:: models.cloud_deploy_target_details
    :members:
    :undoc-members:

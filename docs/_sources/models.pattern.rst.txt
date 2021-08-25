@@ -1,6 +1,5 @@
 models.pattern module
 =====================
-
 .. automodule:: models.pattern
    :members:
    :undoc-members:

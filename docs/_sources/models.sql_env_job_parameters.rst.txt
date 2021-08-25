@@ -1,6 +1,5 @@
-models.sql\_env\_job\_parameters module
-=======================================
-
+models.sql_env_job_parameters module
+====================================
 .. automodule:: models.sql_env_job_parameters
    :members:
    :undoc-members:

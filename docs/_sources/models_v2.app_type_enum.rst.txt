@@ -1,6 +1,5 @@
-models\_v2.app\_type\_enum module
-=================================
-
+models_v2.app_type_enum module
+==============================
 .. automodule:: models_v2.app_type_enum
    :members:
    :undoc-members:

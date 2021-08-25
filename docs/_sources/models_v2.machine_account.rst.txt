@@ -1,6 +1,5 @@
-models\_v2.machine\_account module
-==================================
-
+models_v2.machine_account module
+================================
 .. automodule:: models_v2.machine_account
    :members:
    :undoc-members:

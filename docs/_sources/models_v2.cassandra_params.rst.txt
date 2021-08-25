@@ -1,6 +1,5 @@
-models\_v2.cassandra\_params module
-===================================
-
+models_v2.cassandra_params module
+=================================
 .. automodule:: models_v2.cassandra_params
    :members:
    :undoc-members:

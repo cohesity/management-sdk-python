@@ -1,6 +1,5 @@
-models.mongo\_db\_cluster module
-================================
-
+models.mongo_db_cluster module
+==============================
 .. automodule:: models.mongo_db_cluster
    :members:
    :undoc-members:

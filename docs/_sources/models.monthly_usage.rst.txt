@@ -1,6 +1,5 @@
-models.monthly\_usage module
-============================
-
+models.monthly_usage module
+===========================
 .. automodule:: models.monthly_usage
    :members:
    :undoc-members:

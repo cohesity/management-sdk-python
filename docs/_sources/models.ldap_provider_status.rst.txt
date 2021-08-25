@@ -1,6 +1,5 @@
-models.ldap\_provider\_status module
-====================================
-
+models.ldap_provider_status module
+==================================
 .. automodule:: models.ldap_provider_status
    :members:
    :undoc-members:

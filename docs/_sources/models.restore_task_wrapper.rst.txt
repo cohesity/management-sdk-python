@@ -1,6 +1,5 @@
-models.restore\_task\_wrapper module
-====================================
-
+models.restore_task_wrapper module
+==================================
 .. automodule:: models.restore_task_wrapper
    :members:
    :undoc-members:

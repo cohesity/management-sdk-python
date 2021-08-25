@@ -1,6 +1,5 @@
-models.basic\_cluster\_info module
-==================================
-
+models.basic_cluster_info module
+================================
 .. automodule:: models.basic_cluster_info
    :members:
    :undoc-members:

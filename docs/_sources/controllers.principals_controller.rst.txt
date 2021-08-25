@@ -1,6 +1,5 @@
-controllers.principals\_controller module
-=========================================
-
+controllers.principals_controller module
+========================================
 .. automodule:: controllers.principals_controller
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.create\_idp\_configuration\_request module
-=================================================
-
+models.create_idp_configuration_request module
+==============================================
 .. automodule:: models.create_idp_configuration_request
    :members:
    :undoc-members:

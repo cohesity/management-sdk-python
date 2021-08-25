@@ -1,6 +1,5 @@
-models.value\_data module
-=========================
-
+models.value_data module
+========================
 .. automodule:: models.value_data
    :members:
    :undoc-members:

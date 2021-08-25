@@ -1,6 +1,5 @@
-controllers.preferences\_controller module
-==========================================
-
+controllers.preferences_controller module
+=========================================
 .. automodule:: controllers.preferences_controller
    :members:
    :undoc-members:

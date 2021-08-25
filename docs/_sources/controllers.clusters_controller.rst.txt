@@ -1,6 +1,5 @@
-controllers.clusters\_controller module
-=======================================
-
+controllers.clusters_controller module
+======================================
 .. automodule:: controllers.clusters_controller
    :members:
    :undoc-members:

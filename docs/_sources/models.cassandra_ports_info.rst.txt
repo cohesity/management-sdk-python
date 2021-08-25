@@ -1,6 +1,5 @@
-models.cassandra\_ports\_info module
-====================================
-
+models.cassandra_ports_info module
+==================================
 .. automodule:: models.cassandra_ports_info
    :members:
    :undoc-members:

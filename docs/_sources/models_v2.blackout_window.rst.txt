@@ -1,6 +1,5 @@
-models\_v2.blackout\_window module
-==================================
-
+models_v2.blackout_window module
+================================
 .. automodule:: models_v2.blackout_window
    :members:
    :undoc-members:

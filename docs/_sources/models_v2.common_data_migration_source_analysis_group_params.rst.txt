@@ -1,6 +1,5 @@
-models\_v2.common\_data\_migration\_source\_analysis\_group\_params module
-==========================================================================
-
+models_v2.common_data_migration_source_analysis_group_params module
+===================================================================
 .. automodule:: models_v2.common_data_migration_source_analysis_group_params
    :members:
    :undoc-members:

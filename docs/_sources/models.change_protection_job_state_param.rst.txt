@@ -1,6 +1,5 @@
-models.change\_protection\_job\_state\_param module
-===================================================
-
+models.change_protection_job_state_param module
+===============================================
 .. automodule:: models.change_protection_job_state_param
    :members:
    :undoc-members:

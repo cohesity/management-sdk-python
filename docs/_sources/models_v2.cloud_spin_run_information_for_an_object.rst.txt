@@ -1,6 +1,5 @@
-models\_v2.cloud\_spin\_run\_information\_for\_an\_object module
-================================================================
-
+models_v2.cloud_spin_run_information_for_an_object module
+=========================================================
 .. automodule:: models_v2.cloud_spin_run_information_for_an_object
    :members:
    :undoc-members:

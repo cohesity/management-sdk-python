@@ -1,0 +1,6 @@
+models_v2.data_tiering_tag_config module
+========================================
+.. automodule:: models_v2.data_tiering_tag_config
+   :members:
+   :undoc-members:
+   :show-inheritance:

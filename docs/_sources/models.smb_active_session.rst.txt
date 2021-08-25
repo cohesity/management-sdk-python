@@ -1,6 +1,5 @@
-models.smb\_active\_session module
-==================================
-
+models.smb_active_session module
+================================
 .. automodule:: models.smb_active_session
    :members:
    :undoc-members:

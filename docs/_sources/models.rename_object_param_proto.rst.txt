@@ -1,6 +1,5 @@
-models.rename\_object\_param\_proto module
-==========================================
-
+models.rename_object_param_proto module
+=======================================
 .. automodule:: models.rename_object_param_proto
    :members:
    :undoc-members:

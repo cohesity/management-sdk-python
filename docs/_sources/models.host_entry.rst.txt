@@ -1,6 +1,5 @@
-models.host\_entry module
-=========================
-
+models.host_entry module
+========================
 .. automodule:: models.host_entry
    :members:
    :undoc-members:

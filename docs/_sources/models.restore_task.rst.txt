@@ -1,6 +1,5 @@
-models.restore\_task module
-===========================
-
+models.restore_task module
+==========================
 .. automodule:: models.restore_task
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models\_v2.centrify\_zones module
-=================================
-
+models_v2.centrify_zones module
+===============================
 .. automodule:: models_v2.centrify_zones
    :members:
    :undoc-members:

@@ -1,0 +1,6 @@
+models_v2.logical_quota module
+==============================
+.. automodule:: models_v2.logical_quota
+   :members:
+   :undoc-members:
+   :show-inheritance:

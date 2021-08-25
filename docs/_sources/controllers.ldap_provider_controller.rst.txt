@@ -1,6 +1,5 @@
-controllers.ldap\_provider\_controller module
-=============================================
-
+controllers.ldap_provider_controller module
+===========================================
 .. automodule:: controllers.ldap_provider_controller
    :members:
    :undoc-members:

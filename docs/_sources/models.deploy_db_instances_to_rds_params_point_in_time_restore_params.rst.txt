@@ -1,6 +1,5 @@
-models.deploy\_db\_instances\_to\_rds\_params\_point\_in\_time\_restore\_params module
-======================================================================================
-
+models.deploy_db_instances_to_rds_params_point_in_time_restore_params module
+============================================================================
 .. automodule:: models.deploy_db_instances_to_rds_params_point_in_time_restore_params
    :members:
    :undoc-members:

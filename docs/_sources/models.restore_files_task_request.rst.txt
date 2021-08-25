@@ -1,6 +1,5 @@
-models.restore\_files\_task\_request module
-===========================================
-
+models.restore_files_task_request module
+========================================
 .. automodule:: models.restore_files_task_request
    :members:
    :undoc-members:

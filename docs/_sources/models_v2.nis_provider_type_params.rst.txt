@@ -1,6 +1,5 @@
-models\_v2.nis\_provider\_type\_params module
-=============================================
-
+models_v2.nis_provider_type_params module
+=========================================
 .. automodule:: models_v2.nis_provider_type_params
    :members:
    :undoc-members:

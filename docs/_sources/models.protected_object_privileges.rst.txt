@@ -1,6 +1,5 @@
-models.protected\_object\_privileges module
-===========================================
-
+models.protected_object_privileges module
+=========================================
 .. automodule:: models.protected_object_privileges
    :members:
    :undoc-members:

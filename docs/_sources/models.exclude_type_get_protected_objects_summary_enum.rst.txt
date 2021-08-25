@@ -1,6 +1,5 @@
-models.exclude\_type\_get\_protected\_objects\_summary\_enum module
-===================================================================
-
+models.exclude_type_get_protected_objects_summary_enum module
+=============================================================
 .. automodule:: models.exclude_type_get_protected_objects_summary_enum
    :members:
    :undoc-members:

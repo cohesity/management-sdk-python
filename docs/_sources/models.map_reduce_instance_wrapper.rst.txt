@@ -1,6 +1,5 @@
-models.map\_reduce\_instance\_wrapper module
-============================================
-
+models.map_reduce_instance_wrapper module
+=========================================
 .. automodule:: models.map_reduce_instance_wrapper
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.append\_hosts\_parameters module
-=======================================
-
+models.append_hosts_parameters module
+=====================================
 .. automodule:: models.append_hosts_parameters
    :members:
    :undoc-members:

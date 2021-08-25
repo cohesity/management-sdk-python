@@ -1,0 +1,6 @@
+models_v2.entity_type_4 module
+==============================
+.. automodule:: models_v2.entity_type_4
+   :members:
+   :undoc-members:
+   :show-inheritance:

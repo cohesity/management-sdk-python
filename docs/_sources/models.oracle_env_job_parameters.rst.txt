@@ -1,6 +1,5 @@
-models.oracle\_env\_job\_parameters module
-==========================================
-
+models.oracle_env_job_parameters module
+=======================================
 .. automodule:: models.oracle_env_job_parameters
    :members:
    :undoc-members:

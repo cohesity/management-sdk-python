@@ -1,6 +1,5 @@
-models\_v2.recover\_elastifile\_to\_elastifile\_files\_target\_params module
-============================================================================
-
+models_v2.recover_elastifile_to_elastifile_files_target_params module
+=====================================================================
 .. automodule:: models_v2.recover_elastifile_to_elastifile_files_target_params
    :members:
    :undoc-members:

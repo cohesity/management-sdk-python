@@ -1,6 +1,5 @@
-models.cluster\_audit\_log\_configuration module
-================================================
-
+models.cluster_audit_log_configuration module
+=============================================
 .. automodule:: models.cluster_audit_log_configuration
    :members:
    :undoc-members:

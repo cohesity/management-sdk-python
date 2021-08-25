@@ -1,6 +1,5 @@
-models.restore\_outlook\_params\_folder module
-==============================================
-
+models.restore_outlook_params_folder module
+===========================================
 .. automodule:: models.restore_outlook_params_folder
    :members:
    :undoc-members:

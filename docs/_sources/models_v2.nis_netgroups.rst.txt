@@ -1,6 +1,5 @@
-models\_v2.nis\_netgroups module
-================================
-
+models_v2.nis_netgroups module
+==============================
 .. automodule:: models_v2.nis_netgroups
    :members:
    :undoc-members:

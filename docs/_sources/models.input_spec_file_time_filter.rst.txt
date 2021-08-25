@@ -1,6 +1,5 @@
-models.input\_spec\_file\_time\_filter module
-=============================================
-
+models.input_spec_file_time_filter module
+=========================================
 .. automodule:: models.input_spec_file_time_filter
    :members:
    :undoc-members:

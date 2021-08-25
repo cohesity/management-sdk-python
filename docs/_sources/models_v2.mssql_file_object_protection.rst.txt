@@ -1,0 +1,6 @@
+models_v2.mssql_file_object_protection module
+=============================================
+.. automodule:: models_v2.mssql_file_object_protection
+   :members:
+   :undoc-members:
+   :show-inheritance:

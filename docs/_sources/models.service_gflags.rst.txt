@@ -1,6 +1,5 @@
-models.service\_gflags module
-=============================
-
+models.service_gflags module
+============================
 .. automodule:: models.service_gflags
    :members:
    :undoc-members:

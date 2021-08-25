@@ -1,6 +1,5 @@
-models.retrieve\_archive\_info\_retrieved\_entity module
-========================================================
-
+models.retrieve_archive_info_retrieved_entity module
+====================================================
 .. automodule:: models.retrieve_archive_info_retrieved_entity
    :members:
    :undoc-members:

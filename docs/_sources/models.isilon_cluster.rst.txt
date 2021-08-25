@@ -1,6 +1,5 @@
-models.isilon\_cluster module
-=============================
-
+models.isilon_cluster module
+============================
 .. automodule:: models.isilon_cluster
    :members:
    :undoc-members:

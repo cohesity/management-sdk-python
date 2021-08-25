@@ -1,6 +1,5 @@
-models.gpfs\_protection\_source module
-======================================
-
+models.gpfs_protection_source module
+====================================
 .. automodule:: models.gpfs_protection_source
    :members:
    :undoc-members:

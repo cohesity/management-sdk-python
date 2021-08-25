@@ -1,6 +1,5 @@
-models.couchbase\_bucket module
-===============================
-
+models.couchbase_bucket module
+==============================
 .. automodule:: models.couchbase_bucket
    :members:
    :undoc-members:

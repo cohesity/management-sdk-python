@@ -1,6 +1,5 @@
-models.continuous\_schedule module
-==================================
-
+models.continuous_schedule module
+=================================
 .. automodule:: models.continuous_schedule
    :members:
    :undoc-members:

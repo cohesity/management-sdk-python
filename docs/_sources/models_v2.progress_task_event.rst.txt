@@ -1,6 +1,5 @@
-models\_v2.progress\_task\_event module
-=======================================
-
+models_v2.progress_task_event module
+====================================
 .. automodule:: models_v2.progress_task_event
    :members:
    :undoc-members:

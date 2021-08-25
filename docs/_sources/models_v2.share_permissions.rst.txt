@@ -1,0 +1,6 @@
+models_v2.share_permissions module
+==================================
+.. automodule:: models_v2.share_permissions
+   :members:
+   :undoc-members:
+   :show-inheritance:

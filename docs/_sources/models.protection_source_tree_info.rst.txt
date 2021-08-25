@@ -1,6 +1,5 @@
-models.protection\_source\_tree\_info module
-============================================
-
+models.protection_source_tree_info module
+=========================================
 .. automodule:: models.protection_source_tree_info
    :members:
    :undoc-members:

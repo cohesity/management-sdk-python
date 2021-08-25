@@ -1,6 +1,5 @@
-models\_v2.full\_schedule\_unit\_1\_enum module
-===============================================
-
+models_v2.full_schedule_unit_1_enum module
+==========================================
 .. automodule:: models_v2.full_schedule_unit_1_enum
    :members:
    :undoc-members:

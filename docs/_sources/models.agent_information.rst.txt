@@ -1,6 +1,5 @@
-models.agent\_information module
-================================
-
+models.agent_information module
+===============================
 .. automodule:: models.agent_information
    :members:
    :undoc-members:

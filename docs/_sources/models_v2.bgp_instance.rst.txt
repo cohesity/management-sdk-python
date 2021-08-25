@@ -1,0 +1,6 @@
+models_v2.bgp_instance module
+=============================
+.. automodule:: models_v2.bgp_instance
+   :members:
+   :undoc-members:
+   :show-inheritance:

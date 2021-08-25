@@ -1,6 +1,5 @@
-models.ssl\_verification module
-===============================
-
+models.ssl_verification module
+==============================
 .. automodule:: models.ssl_verification
    :members:
    :undoc-members:

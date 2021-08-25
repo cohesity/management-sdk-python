@@ -1,6 +1,5 @@
-models\_v2.cipher\_suite module
-===============================
-
+models_v2.cipher_suite module
+=============================
 .. automodule:: models_v2.cipher_suite
    :members:
    :undoc-members:

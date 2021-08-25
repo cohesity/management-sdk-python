@@ -1,6 +1,5 @@
-models\_v2.domain\_controller\_status module
-============================================
-
+models_v2.domain_controller_status module
+=========================================
 .. automodule:: models_v2.domain_controller_status
    :members:
    :undoc-members:

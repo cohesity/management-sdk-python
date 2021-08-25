@@ -1,6 +1,5 @@
-models.salesforce\_account\_info module
-=======================================
-
+models.salesforce_account_info module
+=====================================
 .. automodule:: models.salesforce_account_info
    :members:
    :undoc-members:

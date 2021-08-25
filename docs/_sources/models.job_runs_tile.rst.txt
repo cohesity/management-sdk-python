@@ -1,6 +1,5 @@
-models.job\_runs\_tile module
-=============================
-
+models.job_runs_tile module
+===========================
 .. automodule:: models.job_runs_tile
    :members:
    :undoc-members:

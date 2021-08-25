@@ -1,6 +1,5 @@
-models.aws\_protection\_source module
-=====================================
-
+models.aws_protection_source module
+===================================
 .. automodule:: models.aws_protection_source
    :members:
    :undoc-members:

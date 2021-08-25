@@ -1,6 +1,5 @@
-models.cassandra\_cluster module
-================================
-
+models.cassandra_cluster module
+===============================
 .. automodule:: models.cassandra_cluster
    :members:
    :undoc-members:

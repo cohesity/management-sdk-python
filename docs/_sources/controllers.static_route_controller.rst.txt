@@ -1,6 +1,5 @@
-controllers.static\_route\_controller module
-============================================
-
+controllers.static_route_controller module
+==========================================
 .. automodule:: controllers.static_route_controller
    :members:
    :undoc-members:

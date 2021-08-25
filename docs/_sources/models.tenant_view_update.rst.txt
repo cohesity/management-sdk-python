@@ -1,6 +1,5 @@
-models.tenant\_view\_update module
-==================================
-
+models.tenant_view_update module
+================================
 .. automodule:: models.tenant_view_update
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.protection\_summary module
-=================================
-
+models.protection_summary module
+================================
 .. automodule:: models.protection_summary
    :members:
    :undoc-members:

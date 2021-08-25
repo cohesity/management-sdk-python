@@ -1,6 +1,5 @@
-models.worm\_retention\_type\_data\_migration\_policy\_enum module
-==================================================================
-
+models.worm_retention_type_data_migration_policy_enum module
+============================================================
 .. automodule:: models.worm_retention_type_data_migration_policy_enum
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.idp\_principals\_add\_parameters module
-==============================================
-
+models.idp_principals_add_parameters module
+===========================================
 .. automodule:: models.idp_principals_add_parameters
    :members:
    :undoc-members:

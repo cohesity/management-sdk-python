@@ -1,6 +1,5 @@
-models\_v2.disk\_information module
-===================================
-
+models_v2.disk_information module
+=================================
 .. automodule:: models_v2.disk_information
    :members:
    :undoc-members:

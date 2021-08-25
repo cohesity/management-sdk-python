@@ -1,6 +1,5 @@
-models.ad\_object\_restore\_param module
-========================================
-
+models.ad_object_restore_param module
+=====================================
 .. automodule:: models.ad_object_restore_param
    :members:
    :undoc-members:

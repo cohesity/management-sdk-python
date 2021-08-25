@@ -1,6 +1,5 @@
-models.show\_system\_led\_info\_parameters module
-=================================================
-
+models.show_system_led_info_parameters module
+=============================================
 .. automodule:: models.show_system_led_info_parameters
    :members:
    :undoc-members:

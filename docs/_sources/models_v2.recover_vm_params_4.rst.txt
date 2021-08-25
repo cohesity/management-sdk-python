@@ -1,6 +1,5 @@
-models\_v2.recover\_vm\_params\_4 module
-========================================
-
+models_v2.recover_vm_params_4 module
+====================================
 .. automodule:: models_v2.recover_vm_params_4
    :members:
    :undoc-members:

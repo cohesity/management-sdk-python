@@ -1,6 +1,5 @@
-models.role\_delete\_parameters module
-======================================
-
+models.role_delete_parameters module
+====================================
 .. automodule:: models.role_delete_parameters
    :members:
    :undoc-members:

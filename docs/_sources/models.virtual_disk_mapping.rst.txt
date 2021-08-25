@@ -1,6 +1,5 @@
-models.virtual\_disk\_mapping module
-====================================
-
+models.virtual_disk_mapping module
+==================================
 .. automodule:: models.virtual_disk_mapping
    :members:
    :undoc-members:

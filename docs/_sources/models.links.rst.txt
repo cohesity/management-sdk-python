@@ -1,6 +1,5 @@
 models.links module
 ===================
-
 .. automodule:: models.links
    :members:
    :undoc-members:

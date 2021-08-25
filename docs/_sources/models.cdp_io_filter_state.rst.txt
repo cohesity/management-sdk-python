@@ -1,6 +1,5 @@
-models.cdp\_io\_filter\_state module
-====================================
-
+models.cdp_io_filter_state module
+=================================
 .. automodule:: models.cdp_io_filter_state
    :members:
    :undoc-members:

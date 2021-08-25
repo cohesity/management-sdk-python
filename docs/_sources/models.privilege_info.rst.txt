@@ -1,6 +1,5 @@
-models.privilege\_info module
-=============================
-
+models.privilege_info module
+============================
 .. automodule:: models.privilege_info
    :members:
    :undoc-members:

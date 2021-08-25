@@ -1,6 +1,5 @@
-models.network\_configuration module
-====================================
-
+models.network_configuration module
+===================================
 .. automodule:: models.network_configuration
    :members:
    :undoc-members:

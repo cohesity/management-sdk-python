@@ -1,6 +1,5 @@
-models\_v2.recover\_exchange\_app\_snapshot\_params module
-==========================================================
-
+models_v2.recover_exchange_app_snapshot_params module
+=====================================================
 .. automodule:: models_v2.recover_exchange_app_snapshot_params
    :members:
    :undoc-members:

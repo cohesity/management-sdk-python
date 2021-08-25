@@ -1,0 +1,6 @@
+models.aws_snapshot_manager_backup_source_params module
+=======================================================
+.. automodule:: models.aws_snapshot_manager_backup_source_params
+   :members:
+   :undoc-members:
+   :show-inheritance:

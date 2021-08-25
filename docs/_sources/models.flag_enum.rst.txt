@@ -1,6 +1,5 @@
-models.flag\_enum module
-========================
-
+models.flag_enum module
+=======================
 .. automodule:: models.flag_enum
    :members:
    :undoc-members:

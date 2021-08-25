@@ -1,6 +1,5 @@
-models.source\_backup\_status module
-====================================
-
+models.source_backup_status module
+==================================
 .. automodule:: models.source_backup_status
    :members:
    :undoc-members:

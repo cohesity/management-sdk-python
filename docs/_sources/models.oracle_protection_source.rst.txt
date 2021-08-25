@@ -1,6 +1,5 @@
-models.oracle\_protection\_source module
-========================================
-
+models.oracle_protection_source module
+======================================
 .. automodule:: models.oracle_protection_source
    :members:
    :undoc-members:

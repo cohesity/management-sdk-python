@@ -1,0 +1,6 @@
+models_v2.specifies_the_tag_information_of_type_and_array_of_label_value module
+===============================================================================
+.. automodule:: models_v2.specifies_the_tag_information_of_type_and_array_of_label_value
+   :members:
+   :undoc-members:
+   :show-inheritance:

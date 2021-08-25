@@ -1,6 +1,5 @@
-models.error\_proto module
-==========================
-
+models.error_proto module
+=========================
 .. automodule:: models.error_proto
    :members:
    :undoc-members:

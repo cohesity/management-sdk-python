@@ -1,0 +1,6 @@
+models_v2.network_interface_type module
+=======================================
+.. automodule:: models_v2.network_interface_type
+   :members:
+   :undoc-members:
+   :show-inheritance:

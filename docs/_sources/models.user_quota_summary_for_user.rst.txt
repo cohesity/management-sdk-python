@@ -1,6 +1,5 @@
-models.user\_quota\_summary\_for\_user module
-=============================================
-
+models.user_quota_summary_for_user module
+=========================================
 .. automodule:: models.user_quota_summary_for_user
    :members:
    :undoc-members:

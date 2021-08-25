@@ -1,6 +1,5 @@
-models\_v2.policy\_scheduled\_backup\_enum module
-=================================================
-
+models_v2.policy_scheduled_backup_enum module
+=============================================
 .. automodule:: models_v2.policy_scheduled_backup_enum
    :members:
    :undoc-members:

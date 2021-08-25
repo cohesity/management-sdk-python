@@ -1,6 +1,5 @@
-models.view\_protection module
-==============================
-
+models.view_protection module
+=============================
 .. automodule:: models.view_protection
    :members:
    :undoc-members:

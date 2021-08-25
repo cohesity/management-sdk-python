@@ -1,6 +1,5 @@
-models.tag\_attribute module
-============================
-
+models.tag_attribute module
+===========================
 .. automodule:: models.tag_attribute
    :members:
    :undoc-members:

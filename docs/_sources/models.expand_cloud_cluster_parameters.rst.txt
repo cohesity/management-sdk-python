@@ -1,6 +1,5 @@
-models.expand\_cloud\_cluster\_parameters module
-================================================
-
+models.expand_cloud_cluster_parameters module
+=============================================
 .. automodule:: models.expand_cloud_cluster_parameters
    :members:
    :undoc-members:

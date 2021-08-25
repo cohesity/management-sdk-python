@@ -1,6 +1,5 @@
-models.tenant\_active\_directory\_update\_parameters module
-===========================================================
-
+models.tenant_active_directory_update_parameters module
+=======================================================
 .. automodule:: models.tenant_active_directory_update_parameters
    :members:
    :undoc-members:

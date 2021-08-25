@@ -1,6 +1,5 @@
-models.kill\_map\_reduce\_instance\_result module
-=================================================
-
+models.kill_map_reduce_instance_result module
+=============================================
 .. automodule:: models.kill_map_reduce_instance_result
    :members:
    :undoc-members:

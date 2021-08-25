@@ -1,6 +1,5 @@
-models\_v2.day\_of\_week\_enum module
-=====================================
-
+models_v2.day_of_week_enum module
+=================================
 .. automodule:: models_v2.day_of_week_enum
    :members:
    :undoc-members:

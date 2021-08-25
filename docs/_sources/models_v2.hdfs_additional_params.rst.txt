@@ -1,6 +1,5 @@
-models\_v2.hdfs\_additional\_params module
-==========================================
-
+models_v2.hdfs_additional_params module
+=======================================
 .. automodule:: models_v2.hdfs_additional_params
    :members:
    :undoc-members:

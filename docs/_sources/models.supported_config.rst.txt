@@ -1,6 +1,5 @@
-models.supported\_config module
-===============================
-
+models.supported_config module
+==============================
 .. automodule:: models.supported_config
    :members:
    :undoc-members:

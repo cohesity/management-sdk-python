@@ -1,6 +1,5 @@
-models\_v2.progress\_task\_status module
-========================================
-
+models_v2.progress_task_status module
+=====================================
 .. automodule:: models_v2.progress_task_status
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.one\_drive\_info module
-==============================
-
+models.one_drive_info module
+============================
 .. automodule:: models.one_drive_info
    :members:
    :undoc-members:

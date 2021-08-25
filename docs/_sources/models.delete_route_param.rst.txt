@@ -1,6 +1,5 @@
-models.delete\_route\_param module
-==================================
-
+models.delete_route_param module
+================================
 .. automodule:: models.delete_route_param
    :members:
    :undoc-members:

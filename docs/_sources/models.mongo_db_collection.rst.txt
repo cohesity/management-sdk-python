@@ -1,6 +1,5 @@
-models.mongo\_db\_collection module
-===================================
-
+models.mongo_db_collection module
+=================================
 .. automodule:: models.mongo_db_collection
    :members:
    :undoc-members:

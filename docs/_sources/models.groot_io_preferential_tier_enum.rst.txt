@@ -1,6 +1,5 @@
-models.groot\_io\_preferential\_tier\_enum module
-=================================================
-
+models.groot_io_preferential_tier_enum module
+=============================================
 .. automodule:: models.groot_io_preferential_tier_enum
    :members:
    :undoc-members:

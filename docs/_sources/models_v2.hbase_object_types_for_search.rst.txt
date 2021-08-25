@@ -1,6 +1,5 @@
-models\_v2.hbase\_object\_types\_for\_search module
-===================================================
-
+models_v2.hbase_object_types_for_search module
+==============================================
 .. automodule:: models_v2.hbase_object_types_for_search
    :members:
    :undoc-members:

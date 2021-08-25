@@ -1,6 +1,5 @@
-models.copy\_run module
-=======================
-
+models.copy_run module
+======================
 .. automodule:: models.copy_run
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.fleet\_subnet\_type\_enum module
-=======================================
-
+models.fleet_subnet_type_enum module
+====================================
 .. automodule:: models.fleet_subnet_type_enum
    :members:
    :undoc-members:

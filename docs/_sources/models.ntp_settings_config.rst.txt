@@ -1,6 +1,5 @@
-models.ntp\_settings\_config module
-===================================
-
+models.ntp_settings_config module
+=================================
 .. automodule:: models.ntp_settings_config
    :members:
    :undoc-members:

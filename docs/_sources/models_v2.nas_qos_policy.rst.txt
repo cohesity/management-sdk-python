@@ -1,6 +1,5 @@
-models\_v2.nas\_qos\_policy module
-==================================
-
+models_v2.nas_qos_policy module
+===============================
 .. automodule:: models_v2.nas_qos_policy
    :members:
    :undoc-members:

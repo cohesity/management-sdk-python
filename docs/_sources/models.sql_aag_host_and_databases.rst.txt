@@ -1,6 +1,5 @@
-models.sql\_aag\_host\_and\_databases module
-============================================
-
+models.sql_aag_host_and_databases module
+========================================
 .. automodule:: models.sql_aag_host_and_databases
    :members:
    :undoc-members:

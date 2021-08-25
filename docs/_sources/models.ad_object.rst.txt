@@ -1,6 +1,5 @@
-models.ad\_object module
-========================
-
+models.ad_object module
+=======================
 .. automodule:: models.ad_object
    :members:
    :undoc-members:

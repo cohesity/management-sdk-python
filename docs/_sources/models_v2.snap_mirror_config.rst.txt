@@ -1,6 +1,5 @@
-models\_v2.snap\_mirror\_config module
-======================================
-
+models_v2.snap_mirror_config module
+===================================
 .. automodule:: models_v2.snap_mirror_config
    :members:
    :undoc-members:

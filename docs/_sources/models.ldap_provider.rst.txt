@@ -1,6 +1,5 @@
-models.ldap\_provider module
-============================
-
+models.ldap_provider module
+===========================
 .. automodule:: models.ldap_provider
    :members:
    :undoc-members:

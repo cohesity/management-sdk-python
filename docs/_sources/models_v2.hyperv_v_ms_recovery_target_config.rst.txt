@@ -1,6 +1,5 @@
-models\_v2.hyperv\_v\_ms\_recovery\_target\_config module
-=========================================================
-
+models_v2.hyperv_v_ms_recovery_target_config module
+===================================================
 .. automodule:: models_v2.hyperv_v_ms_recovery_target_config
    :members:
    :undoc-members:

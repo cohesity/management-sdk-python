@@ -1,6 +1,5 @@
-models\_v2.hive\_indexed\_object module
-=======================================
-
+models_v2.hive_indexed_object module
+====================================
 .. automodule:: models_v2.hive_indexed_object
    :members:
    :undoc-members:

@@ -1,0 +1,6 @@
+models_v2.tier_level_settings module
+====================================
+.. automodule:: models_v2.tier_level_settings
+   :members:
+   :undoc-members:
+   :show-inheritance:

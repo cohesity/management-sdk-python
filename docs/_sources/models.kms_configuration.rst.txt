@@ -1,6 +1,5 @@
-models.kms\_configuration module
-================================
-
+models.kms_configuration module
+===============================
 .. automodule:: models.kms_configuration
    :members:
    :undoc-members:

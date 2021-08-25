@@ -1,6 +1,5 @@
-models.destroy\_cloned\_entity\_info\_proto\_cloned\_entity module
-==================================================================
-
+models.destroy_cloned_entity_info_proto_cloned_entity module
+============================================================
 .. automodule:: models.destroy_cloned_entity_info_proto_cloned_entity
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.network\_pool\_range module
-==================================
-
+models.network_pool_range module
+================================
 .. automodule:: models.network_pool_range
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.trending\_data module
-============================
-
+models.trending_data module
+===========================
 .. automodule:: models.trending_data
    :members:
    :undoc-members:

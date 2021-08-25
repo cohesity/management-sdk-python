@@ -1,6 +1,5 @@
-models.ip\_range module
-=======================
-
+models.ip_range module
+======================
 .. automodule:: models.ip_range
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.expand\_physical\_cluster\_parameters module
-===================================================
-
+models.expand_physical_cluster_parameters module
+================================================
 .. automodule:: models.expand_physical_cluster_parameters
    :members:
    :undoc-members:

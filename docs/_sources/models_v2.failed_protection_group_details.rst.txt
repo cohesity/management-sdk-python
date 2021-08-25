@@ -1,6 +1,5 @@
-models\_v2.failed\_protection\_group\_details module
-====================================================
-
+models_v2.failed_protection_group_details module
+================================================
 .. automodule:: models_v2.failed_protection_group_details
    :members:
    :undoc-members:

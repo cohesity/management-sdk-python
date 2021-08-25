@@ -1,6 +1,5 @@
-models.qo\_s module
-===================
-
+models.qo_s module
+==================
 .. automodule:: models.qo_s
    :members:
    :undoc-members:

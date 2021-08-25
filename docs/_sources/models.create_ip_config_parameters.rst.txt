@@ -1,6 +1,5 @@
-models.create\_ip\_config\_parameters module
-============================================
-
+models.create_ip_config_parameters module
+=========================================
 .. automodule:: models.create_ip_config_parameters
    :members:
    :undoc-members:

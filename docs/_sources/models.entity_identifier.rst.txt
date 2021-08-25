@@ -1,6 +1,5 @@
-models.entity\_identifier module
-================================
-
+models.entity_identifier module
+===============================
 .. automodule:: models.entity_identifier
    :members:
    :undoc-members:

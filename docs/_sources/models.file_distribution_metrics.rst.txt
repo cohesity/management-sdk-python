@@ -1,6 +1,5 @@
-models.file\_distribution\_metrics module
-=========================================
-
+models.file_distribution_metrics module
+=======================================
 .. automodule:: models.file_distribution_metrics
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.user\_quota\_summary\_for\_view module
-=============================================
-
+models.user_quota_summary_for_view module
+=========================================
 .. automodule:: models.user_quota_summary_for_view
    :members:
    :undoc-members:

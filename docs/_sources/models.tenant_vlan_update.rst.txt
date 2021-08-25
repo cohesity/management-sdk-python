@@ -1,6 +1,5 @@
-models.tenant\_vlan\_update module
-==================================
-
+models.tenant_vlan_update module
+================================
 .. automodule:: models.tenant_vlan_update
    :members:
    :undoc-members:

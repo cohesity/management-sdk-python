@@ -1,6 +1,5 @@
-models\_v2.recover\_isilon\_to\_isilon\_volume\_target\_params module
-=====================================================================
-
+models_v2.recover_isilon_to_isilon_volume_target_params module
+==============================================================
 .. automodule:: models_v2.recover_isilon_to_isilon_volume_target_params
    :members:
    :undoc-members:

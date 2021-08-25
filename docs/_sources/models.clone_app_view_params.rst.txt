@@ -1,6 +1,5 @@
-models.clone\_app\_view\_params module
-======================================
-
+models.clone_app_view_params module
+===================================
 .. automodule:: models.clone_app_view_params
    :members:
    :undoc-members:

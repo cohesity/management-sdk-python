@@ -1,6 +1,5 @@
-models.protection\_sources\_jobs\_summary\_report\_response\_wrapper module
-===========================================================================
-
+models.protection_sources_jobs_summary_report_response_wrapper module
+=====================================================================
 .. automodule:: models.protection_sources_jobs_summary_report_response_wrapper
    :members:
    :undoc-members:

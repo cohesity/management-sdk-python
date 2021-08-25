@@ -1,6 +1,5 @@
-models.alias\_smb\_config module
-================================
-
+models.alias_smb_config module
+==============================
 .. automodule:: models.alias_smb_config
    :members:
    :undoc-members:

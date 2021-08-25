@@ -1,6 +1,5 @@
 models.sequencer module
 =======================
-
 .. automodule:: models.sequencer
    :members:
    :undoc-members:

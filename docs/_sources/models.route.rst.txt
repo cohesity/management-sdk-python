@@ -1,6 +1,5 @@
 models.route module
 ===================
-
 .. automodule:: models.route
    :members:
    :undoc-members:

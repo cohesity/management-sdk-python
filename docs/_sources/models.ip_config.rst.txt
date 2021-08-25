@@ -1,6 +1,5 @@
-models.ip\_config module
-========================
-
+models.ip_config module
+=======================
 .. automodule:: models.ip_config
    :members:
    :undoc-members:

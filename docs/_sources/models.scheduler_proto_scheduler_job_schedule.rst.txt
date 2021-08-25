@@ -1,6 +1,5 @@
-models.scheduler\_proto\_scheduler\_job\_schedule module
-========================================================
-
+models.scheduler_proto_scheduler_job_schedule module
+====================================================
 .. automodule:: models.scheduler_proto_scheduler_job_schedule
    :members:
    :undoc-members:

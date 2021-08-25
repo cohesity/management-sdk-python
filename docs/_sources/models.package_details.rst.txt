@@ -1,6 +1,5 @@
-models.package\_details module
-==============================
-
+models.package_details module
+=============================
 .. automodule:: models.package_details
    :members:
    :undoc-members:

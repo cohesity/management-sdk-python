@@ -1,6 +1,5 @@
-controllers.tenant\_controller module
-=====================================
-
+controllers.tenant_controller module
+====================================
 .. automodule:: controllers.tenant_controller
    :members:
    :undoc-members:

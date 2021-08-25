@@ -1,6 +1,5 @@
-models.exchange\_restore\_view\_parameters module
-=================================================
-
+models.exchange_restore_view_parameters module
+==============================================
 .. automodule:: models.exchange_restore_view_parameters
    :members:
    :undoc-members:

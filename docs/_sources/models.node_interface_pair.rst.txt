@@ -1,6 +1,5 @@
-models.node\_interface\_pair module
-===================================
-
+models.node_interface_pair module
+=================================
 .. automodule:: models.node_interface_pair
    :members:
    :undoc-members:

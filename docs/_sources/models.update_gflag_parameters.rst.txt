@@ -1,6 +1,5 @@
-models.update\_gflag\_parameters module
-=======================================
-
+models.update_gflag_parameters module
+=====================================
 .. automodule:: models.update_gflag_parameters
    :members:
    :undoc-members:

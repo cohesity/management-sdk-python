@@ -1,6 +1,5 @@
-models.combine\_method\_enum module
-===================================
-
+models.combine_method_enum module
+=================================
 .. automodule:: models.combine_method_enum
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.entity\_proto module
-===========================
-
+models.entity_proto module
+==========================
 .. automodule:: models.entity_proto
    :members:
    :undoc-members:

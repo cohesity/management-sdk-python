@@ -1,6 +1,5 @@
-models.sql\_protection\_source module
-=====================================
-
+models.sql_protection_source module
+===================================
 .. automodule:: models.sql_protection_source
    :members:
    :undoc-members:

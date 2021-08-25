@@ -1,6 +1,5 @@
-models.host\_info module
-========================
-
+models.host_info module
+=======================
 .. automodule:: models.host_info
    :members:
    :undoc-members:

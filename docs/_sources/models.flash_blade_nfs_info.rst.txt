@@ -1,6 +1,5 @@
-models.flash\_blade\_nfs\_info module
-=====================================
-
+models.flash_blade_nfs_info module
+==================================
 .. automodule:: models.flash_blade_nfs_info
    :members:
    :undoc-members:

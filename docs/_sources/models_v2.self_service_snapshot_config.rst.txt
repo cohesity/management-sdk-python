@@ -1,0 +1,6 @@
+models_v2.self_service_snapshot_config module
+=============================================
+.. automodule:: models_v2.self_service_snapshot_config
+   :members:
+   :undoc-members:
+   :show-inheritance:

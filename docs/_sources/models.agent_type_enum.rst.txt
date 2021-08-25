@@ -1,6 +1,5 @@
-models.agent\_type\_enum module
-===============================
-
+models.agent_type_enum module
+=============================
 .. automodule:: models.agent_type_enum
    :members:
    :undoc-members:

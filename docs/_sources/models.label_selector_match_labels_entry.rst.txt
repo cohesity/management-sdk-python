@@ -1,0 +1,6 @@
+models.label_selector_match_labels_entry module
+===============================================
+.. automodule:: models.label_selector_match_labels_entry
+   :members:
+   :undoc-members:
+   :show-inheritance:

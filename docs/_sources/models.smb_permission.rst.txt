@@ -1,6 +1,5 @@
-models.smb\_permission module
-=============================
-
+models.smb_permission module
+============================
 .. automodule:: models.smb_permission
    :members:
    :undoc-members:

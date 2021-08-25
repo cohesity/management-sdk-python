@@ -1,6 +1,5 @@
-models.gpfs\_filesystem module
-==============================
-
+models.gpfs_filesystem module
+=============================
 .. automodule:: models.gpfs_filesystem
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.time\_of\_a\_week module
-===============================
-
+models.time_of_a_week module
+============================
 .. automodule:: models.time_of_a_week
    :members:
    :undoc-members:

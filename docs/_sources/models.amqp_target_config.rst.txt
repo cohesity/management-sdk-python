@@ -1,6 +1,5 @@
-models.amqp\_target\_config module
-==================================
-
+models.amqp_target_config module
+================================
 .. automodule:: models.amqp_target_config
    :members:
    :undoc-members:

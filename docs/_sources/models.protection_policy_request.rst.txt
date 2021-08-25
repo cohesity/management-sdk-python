@@ -1,6 +1,5 @@
-models.protection\_policy\_request module
-=========================================
-
+models.protection_policy_request module
+=======================================
 .. automodule:: models.protection_policy_request
    :members:
    :undoc-members:

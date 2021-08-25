@@ -1,6 +1,5 @@
-models.severity\_notification\_rule\_enum module
-================================================
-
+models.severity_notification_rule_enum module
+=============================================
 .. automodule:: models.severity_notification_rule_enum
    :members:
    :undoc-members:

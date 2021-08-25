@@ -1,6 +1,5 @@
-models.active\_directory\_principals\_add\_parameters module
-============================================================
-
+models.active_directory_principals_add_parameters module
+========================================================
 .. automodule:: models.active_directory_principals_add_parameters
    :members:
    :undoc-members:

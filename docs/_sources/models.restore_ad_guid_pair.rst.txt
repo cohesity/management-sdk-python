@@ -1,6 +1,5 @@
-models.restore\_ad\_guid\_pair module
-=====================================
-
+models.restore_ad_guid_pair module
+==================================
 .. automodule:: models.restore_ad_guid_pair
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.sql\_backup\_job\_params module
-======================================
-
+models.sql_backup_job_params module
+===================================
 .. automodule:: models.sql_backup_job_params
    :members:
    :undoc-members:

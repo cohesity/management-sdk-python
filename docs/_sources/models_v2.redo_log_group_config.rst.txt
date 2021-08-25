@@ -1,0 +1,6 @@
+models_v2.redo_log_group_config module
+======================================
+.. automodule:: models_v2.redo_log_group_config
+   :members:
+   :undoc-members:
+   :show-inheritance:

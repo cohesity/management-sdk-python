@@ -1,6 +1,5 @@
-models.search\_job\_status\_remote\_vault\_search\_job\_results\_enum module
-============================================================================
-
+models.search_job_status_remote_vault_search_job_results_enum module
+====================================================================
 .. automodule:: models.search_job_status_remote_vault_search_job_results_enum
    :members:
    :undoc-members:

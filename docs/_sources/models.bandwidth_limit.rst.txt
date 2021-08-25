@@ -1,6 +1,5 @@
-models.bandwidth\_limit module
-==============================
-
+models.bandwidth_limit module
+=============================
 .. automodule:: models.bandwidth_limit
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.restore\_sql\_app\_object\_params module
-===============================================
-
+models.restore_sql_app_object_params module
+===========================================
 .. automodule:: models.restore_sql_app_object_params
    :members:
    :undoc-members:

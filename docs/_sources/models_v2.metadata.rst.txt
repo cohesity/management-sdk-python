@@ -1,6 +1,5 @@
-models\_v2.metadata module
-==========================
-
+models_v2.metadata module
+=========================
 .. automodule:: models_v2.metadata
    :members:
    :undoc-members:

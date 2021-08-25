@@ -1,6 +1,5 @@
-controllers.kms\_configuration\_controller module
-=================================================
-
+controllers.kms_configuration_controller module
+===============================================
 .. automodule:: controllers.kms_configuration_controller
    :members:
    :undoc-members:

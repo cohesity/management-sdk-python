@@ -1,6 +1,5 @@
-models.bond\_slave\_info module
-===============================
-
+models.bond_slave_info module
+=============================
 .. automodule:: models.bond_slave_info
    :members:
    :undoc-members:

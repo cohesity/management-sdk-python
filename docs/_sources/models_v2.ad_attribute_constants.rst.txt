@@ -1,6 +1,5 @@
-models\_v2.ad\_attribute\_constants module
-==========================================
-
+models_v2.ad_attribute_constants module
+=======================================
 .. automodule:: models_v2.ad_attribute_constants
    :members:
    :undoc-members:

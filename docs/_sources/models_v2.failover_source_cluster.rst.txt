@@ -1,0 +1,6 @@
+models_v2.failover_source_cluster module
+========================================
+.. automodule:: models_v2.failover_source_cluster
+   :members:
+   :undoc-members:
+   :show-inheritance:

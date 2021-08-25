@@ -1,6 +1,5 @@
-models\_v2.request\_to\_enable\_disable\_a\_list\_of\_ciphers module
-====================================================================
-
+models_v2.request_to_enable_disable_a_list_of_ciphers module
+============================================================
 .. automodule:: models_v2.request_to_enable_disable_a_list_of_ciphers
    :members:
    :undoc-members:

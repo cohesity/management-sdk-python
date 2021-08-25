@@ -1,6 +1,5 @@
-models.mount\_volumes\_hyperv\_params module
-============================================
-
+models.mount_volumes_hyperv_params module
+=========================================
 .. automodule:: models.mount_volumes_hyperv_params
    :members:
    :undoc-members:

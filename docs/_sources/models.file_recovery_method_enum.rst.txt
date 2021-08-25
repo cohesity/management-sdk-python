@@ -1,6 +1,5 @@
-models.file\_recovery\_method\_enum module
-==========================================
-
+models.file_recovery_method_enum module
+=======================================
 .. automodule:: models.file_recovery_method_enum
    :members:
    :undoc-members:

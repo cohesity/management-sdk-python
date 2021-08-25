@@ -1,0 +1,6 @@
+models_v2.availability_set module
+=================================
+.. automodule:: models_v2.availability_set
+   :members:
+   :undoc-members:
+   :show-inheritance:

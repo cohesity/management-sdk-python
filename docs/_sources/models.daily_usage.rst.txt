@@ -1,6 +1,5 @@
-models.daily\_usage module
-==========================
-
+models.daily_usage module
+=========================
 .. automodule:: models.daily_usage
    :members:
    :undoc-members:

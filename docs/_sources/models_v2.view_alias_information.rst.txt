@@ -1,6 +1,5 @@
-models\_v2.view\_alias\_information module
-==========================================
-
+models_v2.view_alias_information module
+=======================================
 .. automodule:: models_v2.view_alias_information
    :members:
    :undoc-members:

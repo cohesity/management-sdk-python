@@ -1,6 +1,5 @@
-models\_v2.type\_33\_enum module
-================================
-
+models_v2.type_33_enum module
+=============================
 .. automodule:: models_v2.type_33_enum
    :members:
    :undoc-members:

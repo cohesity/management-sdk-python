@@ -1,6 +1,5 @@
-models\_v2.recover\_acropolis\_v\_ms\_network\_configuration module
-===================================================================
-
+models_v2.recover_acropolis_v_ms_network_configuration module
+=============================================================
 .. automodule:: models_v2.recover_acropolis_v_ms_network_configuration
    :members:
    :undoc-members:

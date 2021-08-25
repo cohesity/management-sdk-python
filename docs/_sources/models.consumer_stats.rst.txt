@@ -1,6 +1,5 @@
-models.consumer\_stats module
-=============================
-
+models.consumer_stats module
+============================
 .. automodule:: models.consumer_stats
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.analyse\_jar\_result module
-==================================
-
+models.analyse_jar_result module
+================================
 .. automodule:: models.analyse_jar_result
    :members:
    :undoc-members:

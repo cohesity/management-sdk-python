@@ -1,6 +1,5 @@
-models.cluster\_stats module
-============================
-
+models.cluster_stats module
+===========================
 .. automodule:: models.cluster_stats
    :members:
    :undoc-members:

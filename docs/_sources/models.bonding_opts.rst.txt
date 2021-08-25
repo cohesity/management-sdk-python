@@ -1,6 +1,5 @@
-models.bonding\_opts module
-===========================
-
+models.bonding_opts module
+==========================
 .. automodule:: models.bonding_opts
    :members:
    :undoc-members:

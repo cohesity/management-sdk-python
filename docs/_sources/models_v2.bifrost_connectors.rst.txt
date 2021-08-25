@@ -1,0 +1,6 @@
+models_v2.bifrost_connectors module
+===================================
+.. automodule:: models_v2.bifrost_connectors
+   :members:
+   :undoc-members:
+   :show-inheritance:

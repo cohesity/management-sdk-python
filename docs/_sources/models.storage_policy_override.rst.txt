@@ -1,6 +1,5 @@
-models.storage\_policy\_override module
-=======================================
-
+models.storage_policy_override module
+=====================================
 .. automodule:: models.storage_policy_override
    :members:
    :undoc-members:

@@ -1,0 +1,6 @@
+models_v2.generic_nas_protection_group_extra_params module
+==========================================================
+.. automodule:: models_v2.generic_nas_protection_group_extra_params
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,6 +1,5 @@
-models.map\_reduce\_info\_required\_property module
-===================================================
-
+models.map_reduce_info_required_property module
+===============================================
 .. automodule:: models.map_reduce_info_required_property
    :members:
    :undoc-members:

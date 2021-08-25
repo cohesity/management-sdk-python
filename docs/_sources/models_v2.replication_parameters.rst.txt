@@ -1,6 +1,5 @@
-models\_v2.replication\_parameters module
-=========================================
-
+models_v2.replication_parameters module
+=======================================
 .. automodule:: models_v2.replication_parameters
    :members:
    :undoc-members:

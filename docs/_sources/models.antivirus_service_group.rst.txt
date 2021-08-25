@@ -1,6 +1,5 @@
-models.antivirus\_service\_group module
-=======================================
-
+models.antivirus_service_group module
+=====================================
 .. automodule:: models.antivirus_service_group
    :members:
    :undoc-members:

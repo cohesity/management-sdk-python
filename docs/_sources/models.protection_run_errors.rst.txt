@@ -1,6 +1,5 @@
-models.protection\_run\_errors module
-=====================================
-
+models.protection_run_errors module
+===================================
 .. automodule:: models.protection_run_errors
    :members:
    :undoc-members:

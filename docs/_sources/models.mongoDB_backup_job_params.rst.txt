@@ -1,6 +1,5 @@
-models.mongoDB\_backup\_job\_params module
-==========================================
-
+models.mongoDB_backup_job_params module
+=======================================
 .. automodule:: models.mongoDB_backup_job_params
    :members:
    :undoc-members:

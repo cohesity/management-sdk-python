@@ -1,6 +1,5 @@
-exceptions.request\_error\_error\_exception module
-==================================================
-
+exceptions.request_error_error_exception module
+===============================================
 .. automodule:: exceptions.request_error_error_exception
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.download\_package\_result module
-=======================================
-
+models.download_package_result module
+=====================================
 .. automodule:: models.download_package_result
    :members:
    :undoc-members:

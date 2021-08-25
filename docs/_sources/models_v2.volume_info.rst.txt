@@ -1,6 +1,5 @@
-models\_v2.volume\_info module
-==============================
-
+models_v2.volume_info module
+============================
 .. automodule:: models_v2.volume_info
    :members:
    :undoc-members:

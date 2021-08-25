@@ -1,6 +1,5 @@
-models.tenant\_stats module
-===========================
-
+models.tenant_stats module
+==========================
 .. automodule:: models.tenant_stats
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models\_v2.new\_source\_config module
-=====================================
-
+models_v2.new_source_config module
+==================================
 .. automodule:: models_v2.new_source_config
    :members:
    :undoc-members:

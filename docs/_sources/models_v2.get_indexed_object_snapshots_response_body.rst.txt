@@ -1,6 +1,5 @@
-models\_v2.get\_indexed\_object\_snapshots\_response\_body module
-=================================================================
-
+models_v2.get_indexed_object_snapshots_response_body module
+===========================================================
 .. automodule:: models_v2.get_indexed_object_snapshots_response_body
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.node\_to\_tiered\_storage\_directories\_map module
-=========================================================
-
+models.node_to_tiered_storage_directories_map module
+====================================================
 .. automodule:: models.node_to_tiered_storage_directories_map
    :members:
    :undoc-members:

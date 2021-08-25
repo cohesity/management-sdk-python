@@ -1,6 +1,5 @@
-models.upgrade\_cluster\_result module
-======================================
-
+models.upgrade_cluster_result module
+====================================
 .. automodule:: models.upgrade_cluster_result
    :members:
    :undoc-members:

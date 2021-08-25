@@ -1,6 +1,5 @@
-models\_v2.aws\_protection\_group\_type module
-==============================================
-
+models_v2.aws_protection_group_type module
+==========================================
 .. automodule:: models_v2.aws_protection_group_type
    :members:
    :undoc-members:

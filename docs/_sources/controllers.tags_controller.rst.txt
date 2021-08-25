@@ -1,6 +1,5 @@
-controllers.tags\_controller module
-===================================
-
+controllers.tags_controller module
+==================================
 .. automodule:: controllers.tags_controller
    :members:
    :undoc-members:

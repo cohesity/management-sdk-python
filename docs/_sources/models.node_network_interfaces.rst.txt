@@ -1,6 +1,5 @@
-models.node\_network\_interfaces module
-=======================================
-
+models.node_network_interfaces module
+=====================================
 .. automodule:: models.node_network_interfaces
    :members:
    :undoc-members:

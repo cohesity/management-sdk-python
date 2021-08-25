@@ -1,6 +1,5 @@
-controllers.protection\_jobs\_controller module
-===============================================
-
+controllers.protection_jobs_controller module
+=============================================
 .. automodule:: controllers.protection_jobs_controller
    :members:
    :undoc-members:

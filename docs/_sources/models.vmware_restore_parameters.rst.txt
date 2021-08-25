@@ -1,6 +1,5 @@
-models.vmware\_restore\_parameters module
-=========================================
-
+models.vmware_restore_parameters module
+=======================================
 .. automodule:: models.vmware_restore_parameters
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.pattern\_request\_body module
-====================================
-
+models.pattern_request_body module
+==================================
 .. automodule:: models.pattern_request_body
    :members:
    :undoc-members:

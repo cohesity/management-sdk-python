@@ -1,6 +1,5 @@
-models.update\_machine\_accounts\_params module
-===============================================
-
+models.update_machine_accounts_params module
+============================================
 .. automodule:: models.update_machine_accounts_params
    :members:
    :undoc-members:

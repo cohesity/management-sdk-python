@@ -1,6 +1,5 @@
-models.org\_vdc\_network module
-===============================
-
+models.org_vdc_network module
+=============================
 .. automodule:: models.org_vdc_network
    :members:
    :undoc-members:

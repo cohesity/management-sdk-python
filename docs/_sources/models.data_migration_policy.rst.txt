@@ -1,6 +1,5 @@
-models.data\_migration\_policy module
-=====================================
-
+models.data_migration_policy module
+===================================
 .. automodule:: models.data_migration_policy
    :members:
    :undoc-members:

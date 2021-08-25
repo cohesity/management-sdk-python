@@ -1,6 +1,5 @@
-models.app\_instance module
-===========================
-
+models.app_instance module
+==========================
 .. automodule:: models.app_instance
    :members:
    :undoc-members:

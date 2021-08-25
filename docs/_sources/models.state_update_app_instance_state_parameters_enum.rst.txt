@@ -1,6 +1,5 @@
-models.state\_update\_app\_instance\_state\_parameters\_enum module
-===================================================================
-
+models.state_update_app_instance_state_parameters_enum module
+=============================================================
 .. automodule:: models.state_update_app_instance_state_parameters_enum
    :members:
    :undoc-members:

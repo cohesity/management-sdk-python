@@ -1,0 +1,6 @@
+models_v2.user_session module
+=============================
+.. automodule:: models_v2.user_session
+   :members:
+   :undoc-members:
+   :show-inheritance:

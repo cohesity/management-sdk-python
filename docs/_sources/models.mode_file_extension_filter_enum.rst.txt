@@ -1,6 +1,5 @@
-models.mode\_file\_extension\_filter\_enum module
-=================================================
-
+models.mode_file_extension_filter_enum module
+=============================================
 .. automodule:: models.mode_file_extension_filter_enum
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models\_v2.snapshot\_actions\_2\_enum module
-============================================
-
+models_v2.snapshot_actions_2_enum module
+========================================
 .. automodule:: models_v2.snapshot_actions_2_enum
    :members:
    :undoc-members:

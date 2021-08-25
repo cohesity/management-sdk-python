@@ -1,6 +1,5 @@
-models.ad\_domain\_identity module
-==================================
-
+models.ad_domain_identity module
+================================
 .. automodule:: models.ad_domain_identity
    :members:
    :undoc-members:

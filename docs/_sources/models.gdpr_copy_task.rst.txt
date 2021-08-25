@@ -1,6 +1,5 @@
-models.gdpr\_copy\_task module
-==============================
-
+models.gdpr_copy_task module
+============================
 .. automodule:: models.gdpr_copy_task
    :members:
    :undoc-members:

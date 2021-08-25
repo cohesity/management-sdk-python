@@ -1,6 +1,5 @@
-models\_v2.status\_8\_enum module
-=================================
-
+models_v2.status_8_enum module
+==============================
 .. automodule:: models_v2.status_8_enum
    :members:
    :undoc-members:

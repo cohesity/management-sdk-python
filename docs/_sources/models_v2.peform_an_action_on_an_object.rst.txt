@@ -1,6 +1,5 @@
-models\_v2.peform\_an\_action\_on\_an\_object module
-====================================================
-
+models_v2.peform_an_action_on_an_object module
+==============================================
 .. automodule:: models_v2.peform_an_action_on_an_object
    :members:
    :undoc-members:

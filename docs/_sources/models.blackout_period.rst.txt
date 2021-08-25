@@ -1,6 +1,5 @@
-models.blackout\_period module
-==============================
-
+models.blackout_period module
+=============================
 .. automodule:: models.blackout_period
    :members:
    :undoc-members:

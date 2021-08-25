@@ -1,0 +1,6 @@
+models_v2.failover_objects module
+=================================
+.. automodule:: models_v2.failover_objects
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,6 +1,5 @@
-models\_v2.tdm\_tasks module
-============================
-
+models_v2.tdm_tasks module
+==========================
 .. automodule:: models_v2.tdm_tasks
    :members:
    :undoc-members:

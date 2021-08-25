@@ -1,6 +1,5 @@
-controllers.network\_controller module
-======================================
-
+controllers.network_controller module
+=====================================
 .. automodule:: controllers.network_controller
    :members:
    :undoc-members:

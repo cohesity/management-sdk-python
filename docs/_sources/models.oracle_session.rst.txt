@@ -1,6 +1,5 @@
-models.oracle\_session module
-=============================
-
+models.oracle_session module
+============================
 .. automodule:: models.oracle_session
    :members:
    :undoc-members:

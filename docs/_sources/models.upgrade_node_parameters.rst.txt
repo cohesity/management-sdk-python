@@ -1,6 +1,5 @@
-models.upgrade\_node\_parameters module
-=======================================
-
+models.upgrade_node_parameters module
+=====================================
 .. automodule:: models.upgrade_node_parameters
    :members:
    :undoc-members:

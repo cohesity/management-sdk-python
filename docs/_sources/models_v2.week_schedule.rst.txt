@@ -1,6 +1,5 @@
-models\_v2.week\_schedule module
-================================
-
+models_v2.week_schedule module
+==============================
 .. automodule:: models_v2.week_schedule
    :members:
    :undoc-members:

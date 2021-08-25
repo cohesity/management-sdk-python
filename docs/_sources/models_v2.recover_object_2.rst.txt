@@ -1,0 +1,6 @@
+models_v2.recover_object_2 module
+=================================
+.. automodule:: models_v2.recover_object_2
+   :members:
+   :undoc-members:
+   :show-inheritance:

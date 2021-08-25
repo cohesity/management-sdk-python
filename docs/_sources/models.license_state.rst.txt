@@ -1,6 +1,5 @@
-models.license\_state module
-============================
-
+models.license_state module
+===========================
 .. automodule:: models.license_state
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.gcp\_params module
-=========================
-
+models.gcp_params module
+========================
 .. automodule:: models.gcp_params
    :members:
    :undoc-members:

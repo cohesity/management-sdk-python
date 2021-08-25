@@ -1,6 +1,5 @@
-models.view\_protection\_source module
-======================================
-
+models.view_protection_source module
+====================================
 .. automodule:: models.view_protection_source
    :members:
    :undoc-members:

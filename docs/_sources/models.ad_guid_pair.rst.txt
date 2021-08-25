@@ -1,6 +1,5 @@
-models.ad\_guid\_pair module
-============================
-
+models.ad_guid_pair module
+==========================
 .. automodule:: models.ad_guid_pair
    :members:
    :undoc-members:

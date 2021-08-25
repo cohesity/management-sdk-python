@@ -1,6 +1,5 @@
-models\_v2.view\_stats module
-=============================
-
+models_v2.view_stats module
+===========================
 .. automodule:: models_v2.view_stats
    :members:
    :undoc-members:

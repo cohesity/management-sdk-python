@@ -1,6 +1,5 @@
-models\_v2.archival\_snapshot\_config module
-============================================
-
+models_v2.archival_snapshot_config module
+=========================================
 .. automodule:: models_v2.archival_snapshot_config
    :members:
    :undoc-members:

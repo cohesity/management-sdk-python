@@ -1,0 +1,6 @@
+models_v2.bgp_timers module
+===========================
+.. automodule:: models_v2.bgp_timers
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,6 +1,5 @@
-models\_v2.fallback\_user\_id\_mapping\_params module
-=====================================================
-
+models_v2.fallback_user_id_mapping_params module
+================================================
 .. automodule:: models_v2.fallback_user_id_mapping_params
    :members:
    :undoc-members:

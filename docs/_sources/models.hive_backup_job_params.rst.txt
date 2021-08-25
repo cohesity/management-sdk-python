@@ -1,6 +1,5 @@
-models.hive\_backup\_job\_params module
-=======================================
-
+models.hive_backup_job_params module
+====================================
 .. automodule:: models.hive_backup_job_params
    :members:
    :undoc-members:

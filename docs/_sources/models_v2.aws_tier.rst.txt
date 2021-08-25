@@ -1,0 +1,6 @@
+models_v2.aws_tier module
+=========================
+.. automodule:: models_v2.aws_tier
+   :members:
+   :undoc-members:
+   :show-inheritance:

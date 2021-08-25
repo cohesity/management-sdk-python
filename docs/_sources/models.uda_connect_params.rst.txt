@@ -1,6 +1,5 @@
-models.uda\_connect\_params module
-==================================
-
+models.uda_connect_params module
+================================
 .. automodule:: models.uda_connect_params
    :members:
    :undoc-members:

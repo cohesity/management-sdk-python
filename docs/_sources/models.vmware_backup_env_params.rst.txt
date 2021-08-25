@@ -1,6 +1,5 @@
-models.vmware\_backup\_env\_params module
-=========================================
-
+models.vmware_backup_env_params module
+======================================
 .. automodule:: models.vmware_backup_env_params
    :members:
    :undoc-members:

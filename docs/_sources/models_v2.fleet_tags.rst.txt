@@ -1,6 +1,5 @@
-models\_v2.fleet\_tags module
-=============================
-
+models_v2.fleet_tags module
+===========================
 .. automodule:: models_v2.fleet_tags
    :members:
    :undoc-members:

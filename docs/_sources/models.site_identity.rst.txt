@@ -1,6 +1,5 @@
-models.site\_identity module
-============================
-
+models.site_identity module
+===========================
 .. automodule:: models.site_identity
    :members:
    :undoc-members:

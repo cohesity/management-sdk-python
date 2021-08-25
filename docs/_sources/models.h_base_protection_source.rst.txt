@@ -1,6 +1,5 @@
-models.h\_base\_protection\_source module
-=========================================
-
+models.h_base_protection_source module
+======================================
 .. automodule:: models.h_base_protection_source
    :members:
    :undoc-members:

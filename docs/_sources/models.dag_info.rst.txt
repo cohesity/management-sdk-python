@@ -1,6 +1,5 @@
-models.dag\_info module
-=======================
-
+models.dag_info module
+======================
 .. automodule:: models.dag_info
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.site\_property module
-============================
-
+models.site_property module
+===========================
 .. automodule:: models.site_property
    :members:
    :undoc-members:

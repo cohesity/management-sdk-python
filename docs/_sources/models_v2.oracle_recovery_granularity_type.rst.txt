@@ -1,0 +1,6 @@
+models_v2.oracle_recovery_granularity_type module
+=================================================
+.. automodule:: models_v2.oracle_recovery_granularity_type
+   :members:
+   :undoc-members:
+   :show-inheritance:

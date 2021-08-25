@@ -1,6 +1,5 @@
-models.mongo\_db\_connect\_params module
-========================================
-
+models.mongo_db_connect_params module
+=====================================
 .. automodule:: models.mongo_db_connect_params
    :members:
    :undoc-members:

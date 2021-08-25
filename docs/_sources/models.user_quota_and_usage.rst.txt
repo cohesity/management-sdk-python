@@ -1,6 +1,5 @@
-models.user\_quota\_and\_usage module
-=====================================
-
+models.user_quota_and_usage module
+==================================
 .. automodule:: models.user_quota_and_usage
    :members:
    :undoc-members:

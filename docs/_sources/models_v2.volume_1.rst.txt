@@ -1,6 +1,5 @@
-models\_v2.volume\_1 module
-===========================
-
+models_v2.volume_1 module
+=========================
 .. automodule:: models_v2.volume_1
    :members:
    :undoc-members:

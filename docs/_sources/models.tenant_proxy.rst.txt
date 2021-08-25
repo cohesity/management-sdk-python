@@ -1,6 +1,5 @@
-models.tenant\_proxy module
-===========================
-
+models.tenant_proxy module
+==========================
 .. automodule:: models.tenant_proxy
    :members:
    :undoc-members:

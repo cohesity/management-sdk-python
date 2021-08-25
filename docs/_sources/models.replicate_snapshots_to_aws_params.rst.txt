@@ -1,6 +1,5 @@
-models.replicate\_snapshots\_to\_aws\_params module
-===================================================
-
+models.replicate_snapshots_to_aws_params module
+===============================================
 .. automodule:: models.replicate_snapshots_to_aws_params
    :members:
    :undoc-members:

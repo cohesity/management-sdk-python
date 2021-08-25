@@ -1,6 +1,5 @@
-models.app\_instance\_settings module
-=====================================
-
+models.app_instance_settings module
+===================================
 .. automodule:: models.app_instance_settings
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-controllers\_v2.recoveries\_controller module
-=============================================
-
+controllers_v2.recoveries_controller module
+===========================================
 .. automodule:: controllers_v2.recoveries_controller
    :members:
    :undoc-members:

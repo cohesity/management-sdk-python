@@ -1,6 +1,5 @@
-models\_v2.pure\_protection\_group\_params module
-=================================================
-
+models_v2.pure_protection_group_params module
+=============================================
 .. automodule:: models_v2.pure_protection_group_params
    :members:
    :undoc-members:

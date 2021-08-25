@@ -1,6 +1,5 @@
-models\_v2.exchange\_app\_parameters module
-===========================================
-
+models_v2.exchange_app_parameters module
+========================================
 .. automodule:: models_v2.exchange_app_parameters
    :members:
    :undoc-members:

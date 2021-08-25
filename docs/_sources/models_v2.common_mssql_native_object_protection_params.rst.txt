@@ -1,0 +1,6 @@
+models_v2.common_mssql_native_object_protection_params module
+=============================================================
+.. automodule:: models_v2.common_mssql_native_object_protection_params
+   :members:
+   :undoc-members:
+   :show-inheritance:

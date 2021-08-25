@@ -1,6 +1,5 @@
-models.run\_job\_snapshot\_target module
-========================================
-
+models.run_job_snapshot_target module
+=====================================
 .. automodule:: models.run_job_snapshot_target
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.clone\_app\_view\_info\_oracle module
-============================================
-
+models.clone_app_view_info_oracle module
+========================================
 .. automodule:: models.clone_app_view_info_oracle
    :members:
    :undoc-members:

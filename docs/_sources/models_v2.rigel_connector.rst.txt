@@ -1,0 +1,6 @@
+models_v2.rigel_connector module
+================================
+.. automodule:: models_v2.rigel_connector
+   :members:
+   :undoc-members:
+   :show-inheritance:

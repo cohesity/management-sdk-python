@@ -1,6 +1,5 @@
-models.download\_package\_parameters module
-===========================================
-
+models.download_package_parameters module
+=========================================
 .. automodule:: models.download_package_parameters
    :members:
    :undoc-members:

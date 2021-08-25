@@ -1,6 +1,5 @@
-models.input\_spec\_input\_vms\_selector module
-===============================================
-
+models.input_spec_input_vms_selector module
+===========================================
 .. automodule:: models.input_spec_input_vms_selector
    :members:
    :undoc-members:

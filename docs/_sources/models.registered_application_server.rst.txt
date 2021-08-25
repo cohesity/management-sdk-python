@@ -1,6 +1,5 @@
-models.registered\_application\_server module
-=============================================
-
+models.registered_application_server module
+===========================================
 .. automodule:: models.registered_application_server
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.map\_reduce\_file\_formats module
-========================================
-
+models.map_reduce_file_formats module
+=====================================
 .. automodule:: models.map_reduce_file_formats
    :members:
    :undoc-members:

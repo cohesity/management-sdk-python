@@ -1,6 +1,5 @@
-models.update\_protection\_object\_parameters module
-====================================================
-
+models.update_protection_object_parameters module
+=================================================
 .. automodule:: models.update_protection_object_parameters
    :members:
    :undoc-members:

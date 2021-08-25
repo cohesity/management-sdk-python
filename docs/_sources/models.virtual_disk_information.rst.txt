@@ -1,6 +1,5 @@
-models.virtual\_disk\_information module
-========================================
-
+models.virtual_disk_information module
+======================================
 .. automodule:: models.virtual_disk_information
    :members:
    :undoc-members:

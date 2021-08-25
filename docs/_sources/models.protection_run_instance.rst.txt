@@ -1,6 +1,5 @@
-models.protection\_run\_instance module
-=======================================
-
+models.protection_run_instance module
+=====================================
 .. automodule:: models.protection_run_instance
    :members:
    :undoc-members:

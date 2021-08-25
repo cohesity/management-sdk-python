@@ -1,6 +1,5 @@
-models.cancel\_protection\_job\_run\_param module
-=================================================
-
+models.cancel_protection_job_run_param module
+=============================================
 .. automodule:: models.cancel_protection_job_run_param
    :members:
    :undoc-members:

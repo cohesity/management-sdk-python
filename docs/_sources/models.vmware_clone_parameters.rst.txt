@@ -1,6 +1,5 @@
-models.vmware\_clone\_parameters module
-=======================================
-
+models.vmware_clone_parameters module
+=====================================
 .. automodule:: models.vmware_clone_parameters
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models\_v2.one\_drive\_item module
-==================================
-
+models_v2.one_drive_item module
+===============================
 .. automodule:: models_v2.one_drive_item
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models\_v2.physical\_snapshot\_params module
-============================================
-
+models_v2.physical_snapshot_params module
+=========================================
 .. automodule:: models_v2.physical_snapshot_params
    :members:
    :undoc-members:

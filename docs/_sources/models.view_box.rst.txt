@@ -1,6 +1,5 @@
-models.view\_box module
-=======================
-
+models.view_box module
+======================
 .. automodule:: models.view_box
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-controllers.interface\_group\_controller module
-===============================================
-
+controllers.interface_group_controller module
+=============================================
 .. automodule:: controllers.interface_group_controller
    :members:
    :undoc-members:

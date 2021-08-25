@@ -1,6 +1,5 @@
-models.reducer\_info module
-===========================
-
+models.reducer_info module
+==========================
 .. automodule:: models.reducer_info
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models\_v2.throttling\_params module
-====================================
-
+models_v2.throttling_params module
+==================================
 .. automodule:: models_v2.throttling_params
    :members:
    :undoc-members:

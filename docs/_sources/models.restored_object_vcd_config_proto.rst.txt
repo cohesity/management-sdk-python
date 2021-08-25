@@ -1,6 +1,5 @@
-models.restored\_object\_vcd\_config\_proto module
-==================================================
-
+models.restored_object_vcd_config_proto module
+==============================================
 .. automodule:: models.restored_object_vcd_config_proto
    :members:
    :undoc-members:

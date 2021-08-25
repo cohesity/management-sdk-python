@@ -1,6 +1,5 @@
-models.removal\_state\_view\_box\_enum module
-=============================================
-
+models.removal_state_view_box_enum module
+=========================================
 .. automodule:: models.removal_state_view_box_enum
    :members:
    :undoc-members:

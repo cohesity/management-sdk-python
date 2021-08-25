@@ -1,6 +1,5 @@
-models.protection\_info module
-==============================
-
+models.protection_info module
+=============================
 .. automodule:: models.protection_info
    :members:
    :undoc-members:

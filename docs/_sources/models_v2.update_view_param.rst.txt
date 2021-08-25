@@ -1,6 +1,5 @@
-models\_v2.update\_view\_param module
-=====================================
-
+models_v2.update_view_param module
+==================================
 .. automodule:: models_v2.update_view_param
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models\_v2.recover\_hdfs\_object\_params module
-===============================================
-
+models_v2.recover_hdfs_object_params module
+===========================================
 .. automodule:: models_v2.recover_hdfs_object_params
    :members:
    :undoc-members:

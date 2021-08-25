@@ -1,6 +1,5 @@
-models\_v2.cassandra\_indexed\_object module
-============================================
-
+models_v2.cassandra_indexed_object module
+=========================================
 .. automodule:: models_v2.cassandra_indexed_object
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.doc\_error module
-========================
-
+models.doc_error module
+=======================
 .. automodule:: models.doc_error
    :members:
    :undoc-members:

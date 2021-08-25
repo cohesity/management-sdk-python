@@ -1,6 +1,5 @@
-models.restore\_one\_drive\_params\_drive\_owner\_drive module
-==============================================================
-
+models.restore_one_drive_params_drive_owner_drive module
+========================================================
 .. automodule:: models.restore_one_drive_params_drive_owner_drive
    :members:
    :undoc-members:

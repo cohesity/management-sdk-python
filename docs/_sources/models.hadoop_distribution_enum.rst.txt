@@ -1,6 +1,5 @@
-models.hadoop\_distribution\_enum module
-========================================
-
+models.hadoop_distribution_enum module
+======================================
 .. automodule:: models.hadoop_distribution_enum
    :members:
    :undoc-members:

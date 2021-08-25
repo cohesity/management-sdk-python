@@ -1,6 +1,5 @@
-models.cassandra\_connect\_params module
-========================================
-
+models.cassandra_connect_params module
+======================================
 .. automodule:: models.cassandra_connect_params
    :members:
    :undoc-members:

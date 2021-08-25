@@ -1,6 +1,5 @@
-models.syslog\_server module
-============================
-
+models.syslog_server module
+===========================
 .. automodule:: models.syslog_server
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.public\_folder module
-============================
-
+models.public_folder module
+===========================
 .. automodule:: models.public_folder
    :members:
    :undoc-members:

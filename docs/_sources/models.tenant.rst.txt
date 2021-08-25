@@ -1,6 +1,5 @@
 models.tenant module
 ====================
-
 .. automodule:: models.tenant
    :members:
    :undoc-members:

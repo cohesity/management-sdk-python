@@ -1,6 +1,5 @@
-models.deploy\_v\_ms\_to\_aws\_params module
-============================================
-
+models.deploy_v_ms_to_aws_params module
+=======================================
 .. automodule:: models.deploy_v_ms_to_aws_params
    :members:
    :undoc-members:

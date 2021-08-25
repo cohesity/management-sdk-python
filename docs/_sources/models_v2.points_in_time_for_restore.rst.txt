@@ -1,0 +1,6 @@
+models_v2.points_in_time_for_restore module
+===========================================
+.. automodule:: models_v2.points_in_time_for_restore
+   :members:
+   :undoc-members:
+   :show-inheritance:

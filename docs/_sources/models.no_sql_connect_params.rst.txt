@@ -1,6 +1,5 @@
-models.no\_sql\_connect\_params module
-======================================
-
+models.no_sql_connect_params module
+===================================
 .. automodule:: models.no_sql_connect_params
    :members:
    :undoc-members:

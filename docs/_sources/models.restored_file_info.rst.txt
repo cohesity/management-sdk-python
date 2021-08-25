@@ -1,6 +1,5 @@
-models.restored\_file\_info module
-==================================
-
+models.restored_file_info module
+================================
 .. automodule:: models.restored_file_info
    :members:
    :undoc-members:

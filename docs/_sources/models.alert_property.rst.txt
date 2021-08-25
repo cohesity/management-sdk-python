@@ -1,6 +1,5 @@
-models.alert\_property module
-=============================
-
+models.alert_property module
+============================
 .. automodule:: models.alert_property
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-controllers.restore\_tasks\_controller module
-=============================================
-
+controllers.restore_tasks_controller module
+===========================================
 .. automodule:: controllers.restore_tasks_controller
    :members:
    :undoc-members:

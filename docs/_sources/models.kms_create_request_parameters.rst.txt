@@ -1,6 +1,5 @@
-models.kms\_create\_request\_parameters module
-==============================================
-
+models.kms_create_request_parameters module
+===========================================
 .. automodule:: models.kms_create_request_parameters
    :members:
    :undoc-members:

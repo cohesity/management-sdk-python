@@ -1,6 +1,5 @@
-models\_v2.network\_config\_5 module
-====================================
-
+models_v2.network_config_5 module
+=================================
 .. automodule:: models_v2.network_config_5
    :members:
    :undoc-members:

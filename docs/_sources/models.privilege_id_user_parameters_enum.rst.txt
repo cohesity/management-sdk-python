@@ -1,6 +1,5 @@
-models.privilege\_id\_user\_parameters\_enum module
-===================================================
-
+models.privilege_id_user_parameters_enum module
+===============================================
 .. automodule:: models.privilege_id_user_parameters_enum
    :members:
    :undoc-members:

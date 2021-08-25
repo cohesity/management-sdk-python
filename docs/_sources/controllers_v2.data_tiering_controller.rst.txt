@@ -1,0 +1,6 @@
+controllers_v2.data_tiering_controller module
+=============================================
+.. automodule:: controllers_v2.data_tiering_controller
+   :members:
+   :undoc-members:
+   :show-inheritance:

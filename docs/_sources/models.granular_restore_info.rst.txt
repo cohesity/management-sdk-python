@@ -1,6 +1,5 @@
-models.granular\_restore\_info module
-=====================================
-
+models.granular_restore_info module
+===================================
 .. automodule:: models.granular_restore_info
    :members:
    :undoc-members:

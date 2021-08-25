@@ -1,6 +1,5 @@
-models.restore\_acropolis\_v\_ms\_params module
-===============================================
-
+models.restore_acropolis_v_ms_params module
+===========================================
 .. automodule:: models.restore_acropolis_v_ms_params
    :members:
    :undoc-members:

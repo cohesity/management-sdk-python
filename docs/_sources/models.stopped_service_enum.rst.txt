@@ -1,6 +1,5 @@
-models.stopped\_service\_enum module
-====================================
-
+models.stopped_service_enum module
+==================================
 .. automodule:: models.stopped_service_enum
    :members:
    :undoc-members:

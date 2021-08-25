@@ -1,6 +1,5 @@
-models.nas\_protocol\_nas\_env\_job\_parameters\_enum module
-============================================================
-
+models.nas_protocol_nas_env_job_parameters_enum module
+======================================================
 .. automodule:: models.nas_protocol_nas_env_job_parameters_enum
    :members:
    :undoc-members:

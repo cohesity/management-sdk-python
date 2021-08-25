@@ -1,6 +1,5 @@
-models.tags\_operation\_result module
-=====================================
-
+models.tags_operation_result module
+===================================
 .. automodule:: models.tags_operation_result
    :members:
    :undoc-members:

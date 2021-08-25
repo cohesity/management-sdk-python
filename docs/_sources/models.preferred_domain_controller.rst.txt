@@ -1,6 +1,5 @@
-models.preferred\_domain\_controller module
-===========================================
-
+models.preferred_domain_controller module
+=========================================
 .. automodule:: models.preferred_domain_controller
    :members:
    :undoc-members:

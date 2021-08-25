@@ -1,6 +1,5 @@
-models.oracle\_backup\_job\_params module
-=========================================
-
+models.oracle_backup_job_params module
+======================================
 .. automodule:: models.oracle_backup_job_params
    :members:
    :undoc-members:

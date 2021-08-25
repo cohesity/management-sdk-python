@@ -1,6 +1,5 @@
-models.flash\_blade\_storage\_array module
-==========================================
-
+models.flash_blade_storage_array module
+=======================================
 .. automodule:: models.flash_blade_storage_array
    :members:
    :undoc-members:

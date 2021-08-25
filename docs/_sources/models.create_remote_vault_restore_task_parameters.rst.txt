@@ -1,6 +1,5 @@
-models.create\_remote\_vault\_restore\_task\_parameters module
-==============================================================
-
+models.create_remote_vault_restore_task_parameters module
+=========================================================
 .. automodule:: models.create_remote_vault_restore_task_parameters
    :members:
    :undoc-members:

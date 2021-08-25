@@ -1,6 +1,5 @@
-models.lifecycle\_config\_proto module
-======================================
-
+models.lifecycle_config_proto module
+====================================
 .. automodule:: models.lifecycle_config_proto
    :members:
    :undoc-members:

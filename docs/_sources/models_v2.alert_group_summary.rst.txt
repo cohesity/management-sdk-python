@@ -1,6 +1,5 @@
-models\_v2.alert\_group\_summary module
-=======================================
-
+models_v2.alert_group_summary module
+====================================
 .. automodule:: models_v2.alert_group_summary
    :members:
    :undoc-members:

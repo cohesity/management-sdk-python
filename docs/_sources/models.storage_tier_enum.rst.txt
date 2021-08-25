@@ -1,6 +1,5 @@
-models.storage\_tier\_enum module
-=================================
-
+models.storage_tier_enum module
+===============================
 .. automodule:: models.storage_tier_enum
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models\_v2.base\_view module
-============================
-
+models_v2.base_view module
+==========================
 .. automodule:: models_v2.base_view
    :members:
    :undoc-members:

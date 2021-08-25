@@ -1,6 +1,5 @@
-models.uda\_restore\_object\_params module
-==========================================
-
+models.uda_restore_object_params module
+=======================================
 .. automodule:: models.uda_restore_object_params
    :members:
    :undoc-members:

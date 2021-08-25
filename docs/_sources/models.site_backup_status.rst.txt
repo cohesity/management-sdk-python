@@ -1,6 +1,5 @@
-models.site\_backup\_status module
-==================================
-
+models.site_backup_status module
+================================
 .. automodule:: models.site_backup_status
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.update\_ldap\_provider\_params module
-============================================
-
+models.update_ldap_provider_params module
+=========================================
 .. automodule:: models.update_ldap_provider_params
    :members:
    :undoc-members:

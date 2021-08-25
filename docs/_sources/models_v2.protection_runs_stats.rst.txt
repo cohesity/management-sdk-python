@@ -1,6 +1,5 @@
-models\_v2.protection\_runs\_stats module
-=========================================
-
+models_v2.protection_runs_stats module
+======================================
 .. automodule:: models_v2.protection_runs_stats
    :members:
    :undoc-members:

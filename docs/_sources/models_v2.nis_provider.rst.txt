@@ -1,6 +1,5 @@
-models\_v2.nis\_provider module
-===============================
-
+models_v2.nis_provider module
+=============================
 .. automodule:: models_v2.nis_provider
    :members:
    :undoc-members:

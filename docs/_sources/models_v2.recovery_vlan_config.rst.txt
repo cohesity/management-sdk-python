@@ -1,6 +1,5 @@
-models\_v2.recovery\_vlan\_config module
-========================================
-
+models_v2.recovery_vlan_config module
+=====================================
 .. automodule:: models_v2.recovery_vlan_config
    :members:
    :undoc-members:

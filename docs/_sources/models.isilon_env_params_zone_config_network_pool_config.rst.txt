@@ -1,6 +1,5 @@
-models.isilon\_env\_params\_zone\_config\_network\_pool\_config module
-======================================================================
-
+models.isilon_env_params_zone_config_network_pool_config module
+===============================================================
 .. automodule:: models.isilon_env_params_zone_config_network_pool_config
    :members:
    :undoc-members:

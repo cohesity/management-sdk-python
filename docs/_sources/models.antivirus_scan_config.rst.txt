@@ -1,6 +1,5 @@
-models.antivirus\_scan\_config module
-=====================================
-
+models.antivirus_scan_config module
+===================================
 .. automodule:: models.antivirus_scan_config
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-controllers\_v2.base\_controller module
-=======================================
-
+controllers_v2.base_controller module
+=====================================
 .. automodule:: controllers_v2.base_controller
    :members:
    :undoc-members:

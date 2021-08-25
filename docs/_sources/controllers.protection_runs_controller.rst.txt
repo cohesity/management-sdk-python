@@ -1,6 +1,5 @@
-controllers.protection\_runs\_controller module
-===============================================
-
+controllers.protection_runs_controller module
+=============================================
 .. automodule:: controllers.protection_runs_controller
    :members:
    :undoc-members:

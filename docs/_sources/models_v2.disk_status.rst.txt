@@ -1,6 +1,5 @@
-models\_v2.disk\_status module
-==============================
-
+models_v2.disk_status module
+============================
 .. automodule:: models_v2.disk_status
    :members:
    :undoc-members:

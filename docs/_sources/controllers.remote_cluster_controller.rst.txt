@@ -1,6 +1,5 @@
-controllers.remote\_cluster\_controller module
-==============================================
-
+controllers.remote_cluster_controller module
+============================================
 .. automodule:: controllers.remote_cluster_controller
    :members:
    :undoc-members:

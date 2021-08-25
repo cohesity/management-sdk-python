@@ -1,6 +1,5 @@
-models.snapshot\_attempt module
-===============================
-
+models.snapshot_attempt module
+==============================
 .. automodule:: models.snapshot_attempt
    :members:
    :undoc-members:

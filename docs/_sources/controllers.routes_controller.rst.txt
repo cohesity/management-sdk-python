@@ -1,6 +1,5 @@
-controllers.routes\_controller module
-=====================================
-
+controllers.routes_controller module
+====================================
 .. automodule:: controllers.routes_controller
    :members:
    :undoc-members:

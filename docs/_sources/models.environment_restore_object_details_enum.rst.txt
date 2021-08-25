@@ -1,6 +1,5 @@
-models.environment\_restore\_object\_details\_enum module
-=========================================================
-
+models.environment_restore_object_details_enum module
+=====================================================
 .. automodule:: models.environment_restore_object_details_enum
    :members:
    :undoc-members:

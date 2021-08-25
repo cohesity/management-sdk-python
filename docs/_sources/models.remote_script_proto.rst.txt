@@ -1,6 +1,5 @@
-models.remote\_script\_proto module
-===================================
-
+models.remote_script_proto module
+=================================
 .. automodule:: models.remote_script_proto
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.supported\_pattern module
-================================
-
+models.supported_pattern module
+===============================
 .. automodule:: models.supported_pattern
    :members:
    :undoc-members:

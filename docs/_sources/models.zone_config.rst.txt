@@ -1,6 +1,5 @@
-models.zone\_config module
-==========================
-
+models.zone_config module
+=========================
 .. automodule:: models.zone_config
    :members:
    :undoc-members:

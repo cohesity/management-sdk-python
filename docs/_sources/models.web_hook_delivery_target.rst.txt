@@ -1,6 +1,5 @@
-models.web\_hook\_delivery\_target module
-=========================================
-
+models.web_hook_delivery_target module
+======================================
 .. automodule:: models.web_hook_delivery_target
    :members:
    :undoc-members:

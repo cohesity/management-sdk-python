@@ -1,6 +1,5 @@
-models.cassandra\_keyspace module
-=================================
-
+models.cassandra_keyspace module
+================================
 .. automodule:: models.cassandra_keyspace
    :members:
    :undoc-members:

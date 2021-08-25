@@ -1,6 +1,5 @@
-models\_v2.chassis\_specific\_response module
-=============================================
-
+models_v2.chassis_specific_response module
+==========================================
 .. automodule:: models_v2.chassis_specific_response
    :members:
    :undoc-members:

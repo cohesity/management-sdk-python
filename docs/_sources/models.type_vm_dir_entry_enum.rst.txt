@@ -1,6 +1,5 @@
-models.type\_vm\_dir\_entry\_enum module
-========================================
-
+models.type_vm_dir_entry_enum module
+====================================
 .. automodule:: models.type_vm_dir_entry_enum
    :members:
    :undoc-members:

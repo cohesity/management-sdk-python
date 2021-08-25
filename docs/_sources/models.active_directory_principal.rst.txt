@@ -1,6 +1,5 @@
-models.active\_directory\_principal module
-==========================================
-
+models.active_directory_principal module
+========================================
 .. automodule:: models.active_directory_principal
    :members:
    :undoc-members:

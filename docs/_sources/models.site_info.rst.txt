@@ -1,6 +1,5 @@
-models.site\_info module
-========================
-
+models.site_info module
+=======================
 .. automodule:: models.site_info
    :members:
    :undoc-members:

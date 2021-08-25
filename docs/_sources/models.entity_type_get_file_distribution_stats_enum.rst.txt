@@ -1,6 +1,5 @@
-models.entity\_type\_get\_file\_distribution\_stats\_enum module
-================================================================
-
+models.entity_type_get_file_distribution_stats_enum module
+==========================================================
 .. automodule:: models.entity_type_get_file_distribution_stats_enum
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.object\_search\_results module
-=====================================
-
+models.object_search_results module
+===================================
 .. automodule:: models.object_search_results
    :members:
    :undoc-members:

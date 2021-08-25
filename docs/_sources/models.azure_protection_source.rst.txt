@@ -1,6 +1,5 @@
-models.azure\_protection\_source module
-=======================================
-
+models.azure_protection_source module
+=====================================
 .. automodule:: models.azure_protection_source
    :members:
    :undoc-members:

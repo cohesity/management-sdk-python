@@ -1,6 +1,5 @@
-models.storage\_stats module
-============================
-
+models.storage_stats module
+===========================
 .. automodule:: models.storage_stats
    :members:
    :undoc-members:

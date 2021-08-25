@@ -1,6 +1,5 @@
-models.fleet\_network\_params module
-====================================
-
+models.fleet_network_params module
+==================================
 .. automodule:: models.fleet_network_params
    :members:
    :undoc-members:

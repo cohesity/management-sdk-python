@@ -1,6 +1,5 @@
-models.type\_hive\_protection\_source\_enum module
-==================================================
-
+models.type_hive_protection_source_enum module
+==============================================
 .. automodule:: models.type_hive_protection_source_enum
    :members:
    :undoc-members:

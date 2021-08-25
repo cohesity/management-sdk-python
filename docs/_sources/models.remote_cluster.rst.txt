@@ -1,6 +1,5 @@
-models.remote\_cluster module
-=============================
-
+models.remote_cluster module
+============================
 .. automodule:: models.remote_cluster
    :members:
    :undoc-members:

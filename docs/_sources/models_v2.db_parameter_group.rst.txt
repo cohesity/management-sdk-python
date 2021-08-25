@@ -1,6 +1,5 @@
-models\_v2.db\_parameter\_group module
-======================================
-
+models_v2.db_parameter_group module
+===================================
 .. automodule:: models_v2.db_parameter_group
    :members:
    :undoc-members:

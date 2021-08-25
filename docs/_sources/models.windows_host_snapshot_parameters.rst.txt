@@ -1,6 +1,5 @@
-models.windows\_host\_snapshot\_parameters module
-=================================================
-
+models.windows_host_snapshot_parameters module
+==============================================
 .. automodule:: models.windows_host_snapshot_parameters
    :members:
    :undoc-members:

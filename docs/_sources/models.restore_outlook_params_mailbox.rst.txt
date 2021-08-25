@@ -1,6 +1,5 @@
-models.restore\_outlook\_params\_mailbox module
-===============================================
-
+models.restore_outlook_params_mailbox module
+============================================
 .. automodule:: models.restore_outlook_params_mailbox
    :members:
    :undoc-members:

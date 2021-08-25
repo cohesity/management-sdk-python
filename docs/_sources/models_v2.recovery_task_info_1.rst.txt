@@ -1,0 +1,6 @@
+models_v2.recovery_task_info_1 module
+=====================================
+.. automodule:: models_v2.recovery_task_info_1
+   :members:
+   :undoc-members:
+   :show-inheritance:

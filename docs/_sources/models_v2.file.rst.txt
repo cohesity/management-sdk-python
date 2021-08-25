@@ -1,6 +1,5 @@
-models\_v2.file module
-======================
-
+models_v2.file module
+=====================
 .. automodule:: models_v2.file
    :members:
    :undoc-members:

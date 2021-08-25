@@ -1,6 +1,5 @@
-models\_v2.available\_patch module
-==================================
-
+models_v2.available_patch module
+================================
 .. automodule:: models_v2.available_patch
    :members:
    :undoc-members:

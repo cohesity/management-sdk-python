@@ -1,0 +1,6 @@
+models_v2.nfs_all_squash module
+===============================
+.. automodule:: models_v2.nfs_all_squash
+   :members:
+   :undoc-members:
+   :show-inheritance:

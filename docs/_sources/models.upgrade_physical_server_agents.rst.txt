@@ -1,6 +1,5 @@
-models.upgrade\_physical\_server\_agents module
-===============================================
-
+models.upgrade_physical_server_agents module
+============================================
 .. automodule:: models.upgrade_physical_server_agents
    :members:
    :undoc-members:

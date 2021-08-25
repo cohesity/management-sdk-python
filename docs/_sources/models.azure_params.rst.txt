@@ -1,6 +1,5 @@
-models.azure\_params module
-===========================
-
+models.azure_params module
+==========================
 .. automodule:: models.azure_params
    :members:
    :undoc-members:

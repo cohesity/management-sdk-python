@@ -1,6 +1,5 @@
-models.cluster\_public\_keys module
-===================================
-
+models.cluster_public_keys module
+=================================
 .. automodule:: models.cluster_public_keys
    :members:
    :undoc-members:

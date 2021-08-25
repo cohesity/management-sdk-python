@@ -1,6 +1,5 @@
-models.protection\_tile module
-==============================
-
+models.protection_tile module
+=============================
 .. automodule:: models.protection_tile
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.unprotect\_object\_params module
-=======================================
-
+models.unprotect_object_params module
+=====================================
 .. automodule:: models.unprotect_object_params
    :members:
    :undoc-members:

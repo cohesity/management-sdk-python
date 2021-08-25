@@ -1,6 +1,5 @@
-models.mount\_volume\_result\_details module
-============================================
-
+models.mount_volume_result_details module
+=========================================
 .. automodule:: models.mount_volume_result_details
    :members:
    :undoc-members:

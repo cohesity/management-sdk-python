@@ -1,6 +1,5 @@
-models.exchange\_backup\_job\_params module
-===========================================
-
+models.exchange_backup_job_params module
+========================================
 .. automodule:: models.exchange_backup_job_params
    :members:
    :undoc-members:

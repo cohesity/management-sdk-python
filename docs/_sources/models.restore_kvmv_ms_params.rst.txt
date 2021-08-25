@@ -1,6 +1,5 @@
-models.restore\_kvmv\_ms\_params module
-=======================================
-
+models.restore_kvmv_ms_params module
+====================================
 .. automodule:: models.restore_kvmv_ms_params
    :members:
    :undoc-members:

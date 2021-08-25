@@ -1,6 +1,5 @@
-models.iops\_tile module
-========================
-
+models.iops_tile module
+=======================
 .. automodule:: models.iops_tile
    :members:
    :undoc-members:

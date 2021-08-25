@@ -1,6 +1,5 @@
-models.cassandra\_backup\_job\_params module
-============================================
-
+models.cassandra_backup_job_params module
+=========================================
 .. automodule:: models.cassandra_backup_job_params
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.edit\_hosts\_parameters module
-=====================================
-
+models.edit_hosts_parameters module
+===================================
 .. automodule:: models.edit_hosts_parameters
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.objects\_protected\_by\_policy module
-============================================
-
+models.objects_protected_by_policy module
+=========================================
 .. automodule:: models.objects_protected_by_policy
    :members:
    :undoc-members:

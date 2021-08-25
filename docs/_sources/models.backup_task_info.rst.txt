@@ -1,6 +1,5 @@
-models.backup\_task\_info module
-================================
-
+models.backup_task_info module
+==============================
 .. automodule:: models.backup_task_info
    :members:
    :undoc-members:

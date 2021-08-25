@@ -1,6 +1,5 @@
-models.close\_smb\_file\_open\_parameters module
-================================================
-
+models.close_smb_file_open_parameters module
+============================================
 .. automodule:: models.close_smb_file_open_parameters
    :members:
    :undoc-members:

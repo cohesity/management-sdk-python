@@ -1,0 +1,6 @@
+models_v2.vdc_object module
+===========================
+.. automodule:: models_v2.vdc_object
+   :members:
+   :undoc-members:
+   :show-inheritance:

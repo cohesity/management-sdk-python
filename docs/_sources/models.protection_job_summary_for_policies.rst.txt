@@ -1,6 +1,5 @@
-models.protection\_job\_summary\_for\_policies module
-=====================================================
-
+models.protection_job_summary_for_policies module
+=================================================
 .. automodule:: models.protection_job_summary_for_policies
    :members:
    :undoc-members:

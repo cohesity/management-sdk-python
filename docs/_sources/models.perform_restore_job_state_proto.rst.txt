@@ -1,6 +1,5 @@
-models.perform\_restore\_job\_state\_proto module
-=================================================
-
+models.perform_restore_job_state_proto module
+=============================================
 .. automodule:: models.perform_restore_job_state_proto
    :members:
    :undoc-members:

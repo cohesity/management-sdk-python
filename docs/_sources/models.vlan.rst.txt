@@ -1,6 +1,5 @@
 models.vlan module
 ==================
-
 .. automodule:: models.vlan
    :members:
    :undoc-members:

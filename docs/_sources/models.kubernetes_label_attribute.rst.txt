@@ -1,0 +1,6 @@
+models.kubernetes_label_attribute module
+========================================
+.. automodule:: models.kubernetes_label_attribute
+   :members:
+   :undoc-members:
+   :show-inheritance:

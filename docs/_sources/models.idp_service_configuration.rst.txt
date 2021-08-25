@@ -1,6 +1,5 @@
-models.idp\_service\_configuration module
-=========================================
-
+models.idp_service_configuration module
+=======================================
 .. automodule:: models.idp_service_configuration
    :members:
    :undoc-members:

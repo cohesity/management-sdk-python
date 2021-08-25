@@ -1,6 +1,5 @@
-models\_v2.data\_lock\_config module
-====================================
-
+models_v2.data_lock_config module
+=================================
 .. automodule:: models_v2.data_lock_config
    :members:
    :undoc-members:

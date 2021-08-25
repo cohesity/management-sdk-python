@@ -1,6 +1,5 @@
-models.lock\_range module
-=========================
-
+models.lock_range module
+========================
 .. automodule:: models.lock_range
    :members:
    :undoc-members:

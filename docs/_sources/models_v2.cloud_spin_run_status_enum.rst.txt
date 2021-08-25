@@ -1,6 +1,5 @@
-models\_v2.cloud\_spin\_run\_status\_enum module
-================================================
-
+models_v2.cloud_spin_run_status_enum module
+===========================================
 .. automodule:: models_v2.cloud_spin_run_status_enum
    :members:
    :undoc-members:

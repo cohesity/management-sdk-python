@@ -1,6 +1,5 @@
-models.filtering\_policy\_proto module
-======================================
-
+models.filtering_policy_proto module
+====================================
 .. automodule:: models.filtering_policy_proto
    :members:
    :undoc-members:

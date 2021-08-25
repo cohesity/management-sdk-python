@@ -1,6 +1,5 @@
-models\_v2.azure\_recover\_files\_new\_target\_config module
-============================================================
-
+models_v2.azure_recover_files_new_target_config module
+======================================================
 .. automodule:: models_v2.azure_recover_files_new_target_config
    :members:
    :undoc-members:

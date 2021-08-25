@@ -1,6 +1,5 @@
-models.couchbase\_recover\_job\_params module
-=============================================
-
+models.couchbase_recover_job_params module
+==========================================
 .. automodule:: models.couchbase_recover_job_params
    :members:
    :undoc-members:

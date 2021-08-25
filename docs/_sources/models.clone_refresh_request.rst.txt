@@ -1,6 +1,5 @@
-models.clone\_refresh\_request module
-=====================================
-
+models.clone_refresh_request module
+===================================
 .. automodule:: models.clone_refresh_request
    :members:
    :undoc-members:

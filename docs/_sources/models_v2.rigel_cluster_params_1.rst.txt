@@ -1,0 +1,6 @@
+models_v2.rigel_cluster_params_1 module
+=======================================
+.. automodule:: models_v2.rigel_cluster_params_1
+   :members:
+   :undoc-members:
+   :show-inheritance:

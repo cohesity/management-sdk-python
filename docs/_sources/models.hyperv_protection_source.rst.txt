@@ -1,6 +1,5 @@
-models.hyperv\_protection\_source module
-========================================
-
+models.hyperv_protection_source module
+======================================
 .. automodule:: models.hyperv_protection_source
    :members:
    :undoc-members:

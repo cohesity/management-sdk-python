@@ -1,6 +1,5 @@
-models.s3\_access\_enum module
-==============================
-
+models.s3_access_enum module
+============================
 .. automodule:: models.s3_access_enum
    :members:
    :undoc-members:

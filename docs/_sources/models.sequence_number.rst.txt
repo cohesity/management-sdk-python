@@ -1,6 +1,5 @@
-models.sequence\_number module
-==============================
-
+models.sequence_number module
+=============================
 .. automodule:: models.sequence_number
    :members:
    :undoc-members:

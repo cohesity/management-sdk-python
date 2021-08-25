@@ -1,6 +1,5 @@
-models.s\_3\_key\_mapping\_config\_create\_view\_request\_enum module
-=====================================================================
-
+models.s_3_key_mapping_config_create_view_request_enum module
+=============================================================
 .. automodule:: models.s_3_key_mapping_config_create_view_request_enum
    :members:
    :undoc-members:

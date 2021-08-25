@@ -1,6 +1,5 @@
-models.environment\_type\_job\_parameters module
-================================================
-
+models.environment_type_job_parameters module
+=============================================
 .. automodule:: models.environment_type_job_parameters
    :members:
    :undoc-members:

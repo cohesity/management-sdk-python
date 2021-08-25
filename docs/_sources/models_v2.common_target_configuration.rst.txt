@@ -1,6 +1,5 @@
-models\_v2.common\_target\_configuration module
-===============================================
-
+models_v2.common_target_configuration module
+============================================
 .. automodule:: models_v2.common_target_configuration
    :members:
    :undoc-members:

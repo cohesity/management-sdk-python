@@ -1,6 +1,5 @@
-models.vm\_group module
-=======================
-
+models.vm_group module
+======================
 .. automodule:: models.vm_group
    :members:
    :undoc-members:

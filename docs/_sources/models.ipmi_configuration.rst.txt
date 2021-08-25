@@ -1,6 +1,5 @@
-models.ipmi\_configuration module
-=================================
-
+models.ipmi_configuration module
+================================
 .. automodule:: models.ipmi_configuration
    :members:
    :undoc-members:

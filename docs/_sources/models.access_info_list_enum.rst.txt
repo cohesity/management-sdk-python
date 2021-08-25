@@ -1,6 +1,5 @@
-models.access\_info\_list\_enum module
-======================================
-
+models.access_info_list_enum module
+===================================
 .. automodule:: models.access_info_list_enum
    :members:
    :undoc-members:

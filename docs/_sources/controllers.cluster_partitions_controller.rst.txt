@@ -1,6 +1,5 @@
-controllers.cluster\_partitions\_controller module
-==================================================
-
+controllers.cluster_partitions_controller module
+================================================
 .. automodule:: controllers.cluster_partitions_controller
    :members:
    :undoc-members:

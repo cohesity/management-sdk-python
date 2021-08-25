@@ -1,6 +1,5 @@
-models.aws\_snapshot\_manager\_params module
-============================================
-
+models.aws_snapshot_manager_params module
+=========================================
 .. automodule:: models.aws_snapshot_manager_params
    :members:
    :undoc-members:

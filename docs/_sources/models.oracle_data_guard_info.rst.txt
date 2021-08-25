@@ -1,6 +1,5 @@
-models.oracle\_data\_guard\_info module
-=======================================
-
+models.oracle_data_guard_info module
+====================================
 .. automodule:: models.oracle_data_guard_info
    :members:
    :undoc-members:

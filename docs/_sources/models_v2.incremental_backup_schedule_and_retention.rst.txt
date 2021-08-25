@@ -1,6 +1,5 @@
-models\_v2.incremental\_backup\_schedule\_and\_retention module
-===============================================================
-
+models_v2.incremental_backup_schedule_and_retention module
+==========================================================
 .. automodule:: models_v2.incremental_backup_schedule_and_retention
    :members:
    :undoc-members:

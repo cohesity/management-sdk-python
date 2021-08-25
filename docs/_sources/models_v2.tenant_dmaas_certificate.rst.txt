@@ -1,0 +1,6 @@
+models_v2.tenant_dmaas_certificate module
+=========================================
+.. automodule:: models_v2.tenant_dmaas_certificate
+   :members:
+   :undoc-members:
+   :show-inheritance:

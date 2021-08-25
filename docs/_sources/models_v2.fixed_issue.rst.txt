@@ -1,0 +1,6 @@
+models_v2.fixed_issue module
+============================
+.. automodule:: models_v2.fixed_issue
+   :members:
+   :undoc-members:
+   :show-inheritance:

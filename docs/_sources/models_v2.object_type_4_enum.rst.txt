@@ -1,6 +1,5 @@
-models\_v2.object\_type\_4\_enum module
-=======================================
-
+models_v2.object_type_4_enum module
+===================================
 .. automodule:: models_v2.object_type_4_enum
    :members:
    :undoc-members:

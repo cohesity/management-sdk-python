@@ -1,6 +1,5 @@
-models.snapshot\_copy\_task module
-==================================
-
+models.snapshot_copy_task module
+================================
 .. automodule:: models.snapshot_copy_task
    :members:
    :undoc-members:

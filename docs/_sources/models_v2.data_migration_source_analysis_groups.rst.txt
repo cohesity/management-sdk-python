@@ -1,6 +1,5 @@
-models\_v2.data\_migration\_source\_analysis\_groups module
-===========================================================
-
+models_v2.data_migration_source_analysis_groups module
+======================================================
 .. automodule:: models_v2.data_migration_source_analysis_groups
    :members:
    :undoc-members:

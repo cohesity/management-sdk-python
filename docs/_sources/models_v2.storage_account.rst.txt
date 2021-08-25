@@ -1,6 +1,5 @@
-models\_v2.storage\_account module
-==================================
-
+models_v2.storage_account module
+================================
 .. automodule:: models_v2.storage_account
    :members:
    :undoc-members:

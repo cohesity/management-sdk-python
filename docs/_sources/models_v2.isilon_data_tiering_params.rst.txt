@@ -1,0 +1,6 @@
+models_v2.isilon_data_tiering_params module
+===========================================
+.. automodule:: models_v2.isilon_data_tiering_params
+   :members:
+   :undoc-members:
+   :show-inheritance:

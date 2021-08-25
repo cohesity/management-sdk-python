@@ -1,6 +1,5 @@
-models\_v2.common\_active\_directory\_params module
-===================================================
-
+models_v2.common_active_directory_params module
+===============================================
 .. automodule:: models_v2.common_active_directory_params
    :members:
    :undoc-members:

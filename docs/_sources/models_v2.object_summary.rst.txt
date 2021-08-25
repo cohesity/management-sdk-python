@@ -1,6 +1,5 @@
-models\_v2.object\_summary module
-=================================
-
+models_v2.object_summary module
+===============================
 .. automodule:: models_v2.object_summary
    :members:
    :undoc-members:

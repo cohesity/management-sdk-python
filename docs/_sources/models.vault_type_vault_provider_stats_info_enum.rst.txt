@@ -1,6 +1,5 @@
-models.vault\_type\_vault\_provider\_stats\_info\_enum module
-=============================================================
-
+models.vault_type_vault_provider_stats_info_enum module
+=======================================================
 .. automodule:: models.vault_type_vault_provider_stats_info_enum
    :members:
    :undoc-members:

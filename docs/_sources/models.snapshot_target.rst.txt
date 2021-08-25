@@ -1,6 +1,5 @@
-models.snapshot\_target module
-==============================
-
+models.snapshot_target module
+=============================
 .. automodule:: models.snapshot_target
    :members:
    :undoc-members:

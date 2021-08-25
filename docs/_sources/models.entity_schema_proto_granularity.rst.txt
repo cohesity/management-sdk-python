@@ -1,6 +1,5 @@
-models.entity\_schema\_proto\_granularity module
-================================================
-
+models.entity_schema_proto_granularity module
+=============================================
 .. automodule:: models.entity_schema_proto_granularity
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models\_v2.replication\_target\_configuration\_1 module
-=======================================================
-
+models_v2.replication_target_configuration_1 module
+===================================================
 .. automodule:: models_v2.replication_target_configuration_1
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.nas\_analysis\_job\_params\_access\_time\_bucket module
-==============================================================
-
+models.nas_analysis_job_params_access_time_bucket module
+========================================================
 .. automodule:: models.nas_analysis_job_params_access_time_bucket
    :members:
    :undoc-members:

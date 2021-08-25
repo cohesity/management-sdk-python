@@ -1,6 +1,5 @@
-models\_v2.active\_directory\_app\_parameters module
-====================================================
-
+models_v2.active_directory_app_parameters module
+================================================
 .. automodule:: models_v2.active_directory_app_parameters
    :members:
    :undoc-members:

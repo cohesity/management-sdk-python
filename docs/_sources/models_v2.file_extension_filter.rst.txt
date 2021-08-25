@@ -1,6 +1,5 @@
-models\_v2.file\_extension\_filter module
-=========================================
-
+models_v2.file_extension_filter module
+======================================
 .. automodule:: models_v2.file_extension_filter
    :members:
    :undoc-members:

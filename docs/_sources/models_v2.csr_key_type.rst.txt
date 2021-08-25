@@ -1,6 +1,5 @@
-models\_v2.csr\_key\_type module
-================================
-
+models_v2.csr_key_type module
+=============================
 .. automodule:: models_v2.csr_key_type
    :members:
    :undoc-members:

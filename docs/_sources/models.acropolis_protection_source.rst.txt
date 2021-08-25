@@ -1,6 +1,5 @@
-models.acropolis\_protection\_source module
-===========================================
-
+models.acropolis_protection_source module
+=========================================
 .. automodule:: models.acropolis_protection_source
    :members:
    :undoc-members:

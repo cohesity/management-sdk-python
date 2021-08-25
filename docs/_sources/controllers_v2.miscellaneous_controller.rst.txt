@@ -1,6 +1,5 @@
-controllers\_v2.miscellaneous\_controller module
-================================================
-
+controllers_v2.miscellaneous_controller module
+==============================================
 .. automodule:: controllers_v2.miscellaneous_controller
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.map\_reduce\_aux\_data module
-====================================
-
+models.map_reduce_aux_data module
+=================================
 .. automodule:: models.map_reduce_aux_data
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models\_v2.archival\_targets\_1\_enum module
-============================================
-
+models_v2.archival_targets_1_enum module
+========================================
 .. automodule:: models_v2.archival_targets_1_enum
    :members:
    :undoc-members:

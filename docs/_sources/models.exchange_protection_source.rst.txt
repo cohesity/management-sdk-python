@@ -1,6 +1,5 @@
-models.exchange\_protection\_source module
-==========================================
-
+models.exchange_protection_source module
+========================================
 .. automodule:: models.exchange_protection_source
    :members:
    :undoc-members:

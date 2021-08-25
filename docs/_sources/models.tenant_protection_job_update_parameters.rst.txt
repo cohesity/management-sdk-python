@@ -1,6 +1,5 @@
-models.tenant\_protection\_job\_update\_parameters module
-=========================================================
-
+models.tenant_protection_job_update_parameters module
+=====================================================
 .. automodule:: models.tenant_protection_job_update_parameters
    :members:
    :undoc-members:

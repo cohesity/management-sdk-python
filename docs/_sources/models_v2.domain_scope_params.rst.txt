@@ -1,6 +1,5 @@
-models\_v2.domain\_scope\_params module
-=======================================
-
+models_v2.domain_scope_params module
+====================================
 .. automodule:: models_v2.domain_scope_params
    :members:
    :undoc-members:

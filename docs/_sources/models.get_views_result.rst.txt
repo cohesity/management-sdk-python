@@ -1,6 +1,5 @@
-models.get\_views\_result module
-================================
-
+models.get_views_result module
+==============================
 .. automodule:: models.get_views_result
    :members:
    :undoc-members:

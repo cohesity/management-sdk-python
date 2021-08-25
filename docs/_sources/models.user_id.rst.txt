@@ -1,6 +1,5 @@
-models.user\_id module
-======================
-
+models.user_id module
+=====================
 .. automodule:: models.user_id
    :members:
    :undoc-members:

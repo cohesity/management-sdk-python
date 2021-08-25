@@ -1,6 +1,5 @@
-models.volume\_security\_info module
-====================================
-
+models.volume_security_info module
+==================================
 .. automodule:: models.volume_security_info
    :members:
    :undoc-members:

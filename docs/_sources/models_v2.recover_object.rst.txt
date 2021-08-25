@@ -1,6 +1,5 @@
-models\_v2.recover\_object module
-=================================
-
+models_v2.recover_object module
+===============================
 .. automodule:: models_v2.recover_object
    :members:
    :undoc-members:

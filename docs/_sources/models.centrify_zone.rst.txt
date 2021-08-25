@@ -1,6 +1,5 @@
-models.centrify\_zone module
-============================
-
+models.centrify_zone module
+===========================
 .. automodule:: models.centrify_zone
    :members:
    :undoc-members:

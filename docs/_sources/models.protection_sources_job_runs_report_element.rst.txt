@@ -1,6 +1,5 @@
-models.protection\_sources\_job\_runs\_report\_element module
-=============================================================
-
+models.protection_sources_job_runs_report_element module
+========================================================
 .. automodule:: models.protection_sources_job_runs_report_element
    :members:
    :undoc-members:

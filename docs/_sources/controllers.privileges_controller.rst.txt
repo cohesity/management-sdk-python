@@ -1,6 +1,5 @@
-controllers.privileges\_controller module
-=========================================
-
+controllers.privileges_controller module
+========================================
 .. automodule:: controllers.privileges_controller
    :members:
    :undoc-members:

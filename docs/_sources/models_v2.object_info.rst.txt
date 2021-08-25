@@ -1,6 +1,5 @@
-models\_v2.object\_info module
-==============================
-
+models_v2.object_info module
+============================
 .. automodule:: models_v2.object_info
    :members:
    :undoc-members:

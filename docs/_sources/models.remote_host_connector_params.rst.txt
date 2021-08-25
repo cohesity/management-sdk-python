@@ -1,6 +1,5 @@
-models.remote\_host\_connector\_params module
-=============================================
-
+models.remote_host_connector_params module
+==========================================
 .. automodule:: models.remote_host_connector_params
    :members:
    :undoc-members:

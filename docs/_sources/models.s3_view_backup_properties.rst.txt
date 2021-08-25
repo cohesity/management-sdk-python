@@ -1,6 +1,5 @@
-models.s3\_view\_backup\_properties module
-==========================================
-
+models.s3_view_backup_properties module
+=======================================
 .. automodule:: models.s3_view_backup_properties
    :members:
    :undoc-members:

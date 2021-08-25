@@ -1,6 +1,5 @@
-models.mount\_volumes\_vmware\_params module
-============================================
-
+models.mount_volumes_vmware_params module
+=========================================
 .. automodule:: models.mount_volumes_vmware_params
    :members:
    :undoc-members:

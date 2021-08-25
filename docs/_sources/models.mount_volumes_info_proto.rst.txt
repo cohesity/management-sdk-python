@@ -1,6 +1,5 @@
-models.mount\_volumes\_info\_proto module
-=========================================
-
+models.mount_volumes_info_proto module
+======================================
 .. automodule:: models.mount_volumes_info_proto
    :members:
    :undoc-members:

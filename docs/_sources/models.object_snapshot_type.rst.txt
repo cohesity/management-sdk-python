@@ -1,6 +1,5 @@
-models.object\_snapshot\_type module
-====================================
-
+models.object_snapshot_type module
+==================================
 .. automodule:: models.object_snapshot_type
    :members:
    :undoc-members:

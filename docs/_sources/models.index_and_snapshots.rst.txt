@@ -1,6 +1,5 @@
-models.index\_and\_snapshots module
-===================================
-
+models.index_and_snapshots module
+=================================
 .. automodule:: models.index_and_snapshots
    :members:
    :undoc-members:

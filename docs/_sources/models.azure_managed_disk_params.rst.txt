@@ -1,6 +1,5 @@
-models.azure\_managed\_disk\_params module
-==========================================
-
+models.azure_managed_disk_params module
+=======================================
 .. automodule:: models.azure_managed_disk_params
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.vserver\_network\_interface module
-=========================================
-
+models.vserver_network_interface module
+=======================================
 .. automodule:: models.vserver_network_interface
    :members:
    :undoc-members:

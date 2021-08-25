@@ -1,6 +1,5 @@
-models.smb\_active\_file\_path module
-=====================================
-
+models.smb_active_file_path module
+==================================
 .. automodule:: models.smb_active_file_path
    :members:
    :undoc-members:

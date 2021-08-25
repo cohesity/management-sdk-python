@@ -1,6 +1,5 @@
-models\_v2.cloud\_spin\_target module
-=====================================
-
+models_v2.cloud_spin_target module
+==================================
 .. automodule:: models_v2.cloud_spin_target
    :members:
    :undoc-members:

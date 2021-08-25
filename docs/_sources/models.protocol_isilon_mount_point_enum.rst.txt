@@ -1,6 +1,5 @@
-models.protocol\_isilon\_mount\_point\_enum module
-==================================================
-
+models.protocol_isilon_mount_point_enum module
+==============================================
 .. automodule:: models.protocol_isilon_mount_point_enum
    :members:
    :undoc-members:

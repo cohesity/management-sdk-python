@@ -1,6 +1,5 @@
-models.run\_protection\_job\_param module
-=========================================
-
+models.run_protection_job_param module
+======================================
 .. automodule:: models.run_protection_job_param
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.oracle\_pluggable\_database\_info module
-===============================================
-
+models.oracle_pluggable_database_info module
+============================================
 .. automodule:: models.oracle_pluggable_database_info
    :members:
    :undoc-members:

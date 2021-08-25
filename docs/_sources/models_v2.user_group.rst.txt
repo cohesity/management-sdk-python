@@ -1,6 +1,5 @@
-models\_v2.user\_group module
-=============================
-
+models_v2.user_group module
+===========================
 .. automodule:: models_v2.user_group
    :members:
    :undoc-members:

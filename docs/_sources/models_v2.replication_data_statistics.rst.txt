@@ -1,6 +1,5 @@
-models\_v2.replication\_data\_statistics module
-===============================================
-
+models_v2.replication_data_statistics module
+============================================
 .. automodule:: models_v2.replication_data_statistics
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.node\_system\_disk\_info module
-======================================
-
+models.node_system_disk_info module
+===================================
 .. automodule:: models.node_system_disk_info
    :members:
    :undoc-members:

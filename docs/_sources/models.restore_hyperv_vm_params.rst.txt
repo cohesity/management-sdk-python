@@ -1,6 +1,5 @@
-models.restore\_hyperv\_vm\_params module
-=========================================
-
+models.restore_hyperv_vm_params module
+======================================
 .. automodule:: models.restore_hyperv_vm_params
    :members:
    :undoc-members:

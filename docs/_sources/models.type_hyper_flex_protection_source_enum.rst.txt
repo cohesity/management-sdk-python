@@ -1,6 +1,5 @@
-models.type\_hyper\_flex\_protection\_source\_enum module
-=========================================================
-
+models.type_hyper_flex_protection_source_enum module
+====================================================
 .. automodule:: models.type_hyper_flex_protection_source_enum
    :members:
    :undoc-members:

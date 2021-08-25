@@ -1,6 +1,5 @@
-models.chassis\_info module
-===========================
-
+models.chassis_info module
+==========================
 .. automodule:: models.chassis_info
    :members:
    :undoc-members:

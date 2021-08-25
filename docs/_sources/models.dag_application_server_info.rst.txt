@@ -1,6 +1,5 @@
-models.dag\_application\_server\_info module
-============================================
-
+models.dag_application_server_info module
+=========================================
 .. automodule:: models.dag_application_server_info
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.health\_tile module
-==========================
-
+models.health_tile module
+=========================
 .. automodule:: models.health_tile
    :members:
    :undoc-members:

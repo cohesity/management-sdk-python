@@ -1,6 +1,5 @@
-models.isilon\_protection\_source module
-========================================
-
+models.isilon_protection_source module
+======================================
 .. automodule:: models.isilon_protection_source
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.couchbase\_connect\_params module
-========================================
-
+models.couchbase_connect_params module
+======================================
 .. automodule:: models.couchbase_connect_params
    :members:
    :undoc-members:

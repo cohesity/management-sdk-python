@@ -1,6 +1,5 @@
-controllers\_v2.keystone\_controller module
-===========================================
-
+controllers_v2.keystone_controller module
+=========================================
 .. automodule:: controllers_v2.keystone_controller
    :members:
    :undoc-members:

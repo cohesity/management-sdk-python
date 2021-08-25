@@ -1,6 +1,5 @@
-models.san\_env\_job\_parameters module
-=======================================
-
+models.san_env_job_parameters module
+====================================
 .. automodule:: models.san_env_job_parameters
    :members:
    :undoc-members:

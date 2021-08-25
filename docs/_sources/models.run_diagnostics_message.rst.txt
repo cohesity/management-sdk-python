@@ -1,6 +1,5 @@
-models.run\_diagnostics\_message module
-=======================================
-
+models.run_diagnostics_message module
+=====================================
 .. automodule:: models.run_diagnostics_message
    :members:
    :undoc-members:

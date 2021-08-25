@@ -1,6 +1,5 @@
-models.protected\_objects\_summary\_by\_env module
-==================================================
-
+models.protected_objects_summary_by_env module
+==============================================
 .. automodule:: models.protected_objects_summary_by_env
    :members:
    :undoc-members:

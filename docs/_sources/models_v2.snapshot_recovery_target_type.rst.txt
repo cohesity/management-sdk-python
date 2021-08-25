@@ -1,6 +1,5 @@
-models\_v2.snapshot\_recovery\_target\_type module
-==================================================
-
+models_v2.snapshot_recovery_target_type module
+==============================================
 .. automodule:: models_v2.snapshot_recovery_target_type
    :members:
    :undoc-members:

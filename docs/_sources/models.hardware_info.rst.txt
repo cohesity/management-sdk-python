@@ -1,6 +1,5 @@
-models.hardware\_info module
-============================
-
+models.hardware_info module
+===========================
 .. automodule:: models.hardware_info
    :members:
    :undoc-members:

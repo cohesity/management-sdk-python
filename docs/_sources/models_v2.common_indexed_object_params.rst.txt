@@ -1,6 +1,5 @@
-models\_v2.common\_indexed\_object\_params module
-=================================================
-
+models_v2.common_indexed_object_params module
+=============================================
 .. automodule:: models_v2.common_indexed_object_params
    :members:
    :undoc-members:

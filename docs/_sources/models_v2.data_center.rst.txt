@@ -1,6 +1,5 @@
-models\_v2.data\_center module
-==============================
-
+models_v2.data_center module
+============================
 .. automodule:: models_v2.data_center
    :members:
    :undoc-members:

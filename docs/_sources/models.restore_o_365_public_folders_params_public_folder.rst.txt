@@ -1,6 +1,5 @@
-models.restore\_o\_365\_public\_folders\_params\_public\_folder module
-======================================================================
-
+models.restore_o_365_public_folders_params_public_folder module
+===============================================================
 .. automodule:: models.restore_o_365_public_folders_params_public_folder
    :members:
    :undoc-members:

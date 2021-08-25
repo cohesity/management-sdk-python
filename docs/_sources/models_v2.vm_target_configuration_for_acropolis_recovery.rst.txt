@@ -1,6 +1,5 @@
-models\_v2.vm\_target\_configuration\_for\_acropolis\_recovery module
-=====================================================================
-
+models_v2.vm_target_configuration_for_acropolis_recovery module
+===============================================================
 .. automodule:: models_v2.vm_target_configuration_for_acropolis_recovery
    :members:
    :undoc-members:

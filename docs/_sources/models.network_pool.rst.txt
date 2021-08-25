@@ -1,6 +1,5 @@
-models.network\_pool module
-===========================
-
+models.network_pool module
+==========================
 .. automodule:: models.network_pool
    :members:
    :undoc-members:

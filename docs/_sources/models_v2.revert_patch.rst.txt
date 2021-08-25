@@ -1,6 +1,5 @@
-models\_v2.revert\_patch module
-===============================
-
+models_v2.revert_patch module
+=============================
 .. automodule:: models_v2.revert_patch
    :members:
    :undoc-members:

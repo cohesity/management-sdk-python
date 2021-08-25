@@ -1,6 +1,5 @@
-models.ews\_to\_pst\_conversion\_params module
-==============================================
-
+models.ews_to_pst_conversion_params module
+==========================================
 .. automodule:: models.ews_to_pst_conversion_params
    :members:
    :undoc-members:

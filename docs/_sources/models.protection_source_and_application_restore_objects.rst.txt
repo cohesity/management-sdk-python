@@ -1,6 +1,5 @@
-models.protection\_source\_and\_application\_restore\_objects module
-====================================================================
-
+models.protection_source_and_application_restore_objects module
+===============================================================
 .. automodule:: models.protection_source_and_application_restore_objects
    :members:
    :undoc-members:

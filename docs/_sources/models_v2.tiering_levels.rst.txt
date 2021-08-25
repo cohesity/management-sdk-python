@@ -1,0 +1,6 @@
+models_v2.tiering_levels module
+===============================
+.. automodule:: models_v2.tiering_levels
+   :members:
+   :undoc-members:
+   :show-inheritance:

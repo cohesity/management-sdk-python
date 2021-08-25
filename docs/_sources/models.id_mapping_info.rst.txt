@@ -1,6 +1,5 @@
-models.id\_mapping\_info module
-===============================
-
+models.id_mapping_info module
+=============================
 .. automodule:: models.id_mapping_info
    :members:
    :undoc-members:

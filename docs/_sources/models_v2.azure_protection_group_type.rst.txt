@@ -1,6 +1,5 @@
-models\_v2.azure\_protection\_group\_type module
-================================================
-
+models_v2.azure_protection_group_type module
+============================================
 .. automodule:: models_v2.azure_protection_group_type
    :members:
    :undoc-members:

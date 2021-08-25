@@ -1,6 +1,5 @@
-models.cluster\_audit\_logs\_search\_result module
-==================================================
-
+models.cluster_audit_logs_search_result module
+==============================================
 .. automodule:: models.cluster_audit_logs_search_result
    :members:
    :undoc-members:

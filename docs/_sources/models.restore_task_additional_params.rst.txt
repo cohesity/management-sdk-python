@@ -1,6 +1,5 @@
-models.restore\_task\_additional\_params module
-===============================================
-
+models.restore_task_additional_params module
+============================================
 .. automodule:: models.restore_task_additional_params
    :members:
    :undoc-members:

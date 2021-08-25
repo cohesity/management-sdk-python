@@ -1,6 +1,5 @@
-models.active\_directory\_entry module
-======================================
-
+models.active_directory_entry module
+====================================
 .. automodule:: models.active_directory_entry
    :members:
    :undoc-members:

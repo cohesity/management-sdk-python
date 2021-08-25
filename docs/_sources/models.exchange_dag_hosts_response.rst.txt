@@ -1,6 +1,5 @@
-models.exchange\_dag\_hosts\_response module
-============================================
-
+models.exchange_dag_hosts_response module
+=========================================
 .. automodule:: models.exchange_dag_hosts_response
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models\_v2.import\_certificate\_by\_clientcsr\_request module
-=============================================================
-
+models_v2.import_certificate_by_clientcsr_request module
+========================================================
 .. automodule:: models_v2.import_certificate_by_clientcsr_request
    :members:
    :undoc-members:

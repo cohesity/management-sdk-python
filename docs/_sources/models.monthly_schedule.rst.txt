@@ -1,6 +1,5 @@
-models.monthly\_schedule module
-===============================
-
+models.monthly_schedule module
+==============================
 .. automodule:: models.monthly_schedule
    :members:
    :undoc-members:

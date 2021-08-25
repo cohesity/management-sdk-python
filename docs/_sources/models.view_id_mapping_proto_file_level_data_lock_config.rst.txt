@@ -1,6 +1,5 @@
-models.view\_id\_mapping\_proto\_file\_level\_data\_lock\_config module
-=======================================================================
-
+models.view_id_mapping_proto_file_level_data_lock_config module
+===============================================================
 .. automodule:: models.view_id_mapping_proto_file_level_data_lock_config
    :members:
    :undoc-members:

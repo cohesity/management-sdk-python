@@ -1,6 +1,5 @@
-models.db\_file\_info module
-============================
-
+models.db_file_info module
+==========================
 .. automodule:: models.db_file_info
    :members:
    :undoc-members:

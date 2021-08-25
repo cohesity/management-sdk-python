@@ -1,0 +1,6 @@
+models.object_meta_annotations_entry module
+===========================================
+.. automodule:: models.object_meta_annotations_entry
+   :members:
+   :undoc-members:
+   :show-inheritance:

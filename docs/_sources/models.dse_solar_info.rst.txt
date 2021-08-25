@@ -1,6 +1,5 @@
-models.dse\_solar\_info module
-==============================
-
+models.dse_solar_info module
+============================
 .. automodule:: models.dse_solar_info
    :members:
    :undoc-members:

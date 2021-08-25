@@ -1,6 +1,5 @@
-models.restore\_env\_stats module
-=================================
-
+models.restore_env_stats module
+===============================
 .. automodule:: models.restore_env_stats
    :members:
    :undoc-members:

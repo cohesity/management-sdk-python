@@ -1,6 +1,5 @@
-models.stats\_group module
-==========================
-
+models.stats_group module
+=========================
 .. automodule:: models.stats_group
    :members:
    :undoc-members:

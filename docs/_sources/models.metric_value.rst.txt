@@ -1,6 +1,5 @@
-models.metric\_value module
-===========================
-
+models.metric_value module
+==========================
 .. automodule:: models.metric_value
    :members:
    :undoc-members:

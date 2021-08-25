@@ -1,0 +1,6 @@
+models_v2.aws_aurora_recovery_target_config module
+==================================================
+.. automodule:: models_v2.aws_aurora_recovery_target_config
+   :members:
+   :undoc-members:
+   :show-inheritance:

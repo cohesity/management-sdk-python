@@ -1,6 +1,5 @@
-models.s\_3\_key\_mapping\_config\_enum module
-==============================================
-
+models.s_3_key_mapping_config_enum module
+=========================================
 .. automodule:: models.s_3_key_mapping_config_enum
    :members:
    :undoc-members:

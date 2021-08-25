@@ -1,6 +1,5 @@
-models.email\_delivery\_target module
-=====================================
-
+models.email_delivery_target module
+===================================
 .. automodule:: models.email_delivery_target
    :members:
    :undoc-members:

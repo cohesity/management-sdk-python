@@ -1,6 +1,5 @@
-models.ip\_details module
-=========================
-
+models.ip_details module
+========================
 .. automodule:: models.ip_details
    :members:
    :undoc-members:

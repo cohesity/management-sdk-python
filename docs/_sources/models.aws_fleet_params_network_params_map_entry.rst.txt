@@ -1,6 +1,5 @@
-models.aws\_fleet\_params\_network\_params\_map\_entry module
-=============================================================
-
+models.aws_fleet_params_network_params_map_entry module
+=======================================================
 .. automodule:: models.aws_fleet_params_network_params_map_entry
    :members:
    :undoc-members:

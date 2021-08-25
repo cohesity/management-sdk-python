@@ -1,6 +1,5 @@
-models\_v2.active\_directory\_admin\_params module
-==================================================
-
+models_v2.active_directory_admin_params module
+==============================================
 .. automodule:: models_v2.active_directory_admin_params
    :members:
    :undoc-members:

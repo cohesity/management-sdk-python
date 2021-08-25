@@ -1,6 +1,5 @@
-models.rpo\_schedule module
-===========================
-
+models.rpo_schedule module
+==========================
 .. automodule:: models.rpo_schedule
    :members:
    :undoc-members:

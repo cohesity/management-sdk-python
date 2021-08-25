@@ -1,6 +1,5 @@
 models.banner module
 ====================
-
 .. automodule:: models.banner
    :members:
    :undoc-members:

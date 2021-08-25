@@ -1,6 +1,5 @@
-models.update\_protection\_job\_run module
-==========================================
-
+models.update_protection_job_run module
+=======================================
 .. automodule:: models.update_protection_job_run
    :members:
    :undoc-members:

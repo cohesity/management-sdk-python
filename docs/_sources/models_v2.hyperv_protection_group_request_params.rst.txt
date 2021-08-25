@@ -1,6 +1,5 @@
-models\_v2.hyperv\_protection\_group\_request\_params module
-============================================================
-
+models_v2.hyperv_protection_group_request_params module
+=======================================================
 .. automodule:: models_v2.hyperv_protection_group_request_params
    :members:
    :undoc-members:

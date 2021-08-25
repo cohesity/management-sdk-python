@@ -1,6 +1,5 @@
-models.environment\_register\_protection\_source\_parameters\_enum module
-=========================================================================
-
+models.environment_register_protection_source_parameters_enum module
+====================================================================
 .. automodule:: models.environment_register_protection_source_parameters_enum
    :members:
    :undoc-members:

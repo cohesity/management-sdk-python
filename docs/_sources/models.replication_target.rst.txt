@@ -1,6 +1,5 @@
-models.replication\_target module
-=================================
-
+models.replication_target module
+================================
 .. automodule:: models.replication_target
    :members:
    :undoc-members:

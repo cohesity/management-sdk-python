@@ -1,6 +1,5 @@
-models.protection\_job module
-=============================
-
+models.protection_job module
+============================
 .. automodule:: models.protection_job
    :members:
    :undoc-members:

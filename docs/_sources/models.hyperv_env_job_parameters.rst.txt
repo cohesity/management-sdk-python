@@ -1,6 +1,5 @@
-models.hyperv\_env\_job\_parameters module
-==========================================
-
+models.hyperv_env_job_parameters module
+=======================================
 .. automodule:: models.hyperv_env_job_parameters
    :members:
    :undoc-members:

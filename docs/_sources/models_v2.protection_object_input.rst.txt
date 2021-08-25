@@ -1,6 +1,5 @@
-models\_v2.protection\_object\_input module
-===========================================
-
+models_v2.protection_object_input module
+========================================
 .. automodule:: models_v2.protection_object_input
    :members:
    :undoc-members:

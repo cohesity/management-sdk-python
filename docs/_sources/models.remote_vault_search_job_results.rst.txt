@@ -1,6 +1,5 @@
-models.remote\_vault\_search\_job\_results module
-=================================================
-
+models.remote_vault_search_job_results module
+=============================================
 .. automodule:: models.remote_vault_search_job_results
    :members:
    :undoc-members:

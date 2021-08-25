@@ -1,6 +1,5 @@
-models.group\_parameters module
-===============================
-
+models.group_parameters module
+==============================
 .. automodule:: models.group_parameters
    :members:
    :undoc-members:

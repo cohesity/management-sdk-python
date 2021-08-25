@@ -1,6 +1,5 @@
 models.dashboard module
 =======================
-
 .. automodule:: models.dashboard
    :members:
    :undoc-members:

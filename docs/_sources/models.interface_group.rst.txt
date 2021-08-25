@@ -1,6 +1,5 @@
-models.interface\_group module
-==============================
-
+models.interface_group module
+=============================
 .. automodule:: models.interface_group
    :members:
    :undoc-members:

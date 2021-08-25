@@ -1,6 +1,5 @@
-models.get\_map\_reduce\_app\_runs\_params module
-=================================================
-
+models.get_map_reduce_app_runs_params module
+============================================
 .. automodule:: models.get_map_reduce_app_runs_params
    :members:
    :undoc-members:

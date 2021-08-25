@@ -1,6 +1,5 @@
-models\_v2.snapshot\_label module
-=================================
-
+models_v2.snapshot_label module
+===============================
 .. automodule:: models_v2.snapshot_label
    :members:
    :undoc-members:

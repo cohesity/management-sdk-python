@@ -1,6 +1,5 @@
-models\_v2.couchbase\_params module
-===================================
-
+models_v2.couchbase_params module
+=================================
 .. automodule:: models_v2.couchbase_params
    :members:
    :undoc-members:

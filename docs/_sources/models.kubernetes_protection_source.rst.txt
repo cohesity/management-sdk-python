@@ -1,6 +1,5 @@
-models.kubernetes\_protection\_source module
-============================================
-
+models.kubernetes_protection_source module
+==========================================
 .. automodule:: models.kubernetes_protection_source
    :members:
    :undoc-members:

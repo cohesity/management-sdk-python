@@ -1,6 +1,5 @@
-models.oracle\_db\_config\_pfile\_parameter\_map\_entry module
-==============================================================
-
+models.oracle_db_config_pfile_parameter_map_entry module
+========================================================
 .. automodule:: models.oracle_db_config_pfile_parameter_map_entry
    :members:
    :undoc-members:

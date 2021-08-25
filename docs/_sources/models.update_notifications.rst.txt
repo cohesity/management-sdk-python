@@ -1,6 +1,5 @@
-models.update\_notifications module
-===================================
-
+models.update_notifications module
+==================================
 .. automodule:: models.update_notifications
    :members:
    :undoc-members:

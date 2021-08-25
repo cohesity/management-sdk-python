@@ -1,6 +1,5 @@
-models.nfs\_connection module
-=============================
-
+models.nfs_connection module
+============================
 .. automodule:: models.nfs_connection
    :members:
    :undoc-members:

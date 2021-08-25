@@ -1,6 +1,5 @@
-controllers.analytics\_controller module
-========================================
-
+controllers.analytics_controller module
+=======================================
 .. automodule:: controllers.analytics_controller
    :members:
    :undoc-members:

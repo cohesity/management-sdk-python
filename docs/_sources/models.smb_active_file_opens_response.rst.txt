@@ -1,6 +1,5 @@
-models.smb\_active\_file\_opens\_response module
-================================================
-
+models.smb_active_file_opens_response module
+============================================
 .. automodule:: models.smb_active_file_opens_response
    :members:
    :undoc-members:

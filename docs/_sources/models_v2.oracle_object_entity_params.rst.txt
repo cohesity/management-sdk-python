@@ -1,0 +1,6 @@
+models_v2.oracle_object_entity_params module
+============================================
+.. automodule:: models_v2.oracle_object_entity_params
+   :members:
+   :undoc-members:
+   :show-inheritance:

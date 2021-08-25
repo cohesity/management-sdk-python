@@ -1,6 +1,5 @@
-models.delete\_view\_users\_quota\_parameters module
-====================================================
-
+models.delete_view_users_quota_parameters module
+================================================
 .. automodule:: models.delete_view_users_quota_parameters
    :members:
    :undoc-members:

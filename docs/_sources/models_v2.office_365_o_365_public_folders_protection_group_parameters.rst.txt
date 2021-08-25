@@ -1,6 +1,5 @@
-models\_v2.office\_365\_o\_365\_public\_folders\_protection\_group\_parameters module
-=====================================================================================
-
+models_v2.office_365_o_365_public_folders_protection_group_parameters module
+============================================================================
 .. automodule:: models_v2.office_365_o_365_public_folders_protection_group_parameters
    :members:
    :undoc-members:

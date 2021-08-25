@@ -1,6 +1,5 @@
-models.vault\_type\_data\_transfer\_to\_vault\_summary\_enum module
-===================================================================
-
+models.vault_type_data_transfer_to_vault_summary_enum module
+============================================================
 .. automodule:: models.vault_type_data_transfer_to_vault_summary_enum
    :members:
    :undoc-members:

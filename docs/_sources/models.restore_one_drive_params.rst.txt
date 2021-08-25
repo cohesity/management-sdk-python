@@ -1,6 +1,5 @@
-models.restore\_one\_drive\_params module
-=========================================
-
+models.restore_one_drive_params module
+======================================
 .. automodule:: models.restore_one_drive_params
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.oracle\_source\_params module
-====================================
-
+models.oracle_source_params module
+==================================
 .. automodule:: models.oracle_source_params
    :members:
    :undoc-members:

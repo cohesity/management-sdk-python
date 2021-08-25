@@ -1,6 +1,5 @@
-models.input\_spec\_input\_files\_selector module
-=================================================
-
+models.input_spec_input_files_selector module
+=============================================
 .. automodule:: models.input_spec_input_files_selector
    :members:
    :undoc-members:

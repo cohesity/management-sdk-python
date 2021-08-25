@@ -1,6 +1,5 @@
-models.pst\_parameters module
-=============================
-
+models.pst_parameters module
+============================
 .. automodule:: models.pst_parameters
    :members:
    :undoc-members:

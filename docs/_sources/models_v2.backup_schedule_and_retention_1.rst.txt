@@ -1,0 +1,6 @@
+models_v2.backup_schedule_and_retention_1 module
+================================================
+.. automodule:: models_v2.backup_schedule_and_retention_1
+   :members:
+   :undoc-members:
+   :show-inheritance:

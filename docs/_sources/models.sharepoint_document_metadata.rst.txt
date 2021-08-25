@@ -1,6 +1,5 @@
-models.sharepoint\_document\_metadata module
-============================================
-
+models.sharepoint_document_metadata module
+==========================================
 .. automodule:: models.sharepoint_document_metadata
    :members:
    :undoc-members:

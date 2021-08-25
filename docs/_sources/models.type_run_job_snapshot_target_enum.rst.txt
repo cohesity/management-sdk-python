@@ -1,6 +1,5 @@
-models.type\_run\_job\_snapshot\_target\_enum module
-====================================================
-
+models.type_run_job_snapshot_target_enum module
+===============================================
 .. automodule:: models.type_run_job_snapshot_target_enum
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.app\_run\_history module
-===============================
-
+models.app_run_history module
+=============================
 .. automodule:: models.app_run_history
    :members:
    :undoc-members:

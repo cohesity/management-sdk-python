@@ -1,6 +1,5 @@
-models.deploy\_v\_ms\_to\_cloud\_task\_state\_proto module
-==========================================================
-
+models.deploy_v_ms_to_cloud_task_state_proto module
+===================================================
 .. automodule:: models.deploy_v_ms_to_cloud_task_state_proto
    :members:
    :undoc-members:

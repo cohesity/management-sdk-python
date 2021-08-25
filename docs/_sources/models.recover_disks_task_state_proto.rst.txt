@@ -1,6 +1,5 @@
-models.recover\_disks\_task\_state\_proto module
-================================================
-
+models.recover_disks_task_state_proto module
+============================================
 .. automodule:: models.recover_disks_task_state_proto
    :members:
    :undoc-members:

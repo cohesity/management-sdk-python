@@ -1,6 +1,5 @@
-models.exclude\_type\_enum module
-=================================
-
+models.exclude_type_enum module
+===============================
 .. automodule:: models.exclude_type_enum
    :members:
    :undoc-members:

@@ -1,0 +1,6 @@
+models_v2.region_3 module
+=========================
+.. automodule:: models_v2.region_3
+   :members:
+   :undoc-members:
+   :show-inheritance:

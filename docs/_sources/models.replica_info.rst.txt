@@ -1,6 +1,5 @@
-models.replica\_info module
-===========================
-
+models.replica_info module
+==========================
 .. automodule:: models.replica_info
    :members:
    :undoc-members:

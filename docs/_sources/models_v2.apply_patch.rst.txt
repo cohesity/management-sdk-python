@@ -1,6 +1,5 @@
-models\_v2.apply\_patch module
-==============================
-
+models_v2.apply_patch module
+============================
 .. automodule:: models_v2.apply_patch
    :members:
    :undoc-members:

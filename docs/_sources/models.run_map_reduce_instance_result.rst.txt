@@ -1,6 +1,5 @@
-models.run\_map\_reduce\_instance\_result module
-================================================
-
+models.run_map_reduce_instance_result module
+============================================
 .. automodule:: models.run_map_reduce_instance_result
    :members:
    :undoc-members:

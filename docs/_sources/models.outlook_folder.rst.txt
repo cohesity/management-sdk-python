@@ -1,6 +1,5 @@
-models.outlook\_folder module
-=============================
-
+models.outlook_folder module
+============================
 .. automodule:: models.outlook_folder
    :members:
    :undoc-members:

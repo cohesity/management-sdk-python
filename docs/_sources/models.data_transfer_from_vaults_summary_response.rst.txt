@@ -1,6 +1,5 @@
-models.data\_transfer\_from\_vaults\_summary\_response module
-=============================================================
-
+models.data_transfer_from_vaults_summary_response module
+========================================================
 .. automodule:: models.data_transfer_from_vaults_summary_response
    :members:
    :undoc-members:

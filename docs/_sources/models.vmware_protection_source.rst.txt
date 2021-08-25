@@ -1,6 +1,5 @@
-models.vmware\_protection\_source module
-========================================
-
+models.vmware_protection_source module
+======================================
 .. automodule:: models.vmware_protection_source
    :members:
    :undoc-members:

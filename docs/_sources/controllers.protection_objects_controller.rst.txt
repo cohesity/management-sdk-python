@@ -1,6 +1,5 @@
-controllers.protection\_objects\_controller module
-==================================================
-
+controllers.protection_objects_controller module
+================================================
 .. automodule:: controllers.protection_objects_controller
    :members:
    :undoc-members:

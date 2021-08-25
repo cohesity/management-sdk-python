@@ -1,6 +1,5 @@
-models.universal\_id module
-===========================
-
+models.universal_id module
+==========================
 .. automodule:: models.universal_id
    :members:
    :undoc-members:

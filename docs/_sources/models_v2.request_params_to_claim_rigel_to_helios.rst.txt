@@ -1,0 +1,6 @@
+models_v2.request_params_to_claim_rigel_to_helios module
+========================================================
+.. automodule:: models_v2.request_params_to_claim_rigel_to_helios
+   :members:
+   :undoc-members:
+   :show-inheritance:

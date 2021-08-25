@@ -1,6 +1,5 @@
-models.desired\_wal\_location\_enum module
-==========================================
-
+models.desired_wal_location_enum module
+=======================================
 .. automodule:: models.desired_wal_location_enum
    :members:
    :undoc-members:

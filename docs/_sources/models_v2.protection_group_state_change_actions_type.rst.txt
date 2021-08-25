@@ -1,6 +1,5 @@
-models\_v2.protection\_group\_state\_change\_actions\_type module
-=================================================================
-
+models_v2.protection_group_state_change_actions_type module
+===========================================================
 .. automodule:: models_v2.protection_group_state_change_actions_type
    :members:
    :undoc-members:

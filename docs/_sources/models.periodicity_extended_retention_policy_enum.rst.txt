@@ -1,6 +1,5 @@
-models.periodicity\_extended\_retention\_policy\_enum module
-============================================================
-
+models.periodicity_extended_retention_policy_enum module
+========================================================
 .. automodule:: models.periodicity_extended_retention_policy_enum
    :members:
    :undoc-members:

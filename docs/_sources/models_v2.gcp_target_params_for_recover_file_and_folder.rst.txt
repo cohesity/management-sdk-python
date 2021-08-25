@@ -1,6 +1,5 @@
-models\_v2.gcp\_target\_params\_for\_recover\_file\_and\_folder module
-======================================================================
-
+models_v2.gcp_target_params_for_recover_file_and_folder module
+==============================================================
 .. automodule:: models_v2.gcp_target_params_for_recover_file_and_folder
    :members:
    :undoc-members:

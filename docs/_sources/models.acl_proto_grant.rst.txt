@@ -1,6 +1,5 @@
-models.acl\_proto\_grant module
-===============================
-
+models.acl_proto_grant module
+=============================
 .. automodule:: models.acl_proto_grant
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-controllers.view\_boxes\_controller module
-==========================================
-
+controllers.view_boxes_controller module
+========================================
 .. automodule:: controllers.view_boxes_controller
    :members:
    :undoc-members:

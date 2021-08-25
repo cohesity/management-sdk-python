@@ -1,6 +1,5 @@
-models.protection\_job\_audit\_trail module
-===========================================
-
+models.protection_job_audit_trail module
+========================================
 .. automodule:: models.protection_job_audit_trail
    :members:
    :undoc-members:

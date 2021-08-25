@@ -1,6 +1,5 @@
-models\_v2.summary\_information\_for\_replication\_run module
-=============================================================
-
+models_v2.summary_information_for_replication_run module
+========================================================
 .. automodule:: models_v2.summary_information_for_replication_run
    :members:
    :undoc-members:

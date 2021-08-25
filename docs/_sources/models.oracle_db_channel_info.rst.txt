@@ -1,6 +1,5 @@
-models.oracle\_db\_channel\_info module
-=======================================
-
+models.oracle_db_channel_info module
+====================================
 .. automodule:: models.oracle_db_channel_info
    :members:
    :undoc-members:

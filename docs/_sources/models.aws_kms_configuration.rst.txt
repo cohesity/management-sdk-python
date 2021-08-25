@@ -1,6 +1,5 @@
-models.aws\_kms\_configuration module
-=====================================
-
+models.aws_kms_configuration module
+===================================
 .. automodule:: models.aws_kms_configuration
    :members:
    :undoc-members:

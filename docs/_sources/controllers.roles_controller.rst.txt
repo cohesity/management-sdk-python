@@ -1,6 +1,5 @@
-controllers.roles\_controller module
-====================================
-
+controllers.roles_controller module
+===================================
 .. automodule:: controllers.roles_controller
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.hdfs\_backup\_job\_params module
-=======================================
-
+models.hdfs_backup_job_params module
+====================================
 .. automodule:: models.hdfs_backup_job_params
    :members:
    :undoc-members:

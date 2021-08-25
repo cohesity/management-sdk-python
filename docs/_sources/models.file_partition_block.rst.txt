@@ -1,6 +1,5 @@
-models.file\_partition\_block module
-====================================
-
+models.file_partition_block module
+==================================
 .. automodule:: models.file_partition_block
    :members:
    :undoc-members:

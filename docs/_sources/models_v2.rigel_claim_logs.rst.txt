@@ -1,0 +1,6 @@
+models_v2.rigel_claim_logs module
+=================================
+.. automodule:: models_v2.rigel_claim_logs
+   :members:
+   :undoc-members:
+   :show-inheritance:

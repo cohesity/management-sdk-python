@@ -1,0 +1,6 @@
+models_v2.new_source_config_24 module
+=====================================
+.. automodule:: models_v2.new_source_config_24
+   :members:
+   :undoc-members:
+   :show-inheritance:

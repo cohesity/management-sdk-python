@@ -1,6 +1,5 @@
-models\_v2.remote\_storage\_registration\_parameters module
-===========================================================
-
+models_v2.remote_storage_registration_parameters module
+=======================================================
 .. automodule:: models_v2.remote_storage_registration_parameters
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.remote\_protection\_job\_run\_instance module
-====================================================
-
+models.remote_protection_job_run_instance module
+================================================
 .. automodule:: models.remote_protection_job_run_instance
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.swift\_params module
-===========================
-
+models.swift_params module
+==========================
 .. automodule:: models.swift_params
    :members:
    :undoc-members:

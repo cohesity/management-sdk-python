@@ -1,6 +1,5 @@
-models.vmware\_env\_job\_parameters module
-==========================================
-
+models.vmware_env_job_parameters module
+=======================================
 .. automodule:: models.vmware_env_job_parameters
    :members:
    :undoc-members:

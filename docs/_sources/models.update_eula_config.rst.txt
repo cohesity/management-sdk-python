@@ -1,6 +1,5 @@
-models.update\_eula\_config module
-==================================
-
+models.update_eula_config module
+================================
 .. automodule:: models.update_eula_config
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.active\_alerts\_stats module
-===================================
-
+models.active_alerts_stats module
+=================================
 .. automodule:: models.active_alerts_stats
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.task\_attribute module
-=============================
-
+models.task_attribute module
+============================
 .. automodule:: models.task_attribute
    :members:
    :undoc-members:

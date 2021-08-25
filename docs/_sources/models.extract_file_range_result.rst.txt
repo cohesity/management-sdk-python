@@ -1,6 +1,5 @@
-models.extract\_file\_range\_result module
-==========================================
-
+models.extract_file_range_result module
+=======================================
 .. automodule:: models.extract_file_range_result
    :members:
    :undoc-members:

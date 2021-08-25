@@ -1,6 +1,5 @@
-controllers\_v2.users\_controller module
-========================================
-
+controllers_v2.users_controller module
+======================================
 .. automodule:: controllers_v2.users_controller
    :members:
    :undoc-members:

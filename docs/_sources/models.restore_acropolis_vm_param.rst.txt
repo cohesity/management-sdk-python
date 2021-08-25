@@ -1,6 +1,5 @@
-models.restore\_acropolis\_vm\_param module
-===========================================
-
+models.restore_acropolis_vm_param module
+========================================
 .. automodule:: models.restore_acropolis_vm_param
    :members:
    :undoc-members:

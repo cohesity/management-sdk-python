@@ -1,6 +1,5 @@
-models.attribute\_value module
-==============================
-
+models.attribute_value module
+=============================
 .. automodule:: models.attribute_value
    :members:
    :undoc-members:

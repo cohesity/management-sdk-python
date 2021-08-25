@@ -1,6 +1,5 @@
-models.copy\_run\_stats module
-==============================
-
+models.copy_run_stats module
+============================
 .. automodule:: models.copy_run_stats
    :members:
    :undoc-members:

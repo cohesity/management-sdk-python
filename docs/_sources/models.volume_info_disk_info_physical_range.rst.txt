@@ -1,6 +1,5 @@
-models.volume\_info\_disk\_info\_physical\_range module
-=======================================================
-
+models.volume_info_disk_info_physical_range module
+==================================================
 .. automodule:: models.volume_info_disk_info_physical_range
    :members:
    :undoc-members:

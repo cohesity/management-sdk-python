@@ -1,6 +1,5 @@
-models.server\_type\_enum module
-================================
-
+models.server_type_enum module
+==============================
 .. automodule:: models.server_type_enum
    :members:
    :undoc-members:

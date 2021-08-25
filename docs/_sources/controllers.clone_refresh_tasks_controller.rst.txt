@@ -1,6 +1,5 @@
-controllers.clone\_refresh\_tasks\_controller module
-====================================================
-
+controllers.clone_refresh_tasks_controller module
+=================================================
 .. automodule:: controllers.clone_refresh_tasks_controller
    :members:
    :undoc-members:

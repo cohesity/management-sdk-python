@@ -1,6 +1,5 @@
-models.grantee\_proto module
-============================
-
+models.grantee_proto module
+===========================
 .. automodule:: models.grantee_proto
    :members:
    :undoc-members:

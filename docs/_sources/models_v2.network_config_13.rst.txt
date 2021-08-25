@@ -1,6 +1,5 @@
-models\_v2.network\_config\_13 module
-=====================================
-
+models_v2.network_config_13 module
+==================================
 .. automodule:: models_v2.network_config_13
    :members:
    :undoc-members:

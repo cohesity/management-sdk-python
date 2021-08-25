@@ -1,0 +1,6 @@
+models_v2.primary_archival_target module
+========================================
+.. automodule:: models_v2.primary_archival_target
+   :members:
+   :undoc-members:
+   :show-inheritance:

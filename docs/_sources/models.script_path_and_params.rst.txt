@@ -1,6 +1,5 @@
-models.script\_path\_and\_params module
-=======================================
-
+models.script_path_and_params module
+====================================
 .. automodule:: models.script_path_and_params
    :members:
    :undoc-members:

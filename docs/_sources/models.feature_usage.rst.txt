@@ -1,6 +1,5 @@
-models.feature\_usage module
-============================
-
+models.feature_usage module
+===========================
 .. automodule:: models.feature_usage
    :members:
    :undoc-members:

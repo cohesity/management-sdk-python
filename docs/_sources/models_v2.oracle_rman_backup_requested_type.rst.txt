@@ -1,6 +1,5 @@
-models\_v2.oracle\_rman\_backup\_requested\_type module
-=======================================================
-
+models_v2.oracle_rman_backup_requested_type module
+==================================================
 .. automodule:: models_v2.oracle_rman_backup_requested_type
    :members:
    :undoc-members:

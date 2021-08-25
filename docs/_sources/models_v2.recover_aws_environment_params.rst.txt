@@ -1,6 +1,5 @@
-models\_v2.recover\_aws\_environment\_params module
-===================================================
-
+models_v2.recover_aws_environment_params module
+===============================================
 .. automodule:: models_v2.recover_aws_environment_params
    :members:
    :undoc-members:

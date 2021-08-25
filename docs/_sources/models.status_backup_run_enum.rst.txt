@@ -1,6 +1,5 @@
-models.status\_backup\_run\_enum module
-=======================================
-
+models.status_backup_run_enum module
+====================================
 .. automodule:: models.status_backup_run_enum
    :members:
    :undoc-members:

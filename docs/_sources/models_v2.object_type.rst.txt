@@ -1,6 +1,5 @@
-models\_v2.object\_type module
-==============================
-
+models_v2.object_type module
+============================
 .. automodule:: models_v2.object_type
    :members:
    :undoc-members:

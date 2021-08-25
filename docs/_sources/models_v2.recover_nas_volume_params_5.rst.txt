@@ -1,6 +1,5 @@
-models\_v2.recover\_nas\_volume\_params\_5 module
-=================================================
-
+models_v2.recover_nas_volume_params_5 module
+============================================
 .. automodule:: models_v2.recover_nas_volume_params_5
    :members:
    :undoc-members:

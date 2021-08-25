@@ -1,6 +1,5 @@
-models.tenant\_user\_update\_parameters module
-==============================================
-
+models.tenant_user_update_parameters module
+===========================================
 .. automodule:: models.tenant_user_update_parameters
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.virtual\_disk\_restore\_parameters module
-================================================
-
+models.virtual_disk_restore_parameters module
+=============================================
 .. automodule:: models.virtual_disk_restore_parameters
    :members:
    :undoc-members:

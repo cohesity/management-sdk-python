@@ -1,0 +1,6 @@
+models_v2.vmware_cdp_object module
+==================================
+.. automodule:: models_v2.vmware_cdp_object
+   :members:
+   :undoc-members:
+   :show-inheritance:

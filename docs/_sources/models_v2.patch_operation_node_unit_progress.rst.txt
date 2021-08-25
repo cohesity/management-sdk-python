@@ -1,0 +1,6 @@
+models_v2.patch_operation_node_unit_progress module
+===================================================
+.. automodule:: models_v2.patch_operation_node_unit_progress
+   :members:
+   :undoc-members:
+   :show-inheritance:

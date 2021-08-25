@@ -1,6 +1,5 @@
-models\_v2.mailbox\_param module
-================================
-
+models_v2.mailbox_param module
+==============================
 .. automodule:: models_v2.mailbox_param
    :members:
    :undoc-members:

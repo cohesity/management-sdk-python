@@ -1,6 +1,5 @@
-models.app\_metadata module
-===========================
-
+models.app_metadata module
+==========================
 .. automodule:: models.app_metadata
    :members:
    :undoc-members:

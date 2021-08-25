@@ -1,6 +1,5 @@
-models.isilon\_access\_zone module
-==================================
-
+models.isilon_access_zone module
+================================
 .. automodule:: models.isilon_access_zone
    :members:
    :undoc-members:

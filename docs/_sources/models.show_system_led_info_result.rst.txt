@@ -1,6 +1,5 @@
-models.show\_system\_led\_info\_result module
-=============================================
-
+models.show_system_led_info_result module
+=========================================
 .. automodule:: models.show_system_led_info_result
    :members:
    :undoc-members:

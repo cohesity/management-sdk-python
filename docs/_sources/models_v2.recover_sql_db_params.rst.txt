@@ -1,6 +1,5 @@
-models\_v2.recover\_sql\_db\_params module
-==========================================
-
+models_v2.recover_sql_db_params module
+======================================
 .. automodule:: models_v2.recover_sql_db_params
    :members:
    :undoc-members:

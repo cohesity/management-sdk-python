@@ -1,6 +1,5 @@
-models.api\_key module
-======================
-
+models.api_key module
+=====================
 .. automodule:: models.api_key
    :members:
    :undoc-members:

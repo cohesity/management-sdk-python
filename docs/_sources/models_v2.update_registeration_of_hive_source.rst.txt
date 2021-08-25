@@ -1,6 +1,5 @@
-models\_v2.update\_registeration\_of\_hive\_source module
-=========================================================
-
+models_v2.update_registeration_of_hive_source module
+====================================================
 .. automodule:: models_v2.update_registeration_of_hive_source
    :members:
    :undoc-members:

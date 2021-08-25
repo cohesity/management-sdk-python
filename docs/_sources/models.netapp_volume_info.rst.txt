@@ -1,6 +1,5 @@
-models.netapp\_volume\_info module
-==================================
-
+models.netapp_volume_info module
+================================
 .. automodule:: models.netapp_volume_info
    :members:
    :undoc-members:

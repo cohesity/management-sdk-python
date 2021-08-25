@@ -1,6 +1,5 @@
-models.reducers\_wrapper module
-===============================
-
+models.reducers_wrapper module
+==============================
 .. automodule:: models.reducers_wrapper
    :members:
    :undoc-members:

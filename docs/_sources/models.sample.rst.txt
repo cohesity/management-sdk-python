@@ -1,6 +1,5 @@
 models.sample module
 ====================
-
 .. automodule:: models.sample
    :members:
    :undoc-members:

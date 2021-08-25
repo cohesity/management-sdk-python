@@ -1,6 +1,5 @@
-models.file\_id module
-======================
-
+models.file_id module
+=====================
 .. automodule:: models.file_id
    :members:
    :undoc-members:

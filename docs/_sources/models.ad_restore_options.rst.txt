@@ -1,6 +1,5 @@
-models.ad\_restore\_options module
-==================================
-
+models.ad_restore_options module
+================================
 .. automodule:: models.ad_restore_options
    :members:
    :undoc-members:

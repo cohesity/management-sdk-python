@@ -1,6 +1,5 @@
-models.migrate\_oracle\_clone\_params module
-============================================
-
+models.migrate_oracle_clone_params module
+=========================================
 .. automodule:: models.migrate_oracle_clone_params
    :members:
    :undoc-members:

@@ -1,0 +1,6 @@
+models_v2.mcm_cluster_identifier module
+=======================================
+.. automodule:: models_v2.mcm_cluster_identifier
+   :members:
+   :undoc-members:
+   :show-inheritance:

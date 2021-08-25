@@ -1,6 +1,5 @@
-models.upload\_package\_result module
-=====================================
-
+models.upload_package_result module
+===================================
 .. automodule:: models.upload_package_result
    :members:
    :undoc-members:

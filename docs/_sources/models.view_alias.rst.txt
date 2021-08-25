@@ -1,6 +1,5 @@
-models.view\_alias module
-=========================
-
+models.view_alias module
+========================
 .. automodule:: models.view_alias
    :members:
    :undoc-members:

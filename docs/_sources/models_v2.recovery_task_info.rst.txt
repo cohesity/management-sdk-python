@@ -1,6 +1,5 @@
-models\_v2.recovery\_task\_info module
-======================================
-
+models_v2.recovery_task_info module
+===================================
 .. automodule:: models_v2.recovery_task_info
    :members:
    :undoc-members:

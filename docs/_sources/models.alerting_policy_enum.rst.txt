@@ -1,6 +1,5 @@
-models.alerting\_policy\_enum module
-====================================
-
+models.alerting_policy_enum module
+==================================
 .. automodule:: models.alerting_policy_enum
    :members:
    :undoc-members:

@@ -1,6 +1,5 @@
-models.erasure\_coding\_info module
-===================================
-
+models.erasure_coding_info module
+=================================
 .. automodule:: models.erasure_coding_info
    :members:
    :undoc-members:

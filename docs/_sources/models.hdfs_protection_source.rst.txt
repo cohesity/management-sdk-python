@@ -1,6 +1,5 @@
-models.hdfs\_protection\_source module
-======================================
-
+models.hdfs_protection_source module
+====================================
 .. automodule:: models.hdfs_protection_source
    :members:
    :undoc-members:

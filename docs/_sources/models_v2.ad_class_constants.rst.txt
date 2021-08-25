@@ -1,6 +1,5 @@
-models\_v2.ad\_class\_constants module
-======================================
-
+models_v2.ad_class_constants module
+===================================
 .. automodule:: models_v2.ad_class_constants
    :members:
    :undoc-members:

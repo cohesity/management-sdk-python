@@ -1,6 +1,5 @@
-models.connection\_state\_enum module
-=====================================
-
+models.connection_state_enum module
+===================================
 .. automodule:: models.connection_state_enum
    :members:
    :undoc-members:

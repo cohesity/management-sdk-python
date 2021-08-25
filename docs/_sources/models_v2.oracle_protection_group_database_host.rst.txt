@@ -1,6 +1,5 @@
-models\_v2.oracle\_protection\_group\_database\_host module
-===========================================================
-
+models_v2.oracle_protection_group_database_host module
+======================================================
 .. automodule:: models_v2.oracle_protection_group_database_host
    :members:
    :undoc-members:

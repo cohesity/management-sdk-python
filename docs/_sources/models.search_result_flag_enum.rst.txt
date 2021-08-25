@@ -1,6 +1,5 @@
-models.search\_result\_flag\_enum module
-========================================
-
+models.search_result_flag_enum module
+=====================================
 .. automodule:: models.search_result_flag_enum
    :members:
    :undoc-members:

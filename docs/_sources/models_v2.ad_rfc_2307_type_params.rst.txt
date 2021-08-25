@@ -1,6 +1,5 @@
-models\_v2.ad\_rfc\_2307\_type\_params module
-=============================================
-
+models_v2.ad_rfc_2307_type_params module
+========================================
 .. automodule:: models_v2.ad_rfc_2307_type_params
    :members:
    :undoc-members:
