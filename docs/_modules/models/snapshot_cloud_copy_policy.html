@@ -157,7 +157,6 @@
 <li class="toctree-l3"><a class="reference internal" href="../../controllers.vlan_controller.html">controllers.vlan_controller module</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../controllers.html#module-controllers">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../controllers_v2.html">V2 Controllers</a><ul>
@@ -187,7 +186,6 @@
 <li class="toctree-l3"><a class="reference internal" href="../../controllers_v2.views_controller.html">controllers_v2.views_controller module</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../controllers_v2.html#module-controllers_v2">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -1841,7 +1839,6 @@
 <li class="toctree-l3"><a class="reference internal" href="../../models.zone_config.html">models.zone_config module</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../models.html#module-models">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../models_v2.html">V2 Structures</a><ul>
@@ -3889,19 +3886,13 @@
 <li class="toctree-l3"><a class="reference internal" href="../../models_v2.worm_retention_type.html">models_v2.worm_retention_type module</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../models_v2.html#module-models_v2">Module contents</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../exceptions.html">package module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../exceptions.html#exceptions-package">exceptions package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../exceptions.html#submodules">Submodules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../exceptions.api_exception.html">exceptions.api_exception module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../exceptions.error_error_exception.html">exceptions.error_error_exception module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../exceptions.error_exception.html">exceptions.error_exception module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../exceptions.request_error_error_exception.html">exceptions.request_error_error_exception module</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../exceptions.html#module-exceptions">Module contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../exceptions.html">Exceptions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../exceptions.api_exception.html">exceptions.api_exception module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../exceptions.error_error_exception.html">exceptions.error_error_exception module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../exceptions.error_exception.html">exceptions.error_exception module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../exceptions.request_error_error_exception.html">exceptions.request_error_error_exception module</a></li>
 </ul>
 </li>
 </ul>
@@ -4031,7 +4022,7 @@
     <span class="n">_names</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="s1">&#39;Id&#39;</span><span class="p">,</span>
         <span class="s2">&quot;copy_partial&quot;</span><span class="p">:</span><span class="s1">&#39;copyPartial&#39;</span><span class="p">,</span>
-        <span class="s2">&quot;datalock_config&quot;</span><span class="p">:</span><span class="s1">&#39;datalock_config&#39;</span><span class="p">,</span>
+        <span class="s2">&quot;datalock_config&quot;</span><span class="p">:</span><span class="s1">&#39;datalockConfig&#39;</span><span class="p">,</span>
         <span class="s2">&quot;days_to_keep&quot;</span><span class="p">:</span><span class="s1">&#39;daysToKeep&#39;</span><span class="p">,</span>
         <span class="s2">&quot;multiplier&quot;</span><span class="p">:</span><span class="s1">&#39;multiplier&#39;</span><span class="p">,</span>
         <span class="s2">&quot;periodicity&quot;</span><span class="p">:</span><span class="s1">&#39;periodicity&#39;</span><span class="p">,</span>
@@ -4078,7 +4069,7 @@
         <span class="c1"># Extract variables from the dictionary</span>
         <span class="nb">id</span> <span class="o">=</span> <span class="n">dictionary</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Id&#39;</span><span class="p">)</span>
         <span class="n">copy_partial</span> <span class="o">=</span> <span class="n">dictionary</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;copyPartial&#39;</span><span class="p">)</span>
-        <span class="n">datalock_config</span> <span class="o">=</span> <span class="n">cohesity_management_sdk</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">data_lock_config</span><span class="o">.</span><span class="n">DataLockConfig</span><span class="o">.</span><span class="n">from_dictionary</span><span class="p">(</span><span class="n">dictionary</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;datalock_config&#39;</span><span class="p">))</span> <span class="k">if</span> <span class="n">dictionary</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;datalock_config&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="n">datalock_config</span> <span class="o">=</span> <span class="n">cohesity_management_sdk</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">data_lock_config</span><span class="o">.</span><span class="n">DataLockConfig</span><span class="o">.</span><span class="n">from_dictionary</span><span class="p">(</span><span class="n">dictionary</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;datalockConfig&#39;</span><span class="p">))</span> <span class="k">if</span> <span class="n">dictionary</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;datalockConfig&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span>
         <span class="n">days_to_keep</span> <span class="o">=</span> <span class="n">dictionary</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;daysToKeep&#39;</span><span class="p">)</span>
         <span class="n">multiplier</span> <span class="o">=</span> <span class="n">dictionary</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;multiplier&#39;</span><span class="p">)</span>
         <span class="n">periodicity</span> <span class="o">=</span> <span class="n">dictionary</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;periodicity&#39;</span><span class="p">)</span>

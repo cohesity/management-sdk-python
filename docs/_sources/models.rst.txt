@@ -211,6 +211,7 @@ Submodules
    models.cassandra_cluster
    models.cassandra_connect_params
    models.cassandra_keyspace
+   models.cassandra_log_recover_job_params
    models.cassandra_ports_info
    models.cassandra_protection_source
    models.cassandra_recover_job_params

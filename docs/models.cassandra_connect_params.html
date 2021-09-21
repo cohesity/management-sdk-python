@@ -159,7 +159,6 @@
 <li class="toctree-l3"><a class="reference internal" href="controllers.vlan_controller.html">controllers.vlan_controller module</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="controllers.html#module-controllers">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="controllers_v2.html">V2 Controllers</a><ul>
@@ -189,7 +188,6 @@
 <li class="toctree-l3"><a class="reference internal" href="controllers_v2.views_controller.html">controllers_v2.views_controller module</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="controllers_v2.html#module-controllers_v2">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -401,6 +399,7 @@
 <li class="toctree-l3"><a class="reference internal" href="models.cassandra_cluster.html">models.cassandra_cluster module</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">models.cassandra_connect_params module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="models.cassandra_keyspace.html">models.cassandra_keyspace module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="models.cassandra_log_recover_job_params.html">models.cassandra_log_recover_job_params module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="models.cassandra_ports_info.html">models.cassandra_ports_info module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="models.cassandra_protection_source.html">models.cassandra_protection_source module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="models.cassandra_recover_job_params.html">models.cassandra_recover_job_params module</a></li>
@@ -1843,7 +1842,6 @@
 <li class="toctree-l3"><a class="reference internal" href="models.zone_config.html">models.zone_config module</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="models.html#module-models">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="models_v2.html">V2 Structures</a><ul>
@@ -3891,19 +3889,13 @@
 <li class="toctree-l3"><a class="reference internal" href="models_v2.worm_retention_type.html">models_v2.worm_retention_type module</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="models_v2.html#module-models_v2">Module contents</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="exceptions.html">package module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="exceptions.html#exceptions-package">exceptions package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="exceptions.html#submodules">Submodules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="exceptions.api_exception.html">exceptions.api_exception module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="exceptions.error_error_exception.html">exceptions.error_error_exception module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="exceptions.error_exception.html">exceptions.error_exception module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="exceptions.request_error_error_exception.html">exceptions.request_error_error_exception module</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="exceptions.html#module-exceptions">Module contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">Exceptions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.api_exception.html">exceptions.api_exception module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.error_error_exception.html">exceptions.error_error_exception module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.error_exception.html">exceptions.error_exception module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.request_error_error_exception.html">exceptions.request_error_error_exception module</a></li>
 </ul>
 </li>
 </ul>
@@ -3979,7 +3971,7 @@
 <span id="models-cassandra-connect-params-module"></span><h1>models.cassandra_connect_params module<a class="headerlink" href="#module-models.cassandra_connect_params" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="models.cassandra_connect_params.CassandraConnectParams">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">models.cassandra_connect_params.</span></code><code class="sig-name descname"><span class="pre">CassandraConnectParams</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cassandra_ports_info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cassandra_security_info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cassandra_version</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config_directory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_centers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dse_config_directory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_dse_authenticator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_dse_tiered_storage</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_jmx_auth_enable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kerberos_principal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">primary_host</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seeds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solr_nodes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solr_port</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/cassandra_connect_params.html#CassandraConnectParams"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.cassandra_connect_params.CassandraConnectParams" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">models.cassandra_connect_params.</span></code><code class="sig-name descname"><span class="pre">CassandraConnectParams</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cassandra_ports_info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cassandra_security_info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cassandra_version</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">commit_log_backup_location</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config_directory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_centers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dse_config_directory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_dse_authenticator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_dse_tiered_storage</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_jmx_auth_enable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kerberos_principal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">primary_host</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seeds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solr_nodes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solr_port</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models/cassandra_connect_params.html#CassandraConnectParams"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.cassandra_connect_params.CassandraConnectParams" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Implementation of the ‘CassandraConnectParams’ model.</p>
 <p>Specifies an Object containing information about a registered cassandra
@@ -3992,11 +3984,13 @@ source.</p>
 </dd>
 </dl>
 <p>cassandra_version (string): Cassandra version
-config_directory (string): Specifies the Directory path containing</p>
+commit_log_backup_location (string): Specifies the commit log archival</p>
 <blockquote>
-<div><p>Config YAML for discovery.</p>
+<div><p>location for cassandra node.</p>
 </div></blockquote>
 <dl class="simple">
+<dt>config_directory (string): Specifies the Directory path containing</dt><dd><p>Config YAML for discovery.</p>
+</dd>
 <dt>data_centers (list of string): Specifies the List of all physical data</dt><dd><p>center or virtual data center. In most cases, the data centers
 will be listed after discovery operation however, if they are not
 listed, you must manually type the data center names. Leaving the
