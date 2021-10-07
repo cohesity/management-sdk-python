@@ -693,7 +693,7 @@ def create_protection_sources():
         environment=env_enum.KSQL)
     if sql_sources:
         sql_sources = [source["protectionSource"]["physicalProtectionSource"][
-        "name"] for source in sql_sources[0].nodes]
+                "name"] for source in sql_sources[0].nodes if source["protectionSource"].get("physicalProtectionSource", None)]
 
     ad_sources = cohesity_client.protection_sources.list_protection_sources(
         environment=env_enum.KAD)
@@ -936,7 +936,20 @@ def create_protection_jobs():
             if environment == env_enum.KVIEW:
                 if protection_job.view_box_id not in storage_domain_mapping.keys():
                     continue
-            elif environment not in [env_enum.KAD,env_enum.KGENERICNAS, env_enum.KSQL, env_enum.KPHYSICAL, env_enum.KPHYSICALFILES, env_enum.KVIEW] and source_mapping.get(parent_id, None) == None:
+                # In earlier cluster versions, View jobs can created using
+                # View name alone, whereas in later versions View jobs require
+                # source ids.
+                source_ids = protection_job.source_ids
+                protection_job.source_ids = list()
+                protection_job.parent_source_id = None
+                nodes = cluster_dict.get("protection_sources")
+                for node in nodes[0].nodes:
+                    if node["protectionSource"]["id"] in source_ids:
+                        source_id = view_mapping.get(node["protectionSource"]["name"], None)
+                        if source_id:
+                            protection_job.source_ids.append(source_id)
+                            protection_job.view_name = node["protectionSource"]["name"]
+            elif environment not in [env_enum.KAD, env_enum.KGENERICNAS, env_enum.KSQL, env_enum.KPHYSICAL, env_enum.KPHYSICALFILES] and source_mapping.get(parent_id, None) == None:
                 err_msg = "Protection Source not available for job %s" % job_name
                 ERROR_LIST.append(err_msg)
                 continue
@@ -952,6 +965,13 @@ def create_protection_jobs():
 
             source_id_list = protection_job.source_ids  if \
                 protection_job.source_ids else []
+            tag_id_list = []
+            if protection_job.vm_tag_ids:
+                for tag in protection_job.vm_tag_ids:
+                    tag_id_list.extend(tag)
+                if protection_job.exclude_vm_tag_ids:
+                    for tag in protection_job.exclude_vm_tag_ids:
+                        tag_id_list.extend(tag)
 
             excluded_source_ids = protection_job.exclude_source_ids
             if not excluded_source_ids:
@@ -959,11 +979,12 @@ def create_protection_jobs():
 
             # UUID list for VMware resources.
             uuid_list = []
+            tag_uuid_list = []
 
             if source_mapping.get(parent_id, None):
                 protection_job.parent_id = source_mapping[parent_id]
 
-            list_len = len(source_id_list)
+            list_len = len(source_id_list + tag_id_list)
             protection_job.view_box_id = storage_domain_mapping.get(
                 protection_job.view_box_id, None)
             protection_job.policy_id = policy_mapping.get(
@@ -1018,30 +1039,36 @@ def create_protection_jobs():
             # available.
             if not to_proceed:
                 continue
+            tag_id_mapping = {}
             uuid_source_mapping = {}
+            resource_list = source_id_list + tag_id_list
             for node in nodes:
                 if node.get("nodes", []):
                     nodes.extend(node["nodes"])
                 # Fetch the UUID list from with available source ids from
                 # exported cluster. VMware resources are provided with UUID
                 # and mapping is based on uuid.
-                if environment == env_enum.K_VMWARE and node["protectionSource"][
-                        "id"] in source_id_list:
-                    uuid_list.append(node["protectionSource"][
-                        "vmWareProtectionSource"]["id"].get("uuid"))
-                    uuid_source_mapping[uuid_list[-1]] = node[
+                _id = node["protectionSource"]["id"]
+                if environment == env_enum.K_VMWARE and _id in resource_list:
+                    uuid = node["protectionSource"][
+                        "vmWareProtectionSource"]["id"].get("uuid")
+                    if _id in source_id_list:
+                        uuid_list.append(uuid)
+                    elif _id in tag_id_list:
+                        tag_uuid_list.append(uuid)
+                    uuid_source_mapping[uuid] = node[
                         "protectionSource"]["id"]
-                if environment == env_enum.KISILON and node["protectionSource"][
+                elif environment == env_enum.KISILON and node["protectionSource"][
                         "id"] in source_id_list:
                     uuid_source_mapping[node["protectionSource"]["name"]] = \
                         node["protectionSource"]["isilonProtectionSource"][
                         "mountPoint"]["accessZoneName"]
-                if environment == KCASSANDRA and node["protectionSource"][
+                elif environment == KCASSANDRA and node["protectionSource"][
                         "id"] in source_id_list:
                     uuid_list.append(node["protectionSource"][
                         "cassandraProtectionSource"]["uuid"])
 
-                if len(uuid_list) == list_len:
+                if len(uuid_list+tag_uuid_list) == list_len:
                     break
             nodes = []
             if source_mapping.get(parent_id, None):
@@ -1050,19 +1077,27 @@ def create_protection_jobs():
                 nodes = [] if not nodes else nodes
             source_spl_params = protection_job.source_special_parameters
             source_object_dct = {}
-
+            tag_list = []
             for node in nodes:
                 if node.get("nodes", []):
                     nodes.extend(node["nodes"])
                 if environment == env_enum.K_VMWARE:
                     uuid = node["protectionSource"]["vmWareProtectionSource"][
                         "id"].get("uuid")
-                    if uuid in uuid_list and node["protectionSource"][
-                            "parentId"] == source_mapping[parent_id]:
-                        id = node["protectionSource"]["id"]
-                        source_list.append(id)
-                        source_object_dct[uuid_source_mapping[uuid]] = id
-                if environment == env_enum.KISILON:
+                    if node["protectionSource"][
+                        "parentId"] != source_mapping[parent_id]:
+                        continue
+                    _id = node["protectionSource"]["id"]
+                    if uuid in uuid_list:
+                        #    if uuid in uuid_list:
+                        source_list.append(_id)
+                        source_object_dct[uuid_source_mapping[uuid]] = _id
+                    elif uuid in tag_uuid_list:
+                        # Tag id mapping.
+                        #id = node["protectionSource"]["id"]
+                        tag_id_mapping[uuid_source_mapping[uuid]] = _id
+                        tag_list.append(_id)
+                elif environment == env_enum.KISILON:
                     name = node["protectionSource"]["name"]
                     if node["protectionSource"]["isilonProtectionSource"].get(
                             "mountPoint", None) == None:
@@ -1087,17 +1122,25 @@ def create_protection_jobs():
                                 "following protocol %s. Supported protocol is kNfs." % (
                                     job_name, name, ", ".join(protocol)))
                             break
-                if environment == KCASSANDRA:
+                elif environment == KCASSANDRA:
                     uuid = node["protectionSource"]["cassandraProtectionSource"].get("uuid")
                     if uuid in uuid_list and node["protectionSource"][
                             "parentId"] == source_mapping[parent_id]:
                         id = node["protectionSource"]["id"]
                         source_list.append(id)
-                if len(source_list) == list_len:
+                if len(source_list + tag_list) == list_len:
                     break
             # Check to break from loop.
             if not to_proceed:
                 continue
+            if tag_list:
+                vm_tag_ids = protection_job.vm_tag_ids
+                protection_job.vm_tag_ids = list()
+                for tag_ids in vm_tag_ids:
+                    tags = list()
+                    for tag_id in tag_ids:
+                        tags.append(tag_id_mapping[tag_id])
+                    protection_job.vm_tag_ids.append(tags)
 
             if environment in [env_enum.KAD, env_enum.KSQL]:
                 exported_entity_mapping = cluster_dict["sql_entity_mapping"] \
@@ -1163,7 +1206,6 @@ def create_protection_jobs():
                         if source_mapping.get(source_id, None):
                             disabled_sources.append(source_mapping[source_id])
                     protection_job.dedup_disabled_source_ids = disabled_sources
-
 
             try:
                 if override and is_job_available:

@@ -8,11 +8,16 @@ from rest_client import RestClient
 import json
 import logging
 
+from cohesity_management_sdk.models.exclude_type_enum import ExcludeTypeEnum as enum
+from cohesity_management_sdk.models.environment_enum import EnvironmentEnum as env_enum
+
+from configparser import ConfigParser
+
 logger = logging.getLogger(__file__)
 logger.setLevel(logging.INFO)
 
-global ad_list
 ad_list = list()
+config_dict = defaultdict()
 exported_res_dict = defaultdict(list)
 
 
@@ -80,27 +85,68 @@ def get_protection_jobs(cohesity_client, skip_jobs=False):
 
 
 def get_protection_source_by_id(cohesity_client, id, env):
+    global config_dict
     protection_source_list = cohesity_client.protection_sources.list_protection_sources(
-        id=id, environment=env)
+        id=id, environment=env, exclude_types=[enum.KCOMPUTERESOURCE,
+         enum.KDATASTORE, enum.KDISTRIBUTEDVIRTUALPORTGROUP,
+         enum.KNETWORK, enum.KRESOURCEPOOL, enum.KSTORAGEPOD,
+        enum.KVIRTUALAPP])
     return_list = protection_source_list[0] if protection_source_list else None
+    if env == env_enum.KGENERICNAS and return_list and return_list.nodes:
+        for item in return_list.nodes:
+            if item["protectionSource"]["nasProtectionSource"]["protocol"] == "kNfs3":
+                continue
+            name = str(item["protectionSource"]["name"])
+            config_dict[name]=None
     return return_list
 
 
 def get_protection_sources(cohesity_client):
+    global config_dict
     sources = cohesity_client.protection_sources.list_protection_sources_root_nodes()
     sources = sources if sources else []
+    for source in sources:
+        keys = None
+        environment = source.protection_source.environment
+        if source.protection_source.environment == env_enum.K_VMWARE:
+            name = source.protection_source.name
+        elif environment == env_enum.KISILON:
+            name = source.protection_source.isilon_protection_source.name
+        elif environment == "kCassandra":
+            name = source.protection_source.name
+            keys = ["username", "password", "db_username", "db_password"]
+        else:
+            continue
+        config_dict[name]= keys
+    return sources
+
+
+def list_protection_sources(cohesity_client, env="kView"):
+    sources = cohesity_client.protection_sources.list_protection_sources(
+            environments=env)
+    sources = sources if sources else []
+
     return sources
 
 
 def get_external_targets(cohesity_client):
+    global config_dict
     external_target_list = cohesity_client.vaults.get_vaults()
     for target in external_target_list:
+        #config[target.name] = dict()
+        if target.config.amazon:
+            config_dict[target.name] = ["secret_access_key"]
+        else:
+            config_dict[target.name] = None
         exported_res_dict["External Targets"].append(target.name)
     return external_target_list
 
 
 def get_remote_clusters(cohesity_client):
+    global config_dict
     remote_cluster_list = cohesity_client.remote_cluster.get_remote_clusters()
+    for cluster in remote_cluster_list:
+        config_dict[cluster.name] = None
     return remote_cluster_list
 
 
@@ -110,8 +156,7 @@ def get_sql_entity_mapping(cohesity_client, env):
     name and ids.
     """
     sql_mapping = {}
-    sources = cohesity_client.protection_sources.list_protection_sources(
-        environment=env)
+    sources = list_protection_sources(cohesity_client, env)
     if not sources:
         return sql_mapping
     # Iterate each node(sql server) and fetch database available in the
@@ -134,8 +179,7 @@ def get_ad_entity_mapping(cohesity_client, env):
     name and ids.
     """
     mapping = {}
-    sources = cohesity_client.protection_sources.list_protection_sources(
-        environment=env)
+    sources = list_protection_sources(cohesity_client, env)
     if not sources:
         return mapping
 
@@ -212,3 +256,29 @@ def get_vlans(cohesity_client):
 def debug():
     return exported_res_dict
 
+
+def auto_populate_config():
+    """
+    Function to auto-fill config.ini file based on exported cluster details.
+    """
+    global config_dict
+    config = ConfigParser()
+
+    # Fetch existing config details.
+    config_parser = ConfigParser()
+    config_parser.read("config.ini")
+
+    # Update import and export config details from existing config.ini file.
+    config["export_cluster_config"] = config_parser["export_cluster_config"]
+    config["import_cluster_config"] = config_parser["import_cluster_config"]
+    for section, keys in config_dict.items():
+        config[section] = dict()
+        if not keys:
+            config[section]["password"] = ""
+            continue
+        for key in keys:
+            config[section][key] = ""
+
+    # Update config.ini file.
+    with open("config.ini", "w") as f:
+        config.write(f)

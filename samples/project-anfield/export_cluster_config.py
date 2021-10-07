@@ -44,9 +44,11 @@ parser = argparse.ArgumentParser(
     description="Please provide export file location and filename")
 parser.add_argument("--file_location", default=os.getcwd(), action="store")
 parser.add_argument("--file_name", default='',  action="store")
+parser.add_argument("--auto_fill_config", default='',  action="store_true")
 args = parser.parse_args()
 file_location = args.file_location
 file_name = args.file_name
+auto_fill_config = args.auto_fill_config
 
 # Fetch the Cluster credentials from config file.
 configparser = configparser.ConfigParser()
@@ -93,7 +95,7 @@ cluster_dict = {
     "storage_domains": library.get_storage_domains(cohesity_client),
     "policies": library.get_protection_policies(cohesity_client),
     "protection_jobs": library.get_protection_jobs(cohesity_client, skip_jobs),
-    "protection_sources": library.get_protection_sources(cohesity_client),
+    "protection_sources": library.list_protection_sources(cohesity_client),
     "external_targets": library.get_external_targets(cohesity_client),
     "sources": library.get_protection_sources(cohesity_client),
     "remote_clusters": library.get_remote_clusters(cohesity_client),
@@ -179,3 +181,8 @@ for key, val in exported_res.items():
 
 
 logger.info("Exported config file: %s" % exported_config_file)
+
+# Auto populate config.ini file based on flag.
+if auto_fill_config:
+    logger.info("Auto populating sections in 'config.ini' file.")
+    library.auto_populate_config()
