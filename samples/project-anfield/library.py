@@ -158,6 +158,7 @@ def get_protection_sources(cohesity_client):
             name = source.protection_source.name
         elif environment == env_enum.KISILON:
             name = source.protection_source.isilon_protection_source.name
+            keys = ["password", "smb_password"]
         elif environment == "kCassandra":
             name = source.protection_source.name
             keys = ["username", "password", "db_username", "db_password"]

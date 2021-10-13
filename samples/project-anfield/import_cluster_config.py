@@ -473,6 +473,18 @@ def create_sources(source, environment, node):
             body["entityInfo"]["endpoint"] = endpoint
             body["entityInfo"]["credentials"]["username"] = username
             body["entityInfo"]["credentials"]["password"] = password
+            if source.registration_info.nas_mount_credentials:
+                mount_creds = source.registration_info.nas_mount_credentials
+                protocol = mount_creds.nas_protocol
+                if protocol == nas_enum.KCIFS1:
+                    # Update SMB credentials, for protecting SMB endpoints
+                    # credential is required.
+                    username = mount_creds.username
+                    password = configparser.get(endpoint, "smb_password")
+                    body["entityInfo"]["credentials"]["nasMountCredentials"] = {
+                        "protocol":2,
+                        "username": username,
+                        "password": password}
             # Private api to register protection sources.
             api = "backupsources"
             code, resp = rest_obj.post(api, data=json.dumps(body))

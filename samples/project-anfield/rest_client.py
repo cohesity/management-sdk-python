@@ -64,6 +64,7 @@ class RestClient:
         """
         api = self.generate_api(api=api, version=version)
         if self.token and not headers:
+            headers = dict()
             headers["Authorization"] = "Bearer {}".format(self.token)
         response = requests.post(url=api, headers=headers, verify=False, **kwargs)
         return response.status_code, response.content
