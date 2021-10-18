@@ -297,7 +297,29 @@ def create_vaults():
                     "config.ini, err is %s" % (vault.name, err)
                 )
 
-        if vault.config.amazon:  # Amazon s3 targets
+        elif vault.config.azure:  # Azure Hot Blob target.
+            try:
+                body = Vault()
+                _construct_body(body, vault)
+                storage_access_key = configparser.get(
+                    vault.name, "storage_access_key")
+                body.config.azure.storage_access_key = storage_access_key
+                resp = cohesity_client.vaults.create_vault(body)
+                external_targets[vault.id] = resp.id
+                imported_res_dict["External Targets"].append(body.name)
+                time.sleep(sleep_time)
+            except (APIException, RequestErrorErrorException) as e:
+                ERROR_LIST.append(
+                    "Error Adding Azure hot blob Target: %s, Failed with "
+                    "error: %s" % (vault.name, e)
+                )
+            except Exception as err:
+                ERROR_LIST.append(
+                    "Please add correct config for %s in "
+                    "config.ini, err is %s" % (vault.name, err)
+                )
+
+        elif vault.config.amazon:  # Amazon s3 targets
             try:
                 body = Vault()
                 _construct_body(body, vault)
@@ -321,7 +343,7 @@ def create_vaults():
                 ERROR_LIST.append(
                     "Please add correct config for %s in " "config.ini" % vault.name
                 )
-        if vault.config.nas:  # Generic s3 targets
+        elif vault.config.nas:  # Generic s3 targets
             body = Vault()
             _construct_body(body, vault)
             try:
