@@ -190,6 +190,8 @@ def get_external_targets(cohesity_client):
         # config[target.name] = dict()
         if target.config.amazon:
             config_dict[target.name] = ["secret_access_key"]
+        elif target.config.azure:
+            config_dict[target.name] = ["storage_access_key"]
         else:
             config_dict[target.name] = None
         exported_res_dict["External Targets"].append(target.name)
@@ -353,6 +355,7 @@ def auto_populate_config():
     # Update import and export config details from existing config.ini file.
     config["export_cluster_config"] = config_parser["export_cluster_config"]
     config["import_cluster_config"] = config_parser["import_cluster_config"]
+
     for section, keys in config_dict.items():
         config[section] = dict()
         if not keys:
