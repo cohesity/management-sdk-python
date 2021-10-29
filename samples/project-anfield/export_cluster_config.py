@@ -26,10 +26,12 @@ try:
     )
     from library import RestClient
 except ImportError as err:
+    import sys
     print(
         "Please ensure Cohesity Python SDK and dependency packages are installed to continue."
     )
-    print("To install Python SDK, run 'pip install cohesity-management-sdk'")
+    print("To install Python SDK, run 'pip install cohesity-management-sdk "
+          "configparser requests'")
     print("To install dependencies, run 'sh setup.py'")
     sys.exit()
 

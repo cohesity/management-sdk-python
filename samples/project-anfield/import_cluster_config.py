@@ -71,8 +71,10 @@ try:
         TypeViewProtectionSourceEnum as view_enum,
     )
 except ImportError as err:
+    import sys
     print("Please install Cohesity Python SDK and try again.")
-    print("To install Python SDK, run 'pip install cohesity-management-sdk'")
+    print("To install Python SDK, run 'pip install cohesity-management-sdk "
+          "configparser requests'")
     sys.exit()
 
 # Custom module import
