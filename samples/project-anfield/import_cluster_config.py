@@ -71,8 +71,10 @@ try:
         TypeViewProtectionSourceEnum as view_enum,
     )
 except ImportError as err:
+    import sys
     print("Please install Cohesity Python SDK and try again.")
-    print("To install Python SDK, run 'pip install cohesity-management-sdk'")
+    print("To install Python SDK, run 'pip install cohesity-management-sdk "
+          "configparser requests'")
     sys.exit()
 
 # Custom module import
@@ -1161,7 +1163,7 @@ def create_protection_jobs():
                                 else env_enum.KGENERICNAS
                             )
                             obj = library.get_protection_source_by_id(
-                                cohesity_client, id=None, env=env
+                                cohesity_client, _id=None, env=env
                             )
                             if not obj or source_mapping.get(id, None) is None:
                                 ERROR_LIST.append(
@@ -1492,6 +1494,7 @@ def create_remote_clusters():
         is_remote_cluster_available = False
         if cluster.name in repl_list.keys():
             if not override:
+                imported_res_dict["Remote Clusters"].append(cluster.name)
                 continue
             is_remote_cluster_available = True
         try:
@@ -1535,8 +1538,10 @@ def create_remote_clusters():
                 )
 
                 if interfaces:
-                    interface_group = interfaces[0].network_interface_group or \
-                            interfaces[0].network_interface
+                    try:
+                        interface_group = interfaces[0].network_interface_group
+                    except Exception as err:
+                        interface_group = interfaces[0].network_interface
                     remote_body.network_interface_group = interface_group
                 else:
                     # Get the interfaces available in remote cluster.

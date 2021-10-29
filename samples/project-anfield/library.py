@@ -260,7 +260,11 @@ def get_ad_entries(cohesity_client):
     """
     resp = cohesity_client.active_directory.get_active_directory_entry()
     if resp:
-        ad_list = [ad.domain_name for ad in resp]
+        ad_list = list()
+        for each_ad in resp:
+            ad_list.append(each_ad.domain_name)
+            config_dict[each_ad.domain_name] = [
+                    "username", "password", "machine_accounts"]
         exported_res_dict["Active directories"] = ad_list
     return resp
 
