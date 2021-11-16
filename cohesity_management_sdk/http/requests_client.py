@@ -31,12 +31,7 @@ class RequestsClient(HttpClient):
 
         """
         urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-        
-        if timeout is None:
-            self.timeout = 60 if Configuration.http_request_timeout is None else Configuration.http_request_timeout
-        else:
-            self.timeout = timeout
-            
+        self.timeout = timeout or Configuration.http_request_timeout
         self.session = requests.session()
 
         if max_retries and retry_interval:
