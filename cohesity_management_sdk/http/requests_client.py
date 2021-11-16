@@ -23,7 +23,7 @@ class RequestsClient(HttpClient):
 
     """
 
-    def __init__(self, timeout=60, cache=False, max_retries=None, retry_interval=None):
+    def __init__(self, timeout=None, cache=False, max_retries=None, retry_interval=None):
         """The constructor.
 
         Args:
@@ -31,7 +31,12 @@ class RequestsClient(HttpClient):
 
         """
         urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-        self.timeout = timeout
+        
+        if timeout is None:
+            self.timeout = 60 if Configuration.http_request_timeout is None else Configuration.http_request_timeout
+        else:
+            self.timeout = timeout
+            
         self.session = requests.session()
 
         if max_retries and retry_interval:
