@@ -23,6 +23,9 @@ class Configuration(object):
     # True if the client should skip verification of SSL certificates
     skip_ssl_verification = True
 
+    # Set the global timeout value for http requests inside the SDK.
+    http_request_timeout = 60
+    
     # An enum for SDK environments
     class Environment(object):
         PRODUCTION = 0
