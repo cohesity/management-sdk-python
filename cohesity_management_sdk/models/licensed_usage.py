@@ -15,6 +15,8 @@ class LicensedUsage(object):
         feature_name (string): Name of feature.
         license_type (string): Type of License
         num_vm (int|long): Number of VM spinned.
+        product_description (string): Detail description of entitlement
+        product_info (string): Short description of entitlement
 
     """
 
@@ -24,7 +26,9 @@ class LicensedUsage(object):
         "expiry_time": 'expiryTime',
         "feature_name": 'featureName',
         "license_type": 'licenseType',
-        "num_vm":'numVm'
+        "num_vm":'numVm',
+        "product_description":'productDescription',
+        "product_info":'productInfo'
     }
 
     def __init__(self,
@@ -32,7 +36,9 @@ class LicensedUsage(object):
                  expiry_time=None,
                  feature_name=None,
                  license_type=None,
-                 num_vm=None):
+                 num_vm=None,
+                 product_description=None,
+                 product_info=None):
         """Constructor for the LicensedUsage class"""
 
         # Initialize members of the class
@@ -41,6 +47,8 @@ class LicensedUsage(object):
         self.feature_name = feature_name
         self.license_type = license_type
         self.num_vm = num_vm
+        self.product_description = product_description
+        self.product_info = product_info
 
     @classmethod
     def from_dictionary(cls,
@@ -65,12 +73,16 @@ class LicensedUsage(object):
         feature_name = dictionary.get('featureName')
         license_type = dictionary.get('licenseType')
         num_vm = dictionary.get('numVm')
+        product_description = dictionary.get('productDescription')
+        product_info = dictionary.get('productInfo')
 
         # Return an object of this model
         return cls(capacity_gib,
                    expiry_time,
                    feature_name,
                    license_type,
-                   num_vm)
+                   num_vm,
+                   product_description,
+                   product_info)
 
 

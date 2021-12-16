@@ -9,6 +9,10 @@ class WormRetentionTypeProtectionPolicyEnum(object):
     type is specified, the snapshots of the Protection Jobs using this policy
     will be kept until the maximum of the snapshot retention time. During
     that time, the snapshots cannot be deleted.
+    This field is deprecated. Use DataLockConfig for incremental runs,
+    DataLockConfigLog for log runs, DataLockConfigSystem for BMR runs, and
+    DataLockConfig in extended retention and for copy targets config.
+    deprecated: true
     'kNone' implies there is no WORM retention set.
     'kCompliance' implies WORM retention is set for compliance reason.
     'kAdministrative' implies WORM retention is set for administrative

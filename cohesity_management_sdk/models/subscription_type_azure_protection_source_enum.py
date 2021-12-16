@@ -10,12 +10,13 @@ class SubscriptionTypeAzureProtectionSourceEnum(object):
     'kAzureCommercial' indicates a standard Azure subscription.
     'kAzureGovCloud' indicates a govt Azure subscription.
     'kAzureStackCommercial' indicates a stack commercial Azure subscription.
-        
+    'kAzureStackADFS' indicates a ADFS Azure subbscription.
 
     Attributes:
         KAZURECOMMERCIAL: TODO: type description here.
         KAZUREGOVCLOUD: TODO: type description here.
         KAZURESTACKCOMMERCIAL: TODO: type description here.
+        KAZURESTACKADFS: TODO: type description here.
 
     """
 
@@ -24,3 +25,5 @@ class SubscriptionTypeAzureProtectionSourceEnum(object):
     K_AZURE_GO_VCLOUD = 'kAzureGovCloud'
 
     KAZURESTACKCOMMERCIAL = 'kAzureStackCommercial'
+
+    KAZURESTACKADFS = 'kAzureStackADFS'

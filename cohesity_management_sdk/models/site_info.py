@@ -198,7 +198,7 @@ class SiteInfo(object):
         tenantsiteprop_vec = None
         if dictionary.get('tenantsitepropVec') != None:
             tenantsiteprop_vec = list()
-            for structure in ictionary.get('tenantsitepropVec'):
+            for structure in dictionary.get('tenantsitepropVec'):
                 tenantsiteprop_vec.append(cohesity_management_sdk.models.site_property.SiteProperty.from_dictionary(structure))
         webprop_vec = None
         timezone_id = dictionary.get('timezoneId')

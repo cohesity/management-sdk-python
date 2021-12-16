@@ -47,7 +47,7 @@ class ProtectionJobRequestBody(object):
             view names will automatically be used for all view jobs with
             replication policy. Use RemoteViewConfigList to setup remote view
             names.
-          deprecated: true
+            deprecated: true
             This field is deprecated. Remote view names will automatically be
             used for all view jobs with replication policy. Use
             RemoteViewConfigList to setup remote view names.
@@ -105,10 +105,19 @@ class ProtectionJobRequestBody(object):
             environment. 'kCouchbase' indicates Couchbase Protection Source
             environment. 'kHdfs' indicates Hdfs Protection Source environment.
             'kHive' indicates Hive Protection Source environment. 'kHBase'
-            indicates HBase Protection Source environment.
+            indicates HBase Protection Source environment. 'kUDA' indicates
+            Universal Data Adapter Protection Source environment.
         environment_parameters (EnvironmentTypeJobParameters): Specifies
             additional parameters that are common to all Protection Sources in
             a Protection Job created for a particular environment type.
+        exclude_label_ids (list of long|int): Array of arrays of label IDs that
+            specify labels to exclude.
+            Optionally specify a list of labels to exclude from protecting by
+            listing protection source ids of labels in this two dimensional
+            array. Using this two dimensional array of label IDs, the
+            Cluster generates a list of namespaces to exclude from protecting,
+            which are derived from intersections of the inner arrays
+            and union of the outer array.
         exclude_source_ids (list of long|int): Array of Excluded Source
             Objects.  List of Object ids from a Protection Source that should
             not be protected and are excluded from being backed up by the
@@ -168,6 +177,13 @@ class ProtectionJobRequestBody(object):
         is_paused (bool): Specifies if the Protection Job is paused, which
             means that no new Job Runs are started but any existing Job Runs
             continue to execute.
+        label_ids (list of long|int): Array of array of label IDs that specify
+            labels to protect.
+            Optionally specify a list of labels to protect by listing
+            protection source ids of labels in this two dimensional array.
+            Using this two dimensional array of label IDs, the cluster
+            generates a list of namespaces to protect, which are derived from
+            intersections of the inner arrays and union of the outer array.
         leverage_nutanix_snapshots (bool): Specifies whether to leverage
             nutanix API to take snapshots for this backup job. To leverage
             nutanix snapshot a prism endpoint on which the vcenter is
@@ -226,11 +242,15 @@ class ProtectionJobRequestBody(object):
             Job, this field specifies the settings about the remote script
             that will be executed by this Job. Only specify this field for
             Remote Adapter 'kPuppeteer' Jobs.
+        remote_view_name (string): Specifies the remote view name to use for
+            view overwrite.
+            This field is deprecated. Remote view names will automatically be used
+            for all view jobs with replication policy. Use RemoteViewConfigList to
+            setup remote view names.
+            deprecated: true
         remote_view_config_list (list of RemoteViewConfig): Sepcifies the
             remote view names for the views that are being protected in the
             view job. Use this field only when job has a replication policy.
-        remote_view_name (string): Specifies the remote view name to use for
-            view overwrite.
         source_ids (list of long|int): Array of Protected Source Objects.
             Specifies the list of Object ids from the Protection Source to
             protect (or back up) by the Protection Job. An Object in this list
@@ -304,6 +324,7 @@ class ProtectionJobRequestBody(object):
         "end_time_usecs":'endTimeUsecs',
         "environment":'environment',
         "environment_parameters":'environmentParameters',
+        "exclude_label_ids":'excludeLabelIds',
         "exclude_source_ids":'excludeSourceIds',
         "exclude_vm_tag_ids":'excludeVmTagIds',
         "full_protection_sla_time_mins":'fullProtectionSlaTimeMins',
@@ -314,6 +335,7 @@ class ProtectionJobRequestBody(object):
         "is_direct_archive_enabled":'isDirectArchiveEnabled',
         "is_native_format":'isNativeFormat',
         "is_paused":'isPaused',
+        "label_ids":'labelIds',
         "leverage_nutanix_snapshots":'leverageNutanixSnapshots',
         "leverage_storage_snapshots":'leverageStorageSnapshots',
         "leverage_storage_snapshots_for_hyperflex":'leverageStorageSnapshotsForHyperflex',
@@ -353,6 +375,7 @@ class ProtectionJobRequestBody(object):
                  end_time_usecs=None,
                  environment=None,
                  environment_parameters=None,
+                 exclude_label_ids=None,
                  exclude_source_ids=None,
                  exclude_vm_tag_ids=None,
                  full_protection_sla_time_mins=None,
@@ -363,6 +386,7 @@ class ProtectionJobRequestBody(object):
                  is_direct_archive_enabled=None,
                  is_native_format=None,
                  is_paused=None,
+                 label_ids=None,
                  leverage_nutanix_snapshots=None,
                  leverage_storage_snapshots=None,
                  leverage_storage_snapshots_for_hyperflex=None,
@@ -399,6 +423,7 @@ class ProtectionJobRequestBody(object):
         self.end_time_usecs = end_time_usecs
         self.environment = environment
         self.environment_parameters = environment_parameters
+        self.exclude_label_ids = exclude_label_ids
         self.exclude_source_ids = exclude_source_ids
         self.exclude_vm_tag_ids = exclude_vm_tag_ids
         self.full_protection_sla_time_mins = full_protection_sla_time_mins
@@ -409,6 +434,7 @@ class ProtectionJobRequestBody(object):
         self.is_direct_archive_enabled = is_direct_archive_enabled
         self.is_native_format = is_native_format
         self.is_paused = is_paused
+        self.label_ids = label_ids
         self.leverage_nutanix_snapshots = leverage_nutanix_snapshots
         self.leverage_storage_snapshots = leverage_storage_snapshots
         self.leverage_storage_snapshots_for_hyperflex = leverage_storage_snapshots_for_hyperflex
@@ -468,6 +494,7 @@ class ProtectionJobRequestBody(object):
         end_time_usecs = dictionary.get('endTimeUsecs')
         environment = dictionary.get('environment')
         environment_parameters = cohesity_management_sdk.models.environment_type_job_parameters.EnvironmentTypeJobParameters.from_dictionary(dictionary.get('environmentParameters')) if dictionary.get('environmentParameters') else None
+        exclude_label_ids = dictionary.get('excludeLabelIds')
         exclude_source_ids = dictionary.get('excludeSourceIds')
         exclude_vm_tag_ids = dictionary.get('excludeVmTagIds')
         full_protection_sla_time_mins = dictionary.get('fullProtectionSlaTimeMins')
@@ -478,6 +505,7 @@ class ProtectionJobRequestBody(object):
         is_direct_archive_enabled = dictionary.get('isDirectArchiveEnabled')
         is_native_format = dictionary.get('isNativeFormat')
         is_paused = dictionary.get('isPaused')
+        label_ids = dictionary.get('labelIds')
         leverage_nutanix_snapshots = dictionary.get('leverageNutanixSnapshots')
         leverage_storage_snapshots = dictionary.get('leverageStorageSnapshots')
         leverage_storage_snapshots_for_hyperflex = dictionary.get('leverageStorageSnapshotsForHyperflex')
@@ -524,6 +552,7 @@ class ProtectionJobRequestBody(object):
                    end_time_usecs,
                    environment,
                    environment_parameters,
+                   exclude_label_ids,
                    exclude_source_ids,
                    exclude_vm_tag_ids,
                    full_protection_sla_time_mins,
@@ -534,6 +563,7 @@ class ProtectionJobRequestBody(object):
                    is_direct_archive_enabled,
                    is_native_format,
                    is_paused,
+                   label_ids,
                    leverage_nutanix_snapshots,
                    leverage_storage_snapshots,
                    leverage_storage_snapshots_for_hyperflex,

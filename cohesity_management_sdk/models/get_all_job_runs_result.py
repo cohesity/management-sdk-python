@@ -54,7 +54,8 @@ class GetAllJobRunsResult(object):
             Couchbase Protection Source environment. 'kHdfs' indicates Hdfs
             Protection Source environment. 'kHive' indicates Hive Protection
             Source environment. 'kHBase' indicates HBase Protection Source
-            environment.
+            environment. 'kUDA' indicates Universal Data Adapter Protection
+            Source environment.
         job_id (string): Specifies the job id.
         job_name (string): Specifies the job name.
         job_run_id (string): Specifies the job run id.

@@ -13,8 +13,6 @@ class IpRange(object):
         log_data_vec (list of NoSqlLogData): List of log file and time range to
             applied for hydrated backup or for recovery. Each data event has a
             path of log file and the valid sequencer range within that log file.
-
-
     """
 
     # Create a mapping from Model property names to API property names

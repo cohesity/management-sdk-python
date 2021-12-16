@@ -2,7 +2,6 @@
 # Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.flash_blade_nfs_info
-import cohesity_management_sdk.models.flash_blade_smb_info
 
 class FlashBladeFileSystem(object):
 
@@ -31,8 +30,6 @@ class FlashBladeFileSystem(object):
             FlashBlade File System. 'kCifs2' indicates CIFS/SMB Shares are
             supported on Pure FlashBlade File System. 'kHttp' indicates object
             protocol over HTTP and HTTPS are supported.
-        smb_info (FlashBladeSmbInfo): Specifies information specific to SMB
-            shares exposed by Pure Flash Blade file system.
         unique_used_bytes (long|int): Specifies the size of physical data
             consumed by the file system itself not including the size of the
             snapshots.
@@ -48,7 +45,6 @@ class FlashBladeFileSystem(object):
         "nfs_info":'nfsInfo',
         "physical_used_bytes":'physicalUsedBytes',
         "protocols":'protocols',
-        "smb_info":'smbInfo',
         "unique_used_bytes":'uniqueUsedBytes'
     }
 
@@ -60,7 +56,6 @@ class FlashBladeFileSystem(object):
                  nfs_info=None,
                  physical_used_bytes=None,
                  protocols=None,
-                 smb_info=None,
                  unique_used_bytes=None):
         """Constructor for the FlashBladeFileSystem class"""
 
@@ -72,7 +67,6 @@ class FlashBladeFileSystem(object):
         self.nfs_info = nfs_info
         self.physical_used_bytes = physical_used_bytes
         self.protocols = protocols
-        self.smb_info = smb_info
         self.unique_used_bytes = unique_used_bytes
 
 
@@ -101,7 +95,6 @@ class FlashBladeFileSystem(object):
         nfs_info = cohesity_management_sdk.models.flash_blade_nfs_info.FlashBladeNfsInfo.from_dictionary(dictionary.get('nfsInfo')) if dictionary.get('nfsInfo') else None
         physical_used_bytes = dictionary.get('physicalUsedBytes')
         protocols = dictionary.get('protocols')
-        smb_info = cohesity_management_sdk.models.flash_blade_smb_info.FlashBladeSmbInfo.from_dictionary(dictionary.get('smbInfo')) if dictionary.get('smbInfo') else None
         unique_used_bytes = dictionary.get('uniqueUsedBytes')
 
         # Return an object of this model
@@ -112,7 +105,6 @@ class FlashBladeFileSystem(object):
                    nfs_info,
                    physical_used_bytes,
                    protocols,
-                   smb_info,
                    unique_used_bytes)
 
 

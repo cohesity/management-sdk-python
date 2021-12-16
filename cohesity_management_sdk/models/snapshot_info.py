@@ -54,7 +54,8 @@ class SnapshotInfo(object):
             indicates Couchbase Protection Source environment. 'kHdfs'
             indicates Hdfs Protection Source environment. 'kHive' indicates
             Hive Protection Source environment. 'kHBase' indicates HBase
-            Protection Source environment.
+            Protection Source environment. 'kUDA' indicates Universal Data
+            Adapter Protection Source environment.
         relative_snapshot_directory (string): Specifies the relative directory
             path from root path where the snapshot is stored.
         root_path (string): Specifies the root path where the snapshot is

@@ -10,6 +10,8 @@ class DnsDelegationZone(object):
 
     Attributes:
         dns_zone_name (string): Specifies the dns zone name.
+        dns_zone_resolved_vips (list of string): Specifies list of vips that
+            will be resolved to.
         dns_zone_vips (list of string): Specifies list of vips part of dns
             delegation zone.
 
@@ -18,16 +20,19 @@ class DnsDelegationZone(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "dns_zone_name": 'dnsZoneName',
+        "dns_zone_resolved_vips":'dnsZoneResolvedVips',
         "dns_zone_vips": 'dnsZoneVips'
     }
 
     def __init__(self,
                  dns_zone_name=None,
+                 dns_zone_resolved_vips=None,
                  dns_zone_vips=None):
         """Constructor for the DnsDelegationZone class"""
 
         # Initialize members of the class
         self.dns_zone_name = dns_zone_name
+        self.dns_zone_resolved_vips = dns_zone_resolved_vips
         self.dns_zone_vips = dns_zone_vips
 
 
@@ -50,10 +55,12 @@ class DnsDelegationZone(object):
 
         # Extract variables from the dictionary
         dns_zone_name = dictionary.get('dnsZoneName', None)
+        dns_zone_resolved_vips = dictionary.get('dnsZoneResolvedVips')
         dns_zone_vips = dictionary.get('dnsZoneVips', None)
 
         # Return an object of this model
         return cls(dns_zone_name,
+                   dns_zone_resolved_vips,
                    dns_zone_vips)
 
 

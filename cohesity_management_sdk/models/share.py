@@ -16,6 +16,8 @@ class Share(object):
             the possible paths that can be used to mount this Share as a SMB
             share. If Active Directory has multiple account names; each
             machine account has its own path.
+        enable_filer_audit_log (bool): Specifies whether to enable filer audit
+            log on this view alias.
         enable_smb_encryption (bool): Specifies the SMB encryption for the
             View Alias. If set, it enables the SMB encryption for the View
             Alias. Encryption is supported only by SMB 3.x dialects. Dialects
@@ -51,6 +53,7 @@ class Share(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "all_smb_mount_paths":'allSmbMountPaths',
+        "enable_filer_audit_log":'enableFilerAuditLog',
         "enable_smb_encryption":'enableSmbEncryption',
         "enable_smb_view_discovery":'enableSmbViewDiscovery',
         "enforce_smb_encryption":'enforceSmbEncryption',
@@ -68,6 +71,7 @@ class Share(object):
 
     def __init__(self,
                  all_smb_mount_paths=None,
+                 enable_filer_audit_log=None,
                  enable_smb_encryption=None,
                  enable_smb_view_discovery=None,
                  enforce_smb_encryption=None,
@@ -85,6 +89,7 @@ class Share(object):
 
         # Initialize members of the class
         self.all_smb_mount_paths = all_smb_mount_paths
+        self.enable_filer_audit_log = enable_filer_audit_log
         self.enable_smb_encryption = enable_smb_encryption
         self.enable_smb_view_discovery = enable_smb_view_discovery
         self.enforce_smb_encryption = enforce_smb_encryption
@@ -119,6 +124,7 @@ class Share(object):
 
         # Extract variables from the dictionary
         all_smb_mount_paths = dictionary.get('allSmbMountPaths')
+        enable_filer_audit_log = dictionary.get('enableFilerAuditLog')
         enable_smb_encryption = dictionary.get('enableSmbEncryption')
         enable_smb_view_discovery = dictionary.get('enableSmbViewDiscovery')
         enforce_smb_encryption = dictionary.get('enforceSmbEncryption')
@@ -143,6 +149,7 @@ class Share(object):
 
         # Return an object of this model
         return cls(all_smb_mount_paths,
+                   enable_filer_audit_log,
                    enable_smb_encryption,
                    enable_smb_view_discovery,
                    enforce_smb_encryption,

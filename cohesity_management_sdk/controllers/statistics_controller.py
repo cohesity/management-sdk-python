@@ -25,7 +25,8 @@ class StatisticsController(BaseController):
                      schema_name,
                      include_aggr_metric_sources=None,
                      metric_names=None,
-                     max_entities=None):
+                     max_entities=None,
+                     view_name=None):
         """Does a GET request to /public/statistics/entities.
 
         An entity is an object found on the Cohesity Cluster, such as a disk
@@ -46,6 +47,9 @@ class StatisticsController(BaseController):
                 Dashboard.
             max_entities (int, optional): Specifies the maximum entities
                 returned in the result. By default this field is 500.
+            view_name (string, optional): Specifies a view name, only view
+                entities which have name containing the specified name will
+                be returned.
 
         Returns:
             list of EntityProto: Response from the API. Success
@@ -74,7 +78,8 @@ class StatisticsController(BaseController):
                 'schemaName': schema_name,
                 'includeAggrMetricSources': include_aggr_metric_sources,
                 'metricNames': metric_names,
-                'maxEntities': max_entities
+                'maxEntities': max_entities,
+                'viewName': view_name
             }
             _query_builder = APIHelper.append_url_with_query_parameters(
                 _query_builder, _query_parameters,

@@ -19,6 +19,7 @@ class TypeSnapshotTargetSettingsEnum(object):
         KREMOTE: TODO: type description here.
         KARCHIVAL: TODO: type description here.
         KCLOUDDEPLOY: TODO: type description here.
+        KCLOUDREPLICATION: TODO: type description here.
 
     """
 
@@ -30,3 +31,4 @@ class TypeSnapshotTargetSettingsEnum(object):
 
     KCLOUDDEPLOY = 'kCloudDeploy'
 
+    KCLOUDREPLICATION =  'kCloudReplication'

@@ -28,6 +28,7 @@ class ProtectionSourcesController(BaseController):
 
     def get_download_physical_agent(self,
                                     host_type,
+                                    host_os_type=None,
                                     pkg_type=None,
                                     agent_type=None):
         """Does a GET request to /public/physicalAgents/download.
@@ -43,6 +44,8 @@ class ProtectionSourcesController(BaseController):
                 the Oracle Solaris operating system. 'kSapHana' indicates the
                 Sap Hana database system developed by SAP SE. 'kOther'
                 indicates the other types of operating system.
+            host_os_type(HostOSTypeEnum, optional): Specifies the OS type for
+                which user wants to download the physical agent/plugin.
             pkg_type (PkgTypeEnum, optional): Specifies the Linux installer
                 package type applicable only to Linux OS and the value can be
                 any of ("kScript","kRPM", "kSuseRPM", "kDEB") 'kScript'
@@ -81,6 +84,7 @@ class ProtectionSourcesController(BaseController):
             _query_builder += _url_path
             _query_parameters = {
                 'hostType': host_type,
+                'hostOSType': host_os_type,
                 'pkgType': pkg_type,
                 'agentType': agent_type
             }
@@ -203,6 +207,7 @@ class ProtectionSourcesController(BaseController):
             raise
 
     def list_protection_sources(self,
+                                exclude_office_365_types=None,
                                 after_cursor_entity_id=None,
                                 before_cursor_entity_id=None,
                                 node_id=None,
@@ -213,6 +218,7 @@ class ProtectionSourcesController(BaseController):
                                 num_levels=None,
                                 exclude_types=None,
                                 exclude_aws_types=None,
+                                exclude_kubernetes_types=None,
                                 include_datastores=None,
                                 include_networks=None,
                                 include_vm_folders=None,
@@ -241,6 +247,12 @@ class ProtectionSourcesController(BaseController):
 
 
         Args:
+            exclude_office_365_types (list of ExcludeOffice365TypesEnum, optional):
+                Specifies the Object types to be filtered out for Office 365
+                that match the passed in types such as 'kDomain', 'kOutlook',
+                'kMailbox', etc.
+                For example, set this parameter to 'kMailbox' to exclude
+                Mailbox Objects from being returned.
             after_cursor_entity_id (long|int, optional): Specifies the entity
                 id starting from which the items are to be returned.
             before_cursor_entity_id (long|int, optional): Specifies the entity
@@ -266,11 +278,16 @@ class ProtectionSourcesController(BaseController):
                 'kHostSystem', 'kVirtualMachine', etc. For example, set this
                 parameter to 'kResourcePool' to exclude Resource Pool Objects
                 from being returned.
-            exclude_aws_types (list of ExcludeAwsTypeEnum, optional): Specifies
-                the Object types to be filtered out for AWS that match the
-                passed in types such as 'kEC2Instance', 'kRDSInstance' etc.
-                For example, set this parameter to 'kEC2Instance' to exclude
-                ec2 instance from being returned.
+            exclude_aws_types (list of ExcludeAwsTypesEnum, optional): Specifies
+                the Object types to be filtered out for AWS that match the passed
+                in types such as 'kEC2Instance', 'kRDSInstance' & 'kAuroraCluster'.
+                For example, set this parameter to 'kEC2Instance' to exclude ec2
+                instance from being returned.
+            exclude_kubernetes_types (list of ExcludeKubernetesTypesEnum, optional):
+                Specifies the Object types to be filtered out for Kubernetes
+                that match the passed in types such as 'kService'.
+                For example, set this parameter to 'kService' to exclude services
+                from being returned.
             include_datastores (bool, optional): Set this parameter to true to
                 also return kDatastore object types found in the Source in
                 addition to their Object subtrees. By default, datastores are
@@ -336,6 +353,7 @@ class ProtectionSourcesController(BaseController):
             _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
+                'excludeOffice365Types': exclude_office_365_types,
                 'afterCursorEntityId': after_cursor_entity_id,
                 'beforeCursorEntityId': before_cursor_entity_id,
                 'nodeId': node_id,
@@ -346,6 +364,7 @@ class ProtectionSourcesController(BaseController):
                 'numLevels': num_levels,
                 'excludeTypes': exclude_types,
                 'excludeAwsTypes': exclude_aws_types,
+                'ExcludeKubernetesTypes': exclude_kubernetes_types,
                 'includeDatastores': include_datastores,
                 'includeNetworks': include_networks,
                 'includeVMFolders': include_vm_folders,
@@ -456,8 +475,8 @@ class ProtectionSourcesController(BaseController):
                 indicates Couchbase Protection Source environment. 'kHdfs'
                 indicates Hdfs Protection Source environment. 'kHive'
                 indicates Hive Protection Source environment. 'kHBase'
-                indicates HBase Protection Source environment.
-
+                indicates HBase Protection Source environment. 'kUDA'
+                indicates Universal Data Adapter Protection Source environment.
             protection_source_id (long|int, optional): Specifies the
                 Protection Source Id of the 'kPhysical' or 'kVMware' entity in
                 the Protection Source tree hosting the applications.
@@ -509,8 +528,8 @@ class ProtectionSourcesController(BaseController):
                 environment. 'kHdfs' indicates Hdfs Protection Source
                 environment. 'kHive' indicates Hive Protection Source
                 environment. 'kHBase' indicates HBase Protection Source
-                environment.
-
+                environment.'kUDA' indicates Universal Data Adapter Protection
+                Source environment.
 
         Returns:
             list of RegisteredApplicationServer: Response from the API.
@@ -1192,7 +1211,8 @@ class ProtectionSourcesController(BaseController):
                                environment,
                                id,
                                all_under_hierarchy=None,
-                               include_rpo_snapshots=None):
+                               include_rpo_snapshots=None,
+                               prune_protection_job_metadata=None):
         """Does a GET request to /public/protectionSources/protectedObjects.
 
         Returns the list of protected Objects in a registered Protection
@@ -1251,7 +1271,8 @@ class ProtectionSourcesController(BaseController):
                 Source environment. 'kHdfs' indicates Hdfs Protection Source
                 environment. 'kHive' indicates Hive Protection Source
                 environment. 'kHBase' indicates HBase Protection Source
-                environment.
+                environment. 'kUDA' indicates Universal Data Adapter Protection
+                Source environment.
             id (long|int): Specifies the Id of a registered Protection Source
                 of the type given in environment.
             all_under_hierarchy (bool, optional): AllUnderHierarchy specifies
@@ -1260,6 +1281,11 @@ class ProtectionSourcesController(BaseController):
             include_rpo_snapshots (bool, optional): If true, then the
                 Protected Objects protected by RPO policies will also be
                 returned.
+            prune_protection_job_metadata (bool, optional): Specifies whether
+                the metadata about the protection job is to be pruned. If set
+                to true, only ID, name & policy info will be returned. Info
+                about indexing, entities within the job and other additional
+                settings will be omitted.
 
         Returns:
             list of ProtectedVmInfo: Response from the API. Success
@@ -1288,7 +1314,8 @@ class ProtectionSourcesController(BaseController):
                 'environment': environment,
                 'id': id,
                 'allUnderHierarchy': all_under_hierarchy,
-                'includeRpoSnapshots': include_rpo_snapshots
+                'includeRpoSnapshots': include_rpo_snapshots,
+                'pruneProtectionJobMetadata': prune_protection_job_metadata
             }
             _query_builder = APIHelper.append_url_with_query_parameters(
                 _query_builder, _query_parameters,

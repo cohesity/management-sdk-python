@@ -30,7 +30,7 @@ class AzureCredentials(object):
             that holds related network resources. 'kSubnet' represents a
             subnet within the virtual network. 'kComputeOptions' indicates the
             number of CPU cores and memory size available for a type of a
-            Virtual Machine.
+            Virtual Machine. 'kAvailabilitySet' indicates the availability set.
         domain_name (string): Specifies Azure stack hub domain name for where
             the given subscription is present.
         region (string): Specifies the region in which the Azure Stack will be
@@ -46,6 +46,7 @@ class AzureCredentials(object):
             'kAzureCommercial' indicates a standard Azure subscription.
             'kAzureGovCloud' indicates a govt Azure subscription.
             'kAzureStackCommercial' indicates a stack commercial Azure
+            subscription. 'kAzureStackADFS' indicates a ADFS Azure
             subscription.
         tenant_id (string): Specifies Tenant Id of the active directory of
             Azure account.

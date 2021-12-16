@@ -12,6 +12,7 @@ class ObjectClassSearchPrincipalsEnum(object):
         KGROUP: TODO: type description here.
         KCOMPUTER: TODO: type description here.
         KWELLKNOWNPRINCIPAL: TODO: type description here.
+        KSERVICEACCOUNT: TODO: type description here.
 
     """
 
@@ -22,4 +23,6 @@ class ObjectClassSearchPrincipalsEnum(object):
     KCOMPUTER = 'kComputer'
 
     KWELLKNOWNPRINCIPAL = 'kWellKnownPrincipal'
+
+    KSERVICEACCOUNT = 'kServiceAccount'
 

@@ -10,7 +10,7 @@ class ServiceStateResult(object):
     the Cluster.
 
     Attributes:
-        service (ServiceServiceStateResultEnum): Specifies the name of the
+        service (ServiceNameEnum): Specifies the name of the
             service. 'kApollo' is a service for reclaiming freed disk sectors
             on Nodes in the SnapFS distributed file system. 'kBridge' is a
             service for managing the SnapFS distributed file system. 'kGenie'
@@ -52,6 +52,8 @@ class ServiceStateResult(object):
             service for downloading and applying patches.
            'kCompass' is a service for serving dns request for external and
             internal traffic.
+            'kEtlServer' is a service responsible for ETling data for globalsearch.
+            'kIcebox' is service that links Icebox service to other services on cluster.
         state (StateServiceStateResultEnum): Specifies the state of the
             service. 'kServiceStopped' indicates that the service has been
             stopped. 'kServiceRunning' indicates that the service is currently

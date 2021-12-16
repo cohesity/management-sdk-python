@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 # Copyright 2021 Cohesity Inc.
 
+import cohesity_management_sdk.models.aws_native_backup_source_params
+import cohesity_management_sdk.models.aws_snapshot_manager_backup_source_params
 import cohesity_management_sdk.models.oracle_source_params
 import cohesity_management_sdk.models.physical_backup_source_params
 import cohesity_management_sdk.models.vmware_backup_source_params
@@ -17,6 +19,10 @@ class BackupSourceParams(object):
             entities (such as SQL instances and databases) that will be
             protected on the backup source.  If this vector is empty, it
             implies that we are protecting all app entities on the source.
+        aws_native_params (AWSNativeBackupSourceParams): This is applicable to
+            sources of type kAWS with native backup.
+        aws_snapshot_manager_params (AWSSnapshotManagerBackupSourceParams): This
+            is applicable to sources of type kAWS with snapshot manager backup.
         oracle_params (OracleSourceParams): Message to capture additional
             backup/restore params for a Oracle source.
             NOTE: For logging this proto use GetProtoString(oracle_params);
@@ -35,6 +41,8 @@ class BackupSourceParams(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "app_entity_id_vec":'appEntityIdVec',
+        "aws_native_params":'awsNativeParams',
+        "aws_snapshot_manager_params":'awsSnapshotManagerParams',
         "oracle_params":'oracleParams',
         "physical_params":'physicalParams',
         "skip_indexing":'skipIndexing',
@@ -44,6 +52,8 @@ class BackupSourceParams(object):
 
     def __init__(self,
                  app_entity_id_vec=None,
+                 aws_native_params=None,
+                 aws_snapshot_manager_params=None,
                  oracle_params=None,
                  physical_params=None,
                  skip_indexing=None,
@@ -53,6 +63,8 @@ class BackupSourceParams(object):
 
         # Initialize members of the class
         self.app_entity_id_vec = app_entity_id_vec
+        self.aws_native_params = aws_native_params
+        self.aws_snapshot_manager_params = aws_snapshot_manager_params
         self.oracle_params = oracle_params
         self.physical_params = physical_params
         self.skip_indexing = skip_indexing
@@ -79,6 +91,8 @@ class BackupSourceParams(object):
 
         # Extract variables from the dictionary
         app_entity_id_vec = dictionary.get('appEntityIdVec')
+        aws_native_params = cohesity_management_sdk.models.aws_native_backup_source_params.AWSNativeBackupSourceParams.from_dictionary(dictionary.get('awsNativeParams')) if dictionary.get('awsNativeParams') else None
+        aws_snapshot_manager_params = cohesity_management_sdk.models.aws_snapshot_manager_backup_source_params.AWSSnapshotManagerBackupSourceParams.from_dictionary(dictionary.get('awsSnapshotManagerParams')) if dictionary.get('awsSnapshotManagerParams') else None
         oracle_params = cohesity_management_sdk.models.oracle_source_params.OracleSourceParams.from_dictionary(dictionary.get('oracleParams')) if dictionary.get('oracleParams') else None
         physical_params = cohesity_management_sdk.models.physical_backup_source_params.PhysicalBackupSourceParams.from_dictionary(dictionary.get('physicalParams')) if dictionary.get('physicalParams') else None
         skip_indexing = dictionary.get('skipIndexing')
@@ -87,6 +101,8 @@ class BackupSourceParams(object):
 
         # Return an object of this model
         return cls(app_entity_id_vec,
+                   aws_native_params,
+                   aws_snapshot_manager_params,
                    oracle_params,
                    physical_params,
                    skip_indexing,

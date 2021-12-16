@@ -19,6 +19,7 @@ class TypeRunJobSnapshotTargetEnum(object):
         KREMOTE: TODO: type description here.
         KARCHIVAL: TODO: type description here.
         KCLOUDDEPLOY: TODO: type description here.
+        KCLOUDREPLICATION: TODO: type description here.
 
     """
 
@@ -29,4 +30,6 @@ class TypeRunJobSnapshotTargetEnum(object):
     KARCHIVAL = 'kArchival'
 
     KCLOUDDEPLOY = 'kCloudDeploy'
+
+    KCLOUDREPLICATION =  'kCloudReplication'
 

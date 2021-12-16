@@ -91,7 +91,7 @@ class BackupJobProto(object):
             first full backup and not for full backups that happen as a result
             of incremental backup failure.
         global_include_exclude (PhysicalFileBackupParams_GlobalIncludeExclude):
-            Determines global include and exclude filters
+            Max value - 82. Determines global include and exclude filters
             which are applied to all sources in a physical job.
         indexing_policy (IndexingPolicyProto): Proto to encapsulate file level
             indexing policy for VMs in a backup job.
@@ -151,6 +151,11 @@ class BackupJobProto(object):
             applicable.
         last_updated_username (string): The user who modified the job most
             recently.
+        leverage_nutanix_snapshots (bool): This is set to true by the user if
+            nutanix snapshot is requested This is applicable in case if the
+            vcenter in question is registered as a management server on a prism
+            endpoint. This flag will be ignored at the backend if it is not
+            feasible to leverage nutanix snapshot.
         leverage_san_transport (bool): This is set to true by the user in
             order to backup the objects via a dedicated storage area network
             (SAN), as opposed to transport via LAN or management network.
@@ -334,6 +339,7 @@ class BackupJobProto(object):
         "last_pause_modification_time_usecs":'lastPauseModificationTimeUsecs',
         "last_pause_reason":'lastPauseReason',
         "last_updated_username":'lastUpdatedUsername',
+        "leverage_nutanix_snapshots":'leverageNutanixSnapshots',
         "leverage_san_transport":'leverageSanTransport',
         "leverage_storage_snapshots":'leverageStorageSnapshots',
         "leverage_storage_snapshots_for_hyperflex":'leverageStorageSnapshotsForHyperflex',
@@ -360,7 +366,7 @@ class BackupJobProto(object):
         "sla_time_mins":'slaTimeMins',
         "source_filters":'sourceFilters',
         "sources":'sources',
-        "standby_resource_vec":'standby_resource_vec',
+        "standby_resource_vec":'standbyResourceVec',
         "start_time":'startTime',
         "stubbing_policy":'stubbingPolicy',
         "tag_vec":'tagVec',
@@ -411,6 +417,7 @@ class BackupJobProto(object):
                  last_pause_modification_time_usecs=None,
                  last_pause_reason=None,
                  last_updated_username=None,
+                 leverage_nutanix_snapshots=None,
                  leverage_san_transport=None,
                  leverage_storage_snapshots=None,
                  leverage_storage_snapshots_for_hyperflex=None,
@@ -488,6 +495,7 @@ class BackupJobProto(object):
         self.last_pause_modification_time_usecs = last_pause_modification_time_usecs
         self.last_pause_reason = last_pause_reason
         self.last_updated_username = last_updated_username
+        self.leverage_nutanix_snapshots = leverage_nutanix_snapshots
         self.leverage_san_transport = leverage_san_transport
         self.leverage_storage_snapshots = leverage_storage_snapshots
         self.leverage_storage_snapshots_for_hyperflex = leverage_storage_snapshots_for_hyperflex
@@ -598,6 +606,7 @@ class BackupJobProto(object):
         last_pause_modification_time_usecs = dictionary.get('lastPauseModificationTimeUsecs')
         last_pause_reason = dictionary.get('lastPauseReason')
         last_updated_username = dictionary.get('lastUpdatedUsername')
+        leverage_nutanix_snapshots = dictionary.get('leverageNutanixSnapshots')
         leverage_san_transport = dictionary.get('leverageSanTransport')
         leverage_storage_snapshots = dictionary.get('leverageStorageSnapshots')
         leverage_storage_snapshots_for_hyperflex = dictionary.get('leverageStorageSnapshotsForHyperflex')
@@ -633,9 +642,9 @@ class BackupJobProto(object):
             for structure in dictionary.get('sources'):
                 sources.append(cohesity_management_sdk.models.backup_job_proto_backup_source.BackupJobProtoBackupSource.from_dictionary(structure))
         standby_resource_vec = None
-        if dictionary.get('standby_resource_vec') != None:
+        if dictionary.get('standbyResourceVec') != None:
             standby_resource_vec = list()
-            for structure in dictionary.get('standby_resource_vec'):
+            for structure in dictionary.get('standbyResourceVec'):
                 standby_resource_vec.append(cohesity_management_sdk.models.standby_resource.StandbyResource.from_dictionary(structure))
         start_time = cohesity_management_sdk.models.time.Time.from_dictionary(dictionary.get('startTime')) if dictionary.get('startTime') else None
         stubbing_policy = cohesity_management_sdk.models.stubbing_policy_proto.StubbingPolicyProto.from_dictionary(dictionary.get('stubbingPolicy')) if dictionary.get('stubbingPolicy') else None
@@ -686,6 +695,7 @@ class BackupJobProto(object):
                    last_pause_modification_time_usecs,
                    last_pause_reason,
                    last_updated_username,
+                   leverage_nutanix_snapshots,
                    leverage_san_transport,
                    leverage_storage_snapshots,
                    leverage_storage_snapshots_for_hyperflex,
@@ -720,5 +730,4 @@ class BackupJobProto(object):
                    mtype,
                    user_info,
                    view_box_id)
-
 

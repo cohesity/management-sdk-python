@@ -9,6 +9,8 @@ class AzureParams(object):
     Specifies various resources when converting and deploying a VM to Azure.
 
     Attributes:
+        availability_set_id (long|int): Specifies id of the Availability set
+            in which the VM is to be restored.
         data_disk_type (DataDiskTypeEnum): Specifies the disk type used by the
             data. 'kPremiumSSD' is disk type backed by SSDs, delivers high
             performance, low latency disk support for VMs running I/O
@@ -54,6 +56,7 @@ class AzureParams(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "availability_set_id":'availabilitySetId',
         "data_disk_type":'dataDiskType',
         "instance_id":'instanceId',
         "network_resource_group_id":'networkResourceGroupId',
@@ -72,6 +75,7 @@ class AzureParams(object):
     }
 
     def __init__(self,
+                 availability_set_id=None,
                  data_disk_type=None,
                  instance_id=None,
                  network_resource_group_id=None,
@@ -90,6 +94,7 @@ class AzureParams(object):
         """Constructor for the AzureParams class"""
 
         # Initialize members of the class
+        self.availability_set_id = availability_set_id
         self.data_disk_type = data_disk_type
         self.instance_id = instance_id
         self.network_resource_group_id = network_resource_group_id
@@ -125,6 +130,7 @@ class AzureParams(object):
             return None
 
         # Extract variables from the dictionary
+        availability_set_id = dictionary.get('availabilitySetId')
         data_disk_type = dictionary.get('dataDiskType')
         instance_id = dictionary.get('instanceId')
         network_resource_group_id = dictionary.get('networkResourceGroupId')
@@ -142,7 +148,8 @@ class AzureParams(object):
         virtual_network_id = dictionary.get('virtualNetworkId')
 
         # Return an object of this model
-        return cls(data_disk_type,
+        return cls(availability_set_id,
+                   data_disk_type,
                    instance_id,
                    network_resource_group_id,
                    os_disk_type,

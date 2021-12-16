@@ -20,7 +20,11 @@ class VaultsController(BaseController):
         self.logger = logging.getLogger(__name__)
         self.config = config
 
-    def get_vaults(self, id=None, name=None, include_marked_for_removal=None):
+    def get_vaults(self,
+                   id=None,
+                   name=None,
+                   include_marked_for_removal=None,
+                   tenant_ids=None):
         """Does a GET request to /public/vaults.
 
         If no parameters are specified, all Vaults (External Targets)
@@ -37,6 +41,8 @@ class VaultsController(BaseController):
                 return. If empty, all Vaults are returned.
             include_marked_for_removal (bool, optional): Specifies if Vaults
                 that are marked for removal should be returned.
+            tenant_ids (list of string, optional): Specifies a list of tenant
+                ids. Only vaults assigned to these tenants will be returned.
 
         Returns:
             list of Vault: Response from the API. Success
@@ -59,7 +65,8 @@ class VaultsController(BaseController):
             _query_parameters = {
                 'id': id,
                 'name': name,
-                'includeMarkedForRemoval': include_marked_for_removal
+                'includeMarkedForRemoval': include_marked_for_removal,
+                'tenantIds': tenant_ids
             }
             _query_builder = APIHelper.append_url_with_query_parameters(
                 _query_builder, _query_parameters,

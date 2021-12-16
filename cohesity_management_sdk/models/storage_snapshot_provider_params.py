@@ -16,23 +16,28 @@ class StorageSnapshotProviderParams(object):
             particular environment.
         entity (EntityProto): Specifies the attributes and the latest
             statistics about an entity.
+        root_entity (EntityProto): The root entity that the entity was
+            running under.
 
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
         "connector_params":'connectorParams',
-        "entity":'entity'
+        "entity":'entity',
+        "root_entity":'rootEntity'
     }
 
     def __init__(self,
                  connector_params=None,
-                 entity=None):
+                 entity=None,
+                 root_entity=None):
         """Constructor for the StorageSnapshotProviderParams class"""
 
         # Initialize members of the class
         self.connector_params = connector_params
         self.entity = entity
+        self.root_entity = root_entity
 
 
     @classmethod
@@ -55,9 +60,11 @@ class StorageSnapshotProviderParams(object):
         # Extract variables from the dictionary
         connector_params = cohesity_management_sdk.models.connector_params.ConnectorParams.from_dictionary(dictionary.get('connectorParams')) if dictionary.get('connectorParams') else None
         entity = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('entity')) if dictionary.get('entity') else None
+        root_entity = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('rootEntity')) if dictionary.get('rootEntity') else None
 
         # Return an object of this model
         return cls(connector_params,
-                   entity)
+                   entity,
+                   root_entity)
 
 

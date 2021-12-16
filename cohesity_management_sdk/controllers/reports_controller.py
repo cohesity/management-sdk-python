@@ -153,11 +153,6 @@ class ReportsController(BaseController):
         try:
             self.logger.info('get_data_transfer_from_vaults_report_request called.')
 
-            # Validate required parameters
-            self.logger.info(
-                'Validating required parameters for get_data_transfer_from_vaults_report_request.')
-            self.validate_parameters(vault_ids=vault_ids)
-
             # Prepare query URL
             self.logger.info('Preparing query URL for get_data_transfer_from_vaults_report_request.')
             _url_path = '/public/reports/dataTransferFromVaults'
@@ -248,11 +243,6 @@ class ReportsController(BaseController):
         """
         try:
             self.logger.info('get_data_transfer_to_vaults_report_request called.')
-
-            # Validate required parameters
-            self.logger.info(
-                'Validating required parameters for get_data_transfer_to_vaults_report_request.')
-            self.validate_parameters(vault_ids=vault_ids)
 
             # Prepare query URL
             self.logger.info('Preparing query URL for get_data_transfer_to_vaults_report_request.')
@@ -419,7 +409,7 @@ class ReportsController(BaseController):
                 following format: "Area/Location", for example:"America/New_York".
             end_time_usecs (int|long, optional): Filter by end time.
                 Snapshot summary statistics
-            environments (EnvironmentEnum, optional): Filter by a list of
+            environments (code m, optional): Filter by a list of
                 environment types suchas 'kVMware', 'kView', etc.
                 Supported environment types such as 'kView', 'kSQL',
                 'kVMware', etc.
@@ -485,6 +475,8 @@ class ReportsController(BaseController):
                 'kHdfs' indicates Hdfs Protection Source environment.
                 'kHive' indicates Hive Protection Source environment.
                 'kHBase' indicates HBase Protection Source environment.
+                'kUDA' indicates Universal Data Adapter Protection Source
+                environment.
             protected_object_ids (list of int|long, optional): Filter by a
                 list of leaf Protection Sources Objects (such as VMs).
             registered_source_id (int|long, optional): Specifies an id of a
@@ -849,11 +841,6 @@ class ReportsController(BaseController):
         """
         try:
             self.logger.info('get_cloud_archive_report_request called.')
-
-            # Validate required parameters
-            self.logger.info(
-                'Validating required parameters for get_cloud_archive_report_request.')
-            self.validate_parameters(id=id)
 
             # Prepare query URL
             self.logger.info('Preparing query URL for get_cloud_archive_report_request.')

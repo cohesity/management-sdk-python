@@ -19,6 +19,7 @@ class ProtectionSourcesSummaryStats(object):
             of the first successful Job Run protecting this Protection Source
             Object.
             The time is specified as a Unix epoch Timestamp (in microseconds).
+        job_name (string): Specifies the job name.
         last_failed_run_time_usecs (int|long): Specifies the start time of the
             last failed Job Run protecting this Protection Source Object.
             The time is specified as a Unix epoch Timestamp (in microseconds).
@@ -83,12 +84,13 @@ class ProtectionSourcesSummaryStats(object):
     _names = {
         "first_failed_run_time_usecs":'firstFailedRunTimeUsecs',
         "first_successful_run_time_usecs":'firstSuccessfulRunTimeUsecs',
+        "job_name":'jobName',
         "last_failed_run_time_usecs":'lastFailedRunTimeUsecs',
         "last_run_end_time_usecs":'lastRunEndTimeUsecs',
         "last_run_error_msg":'lastRunErrorMsg',
         "last_run_start_time_usecs":'lastRunStartTimeUsecs',
         "last_run_status":'lastRunStatus',
-        "last_run_type":'last_run_type',
+        "last_run_type":'lastRunType',
         "last_successful_run_time_usecs":'lastSuccessfulRunTimeUsecs',
         "num_data_read_bytes":'numDataReadBytes',
         "num_errors":'numErrors',
@@ -104,6 +106,7 @@ class ProtectionSourcesSummaryStats(object):
     def __init__(self,
                  first_failed_run_time_usecs=None,
                  first_successful_run_time_usecs=None,
+                 job_name=None,
                  last_failed_run_time_usecs=None,
                  last_run_end_time_usecs=None,
                  last_run_error_msg=None,
@@ -125,6 +128,7 @@ class ProtectionSourcesSummaryStats(object):
         # Initialize members of the class
         self.first_failed_run_time_usecs = first_failed_run_time_usecs
         self.first_successful_run_time_usecs = first_successful_run_time_usecs
+        self.job_name = job_name
         self.last_failed_run_time_usecs = last_failed_run_time_usecs
         self.last_run_end_time_usecs = last_run_end_time_usecs
         self.last_run_error_msg = last_run_error_msg
@@ -163,15 +167,16 @@ class ProtectionSourcesSummaryStats(object):
         # Extract variables from the dictionary
         first_failed_run_time_usecs = dictionary.get('firstFailedRunTimeUsecs')
         first_successful_run_time_usecs = dictionary.get('firstSuccessfulRunTimeUsecs')
+        job_name = dictionary.get('jobName')
         last_failed_run_time_usecs = dictionary.get('lastFailedRunTimeUsecs')
         last_run_end_time_usecs = dictionary.get('lastRunEndTimeUsecs')
         last_run_error_msg = dictionary.get('lastRunErrorMsg')
         last_run_start_time_usecs = dictionary.get('lastRunStartTimeUsecs')
         last_run_status = dictionary.get('lastRunStatus')
-        last_run_type = dictionary.get('last_run_type')
+        last_run_type = dictionary.get('lastRunType')
         last_successful_run_time_usecs = dictionary.get('lastSuccessfulRunTimeUsecs')
         num_data_read_bytes = dictionary.get('numDataReadBytes')
-        num_errors = dictionary.get('num_errors')
+        num_errors = dictionary.get('numErrors')
         num_logical_bytes_protected = dictionary.get('numLogicalBytesProtected')
         num_snapshots = dictionary.get('numSnapshots')
         num_success_runs = dictionary.get('numSuccessRuns')
@@ -187,6 +192,7 @@ class ProtectionSourcesSummaryStats(object):
         # Return an object of this model
         return cls(first_failed_run_time_usecs,
                    first_successful_run_time_usecs,
+                   job_name,
                    last_failed_run_time_usecs,
                    last_run_end_time_usecs,
                    last_run_error_msg,

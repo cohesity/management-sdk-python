@@ -56,7 +56,8 @@ class ApplicationRestoreParameters(object):
             indicates Couchbase Protection Source environment. 'kHdfs'
             indicates Hdfs Protection Source environment. 'kHive' indicates
             Hive Protection Source environment. 'kHBase' indicates HBase
-            Protection Source environment.
+            Protection Source environment. 'kUDA' indicates Universal Data
+            Adapter Protection Source environment.
         application_restore_objects (list of ApplicationRestoreObject):
             Specifies the Application Server objects whose data should be
             restored.

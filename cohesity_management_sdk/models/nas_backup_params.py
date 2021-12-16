@@ -56,6 +56,9 @@ class NasBackupParams(object):
         mixed_mode_preference (int): If the target entity is a mixed mode
             volume, which NAS protocol type the user prefer to backup. This
             does not apply to generic NAS and will be ignored.
+        nfs_version_preference (int): If the target entity supports both NFSv3
+            and NFSv4.1, which NAS protocol type the user prefers to backup.
+            This does not apply to generic NAS and will be ignored.
         s3_viewbackupproperties (S3ViewBackupProperties): This message captures
             all the details needed by NAS Backup to create S3 views and also
             details needed by Netapp to access the S3 bucket.
@@ -82,6 +85,7 @@ class NasBackupParams(object):
         "incremental_backup_snapshot_label":'incrementalBackupSnapshotLabel',
         "is_source_initiated_backup":'isSourceInitiatedBackup',
         "mixed_mode_preference":'mixedModePreference',
+        "nfs_version_preference":'nfsVersionPreference',
         "s3_viewbackupproperties":'s3Viewbackupproperties',
         "snapshot_change_enabled":'snapshotChangeEnabled',
         "throttling_params":'throttlingParams',
@@ -99,6 +103,7 @@ class NasBackupParams(object):
                  incremental_backup_snapshot_label=None,
                  is_source_initiated_backup=None,
                  mixed_mode_preference=None,
+                 nfs_version_preference=None,
                  s3_viewbackupproperties=None,
                  snapshot_change_enabled=None,
                  throttling_params=None,
@@ -116,6 +121,7 @@ class NasBackupParams(object):
         self.incremental_backup_snapshot_label = incremental_backup_snapshot_label
         self.is_source_initiated_backup = is_source_initiated_backup
         self.mixed_mode_preference = mixed_mode_preference
+        self.nfs_version_preference = nfs_version_preference
         self.s3_viewbackupproperties = s3_viewbackupproperties
         self.snapshot_change_enabled = snapshot_change_enabled
         self.throttling_params = throttling_params
@@ -150,6 +156,7 @@ class NasBackupParams(object):
         incremental_backup_snapshot_label = dictionary.get('incrementalBackupSnapshotLabel')
         is_source_initiated_backup = dictionary.get('isSourceInitiatedBackup')
         mixed_mode_preference = dictionary.get('mixedModePreference')
+        nfs_version_preference = dictionary.get('nfsVersionPreference')
         s3_viewbackupproperties = cohesity_management_sdk.models.s3_view_backup_properties.S3ViewBackupProperties.from_dictionary(dictionary.get('s3Viewbackupproperties')) if dictionary.get('s3Viewbackupproperties') else None
         snapshot_change_enabled = dictionary.get('snapshotChangeEnabled')
         throttling_params = cohesity_management_sdk.models.nas_throttling_params.NasThrottlingParams.from_dictionary(dictionary.get('throttlingParams')) if dictionary.get('throttlingParams') else None
@@ -166,6 +173,7 @@ class NasBackupParams(object):
                    incremental_backup_snapshot_label,
                    is_source_initiated_backup,
                    mixed_mode_preference,
+                   nfs_version_preference,
                    s3_viewbackupproperties,
                    snapshot_change_enabled,
                    throttling_params,

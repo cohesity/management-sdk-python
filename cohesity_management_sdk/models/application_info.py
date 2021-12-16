@@ -62,7 +62,8 @@ class ApplicationInfo(object):
             Couchbase Protection Source environment. 'kHdfs' indicates Hdfs
             Protection Source environment. 'kHive' indicates Hive Protection
             Source environment. 'kHBase' indicates HBase Protection Source
-            environment.
+            environment. 'kUDA' indicates Universal Data Adapter Protection
+            Source environment.
 
     """
 

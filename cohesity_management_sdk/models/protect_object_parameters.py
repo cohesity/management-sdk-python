@@ -53,7 +53,8 @@ class ProtectObjectParameters(object):
             Couchbase Protection Source environment. 'kHdfs' indicates Hdfs
             Protection Source environment. 'kHive' indicates Hive Protection
             Source environment. 'kHBase' indicates HBase Protection Source
-            environment.
+            environment. 'kUDA' indicates Universal Data Adapter Protection
+            Source environment.
         protection_source_ids (list of long|int): Specifies the ids of the
             Protection Sources to protect.
         rpo_policy_id (string): Specifies the Rpo policy id.

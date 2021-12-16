@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2021 Cohesity Inc.
 
+import cohesity_management_sdk.models.audit_log_settings
 import cohesity_management_sdk.models.cluster_identifier
 import cohesity_management_sdk.models.google_account_info
 import cohesity_management_sdk.models.idp_user_info
@@ -18,6 +19,7 @@ class User(object):
     Attributes:
         additional_group_names (list of string): Array of Additional Groups.
             Specifies the names of additional groups this User may belong to.
+        audit_log_settings (AuditLogSettings): Specifies audit settings.
         authentication_type (AuthenticationTypeUserEnum): Specifies the
             authentication type of the user. 'kAuthLocal' implies
             authenticated user is a local user. 'kAuthAd' implies
@@ -78,6 +80,8 @@ class User(object):
             discover the tenantIds from various groups assigned to the users.
         password (string): Specifies the password of this user.
         preferences (Preferences): TODO: type description here.
+        previous_login_time_msecs (long|int):  Specifies the epoch time in
+            milliseconds of previous user login.
         primary_group_name (string): Specifies the name of the primary group
             of this User.
         privilege_ids (list of PrivilegeIdUserEnum): Array of Privileges.
@@ -108,6 +112,7 @@ class User(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "additional_group_names":'additionalGroupNames',
+        "audit_log_settings":'auditLogSettings',
         "authentication_type":'authenticationType',
         "cluster_identifiers":'clusterIdentifiers',
         "created_time_msecs":'createdTimeMsecs',
@@ -129,6 +134,7 @@ class User(object):
         "org_membership":'orgMembership',
         "password":'password',
         "preferences":'preferences',
+        "previous_login_time_msecs":'previousLoginTimeMsecs',
         "primary_group_name":'primaryGroupName',
         "privilege_ids":'privilegeIds',
         "profiles":'profiles',
@@ -145,6 +151,7 @@ class User(object):
 
     def __init__(self,
                  additional_group_names=None,
+                 audit_log_settings=None,
                  authentication_type=None,
                  cluster_identifiers=None,
                  created_time_msecs=None,
@@ -166,6 +173,7 @@ class User(object):
                  org_membership=None,
                  password=None,
                  preferences=None,
+                 previous_login_time_msecs=None,
                  primary_group_name=None,
                  privilege_ids=None,
                  profiles=None,
@@ -182,6 +190,7 @@ class User(object):
 
         # Initialize members of the class
         self.additional_group_names = additional_group_names
+        self.audit_log_settings = audit_log_settings
         self.authentication_type = authentication_type
         self.cluster_identifiers = cluster_identifiers
         self.created_time_msecs = created_time_msecs
@@ -203,6 +212,7 @@ class User(object):
         self.org_membership = org_membership
         self.password = password
         self.preferences = preferences
+        self.previous_login_time_msecs = previous_login_time_msecs
         self.primary_group_name = primary_group_name
         self.privilege_ids = privilege_ids
         self.profiles = profiles
@@ -236,6 +246,7 @@ class User(object):
 
         # Extract variables from the dictionary
         additional_group_names = dictionary.get('additionalGroupNames')
+        audit_log_settings = cohesity_management_sdk.models.audit_log_settings.AuditLogSettings.from_dictionary(dictionary.get('auditLogSettings')) if dictionary.get('auditLogSettings') else None
         authentication_type = dictionary.get('authenticationType')
         cluster_identifiers = None
         if dictionary.get('clusterIdentifiers') != None:
@@ -265,6 +276,7 @@ class User(object):
                 org_membership.append(cohesity_management_sdk.models.tenant_config.TenantConfig.from_dictionary(structure))
         password = dictionary.get('password')
         preferences = cohesity_management_sdk.models.preferences.Preferences.from_dictionary(dictionary.get('preferences')) if dictionary.get('preferences') else None
+        previous_login_time_msecs = dictionary.get('previousLoginTimeMsecs')
         primary_group_name = dictionary.get('primaryGroupName')
         privilege_ids = dictionary.get('privilegeIds')
         profiles = None
@@ -284,6 +296,7 @@ class User(object):
 
         # Return an object of this model
         return cls(additional_group_names,
+                   audit_log_settings,
                    authentication_type,
                    cluster_identifiers,
                    created_time_msecs,
@@ -305,6 +318,7 @@ class User(object):
                    org_membership,
                    password,
                    preferences,
+                   previous_login_time_msecs,
                    primary_group_name,
                    privilege_ids,
                    profiles,

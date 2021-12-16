@@ -26,7 +26,6 @@ class StoppedServiceEnum(object):
         KNEXUS: TODO: type description here.
         KNEXUSPROXY: TODO: type description here.
         KSTORAGEPROXY: TODO: type description here.
-        KTRICORDER: TODO: type description here.
         KRTCLIENT: TODO: type description here.
         KVAULTPROXY: TODO: type description here.
         KSMBPROXY: TODO: type description here.
@@ -39,8 +38,7 @@ class StoppedServiceEnum(object):
         KSMB2PROXY: TODO: type description here.
         KOS: TODO: type description here.
         KATOM: TODO: type description here.
-        KPATCH: TODO: type description here.
-        KCOMPASS: TODO: type description here.
+        KICEBOX: TODO: type description here.
 
     """
 
@@ -80,8 +78,6 @@ class StoppedServiceEnum(object):
 
     KSTORAGEPROXY = 'kStorageProxy'
 
-    KTRICORDER = 'kTricorder'
-
     KRTCLIENT = 'kRtClient'
 
     KVAULTPROXY = 'kVaultProxy'
@@ -106,7 +102,5 @@ class StoppedServiceEnum(object):
 
     KATOM = 'kAtom'
 
-    KPATCH = 'kPatch'
-
-    KCOMPASS = 'kCompass'
+    KICEBOX = 'kIcebox'
 

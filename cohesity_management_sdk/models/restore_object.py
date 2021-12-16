@@ -28,6 +28,10 @@ class RestoreObject(object):
             converted and stored.
         entity (EntityProto): Specifies the attributes and the latest
             statistics about an entity.
+        hydration_time_usecs (long|int): The time to which CDP logs hydrated.
+            This field is currently only applicable to MongoDb. This field is
+            used during restore as the 'start time' for copying the
+            remaining cdp logs that are yet to be hydrated by agent.
         job_id (long|int): The job id from which to restore. This is used
             while communicating with yoda.
         job_instance_id (long|int): Id identifying a specific run to restore
@@ -72,6 +76,7 @@ class RestoreObject(object):
         "cloud_deploy_target":'cloudDeployTarget',
         "cloud_replication_target":'cloudReplicationTarget',
         "entity":'entity',
+        "hydration_time_usecs":'hydrationTimeUsecs',
         "job_id":'jobId',
         "job_instance_id":'jobInstanceId',
         "job_uid":'jobUid',
@@ -93,6 +98,7 @@ class RestoreObject(object):
                  cloud_deploy_target=None,
                  cloud_replication_target=None,
                  entity=None,
+                 hydration_time_usecs=None,
                  job_id=None,
                  job_instance_id=None,
                  job_uid=None,
@@ -114,6 +120,7 @@ class RestoreObject(object):
         self.cloud_deploy_target = cloud_deploy_target
         self.cloud_replication_target = cloud_replication_target
         self.entity = entity
+        self.hydration_time_usecs = hydration_time_usecs
         self.job_id = job_id
         self.job_instance_id = job_instance_id
         self.job_uid = job_uid
@@ -152,6 +159,7 @@ class RestoreObject(object):
         cloud_deploy_target = cohesity_management_sdk.models.cloud_deploy_target.CloudDeployTarget.from_dictionary(dictionary.get('cloudDeployTarget')) if dictionary.get('cloudDeployTarget') else None
         cloud_replication_target = cohesity_management_sdk.models.cloud_deploy_target.CloudDeployTarget.from_dictionary(dictionary.get('cloudReplicationTarget')) if dictionary.get('cloudReplicationTarget') else None
         entity = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('entity')) if dictionary.get('entity') else None
+        hydration_time_usecs = dict.get('hydrationTimeUsecs')
         job_id = dictionary.get('jobId')
         job_instance_id = dictionary.get('jobInstanceId')
         job_uid = cohesity_management_sdk.models.universal_id_proto.UniversalIdProto.from_dictionary(dictionary.get('jobUid')) if dictionary.get('jobUid') else None
@@ -172,6 +180,7 @@ class RestoreObject(object):
                    cloud_deploy_target,
                    cloud_replication_target,
                    entity,
+                   hydration_time_usecs,
                    job_id,
                    job_instance_id,
                    job_uid,

@@ -75,7 +75,10 @@ class ClusterController(BaseController):
             self.logger.error(e, exc_info=True)
             raise
 
-    def get_cluster(self, fetch_stats=None, fetch_time_series_schema=None):
+    def get_cluster(self,
+                    fetch_stats=None,
+                    fetch_time_series_schema=None,
+                    include_minimum_nodes_info=None):
         """Does a GET request to /public/cluster.
 
         Returns information about this Cohesity Cluster.
@@ -85,6 +88,10 @@ class ClusterController(BaseController):
                 the Cohesity Cluster.
             fetch_time_series_schema (bool, optional): Specifies whether to
                 get time series schema info of the cluster.
+            include_minimum_nodes_info (bool, optional): Specifies whether to
+                include info about minimum failure domains needed to support
+                based on fault tolerance configured and EC configuration on all
+                storage domains.
 
         Returns:
             Cluster: Response from the API. Successful Response
@@ -106,7 +113,8 @@ class ClusterController(BaseController):
             _query_builder += _url_path
             _query_parameters = {
                 'fetchStats': fetch_stats,
-                'fetchTimeSeriesSchema': fetch_time_series_schema
+                'fetchTimeSeriesSchema': fetch_time_series_schema,
+                'includeMinimumNodesInfo': include_minimum_nodes_info
             }
             _query_builder = APIHelper.append_url_with_query_parameters(
                 _query_builder, _query_parameters,

@@ -66,7 +66,8 @@ class RegisteredAppInfo(object):
             environment. 'kCouchbase' indicates Couchbase Protection Source
             environment. 'kHdfs' indicates Hdfs Protection Source environment.
             'kHive' indicates Hive Protection Source environment. 'kHBase'
-            indicates HBase Protection Source environment.
+            indicates HBase Protection Source environment. 'kUDA' indicates
+            Universal Data Adapter Protection Source environment.
         host_settings_check_results (list of HostSettingsCheckResult):
             Specifies the list of check results internally performed to verify
             status of various services such as 'AgnetRunning',

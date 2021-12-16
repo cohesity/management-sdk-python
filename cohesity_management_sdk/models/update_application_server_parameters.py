@@ -54,7 +54,8 @@ class UpdateApplicationServerParameters(object):
             environment. 'kCouchbase' indicates Couchbase Protection Source
             environment. 'kHdfs' indicates Hdfs Protection Source environment.
             'kHive' indicates Hive Protection Source environment. 'kHBase'
-            indicates HBase Protection Source environment.
+            indicates HBase Protection Source environment. 'kUDA' indicates
+            Universal Data Adapter Protection Source environment.
         encryption_key (string): If set, user has encrypted the credential with
             'user_ecryption_key'. It is assumed that credentials are first
             encrypted using internal magento key and then encrypted using user

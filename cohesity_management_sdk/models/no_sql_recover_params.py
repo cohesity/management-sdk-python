@@ -2,8 +2,8 @@
 # Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.no_sql_restore_object
-import cohesity_management_sdk.models.sequencer
 import cohesity_management_sdk.models.no_sql_recover_params_entity_log
+import cohesity_management_sdk.models.sequencer
 
 class NoSqlRecoverParams(object):
 
@@ -15,6 +15,8 @@ class NoSqlRecoverParams(object):
         end_seq_number (Sequencer): TODO: Type description here.
         entity_logs (list of NoSqlRecoverParams_EntityLog): List of leaf
             level entities with their corrosponding LogData.
+        job_end_time_usecs (long|int): The end time for the base snapshot in
+            this recovery.
         restore_objects (list of NoSqlRestoreObject): TODO: Type description
             here.
         start_seq_number (Sequencer): TODO: Type description here.
@@ -24,6 +26,7 @@ class NoSqlRecoverParams(object):
     _names = {
         "end_seq_number":'endSequencer',
         "entity_logs":'entityLogs',
+        "job_end_time_usecs":'jobEndTimeUsecs',
         "restore_objects":'restoreObjects',
         "start_seq_number":'startSequencer'
     }
@@ -31,6 +34,7 @@ class NoSqlRecoverParams(object):
     def __init__(self,
                  end_seq_number=None,
                  entity_logs=None,
+                 job_end_time_usecs=None,
                  restore_objects=None,
                  start_seq_number=None):
         """Constructor for the NoSqlRecoverParams class"""
@@ -38,6 +42,7 @@ class NoSqlRecoverParams(object):
         # Initialize members of the class
         self.end_seq_number = end_seq_number
         self.entity_logs = entity_logs
+        self.job_end_time_usecs = job_end_time_usecs
         self.restore_objects = restore_objects
         self.start_seq_number = start_seq_number
 
@@ -66,6 +71,7 @@ class NoSqlRecoverParams(object):
             entity_logs = list()
             for structure in dictionary.get('entityLogs'):
                 entity_logs.append(cohesity_management_sdk.models.no_sql_recover_params_entity_log.NoSqlRecoverParams_EntityLog.from_dictionary(structure))
+        job_end_time_usecs = dictionary.get('jobEndTimeUsecs')
         restore_objects = None
         if dictionary.get('restoreObjects') != None:
             restore_objects = list()
@@ -76,6 +82,7 @@ class NoSqlRecoverParams(object):
         # Return an object of this model
         return cls(end_seq_number,
                    entity_logs,
+                   job_end_time_usecs,
                    restore_objects,
                    start_seq_number)
 

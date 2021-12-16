@@ -97,6 +97,7 @@ class ProtectionSourceEnvironmentEnum(object):
         KHBASE: TODO: type description here.
         KUDA: TODO: type description here.
 
+
     """
 
     K_VMWARE = 'kVMware'
@@ -178,4 +179,3 @@ class ProtectionSourceEnvironmentEnum(object):
     KHBASE = 'kHBase'
 
     KUDA = 'kUDA'
-

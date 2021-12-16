@@ -58,6 +58,12 @@ class NasEnvJobParameters(object):
             generic NAS and will be ignored. Specifies the protocol used by a
             NAS server. 'kNfs3' indicates NFS v3 protocol. 'kCifs1' indicates
             CIFS v1.0 protocol.
+        nfs_version_preference (NfsVersionPreferenceEnum): Specifies the
+            preferred NFS protocol to use for the backup when multiple NFS
+            protocols are present on a single volume.
+            Specifies the protocol used by a NAS server.
+            'kNfs3' indicates NFS v3 protocol.
+            'kCifs1' indicates CIFS v1.0 protocol.
         snapshot_label (SnapshotLabel): Specifies the incremental and full
             snapshot label for Data-Protect Netapp Volumes backup. If field is
             set , incremental and full snapshot label has to be provided. If
@@ -80,6 +86,7 @@ class NasEnvJobParameters(object):
         "file_path_filters":'filePathFilters',
         "filter_ip_config":'filterIpConfig',
         "nas_protocol":'nasProtocol',
+        "nfs_version_preference":'nfsVersionPreference',
         "snapshot_label":'snapshotLabel',
         "throttling_config":'throttlingConfig'
     }
@@ -94,6 +101,7 @@ class NasEnvJobParameters(object):
                  file_path_filters=None,
                  filter_ip_config=None,
                  nas_protocol=None,
+                 nfs_version_preference=None,
                  snapshot_label=None,
                  throttling_config=None):
         """Constructor for the NasEnvJobParameters class"""
@@ -108,6 +116,7 @@ class NasEnvJobParameters(object):
         self.file_path_filters = file_path_filters
         self.filter_ip_config = filter_ip_config
         self.nas_protocol = nas_protocol
+        self.nfs_version_preference = nfs_version_preference
         self.snapshot_label = snapshot_label
         self.throttling_config = throttling_config
 
@@ -139,6 +148,7 @@ class NasEnvJobParameters(object):
         file_path_filters = cohesity_management_sdk.models.file_path_filter.FilePathFilter.from_dictionary(dictionary.get('filePathFilters')) if dictionary.get('filePathFilters') else None
         filter_ip_config = cohesity_management_sdk.models.filter_ip_config.FilterIpConfig.from_dictionary(dictionary.get('filterIpConfig')) if dictionary.get('filterIpConfig') else None
         nas_protocol = dictionary.get('nasProtocol')
+        nfs_version_preference = dictionary.get('nfsVersionPreference')
         snapshot_label = cohesity_management_sdk.models.snapshot_label.SnapshotLabel.from_dictionary(dictionary.get('snapshotLabel')) if dictionary.get('snapshotLabel') else None
         throttling_config = cohesity_management_sdk.models.nas_source_throttling_params.NasSourceThrottlingParams.from_dictionary(dictionary.get('throttlingConfig')) if dictionary.get('throttlingConfig') else None
 
@@ -152,6 +162,7 @@ class NasEnvJobParameters(object):
                    file_path_filters,
                    filter_ip_config,
                    nas_protocol,
+                   nfs_version_preference,
                    snapshot_label,
                    throttling_config)
 

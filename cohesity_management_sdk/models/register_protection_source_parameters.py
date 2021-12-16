@@ -101,7 +101,8 @@ class RegisterProtectionSourceParameters(object):
             environment. 'kCouchbase' indicates Couchbase Protection Source
             environment. 'kHdfs' indicates Hdfs Protection Source environment.
             'kHive' indicates Hive Protection Source environment. 'kHBase'
-            indicates HBase Protection Source environment.
+            indicates HBase Protection Source environment. 'kUDA' indicates
+            Universal Data Adapter Protection Source environment.
         exchange_dag_protection_preference (ExchangeDAGProtectionPreference):
             Specifies information about the preference order while choosing
             between which database copy of the exchange database which is part

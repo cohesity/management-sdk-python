@@ -76,6 +76,13 @@ class DataUsageStats(object):
             computed by the Cohesity Cluster, after the size of the data has
             been reduced by change-block tracking, compression and
             deduplication. This includes resiliency impact.
+        storage_consumed_bytes_prev (long|int): Specifies the total capacity,
+            as computed by the Cohesity Cluster, after the size of the data
+            has been reduced by change-block tracking, compression and
+            deduplication at a previous time to compare. This includes
+            resiliency impact.
+        storage_consumed_bytes_prev_timestamp_usec (long|int): Specifies
+            Timestamp of StorageConsumedBytesPrev.
         storage_consumed_bytes_timestamp_usec (long|int): Specifies Timestamp
             of StorageConsumedBytes.
         total_logical_usage_bytes (long|int): Provides the combined data
@@ -116,6 +123,8 @@ class DataUsageStats(object):
         "local_total_physical_usage_bytes_timestamp_usec":'localTotalPhysicalUsageBytesTimestampUsec',
         "outdated_logical_usage_bytes_timestamp_usec":'outdatedLogicalUsageBytesTimestampUsec',
         "storage_consumed_bytes":'storageConsumedBytes',
+        "storage_consumed_bytes_prev":'storageConsumedBytesPrev',
+        "storage_consumed_bytes_prev_timestamp_usec":'storageConsumedBytesPrevTimestampUsec',
         "storage_consumed_bytes_timestamp_usec":'storageConsumedBytesTimestampUsec',
         "total_logical_usage_bytes":'totalLogicalUsageBytes',
         "total_logical_usage_bytes_timestamp_usec":'totalLogicalUsageBytesTimestampUsec',
@@ -149,6 +158,8 @@ class DataUsageStats(object):
                  local_total_physical_usage_bytes_timestamp_usec=None,
                  outdated_logical_usage_bytes_timestamp_usec=None,
                  storage_consumed_bytes=None,
+                 storage_consumed_bytes_prev=None,
+                 storage_consumed_bytes_prev_timestamp_usec=None,
                  storage_consumed_bytes_timestamp_usec=None,
                  total_logical_usage_bytes=None,
                  total_logical_usage_bytes_timestamp_usec=None,
@@ -182,6 +193,8 @@ class DataUsageStats(object):
         self.local_total_physical_usage_bytes_timestamp_usec = local_total_physical_usage_bytes_timestamp_usec
         self.outdated_logical_usage_bytes_timestamp_usec = outdated_logical_usage_bytes_timestamp_usec
         self.storage_consumed_bytes = storage_consumed_bytes
+        self.storage_consumed_bytes_prev = storage_consumed_bytes_prev
+        self.storage_consumed_bytes_prev_timestamp_usec = storage_consumed_bytes_prev_timestamp_usec
         self.storage_consumed_bytes_timestamp_usec = storage_consumed_bytes_timestamp_usec
         self.total_logical_usage_bytes = total_logical_usage_bytes
         self.total_logical_usage_bytes_timestamp_usec = total_logical_usage_bytes_timestamp_usec
@@ -232,6 +245,8 @@ class DataUsageStats(object):
         local_total_physical_usage_bytes_timestamp_usec = dictionary.get('localTotalPhysicalUsageBytesTimestampUsec')
         outdated_logical_usage_bytes_timestamp_usec = dictionary.get('outdatedLogicalUsageBytesTimestampUsec')
         storage_consumed_bytes = dictionary.get('storageConsumedBytes')
+        storage_consumed_bytes_prev = dictionary.get('storageConsumedBytesPrev')
+        storage_consumed_bytes_prev_timestamp_usec = dictionary.get('storageConsumedBytesPrevTimestampUsec')
         storage_consumed_bytes_timestamp_usec = dictionary.get('storageConsumedBytesTimestampUsec')
         total_logical_usage_bytes = dictionary.get('totalLogicalUsageBytes')
         total_logical_usage_bytes_timestamp_usec = dictionary.get('totalLogicalUsageBytesTimestampUsec')
@@ -264,6 +279,8 @@ class DataUsageStats(object):
                    local_total_physical_usage_bytes_timestamp_usec,
                    outdated_logical_usage_bytes_timestamp_usec,
                    storage_consumed_bytes,
+                   storage_consumed_bytes_prev,
+                   storage_consumed_bytes_prev_timestamp_usec,
                    storage_consumed_bytes_timestamp_usec,
                    total_logical_usage_bytes,
                    total_logical_usage_bytes_timestamp_usec,

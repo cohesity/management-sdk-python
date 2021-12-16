@@ -71,9 +71,10 @@ class CloneViewRequest(object):
         file_lock_config (FileLevelDataLockConfig): Specifies a config to lock
             files in a view - to protect from malicious or an accidental
             attempt to delete or modify the files in this view.
+        is_externally_triggered_backup_target (bool): Specifies whether view
+            is for externally triggered backup target.
         is_read_only (bool): Specifies if the view is a read only view. User
-            will no longer be able to write to this view if this is set to
-            true.
+            will no longer be able to write to this view if this is set to true.
         logical_quota (QuotaPolicy): Specifies an optional logical quota limit
             (in bytes) for the usage allowed on this View. (Logical data is
             when the data is fully hydrated and expanded.) This limit
@@ -160,6 +161,7 @@ class CloneViewRequest(object):
         "enforce_smb_encryption":'enforceSmbEncryption',
         "file_extension_filter":'fileExtensionFilter',
         "file_lock_config":'fileLockConfig',
+        "is_externally_triggered_backup_target":'isExternallyTriggeredBackupTarget',
         "is_read_only":'isReadOnly',
         "logical_quota":'logicalQuota',
         "netgroup_whitelist":'netgroupWhitelist',
@@ -202,6 +204,7 @@ class CloneViewRequest(object):
                  enforce_smb_encryption=None,
                  file_extension_filter=None,
                  file_lock_config=None,
+                 is_externally_triggered_backup_target=None,
                  is_read_only=None,
                  logical_quota=None,
                  netgroup_whitelist=None,
@@ -244,6 +247,7 @@ class CloneViewRequest(object):
         self.enforce_smb_encryption = enforce_smb_encryption
         self.file_extension_filter = file_extension_filter
         self.file_lock_config = file_lock_config
+        self.is_externally_triggered_backup_target = is_externally_triggered_backup_target
         self.is_read_only = is_read_only
         self.logical_quota = logical_quota
         self.netgroup_whitelist = netgroup_whitelist
@@ -303,6 +307,7 @@ class CloneViewRequest(object):
         enforce_smb_encryption = dictionary.get('enforceSmbEncryption')
         file_extension_filter = cohesity_management_sdk.models.file_extension_filter.FileExtensionFilter.from_dictionary(dictionary.get('fileExtensionFilter')) if dictionary.get('fileExtensionFilter') else None
         file_lock_config = cohesity_management_sdk.models.file_level_data_lock_config.FileLevelDataLockConfig.from_dictionary(dictionary.get('fileLockConfig')) if dictionary.get('fileLockConfig') else None
+        is_externally_triggered_backup_target = dictionary.get('isExternallyTriggeredBackupTarget')
         is_read_only = dictionary.get('isReadOnly')
         logical_quota = cohesity_management_sdk.models.quota_policy.QuotaPolicy.from_dictionary(dictionary.get('logicalQuota')) if dictionary.get('logicalQuota') else None
         netgroup_whitelist = None
@@ -356,6 +361,7 @@ class CloneViewRequest(object):
                    enforce_smb_encryption,
                    file_extension_filter,
                    file_lock_config,
+                   is_externally_triggered_backup_target,
                    is_read_only,
                    logical_quota,
                    netgroup_whitelist,

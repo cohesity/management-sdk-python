@@ -2,6 +2,7 @@
 # Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.cassandra_additional_params
+import cohesity_management_sdk.models.cassandra_log_recover_job_params
 
 class CassandraRecoverJobParams(object):
 
@@ -14,7 +15,6 @@ class CassandraRecoverJobParams(object):
         cassandra_additional_info (CassandraAdditionalParams): Additional
             parameters required for Cassandra recovery.
             TODO (faizan.khan) : Remove this.
-        cassandra_source_version (string): Cassandra source version
         selected_data_center_vec (list of string):  The data centers selected
             for recovery.
         staging_directory_vec (list of string): Cassandra staging directory
@@ -27,7 +27,6 @@ class CassandraRecoverJobParams(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "cassandra_additional_info": 'cassandraAdditionalInfo',
-        "cassandra_source_version": 'cassandraSourceVersion',
         "selected_data_center_vec": 'selectedDataCenterVec',
         "staging_directory_vec": 'stagingDirectoryVec',
         "suffix":'suffix'
@@ -35,7 +34,6 @@ class CassandraRecoverJobParams(object):
 
     def __init__(self,
                  cassandra_additional_info=None,
-                 cassandra_source_version=None,
                  selected_data_center_vec=None,
                  staging_directory_vec=None,
                  suffix=None):
@@ -43,7 +41,6 @@ class CassandraRecoverJobParams(object):
 
         # Initialize members of the class
         self.cassandra_additional_info = cassandra_additional_info
-        self.cassandra_source_version = cassandra_source_version
         self.selected_data_center_vec = selected_data_center_vec
         self.staging_directory_vec = staging_directory_vec
         self.suffix = suffix
@@ -67,14 +64,12 @@ class CassandraRecoverJobParams(object):
 
         # Extract variables from the dictionary
         cassandra_additional_info = cohesity_management_sdk.models.cassandra_additional_params.CassandraAdditionalParams.from_dictionary(dictionary.get('cassandraAdditionalInfo')) if dictionary.get('cassandraAdditionalInfo') else None
-        cassandra_source_version = dictionary.get('cassandraSourceVersion')
         selected_data_center_vec = dictionary.get('selectedDataCenterVec')
         staging_directory_vec = dictionary.get('stagingDirectoryVec')
         suffix = dictionary.get('suffix')
 
         # Return an object of this model
         return cls(cassandra_additional_info,
-                   cassandra_source_version,
                    selected_data_center_vec,
                    staging_directory_vec,
                    suffix)

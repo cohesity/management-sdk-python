@@ -54,7 +54,8 @@ class ProtectionSummaryByEnv(object):
             Couchbase Protection Source environment. 'kHdfs' indicates Hdfs
             Protection Source environment. 'kHive' indicates Hive Protection
             Source environment. 'kHBase' indicates HBase Protection Source
-            environment.
+            environment. 'kUDA' indicates Universal Data Adapter Protection
+            Source environment.
         protected_count (long|int): Specifies the number of objects that are
             protected under the given entity.
         protected_size (long|int): Specifies the total size of the protected

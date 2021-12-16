@@ -57,8 +57,8 @@ class RemoteProtectionJobInformation(object):
             indicates Couchbase Protection Source environment. 'kHdfs'
             indicates Hdfs Protection Source environment. 'kHive' indicates
             Hive Protection Source environment. 'kHBase' indicates HBase
-            Protection Source environment.
-
+            Protection Source environment. 'kUDA' indicates Universal Data
+            Adapter Protection Source environment.
         job_name (string): Specifies the name of the Protection Job on the
             original Cluster.
         job_uid (UniversalId): Specifies the globally unique id of the

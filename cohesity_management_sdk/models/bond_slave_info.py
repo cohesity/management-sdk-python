@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2021 Cohesity Inc.
+
+import cohesity_management_sdk.models.interface_stats
 import cohesity_management_sdk.models.uplink_switch_info
 
 class BondSlaveInfo(object):
@@ -14,6 +16,7 @@ class BondSlaveInfo(object):
         name (string): Bond slave name.
         slot (string): Bond slaves slot info.
         speed (string): Bond slave Speed.
+        stats (InterfaceStats): Interface Stats.
         uplink_switch_info (UplinkSwitchInfo): Bond slave uplink switch info.
 
     """
@@ -25,6 +28,7 @@ class BondSlaveInfo(object):
         "name":'name',
         "slot":'slot',
         "speed":'speed',
+        "stats":'stats',
         "uplink_switch_info":'uplinkSwitchInfo'
     }
 
@@ -34,6 +38,7 @@ class BondSlaveInfo(object):
                  name=None,
                  slot=None,
                  speed=None,
+                 stats=None,
                  uplink_switch_info=None
                  ):
         """Constructor for the BondSlaveInfo class"""
@@ -44,6 +49,7 @@ class BondSlaveInfo(object):
         self.name = name
         self.slot = slot
         self.speed = speed
+        self.stats = stats
         self.uplink_switch_info = uplink_switch_info
 
     @classmethod
@@ -69,6 +75,7 @@ class BondSlaveInfo(object):
         name = dictionary.get('name')
         slot = dictionary.get('slot')
         speed = dictionary.get('speed')
+        stats = cohesity_management_sdk.models.interface_stats.InterfaceStats.from_dictionary(dictionary.get('stats')) if dictionary.get('stats') else None
         uplink_switch_info = cohesity_management_sdk.models.uplink_switch_info.UplinkSwitchInfo.from_dictionary(dictionary.get('uplinkSwitchInfo')) if dictionary.get('uplinkSwitchInfo') else None
 
         # Return an object of this model
@@ -77,6 +84,7 @@ class BondSlaveInfo(object):
                    name,
                    slot,
                    speed,
+                   stats,
                    uplink_switch_info)
 
 

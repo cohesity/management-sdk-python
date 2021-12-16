@@ -17,8 +17,10 @@ class BasicClusterInfo(object):
             'kPasswordAndCertificate' indicates that both the authenticatio
             schemes are required.
         banner_enabled (bool): Specifies if banner is enabled on the cluster.
-        cluster_software_version (string): Specifies the current release of
-            the Cohesity software running on this Cohesity Cluster.
+        cluster_software_version (string): This field is deprecated. Specifies
+            the current release of the Cohesitysoftware running on this
+            Cohesity Cluster.
+            deprecated: true
         cluster_type (ClusterTypeEnum): Specifies the type of Cohesity
             Cluster. 'kPhysical' indicates the Cohesity Cluster is hosted
             directly on hardware. 'kVirtualRobo' indicates the Cohesity

@@ -31,7 +31,7 @@ class AzureProtectionSource(object):
             that holds related network resources. 'kSubnet' represents a
             subnet within the virtual network. 'kComputeOptions' indicates the
             number of CPU cores and memory size available for a type of a
-            Virtual Machine.
+            Virtual Machine. 'kAvailabilitySet' indicates the availability set.
         domain_name (string): Specifies Azure stack hub domain name for where
             the given subscription is present.
         host_type (HostTypeEnum): Specifies the OS type of the Protection
@@ -58,7 +58,7 @@ class AzureProtectionSource(object):
         physical_source_id (long|int): Specifies the Protection Source id of
             the registered Physical Host. If the cloud entity is protected
             using a Physical Agent, it must be registered as a physical host.
-        region (string): Specifies the region in which the Azure Stack will
+        region (string):  Specifies the region in which the Azure Stack will
             be registered.
         resource_id (string): Specifies the unique Id of the resource given by
             the cloud provider.
@@ -89,7 +89,8 @@ class AzureProtectionSource(object):
             'kAzureCommercial' indicates a standard Azure subscription.
             'kAzureGovCloud' indicates a govt Azure subscription.
             'kAzureStackCommercial' indicates a stack commercial Azure
-                subscription.
+            subscription. 'kAzureStackADFS' indicates a ADFS Azure
+            subscription.
         tag_attributes (list of TagAttribute): Specifies the list of Azure tag
             attributes.
         tenant_id (string): Specifies Tenant Id of the active directory of
@@ -112,7 +113,7 @@ class AzureProtectionSource(object):
             that holds related network resources. 'kSubnet' represents a
             subnet within the virtual network. 'kComputeOptions' indicates the
             number of CPU cores and memory size available for a type of a
-            Virtual Machine.
+            Virtual Machine. 'kAvailabilitySet' indicates the availability set.
 
     """
 
@@ -135,7 +136,7 @@ class AzureProtectionSource(object):
         "restore_task_id":'restoreTaskId',
         "subscription_id":'subscriptionId',
         "subscription_type":'subscriptionType',
-        "tag_attributes":'tag_attributes',
+        "tag_attributes":'tagAttributes',
         "tenant_id":'tenantId',
         "mtype":'type'
     }
@@ -222,9 +223,9 @@ class AzureProtectionSource(object):
         subscription_id = dictionary.get('subscriptionId')
         subscription_type = dictionary.get('subscriptionType')
         tag_attributes = None
-        if dictionary.get('tag_attributes')!= None:
+        if dictionary.get('tagAttributes') != None:
             tag_attributes = list()
-            for structure in dictionary.get('tag_attributes'):
+            for structure in dictionary.get('tagAttributes'):
                 tag_attributes.append(cohesity_management_sdk.models.tag_attribute.TagAttribute.from_dictionary(structure))
         tenant_id = dictionary.get('tenantId')
         mtype = dictionary.get('type')

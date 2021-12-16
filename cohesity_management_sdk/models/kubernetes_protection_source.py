@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2021 Cohesity Inc.
 
+import cohesity_management_sdk.models.kubernetes_label_attribute
 
 class KubernetesProtectionSource(object):
 
@@ -11,6 +12,8 @@ class KubernetesProtectionSource(object):
     Attributes:
         description (string): Specifies an optional description of the
             object.
+        label_attributes (list of KubernetesLabelAttribute): Specifies the list
+            of label attributes of this source.
         name (string): Specifies a unique name of the Protection Source.
         mtype (TypeKubernetesProtectionSourceEnum): Specifies the type of the
             entity in a Kubernetes environment. Specifies the type of a
@@ -25,6 +28,7 @@ class KubernetesProtectionSource(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "description":'description',
+        "label_attributes":'labelAttributes',
         "name":'name',
         "mtype":'type',
         "uuid":'uuid'
@@ -32,6 +36,7 @@ class KubernetesProtectionSource(object):
 
     def __init__(self,
                  description=None,
+                 label_attributes=None,
                  name=None,
                  mtype=None,
                  uuid=None):
@@ -39,6 +44,7 @@ class KubernetesProtectionSource(object):
 
         # Initialize members of the class
         self.description = description
+        self.label_attributes = label_attributes
         self.name = name
         self.mtype = mtype
         self.uuid = uuid
@@ -63,12 +69,18 @@ class KubernetesProtectionSource(object):
 
         # Extract variables from the dictionary
         description = dictionary.get('description')
+        label_attributes = None
+        if dictionary.get('labelAttributes') != None:
+            label_attributes = list()
+            for structure in dictionary.get('labelAttributes'):
+                label_attributes.append(cohesity_management_sdk.models.kubernetes_label_attribute.KubernetesLabelAttribute.from_dictionary(structure))
         name = dictionary.get('name')
         mtype = dictionary.get('type')
         uuid = dictionary.get('uuid')
 
         # Return an object of this model
         return cls(description,
+                   label_attributes,
                    name,
                    mtype,
                    uuid)

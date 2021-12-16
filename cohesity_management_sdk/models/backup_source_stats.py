@@ -144,7 +144,7 @@ class BackupSourceStats(object):
 
         # Return an object of this model
         return cls(queue_duration_usecs,
-        total_bytes_tiered,
+                   total_bytes_tiered,
                    admitted_time_usecs,
                    end_time_usecs,
                    permit_grant_time_usecs,

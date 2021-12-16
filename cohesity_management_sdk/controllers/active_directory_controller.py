@@ -377,7 +377,8 @@ class ActiveDirectoryController(BaseController):
                                            object_class=None,
                                            search=None,
                                            sids=None,
-                                           include_computers=None):
+                                           include_computers=None,
+                                           include_service_accounts=None):
         """Does a GET request to /public/activeDirectory/principals.
 
         Optionally limit the search results by specifying security identifiers
@@ -400,7 +401,8 @@ class ActiveDirectoryController(BaseController):
                 principals are returned. 'kUser' specifies a user object
                 class. 'kGroup' specifies a group object class. 'kComputer'
                 specifies a computer object class. 'kWellKnownPrincipal'
-                specifies a well known principal.
+                specifies a well known principal. 'kServiceAccount' specifies
+                a service account object class.
             search (string, optional): Optionally filter by matching a
                 substring. Only principals in the with a name or
                 sAMAccountName that matches part or all of the specified
@@ -412,6 +414,9 @@ class ActiveDirectoryController(BaseController):
                 specified, a 'search' parameter should not be specified.
             include_computers (bool, optional): Specifies if Computer/GMSA
                 accounts need to be included in this search.
+            include_service_accounts (bool, optional): Specifies if service
+                accounts should be included in the search result.
+                This field is true by default.
 
         Returns:
             list of ActiveDirectoryPrincipal: Response from the API. Success
@@ -437,7 +442,8 @@ class ActiveDirectoryController(BaseController):
                 'objectClass': object_class,
                 'search': search,
                 'sids': sids,
-                'includeComputers': include_computers
+                'includeComputers': include_computers,
+                'includeServiceAccounts': include_service_accounts
             }
             _query_builder = APIHelper.append_url_with_query_parameters(
                 _query_builder, _query_parameters,

@@ -31,8 +31,8 @@ import cohesity_management_sdk.models.restore_one_drive_params
 import cohesity_management_sdk.models.restore_outlook_params
 import cohesity_management_sdk.models.restore_vmware_vm_params
 import cohesity_management_sdk.models.restored_object_network_config_proto
-import cohesity_management_sdk.models.uda_recover_job_params
 import cohesity_management_sdk.models.universal_id_proto
+import cohesity_management_sdk.models.uda_recover_job_params
 import cohesity_management_sdk.models.retrieve_archive_task_state_proto
 import cohesity_management_sdk.models.vault_params_restore_params
 import cohesity_management_sdk.models.restored_object_vcd_config_proto
@@ -284,6 +284,7 @@ class PerformRestoreTaskStateProto(object):
             this field: kSQL : Used for multi-stage SQL restore that supports
             a hot-standy. kVMware : User for standby restore to store
             CDPLogApplyRestoreOp id.
+            kOracle : Used for Instant restore for clone.
         restore_task_purged (bool): Whether the restore task is purged. During
             WAL recovery, purged restore tasks are ignored.
         restore_teams_params (RestoreO365TeamsParams): This field defines team

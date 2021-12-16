@@ -82,7 +82,8 @@ class InterfaceController(BaseController):
                        bond_interface_only=None,
                        iface_group_assigned_only=None,
                        include_uplink_switch_info=None,
-                       include_bond_slave_details=None):
+                       include_bond_slave_details=None,
+                       include_stats=None):
         """Does a GET request to /public/interface.
 
         Show network interfaces.
@@ -98,6 +99,7 @@ class InterfaceController(BaseController):
                 uplink switch info.
             include_bond_slave_details (bool, optional): Specifies if include
                 bond slave detailed info.
+            include_stats (bool, optional): Specifies if include stats.
 
         Returns:
             Interface: Response from the API. Success
@@ -123,7 +125,8 @@ class InterfaceController(BaseController):
                 'bondInterfaceOnly': bond_interface_only,
                 'ifaceGroupAssignedOnly': iface_group_assigned_only,
                 'includeUplinkSwitchInfo': include_uplink_switch_info,
-                'includeBondSlaveDetails': include_bond_slave_details
+                'includeBondSlaveDetails': include_bond_slave_details,
+                'includeStats': include_stats
             }
             _query_builder = APIHelper.append_url_with_query_parameters(
                 _query_builder, _query_parameters,

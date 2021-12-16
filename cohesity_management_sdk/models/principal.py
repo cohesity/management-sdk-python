@@ -17,7 +17,8 @@ class Principal(object):
             principal (either 'kGroup' or 'kUser'). 'kUser' specifies a user
             object class. 'kGroup' specifies a group object class. 'kComputer'
             specifies a computer object class. 'kWellKnownPrincipal' specifies
-            a well known principal.
+            a well known principal. 'kServiceAccount' specifies a service
+            account object class.
         principal_name (string): Specifies the name of the principal.
         sid (string): Specifies the unique Security id (SID) of the
             principal.

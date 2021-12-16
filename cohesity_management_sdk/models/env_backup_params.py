@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 # Copyright 2021 Cohesity Inc.
 
+import cohesity_management_sdk.models.aws_native_env_params
 import cohesity_management_sdk.models.exchange_backup_job_params
+import cohesity_management_sdk.models.externally_triggered_job_params
 import cohesity_management_sdk.models.file_stubbing_params
 import cohesity_management_sdk.models.file_uptiering_params
 import cohesity_management_sdk.models.hyperv_backup_env_params
@@ -27,8 +29,12 @@ class EnvBackupParams(object):
     job level.
 
     Attributes:
+        aws_native_env_params (AWSNativeEnvParams): This is applicable to AWS
+            native backups.
         exchange_backup_job_params (ExchangeBackupJobParams): Message to
             capture additional backup job params specific to Exchange.
+        externally_triggered_job_params (ExternallyTriggeredJobParams):
+            This is applicable to externally triggered backups.
         file_stubbing_params (FileStubbingParams): File Stubbing Parameters
             Message to capture the additional stubbing params for a file-based
             environment.
@@ -67,7 +73,9 @@ class EnvBackupParams(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "aws_native_env_params": 'awsNativeEnvParams',
         "exchange_backup_job_params":'exchangeBackupJobParams',
+        "externally_triggered_job_params":'externallyTriggeredJobParams',
         "file_stubbing_params":'fileStubbingParams',
         "file_uptiering_params":'fileUptieringParams',
         "hyperv_backup_params":'hypervBackupParams',
@@ -86,7 +94,9 @@ class EnvBackupParams(object):
     }
 
     def __init__(self,
+                 aws_native_env_params=None,
                  exchange_backup_job_params=None,
+                 externally_triggered_job_params=None,
                  file_stubbing_params=None,
                  file_uptiering_params=None,
                  hyperv_backup_params=None,
@@ -105,7 +115,9 @@ class EnvBackupParams(object):
         """Constructor for the EnvBackupParams class"""
 
         # Initialize members of the class
+        self.aws_native_env_params = aws_native_env_params
         self.exchange_backup_job_params = exchange_backup_job_params
+        self.externally_triggered_job_params = externally_triggered_job_params
         self.file_stubbing_params = file_stubbing_params
         self.file_uptiering_params = file_uptiering_params
         self.hyperv_backup_params = hyperv_backup_params
@@ -141,7 +153,9 @@ class EnvBackupParams(object):
             return None
 
         # Extract variables from the dictionary
+        aws_native_env_params = cohesity_management_sdk.models.aws_native_env_params.AWSNativeEnvParams.from_dictionary(dict.get('awsNativeEnvParams')) if dictionary.get('awsNativeEnvParams') else None
         exchange_backup_job_params = cohesity_management_sdk.models.exchange_backup_job_params.ExchangeBackupJobParams.from_dictionary(dictionary.get('exchangeBackupJobParams')) if dictionary.get('exchangeBackupJobParams') else None
+        externally_triggered_job_params = cohesity_management_sdk.models.externally_triggered_job_params.ExternallyTriggeredJobParams.from_dictionary(dictionary.get('externallyTriggeredJobParams')) if dictionary.get('externallyTriggeredJobParams') else None
         file_stubbing_params = cohesity_management_sdk.models.file_stubbing_params.FileStubbingParams.from_dictionary(dictionary.get('fileStubbingParams')) if dictionary.get('fileStubbingParams') else None
         file_uptiering_params = cohesity_management_sdk.models.file_uptiering_params.FileUptieringParams.from_dictionary(dictionary.get('fileUptieringParams')) if dictionary.get('fileUptieringParams') else None
         hyperv_backup_params = cohesity_management_sdk.models.hyperv_backup_env_params.HypervBackupEnvParams.from_dictionary(dictionary.get('hypervBackupParams')) if dictionary.get('hypervBackupParams') else None
@@ -159,7 +173,9 @@ class EnvBackupParams(object):
         vmware_backup_params = cohesity_management_sdk.models.vmware_backup_env_params.VmwareBackupEnvParams.from_dictionary(dictionary.get('vmwareBackupParams')) if dictionary.get('vmwareBackupParams') else None
 
         # Return an object of this model
-        return cls(exchange_backup_job_params,
+        return cls(aws_native_env_params,
+                   exchange_backup_job_params,
+                   externally_triggered_job_params,
                    file_stubbing_params,
                    file_uptiering_params,
                    hyperv_backup_params,

@@ -2,6 +2,8 @@
 # Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.a_w_s_fleet_params
+import cohesity_management_sdk.models.c2s_server_info
+import cohesity_management_sdk.models.ebs_volume_info
 import cohesity_management_sdk.models.fleet_network_params
 import cohesity_management_sdk.models.tag_attribute
 
@@ -47,6 +49,8 @@ class AwsProtectionSource(object):
         cluster_network_info (FleetNetworkParams): Specifies information
             related to cluster. This is only valid for CE clusters. This is
             only populated for kIAMUser entity.
+        c2s_server_info (C2SServerInfo): Specifies the C2S Access Portal (CAP)
+            server info.
         db_engine_id (string): Specifies DB engine version info of the entity.
             This is populated only for RDSInstance, RDSOptionGroup and
             RDSParameterGroup entity types.
@@ -120,11 +124,13 @@ class AwsProtectionSource(object):
             'kRDSParameterGroup' represents a RDS parameter group.
             'kRDSInstance' represents a RDS DB instance. 'kRDSSubnet'
             represents a RDS subnet. 'kRDSTag' represents a tag attached to
-            RDS instance.
+            RDS instance. 'kAuroraCluster' represents an Aurora cluster.
         user_account_id (string): Specifies the account id derived from the
             ARN of the user.
         user_resource_name (string): Specifies the Amazon Resource Name (ARN)
             of the user.
+        volumes (list of EbsVolumeInfo): Specified the list of EBS volumes
+            attached to the entity if the entity is an EC2 instance.
 
     """
 
@@ -136,6 +142,7 @@ class AwsProtectionSource(object):
         "aws_fleet_params":'awsFleetParams',
         "aws_type":'awsType',
         "cluster_network_info":'clusterNetworkInfo',
+        "c2s_server_info":'c2sServerInfo',
         "db_engine_id":'dbEngineId',
         "host_type":'hostType',
         "iam_role_arn":'iamRoleArn',
@@ -151,7 +158,8 @@ class AwsProtectionSource(object):
         "tag_attributes":'tagAttributes',
         "mtype":'type',
         "user_account_id":'userAccountId',
-        "user_resource_name":'userResourceName'
+        "user_resource_name":'userResourceName',
+        "volumes":'volumes'
     }
 
     def __init__(self,
@@ -161,6 +169,7 @@ class AwsProtectionSource(object):
                  aws_fleet_params=None,
                  aws_type=None,
                  cluster_network_info=None,
+                 c2s_server_info=None,
                  db_engine_id=None,
                  host_type=None,
                  iam_role_arn=None,
@@ -176,7 +185,8 @@ class AwsProtectionSource(object):
                  tag_attributes=None,
                  mtype=None,
                  user_account_id=None,
-                 user_resource_name=None):
+                 user_resource_name=None,
+                 volumes=None):
         """Constructor for the AwsProtectionSource class"""
 
         # Initialize members of the class
@@ -186,6 +196,7 @@ class AwsProtectionSource(object):
         self.aws_fleet_params = aws_fleet_params
         self.aws_type = aws_type
         self.cluster_network_info = cluster_network_info
+        self.c2s_server_info = c2s_server_info
         self.db_engine_id = db_engine_id
         self.host_type = host_type
         self.iam_role_arn = iam_role_arn
@@ -202,6 +213,7 @@ class AwsProtectionSource(object):
         self.mtype = mtype
         self.user_account_id = user_account_id
         self.user_resource_name = user_resource_name
+        self.volumes = volumes
 
 
     @classmethod
@@ -228,6 +240,7 @@ class AwsProtectionSource(object):
         aws_fleet_params = cohesity_management_sdk.models.a_w_s_fleet_params.AwsFleetParams.from_dictionary(dictionary.get('awsFleetParams')) if dictionary.get('awsFleetParams') else None
         aws_type = dictionary.get('awsType')
         cluster_network_info = cohesity_management_sdk.models.fleet_network_params.FleetNetworkParams.from_dictionary(dictionary.get('clusterNetworkInfo')) if dictionary.get('clusterNetworkInfo') else None
+        c2s_server_info = cohesity_management_sdk.models.c2s_server_info.C2SServerInfo.from_dictionary(dictionary.get('c2sServerInfo')) if dictionary.get('c2sServerInfo') else None
         db_engine_id = dictionary.get('dbEngineId')
         host_type = dictionary.get('hostType')
         iam_role_arn = dictionary.get('iamRoleArn')
@@ -248,6 +261,11 @@ class AwsProtectionSource(object):
         mtype = dictionary.get('type')
         user_account_id = dictionary.get('userAccountId')
         user_resource_name = dictionary.get('userResourceName')
+        volumes = None
+        if dictionary.get('volumes') != None:
+            volumes = list()
+            for structure in dictionary.get('volumes'):
+                volumes.append(cohesity_management_sdk.models.ebs_volume_info.EbsVolumeInfo.from_dictionary(structure))
 
         # Return an object of this model
         return cls(access_key,
@@ -256,6 +274,7 @@ class AwsProtectionSource(object):
                    aws_fleet_params,
                    aws_type,
                    cluster_network_info,
+                   c2s_server_info,
                    db_engine_id,
                    host_type,
                    iam_role_arn,
@@ -271,6 +290,7 @@ class AwsProtectionSource(object):
                    tag_attributes,
                    mtype,
                    user_account_id,
-                   user_resource_name)
+                   user_resource_name,
+                   volumes)
 
 

@@ -48,6 +48,7 @@ class ApplicationEnum(object):
         KHDFS: TODO: type description here.
         KHIVE: TODO: type description here.
         KHBASE: TODO: type description here.
+        KUDA: TODO: type description here.
 
     """
 
@@ -130,4 +131,6 @@ class ApplicationEnum(object):
     KHIVE = 'kHive'
 
     KHBASE = 'kHBase'
+
+    KUDA = 'kUDA'
 

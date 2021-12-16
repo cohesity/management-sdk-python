@@ -56,7 +56,8 @@ class BackupRun(object):
             environment. 'kCouchbase' indicates Couchbase Protection Source
             environment. 'kHdfs' indicates Hdfs Protection Source
             environment. 'kHive' indicates Hive Protection Source environment.
-            'kHBase' indicates HBase Protection Source environment.
+            'kHBase' indicates HBase Protection Source environment. 'kUDA'
+            indicates Universal Data Adapter Protection Source environment.
         error (string): Specifies if an error occurred (if any) while running
             this task. This field is populated when the status is equal to
             'kFailure'.

@@ -80,6 +80,9 @@ class SnapshotInfoProto(object):
     ==
 
     Attributes:
+        change_rocksdb_name (string): The name of the rocksdb directory for
+            writing high change directories.
+            It is stored in 'config' directory of the current view.
         error_rocksdb_name (string): The name of the rocksdb directory for
             errors seen during this backup, stored in 'config' directory of
             the current view.
@@ -89,6 +92,9 @@ class SnapshotInfoProto(object):
         front_end_size_info (SizeInfo): Front end size information. An example
             use case is for billing purposes in "[Backup | Data Management] as
             a Service" offering.
+        metadata_view_name (string): The metadata view name in which the backup
+            metadata was created.
+            NOTE: This is populated only for CADv2 NAS backup.
         num_app_instances (int): Number of application instances backed up by
             this task. For example, if the environment type is kSQL, this
             number is for the SQL server instances.
@@ -113,6 +119,7 @@ class SnapshotInfoProto(object):
             key in that table where such state is stored.
         slave_task_start_time_usecs (long|int): This is the timestamp at which
             the slave task started.
+        snapshot_expiry_time (long|int): Snapshot expirty time
         snapshot_type (ObjectSnapshotType): Captures the snapshot type for
             some objects such as VM.
         source_snapshot_create_time_usecs (long|int): The source snapshot
@@ -153,7 +160,7 @@ class SnapshotInfoProto(object):
         view_case_insensitivity_altered (bool): Whether during the backup, the
             backup view's case insensitivity property has been altered. If so,
             Madrox needs to take corresponding actions during replication.
-        view_name (string): The view name under which the snapshot was
+        view_name (string): The data view name under which the snapshot was
             created. NOTE: This is populated only for View, Puppeteer, NAS and
             Oracle backup.
         view_name_to_gc (string): The view name under which the snapshot of
@@ -166,9 +173,11 @@ class SnapshotInfoProto(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "change_rocksdb_name":'changeRocksdbName',
         "error_rocksdb_name":'errorRocksdbName',
         "file_walk_done":'fileWalkDone',
         "front_end_size_info":'frontEndSizeInfo',
+        "metadata_view_name":'metadataViewName',
         "num_app_instances":'numAppInstances',
         "num_app_objects":'numAppObjects',
         "post_backup_script_status":'postBackupScriptStatus',
@@ -178,6 +187,7 @@ class SnapshotInfoProto(object):
         "scribe_table_column":'scribeTableColumn',
         "scribe_table_row":'scribeTableRow',
         "slave_task_start_time_usecs":'slaveTaskStartTimeUsecs',
+        "snapshot_expiry_time":'snapshotExpiryTime',
         "snapshot_type":'snapshotType',
         "source_snapshot_create_time_usecs":'sourceSnapshotCreateTimeUsecs',
         "source_snapshot_name":'sourceSnapshotName',
@@ -199,9 +209,11 @@ class SnapshotInfoProto(object):
     }
 
     def __init__(self,
+                 change_rocksdb_name=None,
                  error_rocksdb_name=None,
                  file_walk_done=None,
                  front_end_size_info=None,
+                 metadata_view_name=None,
                  num_app_instances=None,
                  num_app_objects=None,
                  post_backup_script_status=None,
@@ -211,6 +223,7 @@ class SnapshotInfoProto(object):
                  scribe_table_column=None,
                  scribe_table_row=None,
                  slave_task_start_time_usecs=None,
+                 snapshot_expiry_time=None,
                  snapshot_type=None,
                  source_snapshot_create_time_usecs=None,
                  source_snapshot_name=None,
@@ -232,9 +245,11 @@ class SnapshotInfoProto(object):
         """Constructor for the SnapshotInfoProto class"""
 
         # Initialize members of the class
+        self.change_rocksdb_name = change_rocksdb_name
         self.error_rocksdb_name = error_rocksdb_name
         self.file_walk_done = file_walk_done
         self.front_end_size_info = front_end_size_info
+        self.metadata_view_name = metadata_view_name
         self.num_app_instances = num_app_instances
         self.num_app_objects = num_app_objects
         self.post_backup_script_status = post_backup_script_status
@@ -244,6 +259,7 @@ class SnapshotInfoProto(object):
         self.scribe_table_column = scribe_table_column
         self.scribe_table_row = scribe_table_row
         self.slave_task_start_time_usecs = slave_task_start_time_usecs
+        self.snapshot_expiry_time = snapshot_expiry_time
         self.snapshot_type = snapshot_type
         self.source_snapshot_create_time_usecs = source_snapshot_create_time_usecs
         self.source_snapshot_name = source_snapshot_name
@@ -282,9 +298,11 @@ class SnapshotInfoProto(object):
             return None
 
         # Extract variables from the dictionary
+        change_rocksdb_name = dictionary.get('changeRocksdbName')
         error_rocksdb_name = dictionary.get('errorRocksdbName')
         file_walk_done = dictionary.get('fileWalkDone')
         front_end_size_info = cohesity_management_sdk.models.size_info.SizeInfo.from_dictionary(dictionary.get('frontEndSizeInfo')) if dictionary.get('frontEndSizeInfo') else None
+        metadata_view_name = dictionary.get('metadataViewName')
         num_app_instances = dictionary.get('numAppInstances')
         num_app_objects = dictionary.get('numAppObjects')
         post_backup_script_status = cohesity_management_sdk.models.script_execution_status.ScriptExecutionStatus.from_dictionary(dictionary.get('postBackupScriptStatus')) if dictionary.get('postBackupScriptStatus') else None
@@ -293,6 +311,7 @@ class SnapshotInfoProto(object):
         root_path = dictionary.get('rootPath')
         scribe_table_column = dictionary.get('scribeTableColumn')
         scribe_table_row = dictionary.get('scribeTableRow')
+        snapshot_expiry_time = dictionary.get('snapshotExpiryTime')
         slave_task_start_time_usecs = dictionary.get('slaveTaskStartTimeUsecs')
         snapshot_type = cohesity_management_sdk.models.object_snapshot_type.ObjectSnapshotType.from_dictionary(dictionary.get('snapshotType')) if dictionary.get('snapshotType') else None
         source_snapshot_create_time_usecs = dictionary.get('sourceSnapshotCreateTimeUsecs')
@@ -318,9 +337,11 @@ class SnapshotInfoProto(object):
                 warnings.append(cohesity_management_sdk.models.error_proto.ErrorProto.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(error_rocksdb_name,
+        return cls(change_rocksdb_name,
+                   error_rocksdb_name,
                    file_walk_done,
                    front_end_size_info,
+                   metadata_view_name,
                    num_app_instances,
                    num_app_objects,
                    post_backup_script_status,
@@ -330,6 +351,7 @@ class SnapshotInfoProto(object):
                    scribe_table_column,
                    scribe_table_row,
                    slave_task_start_time_usecs,
+                   snapshot_expiry_time,
                    snapshot_type,
                    source_snapshot_create_time_usecs,
                    source_snapshot_name,

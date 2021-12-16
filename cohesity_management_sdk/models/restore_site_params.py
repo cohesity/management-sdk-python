@@ -18,6 +18,9 @@ class RestoreSiteParams(object):
             sharepoint restore.
         dst_site_web_url (string): Entity web url of target site in case of
             sharepoint restore.
+        parent_source_sharepoint_domain_name (string): The sharepoint domain
+            name of the registered parent source from which the site is backed
+            up.
         restore_template (bool): Indicates that we have to restore the
             Sharepoint site template also.
             This includes:
@@ -29,6 +32,8 @@ class RestoreSiteParams(object):
             sites whose drives are being restored.
         site_result (SiteBackupStatus): Site template backup status returned
             by the agent on successful site backup.
+        snap_fs_relative_site_backup_result_path (string): SnapFS relative
+            path where the site template backup result proto is stored.
         snap_fs_relative_template_path (string): SnapFS relative path where
             the template data is stored.
         source_site_name (string): Entity name of source site in case of
@@ -56,10 +61,12 @@ class RestoreSiteParams(object):
         "dst_site_name":'dstSiteName',
         "dst_site_uuid":'dstSiteUuid',
         "dst_site_web_url":'dstSiteWebUrl',
+        "parent_source_sharepoint_domain_name":'parentSourceSharepointDomainName',
         "restore_template":'restoreTemplate',
         "restore_to_original": 'restoreToOriginal',
         "site_owner_vec": 'siteOwnerVec',
         "site_result":'siteResult',
+        "snap_fs_relative_site_backup_result_path":'parentSourceSharepointDomainName',
         "snap_fs_relative_template_path":'snapFsRelativeTemplatePath',
         "source_site_name":'sourceSiteName',
         "source_site_uuid":'sourceSiteUuid',
@@ -73,10 +80,12 @@ class RestoreSiteParams(object):
                  dst_site_name=None,
                  dst_site_uuid=None,
                  dst_site_web_url=None,
+                 parent_source_sharepoint_domain_name=None,
                  restore_template=None,
                  restore_to_original=None,
                  site_owner_vec=None,
                  site_result=None,
+                 snap_fs_relative_site_backup_result_path=None,
                  snap_fs_relative_template_path=None,
                  source_site_name=None,
                  source_site_uuid=None,
@@ -90,10 +99,12 @@ class RestoreSiteParams(object):
         self.dst_site_name = dst_site_name
         self.dst_site_uuid = dst_site_uuid
         self.dst_site_web_url = dst_site_web_url
+        self.parent_source_sharepoint_domain_name = parent_source_sharepoint_domain_name
         self.restore_template = restore_template
         self.restore_to_original = restore_to_original
         self.site_owner_vec = site_owner_vec
         self.site_result = site_result
+        self.snap_fs_relative_site_backup_result_path = snap_fs_relative_site_backup_result_path
         self.snap_fs_relative_template_path = snap_fs_relative_template_path
         self.source_site_name = source_site_name
         self.source_site_uuid = source_site_uuid
@@ -123,6 +134,7 @@ class RestoreSiteParams(object):
         dst_site_name = dictionary.get('dstSiteName')
         dst_site_uuid = dictionary.get('dstSiteUuid')
         dst_site_web_url = dictionary.get('dstSiteWebUrl')
+        parent_source_sharepoint_domain_name = dictionary.get('parentSourceSharepointDomainName')
         restore_template = dictionary.get('restoreTemplate')
         restore_to_original = dictionary.get('restoreToOriginal')
         site_owner_vec = None
@@ -131,6 +143,7 @@ class RestoreSiteParams(object):
             for structure in dictionary.get('siteOwnerVec'):
                 site_owner_vec.append(cohesity_management_sdk.models.restore_site_params_site_owner.RestoreSiteParams_SiteOwner.from_dictionary(structure))
         site_result = cohesity_management_sdk.models.site_backup_status.SiteBackupStatus.from_dictionary(dictionary.get('siteResult')) if dictionary.get('siteResult') else None
+        snap_fs_relative_site_backup_result_path = dictionary.get('parentSourceSharepointDomainName')
         snap_fs_relative_template_path = dictionary.get('snapFsRelativeTemplatePath')
         source_site_name = dictionary.get('sourceSiteName')
         source_site_uuid = dictionary.get('sourceSiteUuid')
@@ -143,10 +156,12 @@ class RestoreSiteParams(object):
         return cls(dst_site_name,
                    dst_site_uuid,
                    dst_site_web_url,
+                   parent_source_sharepoint_domain_name,
                    restore_template,
                    restore_to_original,
                    site_owner_vec,
                    site_result,
+                   snap_fs_relative_site_backup_result_path,
                    snap_fs_relative_template_path,
                    source_site_name,
                    source_site_uuid,

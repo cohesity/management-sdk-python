@@ -57,7 +57,8 @@ class ConnectorParameters(object):
             environment. 'kCouchbase' indicates Couchbase Protection Source
             environment. 'kHdfs' indicates Hdfs Protection Source environment.
             'kHive' indicates Hive Protection Source environment. 'kHBase'
-            indicates HBase Protection Source environment.
+            indicates HBase Protection Source environment. 'kUDA' indicates
+            Universal Data Adapter Protection Source environment.
         id (long|int): Specifies a Unique id that is generated when the Source
             is registered. This is a convenience field that is used to
             maintain an index to different connection params.

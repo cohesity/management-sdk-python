@@ -36,6 +36,7 @@ class NodeStatusResult(object):
         incarnation_id (long|int): Specifies the Incarnation ID if the Node is
             part of a Cluster.
         ip (string): Specifies the IP address of the Node.
+        is_app_node (bool): Whether the node is an app node.
         last_upgrade_time_secs (long|int): Specifies the time of the last
             upgrade in seconds since the epoch.
         marked_for_removal (bool): Specifies whether or not this node is
@@ -55,6 +56,15 @@ class NodeStatusResult(object):
             removal of the Node while it is down.
         services (list of ServiceProcessEntry): Specifies the list of services
             running on the cluster and their process Ids.
+        services_acked_list (list of string): [For UI: Displays list of
+            Acked/NotAcked services separately.]
+            Services already acked for removal of this entity.
+        services_not_acked (string): [For CLI displays the string with
+            ServicesNotAcked]
+            ServicesNotAcked specifies services that have not ACKed yet in
+            string format after node is marked for removal.
+        services_not_acked_list (list of string): Services not acked yet for
+            removal of this entity.
         software_version (string): Specifies the version of the software
             running on the Node.
         uptime (string): Uptime of node.
@@ -69,11 +79,15 @@ class NodeStatusResult(object):
         "in_cluster":'inCluster',
         "incarnation_id":'incarnationId',
         "ip":'ip',
+        "is_app_node":'isAppNode',
         "last_upgrade_time_secs":'lastUpgradeTimeSecs',
         "marked_for_removal":'markedForRemoval',
         "message":'message',
         "removal_reason":'removalReason',
         "services":'services',
+        "services_acked_list":'servicesAckedList',
+        "services_not_acked":'servicesNotAcked',
+        "services_not_acked_list":'servicesNotAckedList',
         "software_version":'softwareVersion',
         "uptime":'uptime'
     }
@@ -85,11 +99,15 @@ class NodeStatusResult(object):
                  in_cluster=None,
                  incarnation_id=None,
                  ip=None,
+                 is_app_node=None,
                  last_upgrade_time_secs=None,
                  marked_for_removal=None,
                  message=None,
                  removal_reason=None,
                  services=None,
+                 services_acked_list=None,
+                 services_not_acked=None,
+                 services_not_acked_list=None,
                  software_version=None,
                  uptime=None):
         """Constructor for the NodeStatusResult class"""
@@ -101,11 +119,15 @@ class NodeStatusResult(object):
         self.in_cluster = in_cluster
         self.incarnation_id = incarnation_id
         self.ip = ip
+        self.is_app_node = is_app_node
         self.last_upgrade_time_secs = last_upgrade_time_secs
         self.marked_for_removal = marked_for_removal
         self.message = message
         self.removal_reason = removal_reason
         self.services = services
+        self.services_acked_list = services_acked_list
+        self.services_not_acked = services_not_acked
+        self.services_not_acked_list = services_not_acked_list
         self.software_version = software_version
         self.uptime = uptime
 
@@ -134,6 +156,7 @@ class NodeStatusResult(object):
         in_cluster = dictionary.get('inCluster')
         incarnation_id = dictionary.get('incarnationId')
         ip = dictionary.get('ip')
+        is_app_node = dictionary.get('isAppNode')
         last_upgrade_time_secs = dictionary.get('lastUpgradeTimeSecs')
         marked_for_removal = dictionary.get('markedForRemoval')
         message = dictionary.get('message')
@@ -143,6 +166,9 @@ class NodeStatusResult(object):
             services = list()
             for structure in dictionary.get('services'):
                 services.append(cohesity_management_sdk.models.service_process_entry.ServiceProcessEntry.from_dictionary(structure))
+        services_acked_list = dictionary.get('servicesAckedList')
+        services_not_acked = dictionary.get('servicesNotAcked')
+        services_not_acked_list = dictionary.get('servicesNotAckedList')
         software_version = dictionary.get('softwareVersion')
         uptime = dictionary.get('uptime')
 
@@ -153,11 +179,15 @@ class NodeStatusResult(object):
                    in_cluster,
                    incarnation_id,
                    ip,
+                   is_app_node,
                    last_upgrade_time_secs,
                    marked_for_removal,
                    message,
                    removal_reason,
                    services,
+                   services_acked_list,
+                   services_not_acked,
+                   services_not_acked_list,
                    software_version,
                    uptime)
 

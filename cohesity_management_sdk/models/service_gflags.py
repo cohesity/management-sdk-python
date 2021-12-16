@@ -11,7 +11,7 @@ class ServiceGflags(object):
 
     Attributes:
         gflags (list of Gflag): Specifies a list of gflags for this service.
-        service_name (ServiceNameServiceGflagsEnum): Specifies the name of the
+        service_name (ServiceNameEnum): Specifies the name of the
             service. 'kApollo' is a service for reclaiming freed disk sectors
             on Nodes in the SnapFS distributed file system. 'kBridge' is a
             service for managing the SnapFS distributed file system. 'kGenie'
@@ -52,6 +52,10 @@ class ServiceGflags(object):
             can be specified in order to do a full reboot.'kPatch' is a
             service for downloading and applying patches. 'kCompass' is a
             service for serving dns request for external and internal traffic.
+            'kEtlServer' is a service responsible for ETling data for
+            globalsearch.
+            'kIcebox' is service that links Icebox service to other services
+            on cluster.
 
     """
 

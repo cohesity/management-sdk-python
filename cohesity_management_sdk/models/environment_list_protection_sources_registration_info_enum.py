@@ -36,6 +36,13 @@ class EnvironmentListProtectionSourcesRegistrationInfoEnum(object):
         KHYPERFLEX: TODO: type description here.
         KGCPNATIVE: TODO: type description here.
         KKUBERNETES: TODO: type description here.
+        KCASSANDRA: TODO: type description here.
+        KMONGODB: TODO: type description here.
+        KCOUCHBASE: TODO: type description here.
+        KHDFS: TODO: type description here.
+        KHIVE: TODO: type description here.
+        KHBASE: TODO: type description here.
+        KUDA: TODO: type description here.
 
     """
 
@@ -94,4 +101,18 @@ class EnvironmentListProtectionSourcesRegistrationInfoEnum(object):
     KGCPNATIVE = 'kGCPNative'
 
     KKUBERNETES = 'kKubernetes'
+
+    KCASSANDRA = 'kCassandra'
+
+    KMONGODB = 'kMongoDB'
+
+    KCOUCHBASE = 'kCouchbase'
+
+    KHDFS = 'kHdfs'
+
+    KHIVE = 'kHive'
+
+    KHBASE = 'kHBase'
+
+    KUDA = 'kUDA'
 

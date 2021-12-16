@@ -15,6 +15,9 @@ class CryptsoftKmsUpdateParams(object):
         client_key (string): Specifies the client private key.
         kmip_protocol_version (string): Specifies protocol version used to
             communicate with the KMS.
+        server_ip (string): Specifies the KMS IP address.
+        server_port (string): Specifies port on which the server is listening.
+            Default port is 5696.
 
     """
 
@@ -23,14 +26,18 @@ class CryptsoftKmsUpdateParams(object):
         "ca_certificate": 'caCertificate',
         "client_certificate": 'clientCertificate',
         "client_key": 'clientKey',
-        "kmip_protocol_version": 'kmipProtocolVersion'
+        "kmip_protocol_version": 'kmipProtocolVersion',
+        "server_ip":'serverIp',
+        "server_port":'serverPort'
     }
 
     def __init__(self,
                  ca_certificate=None,
                  client_certificate=None,
                  client_key=None,
-                 kmip_protocol_version=None):
+                 kmip_protocol_version=None,
+                 server_ip=None,
+                 server_port=None):
         """Constructor for the CryptsoftKmsUpdateParams class"""
 
         # Initialize members of the class
@@ -38,6 +45,8 @@ class CryptsoftKmsUpdateParams(object):
         self.client_certificate = client_certificate
         self.client_key = client_key
         self.kmip_protocol_version = kmip_protocol_version
+        self.server_ip = server_ip
+        self.server_port = server_port
 
     @classmethod
     def from_dictionary(cls,
@@ -61,10 +70,14 @@ class CryptsoftKmsUpdateParams(object):
         client_certificate = dictionary.get('clientCertificate')
         client_key = dictionary.get('clientKey')
         kmip_protocol_version = dictionary.get('kmipProtocolVersion')
+        server_ip = dictionary.get('serverIp')
+        server_port = dictionary.get('serverPort')
 
         # Return an object of this model
         return cls(ca_certificate,
                    client_certificate,
                    client_key,
-                   kmip_protocol_version)
+                   kmip_protocol_version,
+                   server_ip,
+                   server_port)
 

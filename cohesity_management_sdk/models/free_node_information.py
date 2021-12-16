@@ -13,8 +13,10 @@ class FreeNodeInformation(object):
             the Node is installed in.
         connected_to (bool): Specifies whether or not this is the Node that is
             sending the response.
+        hostname (string): Free node hostname.
         id (long|int): Specifies the ID of the node.
-        ip (string): Deprecated. Specifies the IP address of the Node.
+        ip (string): Deprecated. Specifies the IP address of the Node. Use Ips
+            instead.
         ipmi_ip (string): Specifies the IPMI IP of the Node.
         ips (list of string): List of discovered ipv4/ipv6 addresses of the
             node. Ip field returns ips as comma separated single string which
@@ -36,6 +38,7 @@ class FreeNodeInformation(object):
     _names = {
         "chassis_serial":'chassisSerial',
         "connected_to":'connectedTo',
+        "hostname":'hostname',
         "id":'id',
         "ip":'ip',
         "ipmi_ip":'ipmiIp',
@@ -51,6 +54,7 @@ class FreeNodeInformation(object):
     def __init__(self,
                  chassis_serial=None,
                  connected_to=None,
+                 hostname=None,
                  id=None,
                  ip=None,
                  ipmi_ip=None,
@@ -66,6 +70,7 @@ class FreeNodeInformation(object):
         # Initialize members of the class
         self.chassis_serial = chassis_serial
         self.connected_to = connected_to
+        self.hostname = hostname
         self.id = id
         self.ip = ip
         self.ipmi_ip = ipmi_ip
@@ -98,6 +103,7 @@ class FreeNodeInformation(object):
         # Extract variables from the dictionary
         chassis_serial = dictionary.get('chassisSerial')
         connected_to = dictionary.get('connectedTo')
+        hostname = dictionary.get('hostname')
         id = dictionary.get('id')
         ip = dictionary.get('ip')
         ipmi_ip = dictionary.get('ipmiIp')
@@ -112,6 +118,7 @@ class FreeNodeInformation(object):
         # Return an object of this model
         return cls(chassis_serial,
                    connected_to,
+                   hostname,
                    id,
                    ip,
                    ipmi_ip,

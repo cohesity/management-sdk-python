@@ -35,6 +35,10 @@ class SqlProtectionSource(object):
         db_files (list of DbFileInfo): Specifies the last known information
             about the set of database files on the host. This field is set
             only for type 'kDatabase'.
+        default_database_location (string):  Specifies the default path for
+            data files for DBs in an instance
+        default_log_location (string): Specifies the default path for log
+            files for DBs in an instance
         db_owner_username (string): Specifies the name of the database owner.
         id (SqlSourceId): Specifies a unique id for a SQL Protection Source.
         name (string): Specifies the instance name of the SQL Protection
@@ -88,6 +92,8 @@ class SqlProtectionSource(object):
         "db_compatibility_level":'dbCompatibilityLevel',
         "db_file_groups":'dbFileGroups',
         "db_files":'dbFiles',
+        "default_database_location":'defaultDatabaseLocation',
+        "default_log_location":'defaultLogLocation',
         "db_owner_username":'dbOwnerUsername',
         "id":'id',
         "name":'name',
@@ -107,6 +113,8 @@ class SqlProtectionSource(object):
                  db_compatibility_level=None,
                  db_file_groups=None,
                  db_files=None,
+                 default_database_location=None,
+                 default_log_location=None,
                  db_owner_username=None,
                  id=None,
                  name=None,
@@ -126,6 +134,8 @@ class SqlProtectionSource(object):
         self.db_compatibility_level = db_compatibility_level
         self.db_file_groups = db_file_groups
         self.db_files = db_files
+        self.default_database_location = default_database_location
+        self.default_log_location = default_log_location
         self.db_owner_username = db_owner_username
         self.id = id
         self.name = name
@@ -166,6 +176,8 @@ class SqlProtectionSource(object):
             db_files = list()
             for structure in dictionary.get('dbFiles'):
                 db_files.append(cohesity_management_sdk.models.db_file_info.DbFileInfo.from_dictionary(structure))
+        default_database_location = dictionary.get('defaultDatabaseLocation')
+        default_log_location = dictionary.get('defaultLogLocation')
         db_owner_username = dictionary.get('dbOwnerUsername')
         id = cohesity_management_sdk.models.sql_source_id.SqlSourceId.from_dictionary(dictionary.get('id')) if dictionary.get('id') else None
         name = dictionary.get('name')
@@ -184,6 +196,8 @@ class SqlProtectionSource(object):
                    db_compatibility_level,
                    db_file_groups,
                    db_files,
+                   default_database_location,
+                   default_log_location,
                    db_owner_username,
                    id,
                    name,

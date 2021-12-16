@@ -40,8 +40,8 @@ class RestoreTask(object):
             Restore Task that retrieves objects from an archive. This field is
             only populated when objects must be retrieved from an archive
             before being restored. overrideDescription:true
-        can_tear_down (bool): Specifies whether it is possible to tear down
-            the objects created by the recovery.
+        clone_status (CloneStatusEnum): Specifies the latest state of the
+            clone. This is only set when this task is a clone task.
         clone_view_parameters (UpdateViewParam): Specifies the View settings
             used when cloning a View.
         continue_on_error (bool): Specifies if the Restore Task should
@@ -121,7 +121,7 @@ class RestoreTask(object):
             the tear down operation if it fails. 
         tear_down_status (TearDownStatusEnum): Specifies the status of the
             tear down operation. This is only set when the
-            field 'CanTearDown' is set to true.
+            field 'cloneStatus' is set to true.
             'kReadyToSchedule' indicates that the task is waiting to be scheduled.
             'kAdmitted' indicates that the task has been admitted.
             'kFinished' indicates that the task is finished with or without error.
@@ -169,7 +169,7 @@ class RestoreTask(object):
         "application_parameters":'applicationParameters',
         "archive_task_uid":'archiveTaskUid',
         "archive_task_uids":'archiveTaskUids',
-        "can_tear_down":'canTearDown',
+        "clone_status":'cloneStatus',
         "clone_view_parameters":'cloneViewParameters',
         "continue_on_error":'continueOnError',
         "datastore_id":'datastoreId',
@@ -206,7 +206,7 @@ class RestoreTask(object):
                  application_parameters=None,
                  archive_task_uid=None,
                  archive_task_uids=None,
-                 can_tear_down=None,
+                 clone_status=None,
                  clone_view_parameters=None,
                  continue_on_error=None,
                  datastore_id=None,
@@ -242,7 +242,7 @@ class RestoreTask(object):
         self.application_parameters = application_parameters
         self.archive_task_uid = archive_task_uid
         self.archive_task_uids = archive_task_uids
-        self.can_tear_down = can_tear_down
+        self.clone_status = clone_status
         self.clone_view_parameters = clone_view_parameters
         self.continue_on_error = continue_on_error
         self.datastore_id = datastore_id
@@ -301,7 +301,7 @@ class RestoreTask(object):
             archive_task_uids = list()
             for structure in dictionary.get('archiveTaskUids'):
                 archive_task_uids.append(cohesity_management_sdk.models.universal_id.UniversalId.from_dictionary(structure))
-        can_tear_down = dictionary.get('canTearDown')
+        clone_status = dictionary.get('cloneStatus')
         clone_view_parameters = cohesity_management_sdk.models.update_view_param.UpdateViewParam.from_dictionary(dictionary.get('cloneViewParameters')) if dictionary.get('cloneViewParameters') else None
         continue_on_error = dictionary.get('continueOnError')
         datastore_id = dictionary.get('datastoreId')
@@ -345,7 +345,7 @@ class RestoreTask(object):
                    application_parameters,
                    archive_task_uid,
                    archive_task_uids,
-                   can_tear_down,
+                   clone_status,
                    clone_view_parameters,
                    continue_on_error,
                    datastore_id,
