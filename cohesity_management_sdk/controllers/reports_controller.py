@@ -409,7 +409,7 @@ class ReportsController(BaseController):
                 following format: "Area/Location", for example:"America/New_York".
             end_time_usecs (int|long, optional): Filter by end time.
                 Snapshot summary statistics
-            environments (code m, optional): Filter by a list of
+            environments (EnvironmentEnum, optional): Filter by a list of
                 environment types suchas 'kVMware', 'kView', etc.
                 Supported environment types such as 'kView', 'kSQL',
                 'kVMware', etc.
