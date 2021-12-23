@@ -33,6 +33,10 @@ class RunProtectionJobParam(object):
             run. If a Run Now operation is to be performed then the source ids
             should only be provided in the runNowParameters along with the
             database Ids.
+        use_policy_defaults (bool): Specifies if default policy settings should
+            be used interanally to copy snapshots to external targets already
+            configured in policy. This field will only apply if "CopyRunTargets"
+            is empty.
 
     """
 
@@ -41,14 +45,16 @@ class RunProtectionJobParam(object):
         "copy_run_targets":'copyRunTargets',
         "run_now_parameters":'runNowParameters',
         "run_type":'runType',
-        "source_ids":'sourceIds'
+        "source_ids":'sourceIds',
+        "use_policy_defaults":'usePolicyDefaults'
     }
 
     def __init__(self,
                  copy_run_targets=None,
                  run_now_parameters=None,
                  run_type=None,
-                 source_ids=None):
+                 source_ids=None,
+                 use_policy_defaults=None):
         """Constructor for the RunProtectionJobParam class"""
 
         # Initialize members of the class
@@ -56,6 +62,7 @@ class RunProtectionJobParam(object):
         self.run_now_parameters = run_now_parameters
         self.run_type = run_type
         self.source_ids = source_ids
+        self.use_policy_defaults = use_policy_defaults
 
 
     @classmethod
@@ -88,11 +95,13 @@ class RunProtectionJobParam(object):
                 run_now_parameters.append(cohesity_management_sdk.models.run_now_parameters.RunNowParameters.from_dictionary(structure))
         run_type = dictionary.get('runType')
         source_ids = dictionary.get('sourceIds')
+        use_policy_defaults = dictionary.get('usePolicyDefaults')
 
         # Return an object of this model
         return cls(copy_run_targets,
                    run_now_parameters,
                    run_type,
-                   source_ids)
+                   source_ids,
+                   use_policy_defaults)
 
 

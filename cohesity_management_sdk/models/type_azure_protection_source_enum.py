@@ -25,6 +25,7 @@ class TypeAzureProtectionSourceEnum(object):
     'kSubnet' represents a subnet within the virtual network.
     'kComputeOptions' indicates the number of CPU cores and memory size
     available for a type of a Virtual Machine.
+    'kAvailabilitySet' indicates the availability set.
 
     Attributes:
         KSUBSCRIPTION: TODO: type description here.
@@ -40,6 +41,7 @@ class TypeAzureProtectionSourceEnum(object):
         KNETWORKRESOURCEGROUP: TODO: type description here.
         KSUBNET: TODO: type description here.
         KCOMPUTEOPTIONS: TODO: type description here.
+        KAVAILABILITYSET: TODO: type description here.
 
     """
 
@@ -68,4 +70,6 @@ class TypeAzureProtectionSourceEnum(object):
     KSUBNET = 'kSubnet'
 
     KCOMPUTEOPTIONS = 'kComputeOptions'
+
+    KAVAILABILITYSET = 'kAvailabilitySet'
 

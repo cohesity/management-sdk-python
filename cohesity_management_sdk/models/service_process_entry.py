@@ -54,6 +54,10 @@ class ServiceProcessEntry(object):
             'kPatch' is a service for downloading and applying patches.
             'kCompass' is a service for serving dns request for external and
             internal traffic.
+            'kEtlServer' is a service responsible for ETling data for
+            globalsearch.
+            'kIcebox' is service that links Icebox service to other services on
+            cluster.
 
     """
 

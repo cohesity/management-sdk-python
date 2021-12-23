@@ -81,7 +81,9 @@ class ClusterStatusResult(object):
             reboot. 'kAtom' is a service for receiving data for the Continuous
             Data Protection. 'kPatch' is a service for downloading and
             applying patches. 'kCompass' is a service for serving dns request
-            for external and internal traffic.
+            for external and internal traffic. 'kEtlServer' is a service
+            responsible for ETling data for globalsearch. 'kIcebox' is service
+            that links Icebox service to other services on cluster.
         system_app_status (list of SystemAppStatusResult): Specifies the status
             of each system app on the Cluster
     """

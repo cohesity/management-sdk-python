@@ -13,6 +13,8 @@ class UpdateLinuxPasswordReqParams(object):
         linux_password (string): Specifies the new linux password.
         linux_username (string): Specifies the linux username for which the
             password will be updated.
+        verify_password (bool): True if request is only to verify if current
+            password matches with set password.
 
     """
 
@@ -20,19 +22,22 @@ class UpdateLinuxPasswordReqParams(object):
     _names = {
         "linux_password":'linuxPassword',
         "linux_username":'linuxUsername',
-        "linux_current_password":'linuxCurrentPassword'
+        "linux_current_password":'linuxCurrentPassword',
+        "verify_password":'verifyPassword'
     }
 
     def __init__(self,
                  linux_password=None,
                  linux_username=None,
-                 linux_current_password=None):
+                 linux_current_password=None,
+                 verify_password=None):
         """Constructor for the UpdateLinuxPasswordReqParams class"""
 
         # Initialize members of the class
         self.linux_current_password = linux_current_password
         self.linux_password = linux_password
         self.linux_username = linux_username
+        self.verify_password = verify_password
 
 
     @classmethod
@@ -56,10 +61,12 @@ class UpdateLinuxPasswordReqParams(object):
         linux_password = dictionary.get('linuxPassword')
         linux_username = dictionary.get('linuxUsername')
         linux_current_password = dictionary.get('linuxCurrentPassword')
+        verify_password = dictionary.get('verifyPassword')
 
         # Return an object of this model
         return cls(linux_password,
                    linux_username,
-                   linux_current_password)
+                   linux_current_password,
+                   verify_password)
 
 

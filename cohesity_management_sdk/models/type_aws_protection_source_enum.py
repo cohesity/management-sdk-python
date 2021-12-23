@@ -25,6 +25,7 @@ class TypeAwsProtectionSourceEnum(object):
     'kRDSInstance' represents a RDS DB instance.
     'kRDSSubnet' represents a RDS subnet.
     'kRDSTag' represents a tag attached to RDS instance.
+    'kAuroraCluster' represents an Aurora cluster.
 
     Attributes:
         KIAMUSER: TODO: type description here.
@@ -42,6 +43,7 @@ class TypeAwsProtectionSourceEnum(object):
         KRDSINSTANCE: TODO: type description here.
         KRDSSUBNET: TODO: type description here.
         KRDSTAG: TODO: type description here.
+        KAURORACLUSTER: TODO: type description here.
 
     """
 
@@ -74,4 +76,6 @@ class TypeAwsProtectionSourceEnum(object):
     KRDSSUBNET = 'kRDSSubnet'
 
     KRDSTAG = 'kRDSTag'
+
+    KAURORACLUSTER = 'kAuroraCluster'
 

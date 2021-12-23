@@ -157,7 +157,8 @@ class MonitoringController(BaseController):
                 Couchbase Protection Source environment. 'kHdfs' indicates
                 Hdfs Protection Source environment. 'kHive' indicates Hive
                 Protection Source environment. 'kHBase' indicates HBase
-                Protection Source environment.
+                Protection Source environment. 'kUDA' indicates Universal
+                Data Adapter Protection Source environment.
             page (int, optional): Specifies the page number in case of
                 pagination of response.
             page_size (int, optional): Specifies the size of the page in case

@@ -10,6 +10,7 @@ from cohesity_management_sdk.models.api_key import ApiKey
 from cohesity_management_sdk.models.created_api_key import CreatedApiKey
 from cohesity_management_sdk.models.linux_support_user_bash_shell_access_result import LinuxSupportUserBashShellAccessResult
 from cohesity_management_sdk.models.linux_support_user_sudo_access_result import LinuxSupportUserSudoAccessResult
+from cohesity_management_sdk.models.session_user import SessionUser
 from cohesity_management_sdk.models.sources_for_sid import SourcesForSid
 from cohesity_management_sdk.models.principal import Principal
 from cohesity_management_sdk.models.update_linux_password_result import UpdateLinuxPasswordResult
@@ -162,7 +163,8 @@ class PrincipalsController(BaseController):
                           object_class=None,
                           search=None,
                           sids=None,
-                          include_computers=None):
+                          include_computers=None,
+                          include_service_accounts=None):
         """Does a GET request to /public/principals/searchPrincipals.
 
         Optionally, limit the search results by specifying security identifiers
@@ -185,7 +187,8 @@ class PrincipalsController(BaseController):
                 are returned. 'kUser' specifies a user object class. 'kGroup'
                 specifies a group object class. 'kComputer' specifies a
                 computer object class. 'kWellKnownPrincipal' specifies a well
-                known principal.
+                known principal. 'kServiceAccount' specifies a service account
+                object class.
             search (string, optional): Optionally filter by matching a
                 substring. Only principals in the with a name or
                 sAMAccountName that matches part or all of the specified
@@ -197,6 +200,9 @@ class PrincipalsController(BaseController):
                 specified, a 'search' parameter should not be specified.
             include_computers (bool, optional): Specifies if Computer/GMSA
                 accounts need to be included in this search.
+            include_service_accounts (bool, optional): Specifies if service
+                accounts should be included in the search result.
+                This field is true by default.
 
         Returns:
             list of Principal: Response from the API. Success
@@ -221,7 +227,8 @@ class PrincipalsController(BaseController):
                 'objectClass': object_class,
                 'search': search,
                 'sids': sids,
-                'includeComputers': include_computers
+                'includeComputers': include_computers,
+                'includeServiceAccounts': include_service_accounts
             }
             _query_builder = APIHelper.append_url_with_query_parameters(
                 _query_builder, _query_parameters,
@@ -1334,6 +1341,72 @@ class PrincipalsController(BaseController):
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body,
                                               LinuxSupportUserSudoAccessResult.from_dictionary)
+
+        except Exception as e:
+            self.logger.error(e, exc_info=True)
+            raise
+
+    def verify_otp_code(self, body):
+        """Does a POST request to /public/verify-otp.
+
+        Returns the session user info if the verification is successful.
+
+        Args:
+            body (VerifyOtpCodeParams): Request to verify OTP code.
+
+        Returns:
+            SessionUser: Response from the API. Success
+
+        Raises:
+            APIException: When an error occurs while fetching the data from
+                the remote API. This exception includes the HTTP Response
+                code, an error message, and the HTTP body that was received in
+                the request.
+
+        """
+        try:
+            self.logger.info('verify_otp_code called.')
+
+            # Validate required parameters
+            self.logger.info(
+                'Validating required parameters for verify_otp_code.')
+            self.validate_parameters(body=body)
+
+            # Prepare query URL
+            self.logger.info('Preparing query URL for verify_otp_code.')
+            _url_path = '/public/verify-otp'
+            _query_builder = self.config.get_base_uri()
+            _query_builder += _url_path
+            _query_url = APIHelper.clean_url(_query_builder)
+
+            # Prepare headers
+            self.logger.info('Preparing headers for verify_otp_code.')
+            _headers = {
+                'accept': 'application/json',
+                'content-type': 'application/json; charset=utf-8'
+            }
+
+            # Prepare and execute request
+            self.logger.info(
+                'Preparing and executing request for verify_otp_code.')
+            _request = self.http_client.post(
+                _query_url,
+                headers=_headers,
+                parameters=APIHelper.json_serialize(body))
+            AuthManager.apply(_request, self.config)
+            _context = self.execute_request(_request,
+                                            name='verify_otp_code')
+
+            # Endpoint and global error handling using HTTP status codes.
+            self.logger.info('Validating response for verify_otp_code.')
+            if _context.response.status_code == 0:
+                raise RequestErrorErrorException('Error', _context)
+            self.validate_response(_context)
+
+            # Return appropriate type
+            return APIHelper.json_deserialize(
+                _context.response.raw_body,
+                SessionUser.from_dictionary)
 
         except Exception as e:
             self.logger.error(e, exc_info=True)

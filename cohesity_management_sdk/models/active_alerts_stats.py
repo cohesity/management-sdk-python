@@ -58,14 +58,14 @@ class ActiveAlertsStats(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "num_data_service_alerts":'NumDataServiceAlerts',
-        "num_data_service_critical_alerts":'NumDataServiceCriticalAlerts',
-        "num_data_service_info_alerts":'NumDataServiceInfoAlerts',
-        "num_data_service_warning_alerts":'NumDataServiceWarningAlerts',
-        "num_maintenance_alerts":'NumMaintenanceAlerts',
-        "num_maintenance_critical_alerts":'NumMaintenanceCriticalAlerts',
-        "num_maintenance_info_alerts":'NumMaintenanceInfoAlerts',
-        "num_maintenance_warning_alerts":'NumMaintenanceWarningAlerts',
+        "num_data_service_alerts":'numDataServiceAlerts',
+        "num_data_service_critical_alerts":'numDataServiceCriticalAlerts',
+        "num_data_service_info_alerts":'numDataServiceInfoAlerts',
+        "num_data_service_warning_alerts":'numDataServiceWarningAlerts',
+        "num_maintenance_alerts":'numMaintenanceAlerts',
+        "num_maintenance_critical_alerts":'numMaintenanceCriticalAlerts',
+        "num_maintenance_info_alerts":'numMaintenanceInfoAlerts',
+        "num_maintenance_warning_alerts":'numMaintenanceWarningAlerts',
         "num_critical_alerts":'numCriticalAlerts',
         "num_critical_alerts_categories":'numCriticalAlertsCategories',
         "num_hardware_alerts":'numHardwareAlerts',
@@ -150,14 +150,14 @@ class ActiveAlertsStats(object):
             return None
 
         # Extract variables from the dictionary
-        num_data_service_alerts = dictionary.get('NumDataServiceAlerts')
-        num_data_service_critical_alerts = dictionary.get('NumDataServiceCriticalAlerts')
-        num_data_service_info_alerts = dictionary.get('NumDataServiceInfoAlerts')
-        num_data_service_warning_alerts = dictionary.get('NumDataServiceWarningAlerts')
-        num_maintenance_alerts = dictionary.get('NumMaintenanceAlerts')
-        num_maintenance_critical_alerts = dictionary.get('NumMaintenanceCriticalAlerts')
-        num_maintenance_info_alerts = dictionary.get('NumMaintenanceInfoAlerts')
-        num_maintenance_warning_alerts = dictionary.get('NumMaintenanceWarningAlerts')
+        num_data_service_alerts = dictionary.get('numDataServiceAlerts')
+        num_data_service_critical_alerts = dictionary.get('numDataServiceCriticalAlerts')
+        num_data_service_info_alerts = dictionary.get('numDataServiceInfoAlerts')
+        num_data_service_warning_alerts = dictionary.get('numDataServiceWarningAlerts')
+        num_maintenance_alerts = dictionary.get('numMaintenanceAlerts')
+        num_maintenance_critical_alerts = dictionary.get('numMaintenanceCriticalAlerts')
+        num_maintenance_info_alerts = dictionary.get('numMaintenanceInfoAlerts')
+        num_maintenance_warning_alerts = dictionary.get('numMaintenanceWarningAlerts')
         num_critical_alerts = dictionary.get('numCriticalAlerts')
         num_critical_alerts_categories = dictionary.get('numCriticalAlertsCategories')
         num_hardware_alerts = dictionary.get('numHardwareAlerts')

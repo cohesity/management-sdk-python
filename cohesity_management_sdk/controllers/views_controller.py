@@ -6,6 +6,7 @@ from cohesity_management_sdk.api_helper import APIHelper
 from cohesity_management_sdk.configuration import Configuration
 from cohesity_management_sdk.controllers.base_controller import BaseController
 from cohesity_management_sdk.http.auth.auth_manager import AuthManager
+from cohesity_management_sdk.models.create_view_alias_response_body import  CreateViewAliasResponseBody
 from cohesity_management_sdk.models.list_nlm_locks_response import ListNlmLocksResponse
 from cohesity_management_sdk.models.qo_s_policy import QoSPolicy
 from cohesity_management_sdk.models.get_views_by_share_name_result import GetViewsByShareNameResult
@@ -412,7 +413,7 @@ class ViewsController(BaseController):
             body (ViewAlias): Request to create a View Alias.
 
         Returns:
-            ViewAlias: Response from the API. Success
+            CreateViewAliasResponseBody: Response from the API. Success
 
         Raises:
             APIException: When an error occurs while fetching the data from
@@ -461,7 +462,7 @@ class ViewsController(BaseController):
 
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body,
-                                              ViewAlias.from_dictionary)
+                                              CreateViewAliasResponseBody.from_dictionary)
 
         except Exception as e:
             self.logger.error(e, exc_info=True)

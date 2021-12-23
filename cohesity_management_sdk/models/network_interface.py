@@ -2,6 +2,7 @@
 # Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.bond_slave_info
+import cohesity_management_sdk.models.interface_stats
 
 class NetworkInterface(object):
 
@@ -41,6 +42,7 @@ class NetworkInterface(object):
         speed (string): Specifies the speed of the Interface.
         static_ip (string): Specifies the static IP of the interface.
         static_ip6 (string): Specifies the static IPv6 of the interface.
+        stats (InterfaceStats): Interface Stats.
         subnet (string): Specifies the subnet mask of the interface.
         subnet6 (string): Specifies the subnet6 mask of the interface.
         mtype (int): Specifies the type of interface.
@@ -70,6 +72,7 @@ class NetworkInterface(object):
         "speed":'speed',
         "static_ip":'staticIp',
         "static_ip6":'staticIp6',
+        "stats": 'stats',
         "subnet":'subnet',
         "subnet6":'subnet6',
         "mtype":'type',
@@ -97,6 +100,7 @@ class NetworkInterface(object):
                  speed=None,
                  static_ip=None,
                  static_ip6=None,
+                 stats=None,
                  subnet=None,
                  subnet6=None,
                  mtype=None,
@@ -124,6 +128,7 @@ class NetworkInterface(object):
         self.speed = speed
         self.static_ip = static_ip
         self.static_ip6 = static_ip6
+        self.stats = stats
         self.subnet = subnet
         self.subnet6 = subnet6
         self.mtype = mtype
@@ -172,6 +177,7 @@ class NetworkInterface(object):
         speed = dictionary.get('speed')
         static_ip = dictionary.get('staticIp')
         static_ip6 = dictionary.get('staticIp6')
+        stats = cohesity_management_sdk.models.interface_stats.InterfaceStats.from_dictionary(dictionary.get('stats')) if dictionary.get('stats') else None
         subnet = dictionary.get('subnet')
         subnet6 = dictionary.get('subnet6')
         mtype = dictionary.get('type')
@@ -198,6 +204,7 @@ class NetworkInterface(object):
                    speed,
                    static_ip,
                    static_ip6,
+                   stats,
                    subnet,
                    subnet6,
                    mtype,

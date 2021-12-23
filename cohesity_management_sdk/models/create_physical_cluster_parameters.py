@@ -13,7 +13,14 @@ class CreatePhysicalClusterParameters(object):
     Specifies the parameters needed for creation of a new Cluster.
 
     Attributes:
+        cluster_destroy_hmac_key (string): Specifies HMAC secret key that will
+            be used to validate OTP used for destroy request. This is b32 format
+            of the HMAC key. This should only be set/modified during cluster
+            creation.
         cluster_name (string): Specifies the name of the new Cluster.
+        enable_cluster_destroy (bool): Specifies if cluster destroy op is
+            enabled on this cluster.
+            This should only be set/modified during cluster creation.
         encryption_config (EncryptionConfiguration): Specifies the parameters
             the user wants to use when configuring encryption for the new
             Cluster.
@@ -31,7 +38,9 @@ class CreatePhysicalClusterParameters(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "cluster_destroy_hmac_key":'clusterDestroyHmacKey',
         "cluster_name":'clusterName',
+        "enable_cluster_destroy":'enableClusterDestroy',
         "ip_preference":'ipPreference',
         "ipmi_config":'ipmiConfig',
         "network_config":'networkConfig',
@@ -41,7 +50,9 @@ class CreatePhysicalClusterParameters(object):
     }
 
     def __init__(self,
+                 cluster_destroy_hmac_key=None,
                  cluster_name=None,
+                 enable_cluster_destroy=None,
                  ipmi_config=None,
                  network_config=None,
                  node_configs=None,
@@ -51,7 +62,9 @@ class CreatePhysicalClusterParameters(object):
         """Constructor for the CreatePhysicalClusterParameters class"""
 
         # Initialize members of the class
+        self.cluster_destroy_hmac_key = cluster_destroy_hmac_key
         self.cluster_name = cluster_name
+        self.enable_cluster_destroy = enable_cluster_destroy
         self.encryption_config = encryption_config
         self.ip_preference = ip_preference
         self.ipmi_config = ipmi_config
@@ -79,6 +92,8 @@ class CreatePhysicalClusterParameters(object):
 
         # Extract variables from the dictionary
         cluster_name = dictionary.get('clusterName')
+        cluster_destroy_hmac_key = dictionary.get('clusterDestroyHmacKey')
+        enable_cluster_destroy = dictionary.get('enableClusterDestroy')
         ipmi_config = cohesity_management_sdk.models.ipmi_configuration.IpmiConfiguration.from_dictionary(dictionary.get('ipmiConfig')) if dictionary.get('ipmiConfig') else None
         ip_preference = dictionary.get('ipPreference', None)
         network_config = cohesity_management_sdk.models.network_configuration.NetworkConfiguration.from_dictionary(dictionary.get('networkConfig')) if dictionary.get('networkConfig') else None
@@ -91,7 +106,9 @@ class CreatePhysicalClusterParameters(object):
         metadata_fault_tolerance = dictionary.get('metadataFaultTolerance')
 
         # Return an object of this model
-        return cls(cluster_name,
+        return cls(cluster_destroy_hmac_key,
+                   cluster_name,
+                   enable_cluster_destroy,
                    ipmi_config,
                    network_config,
                    node_configs,

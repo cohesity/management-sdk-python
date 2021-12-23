@@ -84,12 +84,16 @@ class UpdateClusterParams(object):
             scheme should be disabled for this cluster.
         pcie_ssd_tier_rebalance_delay_secs (int): Specifies the rebalance
             delay in seconds for cluster PcieSSD storage tier.
+        proto_rpc_encryption_enabled (bool): Specifies if protorpc encryption
+            is enabled or not.
         reverse_tunnel_enabled (bool): If 'true', Cohesity's Remote Tunnel is
             enabled. Cohesity can access the Cluster and provide remote
             assistance via a Remote Tunnel.
         reverse_tunnel_end_time_msecs (long|int): ReverseTunnelEndTimeMsecs
             specifies the end time in milliseconds since epoch until when the
             reverse tunnel will stay enabled.
+        security_mode_dod (bool): Specifies if Security Mode DOD is enabled or
+            not.
         smb_ad_disabled (bool): Specifies if Active Directory should be
             disabled for authentication of SMB shares. If 'true', Active
             Directory is disabled.
@@ -97,7 +101,8 @@ class UpdateClusterParams(object):
             enabled on the cluster. When this is set to true, then any SMB3
             multichannel enabled client can establish multiple TCP connection
             per session to the Server.
-        stig_mode (bool): Specifies if STIG mode is enabled or not.
+        stig_mode (bool): TODO(mitch) StigMode is deprecated. Should it still
+            be in this list??
         syslog_servers (list of SyslogServer): Array of Syslog Servers.
             Specifies a list of Syslog servers to send audit logs to.
         tenant_viewbox_sharing_enabled (bool): In case multi tenancy is
@@ -141,8 +146,10 @@ class UpdateClusterParams(object):
         "name":'name',
         "ntp_settings":'ntpSettings',
         "pcie_ssd_tier_rebalance_delay_secs":'pcieSsdTierRebalanceDelaySecs',
+        "proto_rpc_encryption_enabled":'protoRpcEncryptionEnabled',
         "reverse_tunnel_enabled":'reverseTunnelEnabled',
         "reverse_tunnel_end_time_msecs":'reverseTunnelEndTimeMsecs',
+        "security_mode_dod":'securityModeDod',
         "smb_ad_disabled":'smbAdDisabled',
         "smb_multichannel_enabled":'smbMultichannelEnabled',
         "stig_mode":'stigMode',
@@ -179,8 +186,10 @@ class UpdateClusterParams(object):
                  name=None,
                  ntp_settings=None,
                  pcie_ssd_tier_rebalance_delay_secs=None,
+                 proto_rpc_encryption_enabled=None,
                  reverse_tunnel_enabled=None,
                  reverse_tunnel_end_time_msecs=None,
+                 security_mode_dod=None,
                  smb_ad_disabled=None,
                  smb_multichannel_enabled=None,
                  stig_mode=None,
@@ -217,8 +226,10 @@ class UpdateClusterParams(object):
         self.name = name
         self.ntp_settings = ntp_settings
         self.pcie_ssd_tier_rebalance_delay_secs = pcie_ssd_tier_rebalance_delay_secs
+        self.proto_rpc_encryption_enabled = proto_rpc_encryption_enabled
         self.reverse_tunnel_enabled = reverse_tunnel_enabled
         self.reverse_tunnel_end_time_msecs = reverse_tunnel_end_time_msecs
+        self.security_mode_dod = security_mode_dod
         self.smb_ad_disabled = smb_ad_disabled
         self.smb_multichannel_enabled = smb_multichannel_enabled
         self.stig_mode = stig_mode
@@ -272,8 +283,10 @@ class UpdateClusterParams(object):
         name = dictionary.get('name')
         ntp_settings = cohesity_management_sdk.models.ntp_settings_config.NtpSettingsConfig.from_dictionary(dictionary.get('ntpSettings')) if dictionary.get('ntpSettings') else None
         pcie_ssd_tier_rebalance_delay_secs = dictionary.get('pcieSsdTierRebalanceDelaySecs')
+        proto_rpc_encryption_enabled = dictionary.get('protoRpcEncryptionEnabled')
         reverse_tunnel_enabled = dictionary.get('reverseTunnelEnabled')
         reverse_tunnel_end_time_msecs = dictionary.get('reverseTunnelEndTimeMsecs')
+        security_mode_dod = dictionary.get('securityModeDod')
         smb_ad_disabled = dictionary.get('smbAdDisabled')
         smb_multichannel_enabled = dictionary.get('smbMultichannelEnabled')
         stig_mode = dictionary.get('stigMode')
@@ -313,8 +326,10 @@ class UpdateClusterParams(object):
                    name,
                    ntp_settings,
                    pcie_ssd_tier_rebalance_delay_secs,
+                   proto_rpc_encryption_enabled,
                    reverse_tunnel_enabled,
                    reverse_tunnel_end_time_msecs,
+                   security_mode_dod,
                    smb_ad_disabled,
                    smb_multichannel_enabled,
                    stig_mode,

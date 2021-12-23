@@ -176,3 +176,4 @@ class ProtectionEnvironmentEnum(object):
     KHBASE = 'kHBase'
 
     KUDA = 'kUDA'
+

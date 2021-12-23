@@ -8,7 +8,7 @@ class FileStubbingParams_TargetViewMapEntry(object):
     """Implementation of the 'FileStubbingParams_TargetViewMapEntry' model.
 
     Attributes:
-        key (int): TODO: type description here.
+        key (long| int): TODO: type description here.
         value (FileStubbingParams_TargetViewData): TODO: type description here.
 
     """

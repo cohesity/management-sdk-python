@@ -95,7 +95,7 @@ class DeployVMsToAWSParams(object):
             return None
 
         # Extract variables from the dictionary
-        aurora_params = ohesity_management_sdk.models.deploy_db_instances_to_rds_params.DeployDBInstancesToRDSParams.from_dictionary(dictionary.get('auroraParams')) if dictionary.get('auroraParams') else None
+        aurora_params = cohesity_management_sdk.models.deploy_db_instances_to_rds_params.DeployDBInstancesToRDSParams.from_dictionary(dictionary.get('auroraParams')) if dictionary.get('auroraParams') else None
         instance_type = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('instanceType')) if dictionary.get('instanceType') else None
         key_pair_name = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('keyPairName')) if dictionary.get('keyPairName') else None
         network_security_groups = None

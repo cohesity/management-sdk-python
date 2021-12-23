@@ -6,6 +6,7 @@ import cohesity_management_sdk.models.legal_holdings
 import cohesity_management_sdk.models.copy_run_stats
 import cohesity_management_sdk.models.snapshot_target_settings
 import cohesity_management_sdk.models.universal_id
+import cohesity_management_sdk.models.data_lock_constraints
 
 class CopyRun(object):
 
@@ -19,6 +20,8 @@ class CopyRun(object):
         copy_snapshot_tasks (list of CopySnapshotTaskStatus): Specifies the
             status information of each task that copies the snapshot taken for
             a Protection Source.
+        data_lock_constraints (DataLockConstraints): Specifies the datalock
+            constraints for a copy run task.
         error (string): Specifies if an error occurred (if any) while running
             this task. This field is populated when the status is equal to
             'kFailure'.
@@ -60,6 +63,7 @@ class CopyRun(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "copy_snapshot_tasks":'copySnapshotTasks',
+        "data_lock_constraints":'dataLockConstraints',
         "error":'error',
         "expiry_time_usecs":'expiryTimeUsecs',
         "hold_for_legal_purpose":'holdForLegalPurpose',
@@ -74,6 +78,7 @@ class CopyRun(object):
 
     def __init__(self,
                  copy_snapshot_tasks=None,
+                 data_lock_constraints=None,
                  error=None,
                  expiry_time_usecs=None,
                  hold_for_legal_purpose=None,
@@ -88,6 +93,7 @@ class CopyRun(object):
 
         # Initialize members of the class
         self.copy_snapshot_tasks = copy_snapshot_tasks
+        self.data_lock_constraints = data_lock_constraints
         self.error = error
         self.expiry_time_usecs = expiry_time_usecs
         self.hold_for_legal_purpose = hold_for_legal_purpose
@@ -123,6 +129,7 @@ class CopyRun(object):
             copy_snapshot_tasks = list()
             for structure in dictionary.get('copySnapshotTasks'):
                 copy_snapshot_tasks.append(cohesity_management_sdk.models.copy_snapshot_task_status.CopySnapshotTaskStatus.from_dictionary(structure))
+        data_lock_constraints = cohesity_management_sdk.models.data_lock_constraints.DataLockConstraints.from_dictionary(dictionary.get('dataLockConstraints')) if dictionary.get('dataLockConstraints') else None
         error = dictionary.get('error')
         expiry_time_usecs = dictionary.get('expiryTimeUsecs')
         hold_for_legal_purpose = dictionary.get('holdForLegalPurpose')
@@ -140,6 +147,7 @@ class CopyRun(object):
 
         # Return an object of this model
         return cls(copy_snapshot_tasks,
+                   data_lock_constraints,
                    error,
                    expiry_time_usecs,
                    hold_for_legal_purpose,

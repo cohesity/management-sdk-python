@@ -170,7 +170,8 @@ class SearchController(BaseController):
                 Protection Source environment. 'kHdfs' indicates Hdfs
                 Protection Source environment. 'kHive' indicates Hive
                 Protection Source environment. 'kHBase' indicates HBase
-                Protection Source environment.
+                Protection Source environment. 'kUDA' indicates Universal Data
+                Adapter Protection Source environment.
             last_protection_job_run_status (list of int, optional): Specifies
                 the last Protection Job run status of the object. If
                 specified, objects will be filtered based on last job run

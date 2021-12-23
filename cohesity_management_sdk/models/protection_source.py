@@ -58,6 +58,8 @@ class ProtectionSource(object):
         couchbase_protection_source (CouchbaseProtectionSource): Specifies
             details about a Couchbase Protection Source when the environment
             is set to 'kCouchbase'.
+        custom_name (string): Specifies the user provided custom name of the
+            Protection Source.
         elastifile_protection_source (ElastifileProtectionSource): Specifies
             details about a Elastifile Protection Source when the environment
             is set to 'kElastifile'.
@@ -188,6 +190,7 @@ class ProtectionSource(object):
         "azure_protection_source":'azureProtectionSource',
         "cassandra_protection_source":'cassandraProtectionSource',
         "couchbase_protection_source":'couchbaseProtectionSource',
+        "custom_name":'customName',
         "elastifile_protection_source":'elastifileProtectionSource',
         "exchange_protection_source":'exchangeProtectionSource',
         "environment":'environment',
@@ -214,7 +217,7 @@ class ProtectionSource(object):
         "physical_protection_source":'physicalProtectionSource',
         "pure_protection_source":'pureProtectionSource',
         "sql_protection_source":'sqlProtectionSource',
-        "uda_protection_source":'uda_protection_source',
+        "uda_protection_source":'udaProtectionSource',
         "view_protection_source":'viewProtectionSource',
         "vmware_protection_source":'vmWareProtectionSource'
     }
@@ -226,6 +229,7 @@ class ProtectionSource(object):
                  azure_protection_source=None,
                  cassandra_protection_source=None,
                  couchbase_protection_source=None,
+                 custom_name=None,
                  elastifile_protection_source=None,
                  environment=None,
                  exchange_protection_source=None,
@@ -264,6 +268,7 @@ class ProtectionSource(object):
         self.azure_protection_source = azure_protection_source
         self.cassandra_protection_source = cassandra_protection_source
         self.couchbase_protection_source = couchbase_protection_source
+        self.custom_name = custom_name
         self.elastifile_protection_source = elastifile_protection_source
         self.exchange_protection_source = exchange_protection_source
         self.environment = environment
@@ -319,6 +324,7 @@ class ProtectionSource(object):
         azure_protection_source = cohesity_management_sdk.models.azure_protection_source.AzureProtectionSource.from_dictionary(dictionary.get('azureProtectionSource')) if dictionary.get('azureProtectionSource') else None
         cassandra_protection_source = cohesity_management_sdk.models.cassandra_protection_source.CassandraProtectionSource.from_dictionary(dictionary.get('cassandraProtectionSource')) if dictionary.get('cassandraProtectionSource') else None
         couchbase_protection_source = cohesity_management_sdk.models.couchbase_protection_source.CouchbaseProtectionSource.from_dictionary(dictionary.get('couchbaseProtectionSource')) if dictionary.get('couchbaseProtectionSource') else None
+        custom_name = dictionary.get('customName')
         elastifile_protection_source = cohesity_management_sdk.models.elastifile_protection_source.ElastifileProtectionSource.from_dictionary(dictionary.get('elastifileProtectionSource')) if dictionary.get('elastifileProtectionSource') else None
         exchange_protection_source = cohesity_management_sdk.models.exchange_protection_source.ExchangeProtectionSource.from_dictionary(dictionary.get('exchangeProtectionSource')) if dictionary.get('exchangeProtectionSource') else None
         environment = dictionary.get('environment')
@@ -356,6 +362,7 @@ class ProtectionSource(object):
                    azure_protection_source,
                    cassandra_protection_source,
                    couchbase_protection_source,
+                   custom_name,
                    elastifile_protection_source,
                    environment,
                    exchange_protection_source,

@@ -32,6 +32,9 @@ class VolumeInfo(object):
         volume_identifier (int): We assign a unique number to every volume
             within a VM which we see for the first time. The identifier will
             be monotonically increasing number startin from 1.
+        volume_source_type (int): The source type of the volume. This field is
+            typically stamped before processing volume and used to customize
+            process behavior like rpc timeout, max retries, mount options, etc.
         volume_type (int): Whether this volume is simple, lvm or ldm.
 
     """
@@ -50,6 +53,7 @@ class VolumeInfo(object):
         "subvol_info":'subvolInfo',
         "volume_guid":'volumeGuid',
         "volume_identifier":'volumeIdentifier',
+        "volume_source_type":'volumeSourceType',
         "volume_type":'volumeType'
     }
 
@@ -66,6 +70,7 @@ class VolumeInfo(object):
                  subvol_info=None,
                  volume_guid=None,
                  volume_identifier=None,
+                 volume_source_type=None,
                  volume_type=None):
         """Constructor for the VolumeInfo class"""
 
@@ -82,6 +87,7 @@ class VolumeInfo(object):
         self.subvol_info = subvol_info
         self.volume_guid = volume_guid
         self.volume_identifier = volume_identifier
+        self.volume_source_type = volume_source_type
         self.volume_type = volume_type
 
 
@@ -119,6 +125,7 @@ class VolumeInfo(object):
         subvol_info = cohesity_management_sdk.models.volume_info_sub_volume_info.from_dictionary(dictionary.get('subvolInfo')) if dictionary.get('subvolInfo') else None
         volume_guid = dictionary.get('volumeGuid')
         volume_identifier = dictionary.get('volumeIdentifier')
+        volume_source_type = dictionary.get('volumeSourceType')
         volume_type = dictionary.get('volumeType')
 
         # Return an object of this model
@@ -134,6 +141,7 @@ class VolumeInfo(object):
                    subvol_info,
                    volume_guid,
                    volume_identifier,
+                   volume_source_type,
                    volume_type)
 
 

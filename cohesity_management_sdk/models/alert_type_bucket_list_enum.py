@@ -20,6 +20,7 @@ class AlertTypeBucketListEnum(object):
         KMAINTENANCE: TODO: type description here.
 
     """
+
     KHARDWARE = 'kHardware'
 
     KSOFTWARE = 'kSoftware'
@@ -27,6 +28,3 @@ class AlertTypeBucketListEnum(object):
     KDATASERVICE = 'kDataService'
 
     KMAINTENANCE = 'kMaintenance'
-
-
-

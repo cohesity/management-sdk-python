@@ -510,6 +510,8 @@ class ClustersController(BaseController):
 
         Sends a request to remove a Node from a Cohesity Cluster.
 
+        WARNING: This is a destructive operation.
+
         Args:
             id (long|int): Specifies the ID of the node being removed.
 

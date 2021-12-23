@@ -10,12 +10,14 @@ class ObjectClassEnum(object):
     'kGroup' specifies a group object class.
     'kComputer' specifies a computer object class.
     'kWellKnownPrincipal' specifies a well known principal.
+    'kServiceAccount' specifies a service account object class.
 
     Attributes:
         KUSER: TODO: type description here.
         KGROUP: TODO: type description here.
         KCOMPUTER: TODO: type description here.
         KWELLKNOWNPRINCIPAL: TODO: type description here.
+        KSERVICEACCOUNT: TODO: type description here.
 
     """
 
@@ -26,4 +28,6 @@ class ObjectClassEnum(object):
     KCOMPUTER = 'kComputer'
 
     KWELLKNOWNPRINCIPAL = 'kWellKnownPrincipal'
+
+    KSERVICEACCOUNT = 'kServiceAccount'
 

@@ -12,6 +12,8 @@ class ViewAlias(object):
 
     Attributes:
         alias_name (string): Alias name.
+        enable_filer_audit_log (bool): Specifies whether to enable filer
+            audit log on this view alias.
         enable_smb_encryption (bool): Specifies the SMB encryption for the
             View Alias. If set, it enables the SMB encryption for the View
             Alias. Encryption is supported only by SMB 3.x dialects. Dialects
@@ -39,6 +41,7 @@ class ViewAlias(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "alias_name":'aliasName',
+        "enable_filer_audit_log":'enableFilerAuditLog',
         "enable_smb_encryption":'enableSmbEncryption',
         "enable_smb_view_discovery":'enableSmbViewDiscovery',
         "enforce_smb_encryption":'enforceSmbEncryption',
@@ -51,6 +54,7 @@ class ViewAlias(object):
 
     def __init__(self,
                  alias_name=None,
+                 enable_filer_audit_log=None,
                  enable_smb_encryption=None,
                  enable_smb_view_discovery=None,
                  enforce_smb_encryption=None,
@@ -63,6 +67,7 @@ class ViewAlias(object):
 
         # Initialize members of the class
         self.alias_name = alias_name
+        self.enable_filer_audit_log = enable_filer_audit_log
         self.enable_smb_encryption = enable_smb_encryption
         self.enable_smb_view_discovery = enable_smb_view_discovery
         self.enforce_smb_encryption = enforce_smb_encryption
@@ -92,6 +97,7 @@ class ViewAlias(object):
 
         # Extract variables from the dictionary
         alias_name = dictionary.get('aliasName')
+        enable_filer_audit_log = dictionary.get('enableFilerAuditLog')
         enable_smb_encryption = dictionary.get('enableSmbEncryption')
         enable_smb_view_discovery = dictionary.get('enableSmbViewDiscovery')
         enforce_smb_encryption = dictionary.get('enforceSmbEncryption')
@@ -111,6 +117,7 @@ class ViewAlias(object):
 
         # Return an object of this model
         return cls(alias_name,
+                   enable_filer_audit_log,
                    enable_smb_encryption,
                    enable_smb_view_discovery,
                    enforce_smb_encryption,

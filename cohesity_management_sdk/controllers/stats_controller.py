@@ -109,8 +109,6 @@ class StatsController(BaseController):
 
     def get_consumer_stats(self,
                            consumer_type=None,
-                           max_count=None,
-                           cookie=None,
                            consumer_id_list=None,
                            consumer_entity_id_list=None,
                            fetch_view_box_name=None,
@@ -120,7 +118,10 @@ class StatsController(BaseController):
                            view_boxes_id_list=None,
                            organizations_id_list=None,
                            tenant_ids=None,
-                           include_service_provider=None):
+                           include_service_provider=None,
+                           msecs_before_current_time_to_compare=None,
+                           max_count=None,
+                           cookie=None):
         """Does a GET request to /public/stats/consumers.
 
         Gets the statistics of consumers.
@@ -135,12 +136,6 @@ class StatsController(BaseController):
                 (storage domain). 'kReplicationRuns', indicates the stats info
                 of Replication In used per organization (tenant) per view box
                 (storage domain).
-            max_count (long|int, optional): Specifies a limit on the number of
-                stats groups returned.
-            cookie (string, optional): Specifies the opaque string returned in
-                the previous response. If this is set, next set of active
-                opens just after the previous response are returned. If this
-                is not set, first set of active opens are returned.
             consumer_id_list (list of long|int, optional): Specifies a list of
                 consumer ids.
             consumer_entity_id_list (list of string, optional): Specifies a
@@ -172,6 +167,14 @@ class StatsController(BaseController):
                 fetch the consumption of external service providers. These
                 information will be listed as a unique organization (tenant) in
                 response. By default it is false.
+            msecs_before_current_time_to_compare (long|int, optional): Specifies
+                the time in msecs before current time to compare with.
+            max_count (long|int, optional): Specifies a limit on the number of
+                stats groups returned.
+            cookie (string, optional): Specifies the opaque string returned in
+                the previous response. If this is set, next set of active
+                opens just after the previous response are returned. If this
+                is not set, first set of active opens are returned.
 
         Returns:
             GetConsumerStatsResult: Response from the API. Success
@@ -193,8 +196,6 @@ class StatsController(BaseController):
             _query_builder += _url_path
             _query_parameters = {
                 'consumerType': consumer_type,
-                'maxCount': max_count,
-                'cookie': cookie,
                 'consumerIdList': consumer_id_list,
                 'consumerEntityIdList': consumer_entity_id_list,
                 'fetchViewBoxName': fetch_view_box_name,
@@ -204,7 +205,10 @@ class StatsController(BaseController):
                 'viewBoxesIdList': view_boxes_id_list,
                 'organizationsIdList': organizations_id_list,
                 'tenantIds': tenant_ids,
-                'includeServiceProvider': include_service_provider
+                'includeServiceProvider': include_service_provider,
+                'maxCount': max_count,
+                'cookie': cookie,
+                'msecsBeforeCurrentTimeToCompare': msecs_before_current_time_to_compare
             }
             _query_builder = APIHelper.append_url_with_query_parameters(
                 _query_builder, _query_parameters,

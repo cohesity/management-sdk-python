@@ -20,6 +20,12 @@ class VmwareBackupEnvParams(object):
             backed up using VADP. By default the backups of such VMs will
             fail. If this is set to true, then such VMs in this backup job
             will be backed up by excluding the physical RDM disks.
+        enable_cbt_allowed (bool): Whether the backup job should allow enabling
+            CBT for VM when the backup runs. Currently, by default, the backup
+            run enables CBT for a VM during the backup if it's not already
+            enabled. However, there may be a case, where customer doesn't want
+            to enable CBT during the backup. This param will be used to
+            determine that.
         vmware_disk_exclusion_info (list of VmwareDiskExclusionProto): List of
             Virtual Disk(s) to be excluded from the backup job. These disks
             will be excluded for all VMs in this environment unless overriden
@@ -33,6 +39,7 @@ class VmwareBackupEnvParams(object):
         "allow_crash_consistent_snapshot":'allowCrashConsistentSnapshot',
         "allow_nbdssl_transport_fallback":'allowNbdsslTransportFallback',
         "allow_vms_with_physical_rdm_disks":'allowVmsWithPhysicalRdmDisks',
+        "enable_cbt_allowed":'enableCbtAllowed',
         "vmware_disk_exclusion_info":'vmwareDiskExclusionInfo'
     }
 
@@ -40,6 +47,7 @@ class VmwareBackupEnvParams(object):
                  allow_crash_consistent_snapshot=None,
                  allow_nbdssl_transport_fallback=None,
                  allow_vms_with_physical_rdm_disks=None,
+                 enable_cbt_allowed=None,
                  vmware_disk_exclusion_info=None):
         """Constructor for the VmwareBackupEnvParams class"""
 
@@ -47,6 +55,7 @@ class VmwareBackupEnvParams(object):
         self.allow_crash_consistent_snapshot = allow_crash_consistent_snapshot
         self.allow_nbdssl_transport_fallback = allow_nbdssl_transport_fallback
         self.allow_vms_with_physical_rdm_disks = allow_vms_with_physical_rdm_disks
+        self.enable_cbt_allowed = enable_cbt_allowed
         self.vmware_disk_exclusion_info = vmware_disk_exclusion_info
 
 
@@ -71,6 +80,7 @@ class VmwareBackupEnvParams(object):
         allow_crash_consistent_snapshot = dictionary.get('allowCrashConsistentSnapshot')
         allow_nbdssl_transport_fallback = dictionary.get('allowNbdsslTransportFallback')
         allow_vms_with_physical_rdm_disks = dictionary.get('allowVmsWithPhysicalRdmDisks')
+        enable_cbt_allowed = dictionary.get('enableCbtAllowed')
         vmware_disk_exclusion_info = None
         if dictionary.get('vmwareDiskExclusionInfo') != None:
             vmware_disk_exclusion_info = list()
@@ -81,6 +91,7 @@ class VmwareBackupEnvParams(object):
         return cls(allow_crash_consistent_snapshot,
                    allow_nbdssl_transport_fallback,
                    allow_vms_with_physical_rdm_disks,
+                   enable_cbt_allowed,
                    vmware_disk_exclusion_info)
 
 

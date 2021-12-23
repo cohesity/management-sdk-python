@@ -55,7 +55,8 @@ class ProtectionJobInfo(object):
             environment. 'kCouchbase' indicates Couchbase Protection Source
             environment. 'kHdfs' indicates Hdfs Protection Source environment.
             'kHive' indicates Hive Protection Source environment. 'kHBase'
-            indicates HBase Protection Source environment.
+            indicates HBase Protection Source environment.'kUDA'
+            indicates Universal Data Adapter Protection Source environment.
 
     """
 

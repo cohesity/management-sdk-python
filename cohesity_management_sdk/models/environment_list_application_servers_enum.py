@@ -47,6 +47,7 @@ class EnvironmentListApplicationServersEnum(object):
         KHDFS: TODO: type description here.
         KHIVE: TODO: type description here.
         KHBASE: TODO: type description here.
+        KUDA: TODO: type description here.
 
     """
 
@@ -128,5 +129,5 @@ class EnvironmentListApplicationServersEnum(object):
 
     KHBASE = 'kHBase'
 
-
+    KUDA = 'kUDA'
 

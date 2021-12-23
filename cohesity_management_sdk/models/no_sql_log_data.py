@@ -8,6 +8,8 @@ class NoSqlLogData(object):
     """Implementation of the 'NoSqlLogData' model.
 
     Attributes:
+        contains_change_event (bool): True if this file contains at least 1
+            change event.
         end_seq_number (Sequencer): End sequence number in the log file till
             which the data needs to be applied. If this not populated,
             hydration_time_usecs must be used for determining the point till
@@ -23,6 +25,7 @@ class NoSqlLogData(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "contains_change_event":'containsChangeEvent',
         "end_seq_number":'endSeqNumber',
         "log_file_name":'logFileName',
         "log_rollover":'logRollover',
@@ -30,6 +33,7 @@ class NoSqlLogData(object):
     }
 
     def __init__(self,
+                 contains_change_event=None,
                  end_seq_number=None,
                  log_file_name=None,
                  log_rollover=None,
@@ -37,6 +41,7 @@ class NoSqlLogData(object):
         """Constructor for the NoSqlLogData class"""
 
         # Initialize members of the class
+        self.contains_change_event = contains_change_event
         self.end_seq_number = end_seq_number
         self.log_file_name = log_file_name
         self.log_rollover = log_rollover
@@ -61,13 +66,15 @@ class NoSqlLogData(object):
             return None
 
         # Extract variables from the dictionary
+        contains_change_event = dictionary.get('containsChangeEvent')
         end_seq_number = cohesity_management_sdk.models.sequencer.Sequencer.from_dictionary(dictionary.get('endSeqNumber')) if dictionary.get('endSeqNumber') else None
         log_file_name = dictionary.get('logFileName')
         log_rollover = dictionary.get('logRollover')
         start_seq_number = cohesity_management_sdk.models.sequencer.Sequencer.from_dictionary(dictionary.get('startSeqNumber')) if dictionary.get('startSeqNumber') else None
 
         # Return an object of this model
-        return cls(end_seq_number,
+        return cls(contains_change_event,
+                   end_seq_number,
                    log_file_name,
                    log_rollover,
                    start_seq_number)

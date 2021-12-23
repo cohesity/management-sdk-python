@@ -56,6 +56,8 @@ class ServiceEnum(object):
     'kPatch' is a service for downloading and applying patches.
     'kCompass' is a service for serving dns request for external and internal
     traffic.
+    'kEtlServer' is a service responsible for ETling data for globalsearch.
+    'kIcebox' is service that links Icebox service to other services on cluster.
 
     Attributes:
         KAPOLLO: TODO: type description here.
@@ -91,6 +93,8 @@ class ServiceEnum(object):
         KATOM: TODO: type description here.
         KPATCH: TODO: type description here.
         KCOMPASS: TODO: type description here.
+        KETLSERVER: TODO: type description here.
+        KICEBOX: TODO: type description here.
 
     """
 
@@ -159,4 +163,8 @@ class ServiceEnum(object):
     KPATCH = 'kPatch'
 
     KCOMPASS = 'kCompass'
+
+    KETLSERVER = 'kEtlServer'
+
+    KICEBOX = 'kIcebox'
 

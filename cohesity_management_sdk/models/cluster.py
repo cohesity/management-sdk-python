@@ -12,6 +12,7 @@ import cohesity_management_sdk.models.ntp_settings_config
 import cohesity_management_sdk.models.schema_info
 import cohesity_management_sdk.models.cluster_stats
 import cohesity_management_sdk.models.supported_config
+import cohesity_management_sdk.models.old_syslog_server
 import cohesity_management_sdk.models.tiering_audit_log_configuration
 
 class Cluster(object):
@@ -21,8 +22,7 @@ class Cluster(object):
     Specifies information about the Cohesity Cluster.
 
     Attributes:
-        amqp_target_config (AMQPTargetConfig): Specifies the AMQP target
-            config.
+        amqp_target_config (AMQPTargetConfig):Specifies the AMQP target config.
         apps_subnet (Subnet): The subnet for Athena apps.
         assigned_racks_count (int): Specifies the number of racks in cluster
             with at least one rack assigned.
@@ -108,6 +108,7 @@ class Cluster(object):
         incarnation_id (long|int): Specifies the unique incarnation id of the
             Cohesity Cluster.
         ip_preference (int): IP preference
+        is_cluster_mfa_enabled (bool): Specifies if MFA is enabled on cluster.
         is_documentation_local (bool): Specifies what version of the
             documentation is used. If 'true', the version of documentation
             stored locally on the Cohesity Cluster is used. If 'false', the
@@ -129,6 +130,8 @@ class Cluster(object):
             tolerance setting for the cluster. This denotes the number of
             simultaneous failures[node] supported by metadata services like
             gandalf and scribe.
+        minimum_failure_domains_needed (int): Specifies minimum failure domains
+            needed in the cluster.
         multi_tenancy_enabled (bool): Specifies if multi tenancy is enabled in
             the cluster. Authentication & Authorization will always use
             tenant_id, however, some UI elements may be disabled when multi
@@ -138,8 +141,11 @@ class Cluster(object):
             Cluster.
         node_ips (string): IP addresses of nodes in the cluster
         ntp_settings (NtpSettingsConfig): TODO: type description here.
+        patch_version (string): Specifies the patch version applied to cluster.
         pcie_ssd_tier_rebalance_delay_secs (int): Specifies the rebalance
             delay in seconds for cluster PcieSSD storage tier.
+        proto_rpc_encryption_enabled (bool): Specifies if protorpc encryption
+            is enabled or not.
         proxy_vm_subnet (string): The subnet reserved for ProxyVM
         reverse_tunnel_enabled (bool): If 'true', Cohesity's Remote Tunnel is
             enabled. Cohesity can access the Cluster and provide remote
@@ -149,6 +155,8 @@ class Cluster(object):
             reverse tunnel will stay enabled.
         schema_info_list (list of SchemaInfo): Specifies the time series
             schema info of the cluster.
+        security_mode_dod (bool): Specifies if Security Mode DOD is enabled
+            or not.
         smb_ad_disabled (bool): Specifies if Active Directory should be
             disabled for authentication of SMB shares. If 'true', Active
             Directory is disabled.
@@ -158,11 +166,13 @@ class Cluster(object):
             per session to the Server.
         stats (ClusterStats): Specifies statistics about this Cohesity
             Cluster.
-        stig_mode (bool): Specifies if STIG mode is enabled or not.
+        stig_mode (bool): TODO(mitch) StigMode is deprecated. Should it still
+            be in this list??
         supported_config (SupportedConfig): Lists the supported Erasure Coding
             options for the number of Nodes in the Cohesity Cluster. In
             addition, the minimum number of Nodes supported for this Cluster
             type is defined.
+        syslog_servers (list of OldSyslogServer): Syslog servers.
         target_software_version (string): Specifies the Cohesity release that
             this Cluster is being upgraded to if an upgrade operation is in
             progress.
@@ -170,7 +180,7 @@ class Cluster(object):
             enabled, this flag controls whether multiple tenants can be placed
             on the same viewbox. Once set to true, this flag should never
             become false.
-        tiering_audit_log_config (TieringAuditLogConfiguration): Tiering Audit
+        tiering_audit_log_config (TieringAuditLogConfiguration):  Tiering Audit
             Log Configuration.
         timezone (string): Specifies the timezone to use for showing time in
             emails, reports, filer audit logs, etc.
@@ -216,6 +226,7 @@ class Cluster(object):
         "id":'id',
         "incarnation_id":'incarnationId',
         "ip_preference":'ipPreference',
+        "is_cluster_mfa_enabled":'isClusterMfaEnabled',
         "is_documentation_local":'isDocumentationLocal',
         "kms_server_id":'kmsServerId',
         "language_locale":'languageLocale',
@@ -223,21 +234,26 @@ class Cluster(object):
         "local_auth_domain_name":'localAuthDomainName',
         "local_groups_enabled":'localGroupsEnabled',
         "metadata_fault_tolerance_factor":'metadataFaultToleranceFactor',
+        "minimum_failure_domains_needed":'minimumFailureDomainsNeeded',
         "multi_tenancy_enabled":'multiTenancyEnabled',
         "name":'name',
         "node_count":'nodeCount',
         "node_ips":'nodeIps',
         "ntp_settings":'ntpSettings',
+        "patch_version":'patchVersion',
         "pcie_ssd_tier_rebalance_delay_secs":'pcieSsdTierRebalanceDelaySecs',
+        "proto_rpc_encryption_enabled":'protoRpcEncryptionEnabled',
         "proxy_vm_subnet":'proxyVMSubnet',
         "reverse_tunnel_enabled":'reverseTunnelEnabled',
         "reverse_tunnel_end_time_msecs":'reverseTunnelEndTimeMsecs',
         "schema_info_list":'schemaInfoList',
+        "security_mode_dod":'securityModeDod',
         "smb_ad_disabled":'smbAdDisabled',
         "smb_multichannel_enabled":'smbMultichannelEnabled',
         "stats":'stats',
         "stig_mode":'stigMode',
         "supported_config":'supportedConfig',
+        "syslog_servers":'syslogServers',
         "target_software_version":'targetSoftwareVersion',
         "tenant_viewbox_sharing_enabled":'tenantViewboxSharingEnabled',
         "tiering_audit_log_config":'tieringAuditLogConfig',
@@ -278,6 +294,7 @@ class Cluster(object):
                  id=None,
                  incarnation_id=None,
                  ip_preference=None,
+                 is_cluster_mfa_enabled=None,
                  is_documentation_local=None,
                  kms_server_id=None,
                  language_locale=None,
@@ -285,21 +302,26 @@ class Cluster(object):
                  local_auth_domain_name=None,
                  local_groups_enabled=None,
                  metadata_fault_tolerance_factor=None,
+                 minimum_failure_domains_needed=None,
                  multi_tenancy_enabled=None,
                  name=None,
                  node_count=None,
                  node_ips=None,
                  ntp_settings=None,
+                 patch_version=None,
                  pcie_ssd_tier_rebalance_delay_secs=None,
+                 proto_rpc_encryption_enabled=None,
                  proxy_vm_subnet=None,
                  reverse_tunnel_enabled=None,
                  reverse_tunnel_end_time_msecs=None,
                  schema_info_list=None,
+                 security_mode_dod=None,
                  smb_ad_disabled=None,
                  smb_multichannel_enabled=None,
                  stats=None,
                  stig_mode=None,
                  supported_config=None,
+                 syslog_servers=None,
                  target_software_version=None,
                  tenant_viewbox_sharing_enabled=None,
                  tiering_audit_log_config=None,
@@ -340,6 +362,7 @@ class Cluster(object):
         self.id = id
         self.incarnation_id = incarnation_id
         self.ip_preference = ip_preference
+        self.is_cluster_mfa_enabled = is_cluster_mfa_enabled
         self.is_documentation_local = is_documentation_local
         self.kms_server_id = kms_server_id
         self.language_locale = language_locale
@@ -347,25 +370,30 @@ class Cluster(object):
         self.local_auth_domain_name = local_auth_domain_name
         self.local_groups_enabled = local_groups_enabled
         self.metadata_fault_tolerance_factor = metadata_fault_tolerance_factor
+        self.minimum_failure_domains_needed = minimum_failure_domains_needed
         self.multi_tenancy_enabled = multi_tenancy_enabled
         self.name = name
         self.node_count = node_count
         self.node_ips = node_ips
         self.ntp_settings = ntp_settings
+        self.patch_version = patch_version
         self.pcie_ssd_tier_rebalance_delay_secs = pcie_ssd_tier_rebalance_delay_secs
+        self.proto_rpc_encryption_enabled = proto_rpc_encryption_enabled
         self.proxy_vm_subnet = proxy_vm_subnet
         self.reverse_tunnel_enabled = reverse_tunnel_enabled
         self.reverse_tunnel_end_time_msecs = reverse_tunnel_end_time_msecs
         self.schema_info_list = schema_info_list
+        self.security_mode_dod = security_mode_dod
         self.smb_ad_disabled = smb_ad_disabled
         self.smb_multichannel_enabled = smb_multichannel_enabled
         self.stats = stats
         self.stig_mode = stig_mode
         self.supported_config = supported_config
+        self.syslog_servers = syslog_servers
         self.target_software_version = target_software_version
         self.tenant_viewbox_sharing_enabled = tenant_viewbox_sharing_enabled
-        self.timezone = timezone
         self.tiering_audit_log_config = tiering_audit_log_config
+        self.timezone = timezone
         self.turbo_mode = turbo_mode
         self.use_heimdall = use_heimdall
         self.used_metadata_space_pct = used_metadata_space_pct
@@ -419,6 +447,7 @@ class Cluster(object):
         id = dictionary.get('id')
         incarnation_id = dictionary.get('incarnationId')
         ip_preference = dictionary.get('ipPreference')
+        is_cluster_mfa_enabled = dictionary.get('isClusterMfaEnabled')
         is_documentation_local = dictionary.get('isDocumentationLocal')
         kms_server_id = dictionary.get('kmsServerId')
         language_locale = dictionary.get('languageLocale')
@@ -426,12 +455,15 @@ class Cluster(object):
         local_auth_domain_name = dictionary.get('localAuthDomainName')
         local_groups_enabled = dictionary.get('localGroupsEnabled')
         metadata_fault_tolerance_factor = dictionary.get('metadataFaultToleranceFactor')
+        minimum_failure_domains_needed = dictionary.get('minimumFailureDomainsNeeded')
         multi_tenancy_enabled = dictionary.get('multiTenancyEnabled')
         name = dictionary.get('name')
         node_count = dictionary.get('nodeCount')
         node_ips = dictionary.get('nodeIps')
         ntp_settings = cohesity_management_sdk.models.ntp_settings_config.NtpSettingsConfig.from_dictionary(dictionary.get('ntpSettings')) if dictionary.get('ntpSettings') else None
+        patch_version = dictionary.get('patchVersion')
         pcie_ssd_tier_rebalance_delay_secs = dictionary.get('pcieSsdTierRebalanceDelaySecs')
+        proto_rpc_encryption_enabled = dictionary.get('protoRpcEncryptionEnabled')
         proxy_vm_subnet = dictionary.get('proxyVMSubnet')
         reverse_tunnel_enabled = dictionary.get('reverseTunnelEnabled')
         reverse_tunnel_end_time_msecs = dictionary.get('reverseTunnelEndTimeMsecs')
@@ -440,15 +472,21 @@ class Cluster(object):
             schema_info_list = list()
             for structure in dictionary.get('schemaInfoList'):
                 schema_info_list.append(cohesity_management_sdk.models.schema_info.SchemaInfo.from_dictionary(structure))
+        security_mode_dod = dictionary.get('securityModeDod')
         smb_ad_disabled = dictionary.get('smbAdDisabled')
         smb_multichannel_enabled = dictionary.get('smbMultichannelEnabled')
         stats = cohesity_management_sdk.models.cluster_stats.ClusterStats.from_dictionary(dictionary.get('stats')) if dictionary.get('stats') else None
         stig_mode = dictionary.get('stigMode')
         supported_config = cohesity_management_sdk.models.supported_config.SupportedConfig.from_dictionary(dictionary.get('supportedConfig')) if dictionary.get('supportedConfig') else None
+        syslog_servers = None
+        if dictionary.get('syslogServers'):
+            syslog_servers = list()
+            for structure in dictionary.get('syslogServers'):
+                syslog_servers.append(cohesity_management_sdk.models.old_syslog_server.OldSyslogServer.from_dictionary(structure))
         target_software_version = dictionary.get('targetSoftwareVersion')
         tenant_viewbox_sharing_enabled = dictionary.get('tenantViewboxSharingEnabled')
-        timezone = dictionary.get('timezone')
         tiering_audit_log_config = cohesity_management_sdk.models.tiering_audit_log_configuration.TieringAuditLogConfiguration.from_dictionary(dictionary.get('tieringAuditLogConfig')) if dictionary.get('tieringAuditLogConfig') else None
+        timezone = dictionary.get('timezone')
         turbo_mode = dictionary.get('turboMode')
         use_heimdall = dictionary.get('useHeimdall')
         used_metadata_space_pct = dictionary.get('usedMetadataSpacePct')
@@ -484,6 +522,7 @@ class Cluster(object):
                    id,
                    incarnation_id,
                    ip_preference,
+                   is_cluster_mfa_enabled,
                    is_documentation_local,
                    kms_server_id,
                    language_locale,
@@ -491,21 +530,26 @@ class Cluster(object):
                    local_auth_domain_name,
                    local_groups_enabled,
                    metadata_fault_tolerance_factor,
+                   minimum_failure_domains_needed,
                    multi_tenancy_enabled,
                    name,
                    node_count,
                    node_ips,
                    ntp_settings,
+                   patch_version,
                    pcie_ssd_tier_rebalance_delay_secs,
+                   proto_rpc_encryption_enabled,
                    proxy_vm_subnet,
                    reverse_tunnel_enabled,
                    reverse_tunnel_end_time_msecs,
                    schema_info_list,
+                   security_mode_dod,
                    smb_ad_disabled,
                    smb_multichannel_enabled,
                    stats,
                    stig_mode,
                    supported_config,
+                   syslog_servers,
                    target_software_version,
                    tenant_viewbox_sharing_enabled,
                    tiering_audit_log_config,

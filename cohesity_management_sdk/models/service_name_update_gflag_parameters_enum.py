@@ -58,6 +58,8 @@ class ServiceNameUpdateGflagParametersEnum(object):
     'kPatch' is a service for downloading and applying patches.
     'kCompass' is a service for serving dns request for external and internal
     traffic.
+    'kEtlServer' is a service responsible for ETling data for globalsearch.
+    'kIcebox' is service that links Icebox service to other services on cluster.
 
 
     Attributes:
@@ -79,7 +81,6 @@ class ServiceNameUpdateGflagParametersEnum(object):
         KNEXUS: TODO: type description here.
         KNEXUSPROXY: TODO: type description here.
         KSTORAGEPROXY: TODO: type description here.
-        KTRICORDER: TODO: type description here.
         KRTCLIENT: TODO: type description here.
         KVAULTPROXY: TODO: type description here.
         KSMBPROXY: TODO: type description here.
@@ -92,8 +93,7 @@ class ServiceNameUpdateGflagParametersEnum(object):
         KSMB2PROXY: TODO: type description here.
         KOS: TODO: type description here.
         KATOM: TODO: type description here.
-        KPATCH: TODO: type description here.
-        KCOMPASS: TODO: type description here.
+        KICEBOX: TODO: type description here.
 
     """
 
@@ -133,8 +133,6 @@ class ServiceNameUpdateGflagParametersEnum(object):
 
     KSTORAGEPROXY = 'kStorageProxy'
 
-    KTRICORDER = 'kTricorder'
-
     KRTCLIENT = 'kRtClient'
 
     KVAULTPROXY = 'kVaultProxy'
@@ -159,6 +157,5 @@ class ServiceNameUpdateGflagParametersEnum(object):
 
     KATOM = 'kAtom'
 
-    KPATCH = 'kPatch'
+    KICEBOX = 'kIcebox'
 
-    KCOMPASS = 'kCompass'

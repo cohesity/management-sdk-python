@@ -28,6 +28,7 @@ class Node(object):
         disk_count (long|int): DiskCount is the number of disks in a node.
         disk_count_by_tier (list of CountByTier): DiskCountByTier describes
             the disk number of each storage tier.
+        host_name (string): Host name of the node.
         id (long|int): Id is the Id of the Node.
         ip (string): Ip is the IP address of the Node.
         is_app_node (bool): Whether node is app node.
@@ -89,6 +90,7 @@ class Node(object):
         "cohesity_node_serial":'cohesityNodeSerial',
         "disk_count":'diskCount',
         "disk_count_by_tier":'diskCountByTier',
+        "host_name":'hostName',
         "id":'id',
         "ip":'ip',
         "is_app_node":'isAppNode',
@@ -116,6 +118,7 @@ class Node(object):
                  cohesity_node_serial=None,
                  disk_count=None,
                  disk_count_by_tier=None,
+                 host_name=None,
                  id=None,
                  ip=None,
                  is_app_node=None,
@@ -143,6 +146,7 @@ class Node(object):
         self.cohesity_node_serial = cohesity_node_serial
         self.disk_count = disk_count
         self.disk_count_by_tier = disk_count_by_tier
+        self.host_name = host_name
         self.id = id
         self.ip = ip
         self.is_app_node = is_app_node
@@ -195,6 +199,7 @@ class Node(object):
             disk_count_by_tier = list()
             for structure in dictionary.get('diskCountByTier'):
                 disk_count_by_tier.append(cohesity_management_sdk.models.count_by_tier.CountByTier.from_dictionary(structure))
+        host_name = dictionary.get('hostName')
         id = dictionary.get('id')
         ip = dictionary.get('ip')
         is_app_node = dictionary.get('isAppNode')
@@ -225,6 +230,7 @@ class Node(object):
                    cohesity_node_serial,
                    disk_count,
                    disk_count_by_tier,
+                   host_name,
                    id,
                    ip,
                    is_app_node,

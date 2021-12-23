@@ -3,6 +3,7 @@
 
 import cohesity_management_sdk.models.restore_oracle_app_object_params_alternate_location_params
 import cohesity_management_sdk.models.clone_app_view_params
+import cohesity_management_sdk.models.granular_restore_info
 import cohesity_management_sdk.models.oracle_source_params
 import cohesity_management_sdk.models.oracle_update_restore_task_options
 import cohesity_management_sdk.models.restore_oracle_app_object_params_key_value_pair
@@ -18,6 +19,10 @@ class RestoreOracleAppObjectParams(object):
             (RestoreOracleAppObjectParamsAlternateLocationParams): For
             restoring to alternate location this message can not be empty and
             all the fields inside the message also can not be empty.
+        granular_restore_info (GranularRestoreInfo): Contains information
+            about list of objects (PDB/Table/DataFile) to restore.
+        is_multi_stage_restore (bool): Will be set to true if this is a
+            multistage restore.
         no_open_mode (bool): If set to true, the recovered database will not
             be opened.
         oracle_clone_app_view_params_vec (list of CloneAppViewParams):
@@ -47,6 +52,8 @@ class RestoreOracleAppObjectParams(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "alternate_location_params":'alternateLocationParams',
+        "granular_restore_info":'granularRestoreInfo',
+        "is_multi_stage_restore":'isMultiStageRestore',
         "no_open_mode":'noOpenMode',
         "oracle_clone_app_view_params_vec":'oracleCloneAppViewParamsVec',
         "oracle_target_params":'oracleTargetParams',
@@ -58,6 +65,8 @@ class RestoreOracleAppObjectParams(object):
 
     def __init__(self,
                  alternate_location_params=None,
+                 granular_restore_info=None,
+                 is_multi_stage_restore=None,
                  no_open_mode=None,
                  oracle_clone_app_view_params_vec=None,
                  oracle_target_params=None,
@@ -69,6 +78,8 @@ class RestoreOracleAppObjectParams(object):
 
         # Initialize members of the class
         self.alternate_location_params = alternate_location_params
+        self.granular_restore_info = granular_restore_info
+        self.is_multi_stage_restore = is_multi_stage_restore
         self.no_open_mode = no_open_mode
         self.oracle_clone_app_view_params_vec = oracle_clone_app_view_params_vec
         self.oracle_target_params = oracle_target_params
@@ -97,6 +108,8 @@ class RestoreOracleAppObjectParams(object):
 
         # Extract variables from the dictionary
         alternate_location_params = cohesity_management_sdk.models.restore_oracle_app_object_params_alternate_location_params.RestoreOracleAppObjectParamsAlternateLocationParams.from_dictionary(dictionary.get('alternateLocationParams')) if dictionary.get('alternateLocationParams') else None
+        granular_restore_info = cohesity_management_sdk.models.granular_restore_info.GranularRestoreInfo.from_dictionary(dictionary.get('granularRestoreInfo')) if dictionary.get('granularRestoreInfo') else None
+        is_multi_stage_restore = dictionary.get('isMultiStageRestore')
         no_open_mode = dictionary.get('noOpenMode')
         oracle_clone_app_view_params_vec = None
         if dictionary.get('oracleCloneAppViewParamsVec') != None:
@@ -115,6 +128,8 @@ class RestoreOracleAppObjectParams(object):
 
         # Return an object of this model
         return cls(alternate_location_params,
+                   granular_restore_info,
+                   is_multi_stage_restore,
                    no_open_mode,
                    oracle_clone_app_view_params_vec,
                    oracle_target_params,

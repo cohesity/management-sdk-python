@@ -46,6 +46,7 @@ __all__ = [
     'scheduler_controller',
     'search_controller',
     'smb_file_opens_controller',
+    'static_route_controller',
     'statistics_controller',
     'stats_controller',
     'tags_controller',

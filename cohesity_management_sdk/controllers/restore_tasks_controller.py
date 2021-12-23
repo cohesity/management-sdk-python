@@ -15,7 +15,7 @@ from cohesity_management_sdk.models.restore_task import RestoreTask
 from cohesity_management_sdk.models.file_fstat_result import FileFstatResult
 from cohesity_management_sdk.models.file_snapshot_information import FileSnapshotInformation
 from cohesity_management_sdk.models.object_search_results import ObjectSearchResults
-from cohesity_management_sdk.models.org_vdc_network import OrgVdcNetwork
+from cohesity_management_sdk.models.list_org_vdc_networks_response import ListOrgVdcNetworksResponse
 from cohesity_management_sdk.models.restore_points_for_time_range import RestorePointsForTimeRange
 from cohesity_management_sdk.models.list_storage_profiles_response_body import ListStorageProfilesResponseBody
 from cohesity_management_sdk.models.virtual_disk_information import VirtualDiskInformation
@@ -2843,7 +2843,7 @@ Success
             id (long|int): Specifies the ID of the virtual datacenter.
 
         Returns:
-            list of OrgVdcNetwork: Response from the API. Success
+            ListOrgVdcNetworksResponse: Response from the API. Success
 
         Raises:
             APIException: When an error occurs while fetching the data from
@@ -2893,7 +2893,7 @@ Success
 
             # Return appropriate type
             return APIHelper.json_deserialize(_context.response.raw_body,
-                                              OrgVdcNetwork.from_dictionary)
+                                              ListOrgVdcNetworksResponse.from_dictionary)
 
         except Exception as e:
             self.logger.error(e, exc_info=True)

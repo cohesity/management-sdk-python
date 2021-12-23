@@ -60,6 +60,7 @@ class AlertMetadata(object):
             kArchivalRestore - Alert associated with Archival-Restore job.
             kRemoteReplication - Alert associated with Replication job.
             kQuota - Alert associated with Quotas.
+            kCDP - Alert associated with Continuous Data Protection.
         dedup_interval_seconds (int): Specifies dedup interval in seconds. If
             the same alert is raised multiple times by any client in this
             duration, only one of them will be reported.

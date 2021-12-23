@@ -42,7 +42,8 @@ class FileLevelDataLockConfig(object):
             than or equal to the default retention duration.
         mode (ModeFileLevelDataLockConfigEnum): Specifies the mode of file
             level datalock. Enterprise mode can be upgraded to Compliance
-            mode, but Compliance mode cannot be downgraded to Enterprise mode.
+            mode, but Compliance mode cannot be downgraded to Enterprise mode,
+            unless view's FileLevelDataLockConfig has coexisting_lock_mode set.
             kCompliance: This mode would disallow all user to delete/modify
             file or view under any condition when it 's in locked status
             except for deleting view when the view is empty. kEnterprise: This

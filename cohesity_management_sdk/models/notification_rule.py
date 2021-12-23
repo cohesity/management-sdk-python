@@ -51,6 +51,7 @@ class NotificationRule(object):
             kArchivalRestore - Alert associated with Archival-Restore job.
             kRemoteReplication - Alert associated with Replication job.
             kQuota - Alert associated with Quotas.
+            kCDP - Alert associated with Continuous Data Protection.
         email_delivery_targets (list of EmailDeliveryTarget): Specifies email
             addresses to be notified when an alert matching this rule is
             generated.

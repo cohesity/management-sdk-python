@@ -35,21 +35,17 @@ class Alert(object):
             kLicense - Alert associated with licensing.
             kSecurity - Alert associated with security.
             kUpgrade - Alert associated with upgrade activities.
-            kClusterManagement - Alert associated with cluster management
-            activities.
+            kClusterManagement - Alert associated with cluster management activities.
             kAuditLog - Alert associated with audit log events.
             kNetworking - Alert associated with networking issue.
-            kConfiguration - Alert associated with cluster or system
-            configurations.
-            kStorageUsage - Alert associated with the disk/domain/cluster
-            storage usage.
-            kFaultTolerance - Alert associated with the fault tolerance in
-            different levels.
+            kConfiguration - Alert associated with cluster or system configurations.
+            kStorageUsage - Alert associated with the disk/domain/cluster storage usage.
+            kFaultTolerance - Alert associated with the fault tolerance in different levels.
             kBackupRestore - Alert associated with Backup-Restore job.
             kArchivalRestore - Alert associated with Archival-Restore job.
             kRemoteReplication - Alert associated with Replication job.
             kQuota - Alert associated with Quotas.
-
+            kCDP - Alert associated with Continuous Data Protection.
         alert_code (string): Specifies a unique code that categorizes the
             Alert, for example: CE00200014, where CE stands for Cohesity
             Error, the alert state next 3 digits is the id of the Alert

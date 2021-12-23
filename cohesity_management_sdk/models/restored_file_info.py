@@ -16,6 +16,8 @@ class RestoredFileInfo(object):
             currently located.
         disk_partition_id (int): Disk partition to which the file belongs to.
         fs_uuid (string): File system UUID on which file resides.
+        inode_number (long|int): Inode number of the file.
+            This is needed for snapmirror restore workflow.
         is_directory (bool): Whether the path points to a directory.
         is_non_simple_ldm_vol (bool): This will be set to true for recovery
             workflows for non-simple volumes on Windows Dynamic Disks. In that
@@ -47,6 +49,7 @@ class RestoredFileInfo(object):
         "attached_disk_id":'attachedDiskId',
         "disk_partition_id":'diskPartitionId',
         "fs_uuid":'fsUuid',
+        "inode_number":'inodeNumber',
         "is_directory":'isDirectory',
         "is_non_simple_ldm_vol":'isNonSimpleLdmVol',
         "restore_base_directory":'restoreBaseDirectory',
@@ -62,6 +65,7 @@ class RestoredFileInfo(object):
                  attached_disk_id=None,
                  disk_partition_id=None,
                  fs_uuid=None,
+                 inode_number=None,
                  is_directory=None,
                  is_non_simple_ldm_vol=None,
                  restore_base_directory=None,
@@ -77,6 +81,7 @@ class RestoredFileInfo(object):
         self.attached_disk_id = attached_disk_id
         self.disk_partition_id = disk_partition_id
         self.fs_uuid = fs_uuid
+        self.inode_number = inode_number
         self.is_directory = is_directory
         self.is_non_simple_ldm_vol = is_non_simple_ldm_vol
         self.restore_base_directory = restore_base_directory
@@ -109,6 +114,7 @@ class RestoredFileInfo(object):
         attached_disk_id = dictionary.get('attachedDiskId')
         disk_partition_id = dictionary.get('diskPartitionId')
         fs_uuid = dictionary.get('fsUuid')
+        inode_number = dictionary.get('inodeNumber')
         is_directory = dictionary.get('isDirectory')
         is_non_simple_ldm_vol = dictionary.get('isNonSimpleLdmVol')
         restore_base_directory = dictionary.get('restoreBaseDirectory')
@@ -123,6 +129,7 @@ class RestoredFileInfo(object):
                    attached_disk_id,
                    disk_partition_id,
                    fs_uuid,
+                   inode_number,
                    is_directory,
                    is_non_simple_ldm_vol,
                    restore_base_directory,

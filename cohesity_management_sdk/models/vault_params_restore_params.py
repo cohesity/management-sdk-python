@@ -10,6 +10,7 @@ class VaultParamsRestoreParams(object):
     TODO: type model description here.
 
     Attributes:
+        allow_marked_for_removal (bool): TODO: type description here.
         glacier (VaultParamsRestoreParamsGlacier): TODO: type description
             here.
 
@@ -17,14 +18,17 @@ class VaultParamsRestoreParams(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "allow_marked_for_removal":'allowMarkedForRemoval',
         "glacier":'glacier'
     }
 
     def __init__(self,
+                 allow_marked_for_removal=None,
                  glacier=None):
         """Constructor for the VaultParamsRestoreParams class"""
 
         # Initialize members of the class
+        self.allow_marked_for_removal = allow_marked_for_removal
         self.glacier = glacier
 
 
@@ -46,9 +50,10 @@ class VaultParamsRestoreParams(object):
             return None
 
         # Extract variables from the dictionary
+        allow_marked_for_removal = dictionary.get('allowMarkedForRemoval')
         glacier = cohesity_management_sdk.models.vault_params_restore_params_glacier.VaultParamsRestoreParamsGlacier.from_dictionary(dictionary.get('glacier')) if dictionary.get('glacier') else None
 
         # Return an object of this model
-        return cls(glacier)
+        return cls(allow_marked_for_removal, glacier)
 
 

@@ -14,6 +14,10 @@ class DirQuotaInfo(object):
     Attributes:
         config (DirQuotaConfig): Specifies the configuration object of a
             directory quota.
+        cookie (long|int): This cookie can be used in the succeeding call to
+            list user quotas and usages to get the next set of user quota
+            overrides. If set to nil, it means that there's no more results
+            that the server could provide.
         quotas (list of DirQuotaPolicy): Specifies the list of directory quota
             policies applied on the view.
 
@@ -22,16 +26,19 @@ class DirQuotaInfo(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "config":'config',
+        "cookie":'cookie',
         "quotas":'quotas'
     }
 
     def __init__(self,
                  config=None,
+                 cookie=None,
                  quotas=None):
         """Constructor for the DirQuotaInfo class"""
 
         # Initialize members of the class
         self.config = config
+        self.cookie = cookie
         self.quotas = quotas
 
 
@@ -54,6 +61,7 @@ class DirQuotaInfo(object):
 
         # Extract variables from the dictionary
         config = cohesity_management_sdk.models.dir_quota_config.DirQuotaConfig.from_dictionary(dictionary.get('config')) if dictionary.get('config') else None
+        cookie = dictionary.get('cookie')
         quotas = None
         if dictionary.get('quotas') != None:
             quotas = list()
@@ -62,6 +70,7 @@ class DirQuotaInfo(object):
 
         # Return an object of this model
         return cls(config,
+                   cookie,
                    quotas)
 
 

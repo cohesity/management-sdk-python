@@ -53,7 +53,8 @@ class AggregatedSubtreeInfo(object):
             Source environment. 'kCouchbase' indicates Couchbase Protection
             Source environment. 'kHdfs' indicates Hdfs Protection Source
             environment. 'kHive' indicates Hive Protection Source environment.
-            'kHBase' indicates HBase Protection Source environment.
+            'kHBase' indicates HBase Protection Source environment. 'kUDA'
+            indicates Universal Data Adapter Protection Source environment.
         leaves_count (long|int): Specifies the number of leaf nodes under the
             subtree of this node.
         total_logical_size (long|int): Specifies the total logical size of the

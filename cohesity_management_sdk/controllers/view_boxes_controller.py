@@ -26,7 +26,8 @@ class ViewBoxesController(BaseController):
                        cluster_partition_ids=None,
                        fetch_stats=None,
                        fetch_time_series_schema=None,
-                       template_id=None):
+                       template_id=None,
+                       match_partial_names=None):
         """Does a GET request to /public/viewBoxes.
 
         If no parameters are specified, all Domains (View Boxes) currently on
@@ -55,6 +56,9 @@ class ViewBoxesController(BaseController):
                 (View Box) by the properties of the template like dedup,
                 compression. If empty, Storage Domains (View Boxes) are not
                 filtered.
+            match_partial_names (bool, optional): If true, the names in
+                'names' field are matched by prefix rather than exactly
+                matched.
 
         Returns:
             list of ViewBox: Response from the API. Success
@@ -82,7 +86,8 @@ class ViewBoxesController(BaseController):
                 'clusterPartitionIds': cluster_partition_ids,
                 'fetchStats': fetch_stats,
                 'fetchTimeSeriesSchema': fetch_time_series_schema,
-                'templateId': template_id
+                'templateId': template_id,
+                'matchPartialNames': match_partial_names
             }
             _query_builder = APIHelper.append_url_with_query_parameters(
                 _query_builder, _query_parameters,

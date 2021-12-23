@@ -12,6 +12,8 @@ class DeployVMsToAzureParams(object):
     when converting and deploying a VM to Azure.
 
     Attributes:
+        availability_set (EntityProto): Name of the Availability set in which
+            the VM is to be restored.
         azure_managed_disk_params (AzureManagedDiskParams): Contains managed
             disk parameters needed to deploy to Azure using managed disk.
         compute_options (EntityProto): Specifies the attributes and the latest
@@ -49,6 +51,7 @@ class DeployVMsToAzureParams(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "availability_set":'availabilitySet',
         "azure_managed_disk_params":'azureManagedDiskParams',
         "compute_options":'computeOptions',
         "network_resource_group":'networkResourceGroup',
@@ -68,6 +71,7 @@ class DeployVMsToAzureParams(object):
     }
 
     def __init__(self,
+                 availability_set=None,
                  azure_managed_disk_params=None,
                  compute_options=None,
                  network_resource_group=None,
@@ -87,6 +91,7 @@ class DeployVMsToAzureParams(object):
         """Constructor for the DeployVMsToAzureParams class"""
 
         # Initialize members of the class
+        self.availability_set = availability_set
         self.azure_managed_disk_params = azure_managed_disk_params
         self.compute_options = compute_options
         self.network_resource_group = network_resource_group
@@ -123,6 +128,7 @@ class DeployVMsToAzureParams(object):
             return None
 
         # Extract variables from the dictionary
+        availability_set = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('availabilitySet')) if dictionary.get('availabilitySet') else None
         azure_managed_disk_params = cohesity_management_sdk.models.azure_managed_disk_params.AzureManagedDiskParams.from_dictionary(dictionary.get('azureManagedDiskParams')) if dictionary.get('azureManagedDiskParams') else None
         compute_options = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('computeOptions')) if dictionary.get('computeOptions') else None
         network_resource_group = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('networkResourceGroup')) if dictionary.get('networkResourceGroup') else None
@@ -141,7 +147,8 @@ class DeployVMsToAzureParams(object):
         virtual_network = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('virtualNetwork')) if dictionary.get('virtualNetwork') else None
 
         # Return an object of this model
-        return cls(azure_managed_disk_params,
+        return cls(availability_set,
+                   azure_managed_disk_params,
                    compute_options,
                    network_resource_group,
                    network_security_group,

@@ -87,6 +87,8 @@ class ConsumerStats(object):
             'kHdfs' indicates Hdfs Protection Source environment.
             'kHive' indicates Hive Protection Source environment.
             'kHBase' indicates HBase Protection Source environment.
+            'kUDA' indicates Universal Data Adapter Protection Source
+            environment.
         protection_policy_name (string): Specifies the name of the protection
             policy for 'kProtectionRuns' and 'kReplicationRuns' consumer.
         quota_hard_limit_bytes (long|int): Specifies the hard limit of logical

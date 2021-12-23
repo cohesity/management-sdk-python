@@ -2,6 +2,7 @@
 # Copyright 2021 Cohesity Inc.
 
 import cohesity_management_sdk.models.uda_objects
+import cohesity_management_sdk.models.uda_s3_view_backup_properties
 
 class UdaBackupJobParams(object):
 
@@ -22,6 +23,9 @@ class UdaBackupJobParams(object):
             support is added to UDA and protected objects can be
             specified by their Ids instead of their names.
         uda_objects (list of UdaObjects): List of objects to be backed up.
+        uda_s3_view_backup_properties (UdaS3ViewBackupProperties): This
+            message captures all the details needed by UDA Backup to create S3
+            views and to access the S3 bucket.
 
     """
 
@@ -33,7 +37,8 @@ class UdaBackupJobParams(object):
         "log_backup_args":'logBackupArgs',
         "mounts":'mounts',
         "source_id":'sourceId',
-        "uda_objects":'udaObjects'
+        "uda_objects":'udaObjects',
+        "uda_s3_view_backup_properties":'udaS3ViewBackupProperties'
     }
 
     def __init__(self,
@@ -43,7 +48,8 @@ class UdaBackupJobParams(object):
                  log_backup_args=None,
                  mounts=None,
                  source_id=None,
-                 uda_objects=None
+                 uda_objects=None,
+                 uda_s3_view_backup_properties=None
                  ):
         """Constructor for the UdaBackupJobParams class"""
 
@@ -55,6 +61,7 @@ class UdaBackupJobParams(object):
         self.mounts = mounts
         self.source_id = source_id
         self.uda_objects = uda_objects
+        self.uda_s3_view_backup_properties = uda_s3_view_backup_properties
 
     @classmethod
     def from_dictionary(cls,
@@ -85,6 +92,7 @@ class UdaBackupJobParams(object):
             uda_objects = list()
             for structure in dictionary.get('udaObjects'):
                 uda_objects.append(cohesity_management_sdk.models.uda_objects.UdaObjects.from_dictionary(structure))
+        uda_s3_view_backup_properties = cohesity_management_sdk.models.uda_s3_view_backup_properties.UdaS3ViewBackupProperties.from_dictionary(dictionary.get('udaS3ViewBackupProperties')) if dictionary.get('udaS3ViewBackupProperties') else None
 
         # Return an object of this model
         return cls(concurrency,
@@ -93,6 +101,7 @@ class UdaBackupJobParams(object):
                    log_backup_args,
                    mounts,
                    source_id,
-                   uda_objects)
+                   uda_objects,
+                   uda_s3_view_backup_properties)
 
 

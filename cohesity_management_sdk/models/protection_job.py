@@ -12,6 +12,7 @@ import cohesity_management_sdk.models.backup_script
 import cohesity_management_sdk.models.remote_job_script
 import cohesity_management_sdk.models.remote_view_config
 import cohesity_management_sdk.models.source_special_parameter
+import cohesity_management_sdk.models.protection_source
 import cohesity_management_sdk.models.protection_job_summary_stats
 import cohesity_management_sdk.models.universal_id
 
@@ -47,6 +48,10 @@ class ProtectionJob(object):
             quiesce failure.
         create_remote_view (bool): Specifies whether to create a remote view
             name to use for view overwrite.
+            This field is deprecated. Remote view names will automatically be
+            used for all view jobs with replication policy. Use
+            RemoteViewConfigList to setup remote view names.
+            deprecated: true
         creation_time_usecs (long|int): Specifies the time when the Protection
             Job was created.
         data_migration_policy (DataMigrationPolicy): Specifies settings for
@@ -103,10 +108,19 @@ class ProtectionJob(object):
             environment. 'kCouchbase' indicates Couchbase Protection Source
             environment. 'kHdfs' indicates Hdfs Protection Source environment.
             'kHive' indicates Hive Protection Source environment. 'kHBase'
-            indicates HBase Protection Source environment.
+            indicates HBase Protection Source environment. 'kUDA' indicates
+            Universal Data Adapter Protection Source environment.
         environment_parameters (EnvironmentTypeJobParameters): Specifies
             additional parameters that are common to all Protection Sources in
             a Protection Job created for a particular environment type.
+        exclude_label_ids (list of long|int): Array of arrays of label IDs that
+            specify labels to exclude.
+            Optionally specify a list of labels to exclude from protecting by
+            listing protection source ids of labels in this two dimensional
+            array. Using this two dimensional array of label IDs, the
+            Cluster generates a list of namespaces to exclude from protecting,
+            which are derived from intersections of the inner arrays
+            and union of the outer array.
         exclude_source_ids (list of long|int): Array of Excluded Source
             Objects.  List of Object ids from a Protection Source that should
             not be protected and are excluded from being backed up by the
@@ -176,6 +190,13 @@ class ProtectionJob(object):
         is_paused (bool): Indicates if the Protection Job is paused, which
             means that no new Job Runs are started but any existing Job Runs
             continue to execute.
+        label_ids (list of long|int): Array of array of label IDs that specify
+            labels to protect.
+            Optionally specify a list of labels to protect by listing
+            protection source ids of labels in this two dimensional array.
+            Using this two dimensional array of label IDs, the cluster
+            generates a list of namespaces to protect, which are derived from
+            intersections of the inner arrays and union of the outer array.
         last_run (ProtectionRunInstance): Specifies the status of one Job Run.
             A Job Run can have one Backup Run and zero or more Copy Runs.
         leverage_nutanix_snapshots (bool): Specifies whether to leverage
@@ -191,6 +212,8 @@ class ProtectionJob(object):
             fallback to the default backup method.
         leverage_storage_snapshots_for_hyperflex (bool): Specifies whether to
             leverage Hyperflex as the storage snapshot array
+        missing_entities (list of ProtectionSource): Specifies Information
+            about missing entities.
         modification_time_usecs (long|int): Specifies the last time this Job
             was updated.
         modified_by_user (string): Specifies the last Cohesity user who
@@ -331,6 +354,7 @@ class ProtectionJob(object):
         "end_time_usecs":'endTimeUsecs',
         "environment":'environment',
         "environment_parameters":'environmentParameters',
+        "exclude_label_ids":'excludeLabelIds',
         "exclude_source_ids":'excludeSourceIds',
         "exclude_vm_tag_ids":'excludeVmTagIds',
         "full_protection_sla_time_mins":'fullProtectionSlaTimeMins',
@@ -344,10 +368,12 @@ class ProtectionJob(object):
         "is_direct_archive_enabled":'isDirectArchiveEnabled',
         "is_native_format":'isNativeFormat',
         "is_paused":'isPaused',
+        "label_ids":'labelIds',
         "last_run":'lastRun',
         "leverage_nutanix_snapshots":'leverageNutanixSnapshots',
         "leverage_storage_snapshots":'leverageStorageSnapshots',
         "leverage_storage_snapshots_for_hyperflex":'leverageStorageSnapshotsForHyperflex',
+        "missing_entities":'missingEntities',
         "modification_time_usecs":'modificationTimeUsecs',
         "modified_by_user":'modifiedByUser',
         "parent_source_id":'parentSourceId',
@@ -391,6 +417,7 @@ class ProtectionJob(object):
                  end_time_usecs=None,
                  environment=None,
                  environment_parameters=None,
+                 exclude_label_ids=None,
                  exclude_source_ids=None,
                  exclude_vm_tag_ids=None,
                  full_protection_sla_time_mins=None,
@@ -404,10 +431,12 @@ class ProtectionJob(object):
                  is_direct_archive_enabled=None,
                  is_native_format=None,
                  is_paused=None,
+                 label_ids=None,
                  last_run=None,
                  leverage_nutanix_snapshots=None,
                  leverage_storage_snapshots=None,
                  leverage_storage_snapshots_for_hyperflex=None,
+                 missing_entities=None,
                  modification_time_usecs=None,
                  modified_by_user=None,
                  parent_source_id=None,
@@ -448,6 +477,7 @@ class ProtectionJob(object):
         self.end_time_usecs = end_time_usecs
         self.environment = environment
         self.environment_parameters = environment_parameters
+        self.exclude_label_ids = exclude_label_ids
         self.exclude_source_ids = exclude_source_ids
         self.exclude_vm_tag_ids = exclude_vm_tag_ids
         self.full_protection_sla_time_mins = full_protection_sla_time_mins
@@ -461,10 +491,12 @@ class ProtectionJob(object):
         self.is_direct_archive_enabled = is_direct_archive_enabled
         self.is_native_format = is_native_format
         self.is_paused = is_paused
+        self.label_ids = label_ids
         self.last_run = last_run
         self.leverage_nutanix_snapshots = leverage_nutanix_snapshots
         self.leverage_storage_snapshots = leverage_storage_snapshots
         self.leverage_storage_snapshots_for_hyperflex = leverage_storage_snapshots_for_hyperflex
+        self.missing_entities = missing_entities
         self.modification_time_usecs = modification_time_usecs
         self.modified_by_user = modified_by_user
         self.name = name
@@ -528,6 +560,7 @@ class ProtectionJob(object):
         end_time_usecs = dictionary.get('endTimeUsecs')
         environment = dictionary.get('environment')
         environment_parameters = cohesity_management_sdk.models.environment_type_job_parameters.EnvironmentTypeJobParameters.from_dictionary(dictionary.get('environmentParameters')) if dictionary.get('environmentParameters') else None
+        exclude_label_ids = dictionary.get('excludeLabelIds')
         exclude_source_ids = dictionary.get('excludeSourceIds')
         exclude_vm_tag_ids = dictionary.get('excludeVmTagIds')
         full_protection_sla_time_mins = dictionary.get('fullProtectionSlaTimeMins')
@@ -541,10 +574,16 @@ class ProtectionJob(object):
         is_direct_archive_enabled = dictionary.get('isDirectArchiveEnabled')
         is_native_format = dictionary.get('isNativeFormat')
         is_paused = dictionary.get('isPaused')
+        label_ids = dictionary.get('labelIds')
         last_run = cohesity_management_sdk.models.protection_run_instance.ProtectionRunInstance.from_dictionary(dictionary.get('lastRun')) if dictionary.get('lastRun') else None
         leverage_nutanix_snapshots = dictionary.get('leverageNutanixSnapshots')
         leverage_storage_snapshots = dictionary.get('leverageStorageSnapshots')
         leverage_storage_snapshots_for_hyperflex = dictionary.get('leverageStorageSnapshotsForHyperflex')
+        missing_entities = None
+        if dictionary.get('missingEntities'):
+            missing_entities = list()
+            for structure in dictionary.get('missingEntities'):
+                missing_entities.append(cohesity_management_sdk.models.protection_source.ProtectionSource.from_dictionary(structure))
         modification_time_usecs = dictionary.get('modificationTimeUsecs')
         modified_by_user = dictionary.get('modifiedByUser')
         parent_source_id = dictionary.get('parentSourceId')
@@ -595,6 +634,7 @@ class ProtectionJob(object):
                    end_time_usecs,
                    environment,
                    environment_parameters,
+                   exclude_label_ids,
                    exclude_source_ids,
                    exclude_vm_tag_ids,
                    full_protection_sla_time_mins,
@@ -608,10 +648,12 @@ class ProtectionJob(object):
                    is_direct_archive_enabled,
                    is_native_format,
                    is_paused,
+                   label_ids,
                    last_run,
                    leverage_nutanix_snapshots,
                    leverage_storage_snapshots,
                    leverage_storage_snapshots_for_hyperflex,
+                   missing_entities,
                    modification_time_usecs,
                    modified_by_user,
                    parent_source_id,

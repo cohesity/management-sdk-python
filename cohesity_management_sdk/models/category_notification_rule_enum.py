@@ -38,6 +38,7 @@ class CategoryNotificationRuleEnum(object):
     kArchivalRestore - Alert associated with Archival-Restore job.
     kRemoteReplication - Alert associated with Replication job.
     kQuota - Alert associated with Quotas.
+    kCDP - Alert associated with Continuous Data Protection.
 
     Attributes:
         KDISK: TODO: type description here.
@@ -71,7 +72,7 @@ class CategoryNotificationRuleEnum(object):
         KARCHIVALRESTORE: TODO: type description here.
         KREMOTEREPLICATION: TODO: type description here.
         KQUOTA: TODO: type description here.
-
+        KCDP: TODO: type description here.
 
     """
 
@@ -136,4 +137,6 @@ class CategoryNotificationRuleEnum(object):
     KREMOTEREPLICATION = 'kRemoteReplication'
 
     KQUOTA = 'kQuota'
+
+    KCDP = 'kCDP'
 

@@ -8,7 +8,6 @@ class AlertCategoryListGetAlertsEnum(object):
     TODO: type enum description here.
 
     Attributes:
-
         KDISK: TODO: type description here.
         KNODE: TODO: type description here.
         KCLUSTER: TODO: type description here.
@@ -40,8 +39,10 @@ class AlertCategoryListGetAlertsEnum(object):
         KARCHIVALRESTORE: TODO: type description here.
         KREMOTEREPLICATION: TODO: type description here.
         KQUOTA: TODO: type description here.
+        KCDP: TODO: type description here.
 
     """
+
     KDISK = 'kDisk'
 
     KNODE = 'kNode'
@@ -103,4 +104,6 @@ class AlertCategoryListGetAlertsEnum(object):
     KREMOTEREPLICATION = 'kRemoteReplication'
 
     KQUOTA = 'kQuota'
+
+    KCDP = 'kCDP'
 

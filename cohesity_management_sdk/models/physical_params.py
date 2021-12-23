@@ -11,7 +11,7 @@ class PhysicalParams(object):
     running in a Protection Source specific to a physical adapter.
 
     Attributes:
-        applications (ApplicationsEnum): Specifies the types of applications
+        applications (ApplicationEnum): Specifies the types of applications
             such as 'kSQL', 'kExchange', 'kAD' running on the Protection
             Source.
             overrideDescription: true
@@ -58,8 +58,7 @@ class PhysicalParams(object):
             'kHdfs' indicates Hdfs Protection Source environment.
             'kHive' indicates Hive Protection Source environment.
             'kHBase' indicates HBase Protection Source environment.
-            'kUDA' indicates Universal Data Adapter Protection Source
-            environment.
+            'kUDA' indicates Universal Data Adapter Protection Source environment.
         password (string): Specifies password of the username to access the
             target source.
         throttling_config (SourceThrottlingConfiguration): The configuration

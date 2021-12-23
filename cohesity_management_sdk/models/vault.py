@@ -94,6 +94,8 @@ class Vault(object):
             incremental archival when sending data to the Vault. If false,
             only full backups are performed. If true, incremental backups are
             performed between the full backups.
+        is_aws_snowball bool): Specifies whether the vault is aws snowball or
+            not.
         is_forever_incremental_archive_enabled (bool): Specifies whether
             forever incremental archival is enabled on this vault.
         is_password_encrypted (bool): Specifies if given password is not
@@ -167,6 +169,7 @@ class Vault(object):
         "full_archive_interval_days":'fullArchiveIntervalDays',
         "id":'id',
         "incremental_archives_enabled":'incrementalArchivesEnabled',
+        "is_aws_snowball":'isAwsSnowball',
         "is_forever_incremental_archive_enabled":'isForeverIncrementalArchiveEnabled',
         "is_password_encrypted":'isPasswordEncrypted',
         "key_file_download_time_usecs":'keyFileDownloadTimeUsecs',
@@ -199,6 +202,7 @@ class Vault(object):
                  full_archive_interval_days=None,
                  id=None,
                  incremental_archives_enabled=None,
+                 is_aws_snowball=None,
                  is_forever_incremental_archive_enabled=None,
                  is_password_encrypted=None,
                  key_file_download_time_usecs=None,
@@ -231,6 +235,7 @@ class Vault(object):
         self.full_archive_interval_days = full_archive_interval_days
         self.id = id
         self.incremental_archives_enabled = incremental_archives_enabled
+        self.is_aws_snowball = is_aws_snowball
         self.is_forever_incremental_archive_enabled = is_forever_incremental_archive_enabled
         self.is_password_encrypted = is_password_encrypted
         self.key_file_download_time_usecs = key_file_download_time_usecs
@@ -280,6 +285,7 @@ class Vault(object):
         full_archive_interval_days = dictionary.get('fullArchiveIntervalDays')
         id = dictionary.get('id')
         incremental_archives_enabled = dictionary.get('incrementalArchivesEnabled')
+        is_aws_snowball = dictionary.get('isAwsSnowball')
         is_forever_incremental_archive_enabled = dictionary.get('isForeverIncrementalArchiveEnabled')
         is_password_encrypted = dictionary.get('isPasswordEncrypted')
         key_file_download_time_usecs = dictionary.get('keyFileDownloadTimeUsecs')
@@ -311,6 +317,7 @@ class Vault(object):
                    full_archive_interval_days,
                    id,
                    incremental_archives_enabled,
+                   is_aws_snowball,
                    is_forever_incremental_archive_enabled,
                    is_password_encrypted,
                    key_file_download_time_usecs,

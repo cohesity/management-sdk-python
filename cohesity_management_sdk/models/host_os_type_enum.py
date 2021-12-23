@@ -5,7 +5,8 @@ class HostOsTypeEnum(object):
 
     """Implementation of the 'HostOsType' enum.
 
-    Specifies the host type on which the agent is installed.
+    Specifies the OS type for which user wants to download the
+    physical agent/plugin.
     'kLinux' indicates the Linux operating system.
     'kWindows' indicates the Microsoft Windows operating system.
     'kAix' indicates the IBM AIX operating system.
