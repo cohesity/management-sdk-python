@@ -30,7 +30,7 @@ config_dict = defaultdict()
 exported_res_dict = defaultdict(list)
 
 
-def gflag(endpoint, user, password, domain, body=None, action="get"):
+def gflag(rest_obj, body=None, action="get"):
     """
     To fetch gflag details, V1 Private API is called.
     : Return return code and response.
@@ -38,7 +38,6 @@ def gflag(endpoint, user, password, domain, body=None, action="get"):
     # Function to get and update the gflags from the clusters.
     # Returns response code and response.
     api = "clusters/gflag"
-    rest_obj = RestClient(endpoint, user, password, domain)
     if action == "get":
         code, resp = rest_obj.get(api)
     else:
@@ -59,17 +58,19 @@ def get_cluster_config(cohesity_client):
     return config
 
 
-def get_protection_policies(cohesity_client):
+def get_protection_policies(cohesity_client, rest_obj):
     """
     Fetches the protection policies available in the cluster and save the response
     to a file.
     : return list of protection policies.
     """
-    policy_list = cohesity_client.protection_policies.get_protection_policies()
-    policy_list = policy_list if policy_list else []
-    for policy in policy_list:
-        exported_res_dict["Protection Policies"].append(policy.name)
-    return policy_list
+    # CAD policy Support requires V2 APIs.
+    POLICY_API = "data-protect/policies"
+    code, resp = rest_obj.get(POLICY_API, version="v2")
+    if code == 200:
+        policies = json.loads(resp)
+        archival_policies = policies["policies"]
+    return archival_policies
 
 
 def get_storage_domains(cohesity_client):
@@ -95,7 +96,7 @@ def get_views(cohesity_client):
     return views_list
 
 
-def get_protection_jobs(cohesity_client, skip_jobs=False):
+def get_protection_jobs(cohesity_client, rest_obj, skip_jobs=False):
     """
     Function to fetch list of available active protection jobs
     available in the cluster.
@@ -113,7 +114,14 @@ def get_protection_jobs(cohesity_client, skip_jobs=False):
             continue
         active_job_list.append(job)
         exported_res_dict["Protection Jobs"].append(job.name)
-    return active_job_list
+
+    # V2 API response for NGCE Support.
+    API = "data-protect/protection-groups?isDeleted=false"
+    code, resp = rest_obj.get(API, "v2")
+    job_list_v2 = []
+    if code == 200:
+        job_list_v2 = json.loads(resp)["protectionGroups"] or []
+    return active_job_list, job_list_v2
 
 
 def get_protection_source_by_id(cohesity_client, _id, env):
@@ -154,14 +162,16 @@ def get_protection_sources(cohesity_client):
     for source in sources:
         keys = None
         environment = source.protection_source.environment
-        if source.protection_source.environment == env_enum.K_VMWARE:
-            name = source.protection_source.name
+        name = source.protection_source.name
+        if source.protection_source.environment in [env_enum.K_VMWARE, env_enum.KGCP]:
+            pass
         elif environment == env_enum.KISILON:
             name = source.protection_source.isilon_protection_source.name
             keys = ["password", "smb_password"]
         elif environment == "kCassandra":
-            name = source.protection_source.name
             keys = ["username", "password", "db_username", "db_password"]
+        elif environment == env_enum.KHDFS:
+            keys = ["hdfs_config", "hive_config", "username", "password"]
         else:
             continue
         config_dict[name] = keys
@@ -187,11 +197,12 @@ def get_external_targets(cohesity_client):
     """
     external_target_list = cohesity_client.vaults.get_vaults()
     for target in external_target_list:
-        # config[target.name] = dict()
         if target.config.amazon:
             config_dict[target.name] = ["secret_access_key"]
         elif target.config.azure:
             config_dict[target.name] = ["storage_access_key"]
+        elif target.config.google:
+            config_dict[target.name] = ["client_private_key"]
         else:
             config_dict[target.name] = None
         exported_res_dict["External Targets"].append(target.name)
@@ -264,7 +275,10 @@ def get_ad_entries(cohesity_client):
         for each_ad in resp:
             ad_list.append(each_ad.domain_name)
             config_dict[each_ad.domain_name] = [
-                    "username", "password", "machine_accounts"]
+                "username",
+                "password",
+                "machine_accounts",
+            ]
         exported_res_dict["Active directories"] = ad_list
     return resp
 
@@ -320,8 +334,7 @@ def get_whitelist_settings(cohesity_client, rest_obj):
         ]
         return settings
     except Exception as err:
-        print(
-            "Error while importing global whitelist settings, err msg %s" % err)
+        print("Error while importing global whitelist settings, err msg %s" % err)
         return None
 
 
@@ -372,5 +385,16 @@ def auto_populate_config():
         with open("config.ini", "w") as file_obj:
             config.write(file_obj)
         return True
+    except Exception as err:
+        return False
+
+
+def is_ngce(rest_obj):
+    try:
+        API = "clusters"
+        status_code, resp = rest_obj.get(API, version="v2")
+        cluster_info = json.loads(resp)
+        if status_code == 200 and cluster_info["clusterSize"] == "NextGen":
+            return True
     except Exception as err:
         return False

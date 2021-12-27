@@ -29,6 +29,8 @@ class RestClient:
         """
         if version == "v2":
             api = self.v2_api_prefix + api
+        #elif version == "public_v1":
+        #    api = self.api_prefix + "public" + api
         else:
             api = self.api_prefix + api
         return api
