@@ -31,6 +31,9 @@ try:
         EnvironmentRegisterProtectionSourceParametersEnum as env_enum,
     )
     from cohesity_management_sdk.models.exclude_type_enum import ExcludeTypeEnum
+    from cohesity_management_sdk.models.external_target_type_enum import (
+        ExternalTargetTypeEnum,
+    )
     from cohesity_management_sdk.models.external_client_subnets import (
         ExternalClientSubnets,
     )
@@ -278,94 +281,39 @@ def create_vaults():
             external_targets[vault.id] = available_vaults_dict[vault.name]
             imported_res_dict["External Targets"].append(vault.name)
             continue
-        if vault.config.qstar:  # Qstar target.
-            try:
-                body = Vault()
-                _construct_body(body, vault)
-                password = configparser.get(vault.name, "password")
-                body.config.qstar.password = password
-                resp = cohesity_client.vaults.create_vault(body)
-                external_targets[vault.id] = resp.id
-                imported_res_dict["External Targets"].append(body.name)
-                time.sleep(sleep_time)
-            except (APIException, RequestErrorErrorException) as e:
-                ERROR_LIST.append(
-                    "Error Adding Qstar Target: %s, Failed with error: %s"
-                    % (vault.name, e)
-                )
-            except Exception as err:
-                ERROR_LIST.append(
-                    "Please add correct config for %s in "
-                    "config.ini, err is %s" % (vault.name, err)
-                )
-
-        elif vault.config.azure:  # Azure Hot Blob target.
-            try:
-                body = Vault()
-                _construct_body(body, vault)
-                storage_access_key = configparser.get(
-                    vault.name, "storage_access_key")
-                body.config.azure.storage_access_key = storage_access_key
-                resp = cohesity_client.vaults.create_vault(body)
-                external_targets[vault.id] = resp.id
-                imported_res_dict["External Targets"].append(body.name)
-                time.sleep(sleep_time)
-            except (APIException, RequestErrorErrorException) as e:
-                ERROR_LIST.append(
-                    "Error Adding Azure hot blob Target: %s, Failed with "
-                    "error: %s" % (vault.name, e)
-                )
-            except Exception as err:
-                ERROR_LIST.append(
-                    "Please add correct config for %s in "
-                    "config.ini, err is %s" % (vault.name, err)
-                )
-
-        elif vault.config.amazon:  # Amazon s3 targets
-            try:
-                body = Vault()
-                _construct_body(body, vault)
-                secret_key = configparser.get(vault.name, "secret_access_key")
-                body.config.amazon.secret_access_key = secret_key
-                resp = cohesity_client.vaults.create_vault(body)
-                external_targets[vault.id] = resp.id
-                imported_res_dict["External Targets"].append(body.name)
-                time.sleep(sleep_time)
-            except RequestErrorErrorException as e:
-                ERROR_LIST.append(
-                    "Error Adding Amazon S3 Target: %s, Failed with error: %s"
-                    % (vault.name, e)
-                )
-            except APIException as e:
-                ERROR_LIST.append(
-                    "Error Adding Amazon S3 Target: %s, Failed with error: %s"
-                    % (vault.name, e)
-                )
-            except Exception as err:
-                ERROR_LIST.append(
-                    "Please add correct config for %s in " "config.ini" % vault.name
-                )
-        elif vault.config.nas:  # Generic s3 targets
+        try:
             body = Vault()
             _construct_body(body, vault)
-            try:
-                resp = cohesity_client.vaults.create_vault(body)
-                external_targets[vault.id] = resp.id
-                imported_res_dict["External Targets"].append(body.name)
-            except RequestErrorErrorException as e:
-                ERROR_LIST.append(
-                    "Error Adding S3 Target: %s, Failed with error: %s"
-                    % (vault.name, e)
+            if vault.config.qstar:  # Qstar target.
+                password = configparser.get(vault.name, "password")
+                body.config.qstar.password = password
+            elif vault.config.azure:  # Azure Hot Blob target.
+                storage_access_key = configparser.get(vault.name, "storage_access_key")
+                body.external_target_type = ExternalTargetTypeEnum.KAZURE
+                body.config.azure.storage_access_key = storage_access_key
+            elif vault.config.amazon:  # Amazon s3 targets
+                secret_key = configparser.get(vault.name, "secret_access_key")
+                body.config.amazon.secret_access_key = secret_key
+            elif vault.config.google:
+                private_key = (
+                    configparser.get(vault.name, "client_private_key")
+                    .encode()
+                    .decode("unicode-escape")
                 )
-            except APIException as e:
-                ERROR_LIST.append(
-                    "Error Adding S3 Target: %s, Failed with error: %s"
-                    % (vault.name, e)
-                )
-            except Exception as err:
-                ERROR_LIST.append(
-                    "Please add correct config for %s in " "config.ini" % vault.name
-                )
+                body.config.google.client_private_key = private_key
+            resp = cohesity_client.vaults.create_vault(body)
+            external_targets[vault.id] = resp.id
+            imported_res_dict["External Targets"].append(body.name)
+            time.sleep(sleep_time)
+        except (APIException, RequestErrorErrorException) as e:
+            ERROR_LIST.append(
+                "Error Adding Target: %s, Failed with error: %s" % (vault.name, e)
+            )
+        except Exception as err:
+            ERROR_LIST.append(
+                "Please add correct config for %s in "
+                "config.ini, err is %s" % (vault.name, err)
+            )
 
 
 def check_register_status(name, environment, sleep_count=6):

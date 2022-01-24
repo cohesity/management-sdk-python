@@ -109,7 +109,7 @@ def get_protection_jobs(cohesity_client, skip_jobs=False):
         if job.is_deleted:
             continue
         # Skip jobs which are paused or in-active(failover ready).
-        if skip_jobs and (job.is_paused or not job.is_active):
+        if skip_jobs and (job.is_paused or job.is_active != None):
             continue
         active_job_list.append(job)
         exported_res_dict["Protection Jobs"].append(job.name)
