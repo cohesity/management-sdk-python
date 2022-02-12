@@ -27,11 +27,14 @@ try:
     from library import RestClient
 except ImportError as err:
     import sys
+
     print(
         "Please ensure Cohesity Python SDK and dependency packages are installed to continue."
     )
-    print("To install Python SDK, run 'pip install cohesity-management-sdk "
-          "configparser requests'")
+    print(
+        "To install Python SDK, run 'pip install cohesity-management-sdk "
+        "configparser requests'"
+    )
     print("To install dependencies, run 'sh setup.py'")
     sys.exit()
 
@@ -86,8 +89,8 @@ except Exception as err:
 logger.setLevel(logging.INFO)
 
 logger.info(
-    "Exporting resources from cluster '%s'"
-    , (configparser.get("export_cluster_config", "cluster_ip"))
+    "Exporting resources from cluster '%s'",
+    (configparser.get("export_cluster_config", "cluster_ip")),
 )
 
 try:
@@ -100,13 +103,14 @@ try:
 except (NoSectionError, NoOptionError) as err:
     print("Error while fetching 'config.ini' content, error msg %s" % err)
 
-
 cluster_dict = {
     "cluster_config": library.get_cluster_config(cohesity_client),
     "views": library.get_views(cohesity_client),
     "storage_domains": library.get_storage_domains(cohesity_client),
-    "policies": library.get_protection_policies(cohesity_client),
-    "protection_jobs": library.get_protection_jobs(cohesity_client, skip_jobs),
+    "policies": library.get_protection_policies(cohesity_client, rest_obj),
+    "protection_jobs": library.get_protection_jobs(
+        cohesity_client, rest_obj, skip_jobs
+    ),
     "protection_sources": library.list_protection_sources(cohesity_client),
     "external_targets": library.get_external_targets(cohesity_client),
     "sources": library.get_protection_sources(cohesity_client),
@@ -129,7 +133,6 @@ if export_access_mgmnt:
 exported_res = library.debug()
 
 source_dct = {}
-KCASSANDRA = "kCassandra"
 
 # List of support environments.
 env_list = [
@@ -140,10 +143,12 @@ env_list = [
     env_enum.KVIEW,
     env_enum.K_VMWARE,
     env_enum.KSQL,
-    KCASSANDRA,
+    env_enum.KHDFS,
+    env_enum.KHIVE,
+    env_enum.KCASSANDRA,
     env_enum.KAD,
+    env_enum.KGCP,
 ]
-
 
 for source in cluster_dict["sources"]:
     _id = source.protection_source.id
@@ -151,15 +156,17 @@ for source in cluster_dict["sources"]:
     if env not in env_list:
         continue
 
-    if env == "kCassandra":
-        API = "public/protectionSources?id={}&environment={}".format(_id, env)
-        _, resp = rest_obj.get(api=API)
-        resp = json.loads(resp)
-        source_dct[_id] = resp
-    else:
-        res = library.get_protection_source_by_id(cohesity_client, _id, env)
-        source_dct[_id] = res.nodes
-    if env in [env_enum.KVIEW, env_enum.K_VMWARE, env_enum.KISILON, "kCassandra"]:
+    res = library.get_protection_source_by_id(cohesity_client, _id, env)
+    source_dct[_id] = res.nodes
+    if env in [
+        env_enum.KVIEW,
+        env_enum.K_VMWARE,
+        env_enum.KISILON,
+        env_enum.KCASSANDRA,
+        env_enum.KGCP,
+        env_enum.KHIVE,
+        env_enum.KHDFS,
+    ]:
         name = source.protection_source.name
         exported_res["Protection Sources"].append(name)
     else:
@@ -171,7 +178,7 @@ for source in cluster_dict["sources"]:
 cluster_dict["source_dct"] = source_dct
 
 # Fetch all the gflags from the cluster.
-code, resp = library.gflag(cluster_vip, username, password, domain)
+code, resp = library.gflag(rest_obj)
 
 if code == 200:
     cluster_dict["gflag"] = resp.decode("utf-8")
@@ -198,10 +205,12 @@ pickle.dump(cluster_dict, open(exported_config_file, "wb"))
 
 logger.info("Please find the exported resources summary.\n")
 for key, val in exported_res.items():
-    logger.info("Successfully exported the following %s:\n%s\n" , key, ", ".join(val))
+    if not val:
+        continue
+    logger.info("Successfully exported the following %s:\n%s\n", key, ", ".join(val))
 
 
-logger.info("Exported config file: %s" , exported_config_file)
+logger.info("Exported config file: %s", exported_config_file)
 
 # Auto populate config.ini file based on flag.
 if auto_fill_config:
