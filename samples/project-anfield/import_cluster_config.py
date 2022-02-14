@@ -74,15 +74,10 @@ try:
         TypeViewProtectionSourceEnum as view_enum,
     )
 except ImportError as err:
-    import sys
     print("Please install Cohesity Python SDK and try again.")
     print("To install Python SDK, run 'pip install cohesity-management-sdk "
           "configparser requests'")
     sys.exit()
-
-# Custom module import
-import library
-from library import RestClient
 
 try:
     import requests
@@ -97,6 +92,10 @@ except ImportError as err:
     sys.exit()
 
 from configparser import NoSectionError, NoOptionError
+
+# Custom module import
+import library
+from library import RestClient
 
 # Disable python warnings.
 requests.packages.urllib3.disable_warnings()
@@ -179,8 +178,9 @@ env_list = [
     env_enum.KVIEW,
     env_enum.K_VMWARE,
     env_enum.KSQL,
-    KCASSANDRA,
+    env_enum.KCASSANDRA,
     env_enum.KAD,
+    env_enum.KORACLE,
 ]
 
 
@@ -357,7 +357,7 @@ def create_sources(source, environment, node):
         body = RegisterProtectionSourceParameters()
         body.environment = environment
 
-        if environment in [env_enum.KAD, env_enum.KSQL]:
+        if environment in [env_enum.KAD, env_enum.KSQL, env_enum.KORACLE]:
             name = node["protectionSource"]["name"]
             body = RegisterApplicationServersParameters()
             body.applications = [environment]
@@ -746,6 +746,14 @@ def create_protection_sources():
             source["protectionSource"]["physicalProtectionSource"]["name"]
             for source in ad_sources[0].nodes
         ]
+    oracle_sources = cohesity_client.protection_sources.list_protection_sources(
+        environment=env_enum.KORACLE
+    )
+    if oracle_sources:
+        oracle_sources = [
+            source["protectionSource"]["physicalProtectionSource"]["name"]
+            for source in oracle_sources[0].nodes
+        ]
 
     try:
         existing_sources = library.get_protection_sources(cohesity_client)
@@ -770,7 +778,7 @@ def create_protection_sources():
             environment = source.protection_source.environment
             if environment not in env_list:
                 continue
-            source_name = source.protection_source.name
+            name = source.protection_source.name
             id = source.protection_source.id
 
             if environment == env_enum.KVIEW:
@@ -779,12 +787,12 @@ def create_protection_sources():
             nodes = cluster_dict.get("source_dct")[id]
 
             if environment in [env_enum.K_VMWARE, env_enum.KISILON, KCASSANDRA]:
-                if source_name in registered_source_list.keys():
-                    source_mapping[id] = registered_source_list[source_name]
-                    imported_res_dict["Protection Sources"].append(source_name)
+                if name in registered_source_list.keys():
+                    source_mapping[id] = registered_source_list[name]
+                    imported_res_dict["Protection Sources"].append(name)
                     if override:
                         cohesity_client.protection_sources.create_refresh_protection_source_by_id(
-                            registered_source_list[source_name]
+                            registered_source_list[name]
                         )
                     continue
                 elif environment in [env_enum.KISILON, KCASSANDRA]:
@@ -797,13 +805,14 @@ def create_protection_sources():
                 id = node["protectionSource"]["id"]
                 name = node["protectionSource"]["name"]
                 if (environment == env_enum.KSQL and name in sql_sources) or (
-                    environment == env_enum.KAD and name in ad_sources
+                    environment == env_enum.KAD and name in ad_sources) or (
+                    environment == env_enum.KORACLE and name in oracle_sources
                 ):
                     # Check the Sql/AD source is already registered, if already
                     # registered no changes are made.
                     continue
                 elif (
-                    environment not in [env_enum.KAD, env_enum.KSQL]
+                    environment not in [env_enum.KAD, env_enum.KSQL, env_enum.KORACLE]
                     and name in registered_source_list.keys()
                 ):
                     source_mapping[id] = registered_source_list[name]
@@ -974,6 +983,9 @@ def create_protection_jobs():
     # Fetch AD parent source id.
     ad_parent_source = get_parent_source_id(env_enum.KAD)
 
+    # Fetch Oracle parent source id.
+    oracle_parent_source = get_parent_source_id(env_enum.KORACLE)
+
     existing_jobs = library.get_protection_jobs(cohesity_client)
     for job in existing_jobs:
         existing_job_list[job.name] = job.id
@@ -1022,6 +1034,7 @@ def create_protection_jobs():
                 environment
                 not in [
                     env_enum.KAD,
+                    env_enum.KORACLE,
                     env_enum.KGENERICNAS,
                     env_enum.KSQL,
                     env_enum.KPHYSICAL,
@@ -1091,6 +1104,7 @@ def create_protection_jobs():
                 env_enum.KSQL,
                 KCASSANDRA,
                 env_enum.KAD,
+                env_enum.KORACLE,
             ]:
                 copy_env_list.pop(copy_env_list.index(env))
 
@@ -1197,12 +1211,10 @@ def create_protection_jobs():
                         continue
                     _id = node["protectionSource"]["id"]
                     if uuid in uuid_list:
-                        #    if uuid in uuid_list:
                         source_list.append(_id)
                         source_object_dct[uuid_source_mapping[uuid]] = _id
                     elif uuid in tag_uuid_list:
                         # Tag id mapping.
-                        # id = node["protectionSource"]["id"]
                         tag_id_mapping[uuid_source_mapping[uuid]] = _id
                         tag_list.append(_id)
                 elif environment == env_enum.KISILON:
@@ -1265,11 +1277,11 @@ def create_protection_jobs():
                         tags.append(tag_id_mapping[tag_id])
                     protection_job.vm_tag_ids.append(tags)
 
-            if environment in [env_enum.KAD, env_enum.KSQL]:
+            if environment in [env_enum.KAD, env_enum.KSQL, env_enum.KORACLE]:
                 exported_entity_mapping = (
                     cluster_dict["sql_entity_mapping"]
                     if environment == env_enum.KSQL
-                    else cluster_dict["ad_entity_mapping"]
+                    else cluster_dict["ad_entity_mapping"] if environment == env_enum.KAD else cluster_dict["oracle_entity_mapping"]
                 )
                 source_list = [
                     source_mapping[_id]
@@ -1293,7 +1305,7 @@ def create_protection_jobs():
                             )
                         )
                         for nodes in sources[0].application_nodes:
-                            if environment == env_enum.KAD:
+                            if environment in [env_enum.KORACLE, env_enum.KAD]:
                                 entity_mapping[
                                     nodes["protectionSource"]["name"]
                                 ] = nodes["protectionSource"]["id"]
@@ -1308,6 +1320,7 @@ def create_protection_jobs():
                             param.sql_special_parameters.application_entity_ids
                             if environment == env_enum.KSQL
                             else param.ad_special_parameters.application_entity_ids
+                            if environment == env_enum.KAD else param.oracle_special_parameters.application_entity_ids
                         )
                         for _id in entity_ids:
                             instance_name = exported_entity_mapping[_source_id][_id]
@@ -1319,15 +1332,20 @@ def create_protection_jobs():
                             param.sql_special_parameters.application_entity_ids = (
                                 instance_list
                             )
-                        else:
+                        elif environment == env_enum.KAD:
                             param.ad_special_parameters = ApplicationSpecialParameters()
                             param.ad_special_parameters.application_entity_ids = (
+                                instance_list
+                            )
+                        elif environment == env_enum.KORACLE:
+                            param.oracle_special_parameters = ApplicationSpecialParameters()
+                            param.oracle_special_parameters.application_entity_ids = (
                                 instance_list
                             )
                 protection_job.parent_source_id = (
                     sql_parent_source
                     if environment == env_enum.KSQL
-                    else ad_parent_source
+                    else ad_parent_source if environment == env_enum.KAD else oracle_parent_source
                 )
 
             if source_spl_params and environment == env_enum.K_VMWARE:
