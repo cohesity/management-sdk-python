@@ -115,6 +115,7 @@ cluster_dict = {
         cohesity_client, env_enum.KSQL
     ),
     "ad_entity_mapping": library.get_ad_entity_mapping(cohesity_client, env_enum.KAD),
+    "oracle_entity_mapping": library.get_ad_entity_mapping(cohesity_client, env_enum.KORACLE),
     "whitelist_settings": library.get_whitelist_settings(cohesity_client, rest_obj),
     "vlans": library.get_vlans(cohesity_client),
     "iface_groups": library.get_interface_groups(cohesity_client),
@@ -142,6 +143,7 @@ env_list = [
     env_enum.KSQL,
     KCASSANDRA,
     env_enum.KAD,
+    env_enum.KORACLE,
 ]
 
 
