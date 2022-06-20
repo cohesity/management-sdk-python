@@ -63,7 +63,6 @@ auto_fill_config = args.auto_fill_config
 # Fetch the Cluster credentials from config file.
 configparser = configparser.ConfigParser()
 configparser.read("config.ini")
-
 try:
     cluster_vip = configparser.get("export_cluster_config", "cluster_ip")
     username = configparser.get("export_cluster_config", "username")
@@ -100,7 +99,6 @@ try:
 except (NoSectionError, NoOptionError) as err:
     print("Error while fetching 'config.ini' content, error msg %s" % err)
 
-
 cluster_dict = {
     "cluster_config": library.get_cluster_config(cohesity_client),
     "views": library.get_views(cohesity_client),
@@ -118,7 +116,7 @@ cluster_dict = {
     "oracle_entity_mapping": library.get_ad_entity_mapping(cohesity_client, env_enum.KORACLE),
     "whitelist_settings": library.get_whitelist_settings(cohesity_client, rest_obj),
     "vlans": library.get_vlans(cohesity_client),
-    "iface_groups": library.get_interface_groups(cohesity_client),
+    "iface_groups": library.get_interface_groups(cohesity_client)
 }
 
 # Export Active directory entries and AD users and groups along with roles.
@@ -144,6 +142,7 @@ env_list = [
     KCASSANDRA,
     env_enum.KAD,
     env_enum.KORACLE,
+    env_enum.K_HYPERV
 ]
 
 
@@ -161,7 +160,7 @@ for source in cluster_dict["sources"]:
     else:
         res = library.get_protection_source_by_id(cohesity_client, _id, env)
         source_dct[_id] = res.nodes
-    if env in [env_enum.KVIEW, env_enum.K_VMWARE, env_enum.KISILON, "kCassandra"]:
+    if env in [env_enum.KVIEW, env_enum.K_VMWARE, env_enum.KISILON, "kCassandra", env_enum.K_HYPERV]:
         name = source.protection_source.name
         exported_res["Protection Sources"].append(name)
     else:

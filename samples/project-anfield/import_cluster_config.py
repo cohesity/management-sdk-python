@@ -75,12 +75,15 @@ try:
     )
 except ImportError as err:
     print("Please install Cohesity Python SDK and try again.")
-    print("To install Python SDK, run 'pip install cohesity-management-sdk "
-          "configparser requests'")
+    print(
+        "To install Python SDK, run 'pip install cohesity-management-sdk "
+        "configparser requests'"
+    )
     sys.exit()
 
 try:
     import requests
+
     # Check for python version
     if float(sys.version[:3]) >= 3:
         import configparser as configparser
@@ -181,6 +184,8 @@ env_list = [
     env_enum.KCASSANDRA,
     env_enum.KAD,
     env_enum.KORACLE,
+    env_enum.K_HYPERV_VSS,
+    env_enum.K_HYPERV,
 ]
 
 
@@ -326,7 +331,7 @@ def check_register_status(name, environment, sleep_count=6):
             sources = cohesity_client.protection_sources.list_protection_sources(
                 environment=environment
             )
-            if environment == KCASSANDRA:
+            if environment in [env_enum.K_HYPERV, KCASSANDRA]:
                 for source in sources:
                     if source.registration_info.access_info.endpoint == name:
                         status = source.registration_info.authentication_status
@@ -350,13 +355,54 @@ def check_register_status(name, environment, sleep_count=6):
         ERROR_LIST.append(err)
 
 
+def recursive_mapping(resources, result):
+    """
+    Function to recursively iterate over the response and create mapping of
+    datastore name and id.
+    : return datastore name and id mapping.
+    """
+    if isinstance(resources, dict):
+        if "nodes" in resources:
+            recursive_mapping(resources["nodes"], result)
+        elif (
+            resources["protectionSource"]["hypervProtectionSource"]["type"]
+            == "kDatastore"
+        ):
+            result[resources["protectionSource"]["name"]] = resources[
+                "protectionSource"
+            ]["id"]
+    elif isinstance(resources, list):
+        for node in resources:
+            recursive_mapping(node, result)
+    else:
+        recursive_mapping(resources.nodes, result)
+
+
+def fetch_hyperv_datastore_mapping(source_id):
+    """
+    Function to get the HyperV source objects and create a dictionary of
+    datastore names and datastore ids.
+    : return dict
+    """
+    try:
+        result = {}
+        resources = cohesity_client.protection_sources.list_protection_sources(
+            id=source_id, include_datastores=True
+        )
+        recursive_mapping(resources, result)
+        return result
+
+    except Exception as err:
+        ERROR_LIST.append(err)
+
+
 def create_sources(source, environment, node):
     """ """
     try:
         update_source = False
         body = RegisterProtectionSourceParameters()
         body.environment = environment
-
+        source_id = source.protection_source.id
         if environment in [env_enum.KAD, env_enum.KSQL, env_enum.KORACLE]:
             name = node["protectionSource"]["name"]
             body = RegisterApplicationServersParameters()
@@ -437,7 +483,6 @@ def create_sources(source, environment, node):
                     "credentials": {"password": "", "username": ""},
                 },
             }
-            source_id = source.protection_source.id
             username = source.registration_info.username
             endpoint = source.registration_info.access_info.endpoint
             name = source.protection_source.isilon_protection_source.name
@@ -454,9 +499,10 @@ def create_sources(source, environment, node):
                     username = mount_creds.username
                     password = configparser.get(endpoint, "smb_password")
                     body["entityInfo"]["credentials"]["nasMountCredentials"] = {
-                        "protocol":2,
+                        "protocol": 2,
                         "username": username,
-                        "password": password}
+                        "password": password,
+                    }
             # Private api to register protection sources.
             api = "backupsources"
             code, resp = rest_obj.post(api, data=json.dumps(body))
@@ -472,7 +518,6 @@ def create_sources(source, environment, node):
 
         elif environment == KCASSANDRA:
             name = source.protection_source.name
-            source_id = source.protection_source.id
             if not configparser.has_section(name):
                 ERROR_LIST.append(
                     "Please provide SSH and database credentials for "
@@ -528,7 +573,7 @@ def create_sources(source, environment, node):
             name = source.protection_source.name
             body.username = source.registration_info.username
             body.environment = environment
-            source_id = source.protection_source.id
+
             if source.registration_info:
                 endpoint = source.registration_info.access_info.endpoint
                 body.endpoint = endpoint
@@ -559,6 +604,57 @@ def create_sources(source, environment, node):
                 body.password = password
             if env == "view":
                 body.view_type = view_enum.KVIEWBOX
+
+        elif environment == env_enum.K_HYPERV:
+            # In case of standalone server, source is not registered.
+            protect_source = source.protection_source
+            source_type = protect_source.hyperv_protection_source.mtype
+            # Only HyperV SCVMM host type is supported, checking the type
+            # before source registration.
+            if source_type != "kSCVMMServer":
+                return
+            name = protect_source.name
+            register_info = source.registration_info
+            body = RegisterProtectionSourceParameters()
+            body.endpoint = name
+            body.hyperv_type = source_type
+            body.environment = env_enum.K_HYPERV
+            body.username = register_info.username
+            body.password = configparser.get(name, "password")
+            if register_info.throttling_policy:
+                body.throttling_policy = register_info.throttling_policy
+            result = register_sources(body, name, source_id)
+            # Get the imported source id.
+            imported_source_id = source_mapping.get(source_id, None)
+            if imported_source_id and register_info.throttling_policy_overrides:
+                # Check for source registration status.
+                check_register_status(name, environment)
+
+                # Create the datastore name and id mapping.
+                datastores = fetch_hyperv_datastore_mapping(imported_source_id)
+                body = UpdateProtectionSourceParameters()
+                overrides = []
+                for datastore in register_info.throttling_policy_overrides:
+                    datastore_id = datastores.get(datastore.datastore_name, "")
+                    if not datastore_id:
+                        ERROR_LIST.append(
+                            "Failed to find datastore '%s' in the source '%s'"
+                            % (datastore.datastore_name, name)
+                        )
+                    datastore.datastore_id = datastore_id
+                    overrides.append(datastore)
+                body.throttling_policy_overrides = overrides
+                try:
+                    result = (
+                        cohesity_client.protection_sources.update_protection_source(
+                            source_mapping[source_id], body
+                        )
+                    )
+                # Ignoring the timeout error, since the source updation API updates the
+                # source yet the response is delayed than expected.
+                except TimeoutError as e:
+                    pass
+            return
         register_sources(body, name, source_id)
         time.sleep(sleep_time)
 
@@ -763,7 +859,12 @@ def create_protection_sources():
                 continue
             id = source.protection_source.id
             name = source.protection_source.name
-            if env in [env_enum.KISILON, env_enum.K_VMWARE, KCASSANDRA]:
+            if env in [
+                env_enum.K_HYPERV,
+                env_enum.KISILON,
+                env_enum.K_VMWARE,
+                KCASSANDRA,
+            ]:
                 registered_source_list[name] = id
                 continue
 
@@ -786,7 +887,12 @@ def create_protection_sources():
                 continue
             nodes = cluster_dict.get("source_dct")[id]
 
-            if environment in [env_enum.K_VMWARE, env_enum.KISILON, KCASSANDRA]:
+            if environment in [
+                env_enum.K_HYPERV,
+                env_enum.K_VMWARE,
+                env_enum.KISILON,
+                KCASSANDRA,
+            ]:
                 if name in registered_source_list.keys():
                     source_mapping[id] = registered_source_list[name]
                     imported_res_dict["Protection Sources"].append(name)
@@ -795,7 +901,7 @@ def create_protection_sources():
                             registered_source_list[name]
                         )
                     continue
-                elif environment in [env_enum.KISILON, KCASSANDRA]:
+                elif environment != env_enum.K_VMWARE:
                     nodes = nodes[0] if nodes else None
                     create_sources(source, environment, nodes)
                     continue
@@ -804,9 +910,10 @@ def create_protection_sources():
             for node in nodes:
                 id = node["protectionSource"]["id"]
                 name = node["protectionSource"]["name"]
-                if (environment == env_enum.KSQL and name in sql_sources) or (
-                    environment == env_enum.KAD and name in ad_sources) or (
-                    environment == env_enum.KORACLE and name in oracle_sources
+                if (
+                    (environment == env_enum.KSQL and name in sql_sources)
+                    or (environment == env_enum.KAD and name in ad_sources)
+                    or (environment == env_enum.KORACLE and name in oracle_sources)
                 ):
                     # Check the Sql/AD source is already registered, if already
                     # registered no changes are made.
@@ -1009,6 +1116,11 @@ def create_protection_jobs():
                 job_name = imported_job_prefix + job_name + imported_job_suffix
                 protection_job.name = job_name
             environment = protection_job.environment
+
+            # During source registration we provide environment type as kHyperV
+            # and as kHyperVVSS during Protection Group related CRUD functions.
+            if environment == env_enum.K_HYPERV_VSS:
+                environment = env_enum.K_HYPERV
             parent_id = protection_job.parent_source_id
             if environment not in env_list:
                 continue
@@ -1103,6 +1215,7 @@ def create_protection_jobs():
                 env_enum.K_VMWARE,
                 env_enum.KSQL,
                 KCASSANDRA,
+                env_enum.K_HYPERV,
                 env_enum.KAD,
                 env_enum.KORACLE,
             ]:
@@ -1185,15 +1298,22 @@ def create_protection_jobs():
                     uuid_list.append(
                         node["protectionSource"]["cassandraProtectionSource"]["uuid"]
                     )
-
+                elif (
+                    environment == env_enum.K_HYPERV
+                    and node["protectionSource"]["id"] in source_id_list
+                ):
+                    uuid_source_mapping[node["protectionSource"]["name"]] = node[
+                        "protectionSource"
+                    ]["id"]
                 if len(uuid_list + tag_uuid_list) == list_len:
                     break
             nodes = []
             if source_mapping.get(parent_id, None):
                 nodes = library.get_protection_source_by_id(
                     cohesity_client, source_mapping[parent_id], environment
-                ).nodes
-                nodes = [] if not nodes else nodes
+                )
+
+                nodes = [] if not nodes else nodes.nodes
             source_spl_params = protection_job.source_special_parameters
             source_object_dct = {}
             tag_list = []
@@ -1263,6 +1383,15 @@ def create_protection_jobs():
                     ):
                         id = node["protectionSource"]["id"]
                         source_list.append(id)
+                elif environment == env_enum.K_HYPERV:
+                    name = node["protectionSource"]["name"]
+                    if (
+                        name in uuid_source_mapping.keys()
+                        and node["protectionSource"]["parentId"]
+                        == source_mapping[parent_id]
+                    ):
+                        source_list.append(node["protectionSource"]["id"])
+                        del uuid_source_mapping[name]
                 if len(source_list + tag_list) == list_len:
                     break
             # Check to break from loop.
@@ -1281,7 +1410,9 @@ def create_protection_jobs():
                 exported_entity_mapping = (
                     cluster_dict["sql_entity_mapping"]
                     if environment == env_enum.KSQL
-                    else cluster_dict["ad_entity_mapping"] if environment == env_enum.KAD else cluster_dict["oracle_entity_mapping"]
+                    else cluster_dict["ad_entity_mapping"]
+                    if environment == env_enum.KAD
+                    else cluster_dict["oracle_entity_mapping"]
                 )
                 source_list = [
                     source_mapping[_id]
@@ -1320,7 +1451,8 @@ def create_protection_jobs():
                             param.sql_special_parameters.application_entity_ids
                             if environment == env_enum.KSQL
                             else param.ad_special_parameters.application_entity_ids
-                            if environment == env_enum.KAD else param.oracle_special_parameters.application_entity_ids
+                            if environment == env_enum.KAD
+                            else param.oracle_special_parameters.application_entity_ids
                         )
                         for _id in entity_ids:
                             instance_name = exported_entity_mapping[_source_id][_id]
@@ -1338,14 +1470,18 @@ def create_protection_jobs():
                                 instance_list
                             )
                         elif environment == env_enum.KORACLE:
-                            param.oracle_special_parameters = ApplicationSpecialParameters()
+                            param.oracle_special_parameters = (
+                                ApplicationSpecialParameters()
+                            )
                             param.oracle_special_parameters.application_entity_ids = (
                                 instance_list
                             )
                 protection_job.parent_source_id = (
                     sql_parent_source
                     if environment == env_enum.KSQL
-                    else ad_parent_source if environment == env_enum.KAD else oracle_parent_source
+                    else ad_parent_source
+                    if environment == env_enum.KAD
+                    else oracle_parent_source
                 )
 
             if source_spl_params and environment == env_enum.K_VMWARE:
