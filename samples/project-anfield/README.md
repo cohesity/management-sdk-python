@@ -25,6 +25,7 @@ Current version fo the tooling supports export and import the cluster resources 
     * Isilon(NFS)
     * MsSql
     * Cassandra
+    * HyperV(SCVMM)
   * Protection Policies
   * Replicated Clusters
   * Gflags
@@ -65,7 +66,7 @@ This will work for Python 3 >=3.4.
             a. Exported Cluster credentials.
             b. Imported Cluster credentials.
             c. Replicated cluster credentials. 
-            d. Protection sources such as vCenter, NAS-SMB, Isilon, Cassandra source credentials.
+            d. Protection sources such as vCenter, HyperV(SCVMM), NAS-SMB, Isilon, Cassandra source credentials.
             e. External target(Qstar) Credentials.
             3. S3 Secret Access key.
 ```
