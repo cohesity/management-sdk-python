@@ -159,7 +159,7 @@ class RestoreObject(object):
         cloud_deploy_target = cohesity_management_sdk.models.cloud_deploy_target.CloudDeployTarget.from_dictionary(dictionary.get('cloudDeployTarget')) if dictionary.get('cloudDeployTarget') else None
         cloud_replication_target = cohesity_management_sdk.models.cloud_deploy_target.CloudDeployTarget.from_dictionary(dictionary.get('cloudReplicationTarget')) if dictionary.get('cloudReplicationTarget') else None
         entity = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('entity')) if dictionary.get('entity') else None
-        hydration_time_usecs = dict.get('hydrationTimeUsecs')
+        hydration_time_usecs = dictionary.get('hydrationTimeUsecs')
         job_id = dictionary.get('jobId')
         job_instance_id = dictionary.get('jobInstanceId')
         job_uid = cohesity_management_sdk.models.universal_id_proto.UniversalIdProto.from_dictionary(dictionary.get('jobUid')) if dictionary.get('jobUid') else None

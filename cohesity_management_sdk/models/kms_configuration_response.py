@@ -103,7 +103,7 @@ class KmsConfigurationResponse(object):
         server_name = dictionary.get('serverName')
         server_type = dictionary.get('serverType')
         vault_id_list = dictionary.get('vaultIdList')
-        view_box_id_list = dict.get('viewBoxIdList')
+        view_box_id_list = dictionary.get('viewBoxIdList')
 
         # Return an object of this model
         return cls(aws_kms,

@@ -1,3 +1,20 @@
+# [1.8.1] - 2022-07-08
+Paatch release with updated py files.
+
+### Added
+- None
+
+### Changed
+- Updated python files where dict.get("field") is used instead
+of dictionary.get("field")
+
+### Fixed
+- None
+
+### Removed
+- None
+
+
 # [1.7.0] - 2021-08-18
 Paatch release with updated requirements
 

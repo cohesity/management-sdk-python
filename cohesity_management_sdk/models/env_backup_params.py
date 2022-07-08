@@ -153,7 +153,7 @@ class EnvBackupParams(object):
             return None
 
         # Extract variables from the dictionary
-        aws_native_env_params = cohesity_management_sdk.models.aws_native_env_params.AWSNativeEnvParams.from_dictionary(dict.get('awsNativeEnvParams')) if dictionary.get('awsNativeEnvParams') else None
+        aws_native_env_params = cohesity_management_sdk.models.aws_native_env_params.AWSNativeEnvParams.from_dictionary(dictionary.get('awsNativeEnvParams')) if dictionary.get('awsNativeEnvParams') else None
         exchange_backup_job_params = cohesity_management_sdk.models.exchange_backup_job_params.ExchangeBackupJobParams.from_dictionary(dictionary.get('exchangeBackupJobParams')) if dictionary.get('exchangeBackupJobParams') else None
         externally_triggered_job_params = cohesity_management_sdk.models.externally_triggered_job_params.ExternallyTriggeredJobParams.from_dictionary(dictionary.get('externallyTriggeredJobParams')) if dictionary.get('externallyTriggeredJobParams') else None
         file_stubbing_params = cohesity_management_sdk.models.file_stubbing_params.FileStubbingParams.from_dictionary(dictionary.get('fileStubbingParams')) if dictionary.get('fileStubbingParams') else None
