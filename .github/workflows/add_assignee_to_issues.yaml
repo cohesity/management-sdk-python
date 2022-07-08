@@ -1,0 +1,18 @@
+name: Auto-assign assignee for Issues opened/reopened/edited.
+on:
+  issues:
+    types:
+      - edited
+      - opened
+      - reopened
+jobs:
+  issues:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check for event name
+        run: echo "${{ github.event_name }}"
+      - name: Add assignees
+        uses: pozil/auto-assign-issue@v1
+        with:
+          assignees: naveena-maplelabs
+          allowSelfAssign: True
