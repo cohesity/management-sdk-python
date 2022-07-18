@@ -1,3 +1,19 @@
+# [1.8.1] - 2022-07-08
+Paatch release with updated .py files.
+
+### Added
+- None
+
+### Changed
+- Updated python files where dict.get("field") is used instead
+of dictionary.get("field")
+
+### Fixed
+- None
+
+### Removed
+- None
+
 # [1.8.0] - 2021-12-23
 New SDK release for Cluster 6.6.0d
 

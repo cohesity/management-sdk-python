@@ -1,10 +1,11 @@
 name: Auto-assign assignee for Issues opened/reopened/edited.
+
 on:
   issues:
     types:
       - edited
       - opened
-      - reopened
+      - reopend
 jobs:
   issues:
     runs-on: ubuntu-latest

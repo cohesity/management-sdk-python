@@ -106,7 +106,7 @@ class ClusterConfigProtoSubnet(object):
         nfs_access = dictionary.get('nfsAccess')
         nfs_all_squash = dictionary.get('nfsAllSquash')
         nfs_root_squash = dictionary.get('nfsRootSquash')
-        s3_access = dict.get('s3Access')
+        s3_access = dictionary.get('s3Access')
         smb_access = dictionary.get('smbAccess')
 
         # Return an object of this model

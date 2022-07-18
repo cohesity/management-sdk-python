@@ -77,7 +77,7 @@ class ExtendedRetentionPolicyProto(object):
             return None
 
         # Extract variables from the dictionary
-        backup_type = dict.get('backupType')
+        backup_type = dictionary.get('backupType')
         copy_partially_successful_run = dictionary.get('copyPartiallySuccessfulRun')
         granularity_bucket = cohesity_management_sdk.models.granularity_bucket.GranularityBucket.from_dictionary(dictionary.get('granularityBucket')) if dictionary.get('granularityBucket') else None
         id = dictionary.get('id')
