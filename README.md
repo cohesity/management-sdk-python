@@ -12,6 +12,7 @@ harness the power of *Cohesity REST APIs* in your python applications.
 ## Table of contents :scroll:
 
  - [Getting Started](#get-started)
+ - [Cluster Version and Compatibility Matrix](#compatibility-matrix)
  - [Documentation](#documentation)
  - [How to use](#howto)
  - [More samples](#sample)
@@ -54,6 +55,19 @@ To upgade the package to specific release:
 ```
 pip install cohesity-management-sdk==1.5.1
 ```
+## <a name="compatibility-matrix"></a> Compatibility Matrix
+
+|Cluster Version| SDK Version|
+|---|--|
+|6.6.0x|1.8.1|
+|6.6x| 1.6.0|
+|6.5.1x|1.5.0|
+|6.5.0x|1.4.0|
+|6.4.1x|1.2.0|
+|6.3.1x|1.1.3|
+|6.4x|1.1.1|
+|6.3x|1.1.0|
+
 
 ## <a name="documentation"></a> Documentation :books:
 
