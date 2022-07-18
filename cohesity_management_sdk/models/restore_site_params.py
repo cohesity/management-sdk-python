@@ -66,7 +66,7 @@ class RestoreSiteParams(object):
         "restore_to_original": 'restoreToOriginal',
         "site_owner_vec": 'siteOwnerVec',
         "site_result":'siteResult',
-        "snap_fs_relative_site_backup_result_path":'parentSourceSharepointDomainName',
+        "snap_fs_relative_site_backup_result_path":'snapFsRelativeSiteBackupResultPath',
         "snap_fs_relative_template_path":'snapFsRelativeTemplatePath',
         "source_site_name":'sourceSiteName',
         "source_site_uuid":'sourceSiteUuid',
@@ -143,7 +143,7 @@ class RestoreSiteParams(object):
             for structure in dictionary.get('siteOwnerVec'):
                 site_owner_vec.append(cohesity_management_sdk.models.restore_site_params_site_owner.RestoreSiteParams_SiteOwner.from_dictionary(structure))
         site_result = cohesity_management_sdk.models.site_backup_status.SiteBackupStatus.from_dictionary(dictionary.get('siteResult')) if dictionary.get('siteResult') else None
-        snap_fs_relative_site_backup_result_path = dictionary.get('parentSourceSharepointDomainName')
+        snap_fs_relative_site_backup_result_path = dictionary.get('snapFsRelativeSiteBackupResultPath')
         snap_fs_relative_template_path = dictionary.get('snapFsRelativeTemplatePath')
         source_site_name = dictionary.get('sourceSiteName')
         source_site_uuid = dictionary.get('sourceSiteUuid')

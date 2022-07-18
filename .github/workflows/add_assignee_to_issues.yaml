@@ -1,4 +1,5 @@
-name: Add reviewer(s) and assignee for Pull requests.
+name: Auto-assign assignee for Issues opened/reopened/edited.
+
 on:
   issues:
     types:
@@ -6,10 +7,13 @@ on:
       - opened
       - reopend
 jobs:
-  pull-request:
+  issues:
     runs-on: ubuntu-latest
     steps:
       - name: Check for event name
         run: echo "${{ github.event_name }}"
       - name: Add assignees
-        uses: kentaro-m/auto-assign-action@v1.1.2
+        uses: pozil/auto-assign-issue@v1
+        with:
+          assignees: naveena-maplelabs
+          allowSelfAssign: True

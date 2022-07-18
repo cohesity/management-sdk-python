@@ -25,6 +25,7 @@ Current version fo the tooling supports export and import the cluster resources 
     * Isilon(NFS)
     * MsSql
     * Cassandra
+    * HyperV(SCVMM)
   * Protection Policies
   * Replicated Clusters
   * Gflags
@@ -65,13 +66,27 @@ This will work for Python 3 >=3.4.
             a. Exported Cluster credentials.
             b. Imported Cluster credentials.
             c. Replicated cluster credentials. 
-            d. Protection sources such as vCenter, NAS-SMB, Isilon, Cassandra source credentials.
+            d. Protection sources such as vCenter, HyperV(SCVMM), NAS-SMB, Isilon, Cassandra source credentials.
             e. External target(Qstar) Credentials.
             3. S3 Secret Access key.
 ```
 ## Note
 
-1. This is not a restore point feature. It doesn't add/delete incremental updates for existing entities.
+*This is not a restore point feature. It doesn't add/delete incremental updates for existing entities.*
+
+1. Before executing the scripts, Update the import and export cluster credentials in the config.ini file.
+
+   Update following fields for both import_cluster_config and export_cluster_config section.
+
+   cluster_ip = `x.x.x.x`
+
+   username = `admin`
+
+   password = `admin`
+
+   domain = `LOCAL`
+   
+   > In case of clusters accessed through RT, provide cluster_ip as follows, cluster_ip = `localhost:rtPort`
 
 2. Override - Flag to override the existing protection resources during import-config is available in config.ini. 
    
@@ -155,7 +170,7 @@ python export_cluster_config.py --file_location /tmp/ --file_name sample_export_
 ```
 The above command will generate sample_export_config file under /tmp folder.
 
-### Ouput 
+### Output 
 ```
 INFO:export_app:Exporting resources from cluster 'Kursk'
 INFO:export_app:
