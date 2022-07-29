@@ -4078,15 +4078,15 @@ Default: ‘{CLUSTER_VIP}’</p></td>
 11
 12</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; Sample code to create a cohesity client. &quot;&quot;&quot;</span>
 
-<span class="hll"><span class="kn">from</span> <span class="nn">cohesity_management_sdk.cohesity_client_v2</span> <span class="kn">import</span> <span class="n">CohesityClientV2</span>
+<span class="hll"><span class="kn">from</span> <span class="nn">cohesity_management_sdk.cohesity_client</span> <span class="kn">import</span> <span class="n">CohesityClient</span>
 </span>
 <span class="n">username</span> <span class="o">=</span> <span class="s1">&#39;Username&#39;</span>
 <span class="n">password</span> <span class="o">=</span> <span class="s1">&#39;Password&#39;</span>
 <span class="n">domain</span> <span class="o">=</span> <span class="s1">&#39;Domain&#39;</span> <span class="c1">#optional</span>
 <span class="n">cluster_vip</span> <span class="o">=</span> <span class="s1">&#39;cluster_vip&#39;</span>
-<span class="hll"><span class="n">client</span> <span class="o">=</span> <span class="n">CohesityClientV2</span><span class="p">(</span><span class="n">cluster_vip</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">domain</span><span class="p">)</span>
+<span class="hll"><span class="n">client</span> <span class="o">=</span> <span class="n">CohesityClient</span><span class="p">(</span><span class="n">cluster_vip</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">domain</span><span class="p">)</span>
 </span><span class="n">policies_controller</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">protection_policies</span>
-<span class="hll"><span class="n">result</span> <span class="o">=</span> <span class="n">policies_controller</span><span class="o">.</span><span class="n">get_protection_policies</span><span class="p">()</span><span class="o">.</span><span class="n">policies</span>
+<span class="hll"><span class="n">result</span> <span class="o">=</span> <span class="n">policies_controller</span><span class="o">.</span><span class="n">get_protection_policies</span><span class="p">()</span>
 </span><span class="nb">print</span><span class="p">([</span><span class="n">policy</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">policy</span> <span class="ow">in</span> <span class="n">result</span><span class="p">])</span>
 </pre></div>
 </td></tr></table></div>
