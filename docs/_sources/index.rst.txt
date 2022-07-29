@@ -95,15 +95,15 @@ To initialize the API client, the following parameters need to be passed.
 
     """ Sample code to create a cohesity client. """
 
-    from cohesity_management_sdk.cohesity_client_v2 import CohesityClientV2
+    from cohesity_management_sdk.cohesity_client import CohesityClient
 
     username = 'Username'
     password = 'Password'
     domain = 'Domain' #optional
     cluster_vip = 'cluster_vip'
-    client = CohesityClientV2(cluster_vip, username, password, domain)
+    client = CohesityClient(cluster_vip, username, password, domain)
     policies_controller = client.protection_policies
-    result = policies_controller.get_protection_policies().policies
+    result = policies_controller.get_protection_policies()
     print([policy.name for policy in result])
 
 
