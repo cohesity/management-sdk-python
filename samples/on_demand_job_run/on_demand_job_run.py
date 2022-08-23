@@ -7,7 +7,7 @@ import argparse
 import time
 
 from cohesity_management_sdk.cohesity_client import CohesityClient
-from cohesity_management_sdk.models.protection_job_request_body import ProtectionJobRequestBody
+from cohesity_management_sdk.models.run_protection_job_param import RunProtectionJobParam
 from cohesity_management_sdk.models.run_type_enum import RunTypeEnum
 from cohesity_management_sdk.models.status_source_backup_status_enum import \
     StatusSourceBackupStatusEnum
@@ -51,7 +51,7 @@ class ProtectionJobs(object):
             print ("Protection Job with name: %s doesn't exist" % job_name)
             exit(0)
 
-        req_body = ProtectionJobRequestBody()
+        req_body = RunProtectionJobParam()
         req_body.run_type = RunTypeEnum.KREGULAR
         self.jobs_controller.create_run_protection_job(id=job_id, body=req_body)
 

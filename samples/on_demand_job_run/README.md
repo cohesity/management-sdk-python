@@ -15,8 +15,8 @@ Note: Alternatively, you can set the above parameters in cohesity_management_sdk
 
 ## Example
 ``` 
-req_body = ProtectionJobRequestBody()
-req_body.run_type = RunTypeEnum.KREGULAR
+req_body = RunProtectionJobParam()
+req_body.run_types = RunTypeEnum.KREGULAR
 self.jobs_controller.create_run_protection_job(id=job_id, body=req_body)
 
 # Get the status of this Job run.
