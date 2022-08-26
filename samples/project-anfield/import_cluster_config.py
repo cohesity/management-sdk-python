@@ -21,6 +21,7 @@ try:
         RequestErrorErrorException,
     )
     from cohesity_management_sdk.exceptions.api_exception import APIException
+    from cohesity_management_sdk.models.append_hosts_parameters import AppendHostsParameters
     from cohesity_management_sdk.models.application_special_parameters import (
         ApplicationSpecialParameters,
     )
@@ -1889,6 +1890,44 @@ def update_gflags():
         )
 
 
+def create_host_mapping():
+    """
+    Function to import host mapping.
+    """
+    try:
+        body = AppendHostsParameters()
+        exported_hosts = cluster_dict["host_mapping"]
+        existing_hosts = library.get_host_mapping(cluster_config)
+        body.hosts = existing_hosts
+        host_ips = [host.ip for host in existing_hosts]
+        for host in exported_hosts:
+            # If host is already added, skip else create an entry.
+            if host.ip not in existing_hosts:
+                body.hosts.append(host)
+        cohesity_client.network.append_hosts(body)
+    except Exception as err:
+        ERROR_LIST.append(
+            "Error occurred while creating host mapping entry. Error details %s" % err
+        )
+
+def add_routes():
+    """
+    Function to import routes.
+    """
+    try:
+        exported_routes = cluster_dict["routes"]
+        existing_routes = library.get_routes(cluster_config)
+        existing_route_ifaces = [route.if_name for route in existing_routes]
+        for route in exported_routes:
+            # If route is already added, skip else create an entry.
+            if route.if_name not in existing_route_ifaces:
+                cohesity_client.routes.add_route(route)
+    except Exception as err:
+        ERROR_LIST.append(
+            "Error occurred while adding routes. Error details %s" % err
+        )
+
+
 if __name__ == "__main__":
     logger.info("Importing cluster config \n\n")
     import_cluster_config()
@@ -1911,6 +1950,10 @@ if __name__ == "__main__":
     if global_whitelists:
         logger.info("Update Global whitelist settings \n\n")
         update_whitelist_settings()
+    logger.info("Importing Host mapping")
+    create_host_mapping()
+    logger.info("Importing Routes")
+    add_routes()
     logger.info("Importing Storage domains \n\n")
     create_storage_domains()
     logger.info("Importing remote clusters  \n\n")

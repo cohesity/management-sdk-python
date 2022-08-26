@@ -337,6 +337,22 @@ def get_vlans(cohesity_client):
     return vlans
 
 
+def get_routes(cohesity_client):
+    """
+    Function to fetch the network routes mapping.
+    """
+    routes = cohesity_client.routes.get_routes()
+    return routes
+
+
+def get_host_mapping(cohesity_client):
+    """
+    Function to fetch the network routes mapping.
+    """
+    hosts = cohesity_client.network.list_hosts()
+    return hosts
+
+
 def debug():
     """
     Function to return exported resources with types as dict.
