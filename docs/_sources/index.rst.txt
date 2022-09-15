@@ -2,7 +2,7 @@ Introduction
 ============
 
 The *Cohesity Management SDK*  provides an easy-to-use language binding to
-harness the power of *Cohesity REST APIs* in your python applications.
+harness the power of *Cohesity REST APIs* in your python applications. V2 Api SDK is beta release, refer latest sdk `here <https://github.com/cohesity/cohesity_sdk>`
 
 -------
 
