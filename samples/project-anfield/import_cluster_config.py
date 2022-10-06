@@ -201,7 +201,7 @@ def update_whitelist_settings():
                 # Fetch existing subnets available in the cluster, to avoid
                 # overwriting existing subnets.
                 resp = cohesity_client.clusters.get_external_client_subnets()
-                if resp.client_subnets:
+                if resp and resp.client_subnets:
                     # Existing subnets are not updated.
                     body.client_subnets.extend(resp.client_subnets)
                     existing_subnets = [subnet.ip for subnet in resp.client_subnets]
@@ -1896,15 +1896,21 @@ def create_host_mapping():
     """
     try:
         body = AppendHostsParameters()
-        exported_hosts = cluster_dict["host_mapping"]
-        existing_hosts = library.get_host_mapping(cluster_config)
+        exported_hosts = cluster_dict["host_mappings"]
+        existing_hosts = library.get_host_mapping(cohesity_client)
         body.hosts = existing_hosts
         host_ips = [host.ip for host in existing_hosts]
+        newly_added_ips = []
         for host in exported_hosts:
             # If host is already added, skip else create an entry.
-            if host.ip not in existing_hosts:
+            if host.ip not in host_ips:
                 body.hosts.append(host)
-        cohesity_client.network.append_hosts(body)
+                newly_added_ips.append(host.ip)
+            else:
+                imported_res_dict["Host Mappings"].append(host.ip)
+        if newly_added_ips:
+            cohesity_client.network.create_append_hosts(body)
+            imported_res_dict["Host Mappings"].extend(newly_added_ips)
     except Exception as err:
         ERROR_LIST.append(
             "Error occurred while creating host mapping entry. Error details %s" % err
@@ -1916,12 +1922,13 @@ def add_routes():
     """
     try:
         exported_routes = cluster_dict["routes"]
-        existing_routes = library.get_routes(cluster_config)
-        existing_route_ifaces = [route.if_name for route in existing_routes]
+        existing_routes = library.get_routes(cohesity_client)
+        existing_route_ifaces = [route.iface_group_name for route in existing_routes]
         for route in exported_routes:
             # If route is already added, skip else create an entry.
-            if route.if_name not in existing_route_ifaces:
+            if route.iface_group_name not in existing_route_ifaces:
                 cohesity_client.routes.add_route(route)
+            imported_res_dict["Routes"].append(route.iface_group_name)
     except Exception as err:
         ERROR_LIST.append(
             "Error occurred while adding routes. Error details %s" % err
@@ -1950,9 +1957,9 @@ if __name__ == "__main__":
     if global_whitelists:
         logger.info("Update Global whitelist settings \n\n")
         update_whitelist_settings()
-    logger.info("Importing Host mapping")
+    logger.info("Importing Host mapping\n\n")
     create_host_mapping()
-    logger.info("Importing Routes")
+    logger.info("Importing Routes\n\n")
     add_routes()
     logger.info("Importing Storage domains \n\n")
     create_storage_domains()
