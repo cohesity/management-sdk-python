@@ -341,7 +341,9 @@ def get_routes(cohesity_client):
     """
     Function to fetch the network routes mapping.
     """
-    routes = cohesity_client.routes.get_routes()
+    routes = cohesity_client.routes.get_routes() or []
+    for route in routes:
+        exported_res_dict["Routes"].append(route.iface_group_name)
     return routes
 
 
@@ -349,7 +351,9 @@ def get_host_mapping(cohesity_client):
     """
     Function to fetch the network routes mapping.
     """
-    hosts = cohesity_client.network.list_hosts()
+    hosts = cohesity_client.network.list_hosts() or []
+    for host in hosts:
+        exported_res_dict["Hosts Mapping"].append(host.ip)
     return hosts
 
 
