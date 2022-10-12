@@ -123,7 +123,9 @@ cluster_dict = {
     "oracle_entity_mapping": library.get_ad_entity_mapping(cohesity_client, env_enum.KORACLE),
     "whitelist_settings": library.get_whitelist_settings(cohesity_client, rest_obj),
     "vlans": library.get_vlans(cohesity_client),
-    "iface_groups": library.get_interface_groups(cohesity_client)
+    "iface_groups": library.get_interface_groups(cohesity_client),
+    "routes": library.get_routes(cohesity_client),
+    "host_mappings": library.get_host_mapping(cohesity_client)
 }
 
 # Export Active directory entries and AD users and groups along with roles.
@@ -206,6 +208,7 @@ pickle.dump(cluster_dict, open(exported_config_file, "wb"))
 
 logger.info("Please find the exported resources summary.\n")
 for key, val in exported_res.items():
+    print(key)
     logger.info("Successfully exported the following %s:\n%s\n" , key, ", ".join(val))
 
 
