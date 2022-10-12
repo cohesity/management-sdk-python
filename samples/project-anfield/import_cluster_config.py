@@ -498,7 +498,7 @@ def create_sources(source, environment, node):
                     # Update SMB credentials, for protecting SMB endpoints
                     # credential is required.
                     username = mount_creds.username
-                    password = configparser.get(endpoint, "smb_password")
+                    password = configparser.get(name, "smb_password")
                     body["entityInfo"]["credentials"]["nasMountCredentials"] = {
                         "protocol": 2,
                         "username": username,

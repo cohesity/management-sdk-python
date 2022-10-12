@@ -22,7 +22,7 @@ Current version fo the tooling supports export and import the cluster resources 
     * Physical
     * NAS
     * Cohesity Views
-    * Isilon(NFS)
+    * Isilon(NFS, SMB)
     * MsSql
     * Cassandra
     * HyperV(SCVMM)
@@ -128,7 +128,7 @@ This will work for Python 3 >=3.4.
    After importing the gflags into the target cluster, each individual services which needs the gflag change needs to be restarted manually.
    NOTE: This feature imports all the gflags to the cluster. To apply gflag for specific service, chose only the individual service and restart. Gflags import/export is supported with cluster version >= 6.3.
 
-4. While importing Isilon sources, only NFS protocols are supported. If a job contains both NFS and SMB objects, only NFS objects are added to job.
+4. While importing Isilon sources, both SMB and NFS protocols are supported.
 
 5. Imported Job prefix - While importing resources, job name will be prefixed with provided prefix name. For example, if job name is 'test' and imported_job_prefix is 'sample_', job will be imported under name 'sample_test'. If the field is empty, no prefix is added to the job name.
 
