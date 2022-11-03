@@ -26,6 +26,7 @@ Current version fo the tooling supports export and import the cluster resources 
     * MsSql
     * Cassandra
     * HyperV(SCVMM)
+    * NetApp
   * Protection Policies
   * Replicated Clusters
   * Gflags
@@ -155,6 +156,8 @@ This will work for Python 3 >=3.4.
     
 10. Global whitelist - Flag to import global whitelists(subnets and netgroups).
     `global_whitelists=yes\no`
+
+11. Both Cluster and Standalone Netapp types are supported. To register Netapp source with SMB Volumes enabled, smb_password is required and should be added in the config file.
 
 ## Export 
 

@@ -187,6 +187,7 @@ env_list = [
     env_enum.KORACLE,
     env_enum.K_HYPERV_VSS,
     env_enum.K_HYPERV,
+    env_enum.KNETAPP,
 ]
 
 
@@ -458,6 +459,42 @@ def create_sources(source, environment, node):
                     body.nas_mount_credentials.domain = domain
                 body.nas_mount_credentials.username = username
                 body.nas_mount_credentials.password = password
+
+        elif environment == env_enum.KNETAPP:
+            protect_source = source.protection_source
+            section = name = protect_source.name
+            source_id = protect_source.id
+            registration_info = source.registration_info
+            endpoint = body.endpoint = registration_info.access_info.endpoint
+            body.username = registration_info.username
+            body.netapp_type = protect_source.netapp_protection_source.mtype
+            body.allowed_ip_addresses = registration_info.allowed_ip_addresses
+            body.denied_ip_addresses = registration_info.denied_ip_addresses
+
+            # Check the config file for section with endpoint or source name.
+            if configparser.has_section(endpoint):
+                body.password = configparser.get(endpoint, "password")
+                section = endpoint
+            elif configparser.has_section(name):
+                body.password = configparser.get(name, "password")
+            else:
+                ERROR_LIST.append(
+                    "Section %s or %s not available in the config file" % (
+                        name, endpoint))
+                return
+
+            if registration_info.nas_mount_credentials and \
+                registration_info.nas_mount_credentials.nas_protocol != \
+                    nas_enum.KNFS3:
+                exported_creds = registration_info.nas_mount_credentials
+                password = configparser.get(section, "smb_password")
+                mount_creds = NasMountCredentialParams()
+                mount_creds.password = password
+                mount_creds.username = exported_creds.username
+                mount_creds.domain = exported_creds.domain
+                mount_creds.nas_protocol = exported_creds.nas_protocol
+                body.nas_mount_credentials = mount_creds
+
 
         elif environment == env_enum.KPHYSICAL:
             source_id = node["protectionSource"]["id"]
@@ -864,6 +901,7 @@ def create_protection_sources():
                 env_enum.K_HYPERV,
                 env_enum.KISILON,
                 env_enum.K_VMWARE,
+                env_enum.KNETAPP,
                 KCASSANDRA,
             ]:
                 registered_source_list[name] = id
@@ -892,6 +930,7 @@ def create_protection_sources():
                 env_enum.K_HYPERV,
                 env_enum.K_VMWARE,
                 env_enum.KISILON,
+                env_enum.KNETAPP,
                 KCASSANDRA,
             ]:
                 if name in registered_source_list.keys():
@@ -1217,6 +1256,7 @@ def create_protection_jobs():
                 env_enum.KSQL,
                 KCASSANDRA,
                 env_enum.K_HYPERV,
+                env_enum.KNETAPP,
                 env_enum.KAD,
                 env_enum.KORACLE,
             ]:
@@ -1300,6 +1340,13 @@ def create_protection_jobs():
                         node["protectionSource"]["cassandraProtectionSource"]["uuid"]
                     )
                 elif (
+                    environment == env_enum.KNETAPP
+                    and node["protectionSource"]["id"] in source_id_list
+                ):
+                    uuid_list.append(
+                        node["protectionSource"]["netappProtectionSource"]["uuid"]
+                    )
+                elif (
                     environment == env_enum.K_HYPERV
                     and node["protectionSource"]["id"] in source_id_list
                 ):
@@ -1375,6 +1422,17 @@ def create_protection_jobs():
                             break
                 elif environment == KCASSANDRA:
                     uuid = node["protectionSource"]["cassandraProtectionSource"].get(
+                        "uuid"
+                    )
+                    if (
+                        uuid in uuid_list
+                        and node["protectionSource"]["parentId"]
+                        == source_mapping[parent_id]
+                    ):
+                        id = node["protectionSource"]["id"]
+                        source_list.append(id)
+                elif environment == env_enum.KNETAPP:
+                    uuid = node["protectionSource"]["netappProtectionSource"].get(
                         "uuid"
                     )
                     if (
@@ -1936,6 +1994,7 @@ def add_routes():
 
 
 if __name__ == "__main__":
+
     logger.info("Importing cluster config \n\n")
     import_cluster_config()
     # Gflags are imported from cluster based on flag value.
