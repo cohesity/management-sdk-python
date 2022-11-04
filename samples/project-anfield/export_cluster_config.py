@@ -151,7 +151,8 @@ env_list = [
     KCASSANDRA,
     env_enum.KAD,
     env_enum.KORACLE,
-    env_enum.K_HYPERV
+    env_enum.K_HYPERV,
+    env_enum.KNETAPP
 ]
 
 
@@ -169,7 +170,7 @@ for source in cluster_dict["sources"]:
     else:
         res = library.get_protection_source_by_id(cohesity_client, _id, env)
         source_dct[_id] = res.nodes
-    if env in [env_enum.KVIEW, env_enum.K_VMWARE, env_enum.KISILON, "kCassandra", env_enum.K_HYPERV]:
+    if env in [env_enum.KVIEW, env_enum.K_VMWARE, env_enum.KISILON, "kCassandra", env_enum.K_HYPERV, env_enum.KNETAPP]:
         name = source.protection_source.name
         exported_res["Protection Sources"].append(name)
     else:
