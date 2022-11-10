@@ -1,9 +1,10 @@
 # Copyright 2020 Cohesity Inc.
 #
 # Python utility to import the cluster config.
-# Expects config.ini to be present in the current directory.
+# Expects input config file to be present in the current directory.
 # Usage: python import_cluster_config.py <path/to/file>
 
+import argparse
 import copy
 import json
 import logging
@@ -84,7 +85,6 @@ except ImportError as err:
 
 try:
     import requests
-
     # Check for python version
     if float(sys.version[:3]) >= 3:
         import configparser as configparser
@@ -95,7 +95,7 @@ except ImportError as err:
     print("To run dependencies, run 'sh setup.sh'.")
     sys.exit()
 
-from configparser import NoSectionError, NoOptionError
+from configparser import NoSectionError, NoOptionError, MissingSectionHeaderError
 
 # Custom module import
 import library
@@ -112,7 +112,29 @@ logger.setLevel(logging.DEBUG)
 ERROR_LIST = []
 KCASSANDRA = "kCassandra"
 configparser = configparser.ConfigParser()
-configparser.read("config.ini")
+parser = argparse.ArgumentParser(
+    description="Import Config Arguments"
+)
+parser.add_argument(
+    "--config",
+    "-c",
+    default="config.ini",
+    action="store",
+    help="Config file to import the resources.")
+parser.add_argument('file', nargs='*')
+args = parser.parse_args()
+config_file = args.config
+
+
+# Validate the configuration file content.
+try:
+    configparser.read(config_file)
+except MissingSectionHeaderError as err:
+    print(
+        "Given configuration file is invalid, please make sure %s is "
+        "decrypted" % config_file)
+    sys.exit()
+
 
 try:
     cluster_ip = configparser.get("import_cluster_config", "cluster_ip")
@@ -147,16 +169,16 @@ try:
     )
     vlans = configparser.getboolean("import_cluster_config", "vlans")
 except (NoOptionError, NoSectionError) as err:
-    print("Error while fetching value from config.ini file, err_msg" " '%s'" % err)
+    print("Error while fetching value from '%s' file, err_msg" " '%s'" %  (config_file,err))
     sys.exit()
 
 # Read the imported cluster configurations from file.
-if len(sys.argv) != 2:
+if not args.file:
     logger.error("Please specify the exported config file.")
     sys.exit(1)
 else:
     try:
-        cluster_dict = pickle.load(open(sys.argv[1], "rb"))
+        cluster_dict = pickle.load(open(args.file[0], "rb"))
     except IOError:
         print("Import file does not exist")
         sys.exit(1)
@@ -319,7 +341,7 @@ def create_vaults():
         except Exception as err:
             ERROR_LIST.append(
                 "Please add correct config for %s in "
-                "config.ini, err is %s" % (vault.name, err)
+                "%s, err is %s" % (vault.name, config_file, err)
             )
 
 
@@ -1245,7 +1267,11 @@ def create_protection_jobs():
                 )
                 continue
             sources = cluster_dict["source_dct"].get(parent_id, [])
+            print(parent_id, source_mapping, job_name)
+
             nodes = []
+            if environment == env_enum.KNETAPP:
+                nodes = sources if isinstance(sources, list) else []
             for source in sources:
                 nodes.extend(source.get("nodes", []))
 
@@ -1346,6 +1372,7 @@ def create_protection_jobs():
                     uuid_list.append(
                         node["protectionSource"]["netappProtectionSource"]["uuid"]
                     )
+                    print(node["protectionSource"]["name"], node["protectionSource"]["netappProtectionSource"]["uuid"])
                 elif (
                     environment == env_enum.K_HYPERV
                     and node["protectionSource"]["id"] in source_id_list
@@ -1356,6 +1383,7 @@ def create_protection_jobs():
                 if len(uuid_list + tag_uuid_list) == list_len:
                     break
             nodes = []
+
             if source_mapping.get(parent_id, None):
                 nodes = library.get_protection_source_by_id(
                     cohesity_client, source_mapping[parent_id], environment
@@ -1465,6 +1493,7 @@ def create_protection_jobs():
                         tags.append(tag_id_mapping[tag_id])
                     protection_job.vm_tag_ids.append(tags)
 
+            print(":")
             if environment in [env_enum.KAD, env_enum.KSQL, env_enum.KORACLE]:
                 exported_entity_mapping = (
                     cluster_dict["sql_entity_mapping"]
@@ -1494,7 +1523,8 @@ def create_protection_jobs():
                                 id=source_id
                             )
                         )
-                        for nodes in sources[0].application_nodes:
+                        application_nodes = sources[0].application_nodes or []
+                        for nodes in application_nodes:
                             if environment in [env_enum.KORACLE, env_enum.KAD]:
                                 entity_mapping[
                                     nodes["protectionSource"]["name"]
@@ -1506,6 +1536,7 @@ def create_protection_jobs():
                         param.source_id = source_id
 
                         # Fetch list of databases protected through job.
+                        missing_objects = []
                         entity_ids = (
                             param.sql_special_parameters.application_entity_ids
                             if environment == env_enum.KSQL
@@ -1515,7 +1546,10 @@ def create_protection_jobs():
                         )
                         for _id in entity_ids:
                             instance_name = exported_entity_mapping[_source_id][_id]
-                            instance_list.append(entity_mapping[instance_name])
+                            if entity_mapping.get(instance_name, None):
+                                instance_list.append(entity_mapping[instance_name])
+                            else:
+                                missing_objects.append(instance_name)
                         if environment == env_enum.KSQL:
                             param.sql_special_parameters = (
                                 ApplicationSpecialParameters()
@@ -1542,6 +1576,14 @@ def create_protection_jobs():
                     if environment == env_enum.KAD
                     else oracle_parent_source
                 )
+            if missing_objects:
+                ERROR_LIST.append(
+                    "Following list of objects '%s' are not available in the "
+                    "source for job '%s'" % (
+                        ",".join(missing_objects), job_name))
+                missing_objects.clear()
+                if not instance_list or source_list:
+                    continue
 
             if source_spl_params and environment == env_enum.K_VMWARE:
                 for param in source_spl_params:
@@ -1663,7 +1705,7 @@ def create_remote_clusters():
             if cluster.name not in configparser.sections():
                 ERROR_LIST.append(
                     "Please add password for remote cluster: %s "
-                    "in config.ini" % cluster.name
+                    "in %s" % (cluster.name, config_file)
                 )
                 continue
             remote_cluster_password = configparser.get(cluster.name, "password")
@@ -1785,7 +1827,7 @@ def create_remote_clusters():
 def add_active_directory():
     """
     Function to add active directory to the cluster. AD credentials are fetched
-    from config.ini file.
+    from config input(.ini) file.
     """
     existing_ad_list = list()
     ad_resp = library.get_ad_entries(cohesity_client)

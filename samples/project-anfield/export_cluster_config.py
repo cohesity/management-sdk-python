@@ -21,17 +21,20 @@ try:
     # Custom module import
     from cohesity_management_sdk.cohesity_client import CohesityClient
     from cohesity_management_sdk.exceptions.api_exception import APIException
-    from cohesity_management_sdk.models.environment_register_protection_source_parameters_enum import (
-        EnvironmentRegisterProtectionSourceParametersEnum as env_enum,
-    )
+    from cohesity_management_sdk.models.environment_register_protection_source_parameters_enum import \
+        EnvironmentRegisterProtectionSourceParametersEnum as env_enum
+    from cohesity_management_sdk.models.netapp_type_enum import NetappTypeEnum
     from library import RestClient
 except ImportError as err:
     import sys
+
     print(
         "Please ensure Cohesity Python SDK and dependency packages are installed to continue."
     )
-    print("To install Python SDK, run 'pip install cohesity-management-sdk "
-          "configparser requests'")
+    print(
+        "To install Python SDK, run 'pip install cohesity-management-sdk "
+        "configparser requests'"
+    )
     print("To install dependencies, run 'sh setup.py'")
     sys.exit()
 
@@ -41,10 +44,10 @@ requests.packages.urllib3.disable_warnings()
 # Check for python version
 if float(sys.version[:3]) >= 3:
     import configparser
-    from configparser import NoSectionError, NoOptionError
 else:
     import ConfigParser as configparser
-    from configparser import NoSectionError, NoOptionError
+
+from configparser import NoSectionError, NoOptionError, MissingSectionHeaderError
 
 logger = logging.getLogger("export_app")
 
@@ -52,17 +55,50 @@ logger = logging.getLogger("export_app")
 parser = argparse.ArgumentParser(
     description="Please provide export file location and filename"
 )
-parser.add_argument("--file_location", default=os.getcwd(), action="store")
-parser.add_argument("--file_name", default="", action="store")
-parser.add_argument("--auto_fill_config", default="", action="store_true")
+parser.add_argument(
+    "--file_location",
+    default=os.getcwd(),
+    action="store",
+    help="Directory to store the exported config file.",
+)
+parser.add_argument(
+    "--file_name",
+    default="",
+    action="store",
+    help="File name to store the exported config.",
+)
+parser.add_argument(
+    "--auto_fill_config",
+    default="",
+    action="store_true",
+    help="Enable this flag to auto populate the config file sections and fields",
+)
+parser.add_argument(
+    "--config",
+    "-c",
+    default="config.ini",
+    action="store",
+    help="Config file to export the resources.",
+)
+
 args = parser.parse_args()
 file_location = args.file_location
 file_name = args.file_name
 auto_fill_config = args.auto_fill_config
+config_file = args.config
+
+# Validate the configuration file content.
+try:
+    configparser = configparser.ConfigParser()
+    configparser.read(config_file)
+except MissingSectionHeaderError as err:
+    print(
+        "Given configuration file is invalid, please make sure %s is "
+        "decrypted" % config_file)
+    sys.exit()
+
 
 # Fetch the Cluster credentials from config file.
-configparser = configparser.ConfigParser()
-configparser.read("config.ini")
 try:
     cluster_vip = configparser.get("export_cluster_config", "cluster_ip")
     username = configparser.get("export_cluster_config", "username")
@@ -85,8 +121,8 @@ except Exception as err:
 logger.setLevel(logging.INFO)
 
 logger.info(
-    "Exporting resources from cluster '%s'"
-    , (configparser.get("export_cluster_config", "cluster_ip"))
+    "Exporting resources from cluster '%s'",
+    (configparser.get("export_cluster_config", "cluster_ip")),
 )
 
 try:
@@ -97,7 +133,7 @@ try:
         "export_cluster_config", "export_access_management"
     )
 except (NoSectionError, NoOptionError) as err:
-    print("Error while fetching 'config.ini' content, error msg %s" % err)
+    print("Error while fetching '%s' content, error msg %s" % (config_file, err))
 
 cluster_dict = {
     "cluster_config": library.get_cluster_config(cohesity_client),
@@ -113,12 +149,14 @@ cluster_dict = {
         cohesity_client, env_enum.KSQL
     ),
     "ad_entity_mapping": library.get_ad_entity_mapping(cohesity_client, env_enum.KAD),
-    "oracle_entity_mapping": library.get_ad_entity_mapping(cohesity_client, env_enum.KORACLE),
+    "oracle_entity_mapping": library.get_ad_entity_mapping(
+        cohesity_client, env_enum.KORACLE
+    ),
     "whitelist_settings": library.get_whitelist_settings(cohesity_client, rest_obj),
     "vlans": library.get_vlans(cohesity_client),
     "iface_groups": library.get_interface_groups(cohesity_client),
     "routes": library.get_routes(cohesity_client),
-    "host_mappings": library.get_host_mapping(cohesity_client)
+    "host_mappings": library.get_host_mapping(cohesity_client),
 }
 
 # Export Active directory entries and AD users and groups along with roles.
@@ -145,7 +183,7 @@ env_list = [
     env_enum.KAD,
     env_enum.KORACLE,
     env_enum.K_HYPERV,
-    env_enum.KNETAPP
+    env_enum.KNETAPP,
 ]
 
 
@@ -163,7 +201,15 @@ for source in cluster_dict["sources"]:
     else:
         res = library.get_protection_source_by_id(cohesity_client, _id, env)
         source_dct[_id] = res.nodes
-    if env in [env_enum.KVIEW, env_enum.K_VMWARE, env_enum.KISILON, "kCassandra", env_enum.K_HYPERV, env_enum.KNETAPP]:
+
+    if env in [
+        env_enum.KVIEW,
+        env_enum.K_VMWARE,
+        env_enum.KISILON,
+        "kCassandra",
+        env_enum.K_HYPERV,
+        env_enum.KNETAPP,
+    ]:
         name = source.protection_source.name
         exported_res["Protection Sources"].append(name)
     else:
@@ -202,17 +248,17 @@ pickle.dump(cluster_dict, open(exported_config_file, "wb"))
 
 logger.info("Please find the exported resources summary.\n")
 for key, val in exported_res.items():
-    print(key)
-    logger.info("Successfully exported the following %s:\n%s\n" , key, ", ".join(val))
+    if not val:continue
+    logger.info("Successfully exported the following %s:\n%s\n", key, ", ".join(val))
 
 
-logger.info("Exported config file: %s" , exported_config_file)
+logger.info("Exported config file: %s", exported_config_file)
 
 # Auto populate config.ini file based on flag.
 if auto_fill_config:
-    logger.info("Auto populating sections in 'config.ini' file.")
-    result = library.auto_populate_config()
+    logger.info("Auto populating sections in '%s' file." % config_file)
+    result = library.auto_populate_config(config_file)
     if not result:
-        logger.error("Error while updating config.ini file")
+        logger.error("Error while updating '%s' file" % config_file)
     else:
-        logger.info("Successfully updated 'config.ini' file")
+        logger.info("Successfully updated '%s' file" % config_file)

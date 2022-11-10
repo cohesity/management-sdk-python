@@ -56,9 +56,9 @@ Current version fo the tooling supports export and import the cluster resources 
 
 ## Installation
 ```
-pip install cohesity_management_sdk configparser 
+pip install -r requirement.txt
 ```
-This will work for Python 3 >=3.4.
+This will work for Python >= 3.6.
 
 ## Prerequisite
 ```
@@ -159,6 +159,30 @@ This will work for Python 3 >=3.4.
 
 11. Both Cluster and Standalone Netapp types are supported. To register Netapp source with SMB Volumes enabled, smb_password is required and should be added in the config file.
 
+
+## Encrypt
+
+Run the following command to encrypt the default configuration file(config.ini).
+```
+python crypt.py encrypt -k key_to_encrypt
+```
+Run the following command to encrypt the custom configuration file provided.
+```
+python crypt.py encrypt -c /path/to/config/file -k key_to_encrypt
+```
+
+## Decrypt
+
+Run the following command to decrypt the default configuration file(config.ini).
+```
+python crypt.py decrypt -k key_to_decrypt
+```
+Run the following command to decrypt the custom configuration file provided.
+
+```
+python crypt.py decrypt -c /path/to/config/file -k key_to_decrypt
+```
+
 ## Export 
 
 Run the following command to export resources.
@@ -167,11 +191,29 @@ python export_cluster_config.py
 ```
 The above command will generate a <export-config-ClusterName-timestamp> file (eg: export-config-Kursk-2020-04-17-12:15) which needs be provided while importing resources.
 
+
+Run the following command to export resources and auto fill the config.ini file
+```
+python export_cluster_config.py --auto_fill_config
+```
+The above command will generate a <export-config-ClusterName-timestamp> file and config.ini file will be auto populated with list of sources/targets/remote clusters.
+
 Custom export file name and location can be provided as follows,
 ```
 python export_cluster_config.py --file_location /tmp/ --file_name sample_export_config
 ```
 The above command will generate sample_export_config file under /tmp folder.
+
+By default scripts read config available in config.ini file. Run the following command to export/import resources with different input config file path.
+```
+python export_cluster_config.py --config ~/backup.ini
+```
+
+Run the following command to export/import resources with different input config file path.
+```
+python export_cluster_config.py --config ~/backup.ini --auto_fill_config
+```
+The above command will generate a <export-config-ClusterName-timestamp> file and ~/backup.ini file will be auto populated with list of sources/targets/remote clusters.
 
 ### Output 
 ```
@@ -199,8 +241,18 @@ INFO:export_app:	*** Protection Sources ***:
 ```
 
  ## Import
+
+Run the following command to import the resources.
 ```
 python import_cluster_config.py <export-config-Cluster-Name-timestamp>
+```
+
+By default scripts read config available in config.ini file.
+
+Run the following command to export/import resources with different input config file path.
+```
+python import_cluster_config.py --config ~/backup.ini <export-config-Cluster-Name-timestamp>
+python import_cluster_config.py -c ~/backup.ini <export-config-Cluster-Name-timestamp>
 ```
 
 ### Output

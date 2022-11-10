@@ -1,0 +1,2 @@
+cohesity_management_sdk==1.8.1
+cryptography==2.1.4
