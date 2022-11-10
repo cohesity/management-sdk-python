@@ -12,8 +12,9 @@ try:
     import datetime
     import json
     import logging
-    import pickle
     import os
+    import pickle
+    import socket
     import requests
     import sys
     import library
@@ -104,7 +105,13 @@ try:
     username = configparser.get("export_cluster_config", "username")
     password = configparser.get("export_cluster_config", "password")
     domain = configparser.get("export_cluster_config", "domain")
-
+    # Check Cluster IP/FQDN is reachable.
+    try:
+        socket.gethostbyaddr(cluster_vip)
+    except (socket.herror, socket.gaierror):
+        raise Exception(
+            "Cluster IP %s is not reachable, please check network "
+            "connectivity" % cluster_vip)
     cohesity_client = CohesityClient(
         cluster_vip=cluster_vip, username=username, password=password, domain=domain
     )

@@ -159,6 +159,8 @@ This will work for Python >= 3.6.
 
 11. Both Cluster and Standalone Netapp types are supported. To register Netapp source with SMB Volumes enabled, smb_password is required and should be added in the config file.
 
+12. IMPORTANT: If any password or secretkey in the config file have special character **%**, replace __%__ with __%%__ as special character(%) is considered as escape character in python ConfigParser.
+For example, if your password is **Cohesity%123** provide in the config file as **Cohesity%%123**
 
 ## Encrypt
 
@@ -182,6 +184,7 @@ Run the following command to decrypt the custom configuration file provided.
 ```
 python crypt.py decrypt -c /path/to/config/file -k key_to_decrypt
 ```
+
 
 ## Export 
 
