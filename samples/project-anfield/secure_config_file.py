@@ -1,16 +1,22 @@
 """
 Module to decrypt/encrypt the config file.
-How to Run: python crypt.py encrypt -c /path/to/config.ini -k key_to_encrypt/decrypt
+How to Run:
+    python secure_config_file.py --operation encrypt -c /path/to/config.ini \
+        -k key_to_encrypt/decrypt
 """
 
 import argparse
-import sys
 import base64
+import sys
 import uuid
+
 from cryptography.fernet import Fernet, InvalidToken
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from cryptography.hazmat.backends import default_backend
+
+ITERATIONS = 390000
+LENGTH = 32
 
 
 def generate_key(password):
@@ -24,9 +30,9 @@ def generate_key(password):
     salt = (uuid.getnode()).to_bytes(8, byteorder="big")
     kdf = PBKDF2HMAC(
         algorithm=hashes.SHA256(),
-        length=32,
+        length=LENGTH,
         salt=salt,
-        iterations=390000,
+        iterations=ITERATIONS,
         backend=default_backend(),
     )
     pass_key = base64.urlsafe_b64encode(kdf.derive(password))
@@ -58,8 +64,8 @@ def write_file_content(file_name, content):
         sys.exit()
     except PermissionError:
         print(
-            "Please make sure current user have permission to edit the config "
-            "file.")
+            "Please make sure current user have permission to edit the config " "file."
+        )
         sys.exit()
 
 
@@ -68,9 +74,6 @@ def encrypt(fernet, configfile):
     Encrypt the file content.
     """
     config = read_file_content(configfile)
-    # if "export_cluster_config" not in str(config):
-    #     print("File is already encrypted, skipping!!")
-    #     sys.exit()
     encrypted_config = fernet.encrypt(config)
     write_file_content(configfile, encrypted_config)
     print(f"Successfully encrypted the config file '{configfile}'")
@@ -96,7 +99,10 @@ def decrypt(fernet, configfile):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "action", action="store", help="Action to be performed, encrypt/decrypt"
+        "--operation",
+        "-o",
+        action="store",
+        help="Operation to be performed, encrypt/decrypt"
     )
     parser.add_argument(
         "--config",
@@ -113,14 +119,14 @@ if __name__ == "__main__":
     args = parser.parse_args()
     config_file = args.config or "config.ini"
     if not args.key:
-        print(f"Please provide a valid 'key' to '{args.action}'")
+        print(f"Please provide a valid 'key' to '{args.operation}'")
         sys.exit()
 
     key = generate_key(args.key)
     fernet_key = Fernet(key)
-    if args.action.lower() == "encrypt":
+    if args.operation.lower() == "encrypt":
         encrypt(fernet_key, config_file)
-    elif args.action.lower() == "decrypt":
+    elif args.operation.lower() == "decrypt":
         decrypt(fernet_key, config_file)
     else:
         print("Invalid action provided, exiting!")

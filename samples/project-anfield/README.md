@@ -166,23 +166,23 @@ For example, if your password is **Cohesity%123** provide in the config file as 
 
 Run the following command to encrypt the default configuration file(config.ini).
 ```
-python crypt.py encrypt -k key_to_encrypt
+python secure_config_file.py --operation encrypt -k key_to_encrypt
 ```
 Run the following command to encrypt the custom configuration file provided.
 ```
-python crypt.py encrypt -c /path/to/config/file -k key_to_encrypt
+python secure_config_file.py --operation encrypt -c /path/to/config/file -k key_to_encrypt
 ```
 
 ## Decrypt
 
 Run the following command to decrypt the default configuration file(config.ini).
 ```
-python crypt.py decrypt -k key_to_decrypt
+python secure_config_file.py --operation decrypt -k key_to_decrypt
 ```
 Run the following command to decrypt the custom configuration file provided.
 
 ```
-python crypt.py decrypt -c /path/to/config/file -k key_to_decrypt
+python secure_config_file.py --operation decrypt -c /path/to/config/file -k key_to_decrypt
 ```
 
 
@@ -209,7 +209,8 @@ The above command will generate sample_export_config file under /tmp folder.
 
 By default scripts read config available in config.ini file. Run the following command to export/import resources with different input config file path.
 ```
-python export_cluster_config.py --config ~/backup.ini
+python export_cluster_config.py --config clusterA_config.ini
+python export_cluster_config.py --config clusterB_config.ini
 ```
 
 Run the following command to export/import resources with different input config file path.
