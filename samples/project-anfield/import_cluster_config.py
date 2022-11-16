@@ -1267,7 +1267,6 @@ def create_protection_jobs():
                 )
                 continue
             sources = cluster_dict["source_dct"].get(parent_id, [])
-            print(parent_id, source_mapping, job_name)
 
             nodes = []
             if environment == env_enum.KNETAPP:
@@ -1332,6 +1331,7 @@ def create_protection_jobs():
             # available.
             if not to_proceed:
                 continue
+            missing_objects = []
             tag_id_mapping = {}
             uuid_source_mapping = {}
             resource_list = source_id_list + tag_id_list
@@ -1372,7 +1372,6 @@ def create_protection_jobs():
                     uuid_list.append(
                         node["protectionSource"]["netappProtectionSource"]["uuid"]
                     )
-                    print(node["protectionSource"]["name"], node["protectionSource"]["netappProtectionSource"]["uuid"])
                 elif (
                     environment == env_enum.K_HYPERV
                     and node["protectionSource"]["id"] in source_id_list
@@ -1493,7 +1492,6 @@ def create_protection_jobs():
                         tags.append(tag_id_mapping[tag_id])
                     protection_job.vm_tag_ids.append(tags)
 
-            print(":")
             if environment in [env_enum.KAD, env_enum.KSQL, env_enum.KORACLE]:
                 exported_entity_mapping = (
                     cluster_dict["sql_entity_mapping"]
@@ -1536,7 +1534,6 @@ def create_protection_jobs():
                         param.source_id = source_id
 
                         # Fetch list of databases protected through job.
-                        missing_objects = []
                         entity_ids = (
                             param.sql_special_parameters.application_entity_ids
                             if environment == env_enum.KSQL

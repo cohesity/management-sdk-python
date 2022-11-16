@@ -183,7 +183,7 @@ env_list = [
     env_enum.KISILON,
     env_enum.KPHYSICAL,
     env_enum.KPHYSICALFILES,
-    env_enum.KVIEW,
+    #env_enum.KVIEW,
     env_enum.K_VMWARE,
     env_enum.KSQL,
     KCASSANDRA,

@@ -172,7 +172,6 @@ Run the following command to encrypt the custom configuration file provided.
 ```
 python secure_config_file.py --operation encrypt -c /path/to/config/file -k key_to_encrypt
 ```
-
 ## Decrypt
 
 Run the following command to decrypt the default configuration file(config.ini).
@@ -185,6 +184,11 @@ Run the following command to decrypt the custom configuration file provided.
 python secure_config_file.py --operation decrypt -c /path/to/config/file -k key_to_decrypt
 ```
 
+By default after encryption/decryption, config file contents will be overwritten. User can set keyword argument *overwrite* to false to avoid overwriting existing file and encrypted data will be saved to new file created in the following format *configfile_operation_timestamp*
+```
+python secure_config_file.py --key 123 --overwrite=false -o encrypt -c=config.ini
+config_encrypt_2022-11-16-09-55-22.ini
+```
 
 ## Export 
 

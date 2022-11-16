@@ -7,9 +7,11 @@ How to Run:
 
 import argparse
 import base64
+import datetime
 import sys
 import uuid
 
+from distutils.util import strtobool
 from cryptography.fernet import Fernet, InvalidToken
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
@@ -75,8 +77,8 @@ def encrypt(fernet, configfile):
     """
     config = read_file_content(configfile)
     encrypted_config = fernet.encrypt(config)
-    write_file_content(configfile, encrypted_config)
-    print(f"Successfully encrypted the config file '{configfile}'")
+    write_file_content(WRITE_FILE_NAME, encrypted_config)
+    print(f"Successfully encrypted the config file '{configfile}' to '{WRITE_FILE_NAME}'")
 
 
 def decrypt(fernet, configfile):
@@ -89,19 +91,21 @@ def decrypt(fernet, configfile):
             print("File is already decrypted, skipping!!")
             sys.exit()
         decrypted_config = fernet.decrypt(config)
-        write_file_content(configfile, decrypted_config)
+        write_file_content(WRITE_FILE_NAME, decrypted_config)
     except InvalidToken:
         print("Please provide valid key to 'decrypt' the file contents.")
         sys.exit()
-    print(f"Successfully decrypted the config file {configfile}")
+    print(f"Successfully decrypted the config file '{configfile}' to '{WRITE_FILE_NAME}'")
 
 
 if __name__ == "__main__":
+    # global WRITE_FILE_NAME
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--operation",
         "-o",
         action="store",
+        required=True,
         help="Operation to be performed, encrypt/decrypt"
     )
     parser.add_argument(
@@ -116,6 +120,13 @@ if __name__ == "__main__":
         action="store",
         help="Key to encrypt/decryt the configuration file",
     )
+    parser.add_argument(
+        "--overwrite",
+        action="store",
+        default=True,
+        type=strtobool,
+        help="Flag to overwrite the configuration file"
+    )
     args = parser.parse_args()
     config_file = args.config or "config.ini"
     if not args.key:
@@ -123,6 +134,12 @@ if __name__ == "__main__":
         sys.exit()
 
     key = generate_key(args.key)
+    WRITE_FILE_NAME = config_file
+    if not args.overwrite:
+        timestamp = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
+        f_name, ext = config_file.split(".")
+        WRITE_FILE_NAME = f_name + "_" + args.operation + "_" + timestamp + "." + ext
+
     fernet_key = Fernet(key)
     if args.operation.lower() == "encrypt":
         encrypt(fernet_key, config_file)
