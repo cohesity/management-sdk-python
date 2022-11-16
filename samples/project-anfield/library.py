@@ -156,8 +156,10 @@ def get_protection_sources(cohesity_client):
         environment = source.protection_source.environment
         if source.protection_source.environment == env_enum.K_VMWARE:
             name = source.protection_source.name
-        elif environment == env_enum.KISILON:
-            name = source.protection_source.isilon_protection_source.name
+        elif environment in [env_enum.KISILON, env_enum.KNETAPP]:
+            name = source.protection_source.isilon_protection_source.name \
+                if source.protection_source.isilon_protection_source else \
+                    source.protection_source.netapp_protection_source.name
             keys = ["password", "smb_password"]
         elif environment == "kCassandra":
             name = source.protection_source.name
@@ -364,19 +366,21 @@ def debug():
     return exported_res_dict
 
 
-def auto_populate_config():
+def auto_populate_config(file_name="config.ini"):
     """
-    Function to auto-fill config.ini file based on exported cluster
-    details. From existing config.ini file, import_cluster_config and
-    export_cluster_config sections are retained.
+    Function to auto-fill ini file based on exported cluster details. From
+    existing ini file, import_cluster_config and export_cluster_config sections
+    are retained.
+    By default config.ini file available in the current directory is updated oe
+    else custom provided ini file is updated.
     """
     config = configparser.ConfigParser()
 
     # Fetch existing config details.
     config_parser = configparser.ConfigParser()
-    config_parser.read("config.ini")
+    config_parser.read(file_name)
 
-    # Update import and export config details from existing config.ini file.
+    # Update import and export config details from existing ini file.
     config["export_cluster_config"] = config_parser["export_cluster_config"]
     config["import_cluster_config"] = config_parser["import_cluster_config"]
 
@@ -388,8 +392,8 @@ def auto_populate_config():
         for key in keys:
             config[section][key] = ""
     try:
-        # Update config.ini file.
-        with open("config.ini", "w") as file_obj:
+        # Update ini file.
+        with open(file_name, "w") as file_obj:
             config.write(file_obj)
         return True
     except Exception as err:

@@ -56,9 +56,9 @@ Current version fo the tooling supports export and import the cluster resources 
 
 ## Installation
 ```
-pip install cohesity_management_sdk configparser 
+pip install -r requirement.txt
 ```
-This will work for Python 3 >=3.4.
+This will work for Python >= 3.6.
 
 ## Prerequisite
 ```
@@ -162,6 +162,34 @@ This will work for Python 3 >=3.4.
 12. IMPORTANT: If any password or secretkey in the config file have special character **%**, replace __%__ with __%%__ as special character(%) is considered as escape character in python ConfigParser.
 For example, if your password is **Cohesity%123** provide in the config file as **Cohesity%%123**
 
+## Encrypt
+
+Run the following command to encrypt the default configuration file(config.ini).
+```
+python secure_config_file.py --operation encrypt --key key_to_encrypt
+```
+Run the following command to encrypt the custom configuration file provided.
+```
+python secure_config_file.py --operation encrypt --config /path/to/config/file --key key_to_encrypt
+```
+## Decrypt
+
+Run the following command to decrypt the default configuration file(config.ini).
+```
+python secure_config_file.py --operation decrypt --key key_to_decrypt
+```
+Run the following command to decrypt the custom configuration file provided.
+
+```
+python secure_config_file.py --operation decrypt --config /path/to/config/file --key key_to_decrypt
+```
+
+By default after encryption/decryption, config file contents will be overwritten. User can set keyword argument *overwrite* to false to avoid overwriting existing file and encrypted data will be saved to new file created in the following format *configfile_operation_timestamp*
+```
+python secure_config_file.py --key 123 --overwrite=false --operation encrypt --config=config.ini
+config_encrypt_2022-11-16-09-55-22.ini
+```
+
 ## Export 
 
 Run the following command to export resources.
@@ -170,11 +198,30 @@ python export_cluster_config.py
 ```
 The above command will generate a <export-config-ClusterName-timestamp> file (eg: export-config-Kursk-2020-04-17-12:15) which needs be provided while importing resources.
 
+
+Run the following command to export resources and auto fill the config.ini file
+```
+python export_cluster_config.py --auto_fill_config
+```
+The above command will generate a <export-config-ClusterName-timestamp> file and config.ini file will be auto populated with list of sources/targets/remote clusters.
+
 Custom export file name and location can be provided as follows,
 ```
 python export_cluster_config.py --file_location /tmp/ --file_name sample_export_config
 ```
 The above command will generate sample_export_config file under /tmp folder.
+
+By default scripts read config available in config.ini file. Run the following command to export/import resources with different input config file path.
+```
+python export_cluster_config.py --config clusterA_config.ini
+python export_cluster_config.py --config clusterB_config.ini
+```
+
+Run the following command to export/import resources with different input config file path.
+```
+python export_cluster_config.py --config ~/backup.ini --auto_fill_config
+```
+The above command will generate a <export-config-ClusterName-timestamp> file and ~/backup.ini file will be auto populated with list of sources/targets/remote clusters.
 
 ### Output 
 ```
@@ -202,8 +249,18 @@ INFO:export_app:	*** Protection Sources ***:
 ```
 
  ## Import
+
+Run the following command to import the resources.
 ```
 python import_cluster_config.py <export-config-Cluster-Name-timestamp>
+```
+
+By default scripts read config available in config.ini file.
+
+Run the following command to export/import resources with different input config file path.
+```
+python import_cluster_config.py --config ~/backup.ini <export-config-Cluster-Name-timestamp>
+python import_cluster_config.py --config ~/backup.ini <export-config-Cluster-Name-timestamp>
 ```
 
 ### Output

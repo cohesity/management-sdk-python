@@ -1,0 +1,4 @@
+cohesity_management_sdk==1.8.1
+# To encode and decode the config file cryptography package is required.
+# Uncomment the below line to support config file encryption/decryption
+# cryptography==2.1.4
