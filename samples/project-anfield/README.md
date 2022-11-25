@@ -27,6 +27,7 @@ Current version fo the tooling supports export and import the cluster resources 
     * Cassandra
     * HyperV(SCVMM)
     * NetApp
+    * Oracle
   * Protection Policies
   * Replicated Clusters
   * Gflags
