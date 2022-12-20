@@ -63,6 +63,10 @@ class Configuration(object):
     # API Key patch
     api_key = None
 
+    # Optional: OTP support
+    otp_type = None
+    otp_code = None
+
     # All the environments the SDK can run in
     environments = {
         Environment.PRODUCTION: {
