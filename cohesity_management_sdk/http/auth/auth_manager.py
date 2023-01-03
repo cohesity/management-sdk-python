@@ -43,6 +43,10 @@ class AuthManager:
         if Configuration.domain is not None:
             body.domain = Configuration.domain
 
+        if Configuration.otp_type:
+            body.otp_type = Configuration.otp_type
+            body.otp_code = Configuration.otp_code
+
         auth_controller = AccessTokensController(Configuration)
         token = auth_controller.create_generate_access_token(body)
         Configuration.auth_token = token
