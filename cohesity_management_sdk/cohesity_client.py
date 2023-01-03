@@ -284,7 +284,9 @@ class CohesityClient(object):
                  password=None,
                  domain=None,
                  auth_token=None,
-                 api_key=None):
+                 api_key=None,
+                 otp_code=None,
+                 otp_type=None):
 
         self.auth = AuthManager()
         self.config = Configuration()
@@ -301,5 +303,9 @@ class CohesityClient(object):
         if domain is not None:
             self.config.domain = domain
         self.config.cluster_vip = cluster_vip
+        if otp_code:
+            self.config.otp_code = otp_code
+        if otp_type:
+            self.config.otp_type = otp_type
         if api_key is not None:
             self.config.api_key = api_key
