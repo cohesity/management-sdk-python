@@ -208,6 +208,7 @@ def get_remote_clusters(cohesity_client):
     remote_cluster_list = cohesity_client.remote_cluster.get_remote_clusters()
     for cluster in remote_cluster_list:
         config_dict[cluster.name] = None
+        exported_res_dict["Remote Clusters"].append(cluster.name)
     return remote_cluster_list
 
 
