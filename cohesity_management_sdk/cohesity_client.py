@@ -284,7 +284,8 @@ class CohesityClient(object):
                  password=None,
                  domain=None,
                  auth_token=None,
-                 api_key=None):
+                 api_key=None,
+                 open_id_token=None):
 
         self.auth = AuthManager()
         self.config = Configuration()
@@ -300,6 +301,8 @@ class CohesityClient(object):
             self.config.auth_token = None  # Flushing existing token.
         if domain is not None:
             self.config.domain = domain
+        if open_id_token is not None:
+            self.config.open_id_token = open_id_token
         self.config.cluster_vip = cluster_vip
         if api_key is not None:
             self.config.api_key = api_key
