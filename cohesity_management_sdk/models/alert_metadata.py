@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.alert_document
 
@@ -61,6 +61,8 @@ class AlertMetadata(object):
             kRemoteReplication - Alert associated with Replication job.
             kQuota - Alert associated with Quotas.
             kCDP - Alert associated with Continuous Data Protection.
+            kViewFailover - Alert associated with view Failover.
+            kDisasterRecovery - Alert associated with Disaster Recovery.
         dedup_interval_seconds (int): Specifies dedup interval in seconds. If
             the same alert is raised multiple times by any client in this
             duration, only one of them will be reported.

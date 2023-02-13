@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.tag_attribute
 
@@ -36,12 +36,16 @@ class AzureProtectionSource(object):
             the given subscription is present.
         host_type (HostTypeEnum): Specifies the OS type of the Protection
             Source of type 'kVirtualMachine' such as 'kWindows' or 'kLinux'.
-            overrideDescription: true 'kLinux' indicates the Linux operating
-            system. 'kWindows' indicates the Microsoft Windows operating
-            system. 'kAix' indicates the IBM AIX operating system. 'kSolaris'
-            indicates the Oracle Solaris operating system. 'kSapHana'
-            indicates the Sap Hana database system developed by SAP SE.
-            'kOther' indicates the other types of operating system.
+            overrideDescription: true
+            'kLinux' indicates the Linux operating system.
+            'kWindows' indicates the Microsoft Windows operating system.
+            'kAix' indicates the IBM AIX operating system.
+            'kSolaris' indicates the Oracle Solaris operating system.
+            'kSapHana' indicates the Sap Hana database system developed by SAP
+            SE. 'kSapOracle' indicates the Sap Oracle database system developed
+            by SAP SE. 'kCockroachDB' indicates the CockroachDB database system.
+            'kMySQL' indicates the MySQL database system. 'kOther' indicates
+            the other types of operating system.
         ip_addresses (list of string): Specifies a list of IP addresses for
             entities of type 'kVirtualMachine'.
         is_managed_vm (bool): Specifies whether VM is managed or not for

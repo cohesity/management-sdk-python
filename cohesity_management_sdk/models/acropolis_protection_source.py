@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
+import cohesity_management_sdk.models.virtual_disk_info
 
 class AcropolisProtectionSource(object):
 
@@ -35,6 +36,9 @@ class AcropolisProtectionSource(object):
             this entity is unique within the Acropolis environment.
         version (string, optional): Specifies the version of an Acropolis
             cluster or standalone cluster.
+        virtual_disks (list of VirtualDiskInfo, optional): Specifies an
+            array of virtual disks that are part of the Virtual Machine.
+            This is populated for entities of type 'kVirtualMachine'.
 
     """
 
@@ -51,7 +55,8 @@ class AcropolisProtectionSource(object):
         "ngt_version":'ngtVersion',
         "mtype":'type',
         "uuid":'uuid',
-        "version":'version'
+        "version":'version',
+        "virtual_disks":'virtualDisks'
     }
 
     def __init__(self,
@@ -66,7 +71,8 @@ class AcropolisProtectionSource(object):
                  ngt_version=None,
                  mtype=None,
                  uuid=None,
-                 version=None):
+                 version=None,
+                 virtual_disks=None):
         """Constructor for the AcropolisProtectionSource class"""
 
         # Initialize members of the class
@@ -82,6 +88,7 @@ class AcropolisProtectionSource(object):
         self.mtype = mtype
         self.uuid = uuid
         self.version = version
+        self.virtual_disks = virtual_disks
 
 
     @classmethod
@@ -114,6 +121,11 @@ class AcropolisProtectionSource(object):
         mtype = dictionary.get('type')
         uuid = dictionary.get('uuid')
         version = dictionary.get('version')
+        virtual_disks = None
+        if dictionary.get('virtualDisks', None) != None:
+            virtual_disks = list()
+            for structure in dictionary.get('virtualDisks'):
+                virtual_disks.append(cohesity_management_sdk.models.virtual_disk_info.VirtualDiskInfo.from_dictionary(structure))
 
         # Return an object of this model
         return cls(cluster_uuid,
@@ -127,6 +139,7 @@ class AcropolisProtectionSource(object):
                    ngt_version,
                    mtype,
                    uuid,
-                   version)
+                   version,
+                   virtual_disks)
 
 

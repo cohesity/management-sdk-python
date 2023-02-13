@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class EnvironmentGetRestoreTasksEnum(object):
 
@@ -48,6 +48,12 @@ class EnvironmentGetRestoreTasksEnum(object):
         KHIVE: TODO: type description here.
         KHBASE: TODO: type description here.
         KUDA: TODO: type description here.
+        KO365TEAMS: TODO: type description here.
+        KO365GROUP: TODO: type description here.
+        KO365EXCHANGE: TODO: type description here.
+        KO365ONEDRIVE: TODO: type description here.
+        KO365SHAREPOINT: TODO: type description here.
+        KO365PUBLICFOLDERS: TODO: type description here.
 
     """
 
@@ -129,5 +135,16 @@ class EnvironmentGetRestoreTasksEnum(object):
 
     KHBASE = 'kHBase'
 
-    KUDA = 'UDA'
+    KUDA = 'kUDA'
 
+    KO365TEAMS = 'kO365Teams'
+
+    KO365GROUP = 'kO365Group'
+
+    KO365EXCHANGE = 'kO365Exchange'
+
+    KO365ONEDRIVE = 'kO365OneDrive'
+
+    KO365SHAREPOINT = 'kO365Sharepoint'
+
+    KO365PUBLICFOLDERS = 'kO365PublicFolders'

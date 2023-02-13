@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.rds_params
+import cohesity_management_sdk.models.custom_tag_params
 
 class AwsParams(object):
 
@@ -10,6 +11,8 @@ class AwsParams(object):
     Specifies various resources when converting and deploying a VM to AWS.
 
     Attributes:
+        custom_tag_list (list of CustomTagParams): Specifies the list of Custom Tag Parameters to be applied to resources
+          created in AWS Cloudspin.
         instance_id (long|int): Specifies id of the AWS instance type in which
             to deploy the VM.
         network_security_group_ids (list of long|int): Specifies ids of the
@@ -26,6 +29,7 @@ class AwsParams(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "custom_tag_list":'customTagList',
         "instance_id":'instanceId',
         "network_security_group_ids":'networkSecurityGroupIds',
         "rds_params":'rdsParams',
@@ -35,6 +39,7 @@ class AwsParams(object):
     }
 
     def __init__(self,
+                 custom_tag_list=None,
                  instance_id=None,
                  network_security_group_ids=None,
                  rds_params=None,
@@ -44,6 +49,7 @@ class AwsParams(object):
         """Constructor for the AwsParams class"""
 
         # Initialize members of the class
+        self.custom_tag_list = custom_tag_list
         self.instance_id = instance_id
         self.network_security_group_ids = network_security_group_ids
         self.rds_params = rds_params
@@ -70,6 +76,11 @@ class AwsParams(object):
             return None
 
         # Extract variables from the dictionary
+        custom_tag_list = None
+        if dictionary.get('customTagList') != None:
+            custom_tag_list = list()
+            for structure in dictionary.get('customTagList'):
+                custom_tag_list.append(cohesity_management_sdk.models.custom_tag_params.CustomTagParams.from_dictionary(structure))
         instance_id = dictionary.get('instanceId')
         network_security_group_ids = dictionary.get('networkSecurityGroupIds')
         rds_params = cohesity_management_sdk.models.rds_params.RdsParams.from_dictionary(dictionary.get('rdsParams')) if dictionary.get('rdsParams') else None
@@ -78,7 +89,8 @@ class AwsParams(object):
         virtual_private_cloud_id = dictionary.get('virtualPrivateCloudId')
 
         # Return an object of this model
-        return cls(instance_id,
+        return cls(custom_tag_list,
+                   instance_id,
                    network_security_group_ids,
                    rds_params,
                    region,

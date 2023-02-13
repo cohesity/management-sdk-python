@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 
 class TenantDeletionInfo(object):
@@ -12,7 +12,7 @@ class TenantDeletionInfo(object):
     deletion).
 
     Attributes:
-        category (int): Specifies the category of objects whose deletion state
+        category (string): Specifies the category of objects whose deletion state
             is being captured.
         finished_at_time_msecs (long|int): Specifies the time when the process
             finished.
@@ -22,7 +22,7 @@ class TenantDeletionInfo(object):
             been retried.
         started_at_time_msecs (long|int): Specifies the time when the process
             started.
-        state (int): Specifies the deletion completion state of the object
+        state (string): Specifies the deletion completion state of the object
             category.
 
     """

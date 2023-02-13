@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class StatusBackupRunEnum(object):
 
@@ -25,11 +25,9 @@ class StatusBackupRunEnum(object):
         KCANCELED: TODO: type description here.
         KSUCCESS: TODO: type description here.
         KFAILURE: TODO: type description here.
-        KWARNING: TODO: type description here.
-        KONHOLD: TODO: type description here.
-        KMISSED: TODO: type description here.
 
     """
+
     KACCEPTED = 'kAccepted'
 
     KRUNNING = 'kRunning'
@@ -41,10 +39,4 @@ class StatusBackupRunEnum(object):
     KSUCCESS = 'kSuccess'
 
     KFAILURE = 'kFailure'
-
-    KWARNING = 'kWarning'
-
-    KONHOLD = 'kOnHold'
-
-    KMISSED = 'kMissed'
 

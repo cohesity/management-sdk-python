@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 
 class AppMetadata(object):
@@ -12,6 +12,8 @@ class AppMetadata(object):
         author (string): Specifies author of the app.
         created_date (string): Specifies date when the first version of the
             app was created.
+        deployment_parameters (string): Deployment parameters required for
+            the app launch.
         description (string): Specifies description about what app does.
         dev_version (string): Specifies version of the app provided by the
             developer.
@@ -26,6 +28,7 @@ class AppMetadata(object):
     _names = {
         "author":'author',
         "created_date":'createdDate',
+        "deployment_parameters":'deploymentParameters',
         "description":'description',
         "dev_version":'devVersion',
         "icon_image":'iconImage',
@@ -36,6 +39,7 @@ class AppMetadata(object):
     def __init__(self,
                  author=None,
                  created_date=None,
+                 deployment_parameters=None,
                  description=None,
                  dev_version=None,
                  icon_image=None,
@@ -46,6 +50,7 @@ class AppMetadata(object):
         # Initialize members of the class
         self.author = author
         self.created_date = created_date
+        self.deployment_parameters = deployment_parameters
         self.description = description
         self.dev_version = dev_version
         self.icon_image = icon_image
@@ -73,6 +78,7 @@ class AppMetadata(object):
         # Extract variables from the dictionary
         author = dictionary.get('author')
         created_date = dictionary.get('createdDate')
+        deployment_parameters = dictionary.get('deploymentParameters')
         description = dictionary.get('description')
         dev_version = dictionary.get('devVersion')
         icon_image = dictionary.get('iconImage')
@@ -82,6 +88,7 @@ class AppMetadata(object):
         # Return an object of this model
         return cls(author,
                    created_date,
+                   deployment_parameters,
                    description,
                    dev_version,
                    icon_image,

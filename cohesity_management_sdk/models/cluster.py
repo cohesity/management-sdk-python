@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.amqp_target_config
 import cohesity_management_sdk.models.subnet
@@ -34,6 +34,14 @@ class Cluster(object):
         chassis_count (int): Specifies the number of chassis in cluster.
         cluster_audit_log_config (ClusterAuditLogConfiguration): Specifies the
             settings of the Cluster audit log configuration.
+        cluster_size (ClusterSizeEnum): Specifies the size of Cloud Edition(CE)
+            Cluster such as kSmall, kNextGen.
+            Specifies the clustersize of the cloud edition(CE) clusters.
+            'kSmall' indicates small cluster size of CE.
+            'kMedium' indicates medium cluster size of CE.
+            'kLarge' indicates large cluster size of CE.
+            'kXLarge' indicates extra large cluster size of CE.
+            'kNextGen' indicates next gen CE.
         cluster_software_version (string): Specifies the current release of
             the Cohesity software running on this Cohesity Cluster.
         cluster_type (ClusterTypeClusterEnum): Specifies the type of Cluster
@@ -61,7 +69,8 @@ class Cluster(object):
             Cluster. 'kDestroy' indicates the Cohesity Cluster is getting
             destoryed. 'kClean' indicates the Cohesity Cluster is getting
             cleaned. 'kRestartServices' indicates the Cohesity Cluster is
-            restarting the services.
+            restarting the services. 'kRestartSystemServices' indicates the
+            Cohesity Cluster is restarting the system services.
         current_time_msecs (long|int): Specifies the current system time on
             the Cohesity Cluster. This value is specified as a Unix epoch
             Timestamp (in microseconds).
@@ -101,6 +110,8 @@ class Cluster(object):
         gateway (string): Specifies the gateway IP address.
         google_analytics_enabled (bool): Specifies whether Google Analytics is
             enabled.
+        hardware_encryption_enabled (bool): Specifies if hardware
+            encryption(SED) is enabled.
         hardware_info (ClusterHardwareInfo): Specifies a hardware type for
             motherboard of the Nodes that make up this Cohesity Cluster such
             as S2600WB for Ivy Bridge or S2600TP for Haswell.
@@ -108,6 +119,8 @@ class Cluster(object):
         incarnation_id (long|int): Specifies the unique incarnation id of the
             Cohesity Cluster.
         ip_preference (int): IP preference
+        is_athena_subnet_clash (bool): Specifies whether or not athena subnet
+            is clashing with some other internal subnet
         is_cluster_mfa_enabled (bool): Specifies if MFA is enabled on cluster.
         is_documentation_local (bool): Specifies what version of the
             documentation is used. If 'true', the version of documentation
@@ -140,7 +153,8 @@ class Cluster(object):
         node_count (long|int): Specifies the number of Nodes in the Cohesity
             Cluster.
         node_ips (string): IP addresses of nodes in the cluster
-        ntp_settings (NtpSettingsConfig): TODO: type description here.
+        ntp_settings (NtpSettingsConfig): Specifies if the ntp/primary
+            secondary scheme should be disabled for this cluster.
         patch_version (string): Specifies the patch version applied to cluster.
         pcie_ssd_tier_rebalance_delay_secs (int): Specifies the rebalance
             delay in seconds for cluster PcieSSD storage tier.
@@ -184,6 +198,7 @@ class Cluster(object):
             Log Configuration.
         timezone (string): Specifies the timezone to use for showing time in
             emails, reports, filer audit logs, etc.
+        trust_domain (string): Trust Domain.
         turbo_mode (bool): Specifies if the cluster is in Turbo mode.
         use_heimdall (bool): Specifies whether to enable Heimdall which tells
             whether services should use temporary fleet instances to mount
@@ -222,10 +237,12 @@ class Cluster(object):
         "fips_mode_enabled":'fipsModeEnabled',
         "gateway":'gateway',
         "google_analytics_enabled":'googleAnalyticsEnabled',
+        "hardware_encryption_enabled":'hardwareEncryptionEnabled',
         "hardware_info":'hardwareInfo',
         "id":'id',
         "incarnation_id":'incarnationId',
         "ip_preference":'ipPreference',
+        "is_athena_subnet_clash":'isAthenaSubnetClash',
         "is_cluster_mfa_enabled":'isClusterMfaEnabled',
         "is_documentation_local":'isDocumentationLocal',
         "kms_server_id":'kmsServerId',
@@ -258,6 +275,7 @@ class Cluster(object):
         "tenant_viewbox_sharing_enabled":'tenantViewboxSharingEnabled',
         "tiering_audit_log_config":'tieringAuditLogConfig',
         "timezone":'timezone',
+        "trust_domain":'trustDomain',
         "turbo_mode":'turboMode',
         "use_heimdall":'useHeimdall',
         "used_metadata_space_pct":'usedMetadataSpacePct'
@@ -290,10 +308,12 @@ class Cluster(object):
                  fips_mode_enabled=None,
                  gateway=None,
                  google_analytics_enabled=None,
+                 hardware_encryption_enabled=None,
                  hardware_info=None,
                  id=None,
                  incarnation_id=None,
                  ip_preference=None,
+                 is_athena_subnet_clash=None,
                  is_cluster_mfa_enabled=None,
                  is_documentation_local=None,
                  kms_server_id=None,
@@ -326,6 +346,7 @@ class Cluster(object):
                  tenant_viewbox_sharing_enabled=None,
                  tiering_audit_log_config=None,
                  timezone=None,
+                 trust_domain=None,
                  turbo_mode=None,
                  use_heimdall=None,
                  used_metadata_space_pct=None):
@@ -358,10 +379,12 @@ class Cluster(object):
         self.fips_mode_enabled = fips_mode_enabled
         self.gateway = gateway
         self.google_analytics_enabled = google_analytics_enabled
+        self.hardware_encryption_enabled = hardware_encryption_enabled
         self.hardware_info = hardware_info
         self.id = id
         self.incarnation_id = incarnation_id
         self.ip_preference = ip_preference
+        self.is_athena_subnet_clash = is_athena_subnet_clash
         self.is_cluster_mfa_enabled = is_cluster_mfa_enabled
         self.is_documentation_local = is_documentation_local
         self.kms_server_id = kms_server_id
@@ -394,6 +417,7 @@ class Cluster(object):
         self.tenant_viewbox_sharing_enabled = tenant_viewbox_sharing_enabled
         self.tiering_audit_log_config = tiering_audit_log_config
         self.timezone = timezone
+        self.trust_domain = trust_domain
         self.turbo_mode = turbo_mode
         self.use_heimdall = use_heimdall
         self.used_metadata_space_pct = used_metadata_space_pct
@@ -443,10 +467,12 @@ class Cluster(object):
         fips_mode_enabled = dictionary.get('fipsModeEnabled')
         gateway = dictionary.get('gateway')
         google_analytics_enabled = dictionary.get('googleAnalyticsEnabled')
+        hardware_encryption_enabled = dictionary.get('hardwareEncryptionEnabled')
         hardware_info = cohesity_management_sdk.models.cluster_hardware_info.ClusterHardwareInfo.from_dictionary(dictionary.get('hardwareInfo')) if dictionary.get('hardwareInfo') else None
         id = dictionary.get('id')
         incarnation_id = dictionary.get('incarnationId')
         ip_preference = dictionary.get('ipPreference')
+        is_athena_subnet_clash = dictionary.get('isAthenaSubnetClash')
         is_cluster_mfa_enabled = dictionary.get('isClusterMfaEnabled')
         is_documentation_local = dictionary.get('isDocumentationLocal')
         kms_server_id = dictionary.get('kmsServerId')
@@ -487,6 +513,7 @@ class Cluster(object):
         tenant_viewbox_sharing_enabled = dictionary.get('tenantViewboxSharingEnabled')
         tiering_audit_log_config = cohesity_management_sdk.models.tiering_audit_log_configuration.TieringAuditLogConfiguration.from_dictionary(dictionary.get('tieringAuditLogConfig')) if dictionary.get('tieringAuditLogConfig') else None
         timezone = dictionary.get('timezone')
+        trust_domain = dictionary.get('trustDomain')
         turbo_mode = dictionary.get('turboMode')
         use_heimdall = dictionary.get('useHeimdall')
         used_metadata_space_pct = dictionary.get('usedMetadataSpacePct')
@@ -518,10 +545,12 @@ class Cluster(object):
                    fips_mode_enabled,
                    gateway,
                    google_analytics_enabled,
+                   hardware_encryption_enabled,
                    hardware_info,
                    id,
                    incarnation_id,
                    ip_preference,
+                   is_athena_subnet_clash,
                    is_cluster_mfa_enabled,
                    is_documentation_local,
                    kms_server_id,
@@ -554,6 +583,7 @@ class Cluster(object):
                    tenant_viewbox_sharing_enabled,
                    tiering_audit_log_config,
                    timezone,
+                   trust_domain,
                    turbo_mode,
                    use_heimdall,
                    used_metadata_space_pct)

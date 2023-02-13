@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class EnvironmentApplicationInfoEnum(object):
 
@@ -17,7 +17,7 @@ class EnvironmentApplicationInfoEnum(object):
     'kPuppeteer' indicates the Cohesity's Remote Adapter.
     'kPhysical' indicates the physical Protection Source environment.
     'kPure' indicates the Pure Storage Protection Source environment.
-    'Nimble' indicates the Nimble Storage Protection Source environment.
+    'kNimble' indicates the Nimble Storage Protection Source environment.
     'kAzure' indicates the Microsoft's Azure Protection Source environment.
     'kNetapp' indicates the Netapp Protection Source environment.
     'kAgent' indicates the Agent Protection Source environment.
@@ -54,6 +54,17 @@ class EnvironmentApplicationInfoEnum(object):
     'kHive' indicates Hive Protection Source environment.
     'kHBase' indicates HBase Protection Source environment.
     'kUDA' indicates Universal Data Adapter Protection Source environment.
+    'kO365Teams' indicates the Office365 Teams Protection Source environment.
+    'kO365Group' indicates the Office365 Groups Protection Source environment.
+    'kO365Exchange' indicates the Office365 Mailbox Protection Source
+    environment.
+    'kO365OneDrive' indicates the Office365 OneDrive Protection Source
+    environment.
+    'kO365Sharepoint' indicates the Office365 SharePoint Protection Source
+    environment.
+    'kO365PublicFolders' indicates the Office365 PublicFolders Protection
+    Source environment.
+
 
     Attributes:
         KVMWARE: TODO: type description here.
@@ -96,6 +107,12 @@ class EnvironmentApplicationInfoEnum(object):
         KHIVE: TODO: type description here.
         KHBASE: TODO: type description here.
         KUDA: TODO: type description here.
+        KO365TEAMS: TODO: type description here.
+        KO365GROUP: TODO: type description here.
+        KO365EXCHANGE: TODO: type description here.
+        KO365ONEDRIVE: TODO: type description here.
+        KO365SHAREPOINT: TODO: type description here.
+        KO365PUBLICFOLDERS: TODO: type description here.
 
     """
 
@@ -177,4 +194,16 @@ class EnvironmentApplicationInfoEnum(object):
 
     KHBASE = 'kHBase'
 
-    KUDA = ' KUDA'
+    KUDA = 'kUDA'
+
+    KO365TEAMS = 'kO365Teams'
+
+    KO365GROUP = 'kO365Group'
+
+    KO365EXCHANGE = 'kO365Exchange'
+
+    KO365ONEDRIVE = 'kO365OneDrive'
+
+    KO365SHAREPOINT = 'kO365Sharepoint'
+
+    KO365PUBLICFOLDERS = 'kO365PublicFolders'

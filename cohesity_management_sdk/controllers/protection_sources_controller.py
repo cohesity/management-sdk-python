@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -439,7 +439,7 @@ class ProtectionSourcesController(BaseController):
                 environment. 'kPuppeteer' indicates the Cohesity's Remote
                 Adapter. 'kPhysical' indicates the physical Protection Source
                 environment. 'kPure' indicates the Pure Storage Protection
-                Source environment. 'Nimble' indicates the Nimble Storage
+                Source environment. 'kNimble' indicates the Nimble Storage
                 Protection Source environment. 'kAzure' indicates the
                 Microsoft's Azure Protection Source environment. 'kNetapp'
                 indicates the Netapp Protection Source environment. 'kAgent'
@@ -491,7 +491,7 @@ class ProtectionSourcesController(BaseController):
                 Protection Source environment. 'kPuppeteer' indicates the
                 Cohesity's Remote Adapter. 'kPhysical' indicates the physical
                 Protection Source environment. 'kPure' indicates the Pure
-                Storage Protection Source environment. 'Nimble' indicates the
+                Storage Protection Source environment. 'kNimble' indicates the
                 Nimble Storage Protection Source environment. 'kAzure'
                 indicates the Microsoft's Azure Protection Source environment.
                 'kNetapp' indicates the Netapp Protection Source environment.
@@ -1234,7 +1234,7 @@ class ProtectionSourcesController(BaseController):
                 environment. 'kPuppeteer' indicates the Cohesity's Remote
                 Adapter. 'kPhysical' indicates the physical Protection Source
                 environment. 'kPure' indicates the Pure Storage Protection
-                Source environment. 'Nimble' indicates the Nimble Storage
+                Source environment. 'kNimble' indicates the Nimble Storage
                 Protection Source environment. 'kAzure' indicates the
                 Microsoft's Azure Protection Source environment. 'kNetapp'
                 indicates the Netapp Protection Source environment. 'kAgent'
@@ -1272,7 +1272,15 @@ class ProtectionSourcesController(BaseController):
                 environment. 'kHive' indicates Hive Protection Source
                 environment. 'kHBase' indicates HBase Protection Source
                 environment. 'kUDA' indicates Universal Data Adapter Protection
-                Source environment.
+                Source environment. 'kO365Teams' indicates the Office365 Teams
+                Protection Source environment. 'kO365Group' indicates the
+                Office365 Groups Protection Source environment. 'kO365Exchange'
+                indicates the Office365 Mailbox Protection Source environment.
+                'kO365OneDrive' indicates the Office365 OneDrive Protection
+                Source environment.'kO365Sharepoint' indicates the Office365
+                SharePoint Protection Source environment.'kO365PublicFolders'
+                indicates the Office365 PublicFolders Protection Source
+                environment.
             id (long|int): Specifies the Id of a registered Protection Source
                 of the type given in environment.
             all_under_hierarchy (bool, optional): AllUnderHierarchy specifies
@@ -1508,6 +1516,9 @@ class ProtectionSourcesController(BaseController):
         encryption_key=None,
         include_applications_tree_info=None,
         tenant_ids=None,
+        prune_non_critical_info=None,
+        request_initiator_type=None,
+        use_cached_data=None,
         all_under_hierarchy=None):
         """Does a GET request to /public/protectionSources/registrationInfo.
 
@@ -1539,6 +1550,22 @@ class ProtectionSourcesController(BaseController):
             encryption_key (string, optional): Key to be used to encrypt the
                 source credential. If include_source_credentials is set to true
                 this key must be specified.
+            prune_non_critical_info (bool, optional): Specifies whether to
+                prune non critical info within entities. Incase of VMs,
+                virtual disk information will be pruned. Incase of
+                Office365, metadata about user entities will be pruned. This
+                can be used to limit the size of the response by caller.
+            request_initiator_type (str, optional): Specifies the type of the
+                request. Possible values are UIUser and UIAuto, which means the
+                request is triggered by user or is an auto refresh request.
+                Services like magneto will use this to determine the priority
+                of the requests, so that it can more intelligently handle
+                overload situations by prioritizing higher priority requests.
+            use_cached_data (bool, optional): Specifies whether we can serve
+                the GET request to the read replica cache. setting this to
+                true ensures that the API request is served to the read
+                replica. setting this to false will serve the request to the
+                master.
             include_applications_tree_info (bool, optional): Specifies whether
                 to return applications tree info or not.
             tenant_ids (list of string, optional): TenantIds contains ids of
@@ -1577,6 +1604,9 @@ class ProtectionSourcesController(BaseController):
                 'encryptionKey': encryption_key,
                 'includeApplicationsTreeInfo':include_applications_tree_info,
                 'tenantIds': tenant_ids,
+                'pruneNonCriticalInfo': prune_non_critical_info,
+                'requestInitiatorType': request_initiator_type,
+                'useCachedData': use_cached_data,
                 'allUnderHierarchy': all_under_hierarchy
             }
             _query_builder = APIHelper.append_url_with_query_parameters(

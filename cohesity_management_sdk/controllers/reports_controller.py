@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -423,7 +423,7 @@ class ReportsController(BaseController):
                 environment.
                 'kPure' indicates the Pure Storage Protection Source
                 environment.
-                'Nimble' indicates the Nimble Storage Protection Source
+                'kNimble' indicates the Nimble Storage Protection Source
                 environment.
                 'kAzure' indicates the Microsoft's Azure Protection Source
                 environment.
@@ -477,6 +477,19 @@ class ReportsController(BaseController):
                 'kHBase' indicates HBase Protection Source environment.
                 'kUDA' indicates Universal Data Adapter Protection Source
                 environment.
+                'kO365Teams' indicates the Office365 Teams Protection Source
+                environment.
+                'kO365Group' indicates the Office365 Groups Protection Source
+                environment.
+                'kO365Exchange' indicates the Office365 Mailbox Protection
+                Source environment.
+                'kO365OneDrive' indicates the Office365 OneDrive Protection
+                Source environment.
+                'kO365Sharepoint' indicates the Office365 SharePoint Protection
+                Source environment.
+                'kO365PublicFolders' indicates the Office365 PublicFolders
+                Protection Source environment.
+
             protected_object_ids (list of int|long, optional): Filter by a
                 list of leaf Protection Sources Objects (such as VMs).
             registered_source_id (int|long, optional): Specifies an id of a

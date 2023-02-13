@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.registered_source_info
+import cohesity_management_sdk.models.cbt_info
 
 class AgentInformation(object):
 
@@ -13,14 +14,17 @@ class AgentInformation(object):
     Attributes:
         cbmr_version (string): Specifies the version if Cristie BMR product is
             installed on the host.
+        file_cbt_info (CbtInfo): Specifies the status of FileCbt driver
+            associated with the agent.
         host_type (HostTypeAgentInformationEnum): Specifies the host type
             where the agent is running. This is only set for persistent
             agents. 'kLinux' indicates the Linux operating system. 'kWindows'
             indicates the Microsoft Windows operating system. 'kAix' indicates
             the IBM AIX operating system. 'kSolaris' indicates the Oracle
             Solaris operating system. 'kSapHana' indicates the Sap Hana
-            database system developed by SAP SE. 'kOther' indicates the other
-            types of operating system.
+            database system developed by SAP SE. 'kCockroachDB' indicates the
+            CockroachDB database system. 'kMySQL' indicates the MySQL database
+            system. 'kOther' indicates the other types of operating system.
         id (long|int): Specifies the agent's id.
         name (string): Specifies the agent's name.
         oracle_multi_node_channel_supported (bool): Specifies whether oracle
@@ -54,17 +58,21 @@ class AgentInformation(object):
             there is no agent upgrade in progress. 'kAccepted' indicates the
             Agent upgrade is accepted. 'kStarted' indicates the Agent upgrade
             is in progress. 'kFinished' indicates the Agent upgrade is
-            completed.
+            completed. 'kScheduled' indicates that the Agent is scheduled for
+            upgrade.
         upgrade_status_message (string): Specifies detailed message about the
             agent upgrade failure. This field is not set for successful
             upgrade.
         version (string): Specifies the version of the Agent software.
+        vol_cbt_info (CbtInfo): Specifies the status of VolCbt driver
+            associated with the agent.
 
     """
 
     # Create a mapping from Model property names to API property names
     _names = {
         "cbmr_version":'cbmrVersion',
+        "file_cbt_info":'fileCbtInfo',
         "host_type":'hostType',
         "id":'id',
         "name":'name',
@@ -76,11 +84,13 @@ class AgentInformation(object):
         "upgradability":'upgradability',
         "upgrade_status":'upgradeStatus',
         "upgrade_status_message":'upgradeStatusMessage',
-        "version":'version'
+        "version":'version',
+        "vol_cbt_info":'volCbtInfo'
     }
 
     def __init__(self,
                  cbmr_version=None,
+                 file_cbt_info=None,
                  host_type=None,
                  id=None,
                  name=None,
@@ -92,11 +102,13 @@ class AgentInformation(object):
                  upgradability=None,
                  upgrade_status=None,
                  upgrade_status_message=None,
-                 version=None):
+                 version=None,
+                 vol_cbt_info=None):
         """Constructor for the AgentInformation class"""
 
         # Initialize members of the class
         self.cbmr_version = cbmr_version
+        self.file_cbt_info = file_cbt_info
         self.host_type = host_type
         self.id = id
         self.name = name
@@ -109,6 +121,7 @@ class AgentInformation(object):
         self.upgrade_status = upgrade_status
         self.upgrade_status_message = upgrade_status_message
         self.version = version
+        self.vol_cbt_info = vol_cbt_info
 
 
     @classmethod
@@ -130,6 +143,7 @@ class AgentInformation(object):
 
         # Extract variables from the dictionary
         cbmr_version = dictionary.get('cbmrVersion')
+        file_cbt_info = cohesity_management_sdk.models.cbt_info.CbtInfo.from_dictionary(dictionary.get('fileCbtInfo')) if dictionary.get('fileCbtInfo') else None
         host_type = dictionary.get('hostType')
         id = dictionary.get('id')
         name = dictionary.get('name')
@@ -142,9 +156,11 @@ class AgentInformation(object):
         upgrade_status = dictionary.get('upgradeStatus')
         upgrade_status_message = dictionary.get('upgradeStatusMessage')
         version = dictionary.get('version')
+        vol_cbt_info = cohesity_management_sdk.models.cbt_info.CbtInfo.from_dictionary(dictionary.get('volCbtInfo')) if dictionary.get('volCbtInfo') else None
 
         # Return an object of this model
         return cls(cbmr_version,
+                   file_cbt_info,
                    host_type,
                    id,
                    name,
@@ -156,6 +172,7 @@ class AgentInformation(object):
                    upgradability,
                    upgrade_status,
                    upgrade_status_message,
-                   version)
+                   version,
+                   vol_cbt_info)
 
 

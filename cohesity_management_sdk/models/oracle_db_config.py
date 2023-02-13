@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.oracle_db_config_redo_log_group_conf
 import cohesity_management_sdk.models.oracle_db_config_pfile_parameter_map_entry

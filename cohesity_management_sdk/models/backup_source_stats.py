@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
+import cohesity_management_sdk.models.domain
 
 class BackupSourceStats(object):
 
@@ -12,6 +13,8 @@ class BackupSourceStats(object):
     stats of a Backup tasks in a Protection Job Run.
 
     Attributes:
+        cluster_domains(list of Domain): Specifies a list of domains joined to
+            the Cohesity Cluster with their trust relationships.
         queue_duration_usecs (long|int): "Specifies the duration between the
             startTime and when gatekeeper permit is granted to the backup
             task. If the backup task is rescheduled due to errors, the field
@@ -67,7 +70,8 @@ class BackupSourceStats(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "queue_duration_usecs":'QueueDurationUsecs',
+        "cluster_domains":'clusterDomains',
+        "queue_duration_usecs":'queueDurationUsecs',
         "total_bytes_tiered":'TotalBytesTiered',
         "admitted_time_usecs":'admittedTimeUsecs',
         "end_time_usecs":'endTimeUsecs',
@@ -82,6 +86,7 @@ class BackupSourceStats(object):
     }
 
     def __init__(self,
+                 cluster_domains=None,
                  queue_duration_usecs=None,
                  total_bytes_tiered=None,
                  admitted_time_usecs=None,
@@ -97,6 +102,7 @@ class BackupSourceStats(object):
         """Constructor for the BackupSourceStats class"""
 
         # Initialize members of the class
+        self.cluster_domains = cluster_domains
         self.queue_duration_usecs = queue_duration_usecs
         self.total_bytes_tiered = total_bytes_tiered
         self.admitted_time_usecs = admitted_time_usecs
@@ -129,7 +135,12 @@ class BackupSourceStats(object):
             return None
 
         # Extract variables from the dictionary
-        queue_duration_usecs = dictionary.get('QueueDurationUsecs')
+        cluster_domains = None
+        if dictionary.get('clusterDomains'):
+            cluster_domains = None
+            for structure in dictionary.get('clusterDomains'):
+                cluster_domains.append(cohesity_management_sdk.models.domain.Domain.from_dictionary(structure)
+        queue_duration_usecs = dictionary.get('queueDurationUsecs')
         total_bytes_tiered = dictionary.get('TotalBytesTiered')
         admitted_time_usecs = dictionary.get('admittedTimeUsecs')
         end_time_usecs = dictionary.get('endTimeUsecs')
@@ -143,7 +154,8 @@ class BackupSourceStats(object):
         total_source_size_bytes = dictionary.get('totalSourceSizeBytes')
 
         # Return an object of this model
-        return cls(queue_duration_usecs,
+        return cls(cluster_domains,
+                   queue_duration_usecs,
                    total_bytes_tiered,
                    admitted_time_usecs,
                    end_time_usecs,

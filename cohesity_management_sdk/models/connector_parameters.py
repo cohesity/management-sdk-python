@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 
 class ConnectorParameters(object):
@@ -10,6 +10,11 @@ class ConnectorParameters(object):
     a particular environment.
 
     Attributes:
+        connection_id (long|int): ID of the Bifrost (HyX or Rigel) network
+            realm (i.e. a connection) associated with the source.
+        connector_group_id (long|int): Specifies the Id of the connector
+            group. Each connector group is collection of Rigel/hyx. 
+            Each entity will be tagged with connector group id.
         endpoint (string): Specify an IP address or URL of the environment.
             (such as the IP address of the vCenter Server for a VMware
             environment).
@@ -23,7 +28,7 @@ class ConnectorParameters(object):
             indicates the View Protection Source environment. 'kPuppeteer'
             indicates the Cohesity's Remote Adapter. 'kPhysical' indicates the
             physical Protection Source environment. 'kPure' indicates the Pure
-            Storage Protection Source environment. 'Nimble' indicates the
+            Storage Protection Source environment. 'kNimble' indicates the
             Nimble Storage Protection Source environment. 'kAzure' indicates
             the Microsoft's Azure Protection Source environment. 'kNetapp'
             indicates the Netapp Protection Source environment. 'kAgent'
@@ -59,6 +64,18 @@ class ConnectorParameters(object):
             'kHive' indicates Hive Protection Source environment. 'kHBase'
             indicates HBase Protection Source environment. 'kUDA' indicates
             Universal Data Adapter Protection Source environment.
+            'kO365Teams' indicates the Office365 Teams Protection Source
+            environment.
+            'kO365Group' indicates the Office365 Groups Protection Source
+            environment.
+            'kO365Exchange' indicates the Office365 Mailbox Protection Source
+            environment.
+            'kO365OneDrive' indicates the Office365 OneDrive Protection Source
+            environment.
+            'kO365Sharepoint' indicates the Office365 SharePoint Protection
+            Source environment.
+            'kO365PublicFolders' indicates the Office365 PublicFolders
+            Protection Source environment.
         id (long|int): Specifies a Unique id that is generated when the Source
             is registered. This is a convenience field that is used to
             maintain an index to different connection params.
@@ -70,6 +87,8 @@ class ConnectorParameters(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "connection_id":'connectionId',
+        "connector_group_id":'connectorGroupId',
         "endpoint":'endpoint',
         "environment":'environment',
         "id":'id',
@@ -77,6 +96,8 @@ class ConnectorParameters(object):
     }
 
     def __init__(self,
+                 connection_id=None,
+                 connector_group_id=None,
                  endpoint=None,
                  environment=None,
                  id=None,
@@ -85,6 +106,8 @@ class ConnectorParameters(object):
 
         # Initialize members of the class
         self.endpoint = endpoint
+        self.connection_id = connection_id
+        self.connector_group_id = connector_group_id
         self.environment = environment
         self.id = id
         self.version = version
@@ -109,12 +132,16 @@ class ConnectorParameters(object):
 
         # Extract variables from the dictionary
         endpoint = dictionary.get('endpoint')
+        connection_id = dictionary.get('connectionId')
+        connector_group_id = dictionary.get('connectorGroupId')
         environment = dictionary.get('environment')
         id = dictionary.get('id')
         version = dictionary.get('version')
 
         # Return an object of this model
-        return cls(endpoint,
+        return cls(connection_id,
+                   connector_group_id,
+                   endpoint,
                    environment,
                    id,
                    version)

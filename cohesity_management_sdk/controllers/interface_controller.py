@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -98,7 +98,7 @@ class InterfaceController(BaseController):
             include_uplink_switch_info (bool, optional): Specifies if include
                 uplink switch info.
             include_bond_slave_details (bool, optional): Specifies if include
-                bond slave detailed info.
+                bond secondary detailed info.
             include_stats (bool, optional): Specifies if include stats.
 
         Returns:

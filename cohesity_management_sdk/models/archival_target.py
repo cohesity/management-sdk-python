@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.cluster_config_proto_vault_cloud_tier_setting
 
@@ -13,11 +13,18 @@ class ArchivalTarget(object):
 
     Attributes:
         cloud_tier_setting (ClusterConfigProto_Vault_CloudTierSetting):
-        Tier settings in case of cloud target.
-          Contains default tier type and information for moving snapshot data across
-          cloud tiers.
+            Tier settings in case of cloud target.
+            Contains default tier type and information for moving snapshot data
+            across cloud tiers.
         name (string): The name of the archival target.
         mtype (int): The type of the archival target.
+        ownership_context (int): OwnershipContext of an archival target.
+        usage_type (int): Usage of the archival target. Regular archival and
+            RPaas archival are potential UsageType. By default it is regular
+            archival. A vault can only be used for one UsageType and UsageType
+            should not be changed once set.
+            Note: This field will be deprecated in future. Use OwnershipContext
+            instead.
         vault_id (long|int): The id of the archival vault.
 
     """
@@ -27,6 +34,8 @@ class ArchivalTarget(object):
         "cloud_tier_setting":'cloud_tier_setting',
         "name":'name',
         "mtype":'type',
+        "ownership_context":'ownershipContext',
+        "usage_type":'usageType',
         "vault_id":'vaultId'
     }
 
@@ -34,6 +43,8 @@ class ArchivalTarget(object):
                  cloud_tier_setting=None,
                  name=None,
                  mtype=None,
+                 ownership_context=None,
+                 usage_type=None,
                  vault_id=None):
         """Constructor for the ArchivalTarget class"""
 
@@ -41,6 +52,8 @@ class ArchivalTarget(object):
         self.cloud_tier_setting = cloud_tier_setting
         self.name = name
         self.mtype = mtype
+        self.ownership_context = ownership_context
+        self.usage_type = usage_type
         self.vault_id = vault_id
 
 
@@ -65,12 +78,16 @@ class ArchivalTarget(object):
         cloud_tier_setting = cohesity_management_sdk.models.cluster_config_proto_vault_cloud_tier_setting.ClusterConfigProto_Vault_CloudTierSetting.from_dictionary(dictionary.get('cloudTierSetting')) if dictionary.get('cloudTierSetting') else None
         name = dictionary.get('name')
         mtype = dictionary.get('type')
+        ownership_context = dictionary.get('ownershipContext')
+        usage_type = dictionary.get('usageType')
         vault_id = dictionary.get('vaultId')
 
         # Return an object of this model
         return cls(cloud_tier_setting,
                    name,
                    mtype,
+                   ownership_context,
+                   usage_type,
                    vault_id)
 
 

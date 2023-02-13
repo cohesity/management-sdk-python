@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class CurrentOperationEnum(object):
 
@@ -14,6 +14,9 @@ class CurrentOperationEnum(object):
     'kClean' indicates the Cohesity Cluster is getting cleaned.
     'kRestartServices' indicates the Cohesity Cluster is restarting the
     services.
+    'kRestartSystemServices' indicates the Cohesity Cluster is restarting the
+    system services.
+
 
     Attributes:
         KREMOVENODE: TODO: type description here.
@@ -22,6 +25,7 @@ class CurrentOperationEnum(object):
         KDESTROY: TODO: type description here.
         KCLEAN: TODO: type description here.
         KRESTARTSERVICES: TODO: type description here.
+        KRESTARTSYSTEMSERVICES: TODO: type description here.
 
     """
 
@@ -37,3 +41,4 @@ class CurrentOperationEnum(object):
 
     KRESTARTSERVICES = 'kRestartServices'
 
+    KRESTARTSYSTEMSERVICES = 'kRestartSystemServices'

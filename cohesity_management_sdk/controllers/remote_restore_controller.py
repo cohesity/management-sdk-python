@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -641,10 +641,15 @@ class RemoteRestoreController(BaseController):
             self.logger.error(e, exc_info=True)
             raise
 
-    def list_cloud_domain_migration(self):
+    def list_cloud_domain_migration(self, migration_uid=None):
         """Does a GET request to /public/remoteVaults/cloudDomainMigration.
 
-        Returns the Cloud domain migration info.
+        Returns the queried cloud domain response.
+
+        Args:
+            migration_uid (string): Specifies the Unique identifier of the
+                domain migration request and can be used to query the status
+                of the migration.
 
         Returns:
             VaultBandwidthLimits: Response from the API. Success
@@ -665,6 +670,12 @@ class RemoteRestoreController(BaseController):
             _url_path = '/public/remoteVaults/cloudDomainMigration'
             _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
+            _query_parameters = {
+                'migrationUid': migration_uid
+            }
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
@@ -694,13 +705,16 @@ class RemoteRestoreController(BaseController):
             self.logger.error(e, exc_info=True)
             raise
 
-    def schedule_cloud_domain_migration(self):
+    def create_cloud_domain_migration_request(self):
         """Does a POST request to /public/remoteVaults/cloudDomainMigration.
 
-        Returns the updated bandwidth limits.
+        Returns the created cloud domain response.
+        Args:
+            body(CreateCloudDomainMigrationParameters): Request to schedule a
+                cloud domain migration task.
 
         Returns:
-            VaultBandwidthLimits: Response from the API. Success
+            void: Response from the API. No Content
 
         Raises:
             APIException: When an error occurs while fetching the data from
@@ -710,17 +724,17 @@ class RemoteRestoreController(BaseController):
 
         """
         try:
-            self.logger.info('schedule_cloud_domain_migration called.')
+            self.logger.info('create_cloud_domain_migration_request called.')
 
             # Prepare query URL
-            self.logger.info('Preparing query URL for schedule_cloud_domain_migration.')
+            self.logger.info('Preparing query URL for create_cloud_domain_migration_request.')
             _url_path = '/public/remoteVaults/cloudDomainMigration'
             _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
-            self.logger.info('Preparing headers for schedule_cloud_domain_migration.')
+            self.logger.info('Preparing headers for create_cloud_domain_migration_request.')
             _headers = {
                 'accept': 'application/json',
                 'content-type': 'application/json; charset=utf-8'
@@ -728,22 +742,18 @@ class RemoteRestoreController(BaseController):
 
             # Prepare and execute request
             self.logger.info(
-                'Preparing and executing request for schedule_cloud_domain_migration.')
+                'Preparing and executing request for create_cloud_domain_migration_request.')
             _request = self.http_client.post(
                 _query_url,
                 headers=_headers)
             AuthManager.apply(_request, self.config)
-            _context = self.execute_request(_request, name='schedule_cloud_domain_migration')
+            _context = self.execute_request(_request, name='create_cloud_domain_migration_request')
 
             # Endpoint and global error handling using HTTP status codes.
-            self.logger.info('Validating response for schedule_cloud_domain_migration.')
+            self.logger.info('Validating response for create_cloud_domain_migration_request.')
             if _context.response.status_code == 0:
                 raise RequestErrorErrorException('Error', _context)
             self.validate_response(_context)
-
-            # Return appropriate type
-            return APIHelper.json_deserialize(_context.response.raw_body,
-                                              VaultBandwidthLimits.from_dictionary)
 
         except Exception as e:
             self.logger.error(e, exc_info=True)

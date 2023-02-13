@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 
 class ContinuousSchedule(object):
@@ -7,8 +7,7 @@ class ContinuousSchedule(object):
     """Implementation of the 'ContinuousSchedule' model.
 
     Specifies the time interval between two Job Runs of a continuous backup
-    schedule and any blackout periods when new Job Runs should NOT be
-    started.
+    schedule and any QuietTime periods when new Job Runs should NOT be started.
 
     Attributes:
         backup_interval_mins (long|int): If specified, this field defines the

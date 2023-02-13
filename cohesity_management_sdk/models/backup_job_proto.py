@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.alerting_policy_proto
 import cohesity_management_sdk.models.backup_source_params
@@ -10,6 +10,7 @@ import cohesity_management_sdk.models.backup_job_proto_exclude_source
 import cohesity_management_sdk.models.backup_job_proto_exclusion_time_range
 import cohesity_management_sdk.models.job_policy_proto
 import cohesity_management_sdk.models.indexing_policy_proto
+import cohesity_management_sdk.models.backup_job_proto_is_source_paused_map_entry
 import cohesity_management_sdk.models.universal_id_proto
 import cohesity_management_sdk.models.backup_job_pre_or_post_script
 import cohesity_management_sdk.models.backup_job_proto_backup_source
@@ -32,6 +33,8 @@ class BackupJobProto(object):
             backup run should be aborted when it hits an exclusion window
             (assuming that it was started earlier when it was not in an
             exclusion window).
+            NOTE: Atmost one of abort_in_exclusion_window and
+            pause_in_blackout_window will be set to true.
         alerting_policy (AlertingPolicyProto): TODO: type description here.
         all_archival_snapshots_expired (bool): If job deletion status is
             kDeleteJobAndBackups and this field is set to true, then it 
@@ -39,6 +42,9 @@ class BackupJobProto(object):
             of this job (if any) have been acknowledged by Icebox.
             NOTE: This field may remain false for some period of time even if
             is_deleted field is set to true for the job.
+        allow_parallel_runs (bool): Denotes whether for this host based backup
+            jobs we allow parallel runs or not. This is only supported by
+            VMware adapter.
         backup_qos_principal (int): The backup QoS principal to use for the
             backup job.
         backup_source_params (list of BackupSourceParams): This contains
@@ -91,8 +97,10 @@ class BackupJobProto(object):
             first full backup and not for full backups that happen as a result
             of incremental backup failure.
         global_include_exclude (PhysicalFileBackupParams_GlobalIncludeExclude):
-            Max value - 82. Determines global include and exclude filters
-            which are applied to all sources in a physical job.
+            Determines global include and exclude filters which are applied to
+            all sources in a physical job.
+        ignorable_errors_in_error_db (list of ErrorProto): Specifies the list
+            of errors, that should not be persisted in error_db
         indexing_policy (IndexingPolicyProto): Proto to encapsulate file level
             indexing policy for VMs in a backup job.
         is_active (bool): Whether the backup job is active or not. Details
@@ -128,6 +136,9 @@ class BackupJobProto(object):
         is_rpo_job (bool): Whether the backup job is an RPO policy job. These
             jobs are hidden from the user, and are created internally to have
             a backup schedule for the given source.
+        is_source_paused_map (list of BackupJobProto_IsSourcePausedMapEntry):
+            A map from entity id of the source to whether the source backup
+            is paused.
         job_creation_time_usecs (long|int): Time when this job was first
             created.
         job_id (long|int): A unique id for locally created jobs. This should
@@ -171,6 +182,8 @@ class BackupJobProto(object):
             false.
         log_backup_job_policy (JobPolicyProto): A message that specifies the
             policies to use for a job.
+        log_backup_sla_time_mins (long|int): Same as 'sla_time_mins' above,
+            but applies to log backups.
         max_allowed_source_snapshots (int): Determines the maximum number of
             source snapshots allowed for a given entity in the job. This is
             only applicable if 'is_continuous_snapshotting_enabled' is set to
@@ -187,6 +200,12 @@ class BackupJobProto(object):
             relavent only for internal jobs.
         parent_source (EntityProto): The registered source managing all the
             sources being backed up. This field is optional.
+        pause_in_blackout_window (bool): This field determines whether a backup
+            run should be paused when it hits a blackout window (assuming that
+            it was started earlier when it was not in an blackout window). The
+            backup run will get resumed when the blackout period ends.
+        perform_brick_based_dedup (bool): Whether or not to perform source side
+            dedup.
         perform_source_side_dedup (bool): Whether or not to perform source
             side dedup.
         policy_applied_time_msecs (long|int): Epoch time in milliseconds when
@@ -247,6 +266,9 @@ class BackupJobProto(object):
             performing remote restore of a backup job from an archival, this
             job will be retrieved only if the cluster supports all the
             features listed here.
+        skip_rigel_for_backup (bool): Whether to skip Rigel for backup or not
+            This field is applicable only for DMaaS. This field is currently
+            being used in DRaaS workflows only.
         skip_tenant_validations (bool): If set to true, skips tenant related
             validations. Default is false.
         sla_time_mins (long|int): If specified, this variable determines the
@@ -271,6 +293,8 @@ class BackupJobProto(object):
             this proto will have to store the timezone information separately.
             For example, when this proto is part of a backup job, timezone of
             the backup job is applied to get the absolute time.
+        storage_array_snapshot (bool): Whether this backup job has a policy for
+            storage array snapshot based backups.
         stubbing_policy (StubbingPolicyProto): Stubbing jobs do not use
             protection policies. Instead, schedule and retention policy will
             be embedded in the BackupJobProto.
@@ -303,6 +327,7 @@ class BackupJobProto(object):
         "abort_in_exclusion_window":'abortInExclusionWindow',
         "alerting_policy":'alertingPolicy',
         "all_archival_snapshots_expired":'allArchivalSnapshotsExpired',
+        "allow_parallel_runs":'allowParallelRuns',
         "backup_qos_principal":'backupQosPrincipal',
         "backup_source_params":'backupSourceParams',
         "continue_on_quiesce_failure":'continueOnQuiesceFailure',
@@ -320,6 +345,7 @@ class BackupJobProto(object):
         "full_backup_job_policy":'fullBackupJobPolicy',
         "full_backup_sla_time_mins":'fullBackupSlaTimeMins',
         "global_include_exclude":'globalIncludeExclude',
+        "ignorable_errors_in_error_db":'ignorableErrorsInErrorDb',
         "indexing_policy":'indexingPolicy',
         "is_active":'isActive',
         "is_cdp_sync_replication_enabled":'isCdpSyncReplicationEnabled',
@@ -331,6 +357,7 @@ class BackupJobProto(object):
         "is_internal":'isInternal',
         "is_paused":'isPaused',
         "is_rpo_job":'isRpoJob',
+        "is_source_paused_map":'isSourcePausedMap',
         "job_creation_time_usecs":'jobCreationTimeUsecs',
         "job_id":'jobId',
         "job_policy":'jobPolicy',
@@ -344,11 +371,14 @@ class BackupJobProto(object):
         "leverage_storage_snapshots":'leverageStorageSnapshots',
         "leverage_storage_snapshots_for_hyperflex":'leverageStorageSnapshotsForHyperflex',
         "log_backup_job_policy":'logBackupJobPolicy',
+        "log_backup_sla_time_mins":'logBackupSlaTimeMins',
         "max_allowed_source_snapshots":'maxAllowedSourceSnapshots',
         "name":'name',
         "num_snapshots_to_keep_on_primary":'numSnapshotsToKeepOnPrimary',
         "object_backup_spec_uid":'object_backup_spec_uid',
         "parent_source":'parentSource',
+        "pause_in_blackout_window":'pauseInBlackoutWindow',
+        "perform_brick_based_dedup":'performBrickBasedDedup',
         "perform_source_side_dedup":'performSourceSideDedup',
         "policy_applied_time_msecs":'policyAppliedTimeMsecs',
         "policy_id":'policyId',
@@ -362,12 +392,14 @@ class BackupJobProto(object):
         "remote_view_name":'remoteViewName',
         "remote_view_params":'remoteViewParams',
         "required_feature_vec":'requiredFeatureVec',
+        "skip_rigel_for_backup":'skipRigelForBackup',
         "skip_tenant_validations":'skipTenantValidations',
         "sla_time_mins":'slaTimeMins',
         "source_filters":'sourceFilters',
         "sources":'sources',
         "standby_resource_vec":'standbyResourceVec',
         "start_time":'startTime',
+        "storage_array_snapshot":'storageArraySnapshot',
         "stubbing_policy":'stubbingPolicy',
         "tag_vec":'tagVec',
         "timezone":'timezone',
@@ -381,6 +413,7 @@ class BackupJobProto(object):
                  abort_in_exclusion_window=None,
                  alerting_policy=None,
                  all_archival_snapshots_expired=None,
+                 allow_parallel_runs=None,
                  backup_qos_principal=None,
                  backup_source_params=None,
                  continue_on_quiesce_failure=None,
@@ -398,6 +431,7 @@ class BackupJobProto(object):
                  full_backup_job_policy=None,
                  full_backup_sla_time_mins=None,
                  global_include_exclude=None,
+                 ignorable_errors_in_error_db=None,
                  indexing_policy=None,
                  is_active=None,
                  is_cdp_sync_replication_enabled=None,
@@ -409,6 +443,7 @@ class BackupJobProto(object):
                  is_internal=None,
                  is_paused=None,
                  is_rpo_job=None,
+                 is_source_paused_map=None,
                  job_creation_time_usecs=None,
                  job_id=None,
                  job_policy=None,
@@ -422,11 +457,14 @@ class BackupJobProto(object):
                  leverage_storage_snapshots=None,
                  leverage_storage_snapshots_for_hyperflex=None,
                  log_backup_job_policy=None,
+                 log_backup_sla_time_mins=None,
                  max_allowed_source_snapshots=None,
                  name=None,
                  num_snapshots_to_keep_on_primary=None,
                  object_backup_spec_uid=None,
                  parent_source=None,
+                 pause_in_blackout_window=None,
+                 perform_brick_based_dedup=None,
                  perform_source_side_dedup=None,
                  policy_applied_time_msecs=None,
                  policy_id=None,
@@ -440,12 +478,14 @@ class BackupJobProto(object):
                  remote_view_name=None,
                  remote_view_params=None,
                  required_feature_vec=None,
+                 skip_rigel_for_backup=None,
                  skip_tenant_validations=None,
                  sla_time_mins=None,
                  source_filters=None,
                  sources=None,
                  standby_resource_vec=None,
                  start_time=None,
+                 storage_array_snapshot=None,
                  stubbing_policy=None,
                  tag_vec=None,
                  timezone=None,
@@ -459,6 +499,7 @@ class BackupJobProto(object):
         self.abort_in_exclusion_window = abort_in_exclusion_window
         self.alerting_policy = alerting_policy
         self.all_archival_snapshots_expired = all_archival_snapshots_expired
+        self.allow_parallel_runs = allow_parallel_runs
         self.backup_qos_principal = backup_qos_principal
         self.backup_source_params = backup_source_params
         self.continue_on_quiesce_failure = continue_on_quiesce_failure
@@ -476,6 +517,7 @@ class BackupJobProto(object):
         self.full_backup_job_policy = full_backup_job_policy
         self.full_backup_sla_time_mins = full_backup_sla_time_mins
         self.global_include_exclude = global_include_exclude
+        self.ignorable_errors_in_error_db = ignorable_errors_in_error_db
         self.indexing_policy = indexing_policy
         self.is_active = is_active
         self.is_cdp_sync_replication_enabled = is_cdp_sync_replication_enabled
@@ -487,6 +529,7 @@ class BackupJobProto(object):
         self.is_internal = is_internal
         self.is_paused = is_paused
         self.is_rpo_job = is_rpo_job
+        self.is_source_paused_map = is_source_paused_map
         self.job_creation_time_usecs = job_creation_time_usecs
         self.job_id = job_id
         self.job_policy = job_policy
@@ -500,11 +543,14 @@ class BackupJobProto(object):
         self.leverage_storage_snapshots = leverage_storage_snapshots
         self.leverage_storage_snapshots_for_hyperflex = leverage_storage_snapshots_for_hyperflex
         self.log_backup_job_policy = log_backup_job_policy
+        self.log_backup_sla_time_mins = log_backup_sla_time_mins
         self.max_allowed_source_snapshots = max_allowed_source_snapshots
         self.name = name
         self.num_snapshots_to_keep_on_primary = num_snapshots_to_keep_on_primary
         self.object_backup_spec_uid = object_backup_spec_uid
         self.parent_source = parent_source
+        self.pause_in_blackout_window = pause_in_blackout_window
+        self.perform_brick_based_dedup = perform_brick_based_dedup
         self.perform_source_side_dedup = perform_source_side_dedup
         self.policy_applied_time_msecs = policy_applied_time_msecs
         self.policy_id = policy_id
@@ -518,12 +564,14 @@ class BackupJobProto(object):
         self.remote_view_name = remote_view_name
         self.remote_view_params = remote_view_params
         self.required_feature_vec = required_feature_vec
+        self.skip_rigel_for_backup = skip_rigel_for_backup
         self.skip_tenant_validations = skip_tenant_validations
         self.sla_time_mins = sla_time_mins
         self.source_filters = source_filters
         self.sources = sources
         self.standby_resource_vec = standby_resource_vec
         self.start_time = start_time
+        self.storage_array_snapshot = storage_array_snapshot
         self.stubbing_policy = stubbing_policy
         self.tag_vec = tag_vec
         self.timezone = timezone
@@ -554,6 +602,7 @@ class BackupJobProto(object):
         abort_in_exclusion_window = dictionary.get('abortInExclusionWindow')
         alerting_policy = cohesity_management_sdk.models.alerting_policy_proto.AlertingPolicyProto.from_dictionary(dictionary.get('alertingPolicy')) if dictionary.get('alertingPolicy') else None
         all_archival_snapshots_expired = dictionary.get('allArchivalSnapshotsExpired')
+        allow_parallel_runs = dictionary.get('allowParallelRuns')
         backup_qos_principal = dictionary.get('backupQosPrincipal')
         backup_source_params = None
         if dictionary.get('backupSourceParams') != None:
@@ -587,6 +636,11 @@ class BackupJobProto(object):
         full_backup_job_policy = cohesity_management_sdk.models.job_policy_proto.JobPolicyProto.from_dictionary(dictionary.get('fullBackupJobPolicy')) if dictionary.get('fullBackupJobPolicy') else None
         full_backup_sla_time_mins = dictionary.get('fullBackupSlaTimeMins')
         global_include_exclude = cohesity_management_sdk.models.physical_file_backup_params_global_include_exclude.PhysicalFileBackupParams_GlobalIncludeExclude.from_dictionary(dictionary.get('globalIncludeExclude')) if dictionary.get('globalIncludeExclude') else None
+        ignorable_errors_in_error_db = None
+        if is_direct_archive_enabled.get('ignorableErrorsInErrorDb'):
+            ignorable_errors_in_error_db = list()
+            for structure in dictionary.get('ignorableErrorsInErrorDb'):
+                ignorable_errors_in_error_db.append(cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(structure))
         indexing_policy = cohesity_management_sdk.models.indexing_policy_proto.IndexingPolicyProto.from_dictionary(dictionary.get('indexingPolicy')) if dictionary.get('indexingPolicy') else None
         is_active = dictionary.get('isActive')
         is_cdp_sync_replication_enabled = dictionary.get('isCdpSyncReplicationEnabled')
@@ -598,6 +652,11 @@ class BackupJobProto(object):
         is_internal = dictionary.get('isInternal')
         is_paused = dictionary.get('isPaused')
         is_rpo_job = dictionary.get('isRpoJob')
+        is_source_paused_map = None
+        if dictionary.get('isSourcePausedMap'):
+            is_source_paused_map = list()
+            for structure in dictionary.get('isSourcePausedMap'):
+                is_source_paused_map.append(cohesity_management_sdk.models.backup_job_proto_is_source_paused_map_entry.BackupJobProto_IsSourcePausedMapEntry.from_dictionary(structure))
         job_creation_time_usecs = dictionary.get('jobCreationTimeUsecs')
         job_id = dictionary.get('jobId')
         job_policy = cohesity_management_sdk.models.job_policy_proto.JobPolicyProto.from_dictionary(dictionary.get('jobPolicy')) if dictionary.get('jobPolicy') else None
@@ -611,11 +670,14 @@ class BackupJobProto(object):
         leverage_storage_snapshots = dictionary.get('leverageStorageSnapshots')
         leverage_storage_snapshots_for_hyperflex = dictionary.get('leverageStorageSnapshotsForHyperflex')
         log_backup_job_policy = cohesity_management_sdk.models.job_policy_proto.JobPolicyProto.from_dictionary(dictionary.get('logBackupJobPolicy')) if dictionary.get('logBackupJobPolicy') else None
+        log_backup_sla_time_mins = dictionary.get('logBackupSlaTimeMins')
         max_allowed_source_snapshots = dictionary.get('maxAllowedSourceSnapshots')
         name = dictionary.get('name')
         num_snapshots_to_keep_on_primary = dictionary.get('numSnapshotsToKeepOnPrimary')
         object_backup_spec_uid = cohesity_management_sdk.models.universal_id_proto.UniversalIdProto.from_dictionary(dictionary.get('objectBackupSpecUid')) if dictionary.get('objectBackupSpecUid') else None
         parent_source = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('parentSource')) if dictionary.get('parentSource') else None
+        pause_in_blackout_window = dictionary.get('pauseInBlackoutWindow')
+        perform_brick_based_dedup = dictionary.get('performBrickBasedDedup')
         perform_source_side_dedup = dictionary.get('performSourceSideDedup')
         policy_applied_time_msecs = dictionary.get('policyAppliedTimeMsecs')
         policy_id = dictionary.get('policyId')
@@ -633,6 +695,7 @@ class BackupJobProto(object):
         remote_view_name = dictionary.get('remoteViewName')
         remote_view_params = cohesity_management_sdk.models.backup_job_proto_remote_view_params.BackupJobProto_RemoteViewParams.from_dictionary(dictionary.get('remoteViewParams')) if dictionary.get('remoteViewParams') else None
         required_feature_vec = dictionary.get('requiredFeatureVec')
+        skip_rigel_for_backup = dictionary.get('skipRigelForBackup')
         skip_tenant_validations = dictionary.get('skipTenantValidations')
         sla_time_mins = dictionary.get('slaTimeMins')
         source_filters = cohesity_management_sdk.models.source_filters.SourceFilters.from_dictionary(dictionary.get('sourceFilters')) if dictionary.get('sourceFilters') else None
@@ -647,6 +710,7 @@ class BackupJobProto(object):
             for structure in dictionary.get('standbyResourceVec'):
                 standby_resource_vec.append(cohesity_management_sdk.models.standby_resource.StandbyResource.from_dictionary(structure))
         start_time = cohesity_management_sdk.models.time.Time.from_dictionary(dictionary.get('startTime')) if dictionary.get('startTime') else None
+        storage_array_snapshot = dictionary.get('storageArraySnapshot')
         stubbing_policy = cohesity_management_sdk.models.stubbing_policy_proto.StubbingPolicyProto.from_dictionary(dictionary.get('stubbingPolicy')) if dictionary.get('stubbingPolicy') else None
         tag_vec = dictionary.get('tagVec')
         timezone = dictionary.get('timezone')
@@ -659,6 +723,7 @@ class BackupJobProto(object):
         return cls(abort_in_exclusion_window,
                    alerting_policy,
                    all_archival_snapshots_expired,
+                   allow_parallel_runs,
                    backup_qos_principal,
                    backup_source_params,
                    continue_on_quiesce_failure,
@@ -676,6 +741,7 @@ class BackupJobProto(object):
                    full_backup_job_policy,
                    full_backup_sla_time_mins,
                    global_include_exclude,
+                   ignorable_errors_in_error_db,
                    indexing_policy,
                    is_active,
                    is_cdp_sync_replication_enabled,
@@ -687,6 +753,7 @@ class BackupJobProto(object):
                    is_internal,
                    is_paused,
                    is_rpo_job,
+                   is_source_paused_map,
                    job_creation_time_usecs,
                    job_id,
                    job_policy,
@@ -700,11 +767,14 @@ class BackupJobProto(object):
                    leverage_storage_snapshots,
                    leverage_storage_snapshots_for_hyperflex,
                    log_backup_job_policy,
+                   log_backup_sla_time_mins,
                    max_allowed_source_snapshots,
                    name,
                    num_snapshots_to_keep_on_primary,
                    object_backup_spec_uid,
                    parent_source,
+                   pause_in_blackout_window,
+                   perform_brick_based_dedup,
                    perform_source_side_dedup,
                    policy_applied_time_msecs,
                    policy_id,
@@ -718,11 +788,13 @@ class BackupJobProto(object):
                    remote_view_name,
                    remote_view_params,
                    required_feature_vec,
+                   skip_rigel_for_backup,
                    skip_tenant_validations,
                    sla_time_mins,
                    source_filters,
                    sources,
                    start_time,
+                   storage_array_snapshot,
                    stubbing_policy,
                    tag_vec,
                    timezone,

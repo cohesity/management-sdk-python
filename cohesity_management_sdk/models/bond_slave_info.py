@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.interface_stats
 import cohesity_management_sdk.models.uplink_switch_info
@@ -11,14 +11,14 @@ class BondSlaveInfo(object):
     Specifies the AMQP target config.
 
     Attributes:
-        link_state (string): Bond slave link state.
-        mac_addr (string): Mac address of the bond slave interface.
-        name (string): Bond slave name.
-        slot (string): Bond slaves slot info.
-        speed (string): Bond slave Speed.
+        link_state (string): Bond secondary  link state.
+        mac_addr (string): Mac address of the bond secondary  interface.
+        name (string): Bond secondary  name.
+        slot (string): Bond secondary s slot info.
+        speed (string): Bond secondary  Speed.
         stats (InterfaceStats): Interface Stats.
-        uplink_switch_info (UplinkSwitchInfo): Bond slave uplink switch info.
-
+        uplink_switch_info (UplinkSwitchInfo): Bond secondary  uplink switch
+            info.
     """
 
     # Create a mapping from Model property names to API property names

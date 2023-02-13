@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.trending_data
 
@@ -24,7 +24,7 @@ class ProtectionTrend(object):
             environment.
             'kPure' indicates the Pure Storage Protection Source
             environment.
-            'Nimble' indicates the Nimble Storage Protection Source
+            'kNimble' indicates the Nimble Storage Protection Source
             environment.
             'kAzure' indicates the Microsoft's Azure Protection Source
             environment.

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.cluster_config_proto_vault_cloud_properties_amazon_properties
 import cohesity_management_sdk.models.cluster_config_proto_vault_cloud_properties_azure_properties

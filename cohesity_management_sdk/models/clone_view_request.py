@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.antivirus_scan_config
 import cohesity_management_sdk.models.file_extension_filter
@@ -43,6 +43,7 @@ class CloneViewRequest(object):
             enabled for this view.
         enable_live_indexing (bool): Specifies whether to enable live indexing
             for the view.
+        enable_metadata_accelerator (bool): To enable blur on a new view
         enable_mixed_mode_permissions (bool): If set, mixed mode (NFS and SMB)
             access is enabled for this view. This field is deprecated. Use the
             field SecurityMode. deprecated: true
@@ -89,7 +90,6 @@ class CloneViewRequest(object):
             to be written to the View, as the Cluster is calculating the usage
             across Nodes.
         netgroup_whitelist (list of NisNetgroup): Array of Netgroups.
-
           Specifies a list of Netgroups that have permissions to access the
           View. (Overrides the Netgroups specified at the global Cohesity
           Cluster level.)
@@ -98,16 +98,19 @@ class CloneViewRequest(object):
             root permission of a view file system.
         nfs_root_squash (NfsSquash): TODO: type description here.
         override_global_netgroup_whitelist (bool): Specifies whether view
-            level client netgroup whitelist overrides cluster and global
+            level client netgroup allowlist overrides cluster and global
             setting.
         override_global_whitelist (bool): Specifies whether view level client
-            subnet whitelist overrides cluster and global setting.
+            subnet allowlist overrides cluster and global setting.
         protocol_access (ProtocolAccessEnum): Specifies the supported
             Protocols for the View. 'kAll' enables protocol access to
             following three views: NFS, SMB and S3. 'kNFSOnly' enables
             protocol access to NFS only. 'kSMBOnly' enables protocol access to
             SMB only. 'kS3Only' enables protocol access to S3 only.
-            'kSwiftOnly' enables protocol access to Swift only.
+            'kSwiftOnly' enables protocol access to Swift only. 'kUnknown'
+            indicates that the protocol access of a view does not match any of
+            the above. In this case, the constant is used as 'catch-all'.
+
         qos (QoS): Specifies the Quality of Service (QoS) Policy for the
             View.
         security_mode (SecurityModeEnum): Specifies the security mode used for
@@ -151,6 +154,7 @@ class CloneViewRequest(object):
         "enable_fast_durable_handle":'enableFastDurableHandle',
         "enable_filer_audit_logging":'enableFilerAuditLogging',
         "enable_live_indexing":'enableLiveIndexing',
+        "enable_metadata_accelerator":'enableMetadataAccelerator',
         "enable_mixed_mode_permissions":'enableMixedModePermissions',
         "enable_nfs_view_discovery":'enableNfsViewDiscovery',
         "enable_offline_caching":'enableOfflineCaching',
@@ -194,6 +198,7 @@ class CloneViewRequest(object):
                  enable_fast_durable_handle=None,
                  enable_filer_audit_logging=None,
                  enable_live_indexing=None,
+                 enable_metadata_accelerator=None,
                  enable_mixed_mode_permissions=None,
                  enable_nfs_view_discovery=None,
                  enable_offline_caching=None,
@@ -237,6 +242,7 @@ class CloneViewRequest(object):
         self.enable_fast_durable_handle = enable_fast_durable_handle
         self.enable_filer_audit_logging = enable_filer_audit_logging
         self.enable_live_indexing = enable_live_indexing
+        self.enable_metadata_accelerator = enable_metadata_accelerator
         self.enable_mixed_mode_permissions = enable_mixed_mode_permissions
         self.enable_nfs_view_discovery = enable_nfs_view_discovery
         self.enable_offline_caching = enable_offline_caching
@@ -297,6 +303,7 @@ class CloneViewRequest(object):
         enable_fast_durable_handle = dictionary.get('enableFastDurableHandle')
         enable_filer_audit_logging = dictionary.get('enableFilerAuditLogging')
         enable_live_indexing = dictionary.get('enableLiveIndexing')
+        enable_metadata_accelerator = dictionary.get('enableMetadataAccelerator')
         enable_mixed_mode_permissions = dictionary.get('enableMixedModePermissions')
         enable_nfs_view_discovery = dictionary.get('enableNfsViewDiscovery')
         enable_offline_caching = dictionary.get('enableOfflineCaching')
@@ -351,6 +358,7 @@ class CloneViewRequest(object):
                    enable_fast_durable_handle,
                    enable_filer_audit_logging,
                    enable_live_indexing,
+                   enable_metadata_accelerator,
                    enable_mixed_mode_permissions,
                    enable_nfs_view_discovery,
                    enable_offline_caching,

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.a_w_s_fleet_params
 import cohesity_management_sdk.models.c2s_server_info
@@ -24,7 +24,7 @@ class AwsProtectionSource(object):
             Target) type. Specifies the authentication method to be used for
             API calls. 'kUseIAMUser' indicates a user based authentication.
             'kUseIAMRole' indicates a role based authentication, used only for
-            AWS CE.
+            AWS CE. 'kUseHelios' indicates a Helios based authentication.
         aws_fleet_params (AwsFleetParams): Specifies information related to
             AWS fleets launched for various purposes. This will only be set
             for kIAMUser entity.
@@ -44,8 +44,9 @@ class AwsProtectionSource(object):
             configuring database features. 'kRDSParameterGroup' represents a
             RDS parameter group. 'kRDSInstance' represents a RDS DB instance.
             'kRDSSubnet' represents a RDS subnet. 'kRDSTag' represents a tag
-            attached to RDS instance. 'kAuroraCluster' represents an Aurora
-            cluster.
+            attached to RDS instance. 'kAuroraTag' represents a tag attached
+            to an Aurora cluster. 'kAccount' represents an AWS account.
+            'kAuroraCluster' represents an Aurora cluster.
         cluster_network_info (FleetNetworkParams): Specifies information
             related to cluster. This is only valid for CE clusters. This is
             only populated for kIAMUser entity.
@@ -61,7 +62,10 @@ class AwsProtectionSource(object):
             system. 'kAix' indicates the IBM AIX operating system. 'kSolaris'
             indicates the Oracle Solaris operating system. 'kSapHana'
             indicates the Sap Hana database system developed by SAP SE.
-            'kOther' indicates the other types of operating system.
+            'kSapOracle' indicates the Sap Oracle database system developed
+            by SAP SE. 'kCockroachDB' indicates the CockroachDB database
+            system. 'kMySQL' indicates the MySQL database system. 'kOther'
+            indicates the other types of operating system.
         iam_role_arn (string): Specifies the iam role arn Amazon service
             account. See the Cohesity online help for the value to specify for
             this field based on the current S3-compatible Vault (External
@@ -124,7 +128,9 @@ class AwsProtectionSource(object):
             'kRDSParameterGroup' represents a RDS parameter group.
             'kRDSInstance' represents a RDS DB instance. 'kRDSSubnet'
             represents a RDS subnet. 'kRDSTag' represents a tag attached to
-            RDS instance. 'kAuroraCluster' represents an Aurora cluster.
+            RDS instance. 'kAuroraTag' represents a tag attached to an Aurora
+            cluster. 'kAccount' represents an AWS account. 'kAuroraCluster'
+            represents an Aurora cluster.
         user_account_id (string): Specifies the account id derived from the
             ARN of the user.
         user_resource_name (string): Specifies the Amazon Resource Name (ARN)

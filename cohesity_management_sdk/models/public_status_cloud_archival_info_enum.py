@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class PublicStatusCloudArchivalInfoEnum(object):
 
@@ -18,7 +18,6 @@ class PublicStatusCloudArchivalInfoEnum(object):
     'kMissed' indicates the task is missed.
 
     Attributes:
-
         KACCEPTED: TODO: type description here.
         KRUNNING: TODO: type description here.
         KCANCELING: TODO: type description here.
@@ -28,6 +27,7 @@ class PublicStatusCloudArchivalInfoEnum(object):
         KWARNING: TODO: type description here.
         KONHOLD: TODO: type description here.
         KMISSED: TODO: type description here.
+        KFINALIZING: TODO: type description here.
 
     """
 
@@ -49,3 +49,4 @@ class PublicStatusCloudArchivalInfoEnum(object):
 
     KMISSED = 'kMissed'
 
+    KFINALIZING = 'kFinalizing'

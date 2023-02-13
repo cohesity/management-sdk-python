@@ -1,5 +1,5 @@
 # coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.antivirus_scan_config
 import cohesity_management_sdk.models.file_extension_filter
@@ -39,6 +39,7 @@ class CreateViewRequest(object):
             enabled for this view.
         enable_live_indexing (bool): Specifies whether to enable live indexing
             for the view.
+        enable_metadata_accelerator (bool): To enable blur on a new view
         enable_mixed_mode_permissions (bool): If set, mixed mode (NFS and SMB)
             access is enabled for this view. This field is deprecated. Use the
             field SecurityMode. deprecated: true
@@ -94,19 +95,24 @@ class CreateViewRequest(object):
         nfs_root_permissions (NfsRootPermissions): Specifies the config of NFS
             root permission of a view file system.
         nfs_root_squash (NfsSquash): TODO: type description here.
-        override_global_netgroup_whitelist (bool): Specifies whether view
-            level client netgroup whitelist overrides cluster and global
-            setting.
+        override_global_netgroup_whitelist (bool): Specifies whether view level
+            client netgroup allowlist overrides cluster and global setting.
         override_global_whitelist (bool): Specifies whether view level client
-            subnet whitelist overrides cluster and global setting.
+            subnet allowlist overrides cluster and global setting.
         protocol_access (ProtocolAccessEnum): Specifies the supported
             Protocols for the View. 'kAll' enables protocol access to
             following three views: NFS, SMB and S3. 'kNFSOnly' enables
             protocol access to NFS only. 'kSMBOnly' enables protocol access
             to SMB only. 'kS3Only' enables protocol access to S3 only.
             'kSwiftOnly' enables protocol access to Swift only.
+            'kUnknown' indicates that the protocol access of a view does not
+            match any of the above. In this case, the constant is used as
+            'catch-all'.
         qos (QoS): Specifies the Quality of Service (QoS) Policy for the
             View.
+        s3_folder_support_enabled (bool): Specifies whether to support s3
+            folder support feature on the vi parameter can only be set during
+            create and cannot be changed.
         s_3_key_mapping_config (S3KeyMappingConfigCreateViewRequestEnum):
             Specifies key mapping config of S3 storage. Configuration of S3
             key mapping.  Specifies the type of S3 key mapping config.
@@ -156,6 +162,7 @@ class CreateViewRequest(object):
         "enable_fast_durable_handle":'enableFastDurableHandle',
         "enable_filer_audit_logging":'enableFilerAuditLogging',
         "enable_live_indexing":'enableLiveIndexing',
+        "enable_metadata_accelerator":'enableMetadataAccelerator',
         "enable_mixed_mode_permissions":'enableMixedModePermissions',
         "enable_nfs_view_discovery":'enableNfsViewDiscovery',
         "enable_offline_caching":'enableOfflineCaching',
@@ -177,6 +184,7 @@ class CreateViewRequest(object):
         "override_global_whitelist":'overrideGlobalWhitelist',
         "protocol_access":'protocolAccess',
         "qos":'qos',
+        "s3_folder_support_enabled":'s3FolderSupportEnabled',
         "s_3_key_mapping_config":'s3KeyMappingConfig',
         "security_mode":'securityMode',
         "share_permissions":'sharePermissions',
@@ -202,6 +210,7 @@ class CreateViewRequest(object):
                  enable_fast_durable_handle=None,
                  enable_filer_audit_logging=None,
                  enable_live_indexing=None,
+                 enable_metadata_accelerator=None,
                  enable_mixed_mode_permissions=None,
                  enable_nfs_view_discovery=None,
                  enable_offline_caching=None,
@@ -223,6 +232,7 @@ class CreateViewRequest(object):
                  override_global_whitelist=None,
                  protocol_access=None,
                  qos=None,
+                 s3_folder_support_enabled=None,
                  s_3_key_mapping_config=None,
                  security_mode=None,
                  share_permissions=None,
@@ -246,6 +256,7 @@ class CreateViewRequest(object):
         self.enable_fast_durable_handle = enable_fast_durable_handle
         self.enable_filer_audit_logging = enable_filer_audit_logging
         self.enable_live_indexing = enable_live_indexing
+        self.enable_metadata_accelerator = enable_metadata_accelerator
         self.enable_mixed_mode_permissions = enable_mixed_mode_permissions
         self.enable_nfs_view_discovery = enable_nfs_view_discovery
         self.enable_offline_caching = enable_offline_caching
@@ -268,6 +279,7 @@ class CreateViewRequest(object):
         self.override_global_whitelist = override_global_whitelist
         self.protocol_access = protocol_access
         self.qos = qos
+        self.s3_folder_support_enabled = s3_folder_support_enabled
         self.s_3_key_mapping_config = s_3_key_mapping_config
         self.security_mode = security_mode
         self.share_permissions = share_permissions
@@ -312,6 +324,7 @@ class CreateViewRequest(object):
         enable_filer_audit_logging = dictionary.get('enableFilerAuditLogging')
         enable_live_indexing = dictionary.get('enableLiveIndexing', None)
         enable_mixed_mode_permissions = dictionary.get('enableMixedModePermissions')
+        enable_metadata_accelerator = dictionary.get('enableMetadataAccelerator')
         enable_nfs_view_discovery = dictionary.get('enableNfsViewDiscovery')
         enable_offline_caching = dictionary.get('enableOfflineCaching')
         enable_smb_access_based_enumeration = dictionary.get('enableSmbAccessBasedEnumeration')
@@ -336,6 +349,7 @@ class CreateViewRequest(object):
         override_global_whitelist = dictionary.get('overrideGlobalWhitelist')
         protocol_access = dictionary.get('protocolAccess')
         qos = cohesity_management_sdk.models.qo_s.QoS.from_dictionary(dictionary.get('qos')) if dictionary.get('qos') else None
+        s3_folder_support_enabled = dictionary.get('s3FolderSupportEnabled')
         s_3_key_mapping_config = dictionary.get('s3KeyMappingConfig')
         security_mode = dictionary.get('securityMode')
         share_permissions = None
@@ -368,6 +382,7 @@ class CreateViewRequest(object):
                    enable_fast_durable_handle,
                    enable_filer_audit_logging,
                    enable_live_indexing,
+                   enable_metadata_accelerator,
                    enable_mixed_mode_permissions,
                    enable_nfs_view_discovery,
                    enable_offline_caching,
@@ -389,6 +404,7 @@ class CreateViewRequest(object):
                    override_global_whitelist,
                    protocol_access,
                    qos,
+                   s3_folder_support_enabled,
                    s_3_key_mapping_config,
                    security_mode,
                    share_permissions,

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.scheduling_policy_proto_continuous_schedule
 import cohesity_management_sdk.models.scheduling_policy_proto_daily_schedule

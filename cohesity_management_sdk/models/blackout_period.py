@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.time_of_day
 
@@ -9,18 +9,19 @@ class BlackoutPeriod(object):
 
     Specifies a time range in a single day when new Job Runs of
     Protection Jobs cannot be started. For example, a Protection Job
-    with a daily schedule could define a blackout period for Sunday.
+    with a daily schedule could define a QuietTime period for Sunday.
 
     Attributes:
         id (string): Specified the Id for a snapshot copy policy. This is
             generated when the policy is created.
-        day (DayBlackoutPeriodEnum): Blackout Day.  Specifies a day in the
-            week when no new Job Runs should be started such as 'kSunday'. If
-            not set, the time range applies to all days. Specifies a day in a
-            week such as 'kSunday', 'kMonday', etc.
-        end_time (TimeOfDay): Specifies the end time of the blackout time
+        day (DayBlackoutPeriodEnum): QuietTime Day.
+        Specifies a day in the week when no new Job Runs should be started
+        such as 'kSunday'.
+        If not set, the time range applies to all days.
+        Specifies a day in a week such as 'kSunday', 'kMonday', etc.
+        end_time (TimeOfDay): Specifies the end time of the QuietTime time
             range.
-        start_time (TimeOfDay): Specifies the start time of the blackout time
+        start_time (TimeOfDay): Specifies the start time of the QuietTime time
             range.
 
     """

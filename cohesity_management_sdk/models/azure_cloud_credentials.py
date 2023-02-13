@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 
 class AzureCloudCredentials(object):
@@ -10,6 +10,8 @@ class AzureCloudCredentials(object):
     Azure service account.
 
     Attributes:
+        is_worm_enabled (bool): Specifies if write once read many (WORM)
+            protection is enabled for the Azure container or not.
         storage_access_key (string): Specifies the access key to use when
             accessing a storage tier in a Azure cloud service.
         storage_account_name (string): Specifies the account name to use when
@@ -29,6 +31,7 @@ class AzureCloudCredentials(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "is_worm_enabled":'isWormEnabled',
         "storage_access_key":'storageAccessKey',
         "storage_account_name":'storageAccountName',
         "tier_type":'tierType',
@@ -36,6 +39,7 @@ class AzureCloudCredentials(object):
     }
 
     def __init__(self,
+                 is_worm_enabled=None,
                  storage_access_key=None,
                  storage_account_name=None,
                  tier_type=None,
@@ -43,6 +47,7 @@ class AzureCloudCredentials(object):
         """Constructor for the AzureCloudCredentials class"""
 
         # Initialize members of the class
+        self.is_worm_enabled = is_worm_enabled
         self.storage_access_key = storage_access_key
         self.storage_account_name = storage_account_name
         self.tier_type = tier_type
@@ -67,13 +72,15 @@ class AzureCloudCredentials(object):
             return None
 
         # Extract variables from the dictionary
+        is_worm_enabled = dictionary.get('isWormEnabled')
         storage_access_key = dictionary.get('storageAccessKey')
         storage_account_name = dictionary.get('storageAccountName')
         tier_type = dictionary.get('tierType')
         tiers = dictionary.get('tiers')
 
         # Return an object of this model
-        return cls(storage_access_key,
+        return cls(is_worm_enabled,
+                   storage_access_key,
                    storage_account_name,
                    tier_type,
                    tiers)

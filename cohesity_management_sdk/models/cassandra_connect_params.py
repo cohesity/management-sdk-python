@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.cassandra_ports_info
 import cohesity_management_sdk.models.cassandra_security_info
@@ -17,6 +17,8 @@ class CassandraConnectParams(object):
         cassandra_security_info (CassandraSecurityInfo): Specifies the
             security related info.
         cassandra_version (string): Cassandra version
+        commit_log_backup_location (string): Commit Log Backup location used
+            for PITR feature
         config_directory (string): Specifies the Directory path containing
             Config YAML for discovery.
         data_centers (list of string): Specifies the List of all physical data
@@ -50,6 +52,7 @@ class CassandraConnectParams(object):
         "cassandra_ports_info":'cassandraPortsInfo',
         "cassandra_security_info":'cassandraSecurityInfo',
         "cassandra_version":'cassandraVersion',
+        "commit_log_backup_location":'commitLogBackupLocation',
         "config_directory":'configDirectory',
         "data_centers":'dataCenters',
         "dse_config_directory":'dseConfigDirectory',
@@ -67,6 +70,7 @@ class CassandraConnectParams(object):
                  cassandra_ports_info=None,
                  cassandra_security_info=None,
                  cassandra_version=None,
+                 commit_log_backup_location=None,
                  config_directory=None,
                  data_centers=None,
                  dse_config_directory=None,
@@ -84,6 +88,7 @@ class CassandraConnectParams(object):
         self.cassandra_ports_info = cassandra_ports_info
         self.cassandra_security_info = cassandra_security_info
         self.cassandra_version = cassandra_version
+        self.commit_log_backup_location = commit_log_backup_location
         self.config_directory = config_directory
         self.data_centers = data_centers
         self.dse_config_directory = dse_config_directory
@@ -118,6 +123,7 @@ class CassandraConnectParams(object):
         cassandra_ports_info = cohesity_management_sdk.models.cassandra_ports_info.CassandraPortsInfo.from_dictionary(dictionary.get('cassandraPortsInfo')) if dictionary.get('cassandraPortsInfo') else None
         cassandra_security_info = cohesity_management_sdk.models.cassandra_security_info.CassandraSecurityInfo.from_dictionary(dictionary.get('cassandraSecurityInfo')) if dictionary.get('cassandraSecurityInfo') else None
         cassandra_version = dictionary.get('cassandraVersion')
+        commit_log_backup_location = dictionary.get('commitLogBackupLocation')
         config_directory = dictionary.get('configDirectory')
         data_centers = dictionary.get('dataCenters')
         dse_config_directory = dictionary.get('dseConfigDirectory')
@@ -134,6 +140,7 @@ class CassandraConnectParams(object):
         return cls(cassandra_ports_info,
                    cassandra_security_info,
                    cassandra_version,
+                   commit_log_backup_location,
                    config_directory,
                    data_centers,
                    dse_config_directory,

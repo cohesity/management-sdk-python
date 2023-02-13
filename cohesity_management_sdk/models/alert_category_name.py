@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 
 class AlertCategoryName(object):
@@ -43,6 +43,9 @@ class AlertCategoryName(object):
             kRemoteReplication - Alert associated with Replication job.
             kQuota - Alert associated with Quotas.
             kCDP - Alert associated with Continuous Data Protection.
+            kViewFailover - Alert associated with view Failover.
+            kDisasterRecovery - Alert associated with Disaster Recovery.
+
         name (string): Specifies public facing string for alert enums.
 
     """

@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.cloud_deploy_info_proto_cloud_deploy_entity
+import cohesity_management_sdk.models.error_proto
 import cohesity_management_sdk.models.restore_info_proto
 
 class CloudDeployInfoProto(object):
@@ -112,6 +113,8 @@ class CloudDeployInfoProto(object):
             to source.
         mtype (int): The type of environment this cloud deploy info pertains
             to.
+        warnings (list of ErrorProto): Warnings if any. These warnings will be
+            propogated to the UI by master.
 
     """
 
@@ -122,7 +125,8 @@ class CloudDeployInfoProto(object):
         "restore_info":'restoreInfo',
         "target_type":'targetType',
         "total_bytes_transferred_to_source":'totalBytesTransferredToSource',
-        "mtype":'type'
+        "mtype":'type',
+        "warnings":'warnings'
     }
 
     def __init__(self,
@@ -131,7 +135,8 @@ class CloudDeployInfoProto(object):
                  restore_info=None,
                  target_type=None,
                  total_bytes_transferred_to_source=None,
-                 mtype=None):
+                 mtype=None,
+                 warnings=None):
         """Constructor for the CloudDeployInfoProto class"""
 
         # Initialize members of the class
@@ -141,6 +146,7 @@ class CloudDeployInfoProto(object):
         self.target_type = target_type
         self.total_bytes_transferred_to_source = total_bytes_transferred_to_source
         self.mtype = mtype
+        self.warnings = warnings
 
 
     @classmethod
@@ -171,6 +177,11 @@ class CloudDeployInfoProto(object):
         target_type = dictionary.get('targetType')
         total_bytes_transferred_to_source = dictionary.get('totalBytesTransferredToSource')
         mtype = dictionary.get('type')
+        warnings = None
+        if dictionary.get('warnings'):
+            warnings = list()
+            for structure in dictionary.get('warnings'):
+                warnings.append(cohesity_management_sdk.models.error_proto.ErrorProto.from_dictionary(structure))
 
         # Return an object of this model
         return cls(cloud_deploy_entity_vec,
@@ -178,6 +189,7 @@ class CloudDeployInfoProto(object):
                    restore_info,
                    target_type,
                    total_bytes_transferred_to_source,
-                   mtype)
+                   mtype,
+                   warnings)
 
 

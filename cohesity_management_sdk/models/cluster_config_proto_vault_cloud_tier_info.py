@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.cluster_config_proto_vault_cloud_tier_type
 
@@ -10,6 +10,10 @@ class ClusterConfigProto_Vault_CloudTierInfo(object):
     Proto representing a cloud tier type.
 
     Attributes:
+        honor_tier_info (bool): Flag that determines whether this tiering info
+            is to be honored or not. By default this tiering setting will be
+            ignored. This must be explicitly set to true in order to honor this
+            setting.
         target_tier_type (ClusterConfigProto_Vault_CloudTierType): Represents
             the target tier to which a archive snapshot needs to be
             moved/migrated. Currently we only allow down-tiering (i.e. moving
@@ -30,16 +34,19 @@ class ClusterConfigProto_Vault_CloudTierInfo(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "honor_tier_info":'honorTierInfo',
         "target_tier_type": 'targetTierType',
         "num_secs_to_move_after": 'numSecsToMoveAfter'
     }
 
     def __init__(self,
+                 honor_tier_info=None,
                  target_tier_type=None,
                  num_secs_to_move_after=None):
         """Constructor for the ClusterConfigProto_Vault_CloudTierInfo class"""
 
         # Initialize members of the class
+        self.honor_tier_info = honor_tier_info
         self.target_tier_type = target_tier_type
         self.num_secs_to_move_after = num_secs_to_move_after
 
@@ -62,11 +69,13 @@ class ClusterConfigProto_Vault_CloudTierInfo(object):
             return None
 
         # Extract variables from the dictionary
+        honor_tier_info = dictionary.get('honorTierInfo')
         target_tier_type = cohesity_management_sdk.models.cluster_config_proto_vault_cloud_tier_type.ClusterConfigProto_Vault_CloudTierType.from_dictionary(dictionary.get('targetTierType')) if dictionary.get('targetTierType') else None
         num_secs_to_move_after = dictionary.get('numSecsToMoveAfter')
 
         # Return an object of this model
-        return cls(target_tier_type,
+        return cls(honor_tier_info,
+                   target_tier_type,
                    num_secs_to_move_after)
 
 

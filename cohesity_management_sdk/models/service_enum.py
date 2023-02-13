@@ -1,11 +1,15 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
+
 
 class ServiceEnum(object):
 
     """Implementation of the 'Service' enum.
 
-    Specifies the name of the service.
+    Specifies the list of services to take the specified action on.
+    If none are specified, all Cluster services will be affected. It should
+    also be noted that some Cluster services are not stoppable and may
+    not be affected by the action specified.
     'kApollo' is a service for reclaiming freed disk sectors on Nodes in the
     SnapFS distributed file system.
     'kBridge' is a service for managing the SnapFS distributed file system.
@@ -34,7 +38,6 @@ class ServiceEnum(object):
     'kNexusProxy' is a service that links the Nexus service to other services
     on the Cluster.
     'kStorageProxy' is a service for accessing data on external entities.
-    'kTricorder' is a diagnostic health testing service for Clusters.
     'kRtClient' is a reverse tunneling client service.
     'kVaultProxy' is a service for managing external targets that Clusters
     can be backed up to.
@@ -58,6 +61,10 @@ class ServiceEnum(object):
     traffic.
     'kEtlServer' is a service responsible for ETling data for globalsearch.
     'kIcebox' is service that links Icebox service to other services on cluster.
+    kScribe, kStats, kYoda, kAlerts, kKeychain, kLogWatcher, kStatsCollecter,
+    kGandalf, kNexus, kNexusProxy, kStorageProxy, kRtClient, kVaultProxy,
+    kSmbProxy, kBridgeProxy, kLibrarian, kGroot, kEagleAgent, kAthena,
+    kBifrostBroker, kSmb2Proxy, kOs, kAtom, kIcebox
 
     Attributes:
         KAPOLLO: TODO: type description here.
@@ -67,34 +74,6 @@ class ServiceEnum(object):
         KMAGNETO: TODO: type description here.
         KIRIS: TODO: type description here.
         KIRISPROXY: TODO: type description here.
-        KSCRIBE: TODO: type description here.
-        KSTATS: TODO: type description here.
-        KYODA: TODO: type description here.
-        KALERTS: TODO: type description here.
-        KKEYCHAIN: TODO: type description here.
-        KLOGWATCHER: TODO: type description here.
-        KSTATSCOLLECTER: TODO: type description here.
-        KGANDALF: TODO: type description here.
-        KNEXUS: TODO: type description here.
-        KNEXUSPROXY: TODO: type description here.
-        KSTORAGEPROXY: TODO: type description here.
-        KTRICORDER: TODO: type description here.
-        KRTCLIENT: TODO: type description here.
-        KVAULTPROXY: TODO: type description here.
-        KSMBPROXY: TODO: type description here.
-        KBRIDGEPROXY: TODO: type description here.
-        KLIBRARIAN: TODO: type description here.
-        KGROOT: TODO: type description here.
-        KEAGLEAGENT: TODO: type description here.
-        KATHENA: TODO: type description here.
-        KBIFROSTBROKER: TODO: type description here.
-        KSMB2PROXY: TODO: type description here.
-        KOS: TODO: type description here.
-        KATOM: TODO: type description here.
-        KPATCH: TODO: type description here.
-        KCOMPASS: TODO: type description here.
-        KETLSERVER: TODO: type description here.
-        KICEBOX: TODO: type description here.
 
     """
 
@@ -111,60 +90,4 @@ class ServiceEnum(object):
     KIRIS = 'kIris'
 
     KIRISPROXY = 'kIrisProxy'
-
-    KSCRIBE = 'kScribe'
-
-    KSTATS = 'kStats'
-
-    KYODA = 'kYoda'
-
-    KALERTS = 'kAlerts'
-
-    KKEYCHAIN = 'kKeychain'
-
-    KLOGWATCHER = 'kLogWatcher'
-
-    KSTATSCOLLECTER = 'kStatsCollecter'
-
-    KGANDALF = 'kGandalf'
-
-    KNEXUS = 'kNexus'
-
-    KNEXUSPROXY = 'kNexusProxy'
-
-    KSTORAGEPROXY = 'kStorageProxy'
-
-    KTRICORDER = 'kTricorder'
-
-    KRTCLIENT = 'kRtClient'
-
-    KVAULTPROXY = 'kVaultProxy'
-
-    KSMBPROXY = 'kSmbProxy'
-
-    KBRIDGEPROXY = 'kBridgeProxy'
-
-    KLIBRARIAN = 'kLibrarian'
-
-    KGROOT = 'kGroot'
-
-    KEAGLEAGENT = 'kEagleAgent'
-
-    KATHENA = 'kAthena'
-
-    KBIFROSTBROKER = 'kBifrostBroker'
-
-    KSMB2PROXY = 'kSmb2Proxy'
-
-    KOS = 'kOs'
-
-    KATOM = 'kAtom'
-
-    KPATCH = 'kPatch'
-
-    KCOMPASS = 'kCompass'
-
-    KETLSERVER = 'kEtlServer'
-
-    KICEBOX = 'kIcebox'
 

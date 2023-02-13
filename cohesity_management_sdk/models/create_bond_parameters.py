@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 
 class CreateBondParameters(object):
@@ -15,7 +15,7 @@ class CreateBondParameters(object):
             mode. 'k802_3ad' indicates 802.3ad bonding mode.
         name (string): Specifies a unique name to identify the bond being
             created.
-        slaves (list of string): Specifies the names of the slaves of this
+        slaves (list of string): Specifies the names of the secondaries of this
             bond.
 
     """

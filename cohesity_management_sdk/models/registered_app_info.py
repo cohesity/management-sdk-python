@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.host_settings_check_result
 
@@ -33,7 +33,7 @@ class RegisteredAppInfo(object):
             environment. 'kPuppeteer' indicates the Cohesity's Remote Adapter.
             'kPhysical' indicates the physical Protection Source environment.
             'kPure' indicates the Pure Storage Protection Source environment.
-            'Nimble' indicates the Nimble Storage Protection Source
+            'kNimble' indicates the Nimble Storage Protection Source
             environment. 'kAzure' indicates the Microsoft's Azure Protection
             Source environment. 'kNetapp' indicates the Netapp Protection
             Source environment. 'kAgent' indicates the Agent Protection Source

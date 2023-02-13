@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class AlertCategoryEnum(object):
 
@@ -38,9 +38,10 @@ class AlertCategoryEnum(object):
     kRemoteReplication - Alert associated with Replication job.
     kQuota - Alert associated with Quotas.
     kCDP - Alert associated with Continuous Data Protection.
+    kViewFailover - Alert associated with view Failover.
+    kDisasterRecovery - Alert associated with Disaster Recovery.
 
     Attributes:
-
         KDISK: TODO: type description here.
         KNODE: TODO: type description here.
         KCLUSTER: TODO: type description here.
@@ -73,8 +74,11 @@ class AlertCategoryEnum(object):
         KREMOTEREPLICATION: TODO: type description here.
         KQUOTA: TODO: type description here.
         KCDP: TODO: type description here.
+        KVIEWFAILOVER: TODO: type description here.
+        KDISASTERRECOVERY: TODO: type description here.
 
     """
+
     KDISK = 'kDisk'
 
     KNODE = 'kNode'
@@ -139,3 +143,6 @@ class AlertCategoryEnum(object):
 
     KCDP = 'kCDP'
 
+    KVIEWFAILOVER = 'kViewFailover'
+
+    KDISASTERRECOVERY = 'kDisasterRecovery'

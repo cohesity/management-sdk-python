@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 
 class AwsKmsConfiguration(object):
@@ -17,7 +17,7 @@ class AwsKmsConfiguration(object):
             Specifies the authentication method to be used for API calls.
             'kUseIAMUser' indicates a user based authentication.
             'kUseIAMRole' indicates a role based authentication, used only for
-            AWS CE.
+            AWS CE. 'kUseHelios' indicates a Helios based authentication.
         ca_certificate (string): Specify the ca certificate path.
         cmk_alias (string): The string alias of the CMK.
         cmk_arn (string): The Amazon Resource Number of AWS Customer Managed

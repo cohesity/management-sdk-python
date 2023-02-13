@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.source_backup_status
 import cohesity_management_sdk.models.protection_job_run_stats
@@ -23,7 +23,7 @@ class BackupRun(object):
             environment. 'kPuppeteer' indicates the Cohesity's Remote Adapter.
             'kPhysical' indicates the physical Protection Source environment.
             'kPure' indicates the Pure Storage Protection Source environment.
-            'Nimble' indicates the Nimble Storage Protection Source
+            'kNimble' indicates the Nimble Storage Protection Source
             environment. 'kAzure' indicates the Microsoft's Azure Protection
             Source environment. 'kNetapp' indicates the Netapp Protection
             Source environment. 'kAgent' indicates the Agent Protection Source
@@ -58,6 +58,14 @@ class BackupRun(object):
             environment. 'kHive' indicates Hive Protection Source environment.
             'kHBase' indicates HBase Protection Source environment. 'kUDA'
             indicates Universal Data Adapter Protection Source environment.
+            'kO365Teams' indicates the Office365 Teams Protection Source
+            environment. 'kO365Group' indicates the Office365 Groups Protection
+            Source environment. 'kO365Exchange' indicates the Office365 Mailbox
+            Protection Source environment. 'kO365OneDrive' indicates the
+            Office365 OneDrive Protection Source environment. 'kO365Sharepoint'
+            indicates the Office365 SharePoint Protection Source environment.
+            'kO365PublicFolders' indicates the Office365 PublicFolders
+            Protection Source environment.
         error (string): Specifies if an error occurred (if any) while running
             this task. This field is populated when the status is equal to
             'kFailure'.
@@ -105,15 +113,8 @@ class BackupRun(object):
         stats (ProtectionJobRunStats): Specifies statistics about a Protection
             Job Run. This contains the Job Run level statistics.
         status (StatusBackupRunEnum): Specifies the status of Backup task such
-            as 'kRunning', 'kSuccess', 'kFailure' etc. 'kAccepted' indicates
-            the task is queued to run but not yet running. 'kRunning'
-            indicates the task is running. 'kCanceling' indicates a request to
-            cancel the task has occurred but the task is not yet canceled.
-            'kCanceled' indicates the task has been canceled. 'kSuccess'
-            indicates the task was successful. 'kFailure' indicates the task
-            failed. 'kWarning' indicates the task has finished with warning.
-            'kOnHold' indicates the task is kept onHold. 'kMissed' indicates
-            the task is missed.
+            as 'kRunning', 'kSuccess', 'kFailure' etc.
+            kWarning, kOnHold, kMissed, kFinalizing, kWaitingToRetry.
         warnings (list of string): Array of Warnings.  Specifies the warnings
             that occurred (if any) while running this task.
         worm_retention_type (WormRetentionTypeEnum): Specifies WORM retention

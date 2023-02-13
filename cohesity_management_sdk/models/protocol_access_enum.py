@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class ProtocolAccessEnum(object):
 
@@ -11,6 +11,9 @@ class ProtocolAccessEnum(object):
     'kSMBOnly' enables protocol access to SMB only.
     'kS3Only' enables protocol access to S3 only.
     'kSwiftOnly' enables protocol access to Swift only.
+    'kUnknown' indicates that the protocol access of a view does not match any
+    of the above. In this case, the constant is used as 'catch-all'.
+
 
     Attributes:
         KALL: TODO: type description here.
@@ -18,6 +21,7 @@ class ProtocolAccessEnum(object):
         KSMBONLY: TODO: type description here.
         KS3ONLY: TODO: type description here.
         KSWIFTONLY: TODO: type description here.
+        KUNKNOWN: TODO: type description here.
 
     """
 
@@ -30,3 +34,5 @@ class ProtocolAccessEnum(object):
     KS3ONLY = 'kS3Only'
 
     KSWIFTONLY = 'kSwiftOnly'
+
+    KUNKNOWN = 'kUnknown'

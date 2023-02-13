@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class AwsTypeEnum(object):
 
@@ -24,6 +24,8 @@ class AwsTypeEnum(object):
     'kRDSInstance' represents a RDS DB instance.
     'kRDSSubnet' represents a RDS subnet.
     'kRDSTag' represents a tag attached to RDS instance.
+    'kAuroraTag' represents a tag attached to an Aurora cluster.
+    'kAccount' represents an AWS account.
     'kAuroraCluster' represents an Aurora cluster.
 
     Attributes:
@@ -42,7 +44,9 @@ class AwsTypeEnum(object):
         KRDSINSTANCE: TODO: type description here.
         KRDSSUBNET: TODO: type description here.
         KRDSTAG: TODO: type description here.
-        KAURORACLUSTER:  TODO: type description here.
+        KAURORATAG: TODO: type description here.
+        KACCOUNT: TODO: type description here.
+        KAURORACLUSTER: TODO: type description here.
 
     """
 
@@ -76,4 +80,9 @@ class AwsTypeEnum(object):
 
     KRDSTAG = 'kRDSTag'
 
+    KAURORATAG = 'kAuroraTag'
+
+    KACCOUNT = 'kAccount'
+
     KAURORACLUSTER = 'kAuroraCluster'
+

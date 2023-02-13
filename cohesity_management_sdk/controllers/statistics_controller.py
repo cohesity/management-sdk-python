@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -359,7 +359,8 @@ class StatisticsController(BaseController):
                               entity_id_list=None,
                               end_time_msecs=None,
                               rollup_function=None,
-                              rollup_interval_secs=None):
+                              rollup_interval_secs=None,
+                              prorate_data_points=None):
         """Does a GET request to /public/statistics/timeSeriesStats.
 
         A Metric specifies a data point (such as CPU usage and IOPS) to track
@@ -411,6 +412,10 @@ class StatisticsController(BaseController):
             rollup_interval_secs (int, optional): Specifies the time interval
                 granularity (in seconds) for the specified rollup function.
                 Only specify a value if Rollup function is also specified.
+            prorate_data_points (bool, optional): Specifies to create pro
+                rated data point for every rollup interval instead of
+                returning the actual raw data points. This should be used
+                only when rollup function is provided.
 
         Returns:
             MetricDataBlock: Response from the API. Success
@@ -445,7 +450,8 @@ class StatisticsController(BaseController):
                 'entityIdList': entity_id_list,
                 'endTimeMsecs': end_time_msecs,
                 'rollupFunction': rollup_function,
-                'rollupIntervalSecs': rollup_interval_secs
+                'rollupIntervalSecs': rollup_interval_secs,
+                'prorateDataPoints': prorate_data_points
             }
             _query_builder = APIHelper.append_url_with_query_parameters(
                 _query_builder, _query_parameters,

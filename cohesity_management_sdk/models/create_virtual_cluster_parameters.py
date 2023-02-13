@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.encryption_configuration
 import cohesity_management_sdk.models.network_configuration
@@ -23,6 +23,8 @@ class CreateVirtualClusterParameters(object):
             needed for network configuration of the new Cluster.
         node_configs (list of VirtualNodeConfiguration): Specifies the
             configuration for the nodes in the new cluster.
+        trust_domain (string): Specifies Trust Domain used for Service
+            Identity.
 
     """
 
@@ -33,7 +35,8 @@ class CreateVirtualClusterParameters(object):
         "node_configs":'nodeConfigs',
         "encryption_config":'encryptionConfig',
         "metadata_fault_tolerance":'metadataFaultTolerance',
-        "ip_preference":'ipPreference'
+        "ip_preference":'ipPreference',
+        "trust_domain":'trustDomain'
     }
 
     def __init__(self,
@@ -42,7 +45,8 @@ class CreateVirtualClusterParameters(object):
                  node_configs=None,
                  encryption_config=None,
                  metadata_fault_tolerance=None,
-                 ip_preference=None):
+                 ip_preference=None,
+                 trust_domain=None):
         """Constructor for the CreateVirtualClusterParameters class"""
 
         # Initialize members of the class
@@ -52,6 +56,7 @@ class CreateVirtualClusterParameters(object):
         self.metadata_fault_tolerance = metadata_fault_tolerance
         self.network_config = network_config
         self.node_configs = node_configs
+        self.trust_domain = trust_domain
 
 
     @classmethod
@@ -82,6 +87,7 @@ class CreateVirtualClusterParameters(object):
         encryption_config = cohesity_management_sdk.models.encryption_configuration.EncryptionConfiguration.from_dictionary(dictionary.get('encryptionConfig')) if dictionary.get('encryptionConfig') else None
         metadata_fault_tolerance = dictionary.get('metadataFaultTolerance')
         ip_preference = dictionary.get('ipPreference')
+        trust_domain = dictionary.get('trustDomain')
 
         # Return an object of this model
         return cls(cluster_name,
@@ -89,6 +95,7 @@ class CreateVirtualClusterParameters(object):
                    node_configs,
                    encryption_config,
                    metadata_fault_tolerance,
-                   ip_preference)
+                   ip_preference,
+                   trust_domain)
 
 

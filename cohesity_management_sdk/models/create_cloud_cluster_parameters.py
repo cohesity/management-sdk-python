@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.encryption_configuration
 import cohesity_management_sdk.models.cloud_network_configuration
@@ -11,7 +11,9 @@ class CreateCloudClusterParameters(object):
     Specifies the parameters needed for creation of a new Cluster.
 
     Attributes:
-        cluster_name (string): Specifies the name of the new Cluster.
+        cluster_name (string): Specifies the name of the new Cluster. 
+        cluster_size (ClusterSizeEnum1): Specifies the size of the cluster. It
+            is set as Large by default if the parameter is not specified.
         encryption_config (EncryptionConfiguration): Specifies the parameters
             the user wants to use when configuring encryption for the new
             Cluster.
@@ -30,6 +32,7 @@ class CreateCloudClusterParameters(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "cluster_name":'clusterName',
+        "cluster_size":'clusterSize',
         "ip_preference":'ipPreference',
         "network_config":'networkConfig',
         "node_ips":'nodeIps',
@@ -39,6 +42,7 @@ class CreateCloudClusterParameters(object):
 
     def __init__(self,
                  cluster_name=None,
+                 cluster_size=None,
                  network_config=None,
                  node_ips=None,
                  encryption_config=None,
@@ -48,6 +52,7 @@ class CreateCloudClusterParameters(object):
 
         # Initialize members of the class
         self.cluster_name = cluster_name
+        self.cluster_size = cluster_size
         self.ip_preference = ip_preference
         self.encryption_config = encryption_config
         self.metadata_fault_tolerance = metadata_fault_tolerance
@@ -74,6 +79,7 @@ class CreateCloudClusterParameters(object):
 
         # Extract variables from the dictionary
         cluster_name = dictionary.get('clusterName')
+        cluster_size = dictionary.get('clusterSize')
         ip_preference = dictionary.get('ipPreference', None)
         network_config = cohesity_management_sdk.models.cloud_network_configuration.CloudNetworkConfiguration.from_dictionary(dictionary.get('networkConfig')) if dictionary.get('networkConfig') else None
         node_ips = dictionary.get('nodeIps')
@@ -82,6 +88,7 @@ class CreateCloudClusterParameters(object):
 
         # Return an object of this model
         return cls(cluster_name,
+                   cluster_size,
                    network_config,
                    node_ips,
                    encryption_config,

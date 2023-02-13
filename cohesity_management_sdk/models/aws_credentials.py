@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.c2s_server_info
 
@@ -21,6 +21,7 @@ class AwsCredentials(object):
             API calls. 'kUseIAMUser' indicates a user based authentication.
             'kUseIAMRole' indicates a role based authentication, used only for
             AWS CE.
+            'kUseHelios' indicates a Helios based authentication.
         aws_type (AwsTypeEnum): Specifies the entity type such as 'kIAMUser'
             if the environment is kAWS. Specifies the type of an AWS source
             entity. 'kIAMUser' indicates a unique user within an AWS account.
@@ -37,8 +38,9 @@ class AwsCredentials(object):
             configuring database features. 'kRDSParameterGroup' represents a
             RDS parameter group. 'kRDSInstance' represents a RDS DB instance.
             'kRDSSubnet' represents a RDS subnet. 'kRDSTag' represents a tag
-            attached to RDS instance. 'kAuroraCluster' represents an Aurora
-            cluster.
+            attached to RDS instance. 'kAuroraTag' represents a tag attached
+            to an Aurora cluster. 'kAccount' represents an AWS account.
+            'kAuroraCluster' represents an Aurora cluster.
         c2s_server_info (C2SServerInfo):  Specifies the C2S Access Portal
             (CAP) server info.
         iam_role_arn (string): Specifies the iam role arn Amazon service

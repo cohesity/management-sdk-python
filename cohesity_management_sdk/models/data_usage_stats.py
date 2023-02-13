@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 
 class DataUsageStats(object):
@@ -29,6 +29,10 @@ class DataUsageStats(object):
             other nodes as per RF or Erasure Coding policy.
         data_in_bytes_after_dedup_timestamp_usec (long|int): Specifies
             Timestamp of DataInBytesAfterDedup.
+        data_in_bytes_prev (long|int): Specifies the storage used before any
+            data reduction using deduplication and compression
+        data_in_bytes_prev_timestamp_usec (long|int): Specifies the Timestamp
+            of DataInBytesPrevTimestampUsec
         data_in_bytes_timestamp_usec (long|int): Specifies Timestamp of
             DataInBytes.
         data_protect_logical_usage_bytes (long|int): Specifies the logical
@@ -44,6 +48,7 @@ class DataUsageStats(object):
             include resiliency impact.
         data_written_bytes_timestamp_usec (long|int): Specifies Timestamp of
             DataWrittenBytes.
+        dataWrittenBytesPrev ()
         file_services_logical_usage_bytes (long|int): Specifies the logical
             data used by File services on Cohesity cluster.
         file_services_logical_usage_bytes_timestamp_usec (long|int): Specifies
@@ -104,6 +109,8 @@ class DataUsageStats(object):
         "data_in_bytes":'dataInBytes',
         "data_in_bytes_after_dedup":'dataInBytesAfterDedup',
         "data_in_bytes_after_dedup_timestamp_usec":'dataInBytesAfterDedupTimestampUsec',
+        "data_in_bytes_prev":'dataInBytesPrev',
+        "data_in_bytes_prev_timestamp_usec":'dataInBytesPrevTimestampUsec',
         "data_in_bytes_timestamp_usec":'dataInBytesTimestampUsec',
         "data_protect_logical_usage_bytes":'dataProtectLogicalUsageBytes',
         "data_protect_logical_usage_bytes_timestamp_usec":'dataProtectLogicalUsageBytesTimestampUsec',
@@ -139,6 +146,8 @@ class DataUsageStats(object):
                  data_in_bytes=None,
                  data_in_bytes_after_dedup=None,
                  data_in_bytes_after_dedup_timestamp_usec=None,
+                 data_in_bytes_prev=None,
+                 data_in_bytes_prev_timestamp_usec=None,
                  data_in_bytes_timestamp_usec=None,
                  data_protect_logical_usage_bytes=None,
                  data_protect_logical_usage_bytes_timestamp_usec=None,
@@ -174,6 +183,8 @@ class DataUsageStats(object):
         self.data_in_bytes = data_in_bytes
         self.data_in_bytes_after_dedup = data_in_bytes_after_dedup
         self.data_in_bytes_after_dedup_timestamp_usec = data_in_bytes_after_dedup_timestamp_usec
+        self.data_in_bytes_prev = data_in_bytes_prev
+        self.data_in_bytes_prev_timestamp_usec = data_in_bytes_prev_timestamp_usec
         self.data_in_bytes_timestamp_usec = data_in_bytes_timestamp_usec
         self.data_protect_logical_usage_bytes = data_protect_logical_usage_bytes
         self.data_protect_logical_usage_bytes_timestamp_usec = data_protect_logical_usage_bytes_timestamp_usec
@@ -226,6 +237,8 @@ class DataUsageStats(object):
         data_in_bytes = dictionary.get('dataInBytes')
         data_in_bytes_after_dedup = dictionary.get('dataInBytesAfterDedup')
         data_in_bytes_after_dedup_timestamp_usec = dictionary.get('dataInBytesAfterDedupTimestampUsec')
+        data_in_bytes_prev = dictionary.get('dataInBytesPrev')
+        data_in_bytes_prev_timestamp_usec = dictionary.get('dataInBytesPrevTimestampUsec')
         data_in_bytes_timestamp_usec = dictionary.get('dataInBytesTimestampUsec')
         data_protect_logical_usage_bytes = dictionary.get('dataProtectLogicalUsageBytes')
         data_protect_logical_usage_bytes_timestamp_usec = dictionary.get('dataProtectLogicalUsageBytesTimestampUsec')
@@ -260,6 +273,8 @@ class DataUsageStats(object):
                    data_in_bytes,
                    data_in_bytes_after_dedup,
                    data_in_bytes_after_dedup_timestamp_usec,
+                   data_in_bytes_prev,
+                   data_in_bytes_prev_timestamp_usec,
                    data_in_bytes_timestamp_usec,
                    data_protect_logical_usage_bytes,
                    data_protect_logical_usage_bytes_timestamp_usec,

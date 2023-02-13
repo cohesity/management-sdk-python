@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 
 class AgentDeploymentStatusResponse(object):
@@ -23,16 +23,21 @@ class AgentDeploymentStatusResponse(object):
         host_os_type (HostOsTypeEnum): Specifies the host type on which the
             agent is installed. 'kLinux' indicates the Linux operating system.
             'kWindows' indicates the Microsoft Windows operating system.
-            'kAix' indicates the IBM AIX operating system. 'kSolaris'
-            indicates the Oracle Solaris operating system. 'kSapHana'
-            indicates the Sap Hana database system developed by SAP SE.
+            'kAix' indicates the IBM AIX operating system.
+            'kSolaris' indicates the Oracle Solaris operating system.
+            'kSapHana' indicates the Sap Hana database system developed by SAP SE.
+            'kSapOracle' indicates the Sap Oracle database system developed by SAP SE.
+            'kCockroachDB' indicates the CockroachDB database system.
+            'kMySQL' indicates the MySQL database system.
             'kOther' indicates the other types of operating system.
+
         last_upgrade_status (LastUpgradeStatusEnum): Specifies the status of
             the last upgrade attempt. Specifies the status of the upgrade of
             the agent on a physical server. 'kIdle' indicates there is no
             agent upgrade in progress. 'kAccepted' indicates the Agent upgrade
             is accepted. 'kStarted' indicates the Agent upgrade is in
             progress. 'kFinished' indicates the Agent upgrade is completed.
+            'kScheduled' indicates that the Agent is scheduled for upgrade.
         upgradability (UpgradabilityAgentDeploymentStatusResponseEnum):
             Specfies the upgradability of the agent running on the server.
             Specifies the upgradability of the agent running on the physical

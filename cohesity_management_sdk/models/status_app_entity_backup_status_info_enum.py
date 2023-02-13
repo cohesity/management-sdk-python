@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class StatusAppEntityBackupStatusInfoEnum(object):
 
@@ -16,6 +16,8 @@ class StatusAppEntityBackupStatusInfoEnum(object):
     'kWarning' indicates the task has finished with warning.
     'kOnHold' indicates the task is kept onHold.
     'kMissed' indicates the task is missed.
+    'kFinalizing' indicates the task is finalizing.
+
 
     Attributes:
         KACCEPTED: TODO: type description here.
@@ -27,8 +29,10 @@ class StatusAppEntityBackupStatusInfoEnum(object):
         KWARNING: TODO: type description here.
         KONHOLD: TODO: type description here.
         KMISSED: TODO: type description here.
+        KFINALIZING: TODO: type description here.
 
     """
+
     KACCEPTED = 'kAccepted'
 
     KRUNNING = 'kRunning'
@@ -47,3 +51,4 @@ class StatusAppEntityBackupStatusInfoEnum(object):
 
     KMISSED = 'kMissed'
 
+    KFINALIZING = 'kFinalizing'

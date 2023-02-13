@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
+
 
 class StatusCloudArchivalInfoEnum(object):
 
     """Implementation of the 'Status_CloudArchivalInfo' enum.
 
-    Specifies the status type.
+    Specifies the public status type.
     'kAccepted' indicates the task is queued to run but not yet running.
     'kRunning' indicates the task is running.
     'kCanceling' indicates a request to cancel the task has occurred but
@@ -16,9 +17,10 @@ class StatusCloudArchivalInfoEnum(object):
     'kWarning' indicates the task has finished with warning.
     'kOnHold' indicates the task is kept onHold.
     'kMissed' indicates the task is missed.
+    'Finalizing' indicates the task is finalizing.
+
 
     Attributes:
-
         KACCEPTED: TODO: type description here.
         KRUNNING: TODO: type description here.
         KCANCELING: TODO: type description here.
@@ -28,8 +30,10 @@ class StatusCloudArchivalInfoEnum(object):
         KWARNING: TODO: type description here.
         KONHOLD: TODO: type description here.
         KMISSED: TODO: type description here.
+        KFINALIZING: TODO: type description here.
 
     """
+
     KACCEPTED = 'kAccepted'
 
     KRUNNING = 'kRunning'
@@ -48,3 +52,4 @@ class StatusCloudArchivalInfoEnum(object):
 
     KMISSED = 'kMissed'
 
+    KFINALIZING = 'kFinalizing'

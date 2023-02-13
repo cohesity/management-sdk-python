@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -22,7 +22,8 @@ class RemoteClusterController(BaseController):
                             cluster_ids=None,
                             cluster_names=None,
                             purpose_replication=None,
-                            purpose_remote_access=None):
+                            purpose_remote_access=None,
+                            verify_reverse_registration=None):
         """Does a GET request to /public/remoteClusters.
 
         Cohesity Clusters involved in replication, must be registered to each
@@ -41,6 +42,8 @@ class RemoteClusterController(BaseController):
                 Replication.
             purpose_remote_access (bool, optional): Filter for purpose as
                 Remote Access.
+            verify_reverse_registration (bool, optional): Verify anti
+                connection if set to true.
 
         Returns:
             list of RemoteCluster: Response from the API. Success
@@ -64,7 +67,8 @@ class RemoteClusterController(BaseController):
                 'clusterIds': cluster_ids,
                 'clusterNames': cluster_names,
                 'purposeReplication': purpose_replication,
-                'purposeRemoteAccess': purpose_remote_access
+                'purposeRemoteAccess': purpose_remote_access,
+                'verifyReverseRegistration': verify_reverse_registration
             }
             _query_builder = APIHelper.append_url_with_query_parameters(
                 _query_builder, _query_parameters,

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.user_id_mapping
 import cohesity_management_sdk.models.preferred_domain_controller
@@ -23,6 +23,8 @@ class CreateActiveDirectoryEntryParams(object):
         machine_accounts (list of string): Array of Machine Accounts.
             Specifies an array of computer names used to identify the Cohesity
             Cluster on the domain.
+        only_use_whitelisted_domains (bool): Specifies whether to use
+            'whitelistedDomains' only for authentication.
         ou_name (string): Specifies an optional Organizational Unit name.
         overwrite_existing_accounts (bool): Specifies whether the specified
             machine accounts should overwrite the existing machine accounts in
@@ -43,6 +45,8 @@ class CreateActiveDirectoryEntryParams(object):
             Windows users are mapped in an Active Directory.
         user_name (string): Specifies a userName that has administrative
             privileges in the domain.
+        whitelisted_domains (list of string): Specifies the Whitelisted Domains
+            of the Active Directory domain.
         workgroup (string): Specifies an optional Workgroup name.
 
     """
@@ -54,6 +58,7 @@ class CreateActiveDirectoryEntryParams(object):
         "ignored_trusted_domains":'ignoredTrustedDomains',
         "ldap_provider_id":'ldapProviderId',
         "machine_accounts":'machineAccounts',
+        "only_use_whitelisted_domains":'onlyUseWhitelistedDomains',
         "ou_name":'ouName',
         "overwrite_existing_accounts":'overwriteExistingAccounts',
         "password":'password',
@@ -65,6 +70,7 @@ class CreateActiveDirectoryEntryParams(object):
         "unix_root_sid":'unixRootSid',
         "user_id_mapping_info":'userIdMappingInfo',
         "user_name":'userName',
+        "whitelisted_domains":'whitelistedDomains',
         "workgroup":'workgroup'
     }
 
@@ -74,6 +80,7 @@ class CreateActiveDirectoryEntryParams(object):
                  ignored_trusted_domains=None,
                  ldap_provider_id=None,
                  machine_accounts=None,
+                 only_use_whitelisted_domains=None,
                  ou_name=None,
                  overwrite_existing_accounts=None,
                  password=None,
@@ -85,6 +92,7 @@ class CreateActiveDirectoryEntryParams(object):
                  unix_root_sid=None,
                  user_id_mapping_info=None,
                  user_name=None,
+                 whitelisted_domains=None,
                  workgroup=None):
         """Constructor for the CreateActiveDirectoryEntryParams class"""
 
@@ -94,6 +102,7 @@ class CreateActiveDirectoryEntryParams(object):
         self.ignored_trusted_domains = ignored_trusted_domains
         self.ldap_provider_id = ldap_provider_id
         self.machine_accounts = machine_accounts
+        self.only_use_whitelisted_domains = only_use_whitelisted_domains
         self.ou_name = ou_name
         self.overwrite_existing_accounts = overwrite_existing_accounts
         self.password = password
@@ -105,6 +114,7 @@ class CreateActiveDirectoryEntryParams(object):
         self.unix_root_sid = unix_root_sid
         self.user_id_mapping_info = user_id_mapping_info
         self.user_name = user_name
+        self.whitelisted_domains = whitelisted_domains
         self.workgroup = workgroup
 
 
@@ -131,6 +141,7 @@ class CreateActiveDirectoryEntryParams(object):
         ignored_trusted_domains = dictionary.get('ignoredTrustedDomains')
         ldap_provider_id = dictionary.get('ldapProviderId')
         machine_accounts = dictionary.get('machineAccounts')
+        only_use_whitelisted_domains = dictionary.get('onlyUseWhitelistedDomains')
         ou_name = dictionary.get('ouName')
         overwrite_existing_accounts = dictionary.get('overwriteExistingAccounts')
         password = dictionary.get('password')
@@ -146,6 +157,7 @@ class CreateActiveDirectoryEntryParams(object):
         unix_root_sid = dictionary.get('unixRootSid')
         user_id_mapping_info = cohesity_management_sdk.models.user_id_mapping.UserIdMapping.from_dictionary(dictionary.get('userIdMappingInfo')) if dictionary.get('userIdMappingInfo') else None
         user_name = dictionary.get('userName')
+        whitelisted_domains = dictionary.get('whitelistedDomains')
         workgroup = dictionary.get('workgroup')
 
         # Return an object of this model
@@ -154,6 +166,7 @@ class CreateActiveDirectoryEntryParams(object):
                    ignored_trusted_domains,
                    ldap_provider_id,
                    machine_accounts,
+                   only_use_whitelisted_domains,
                    ou_name,
                    overwrite_existing_accounts,
                    password,
@@ -165,6 +178,7 @@ class CreateActiveDirectoryEntryParams(object):
                    unix_root_sid,
                    user_id_mapping_info,
                    user_name,
+                   whitelisted_domains,
                    workgroup)
 
 

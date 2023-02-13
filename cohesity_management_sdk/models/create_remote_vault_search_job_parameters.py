@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.vault_encryption_key
 
@@ -11,6 +11,9 @@ class CreateRemoteVaultSearchJobParameters(object):
     remote Vault for data that has been archived from other Clusters.
 
     Attributes:
+        job_uids (list of string): Filter by specifying a list of remote
+            clusterId:clusterIncarnationId:jobId.
+        cluster_id (long| int): Filter by specifying a Cluster id.
         cluster_match_string (string): Filter by specifying a Cluster name
             prefix string. Only Clusters with names that start with this
             prefix string are returned in the search result. If not set, all
@@ -44,6 +47,8 @@ class CreateRemoteVaultSearchJobParameters(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "job_uids":'JobUids',
+        "cluster_id":'clusterId',
         "search_job_name":'searchJobName',
         "vault_id":'vaultId',
         "cluster_match_string":'clusterMatchString',
@@ -54,6 +59,8 @@ class CreateRemoteVaultSearchJobParameters(object):
     }
 
     def __init__(self,
+                 job_uids=None,
+                 cluster_id=None,
                  search_job_name=None,
                  vault_id=None,
                  cluster_match_string=None,
@@ -64,6 +71,8 @@ class CreateRemoteVaultSearchJobParameters(object):
         """Constructor for the CreateRemoteVaultSearchJobParameters class"""
 
         # Initialize members of the class
+        self.job_uids = job_uids
+        self.cluster_id = cluster_id
         self.cluster_match_string = cluster_match_string
         self.encryption_keys = encryption_keys
         self.end_time_usecs = end_time_usecs
@@ -91,6 +100,8 @@ class CreateRemoteVaultSearchJobParameters(object):
             return None
 
         # Extract variables from the dictionary
+        job_uids = dictionary.get('JobUids')
+        cluster_id = dictionary.get('clusterId')
         search_job_name = dictionary.get('searchJobName')
         vault_id = dictionary.get('vaultId')
         cluster_match_string = dictionary.get('clusterMatchString')
@@ -104,7 +115,9 @@ class CreateRemoteVaultSearchJobParameters(object):
         start_time_usecs = dictionary.get('startTimeUsecs')
 
         # Return an object of this model
-        return cls(search_job_name,
+        return cls(job_uids,
+                   cluster_id,
+                   search_job_name,
                    vault_id,
                    cluster_match_string,
                    encryption_keys,

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
+
 
 class StatusCopyRunEnum(object):
 
@@ -17,9 +18,9 @@ class StatusCopyRunEnum(object):
     'kWarning' indicates the task has finished with warning.
     'kOnHold' indicates the task is kept onHold.
     'kMissed' indicates the task is missed.
+    'Finalizing' indicates the task is finalizing.
 
     Attributes:
-
         KACCEPTED: TODO: type description here.
         KRUNNING: TODO: type description here.
         KCANCELING: TODO: type description here.
@@ -29,6 +30,7 @@ class StatusCopyRunEnum(object):
         KWARNING: TODO: type description here.
         KONHOLD: TODO: type description here.
         KMISSED: TODO: type description here.
+        KFINALIZING: TODO: type description here.
 
     """
 
@@ -49,4 +51,6 @@ class StatusCopyRunEnum(object):
     KONHOLD = 'kOnHold'
 
     KMISSED = 'kMissed'
+
+    KFINALIZING = 'kFinalizing'
 

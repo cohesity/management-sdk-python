@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -134,7 +134,7 @@ class SearchController(BaseController):
                 Protection Source environment. 'kPuppeteer' indicates the
                 Cohesity's Remote Adapter. 'kPhysical' indicates the physical
                 Protection Source environment. 'kPure' indicates the Pure
-                Storage Protection Source environment. 'Nimble' indicates the
+                Storage Protection Source environment. 'kNimble' indicates the
                 Nimble Storage Protection Source environment. 'kAzure'
                 indicates the Microsoft's Azure Protection Source environment.
                 'kNetapp' indicates the Netapp Protection Source environment.
@@ -172,20 +172,38 @@ class SearchController(BaseController):
                 Protection Source environment. 'kHBase' indicates HBase
                 Protection Source environment. 'kUDA' indicates Universal Data
                 Adapter Protection Source environment.
+                'kO365Teams' indicates the Office365 Teams Protection Source
+                environment.
+                'kO365Group' indicates the Office365 Groups Protection Source
+                environment.
+                'kO365Exchange' indicates the Office365 Mailbox Protection
+                Source environment.
+                'kO365OneDrive' indicates the Office365 OneDrive Protection
+                Source environment.
+                'kO365Sharepoint' indicates the Office365 SharePoint Protection
+                Source environment.
+                'kO365PublicFolders' indicates the Office365 PublicFolders
+                Protection Source environment.
             last_protection_job_run_status (list of int, optional): Specifies
                 the last Protection Job run status of the object. If
                 specified, objects will be filtered based on last job run
                 status.
             physical_server_host_types (list of PhysicalServerHostTypeEnum,
                 optional): Specifies physical server host OS type. If
-                specified, the physical server objects will be filtered based
-                on OS type of the server. 'kLinux' indicates the Linux
-                operating system. 'kWindows' indicates the Microsoft Windows
-                operating system. 'kAix' indicates the IBM AIX operating
-                system. 'kSolaris' indicates the Oracle Solaris operating
-                system. 'kSapHana' indicates the Sap Hana database system
-                developed by SAP SE. 'kOther' indicates the other types of
-                operating system.
+                specified, the physical server objects will be filtered
+                based on OS type of the server.
+                'kLinux' indicates the Linux operating system.
+                'kWindows' indicates the Microsoft Windows operating system.
+                'kAix' indicates the IBM AIX operating system.
+                'kSolaris' indicates the Oracle Solaris operating system.
+                'kSapHana' indicates the Sap Hana database system developed by
+                SAP SE.
+                'kSapOracle' indicates the Sap Oracle database system
+                developed by SAP SE.
+                'kCockroachDB' indicates the CockroachDB database system.
+                'kMySQL' indicates the MySQL database system.
+                'kOther' indicates the other types of operating system.
+
             registered_source_uuids (list of string, optional): Specifies the
                 list of Registered Sources Uuids. Only items from the listed
                 Registered Sources are returned.

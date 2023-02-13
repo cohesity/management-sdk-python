@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.c_2_s_access_portal
 
@@ -27,7 +27,7 @@ class AmazonCloudCredentials(object):
             Target) type. Specifies the authentication method to be used for
             API calls. 'kUseIAMUser' indicates a user based authentication.
             'kUseIAMRole' indicates a role based authentication, used only for
-            AWS CE.
+            AWS CE. 'kUseHelios' indicates a Helios based authentication.
         c_2_s_access_portal (C2SAccessPortal): Specifies information required
             to connect to CAP to get AWS credentials. C2SAccessPortal(CAP) is
             AWS commercial cloud service access portal.
