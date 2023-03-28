@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class VmNameInfo(object):
 
     """Implementation of the 'VmNameInfo' model.
@@ -9,27 +8,29 @@ class VmNameInfo(object):
     Struct containing vm-name and ui-name (to be displayed on the UI to get
     number of replicas as input) as members.
 
+
     Attributes:
+
         ui_name (string): UI-name. To be displayed on the UI.
         vm_name (string): Vm-name.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "ui_name": 'uiName',
-        "vm_name": 'vmName'
+        "ui_name":'uiName',
+        "vm_name":'vmName',
     }
-
     def __init__(self,
                  ui_name=None,
-                 vm_name=None):
+                 vm_name=None,
+            ):
+
         """Constructor for the VmNameInfo class"""
 
         # Initialize members of the class
         self.ui_name = ui_name
         self.vm_name = vm_name
-
 
     @classmethod
     def from_dictionary(cls,
@@ -49,11 +50,11 @@ class VmNameInfo(object):
             return None
 
         # Extract variables from the dictionary
-        ui_name = dictionary.get('uiName', None)
-        vm_name = dictionary.get('vmName', None)
+        ui_name = dictionary.get('uiName')
+        vm_name = dictionary.get('vmName')
 
         # Return an object of this model
-        return cls(ui_name,
-                   vm_name)
-
-
+        return cls(
+            ui_name,
+            vm_name
+)

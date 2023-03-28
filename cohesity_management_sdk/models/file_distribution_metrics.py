@@ -1,34 +1,35 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class FileDistributionMetrics(object):
 
     """Implementation of the 'FileDistributionMetrics' model.
 
     Specifies the File distribution metrics.
 
+
     Attributes:
+
         metric_name (string): Specifies the name of the metric.
         value (long|int): Specifies the value of specified metric name.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "metric_name":'metricName',
-        "value":'value'
+        "value":'value',
     }
-
     def __init__(self,
                  metric_name=None,
-                 value=None):
+                 value=None,
+            ):
+
         """Constructor for the FileDistributionMetrics class"""
 
         # Initialize members of the class
         self.metric_name = metric_name
         self.value = value
-
 
     @classmethod
     def from_dictionary(cls,
@@ -52,7 +53,7 @@ class FileDistributionMetrics(object):
         value = dictionary.get('value')
 
         # Return an object of this model
-        return cls(metric_name,
-                   value)
-
-
+        return cls(
+            metric_name,
+            value
+)

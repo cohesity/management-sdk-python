@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class ProtectionInfo(object):
 
     """Implementation of the 'ProtectionInfo' model.
 
     dataLocation defines data location related information.
 
+
     Attributes:
-        end_time_usecs (long|int): Specifies the end time for object
-            retention.
+
+        end_time_usecs (long|int): Specifies the end time for object retention.
         location (string): Specifies the location of the object.
         policy_id (string): Specifies the id of the policy.
         protection_job_id (long|int): Specifies the id of the protection job.
@@ -21,8 +21,8 @@ class ProtectionInfo(object):
             retention.
         storage_domain (string): Specifies the storage domain name.
         total_snapshots (long|int): Specifies the total number of snapshots.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -34,9 +34,8 @@ class ProtectionInfo(object):
         "retention_period":'retentionPeriod',
         "start_time_usecs":'startTimeUsecs',
         "storage_domain":'storageDomain',
-        "total_snapshots":'totalSnapshots'
+        "total_snapshots":'totalSnapshots',
     }
-
     def __init__(self,
                  end_time_usecs=None,
                  location=None,
@@ -46,7 +45,9 @@ class ProtectionInfo(object):
                  retention_period=None,
                  start_time_usecs=None,
                  storage_domain=None,
-                 total_snapshots=None):
+                 total_snapshots=None,
+            ):
+
         """Constructor for the ProtectionInfo class"""
 
         # Initialize members of the class
@@ -59,7 +60,6 @@ class ProtectionInfo(object):
         self.start_time_usecs = start_time_usecs
         self.storage_domain = storage_domain
         self.total_snapshots = total_snapshots
-
 
     @classmethod
     def from_dictionary(cls,
@@ -90,14 +90,14 @@ class ProtectionInfo(object):
         total_snapshots = dictionary.get('totalSnapshots')
 
         # Return an object of this model
-        return cls(end_time_usecs,
-                   location,
-                   policy_id,
-                   protection_job_id,
-                   protection_job_name,
-                   retention_period,
-                   start_time_usecs,
-                   storage_domain,
-                   total_snapshots)
-
-
+        return cls(
+            end_time_usecs,
+            location,
+            policy_id,
+            protection_job_id,
+            protection_job_name,
+            retention_period,
+            start_time_usecs,
+            storage_domain,
+            total_snapshots
+)

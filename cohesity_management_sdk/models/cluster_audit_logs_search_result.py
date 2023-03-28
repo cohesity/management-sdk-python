@@ -3,14 +3,17 @@
 
 import cohesity_management_sdk.models.cluster_audit_log
 
+
 class ClusterAuditLogsSearchResult(object):
 
     """Implementation of the 'ClusterAuditLogsSearchResult' model.
 
-    Returns the Cluster audit logs that match the specified filter criteria
-    up to the limit specified in pageCount.
+    Returns the Cluster audit logs that match the specified filter criteria up
+    to the limit specified in pageCount.
+
 
     Attributes:
+
         cluster_audit_logs (list of ClusterAuditLog): Array of Cluster Audit
             Logs.  Specifies a list of Cluster audit logs that match the
             specified filter criteria up to the limit specified in pageCount.
@@ -19,24 +22,24 @@ class ClusterAuditLogsSearchResult(object):
             the size of the Cluster Audit Logs array.) This count is provided
             to indicate if additional requests must be made to get the full
             result.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "cluster_audit_logs":'clusterAuditLogs',
-        "total_count":'totalCount'
+        "total_count":'totalCount',
     }
-
     def __init__(self,
                  cluster_audit_logs=None,
-                 total_count=None):
+                 total_count=None,
+            ):
+
         """Constructor for the ClusterAuditLogsSearchResult class"""
 
         # Initialize members of the class
         self.cluster_audit_logs = cluster_audit_logs
         self.total_count = total_count
-
 
     @classmethod
     def from_dictionary(cls,
@@ -64,7 +67,7 @@ class ClusterAuditLogsSearchResult(object):
         total_count = dictionary.get('totalCount')
 
         # Return an object of this model
-        return cls(cluster_audit_logs,
-                   total_count)
-
-
+        return cls(
+            cluster_audit_logs,
+            total_count
+)

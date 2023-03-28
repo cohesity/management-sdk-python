@@ -4,11 +4,11 @@
 class UserDatabasePreferenceEnum(object):
 
     """Implementation of the 'UserDatabasePreference' enum.
-
     Specifies the preference for backing up user databases on the host.
     kBackupAllDatabases implies to backup all databases.
     kBackupAllExceptAAGDatabases implies not to backup AAG databases.
     kBackupOnlyAAGDatabases implies to backup only AAG databases.
+
 
     Attributes:
         KBACKUPALLDATABASES: TODO: type description here.
@@ -22,4 +22,3 @@ class UserDatabasePreferenceEnum(object):
     KBACKUPALLEXCEPTAAGDATABASES = 'kBackupAllExceptAAGDatabases'
 
     KBACKUPONLYAAGDATABASES = 'kBackupOnlyAAGDatabases'
-

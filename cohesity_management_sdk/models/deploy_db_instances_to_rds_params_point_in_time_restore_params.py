@@ -1,32 +1,33 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
-class DeployDBInstancesToRDSParamsPointInTimeRestoreParams(object):
+class DeployDBInstancesToRDSParams_PointInTimeRestoreParams(object):
 
     """Implementation of the 'DeployDBInstancesToRDSParams_PointInTimeRestoreParams' model.
 
     Message to capture details of a point in time that the DB needs to be
     restored to.
 
+
     Attributes:
+
         timestamp_msecs (long|int): Time in milliseconds since epoch that the
             DB needs to be restored to.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "timestamp_msecs":'timestampMsecs'
+        "timestamp_msecs":'timestampMsecs',
     }
-
     def __init__(self,
-                 timestamp_msecs=None):
-        """Constructor for the DeployDBInstancesToRDSParamsPointInTimeRestoreParams class"""
+                 timestamp_msecs=None,
+            ):
+
+        """Constructor for the DeployDBInstancesToRDSParams_PointInTimeRestoreParams class"""
 
         # Initialize members of the class
         self.timestamp_msecs = timestamp_msecs
-
 
     @classmethod
     def from_dictionary(cls,
@@ -49,6 +50,6 @@ class DeployDBInstancesToRDSParamsPointInTimeRestoreParams(object):
         timestamp_msecs = dictionary.get('timestampMsecs')
 
         # Return an object of this model
-        return cls(timestamp_msecs)
-
-
+        return cls(
+            timestamp_msecs
+)

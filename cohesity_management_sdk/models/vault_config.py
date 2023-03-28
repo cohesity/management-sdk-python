@@ -8,17 +8,20 @@ import cohesity_management_sdk.models.nas_credentials
 import cohesity_management_sdk.models.oracle_cloud_credentials
 import cohesity_management_sdk.models.q_star_server_credentials
 
+
 class VaultConfig(object):
 
     """Implementation of the 'VaultConfig' model.
 
-    Specifies the settings required to connect to a specific Vault type.
-    For some Vaults, you must also specify a storage location (bucketName).
+    Specifies the settings required to connect to a specific Vault type. For
+    some Vaults, you must also specify a storage location (bucketName).
+
 
     Attributes:
+
         amazon (AmazonCloudCredentials): Specifies the cloud credentials to
-            connect to a Amazon service account. Glacier, S3, and
-            S3-compatible clouds all use these credentials.
+            connect to a Amazon service account. Glacier, S3, and S3-compatible
+            clouds use this credential.
         azure (AzureCloudCredentials): Specifies the cloud credentials to
             connect to a Microsoft Azure service account.
         bucket_name (string): Specifies the name of a storage location of the
@@ -30,14 +33,12 @@ class VaultConfig(object):
             connect to a Google service account.
         nas (NasCredentials): Specifies the server credentials to connect to a
             NetApp server.
-        oracle (OracleCloudCredentials): Specifies the Oracle Cloud
-            Credentials to connect to an Oracle S3 Compatible vault account.
-            Oracle Cloud Credentials Region, Access-Key-Id and
-            Secret-Access-Key. Oracle Cloud properties Tenant and Tier Type.
+        oracle (OracleCloudCredentials): Specifies the Oracle cloud credentials
+            to connect to a Amazon service account.
         qstar (QStarServerCredentials): Specifies the server credentials to
             connect to a QStar service to manage the media Vault.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -47,9 +48,8 @@ class VaultConfig(object):
         "google":'google',
         "nas":'nas',
         "oracle":'oracle',
-        "qstar":'qstar'
+        "qstar":'qstar',
     }
-
     def __init__(self,
                  amazon=None,
                  azure=None,
@@ -57,7 +57,9 @@ class VaultConfig(object):
                  google=None,
                  nas=None,
                  oracle=None,
-                 qstar=None):
+                 qstar=None,
+            ):
+
         """Constructor for the VaultConfig class"""
 
         # Initialize members of the class
@@ -68,7 +70,6 @@ class VaultConfig(object):
         self.nas = nas
         self.oracle = oracle
         self.qstar = qstar
-
 
     @classmethod
     def from_dictionary(cls,
@@ -97,12 +98,12 @@ class VaultConfig(object):
         qstar = cohesity_management_sdk.models.q_star_server_credentials.QStarServerCredentials.from_dictionary(dictionary.get('qstar')) if dictionary.get('qstar') else None
 
         # Return an object of this model
-        return cls(amazon,
-                   azure,
-                   bucket_name,
-                   google,
-                   nas,
-                   oracle,
-                   qstar)
-
-
+        return cls(
+            amazon,
+            azure,
+            bucket_name,
+            google,
+            nas,
+            oracle,
+            qstar
+)

@@ -1,29 +1,31 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class AppInstanceIdParameter(object):
 
     """Implementation of the 'AppInstanceIdParameter' model.
 
-    AppInstanceIdParameter specifies app instance Id in path parameter.
+    TODO: type description here.
+
 
     Attributes:
-    app_instance_id (int|long): Specifies the app instance Id.
+
+        app_instance_id (long|int): Specifies the app instance Id. In: path
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "app_instance_id":'appInstanceId'
+        "app_instance_id":'appInstanceId',
     }
-
     def __init__(self,
-                 app_instance_id=None):
+                 app_instance_id=None,
+            ):
+
         """Constructor for the AppInstanceIdParameter class"""
 
         # Initialize members of the class
         self.app_instance_id = app_instance_id
-
 
     @classmethod
     def from_dictionary(cls,
@@ -46,6 +48,6 @@ class AppInstanceIdParameter(object):
         app_instance_id = dictionary.get('appInstanceId')
 
         # Return an object of this model
-        return cls(app_instance_id)
-
-
+        return cls(
+            app_instance_id
+)

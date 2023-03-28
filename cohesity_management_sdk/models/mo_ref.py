@@ -1,34 +1,35 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class MORef(object):
 
     """Implementation of the 'MORef' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
-        item (string): TODO: type description here.
-        mtype (string): TODO: type description here.
 
+        item (string): TODO: Type description here.
+        mtype (string): TODO: Type description here.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "item":'item',
-        "mtype":'type'
+        "mtype":'type',
     }
-
     def __init__(self,
                  item=None,
-                 mtype=None):
+                 mtype=None,
+            ):
+
         """Constructor for the MORef class"""
 
         # Initialize members of the class
         self.item = item
         self.mtype = mtype
-
 
     @classmethod
     def from_dictionary(cls,
@@ -52,7 +53,7 @@ class MORef(object):
         mtype = dictionary.get('type')
 
         # Return an object of this model
-        return cls(item,
-                   mtype)
-
-
+        return cls(
+            item,
+            mtype
+)

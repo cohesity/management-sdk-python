@@ -1,7 +1,5 @@
-
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
-
 
 class GroupBackupEnvParams(object):
 
@@ -10,17 +8,21 @@ class GroupBackupEnvParams(object):
     Message to capture any additional backup params for Group within the
     Office365 environment.
 
+
+    Attributes:
+
     """
 
-    # Create a mapping from Model property names to API property names
-    _names = {}
 
-    def __init__(self):
+    # Create a mapping from Model property names to API property names
+    _names = {
+    }
+    def __init__(self,
+            ):
+
         """Constructor for the GroupBackupEnvParams class"""
 
         # Initialize members of the class
-        pass
-
 
     @classmethod
     def from_dictionary(cls,
@@ -39,6 +41,9 @@ class GroupBackupEnvParams(object):
         if dictionary is None:
             return None
 
-        # Return an object of this model
-        return cls()
+        # Extract variables from the dictionary
 
+        # Return an object of this model
+        return cls(
+
+)

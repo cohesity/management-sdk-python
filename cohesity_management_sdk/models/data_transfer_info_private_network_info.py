@@ -3,37 +3,42 @@
 
 import cohesity_management_sdk.models.entity_proto
 
+
 class DataTransferInfo_PrivateNetworkInfo(object):
 
     """Implementation of the 'DataTransferInfo_PrivateNetworkInfo' model.
 
+    TODO: type description here.
+
+
     Attributes:
+
         region (EntityProto): Region of the virtual network.
         subnet (EntityProto): Subnet in which we will create a private
             endpoint.
         vpn (EntityProto): Vitual network in which we will create a private
             endpoint.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "region":'region',
         "subnet":'subnet',
-        "vpn":'vpn'
+        "vpn":'vpn',
     }
-
     def __init__(self,
                  region=None,
                  subnet=None,
-                 vpn=None):
+                 vpn=None,
+            ):
+
         """Constructor for the DataTransferInfo_PrivateNetworkInfo class"""
 
         # Initialize members of the class
         self.region = region
         self.subnet = subnet
         self.vpn = vpn
-
 
     @classmethod
     def from_dictionary(cls,
@@ -58,8 +63,8 @@ class DataTransferInfo_PrivateNetworkInfo(object):
         vpn = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('vpn')) if dictionary.get('vpn') else None
 
         # Return an object of this model
-        return cls(region,
-                   subnet,
-                   vpn)
-
-
+        return cls(
+            region,
+            subnet,
+            vpn
+)

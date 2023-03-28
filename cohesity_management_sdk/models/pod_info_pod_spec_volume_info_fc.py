@@ -7,32 +7,34 @@ class PodInfo_PodSpec_VolumeInfo_FC(object):
 
     Fibre channel volumes
 
-    Attributes:
-        fs_type (string):  TODO: Type description here.
-        lun (int): TODO: Type description here.
-        target_wwn_s (list of string): Array of Fibre Channel target's
-            World Wide Names
 
+    Attributes:
+
+        fs_type (string): TODO: Type description here.
+        lun (int): TODO: Type description here.
+        target_w_w_ns (list of string): Array of Fibre Channel target's World
+            Wide Names
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "fs_type":'fsType',
         "lun":'lun',
-        "target_wwn_s":'targetWWNs'
+        "target_w_w_ns":'targetWWNs',
     }
-
     def __init__(self,
                  fs_type=None,
                  lun=None,
-                 target_wwn_s=None):
+                 target_w_w_ns=None,
+            ):
+
         """Constructor for the PodInfo_PodSpec_VolumeInfo_FC class"""
 
         # Initialize members of the class
         self.fs_type = fs_type
         self.lun = lun
-        self.target_wwn_s = target_wwn_s
-
+        self.target_w_w_ns = target_w_w_ns
 
     @classmethod
     def from_dictionary(cls,
@@ -54,11 +56,11 @@ class PodInfo_PodSpec_VolumeInfo_FC(object):
         # Extract variables from the dictionary
         fs_type = dictionary.get('fsType')
         lun = dictionary.get('lun')
-        target_wwn_s = dictionary.get('targetWWNs')
+        target_w_w_ns = dictionary.get("targetWWNs")
 
         # Return an object of this model
-        return cls(fs_type,
-                   lun,
-                   target_wwn_s)
-
-
+        return cls(
+            fs_type,
+            lun,
+            target_w_w_ns
+)

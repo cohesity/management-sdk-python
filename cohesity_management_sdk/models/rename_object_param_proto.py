@@ -1,37 +1,37 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class RenameObjectParamProto(object):
 
     """Implementation of the 'RenameObjectParamProto' model.
 
     Message to specify the prefix/suffix added to rename an object. At least
-    one
-    of prefix or suffix must be specified. Please note that both prefix and
+    one of prefix or suffix must be specified. Please note that both prefix and
     suffix can be specified.
 
+
     Attributes:
+
         prefix (string): Prefix to be added to a name.
         suffix (string): Suffix to be added to a name.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "prefix":'prefix',
-        "suffix":'suffix'
+        "suffix":'suffix',
     }
-
     def __init__(self,
                  prefix=None,
-                 suffix=None):
+                 suffix=None,
+            ):
+
         """Constructor for the RenameObjectParamProto class"""
 
         # Initialize members of the class
         self.prefix = prefix
         self.suffix = suffix
-
 
     @classmethod
     def from_dictionary(cls,
@@ -55,7 +55,7 @@ class RenameObjectParamProto(object):
         suffix = dictionary.get('suffix')
 
         # Return an object of this model
-        return cls(prefix,
-                   suffix)
-
-
+        return cls(
+            prefix,
+            suffix
+)

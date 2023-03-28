@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class StoragePolicyOverride(object):
 
     """Implementation of the 'StoragePolicyOverride' model.
@@ -9,28 +8,30 @@ class StoragePolicyOverride(object):
     Specifies if inline deduplication and compression settings inherited from
     Storage Domain (View Box) should be disabled for this View.
 
+
     Attributes:
+
         disable_inline_dedup_and_compression (bool): If false, the inline
             deduplication and compression settings inherited from the Storage
             Domain (View Box) apply to this View. If true, both inline
             deduplication and compression are disabled for this View. This can
             only be set to true if inline deduplication is set for the Storage
             Domain (View Box).
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "disable_inline_dedup_and_compression":'disableInlineDedupAndCompression'
+        "disable_inline_dedup_and_compression":'disableInlineDedupAndCompression',
     }
-
     def __init__(self,
-                 disable_inline_dedup_and_compression=None):
+                 disable_inline_dedup_and_compression=None,
+            ):
+
         """Constructor for the StoragePolicyOverride class"""
 
         # Initialize members of the class
         self.disable_inline_dedup_and_compression = disable_inline_dedup_and_compression
-
 
     @classmethod
     def from_dictionary(cls,
@@ -53,6 +54,6 @@ class StoragePolicyOverride(object):
         disable_inline_dedup_and_compression = dictionary.get('disableInlineDedupAndCompression')
 
         # Return an object of this model
-        return cls(disable_inline_dedup_and_compression)
-
-
+        return cls(
+            disable_inline_dedup_and_compression
+)

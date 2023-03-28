@@ -2,18 +2,20 @@
 # Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.amqp_target_config
-import cohesity_management_sdk.models.subnet
 import cohesity_management_sdk.models.cluster_audit_log_configuration
+import cohesity_management_sdk.models.cluster_hardware_info
+import cohesity_management_sdk.models.cluster_stats
+import cohesity_management_sdk.models.count_by_tier
 import cohesity_management_sdk.models.eula_config
 import cohesity_management_sdk.models.filer_audit_log_configuration
-import cohesity_management_sdk.models.cluster_hardware_info
 import cohesity_management_sdk.models.license_state
 import cohesity_management_sdk.models.ntp_settings_config
-import cohesity_management_sdk.models.schema_info
-import cohesity_management_sdk.models.cluster_stats
-import cohesity_management_sdk.models.supported_config
 import cohesity_management_sdk.models.old_syslog_server
+import cohesity_management_sdk.models.schema_info
+import cohesity_management_sdk.models.subnet
+import cohesity_management_sdk.models.supported_config
 import cohesity_management_sdk.models.tiering_audit_log_configuration
+
 
 class Cluster(object):
 
@@ -21,8 +23,11 @@ class Cluster(object):
 
     Specifies information about the Cohesity Cluster.
 
+
     Attributes:
-        amqp_target_config (AMQPTargetConfig):Specifies the AMQP target config.
+
+        amqp_target_config (AMQPTargetConfig): Specifies the AMQP target
+            config.
         apps_subnet (Subnet): The subnet for Athena apps.
         assigned_racks_count (int): Specifies the number of racks in cluster
             with at least one rack assigned.
@@ -32,68 +37,65 @@ class Cluster(object):
             cluster or not. When banner is enabled, UI will make an additional
             API call to fetch the banner and show at the login page.
         chassis_count (int): Specifies the number of chassis in cluster.
-        cluster_audit_log_config (ClusterAuditLogConfiguration): Specifies the
-            settings of the Cluster audit log configuration.
+        cluster_audit_log_config (ClusterAuditLogConfiguration): Cluster Audit
+            Log Configuration.
         cluster_size (ClusterSizeEnum): Specifies the size of Cloud Edition(CE)
-            Cluster such as kSmall, kNextGen.
-            Specifies the clustersize of the cloud edition(CE) clusters.
-            'kSmall' indicates small cluster size of CE.
-            'kMedium' indicates medium cluster size of CE.
-            'kLarge' indicates large cluster size of CE.
-            'kXLarge' indicates extra large cluster size of CE.
-            'kNextGen' indicates next gen CE.
-        cluster_software_version (string): Specifies the current release of
-            the Cohesity software running on this Cohesity Cluster.
-        cluster_type (ClusterTypeClusterEnum): Specifies the type of Cluster
-            such as kPhysical. 'kPhysical' indicates the Cohesity Cluster is
-            hosted directly on hardware. 'kVirtualRobo' indicates the Cohesity
-            Cluster is hosted in a VM on a ESXi Host of a VMware vCenter
-            Server using Cohesity's Virtual Edition. 'kMicrosoftCloud'
-            indicates the Cohesity Cluster is hosed in a VM on Microsoft Azure
-            using Cohesity's Cloud Edition. 'kAmazonCloud' indicates the
-            Cohesity Cluster is hosed in a VM on Amazon S3 using Cohesity's
-            Cloud Edition. 'kGoogleCloud' indicates the Cohesity Cluster is
-            hosed in a VM on Google Cloud Platform using Cohesity's Cloud
-            Edition.
+            Cluster such as kSmall, kNextGen. Specifies the clustersize of the
+            cloud edition(CE) clusters. 'kSmall' indicates small cluster size
+            of CE. 'kMedium' indicates medium cluster size of CE. 'kLarge'
+            indicates large cluster size of CE. 'kXLarge' indicates extra large
+            cluster size of CE. 'kNextGen' indicates next gen CE.
+        cluster_software_version (string): Specifies the current release of the
+            Cohesity software running on this Cohesity Cluster.
+        cluster_type (ClusterTypeEnum): Specifies the type of Cluster such as
+            kPhysical. 'kPhysical' indicates the Cohesity Cluster is hosted
+            directly on hardware. 'kVirtualRobo' indicates the Cohesity Cluster
+            is hosted in a VM on a ESXi Host of a VMware vCenter Server using
+            Cohesity's Virtual Edition. 'kMicrosoftCloud' indicates the
+            Cohesity Cluster is hosted in a VM on Microsoft Azure using
+            Cohesity's Cloud Edition. 'kAmazonCloud' indicates the Cohesity
+            Cluster is hosted in a VM on Amazon S3 using Cohesity's Cloud
+            Edition. 'kGoogleCloud' indicates the Cohesity Cluster is hosted in
+            a VM on Google Cloud Platform using Cohesity's Cloud Edition.
         created_time_msecs (long|int): Specifies the time when the Cohesity
             Cluster was created. This value is specified as a Unix epoch
             Timestamp (in microseconds).
-        current_op_scheduled_time_secs (long|int): Specifies the time
-            scheduled by the Cohesity Cluster to start the current running
-            operation.
+        current_op_scheduled_time_secs (long|int): Specifies the time scheduled
+            by the Cohesity Cluster to start the current running operation.
         current_operation (CurrentOperationEnum): Specifies the current
             Cluster-level operation in progress. 'kUpgrade' indicates the
             Cohesity Cluster is upgrading to a new release. 'kRemoveNode'
-            indicates the Cohesity Cluster is removing a Node from the
-            Cluster. 'kNone' indicates no action is occurring on the Cohesity
-            Cluster. 'kDestroy' indicates the Cohesity Cluster is getting
-            destoryed. 'kClean' indicates the Cohesity Cluster is getting
-            cleaned. 'kRestartServices' indicates the Cohesity Cluster is
-            restarting the services. 'kRestartSystemServices' indicates the
-            Cohesity Cluster is restarting the system services.
-        current_time_msecs (long|int): Specifies the current system time on
-            the Cohesity Cluster. This value is specified as a Unix epoch
-            Timestamp (in microseconds).
-        dns_server_ips (list of string): Array of IP Addresses of DNS Servers.
+            indicates the Cohesity Cluster is removing a Node from the Cluster.
+            'kNone' indicates no action is occurring on the Cohesity Cluster.
+            'kDestroy' indicates the Cohesity Cluster is getting destoryed.
+            'kClean' indicates the Cohesity Cluster is getting cleaned.
+            'kRestartServices' indicates the Cohesity Cluster is restarting the
+            services. 'kRestartSystemServices' indicates the Cohesity Cluster
+            is restarting the system services.
+        current_time_msecs (long|int): Specifies the current system time on the
+            Cohesity Cluster. This value is specified as a Unix epoch Timestamp
+            (in microseconds).
+        disk_count_by_tier (list of CountByTier): Specifies the number of disks
+            on the cluster by Storage Tier.
+        dns_server_ips (list of string): Array of IP Addresses of DNS Servers. 
             Specifies the IP addresses of the DNS Servers used by the Cohesity
             Cluster.
-        domain_names (list of string): Array of Domain Names.  The first
-            domain name specified in the array is the fully qualified domain
-            name assigned to the Cohesity Cluster. Any additional domain names
-            specified are used for the domain search list for hostname
-            look-up.
+        domain_names (list of string): Array of Domain Names.  The first domain
+            name specified in the array is the fully qualified domain name
+            assigned to the Cohesity Cluster. Any additional domain names
+            specified are used for the domain search list for hostname look-up.
         enable_active_monitoring (bool): Specifies if Cohesity can receive
-            monitoring information from the Cohesity Cluster. If 'true',
-            remote monitoring of the Cohesity Cluster is allowed.
+            monitoring information from the Cohesity Cluster. If 'true', remote
+            monitoring of the Cohesity Cluster is allowed.
         enable_patches_download (bool): Specifies whether to enable downloading
             patches from Cohesity download site.
-        enable_upgrade_pkg_polling (bool): If 'true', Cohesity's upgrade
-            server is polled for new releases.
+        enable_upgrade_pkg_polling (bool): If 'true', Cohesity's upgrade server
+            is polled for new releases.
         encryption_enabled (bool): If 'true', the entire Cohesity Cluster is
             encrypted including all View Boxes.
-        encryption_key_rotation_period_secs (long|int): Specifies the period
-            of time (in seconds) when encryption keys are rotated. By default,
-            the encryption keys are rotated every 77760000 seconds (30 days).
+        encryption_key_rotation_period_secs (long|int): Specifies the period of
+            time (in seconds) when encryption keys are rotated. By default, the
+            encryption keys are rotated every 77760000 seconds (30 days).
         eula_config (EulaConfig): Specifies the End User License Agreement
             (EULA) acceptance information.
         fault_tolerance_level (FaultToleranceLevelEnum): Specifies the level
@@ -102,8 +104,8 @@ class Cluster(object):
             indicates 'MetadataFaultToleranceFactor' applies to Chassis level.
             'kRack' indicates 'MetadataFaultToleranceFactor' applies to Rack
             level.
-        filer_audit_log_config (FilerAuditLogConfiguration): Specifies the
-            settings of the filer audit log configuration.
+        filer_audit_log_config (FilerAuditLogConfiguration): Filer Audit Log
+            Configuration.
         fips_mode_enabled (bool): Specifies if the Cohesity Cluster should
             operate in the FIPS mode, which is compliant with the Federal
             Information Processing Standard 140-2 certification.
@@ -113,8 +115,8 @@ class Cluster(object):
         hardware_encryption_enabled (bool): Specifies if hardware
             encryption(SED) is enabled.
         hardware_info (ClusterHardwareInfo): Specifies a hardware type for
-            motherboard of the Nodes that make up this Cohesity Cluster such
-            as S2600WB for Ivy Bridge or S2600TP for Haswell.
+            motherboard of the nodes that make up this Cohesity Cluster such as
+            S2600WB for Ivy Bridge or S2600TP for Haswell.
         id (long|int): Specifies the unique id of Cohesity Cluster.
         incarnation_id (long|int): Specifies the unique incarnation id of the
             Cohesity Cluster.
@@ -129,8 +131,8 @@ class Cluster(object):
             is 'false'. Cohesity recommends accessing the Help from the
             Cohesity Web site which provides the newest and most complete
             version of Help.
-        kms_server_id (long|int): Specifies the KMS Server Id.
-            This can only be set when the encryption is enabled on cluster.
+        kms_server_id (long|int): Specifies the KMS Server Id. This can only be
+            set when the encryption is enabled on cluster.
         language_locale (string): Specifies the language and locale for this
             Cohesity Cluster.
         license_state (LicenseState): Specifies the Licensing State
@@ -156,21 +158,21 @@ class Cluster(object):
         ntp_settings (NtpSettingsConfig): Specifies if the ntp/primary
             secondary scheme should be disabled for this cluster.
         patch_version (string): Specifies the patch version applied to cluster.
-        pcie_ssd_tier_rebalance_delay_secs (int): Specifies the rebalance
-            delay in seconds for cluster PcieSSD storage tier.
+        pcie_ssd_tier_rebalance_delay_secs (int): Specifies the rebalance delay
+            in seconds for cluster PcieSSD storage tier.
         proto_rpc_encryption_enabled (bool): Specifies if protorpc encryption
             is enabled or not.
-        proxy_vm_subnet (string): The subnet reserved for ProxyVM
+        proxy_vmsubnet (string): The subnet reserved for ProxyVM
         reverse_tunnel_enabled (bool): If 'true', Cohesity's Remote Tunnel is
             enabled. Cohesity can access the Cluster and provide remote
             assistance via a Remote Tunnel.
         reverse_tunnel_end_time_msecs (long|int): ReverseTunnelEndTimeMsecs
             specifies the end time in milliseconds since epoch until when the
             reverse tunnel will stay enabled.
-        schema_info_list (list of SchemaInfo): Specifies the time series
-            schema info of the cluster.
-        security_mode_dod (bool): Specifies if Security Mode DOD is enabled
-            or not.
+        schema_info_list (list of SchemaInfo): Specifies the time series schema
+            info of the cluster.
+        security_mode_dod (bool): Specifies if Security Mode DOD is enabled or
+            not.
         smb_ad_disabled (bool): Specifies if Active Directory should be
             disabled for authentication of SMB shares. If 'true', Active
             Directory is disabled.
@@ -178,14 +180,12 @@ class Cluster(object):
             enabled on the cluster. When this is set to true, then any SMB3
             multichannel enabled client can establish multiple TCP connection
             per session to the Server.
-        stats (ClusterStats): Specifies statistics about this Cohesity
-            Cluster.
+        stats (ClusterStats): Specifies statistics about this Cohesity Cluster.
         stig_mode (bool): TODO(mitch) StigMode is deprecated. Should it still
             be in this list??
-        supported_config (SupportedConfig): Lists the supported Erasure Coding
-            options for the number of Nodes in the Cohesity Cluster. In
-            addition, the minimum number of Nodes supported for this Cluster
-            type is defined.
+        supported_config (SupportedConfig): Information about supported
+            configuration. For example, it contains minimum number of nodes
+            supported for the cluster.
         syslog_servers (list of OldSyslogServer): Syslog servers.
         target_software_version (string): Specifies the Cohesity release that
             this Cluster is being upgraded to if an upgrade operation is in
@@ -194,7 +194,7 @@ class Cluster(object):
             enabled, this flag controls whether multiple tenants can be placed
             on the same viewbox. Once set to true, this flag should never
             become false.
-        tiering_audit_log_config (TieringAuditLogConfiguration):  Tiering Audit
+        tiering_audit_log_config (TieringAuditLogConfiguration): Tiering Audit
             Log Configuration.
         timezone (string): Specifies the timezone to use for showing time in
             emails, reports, filer audit logs, etc.
@@ -206,8 +206,8 @@ class Cluster(object):
         used_metadata_space_pct (float): UsedMetadataSpacePct measures the
             percentage about storage used for metadata over the total storage
             available for metadata
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -218,12 +218,14 @@ class Cluster(object):
         "banner_enabled":'bannerEnabled',
         "chassis_count":'chassisCount',
         "cluster_audit_log_config":'clusterAuditLogConfig',
+        "cluster_size":'clusterSize',
         "cluster_software_version":'clusterSoftwareVersion',
         "cluster_type":'clusterType',
         "created_time_msecs":'createdTimeMsecs',
         "current_op_scheduled_time_secs":'currentOpScheduledTimeSecs',
         "current_operation":'currentOperation',
         "current_time_msecs":'currentTimeMsecs',
+        "disk_count_by_tier":'diskCountByTier',
         "dns_server_ips":'dnsServerIps',
         "domain_names":'domainNames',
         "enable_active_monitoring":'enableActiveMonitoring',
@@ -260,7 +262,7 @@ class Cluster(object):
         "patch_version":'patchVersion',
         "pcie_ssd_tier_rebalance_delay_secs":'pcieSsdTierRebalanceDelaySecs',
         "proto_rpc_encryption_enabled":'protoRpcEncryptionEnabled',
-        "proxy_vm_subnet":'proxyVMSubnet',
+        "proxy_vmsubnet":'proxyVMSubnet',
         "reverse_tunnel_enabled":'reverseTunnelEnabled',
         "reverse_tunnel_end_time_msecs":'reverseTunnelEndTimeMsecs',
         "schema_info_list":'schemaInfoList',
@@ -278,9 +280,8 @@ class Cluster(object):
         "trust_domain":'trustDomain',
         "turbo_mode":'turboMode',
         "use_heimdall":'useHeimdall',
-        "used_metadata_space_pct":'usedMetadataSpacePct'
+        "used_metadata_space_pct":'usedMetadataSpacePct',
     }
-
     def __init__(self,
                  amqp_target_config=None,
                  apps_subnet=None,
@@ -289,12 +290,14 @@ class Cluster(object):
                  banner_enabled=None,
                  chassis_count=None,
                  cluster_audit_log_config=None,
+                 cluster_size=None,
                  cluster_software_version=None,
                  cluster_type=None,
                  created_time_msecs=None,
                  current_op_scheduled_time_secs=None,
                  current_operation=None,
                  current_time_msecs=None,
+                 disk_count_by_tier=None,
                  dns_server_ips=None,
                  domain_names=None,
                  enable_active_monitoring=None,
@@ -331,7 +334,7 @@ class Cluster(object):
                  patch_version=None,
                  pcie_ssd_tier_rebalance_delay_secs=None,
                  proto_rpc_encryption_enabled=None,
-                 proxy_vm_subnet=None,
+                 proxy_vmsubnet=None,
                  reverse_tunnel_enabled=None,
                  reverse_tunnel_end_time_msecs=None,
                  schema_info_list=None,
@@ -349,7 +352,9 @@ class Cluster(object):
                  trust_domain=None,
                  turbo_mode=None,
                  use_heimdall=None,
-                 used_metadata_space_pct=None):
+                 used_metadata_space_pct=None,
+            ):
+
         """Constructor for the Cluster class"""
 
         # Initialize members of the class
@@ -360,12 +365,14 @@ class Cluster(object):
         self.banner_enabled = banner_enabled
         self.chassis_count = chassis_count
         self.cluster_audit_log_config = cluster_audit_log_config
+        self.cluster_size = cluster_size
         self.cluster_software_version = cluster_software_version
         self.cluster_type = cluster_type
         self.created_time_msecs = created_time_msecs
         self.current_op_scheduled_time_secs = current_op_scheduled_time_secs
         self.current_operation = current_operation
         self.current_time_msecs = current_time_msecs
+        self.disk_count_by_tier = disk_count_by_tier
         self.dns_server_ips = dns_server_ips
         self.domain_names = domain_names
         self.enable_active_monitoring = enable_active_monitoring
@@ -402,7 +409,7 @@ class Cluster(object):
         self.patch_version = patch_version
         self.pcie_ssd_tier_rebalance_delay_secs = pcie_ssd_tier_rebalance_delay_secs
         self.proto_rpc_encryption_enabled = proto_rpc_encryption_enabled
-        self.proxy_vm_subnet = proxy_vm_subnet
+        self.proxy_vmsubnet = proxy_vmsubnet
         self.reverse_tunnel_enabled = reverse_tunnel_enabled
         self.reverse_tunnel_end_time_msecs = reverse_tunnel_end_time_msecs
         self.schema_info_list = schema_info_list
@@ -421,7 +428,6 @@ class Cluster(object):
         self.turbo_mode = turbo_mode
         self.use_heimdall = use_heimdall
         self.used_metadata_space_pct = used_metadata_space_pct
-
 
     @classmethod
     def from_dictionary(cls,
@@ -443,19 +449,25 @@ class Cluster(object):
         # Extract variables from the dictionary
         amqp_target_config = cohesity_management_sdk.models.amqp_target_config.AMQPTargetConfig.from_dictionary(dictionary.get('amqpTargetConfig')) if dictionary.get('amqpTargetConfig') else None
         apps_subnet = cohesity_management_sdk.models.subnet.Subnet.from_dictionary(dictionary.get('appsSubnet')) if dictionary.get('appsSubnet') else None
-        assigned_racks_count = dictionary.get('assignedRacksCount', None)
+        assigned_racks_count = dictionary.get('assignedRacksCount')
         available_metadata_space = dictionary.get('availableMetadataSpace')
         banner_enabled = dictionary.get('bannerEnabled')
         chassis_count = dictionary.get('chassisCount')
         cluster_audit_log_config = cohesity_management_sdk.models.cluster_audit_log_configuration.ClusterAuditLogConfiguration.from_dictionary(dictionary.get('clusterAuditLogConfig')) if dictionary.get('clusterAuditLogConfig') else None
+        cluster_size = dictionary.get('clusterSize')
         cluster_software_version = dictionary.get('clusterSoftwareVersion')
         cluster_type = dictionary.get('clusterType')
         created_time_msecs = dictionary.get('createdTimeMsecs')
         current_op_scheduled_time_secs = dictionary.get('currentOpScheduledTimeSecs')
         current_operation = dictionary.get('currentOperation')
         current_time_msecs = dictionary.get('currentTimeMsecs')
-        dns_server_ips = dictionary.get('dnsServerIps')
-        domain_names = dictionary.get('domainNames')
+        disk_count_by_tier = None
+        if dictionary.get('diskCountByTier') != None:
+            disk_count_by_tier = list()
+            for structure in dictionary.get('diskCountByTier'):
+                disk_count_by_tier.append(cohesity_management_sdk.models.count_by_tier.CountByTier.from_dictionary(structure))
+        dns_server_ips = dictionary.get("dnsServerIps")
+        domain_names = dictionary.get("domainNames")
         enable_active_monitoring = dictionary.get('enableActiveMonitoring')
         enable_patches_download = dictionary.get('enablePatchesDownload')
         enable_upgrade_pkg_polling = dictionary.get('enableUpgradePkgPolling')
@@ -490,7 +502,7 @@ class Cluster(object):
         patch_version = dictionary.get('patchVersion')
         pcie_ssd_tier_rebalance_delay_secs = dictionary.get('pcieSsdTierRebalanceDelaySecs')
         proto_rpc_encryption_enabled = dictionary.get('protoRpcEncryptionEnabled')
-        proxy_vm_subnet = dictionary.get('proxyVMSubnet')
+        proxy_vmsubnet = dictionary.get('proxyVMSubnet')
         reverse_tunnel_enabled = dictionary.get('reverseTunnelEnabled')
         reverse_tunnel_end_time_msecs = dictionary.get('reverseTunnelEndTimeMsecs')
         schema_info_list = None
@@ -505,7 +517,7 @@ class Cluster(object):
         stig_mode = dictionary.get('stigMode')
         supported_config = cohesity_management_sdk.models.supported_config.SupportedConfig.from_dictionary(dictionary.get('supportedConfig')) if dictionary.get('supportedConfig') else None
         syslog_servers = None
-        if dictionary.get('syslogServers'):
+        if dictionary.get('syslogServers') != None:
             syslog_servers = list()
             for structure in dictionary.get('syslogServers'):
                 syslog_servers.append(cohesity_management_sdk.models.old_syslog_server.OldSyslogServer.from_dictionary(structure))
@@ -519,72 +531,75 @@ class Cluster(object):
         used_metadata_space_pct = dictionary.get('usedMetadataSpacePct')
 
         # Return an object of this model
-        return cls(amqp_target_config,
-                   apps_subnet,
-                   assigned_racks_count,
-                   available_metadata_space,
-                   banner_enabled,
-                   chassis_count,
-                   cluster_audit_log_config,
-                   cluster_software_version,
-                   cluster_type,
-                   created_time_msecs,
-                   current_op_scheduled_time_secs,
-                   current_operation,
-                   current_time_msecs,
-                   dns_server_ips,
-                   domain_names,
-                   enable_active_monitoring,
-                   enable_patches_download,
-                   enable_upgrade_pkg_polling,
-                   encryption_enabled,
-                   encryption_key_rotation_period_secs,
-                   eula_config,
-                   fault_tolerance_level,
-                   filer_audit_log_config,
-                   fips_mode_enabled,
-                   gateway,
-                   google_analytics_enabled,
-                   hardware_encryption_enabled,
-                   hardware_info,
-                   id,
-                   incarnation_id,
-                   ip_preference,
-                   is_athena_subnet_clash,
-                   is_cluster_mfa_enabled,
-                   is_documentation_local,
-                   kms_server_id,
-                   language_locale,
-                   license_state,
-                   local_auth_domain_name,
-                   local_groups_enabled,
-                   metadata_fault_tolerance_factor,
-                   minimum_failure_domains_needed,
-                   multi_tenancy_enabled,
-                   name,
-                   node_count,
-                   node_ips,
-                   ntp_settings,
-                   patch_version,
-                   pcie_ssd_tier_rebalance_delay_secs,
-                   proto_rpc_encryption_enabled,
-                   proxy_vm_subnet,
-                   reverse_tunnel_enabled,
-                   reverse_tunnel_end_time_msecs,
-                   schema_info_list,
-                   security_mode_dod,
-                   smb_ad_disabled,
-                   smb_multichannel_enabled,
-                   stats,
-                   stig_mode,
-                   supported_config,
-                   syslog_servers,
-                   target_software_version,
-                   tenant_viewbox_sharing_enabled,
-                   tiering_audit_log_config,
-                   timezone,
-                   trust_domain,
-                   turbo_mode,
-                   use_heimdall,
-                   used_metadata_space_pct)
-
+        return cls(
+            amqp_target_config,
+            apps_subnet,
+            assigned_racks_count,
+            available_metadata_space,
+            banner_enabled,
+            chassis_count,
+            cluster_audit_log_config,
+            cluster_size,
+            cluster_software_version,
+            cluster_type,
+            created_time_msecs,
+            current_op_scheduled_time_secs,
+            current_operation,
+            current_time_msecs,
+            disk_count_by_tier,
+            dns_server_ips,
+            domain_names,
+            enable_active_monitoring,
+            enable_patches_download,
+            enable_upgrade_pkg_polling,
+            encryption_enabled,
+            encryption_key_rotation_period_secs,
+            eula_config,
+            fault_tolerance_level,
+            filer_audit_log_config,
+            fips_mode_enabled,
+            gateway,
+            google_analytics_enabled,
+            hardware_encryption_enabled,
+            hardware_info,
+            id,
+            incarnation_id,
+            ip_preference,
+            is_athena_subnet_clash,
+            is_cluster_mfa_enabled,
+            is_documentation_local,
+            kms_server_id,
+            language_locale,
+            license_state,
+            local_auth_domain_name,
+            local_groups_enabled,
+            metadata_fault_tolerance_factor,
+            minimum_failure_domains_needed,
+            multi_tenancy_enabled,
+            name,
+            node_count,
+            node_ips,
+            ntp_settings,
+            patch_version,
+            pcie_ssd_tier_rebalance_delay_secs,
+            proto_rpc_encryption_enabled,
+            proxy_vmsubnet,
+            reverse_tunnel_enabled,
+            reverse_tunnel_end_time_msecs,
+            schema_info_list,
+            security_mode_dod,
+            smb_ad_disabled,
+            smb_multichannel_enabled,
+            stats,
+            stig_mode,
+            supported_config,
+            syslog_servers,
+            target_software_version,
+            tenant_viewbox_sharing_enabled,
+            tiering_audit_log_config,
+            timezone,
+            trust_domain,
+            turbo_mode,
+            use_heimdall,
+            used_metadata_space_pct
+)

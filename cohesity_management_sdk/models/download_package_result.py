@@ -1,31 +1,32 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class DownloadPackageResult(object):
 
     """Implementation of the 'DownloadPackageResult' model.
 
     Specifies the result of a request to download a package to a Cluster.
 
+
     Attributes:
+
         message (string): Specifies a message describing the result of the
             request to download a package to a Cluster.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "message":'message'
+        "message":'message',
     }
-
     def __init__(self,
-                 message=None):
+                 message=None,
+            ):
+
         """Constructor for the DownloadPackageResult class"""
 
         # Initialize members of the class
         self.message = message
-
 
     @classmethod
     def from_dictionary(cls,
@@ -48,6 +49,6 @@ class DownloadPackageResult(object):
         message = dictionary.get('message')
 
         # Return an object of this model
-        return cls(message)
-
-
+        return cls(
+            message
+)

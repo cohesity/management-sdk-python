@@ -3,29 +3,33 @@
 
 import cohesity_management_sdk.models.source_app_params
 
+
 class HyperVBackupSourceParams(object):
 
     """Implementation of the 'HyperVBackupSourceParams' model.
 
-     Message to capture additional backup params for a Hyper-V type source.
+    Message to capture additional backup params for a Hyper-V type source.
+
 
     Attributes:
+
         source_app_params (SourceAppParams): This message will capture params
             for applications that are running as part of the server.
     """
 
+
     # Create a mapping from Model property names to API property names
     _names = {
-        "source_app_params":'sourceAppParams'
+        "source_app_params":'sourceAppParams',
     }
-
     def __init__(self,
-                 source_app_params=None):
+                 source_app_params=None,
+            ):
+
         """Constructor for the HyperVBackupSourceParams class"""
 
         # Initialize members of the class
         self.source_app_params = source_app_params
-
 
     @classmethod
     def from_dictionary(cls,
@@ -48,6 +52,6 @@ class HyperVBackupSourceParams(object):
         source_app_params = cohesity_management_sdk.models.source_app_params.SourceAppParams.from_dictionary(dictionary.get('sourceAppParams')) if dictionary.get('sourceAppParams') else None
 
         # Return an object of this model
-        return cls(source_app_params)
-
-
+        return cls(
+            source_app_params
+)

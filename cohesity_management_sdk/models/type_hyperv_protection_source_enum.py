@@ -3,23 +3,20 @@
 
 class TypeHypervProtectionSourceEnum(object):
 
-    """Implementation of the 'Type_HypervProtectionSource' enum.
-
+    """Implementation of the 'TypeHypervProtectionSource' enum.
     Specifies the type of an HyperV Protection Source Object such as
-    'kSCVMMServer', 'kStandaloneHost', 'kNetwork', etc.
-    overrideDescription: true
-    Specifies the type of an HyperV Protection Source.
-    'kSCVMMServer' indicates a collection of root folders clusters.
-    'kStandaloneHost' indicates a single Nutanix cluster.
-    'kStandaloneCluster' indicates a single Nutanix cluster.
-    'kHostGroup' indicates a Nutanix cluster manageed by a Prism Central.
-    'kHypervHost' indicates an HyperV host.
-    'kHostCluster' indicates a Nutanix cluster manageed by a Prism Central.
-    'kVirtualMachine' indicates a Virtual Machine.
-    'kNetwork' indicates a Virtual Machine network object.
-    'kDatastore' represents a storage container object.
-    'kTag' indicates a tag type object.
-    'kCustomProperty' indciates a custom property including tag type.
+    'kSCVMMServer', 'kStandaloneHost', 'kNetwork', etc. overrideDescription:
+    true Specifies the type of an HyperV Protection Source. 'kSCVMMServer'
+    indicates a collection of root folders clusters. 'kStandaloneHost'
+    indicates a single Nutanix cluster. 'kStandaloneCluster' indicates a single
+    Nutanix cluster. 'kHostGroup' indicates a Nutanix cluster managed by a
+    Prism Central. 'kHypervHost' indicates an HyperV host. 'kHostCluster'
+    indicates a Nutanix cluster managed by a Prism Central. 'kVirtualMachine'
+    indicates a Virtual Machine. 'kNetwork' indicates a Virtual Machine network
+    object. 'kDatastore' represents a storage container object. 'kTag'
+    indicates a tag type object. 'kCustomProperty' indicates a custom property
+    including tag type.
+
 
     Attributes:
         KSCVMMSERVER: TODO: type description here.
@@ -44,7 +41,7 @@ class TypeHypervProtectionSourceEnum(object):
 
     KHOSTGROUP = 'kHostGroup'
 
-    K_HYPERV_HOST = 'kHypervHost'
+    KHYPERVHOST = 'kHypervHost'
 
     KHOSTCLUSTER = 'kHostCluster'
 
@@ -57,4 +54,3 @@ class TypeHypervProtectionSourceEnum(object):
     KTAG = 'kTag'
 
     KCUSTOMPROPERTY = 'kCustomProperty'
-

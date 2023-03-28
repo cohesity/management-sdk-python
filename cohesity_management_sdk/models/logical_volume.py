@@ -3,25 +3,24 @@
 
 import cohesity_management_sdk.models.device_tree_details
 
+
 class LogicalVolume(object):
 
     """Implementation of the 'LogicalVolume' model.
 
     Specifies attributes for a kLVM (Linux) or kLDM (Windows) filesystem.
 
+
     Attributes:
-        device_root_node (DeviceTreeDetails): Specifies a logical volume
-            stored as a tree where the leaves are the blocks of partitions and
-            intermediate nodes are assembled by combining nodes using one of
-            the following modes: linear layout, striped, mirrored, RAID etc. A
-            deviceTree is a block device formed by combining one or more
-            Devices using a combining strategy.
+
+        device_root_node (DeviceTreeDetails): Specifies the device tree
+            defining how to combine partitions to create this logical volume.
         group_name (string): Specifies the group name of the logical volume.
         group_uuid (string): Specifies the group uuid of the logical volume.
         name (string): Specifies the name of the logical volume.
         uuid (string): Specifies the uuid of the logical volume.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -29,15 +28,16 @@ class LogicalVolume(object):
         "group_name":'groupName',
         "group_uuid":'groupUuid',
         "name":'name',
-        "uuid":'uuid'
+        "uuid":'uuid',
     }
-
     def __init__(self,
                  device_root_node=None,
                  group_name=None,
                  group_uuid=None,
                  name=None,
-                 uuid=None):
+                 uuid=None,
+            ):
+
         """Constructor for the LogicalVolume class"""
 
         # Initialize members of the class
@@ -46,7 +46,6 @@ class LogicalVolume(object):
         self.group_uuid = group_uuid
         self.name = name
         self.uuid = uuid
-
 
     @classmethod
     def from_dictionary(cls,
@@ -73,10 +72,10 @@ class LogicalVolume(object):
         uuid = dictionary.get('uuid')
 
         # Return an object of this model
-        return cls(device_root_node,
-                   group_name,
-                   group_uuid,
-                   name,
-                   uuid)
-
-
+        return cls(
+            device_root_node,
+            group_name,
+            group_uuid,
+            name,
+            uuid
+)

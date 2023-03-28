@@ -1,31 +1,32 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class RoleDeleteParameters(object):
 
     """Implementation of the 'RoleDeleteParameters' model.
 
     Specifies the parameters required for deleting one or more roles.
 
+
     Attributes:
+
         names (list of string): Array of Role Names.  Specifies the list of
             roles to delete which are specified by role names.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "names":'names'
+        "names":'names',
     }
-
     def __init__(self,
-                 names=None):
+                 names=None,
+            ):
+
         """Constructor for the RoleDeleteParameters class"""
 
         # Initialize members of the class
         self.names = names
-
 
     @classmethod
     def from_dictionary(cls,
@@ -45,9 +46,9 @@ class RoleDeleteParameters(object):
             return None
 
         # Extract variables from the dictionary
-        names = dictionary.get('names')
+        names = dictionary.get("names")
 
         # Return an object of this model
-        return cls(names)
-
-
+        return cls(
+            names
+)

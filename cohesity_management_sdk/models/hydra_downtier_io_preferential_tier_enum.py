@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-class HydraDowntierIOPreferentialTierEnum(object):
+class HydraDowntierIoPreferentialTierEnum(object):
 
-    """Implementation of the 'HydraDowntierIOPreferentialTier' enum.
+    """Implementation of the 'HydraDowntierIoPreferentialTier' enum.
+    Specifies the list of perferred storage tiers used by Hydra for offloading.
 
-    TODO: type enum description here.
 
     Attributes:
         KPCIESSD: TODO: type description here.
@@ -22,4 +22,3 @@ class HydraDowntierIOPreferentialTierEnum(object):
     KSATAHDD = 'kSataHdd'
 
     KCLOUD = 'kCloud'
-

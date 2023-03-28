@@ -3,41 +3,43 @@
 
 import cohesity_management_sdk.models.universal_id
 
+
 class ProtectedObject(object):
 
     """Implementation of the 'ProtectedObject' model.
 
     Provides details about a Protected Object.
 
+
     Attributes:
-        job_id (UniversalId): Specifies an id for an object that is unique
-            across Cohesity Clusters. The id is composite of all the ids
-            listed below.
-        protection_fauilure_reason (string): If protection fails then
-            specifies why the protection failed on this object.
+
+        job_id (UniversalId): Specifies the id of the jobs protecting this
+            Protection Source.
+        protection_fauilure_reason (string): If protection fails then specifies
+            why the protection failed on this object.
         protection_source_id (long|int): Specifies the id of the Protection
             Source.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "job_id":'jobId',
         "protection_fauilure_reason":'protectionFauilureReason',
-        "protection_source_id":'protectionSourceId'
+        "protection_source_id":'protectionSourceId',
     }
-
     def __init__(self,
                  job_id=None,
                  protection_fauilure_reason=None,
-                 protection_source_id=None):
+                 protection_source_id=None,
+            ):
+
         """Constructor for the ProtectedObject class"""
 
         # Initialize members of the class
         self.job_id = job_id
         self.protection_fauilure_reason = protection_fauilure_reason
         self.protection_source_id = protection_source_id
-
 
     @classmethod
     def from_dictionary(cls,
@@ -62,8 +64,8 @@ class ProtectedObject(object):
         protection_source_id = dictionary.get('protectionSourceId')
 
         # Return an object of this model
-        return cls(job_id,
-                   protection_fauilure_reason,
-                   protection_source_id)
-
-
+        return cls(
+            job_id,
+            protection_fauilure_reason,
+            protection_source_id
+)

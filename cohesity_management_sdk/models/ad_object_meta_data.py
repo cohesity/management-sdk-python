@@ -1,27 +1,28 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class AdObjectMetaData(object):
 
     """Implementation of the 'AdObjectMetaData' model.
 
     Specifies details about the AD objects.
 
+
     Attributes:
-        distinguished_name (string): Specifies the Distinguished name of the
-            AD object.
+
+        distinguished_name (string): Specifies the Distinguished name of the AD
+            object.
         domain (string): Domain of the AD object.
         email (string): Specifies the email of the AD object of type user or
             group.
         guid (string): Specifies the Guid of the AD object.
         name (string): Specifies the name of the AD object.
-        object_type (string): Specifies the type of the AD Object. The type
-            may be user, computer, group or ou.
+        object_type (string): Specifies the type of the AD Object. The type may
+            be user, computer, group or ou.
         sam_account_name (string): Specifies the sam account name of the AD
             object.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -31,9 +32,8 @@ class AdObjectMetaData(object):
         "guid":'guid',
         "name":'name',
         "object_type":'objectType',
-        "sam_account_name":'samAccountName'
+        "sam_account_name":'samAccountName',
     }
-
     def __init__(self,
                  distinguished_name=None,
                  domain=None,
@@ -41,7 +41,9 @@ class AdObjectMetaData(object):
                  guid=None,
                  name=None,
                  object_type=None,
-                 sam_account_name=None):
+                 sam_account_name=None,
+            ):
+
         """Constructor for the AdObjectMetaData class"""
 
         # Initialize members of the class
@@ -52,7 +54,6 @@ class AdObjectMetaData(object):
         self.name = name
         self.object_type = object_type
         self.sam_account_name = sam_account_name
-
 
     @classmethod
     def from_dictionary(cls,
@@ -81,12 +82,12 @@ class AdObjectMetaData(object):
         sam_account_name = dictionary.get('samAccountName')
 
         # Return an object of this model
-        return cls(distinguished_name,
-                   domain,
-                   email,
-                   guid,
-                   name,
-                   object_type,
-                   sam_account_name)
-
-
+        return cls(
+            distinguished_name,
+            domain,
+            email,
+            guid,
+            name,
+            object_type,
+            sam_account_name
+)

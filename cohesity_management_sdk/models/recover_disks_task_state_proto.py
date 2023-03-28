@@ -4,41 +4,38 @@
 import cohesity_management_sdk.models.recover_virtual_disk_info_proto
 import cohesity_management_sdk.models.recover_virtual_disk_params
 
+
 class RecoverDisksTaskStateProto(object):
 
     """Implementation of the 'RecoverDisksTaskStateProto' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
-        recover_virtual_disk_info (RecoverVirtualDiskInfoProto): Each
-            available extension is listed below along with the location of the
-            proto file (relative to magneto/connectors) where it is defined.
-            RecoverVirtualDiskInfoProto extension                     Location
-            ===================================================================
-            ==========
-            ===================================================================
-            ==========
-        recover_virtual_disk_params (RecoverVirtualDiskParams): TODO: type
-            description here.
 
+        recover_virtual_disk_info (RecoverVirtualDiskInfoProto): Captures the
+            details of the recover virtual disk info.
+        recover_virtual_disk_params (RecoverVirtualDiskParams): Captures the
+            original parameters from Iris.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "recover_virtual_disk_info":'recoverVirtualDiskInfo',
-        "recover_virtual_disk_params":'recoverVirtualDiskParams'
+        "recover_virtual_disk_params":'recoverVirtualDiskParams',
     }
-
     def __init__(self,
                  recover_virtual_disk_info=None,
-                 recover_virtual_disk_params=None):
+                 recover_virtual_disk_params=None,
+            ):
+
         """Constructor for the RecoverDisksTaskStateProto class"""
 
         # Initialize members of the class
         self.recover_virtual_disk_info = recover_virtual_disk_info
         self.recover_virtual_disk_params = recover_virtual_disk_params
-
 
     @classmethod
     def from_dictionary(cls,
@@ -62,7 +59,7 @@ class RecoverDisksTaskStateProto(object):
         recover_virtual_disk_params = cohesity_management_sdk.models.recover_virtual_disk_params.RecoverVirtualDiskParams.from_dictionary(dictionary.get('recoverVirtualDiskParams')) if dictionary.get('recoverVirtualDiskParams') else None
 
         # Return an object of this model
-        return cls(recover_virtual_disk_info,
-                   recover_virtual_disk_params)
-
-
+        return cls(
+            recover_virtual_disk_info,
+            recover_virtual_disk_params
+)

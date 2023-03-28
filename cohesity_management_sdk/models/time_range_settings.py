@@ -3,41 +3,43 @@
 
 import cohesity_management_sdk.models.universal_id
 
+
 class TimeRangeSettings(object):
 
     """Implementation of the 'TimeRangeSettings' model.
 
     Specifies the time range struct.
 
+
     Attributes:
+
         end_time_usecs (long|int): Specifies the end time specified as a Unix
             epoch Timestamp (in microseconds).
-        job_uid (UniversalId): Specifies an id for an object that is unique
-            across Cohesity Clusters. The id is composite of all the ids
-            listed below.
+        job_uid (UniversalId): Specifies the job whose finished runs can be
+            used to restore any point within this time range.
         start_time_usecs (long|int): Specifies the start time specified as a
             Unix epoch Timestamp (in microseconds).
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "end_time_usecs":'endTimeUsecs',
         "job_uid":'jobUid',
-        "start_time_usecs":'startTimeUsecs'
+        "start_time_usecs":'startTimeUsecs',
     }
-
     def __init__(self,
                  end_time_usecs=None,
                  job_uid=None,
-                 start_time_usecs=None):
+                 start_time_usecs=None,
+            ):
+
         """Constructor for the TimeRangeSettings class"""
 
         # Initialize members of the class
         self.end_time_usecs = end_time_usecs
         self.job_uid = job_uid
         self.start_time_usecs = start_time_usecs
-
 
     @classmethod
     def from_dictionary(cls,
@@ -62,8 +64,8 @@ class TimeRangeSettings(object):
         start_time_usecs = dictionary.get('startTimeUsecs')
 
         # Return an object of this model
-        return cls(end_time_usecs,
-                   job_uid,
-                   start_time_usecs)
-
-
+        return cls(
+            end_time_usecs,
+            job_uid,
+            start_time_usecs
+)

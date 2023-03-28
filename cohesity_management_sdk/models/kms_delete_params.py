@@ -5,24 +5,27 @@ class KmsDeleteParams(object):
 
     """Implementation of the 'KmsDeleteParams' model.
 
-    Params to delete a KMS with specified server name.
+    TODO: type description here.
+
 
     Attributes:
-        id (long|int): Specifies a unique id of the KMS config.
+
+        id (long|int): Specifies a unique id of the KMS config. in: path
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "id":'id'
+        "id":'id',
     }
-
     def __init__(self,
-                 id=None):
+                 id=None,
+            ):
+
         """Constructor for the KmsDeleteParams class"""
 
         # Initialize members of the class
         self.id = id
-
 
     @classmethod
     def from_dictionary(cls,
@@ -45,6 +48,6 @@ class KmsDeleteParams(object):
         id = dictionary.get('id')
 
         # Return an object of this model
-        return cls(id)
-
-
+        return cls(
+            id
+)

@@ -6,37 +6,40 @@ import cohesity_management_sdk.models.protection_policy
 import cohesity_management_sdk.models.protection_source
 import cohesity_management_sdk.models.protection_summary
 
+
 class ProtectedVmInfo(object):
 
     """Implementation of the 'ProtectedVmInfo' model.
 
     Specifies the Protection Jobs information of a VM.
 
+
     Attributes:
+
         protection_jobs (list of ProtectionJob): Specifies the list of
             Protection Jobs that protect the VM.
         protection_policies (list of ProtectionPolicy): Specifies the list of
             Policies that are used by the Protection Jobs.
-        protection_source (ProtectionSource): Specifies a generic structure
-            that represents a node in the Protection Source tree. Node details
-            will depend on the environment of the Protection Source.
+        protection_source (ProtectionSource): Specifies a VM that is being
+            protected on the Cohesity Cluster.
         stats (ProtectionSummary): Specifies the protection stats of VM.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "protection_jobs":'protectionJobs',
         "protection_policies":'protectionPolicies',
         "protection_source":'protectionSource',
-        "stats":'stats'
+        "stats":'stats',
     }
-
     def __init__(self,
                  protection_jobs=None,
                  protection_policies=None,
                  protection_source=None,
-                 stats=None):
+                 stats=None,
+            ):
+
         """Constructor for the ProtectedVmInfo class"""
 
         # Initialize members of the class
@@ -44,7 +47,6 @@ class ProtectedVmInfo(object):
         self.protection_policies = protection_policies
         self.protection_source = protection_source
         self.stats = stats
-
 
     @classmethod
     def from_dictionary(cls,
@@ -78,9 +80,9 @@ class ProtectedVmInfo(object):
         stats = cohesity_management_sdk.models.protection_summary.ProtectionSummary.from_dictionary(dictionary.get('stats')) if dictionary.get('stats') else None
 
         # Return an object of this model
-        return cls(protection_jobs,
-                   protection_policies,
-                   protection_source,
-                   stats)
-
-
+        return cls(
+            protection_jobs,
+            protection_policies,
+            protection_source,
+            stats
+)

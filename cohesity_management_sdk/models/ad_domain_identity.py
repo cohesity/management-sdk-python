@@ -1,34 +1,36 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class AdDomainIdentity(object):
 
     """Implementation of the 'AdDomainIdentity' model.
 
     AD domain identity information.
 
+
     Attributes:
+
         dn (string): Specifies distinguished name of the domain.
         guid (string): Specifies Unique objectGUID for an AD domain.
         name (string): Specifies display name of the domain.
         sid (string): Specifies domain SID.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "dn":'dn',
         "guid":'guid',
         "name":'name',
-        "sid":'sid'
+        "sid":'sid',
     }
-
     def __init__(self,
                  dn=None,
                  guid=None,
                  name=None,
-                 sid=None):
+                 sid=None,
+            ):
+
         """Constructor for the AdDomainIdentity class"""
 
         # Initialize members of the class
@@ -36,7 +38,6 @@ class AdDomainIdentity(object):
         self.guid = guid
         self.name = name
         self.sid = sid
-
 
     @classmethod
     def from_dictionary(cls,
@@ -62,9 +63,9 @@ class AdDomainIdentity(object):
         sid = dictionary.get('sid')
 
         # Return an object of this model
-        return cls(dn,
-                   guid,
-                   name,
-                   sid)
-
-
+        return cls(
+            dn,
+            guid,
+            name,
+            sid
+)

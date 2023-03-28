@@ -1,35 +1,35 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class AcropolisDiskFilterProto(object):
 
     """Implementation of the 'AcropolisDiskFilterProto' model.
 
-    This message contains basic info of the disk to be filtered from
-    backup.
+    This message contains basic info of the disk to be filtered from backup.
+
 
     Attributes:
+
         bus_type (string): Bus type (SCSI, IDE, PCI, SATA, SPAPR, NVME).
         index (int): Index/Unit number of the disk.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "bus_type": 'busType',
-        "index": 'index'
+        "bus_type":'busType',
+        "index":'index',
     }
-
     def __init__(self,
                  bus_type=None,
-                 index=None):
+                 index=None,
+            ):
+
         """Constructor for the AcropolisDiskFilterProto class"""
 
         # Initialize members of the class
         self.bus_type = bus_type
         self.index = index
-
 
     @classmethod
     def from_dictionary(cls,
@@ -49,11 +49,11 @@ class AcropolisDiskFilterProto(object):
             return None
 
         # Extract variables from the dictionary
-        bus_type = dictionary.get('busType', None)
-        index = dictionary.get('index', None)
+        bus_type = dictionary.get('busType')
+        index = dictionary.get('index')
 
         # Return an object of this model
-        return cls(bus_type,
-                   index)
-
-
+        return cls(
+            bus_type,
+            index
+)

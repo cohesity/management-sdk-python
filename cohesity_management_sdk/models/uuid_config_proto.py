@@ -1,30 +1,31 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class UuidConfigProto(object):
 
     """Implementation of the 'UuidConfigProto' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
-        preserve_uuid (bool): TODO: type description here.
 
+        preserve_uuid (bool): TODO: Type description here.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "preserve_uuid":'preserveUuid'
+        "preserve_uuid":'preserveUuid',
     }
-
     def __init__(self,
-                 preserve_uuid=None):
+                 preserve_uuid=None,
+            ):
+
         """Constructor for the UuidConfigProto class"""
 
         # Initialize members of the class
         self.preserve_uuid = preserve_uuid
-
 
     @classmethod
     def from_dictionary(cls,
@@ -47,6 +48,6 @@ class UuidConfigProto(object):
         preserve_uuid = dictionary.get('preserveUuid')
 
         # Return an object of this model
-        return cls(preserve_uuid)
-
-
+        return cls(
+            preserve_uuid
+)

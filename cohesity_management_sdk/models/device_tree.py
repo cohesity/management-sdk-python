@@ -11,15 +11,15 @@ class DeviceTree(object):
     A logical volume is built on a tree where leaves are the slices of
     partitions (PartitionSlice) defined below and intermediate nodes are
     assembled by combining nodes in some mode (linear layout, striped,
-    mirrored,
-    RAID etc).
-    A DeviceTree is a block device formed by combining one or more Devices
-    using a combining strategy.
+    mirrored, RAID etc). A DeviceTree is a block device formed by combining one
+    or more Devices using a combining strategy.
+
 
     Attributes:
-        child_vec (list of DeviceTreeChildDevice): TODO: type description
+
+        child_vec (list of DeviceTree_ChildDevice): TODO: Type description
             here.
-        device_id (int): Internal device identifier of the device to be
+        device_id (long|int): Internal device identifier of the device to be
             activated as a thin volume.
         device_length (long|int): The length of this device. This should match
             the length which is computable based on children and combining
@@ -29,11 +29,11 @@ class DeviceTree(object):
         stripe_size (int): In case data is striped, this represents the length
             of the stripe. The number of stripes is defined by the size of
             child_vec above.
-        thin_pool_chunk_size (int): Chunk size. Only populated if device type is
-            thin pool.
+        thin_pool_chunk_size (long|int): Chunk size. Only populated if device
+            type is thin pool.
         mtype (int): How to combine the children.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -42,16 +42,17 @@ class DeviceTree(object):
         "device_length":'deviceLength',
         "stripe_size":'stripeSize',
         "thin_pool_chunk_size":'thinPoolChunkSize',
-        "mtype":'type'
+        "mtype":'type',
     }
-
     def __init__(self,
                  child_vec=None,
                  device_id=None,
                  device_length=None,
                  stripe_size=None,
                  thin_pool_chunk_size=None,
-                 mtype=None):
+                 mtype=None,
+            ):
+
         """Constructor for the DeviceTree class"""
 
         # Initialize members of the class
@@ -81,20 +82,22 @@ class DeviceTree(object):
 
         # Extract variables from the dictionary
         child_vec = None
-        device_id = dictionary.get('deviceId', None)
         if dictionary.get('childVec') != None:
             child_vec = list()
             for structure in dictionary.get('childVec'):
-                child_vec.append(cohesity_management_sdk.models.device_tree_child_device.DeviceTreeChildDevice.from_dictionary(structure))
+                child_vec.append(cohesity_management_sdk.models.device_tree_child_device.DeviceTree_ChildDevice.from_dictionary(structure))
+        device_id = dictionary.get('deviceId')
         device_length = dictionary.get('deviceLength')
         stripe_size = dictionary.get('stripeSize')
-        thin_pool_chunk_size = dictionary.get('thinPoolChunkSize', None)
+        thin_pool_chunk_size = dictionary.get('thinPoolChunkSize')
         mtype = dictionary.get('type')
 
         # Return an object of this model
-        return cls(child_vec,
-                   device_id,
-                   device_length,
-                   stripe_size,
-                   thin_pool_chunk_size,
-                   mtype)
+        return cls(
+            child_vec,
+            device_id,
+            device_length,
+            stripe_size,
+            thin_pool_chunk_size,
+            mtype
+)

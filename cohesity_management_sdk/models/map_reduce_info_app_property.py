@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class MapReduceInfo_AppProperty(object):
 
     """Implementation of the 'MapReduceInfo_AppProperty' model.
@@ -9,23 +8,25 @@ class MapReduceInfo_AppProperty(object):
     AppProperty message encapsulates properties that are same across all run
     instances of an app.
 
+
     Attributes:
-        csv_header (string): csv_header should be tab separated
-            column names.
+
+        csv_header (string): csv_header should be tab separated column names.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "csv_header":'csvHeader'
+        "csv_header":'csvHeader',
     }
-
     def __init__(self,
-                 csv_header=None):
+                 csv_header=None,
+            ):
+
         """Constructor for the MapReduceInfo_AppProperty class"""
 
         # Initialize members of the class
         self.csv_header = csv_header
-
 
     @classmethod
     def from_dictionary(cls,
@@ -48,6 +49,6 @@ class MapReduceInfo_AppProperty(object):
         csv_header = dictionary.get('csvHeader')
 
         # Return an object of this model
-        return cls(csv_header)
-
-
+        return cls(
+            csv_header
+)

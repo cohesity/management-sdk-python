@@ -5,27 +5,31 @@ class S3BucketConfigProto_TagMapEntry(object):
 
     """Implementation of the 'S3BucketConfigProto_TagMapEntry' model.
 
+    TODO: type description here.
+
+
     Attributes:
+
         key (string): TODO: Type description here.
         value (string): TODO: Type description here.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "key": 'key',
-        "value": 'value'
+        "key":'key',
+        "value":'value',
     }
-
     def __init__(self,
                  key=None,
-                 value=None):
+                 value=None,
+            ):
+
         """Constructor for the S3BucketConfigProto_TagMapEntry class"""
 
         # Initialize members of the class
         self.key = key
         self.value = value
-
 
     @classmethod
     def from_dictionary(cls,
@@ -49,7 +53,7 @@ class S3BucketConfigProto_TagMapEntry(object):
         value = dictionary.get('value')
 
         # Return an object of this model
-        return cls(key,
-                   value)
-
-
+        return cls(
+            key,
+            value
+)

@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-class LibrarianIOPreferentialTierEnum(object):
+class LibrarianIoPreferentialTierEnum(object):
 
-    """Implementation of the 'LibrarianIOPreferentialTier' enum.
+    """Implementation of the 'LibrarianIoPreferentialTier' enum.
+    Specifies the list of perferred storage tiers used by librarian.
 
-    TODO: type enum description here.
 
     Attributes:
         KPCIESSD: TODO: type description here.
@@ -22,4 +22,3 @@ class LibrarianIOPreferentialTierEnum(object):
     KSATAHDD = 'kSataHdd'
 
     KCLOUD = 'kCloud'
-

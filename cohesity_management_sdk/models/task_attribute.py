@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class TaskAttribute(object):
 
     """Implementation of the 'TaskAttribute' model.
 
     This contains a string name, a value, and a type for the value.
 
+
     Attributes:
+
         name (string): Specifies the name of this Task Attribute.
         value (string): Specifies the value of this Task Attribute.
         value_type (ValueTypeEnum): Specifies the type of the value contained
@@ -16,30 +17,30 @@ class TaskAttribute(object):
             be casted to the type indicated here. 'kInt64' indicates that the
             value stored in the Task Attribute is a 64-bit integer. 'kDouble'
             indicates that the value stored in the Task Attribute is a 64 bit
-            floating point number. 'kString' indicates that the value stored
-            in the Task Attribute is a string. 'kBytes' indicates that the
-            value stored in the Task Attribute is an array of bytes.
-
+            floating point number. 'kString' indicates that the value stored in
+            the Task Attribute is a string. 'kBytes' indicates that the value
+            stored in the Task Attribute is an array of bytes.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "name":'name',
         "value":'value',
-        "value_type":'valueType'
+        "value_type":'valueType',
     }
-
     def __init__(self,
                  name=None,
                  value=None,
-                 value_type=None):
+                 value_type=None,
+            ):
+
         """Constructor for the TaskAttribute class"""
 
         # Initialize members of the class
         self.name = name
         self.value = value
         self.value_type = value_type
-
 
     @classmethod
     def from_dictionary(cls,
@@ -64,8 +65,8 @@ class TaskAttribute(object):
         value_type = dictionary.get('valueType')
 
         # Return an object of this model
-        return cls(name,
-                   value,
-                   value_type)
-
-
+        return cls(
+            name,
+            value,
+            value_type
+)

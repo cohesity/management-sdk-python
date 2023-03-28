@@ -4,6 +4,7 @@
 import cohesity_management_sdk.models.cassandra_additional_params
 import cohesity_management_sdk.models.cassandra_log_recover_job_params
 
+
 class CassandraRecoverJobParams(object):
 
     """Implementation of the 'CassandraRecoverJobParams' model.
@@ -11,10 +12,12 @@ class CassandraRecoverJobParams(object):
     Contains any additional cassandra environment specific params for the
     recover job.
 
+
     Attributes:
+
         cassandra_additional_info (CassandraAdditionalParams): Additional
-            parameters required for Cassandra recovery.
-            TODO (faizan.khan) : Remove this.
+            parameters required for Cassandra recovery. TODO (faizan.khan) :
+            Remove this.
         finalise_restore_task_id (long|int): The task id which will be used by
             the finalise restore job.
         graph_handling_enabled (bool): whether special graph handling is
@@ -24,26 +27,25 @@ class CassandraRecoverJobParams(object):
         log_recover_params (CassandraLogRecoverJobParams): Additional params
             for log recovery.
         log_restore_directory (string): Logs will be restored to this location.
-        selected_data_center_vec (list of string):  The data centers selected
-            for recovery.
         restart_allowed (bool): Option to restart Cassandra services after
             point in time recovery.
         restart_command (string): Option command for restarting Cassandra
             services
         restart_immediately (bool): Option to restart Cassandra services
             immediately after the recovery.
-        restart_time (long| int): Option to restart Cassandra services at the
+        restart_time (long|int): Option to restart Cassandra services at the
             specified time
+        selected_data_center_vec (list of string): The data centers selected
+            for recovery.
         staging_directory_vec (list of string): Cassandra staging directory
         suffix (string): A suffix that is to be applied to all recovered
-            entities
-            TODO (faizan.khan) : Remove this.
-
+            entities TODO (faizan.khan) : Remove this.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "cassandra_additional_info": 'cassandraAdditionalInfo',
+        "cassandra_additional_info":'cassandraAdditionalInfo',
         "finalise_restore_task_id":'finaliseRestoreTaskId',
         "graph_handling_enabled":'graphHandlingEnabled',
         "is_finalise_phase":'isFinalisePhase',
@@ -53,11 +55,10 @@ class CassandraRecoverJobParams(object):
         "restart_command":'restartCommand',
         "restart_immediately":'restartImmediately',
         "restart_time":'restartTime',
-        "selected_data_center_vec": 'selectedDataCenterVec',
-        "staging_directory_vec": 'stagingDirectoryVec',
-        "suffix":'suffix'
+        "selected_data_center_vec":'selectedDataCenterVec',
+        "staging_directory_vec":'stagingDirectoryVec',
+        "suffix":'suffix',
     }
-
     def __init__(self,
                  cassandra_additional_info=None,
                  finalise_restore_task_id=None,
@@ -71,7 +72,9 @@ class CassandraRecoverJobParams(object):
                  restart_time=None,
                  selected_data_center_vec=None,
                  staging_directory_vec=None,
-                 suffix=None):
+                 suffix=None,
+            ):
+
         """Constructor for the CassandraRecoverJobParams class"""
 
         # Initialize members of the class
@@ -117,23 +120,23 @@ class CassandraRecoverJobParams(object):
         restart_command = dictionary.get('restartCommand')
         restart_immediately = dictionary.get('restartImmediately')
         restart_time = dictionary.get('restartTime')
-        selected_data_center_vec = dictionary.get('selectedDataCenterVec')
-        staging_directory_vec = dictionary.get('stagingDirectoryVec')
+        selected_data_center_vec = dictionary.get("selectedDataCenterVec")
+        staging_directory_vec = dictionary.get("stagingDirectoryVec")
         suffix = dictionary.get('suffix')
 
         # Return an object of this model
-        return cls(cassandra_additional_info,
-                   finalise_restore_task_id,
-                   graph_handling_enabled,
-                   is_finalise_phase,
-                   log_recover_params,
-                   log_restore_directory,
-                   restart_allowed,
-                   restart_command,
-                   restart_immediately,
-                   restart_time,
-                   selected_data_center_vec,
-                   staging_directory_vec,
-                   suffix)
-
-
+        return cls(
+            cassandra_additional_info,
+            finalise_restore_task_id,
+            graph_handling_enabled,
+            is_finalise_phase,
+            log_recover_params,
+            log_restore_directory,
+            restart_allowed,
+            restart_command,
+            restart_immediately,
+            restart_time,
+            selected_data_center_vec,
+            staging_directory_vec,
+            suffix
+)

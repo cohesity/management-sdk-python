@@ -3,13 +3,12 @@
 
 class TypeCouchbaseProtectionSourceEnum(object):
 
-    """Implementation of the 'Type_CouchbaseProtectionSource' enum.
-
+    """Implementation of the 'TypeCouchbaseProtectionSource' enum.
     Specifies the type of the managed Object in Couchbase Protection Source.
-    Specifies the type of an Couchbase source entity.
-    'kCluster' indicates a Couchbase cluster distributed over several physical
-    nodes.
-    'kBucket' indicates a bucket within the Couchbase environment.
+    Specifies the type of an Couchbase source entity. 'kCluster' indicates a
+    Couchbase cluster distributed over several physical nodes. 'kBucket'
+    indicates a bucket within the Couchbase environment.
+
 
     Attributes:
         KCLUSTER: TODO: type description here.
@@ -20,4 +19,3 @@ class TypeCouchbaseProtectionSourceEnum(object):
     KCLUSTER = 'kCluster'
 
     KBUCKET = 'kBucket'
-

@@ -3,36 +3,40 @@
 
 import cohesity_management_sdk.models.file_stat_info
 
+
 class FileFstatResult(object):
 
     """Implementation of the 'FileFstatResult' model.
 
     FileFstatResult is the struct to return the result of file Fstats.
 
+
     Attributes:
-        cookie (int): Cookie is used for paginating results. If
+
+        cookie (long|int): Cookie is used for paginating results. If
             ReadVMDirResult is returning partial results, this field will be
             set. Supplying this cookie will resume listing from where this
             result left off.
-        fstat_info (FileStatInfo): TODO: type description here.
-
+        fstat_info (FileStatInfo): FstatInfo is the stat information for the
+            file.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "cookie":'cookie',
-        "fstat_info":'fstatInfo'
+        "fstat_info":'fstatInfo',
     }
-
     def __init__(self,
                  cookie=None,
-                 fstat_info=None):
+                 fstat_info=None,
+            ):
+
         """Constructor for the FileFstatResult class"""
 
         # Initialize members of the class
         self.cookie = cookie
         self.fstat_info = fstat_info
-
 
     @classmethod
     def from_dictionary(cls,
@@ -56,7 +60,7 @@ class FileFstatResult(object):
         fstat_info = cohesity_management_sdk.models.file_stat_info.FileStatInfo.from_dictionary(dictionary.get('fstatInfo')) if dictionary.get('fstatInfo') else None
 
         # Return an object of this model
-        return cls(cookie,
-                   fstat_info)
-
-
+        return cls(
+            cookie,
+            fstat_info
+)

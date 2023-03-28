@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class NetworkRealmInfo(object):
 
     """Implementation of the 'NetworkRealmInfo' model.
@@ -10,7 +9,9 @@ class NetworkRealmInfo(object):
     will be populated by IRIS for create/update source requests so that we can
     persist the mapping in the corresponding entity hierarchy.
 
+
     Attributes:
+
         connector_group_id (long|int): 'network_realm_id' maintains the
             collection of connector_group_id. Connector group id for the
             environment. If it is set, Magneto will fetch the bifrost server
@@ -19,27 +20,27 @@ class NetworkRealmInfo(object):
             to. This can be a non root entity as well.
         network_realm_id (long|int): Network Realm id to use for the tenant.
             This realm could be a collection of Rigel/HyX.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "connector_group_id":'connectorGroupId',
         "entity_id":'entityId',
-        "network_realm_id":'networkRealmId'
+        "network_realm_id":'networkRealmId',
     }
-
     def __init__(self,
                  connector_group_id=None,
                  entity_id=None,
-                 network_realm_id=None):
+                 network_realm_id=None,
+            ):
+
         """Constructor for the NetworkRealmInfo class"""
 
         # Initialize members of the class
         self.connector_group_id = connector_group_id
         self.entity_id = entity_id
         self.network_realm_id = network_realm_id
-
 
     @classmethod
     def from_dictionary(cls,
@@ -64,8 +65,8 @@ class NetworkRealmInfo(object):
         network_realm_id = dictionary.get('networkRealmId')
 
         # Return an object of this model
-        return cls(connector_group_id,
-                   entity_id,
-                   network_realm_id)
-
-
+        return cls(
+            connector_group_id,
+            entity_id,
+            network_realm_id
+)

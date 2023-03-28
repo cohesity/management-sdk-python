@@ -1,28 +1,30 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class SharepointBackupSourceParams(object):
 
     """Implementation of the 'SharepointBackupSourceParams' model.
 
-    Message defining the object-level params for Sharepoint site backup.
+    TODO: type description here.
+
 
     Attributes:
-        autoprotect_entity (bool): Specifies to whether
-            autoprotect the site entity  or not. If this is set to true, the
-            site entity and subsites of it are protected.
-            If this is set to false, only the site entity is protected.
 
+        autoprotect_entity (bool): Specifies to whether autoprotect the site
+            entity  or not. If this is set to true, the site entity and
+            subsites of it are protected. If this is set to false, only the
+            site entity is protected.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "autoprotect_entity": 'autoprotectEntity'
+        "autoprotect_entity":'autoprotectEntity',
     }
-
     def __init__(self,
-                 autoprotect_entity=None):
+                 autoprotect_entity=None,
+            ):
+
         """Constructor for the SharepointBackupSourceParams class"""
 
         # Initialize members of the class
@@ -49,6 +51,6 @@ class SharepointBackupSourceParams(object):
         autoprotect_entity = dictionary.get('autoprotectEntity')
 
         # Return an object of this model
-        return cls(autoprotect_entity)
-
-
+        return cls(
+            autoprotect_entity
+)

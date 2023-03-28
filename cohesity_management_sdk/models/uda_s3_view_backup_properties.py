@@ -3,13 +3,17 @@
 
 import cohesity_management_sdk.models.s3_bucket_config_proto
 
+
 class UdaS3ViewBackupProperties(object):
 
     """Implementation of the 'UdaS3ViewBackupProperties' model.
 
-    // -----------------------------------------------------------------------------
+    //
+    -----------------------------------------------------------------------------
+
 
     Attributes:
+
         access_key (string): Access key for the buckets which will be created
             for the source initiated jobs. This needs to be passed to UDA for
             doing all s3 communications.
@@ -19,27 +23,27 @@ class UdaS3ViewBackupProperties(object):
         secret_key (string): Secret key for the buckets will be created for the
             source initiated jobs. This secret key needed to be sent to UDA for
             writing data to our S3 views.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "access_key":'accessKey',
         "s3_config":'s3Config',
-        "secret_key":'secretKey'
+        "secret_key":'secretKey',
     }
-
     def __init__(self,
                  access_key=None,
                  s3_config=None,
-                 secret_key=None):
+                 secret_key=None,
+            ):
+
         """Constructor for the UdaS3ViewBackupProperties class"""
 
         # Initialize members of the class
         self.access_key = access_key
         self.s3_config = s3_config
         self.secret_key = secret_key
-
 
     @classmethod
     def from_dictionary(cls,
@@ -64,8 +68,8 @@ class UdaS3ViewBackupProperties(object):
         secret_key = dictionary.get('secretKey')
 
         # Return an object of this model
-        return cls(access_key,
-                   s3_config,
-                   secret_key)
-
-
+        return cls(
+            access_key,
+            s3_config,
+            secret_key
+)

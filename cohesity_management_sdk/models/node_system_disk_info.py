@@ -1,38 +1,39 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class NodeSystemDiskInfo(object):
 
     """Implementation of the 'NodeSystemDiskInfo' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
+
         device_path (string): DevicePath is the device path of the disk.
         id (long|int): Id is the id of the disk.
         offline (bool): Offline specifies whether a disk is marked offline.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "device_path":'devicePath',
         "id":'id',
-        "offline":'offline'
+        "offline":'offline',
     }
-
     def __init__(self,
                  device_path=None,
                  id=None,
-                 offline=None):
+                 offline=None,
+            ):
+
         """Constructor for the NodeSystemDiskInfo class"""
 
         # Initialize members of the class
         self.device_path = device_path
         self.id = id
         self.offline = offline
-
 
     @classmethod
     def from_dictionary(cls,
@@ -57,8 +58,8 @@ class NodeSystemDiskInfo(object):
         offline = dictionary.get('offline')
 
         # Return an object of this model
-        return cls(device_path,
-                   id,
-                   offline)
-
-
+        return cls(
+            device_path,
+            id,
+            offline
+)

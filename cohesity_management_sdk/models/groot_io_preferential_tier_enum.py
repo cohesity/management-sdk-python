@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-class GrootIOPreferentialTierEnum(object):
+class GrootIoPreferentialTierEnum(object):
 
-    """Implementation of the 'GrootIOPreferentialTier' enum.
+    """Implementation of the 'GrootIoPreferentialTier' enum.
+    Specifies the preferred storage tier used by Groot as its working
+    directory.
 
-    TODO: type enum description here.
 
     Attributes:
         KPCIESSD: TODO: type description here.
@@ -22,4 +23,3 @@ class GrootIOPreferentialTierEnum(object):
     KSATAHDD = 'kSataHdd'
 
     KCLOUD = 'kCloud'
-

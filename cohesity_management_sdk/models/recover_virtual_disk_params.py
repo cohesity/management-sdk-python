@@ -4,38 +4,42 @@
 import cohesity_management_sdk.models.entity_proto
 import cohesity_management_sdk.models.recover_virtual_disk_params_virtual_disk_mapping
 
+
 class RecoverVirtualDiskParams(object):
 
     """Implementation of the 'RecoverVirtualDiskParams' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
-        power_off_vm_before_recovery (bool): Whether to power-off the VM
-            before recovering virtual disks.
+
+        power_off_vm_before_recovery (bool): Whether to power-off the VM before
+            recovering virtual disks.
         power_on_vm_after_recovery (bool): Whether to power-on the VM after
             recovering virtual disks.
-        target_entity (EntityProto): Specifies the attributes and the latest
-            statistics about an entity.
+        target_entity (EntityProto): Target entity to which the disks should be
+            attached.
         virtual_disk_mappings (list of
-            RecoverVirtualDiskParamsVirtualDiskMapping): TODO: type
+            RecoverVirtualDiskParams_VirtualDiskMapping): TODO: Type
             description here.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "power_off_vm_before_recovery":'powerOffVmBeforeRecovery',
         "power_on_vm_after_recovery":'powerOnVmAfterRecovery',
         "target_entity":'targetEntity',
-        "virtual_disk_mappings":'virtualDiskMappings'
+        "virtual_disk_mappings":'virtualDiskMappings',
     }
-
     def __init__(self,
                  power_off_vm_before_recovery=None,
                  power_on_vm_after_recovery=None,
                  target_entity=None,
-                 virtual_disk_mappings=None):
+                 virtual_disk_mappings=None,
+            ):
+
         """Constructor for the RecoverVirtualDiskParams class"""
 
         # Initialize members of the class
@@ -43,7 +47,6 @@ class RecoverVirtualDiskParams(object):
         self.power_on_vm_after_recovery = power_on_vm_after_recovery
         self.target_entity = target_entity
         self.virtual_disk_mappings = virtual_disk_mappings
-
 
     @classmethod
     def from_dictionary(cls,
@@ -70,12 +73,12 @@ class RecoverVirtualDiskParams(object):
         if dictionary.get('virtualDiskMappings') != None:
             virtual_disk_mappings = list()
             for structure in dictionary.get('virtualDiskMappings'):
-                virtual_disk_mappings.append(cohesity_management_sdk.models.recover_virtual_disk_params_virtual_disk_mapping.RecoverVirtualDiskParamsVirtualDiskMapping.from_dictionary(structure))
+                virtual_disk_mappings.append(cohesity_management_sdk.models.recover_virtual_disk_params_virtual_disk_mapping.RecoverVirtualDiskParams_VirtualDiskMapping.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(power_off_vm_before_recovery,
-                   power_on_vm_after_recovery,
-                   target_entity,
-                   virtual_disk_mappings)
-
-
+        return cls(
+            power_off_vm_before_recovery,
+            power_on_vm_after_recovery,
+            target_entity,
+            virtual_disk_mappings
+)

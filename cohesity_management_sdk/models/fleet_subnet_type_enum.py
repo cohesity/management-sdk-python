@@ -3,23 +3,22 @@
 
 class FleetSubnetTypeEnum(object):
 
-    """Implementation of the 'FleetSubnetTypeEnum' enum.
+    """Implementation of the 'FleetSubnetType' enum.
+    Specifies the subnet type of the fleet. Specifies the type of the fleet
+    subnet. 'kCluster' implies same subnet as of Cluster, valid only for Cloud
+    Edition cluster. 'kSourceVM' implies same subnet as of source vm. 'kCustom'
+    implies the custome subnet.
 
-    TODO: type enum description here.
 
     Attributes:
-        Specifies the subnet type of the fleet.
-          Specifies the type of the fleet subnet.
-          'kCluster' implies same subnet as of Cluster, valid only for Cloud
-          Edition cluster.
-          'kSourceVM' implies same subnet as of source vm.
-          'kCustom' implies the custome subnet.
+        KCLUSTER: TODO: type description here.
+        KSOURCEVM: TODO: type description here.
+        KCUSTOM: TODO: type description here.
 
     """
 
-    K_CLUSTER = 'kCluster'
+    KCLUSTER = 'kCluster'
 
-    K_SOURCE_VM = 'kSourceVM'
+    KSOURCEVM = 'kSourceVM'
 
-    K_CUSTOM = 'kCustom'
-
+    KCUSTOM = 'kCustom'

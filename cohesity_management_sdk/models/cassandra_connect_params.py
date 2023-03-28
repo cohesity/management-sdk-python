@@ -4,6 +4,7 @@
 import cohesity_management_sdk.models.cassandra_ports_info
 import cohesity_management_sdk.models.cassandra_security_info
 
+
 class CassandraConnectParams(object):
 
     """Implementation of the 'CassandraConnectParams' model.
@@ -11,19 +12,21 @@ class CassandraConnectParams(object):
     Specifies an Object containing information about a registered cassandra
     source.
 
+
     Attributes:
+
         cassandra_ports_info (CassandraPortsInfo): Specifies the ports related
             info.
-        cassandra_security_info (CassandraSecurityInfo): Specifies the
-            security related info.
+        cassandra_security_info (CassandraSecurityInfo): Specifies the security
+            related info.
         cassandra_version (string): Cassandra version
-        commit_log_backup_location (string): Commit Log Backup location used
-            for PITR feature
+        commit_log_backup_location (string): Specifies the commit log archival
+            location for cassandra node
         config_directory (string): Specifies the Directory path containing
             Config YAML for discovery.
         data_centers (list of string): Specifies the List of all physical data
-            center or virtual data center. In most cases, the data centers
-            will be listed after discovery operation however, if they are not
+            center or virtual data center. In most cases, the data centers will
+            be listed after discovery operation however, if they are not
             listed, you must manually type the data center names. Leaving the
             field blank will disallow data center-specific backup or restore.
             Entering a subset of all data centers may cause problems in data
@@ -44,8 +47,8 @@ class CassandraConnectParams(object):
             cluster.
         solr_nodes (list of string): Specifies the Solr node IP Addresses
         solr_port (int): Specifies the Solr node Port.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -65,7 +68,6 @@ class CassandraConnectParams(object):
         "solr_nodes":'solrNodes',
         "solr_port":'solrPort',
     }
-
     def __init__(self,
                  cassandra_ports_info=None,
                  cassandra_security_info=None,
@@ -81,7 +83,9 @@ class CassandraConnectParams(object):
                  primary_host=None,
                  seeds=None,
                  solr_nodes=None,
-                 solr_port=None):
+                 solr_port=None,
+            ):
+
         """Constructor for the CassandraConnectParams class"""
 
         # Initialize members of the class
@@ -100,7 +104,6 @@ class CassandraConnectParams(object):
         self.seeds = seeds
         self.solr_nodes = solr_nodes
         self.solr_port = solr_port
-
 
     @classmethod
     def from_dictionary(cls,
@@ -125,32 +128,32 @@ class CassandraConnectParams(object):
         cassandra_version = dictionary.get('cassandraVersion')
         commit_log_backup_location = dictionary.get('commitLogBackupLocation')
         config_directory = dictionary.get('configDirectory')
-        data_centers = dictionary.get('dataCenters')
+        data_centers = dictionary.get("dataCenters")
         dse_config_directory = dictionary.get('dseConfigDirectory')
         is_dse_authenticator = dictionary.get('isDseAuthenticator')
         is_dse_tiered_storage = dictionary.get('isDseTieredStorage')
         is_jmx_auth_enable = dictionary.get('isJmxAuthEnable')
         kerberos_principal = dictionary.get('kerberosPrincipal')
         primary_host = dictionary.get('primaryHost')
-        seeds = dictionary.get('seeds', None)
-        solr_nodes = dictionary.get('solrNodes')
+        seeds = dictionary.get("seeds")
+        solr_nodes = dictionary.get("solrNodes")
         solr_port = dictionary.get('solrPort')
 
         # Return an object of this model
-        return cls(cassandra_ports_info,
-                   cassandra_security_info,
-                   cassandra_version,
-                   commit_log_backup_location,
-                   config_directory,
-                   data_centers,
-                   dse_config_directory,
-                   is_dse_authenticator,
-                   is_dse_tiered_storage,
-                   is_jmx_auth_enable,
-                   kerberos_principal,
-                   primary_host,
-                   seeds,
-                   solr_nodes,
-                   solr_port)
-
-
+        return cls(
+            cassandra_ports_info,
+            cassandra_security_info,
+            cassandra_version,
+            commit_log_backup_location,
+            config_directory,
+            data_centers,
+            dse_config_directory,
+            is_dse_authenticator,
+            is_dse_tiered_storage,
+            is_jmx_auth_enable,
+            kerberos_principal,
+            primary_host,
+            seeds,
+            solr_nodes,
+            solr_port
+)

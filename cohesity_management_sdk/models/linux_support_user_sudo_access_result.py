@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class LinuxSupportUserSudoAccessResult(object):
 
     """Implementation of the 'LinuxSupportUserSudoAccessResult' model.
@@ -9,22 +8,25 @@ class LinuxSupportUserSudoAccessResult(object):
     Specifies the result returned after a successful request to enable/disable
     the linux 'support' user sudo access.
 
+
     Attributes:
+
         result (string): Date format is in MM/DD/YYYY HH:MM:SS
     """
 
+
     # Create a mapping from Model property names to API property names
     _names = {
-        "result":'result'
+        "result":'result',
     }
-
     def __init__(self,
-                 result=None):
+                 result=None,
+            ):
+
         """Constructor for the LinuxSupportUserSudoAccessResult class"""
 
         # Initialize members of the class
         self.result = result
-
 
     @classmethod
     def from_dictionary(cls,
@@ -47,6 +49,6 @@ class LinuxSupportUserSudoAccessResult(object):
         result = dictionary.get('result')
 
         # Return an object of this model
-        return cls(result)
-
-
+        return cls(
+            result
+)

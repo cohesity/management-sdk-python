@@ -8,19 +8,21 @@ class SiteIdentity(object):
     O365 Sharepoint online Site Identity. These may be obtained by Graph/REST
     or PnP cmdlets. All fields are case insensitive.
 
+
     Attributes:
+
         id (string): Unique guid for the site in SPO. This is a unqiue
             identifier that can be used to compare sites.
         server_relativeurl (string): Optional ServerRelativeUrl. Not required.
-        title (string): Optional Title of site for display and logging
-            purpose. Not mandatory.
+        title (string): Optional Title of site for display and logging purpose.
+            Not mandatory.
         url (string): Full Url of the site. Its of the form
             https://yourtenant.sharepoint.com/sites/yoursite or
-            https://yourtenant.sharepoint.com/yoursite
-            This parameter is required for all PnP operations.
+            https://yourtenant.sharepoint.com/yoursite This parameter is
+            required for all PnP operations.
         webid (string): Unique guid for the site root web.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -28,15 +30,16 @@ class SiteIdentity(object):
         "server_relativeurl":'serverRelativeurl',
         "title":'title',
         "url":'url',
-        "webid":'webid'
+        "webid":'webid',
     }
-
     def __init__(self,
                  id=None,
                  server_relativeurl=None,
                  title=None,
                  url=None,
-                 webid=None):
+                 webid=None,
+            ):
+
         """Constructor for the SiteIdentity class"""
 
         # Initialize members of the class
@@ -45,7 +48,6 @@ class SiteIdentity(object):
         self.title = title
         self.url = url
         self.webid = webid
-
 
     @classmethod
     def from_dictionary(cls,
@@ -68,14 +70,14 @@ class SiteIdentity(object):
         id = dictionary.get('id')
         server_relativeurl = dictionary.get('serverRelativeurl')
         title = dictionary.get('title')
-        webid = dictionary.get('webid')
         url = dictionary.get('url')
+        webid = dictionary.get('webid')
 
         # Return an object of this model
-        return cls(id,
-                   server_relativeurl,
-                   title,
-                   url,
-                   webid)
-
-
+        return cls(
+            id,
+            server_relativeurl,
+            title,
+            url,
+            webid
+)

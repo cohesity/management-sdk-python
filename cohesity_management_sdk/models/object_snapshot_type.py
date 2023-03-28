@@ -1,36 +1,37 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class ObjectSnapshotType(object):
 
     """Implementation of the 'ObjectSnapshotType' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
+
         msg (string): This captures any additional message about the snapshot
             itself, e.g. if the app-consistent snapshot had to fallback to
             crash consistent, this will contain that.
-        mtype (int): TODO: type description here.
-
+        mtype (int): TODO: Type description here.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "msg":'msg',
-        "mtype":'type'
+        "mtype":'type',
     }
-
     def __init__(self,
                  msg=None,
-                 mtype=None):
+                 mtype=None,
+            ):
+
         """Constructor for the ObjectSnapshotType class"""
 
         # Initialize members of the class
         self.msg = msg
         self.mtype = mtype
-
 
     @classmethod
     def from_dictionary(cls,
@@ -54,7 +55,7 @@ class ObjectSnapshotType(object):
         mtype = dictionary.get('type')
 
         # Return an object of this model
-        return cls(msg,
-                   mtype)
-
-
+        return cls(
+            msg,
+            mtype
+)

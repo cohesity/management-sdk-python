@@ -1,34 +1,35 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class GpfsFilesystem(object):
 
     """Implementation of the 'GpfsFilesystem' model.
 
     Specifies information about filesystem in a GPFS Cluster.
 
+
     Attributes:
+
         id (string): Specifies the id of the file system.
         path (string): Specifies the path of the file system.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "id":'id',
-        "path":'path'
+        "path":'path',
     }
-
     def __init__(self,
                  id=None,
-                 path=None):
+                 path=None,
+            ):
+
         """Constructor for the GpfsFilesystem class"""
 
         # Initialize members of the class
         self.id = id
         self.path = path
-
 
     @classmethod
     def from_dictionary(cls,
@@ -52,7 +53,7 @@ class GpfsFilesystem(object):
         path = dictionary.get('path')
 
         # Return an object of this model
-        return cls(id,
-                   path)
-
-
+        return cls(
+            id,
+            path
+)

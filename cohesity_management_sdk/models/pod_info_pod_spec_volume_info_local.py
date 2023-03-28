@@ -5,22 +5,27 @@ class PodInfo_PodSpec_VolumeInfo_Local(object):
 
     """Implementation of the 'PodInfo_PodSpec_VolumeInfo_Local' model.
 
+    TODO: type description here.
+
+
     Attributes:
+
         path (string): TODO: Type description here.
     """
 
+
     # Create a mapping from Model property names to API property names
     _names = {
-        "path":'path'
+        "path":'path',
     }
-
     def __init__(self,
-                 path=None):
+                 path=None,
+            ):
+
         """Constructor for the PodInfo_PodSpec_VolumeInfo_Local class"""
 
         # Initialize members of the class
         self.path = path
-
 
     @classmethod
     def from_dictionary(cls,
@@ -43,6 +48,6 @@ class PodInfo_PodSpec_VolumeInfo_Local(object):
         path = dictionary.get('path')
 
         # Return an object of this model
-        return cls(path)
-
-
+        return cls(
+            path
+)

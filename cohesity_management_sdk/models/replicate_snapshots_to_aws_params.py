@@ -3,6 +3,7 @@
 
 import cohesity_management_sdk.models.entity_proto
 
+
 class ReplicateSnapshotsToAWSParams(object):
 
     """Implementation of the 'ReplicateSnapshotsToAWSParams' model.
@@ -10,24 +11,26 @@ class ReplicateSnapshotsToAWSParams(object):
     Params required to replicate snapshots to another AWS source. This is
     populated for AWS snapshot manager replication.
 
-    Attributes:
-        region (EntityProto): Specifies the attributes and the latest
-            statistics about an entity.
 
+    Attributes:
+
+        region (EntityProto): Name of the AWS region in which to replicate the
+            snapshots.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "region":'region'
+        "region":'region',
     }
-
     def __init__(self,
-                 region=None):
+                 region=None,
+            ):
+
         """Constructor for the ReplicateSnapshotsToAWSParams class"""
 
         # Initialize members of the class
         self.region = region
-
 
     @classmethod
     def from_dictionary(cls,
@@ -50,6 +53,6 @@ class ReplicateSnapshotsToAWSParams(object):
         region = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('region')) if dictionary.get('region') else None
 
         # Return an object of this model
-        return cls(region)
-
-
+        return cls(
+            region
+)

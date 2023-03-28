@@ -1,41 +1,42 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class AttributeValue(object):
 
     """Implementation of the 'AttributeValue' model.
 
     Represents the information about the values of attribute of the ADObject.
 
+
     Attributes:
-        flags (list of FlagEnum): Specifies the flags related to the attribute
+
+        flags (list of FlagsEnum): Specifies the flags related to the attribute
             values of the AD object. 'kError' indicates error in conversion of
             AD Object value to string. The value in the AdAttributValue
-            contains the error message. 'kTruncated' indicates the multi
-            valued attribute is truncated when value exceeded
-            'truncate_multivalues' value specified in the request. 'kCSV'
-            indicates content in 'values' is a comma separated value (CSV)
-            format of a complex object.
+            contains the error message. 'kTruncated' indicates the multi valued
+            attribute is truncated when value exceeded 'truncate_multivalues'
+            value specified in the request. 'kCSV' indicates content in
+            'values' is a comma separated value (CSV) format of a complex
+            object.
         values (list of string): Specifies list of values for the attribute.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "flags":'flags',
-        "values":'values'
+        "values":'values',
     }
-
     def __init__(self,
                  flags=None,
-                 values=None):
+                 values=None,
+            ):
+
         """Constructor for the AttributeValue class"""
 
         # Initialize members of the class
         self.flags = flags
         self.values = values
-
 
     @classmethod
     def from_dictionary(cls,
@@ -55,11 +56,11 @@ class AttributeValue(object):
             return None
 
         # Extract variables from the dictionary
-        flags = dictionary.get('flags')
-        values = dictionary.get('values')
+        flags = dictionary.get("flags")
+        values = dictionary.get("values")
 
         # Return an object of this model
-        return cls(flags,
-                   values)
-
-
+        return cls(
+            flags,
+            values
+)

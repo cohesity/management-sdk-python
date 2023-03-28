@@ -1,33 +1,37 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class TieringTaskInfo(object):
 
     """Implementation of the 'TieringTaskInfo' model.
 
+    TODO: type description here.
+
+
     Attributes:
+
         instance_id (string): Id of that particular instance.
         name (string): Name of the recovery task.
         start_time_usecs (string): Denotes the start time of the tieringtask,
             needed for deeplinking.
         task_id (string): Id of the recovery task.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "instance_id":'instanceId',
         "name":'name',
         "start_time_usecs":'startTimeUsecs',
-        "task_id":'taskId'
+        "task_id":'taskId',
     }
-
     def __init__(self,
                  instance_id=None,
                  name=None,
                  start_time_usecs=None,
-                 task_id=None):
+                 task_id=None,
+            ):
+
         """Constructor for the TieringTaskInfo class"""
 
         # Initialize members of the class
@@ -35,7 +39,6 @@ class TieringTaskInfo(object):
         self.name = name
         self.start_time_usecs = start_time_usecs
         self.task_id = task_id
-
 
     @classmethod
     def from_dictionary(cls,
@@ -61,9 +64,9 @@ class TieringTaskInfo(object):
         task_id = dictionary.get('taskId')
 
         # Return an object of this model
-        return cls(instance_id,
-                   name,
-                   start_time_usecs,
-                   task_id)
-
-
+        return cls(
+            instance_id,
+            name,
+            start_time_usecs,
+            task_id
+)

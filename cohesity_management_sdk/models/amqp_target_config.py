@@ -5,30 +5,31 @@ class AMQPTargetConfig(object):
 
     """Implementation of the 'AMQPTargetConfig' model.
 
-    Specifies the AMQP target config.
+    TODO: type description here.
+
 
     Attributes:
+
         certificate (string): Specifies the certificate.
         exchange (string): Specifies the exchange.
-        filer_id (string): Specifies the filer id.
+        filer_id (long|int): Specifies the filer id.
         password (string): Specifies the password.
         server_ip (string): Specifies the server ip.
         username (string): Specifies the username.
         virtual_host (string): Specifies the virtual host.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "certificate": 'certificate',
-        "exchange": 'exchange',
-        "filer_id": 'filerId',
+        "certificate":'certificate',
+        "exchange":'exchange',
+        "filer_id":'filerId',
         "password":'password',
         "server_ip":'serverIp',
         "username":'username',
-        "virtual_host":'virtualHost'
+        "virtual_host":'virtualHost',
     }
-
     def __init__(self,
                  certificate=None,
                  exchange=None,
@@ -36,8 +37,9 @@ class AMQPTargetConfig(object):
                  password=None,
                  server_ip=None,
                  username=None,
-                 virtual_host=None
-                 ):
+                 virtual_host=None,
+            ):
+
         """Constructor for the AMQPTargetConfig class"""
 
         # Initialize members of the class
@@ -76,12 +78,12 @@ class AMQPTargetConfig(object):
         virtual_host = dictionary.get('virtualHost')
 
         # Return an object of this model
-        return cls(certificate,
-                   exchange,
-                   filer_id,
-                   password,
-                   server_ip,
-                   username,
-                   virtual_host)
-
-
+        return cls(
+            certificate,
+            exchange,
+            filer_id,
+            password,
+            server_ip,
+            username,
+            virtual_host
+)

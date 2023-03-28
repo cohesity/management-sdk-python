@@ -1,16 +1,17 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class AdRootTopologyObject(object):
 
     """Implementation of the 'AdRootTopologyObject' model.
 
     Represents a node in AD Topology tree.
 
+
     Attributes:
-        child_objects (list of object): Specifies the array of children of
-            this object.
+
+        child_objects (list of object): Specifies the array of children of this
+            object.
         description (string): Specifies the 'description' of an object.
         dest_guid (string): Specifies the guid of matching 'source_guid' from
             production AD. This is looked up  based on source_guid or
@@ -26,8 +27,8 @@ class AdRootTopologyObject(object):
             'user','computer', 'organizationalUnit'.
         source_guid (string): Specifies the guid string of the object in AD
             snapshot database.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -38,9 +39,8 @@ class AdRootTopologyObject(object):
         "distinguished_name":'distinguishedName',
         "error_message":'errorMessage',
         "object_class":'objectClass',
-        "source_guid":'sourceGuid'
+        "source_guid":'sourceGuid',
     }
-
     def __init__(self,
                  child_objects=None,
                  description=None,
@@ -49,7 +49,9 @@ class AdRootTopologyObject(object):
                  distinguished_name=None,
                  error_message=None,
                  object_class=None,
-                 source_guid=None):
+                 source_guid=None,
+            ):
+
         """Constructor for the AdRootTopologyObject class"""
 
         # Initialize members of the class
@@ -61,7 +63,6 @@ class AdRootTopologyObject(object):
         self.error_message = error_message
         self.object_class = object_class
         self.source_guid = source_guid
-
 
     @classmethod
     def from_dictionary(cls,
@@ -81,7 +82,7 @@ class AdRootTopologyObject(object):
             return None
 
         # Extract variables from the dictionary
-        child_objects = dictionary.get('childObjects')
+        child_objects = dictionary.get("childObjects")
         description = dictionary.get('description')
         dest_guid = dictionary.get('destGuid')
         display_name = dictionary.get('displayName')
@@ -91,13 +92,13 @@ class AdRootTopologyObject(object):
         source_guid = dictionary.get('sourceGuid')
 
         # Return an object of this model
-        return cls(child_objects,
-                   description,
-                   dest_guid,
-                   display_name,
-                   distinguished_name,
-                   error_message,
-                   object_class,
-                   source_guid)
-
-
+        return cls(
+            child_objects,
+            description,
+            dest_guid,
+            display_name,
+            distinguished_name,
+            error_message,
+            object_class,
+            source_guid
+)

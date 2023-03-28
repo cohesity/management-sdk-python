@@ -4,13 +4,16 @@
 import cohesity_management_sdk.models.network_mapping
 import cohesity_management_sdk.models.org_vdc_network
 
+
 class VmwareRestoreParameters(object):
 
     """Implementation of the 'VmwareRestoreParameters' model.
 
     Specifies the information required for recovering or cloning VmWare VMs.
 
+
     Attributes:
+
         additional_datastore_ids (list of long|int): Specifies additional
             datastores where the object should be recovered to.
         attempt_differential_restore (bool): Specifies whether to attempt
@@ -23,32 +26,32 @@ class VmwareRestoreParameters(object):
             objects to a different resource pool or to a different parent
             source. If not specified, objects are recovered to their original
             datastore locations in the parent source.
-        detach_network (bool): Specifies whether the network should be
-            detached from the recovered or cloned VMs.
-        disable_network (bool): Specifies whether the network should be left
-            in disabled state. Attached network is enabled by default. Set
-            this flag to true to disable it.
-        network_id (long|int): Specifies a network configuration to be
-            attached to the cloned or recovered object. For kCloneVMs and
-            kRecoverVMs tasks, original network configuration is detached if
-            the cloned or recovered object is kept under a different parent
-            Protection Source or a different Resource Pool. By default, for
-            kRecoverVMs task, original network configuration is preserved if
-            the recovered object is kept under the same parent Protection
-            Source and the same Resource Pool. Specify this field to override
-            the preserved network configuration or to attach a new network
-            configuration to the cloned or recovered objects. You can get the
-            networkId of the kNetwork object by setting includeNetworks to
-            'true' in the GET /public/protectionSources operation. In the
-            response, get the id of the desired kNetwork object, the resource
-            pool, and the registered parent Protection Source.
-        network_mappings (list of NetworkMapping): Specifies the parameters
-            for mapping the source and target networks. This field can be used
-            if restoring to a different parent source. This will replace the
-            NetworkId and DisableNetwork that are used to provide
-            configuration for a single network. Unless the support for mapping
-            is available for all the entities old keys can be used to attach a
-            new network. Supports 'kVMware' for now.
+        detach_network (bool): Specifies whether the network should be detached
+            from the recovered or cloned VMs.
+        disable_network (bool): Specifies whether the network should be left in
+            disabled state. Attached network is enabled by default. Set this
+            flag to true to disable it.
+        network_id (long|int): Specifies a network configuration to be attached
+            to the cloned or recovered object. For kCloneVMs and kRecoverVMs
+            tasks, original network configuration is detached if the cloned or
+            recovered object is kept under a different parent Protection Source
+            or a different Resource Pool. By default, for kRecoverVMs task,
+            original network configuration is preserved if the recovered object
+            is kept under the same parent Protection Source and the same
+            Resource Pool. Specify this field to override the preserved network
+            configuration or to attach a new network configuration to the
+            cloned or recovered objects. You can get the networkId of the
+            kNetwork object by setting includeNetworks to 'true' in the GET
+            /public/protectionSources operation. In the response, get the id of
+            the desired kNetwork object, the resource pool, and the registered
+            parent Protection Source.
+        network_mappings (list of NetworkMapping): Specifies the parameters for
+            mapping the source and target networks. This field can be used if
+            restoring to a different parent source. This will replace the
+            NetworkId and DisableNetwork that are used to provide configuration
+            for a single network. Unless the support for mapping is available
+            for all the entities old keys can be used to attach a new network.
+            Supports 'kVMware' for now.
         org_vdc_network (OrgVdcNetwork): Specifies the Org VDC Network to be
             used for this recovery.
         overwrite_existing_vm (bool): Specifies whether to overwrite the
@@ -56,9 +59,9 @@ class VmwareRestoreParameters(object):
         power_off_and_rename_existing_vm (bool): Specifies whether to power off
             and rename the existing VM as deprecated for recovery when rename
             parameters are not given.
-        powered_on (bool): Specifies the power state of the cloned or
-            recovered objects. By default, the cloned or recovered objects are
-            powered off.
+        powered_on (bool): Specifies the power state of the cloned or recovered
+            objects. By default, the cloned or recovered objects are powered
+            off.
         prefix (string): Specifies a prefix to prepended to the source object
             name to derive a new name for the recovered or cloned object. By
             default, cloned or recovered objects retain their original name.
@@ -72,8 +75,8 @@ class VmwareRestoreParameters(object):
             recovery process to be performed. If unspecified, then an instant
             recovery will be performed. Specifies the recovery process type to
             be used.. 'kInstantRecovery' indicates that an instant recovery
-            should be performed. 'kCopyRecovery' indicates that a copy
-            recovery should be performed.
+            should be performed. 'kCopyRecovery' indicates that a copy recovery
+            should be performed.
         resource_pool_id (long|int): Specifies the resource pool where the
             cloned or recovered objects are attached. This field is mandatory
             for kCloneVMs Restore Tasks always. For kRecoverVMs Restore Tasks,
@@ -88,15 +91,15 @@ class VmwareRestoreParameters(object):
             object name to derive a new name for the recovered or cloned
             object. By default, cloned or recovered objects retain their
             original name. Length of this field is limited to 8 characters.
-        v_app_id (long|int): Specifies the ID of the vApp to which a VM should
+        vapp_id (long|int): Specifies the ID of the vApp to which a VM should
             be restored.
         vdc_id (long|int): Specifies the ID of the VDC to which a VM should be
             restored.
         vm_folder_id (long|int): Specifies a folder where the VMs should be
             restored. This is applicable only when the VMs are being restored
             to an alternate location or if clone is being performed.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -120,11 +123,10 @@ class VmwareRestoreParameters(object):
         "storage_profile_name":'storageProfileName',
         "storage_profile_vcd_uuid":'storageProfileVcdUuid',
         "suffix":'suffix',
-        "v_app_id":'vAppId',
+        "vapp_id":'vAppId',
         "vdc_id":'vdcId',
-        "vm_folder_id":'vmFolderId'
+        "vm_folder_id":'vmFolderId',
     }
-
     def __init__(self,
                  additional_datastore_ids=None,
                  attempt_differential_restore=None,
@@ -146,9 +148,11 @@ class VmwareRestoreParameters(object):
                  storage_profile_name=None,
                  storage_profile_vcd_uuid=None,
                  suffix=None,
-                 v_app_id=None,
+                 vapp_id=None,
                  vdc_id=None,
-                 vm_folder_id=None):
+                 vm_folder_id=None,
+            ):
+
         """Constructor for the VmwareRestoreParameters class"""
 
         # Initialize members of the class
@@ -172,10 +176,9 @@ class VmwareRestoreParameters(object):
         self.storage_profile_name = storage_profile_name
         self.storage_profile_vcd_uuid = storage_profile_vcd_uuid
         self.suffix = suffix
-        self.v_app_id = v_app_id
+        self.vapp_id = vapp_id
         self.vdc_id = vdc_id
         self.vm_folder_id = vm_folder_id
-
 
     @classmethod
     def from_dictionary(cls,
@@ -195,7 +198,7 @@ class VmwareRestoreParameters(object):
             return None
 
         # Extract variables from the dictionary
-        additional_datastore_ids = dictionary.get('additionalDatastoreIds')
+        additional_datastore_ids = dictionary.get("additionalDatastoreIds")
         attempt_differential_restore = dictionary.get('attemptDifferentialRestore')
         datastore_folder_id = dictionary.get('datastoreFolderId')
         datastore_id = dictionary.get('datastoreId')
@@ -219,33 +222,33 @@ class VmwareRestoreParameters(object):
         storage_profile_name = dictionary.get('storageProfileName')
         storage_profile_vcd_uuid = dictionary.get('storageProfileVcdUuid')
         suffix = dictionary.get('suffix')
-        v_app_id = dictionary.get('vAppId')
+        vapp_id = dictionary.get('vAppId')
         vdc_id = dictionary.get('vdcId')
         vm_folder_id = dictionary.get('vmFolderId')
 
         # Return an object of this model
-        return cls(additional_datastore_ids,
-                   attempt_differential_restore,
-                   datastore_folder_id,
-                   datastore_id,
-                   detach_network,
-                   disable_network,
-                   network_id,
-                   network_mappings,
-                   org_vdc_network,
-                   overwrite_existing_vm,
-                   power_off_and_rename_existing_vm,
-                   powered_on,
-                   prefix,
-                   preserve_custom_attributes_during_clone,
-                   preserve_tags,
-                   recovery_process_type,
-                   resource_pool_id,
-                   storage_profile_name,
-                   storage_profile_vcd_uuid,
-                   suffix,
-                   v_app_id,
-                   vdc_id,
-                   vm_folder_id)
-
-
+        return cls(
+            additional_datastore_ids,
+            attempt_differential_restore,
+            datastore_folder_id,
+            datastore_id,
+            detach_network,
+            disable_network,
+            network_id,
+            network_mappings,
+            org_vdc_network,
+            overwrite_existing_vm,
+            power_off_and_rename_existing_vm,
+            powered_on,
+            prefix,
+            preserve_custom_attributes_during_clone,
+            preserve_tags,
+            recovery_process_type,
+            resource_pool_id,
+            storage_profile_name,
+            storage_profile_vcd_uuid,
+            suffix,
+            vapp_id,
+            vdc_id,
+            vm_folder_id
+)

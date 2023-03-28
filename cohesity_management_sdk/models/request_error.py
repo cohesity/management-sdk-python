@@ -1,34 +1,35 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class RequestError(object):
 
     """Implementation of the 'RequestError' model.
 
     Details about the Error.
 
+
     Attributes:
+
         error_code (long|int): Operation response error code.
         message (string): Description of the error.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "error_code":'errorCode',
-        "message":'message'
+        "message":'message',
     }
-
     def __init__(self,
                  error_code=None,
-                 message=None):
+                 message=None,
+            ):
+
         """Constructor for the RequestError class"""
 
         # Initialize members of the class
         self.error_code = error_code
         self.message = message
-
 
     @classmethod
     def from_dictionary(cls,
@@ -52,7 +53,7 @@ class RequestError(object):
         message = dictionary.get('message')
 
         # Return an object of this model
-        return cls(error_code,
-                   message)
-
-
+        return cls(
+            error_code,
+            message
+)

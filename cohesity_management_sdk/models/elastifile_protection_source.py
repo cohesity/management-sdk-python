@@ -4,38 +4,42 @@
 import cohesity_management_sdk.models.elastifile_cluster
 import cohesity_management_sdk.models.elastifile_container
 
+
 class ElastifileProtectionSource(object):
 
     """Implementation of the 'ElastifileProtectionSource' model.
 
     Specifies a Protection Source in Elastifile environment.
 
+
     Attributes:
-        cluster (ElastifileCluster): Specifies information about a Elastifile
-            Cluster.
-        container (ElastifileContainer): Specifies information about container
-            in an Elastifile Cluster.
+
+        cluster (ElastifileCluster): Specifies information of Elastifile
+            Cluster. This is set only when the entity type is 'kCluster'.
+        container (ElastifileContainer): Specifies a container in an Elastifile
+            Cluster. This is set only when the entity type is 'kContainer'.
         name (string): Specifies a unique name of the Protection Source.
         mtype (TypeElastifileProtectionSourceEnum): Specifies the type of the
             entity in an Elastifile file system like 'kCluster', 'kContainer'.
             'kCluster' indicates an Elastifile Cluster. 'kContainer' indicates
             a container on Elastifile cluster.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "cluster":'cluster',
         "container":'container',
         "name":'name',
-        "mtype":'type'
+        "mtype":'type',
     }
-
     def __init__(self,
                  cluster=None,
                  container=None,
                  name=None,
-                 mtype=None):
+                 mtype=None,
+            ):
+
         """Constructor for the ElastifileProtectionSource class"""
 
         # Initialize members of the class
@@ -43,7 +47,6 @@ class ElastifileProtectionSource(object):
         self.container = container
         self.name = name
         self.mtype = mtype
-
 
     @classmethod
     def from_dictionary(cls,
@@ -69,9 +72,9 @@ class ElastifileProtectionSource(object):
         mtype = dictionary.get('type')
 
         # Return an object of this model
-        return cls(cluster,
-                   container,
-                   name,
-                   mtype)
-
-
+        return cls(
+            cluster,
+            container,
+            name,
+            mtype
+)

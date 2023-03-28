@@ -3,38 +3,42 @@
 
 import cohesity_management_sdk.models.credentials
 
-class MountVolumesVmwareParams(object):
+
+class MountVolumesVMwareParams(object):
 
     """Implementation of the 'MountVolumesVMwareParams' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
-        bring_disks_online (bool): Optional setting which will determine if
-            the volumes need to be onlined within the target environment after
+
+        bring_disks_online (bool): Optional setting which will determine if the
+            volumes need to be onlined within the target environment after
             attaching the disks. NOTE: If this is set to true, then
             target_entity_credentials must be specified and VMware tools must
             be installed on the VM.
-        target_entity_credentials (Credentials): Specifies credentials to
-            access a target source.
-
+        target_entity_credentials (Credentials): Credentials to access the
+            target entity such as a VM. This is not required if
+            bring_disks_online is set to false.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "bring_disks_online":'bringDisksOnline',
-        "target_entity_credentials":'targetEntityCredentials'
+        "target_entity_credentials":'targetEntityCredentials',
     }
-
     def __init__(self,
                  bring_disks_online=None,
-                 target_entity_credentials=None):
-        """Constructor for the MountVolumesVmwareParams class"""
+                 target_entity_credentials=None,
+            ):
+
+        """Constructor for the MountVolumesVMwareParams class"""
 
         # Initialize members of the class
         self.bring_disks_online = bring_disks_online
         self.target_entity_credentials = target_entity_credentials
-
 
     @classmethod
     def from_dictionary(cls,
@@ -58,7 +62,7 @@ class MountVolumesVmwareParams(object):
         target_entity_credentials = cohesity_management_sdk.models.credentials.Credentials.from_dictionary(dictionary.get('targetEntityCredentials')) if dictionary.get('targetEntityCredentials') else None
 
         # Return an object of this model
-        return cls(bring_disks_online,
-                   target_entity_credentials)
-
-
+        return cls(
+            bring_disks_online,
+            target_entity_credentials
+)

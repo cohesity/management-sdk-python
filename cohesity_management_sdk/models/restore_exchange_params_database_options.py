@@ -1,28 +1,32 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class RestoreExchangeParams_DatabaseOptions(object):
 
     """Implementation of the 'RestoreExchangeParams_DatabaseOptions' model.
 
+    TODO: type description here.
+
+
     Attributes:
-        entity_id (int): The windows machine to which the
-            database will be restored.
+
+        entity_id (long|int): The windows machine to which the database will be
+            restored.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "entity_id":'entityId'
+        "entity_id":'entityId',
     }
-
     def __init__(self,
-                 entity_id=None):
+                 entity_id=None,
+            ):
+
         """Constructor for the RestoreExchangeParams_DatabaseOptions class"""
 
         # Initialize members of the class
         self.entity_id = entity_id
-
 
     @classmethod
     def from_dictionary(cls,
@@ -45,6 +49,6 @@ class RestoreExchangeParams_DatabaseOptions(object):
         entity_id = dictionary.get('entityId')
 
         # Return an object of this model
-        return cls(entity_id)
-
-
+        return cls(
+            entity_id
+)

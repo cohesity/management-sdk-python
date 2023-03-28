@@ -3,13 +3,16 @@
 
 import cohesity_management_sdk.models.antivirus_service_config_params
 
+
 class UpdateAntivirusServiceGroupParams(object):
 
     """Implementation of the 'UpdateAntivirusServiceGroupParams' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
+
         antivirus_services (list of AntivirusServiceConfigParams): Specifies
             the Antivirus services for this provider.
         description (string): Specifies the description of the Antivirus
@@ -18,24 +21,25 @@ class UpdateAntivirusServiceGroupParams(object):
         is_enabled (bool): Specifies whether the antivirus service group is
             enabled or not.
         name (string): Specifies the name of the Antivirus service group.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "id":'id',
-        "name":'name',
         "antivirus_services":'antivirusServices',
         "description":'description',
-        "is_enabled":'isEnabled'
+        "id":'id',
+        "is_enabled":'isEnabled',
+        "name":'name',
     }
-
     def __init__(self,
-                 id=None,
-                 name=None,
                  antivirus_services=None,
                  description=None,
-                 is_enabled=None):
+                 id=None,
+                 is_enabled=None,
+                 name=None,
+            ):
+
         """Constructor for the UpdateAntivirusServiceGroupParams class"""
 
         # Initialize members of the class
@@ -44,7 +48,6 @@ class UpdateAntivirusServiceGroupParams(object):
         self.id = id
         self.is_enabled = is_enabled
         self.name = name
-
 
     @classmethod
     def from_dictionary(cls,
@@ -64,21 +67,21 @@ class UpdateAntivirusServiceGroupParams(object):
             return None
 
         # Extract variables from the dictionary
-        id = dictionary.get('id')
-        name = dictionary.get('name')
         antivirus_services = None
         if dictionary.get('antivirusServices') != None:
             antivirus_services = list()
             for structure in dictionary.get('antivirusServices'):
                 antivirus_services.append(cohesity_management_sdk.models.antivirus_service_config_params.AntivirusServiceConfigParams.from_dictionary(structure))
         description = dictionary.get('description')
+        id = dictionary.get('id')
         is_enabled = dictionary.get('isEnabled')
+        name = dictionary.get('name')
 
         # Return an object of this model
-        return cls(id,
-                   name,
-                   antivirus_services,
-                   description,
-                   is_enabled)
-
-
+        return cls(
+            antivirus_services,
+            description,
+            id,
+            is_enabled,
+            name
+)

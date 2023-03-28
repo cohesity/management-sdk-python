@@ -3,30 +3,33 @@
 
 import cohesity_management_sdk.models.update_protection_job_run
 
+
 class UpdateProtectionJobRunsParam(object):
 
     """Implementation of the 'UpdateProtectionJobRunsParam' model.
 
     Specifies the Job Runs to update with a new expiration times.
 
-    Attributes:
-        job_runs (list of UpdateProtectionJobRun): Array of Job Runs.
-            Specifies the Job Runs to update with a new expiration times.
 
+    Attributes:
+
+        job_runs (list of UpdateProtectionJobRun): Array of Job Runs. 
+            Specifies the Job Runs to update with a new expiration times.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "job_runs":'jobRuns'
+        "job_runs":'jobRuns',
     }
-
     def __init__(self,
-                 job_runs=None):
+                 job_runs=None,
+            ):
+
         """Constructor for the UpdateProtectionJobRunsParam class"""
 
         # Initialize members of the class
         self.job_runs = job_runs
-
 
     @classmethod
     def from_dictionary(cls,
@@ -53,6 +56,6 @@ class UpdateProtectionJobRunsParam(object):
                 job_runs.append(cohesity_management_sdk.models.update_protection_job_run.UpdateProtectionJobRun.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(job_runs)
-
-
+        return cls(
+            job_runs
+)

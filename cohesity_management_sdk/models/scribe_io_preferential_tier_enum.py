@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-class ScribeIOPreferentialTierEnum(object):
+class ScribeIoPreferentialTierEnum(object):
 
-    """Implementation of the 'ScribeIOPreferentialTier' enum.
+    """Implementation of the 'ScribeIoPreferentialTier' enum.
+    Specifies the list of perferred storage tiers used by Scribe.
 
-    TODO: type enum description here.
 
     Attributes:
         KPCIESSD: TODO: type description here.
@@ -22,4 +22,3 @@ class ScribeIOPreferentialTierEnum(object):
     KSATAHDD = 'kSataHdd'
 
     KCLOUD = 'kCloud'
-

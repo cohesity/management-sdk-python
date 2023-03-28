@@ -1,29 +1,29 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-import cohesity_management_sdk.models.protection_source
-import cohesity_management_sdk.models.protection_run_instance
 import cohesity_management_sdk.models.protection_policy
+import cohesity_management_sdk.models.protection_run_instance
+import cohesity_management_sdk.models.protection_source
+
 
 class ProtectionObjectSummary(object):
 
     """Implementation of the 'ProtectionObjectSummary' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
+
         latest_archival_snapshot_time_usecs (long|int): Specifies the Unix
-            epoch Timestamp (in microseconds) of the latest Archival
-            Snapshot.
+            epoch Timestamp (in microseconds) of the latest Archival Snapshot.
         latest_local_snapshot_time_usecs (long|int): Specifies the Unix epoch
             Timestamp (in microseconds) of the latest Local Snapshot.
         latest_replication_snapshot_time_usecs (long|int): Specifies the Unix
             epoch Timestamp (in microseconds) of the latest Replication
             Snapshot.
-        parent_protection_source (ProtectionSource): Specifies a generic
-            structure that represents a node in the Protection Source tree.
-            Node details will depend on the environment of the Protection
-            Source.
+        parent_protection_source (ProtectionSource): Specifies the parent
+            Protection Source object such as vCenter.
         protection_jobs (list of ProtectionRunInstance): Returns the list of
             Protection Jobs with summary Information.
         protection_source (ProtectionSource): Specifies the leaf Protection
@@ -36,8 +36,8 @@ class ProtectionObjectSummary(object):
             Snapshots.
         total_replication_snapshots (int): Specifies the total number of
             Replication Snapshots.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -50,9 +50,8 @@ class ProtectionObjectSummary(object):
         "rpo_policies":'rpoPolicies',
         "total_archival_snapshots":'totalArchivalSnapshots',
         "total_local_snapshots":'totalLocalSnapshots',
-        "total_replication_snapshots":'totalReplicationSnapshots'
+        "total_replication_snapshots":'totalReplicationSnapshots',
     }
-
     def __init__(self,
                  latest_archival_snapshot_time_usecs=None,
                  latest_local_snapshot_time_usecs=None,
@@ -63,7 +62,9 @@ class ProtectionObjectSummary(object):
                  rpo_policies=None,
                  total_archival_snapshots=None,
                  total_local_snapshots=None,
-                 total_replication_snapshots=None):
+                 total_replication_snapshots=None,
+            ):
+
         """Constructor for the ProtectionObjectSummary class"""
 
         # Initialize members of the class
@@ -77,7 +78,6 @@ class ProtectionObjectSummary(object):
         self.total_archival_snapshots = total_archival_snapshots
         self.total_local_snapshots = total_local_snapshots
         self.total_replication_snapshots = total_replication_snapshots
-
 
     @classmethod
     def from_dictionary(cls,
@@ -117,15 +117,15 @@ class ProtectionObjectSummary(object):
         total_replication_snapshots = dictionary.get('totalReplicationSnapshots')
 
         # Return an object of this model
-        return cls(latest_archival_snapshot_time_usecs,
-                   latest_local_snapshot_time_usecs,
-                   latest_replication_snapshot_time_usecs,
-                   parent_protection_source,
-                   protection_jobs,
-                   protection_source,
-                   rpo_policies,
-                   total_archival_snapshots,
-                   total_local_snapshots,
-                   total_replication_snapshots)
-
-
+        return cls(
+            latest_archival_snapshot_time_usecs,
+            latest_local_snapshot_time_usecs,
+            latest_replication_snapshot_time_usecs,
+            parent_protection_source,
+            protection_jobs,
+            protection_source,
+            rpo_policies,
+            total_archival_snapshots,
+            total_local_snapshots,
+            total_replication_snapshots
+)

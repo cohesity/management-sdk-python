@@ -3,25 +3,27 @@
 
 import cohesity_management_sdk.models.backup_run
 import cohesity_management_sdk.models.copy_run
+import cohesity_management_sdk.models.protection_shell_info
 import cohesity_management_sdk.models.universal_id
+
 
 class ProtectionRunInstance(object):
 
     """Implementation of the 'ProtectionRunInstance' model.
 
-    Specifies the status of one Job Run.
-    A Job Run can have one Backup Run and zero or more Copy Runs.
+    Specifies the status of one Job Run. A Job Run can have one Backup Run and
+    zero or more Copy Runs.
+
 
     Attributes:
-        backup_run (BackupRun): Specifies details about the Backup task for a
-            Job Run. A Backup task captures the original backup snapshots for
-            each Protection Source in the Job.
-        copy_run (list of CopyRun): Array of Copy Run Tasks.  Specifies
-            details about the Copy tasks of this Job Run. A Copy task copies
-            the captured snapshots to an external target or a Remote Cohesity
+
+        backup_run (BackupRun): Specifies details about the Backup task. A
+            Backup task captures the original backup snapshots.
+        copy_run (list of CopyRun): Array of Copy Run Tasks.  Specifies details
+            about the Copy tasks of this Job Run. A Copy task copies the
+            captured snapshots to an external target or a Remote Cohesity
             Cluster.
-        job_id (long|int): Specifies the id of the Protection Job that was
-            run.
+        job_id (long|int): Specifies the id of the Protection Job that was run.
         job_name (string): Specifies the name of the Protection Job name that
             was run.
         job_uid (UniversalId): Specifies the globally unique id of the
@@ -32,8 +34,8 @@ class ProtectionRunInstance(object):
         view_box_id (long|int): Specifies the Storage Domain (View Box) to
             store the backed up data. Specify the id of the Storage Domain
             (View Box).
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -42,16 +44,19 @@ class ProtectionRunInstance(object):
         "job_id":'jobId',
         "job_name":'jobName',
         "job_uid":'jobUid',
-        "view_box_id":'viewBoxId'
+        "protection_shell_info":'protectionShellInfo',
+        "view_box_id":'viewBoxId',
     }
-
     def __init__(self,
                  backup_run=None,
                  copy_run=None,
                  job_id=None,
                  job_name=None,
                  job_uid=None,
-                 view_box_id=None):
+                 protection_shell_info=None,
+                 view_box_id=None,
+            ):
+
         """Constructor for the ProtectionRunInstance class"""
 
         # Initialize members of the class
@@ -60,8 +65,8 @@ class ProtectionRunInstance(object):
         self.job_id = job_id
         self.job_name = job_name
         self.job_uid = job_uid
+        self.protection_shell_info = protection_shell_info
         self.view_box_id = view_box_id
-
 
     @classmethod
     def from_dictionary(cls,
@@ -90,14 +95,16 @@ class ProtectionRunInstance(object):
         job_id = dictionary.get('jobId')
         job_name = dictionary.get('jobName')
         job_uid = cohesity_management_sdk.models.universal_id.UniversalId.from_dictionary(dictionary.get('jobUid')) if dictionary.get('jobUid') else None
+        protection_shell_info = cohesity_management_sdk.models.protection_shell_info.ProtectionShellInfo.from_dictionary(dictionary.get('protectionShellInfo')) if dictionary.get('protectionShellInfo') else None
         view_box_id = dictionary.get('viewBoxId')
 
         # Return an object of this model
-        return cls(backup_run,
-                   copy_run,
-                   job_id,
-                   job_name,
-                   job_uid,
-                   view_box_id)
-
-
+        return cls(
+            backup_run,
+            copy_run,
+            job_id,
+            job_name,
+            job_uid,
+            protection_shell_info,
+            view_box_id
+)

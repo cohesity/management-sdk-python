@@ -3,25 +3,21 @@
 
 class TypeGcpProtectionSourceEnum(object):
 
-    """Implementation of the 'Type_GcpProtectionSource' enum.
+    """Implementation of the 'TypeGcpProtectionSource' enum.
+    Specifies the type of an GCP Protection Source Object such as 'kIAMUser',
+    'kProject', 'kRegion', etc. Specifies the type of a GCP source entity.
+    'kIAMUser' indicates a unique user within a GCP account. 'kProject'
+    represents compute resources and storage. 'kRegion' indicates a
+    geographical region in the global infrastructure. 'kAvailabilityZone'
+    indicates an availability zone within a region. 'kVirtualMachine' indicates
+    a Virtual Machine running in GCP environment. 'kVPC' indicates a virtual
+    private cloud (VPC) network within GCP. 'kSubnet' indicates a subnet inside
+    the VPC. 'kNetworkSecurityGroup' represents a network security group.
+    'kInstanceType' represents various machine types. 'kLabel' represents a
+    label present on the instances. 'kMetaData' represents a custom metadata
+    present on instances. 'kTag' represents a network tag on instances.
+    'kVPCConnector' represents a VPC connector used for serverless VPC access.
 
-    Specifies the type of an GCP Protection Source Object such as
-    'kIAMUser', 'kProject', 'kRegion', etc.
-    Specifies the type of a GCP source entity.
-    'kIAMUser' indicates a unique user within a GCP account.
-    'kProject' represents compute resources and storage.
-    'kRegion' indicates a geographical region in the global infrastructure.
-    'kAvailabilityZone' indicates an availability zone within a region.
-    'kVirtualMachine' indicates a Virtual Machine running in GCP environment.
-    'kVPC' indicates a virtual private cloud (VPC) network within GCP.
-    'kSubnet' indicates a subnet inside the VPC.
-    'kNetworkSecurityGroup' represents a network security group.
-    'kInstanceType' represents various machine types.
-    'kLabel' represents a label present on the instances.
-    'kMetaData' represents a custom metadata present on instances.
-    'kTag' represents a network tag on instances.
-    'kVPCConnector' represents a VPC connector used for serverless VPC
-    access.
 
     Attributes:
         KIAMUSER: TODO: type description here.
@@ -65,4 +61,3 @@ class TypeGcpProtectionSourceEnum(object):
     KTAG = 'kTag'
 
     KVPCCONNECTOR = 'kVPCConnector'
-

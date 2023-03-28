@@ -1,38 +1,39 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class AWSFleetParams_NetworkParams(object):
 
     """Implementation of the 'AWSFleetParams_NetworkParams' model.
 
-    Network params for the fleet.
+    TODO: type description here.
+
 
     Attributes:
+
         region (string): Region for the VM.
         subnet (string): Subnet for the VM.
         vpc (string): VPC for the VM.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "region": 'region',
-        "subnet": 'subnet',
-        "vpc": 'vpc'
+        "region":'region',
+        "subnet":'subnet',
+        "vpc":'vpc',
     }
-
     def __init__(self,
                  region=None,
                  subnet=None,
-                 vpc=None):
+                 vpc=None,
+            ):
+
         """Constructor for the AWSFleetParams_NetworkParams class"""
 
         # Initialize members of the class
         self.region = region
         self.subnet = subnet
         self.vpc = vpc
-
 
     @classmethod
     def from_dictionary(cls,
@@ -53,12 +54,12 @@ class AWSFleetParams_NetworkParams(object):
 
         # Extract variables from the dictionary
         region = dictionary.get('region')
-        subnet = dictionary.get('subnet', None)
-        vpc = dictionary.get('vpc', None)
+        subnet = dictionary.get('subnet')
+        vpc = dictionary.get('vpc')
 
         # Return an object of this model
-        return cls(region,
-                   subnet,
-                   vpc)
-
-
+        return cls(
+            region,
+            subnet,
+            vpc
+)

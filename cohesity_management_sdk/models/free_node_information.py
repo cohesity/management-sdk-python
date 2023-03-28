@@ -1,16 +1,17 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class FreeNodeInformation(object):
 
     """Implementation of the 'FreeNodeInformation' model.
 
     Specifies the Metadata of a free Node on the network.
 
+
     Attributes:
-        chassis_serial (string): Specifies the serial number of the Chassis
-            the Node is installed in.
+
+        chassis_serial (string): Specifies the serial number of the Chassis the
+            Node is installed in.
         connected_to (bool): Specifies whether or not this is the Node that is
             sending the response.
         hostname (string): Free node hostname.
@@ -31,8 +32,8 @@ class FreeNodeInformation(object):
             installed in.
         software_version (string): Specifies the version of the software
             installed on the Node.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -48,9 +49,8 @@ class FreeNodeInformation(object):
         "num_slots_in_chassis":'numSlotsInChassis',
         "product_model":'productModel',
         "slot_number":'slotNumber',
-        "software_version":'softwareVersion'
+        "software_version":'softwareVersion',
     }
-
     def __init__(self,
                  chassis_serial=None,
                  connected_to=None,
@@ -64,7 +64,9 @@ class FreeNodeInformation(object):
                  num_slots_in_chassis=None,
                  product_model=None,
                  slot_number=None,
-                 software_version=None):
+                 software_version=None,
+            ):
+
         """Constructor for the FreeNodeInformation class"""
 
         # Initialize members of the class
@@ -81,7 +83,6 @@ class FreeNodeInformation(object):
         self.product_model = product_model
         self.slot_number = slot_number
         self.software_version = software_version
-
 
     @classmethod
     def from_dictionary(cls,
@@ -107,27 +108,27 @@ class FreeNodeInformation(object):
         id = dictionary.get('id')
         ip = dictionary.get('ip')
         ipmi_ip = dictionary.get('ipmiIp')
-        ips = dictionary.get('ips')
+        ips = dictionary.get("ips")
         node_serial = dictionary.get('nodeSerial')
         node_ui_slot = dictionary.get('nodeUiSlot')
         num_slots_in_chassis = dictionary.get('numSlotsInChassis')
-        product_model = dictionary.get('productModel', None)
+        product_model = dictionary.get('productModel')
         slot_number = dictionary.get('slotNumber')
         software_version = dictionary.get('softwareVersion')
 
         # Return an object of this model
-        return cls(chassis_serial,
-                   connected_to,
-                   hostname,
-                   id,
-                   ip,
-                   ipmi_ip,
-                   ips,
-                   node_serial,
-                   node_ui_slot,
-                   num_slots_in_chassis,
-                   product_model,
-                   slot_number,
-                   software_version)
-
-
+        return cls(
+            chassis_serial,
+            connected_to,
+            hostname,
+            id,
+            ip,
+            ipmi_ip,
+            ips,
+            node_serial,
+            node_ui_slot,
+            num_slots_in_chassis,
+            product_model,
+            slot_number,
+            software_version
+)

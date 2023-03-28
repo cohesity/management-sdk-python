@@ -1,24 +1,27 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class PodInfo_PodSpec_VolumeInfo_EmptyDir(object):
 
     """Implementation of the 'PodInfo_PodSpec_VolumeInfo_EmptyDir' model.
 
+    TODO: type description here.
+
+
     Attributes:
+
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
     }
+    def __init__(self,
+            ):
 
-    def __init__(self):
         """Constructor for the PodInfo_PodSpec_VolumeInfo_EmptyDir class"""
 
         # Initialize members of the class
-        pass
-
 
     @classmethod
     def from_dictionary(cls,
@@ -37,7 +40,9 @@ class PodInfo_PodSpec_VolumeInfo_EmptyDir(object):
         if dictionary is None:
             return None
 
+        # Extract variables from the dictionary
+
         # Return an object of this model
-        return cls()
+        return cls(
 
-
+)

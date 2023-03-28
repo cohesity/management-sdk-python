@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-import cohesity_management_sdk.models.universal_id
 import cohesity_management_sdk.models.remote_protection_job_run_instance
+import cohesity_management_sdk.models.universal_id
+
 
 class RemoteProtectionJobRunInformation(object):
 
@@ -10,7 +11,9 @@ class RemoteProtectionJobRunInformation(object):
 
     Specifies details about a Protection Job Runs (Snapshots).
 
+
     Attributes:
+
         cluster_name (string): Specifies the name of the original Cluster that
             archived the data to the Vault.
         environment (EnvironmentRemoteProtectionJobRunInformationEnum):
@@ -30,7 +33,7 @@ class RemoteProtectionJobRunInformation(object):
             Source environment. 'kAgent' indicates the Agent Protection Source
             environment. 'kGenericNas' indicates the Generic Network Attached
             Storage Protection Source environment. 'kAcropolis' indicates the
-            Acropolis Protection Source environment. 'kPhsicalFiles' indicates
+            Acropolis Protection Source environment. 'kPhysicalFiles' indicates
             the Physical Files Protection Source environment. 'kIsilon'
             indicates the Dell EMC's Isilon Protection Source environment.
             'kGPFS' indicates IBM's GPFS Protection Source environment. 'kKVM'
@@ -57,17 +60,26 @@ class RemoteProtectionJobRunInformation(object):
             indicates Couchbase Protection Source environment. 'kHdfs'
             indicates Hdfs Protection Source environment. 'kHive' indicates
             Hive Protection Source environment. 'kHBase' indicates HBase
+            Protection Source environment. 'kUDA' indicates Universal Data
+            Adapter Protection Source environment. 'kO365Teams' indicates the
+            Office365 Teams Protection Source environment. 'kO365Group'
+            indicates the Office365 Groups Protection Source environment.
+            'kO365Exchange' indicates the Office365 Mailbox Protection Source
+            environment. 'kO365OneDrive' indicates the Office365 OneDrive
+            Protection Source environment. 'kO365Sharepoint' indicates the
+            Office365 SharePoint Protection Source environment.
+            'kO365PublicFolders' indicates the Office365 PublicFolders
             Protection Source environment.
         job_name (string): Specifies the name of the Protection Job on the
             original Cluster.
-        job_uid (UniversalId): Specifies the globally unique id of the
-            original Protection Job that archived the data to the Vault. This
-            id is assigned by the original Cluster that archived the data.
+        job_uid (UniversalId): Specifies the globally unique id of the original
+            Protection Job that archived the data to the Vault. This id is
+            assigned by the original Cluster that archived the data.
         protection_job_runs (list of RemoteProtectionJobRunInstance): Array of
             Protection Job Run Details.  Specifies the list of Protection Job
             Runs (Snapshot) details for a Protection Job archived to a Vault.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -75,15 +87,16 @@ class RemoteProtectionJobRunInformation(object):
         "environment":'environment',
         "job_name":'jobName',
         "job_uid":'jobUid',
-        "protection_job_runs":'protectionJobRuns'
+        "protection_job_runs":'protectionJobRuns',
     }
-
     def __init__(self,
                  cluster_name=None,
                  environment=None,
                  job_name=None,
                  job_uid=None,
-                 protection_job_runs=None):
+                 protection_job_runs=None,
+            ):
+
         """Constructor for the RemoteProtectionJobRunInformation class"""
 
         # Initialize members of the class
@@ -92,7 +105,6 @@ class RemoteProtectionJobRunInformation(object):
         self.job_name = job_name
         self.job_uid = job_uid
         self.protection_job_runs = protection_job_runs
-
 
     @classmethod
     def from_dictionary(cls,
@@ -123,10 +135,10 @@ class RemoteProtectionJobRunInformation(object):
                 protection_job_runs.append(cohesity_management_sdk.models.remote_protection_job_run_instance.RemoteProtectionJobRunInstance.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(cluster_name,
-                   environment,
-                   job_name,
-                   job_uid,
-                   protection_job_runs)
-
-
+        return cls(
+            cluster_name,
+            environment,
+            job_name,
+            job_uid,
+            protection_job_runs
+)

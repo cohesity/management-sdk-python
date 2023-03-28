@@ -1,25 +1,26 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class MapReduceInstance_RunInfo(object):
 
     """Implementation of the 'MapReduceInstance_RunInfo' model.
 
-    Stores the progress of run of this instance.
+    TODO: type description here.
+
 
     Attributes:
+
         end_time (long|int): Time when map redcue job completed.
         error_message (string): If this run failed, then error message for
             failure.
-        execution_start_time_usecs (long|int):  Time (in usecs) when job was
+        execution_start_time_usecs (long|int): Time (in usecs) when job was
             picked up for execution.
-        files_processed (long|int): Number of files processed in this run.
+        files_processed (int): Number of files processed in this run.
         map_done_time_usecs (long|int): Time (in usecs) when map tasks were
             done.
-        map_input_bytes (long|int): Total size of data processed by this run
-            in bytes.
-        mappers_spawned (long|int):Number of mappers spawned till now.
+        map_input_bytes (long|int): Total size of data processed by this run in
+            bytes.
+        mappers_spawned (int): Number of mappers spawned till now.
         num_map_outputs (long|int): Number of outputs from mappers.
         num_reduce_outputs (long|int): Number of outputs from reducers.
         percentage_completion (float): Percentage completion of this run so
@@ -28,16 +29,15 @@ class MapReduceInstance_RunInfo(object):
             completed.
         percentage_reducer_completion (float): Percentage of reducer phase
             completed.
-        reducers_spawned (int|long): Number of reducers spawned till now.
-        remaining_time_mins (int|long):  Expected remaining time in minutes
-            for completion of this run.
-        start_time (int|long): Time when map reduce job was started by user.
-        status (int|long): Status of this run.
-        total_num_mappers (int|long): Total number of mappers to be spawned.
-        total_num_reducers (int|long): Specifies the View name where this
-            object is stored.
-
+        reducers_spawned (int): Number of reducers spawned till now.
+        remaining_time_mins (int): Expected remaining time in minutes for
+            completion of this run.
+        start_time (long|int): Time when map reduce job was started by user.
+        status (int): Status of this run.
+        total_num_mappers (int): Total number of mappers to be spawned.
+        total_num_reducers (int): Total number of reducers to be spawned.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -58,9 +58,8 @@ class MapReduceInstance_RunInfo(object):
         "start_time":'startTime',
         "status":'status',
         "total_num_mappers":'totalNumMappers',
-        "total_num_reducers":'totalNumReducers'
+        "total_num_reducers":'totalNumReducers',
     }
-
     def __init__(self,
                  end_time=None,
                  error_message=None,
@@ -79,7 +78,9 @@ class MapReduceInstance_RunInfo(object):
                  start_time=None,
                  status=None,
                  total_num_mappers=None,
-                 total_num_reducers=None):
+                 total_num_reducers=None,
+            ):
+
         """Constructor for the MapReduceInstance_RunInfo class"""
 
         # Initialize members of the class
@@ -101,7 +102,6 @@ class MapReduceInstance_RunInfo(object):
         self.status = status
         self.total_num_mappers = total_num_mappers
         self.total_num_reducers = total_num_reducers
-
 
     @classmethod
     def from_dictionary(cls,
@@ -141,23 +141,23 @@ class MapReduceInstance_RunInfo(object):
         total_num_reducers = dictionary.get('totalNumReducers')
 
         # Return an object of this model
-        return cls(end_time,
-                   error_message,
-                   execution_start_time_usecs,
-                   files_processed,
-                   map_done_time_usecs,
-                   map_input_bytes,
-                   mappers_spawned,
-                   num_map_outputs,
-                   num_reduce_outputs,
-                   percentage_completion,
-                   percentage_mapper_completion,
-                   percentage_reducer_completion,
-                   reducers_spawned,
-                   remaining_time_mins,
-                   start_time,
-                   status,
-                   total_num_mappers,
-                   total_num_reducers)
-
-
+        return cls(
+            end_time,
+            error_message,
+            execution_start_time_usecs,
+            files_processed,
+            map_done_time_usecs,
+            map_input_bytes,
+            mappers_spawned,
+            num_map_outputs,
+            num_reduce_outputs,
+            percentage_completion,
+            percentage_mapper_completion,
+            percentage_reducer_completion,
+            reducers_spawned,
+            remaining_time_mins,
+            start_time,
+            status,
+            total_num_mappers,
+            total_num_reducers
+)

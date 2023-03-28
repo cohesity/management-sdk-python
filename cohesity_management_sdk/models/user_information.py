@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-import cohesity_management_sdk.models.key_value_pair
 import cohesity_management_sdk.models.cluster_config_proto_sid
+import cohesity_management_sdk.models.key_value_pair
+
 
 class UserInformation(object):
 
@@ -14,7 +15,9 @@ class UserInformation(object):
     tenant_id are specified then an intersection of respective results should
     be returned.
 
+
     Attributes:
+
         include_subtenant_objects (bool): Whether objects owned by subtenants
             should be returned. This would require a prefix search with the
             passed tenant_id. All tenants are considered sub-tenants of the
@@ -28,29 +31,30 @@ class UserInformation(object):
             associating a Pulse Task with user SID and later Pulse can be
             searched by client specified Sid to get all finished tasks for the
             logged in user.
-        sid_vec (list of ClusterConfigProtoSID): If specified, only the
+        sid_vec (list of ClusterConfigProto_SID): If specified, only the
             objects associated with these SIDs should be returned.
         tenant_id_vec (list of string): If specified, only the objects
             associated with this tenant should be returned. A given tenant ID
             is always a prefix of the ids of its subtenants. Eg. if tenant_id
-            of cluster admin is empty string then it will be a prefix match
-            for all the tenants on the cluster.
-
+            of cluster admin is empty string then it will be a prefix match for
+            all the tenants on the cluster.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "include_subtenant_objects":'includeSubtenantObjects',
         "pulse_attribute_vec":'pulseAttributeVec',
         "sid_vec":'sidVec',
-        "tenant_id_vec":'tenantIdVec'
+        "tenant_id_vec":'tenantIdVec',
     }
-
     def __init__(self,
                  include_subtenant_objects=None,
                  pulse_attribute_vec=None,
                  sid_vec=None,
-                 tenant_id_vec=None):
+                 tenant_id_vec=None,
+            ):
+
         """Constructor for the UserInformation class"""
 
         # Initialize members of the class
@@ -58,7 +62,6 @@ class UserInformation(object):
         self.pulse_attribute_vec = pulse_attribute_vec
         self.sid_vec = sid_vec
         self.tenant_id_vec = tenant_id_vec
-
 
     @classmethod
     def from_dictionary(cls,
@@ -88,13 +91,13 @@ class UserInformation(object):
         if dictionary.get('sidVec') != None:
             sid_vec = list()
             for structure in dictionary.get('sidVec'):
-                sid_vec.append(cohesity_management_sdk.models.cluster_config_proto_sid.ClusterConfigProtoSID.from_dictionary(structure))
-        tenant_id_vec = dictionary.get('tenantIdVec')
+                sid_vec.append(cohesity_management_sdk.models.cluster_config_proto_sid.ClusterConfigProto_SID.from_dictionary(structure))
+        tenant_id_vec = dictionary.get("tenantIdVec")
 
         # Return an object of this model
-        return cls(include_subtenant_objects,
-                   pulse_attribute_vec,
-                   sid_vec,
-                   tenant_id_vec)
-
-
+        return cls(
+            include_subtenant_objects,
+            pulse_attribute_vec,
+            sid_vec,
+            tenant_id_vec
+)

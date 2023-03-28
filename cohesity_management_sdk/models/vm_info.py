@@ -3,35 +3,38 @@
 
 import cohesity_management_sdk.models.node_port
 
+
 class VmInfo(object):
 
     """Implementation of the 'VmInfo' model.
 
     VmInfo specifies information of a VM.
 
+
     Attributes:
+
         health_detail (string): Specifies the reason if vm is unhealthy.
         health_status (int): Specifies the current health status of the app
             instance.
         name (string): Specifies name of the VM.
-        node_ports (list of NodePort): Specifies nodeports assigned to the
-            vm.
-
+        node_ports (list of NodePort): Specifies nodeports assigned to the vm.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "health_detail":'healthDetail',
         "health_status":'healthStatus',
         "name":'name',
-        "node_ports":'nodePorts'
+        "node_ports":'nodePorts',
     }
-
     def __init__(self,
                  health_detail=None,
                  health_status=None,
                  name=None,
-                 node_ports=None):
+                 node_ports=None,
+            ):
+
         """Constructor for the VmInfo class"""
 
         # Initialize members of the class
@@ -39,7 +42,6 @@ class VmInfo(object):
         self.health_status = health_status
         self.name = name
         self.node_ports = node_ports
-
 
     @classmethod
     def from_dictionary(cls,
@@ -69,9 +71,9 @@ class VmInfo(object):
                 node_ports.append(cohesity_management_sdk.models.node_port.NodePort.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(health_detail,
-                   health_status,
-                   name,
-                   node_ports)
-
-
+        return cls(
+            health_detail,
+            health_status,
+            name,
+            node_ports
+)

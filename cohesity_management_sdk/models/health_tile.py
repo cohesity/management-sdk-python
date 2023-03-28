@@ -3,16 +3,18 @@
 
 import cohesity_management_sdk.models.alert
 
+
 class HealthTile(object):
 
     """Implementation of the 'HealthTile' model.
 
     Health for Dashboard.
 
+
     Attributes:
+
         capacity_bytes (long|int): Raw Cluster Capacity in Bytes. This is not
-            usable capacity and does not take replication factor into
-            account.
+            usable capacity and does not take replication factor into account.
         cluster_cloud_usage_bytes (long|int): Usage in Bytes on the cloud.
         last_day_alerts (list of Alert): Alerts in last 24 hours.
         last_day_num_criticals (long|int): Number of Critical Alerts.
@@ -22,8 +24,8 @@ class HealthTile(object):
             unhealthy.
         percent_full (float): Percent the cluster is full.
         raw_used_bytes (long|int): Raw Bytes used in the cluster.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -35,9 +37,8 @@ class HealthTile(object):
         "num_nodes":'numNodes',
         "num_nodes_with_issues":'numNodesWithIssues',
         "percent_full":'percentFull',
-        "raw_used_bytes":'rawUsedBytes'
+        "raw_used_bytes":'rawUsedBytes',
     }
-
     def __init__(self,
                  capacity_bytes=None,
                  cluster_cloud_usage_bytes=None,
@@ -47,7 +48,9 @@ class HealthTile(object):
                  num_nodes=None,
                  num_nodes_with_issues=None,
                  percent_full=None,
-                 raw_used_bytes=None):
+                 raw_used_bytes=None,
+            ):
+
         """Constructor for the HealthTile class"""
 
         # Initialize members of the class
@@ -60,7 +63,6 @@ class HealthTile(object):
         self.num_nodes_with_issues = num_nodes_with_issues
         self.percent_full = percent_full
         self.raw_used_bytes = raw_used_bytes
-
 
     @classmethod
     def from_dictionary(cls,
@@ -95,14 +97,14 @@ class HealthTile(object):
         raw_used_bytes = dictionary.get('rawUsedBytes')
 
         # Return an object of this model
-        return cls(capacity_bytes,
-                   cluster_cloud_usage_bytes,
-                   last_day_alerts,
-                   last_day_num_criticals,
-                   last_day_num_warnings,
-                   num_nodes,
-                   num_nodes_with_issues,
-                   percent_full,
-                   raw_used_bytes)
-
-
+        return cls(
+            capacity_bytes,
+            cluster_cloud_usage_bytes,
+            last_day_alerts,
+            last_day_num_criticals,
+            last_day_num_warnings,
+            num_nodes,
+            num_nodes_with_issues,
+            percent_full,
+            raw_used_bytes
+)

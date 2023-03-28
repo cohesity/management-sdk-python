@@ -1,47 +1,36 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-import cohesity_management_sdk.models.links
-
 class Domain(object):
 
     """Implementation of the 'Domain' model.
 
-    Keystone domain proto.
+    Specifies a domain and its trusted domains.
+
 
     Attributes:
-        description (string): TODO: Type description here.
-        enabled (bool): TODO: Type description here.
-        id (string): TODO: Type description here.
-        links (Links): Links to the domain resource.
-        name (string): TODO: Type description here.
 
+        domain_name (string): Specifies the domain name.
+        trusted_domains (list of string): Specifies a list of trusted domains
+            of this domain.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "description":'description',
-        "enabled":'enabled',
-        "id":'id',
-        "links":'links',
-        "name":'name'
+        "domain_name":'domainName',
+        "trusted_domains":'trustedDomains',
     }
-
     def __init__(self,
-                 description=None,
-                 enabled=None,
-                 id=None,
-                 links=None,
-                 name=None):
+                 domain_name=None,
+                 trusted_domains=None,
+            ):
+
         """Constructor for the Domain class"""
 
         # Initialize members of the class
-        self.description = description
-        self.enabled = enabled
-        self.id = id
-        self.links = links
-        self.name = name
-
+        self.domain_name = domain_name
+        self.trusted_domains = trusted_domains
 
     @classmethod
     def from_dictionary(cls,
@@ -61,17 +50,11 @@ class Domain(object):
             return None
 
         # Extract variables from the dictionary
-        description = dictionary.get('description')
-        enabled = dictionary.get('enabled')
-        id = dictionary.get('id')
-        name = dictionary.get('name')
-        links = cohesity_management_sdk.models.links.Links.from_dictionary(dictionary.get('links')) if dictionary.get('links') else None
+        domain_name = dictionary.get('domainName')
+        trusted_domains = dictionary.get("trustedDomains")
 
         # Return an object of this model
-        return cls(description,
-                   enabled,
-                   id,
-                   links,
-                   name)
-
-
+        return cls(
+            domain_name,
+            trusted_domains
+)

@@ -3,15 +3,13 @@
 
 class RemovalStateNodeEnum(object):
 
-    """Implementation of the 'RemovalState_Node' enum.
+    """Implementation of the 'RemovalStateNode' enum.
+    RemovalState specifies the removal state of the node. 'kDontRemove' means
+    the state of object is functional and it is not being removed.
+    'kMarkedForRemoval' means the object is being removed. 'kOkToRemove' means
+    the object has been removed on the Cohesity Cluster and if the object is
+    physical, it can be removed from the Cohesity Cluster.
 
-    RemovalState specifies the removal state of the node.
-    'kDontRemove' means the state of object is functional and
-    it is not being removed.
-    'kMarkedForRemoval' means the object is being removed.
-    'kOkToRemove' means the object has been removed on the Cohesity Cluster
-    and
-    if the object is physical, it can be removed from the Cohesity Cluster.
 
     Attributes:
         KDONTREMOVE: TODO: type description here.
@@ -25,4 +23,3 @@ class RemovalStateNodeEnum(object):
     KMARKEDFORREMOVAL = 'kMarkedForRemoval'
 
     KOKTOREMOVE = 'kOkToRemove'
-

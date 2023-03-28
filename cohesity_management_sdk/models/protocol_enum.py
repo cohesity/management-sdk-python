@@ -4,16 +4,17 @@
 class ProtocolEnum(object):
 
     """Implementation of the 'Protocol' enum.
+    Specifies the protocol used by the NAS server. Specifies the protocol used
+    by a NAS server. 'kNfs3' indicates NFS v3 protocol. 'kCifs1' indicates CIFS
+    v1.0 protocol.
 
-    TODO: type enum description here.
 
     Attributes:
-        KNFS: TODO: type description here.
-        KSMB: TODO: type description here.
+        KNFS3: TODO: type description here.
+        KCIFS1: TODO: type description here.
 
     """
 
-    KNFS = 'kNfs'
+    KNFS3 = 'kNfs3'
 
-    KSMB = 'kSmb'
-
+    KCIFS1 = 'kCifs1'

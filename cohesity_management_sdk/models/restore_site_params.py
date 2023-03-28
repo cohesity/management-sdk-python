@@ -1,17 +1,20 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-import cohesity_management_sdk.models.error_proto
+import cohesity_management_sdk.models.entity_proto
 import cohesity_management_sdk.models.restore_site_params_site_owner
 import cohesity_management_sdk.models.site_backup_status
+
 
 class RestoreSiteParams(object):
 
     """Implementation of the 'RestoreSiteParams' model.
 
-    TODO: Type model description here.
+    TODO: type description here.
+
 
     Attributes:
+
         dst_site_name (string): Entity name of target site in case of
             sharepoint restore.
         dst_site_uuid (string): Entity uuid of target site in case of
@@ -22,20 +25,21 @@ class RestoreSiteParams(object):
             name of the registered parent source from which the site is backed
             up.
         restore_template (bool): Indicates that we have to restore the
-            Sharepoint site template also.
-            This includes:
-            1) Create site if it does not exist.
-            2) Provision template.
+            Sharepoint site template also. This includes: 1) Create site if it
+            does not exist. 2) Provision template.
         restore_to_original (bool): Whether or not all sites are restored to
             original location.
-        site_owner_vec (list of RestoreSiteParams_SiteOwner): The list of
-            sites whose drives are being restored.
-        site_result (SiteBackupStatus): Site template backup status returned
-            by the agent on successful site backup.
-        snap_fs_relative_site_backup_result_path (string): SnapFS relative
-            path where the site template backup result proto is stored.
-        snap_fs_relative_template_path (string): SnapFS relative path where
-            the template data is stored.
+        site_owner_vec (list of RestoreSiteParams_SiteOwner): The list of sites
+            whose drives are being restored.
+        site_result (SiteBackupStatus): Site template backup status returned by
+            the agent on successful site backup.
+        site_version (int): Versions for site restores. There can be
+            incompatible changes across process restarts or across restores. To
+            avoid issues, maintain a version for restore.
+        snap_fs_relative_site_backup_result_path (string): SnapFS relative path
+            where the site template backup result proto is stored.
+        snap_fs_relative_template_path (string): SnapFS relative path where the
+            template data is stored.
         source_site_name (string): Entity name of source site in case of
             sharepoint restore.
         source_site_uuid (string): Entity uuid of source site in case of
@@ -43,18 +47,21 @@ class RestoreSiteParams(object):
         source_web_url (string): Entity web url of source site in case of
             sharepoint restore.
         target_doc_lib_name (string): Incase of alternate restore of granular
-            items within document repositiories of sites to another site, a
-            doc lib name has to be specified by the caller.
-            NOTE: It can be safely assumed that this field will only be
-            present in case of granular items restore only.
-        target_doc_lib_prefix (string): If alternate site is provided,
-            customer may want to provide a custom prefix to document libraries
-            that we create. In any case we would also have to distinguish the
-            newly created document library as the alternate site provided by
-            the customer may as well turn out to be the original backup site.
-        target_site (EntityProto):  This is the site in whose drive the items will be restored.
-
+            items within document repositiories of sites to another site, a doc
+            lib name has to be specified by the caller. NOTE: It can be safely
+            assumed that this field will only be present in case of granular
+            items restore only.
+        target_doc_lib_prefix (string): If alternate site is provided, customer
+            may want to provide a custom prefix to document libraries that we
+            create. In any case we would also have to distinguish the newly
+            created document library as the alternate site provided by the
+            customer may as well turn out to be the original backup site.
+        target_folder_path_prefix (string): Target folder path prefix for
+            granular restore. This is set in case of teams or groups restore.
+        target_site (EntityProto): This is the site in whose drive the items
+            will be restored.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -63,19 +70,20 @@ class RestoreSiteParams(object):
         "dst_site_web_url":'dstSiteWebUrl',
         "parent_source_sharepoint_domain_name":'parentSourceSharepointDomainName',
         "restore_template":'restoreTemplate',
-        "restore_to_original": 'restoreToOriginal',
-        "site_owner_vec": 'siteOwnerVec',
+        "restore_to_original":'restoreToOriginal',
+        "site_owner_vec":'siteOwnerVec',
         "site_result":'siteResult',
+        "site_version":'siteVersion',
         "snap_fs_relative_site_backup_result_path":'snapFsRelativeSiteBackupResultPath',
         "snap_fs_relative_template_path":'snapFsRelativeTemplatePath',
         "source_site_name":'sourceSiteName',
         "source_site_uuid":'sourceSiteUuid',
         "source_web_url":'sourceWebUrl',
-        "target_doc_lib_name": 'targetDocLibName',
-        "target_doc_lib_prefix": 'targetDocLibPrefix',
-        "target_site":'targetSite'
+        "target_doc_lib_name":'targetDocLibName',
+        "target_doc_lib_prefix":'targetDocLibPrefix',
+        "target_folder_path_prefix":'targetFolderPathPrefix',
+        "target_site":'targetSite',
     }
-
     def __init__(self,
                  dst_site_name=None,
                  dst_site_uuid=None,
@@ -85,6 +93,7 @@ class RestoreSiteParams(object):
                  restore_to_original=None,
                  site_owner_vec=None,
                  site_result=None,
+                 site_version=None,
                  snap_fs_relative_site_backup_result_path=None,
                  snap_fs_relative_template_path=None,
                  source_site_name=None,
@@ -92,7 +101,10 @@ class RestoreSiteParams(object):
                  source_web_url=None,
                  target_doc_lib_name=None,
                  target_doc_lib_prefix=None,
-                 target_site=None):
+                 target_folder_path_prefix=None,
+                 target_site=None,
+            ):
+
         """Constructor for the RestoreSiteParams class"""
 
         # Initialize members of the class
@@ -104,6 +116,7 @@ class RestoreSiteParams(object):
         self.restore_to_original = restore_to_original
         self.site_owner_vec = site_owner_vec
         self.site_result = site_result
+        self.site_version = site_version
         self.snap_fs_relative_site_backup_result_path = snap_fs_relative_site_backup_result_path
         self.snap_fs_relative_template_path = snap_fs_relative_template_path
         self.source_site_name = source_site_name
@@ -111,6 +124,7 @@ class RestoreSiteParams(object):
         self.source_web_url = source_web_url
         self.target_doc_lib_name = target_doc_lib_name
         self.target_doc_lib_prefix = target_doc_lib_prefix
+        self.target_folder_path_prefix = target_folder_path_prefix
         self.target_site = target_site
 
     @classmethod
@@ -143,6 +157,7 @@ class RestoreSiteParams(object):
             for structure in dictionary.get('siteOwnerVec'):
                 site_owner_vec.append(cohesity_management_sdk.models.restore_site_params_site_owner.RestoreSiteParams_SiteOwner.from_dictionary(structure))
         site_result = cohesity_management_sdk.models.site_backup_status.SiteBackupStatus.from_dictionary(dictionary.get('siteResult')) if dictionary.get('siteResult') else None
+        site_version = dictionary.get('siteVersion')
         snap_fs_relative_site_backup_result_path = dictionary.get('snapFsRelativeSiteBackupResultPath')
         snap_fs_relative_template_path = dictionary.get('snapFsRelativeTemplatePath')
         source_site_name = dictionary.get('sourceSiteName')
@@ -150,24 +165,27 @@ class RestoreSiteParams(object):
         source_web_url = dictionary.get('sourceWebUrl')
         target_doc_lib_name = dictionary.get('targetDocLibName')
         target_doc_lib_prefix = dictionary.get('targetDocLibPrefix')
-        target_site = cohesity_management_sdk.models.error_proto.ErrorProto.from_dictionary(dictionary.get('targetSite')) if dictionary.get('targetSite') else None
+        target_folder_path_prefix = dictionary.get('targetFolderPathPrefix')
+        target_site = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('targetSite')) if dictionary.get('targetSite') else None
 
         # Return an object of this model
-        return cls(dst_site_name,
-                   dst_site_uuid,
-                   dst_site_web_url,
-                   parent_source_sharepoint_domain_name,
-                   restore_template,
-                   restore_to_original,
-                   site_owner_vec,
-                   site_result,
-                   snap_fs_relative_site_backup_result_path,
-                   snap_fs_relative_template_path,
-                   source_site_name,
-                   source_site_uuid,
-                   source_web_url,
-                   target_doc_lib_name,
-                   target_doc_lib_prefix,
-                   target_site)
-
-
+        return cls(
+            dst_site_name,
+            dst_site_uuid,
+            dst_site_web_url,
+            parent_source_sharepoint_domain_name,
+            restore_template,
+            restore_to_original,
+            site_owner_vec,
+            site_result,
+            site_version,
+            snap_fs_relative_site_backup_result_path,
+            snap_fs_relative_template_path,
+            source_site_name,
+            source_site_uuid,
+            source_web_url,
+            target_doc_lib_name,
+            target_doc_lib_prefix,
+            target_folder_path_prefix,
+            target_site
+)

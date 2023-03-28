@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-import cohesity_management_sdk.models.scheduler_proto_scheduler_job_schedule_job_parameters
 import cohesity_management_sdk.models.scheduler_proto_scheduler_job_schedule
+import cohesity_management_sdk.models.scheduler_proto_scheduler_job_schedule_job_parameters
+
 
 class SchedulerProto_SchedulerJob(object):
 
@@ -10,34 +11,36 @@ class SchedulerProto_SchedulerJob(object):
 
     Specifies the structure of the scheduler job along with its attributes.
 
+
     Attributes:
-        enable_recurring_email (bool): The boolean which specifies if this
-            job is to be scheduled or not.
-        id (int|long): The unique id for the scheduled job assigned by the cluster.
+
+        enable_recurring_email (bool): The boolean which specifies if this job
+            is to be scheduled or not.
+        id (long|int): The unique id for the scheduled job assigned by the
+            cluster.
         name (string): The name of the scheduled job given by the user.
-        schedule_job_parameters (
-            SchedulerProto_SchedulerJob_ScheduleJobParameters): TODO: Type
+        schedule_job_parameters
+            (SchedulerProto_SchedulerJob_ScheduleJobParameters): TODO: Type
             description here.
-        schedules (list of SchedulerProtoSchedulerJobSchedule): TODO: Type
-            description here.
+        schedules (list of SchedulerProto_SchedulerJob_Schedule): The frequency
+            of schedule execution.
         tenant_id (string): Specifies id of tenant who created the scheduler
             job.
         mtype (TypeSchedulerProtoSchedulerJobEnum): Specifies the type of the
             job. The enum which defines the Job type of the job.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "enable_recurring_email": 'enableRecurringEmail',
-        "id": 'id',
-        "name": 'name',
-        "schedule_job_parameters": 'scheduleJobParameters',
+        "enable_recurring_email":'enableRecurringEmail',
+        "id":'id',
+        "name":'name',
+        "schedule_job_parameters":'scheduleJobParameters',
         "schedules":'schedules',
         "tenant_id":'tenantId',
-        "mtype":'type'
+        "mtype":'type',
     }
-
     def __init__(self,
                  enable_recurring_email=None,
                  id=None,
@@ -45,7 +48,9 @@ class SchedulerProto_SchedulerJob(object):
                  schedule_job_parameters=None,
                  schedules=None,
                  tenant_id=None,
-                 mtype=None):
+                 mtype=None,
+            ):
+
         """Constructor for the SchedulerProto_SchedulerJob class"""
 
         # Initialize members of the class
@@ -83,16 +88,17 @@ class SchedulerProto_SchedulerJob(object):
         if dictionary.get('schedules') != None:
             schedules = list()
             for structure in dictionary.get('schedules'):
-                schedules.append(cohesity_management_sdk.models.scheduler_proto_scheduler_job_schedule.SchedulerProtoSchedulerJobSchedule.from_dictionary(structure))
+                schedules.append(cohesity_management_sdk.models.scheduler_proto_scheduler_job_schedule.SchedulerProto_SchedulerJob_Schedule.from_dictionary(structure))
         tenant_id = dictionary.get('tenantId')
         mtype = dictionary.get('type')
 
         # Return an object of this model
-        return cls(enable_recurring_email,
-                   id,
-                   name,
-                   schedule_job_parameters,
-                   schedules,
-                   mtype)
-
-
+        return cls(
+            enable_recurring_email,
+            id,
+            name,
+            schedule_job_parameters,
+            schedules,
+            tenant_id,
+            mtype
+)

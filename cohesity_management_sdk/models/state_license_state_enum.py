@@ -3,17 +3,15 @@
 
 class StateLicenseStateEnum(object):
 
-    """Implementation of the 'State_LicenseState' enum.
+    """Implementation of the 'StateLicenseState' enum.
+    Specifies the current state of licensing workflow. LicenseStateType
+    specifies the licenseState type. 'kInProgressNewCluster' indicates
+    licensing server claim is in progress for 'New' Cluster.
+    'kInProgressOldCluster' indicates licensing server claim is in progress for
+    'Old' Cluster. 'kClaimed' indicates licensing server is claimed. 'kSkipped'
+    indicates licensing workflow has been skipped. 'kStarted' indicates
+    licensing UI workflow has started.
 
-    Specifies the current state of licensing workflow.
-    LicenseStateType specifies the licenseState type.
-    'kInProgressNewCluster' indicates licensing server claim is in progress
-    for 'New' Cluster.
-    'kInProgressOldCluster' indicates licensing server claim is in progress
-    for 'Old' Cluster.
-    'kClaimed' indicates licensing server is claimed.
-    'kSkipped' indicates licensing workflow has been skipped.
-    'kStarted' indicates licensing UI workflow has started.
 
     Attributes:
         KINPROGRESSNEWCLUSTER: TODO: type description here.
@@ -33,4 +31,3 @@ class StateLicenseStateEnum(object):
     KSKIPPED = 'kSkipped'
 
     KSTARTED = 'kStarted'
-

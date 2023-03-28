@@ -1,41 +1,42 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class UpdateProtectionJobsStateRequestBody(object):
 
     """Implementation of the 'UpdateProtectionJobsStateRequestBody' model.
 
     Specifies the parameters to perform an action of list of Protection Jobs.
 
+
     Attributes:
+
         action (ActionUpdateProtectionJobsStateRequestBodyEnum): Specifies the
-            action to be performed on all the specfied Protection Jobs.
+            action to be performed on all the specified Protection Jobs.
             Specifies the type of action to be performed on Protection Job.
             'kActivate' specifies that Protection Job should be activated.
-            'kDeactivate' sepcifies that Protection Job should be deactivated.
+            'kDeactivate' specifies that Protection Job should be deactivated.
             'kPause' specifies that Protection Job should be paused. 'kResume'
             specifies that Protection Job should be resumed.
         job_ids (list of long|int): Specifies a list of Protection Job ids for
             which the state should change.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "action":'action',
-        "job_ids":'jobIds'
+        "job_ids":'jobIds',
     }
-
     def __init__(self,
                  action=None,
-                 job_ids=None):
+                 job_ids=None,
+            ):
+
         """Constructor for the UpdateProtectionJobsStateRequestBody class"""
 
         # Initialize members of the class
         self.action = action
         self.job_ids = job_ids
-
 
     @classmethod
     def from_dictionary(cls,
@@ -56,10 +57,10 @@ class UpdateProtectionJobsStateRequestBody(object):
 
         # Extract variables from the dictionary
         action = dictionary.get('action')
-        job_ids = dictionary.get('jobIds')
+        job_ids = dictionary.get("jobIds")
 
         # Return an object of this model
-        return cls(action,
-                   job_ids)
-
-
+        return cls(
+            action,
+            job_ids
+)

@@ -4,13 +4,9 @@
 class CassandraAuthTypeEnum(object):
 
     """Implementation of the 'CassandraAuthType' enum.
+    Cassandra Authentication type. Enum: [PASSWORD KERBEROS LDAP] Specifies the
+    Cassandra auth type. 'PASSWORD' 'KERBEROS' 'LDAP'
 
-    Cassandra Authentication type.
-    Enum: [PASSWORD KERBEROS LDAP]
-    Specifies the Cassandra auth type.
-    'PASSWORD'
-    'KERBEROS'
-    'LDAP'
 
     Attributes:
         PASSWORD: TODO: type description here.
@@ -24,4 +20,3 @@ class CassandraAuthTypeEnum(object):
     KERBEROS = 'KERBEROS'
 
     LDAP = 'LDAP'
-

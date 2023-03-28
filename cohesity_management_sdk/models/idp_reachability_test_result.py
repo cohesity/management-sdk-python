@@ -1,30 +1,31 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class IdpReachabilityTestResult(object):
 
     """Implementation of the 'IdpReachabilityTestResult' model.
 
     Specifies the result of the reachability test done for an IdP.
 
-    Attributes:
-        reachable (bool): Specifies the flag for Idp reachability.
 
+    Attributes:
+
+        reachable (bool): Specifies the flag for Idp reachability.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "reachable":'reachable'
+        "reachable":'reachable',
     }
-
     def __init__(self,
-                 reachable=None):
+                 reachable=None,
+            ):
+
         """Constructor for the IdpReachabilityTestResult class"""
 
         # Initialize members of the class
         self.reachable = reachable
-
 
     @classmethod
     def from_dictionary(cls,
@@ -47,6 +48,6 @@ class IdpReachabilityTestResult(object):
         reachable = dictionary.get('reachable')
 
         # Return an object of this model
-        return cls(reachable)
-
-
+        return cls(
+            reachable
+)

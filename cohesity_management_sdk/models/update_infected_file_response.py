@@ -3,35 +3,38 @@
 
 import cohesity_management_sdk.models.infected_file_id
 
+
 class UpdateInfectedFileResponse(object):
 
     """Implementation of the 'UpdateInfectedFileResponse' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
+
         update_failed_infected_files (list of InfectedFileId): Specifies the
             failed update infected files.
-        update_succeeded_infected_files (list of InfectedFileId): Specifies
-            the successfully updated infected files.
-
+        update_succeeded_infected_files (list of InfectedFileId): Specifies the
+            successfully updated infected files.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "update_failed_infected_files":'updateFailedInfectedFiles',
-        "update_succeeded_infected_files":'updateSucceededInfectedFiles'
+        "update_succeeded_infected_files":'updateSucceededInfectedFiles',
     }
-
     def __init__(self,
                  update_failed_infected_files=None,
-                 update_succeeded_infected_files=None):
+                 update_succeeded_infected_files=None,
+            ):
+
         """Constructor for the UpdateInfectedFileResponse class"""
 
         # Initialize members of the class
         self.update_failed_infected_files = update_failed_infected_files
         self.update_succeeded_infected_files = update_succeeded_infected_files
-
 
     @classmethod
     def from_dictionary(cls,
@@ -63,7 +66,7 @@ class UpdateInfectedFileResponse(object):
                 update_succeeded_infected_files.append(cohesity_management_sdk.models.infected_file_id.InfectedFileId.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(update_failed_infected_files,
-                   update_succeeded_infected_files)
-
-
+        return cls(
+            update_failed_infected_files,
+            update_succeeded_infected_files
+)

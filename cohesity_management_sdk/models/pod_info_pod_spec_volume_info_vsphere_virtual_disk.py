@@ -1,32 +1,36 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class PodInfo_PodSpec_VolumeInfo_VsphereVirtualDisk(object):
 
     """Implementation of the 'PodInfo_PodSpec_VolumeInfo_VsphereVirtualDisk' model.
 
+    TODO: type description here.
+
+
     Attributes:
+
         fs_type (string): TODO: Type description here.
         storage_policy_id (string): TODO: Type description here.
         storage_policy_name (string): TODO: Type description here.
         volume_path (string): TODO: Type description here.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "fs_type":'fsType',
         "storage_policy_id":'storagePolicyID',
         "storage_policy_name":'storagePolicyName',
-        "volume_path":'volumePath'
+        "volume_path":'volumePath',
     }
-
     def __init__(self,
                  fs_type=None,
                  storage_policy_id=None,
                  storage_policy_name=None,
-                 volume_path=None):
+                 volume_path=None,
+            ):
+
         """Constructor for the PodInfo_PodSpec_VolumeInfo_VsphereVirtualDisk class"""
 
         # Initialize members of the class
@@ -34,7 +38,6 @@ class PodInfo_PodSpec_VolumeInfo_VsphereVirtualDisk(object):
         self.storage_policy_id = storage_policy_id
         self.storage_policy_name = storage_policy_name
         self.volume_path = volume_path
-
 
     @classmethod
     def from_dictionary(cls,
@@ -60,9 +63,9 @@ class PodInfo_PodSpec_VolumeInfo_VsphereVirtualDisk(object):
         volume_path = dictionary.get('volumePath')
 
         # Return an object of this model
-        return cls(fs_type,
-                   storage_policy_id,
-                   storage_policy_name,
-                   volume_path)
-
-
+        return cls(
+            fs_type,
+            storage_policy_id,
+            storage_policy_name,
+            volume_path
+)

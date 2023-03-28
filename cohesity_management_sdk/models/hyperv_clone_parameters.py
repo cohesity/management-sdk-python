@@ -1,36 +1,37 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class HypervCloneParameters(object):
 
     """Implementation of the 'HypervCloneParameters' model.
 
-    Specifies information needed when cloning VMs in HyperV enviroment.
-    This field defines the HyperV specific params for restore tasks of type
+    Specifies information needed when cloning VMs in HyperV enviroment. This
+    field defines the HyperV specific params for restore tasks of type
     kCloneVMs.
 
+
     Attributes:
-        disable_network (bool): Specifies whether the network should be left
-            in disabled state. Attached network is enabled by default. Set
-            this flag to true to disable it.
-        network_id (long|int): Specifies a network configuration to be
-            attached to the cloned or recovered object. For kCloneVMs and
-            kRecoverVMs tasks, original network configuration is detached if
-            the cloned or recovered object is kept under a different parent
-            Protection Source or a different Resource Pool. By default, for
-            kRecoverVMs task, original network configuration is preserved if
-            the recovered object is kept under the same parent Protection
-            Source and the same Resource Pool. Specify this field to override
-            the preserved network configuration or to attach a new network
-            configuration to the cloned or recovered objects. You can get the
-            networkId of the kNetwork object by setting includeNetworks to
-            'true' in the GET /public/protectionSources operation. In the
-            response, get the id of the desired kNetwork object, the resource
-            pool, and the registered parent Protection Source.
-        powered_on (bool): Specifies the power state of the cloned or
-            recovered objects. By default, the cloned or recovered objects are
-            powered off.
+
+        disable_network (bool): Specifies whether the network should be left in
+            disabled state. Attached network is enabled by default. Set this
+            flag to true to disable it.
+        network_id (long|int): Specifies a network configuration to be attached
+            to the cloned or recovered object. For kCloneVMs and kRecoverVMs
+            tasks, original network configuration is detached if the cloned or
+            recovered object is kept under a different parent Protection Source
+            or a different Resource Pool. By default, for kRecoverVMs task,
+            original network configuration is preserved if the recovered object
+            is kept under the same parent Protection Source and the same
+            Resource Pool. Specify this field to override the preserved network
+            configuration or to attach a new network configuration to the
+            cloned or recovered objects. You can get the networkId of the
+            kNetwork object by setting includeNetworks to 'true' in the GET
+            /public/protectionSources operation. In the response, get the id of
+            the desired kNetwork object, the resource pool, and the registered
+            parent Protection Source.
+        powered_on (bool): Specifies the power state of the cloned or recovered
+            objects. By default, the cloned or recovered objects are powered
+            off.
         prefix (string): Specifies a prefix to prepended to the source object
             name to derive a new name for the recovered or cloned object. By
             default, cloned or recovered objects retain their original name.
@@ -47,8 +48,8 @@ class HypervCloneParameters(object):
             object name to derive a new name for the recovered or cloned
             object. By default, cloned or recovered objects retain their
             original name. Length of this field is limited to 8 characters.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -58,9 +59,8 @@ class HypervCloneParameters(object):
         "prefix":'prefix',
         "preserve_tags":'preserveTags',
         "resource_id":'resourceId',
-        "suffix":'suffix'
+        "suffix":'suffix',
     }
-
     def __init__(self,
                  disable_network=None,
                  network_id=None,
@@ -68,7 +68,9 @@ class HypervCloneParameters(object):
                  prefix=None,
                  preserve_tags=None,
                  resource_id=None,
-                 suffix=None):
+                 suffix=None,
+            ):
+
         """Constructor for the HypervCloneParameters class"""
 
         # Initialize members of the class
@@ -79,7 +81,6 @@ class HypervCloneParameters(object):
         self.preserve_tags = preserve_tags
         self.resource_id = resource_id
         self.suffix = suffix
-
 
     @classmethod
     def from_dictionary(cls,
@@ -103,17 +104,17 @@ class HypervCloneParameters(object):
         network_id = dictionary.get('networkId')
         powered_on = dictionary.get('poweredOn')
         prefix = dictionary.get('prefix')
-        preserve_tags = dictionary.get('preserveTags', None)
+        preserve_tags = dictionary.get('preserveTags')
         resource_id = dictionary.get('resourceId')
         suffix = dictionary.get('suffix')
 
         # Return an object of this model
-        return cls(disable_network,
-                   network_id,
-                   powered_on,
-                   prefix,
-                   preserve_tags,
-                   resource_id,
-                   suffix)
-
-
+        return cls(
+            disable_network,
+            network_id,
+            powered_on,
+            prefix,
+            preserve_tags,
+            resource_id,
+            suffix
+)

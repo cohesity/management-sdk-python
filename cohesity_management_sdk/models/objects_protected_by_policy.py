@@ -3,37 +3,40 @@
 
 import cohesity_management_sdk.models.objects_by_env
 
+
 class ObjectsProtectedByPolicy(object):
 
     """Implementation of the 'ObjectsProtectedByPolicy' model.
 
     Objects (e.g. VMs) protected by Policy.
 
+
     Attributes:
+
         objects_protected (list of ObjectsByEnv): Protected Objects.
         policy_id (string): Id of the policy.
         policy_name (string): Name of the policy.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "objects_protected":'objectsProtected',
         "policy_id":'policyId',
-        "policy_name":'policyName'
+        "policy_name":'policyName',
     }
-
     def __init__(self,
                  objects_protected=None,
                  policy_id=None,
-                 policy_name=None):
+                 policy_name=None,
+            ):
+
         """Constructor for the ObjectsProtectedByPolicy class"""
 
         # Initialize members of the class
         self.objects_protected = objects_protected
         self.policy_id = policy_id
         self.policy_name = policy_name
-
 
     @classmethod
     def from_dictionary(cls,
@@ -62,8 +65,8 @@ class ObjectsProtectedByPolicy(object):
         policy_name = dictionary.get('policyName')
 
         # Return an object of this model
-        return cls(objects_protected,
-                   policy_id,
-                   policy_name)
-
-
+        return cls(
+            objects_protected,
+            policy_id,
+            policy_name
+)

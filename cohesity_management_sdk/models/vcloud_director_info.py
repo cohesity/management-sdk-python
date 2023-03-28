@@ -1,34 +1,35 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
-class VcloudDirectorInfo(object):
+class VCloudDirectorInfo(object):
 
     """Implementation of the 'VCloudDirectorInfo' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
+
         endpoint (string): vCenter endpoint.
         name (string): vCenter name.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "endpoint":'endpoint',
-        "name":'name'
+        "name":'name',
     }
-
     def __init__(self,
                  endpoint=None,
-                 name=None):
-        """Constructor for the VcloudDirectorInfo class"""
+                 name=None,
+            ):
+
+        """Constructor for the VCloudDirectorInfo class"""
 
         # Initialize members of the class
         self.endpoint = endpoint
         self.name = name
-
 
     @classmethod
     def from_dictionary(cls,
@@ -52,7 +53,7 @@ class VcloudDirectorInfo(object):
         name = dictionary.get('name')
 
         # Return an object of this model
-        return cls(endpoint,
-                   name)
-
-
+        return cls(
+            endpoint,
+            name
+)

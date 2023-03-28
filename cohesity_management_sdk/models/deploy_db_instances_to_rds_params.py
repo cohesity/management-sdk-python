@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-import cohesity_management_sdk.models.entity_proto
 import cohesity_management_sdk.models.deploy_db_instances_to_rds_params_point_in_time_restore_params
+import cohesity_management_sdk.models.entity_proto
+
 
 class DeployDBInstancesToRDSParams(object):
 
@@ -11,32 +12,33 @@ class DeployDBInstancesToRDSParams(object):
     Contains RDS specfic options that can be supplied while restoring the RDS
     DB instance.
 
+
     Attributes:
-        auto_minor_version_upgrade (bool): Whether to enable auto minor
-            version upgrade in the restored DB.
-        availability_zone (EntityProto): Specifies the attributes and the
-            latest statistics about an entity.
+
+        auto_minor_version_upgrade (bool): Whether to enable auto minor version
+            upgrade in the restored DB.
+        availability_zone (EntityProto): Entity representing the availability
+            zone to use while restoring the DB.
         copy_tags_to_snapshots (bool): Whether to enable copying of tags to
             snapshots of the DB.
         db_instance_id (string): The DB instance identifier to use for the
             restored DB. This field is required.
-        db_option_group (EntityProto): Specifies the attributes and the latest
-            statistics about an entity.
-        db_parameter_group (EntityProto): Specifies the attributes and the
-            latest statistics about an entity.
+        db_option_group (EntityProto): Entity representing the RDS option group
+            to use while restoring the DB.
+        db_parameter_group (EntityProto): Entity representing the RDS parameter
+            group to use while restoring the DB.
         db_port (int): Port to use for the DB in the restored RDS instance.
         iam_db_authentication (bool): Whether to enable IAM authentication for
             the DB.
         multi_az_deployment (bool): Whether this is a multi-az deployment or
             not.
         point_in_time_params
-            (DeployDBInstancesToRDSParamsPointInTimeRestoreParams): Message to
-            capture details of a point in time that the DB needs to be
-            restored to.
+            (DeployDBInstancesToRDSParams_PointInTimeRestoreParams): If this is
+            set, we will restore DB to the specified point in time.
         public_accessibility (bool): Whether this DB will be publicly
             accessible or not.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -50,9 +52,8 @@ class DeployDBInstancesToRDSParams(object):
         "iam_db_authentication":'iamDbAuthentication',
         "multi_az_deployment":'multiAzDeployment',
         "point_in_time_params":'pointInTimeParams',
-        "public_accessibility":'publicAccessibility'
+        "public_accessibility":'publicAccessibility',
     }
-
     def __init__(self,
                  auto_minor_version_upgrade=None,
                  availability_zone=None,
@@ -64,7 +65,9 @@ class DeployDBInstancesToRDSParams(object):
                  iam_db_authentication=None,
                  multi_az_deployment=None,
                  point_in_time_params=None,
-                 public_accessibility=None):
+                 public_accessibility=None,
+            ):
+
         """Constructor for the DeployDBInstancesToRDSParams class"""
 
         # Initialize members of the class
@@ -79,7 +82,6 @@ class DeployDBInstancesToRDSParams(object):
         self.multi_az_deployment = multi_az_deployment
         self.point_in_time_params = point_in_time_params
         self.public_accessibility = public_accessibility
-
 
     @classmethod
     def from_dictionary(cls,
@@ -108,20 +110,20 @@ class DeployDBInstancesToRDSParams(object):
         db_port = dictionary.get('dbPort')
         iam_db_authentication = dictionary.get('iamDbAuthentication')
         multi_az_deployment = dictionary.get('multiAzDeployment')
-        point_in_time_params = cohesity_management_sdk.models.deploy_db_instances_to_rds_params_point_in_time_restore_params.DeployDBInstancesToRDSParamsPointInTimeRestoreParams.from_dictionary(dictionary.get('pointInTimeParams')) if dictionary.get('pointInTimeParams') else None
+        point_in_time_params = cohesity_management_sdk.models.deploy_db_instances_to_rds_params_point_in_time_restore_params.DeployDBInstancesToRDSParams_PointInTimeRestoreParams.from_dictionary(dictionary.get('pointInTimeParams')) if dictionary.get('pointInTimeParams') else None
         public_accessibility = dictionary.get('publicAccessibility')
 
         # Return an object of this model
-        return cls(auto_minor_version_upgrade,
-                   availability_zone,
-                   copy_tags_to_snapshots,
-                   db_instance_id,
-                   db_option_group,
-                   db_parameter_group,
-                   db_port,
-                   iam_db_authentication,
-                   multi_az_deployment,
-                   point_in_time_params,
-                   public_accessibility)
-
-
+        return cls(
+            auto_minor_version_upgrade,
+            availability_zone,
+            copy_tags_to_snapshots,
+            db_instance_id,
+            db_option_group,
+            db_parameter_group,
+            db_port,
+            iam_db_authentication,
+            multi_az_deployment,
+            point_in_time_params,
+            public_accessibility
+)

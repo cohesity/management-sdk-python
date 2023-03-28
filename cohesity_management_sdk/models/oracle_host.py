@@ -3,34 +3,38 @@
 
 import cohesity_management_sdk.models.oracle_session
 
+
 class OracleHost(object):
 
     """Implementation of the 'OracleHost' model.
 
     Specifies information about an Oracle Host.
 
+
     Attributes:
+
         cpu_count (int): Specifies the count of CPU available on the host.
         ip_addresses (list of string): Specifies the IP address of the host.
         ports (list of long|int): Specifies ports available for this host.
         sessions (list of OracleSession): Specifies multiple session
             configurations available for this host.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "cpu_count":'cpuCount',
         "ip_addresses":'ipAddresses',
         "ports":'ports',
-        "sessions":'sessions'
+        "sessions":'sessions',
     }
-
     def __init__(self,
                  cpu_count=None,
                  ip_addresses=None,
                  ports=None,
-                 sessions=None):
+                 sessions=None,
+            ):
+
         """Constructor for the OracleHost class"""
 
         # Initialize members of the class
@@ -38,7 +42,6 @@ class OracleHost(object):
         self.ip_addresses = ip_addresses
         self.ports = ports
         self.sessions = sessions
-
 
     @classmethod
     def from_dictionary(cls,
@@ -59,8 +62,8 @@ class OracleHost(object):
 
         # Extract variables from the dictionary
         cpu_count = dictionary.get('cpuCount')
-        ip_addresses = dictionary.get('ipAddresses')
-        ports = dictionary.get('ports')
+        ip_addresses = dictionary.get("ipAddresses")
+        ports = dictionary.get("ports")
         sessions = None
         if dictionary.get('sessions') != None:
             sessions = list()
@@ -68,9 +71,9 @@ class OracleHost(object):
                 sessions.append(cohesity_management_sdk.models.oracle_session.OracleSession.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(cpu_count,
-                   ip_addresses,
-                   ports,
-                   sessions)
-
-
+        return cls(
+            cpu_count,
+            ip_addresses,
+            ports,
+            sessions
+)

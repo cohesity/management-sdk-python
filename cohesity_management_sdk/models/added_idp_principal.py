@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class AddedIdpPrincipal(object):
 
     """Implementation of the 'AddedIdpPrincipal' model.
@@ -9,21 +8,22 @@ class AddedIdpPrincipal(object):
     Specifies a group or user added to the Cohesity Cluster for an Idp
     principal.
 
+
     Attributes:
-        created_time_msecs (long|int): Specifies the epoch time in
-            milliseconds when the group or user was added to the Cohesity
-            Cluster.
+
+        created_time_msecs (long|int): Specifies the epoch time in milliseconds
+            when the group or user was added to the Cohesity Cluster.
         domain (string): Specifies the name of the Idp where the referenced
             principal is stored.
         last_updated_time_msecs (long|int): Specifies the epoch time in
             milliseconds when the group or user was last modified on the
             Cohesity Cluster.
-        object_class (ObjectClassAddedIdpPrincipalEnum): Specifies the type of
-            the referenced Idp principal. If 'kGroup', the referenced Idp
-            principal is a group. If 'kUser', the referenced Idp principal is
-            a user. 'kUser' specifies a user object class. 'kGroup' specifies
-            a group object class. 'kComputer' specifies a computer object
-            class. 'kWellKnownPrincipal' specifies a well known principal.
+        object_class (ObjectClassEnum): Specifies the type of the referenced
+            Idp principal. If 'kGroup', the referenced Idp principal is a
+            group. If 'kUser', the referenced Idp principal is a user. 'kUser'
+            specifies a user object class. 'kGroup' specifies a group object
+            class. 'kComputer' specifies a computer object class.
+            'kWellKnownPrincipal' specifies a well known principal.
             'kServiceAccount' specifies a service account object class.
         principal_name (string): Specifies the name of the Idp principal, that
             will be referenced by the group or user. The name of the Idp
@@ -42,8 +42,8 @@ class AddedIdpPrincipal(object):
             Cohesity Cluster.
         sid (string): Specifies the unique Security ID (SID) of the Idp
             principal associated with this group or user.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -54,9 +54,8 @@ class AddedIdpPrincipal(object):
         "principal_name":'principalName',
         "restricted":'restricted',
         "roles":'roles',
-        "sid":'sid'
+        "sid":'sid',
     }
-
     def __init__(self,
                  created_time_msecs=None,
                  domain=None,
@@ -65,7 +64,9 @@ class AddedIdpPrincipal(object):
                  principal_name=None,
                  restricted=None,
                  roles=None,
-                 sid=None):
+                 sid=None,
+            ):
+
         """Constructor for the AddedIdpPrincipal class"""
 
         # Initialize members of the class
@@ -77,7 +78,6 @@ class AddedIdpPrincipal(object):
         self.restricted = restricted
         self.roles = roles
         self.sid = sid
-
 
     @classmethod
     def from_dictionary(cls,
@@ -103,17 +103,17 @@ class AddedIdpPrincipal(object):
         object_class = dictionary.get('objectClass')
         principal_name = dictionary.get('principalName')
         restricted = dictionary.get('restricted')
-        roles = dictionary.get('roles')
+        roles = dictionary.get("roles")
         sid = dictionary.get('sid')
 
         # Return an object of this model
-        return cls(created_time_msecs,
-                   domain,
-                   last_updated_time_msecs,
-                   object_class,
-                   principal_name,
-                   restricted,
-                   roles,
-                   sid)
-
-
+        return cls(
+            created_time_msecs,
+            domain,
+            last_updated_time_msecs,
+            object_class,
+            principal_name,
+            restricted,
+            roles,
+            sid
+)

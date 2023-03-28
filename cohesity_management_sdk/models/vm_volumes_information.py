@@ -3,31 +3,34 @@
 
 import cohesity_management_sdk.models.filesystem_volume
 
+
 class VmVolumesInformation(object):
 
     """Implementation of the 'VmVolumesInformation' model.
 
     Specifies information about a logical volume found a VM.
 
+
     Attributes:
+
         filesystem_volumes (list of FilesystemVolume): Array of Filesystem
             Volumes.  Specifies information about the filesystem volumes found
             in a logical volume.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "filesystem_volumes":'filesystemVolumes'
+        "filesystem_volumes":'filesystemVolumes',
     }
-
     def __init__(self,
-                 filesystem_volumes=None):
+                 filesystem_volumes=None,
+            ):
+
         """Constructor for the VmVolumesInformation class"""
 
         # Initialize members of the class
         self.filesystem_volumes = filesystem_volumes
-
 
     @classmethod
     def from_dictionary(cls,
@@ -54,6 +57,6 @@ class VmVolumesInformation(object):
                 filesystem_volumes.append(cohesity_management_sdk.models.filesystem_volume.FilesystemVolume.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(filesystem_volumes)
-
-
+        return cls(
+            filesystem_volumes
+)

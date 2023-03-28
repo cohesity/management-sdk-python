@@ -1,35 +1,36 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class UserInfo(object):
 
     """Implementation of the 'UserInfo' model.
 
     Specifies struct with basic user details.
 
+
     Attributes:
+
         domain (string): Specifies domain name of the user.
         sid (string): Specifies unique Security ID (SID) of the user.
-        tenant_id (string): Specifies the tenant for which the users are to be
-            deleted.
+        tenant_id (string): Specifies the tenant to which the user belongs to.
         user_name (string): Specifies user name of the user.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "domain":'domain',
         "sid":'sid',
         "tenant_id":'tenantId',
-        "user_name":'userName'
+        "user_name":'userName',
     }
-
     def __init__(self,
                  domain=None,
                  sid=None,
                  tenant_id=None,
-                 user_name=None):
+                 user_name=None,
+            ):
+
         """Constructor for the UserInfo class"""
 
         # Initialize members of the class
@@ -37,7 +38,6 @@ class UserInfo(object):
         self.sid = sid
         self.tenant_id = tenant_id
         self.user_name = user_name
-
 
     @classmethod
     def from_dictionary(cls,
@@ -63,9 +63,9 @@ class UserInfo(object):
         user_name = dictionary.get('userName')
 
         # Return an object of this model
-        return cls(domain,
-                   sid,
-                   tenant_id,
-                   user_name)
-
-
+        return cls(
+            domain,
+            sid,
+            tenant_id,
+            user_name
+)

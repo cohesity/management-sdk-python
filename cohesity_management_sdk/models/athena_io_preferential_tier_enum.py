@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-class AthenaIOPreferentialTierEnum(object):
+class AthenaIoPreferentialTierEnum(object):
 
-    """Implementation of the 'AthenaIOPreferentialTier' enum.
-
+    """Implementation of the 'AthenaIoPreferentialTier' enum.
     Specifies the list of perferred storage tiers used by Athena.
+
 
     Attributes:
         KPCIESSD: TODO: type description here.
@@ -22,4 +22,3 @@ class AthenaIOPreferentialTierEnum(object):
     KSATAHDD = 'kSataHdd'
 
     KCLOUD = 'kCloud'
-

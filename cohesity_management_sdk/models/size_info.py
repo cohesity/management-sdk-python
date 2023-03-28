@@ -10,27 +10,29 @@ class SizeInfo(object):
     evolving needs. E.g. This information can be used for billing calculations
     in DMaaS.
 
+
     Attributes:
+
         computation_method (int): The computation method used for "size_bytes".
         size_bytes (long|int): Size in bytes.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "computation_method": 'computationMethod',
-        "size_bytes": 'sizeBytes'
+        "computation_method":'computationMethod',
+        "size_bytes":'sizeBytes',
     }
-
     def __init__(self,
                  computation_method=None,
-                 size_bytes=None):
+                 size_bytes=None,
+            ):
+
         """Constructor for the SizeInfo class"""
 
         # Initialize members of the class
         self.computation_method = computation_method
         self.size_bytes = size_bytes
-
 
     @classmethod
     def from_dictionary(cls,
@@ -50,11 +52,11 @@ class SizeInfo(object):
             return None
 
         # Extract variables from the dictionary
-        computation_method = dictionary.get('computationMethod', None)
-        size_bytes = dictionary.get('sizeBytes', None)
+        computation_method = dictionary.get('computationMethod')
+        size_bytes = dictionary.get('sizeBytes')
 
         # Return an object of this model
-        return cls(computation_method,
-                   size_bytes)
-
-
+        return cls(
+            computation_method,
+            size_bytes
+)

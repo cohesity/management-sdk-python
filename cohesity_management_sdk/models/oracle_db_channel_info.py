@@ -4,16 +4,18 @@
 import cohesity_management_sdk.models.credentials
 import cohesity_management_sdk.models.oracle_db_channel_info_host_info
 
+
 class OracleDBChannelInfo(object):
 
     """Implementation of the 'OracleDBChannelInfo' model.
 
-    Note: The name of this proto message is out-dated. This proto can
-    represent
-    more than just the database channel information. It should be renamed
-    in the future.
+    Note: The name of this proto message is out-dated. This proto can represent
+    more than just the database channel information. It should be renamed in
+    the future.
+
 
     Attributes:
+
         archivelog_keep_days (int): Archived log deletion policy for this
             unique Oracle database. 1: keep archived log forever 0: delete
             archived log immediately n>0: delete archived log after n days
@@ -22,16 +24,17 @@ class OracleDBChannelInfo(object):
         db_unique_name (string): The unique name of the database.
         db_uuid (string): Database id, internal field, is filled by magneto
             master based on corresponding app entity id.
-        enable_dg_primary_backup (bool): If set to false, and if the DG database
-            role is primary, we will not allow the backup of that database.
-        host_info_vec (list of OracleDBChannelInfoHostInfo): Vector of Oracle
-            hosts from which we are allowed to take the backup/restore. In
-            case of RAC database it may be more than one.
+        enable_dg_primary_backup (bool): If set to false, and if the DG
+            database role is primary, we will not allow the backup of that
+            database.
+        host_info_vec (list of OracleDBChannelInfo_HostInfo): Vector of Oracle
+            hosts from which we are allowed to take the backup/restore. In case
+            of RAC database it may be more than one.
         max_num_host (int): Maximum number of hosts from which we are allowed
             to take backup/restore parallely. This will be less than or equal
             to host_info_vec_size. If this is less than host_info_vec_size we
-            will choose max_num_host from host_info_vec and take
-            backup/restore from this number of host.
+            will choose max_num_host from host_info_vec and take backup/restore
+            from this number of host.
         num_channels (int): The default number of channels to use per host per
             db. This value is used on all hosts unless
             host_info_vec.num_channels is specified for that host. Default
@@ -46,8 +49,8 @@ class OracleDBChannelInfo(object):
             formula.
         rman_backup_type (int): Type of Oracle RMAN backup rquested (i.e
             ImageCopy, BackupSets).
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -59,9 +62,8 @@ class OracleDBChannelInfo(object):
         "host_info_vec":'hostInfoVec',
         "max_num_host":'maxNumHost',
         "num_channels":'numChannels',
-        "rman_backup_type":'rmanBackupType'
+        "rman_backup_type":'rmanBackupType',
     }
-
     def __init__(self,
                  archivelog_keep_days=None,
                  credentials=None,
@@ -71,7 +73,9 @@ class OracleDBChannelInfo(object):
                  host_info_vec=None,
                  max_num_host=None,
                  num_channels=None,
-                 rman_backup_type=None):
+                 rman_backup_type=None,
+            ):
+
         """Constructor for the OracleDBChannelInfo class"""
 
         # Initialize members of the class
@@ -84,7 +88,6 @@ class OracleDBChannelInfo(object):
         self.max_num_host = max_num_host
         self.num_channels = num_channels
         self.rman_backup_type = rman_backup_type
-
 
     @classmethod
     def from_dictionary(cls,
@@ -113,20 +116,20 @@ class OracleDBChannelInfo(object):
         if dictionary.get('hostInfoVec') != None:
             host_info_vec = list()
             for structure in dictionary.get('hostInfoVec'):
-                host_info_vec.append(cohesity_management_sdk.models.oracle_db_channel_info_host_info.OracleDBChannelInfoHostInfo.from_dictionary(structure))
+                host_info_vec.append(cohesity_management_sdk.models.oracle_db_channel_info_host_info.OracleDBChannelInfo_HostInfo.from_dictionary(structure))
         max_num_host = dictionary.get('maxNumHost')
         num_channels = dictionary.get('numChannels')
         rman_backup_type = dictionary.get('rmanBackupType')
 
         # Return an object of this model
-        return cls(archivelog_keep_days,
-                   credentials,
-                   db_unique_name,
-                   db_uuid,
-                   enable_dg_primary_backup,
-                   host_info_vec,
-                   max_num_host,
-                   num_channels,
-                   rman_backup_type)
-
-
+        return cls(
+            archivelog_keep_days,
+            credentials,
+            db_unique_name,
+            db_uuid,
+            enable_dg_primary_backup,
+            host_info_vec,
+            max_num_host,
+            num_channels,
+            rman_backup_type
+)

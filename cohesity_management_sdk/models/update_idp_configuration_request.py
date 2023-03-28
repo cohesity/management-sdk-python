@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class UpdateIdpConfigurationRequest(object):
 
     """Implementation of the 'UpdateIdpConfigurationRequest' model.
 
     Specifies the parameters of an IdP configuration to be updated.
 
+
     Attributes:
+
         allow_local_authentication (bool): Specifies whether to allow local
             authentication. When IdP is configured, only IdP users are allowed
             to login to the Cluster. Local login is disabled except for users
@@ -30,22 +31,22 @@ class UpdateIdpConfigurationRequest(object):
         roles (list of string): Specifies a list of roles assigned to an IdP
             user if samlAttributeName is not given.
         saml_attribute_name (string): Specifies the SAML attribute name that
-            contains a comma separated list of Cluster roles. Either this
-            field or roles must be set. This field takes higher precedence
-            than the roles field.
-        sign_request (bool): Specifies whether to sign the SAML request or
-            not. When it is set to true, SAML request will be signed. When it
-            is set to false, SAML request is not signed. Default is false. Set
-            this flag to true if the IdP site is configured to expect the SAML
-            request from the Cluster signed. If this is set to true, users
-            must get the Cluster's certificate and upload it on the IdP site.
+            contains a comma separated list of Cluster roles. Either this field
+            or roles must be set. This field takes higher precedence than the
+            roles field.
+        sign_request (bool): Specifies whether to sign the SAML request or not.
+            When it is set to true, SAML request will be signed. When it is set
+            to false, SAML request is not signed. Default is false. Set this
+            flag to true if the IdP site is configured to expect the SAML
+            request from the Cluster signed. If this is set to true, users must
+            get the Cluster's certificate and upload it on the IdP site.
         sso_url (string): Specifies the SSO URL of the IdP service for the
-            customer. This is the URL given by IdP when the customer created
-            an account. Customers may use this for several clusters that are
+            customer. This is the URL given by IdP when the customer created an
+            account. Customers may use this for several clusters that are
             registered with on IdP site. For example,
             dev-332534.oktapreview.com
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -57,9 +58,8 @@ class UpdateIdpConfigurationRequest(object):
         "roles":'roles',
         "saml_attribute_name":'samlAttributeName',
         "sign_request":'signRequest',
-        "sso_url":'ssoUrl'
+        "sso_url":'ssoUrl',
     }
-
     def __init__(self,
                  allow_local_authentication=None,
                  certificate=None,
@@ -69,7 +69,9 @@ class UpdateIdpConfigurationRequest(object):
                  roles=None,
                  saml_attribute_name=None,
                  sign_request=None,
-                 sso_url=None):
+                 sso_url=None,
+            ):
+
         """Constructor for the UpdateIdpConfigurationRequest class"""
 
         # Initialize members of the class
@@ -82,7 +84,6 @@ class UpdateIdpConfigurationRequest(object):
         self.saml_attribute_name = saml_attribute_name
         self.sign_request = sign_request
         self.sso_url = sso_url
-
 
     @classmethod
     def from_dictionary(cls,
@@ -107,20 +108,20 @@ class UpdateIdpConfigurationRequest(object):
         certificate_filename = dictionary.get('certificateFilename')
         enable = dictionary.get('enable')
         issuer_id = dictionary.get('issuerId')
-        roles = dictionary.get('roles')
+        roles = dictionary.get("roles")
         saml_attribute_name = dictionary.get('samlAttributeName')
         sign_request = dictionary.get('signRequest')
         sso_url = dictionary.get('ssoUrl')
 
         # Return an object of this model
-        return cls(allow_local_authentication,
-                   certificate,
-                   certificate_filename,
-                   enable,
-                   issuer_id,
-                   roles,
-                   saml_attribute_name,
-                   sign_request,
-                   sso_url)
-
-
+        return cls(
+            allow_local_authentication,
+            certificate,
+            certificate_filename,
+            enable,
+            issuer_id,
+            roles,
+            saml_attribute_name,
+            sign_request,
+            sso_url
+)

@@ -4,13 +4,12 @@
 class AccessEnum(object):
 
     """Implementation of the 'Access' enum.
+    Specifies the read/write access to the SMB share. 'kReadyOnly' indicates
+    read only access to the SMB share. 'kReadWrite' indicates read and write
+    access to the SMB share. 'kFullControl' indicates full administrative
+    control of the SMB share. 'kSpecialAccess' indicates custom permissions to
+    the SMB share using access masks structures.
 
-    Specifies the read/write access to the SMB share.
-    'kReadyOnly' indicates read only access to the SMB share.
-    'kReadWrite' indicates read and write access to the SMB share.
-    'kFullControl' indicates full administrative control of the SMB share.
-    'kSpecialAccess' indicates custom permissions to the SMB share using
-    access masks structures.
 
     Attributes:
         KREADONLY: TODO: type description here.
@@ -30,5 +29,3 @@ class AccessEnum(object):
     KFULLCONTROL = 'kFullControl'
 
     KSPECIALACCESS = 'kSpecialAccess'
-
-

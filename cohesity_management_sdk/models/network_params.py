@@ -3,33 +3,36 @@
 
 import cohesity_management_sdk.models.bonding_opts
 
+
 class NetworkParams(object):
 
     """Implementation of the 'NetworkParams' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
-        bonding_opts (BondingOpts): Bonding Opts
-        mtu (int): TODO: type description here.
 
+        bonding_opts (BondingOpts): TODO: Type description here.
+        mtu (int): TODO: Type description here.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "bonding_opts":'bondingOpts',
-        "mtu":'mtu'
+        "mtu":'mtu',
     }
-
     def __init__(self,
                  bonding_opts=None,
-                 mtu=None):
+                 mtu=None,
+            ):
+
         """Constructor for the NetworkParams class"""
 
         # Initialize members of the class
         self.bonding_opts = bonding_opts
         self.mtu = mtu
-
 
     @classmethod
     def from_dictionary(cls,
@@ -53,7 +56,7 @@ class NetworkParams(object):
         mtu = dictionary.get('mtu')
 
         # Return an object of this model
-        return cls(bonding_opts,
-                   mtu)
-
-
+        return cls(
+            bonding_opts,
+            mtu
+)

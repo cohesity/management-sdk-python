@@ -1,41 +1,46 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class NodePort(object):
 
     """Implementation of the 'NodePort' model.
 
-    VmInfo specifies information of a NodePort per service and port
+    NodePort specifies information of a NodePort per service and port
     combination within an application instance.
 
+
     Attributes:
-        is_ui_port (bool): TODO: type description here.
-        port (int): TODO: type description here.
+
+        is_ui_port (bool): TODO: Type description here.
+        port (int): TODO: Type description here.
+        service_name (string): TODO: Type description here.
         tag (TagEnum): Specifies use of the nodeport kDefault - No specific
             service. kHttp - HTTP server. kHttps -  Secure HTTP server. kSsh -
             Secure shell server.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "is_ui_port":'isUiPort',
         "port":'port',
-        "tag":'tag'
+        "service_name":'serviceName',
+        "tag":'tag',
     }
-
     def __init__(self,
                  is_ui_port=None,
                  port=None,
-                 tag=None):
+                 service_name=None,
+                 tag=None,
+            ):
+
         """Constructor for the NodePort class"""
 
         # Initialize members of the class
         self.is_ui_port = is_ui_port
         self.port = port
+        self.service_name = service_name
         self.tag = tag
-
 
     @classmethod
     def from_dictionary(cls,
@@ -57,11 +62,13 @@ class NodePort(object):
         # Extract variables from the dictionary
         is_ui_port = dictionary.get('isUiPort')
         port = dictionary.get('port')
+        service_name = dictionary.get('serviceName')
         tag = dictionary.get('tag')
 
         # Return an object of this model
-        return cls(is_ui_port,
-                   port,
-                   tag)
-
-
+        return cls(
+            is_ui_port,
+            port,
+            service_name,
+            tag
+)

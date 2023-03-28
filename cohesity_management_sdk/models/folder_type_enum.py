@@ -4,13 +4,12 @@
 class FolderTypeEnum(object):
 
     """Implementation of the 'FolderType' enum.
+    Specifies the folder type for the 'kFolder' Object. 'kVMFolder' indicates
+    folder can hold VMs or vApps. 'kHostFolder' indicates folder can hold hosts
+    and compute resources. 'kDatastoreFolder' indicates folder can hold
+    datastores and storage pods. 'kNetworkFolder' indicates folder can hold
+    networks and switches. 'kRootFolder' indicates folder can hold datacenters.
 
-    Specifies the folder type for the 'kFolder' Object.
-    'kVMFolder' indicates folder can hold VMs or vApps.
-    'kHostFolder' indicates folder can hold hosts and compute resources.
-    'kDatastoreFolder' indicates folder can hold datastores and storage pods.
-    'kNetworkFolder' indicates folder can hold networks and switches.
-    'kRootFolder' indicates folder can hold datacenters.
 
     Attributes:
         KVMFOLDER: TODO: type description here.
@@ -30,4 +29,3 @@ class FolderTypeEnum(object):
     KNETWORKFOLDER = 'kNetworkFolder'
 
     KROOTFOLDER = 'kRootFolder'
-

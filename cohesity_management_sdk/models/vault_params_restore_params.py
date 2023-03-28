@@ -3,34 +3,37 @@
 
 import cohesity_management_sdk.models.vault_params_restore_params_glacier
 
-class VaultParamsRestoreParams(object):
+
+class VaultParams_RestoreParams(object):
 
     """Implementation of the 'VaultParams_RestoreParams' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
-        allow_marked_for_removal (bool): TODO: type description here.
-        glacier (VaultParamsRestoreParamsGlacier): TODO: type description
-            here.
 
+        allow_marked_for_removal (bool): TODO: Type description here.
+        glacier (VaultParams_RestoreParams_Glacier): TODO: Type description
+            here.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "allow_marked_for_removal":'allowMarkedForRemoval',
-        "glacier":'glacier'
+        "glacier":'glacier',
     }
-
     def __init__(self,
                  allow_marked_for_removal=None,
-                 glacier=None):
-        """Constructor for the VaultParamsRestoreParams class"""
+                 glacier=None,
+            ):
+
+        """Constructor for the VaultParams_RestoreParams class"""
 
         # Initialize members of the class
         self.allow_marked_for_removal = allow_marked_for_removal
         self.glacier = glacier
-
 
     @classmethod
     def from_dictionary(cls,
@@ -51,9 +54,10 @@ class VaultParamsRestoreParams(object):
 
         # Extract variables from the dictionary
         allow_marked_for_removal = dictionary.get('allowMarkedForRemoval')
-        glacier = cohesity_management_sdk.models.vault_params_restore_params_glacier.VaultParamsRestoreParamsGlacier.from_dictionary(dictionary.get('glacier')) if dictionary.get('glacier') else None
+        glacier = cohesity_management_sdk.models.vault_params_restore_params_glacier.VaultParams_RestoreParams_Glacier.from_dictionary(dictionary.get('glacier')) if dictionary.get('glacier') else None
 
         # Return an object of this model
-        return cls(allow_marked_for_removal, glacier)
-
-
+        return cls(
+            allow_marked_for_removal,
+            glacier
+)

@@ -3,35 +3,38 @@
 
 import cohesity_management_sdk.models.tenant_stats
 
+
 class GetTenantStatsResult(object):
 
     """Implementation of the 'GetTenantStatsResult' model.
 
     GetTenantStatsResult is the result of get tenantStats api.
 
-    Attributes:
-        cookie (string): Specifies an opaque string to pass to get the next
-            set of active opens. If null is returned, this response is the
-            last set of active opens.
-        stats_list (list of TenantStats): Specifies a list of tenant stats.
 
+    Attributes:
+
+        cookie (string): Specifies an opaque string to pass to get the next set
+            of active opens. If null is returned, this response is the last set
+            of active opens.
+        stats_list (list of TenantStats): Specifies a list of tenant stats.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "cookie":'cookie',
-        "stats_list":'statsList'
+        "stats_list":'statsList',
     }
-
     def __init__(self,
                  cookie=None,
-                 stats_list=None):
+                 stats_list=None,
+            ):
+
         """Constructor for the GetTenantStatsResult class"""
 
         # Initialize members of the class
         self.cookie = cookie
         self.stats_list = stats_list
-
 
     @classmethod
     def from_dictionary(cls,
@@ -59,7 +62,7 @@ class GetTenantStatsResult(object):
                 stats_list.append(cohesity_management_sdk.models.tenant_stats.TenantStats.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(cookie,
-                   stats_list)
-
-
+        return cls(
+            cookie,
+            stats_list
+)

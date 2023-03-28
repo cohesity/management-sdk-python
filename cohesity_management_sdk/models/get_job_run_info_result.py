@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class GetJobRunInfoResult(object):
 
     """Implementation of the 'GetJobRunInfoResult' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
+
         bytes_transferred (long|int): Specifies bytes transferred in the run.
         end_time_usecs (long|int): Specifies the end time of the run.
         failure_entities (long|int): Specifies the number of failed objects in
@@ -20,12 +21,11 @@ class GetJobRunInfoResult(object):
         sla_violated (bool): Specifies if the sla was violated the run.
         start_time_usecs (long|int): Specifies the start time of the run.
         status (long|int): Specifies status of the run
-        success_entities (long|int): Specifies the number successful objects
-            in the run.
-        total_entities (long|int): Specifies the number of objects in the
-            run.
-
+        success_entities (long|int): Specifies the number successful objects in
+            the run.
+        total_entities (long|int): Specifies the number of objects in the run.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -39,9 +39,8 @@ class GetJobRunInfoResult(object):
         "start_time_usecs":'startTimeUsecs',
         "status":'status',
         "success_entities":'successEntities',
-        "total_entities":'totalEntities'
+        "total_entities":'totalEntities',
     }
-
     def __init__(self,
                  bytes_transferred=None,
                  end_time_usecs=None,
@@ -53,7 +52,9 @@ class GetJobRunInfoResult(object):
                  start_time_usecs=None,
                  status=None,
                  success_entities=None,
-                 total_entities=None):
+                 total_entities=None,
+            ):
+
         """Constructor for the GetJobRunInfoResult class"""
 
         # Initialize members of the class
@@ -68,7 +69,6 @@ class GetJobRunInfoResult(object):
         self.status = status
         self.success_entities = success_entities
         self.total_entities = total_entities
-
 
     @classmethod
     def from_dictionary(cls,
@@ -101,16 +101,16 @@ class GetJobRunInfoResult(object):
         total_entities = dictionary.get('totalEntities')
 
         # Return an object of this model
-        return cls(bytes_transferred,
-                   end_time_usecs,
-                   failure_entities,
-                   job_id,
-                   job_run_id,
-                   job_type,
-                   sla_violated,
-                   start_time_usecs,
-                   status,
-                   success_entities,
-                   total_entities)
-
-
+        return cls(
+            bytes_transferred,
+            end_time_usecs,
+            failure_entities,
+            job_id,
+            job_run_id,
+            job_type,
+            sla_violated,
+            start_time_usecs,
+            status,
+            success_entities,
+            total_entities
+)

@@ -3,35 +3,38 @@
 
 import cohesity_management_sdk.models.universal_id
 
+
 class RunUid(object):
 
     """Implementation of the 'RunUid' model.
 
     Specifies the universal id of the latest successful Protection Job Run.
 
+
     Attributes:
+
         job_uid (UniversalId): Specifies the universal id of the Protection
             Job.
-        start_time_usecs (long|int): Specifies the start time of the
-            Protection Job Run.
-
+        start_time_usecs (long|int): Specifies the start time of the Protection
+            Job Run.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "job_uid":'jobUid',
-        "start_time_usecs":'startTimeUsecs'
+        "start_time_usecs":'startTimeUsecs',
     }
-
     def __init__(self,
                  job_uid=None,
-                 start_time_usecs=None):
+                 start_time_usecs=None,
+            ):
+
         """Constructor for the RunUid class"""
 
         # Initialize members of the class
         self.job_uid = job_uid
         self.start_time_usecs = start_time_usecs
-
 
     @classmethod
     def from_dictionary(cls,
@@ -55,7 +58,7 @@ class RunUid(object):
         start_time_usecs = dictionary.get('startTimeUsecs')
 
         # Return an object of this model
-        return cls(job_uid,
-                   start_time_usecs)
-
-
+        return cls(
+            job_uid,
+            start_time_usecs
+)

@@ -4,19 +4,16 @@
 class TenantTypeEnum(object):
 
     """Implementation of the 'TenantType' enum.
+    Specifies the MCM tenant type. 'Dmaas' implies tenant type is DMaaS. 'Mcm'
+    implies tenant is Mcm Cluster tenant.
 
-    Specifies the MCM tenant type.
-    'Dmaas' implies tenant type is DMaaS.
-    'OnPrem' implies tenant is cluster tenant.
 
     Attributes:
-
         DMAAS: TODO: type description here.
-        ONPREM: TODO: type description here.
+        MCM: TODO: type description here.
 
     """
 
     DMAAS = 'Dmaas'
 
-    ONPREM = 'OnPrem'
-
+    MCM = 'Mcm'

@@ -5,16 +5,18 @@ import cohesity_management_sdk.models.protection_source_tree_info
 import cohesity_management_sdk.models.protection_summary
 import cohesity_management_sdk.models.protection_summary_by_env
 
+
 class GetRegistrationInfoResponse(object):
 
     """Implementation of the 'GetRegistrationInfoResponse' model.
 
-    Specifies the registration, protection and permission information of all
-    or a
-    subset of the registered Protection Source Trees or Views on the Cohesity
+    Specifies the registration, protection and permission information of all or
+    a subset of the registered Protection Source Trees or Views on the Cohesity
     Cluster.
 
+
     Attributes:
+
         root_nodes (list of ProtectionSourceTreeInfo): Specifies the
             registration, protection and permission information of either all
             or a subset of registered Protection Sources matching the filter
@@ -24,27 +26,27 @@ class GetRegistrationInfoResponse(object):
             parameters.
         stats_by_env (list of ProtectionSummaryByEnv): Specifies the breakdown
             of the stats by environment overrideDescription: true
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "root_nodes":'rootNodes',
         "stats":'stats',
-        "stats_by_env":'statsByEnv'
+        "stats_by_env":'statsByEnv',
     }
-
     def __init__(self,
                  root_nodes=None,
                  stats=None,
-                 stats_by_env=None):
+                 stats_by_env=None,
+            ):
+
         """Constructor for the GetRegistrationInfoResponse class"""
 
         # Initialize members of the class
         self.root_nodes = root_nodes
         self.stats = stats
         self.stats_by_env = stats_by_env
-
 
     @classmethod
     def from_dictionary(cls,
@@ -77,8 +79,8 @@ class GetRegistrationInfoResponse(object):
                 stats_by_env.append(cohesity_management_sdk.models.protection_summary_by_env.ProtectionSummaryByEnv.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(root_nodes,
-                   stats,
-                   stats_by_env)
-
-
+        return cls(
+            root_nodes,
+            stats,
+            stats_by_env
+)

@@ -1,28 +1,28 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class HiveTable(object):
 
     """Implementation of the 'HiveTable' model.
 
     Specifies an Object containing information about a Hive table.
 
-    Attributes:
-        approx_size_bytes (int): Specifies the approx size of the table in
-            bytes.
-        created_on (int): Specifies the created on, epoch millis.
-        is_transactional_table (bool): Specifies if this is a transactional table.
-        owner (string): Specifies the owner of the table.
-        table_type (TypeHiveTableEnum): Specifies the type of table ex.
-            MANAGED,VIRTUAL etc.
-            Specifies the type of an Hive table.
-            'kManaged' indicates a MANAGED Hive table.
-            'kExternal' indicates a EXTERNAL Hive table.
-            'kVirtual' indicates a VIRTUAL Hive tablet.
-            'kIndex' indicates a INDEX Hive table.
 
+    Attributes:
+
+        approx_size_bytes (long|int): Specifies the approx size of the table in
+            bytes.
+        created_on (long|int): Specifies the created on, epoch millis.
+        is_transactional_table (bool): Specifies if this is a transactional
+            table.
+        owner (string): Specifies the owner of the table.
+        table_type (TableTypeEnum): Specifies the type of table ex.
+            MANAGED,VIRTUAL etc. Specifies the type of an Hive table.
+            'kManaged' indicates a MANAGED Hive table. 'kExternal' indicates a
+            EXTERNAL Hive table. 'kVirtual' indicates a VIRTUAL Hive tablet.
+            'kIndex' indicates a INDEX Hive table.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -30,15 +30,16 @@ class HiveTable(object):
         "created_on":'createdOn',
         "is_transactional_table":'isTransactionalTable',
         "owner":'owner',
-        "table_type":'tableType'
+        "table_type":'tableType',
     }
-
     def __init__(self,
                  approx_size_bytes=None,
                  created_on=None,
                  is_transactional_table=None,
                  owner=None,
-                 table_type=None):
+                 table_type=None,
+            ):
+
         """Constructor for the HiveTable class"""
 
         # Initialize members of the class
@@ -47,7 +48,6 @@ class HiveTable(object):
         self.is_transactional_table = is_transactional_table
         self.owner = owner
         self.table_type = table_type
-
 
     @classmethod
     def from_dictionary(cls,
@@ -70,14 +70,14 @@ class HiveTable(object):
         approx_size_bytes = dictionary.get('approxSizeBytes')
         created_on = dictionary.get('createdOn')
         is_transactional_table = dictionary.get('isTransactionalTable')
-        table_type = dictionary.get('tableType')
         owner = dictionary.get('owner')
+        table_type = dictionary.get('tableType')
 
         # Return an object of this model
-        return cls(approx_size_bytes,
-                   created_on,
-                   is_transactional_table,
-                   owner,
-                   table_type)
-
-
+        return cls(
+            approx_size_bytes,
+            created_on,
+            is_transactional_table,
+            owner,
+            table_type
+)

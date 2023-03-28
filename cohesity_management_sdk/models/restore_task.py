@@ -3,21 +3,21 @@
 
 import cohesity_management_sdk.models.acropolis_restore_parameters
 import cohesity_management_sdk.models.application_restore_parameters
-import cohesity_management_sdk.models.universal_id
-import cohesity_management_sdk.models.update_view_param
 import cohesity_management_sdk.models.deploy_vms_to_cloud
-import cohesity_management_sdk.models.request_error
 import cohesity_management_sdk.models.hyperv_restore_parameters
 import cohesity_management_sdk.models.mount_volumes_state
-import cohesity_management_sdk.models.restore_object_details
 import cohesity_management_sdk.models.one_drive_restore_parameters
 import cohesity_management_sdk.models.outlook_restore_parameters
 import cohesity_management_sdk.models.public_folders_restore_parameters
+import cohesity_management_sdk.models.request_error
+import cohesity_management_sdk.models.restore_object_details
 import cohesity_management_sdk.models.restore_object_state
+import cohesity_management_sdk.models.share_point_restore_parameters
+import cohesity_management_sdk.models.universal_id
+import cohesity_management_sdk.models.update_view_param
 import cohesity_management_sdk.models.virtual_disk_recover_task_state
 import cohesity_management_sdk.models.vlan_parameters
 import cohesity_management_sdk.models.vmware_restore_parameters
-import cohesity_management_sdk.models.share_point_restore_parameters
 
 
 class RestoreTask(object):
@@ -26,12 +26,13 @@ class RestoreTask(object):
 
     Specifies information about a Restore Task.
 
+
     Attributes:
-        acropolis_parameters (AcropolisRestoreParameters): This field defines
-            the Acropolis specific params for restore tasks of type
-            kRecoverVMs.
-        application_parameters (ApplicationRestoreParameters): Specifies the
-            information regarding the application restore parameters.
+
+        acropolis_parameters (AcropolisRestoreParameters): Specifies parameters
+            for 'kAcropolis' restore task.
+        application_parameters (ApplicationRestoreParameters): Specifies
+            parameters for restore task of application server object.
         archive_task_uid (UniversalId): Specifies the uid of the Restore Task
             that retrieves objects from an archive. This field is only
             populated when objects must be retrieved from an archive before
@@ -44,49 +45,46 @@ class RestoreTask(object):
             clone. This is only set when this task is a clone task.
         clone_view_parameters (UpdateViewParam): Specifies the View settings
             used when cloning a View.
-        continue_on_error (bool): Specifies if the Restore Task should
-            continue when some operations on some objects fail. If true, the
-            Cohesity Cluster ignores intermittent errors and restores as many
-            objects as possible.
+        continue_on_error (bool): Specifies if the Restore Task should continue
+            when some operations on some objects fail. If true, the Cohesity
+            Cluster ignores intermittent errors and restores as many objects as
+            possible.
         datastore_id (long|int): Specifies the datastore where the object's
             files are recovered to. This field is populated when objects are
             recovered to a different resource pool or to a different parent
             source. This field is not populated when objects are recovered to
             their original datastore locations in the original parent source.
-        deploy_vms_to_cloud (DeployVmsToCloud): Specifies the details about
-            deploying vms to specific clouds where backup may be stored and
-            converted.
+        deploy_vms_to_cloud (DeployVmsToCloud): Specifies parameters to deploy
+            VMs to cloud.
         end_time_usecs (long|int): Specifies the end time of the Restore Task
             as a Unix epoch Timestamp (in microseconds). This field is only
             populated if the Restore Task completes.
         error (RequestError): Specifies the error reported by the Restore Task
             (if any) after the Task has finished.
         full_view_name (string): Specifies the full name of a View.
-        hyperv_parameters (HypervRestoreParameters): Specifies information
-            needed when restoring VMs in HyperV enviroment. This field defines
-            the HyperV specific params for restore tasks of type kRecoverVMs.
+        hyperv_parameters (HypervRestoreParameters): Specifies additional
+            parameters for 'kHyperV' restore objects.
         id (long|int): Specifies the id of the Restore Task assigned by
             Cohesity Cluster.
         mount_volumes_state (MountVolumesState): Specifies the states of
             mounting all the volumes onto a mount target for a 'kRecoverVMs'
             Restore Task.
-        name (string, required ): Specifies the name of the Restore Task. This
-            field must be set and must be a unique name.
+        name (string): Specifies the name of the Restore Task. This field must
+            be set and must be a unique name.
         new_parent_id (long|int): Specify a new registered parent Protection
             Source. If specified the selected objects are cloned or recovered
-            to this new Protection Source. If not specified, objects are
-            cloned or recovered to the original Protection Source that was
-            managing them.
+            to this new Protection Source. If not specified, objects are cloned
+            or recovered to the original Protection Source that was managing
+            them.
         objects (list of RestoreObjectDetails): Array of Objects.  Specifies a
             list of Protection Source objects or Protection Job objects (with
             specified Protection Source objects).
-        one_drive_parameters (OneDriveRestoreParameters): Specifies
-            information needed for recovering Drive(s) & Drive items.
-        outlook_parameters (OutlookRestoreParameters): Specifies information
-            needed for recovering Mailboxes in O365Outlook environment.
+        one_drive_parameters (OneDriveRestoreParameters): Specifies additional
+            parameters for 'kRecoverO365Drive' restore task.
+        outlook_parameters (OutlookRestoreParameters): Specifies parameters for
+            'kRecoverEmails' restore task.
         public_folders_parameters (PublicFoldersRestoreParameters): Specifies
-            additional parameters for 'kRecoverO365PublicFolders' restore
-            task.
+            additional parameters for 'kRecoverO365PublicFolders' restore task.
         restore_object_state (list of RestoreObjectState): Array of Object
             States.  Specifies the states of all the objects for the
             'kRecoverVMs' and 'kCloneVMs' Restore Tasks.
@@ -102,30 +100,22 @@ class RestoreTask(object):
             been retrieved from the specified archive. A Task will only ever
             transition to this state if a retrieval is necessary. 'kAdmitted'
             indicates the task has been admitted. After a task has been
-            admitted, its status does not move back to 'kReadyToSchedule'
-            state even if it is rescheduled. 'kInProgress' indicates that the
-            Restore Task is in progress. 'kFinishingProgressMonitor' indicates
-            that the Restore Task is finishing its progress monitoring.
-            'kFinished' indicates that the Restore Task has finished. The
-            status indicating success or failure is found in the error code
-            that is stored with the Restore Task. 'kInternalViewCreated'
-            indicates that internal view for the task has been created.
-            'kZipFileRequested' indicates that request has been sent to create
-            zip files for the files to be downloaded. This state is only going
-            to be present for kDownloadFiles Task. 'kCancelled' indicates that
-            task or jb has been cancelled.
+            admitted, its status does not move back to 'kReadyToSchedule' state
+            even if it is rescheduled. 'kInProgress' indicates that the Restore
+            Task is in progress. 'kFinishingProgressMonitor' indicates that the
+            Restore Task is finishing its progress monitoring. 'kFinished'
+            indicates that the Restore Task has finished. The status indicating
+            success or failure is found in the error code that is stored with
+            the Restore Task. 'kInternalViewCreated' indicates that internal
+            view for the task has been created. 'kZipFileRequested' indicates
+            that request has been sent to create zip files for the files to be
+            downloaded. This state is only going to be present for
+            kDownloadFiles Task. 'kCancelled' indicates that task or jb has
+            been cancelled.
         target_view_created (bool): Is true if a new View was created by a
             'kCloneVMs' Restore Task. This field is only set for a 'kCloneVMs'
             Restore Task.
-        tear_down_error_message (string): Specifies the error message about
-            the tear down operation if it fails. 
-        tear_down_status (TearDownStatusEnum): Specifies the status of the
-            tear down operation. This is only set when the
-            field 'cloneStatus' is set to true.
-            'kReadyToSchedule' indicates that the task is waiting to be scheduled.
-            'kAdmitted' indicates that the task has been admitted.
-            'kFinished' indicates that the task is finished with or without error.
-        mtype (TypeRestoreTaskEnum): Specifies the type of Restore Task.
+        mtype (TypeRestoreTaskEnum): Specifies the type of Restore Task. 
             'kRecoverVMs' specifies a Restore Task that recovers VMs.
             'kCloneVMs' specifies a Restore Task that clones VMs. 'kCloneView'
             specifies a Restore Task that clones a View. 'kMountVolumes'
@@ -135,36 +125,35 @@ class RestoreTask(object):
             'kCloneApp' specifies a Restore Task that clone app.
             'kRecoverSanVolume' specifies a Restore Task that recovers SAN
             volumes. 'kConvertAndDeployVMs' specifies a Restore Task that
-            converts and deploy VMs to a target environment.
-            'kMountFileVolume' specifies a Restore Task that mounts a file
-            volume. 'kSystem' specifies a Restore Task that recovers a system.
-            'kRecoverVolumes' specifies a Restore Task that recovers volumes
-            via the physical agent. 'kDeployVolumes' specifies a Restore Task
-            that deployes volumes to a target environment. 'kDownloadFiles'
-            specifies a Restore Task that downloads the requested files and
-            folders in zip format. 'kRecoverEmails' specifies a Restore Task
-            that recovers the mailbox/email items. 'kConvertToPst' specifies
-            a PST conversion task for selected mailbox/email items.
-            'kRecoverDisks' specifies a Restore Task that recovers the
-            virtual disks. 'kRecoverNamespaces' specifies a Restore Task that
-            recovers Kubernetes namespaces. 'kCloneVMsToView' specifies a
-            Restore Task that clones VMs into a View.
+            converts and deploy VMs to a target environment. 'kMountFileVolume'
+            specifies a Restore Task that mounts a file volume. 'kSystem'
+            specifies a Restore Task that recovers a system. 'kRecoverVolumes'
+            specifies a Restore Task that recovers volumes via the physical
+            agent. 'kDeployVolumes' specifies a Restore Task that deploys
+            volumes to a target environment. 'kDownloadFiles' specifies a
+            Restore Task that downloads the requested files and folders in zip
+            format. 'kRecoverEmails' specifies a Restore Task that recovers the
+            mailbox/email items. 'kConvertToPst' specifies a PST conversion
+            task for selected mailbox/email items. 'kRecoverDisks' specifies a
+            Restore Task that recovers the virtual disks. 'kRecoverNamespaces'
+            specifies a Restore Task that recovers Kubernetes namespaces.
+            'kCloneVMsToView' specifies a Restore Task that clones VMs into a
+            View.
         username (string): Specifies the Cohesity user who requested this
             Restore Task.
-        view_box_id (long|int): Specifies the id of the Domain (View Box)
-            where the View is stored.
-        virtual_disk_restore_state (VirtualDiskRecoverTaskState): Specifies
-            the complete information about a recover virtual disk task state.
+        view_box_id (long|int): Specifies the id of the Domain (View Box) where
+            the View is stored.
+        virtual_disk_restore_state (VirtualDiskRecoverTaskState): Specifies the
+            state of recovering all the specifies virtual disks of a vm.
         vlan_parameters (VlanParameters): Specifies VLAN parameters for the
             restore operation.
-        vmware_parameters (VmwareRestoreParameters): Specifies the information
-            required for recovering or cloning VmWare VMs.
-
+        vmware_parameters (VmwareRestoreParameters): Specifies additional
+            parameters for 'kVmware' restore objects.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "name":'name',
         "acropolis_parameters":'acropolisParameters',
         "application_parameters":'applicationParameters',
         "archive_task_uid":'archiveTaskUid',
@@ -180,6 +169,7 @@ class RestoreTask(object):
         "hyperv_parameters":'hypervParameters',
         "id":'id',
         "mount_volumes_state":'mountVolumesState',
+        "name":'name',
         "new_parent_id":'newParentId',
         "objects":'objects',
         "one_drive_parameters":'oneDriveParameters',
@@ -190,18 +180,14 @@ class RestoreTask(object):
         "start_time_usecs":'startTimeUsecs',
         "status":'status',
         "target_view_created":'targetViewCreated',
-        "tear_down_error_message":'tearDownErrorMessage',
-        "tear_down_status":'tearDownStatus',
         "mtype":'type',
         "username":'username',
         "view_box_id":'viewBoxId',
         "virtual_disk_restore_state":'virtualDiskRestoreState',
         "vlan_parameters":'vlanParameters',
-        "vmware_parameters":'vmwareParameters'
+        "vmware_parameters":'vmwareParameters',
     }
-
     def __init__(self,
-                 name=None,
                  acropolis_parameters=None,
                  application_parameters=None,
                  archive_task_uid=None,
@@ -217,6 +203,7 @@ class RestoreTask(object):
                  hyperv_parameters=None,
                  id=None,
                  mount_volumes_state=None,
+                 name=None,
                  new_parent_id=None,
                  objects=None,
                  one_drive_parameters=None,
@@ -227,14 +214,14 @@ class RestoreTask(object):
                  start_time_usecs=None,
                  status=None,
                  target_view_created=None,
-                 tear_down_error_message=None,
-                 tear_down_status=None,
                  mtype=None,
                  username=None,
                  view_box_id=None,
                  virtual_disk_restore_state=None,
                  vlan_parameters=None,
-                 vmware_parameters=None):
+                 vmware_parameters=None,
+            ):
+
         """Constructor for the RestoreTask class"""
 
         # Initialize members of the class
@@ -264,15 +251,12 @@ class RestoreTask(object):
         self.start_time_usecs = start_time_usecs
         self.status = status
         self.target_view_created = target_view_created
-        self.tear_down_error_message = tear_down_error_message
-        self.tear_down_status = tear_down_status
         self.mtype = mtype
         self.username = username
         self.view_box_id = view_box_id
         self.virtual_disk_restore_state = virtual_disk_restore_state
         self.vlan_parameters = vlan_parameters
         self.vmware_parameters = vmware_parameters
-
 
     @classmethod
     def from_dictionary(cls,
@@ -292,7 +276,6 @@ class RestoreTask(object):
             return None
 
         # Extract variables from the dictionary
-        name = dictionary.get('name')
         acropolis_parameters = cohesity_management_sdk.models.acropolis_restore_parameters.AcropolisRestoreParameters.from_dictionary(dictionary.get('acropolisParameters')) if dictionary.get('acropolisParameters') else None
         application_parameters = cohesity_management_sdk.models.application_restore_parameters.ApplicationRestoreParameters.from_dictionary(dictionary.get('applicationParameters')) if dictionary.get('applicationParameters') else None
         archive_task_uid = cohesity_management_sdk.models.universal_id.UniversalId.from_dictionary(dictionary.get('archiveTaskUid')) if dictionary.get('archiveTaskUid') else None
@@ -312,6 +295,7 @@ class RestoreTask(object):
         hyperv_parameters = cohesity_management_sdk.models.hyperv_restore_parameters.HypervRestoreParameters.from_dictionary(dictionary.get('hypervParameters')) if dictionary.get('hypervParameters') else None
         id = dictionary.get('id')
         mount_volumes_state = cohesity_management_sdk.models.mount_volumes_state.MountVolumesState.from_dictionary(dictionary.get('mountVolumesState')) if dictionary.get('mountVolumesState') else None
+        name = dictionary.get('name')
         new_parent_id = dictionary.get('newParentId')
         objects = None
         if dictionary.get('objects') != None:
@@ -330,8 +314,6 @@ class RestoreTask(object):
         start_time_usecs = dictionary.get('startTimeUsecs')
         status = dictionary.get('status')
         target_view_created = dictionary.get('targetViewCreated')
-        tear_down_error_message = dictionary.get('tearDownErrorMessage')
-        tear_down_status = dictionary.get('tearDownStatus')
         mtype = dictionary.get('type')
         username = dictionary.get('username')
         view_box_id = dictionary.get('viewBoxId')
@@ -340,39 +322,37 @@ class RestoreTask(object):
         vmware_parameters = cohesity_management_sdk.models.vmware_restore_parameters.VmwareRestoreParameters.from_dictionary(dictionary.get('vmwareParameters')) if dictionary.get('vmwareParameters') else None
 
         # Return an object of this model
-        return cls(name,
-                   acropolis_parameters,
-                   application_parameters,
-                   archive_task_uid,
-                   archive_task_uids,
-                   clone_status,
-                   clone_view_parameters,
-                   continue_on_error,
-                   datastore_id,
-                   deploy_vms_to_cloud,
-                   end_time_usecs,
-                   error,
-                   full_view_name,
-                   hyperv_parameters,
-                   id,
-                   mount_volumes_state,
-                   new_parent_id,
-                   objects,
-                   one_drive_parameters,
-                   outlook_parameters,
-                   public_folders_parameters,
-                   restore_object_state,
-                   share_point_parameters,
-                   start_time_usecs,
-                   status,
-                   target_view_created,
-                   tear_down_error_message,
-                   tear_down_status,
-                   mtype,
-                   username,
-                   view_box_id,
-                   virtual_disk_restore_state,
-                   vlan_parameters,
-                   vmware_parameters)
-
-
+        return cls(
+            acropolis_parameters,
+            application_parameters,
+            archive_task_uid,
+            archive_task_uids,
+            clone_status,
+            clone_view_parameters,
+            continue_on_error,
+            datastore_id,
+            deploy_vms_to_cloud,
+            end_time_usecs,
+            error,
+            full_view_name,
+            hyperv_parameters,
+            id,
+            mount_volumes_state,
+            name,
+            new_parent_id,
+            objects,
+            one_drive_parameters,
+            outlook_parameters,
+            public_folders_parameters,
+            restore_object_state,
+            share_point_parameters,
+            start_time_usecs,
+            status,
+            target_view_created,
+            mtype,
+            username,
+            view_box_id,
+            virtual_disk_restore_state,
+            vlan_parameters,
+            vmware_parameters
+)

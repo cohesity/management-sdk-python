@@ -3,15 +3,13 @@
 
 class TypeExchangeRestoreParametersEnum(object):
 
-    """Implementation of the 'Type_ExchangeRestoreParameters' enum.
+    """Implementation of the 'TypeExchangeRestoreParameters' enum.
+    Specifies the Exchange restore type. Specifies the type of Exchange
+    restore.  'kNone' specifies no special behaviour. 'kView' specifies the
+    option to create a view which cann be used by the external tools like Kroll
+    to perform mailbox or mail-item recovery. 'kDatabase' specifies the option
+    to restore an Exchange database.
 
-    Specifies the Exchange restore type.
-    Specifies the type of Exchange restore.
-
-    'kNone' specifies no special behaviour.
-    'kView' specifies the option to create a view which cann be used by the
-    external tools like Kroll to perform mailbox or mail-item recovery.
-    'kDatabase' specifies the option to restore an Exchange database.
 
     Attributes:
         KNONE: TODO: type description here.
@@ -25,4 +23,3 @@ class TypeExchangeRestoreParametersEnum(object):
     KVIEW = 'kView'
 
     KDATABASE = 'kDatabase'
-

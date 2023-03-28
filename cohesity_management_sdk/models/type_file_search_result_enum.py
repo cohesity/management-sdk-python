@@ -3,9 +3,9 @@
 
 class TypeFileSearchResultEnum(object):
 
-    """Implementation of the 'Type_FileSearchResult' enum.
-
+    """Implementation of the 'TypeFileSearchResult' enum.
     Specifies the type of the file document such as KDirectory, kFile, etc.
+
 
     Attributes:
         KDIRECTORY: TODO: type description here.
@@ -22,4 +22,3 @@ class TypeFileSearchResultEnum(object):
     KEMAIL = 'kEmail'
 
     KSYMLINK = 'kSymlink'
-

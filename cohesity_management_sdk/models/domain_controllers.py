@@ -1,31 +1,32 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class DomainControllers(object):
 
     """Implementation of the 'DomainControllers' model.
 
     Domain Controllers for a domain of an Active Directory domain.
 
+
     Attributes:
+
         domain_controllers (list of string): Domain Controllers of a domain of
             an Active Directory domain.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "domain_controllers":'domainControllers'
+        "domain_controllers":'domainControllers',
     }
-
     def __init__(self,
-                 domain_controllers=None):
+                 domain_controllers=None,
+            ):
+
         """Constructor for the DomainControllers class"""
 
         # Initialize members of the class
         self.domain_controllers = domain_controllers
-
 
     @classmethod
     def from_dictionary(cls,
@@ -45,9 +46,9 @@ class DomainControllers(object):
             return None
 
         # Extract variables from the dictionary
-        domain_controllers = dictionary.get('domainControllers')
+        domain_controllers = dictionary.get("domainControllers")
 
         # Return an object of this model
-        return cls(domain_controllers)
-
-
+        return cls(
+            domain_controllers
+)

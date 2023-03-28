@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class AlertResolutionDetails(object):
 
     """Implementation of the 'AlertResolutionDetails' model.
 
-    Specifies information about the Alert Resolution such as a summary,
-    id assigned by the Cohesity Cluster, user who resolved the Alerts, etc.
+    Specifies information about the Alert Resolution such as a summary, id
+    assigned by the Cohesity Cluster, user who resolved the Alerts, etc.
+
 
     Attributes:
+
         resolution_details (string): Specifies detailed notes about the
             Resolution.
         resolution_id (long|int): Specifies Unique id assigned by the Cohesity
@@ -20,8 +21,8 @@ class AlertResolutionDetails(object):
             microseconds) when the Alerts were resolved.
         user_name (string): Specifies name of the Cohesity Cluster user who
             resolved the Alerts.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -29,15 +30,16 @@ class AlertResolutionDetails(object):
         "resolution_id":'resolutionId',
         "resolution_summary":'resolutionSummary',
         "timestamp_usecs":'timestampUsecs',
-        "user_name":'userName'
+        "user_name":'userName',
     }
-
     def __init__(self,
                  resolution_details=None,
                  resolution_id=None,
                  resolution_summary=None,
                  timestamp_usecs=None,
-                 user_name=None):
+                 user_name=None,
+            ):
+
         """Constructor for the AlertResolutionDetails class"""
 
         # Initialize members of the class
@@ -46,7 +48,6 @@ class AlertResolutionDetails(object):
         self.resolution_summary = resolution_summary
         self.timestamp_usecs = timestamp_usecs
         self.user_name = user_name
-
 
     @classmethod
     def from_dictionary(cls,
@@ -73,10 +74,10 @@ class AlertResolutionDetails(object):
         user_name = dictionary.get('userName')
 
         # Return an object of this model
-        return cls(resolution_details,
-                   resolution_id,
-                   resolution_summary,
-                   timestamp_usecs,
-                   user_name)
-
-
+        return cls(
+            resolution_details,
+            resolution_id,
+            resolution_summary,
+            timestamp_usecs,
+            user_name
+)

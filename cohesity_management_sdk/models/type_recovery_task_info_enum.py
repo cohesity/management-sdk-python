@@ -3,13 +3,12 @@
 
 class TypeRecoveryTaskInfoEnum(object):
 
-    """Implementation of the 'Type_RecoveryTaskInfo' enum.
+    """Implementation of the 'TypeRecoveryTaskInfo' enum.
+    Denotes if the recovery task has an archival target. This param is used to
+    reflect if the recovery op has an archival target to work with. 'local'
+    indicates no archival target. 'archive' indicates that objects restored
+    using an archival target.
 
-    Denotes if the recovery task has an archival target.
-    This param is used to reflect if the recovery op has an archival
-    target to work with.
-    'local' indicates no archival target.
-    'archive' indicates that objects restored using an archival target.
 
     Attributes:
         LOCAL: TODO: type description here.
@@ -20,4 +19,3 @@ class TypeRecoveryTaskInfoEnum(object):
     LOCAL = 'local'
 
     ARCHIVE = 'archive'
-

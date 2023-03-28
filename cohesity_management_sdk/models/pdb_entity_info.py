@@ -1,34 +1,36 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class PDBEntityInfo(object):
 
     """Implementation of the 'PDBEntityInfo' model.
 
-    Proto to capture the Pluggable database information.
+    TODO: type description here.
+
 
     Attributes:
+
         db_id (string): Pluggable database identifier.
         name (string): Name of the DB.
         open_mode (int): PDB open mode.
         size_bytes (long|int): Size in bytes.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "db_id":'dbId',
         "name":'name',
         "open_mode":'openMode',
-        "size_bytes":'sizeBytes'
+        "size_bytes":'sizeBytes',
     }
-
     def __init__(self,
                  db_id=None,
                  name=None,
                  open_mode=None,
-                 size_bytes=None):
+                 size_bytes=None,
+            ):
+
         """Constructor for the PDBEntityInfo class"""
 
         # Initialize members of the class
@@ -36,7 +38,6 @@ class PDBEntityInfo(object):
         self.name = name
         self.open_mode = open_mode
         self.size_bytes = size_bytes
-
 
     @classmethod
     def from_dictionary(cls,
@@ -62,9 +63,9 @@ class PDBEntityInfo(object):
         size_bytes = dictionary.get('sizeBytes')
 
         # Return an object of this model
-        return cls(db_id,
-                   name,
-                   open_mode,
-                   size_bytes)
-
-
+        return cls(
+            db_id,
+            name,
+            open_mode,
+            size_bytes
+)

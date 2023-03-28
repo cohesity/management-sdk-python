@@ -1,37 +1,37 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
+class ADGuidPair(object):
 
-class AdGuidPair(object):
+    """Implementation of the 'ADGuidPair' model.
 
-    """Implementation of the 'AdGuidPair' model.
+    TODO: type description here.
 
-    AdGuidPair is the AD object guid string pair.
 
     Attributes:
-        destination (string): Specifies the destination guid in production AD
-            object corresponding to source. If empty, it assumed to be
-            'source' guid.
-        source (string): Specifies the source guid string of an AD object in
-            mounted AD snapshot. This cannot be empty.
 
+        destination (string): Destination guid in production AD object
+            corresponding to source. If empty, it assumed to be 'source' guid.
+        source (string): Source guid string of an AD object in mounted AD
+            snapshot. This cannot be empty.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "destination":'destination',
-        "source":'source'
+        "source":'source',
     }
-
     def __init__(self,
                  destination=None,
-                 source=None):
-        """Constructor for the AdGuidPair class"""
+                 source=None,
+            ):
+
+        """Constructor for the ADGuidPair class"""
 
         # Initialize members of the class
         self.destination = destination
         self.source = source
-
 
     @classmethod
     def from_dictionary(cls,
@@ -55,7 +55,7 @@ class AdGuidPair(object):
         source = dictionary.get('source')
 
         # Return an object of this model
-        return cls(destination,
-                   source)
-
-
+        return cls(
+            destination,
+            source
+)

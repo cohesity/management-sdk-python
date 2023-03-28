@@ -3,24 +3,25 @@
 
 import cohesity_management_sdk.models.file_uptiering_params_source_view_map_entry
 
+
 class FileUptieringParams(object):
 
     """Implementation of the 'FileUptieringParams' model.
 
-    File Uptiering Parameters for NAS migration.
+    TODO: type description here.
+
 
     Attributes:
+
         enable_audit_logging (bool): If enabled, audit log the files which are
             uptiered.
         file_select_policy (int): File uptier policy based on file
             access/modify time.
-        file_size (int): Gives the size criteria to be used for selecting the
-            files to be uptiered.
-            The hot files, which are greater or smaller than file_size, are
-            uptiered.
-        file_size_policy (int): File size policy for selecting files to
-            uptier.
-        hot_file_window (int): Identifies the hot files in the view. Files
+        file_size (long|int): Gives the size criteria to be used for selecting
+            the files to be uptiered. The hot files, which are greater or
+            smaller than file_size, are uptiered.
+        file_size_policy (int): File size policy for selecting files to uptier.
+        hot_file_window (long|int): Identifies the hot files in the view. Files
             which are accessed num_file_access times in hot_file_window msecs,
             are uptiered. It is only applicable when file_select_policy is
             kLastAccessed and num_file_access is greater than 1.
@@ -30,30 +31,29 @@ class FileUptieringParams(object):
             hot_file_window in order to qualify for uptiering. Applicable only
             when file_select_policy is kLastAccessed.
         source_view_map (list of FileUptieringParams_SourceViewMapEntry): The
-            object's entity id to SourceViewData map from which the data will be
-            uptieried.
-        source_view_name (string): The source view name from which the data will
-            be uptiered.
-        uptier_all_files (bool): If set, all files in the view will be
-            uptiered regardless of file_select_policy, num_file_access,
-            hot_file_window, file_size constraints.
-
+            object's entity id to SourceViewData map from which the data will
+            be uptieried.
+        source_view_name (string): The source view name from which the data
+            will be uptiered.
+        uptier_all_files (bool): If set, all files in the view will be uptiered
+            regardless of file_select_policy, num_file_access, hot_file_window,
+            file_size constraints.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "enable_audit_logging":'enableAuditLogging',
-        "file_select_policy": 'fileSelectPolicy',
-        "file_size": 'fileSize',
-        "file_size_policy": 'fileSizePolicy',
-        "hot_file_window": 'hotFileWindow',
+        "file_select_policy":'fileSelectPolicy',
+        "file_size":'fileSize',
+        "file_size_policy":'fileSizePolicy',
+        "hot_file_window":'hotFileWindow',
         "nfs_mount_path":'nfsMountPath',
         "num_file_access":'numFileAccess',
         "source_view_map":'sourceViewMap',
         "source_view_name":'sourceViewName',
-        "uptier_all_files":'uptierAllFiles'
+        "uptier_all_files":'uptierAllFiles',
     }
-
     def __init__(self,
                  enable_audit_logging=None,
                  file_select_policy=None,
@@ -64,7 +64,9 @@ class FileUptieringParams(object):
                  num_file_access=None,
                  source_view_map=None,
                  source_view_name=None,
-                 uptier_all_files=None):
+                 uptier_all_files=None,
+            ):
+
         """Constructor for the FileUptieringParams class"""
 
         # Initialize members of the class
@@ -113,15 +115,15 @@ class FileUptieringParams(object):
         uptier_all_files = dictionary.get('uptierAllFiles')
 
         # Return an object of this model
-        return cls(enable_audit_logging,
-                   file_select_policy,
-                   file_size,
-                   file_size_policy,
-                   hot_file_window,
-                   nfs_mount_path,
-                   num_file_access,
-                   source_view_map,
-                   source_view_name,
-                   uptier_all_files)
-
-
+        return cls(
+            enable_audit_logging,
+            file_select_policy,
+            file_size,
+            file_size_policy,
+            hot_file_window,
+            nfs_mount_path,
+            num_file_access,
+            source_view_map,
+            source_view_name,
+            uptier_all_files
+)

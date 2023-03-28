@@ -3,30 +3,33 @@
 
 import cohesity_management_sdk.models.schema_info
 
+
 class TimeSeriesSchemaResponse(object):
 
     """Implementation of the 'TimeSeriesSchemaResponse' model.
 
     Specifies the Apollo schema to list the data point.
 
-    Attributes:
-        schema_info_list (list of SchemaInfo): Specifies the list of the
-            schema info for an entity.
 
+    Attributes:
+
+        schema_info_list (list of SchemaInfo): Specifies the list of the schema
+            info for an entity.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "schema_info_list":'schemaInfoList'
+        "schema_info_list":'schemaInfoList',
     }
-
     def __init__(self,
-                 schema_info_list=None):
+                 schema_info_list=None,
+            ):
+
         """Constructor for the TimeSeriesSchemaResponse class"""
 
         # Initialize members of the class
         self.schema_info_list = schema_info_list
-
 
     @classmethod
     def from_dictionary(cls,
@@ -53,6 +56,6 @@ class TimeSeriesSchemaResponse(object):
                 schema_info_list.append(cohesity_management_sdk.models.schema_info.SchemaInfo.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(schema_info_list)
-
-
+        return cls(
+            schema_info_list
+)

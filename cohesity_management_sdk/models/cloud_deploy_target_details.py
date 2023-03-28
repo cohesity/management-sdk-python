@@ -5,6 +5,7 @@ import cohesity_management_sdk.models.aws_params
 import cohesity_management_sdk.models.azure_params
 import cohesity_management_sdk.models.gcp_params
 
+
 class CloudDeployTargetDetails(object):
 
     """Implementation of the 'CloudDeployTargetDetails' model.
@@ -12,25 +13,26 @@ class CloudDeployTargetDetails(object):
     Message that specifies the details about CloudDeploy target where backup
     snapshots may be converted and stored.
 
+
     Attributes:
-        aws_params (AwsParams): Specifies various resources when converting
-            and deploying a VM to AWS.
-        azure_params (AzureParams): Specifies various resources when
-            converting and deploying a VM to Azure.
-        gcp_params (GcpParams): Specifies various resources when converting
-            and deploying a VM to GCP.
-        id (long|int): Entity corresponding to the cloud deploy target.
+
+        aws_params (AwsParams): Specifies various resources when converting and
+            deploying a VM to AWS.
+        azure_params (AzureParams): Specifies various resources when converting
+            and deploying a VM to Azure.
+        gcp_params (GcpParams): Specifies various resources when converting and
+            deploying a VM to Gcp.
+        id (long|int): Entity corresponding to the cloud deploy target. 
             Specifies the id field inside the EntityProto.
         name (string): Specifies the inner object's name or a human-readable
             string made off the salient attributes. This is only plumbed when
             Entity objects are exposed to Iris BE or to Yoda.
         mtype (TypeCloudDeployTargetDetailsEnum): Specifies the type of the
-            CloudDeploy target. 'kAzure' indicates that Azure as a cloud
-            deploy target type. 'kAWS' indicates that AWS as a cloud deploy
-            target type. 'kGCP' indicates that GCP as a cloud deploy target
-            type.
-
+            CloudDeploy target. 'kAzure' indicates that Azure as a cloud deploy
+            target type. 'kAWS' indicates that AWS as a cloud deploy target
+            type. 'kGCP' indicates that GCP as a cloud deploy target type.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -39,16 +41,17 @@ class CloudDeployTargetDetails(object):
         "gcp_params":'gcpParams',
         "id":'id',
         "name":'name',
-        "mtype":'type'
+        "mtype":'type',
     }
-
     def __init__(self,
                  aws_params=None,
                  azure_params=None,
                  gcp_params=None,
                  id=None,
                  name=None,
-                 mtype=None):
+                 mtype=None,
+            ):
+
         """Constructor for the CloudDeployTargetDetails class"""
 
         # Initialize members of the class
@@ -58,7 +61,6 @@ class CloudDeployTargetDetails(object):
         self.id = id
         self.name = name
         self.mtype = mtype
-
 
     @classmethod
     def from_dictionary(cls,
@@ -86,11 +88,11 @@ class CloudDeployTargetDetails(object):
         mtype = dictionary.get('type')
 
         # Return an object of this model
-        return cls(aws_params,
-                   azure_params,
-                   gcp_params,
-                   id,
-                   name,
-                   mtype)
-
-
+        return cls(
+            aws_params,
+            azure_params,
+            gcp_params,
+            id,
+            name,
+            mtype
+)

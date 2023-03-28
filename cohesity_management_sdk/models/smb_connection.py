@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class SmbConnection(object):
 
     """Implementation of the 'SmbConnection' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
-        client_ip (string): Specifies the Client IP address of the
-            connection.
+
+        client_ip (string): Specifies the Client IP address of the connection.
         domain_name (string): Domain name of the corresponding user.
         node_ip (string): Specifies a Node IP address where the connection
             request is received.
@@ -22,8 +22,8 @@ class SmbConnection(object):
         user_name (string): User name used to login for this session.
         view_id (long|int): Specifies the id of the view.
         view_name (string): Specifies the name of the view.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -36,9 +36,8 @@ class SmbConnection(object):
         "sids":'sids',
         "user_name":'userName',
         "view_id":'viewId',
-        "view_name":'viewName'
+        "view_name":'viewName',
     }
-
     def __init__(self,
                  client_ip=None,
                  domain_name=None,
@@ -49,7 +48,9 @@ class SmbConnection(object):
                  sids=None,
                  user_name=None,
                  view_id=None,
-                 view_name=None):
+                 view_name=None,
+            ):
+
         """Constructor for the SmbConnection class"""
 
         # Initialize members of the class
@@ -63,7 +64,6 @@ class SmbConnection(object):
         self.user_name = user_name
         self.view_id = view_id
         self.view_name = view_name
-
 
     @classmethod
     def from_dictionary(cls,
@@ -89,21 +89,21 @@ class SmbConnection(object):
         path = dictionary.get('path')
         server_ip = dictionary.get('serverIp')
         session_id = dictionary.get('sessionId')
-        sids = dictionary.get('sids')
+        sids = dictionary.get("sids")
         user_name = dictionary.get('userName')
         view_id = dictionary.get('viewId')
         view_name = dictionary.get('viewName')
 
         # Return an object of this model
-        return cls(client_ip,
-                   domain_name,
-                   node_ip,
-                   path,
-                   server_ip,
-                   session_id,
-                   sids,
-                   user_name,
-                   view_id,
-                   view_name)
-
-
+        return cls(
+            client_ip,
+            domain_name,
+            node_ip,
+            path,
+            server_ip,
+            session_id,
+            sids,
+            user_name,
+            view_id,
+            view_name
+)

@@ -1,36 +1,37 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class UpdateProtectionJobsState(object):
 
     """Implementation of the 'UpdateProtectionJobsState' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
+
         failed_job_ids (list of long|int): Specifies a list of Protection Job
             ids for which updation of state failed.
         successful_job_ids (list of long|int): Specifies a list of Protection
             Job ids for which updation of state is successful.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "failed_job_ids":'failedJobIds',
-        "successful_job_ids":'successfulJobIds'
+        "successful_job_ids":'successfulJobIds',
     }
-
     def __init__(self,
                  failed_job_ids=None,
-                 successful_job_ids=None):
+                 successful_job_ids=None,
+            ):
+
         """Constructor for the UpdateProtectionJobsState class"""
 
         # Initialize members of the class
         self.failed_job_ids = failed_job_ids
         self.successful_job_ids = successful_job_ids
-
 
     @classmethod
     def from_dictionary(cls,
@@ -50,11 +51,11 @@ class UpdateProtectionJobsState(object):
             return None
 
         # Extract variables from the dictionary
-        failed_job_ids = dictionary.get('failedJobIds')
-        successful_job_ids = dictionary.get('successfulJobIds')
+        failed_job_ids = dictionary.get("failedJobIds")
+        successful_job_ids = dictionary.get("successfulJobIds")
 
         # Return an object of this model
-        return cls(failed_job_ids,
-                   successful_job_ids)
-
-
+        return cls(
+            failed_job_ids,
+            successful_job_ids
+)

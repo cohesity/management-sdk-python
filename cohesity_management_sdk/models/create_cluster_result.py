@@ -3,16 +3,19 @@
 
 import cohesity_management_sdk.models.node_status
 
+
 class CreateClusterResult(object):
 
     """Implementation of the 'CreateClusterResult' model.
 
     Specifies the immediate result of a Cluster creation request. Contains
     validation results for each node. If the request is valid, it also
-    indicates that the individual node bringup operation is started in
-    the background.
+    indicates that the individual node bringup operation is started in the
+    background.
+
 
     Attributes:
+
         cluster_id (long|int): Specifies the ID of the new Cluster.
         cluster_name (string): Specifies the name of the new Cluster.
         cluster_sw_version (string): Specifies the software version of the new
@@ -23,11 +26,11 @@ class CreateClusterResult(object):
         incarnation_id (long|int): Specifies the Incarnation ID of the new
             Cluster.
         message (string): Specifies an optional message field.
-        unhealthy_nodes (list of NodeStatus): Specifies the status of the
-            Nodes in the Cluster. All Nodes that are not accepted to the
-            Cluster are appended to this list.
-
+        unhealthy_nodes (list of NodeStatus): Specifies the status of the Nodes
+            in the Cluster. All Nodes that are not accepted to the Cluster are
+            appended to this list.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -37,9 +40,8 @@ class CreateClusterResult(object):
         "healthy_nodes":'healthyNodes',
         "incarnation_id":'incarnationId',
         "message":'message',
-        "unhealthy_nodes":'unhealthyNodes'
+        "unhealthy_nodes":'unhealthyNodes',
     }
-
     def __init__(self,
                  cluster_id=None,
                  cluster_name=None,
@@ -47,7 +49,9 @@ class CreateClusterResult(object):
                  healthy_nodes=None,
                  incarnation_id=None,
                  message=None,
-                 unhealthy_nodes=None):
+                 unhealthy_nodes=None,
+            ):
+
         """Constructor for the CreateClusterResult class"""
 
         # Initialize members of the class
@@ -58,7 +62,6 @@ class CreateClusterResult(object):
         self.incarnation_id = incarnation_id
         self.message = message
         self.unhealthy_nodes = unhealthy_nodes
-
 
     @classmethod
     def from_dictionary(cls,
@@ -95,12 +98,12 @@ class CreateClusterResult(object):
                 unhealthy_nodes.append(cohesity_management_sdk.models.node_status.NodeStatus.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(cluster_id,
-                   cluster_name,
-                   cluster_sw_version,
-                   healthy_nodes,
-                   incarnation_id,
-                   message,
-                   unhealthy_nodes)
-
-
+        return cls(
+            cluster_id,
+            cluster_name,
+            cluster_sw_version,
+            healthy_nodes,
+            incarnation_id,
+            message,
+            unhealthy_nodes
+)

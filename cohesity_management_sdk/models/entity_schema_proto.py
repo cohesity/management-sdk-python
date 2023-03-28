@@ -5,6 +5,7 @@ import cohesity_management_sdk.models.entity_schema_proto_attributes_descriptor
 import cohesity_management_sdk.models.entity_schema_proto_granularity
 import cohesity_management_sdk.models.entity_schema_proto_time_series_descriptor
 
+
 class EntitySchemaProto(object):
 
     """Implementation of the 'EntitySchemaProto' model.
@@ -12,23 +13,23 @@ class EntitySchemaProto(object):
     Specifies the meta-data associated with entity such as the list of
     attributes and time series data.
 
+
     Attributes:
-        attributes_descriptor (EntitySchemaProtoAttributesDescriptor):
-            Specifies a list of attributes about an entity.
+
+        attributes_descriptor (EntitySchemaProto_AttributesDescriptor): TODO:
+            Type description here.
         enable_rollup (bool): Timeseries for an entity schema is rolled up
-            based on this setting.
-            Rollup is disabled by default.
-            Rollups cannot be done for metrics with value_type other than
-            kInt64 or kDouble.
-        flush_interval_secs (int): Defines the interval used to flush in
-            memory stats to scribe table. During this time if the stats server
-            is down before flushing, it could loose some of the stats. Modules
-            can flush any critical stats via AddEntitiesStats API. But this
-            should be used very judiciously as it causes lot of overhead for
-            stats.
-        is_internal_schema (bool): Specifies if this schema should be
-            displayed in Advanced Diagnostics of the Cohesity Dashboard. If
-            false, the schema is displayed.
+            based on this setting. Rollup is disabled by default. Rollups
+            cannot be done for metrics with value_type other than kInt64 or
+            kDouble.
+        flush_interval_secs (int): Defines the interval used to flush in memory
+            stats to scribe table. During this time if the stats server is down
+            before flushing, it could loose some of the stats. Modules can
+            flush any critical stats via AddEntitiesStats API. But this  should
+            be used very judiciously as it causes lot of overhead for stats.
+        is_internal_schema (bool): Specifies if this schema should be displayed
+            in Advanced Diagnostics of the Cohesity Dashboard. If false, the
+            schema is displayed.
         largest_flush_interval_secs (int): Use can change the flush interval
             secs via gflag and this store the largest interval seconds set.
             This is used to round up the timestamp to this flush interval secs
@@ -37,7 +38,7 @@ class EntitySchemaProto(object):
             schema such as 'kBridgeClusterStats'. Name cannot have ':' as
             character.
         rollup_granularity_vec (list of EntitySchemaProto_Granularity): TODO:
-            type description here.
+            Type description here.
         schema_descriptive_name (string): Specifies the name of the Schema as
             displayed in Advanced Diagnostics of the Cohesity Dashboard. For
             example for the 'kBridgeClusterStats' Schema, the descriptive name
@@ -45,14 +46,14 @@ class EntitySchemaProto(object):
         schema_help_text (string): Specifies an optional informational
             description about the schema.
         time_series_descriptor_vec (list of
-            EntitySchemaProtoTimeSeriesDescriptor): Array of Time Series.
+            EntitySchemaProto_TimeSeriesDescriptor): Array of Time Series. 
             List of time series of data (set of data points) for metrics.
-        time_to_live_secs (int): Specifies how long the timeseries data of
-            this. After expiry the entire data point(all metrics) is garbage
-            collected.
+        time_to_live_secs (long|int): Specifies how long the timeseries data of
+            this schema will be stored. After expiry the entire data point(all
+            metrics) is garbage collected.
         version (long|int): Specifies the version of the entity schema.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -62,14 +63,13 @@ class EntitySchemaProto(object):
         "is_internal_schema":'isInternalSchema',
         "largest_flush_interval_secs":'largestFlushIntervalSecs',
         "name":'name',
-        "rollup_granularity_vec": 'rollupGranularityVec',
+        "rollup_granularity_vec":'rollupGranularityVec',
         "schema_descriptive_name":'schemaDescriptiveName',
         "schema_help_text":'schemaHelpText',
         "time_series_descriptor_vec":'timeSeriesDescriptorVec',
-        "time_to_live_secs": 'timeToLiveSecs',
-        "version":'version'
+        "time_to_live_secs":'timeToLiveSecs',
+        "version":'version',
     }
-
     def __init__(self,
                  attributes_descriptor=None,
                  enable_rollup=None,
@@ -82,7 +82,9 @@ class EntitySchemaProto(object):
                  schema_help_text=None,
                  time_series_descriptor_vec=None,
                  time_to_live_secs=None,
-                 version=None):
+                 version=None,
+            ):
+
         """Constructor for the EntitySchemaProto class"""
 
         # Initialize members of the class
@@ -98,7 +100,6 @@ class EntitySchemaProto(object):
         self.time_series_descriptor_vec = time_series_descriptor_vec
         self.time_to_live_secs = time_to_live_secs
         self.version = version
-
 
     @classmethod
     def from_dictionary(cls,
@@ -118,8 +119,8 @@ class EntitySchemaProto(object):
             return None
 
         # Extract variables from the dictionary
-        attributes_descriptor = cohesity_management_sdk.models.entity_schema_proto_attributes_descriptor.EntitySchemaProtoAttributesDescriptor.from_dictionary(dictionary.get('attributesDescriptor')) if dictionary.get('attributesDescriptor') else None
-        enable_rollup = dictionary.get('enableRollup', None)
+        attributes_descriptor = cohesity_management_sdk.models.entity_schema_proto_attributes_descriptor.EntitySchemaProto_AttributesDescriptor.from_dictionary(dictionary.get('attributesDescriptor')) if dictionary.get('attributesDescriptor') else None
+        enable_rollup = dictionary.get('enableRollup')
         flush_interval_secs = dictionary.get('flushIntervalSecs')
         is_internal_schema = dictionary.get('isInternalSchema')
         largest_flush_interval_secs = dictionary.get('largestFlushIntervalSecs')
@@ -135,22 +136,22 @@ class EntitySchemaProto(object):
         if dictionary.get('timeSeriesDescriptorVec') != None:
             time_series_descriptor_vec = list()
             for structure in dictionary.get('timeSeriesDescriptorVec'):
-                time_series_descriptor_vec.append(cohesity_management_sdk.models.entity_schema_proto_time_series_descriptor.EntitySchemaProtoTimeSeriesDescriptor.from_dictionary(structure))
-        time_to_live_secs = dictionary.get('timeToLiveSecs', None)
+                time_series_descriptor_vec.append(cohesity_management_sdk.models.entity_schema_proto_time_series_descriptor.EntitySchemaProto_TimeSeriesDescriptor.from_dictionary(structure))
+        time_to_live_secs = dictionary.get('timeToLiveSecs')
         version = dictionary.get('version')
 
         # Return an object of this model
-        return cls(attributes_descriptor,
-                   enable_rollup,
-                   flush_interval_secs,
-                   is_internal_schema,
-                   largest_flush_interval_secs,
-                   name,
-                   rollup_granularity_vec,
-                   schema_descriptive_name,
-                   schema_help_text,
-                   time_series_descriptor_vec,
-                   time_to_live_secs,
-                   version)
-
-
+        return cls(
+            attributes_descriptor,
+            enable_rollup,
+            flush_interval_secs,
+            is_internal_schema,
+            largest_flush_interval_secs,
+            name,
+            rollup_granularity_vec,
+            schema_descriptive_name,
+            schema_help_text,
+            time_series_descriptor_vec,
+            time_to_live_secs,
+            version
+)

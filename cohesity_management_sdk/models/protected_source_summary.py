@@ -3,9 +3,10 @@
 
 import cohesity_management_sdk.models.backup_run
 import cohesity_management_sdk.models.copy_run
-import cohesity_management_sdk.models.universal_id
 import cohesity_management_sdk.models.protection_source
 import cohesity_management_sdk.models.source_special_parameter
+import cohesity_management_sdk.models.universal_id
+
 
 class ProtectedSourceSummary(object):
 
@@ -15,10 +16,11 @@ class ProtectedSourceSummary(object):
     Protection Jobs using the Specified Protection Policy. This is only
     populated for a policy of type kRPO.
 
+
     Attributes:
-        backup_run (BackupRun): Specifies details about the Backup task for a
-            Job Run. A Backup task captures the original backup snapshots for
-            each Protection Source in the Job.
+
+        backup_run (BackupRun): Specifies details about the last Backup task. A
+            Backup task captures the original backup snapshots.
         copy_runs (list of CopyRun): Specifies details about the Copy tasks of
             the Job Run. A Copy task copies the captured snapshots to an
             external target or a Remote Cohesity Cluster.
@@ -26,16 +28,14 @@ class ProtectedSourceSummary(object):
         next_protection_run_time_usecs (long|int): Specifies the time at which
             the next Protection Run is scheduled for the given Protection
             Source in Unix epoch Time (microseconds).
-        protected_source_uid (UniversalId): Specifies an id for an object that
-            is unique across Cohesity Clusters. The id is composite of all the
-            ids listed below.
-        protection_source (ProtectionSource): Specifies a generic structure
-            that represents a node in the Protection Source tree. Node details
-            will depend on the environment of the Protection Source.
+        protected_source_uid (UniversalId): Specifies the globally unique id of
+            the Protected Source.
+        protection_source (ProtectionSource): Specifies the Protection Source
+            summary information.
         source_parameters (list of SourceSpecialParameter): Specifies
             additional special settings for a single Protected Source.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -45,9 +45,8 @@ class ProtectedSourceSummary(object):
         "next_protection_run_time_usecs":'nextProtectionRunTimeUsecs',
         "protected_source_uid":'protectedSourceUid',
         "protection_source":'protectionSource',
-        "source_parameters":'sourceParameters'
+        "source_parameters":'sourceParameters',
     }
-
     def __init__(self,
                  backup_run=None,
                  copy_runs=None,
@@ -55,7 +54,9 @@ class ProtectedSourceSummary(object):
                  next_protection_run_time_usecs=None,
                  protected_source_uid=None,
                  protection_source=None,
-                 source_parameters=None):
+                 source_parameters=None,
+            ):
+
         """Constructor for the ProtectedSourceSummary class"""
 
         # Initialize members of the class
@@ -66,7 +67,6 @@ class ProtectedSourceSummary(object):
         self.protected_source_uid = protected_source_uid
         self.protection_source = protection_source
         self.source_parameters = source_parameters
-
 
     @classmethod
     def from_dictionary(cls,
@@ -103,12 +103,12 @@ class ProtectedSourceSummary(object):
                 source_parameters.append(cohesity_management_sdk.models.source_special_parameter.SourceSpecialParameter.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(backup_run,
-                   copy_runs,
-                   is_paused,
-                   next_protection_run_time_usecs,
-                   protected_source_uid,
-                   protection_source,
-                   source_parameters)
-
-
+        return cls(
+            backup_run,
+            copy_runs,
+            is_paused,
+            next_protection_run_time_usecs,
+            protected_source_uid,
+            protection_source,
+            source_parameters
+)

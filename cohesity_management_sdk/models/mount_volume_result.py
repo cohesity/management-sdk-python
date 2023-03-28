@@ -3,38 +3,41 @@
 
 import cohesity_management_sdk.models.error_proto
 
+
 class MountVolumeResult(object):
 
     """Implementation of the 'MountVolumeResult' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
-        error (ErrorProto): TODO: type description here.
+
+        error (ErrorProto): This is set if there is any error during the mount.
         filesystem_type (string): Filesystem on this volume.
         mount_point (string): This is populated with the mount point where the
-            volume corresponding to the newly attached volume is mounted.
-            NOTE: This may not be present in the VM environments if onlining
-            of disks is not requested or if the there was any issue during
-            onlining.
+            volume corresponding to the newly attached volume is mounted. NOTE:
+            This may not be present in the VM environments if onlining of disks
+            is not requested or if the there was any issue during onlining.
         original_volume_name (string): This is the name or mount point of the
             original volume.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "error":'error',
         "filesystem_type":'filesystemType',
         "mount_point":'mountPoint',
-        "original_volume_name":'originalVolumeName'
+        "original_volume_name":'originalVolumeName',
     }
-
     def __init__(self,
                  error=None,
                  filesystem_type=None,
                  mount_point=None,
-                 original_volume_name=None):
+                 original_volume_name=None,
+            ):
+
         """Constructor for the MountVolumeResult class"""
 
         # Initialize members of the class
@@ -42,7 +45,6 @@ class MountVolumeResult(object):
         self.filesystem_type = filesystem_type
         self.mount_point = mount_point
         self.original_volume_name = original_volume_name
-
 
     @classmethod
     def from_dictionary(cls,
@@ -68,9 +70,9 @@ class MountVolumeResult(object):
         original_volume_name = dictionary.get('originalVolumeName')
 
         # Return an object of this model
-        return cls(error,
-                   filesystem_type,
-                   mount_point,
-                   original_volume_name)
-
-
+        return cls(
+            error,
+            filesystem_type,
+            mount_point,
+            original_volume_name
+)

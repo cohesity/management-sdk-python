@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class ViewPrivileges(object):
 
     """Implementation of the 'ViewPrivileges' model.
@@ -9,34 +8,34 @@ class ViewPrivileges(object):
     ViewPrivileges specifies which views are allowed to be accessed by an app
     instance.
 
-    Attributes:
-        privileges_type (PrivilegesTypeViewPrivilegesEnum): Specifies if all,
-            none or specific views are allowed to be accessed.
-            Specifies if all, none or specific views are allowed to be
-            accessed.
-            kNone - None of the views have access.
-            kAll - All the views have access.
-            kSpecific - Only specific views have access.
-        view_ids (list of int): Specifies the ids of the views which are
-            allowed to be accessed in case the privilege type is kSpecific.
 
+    Attributes:
+
+        privileges_type (PrivilegesTypeEnum): Specifies if all, none or
+            specific views are allowed to be accessed. Specifies if all, none
+            or specific views are allowed to be accessed. kNone - None of the
+            views have access. kAll - All the views have access. kSpecific -
+            Only specific views have access.
+        view_ids (list of long|int): Specifies the ids of the views which are
+            allowed to be accessed in case the privilege type is kSpecific.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "privileges_type": 'privilegesType',
-        "view_ids": 'viewIds'
+        "privileges_type":'privilegesType',
+        "view_ids":'viewIds',
     }
-
     def __init__(self,
                  privileges_type=None,
-                 view_ids=None):
+                 view_ids=None,
+            ):
+
         """Constructor for the ViewPrivileges class"""
 
         # Initialize members of the class
         self.privileges_type = privileges_type
         self.view_ids = view_ids
-
 
     @classmethod
     def from_dictionary(cls,
@@ -56,11 +55,11 @@ class ViewPrivileges(object):
             return None
 
         # Extract variables from the dictionary
-        privileges_type = dictionary.get('privilegesType', None)
-        view_ids = dictionary.get('viewIds', None)
+        privileges_type = dictionary.get('privilegesType')
+        view_ids = dictionary.get("viewIds")
 
         # Return an object of this model
-        return cls(privileges_type,
-                   view_ids)
-
-
+        return cls(
+            privileges_type,
+            view_ids
+)

@@ -3,38 +3,42 @@
 
 import cohesity_management_sdk.models.site_drive_item
 
+
 class SiteDriveInfo(object):
 
     """Implementation of the 'SiteDriveInfo' model.
 
     Specifies the Site's Document Library drive info.
 
+
     Attributes:
+
         drive_id (string): Specifies the Id of the Drive.
-        drive_item_list (list of SiteDriveItem): Specifies the Drive items
-            such as files/folders.
+        drive_item_list (list of SiteDriveItem): Specifies the Drive items such
+            as files/folders.
         drive_name (string): Specifies the drive name for the document
-            repository. Incase of drive Id not present, this field must be
+            repsitory. Incase of drive Id not present, this field must be
             populated to trigger restore.
         restore_entire_drive (bool): Specifies whether entire drive is to be
             restored. This should be set to false if specific drive items are
             to be restored within 'DriveItemList'.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "drive_id": 'driveId',
-        "drive_item_list": 'driveItemList',
-        "drive_name": 'driveName',
-        "restore_entire_drive": 'restoreEntireDrive'
+        "drive_id":'driveId',
+        "drive_item_list":'driveItemList',
+        "drive_name":'driveName',
+        "restore_entire_drive":'restoreEntireDrive',
     }
-
     def __init__(self,
                  drive_id=None,
                  drive_item_list=None,
                  drive_name=None,
-                 restore_entire_drive=None):
+                 restore_entire_drive=None,
+            ):
+
         """Constructor for the SiteDriveInfo class"""
 
         # Initialize members of the class
@@ -71,9 +75,9 @@ class SiteDriveInfo(object):
         restore_entire_drive = dictionary.get('restoreEntireDrive')
 
         # Return an object of this model
-        return cls(drive_id,
-                   drive_item_list,
-                   drive_name,
-                   restore_entire_drive)
-
-
+        return cls(
+            drive_id,
+            drive_item_list,
+            drive_name,
+            restore_entire_drive
+)

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class RestoreFileCopyStats(object):
 
     """Implementation of the 'RestoreFileCopyStats' model.
@@ -9,7 +8,9 @@ class RestoreFileCopyStats(object):
     This message captures the progress information regarding restore of
     file/directory.
 
+
     Attributes:
+
         estimation_skipped (bool): This will be set to true if the estimation
             step was skipped. NOTE: If estimation is skipped, then progress
             info will not be available.
@@ -23,8 +24,8 @@ class RestoreFileCopyStats(object):
             NOTE: This just means the creation of directory (not the contents
             of the directory).
         total_files_to_copy (int): Total number of files to copy.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -34,9 +35,8 @@ class RestoreFileCopyStats(object):
         "num_files_copied":'numFilesCopied',
         "total_bytes_to_copy":'totalBytesToCopy',
         "total_directories_to_copy":'totalDirectoriesToCopy',
-        "total_files_to_copy":'totalFilesToCopy'
+        "total_files_to_copy":'totalFilesToCopy',
     }
-
     def __init__(self,
                  estimation_skipped=None,
                  num_bytes_copied=None,
@@ -44,7 +44,9 @@ class RestoreFileCopyStats(object):
                  num_files_copied=None,
                  total_bytes_to_copy=None,
                  total_directories_to_copy=None,
-                 total_files_to_copy=None):
+                 total_files_to_copy=None,
+            ):
+
         """Constructor for the RestoreFileCopyStats class"""
 
         # Initialize members of the class
@@ -55,7 +57,6 @@ class RestoreFileCopyStats(object):
         self.total_bytes_to_copy = total_bytes_to_copy
         self.total_directories_to_copy = total_directories_to_copy
         self.total_files_to_copy = total_files_to_copy
-
 
     @classmethod
     def from_dictionary(cls,
@@ -84,12 +85,12 @@ class RestoreFileCopyStats(object):
         total_files_to_copy = dictionary.get('totalFilesToCopy')
 
         # Return an object of this model
-        return cls(estimation_skipped,
-                   num_bytes_copied,
-                   num_directories_copied,
-                   num_files_copied,
-                   total_bytes_to_copy,
-                   total_directories_to_copy,
-                   total_files_to_copy)
-
-
+        return cls(
+            estimation_skipped,
+            num_bytes_copied,
+            num_directories_copied,
+            num_files_copied,
+            total_bytes_to_copy,
+            total_directories_to_copy,
+            total_files_to_copy
+)

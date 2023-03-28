@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class CreateBondParameters(object):
 
     """Implementation of the 'CreateBondParameters' model.
 
     Specifies the parameters needed to create a bond.
 
+
     Attributes:
+
         bonding_mode (BondingModeEnum): Specifies the bonding mode to use for
             this bond. If not specified, this value will default to
             'kActiveBackup'. 'kActiveBackup' indicates active backup bonding
@@ -17,27 +18,27 @@ class CreateBondParameters(object):
             created.
         slaves (list of string): Specifies the names of the secondaries of this
             bond.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "bonding_mode":'bondingMode',
         "name":'name',
         "slaves":'slaves',
-        "bonding_mode":'bondingMode'
     }
-
     def __init__(self,
+                 bonding_mode=None,
                  name=None,
                  slaves=None,
-                 bonding_mode=None):
+            ):
+
         """Constructor for the CreateBondParameters class"""
 
         # Initialize members of the class
         self.bonding_mode = bonding_mode
         self.name = name
         self.slaves = slaves
-
 
     @classmethod
     def from_dictionary(cls,
@@ -57,13 +58,13 @@ class CreateBondParameters(object):
             return None
 
         # Extract variables from the dictionary
-        name = dictionary.get('name')
-        slaves = dictionary.get('slaves')
         bonding_mode = dictionary.get('bondingMode')
+        name = dictionary.get('name')
+        slaves = dictionary.get("slaves")
 
         # Return an object of this model
-        return cls(name,
-                   slaves,
-                   bonding_mode)
-
-
+        return cls(
+            bonding_mode,
+            name,
+            slaves
+)

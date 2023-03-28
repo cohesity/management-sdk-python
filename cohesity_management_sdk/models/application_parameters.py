@@ -1,33 +1,34 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class ApplicationParameters(object):
 
     """Implementation of the 'ApplicationParameters' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
+
         truncate_exchange_log (bool): If true, after the Cohesity Cluster
             successfully captures a Snapshot during a Job Run, the Cluster
             truncates the Exchange transaction logs on a Microsoft Exchange
             Server. The default value is false.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "truncate_exchange_log":'truncateExchangeLog'
+        "truncate_exchange_log":'truncateExchangeLog',
     }
-
     def __init__(self,
-                 truncate_exchange_log=None):
+                 truncate_exchange_log=None,
+            ):
+
         """Constructor for the ApplicationParameters class"""
 
         # Initialize members of the class
         self.truncate_exchange_log = truncate_exchange_log
-
 
     @classmethod
     def from_dictionary(cls,
@@ -50,6 +51,6 @@ class ApplicationParameters(object):
         truncate_exchange_log = dictionary.get('truncateExchangeLog')
 
         # Return an object of this model
-        return cls(truncate_exchange_log)
-
-
+        return cls(
+            truncate_exchange_log
+)

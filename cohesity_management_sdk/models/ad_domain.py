@@ -3,21 +3,25 @@
 
 import cohesity_management_sdk.models.ad_domain_identity
 
+
 class AdDomain(object):
 
     """Implementation of the 'AdDomain' model.
 
     Specifies information about an AD Domain.
 
+
     Attributes:
+
         dns_root (string): Specifies DNS root.
         forest (string): Specifies AD forest name.
-        identity (AdDomainIdentity): AD domain identity information.
+        identity (AdDomainIdentity): Specifies Identity information of the
+            domain.
         netbios_name (string): Specifies AD NetBIOS name.
         parent_domain (string): Specifies parent domain name.
         tombstone_days (int): Specifies tombstone time in days.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -26,16 +30,17 @@ class AdDomain(object):
         "identity":'identity',
         "netbios_name":'netbiosName',
         "parent_domain":'parentDomain',
-        "tombstone_days":'tombstoneDays'
+        "tombstone_days":'tombstoneDays',
     }
-
     def __init__(self,
                  dns_root=None,
                  forest=None,
                  identity=None,
                  netbios_name=None,
                  parent_domain=None,
-                 tombstone_days=None):
+                 tombstone_days=None,
+            ):
+
         """Constructor for the AdDomain class"""
 
         # Initialize members of the class
@@ -45,7 +50,6 @@ class AdDomain(object):
         self.netbios_name = netbios_name
         self.parent_domain = parent_domain
         self.tombstone_days = tombstone_days
-
 
     @classmethod
     def from_dictionary(cls,
@@ -73,11 +77,11 @@ class AdDomain(object):
         tombstone_days = dictionary.get('tombstoneDays')
 
         # Return an object of this model
-        return cls(dns_root,
-                   forest,
-                   identity,
-                   netbios_name,
-                   parent_domain,
-                   tombstone_days)
-
-
+        return cls(
+            dns_root,
+            forest,
+            identity,
+            netbios_name,
+            parent_domain,
+            tombstone_days
+)

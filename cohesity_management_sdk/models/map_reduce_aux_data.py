@@ -3,6 +3,7 @@
 
 import cohesity_management_sdk.models.pattern
 
+
 class MapReduceAuxData(object):
 
     """Implementation of the 'MapReduceAuxData' model.
@@ -10,24 +11,25 @@ class MapReduceAuxData(object):
     This message encapsulates auxillary data for a MapReduce. One example of
     such data is saved patterns for Pattern finder app.
 
-    Attributes:
-        pattern_vec (list of Pattern): Pattern auxiliary data for a
-            MapReduce.
 
+    Attributes:
+
+        pattern_vec (list of Pattern): Pattern auxiliary data for a MapReduce.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "pattern_vec":'patternVec'
+        "pattern_vec":'patternVec',
     }
-
     def __init__(self,
-                 pattern_vec=None):
+                 pattern_vec=None,
+            ):
+
         """Constructor for the MapReduceAuxData class"""
 
         # Initialize members of the class
         self.pattern_vec = pattern_vec
-
 
     @classmethod
     def from_dictionary(cls,
@@ -54,6 +56,6 @@ class MapReduceAuxData(object):
                 pattern_vec.append(cohesity_management_sdk.models.pattern.Pattern.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(pattern_vec)
-
-
+        return cls(
+            pattern_vec
+)

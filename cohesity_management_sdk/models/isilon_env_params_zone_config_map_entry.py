@@ -3,32 +3,36 @@
 
 import cohesity_management_sdk.models.isilon_env_params_zone_config
 
+
 class IsilonEnvParams_ZoneConfigMapEntry(object):
 
     """Implementation of the 'IsilonEnvParams_ZoneConfigMapEntry' model.
 
+    TODO: type description here.
+
 
     Attributes:
-        key (string): TODO: type description here.
-        value (IsilonEnvParams_ZoneConfig): TODO: type description here.
 
+        key (string): TODO: Type description here.
+        value (IsilonEnvParams_ZoneConfig): TODO: Type description here.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "key": 'key',
-        "value": 'value'
+        "key":'key',
+        "value":'value',
     }
-
     def __init__(self,
                  key=None,
-                 value=None):
+                 value=None,
+            ):
+
         """Constructor for the IsilonEnvParams_ZoneConfigMapEntry class"""
 
         # Initialize members of the class
         self.key = key
         self.value = value
-
 
     @classmethod
     def from_dictionary(cls,
@@ -52,7 +56,7 @@ class IsilonEnvParams_ZoneConfigMapEntry(object):
         value = cohesity_management_sdk.models.isilon_env_params_zone_config.IsilonEnvParams_ZoneConfig.from_dictionary(dictionary.get('value')) if dictionary.get('value') else None
 
         # Return an object of this model
-        return cls(key,
-                   value)
-
-
+        return cls(
+            key,
+            value
+)

@@ -1,36 +1,36 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class DownloadCftResponse(object):
 
     """Implementation of the 'DownloadCftResponse' model.
 
-    TODO: Type model description here.
+    TODO: type description here.
+
 
     Attributes:
-        content (list of int|long): Specifies the content of the file.
-        file_name (string): Specifies the content of the CFT.
-            in: body
-            Specifies the file name of the cloud formation template.
 
+        content (list of long|int): Specifies the content of the file.
+        file_name (string): Specifies the content of the CFT. in: body
+            Specifies the file name of the cloud formation template.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "content": 'content',
-        "file_name": 'fileName'
+        "content":'content',
+        "file_name":'fileName',
     }
-
     def __init__(self,
                  content=None,
-                 file_name=None):
+                 file_name=None,
+            ):
+
         """Constructor for the DownloadCftResponse class"""
 
         # Initialize members of the class
         self.content = content
         self.file_name = file_name
-
 
     @classmethod
     def from_dictionary(cls,
@@ -50,11 +50,11 @@ class DownloadCftResponse(object):
             return None
 
         # Extract variables from the dictionary
-        content = dictionary.get('content', None)
-        file_name = dictionary.get('fileName', None)
+        content = dictionary.get("content")
+        file_name = dictionary.get('fileName')
 
         # Return an object of this model
-        return cls(content,
-                   file_name)
-
-
+        return cls(
+            content,
+            file_name
+)

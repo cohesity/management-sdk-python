@@ -1,22 +1,25 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-import cohesity_management_sdk.models.copy_snapshot_task_status
-import cohesity_management_sdk.models.legal_holdings
 import cohesity_management_sdk.models.copy_run_stats
+import cohesity_management_sdk.models.copy_snapshot_task_status
+import cohesity_management_sdk.models.data_lock_constraints
+import cohesity_management_sdk.models.legal_holdings
 import cohesity_management_sdk.models.snapshot_target_settings
 import cohesity_management_sdk.models.universal_id
-import cohesity_management_sdk.models.data_lock_constraints
+
 
 class CopyRun(object):
 
     """Implementation of the 'CopyRun' model.
 
-    Specifies details about the Copy Run for a backup run of a Job Run.
-    A Copy task copies snapshots resulted from a backup run to a snapshot
-    target which could be 'kLocal', 'kArchival', or 'kRemote'.
+    Specifies details about the Copy Run for a backup run of a Job Run. A Copy
+    task copies snapshots resulted from a backup run to a snapshot target which
+    could be 'kLocal', 'kArchival', or 'kRemote'.
+
 
     Attributes:
+
         copy_snapshot_tasks (list of CopySnapshotTaskStatus): Specifies the
             status information of each task that copies the snapshot taken for
             a Protection Source.
@@ -33,24 +36,21 @@ class CopyRun(object):
             hold.
         legal_holdings (list of LegalHoldings): Specifies the list of
             Protection Source Ids and the legal hold status.
-        run_start_time_usecs (long|int): Specifies start time of the copy
-            run.
-        stats (CopyRunStats): Stats for one copy task or aggregated stats of a
-            Copy Run in a Protection Job Run.
+        run_start_time_usecs (long|int): Specifies start time of the copy run.
+        stats (CopyRunStats): Specifies the aggregated information of all the
+            copy tasks.
         status (StatusCopyRunEnum): Specifies the aggregated status of copy
-            tasks such as 'kRunning', 'kSuccess', 'kFailure' etc. 
-            'kAccepted' indicates the task is queued to run but not yet
-            running. 'kRunning' indicates the task is running. 'kCanceling'
-            indicates a request to cancel the task has occurred but the task is
-            not yet canceled. 'kCanceled' indicates the task has been canceled.
-            'kSuccess' indicates the task was successful. 'kFailure' indicates
-            the task failed. 'kWarning' indicates the task has finished with
-            warning. 'kOnHold' indicates the task is kept onHold. 'kMissed'
-            indicates the task is missed. 'Finalizing' indicates the task is
-            finalizing.
-        target (SnapshotTargetSettings): Specifies settings about a target
-            where a copied Snapshot is stored. A target can be a Remote
-            Cluster or an Archival External Target such as AWS or Tape.
+            tasks such as 'kRunning', 'kSuccess', 'kFailure' etc. 'kAccepted'
+            indicates the task is queued to run but not yet running. 'kRunning'
+            indicates the task is running. 'kCanceling' indicates a request to
+            cancel the task has occurred but the task is not yet canceled.
+            'kCanceled' indicates the task has been canceled. 'kSuccess'
+            indicates the task was successful. 'kFailure' indicates the task
+            failed. 'kWarning' indicates the task has finished with warning.
+            'kOnHold' indicates the task is kept onHold. 'kMissed' indicates
+            the task is missed. 'Finalizing' indicates the task is finalizing.
+        target (SnapshotTargetSettings): Specifies the target of the copy task
+            such as an external target or a Remote Cohesity Cluster.
         task_uid (UniversalId): Specifies a globally unique id of the copy
             task.
         user_action_message (string): Specifies a message to the user if any
@@ -58,8 +58,8 @@ class CopyRun(object):
             archival task. This message is mainly relevant for tape based
             archival tasks where a backup admin might be asked to load a new
             media when the tape library does not have any more media to use.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -74,9 +74,8 @@ class CopyRun(object):
         "status":'status',
         "target":'target',
         "task_uid":'taskUid',
-        "user_action_message":'userActionMessage'
+        "user_action_message":'userActionMessage',
     }
-
     def __init__(self,
                  copy_snapshot_tasks=None,
                  data_lock_constraints=None,
@@ -89,7 +88,9 @@ class CopyRun(object):
                  status=None,
                  target=None,
                  task_uid=None,
-                 user_action_message=None):
+                 user_action_message=None,
+            ):
+
         """Constructor for the CopyRun class"""
 
         # Initialize members of the class
@@ -105,7 +106,6 @@ class CopyRun(object):
         self.target = target
         self.task_uid = task_uid
         self.user_action_message = user_action_message
-
 
     @classmethod
     def from_dictionary(cls,
@@ -147,17 +147,17 @@ class CopyRun(object):
         user_action_message = dictionary.get('userActionMessage')
 
         # Return an object of this model
-        return cls(copy_snapshot_tasks,
-                   data_lock_constraints,
-                   error,
-                   expiry_time_usecs,
-                   hold_for_legal_purpose,
-                   legal_holdings,
-                   run_start_time_usecs,
-                   stats,
-                   status,
-                   target,
-                   task_uid,
-                   user_action_message)
-
-
+        return cls(
+            copy_snapshot_tasks,
+            data_lock_constraints,
+            error,
+            expiry_time_usecs,
+            hold_for_legal_purpose,
+            legal_holdings,
+            run_start_time_usecs,
+            stats,
+            status,
+            target,
+            task_uid,
+            user_action_message
+)

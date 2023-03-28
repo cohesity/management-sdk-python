@@ -1,44 +1,48 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-import cohesity_management_sdk.models.registered_source_info
 import cohesity_management_sdk.models.cbt_info
+import cohesity_management_sdk.models.registered_source_info
+
 
 class AgentInformation(object):
 
     """Implementation of the 'AgentInformation' model.
 
-    Specifies information about the Agent software running on the server or
-    the Virtual Machine.
+    Specifies information about the Agent software running on the server or the
+    Virtual Machine.
+
 
     Attributes:
+
         cbmr_version (string): Specifies the version if Cristie BMR product is
             installed on the host.
         file_cbt_info (CbtInfo): Specifies the status of FileCbt driver
             associated with the agent.
-        host_type (HostTypeAgentInformationEnum): Specifies the host type
-            where the agent is running. This is only set for persistent
-            agents. 'kLinux' indicates the Linux operating system. 'kWindows'
-            indicates the Microsoft Windows operating system. 'kAix' indicates
-            the IBM AIX operating system. 'kSolaris' indicates the Oracle
-            Solaris operating system. 'kSapHana' indicates the Sap Hana
-            database system developed by SAP SE. 'kCockroachDB' indicates the
-            CockroachDB database system. 'kMySQL' indicates the MySQL database
-            system. 'kOther' indicates the other types of operating system.
+        host_type (HostTypeEnum): Specifies the host type where the agent is
+            running. This is only set for persistent agents. 'kLinux' indicates
+            the Linux operating system. 'kWindows' indicates the Microsoft
+            Windows operating system. 'kAix' indicates the IBM AIX operating
+            system. 'kSolaris' indicates the Oracle Solaris operating system.
+            'kSapHana' indicates the Sap Hana database system developed by SAP
+            SE. 'kSapOracle' indicates the Sap Oracle database system developed
+            by SAP SE. 'kCockroachDB' indicates the CockroachDB database
+            system. 'kMySQL' indicates the MySQL database system. 'kOther'
+            indicates the other types of operating system.
         id (long|int): Specifies the agent's id.
         name (string): Specifies the agent's name.
         oracle_multi_node_channel_supported (bool): Specifies whether oracle
             multi node multi channel is supported or not.
-        registration_info (RegisteredSourceInfo): Specifies information about
-            a registered Source.
+        registration_info (RegisteredSourceInfo): Specifies registration
+            information for an Agent.
         source_side_dedup_enabled (bool): Specifies whether source side dedup
             is enabled or not.
-        status (StatusEnum): Specifies the agent status. Specifies the status
-            of the agent running on a physical source. 'kUnknown' indicates
-            the Agent is not known. No attempt to connect to the Agent has
-            occurred. 'kUnreachable' indicates the Agent is not reachable.
-            'kHealthy' indicates the Agent is healthy. 'kDegraded' indicates
-            the Agent is running but in a degraded state.
+        status (StatusAgentInformationEnum): Specifies the agent status.
+            Specifies the status of the agent running on a physical source.
+            'kUnknown' indicates the Agent is not known. No attempt to connect
+            to the Agent has occurred. 'kUnreachable' indicates the Agent is
+            not reachable. 'kHealthy' indicates the Agent is healthy.
+            'kDegraded' indicates the Agent is running but in a degraded state.
         status_message (string): Specifies additional details about the agent
             status.
         upgradability (UpgradabilityEnum): Specifies the upgradability of the
@@ -47,27 +51,26 @@ class AgentInformation(object):
             indicates the Agent can be upgraded to the agent software version
             on the cluster. 'kCurrent' indicates the Agent is running the
             latest version. 'kUnknown' indicates the Agent's version is not
-            known. 'kNonUpgradableInvalidVersion' indicates the Agent's
-            version is invalid. 'kNonUpgradableAgentIsNewer' indicates the
-            Agent's version is newer than the agent software version the
-            cluster. 'kNonUpgradableAgentIsOld' indicates the Agent's version
-            is too old that does not support upgrades.
-        upgrade_status (UpgradeStatusEnum): Specifies the status of the
-            upgrade of the agent on a physical server. Specifies the status of
-            the upgrade of the agent on a physical server. 'kIdle' indicates
-            there is no agent upgrade in progress. 'kAccepted' indicates the
-            Agent upgrade is accepted. 'kStarted' indicates the Agent upgrade
-            is in progress. 'kFinished' indicates the Agent upgrade is
-            completed. 'kScheduled' indicates that the Agent is scheduled for
-            upgrade.
+            known. 'kNonUpgradableInvalidVersion' indicates the Agent's version
+            is invalid. 'kNonUpgradableAgentIsNewer' indicates the Agent's
+            version is newer than the agent software version the cluster.
+            'kNonUpgradableAgentIsOld' indicates the Agent's version is too old
+            that does not support upgrades.
+        upgrade_status (UpgradeStatusEnum): Specifies the status of the upgrade
+            of the agent on a physical server. Specifies the status of the
+            upgrade of the agent on a physical server. 'kIdle' indicates there
+            is no agent upgrade in progress. 'kAccepted' indicates the Agent
+            upgrade is accepted. 'kStarted' indicates the Agent upgrade is in
+            progress. 'kFinished' indicates the Agent upgrade is completed.
+            'kScheduled' indicates that the Agent is scheduled for upgrade.
         upgrade_status_message (string): Specifies detailed message about the
             agent upgrade failure. This field is not set for successful
             upgrade.
         version (string): Specifies the version of the Agent software.
         vol_cbt_info (CbtInfo): Specifies the status of VolCbt driver
             associated with the agent.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -85,9 +88,8 @@ class AgentInformation(object):
         "upgrade_status":'upgradeStatus',
         "upgrade_status_message":'upgradeStatusMessage',
         "version":'version',
-        "vol_cbt_info":'volCbtInfo'
+        "vol_cbt_info":'volCbtInfo',
     }
-
     def __init__(self,
                  cbmr_version=None,
                  file_cbt_info=None,
@@ -103,7 +105,9 @@ class AgentInformation(object):
                  upgrade_status=None,
                  upgrade_status_message=None,
                  version=None,
-                 vol_cbt_info=None):
+                 vol_cbt_info=None,
+            ):
+
         """Constructor for the AgentInformation class"""
 
         # Initialize members of the class
@@ -122,7 +126,6 @@ class AgentInformation(object):
         self.upgrade_status_message = upgrade_status_message
         self.version = version
         self.vol_cbt_info = vol_cbt_info
-
 
     @classmethod
     def from_dictionary(cls,
@@ -159,20 +162,20 @@ class AgentInformation(object):
         vol_cbt_info = cohesity_management_sdk.models.cbt_info.CbtInfo.from_dictionary(dictionary.get('volCbtInfo')) if dictionary.get('volCbtInfo') else None
 
         # Return an object of this model
-        return cls(cbmr_version,
-                   file_cbt_info,
-                   host_type,
-                   id,
-                   name,
-                   oracle_multi_node_channel_supported,
-                   registration_info,
-                   source_side_dedup_enabled,
-                   status,
-                   status_message,
-                   upgradability,
-                   upgrade_status,
-                   upgrade_status_message,
-                   version,
-                   vol_cbt_info)
-
-
+        return cls(
+            cbmr_version,
+            file_cbt_info,
+            host_type,
+            id,
+            name,
+            oracle_multi_node_channel_supported,
+            registration_info,
+            source_side_dedup_enabled,
+            status,
+            status_message,
+            upgradability,
+            upgrade_status,
+            upgrade_status_message,
+            version,
+            vol_cbt_info
+)

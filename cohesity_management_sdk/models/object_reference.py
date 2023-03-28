@@ -5,10 +5,12 @@ class ObjectReference(object):
 
     """Implementation of the 'ObjectReference' model.
 
-    ObjectReference contains enough information to let you inspect or modify the
-    referred object.
+    ObjectReference contains enough information to let you inspect or modify
+    the referred object.
+
 
     Attributes:
+
         api_group (string): API group make it easier to extend the Kubernetes
             API. The API group is specified in a REST path and in the
             apiVersion field.
@@ -19,42 +21,42 @@ class ObjectReference(object):
         kind (string): Kind is a string value representing the REST resource
             this object represents. Servers may infer this from the endpoint
             the client submits requests to.
-        namespace (string): Namespace of the referent.
         name (string): Name of the referent.
+        namespace (string): Namespace of the referent.
         resource_version (string): Specific resourceVersion to which this
             reference is made, if any.
         uid (string): UID of the referent.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "api_group": 'apiGroup',
-        "api_version": 'apiVersion',
-        "kind": 'kind',
-        "namespace":'namespace',
+        "api_group":'apiGroup',
+        "api_version":'apiVersion',
+        "kind":'kind',
         "name":'name',
+        "namespace":'namespace',
         "resource_version":'resourceVersion',
-        "uid":'uid'
+        "uid":'uid',
     }
-
     def __init__(self,
                  api_group=None,
                  api_version=None,
                  kind=None,
-                 namespace=None,
                  name=None,
+                 namespace=None,
                  resource_version=None,
-                 uid=None
-                 ):
+                 uid=None,
+            ):
+
         """Constructor for the ObjectReference class"""
 
         # Initialize members of the class
         self.api_group = api_group
         self.api_version = api_version
         self.kind = kind
-        self.namespace = namespace
         self.name = name
+        self.namespace = namespace
         self.resource_version = resource_version
         self.uid = uid
 
@@ -79,18 +81,18 @@ class ObjectReference(object):
         api_group = dictionary.get('apiGroup')
         api_version = dictionary.get('apiVersion')
         kind = dictionary.get('kind')
-        namespace = dictionary.get('namespace')
         name = dictionary.get('name')
+        namespace = dictionary.get('namespace')
         resource_version = dictionary.get('resourceVersion')
         uid = dictionary.get('uid')
 
         # Return an object of this model
-        return cls(api_group,
-                   api_version,
-                   kind,
-                   namespace,
-                   name,
-                   resource_version,
-                   uid)
-
-
+        return cls(
+            api_group,
+            api_version,
+            kind,
+            name,
+            namespace,
+            resource_version,
+            uid
+)

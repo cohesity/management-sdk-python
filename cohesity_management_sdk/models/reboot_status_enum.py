@@ -4,17 +4,14 @@
 class RebootStatusEnum(object):
 
     """Implementation of the 'RebootStatus' enum.
+    Specifies the reboot status of the host post cbt driver installation. Only
+    applicable for volcbt driver. Specifies the reboot status of the source
+    post volcbt driver installation. 'kRebooted' indicates the source has been
+    rebooted post volcbt driver installation. 'kNeedsReboot' indicates the
+    source has not been rebooted post volcbt driver installation.
+    'kInternalError' indicates that there was an error while fetching reboot
+    status from source.
 
-    Specifies the reboot status of the host post cbt driver installation.
-    Only applicable for volcbt driver.
-    Specifies the reboot status of the source post volcbt driver
-    installation.
-    'kRebooted' indicates the source has been rebooted post volcbt driver
-    installation.
-    'kNeedsReboot' indicates the source has not been rebooted post
-    volcbt driver installation.
-    'kInternalError' indicates that there was an error while fetching
-    reboot status from source.
 
     Attributes:
         KREBOOTED: TODO: type description here.
@@ -28,4 +25,3 @@ class RebootStatusEnum(object):
     KNEEDSREBOOT = 'kNeedsReboot'
 
     KINTERNALERROR = 'kInternalError'
-

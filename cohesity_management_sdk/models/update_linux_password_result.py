@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class UpdateLinuxPasswordResult(object):
 
     """Implementation of the 'UpdateLinuxPasswordResult' model.
@@ -9,23 +8,25 @@ class UpdateLinuxPasswordResult(object):
     Specifies the result returned after a successful request to update the
     linux password.
 
-    Attributes:
-        message (string): TODO: type description here.
 
+    Attributes:
+
+        message (string): TODO: Type description here.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "message":'message'
+        "message":'message',
     }
-
     def __init__(self,
-                 message=None):
+                 message=None,
+            ):
+
         """Constructor for the UpdateLinuxPasswordResult class"""
 
         # Initialize members of the class
         self.message = message
-
 
     @classmethod
     def from_dictionary(cls,
@@ -48,6 +49,6 @@ class UpdateLinuxPasswordResult(object):
         message = dictionary.get('message')
 
         # Return an object of this model
-        return cls(message)
-
-
+        return cls(
+            message
+)

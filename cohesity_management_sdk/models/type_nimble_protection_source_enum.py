@@ -3,14 +3,13 @@
 
 class TypeNimbleProtectionSourceEnum(object):
 
-    """Implementation of the 'Type_NimbleProtectionSource' enum.
-
-    Specifies the type of managed Object in a SAN/Nimble Protection
-    Source like a kStorageArray or kVolume.
-    Examples of SAN Objects include 'kStorageArray' and 'kVolume'.
-    'kStorageArray' indicates that entire SAN storage array is being
+    """Implementation of the 'TypeNimbleProtectionSource' enum.
+    Specifies the type of managed Object in a SAN/Nimble Protection Source like
+    a kStorageArray or kVolume. Examples of SAN Objects include 'kStorageArray'
+    and 'kVolume'. 'kStorageArray' indicates that entire SAN storage array is
+    being protected. 'kVolume' indicates that volume within the array is being
     protected.
-    'kVolume' indicates that volume within the array is being protected.
+
 
     Attributes:
         KSTORAGEARRAY: TODO: type description here.
@@ -21,4 +20,3 @@ class TypeNimbleProtectionSourceEnum(object):
     KSTORAGEARRAY = 'kStorageArray'
 
     KVOLUME = 'kVolume'
-

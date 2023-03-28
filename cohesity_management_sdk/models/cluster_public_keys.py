@@ -1,31 +1,32 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class ClusterPublicKeys(object):
 
     """Implementation of the 'ClusterPublicKeys' model.
 
     Specifies public keys stored on the Cluster.
 
+
     Attributes:
+
         ssh_public_key (string): Specifies the SSH public key used to login to
             Cluster nodes.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "ssh_public_key":'sshPublicKey'
+        "ssh_public_key":'sshPublicKey',
     }
-
     def __init__(self,
-                 ssh_public_key=None):
+                 ssh_public_key=None,
+            ):
+
         """Constructor for the ClusterPublicKeys class"""
 
         # Initialize members of the class
         self.ssh_public_key = ssh_public_key
-
 
     @classmethod
     def from_dictionary(cls,
@@ -48,6 +49,6 @@ class ClusterPublicKeys(object):
         ssh_public_key = dictionary.get('sshPublicKey')
 
         # Return an object of this model
-        return cls(ssh_public_key)
-
-
+        return cls(
+            ssh_public_key
+)

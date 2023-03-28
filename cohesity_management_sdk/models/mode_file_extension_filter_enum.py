@@ -3,11 +3,11 @@
 
 class ModeFileExtensionFilterEnum(object):
 
-    """Implementation of the 'Mode_FileExtensionFilter' enum.
+    """Implementation of the 'ModeFileExtensionFilter' enum.
+    The mode applied to the list of file extensions 'kWhitelist' indicates a
+    allowlist extension filter. 'kBlacklist' indicates a denylist extension
+    filter.
 
-    The mode applied to the list of file extensions
-    'kWhitelist' indicates a whitelist extension filter.
-    'kBlacklist' indicates a blacklist extension filter.
 
     Attributes:
         KWHITELIST: TODO: type description here.
@@ -18,4 +18,3 @@ class ModeFileExtensionFilterEnum(object):
     KWHITELIST = 'kWhitelist'
 
     KBLACKLIST = 'kBlacklist'
-

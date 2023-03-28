@@ -3,6 +3,7 @@
 
 import cohesity_management_sdk.models.map_reduce_info
 
+
 class ApplicationsWrapper(object):
 
     """Implementation of the 'ApplicationsWrapper' model.
@@ -10,23 +11,26 @@ class ApplicationsWrapper(object):
     ApplicationsWrapper is the struct to define the list of map-reduce
     applications.
 
+
     Attributes:
-        applications (list of MapReduceInfo): Applications specifies the list of
-            available map-reduce applications in analytics workbench.
+
+        applications (list of MapReduceInfo): Applications specifies the list
+            of available map-reduce applications in analytics workbench.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "applications":'applications'
+        "applications":'applications',
     }
-
     def __init__(self,
-                 applications=None):
+                 applications=None,
+            ):
+
         """Constructor for the ApplicationsWrapper class"""
 
         # Initialize members of the class
         self.applications = applications
-
 
     @classmethod
     def from_dictionary(cls,
@@ -46,12 +50,13 @@ class ApplicationsWrapper(object):
             return None
 
         # Extract variables from the dictionary
-        application_list = None
-        if dictionary.get('applications', None) != None:
-            application_list = list()
-            for application in dictionary.get('applications'):
-                application_list.append(cohesity_management_sdk.models.map_reduce_info.MapReduceInfo.from_dictionary(application))
+        applications = None
+        if dictionary.get('applications') != None:
+            applications = list()
+            for structure in dictionary.get('applications'):
+                applications.append(cohesity_management_sdk.models.map_reduce_info.MapReduceInfo.from_dictionary(structure))
+
         # Return an object of this model
-        return cls(application_list)
-
-
+        return cls(
+            applications
+)

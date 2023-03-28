@@ -1,36 +1,36 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class NasAnalysisJobParams_FileTypeBucket(object):
 
     """Implementation of the 'NasAnalysisJobParams_FileTypeBucket' model.
 
-    File type bucket.
+    TODO: type description here.
+
 
     Attributes:
-        file_type_bucket_extensions (list of string): File extensions
-            e.g. <vmdk, ova>.
-        file_type_bucket_name (string): File type bucket name,
-            e.g. VMs.
 
+        file_type_bucket_extensions (list of string): File extensions e.g.
+            <vmdk, ova>.
+        file_type_bucket_name (string): File type bucket name, e.g. VMs.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "file_type_bucket_extensions": 'fileTypeBucketExtensions',
-        "file_type_bucket_name": 'fileTypeBucketName'
+        "file_type_bucket_extensions":'fileTypeBucketExtensions',
+        "file_type_bucket_name":'fileTypeBucketName',
     }
-
     def __init__(self,
                  file_type_bucket_extensions=None,
-                 file_type_bucket_name=None):
+                 file_type_bucket_name=None,
+            ):
+
         """Constructor for the NasAnalysisJobParams_FileTypeBucket class"""
 
         # Initialize members of the class
         self.file_type_bucket_extensions = file_type_bucket_extensions
         self.file_type_bucket_name = file_type_bucket_name
-
 
     @classmethod
     def from_dictionary(cls,
@@ -50,11 +50,11 @@ class NasAnalysisJobParams_FileTypeBucket(object):
             return None
 
         # Extract variables from the dictionary
-        file_type_bucket_extensions = dictionary.get('fileTypeBucketExtensions', None)
-        file_type_bucket_name = dictionary.get('fileTypeBucketName', None)
+        file_type_bucket_extensions = dictionary.get("fileTypeBucketExtensions")
+        file_type_bucket_name = dictionary.get('fileTypeBucketName')
 
         # Return an object of this model
-        return cls(file_type_bucket_extensions,
-                   file_type_bucket_name)
-
-
+        return cls(
+            file_type_bucket_extensions,
+            file_type_bucket_name
+)

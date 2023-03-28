@@ -5,28 +5,33 @@ import cohesity_management_sdk.models.isilon_access_zone
 import cohesity_management_sdk.models.isilon_cluster
 import cohesity_management_sdk.models.isilon_mount_point
 
+
 class IsilonProtectionSource(object):
 
     """Implementation of the 'IsilonProtectionSource' model.
 
     Specifies a Protection Source in Isilon OneFs environment.
 
+
     Attributes:
-        access_zone (IsilonAccessZone): Specifies information about access
-            zone in an Isilon Cluster.
-        cluster (IsilonCluster): Specifies information about an Isilon
-            Cluster.
+
+        access_zone (IsilonAccessZone): Specifies an access zone in an Isilon
+            OneFs file system. This is set only when the entity type is
+            'kZone'.
+        cluster (IsilonCluster): Specifies information of an Isilon OneFs
+            Cluster. This is set only when the entity type is 'kCluster'.
         mount_point (IsilonMountPoint): Specifies information about a mount
-            point in an Isilon OneFs Cluster.
+            point in an Isilon OneFs file system. This is set only when the
+            entity type is 'kMountPoint'.
         name (string): Specifies a unique name of the Protection Source.
         mtype (TypeIsilonProtectionSourceEnum): Specifies the type of the
-            entity in an Isilon OneFs file system like 'kCluster', 'kZone',
-            or, 'kMountPoint'. 'kCluster' indicates an Isilon OneFs Cluster.
+            entity in an Isilon OneFs file system like 'kCluster', 'kZone', or,
+            'kMountPoint'. 'kCluster' indicates an Isilon OneFs Cluster.
             'kZone' indicates an access zone in an Isilon OneFs Cluster.
             'kMountPoint' indicates a mount point exposed by an Isilon OneFs
             Cluster.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -34,15 +39,16 @@ class IsilonProtectionSource(object):
         "cluster":'cluster',
         "mount_point":'mountPoint',
         "name":'name',
-        "mtype":'type'
+        "mtype":'type',
     }
-
     def __init__(self,
                  access_zone=None,
                  cluster=None,
                  mount_point=None,
                  name=None,
-                 mtype=None):
+                 mtype=None,
+            ):
+
         """Constructor for the IsilonProtectionSource class"""
 
         # Initialize members of the class
@@ -51,7 +57,6 @@ class IsilonProtectionSource(object):
         self.mount_point = mount_point
         self.name = name
         self.mtype = mtype
-
 
     @classmethod
     def from_dictionary(cls,
@@ -78,10 +83,10 @@ class IsilonProtectionSource(object):
         mtype = dictionary.get('type')
 
         # Return an object of this model
-        return cls(access_zone,
-                   cluster,
-                   mount_point,
-                   name,
-                   mtype)
-
-
+        return cls(
+            access_zone,
+            cluster,
+            mount_point,
+            name,
+            mtype
+)

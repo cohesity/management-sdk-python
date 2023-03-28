@@ -3,6 +3,7 @@
 
 import cohesity_management_sdk.models.latest_protection_job_run_info
 
+
 class ProtectionRunResponse(object):
 
     """Implementation of the 'ProtectionRunResponse' model.
@@ -10,34 +11,36 @@ class ProtectionRunResponse(object):
     Specifies the information about the Protection Runs across all snapshot
     target locations.
 
+
     Attributes:
+
         archival_runs (list of LatestProtectionJobRunInfo): Specifies the list
             of archival job information.
-        backup_runs (list of LatestProtectionJobRunInfo): Specifies the list
-            of local backup job information.
+        backup_runs (list of LatestProtectionJobRunInfo): Specifies the list of
+            local backup job information.
         replication_runs (list of LatestProtectionJobRunInfo): Specifies the
             list of replication job information.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "archival_runs":'archivalRuns',
         "backup_runs":'backupRuns',
-        "replication_runs":'replicationRuns'
+        "replication_runs":'replicationRuns',
     }
-
     def __init__(self,
                  archival_runs=None,
                  backup_runs=None,
-                 replication_runs=None):
+                 replication_runs=None,
+            ):
+
         """Constructor for the ProtectionRunResponse class"""
 
         # Initialize members of the class
         self.archival_runs = archival_runs
         self.backup_runs = backup_runs
         self.replication_runs = replication_runs
-
 
     @classmethod
     def from_dictionary(cls,
@@ -74,8 +77,8 @@ class ProtectionRunResponse(object):
                 replication_runs.append(cohesity_management_sdk.models.latest_protection_job_run_info.LatestProtectionJobRunInfo.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(archival_runs,
-                   backup_runs,
-                   replication_runs)
-
-
+        return cls(
+            archival_runs,
+            backup_runs,
+            replication_runs
+)

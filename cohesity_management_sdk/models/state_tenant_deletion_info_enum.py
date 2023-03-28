@@ -4,10 +4,10 @@
 class StateTenantDeletionInfoEnum(object):
 
     """Implementation of the 'StateTenantDeletionInfo' enum.
+    Specifies the deletion completion state of the object category. Completion
+    State is captured before any operations are started. Similar to WAL (Write
+    Ahead Logging).
 
-    Specifies the deletion completion state of the object State.
-    Completion State is captured before any operations are started.
-    Similar to WAL (Write Ahead Logging).
 
     Attributes:
         NOTSTARTED: TODO: type description here.

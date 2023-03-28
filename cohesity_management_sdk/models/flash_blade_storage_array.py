@@ -3,15 +3,18 @@
 
 import cohesity_management_sdk.models.flash_blade_network_interface
 
+
 class FlashBladeStorageArray(object):
 
     """Implementation of the 'FlashBladeStorageArray' model.
 
     Specifies information about a Pure Storage FlashBlade Array.
 
+
     Attributes:
-        capacity_bytes (long|int): Specifies the total capacity in bytes of
-            the Pure Storage FlashBlade Array.
+
+        capacity_bytes (long|int): Specifies the total capacity in bytes of the
+            Pure Storage FlashBlade Array.
         id (string): Specifies a unique id of a Pure Storage FlashBlade Array.
             The id is unique across Cohesity Clusters.
         networks (list of FlashBladeNetworkInterface): Specifies the network
@@ -22,8 +25,8 @@ class FlashBladeStorageArray(object):
             FlashBlade software.
         version (string): Specifies the software version running on the Pure
             Storage FlashBlade Array.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -32,16 +35,17 @@ class FlashBladeStorageArray(object):
         "networks":'networks',
         "physical_used_bytes":'physicalUsedBytes',
         "revision":'revision',
-        "version":'version'
+        "version":'version',
     }
-
     def __init__(self,
                  capacity_bytes=None,
                  id=None,
                  networks=None,
                  physical_used_bytes=None,
                  revision=None,
-                 version=None):
+                 version=None,
+            ):
+
         """Constructor for the FlashBladeStorageArray class"""
 
         # Initialize members of the class
@@ -51,7 +55,6 @@ class FlashBladeStorageArray(object):
         self.physical_used_bytes = physical_used_bytes
         self.revision = revision
         self.version = version
-
 
     @classmethod
     def from_dictionary(cls,
@@ -83,11 +86,11 @@ class FlashBladeStorageArray(object):
         version = dictionary.get('version')
 
         # Return an object of this model
-        return cls(capacity_bytes,
-                   id,
-                   networks,
-                   physical_used_bytes,
-                   revision,
-                   version)
-
-
+        return cls(
+            capacity_bytes,
+            id,
+            networks,
+            physical_used_bytes,
+            revision,
+            version
+)

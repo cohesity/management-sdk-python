@@ -3,6 +3,7 @@
 
 import cohesity_management_sdk.models.source_filters_source_filter
 
+
 class SourceFilters(object):
 
     """Implementation of the 'SourceFilters' model.
@@ -10,24 +11,27 @@ class SourceFilters(object):
     For SQL, this filters will be applicable only for auto protect sources and
     can be used at the host, instance level.
 
+
     Attributes:
+
         exclude_source_filter_vec (list of SourceFilters_SourceFilter): This
             contains the list of exclude filters to be applied on the entities
             in the backup source.
     """
 
+
     # Create a mapping from Model property names to API property names
     _names = {
-        "exclude_source_filter_vec":'excludeSourceFilterVec'
+        "exclude_source_filter_vec":'excludeSourceFilterVec',
     }
-
     def __init__(self,
-                 exclude_source_filter_vec=None):
+                 exclude_source_filter_vec=None,
+            ):
+
         """Constructor for the SourceFilters class"""
 
         # Initialize members of the class
         self.exclude_source_filter_vec = exclude_source_filter_vec
-
 
     @classmethod
     def from_dictionary(cls,
@@ -54,6 +58,6 @@ class SourceFilters(object):
                 exclude_source_filter_vec.append(cohesity_management_sdk.models.source_filters_source_filter.SourceFilters_SourceFilter.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(exclude_source_filter_vec)
-
-
+        return cls(
+            exclude_source_filter_vec
+)

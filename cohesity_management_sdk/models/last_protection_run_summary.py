@@ -1,19 +1,19 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class LastProtectionRunSummary(object):
 
     """Implementation of the 'LastProtectionRunSummary' model.
 
-    LastProtectionRunsSummary is the summary of the last Protection Run for
-    the
+    LastProtectionRunsSummary is the summary of the last Protection Run for the
     Protection Jobs using the Specified Protection Policy.
 
+
     Attributes:
-        number_of_cancelled_protection_runs (long|int): Specifies the number
-            of cancelled Protection Runs the given Protection Policy has in
-            the Last Run.
+
+        number_of_cancelled_protection_runs (long|int): Specifies the number of
+            cancelled Protection Runs the given Protection Policy has in the
+            Last Run.
         number_of_failed_protection_runs (long|int): Specifies the number of
             failed Protection Runs the given Protection Policy has in the Last
             Run.
@@ -26,12 +26,12 @@ class LastProtectionRunSummary(object):
         number_of_successful_protection_runs (long|int): Specifies the number
             of successful Protection Runs the given Protection Policy has in
             the Last Run.
-        total_logical_backup_size_in_bytes (long|int): Specifies the
-            aggregated total logical backup performed in all the Latest
-            Protection Runs made for all the Protection Jobs which have the
-            given Protection Policy Specified.
-
+        total_logical_backup_size_in_bytes (long|int): Specifies the aggregated
+            total logical backup performed in all the Latest Protection Runs
+            made for all the Protection Jobs which have the given Protection
+            Policy Specified.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -41,9 +41,8 @@ class LastProtectionRunSummary(object):
         "number_of_running_protection_runs":'numberOfRunningProtectionRuns',
         "number_of_sla_violations":'numberOfSlaViolations',
         "number_of_successful_protection_runs":'numberOfSuccessfulProtectionRuns',
-        "total_logical_backup_size_in_bytes":'totalLogicalBackupSizeInBytes'
+        "total_logical_backup_size_in_bytes":'totalLogicalBackupSizeInBytes',
     }
-
     def __init__(self,
                  number_of_cancelled_protection_runs=None,
                  number_of_failed_protection_runs=None,
@@ -51,7 +50,9 @@ class LastProtectionRunSummary(object):
                  number_of_running_protection_runs=None,
                  number_of_sla_violations=None,
                  number_of_successful_protection_runs=None,
-                 total_logical_backup_size_in_bytes=None):
+                 total_logical_backup_size_in_bytes=None,
+            ):
+
         """Constructor for the LastProtectionRunSummary class"""
 
         # Initialize members of the class
@@ -62,7 +63,6 @@ class LastProtectionRunSummary(object):
         self.number_of_sla_violations = number_of_sla_violations
         self.number_of_successful_protection_runs = number_of_successful_protection_runs
         self.total_logical_backup_size_in_bytes = total_logical_backup_size_in_bytes
-
 
     @classmethod
     def from_dictionary(cls,
@@ -91,12 +91,12 @@ class LastProtectionRunSummary(object):
         total_logical_backup_size_in_bytes = dictionary.get('totalLogicalBackupSizeInBytes')
 
         # Return an object of this model
-        return cls(number_of_cancelled_protection_runs,
-                   number_of_failed_protection_runs,
-                   number_of_protected_sources,
-                   number_of_running_protection_runs,
-                   number_of_sla_violations,
-                   number_of_successful_protection_runs,
-                   total_logical_backup_size_in_bytes)
-
-
+        return cls(
+            number_of_cancelled_protection_runs,
+            number_of_failed_protection_runs,
+            number_of_protected_sources,
+            number_of_running_protection_runs,
+            number_of_sla_violations,
+            number_of_successful_protection_runs,
+            total_logical_backup_size_in_bytes
+)

@@ -4,39 +4,45 @@
 import cohesity_management_sdk.models.flash_blade_file_system
 import cohesity_management_sdk.models.flash_blade_storage_array
 
+
 class FlashBladeProtectionSource(object):
 
     """Implementation of the 'FlashBladeProtectionSource' model.
 
     Specifies a Protection Source in Pure Storage FlashBlade environment.
 
-    Attributes:
-        file_system (FlashBladeFileSystem): Specifies information about a
-            Flash Blade File System in a Storage Array.
-        name (string): Specifies a unique name of the Protection Source.
-        storage_array (FlashBladeStorageArray): Specifies information about a
-            Pure Storage FlashBlade Array.
-        mtype (TypeFlashBladeProtectionSourceEnum): Specifies the type of
-            managed object in a Pure Storage FlashBlade like 'kStorageArray'
-            or 'kFileSystem'. 'kStorageArray' indicates a top level Pure
-            Storage FlashBlade array. 'kFileSystem' indicates a Pure Storage
-            FlashBlade file system within the array.
 
+    Attributes:
+
+        file_system (FlashBladeFileSystem): Specifies a Pure Storage FlashBlade
+            File System information. This is set only when the object type is
+            'kFileSystem'.
+        name (string): Specifies a unique name of the Protection Source.
+        storage_array (FlashBladeStorageArray): Specifies a Pure Storage
+            FlashBlade Array information. This is set only when the object type
+            is 'kStorageArray'.
+        mtype (TypeFlashBladeProtectionSourceEnum): Specifies the type of
+            managed object in a Pure Storage FlashBlade like 'kStorageArray' or
+            'kFileSystem'. 'kStorageArray' indicates a top level Pure Storage
+            FlashBlade array. 'kFileSystem' indicates a Pure Storage FlashBlade
+            file system within the array.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "file_system":'fileSystem',
         "name":'name',
         "storage_array":'storageArray',
-        "mtype":'type'
+        "mtype":'type',
     }
-
     def __init__(self,
                  file_system=None,
                  name=None,
                  storage_array=None,
-                 mtype=None):
+                 mtype=None,
+            ):
+
         """Constructor for the FlashBladeProtectionSource class"""
 
         # Initialize members of the class
@@ -44,7 +50,6 @@ class FlashBladeProtectionSource(object):
         self.name = name
         self.storage_array = storage_array
         self.mtype = mtype
-
 
     @classmethod
     def from_dictionary(cls,
@@ -70,9 +75,9 @@ class FlashBladeProtectionSource(object):
         mtype = dictionary.get('type')
 
         # Return an object of this model
-        return cls(file_system,
-                   name,
-                   storage_array,
-                   mtype)
-
-
+        return cls(
+            file_system,
+            name,
+            storage_array,
+            mtype
+)

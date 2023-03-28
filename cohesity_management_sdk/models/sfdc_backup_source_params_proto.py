@@ -2,16 +2,19 @@
 # Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.aurora_cluster_info
-import cohesity_management_sdk.modes.object_level_params
+import cohesity_management_sdk.models.object_level_params
+
 
 class SfdcBackupSourceParamsProto(object):
 
     """Implementation of the 'SfdcBackupSourceParamsProto' model.
 
-     Message to capture additional backup params for an Sfdc source.
-    This proto is used in object based protection of Sfdc source.
+    Message to capture additional backup params for an Sfdc source.  This proto
+    is used in object based protection of Sfdc source.
+
 
     Attributes:
+
         aurora_cluster_info (AuroraClusterInfo): Details about the
             AuroraCluster to be used for this object protection.
         aws_iam_role (string): IAM role used to get access to the Aurora
@@ -23,8 +26,8 @@ class SfdcBackupSourceParamsProto(object):
             names that user has specified to exclude from this object's backup.
         s3_bucket_prefix (string): S3 bucket prefix to be used while uploading
             the data to Aurora-postgres.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -32,15 +35,16 @@ class SfdcBackupSourceParamsProto(object):
         "aws_iam_role":'awsIamRole',
         "excluded_object_ids_vec":'excludedObjectIdsVec',
         "object_level_params_vec":'objectLevelParamsVec',
-        "s3_bucket_prefix":'s3BucketPrefix'
+        "s3_bucket_prefix":'s3BucketPrefix',
     }
-
     def __init__(self,
                  aurora_cluster_info=None,
                  aws_iam_role=None,
                  excluded_object_ids_vec=None,
                  object_level_params_vec=None,
-                 s3_bucket_prefix=None):
+                 s3_bucket_prefix=None,
+            ):
+
         """Constructor for the SfdcBackupSourceParamsProto class"""
 
         # Initialize members of the class
@@ -49,7 +53,6 @@ class SfdcBackupSourceParamsProto(object):
         self.excluded_object_ids_vec = excluded_object_ids_vec
         self.object_level_params_vec = object_level_params_vec
         self.s3_bucket_prefix = s3_bucket_prefix
-
 
     @classmethod
     def from_dictionary(cls,
@@ -71,19 +74,19 @@ class SfdcBackupSourceParamsProto(object):
         # Extract variables from the dictionary
         aurora_cluster_info = cohesity_management_sdk.models.aurora_cluster_info.AuroraClusterInfo.from_dictionary(dictionary.get('auroraClusterInfo')) if dictionary.get('auroraClusterInfo') else None
         aws_iam_role = dictionary.get('awsIamRole')
-        excluded_object_ids_vec = dictionary.get('excludedObjectIdsVec')
-        s3_bucket_prefix = dictionary.get('s3BucketPrefix')
+        excluded_object_ids_vec = dictionary.get("excludedObjectIdsVec")
         object_level_params_vec = None
-        if dictionary.get('objectLevelParamsVec'):
+        if dictionary.get('objectLevelParamsVec') != None:
             object_level_params_vec = list()
             for structure in dictionary.get('objectLevelParamsVec'):
-                object_level_params_vec.append(cohesity_management_sdk.modes.object_level_params.object_level_params.ObjectLevelParams.from_dictionary(structure))
+                object_level_params_vec.append(cohesity_management_sdk.models.object_level_params.ObjectLevelParams.from_dictionary(structure))
+        s3_bucket_prefix = dictionary.get('s3BucketPrefix')
 
         # Return an object of this model
-        return cls(aurora_cluster_info,
-                   aws_iam_role,
-                   excluded_object_ids_vec,
-                   object_level_params_vec,
-                   s3_bucket_prefix)
-
-
+        return cls(
+            aurora_cluster_info,
+            aws_iam_role,
+            excluded_object_ids_vec,
+            object_level_params_vec,
+            s3_bucket_prefix
+)

@@ -7,31 +7,33 @@ class FleetNetworkParams(object):
 
     Specifies the various network params for the fleet.
 
+
     Attributes:
+
         region (string): Specifies the region for the fleet.
         subnet (string): Specifies the subnet for the fleet.
         vpc (string): Specifies the vpc for the fleet.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "region":'region',
         "subnet":'subnet',
-        "vpc":'vpc'
+        "vpc":'vpc',
     }
-
     def __init__(self,
                  region=None,
                  subnet=None,
-                 vpc=None):
+                 vpc=None,
+            ):
+
         """Constructor for the FleetNetworkParams class"""
 
         # Initialize members of the class
         self.region = region
         self.subnet = subnet
         self.vpc = vpc
-
 
     @classmethod
     def from_dictionary(cls,
@@ -52,10 +54,12 @@ class FleetNetworkParams(object):
 
         # Extract variables from the dictionary
         region = dictionary.get('region')
-        subnet = dictionary.get('subnet', None)
-        vpc = dictionary.get('vpc', None)
+        subnet = dictionary.get('subnet')
+        vpc = dictionary.get('vpc')
 
         # Return an object of this model
-        return cls(region, subnet, vpc)
-
-
+        return cls(
+            region,
+            subnet,
+            vpc
+)

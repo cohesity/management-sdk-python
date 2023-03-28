@@ -3,12 +3,10 @@
 
 class StatusTaskNotificationEnum(object):
 
-    """Implementation of the 'Status_TaskNotification' enum.
+    """Implementation of the 'StatusTaskNotification' enum.
+    Status of the task. Status of the task. 'kSuccess' indicates that task
+    completed successfully. 'kError' indicates that task encountered errors.
 
-    Status of the task.
-    Status of the task.
-    'kSuccess' indicates that task completed successfully.
-    'kError' indicates that task encountered errors.
 
     Attributes:
         KSUCCESS: TODO: type description here.
@@ -19,4 +17,3 @@ class StatusTaskNotificationEnum(object):
     KSUCCESS = 'kSuccess'
 
     KERROR = 'kError'
-

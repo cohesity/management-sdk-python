@@ -1,47 +1,40 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-import cohesity_management_sdk.models.error_proto
-import cohesity_management_sdk.models.entity_proto
 import cohesity_management_sdk.models.credentials
+import cohesity_management_sdk.models.entity_proto
+import cohesity_management_sdk.models.error_proto
+
 
 class DestroyCloneAppTaskInfoProto(object):
 
     """Implementation of the 'DestroyCloneAppTaskInfoProto' model.
 
     Each available extension is listed below along with the location of the
-    proto file (relative to magneto/connectors) where it is defined.
-    DestroyCloneAppTaskInfoProto extension
-    Location
-    Extension
-    ===========================================================================
-    ==
-    sql::DestroyCloneTaskInfo::sql_destroy_clone_app_task_info
-    sql/sql.proto
-    100
-    oracle::DestroyCloneTaskInfo::oracle_destroy_clone_app_task_info
-    oracle/oracle.proto
-    101
-    ad::DestroyTaskInfo::ad_destroy_app_task_info
-    ad/ad.proto
-    102
-    exchange::DestroyTaskInfo::exchange_destroy_app_task_info
-    exchange/exchange.proto
-    103
-    ===========================================================================
-    ==
+    proto file (relative to magneto/connectors) where it is defined. 
+    DestroyCloneAppTaskInfoProto extension Location Extension
+    =============================================================================
+    sql::DestroyCloneTaskInfo::sql_destroy_clone_app_task_info sql/sql.proto
+    100 oracle::DestroyCloneTaskInfo::oracle_destroy_clone_app_task_info
+    oracle/oracle.proto 101 ad::DestroyTaskInfo::ad_destroy_app_task_info
+    ad/ad.proto 102 exchange::DestroyTaskInfo::exchange_destroy_app_task_info
+    exchange/exchange.proto 103
+    =============================================================================
+
 
     Attributes:
+
         app_env (int): The application environment.
-        error (ErrorProto): TODO: type description here.
+        error (ErrorProto): If an error is encountered during destroy it is set
+            here.
         finished (bool): This will be set to true if the task is complete on
             the slave.
-        target_entity (EntityProto): Specifies the attributes and the latest
-            statistics about an entity.
-        target_entity_credentials (Credentials): Specifies credentials to
-            access a target source.
-
+        target_entity (EntityProto): The target entity on which the application
+            was cloned.
+        target_entity_credentials (Credentials): Credentials if any needed to
+            log into the target entity.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -49,15 +42,16 @@ class DestroyCloneAppTaskInfoProto(object):
         "error":'error',
         "finished":'finished',
         "target_entity":'targetEntity',
-        "target_entity_credentials":'targetEntityCredentials'
+        "target_entity_credentials":'targetEntityCredentials',
     }
-
     def __init__(self,
                  app_env=None,
                  error=None,
                  finished=None,
                  target_entity=None,
-                 target_entity_credentials=None):
+                 target_entity_credentials=None,
+            ):
+
         """Constructor for the DestroyCloneAppTaskInfoProto class"""
 
         # Initialize members of the class
@@ -66,7 +60,6 @@ class DestroyCloneAppTaskInfoProto(object):
         self.finished = finished
         self.target_entity = target_entity
         self.target_entity_credentials = target_entity_credentials
-
 
     @classmethod
     def from_dictionary(cls,
@@ -93,10 +86,10 @@ class DestroyCloneAppTaskInfoProto(object):
         target_entity_credentials = cohesity_management_sdk.models.credentials.Credentials.from_dictionary(dictionary.get('targetEntityCredentials')) if dictionary.get('targetEntityCredentials') else None
 
         # Return an object of this model
-        return cls(app_env,
-                   error,
-                   finished,
-                   target_entity,
-                   target_entity_credentials)
-
-
+        return cls(
+            app_env,
+            error,
+            finished,
+            target_entity,
+            target_entity_credentials
+)

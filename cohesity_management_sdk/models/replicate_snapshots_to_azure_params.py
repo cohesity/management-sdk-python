@@ -3,37 +3,41 @@
 
 import cohesity_management_sdk.models.entity_proto
 
+
 class ReplicateSnapshotsToAzureParams(object):
 
     """Implementation of the 'ReplicateSnapshotsToAzureParams' model.
 
     This is populated for Azure snapshot manager replication.
 
-    Attributes:
-        resource_group (EntityProto): Specifies the attributes and the latest
-            statistics about an entity.
-        storage_account (EntityProto): Specifies the attributes and the latest
-            statistics about an entity.
-        storage_container (EntityProto): Specifies the attributes and the
-            latest statistics about an entity.
-        storage_resource_group (EntityProto): Specifies the attributes and the
-            latest statistics about an entity.
 
+    Attributes:
+
+        resource_group (EntityProto): Resource group to filter regions in UX.
+        storage_account (EntityProto): Name of the storage account that will
+            contain the storage container within which we will create the
+            blob/snapshot.
+        storage_container (EntityProto): Name of the storage container within
+            the above storage account.
+        storage_resource_group (EntityProto): Name of the Azure resource group
+            that has the storage account mentioned below.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "resource_group":'resourceGroup',
         "storage_account":'storageAccount',
         "storage_container":'storageContainer',
-        "storage_resource_group":'storageResourceGroup'
+        "storage_resource_group":'storageResourceGroup',
     }
-
     def __init__(self,
                  resource_group=None,
                  storage_account=None,
                  storage_container=None,
-                 storage_resource_group=None):
+                 storage_resource_group=None,
+            ):
+
         """Constructor for the ReplicateSnapshotsToAzureParams class"""
 
         # Initialize members of the class
@@ -41,7 +45,6 @@ class ReplicateSnapshotsToAzureParams(object):
         self.storage_account = storage_account
         self.storage_container = storage_container
         self.storage_resource_group = storage_resource_group
-
 
     @classmethod
     def from_dictionary(cls,
@@ -67,9 +70,9 @@ class ReplicateSnapshotsToAzureParams(object):
         storage_resource_group = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('storageResourceGroup')) if dictionary.get('storageResourceGroup') else None
 
         # Return an object of this model
-        return cls(resource_group,
-                   storage_account,
-                   storage_container,
-                   storage_resource_group)
-
-
+        return cls(
+            resource_group,
+            storage_account,
+            storage_container,
+            storage_resource_group
+)

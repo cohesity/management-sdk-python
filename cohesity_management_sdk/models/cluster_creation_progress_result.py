@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class ClusterCreationProgressResult(object):
 
     """Implementation of the 'ClusterCreationProgressResult' model.
 
-    Specifies the values returned after a successful request to get the
-    Cluster creation progress.
+    Specifies the values returned after a successful request to get the Cluster
+    creation progress.
+
 
     Attributes:
+
         completion_percentage (int): Specifies an approximate completion
             percentage for the Cluster creation process.
         error_message (string): Specifies a description of an error if any
@@ -27,8 +28,8 @@ class ClusterCreationProgressResult(object):
             until the Cluster creation process is complete.
         warnings_found (bool): Specifies whether or not any warnings were
             encountered during Cluster creation.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -38,9 +39,8 @@ class ClusterCreationProgressResult(object):
         "in_progress":'inProgress',
         "message":'message',
         "seconds_remaining":'secondsRemaining',
-        "warnings_found":'warningsFound'
+        "warnings_found":'warningsFound',
     }
-
     def __init__(self,
                  completion_percentage=None,
                  error_message=None,
@@ -48,7 +48,9 @@ class ClusterCreationProgressResult(object):
                  in_progress=None,
                  message=None,
                  seconds_remaining=None,
-                 warnings_found=None):
+                 warnings_found=None,
+            ):
+
         """Constructor for the ClusterCreationProgressResult class"""
 
         # Initialize members of the class
@@ -59,7 +61,6 @@ class ClusterCreationProgressResult(object):
         self.message = message
         self.seconds_remaining = seconds_remaining
         self.warnings_found = warnings_found
-
 
     @classmethod
     def from_dictionary(cls,
@@ -81,19 +82,19 @@ class ClusterCreationProgressResult(object):
         # Extract variables from the dictionary
         completion_percentage = dictionary.get('completionPercentage')
         error_message = dictionary.get('errorMessage')
-        events = dictionary.get('events')
+        events = dictionary.get("events")
         in_progress = dictionary.get('inProgress')
         message = dictionary.get('message')
         seconds_remaining = dictionary.get('secondsRemaining')
         warnings_found = dictionary.get('warningsFound')
 
         # Return an object of this model
-        return cls(completion_percentage,
-                   error_message,
-                   events,
-                   in_progress,
-                   message,
-                   seconds_remaining,
-                   warnings_found)
-
-
+        return cls(
+            completion_percentage,
+            error_message,
+            events,
+            in_progress,
+            message,
+            seconds_remaining,
+            warnings_found
+)

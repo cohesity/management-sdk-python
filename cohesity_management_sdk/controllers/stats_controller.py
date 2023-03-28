@@ -1054,6 +1054,7 @@ class StatsController(BaseController):
     def get_view_stats(self,
                        metric=None,
                        num_top_views=None,
+                       protocol=None,
                        last_hours=None):
         """Does a GET request to /public/stats/views.
 

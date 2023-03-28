@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class FilenamePatternToDirectory(object):
 
     """Implementation of the 'FilenamePatternToDirectory' model.
@@ -9,29 +8,31 @@ class FilenamePatternToDirectory(object):
     Specifies a filename pattern and the directory path where to keep files
     matching that pattern.
 
+
     Attributes:
+
         directory (string): Specifies the directory where to keep the files
             matching the pattern.
         filename_pattern (string): Specifies a pattern to be matched with
             filenames. This can be a regex expression.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "directory":'directory',
-        "filename_pattern":'filenamePattern'
+        "filename_pattern":'filenamePattern',
     }
-
     def __init__(self,
                  directory=None,
-                 filename_pattern=None):
+                 filename_pattern=None,
+            ):
+
         """Constructor for the FilenamePatternToDirectory class"""
 
         # Initialize members of the class
         self.directory = directory
         self.filename_pattern = filename_pattern
-
 
     @classmethod
     def from_dictionary(cls,
@@ -55,7 +56,7 @@ class FilenamePatternToDirectory(object):
         filename_pattern = dictionary.get('filenamePattern')
 
         # Return an object of this model
-        return cls(directory,
-                   filename_pattern)
-
-
+        return cls(
+            directory,
+            filename_pattern
+)

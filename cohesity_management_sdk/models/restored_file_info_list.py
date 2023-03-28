@@ -1,30 +1,31 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class RestoredFileInfoList(object):
 
     """Implementation of the 'RestoredFileInfoList' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
-        is_directory (bool): Specifies whether the path points to directory.
 
+        is_directory (bool): Specifies whether the path points to directory.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "is_directory":'isDirectory'
+        "is_directory":'isDirectory',
     }
-
     def __init__(self,
-                 is_directory=None):
+                 is_directory=None,
+            ):
+
         """Constructor for the RestoredFileInfoList class"""
 
         # Initialize members of the class
         self.is_directory = is_directory
-
 
     @classmethod
     def from_dictionary(cls,
@@ -47,6 +48,6 @@ class RestoredFileInfoList(object):
         is_directory = dictionary.get('isDirectory')
 
         # Return an object of this model
-        return cls(is_directory)
-
-
+        return cls(
+            is_directory
+)

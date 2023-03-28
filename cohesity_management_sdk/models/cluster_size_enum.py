@@ -1,34 +1,25 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class ClusterSizeEnum(object):
 
     """Implementation of the 'ClusterSize' enum.
+    Specifies the size of the cluster. It is set as Large by default if the
+    parameter is not specified.
 
-    Specifies the size of Cloud Edition(CE) Cluster such as kSmall, kNextGen.
-    Specifies the clustersize of the cloud edition(CE) clusters.
-    'kSmall' indicates small cluster size of CE.
-    'kMedium' indicates medium cluster size of CE.
-    'kLarge' indicates large cluster size of CE.
-    'kXLarge' indicates extra large cluster size of CE.
-    'kNextGen' indicates next gen CE.
 
     Attributes:
-        KSMALL: TODO: type description here.
-        KMEDIUM: TODO: type description here.
-        KLARGE: TODO: type description here.
-        KXLARGE: TODO: type description here.
-        KNEXTGEN: TODO: type description here.
+        SMALL: TODO: type description here.
+        MEDIUM: TODO: type description here.
+        LARGE: TODO: type description here.
+        XLARGE: TODO: type description here.
 
     """
 
-    KSMALL = "kSmall"
+    SMALL = 'Small'
 
-    KMEDIUM = "kMedium"
+    MEDIUM = 'Medium'
 
-    KLARGE = "kLarge"
+    LARGE = 'Large'
 
-    KXLARGE = "kXLarge"
-
-    KNEXTGEN = "kNextGen"
+    XLARGE = 'XLarge'

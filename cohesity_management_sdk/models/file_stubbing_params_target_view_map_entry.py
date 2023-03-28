@@ -3,31 +3,36 @@
 
 import cohesity_management_sdk.models.file_stubbing_params_target_view_data
 
+
 class FileStubbingParams_TargetViewMapEntry(object):
 
     """Implementation of the 'FileStubbingParams_TargetViewMapEntry' model.
 
-    Attributes:
-        key (long| int): TODO: type description here.
-        value (FileStubbingParams_TargetViewData): TODO: type description here.
+    TODO: type description here.
 
+
+    Attributes:
+
+        key (long|int): TODO: Type description here.
+        value (FileStubbingParams_TargetViewData): TODO: Type description here.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "key": 'key',
-        "value": 'value'
+        "key":'key',
+        "value":'value',
     }
-
     def __init__(self,
                  key=None,
-                 value=None):
+                 value=None,
+            ):
+
         """Constructor for the FileStubbingParams_TargetViewMapEntry class"""
 
         # Initialize members of the class
         self.key = key
         self.value = value
-
 
     @classmethod
     def from_dictionary(cls,
@@ -51,7 +56,7 @@ class FileStubbingParams_TargetViewMapEntry(object):
         value = cohesity_management_sdk.models.file_stubbing_params_target_view_data.FileStubbingParams_TargetViewData.from_dictionary(dictionary.get('value')) if dictionary.get('value') else None
 
         # Return an object of this model
-        return cls(key,
-                   value)
-
-
+        return cls(
+            key,
+            value
+)

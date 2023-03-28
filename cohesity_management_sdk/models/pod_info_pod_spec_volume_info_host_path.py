@@ -5,22 +5,27 @@ class PodInfo_PodSpec_VolumeInfo_HostPath(object):
 
     """Implementation of the 'PodInfo_PodSpec_VolumeInfo_HostPath' model.
 
+    TODO: type description here.
+
+
     Attributes:
-        path (string): TODO: Type description here.
+
+        path (string): Path of volume on the node on which pod is running.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "path":'path'
+        "path":'path',
     }
-
     def __init__(self,
-                 path=None):
+                 path=None,
+            ):
+
         """Constructor for the PodInfo_PodSpec_VolumeInfo_HostPath class"""
 
         # Initialize members of the class
         self.path = path
-
 
     @classmethod
     def from_dictionary(cls,
@@ -43,6 +48,6 @@ class PodInfo_PodSpec_VolumeInfo_HostPath(object):
         path = dictionary.get('path')
 
         # Return an object of this model
-        return cls(path)
-
-
+        return cls(
+            path
+)

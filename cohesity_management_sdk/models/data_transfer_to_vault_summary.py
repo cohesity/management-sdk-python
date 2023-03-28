@@ -3,53 +3,70 @@
 
 import cohesity_management_sdk.models.data_transfer_to_vault_per_protection_job
 
+
 class DataTransferToVaultSummary(object):
 
     """Implementation of the 'DataTransferToVaultSummary' model.
 
-    Specifies statistics about the transfer of data from this Cohesity
-    Cluster to a Vault.
+    Specifies statistics about the transfer of data from this Cohesity Cluster
+    to a Vault.
+
 
     Attributes:
-        data_transfer_per_protection_job (list of
-            DataTransferToVaultPerProtectionJob):
-            Array of Data Transfer Statistics Per Protection Jobs.
-            Specifies the data transfer summary statistics for each Protection
-            Job that is transferring data from this Cohesity Cluster to this
-            Vault (External Target).
-        logical_data_transferred_bytes_during_time_range(int|long): Array
-            of Logical Data Transferred Per Day.
-            Specifies the logical data transferred from this Cohesity Cluster
-            to this Vault during the time period specified using the
-            startTimeMsecs and endTimeMsecs parameters.
-            For each day in the time period, an array element is returned,
-            for example if 7 days are specified, 7 array elements are returned.
-            The logical size is when the data is fully hydrated or expanded.
-        num_logical_bytes_transferred (long|int): Specifies the total number
-            of logical bytes that have been transferred from this Vault
-            (External Target) to this Cohesity Cluster. The logical size is
-            when the data is fully hydrated or expanded.
-        num_physical_bytes_transferred (long|int): Specifies the total number
-            of physical bytes that have been transferred from this Vault
-            (External Target) to the Cohesity Cluster.
-        num_protection_jobs (long|int): Specifies the number of Protection
-            Jobs that transfer data to this Vault.
-        physical_data_transferred_bytes_during_time_range (list of long|int):
-            Array of Physical Data Transferred Per Day.  Specifies the
-            physical data transferred from this Vault to the Cohesity Cluster
-            during the time period specified using the startTimeMsecs and
-            endTimeMsecs parameters. For each day in the time period, an array
-            element is returned, for example if 7 days are specified, 7 array
-            elements are returned.
-        storage_consumed_bytes (int|long): Specifies the storage consumed on
-            the Vault as of last day in the specified time range.
-        vault_id (int|long): The vault Id associated with the vault.
-        vault_name (string): Specifies the name of the Vault (External
-            Target).
-        vault_type (VaultTypeDataTransferToVaultSummaryEnum): Specifies the
-            type of Vault.
 
+        data_transfer_per_protection_job (list of
+            DataTransferToVaultPerProtectionJob): Array of Data Transfer
+            Statistics Per Protection Jobs.  Specifies the data transfer
+            summary statistics for each Protection Job that is transferring
+            data from this Cohesity Cluster to this Vault (External Target).
+        logical_data_transferred_bytes_during_time_range (list of long|int):
+            Array of Logical Data Transferred Per Day.  Specifies the logical
+            data transferred from this Cohesity Cluster to this Vault during
+            the time period specified using the startTimeMsecs and endTimeMsecs
+            parameters. For each day in the time period, an array element is
+            returned, for example if 7 days are specified, 7 array elements are
+            returned. The logical size is when the data is fully hydrated or
+            expanded.
+        num_logical_bytes_transferred (long|int): Specifies the total number of
+            logical bytes that are transferred from this Cohesity Cluster to
+            this Vault. The logical size is when the data is fully hydrated or
+            expanded.
+        num_physical_bytes_transferred (long|int): Specifies the total number
+            of physical bytes that are transferred from this Cohesity Cluster
+            to this Vault.
+        num_protection_jobs (long|int): Specifies the number of Protection Jobs
+            that transfer data to this Vault.
+        physical_data_transferred_bytes_during_time_range (list of long|int):
+            Array of Physical Data Transferred Per Day.  Specifies the physical
+            data transferred from this Cohesity Cluster to this Vault during
+            the time period specified using the startTimeMsecs and endTimeMsecs
+            parameters. For each day in the time period, an array element is
+            returned, for example if 7 days are specified, 7 array elements are
+            returned.
+        storage_consumed_bytes (long|int): Specifies the storage consumed on
+            the Vault as of last day in the specified time range.
+        vault_id (long|int): The vault Id associated with the vault.
+        vault_name (string): Specifies the name of the Vault (External Target).
+        vault_type (VaultTypeDataTransferToVaultSummaryEnum): Specifies the
+            type of Vault. 'kNearline' indicates a Google Nearline Vault.
+            'kGlacier' indicates an AWS Glacier Vault. 'kS3' indicates an AWS
+            S3 Vault. 'kAzureStandard' indicates a Microsoft Azure Standard
+            Vault. 'kS3Compatible' indicates an S3 Compatible Vault. (See the
+            online help for supported types.) 'kQStarTape' indicates a QStar
+            Tape Vault. 'kGoogleStandard' indicates a Google Standard Vault.
+            'kGoogleDRA' indicates a Google DRA Vault. 'kAmazonS3StandardIA'
+            indicates an Amazon S3 Standard-IA Vault. 'kAWSGovCloud' indicates
+            an AWS Gov Cloud Vault. 'kNAS' indicates a NAS Vault. 'kColdline'
+            indicates a Google Coldline Vault. 'kAzureGovCloud' indicates a
+            Microsoft Azure Gov Cloud Vault. 'kAzureArchive' indicates an Azure
+            Archive Vault. 'kAzure' indicates an Azure Vault. 'kGoogle'
+            indicates a Google Vault. 'kAmazon' indicates an Amazon Vault.
+            'kOracle' indicates an Oracle Vault. 'kOracleTierStandard'
+            indicates an Oracle Tier Standard Vault. 'kOracleTierArchive'
+            indicates an Oracle Tier Archive Vault. 'kAmazonC2S' indicates an
+            Amazon Commercial Cloud Services Vault.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -62,9 +79,8 @@ class DataTransferToVaultSummary(object):
         "storage_consumed_bytes":'storageConsumedBytes',
         "vault_id":'vaultId',
         "vault_name":'vaultName',
-        "vault_type":'vaultType'
+        "vault_type":'vaultType',
     }
-
     def __init__(self,
                  data_transfer_per_protection_job=None,
                  logical_data_transferred_bytes_during_time_range=None,
@@ -75,7 +91,9 @@ class DataTransferToVaultSummary(object):
                  storage_consumed_bytes=None,
                  vault_id=None,
                  vault_name=None,
-                 vault_type=None):
+                 vault_type=None,
+            ):
+
         """Constructor for the DataTransferToVaultSummary class"""
 
         # Initialize members of the class
@@ -89,7 +107,6 @@ class DataTransferToVaultSummary(object):
         self.vault_id = vault_id
         self.vault_name = vault_name
         self.vault_type = vault_type
-
 
     @classmethod
     def from_dictionary(cls,
@@ -114,26 +131,26 @@ class DataTransferToVaultSummary(object):
             data_transfer_per_protection_job = list()
             for structure in dictionary.get('dataTransferPerProtectionJob'):
                 data_transfer_per_protection_job.append(cohesity_management_sdk.models.data_transfer_to_vault_per_protection_job.DataTransferToVaultPerProtectionJob.from_dictionary(structure))
-        logical_data_transferred_bytes_during_time_range = dictionary.get('logicalDataTransferredBytesDuringTimeRange')
+        logical_data_transferred_bytes_during_time_range = dictionary.get("logicalDataTransferredBytesDuringTimeRange")
         num_logical_bytes_transferred = dictionary.get('numLogicalBytesTransferred')
         num_physical_bytes_transferred = dictionary.get('numPhysicalBytesTransferred')
         num_protection_jobs = dictionary.get('numProtectionJobs')
-        physical_data_transferred_bytes_during_time_range = dictionary.get('physicalDataTransferredBytesDuringTimeRange')
+        physical_data_transferred_bytes_during_time_range = dictionary.get("physicalDataTransferredBytesDuringTimeRange")
         storage_consumed_bytes = dictionary.get('storageConsumedBytes')
         vault_id = dictionary.get('vaultId')
         vault_name = dictionary.get('vaultName')
         vault_type = dictionary.get('vaultType')
 
         # Return an object of this model
-        return cls(data_transfer_per_protection_job,
-                   logical_data_transferred_bytes_during_time_range,
-                   num_logical_bytes_transferred,
-                   num_physical_bytes_transferred,
-                   num_protection_jobs,
-                   physical_data_transferred_bytes_during_time_range,
-                   storage_consumed_bytes,
-                   vault_id,
-                   vault_name,
-                   vault_type)
-
-
+        return cls(
+            data_transfer_per_protection_job,
+            logical_data_transferred_bytes_during_time_range,
+            num_logical_bytes_transferred,
+            num_physical_bytes_transferred,
+            num_protection_jobs,
+            physical_data_transferred_bytes_during_time_range,
+            storage_consumed_bytes,
+            vault_id,
+            vault_name,
+            vault_type
+)

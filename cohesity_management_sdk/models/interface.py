@@ -3,37 +3,40 @@
 
 import cohesity_management_sdk.models.network_params
 
+
 class Interface(object):
 
     """Implementation of the 'Interface' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
-        message (string): TODO: type description here.
-        name (string): TODO: type description here.
-        network_params (NetworkParams): TODO: type description here.
 
+        message (string): TODO: Type description here.
+        name (string): TODO: Type description here.
+        network_params (NetworkParams): TODO: Type description here.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "message":'message',
         "name":'name',
-        "network_params":'networkParams'
+        "network_params":'networkParams',
     }
-
     def __init__(self,
                  message=None,
                  name=None,
-                 network_params=None):
+                 network_params=None,
+            ):
+
         """Constructor for the Interface class"""
 
         # Initialize members of the class
         self.message = message
         self.name = name
         self.network_params = network_params
-
 
     @classmethod
     def from_dictionary(cls,
@@ -58,8 +61,8 @@ class Interface(object):
         network_params = cohesity_management_sdk.models.network_params.NetworkParams.from_dictionary(dictionary.get('networkParams')) if dictionary.get('networkParams') else None
 
         # Return an object of this model
-        return cls(message,
-                   name,
-                   network_params)
-
-
+        return cls(
+            message,
+            name,
+            network_params
+)

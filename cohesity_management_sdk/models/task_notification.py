@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
+import cohesity_management_sdk.models.agent_upgrade_task_info
 import cohesity_management_sdk.models.analysis_task_info
 import cohesity_management_sdk.models.backup_task_info
+import cohesity_management_sdk.models.basic_task_info
 import cohesity_management_sdk.models.bulk_install_app_task_info
 import cohesity_management_sdk.models.clone_task_info
-import cohesity_management_sdk.models.basic_task_info
 import cohesity_management_sdk.models.recovery_task_info
 import cohesity_management_sdk.models.tiering_task_info
+
 
 class TaskNotification(object):
 
@@ -15,14 +17,17 @@ class TaskNotification(object):
 
     Structure that captures Task Notifications for a user.
 
+
     Attributes:
-        analysis_task (AnalysisTaskInfo): The notifications details of
-            Analysis Task.
-        backup_task (BackupTaskInfo): The notifications details of Backup
+
+        agent_upgrade_task (AgentUpgradeTaskInfo): The notification details of
+            Agent upgrade Task.
+        analysis_task (AnalysisTaskInfo): The notifications details of Analysis
             Task.
+        backup_task (BackupTaskInfo): The notifications details of Backup Task.
         bulk_install_app_task (BulkInstallAppTaskInfo): The notifications
             details of BulkInstall Task.
-        clone_task (CloneTaskInfo): Parameters for a clone op.
+        clone_task (CloneTaskInfo): The notification details of Clone Task.
         created_time_secs (long|int): Timestamp at which the notification was
             created.
         description (string): Description holds the actual notification text
@@ -34,34 +39,37 @@ class TaskNotification(object):
             notification event.
         field_message_task (BasicTaskInfo): The notification details of Field
             Message Task.
-        id (string): id identifies a user notification event uniquely. This
-            can also be used to dismiss individual notifications.
-        recovery_task (RecoveryTaskInfo): Parameters for a recovery op.
+        id (string): id identifies a user notification event uniquely. This can
+            also be used to dismiss individual notifications.
+        recovery_task (RecoveryTaskInfo): The notification details of Recovery
+            Task.
         status (StatusTaskNotificationEnum): Status of the task. Status of the
             task. 'kSuccess' indicates that task completed successfully.
             'kError' indicates that task encountered errors.
         task_type (TaskTypeEnum): Task type denotes which type of task this
             notification is for. This param is used to reflect the taskType.
-            'Restore' notification type is generated upon completion of
-            Restore tasks. 'Clone' notification type is generated upon
-            completion of Clone tasks. 'BackupNow' notification type is
-            generated upon completion of Backup tasks. 'FieldMessage'
-            notification type is generated when field message from Cohesity
-            support is created. 'bulkInstallApp' notification type is
-            generated from bulk install app. 'tiering' notification type is
-            generated upon completion of tiering tasks. 'analysis' notification
-            type is generated upon completion of analysis tasks.
+            'Restore' notification type is generated upon completion of Restore
+            tasks. 'Clone' notification type is generated upon completion of
+            Clone tasks. 'BackupNow' notification type is generated upon
+            completion of Backup tasks. 'FieldMessage' notification type is
+            generated when field message from Cohesity support is created.
+            'bulkInstallApp' notification type is generated from bulk install
+            app 'tiering' notification type is generated upon completion of
+            tiering tasks. 'analysis' notification type is generated upon
+            completion of analysis tasks. 'agentUpgradeTask' notification type
+            is generated upon completion of upgrade task.
         tiering_task (TieringTaskInfo): The notifications details of Tiering
             Task.
         visited (bool): Visited keeps track of whether a notification has been
             seen or not.
         visited_time_secs (long|int): Timestamp at which user visited this
             notification event.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "agent_upgrade_task":'agentUpgradeTask',
         "analysis_task":'analysisTask',
         "backup_task":'backupTask',
         "bulk_install_app_task":'bulkInstallAppTask',
@@ -77,10 +85,10 @@ class TaskNotification(object):
         "task_type":'taskType',
         "tiering_task":'tieringTask',
         "visited":'visited',
-        "visited_time_secs":'visitedTimeSecs'
+        "visited_time_secs":'visitedTimeSecs',
     }
-
     def __init__(self,
+                 agent_upgrade_task=None,
                  analysis_task=None,
                  backup_task=None,
                  bulk_install_app_task=None,
@@ -96,10 +104,13 @@ class TaskNotification(object):
                  task_type=None,
                  tiering_task=None,
                  visited=None,
-                 visited_time_secs=None):
+                 visited_time_secs=None,
+            ):
+
         """Constructor for the TaskNotification class"""
 
         # Initialize members of the class
+        self.agent_upgrade_task = agent_upgrade_task
         self.analysis_task = analysis_task
         self.backup_task = backup_task
         self.bulk_install_app_task = bulk_install_app_task
@@ -116,7 +127,6 @@ class TaskNotification(object):
         self.tiering_task = tiering_task
         self.visited = visited
         self.visited_time_secs = visited_time_secs
-
 
     @classmethod
     def from_dictionary(cls,
@@ -136,6 +146,7 @@ class TaskNotification(object):
             return None
 
         # Extract variables from the dictionary
+        agent_upgrade_task = cohesity_management_sdk.models.agent_upgrade_task_info.AgentUpgradeTaskInfo.from_dictionary(dictionary.get('agentUpgradeTask')) if dictionary.get('agentUpgradeTask') else None
         analysis_task = cohesity_management_sdk.models.analysis_task_info.AnalysisTaskInfo.from_dictionary(dictionary.get('analysisTask')) if dictionary.get('analysisTask') else None
         backup_task = cohesity_management_sdk.models.backup_task_info.BackupTaskInfo.from_dictionary(dictionary.get('backupTask')) if dictionary.get('backupTask') else None
         bulk_install_app_task = cohesity_management_sdk.models.bulk_install_app_task_info.BulkInstallAppTaskInfo.from_dictionary(dictionary.get('bulkInstallAppTask')) if dictionary.get('bulkInstallAppTask') else None
@@ -154,21 +165,22 @@ class TaskNotification(object):
         visited_time_secs = dictionary.get('visitedTimeSecs')
 
         # Return an object of this model
-        return cls(analysis_task,
-                   backup_task,
-                   bulk_install_app_task,
-                   clone_task,
-                   created_time_secs,
-                   description,
-                   dismissed,
-                   dismissed_time_secs,
-                   field_message_task,
-                   id,
-                   recovery_task,
-                   status,
-                   task_type,
-                   tiering_task,
-                   visited,
-                   visited_time_secs)
-
-
+        return cls(
+            agent_upgrade_task,
+            analysis_task,
+            backup_task,
+            bulk_install_app_task,
+            clone_task,
+            created_time_secs,
+            description,
+            dismissed,
+            dismissed_time_secs,
+            field_message_task,
+            id,
+            recovery_task,
+            status,
+            task_type,
+            tiering_task,
+            visited,
+            visited_time_secs
+)

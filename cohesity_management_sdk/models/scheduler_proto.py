@@ -3,29 +3,33 @@
 
 import cohesity_management_sdk.models.scheduler_proto_scheduler_job
 
+
 class SchedulerProto(object):
 
     """Implementation of the 'SchedulerProto' model.
 
     Specifies the scheduler structure which holds the various schedule jobs.
 
+
     Attributes:
-        scheduler_jobs (list of SchedulerProto_SchedulerJob):  The array of
-            the various scheduler jobs.
+
+        scheduler_jobs (list of SchedulerProto_SchedulerJob): The array of the
+            various scheduler jobs.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "scheduler_jobs":'schedulerJobs'
+        "scheduler_jobs":'schedulerJobs',
     }
-
     def __init__(self,
-                 scheduler_jobs=None):
+                 scheduler_jobs=None,
+            ):
+
         """Constructor for the SchedulerProto class"""
 
         # Initialize members of the class
         self.scheduler_jobs = scheduler_jobs
-
 
     @classmethod
     def from_dictionary(cls,
@@ -52,6 +56,6 @@ class SchedulerProto(object):
                 scheduler_jobs.append(cohesity_management_sdk.models.scheduler_proto_scheduler_job.SchedulerProto_SchedulerJob.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(scheduler_jobs)
-
-
+        return cls(
+            scheduler_jobs
+)

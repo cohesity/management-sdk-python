@@ -4,19 +4,15 @@
 class HostTypeEnum(object):
 
     """Implementation of the 'HostType' enum.
-
-    Specifies the OS type of the Protection Source of type 'kVirtualMachine'
-    such as 'kWindows' or 'kLinux'.
-    overrideDescription: true
-    'kLinux' indicates the Linux operating system.
-    'kWindows' indicates the Microsoft Windows operating system.
-    'kAix' indicates the IBM AIX operating system.
-    'kSolaris' indicates the Oracle Solaris operating system.
-    'kSapHana' indicates the Sap Hana database system developed by SAP SE.
-    'kSapOracle' indicates the Sap Oracle database system developed by SAP SE.
-    'kCockroachDB' indicates the CockroachDB database system.
-    'kMySQL' indicates the MySQL database system.
-    'kOther' indicates the other types of operating system.
+    Specifies the host type for the 'kVirtualMachine' Object. 'kLinux'
+    indicates the Linux operating system. 'kWindows' indicates the Microsoft
+    Windows operating system. 'kAix' indicates the IBM AIX operating system.
+    'kSolaris' indicates the Oracle Solaris operating system. 'kSapHana'
+    indicates the Sap Hana database system developed by SAP SE. 'kSapOracle'
+    indicates the Sap Oracle database system developed by SAP SE.
+    'kCockroachDB' indicates the CockroachDB database system. 'kMySQL'
+    indicates the MySQL database system. 'kOther' indicates the other types of
+    operating system.
 
 
     Attributes:

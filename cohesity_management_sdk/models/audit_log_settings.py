@@ -9,23 +9,26 @@ class AuditLogSettings(object):
     settings in such a way that zero values are cluster default when bb is not
     present.
 
+
     Attributes:
+
         read_logging (bool): ReadLogging specifies whether read logs needs to
             be captured.
     """
 
+
     # Create a mapping from Model property names to API property names
     _names = {
-        "read_logging":'readLogging'
+        "read_logging":'readLogging',
     }
-
     def __init__(self,
-                 read_logging=None):
+                 read_logging=None,
+            ):
+
         """Constructor for the AuditLogSettings class"""
 
         # Initialize members of the class
         self.read_logging = read_logging
-
 
     @classmethod
     def from_dictionary(cls,
@@ -48,6 +51,6 @@ class AuditLogSettings(object):
         read_logging = dictionary.get('readLogging')
 
         # Return an object of this model
-        return cls(read_logging)
-
-
+        return cls(
+            read_logging
+)

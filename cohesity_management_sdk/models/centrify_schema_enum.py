@@ -4,21 +4,20 @@
 class CentrifySchemaEnum(object):
 
     """Implementation of the 'CentrifySchema' enum.
-
-    Specifies the schema of this Centrify zone.
-    The below list of schemas and their values are taken from the document
-    Centrify Server Suite 2016 Windows API Programmer's Guide
+    Specifies the schema of this Centrify zone. The below list of schemas and
+    their values are taken from the document Centrify Server Suite 2016 Windows
+    API Programmer's Guide
     https://docs.centrify.com/en/css/suite2016/centrify-win-progguide.pdf
     'kCentrifyDynamicSchema_1_0' specifies dynamic schema, version 1.0.
     'kCentrifyDynamicSchema_2_0' specifies dynamic schema, version 2.0.
     'kCentrifyDynamicSchema_3_0' specifies dynamic schema, version 3.0.
     'kCentrifyDynamicSchema_5_0' specifies dynamic schema, version 5.0.
-    'kCentrifySfu_3_0' specifies sfu schema, version 3.0.
-    'kCentrifySfu_3_0_V5' specifies sfu schema, 3.0.5.
-    'kCentrifySfu_4_0' specifies sfu schema, version 4.0.
-    'kCentrifyCdcRfc2307' specifies cdcrfc2307 schema.
+    'kCentrifySfu_3_0' specifies sfu schema, version 3.0. 'kCentrifySfu_3_0_V5'
+    specifies sfu schema, 3.0.5. 'kCentrifySfu_4_0' specifies sfu schema,
+    version 4.0. 'kCentrifyCdcRfc2307' specifies cdcrfc2307 schema.
     'kCentrifyCdcRfc2307_2' specifies cdcrfc2307, version 2.
     'kCentrifyCdcRfc2307_3' specifies cdcrfc2307, version 3.
+
 
     Attributes:
         KCENTRIFYDYNAMICSCHEMA_1_0: TODO: type description here.
@@ -53,4 +52,3 @@ class CentrifySchemaEnum(object):
     KCENTRIFYCDCRFC2307_3 = 'kCentrifyCdcRfc2307_3'
 
     KCENTRIFYSFU_3_0_V5 = 'kCentrifySfu_3_0_V5'
-

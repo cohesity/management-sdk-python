@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-import cohesity_management_sdk.models.protection_source_node
 import cohesity_management_sdk.models.protection_source
+import cohesity_management_sdk.models.protection_source_node
+
 
 class RegisteredApplicationServer(object):
 
@@ -11,7 +12,9 @@ class RegisteredApplicationServer(object):
     Specifies an Application Server and the Protection Source that registered
     the Application Server.
 
+
     Attributes:
+
         application_server (ProtectionSourceNode): Specifies the child subtree
             used to store additional application-level Objects. Different
             environments use the subtree to store application-level
@@ -20,24 +23,24 @@ class RegisteredApplicationServer(object):
         registered_protection_source (ProtectionSource): Specifies the
             Protection Source like a VM or Physical Server that registered the
             Application Server.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "application_server":'applicationServer',
-        "registered_protection_source":'registeredProtectionSource'
+        "registered_protection_source":'registeredProtectionSource',
     }
-
     def __init__(self,
                  application_server=None,
-                 registered_protection_source=None):
+                 registered_protection_source=None,
+            ):
+
         """Constructor for the RegisteredApplicationServer class"""
 
         # Initialize members of the class
         self.application_server = application_server
         self.registered_protection_source = registered_protection_source
-
 
     @classmethod
     def from_dictionary(cls,
@@ -61,7 +64,7 @@ class RegisteredApplicationServer(object):
         registered_protection_source = cohesity_management_sdk.models.protection_source.ProtectionSource.from_dictionary(dictionary.get('registeredProtectionSource')) if dictionary.get('registeredProtectionSource') else None
 
         # Return an object of this model
-        return cls(application_server,
-                   registered_protection_source)
-
-
+        return cls(
+            application_server,
+            registered_protection_source
+)

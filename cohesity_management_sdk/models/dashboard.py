@@ -11,17 +11,20 @@ import cohesity_management_sdk.models.recoveries_tile
 import cohesity_management_sdk.models.storage_efficiency_tile
 import cohesity_management_sdk.models.throughput_tile
 
+
 class Dashboard(object):
 
     """Implementation of the 'Dashboard' model.
 
     Data shown on Dashboard.
 
+
     Attributes:
-        audit_logs (AuditLogsTile):  Audit Logs.
-        cluster_id (int|long): Id of the cluster for which dashboard is given.
+
+        audit_logs (AuditLogsTile): Audit Logs.
+        cluster_id (long|int): Id of the cluster for which dashboard is given.
         health (HealthTile): Cluster Health and alerts.
-        iops (IopsTile): IOPs
+        iops (IopsTile): IOPs.
         job_runs (JobRunsTile): Protection Job Runs.
         protected_objects (ProtectedObjectsTile): ProtectedObjects related
             stats.
@@ -29,8 +32,8 @@ class Dashboard(object):
         recoveries (RecoveriesTile): Recoveries related stats.
         storage_efficiency (StorageEfficiencyTile): Storage efficiency stats.
         throughput (ThroughputTile): Throughput.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -43,9 +46,8 @@ class Dashboard(object):
         "protection":'protection',
         "recoveries":'recoveries',
         "storage_efficiency":'storageEfficiency',
-        "throughput":'throughput'
+        "throughput":'throughput',
     }
-
     def __init__(self,
                  audit_logs=None,
                  cluster_id=None,
@@ -56,7 +58,9 @@ class Dashboard(object):
                  protection=None,
                  recoveries=None,
                  storage_efficiency=None,
-                 throughput=None):
+                 throughput=None,
+            ):
+
         """Constructor for the Dashboard class"""
 
         # Initialize members of the class
@@ -70,7 +74,6 @@ class Dashboard(object):
         self.recoveries = recoveries
         self.storage_efficiency = storage_efficiency
         self.throughput = throughput
-
 
     @classmethod
     def from_dictionary(cls,
@@ -93,7 +96,7 @@ class Dashboard(object):
         audit_logs = cohesity_management_sdk.models.audit_logs_tile.AuditLogsTile.from_dictionary(dictionary.get('auditLogs')) if dictionary.get('auditLogs') else None
         cluster_id = dictionary.get('clusterId')
         health = cohesity_management_sdk.models.health_tile.HealthTile.from_dictionary(dictionary.get('health')) if dictionary.get('health') else None
-        iops = cohesity_management_sdk.models.iops_tile.IopsTile.from_dictionary(dictionary.get('iops', None)) if  dictionary.get('iops', None) else None
+        iops = cohesity_management_sdk.models.iops_tile.IopsTile.from_dictionary(dictionary.get('iops')) if dictionary.get('iops') else None
         job_runs = cohesity_management_sdk.models.job_runs_tile.JobRunsTile.from_dictionary(dictionary.get('jobRuns')) if dictionary.get('jobRuns') else None
         protected_objects = cohesity_management_sdk.models.protected_objects_tile.ProtectedObjectsTile.from_dictionary(dictionary.get('protectedObjects')) if dictionary.get('protectedObjects') else None
         protection = cohesity_management_sdk.models.protection_tile.ProtectionTile.from_dictionary(dictionary.get('protection')) if dictionary.get('protection') else None
@@ -102,15 +105,15 @@ class Dashboard(object):
         throughput = cohesity_management_sdk.models.throughput_tile.ThroughputTile.from_dictionary(dictionary.get('throughput')) if dictionary.get('throughput') else None
 
         # Return an object of this model
-        return cls(audit_logs,
-                   cluster_id,
-                   health,
-                   iops,
-                   job_runs,
-                   protected_objects,
-                   protection,
-                   recoveries,
-                   storage_efficiency,
-                   throughput)
-
-
+        return cls(
+            audit_logs,
+            cluster_id,
+            health,
+            iops,
+            job_runs,
+            protected_objects,
+            protection,
+            recoveries,
+            storage_efficiency,
+            throughput
+)

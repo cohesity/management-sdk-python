@@ -3,28 +3,34 @@
 
 import cohesity_management_sdk.models.pdb_entity_info
 
+
 class CDBEntityInfo(object):
 
     """Implementation of the 'CDBEntityInfo' model.
 
+    TODO: type description here.
+
+
     Attributes:
+
         pdb_entity_info_vec (list of PDBEntityInfo): Repeated field of pdb
             entity information for a given CDB. This structure is used to
             retrieve the information about all the pdbs inside a given db.
     """
 
+
     # Create a mapping from Model property names to API property names
     _names = {
-        "pdb_entity_info_vec":'pdbEntityInfoVec'
+        "pdb_entity_info_vec":'pdbEntityInfoVec',
     }
-
     def __init__(self,
-                 pdb_entity_info_vec=None):
+                 pdb_entity_info_vec=None,
+            ):
+
         """Constructor for the CDBEntityInfo class"""
 
         # Initialize members of the class
         self.pdb_entity_info_vec = pdb_entity_info_vec
-
 
     @classmethod
     def from_dictionary(cls,
@@ -51,6 +57,6 @@ class CDBEntityInfo(object):
                 pdb_entity_info_vec.append(cohesity_management_sdk.models.pdb_entity_info.PDBEntityInfo.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(pdb_entity_info_vec)
-
-
+        return cls(
+            pdb_entity_info_vec
+)

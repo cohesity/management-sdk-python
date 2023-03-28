@@ -1,39 +1,40 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
-class ClusterConfigProtoStoragePolicyOverride(object):
+class ClusterConfigProto_StoragePolicyOverride(object):
 
     """Implementation of the 'ClusterConfigProto_StoragePolicyOverride' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
-        disable_dedup (bool): If the following id set to true, we would
-            disable dedup for writes made in this view irrespective of the
-            view box's storage policy.
-        disable_inline_dedup_and_compression (bool): If this is set to true,
-            we will not do inline dedup and compression even if
+
+        disable_dedup (bool): If the following id set to true, we would disable
+            dedup for writes made in this view irrespective of the view box's
+            storage policy.
+        disable_inline_dedup_and_compression (bool): If this is set to true, we
+            will not do inline dedup and compression even if
             deduplicate_compress_delay_secs is set to 0 in the view box's
             storage policy.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "disable_dedup":'disableDedup',
-        "disable_inline_dedup_and_compression":'disableInlineDedupAndCompression'
+        "disable_inline_dedup_and_compression":'disableInlineDedupAndCompression',
     }
-
     def __init__(self,
                  disable_dedup=None,
-                 disable_inline_dedup_and_compression=None):
-        """Constructor for the ClusterConfigProtoStoragePolicyOverride class"""
+                 disable_inline_dedup_and_compression=None,
+            ):
+
+        """Constructor for the ClusterConfigProto_StoragePolicyOverride class"""
 
         # Initialize members of the class
         self.disable_dedup = disable_dedup
         self.disable_inline_dedup_and_compression = disable_inline_dedup_and_compression
-
 
     @classmethod
     def from_dictionary(cls,
@@ -57,6 +58,7 @@ class ClusterConfigProtoStoragePolicyOverride(object):
         disable_inline_dedup_and_compression = dictionary.get('disableInlineDedupAndCompression')
 
         # Return an object of this model
-        return cls(disable_dedup, disable_inline_dedup_and_compression)
-
-
+        return cls(
+            disable_dedup,
+            disable_inline_dedup_and_compression
+)

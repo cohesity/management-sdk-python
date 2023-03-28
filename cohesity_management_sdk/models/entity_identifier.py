@@ -3,30 +3,33 @@
 
 import cohesity_management_sdk.models.value
 
+
 class EntityIdentifier(object):
 
     """Implementation of the 'EntityIdentifier' model.
 
     Specifies a unique identifier for the entity.
 
-    Attributes:
-        entity_id (Value): Specifies a data type and data field used to store
-            data.
 
+    Attributes:
+
+        entity_id (Value): Specifies the unique identifier for the entity in
+            the source Cluster.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "entity_id":'entityId'
+        "entity_id":'entityId',
     }
-
     def __init__(self,
-                 entity_id=None):
+                 entity_id=None,
+            ):
+
         """Constructor for the EntityIdentifier class"""
 
         # Initialize members of the class
         self.entity_id = entity_id
-
 
     @classmethod
     def from_dictionary(cls,
@@ -49,6 +52,6 @@ class EntityIdentifier(object):
         entity_id = cohesity_management_sdk.models.value.Value.from_dictionary(dictionary.get('entityId')) if dictionary.get('entityId') else None
 
         # Return an object of this model
-        return cls(entity_id)
-
-
+        return cls(
+            entity_id
+)

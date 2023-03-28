@@ -1,35 +1,37 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class IsilonCluster(object):
 
     """Implementation of the 'IsilonCluster' model.
 
     Specifies information about an Isilon Cluster.
 
+
     Attributes:
+
         api_version_str (string): Specifies the API version of an Isilon
             Cluster as string.
         description (string): Specifies the description of an Isilon Cluster.
         guid (string): Specifies a globally unique id of an Isilon Cluster.
         version (string): Specifies the version of an Isilon Cluster.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "api_version_str":'apiVersionStr',
         "description":'description',
         "guid":'guid',
-        "version":'version'
+        "version":'version',
     }
-
     def __init__(self,
                  api_version_str=None,
                  description=None,
                  guid=None,
-                 version=None):
+                 version=None,
+            ):
+
         """Constructor for the IsilonCluster class"""
 
         # Initialize members of the class
@@ -37,7 +39,6 @@ class IsilonCluster(object):
         self.description = description
         self.guid = guid
         self.version = version
-
 
     @classmethod
     def from_dictionary(cls,
@@ -63,9 +64,9 @@ class IsilonCluster(object):
         version = dictionary.get('version')
 
         # Return an object of this model
-        return cls(api_version_str,
-                   description,
-                   guid,
-                   version)
-
-
+        return cls(
+            api_version_str,
+            description,
+            guid,
+            version
+)

@@ -3,34 +3,37 @@
 
 import cohesity_management_sdk.models.app_instance_settings
 
+
 class UpdateAppInstanceSettingsParameters(object):
 
     """Implementation of the 'UpdateAppInstanceSettingsParameters' model.
 
     Specifies update app instance settings parameters.
 
+
     Attributes:
+
         description (string): Description of the app instance.
         settings (AppInstanceSettings): Specifies the desired app instance
             settings.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "description": 'description',
-        "settings": 'settings'
+        "description":'description',
+        "settings":'settings',
     }
-
     def __init__(self,
                  description=None,
-                 settings=None):
+                 settings=None,
+            ):
+
         """Constructor for the UpdateAppInstanceSettingsParameters class"""
 
         # Initialize members of the class
         self.description = description
         self.settings = settings
-
 
     @classmethod
     def from_dictionary(cls,
@@ -51,10 +54,10 @@ class UpdateAppInstanceSettingsParameters(object):
 
         # Extract variables from the dictionary
         description = dictionary.get('description')
-        settings = cohesity_management_sdk.models.app_instance_settings.AppInstanceSettings.from_dictionary(dictionary.get('settings')) if  dictionary.get('settings') else None
+        settings = cohesity_management_sdk.models.app_instance_settings.AppInstanceSettings.from_dictionary(dictionary.get('settings')) if dictionary.get('settings') else None
 
         # Return an object of this model
-        return cls(description,
-                   settings)
-
-
+        return cls(
+            description,
+            settings
+)

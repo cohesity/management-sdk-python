@@ -4,12 +4,9 @@
 class TagEnum(object):
 
     """Implementation of the 'Tag' enum.
+    Specifies use of the nodeport kDefault - No specific service. kHttp - HTTP
+    server. kHttps -  Secure HTTP server. kSsh - Secure shell server.
 
-    Specifies use of the nodeport
-    kDefault - No specific service.
-    kHttp - HTTP server.
-    kHttps -  Secure HTTP server.
-    kSsh - Secure shell server.
 
     Attributes:
         KDEFAULT: TODO: type description here.
@@ -26,4 +23,3 @@ class TagEnum(object):
     KHTTPS = 'kHttps'
 
     KSSH = 'kSsh'
-

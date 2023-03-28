@@ -4,13 +4,16 @@
 import cohesity_management_sdk.models.cifs_share_info
 import cohesity_management_sdk.models.volume_security_info
 
+
 class NetappVolumeInfo(object):
 
     """Implementation of the 'NetappVolumeInfo' model.
 
     Specifies information about a volume in a NetApp cluster.
 
+
     Attributes:
+
         aggregate_name (string): Specifies the containing aggregate name of
             this volume.
         capacity_bytes (long|int): Specifies the total capacity in bytes of
@@ -19,27 +22,35 @@ class NetappVolumeInfo(object):
             the set of CIFS Shares exported for this volume.
         creation_time_usecs (long|int): Specifies the creation time of the
             volume specified in Unix epoch time (in microseconds).
-        data_protocols (list of DataProtocolEnum): Array of Data Protocols.
+        data_protocols (list of DataProtocolsEnum): Array of Data Protocols. 
             Specifies the set of data protocols supported by this volume.
             'kNfs' indicates NFS connections. 'kCifs' indicates SMB (CIFS)
             connections. 'kIscsi' indicates iSCSI connections. 'kFc' indicates
             Fiber Channel connections. 'kFcache' indicates Flex Cache
             connections. 'kHttp' indicates HTTP connections. 'kNdmp' indicates
-            NDMP connections. 'kManagement' indicates non-data connections
-            used for management purposes. 'kNvme' indicates NVMe connections.
+            NDMP connections. 'kManagement' indicates non-data connections used
+            for management purposes. 'kNvme' indicates NVMe connections.
         export_policy_name (string): Specifies the name of the export policy
             (which defines the access permissions for the mount client) that
             has been assigned to this volume.
+        extended_style (ExtendedStyleEnum): Specifies the Extended style
+            information of a NetApp volume. Specifies the extended style info
+            of a NetApp Volume. 'kFlexGroup' indicates FlexGroup volume. A
+            FlexGroup volume contains several constituents (which themselves
+            are Netapp volumes) that automatically and transparently share the
+            traffic. Cohesity does not need to deal with the individual
+            consituents, just the main FlexGroup volume. 'kFlexVol' indicates
+            FlexVol volume. A typical NAS share.
         junction_path (string): Specifies the junction path of this volume.
             This path can be used to mount this volume via protocols such as
             NFS.
         name (string): Specifies the name of the NetApp Vserver that this
             volume belongs to.
-        security_info (VolumeSecurityInfo): Specifies information about NetApp
-            volume security settings.
-        state (StateEnum): Specifies the state of this volume. Specifies the
-            state of a NetApp Volume. 'kOnline' indicates the volume is
-            online. Read and write access to this volume is allowed.
+        security_info (VolumeSecurityInfo): Specifies the security information
+            of this volume.
+        state (StateNetappVolumeInfoEnum): Specifies the state of this volume.
+            Specifies the state of a NetApp Volume. 'kOnline' indicates the
+            volume is online. Read and write access to this volume is allowed.
             'kRestricted' indicates the volume is restricted. Some operations,
             such as parity reconstruction, are allowed, but data access is not
             allowed. 'kOffline' indicates the volume is offline. No access to
@@ -53,8 +64,8 @@ class NetappVolumeInfo(object):
             temporary purpose. 'kUnknownType' indicates unknown type.
         used_bytes (long|int): Specifies the total space (in bytes) used in
             this volume.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -64,14 +75,14 @@ class NetappVolumeInfo(object):
         "creation_time_usecs":'creationTimeUsecs',
         "data_protocols":'dataProtocols',
         "export_policy_name":'exportPolicyName',
+        "extended_style":'extendedStyle',
         "junction_path":'junctionPath',
         "name":'name',
         "security_info":'securityInfo',
         "state":'state',
         "mtype":'type',
-        "used_bytes":'usedBytes'
+        "used_bytes":'usedBytes',
     }
-
     def __init__(self,
                  aggregate_name=None,
                  capacity_bytes=None,
@@ -79,12 +90,15 @@ class NetappVolumeInfo(object):
                  creation_time_usecs=None,
                  data_protocols=None,
                  export_policy_name=None,
+                 extended_style=None,
                  junction_path=None,
                  name=None,
                  security_info=None,
                  state=None,
                  mtype=None,
-                 used_bytes=None):
+                 used_bytes=None,
+            ):
+
         """Constructor for the NetappVolumeInfo class"""
 
         # Initialize members of the class
@@ -94,13 +108,13 @@ class NetappVolumeInfo(object):
         self.creation_time_usecs = creation_time_usecs
         self.data_protocols = data_protocols
         self.export_policy_name = export_policy_name
+        self.extended_style = extended_style
         self.junction_path = junction_path
         self.name = name
         self.security_info = security_info
         self.state = state
         self.mtype = mtype
         self.used_bytes = used_bytes
-
 
     @classmethod
     def from_dictionary(cls,
@@ -128,8 +142,9 @@ class NetappVolumeInfo(object):
             for structure in dictionary.get('cifsShares'):
                 cifs_shares.append(cohesity_management_sdk.models.cifs_share_info.CifsShareInfo.from_dictionary(structure))
         creation_time_usecs = dictionary.get('creationTimeUsecs')
-        data_protocols = dictionary.get('dataProtocols')
+        data_protocols = dictionary.get("dataProtocols")
         export_policy_name = dictionary.get('exportPolicyName')
+        extended_style = dictionary.get('extendedStyle')
         junction_path = dictionary.get('junctionPath')
         name = dictionary.get('name')
         security_info = cohesity_management_sdk.models.volume_security_info.VolumeSecurityInfo.from_dictionary(dictionary.get('securityInfo')) if dictionary.get('securityInfo') else None
@@ -138,17 +153,18 @@ class NetappVolumeInfo(object):
         used_bytes = dictionary.get('usedBytes')
 
         # Return an object of this model
-        return cls(aggregate_name,
-                   capacity_bytes,
-                   cifs_shares,
-                   creation_time_usecs,
-                   data_protocols,
-                   export_policy_name,
-                   junction_path,
-                   name,
-                   security_info,
-                   state,
-                   mtype,
-                   used_bytes)
-
-
+        return cls(
+            aggregate_name,
+            capacity_bytes,
+            cifs_shares,
+            creation_time_usecs,
+            data_protocols,
+            export_policy_name,
+            extended_style,
+            junction_path,
+            name,
+            security_info,
+            state,
+            mtype,
+            used_bytes
+)

@@ -1,31 +1,32 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class LdapProviderStatus(object):
 
     """Implementation of the 'LdapProviderStatus' model.
 
     LDAP provider status struct.
 
+
     Attributes:
+
         status_message (string): Specifies the connection status message of an
             LDAP provider.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "status_message":'statusMessage'
+        "status_message":'statusMessage',
     }
-
     def __init__(self,
-                 status_message=None):
+                 status_message=None,
+            ):
+
         """Constructor for the LdapProviderStatus class"""
 
         # Initialize members of the class
         self.status_message = status_message
-
 
     @classmethod
     def from_dictionary(cls,
@@ -48,6 +49,6 @@ class LdapProviderStatus(object):
         status_message = dictionary.get('statusMessage')
 
         # Return an object of this model
-        return cls(status_message)
-
-
+        return cls(
+            status_message
+)

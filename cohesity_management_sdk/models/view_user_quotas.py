@@ -2,23 +2,25 @@
 # Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.quota_and_usage_in_view
+import cohesity_management_sdk.models.user_quota_and_usage
+import cohesity_management_sdk.models.user_quota_settings
 import cohesity_management_sdk.models.user_quota_summary_for_user
 import cohesity_management_sdk.models.user_quota_summary_for_view
-import cohesity_management_sdk.models.user_quota_settings
-import cohesity_management_sdk.models.user_quota_and_usage
+
 
 class ViewUserQuotas(object):
 
     """Implementation of the 'ViewUserQuotas' model.
 
-    Specifies the Result parameters for all user quotas
-    of a view.
+    Specifies the Result parameters for all user quotas of a view.
+
 
     Attributes:
-        cookie (string): This cookie can be used in the succeeding call to
-            list user quotas and usages to get the next set of user quota
-            overrides. If set to nil, it means that there's no more results
-            that the server could provide.
+
+        cookie (string): This cookie can be used in the succeeding call to list
+            user quotas and usages to get the next set of user quota overrides.
+            If set to nil, it means that there's no more results that the
+            server could provide.
         quota_and_usage_in_all_views (list of QuotaAndUsageInView): The quota
             and usage information for a user in all his views.
         summary_for_user (UserQuotaSummaryForUser): UserQuotaSummaryForUser is
@@ -29,8 +31,8 @@ class ViewUserQuotas(object):
             for this view.
         users_quota_and_usage (list of UserQuotaAndUsage): The list of user
             quota policies/overrides and usages.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -39,16 +41,17 @@ class ViewUserQuotas(object):
         "summary_for_user":'summaryForUser',
         "summary_for_view":'summaryForView',
         "user_quota_settings":'userQuotaSettings',
-        "users_quota_and_usage":'usersQuotaAndUsage'
+        "users_quota_and_usage":'usersQuotaAndUsage',
     }
-
     def __init__(self,
                  cookie=None,
                  quota_and_usage_in_all_views=None,
                  summary_for_user=None,
                  summary_for_view=None,
                  user_quota_settings=None,
-                 users_quota_and_usage=None):
+                 users_quota_and_usage=None,
+            ):
+
         """Constructor for the ViewUserQuotas class"""
 
         # Initialize members of the class
@@ -58,7 +61,6 @@ class ViewUserQuotas(object):
         self.summary_for_view = summary_for_view
         self.user_quota_settings = user_quota_settings
         self.users_quota_and_usage = users_quota_and_usage
-
 
     @classmethod
     def from_dictionary(cls,
@@ -94,11 +96,11 @@ class ViewUserQuotas(object):
                 users_quota_and_usage.append(cohesity_management_sdk.models.user_quota_and_usage.UserQuotaAndUsage.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(cookie,
-                   quota_and_usage_in_all_views,
-                   summary_for_user,
-                   summary_for_view,
-                   user_quota_settings,
-                   users_quota_and_usage)
-
-
+        return cls(
+            cookie,
+            quota_and_usage_in_all_views,
+            summary_for_user,
+            summary_for_view,
+            user_quota_settings,
+            users_quota_and_usage
+)

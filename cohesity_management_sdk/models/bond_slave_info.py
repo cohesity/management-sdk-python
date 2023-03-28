@@ -4,34 +4,37 @@
 import cohesity_management_sdk.models.interface_stats
 import cohesity_management_sdk.models.uplink_switch_info
 
+
 class BondSlaveInfo(object):
 
     """Implementation of the 'BondSlaveInfo' model.
 
-    Specifies the AMQP target config.
+    TODO: type description here.
+
 
     Attributes:
-        link_state (string): Bond secondary  link state.
-        mac_addr (string): Mac address of the bond secondary  interface.
-        name (string): Bond secondary  name.
-        slot (string): Bond secondary s slot info.
-        speed (string): Bond secondary  Speed.
+
+        link_state (string): Bond seocondary link state.
+        mac_addr (string): Mac address of the bond secondary interface.
+        name (string): Bond secondary name.
+        slot (string): Bond seocondarys slot info.
+        speed (string): Bond seocondary Speed.
         stats (InterfaceStats): Interface Stats.
-        uplink_switch_info (UplinkSwitchInfo): Bond secondary  uplink switch
+        uplink_switch_info (UplinkSwitchInfo): Bond secondary uplink switch
             info.
     """
 
+
     # Create a mapping from Model property names to API property names
     _names = {
-        "link_state": 'linkState',
-        "mac_addr": 'macAddr',
+        "link_state":'linkState',
+        "mac_addr":'macAddr',
         "name":'name',
         "slot":'slot',
         "speed":'speed',
         "stats":'stats',
-        "uplink_switch_info":'uplinkSwitchInfo'
+        "uplink_switch_info":'uplinkSwitchInfo',
     }
-
     def __init__(self,
                  link_state=None,
                  mac_addr=None,
@@ -39,8 +42,9 @@ class BondSlaveInfo(object):
                  slot=None,
                  speed=None,
                  stats=None,
-                 uplink_switch_info=None
-                 ):
+                 uplink_switch_info=None,
+            ):
+
         """Constructor for the BondSlaveInfo class"""
 
         # Initialize members of the class
@@ -79,12 +83,12 @@ class BondSlaveInfo(object):
         uplink_switch_info = cohesity_management_sdk.models.uplink_switch_info.UplinkSwitchInfo.from_dictionary(dictionary.get('uplinkSwitchInfo')) if dictionary.get('uplinkSwitchInfo') else None
 
         # Return an object of this model
-        return cls(link_state,
-                   mac_addr,
-                   name,
-                   slot,
-                   speed,
-                   stats,
-                   uplink_switch_info)
-
-
+        return cls(
+            link_state,
+            mac_addr,
+            name,
+            slot,
+            speed,
+            stats,
+            uplink_switch_info
+)

@@ -3,6 +3,7 @@
 
 import cohesity_management_sdk.models.vm_dir_entry
 
+
 class VmDirectoryListResult(object):
 
     """Implementation of the 'VmDirectoryListResult' model.
@@ -10,32 +11,34 @@ class VmDirectoryListResult(object):
     VmDirectoryListResult is a struct containing information about each
     directory entry.
 
+
     Attributes:
+
         cookie (string): Cookie is used for paginating results. If
             ReadVMDirResult is returning partial results, this field will be
             set. Supplying this cookie will resume listing from where this
             result left off.
-        entries (list of VmDirEntry): Entries is the array of files and
-            folders that are immediate children of the parent directory
-            specified in the request.
-
+        entries (list of VmDirEntry): Entries is the array of files and folders
+            that are immediate children of the parent directory specified in
+            the request.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "cookie":'cookie',
-        "entries":'entries'
+        "entries":'entries',
     }
-
     def __init__(self,
                  cookie=None,
-                 entries=None):
+                 entries=None,
+            ):
+
         """Constructor for the VmDirectoryListResult class"""
 
         # Initialize members of the class
         self.cookie = cookie
         self.entries = entries
-
 
     @classmethod
     def from_dictionary(cls,
@@ -63,7 +66,7 @@ class VmDirectoryListResult(object):
                 entries.append(cohesity_management_sdk.models.vm_dir_entry.VmDirEntry.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(cookie,
-                   entries)
-
-
+        return cls(
+            cookie,
+            entries
+)

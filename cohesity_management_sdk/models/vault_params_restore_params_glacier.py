@@ -1,30 +1,31 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
-class VaultParamsRestoreParamsGlacier(object):
+class VaultParams_RestoreParams_Glacier(object):
 
     """Implementation of the 'VaultParams_RestoreParams_Glacier' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
-        retrieval_type (int): TODO: type description here.
 
+        retrieval_type (int): TODO: Type description here.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "retrieval_type":'retrievalType'
+        "retrieval_type":'retrievalType',
     }
-
     def __init__(self,
-                 retrieval_type=None):
-        """Constructor for the VaultParamsRestoreParamsGlacier class"""
+                 retrieval_type=None,
+            ):
+
+        """Constructor for the VaultParams_RestoreParams_Glacier class"""
 
         # Initialize members of the class
         self.retrieval_type = retrieval_type
-
 
     @classmethod
     def from_dictionary(cls,
@@ -47,6 +48,6 @@ class VaultParamsRestoreParamsGlacier(object):
         retrieval_type = dictionary.get('retrievalType')
 
         # Return an object of this model
-        return cls(retrieval_type)
-
-
+        return cls(
+            retrieval_type
+)

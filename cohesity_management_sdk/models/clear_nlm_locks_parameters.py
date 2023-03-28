@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class ClearNlmLocksParameters(object):
 
     """Implementation of the 'ClearNlmLocksParameters' model.
 
     Specifies parameters required to force clear NLM Locks.
 
+
     Attributes:
+
         client_id (string): Specifies the id of the client, related NLM locks
             needs to be clear.
         file_path (string): Specifies the filepath in the view relative to the
@@ -17,27 +18,27 @@ class ClearNlmLocksParameters(object):
         view_name (string): Specifies the name of the View in which to search.
             If a view name is not specified, all the views in the Cluster is
             searched. This field is mandatory if filePath field is specified.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "client_id":'clientId',
         "file_path":'filePath',
-        "view_name":'viewName'
+        "view_name":'viewName',
     }
-
     def __init__(self,
                  client_id=None,
                  file_path=None,
-                 view_name=None):
+                 view_name=None,
+            ):
+
         """Constructor for the ClearNlmLocksParameters class"""
 
         # Initialize members of the class
         self.client_id = client_id
         self.file_path = file_path
         self.view_name = view_name
-
 
     @classmethod
     def from_dictionary(cls,
@@ -62,8 +63,8 @@ class ClearNlmLocksParameters(object):
         view_name = dictionary.get('viewName')
 
         # Return an object of this model
-        return cls(client_id,
-                   file_path,
-                   view_name)
-
-
+        return cls(
+            client_id,
+            file_path,
+            view_name
+)

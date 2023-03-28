@@ -6,39 +6,40 @@ import cohesity_management_sdk.models.ipmi_configuration
 import cohesity_management_sdk.models.network_configuration
 import cohesity_management_sdk.models.physical_node_configuration
 
+
 class CreatePhysicalClusterParameters(object):
 
     """Implementation of the 'CreatePhysicalClusterParameters' model.
 
     Specifies the parameters needed for creation of a new Cluster.
 
+
     Attributes:
+
         allow_api_based_fetch (bool): Specifies if API based GET should be
             enabled for cluster destroy params.
         cluster_destroy_hmac_key (string): Specifies HMAC secret key that will
-            be used to validate OTP used for destroy request. This is b32 format
-            of the HMAC key. This should only be set/modified during cluster
-            creation.
+            be used to validate OTP used for destroy request. This is b32
+            format of the HMAC key. This should only be set/modified during
+            cluster creation.
         cluster_name (string): Specifies the name of the new Cluster.
         enable_cluster_destroy (bool): Specifies if cluster destroy op is
-            enabled on this cluster.
-            This should only be set/modified during cluster creation.
-        encryption_config (EncryptionConfiguration): Specifies the parameters
-            the user wants to use when configuring encryption for the new
-            Cluster.
+            enabled on this cluster. This should only be set/modified during
+            cluster creation.
+        encryption_config (EncryptionConfiguration): Specifies the encryption
+            configuration parameters.
         ip_preference (int): Specifies IP preference.
-        ipmi_config (IpmiConfiguration): Specifies the parameters for
-            configuration of IPMI. This is only needed for physical clusters.
-        metadata_fault_tolerance (int): Specifies the metadata fault
-            tolerance.
-        network_config (NetworkConfiguration): Specifies all of the parameters
-            needed for network configuration of the new Cluster.
+        ipmi_config (IpmiConfiguration): Specifies the IPMI configuration
+            parameters.
+        metadata_fault_tolerance (int): Specifies the metadata fault tolerance.
+        network_config (NetworkConfiguration): Specifies the network
+            configuration parameters.
         node_configs (list of PhysicalNodeConfiguration): Specifies the
             configuration for the nodes in the new cluster.
         trust_domain (string): Specifies Trust Domain used for Service
             Identity.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -46,27 +47,28 @@ class CreatePhysicalClusterParameters(object):
         "cluster_destroy_hmac_key":'clusterDestroyHmacKey',
         "cluster_name":'clusterName',
         "enable_cluster_destroy":'enableClusterDestroy',
+        "encryption_config":'encryptionConfig',
         "ip_preference":'ipPreference',
         "ipmi_config":'ipmiConfig',
+        "metadata_fault_tolerance":'metadataFaultTolerance',
         "network_config":'networkConfig',
         "node_configs":'nodeConfigs',
-        "encryption_config":'encryptionConfig',
-        "metadata_fault_tolerance":'metadataFaultTolerance',
-        "trust_domain":'trustDomain'
+        "trust_domain":'trustDomain',
     }
-
     def __init__(self,
                  allow_api_based_fetch=None,
                  cluster_destroy_hmac_key=None,
                  cluster_name=None,
                  enable_cluster_destroy=None,
+                 encryption_config=None,
+                 ip_preference=None,
                  ipmi_config=None,
+                 metadata_fault_tolerance=None,
                  network_config=None,
                  node_configs=None,
-                 encryption_config=None,
-                 metadata_fault_tolerance=None,
-                 ip_preference=None,
-                 trust_domain=None):
+                 trust_domain=None,
+            ):
+
         """Constructor for the CreatePhysicalClusterParameters class"""
 
         # Initialize members of the class
@@ -81,7 +83,6 @@ class CreatePhysicalClusterParameters(object):
         self.network_config = network_config
         self.node_configs = node_configs
         self.trust_domain = trust_domain
-
 
     @classmethod
     def from_dictionary(cls,
@@ -102,32 +103,32 @@ class CreatePhysicalClusterParameters(object):
 
         # Extract variables from the dictionary
         allow_api_based_fetch = dictionary.get('allowApiBasedFetch')
-        cluster_name = dictionary.get('clusterName')
         cluster_destroy_hmac_key = dictionary.get('clusterDestroyHmacKey')
+        cluster_name = dictionary.get('clusterName')
         enable_cluster_destroy = dictionary.get('enableClusterDestroy')
+        encryption_config = cohesity_management_sdk.models.encryption_configuration.EncryptionConfiguration.from_dictionary(dictionary.get('encryptionConfig')) if dictionary.get('encryptionConfig') else None
+        ip_preference = dictionary.get('ipPreference')
         ipmi_config = cohesity_management_sdk.models.ipmi_configuration.IpmiConfiguration.from_dictionary(dictionary.get('ipmiConfig')) if dictionary.get('ipmiConfig') else None
-        ip_preference = dictionary.get('ipPreference', None)
+        metadata_fault_tolerance = dictionary.get('metadataFaultTolerance')
         network_config = cohesity_management_sdk.models.network_configuration.NetworkConfiguration.from_dictionary(dictionary.get('networkConfig')) if dictionary.get('networkConfig') else None
         node_configs = None
         if dictionary.get('nodeConfigs') != None:
             node_configs = list()
             for structure in dictionary.get('nodeConfigs'):
                 node_configs.append(cohesity_management_sdk.models.physical_node_configuration.PhysicalNodeConfiguration.from_dictionary(structure))
-        encryption_config = cohesity_management_sdk.models.encryption_configuration.EncryptionConfiguration.from_dictionary(dictionary.get('encryptionConfig')) if dictionary.get('encryptionConfig') else None
-        metadata_fault_tolerance = dictionary.get('metadataFaultTolerance')
         trust_domain = dictionary.get('trustDomain')
 
         # Return an object of this model
-        return cls(allow_api_based_fetch,
-                   cluster_destroy_hmac_key,
-                   cluster_name,
-                   enable_cluster_destroy,
-                   ipmi_config,
-                   network_config,
-                   node_configs,
-                   encryption_config,
-                   metadata_fault_tolerance,
-                   ip_preference,
-                   trust_domain)
-
-
+        return cls(
+            allow_api_based_fetch,
+            cluster_destroy_hmac_key,
+            cluster_name,
+            enable_cluster_destroy,
+            encryption_config,
+            ip_preference,
+            ipmi_config,
+            metadata_fault_tolerance,
+            network_config,
+            node_configs,
+            trust_domain
+)

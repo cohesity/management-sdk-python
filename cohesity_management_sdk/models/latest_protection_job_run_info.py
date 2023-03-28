@@ -3,40 +3,42 @@
 
 import cohesity_management_sdk.models.latest_protection_run
 
+
 class LatestProtectionJobRunInfo(object):
 
     """Implementation of the 'LatestProtectionJobRunInfo' model.
 
     Specifies the information about the Protection Runs per snapshot target.
 
+
     Attributes:
+
         latest_snapshot_info (LatestProtectionRun): Specifies the information
-            about the latest Protection Run.
+            about the latest successful snapshot infomation.
         location_name (string): Specifies the name of location that the object
             is backedup to.
-        num_snapshots (long|int): Specifies of number of successful
-            snapshots.
-
+        num_snapshots (long|int): Specifies of number of successful snapshots.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "latest_snapshot_info":'latestSnapshotInfo',
         "location_name":'locationName',
-        "num_snapshots":'numSnapshots'
+        "num_snapshots":'numSnapshots',
     }
-
     def __init__(self,
                  latest_snapshot_info=None,
                  location_name=None,
-                 num_snapshots=None):
+                 num_snapshots=None,
+            ):
+
         """Constructor for the LatestProtectionJobRunInfo class"""
 
         # Initialize members of the class
         self.latest_snapshot_info = latest_snapshot_info
         self.location_name = location_name
         self.num_snapshots = num_snapshots
-
 
     @classmethod
     def from_dictionary(cls,
@@ -61,8 +63,8 @@ class LatestProtectionJobRunInfo(object):
         num_snapshots = dictionary.get('numSnapshots')
 
         # Return an object of this model
-        return cls(latest_snapshot_info,
-                   location_name,
-                   num_snapshots)
-
-
+        return cls(
+            latest_snapshot_info,
+            location_name,
+            num_snapshots
+)

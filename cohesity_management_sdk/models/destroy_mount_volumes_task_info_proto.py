@@ -1,47 +1,45 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
+import cohesity_management_sdk.models.entity_proto
 import cohesity_management_sdk.models.error_proto
 import cohesity_management_sdk.models.mount_volumes_info_proto
 import cohesity_management_sdk.models.mount_volumes_vmware_params
-import cohesity_management_sdk.models.entity_proto
+
 
 class DestroyMountVolumesTaskInfoProto(object):
 
     """Implementation of the 'DestroyMountVolumesTaskInfoProto' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
-        error (ErrorProto): TODO: type description here.
+
+        error (ErrorProto): If an error is encountered during destroy it is set
+            here.
         finished (bool): This will be set to true if the task is complete on
             the slave.
         host_name (string): This is the host name of the ESXi host. It is used
             if magneto_vmware_use_fqdn_for_guest_file_operations is set.
-        mount_volumes_info_proto (MountVolumesInfoProto): Each available
-            extension is listed below along with the location of the proto
-            file (relative to magneto/connectors) where it is defined.
-            MountVolumesInfoProto extension                     Location
-            ===================================================================
-            ==========
-            vmware::MountVolumesInfoProto::vmware_mount_volumes_info
-            vmware/vmware.proto
-            ===================================================================
-            ==========
+        mount_volumes_info_proto (MountVolumesInfoProto): This contains the
+            mount volumes info proto and the associated setup restore disks
+            state. This starts out with contents from the original mount
+            volumes info task, but later gets mutated by slave to contain
+            destroy related information.
         slave_task_start_time_usecs (long|int): This is the timestamp at which
             the slave task started.
-        target_entity (EntityProto): Specifies the attributes and the latest
-            statistics about an entity.
-        use_existing_agent (bool): This will be set to true in two cases:
-            1. If persistent agent was used for IVM.
-            2. If user chose ephemeral agent during IVM but the host already had
-            persistent agent installed.
+        target_entity (EntityProto): The target entity on which the mount
+            volumes operation was performed.
+        use_existing_agent (bool): This will be set to true in two cases: 1. If
+            persistent agent was used for IVM. 2. If user chose ephemeral agent
+            during IVM but the host already had persistent agent installed.
         vmware_params (MountVolumesVMwareParams): Environment specific
-            additional params if any. This is populated for VMware
-            environments and used to determine whether to cleanup restore
-            mountpoints within a VM
-
+            additional params if any. This is populated for VMware environments
+            and used to determine whether to cleanup restore mountpoints within
+            a VM.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -52,9 +50,8 @@ class DestroyMountVolumesTaskInfoProto(object):
         "slave_task_start_time_usecs":'slaveTaskStartTimeUsecs',
         "target_entity":'targetEntity',
         "use_existing_agent":'useExistingAgent',
-        "vmware_params":'vmwareParams'
+        "vmware_params":'vmwareParams',
     }
-
     def __init__(self,
                  error=None,
                  finished=None,
@@ -63,7 +60,9 @@ class DestroyMountVolumesTaskInfoProto(object):
                  slave_task_start_time_usecs=None,
                  target_entity=None,
                  use_existing_agent=None,
-                 vmware_params=None):
+                 vmware_params=None,
+            ):
+
         """Constructor for the DestroyMountVolumesTaskInfoProto class"""
 
         # Initialize members of the class
@@ -75,7 +74,6 @@ class DestroyMountVolumesTaskInfoProto(object):
         self.target_entity = target_entity
         self.use_existing_agent = use_existing_agent
         self.vmware_params = vmware_params
-
 
     @classmethod
     def from_dictionary(cls,
@@ -102,16 +100,16 @@ class DestroyMountVolumesTaskInfoProto(object):
         slave_task_start_time_usecs = dictionary.get('slaveTaskStartTimeUsecs')
         target_entity = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('targetEntity')) if dictionary.get('targetEntity') else None
         use_existing_agent = dictionary.get('useExistingAgent')
-        vmware_params = cohesity_management_sdk.models.mount_volumes_vmware_params.MountVolumesVmwareParams.from_dictionary(dictionary.get('vmwareParams')) if dictionary.get('vmwareParams') else None
+        vmware_params = cohesity_management_sdk.models.mount_volumes_vmware_params.MountVolumesVMwareParams.from_dictionary(dictionary.get('vmwareParams')) if dictionary.get('vmwareParams') else None
 
         # Return an object of this model
-        return cls(error,
-                   finished,
-                   host_name,
-                   mount_volumes_info_proto,
-                   slave_task_start_time_usecs,
-                   target_entity,
-                   use_existing_agent,
-                   vmware_params)
-
-
+        return cls(
+            error,
+            finished,
+            host_name,
+            mount_volumes_info_proto,
+            slave_task_start_time_usecs,
+            target_entity,
+            use_existing_agent,
+            vmware_params
+)

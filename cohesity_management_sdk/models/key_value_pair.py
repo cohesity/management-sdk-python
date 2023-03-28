@@ -3,34 +3,36 @@
 
 import cohesity_management_sdk.models.value
 
+
 class KeyValuePair(object):
 
     """Implementation of the 'KeyValuePair' model.
 
     Specifies a key/value pair.
 
-    Attributes:
-        key (string): Specifies the name of the key.
-        value (Value): Specifies a data type and data field used to store
-            data.
 
+    Attributes:
+
+        key (string): Specifies the name of the key.
+        value (Value): Specifies a value for the key.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "key":'key',
-        "value":'value'
+        "value":'value',
     }
-
     def __init__(self,
                  key=None,
-                 value=None):
+                 value=None,
+            ):
+
         """Constructor for the KeyValuePair class"""
 
         # Initialize members of the class
         self.key = key
         self.value = value
-
 
     @classmethod
     def from_dictionary(cls,
@@ -54,7 +56,7 @@ class KeyValuePair(object):
         value = cohesity_management_sdk.models.value.Value.from_dictionary(dictionary.get('value')) if dictionary.get('value') else None
 
         # Return an object of this model
-        return cls(key,
-                   value)
-
-
+        return cls(
+            key,
+            value
+)

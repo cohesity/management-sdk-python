@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-import cohesity_management_sdk.models.oracle_host
 import cohesity_management_sdk.models.oracle_container_database_info
 import cohesity_management_sdk.models.oracle_data_guard_info
+import cohesity_management_sdk.models.oracle_host
+
 
 class OracleProtectionSource(object):
 
@@ -11,7 +12,9 @@ class OracleProtectionSource(object):
 
     Specifies an Object representing one Oracle database.
 
+
     Attributes:
+
         archive_log_enabled (bool): Specifies whether the database is running
             in ARCHIVELOG mode. It enables the redo of log files into archived
             redo log files.
@@ -28,24 +31,24 @@ class OracleProtectionSource(object):
             entity.
         db_type (DbTypeEnum): Specifies the type of the database in Oracle
             Protection Source. 'kRACDatabase' indicates the database is a RAC
-            DB. 'kSingleInstance' indicates that the databse is single
+            DB. 'kSingleInstance' indicates that the database is single
             instance.
         domain (string): Specifies the Oracle DB Domain.
         fra_size (long|int): Specifies Flash/Fast Recovery area size for the
             current DB entity.
-        hosts (list of OracleHost): Specifies the list of hosts for the
-            current DB entity.
+        hosts (list of OracleHost): Specifies the list of hosts for the current
+            DB entity.
         name (string): Specifies the instance name of the Oracle entity.
         owner_id (long|int): Specifies the entity id of the owner entity (such
             as a VM). This is only set if type is kDatabase.
         sga_target_size (string): Specifies System Global Area size for the
             current DB entity. A system global area (SGA) is a group of shared
-            memory structures that contain data and control information for
-            one Oracle database.
+            memory structures that contain data and control information for one
+            Oracle database.
         shared_pool_size (string): Specifies Shared Pool Size for the current
             DB entity.
         size (long|int): Specifies database size.
-        tde_encrypted_ts_count (int|long): Specifies the number of TDE
+        tde_encrypted_ts_count (long|int): Specifies the number of TDE
             encrypted tablespaces found in the database.
         temp_files_count (long|int): Specifies number of temporary files for
             the current DB entity.
@@ -55,13 +58,13 @@ class OracleProtectionSource(object):
             Application clusters(Oracle RAC). 'kRootContainer' indicates the
             entity is a root container to an Oracle standalone server. 'kHost'
             indicates the entity is an Oracle host. 'kDatabase' indicates the
-            entity is an Oracle Database. 'kTableSpace' indicates the entity
-            is an Oracle table space. 'kTable' indicates the entity is an
-            Oracle table.
+            entity is an Oracle Database. 'kTableSpace' indicates the entity is
+            an Oracle table space. 'kTable' indicates the entity is an Oracle
+            table.
         uuid (string): Specifies the UUID for the Oracle entity.
         version (string): Specifies the Oracle database instance version.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -83,9 +86,8 @@ class OracleProtectionSource(object):
         "temp_files_count":'tempFilesCount',
         "mtype":'type',
         "uuid":'uuid',
-        "version":'version'
+        "version":'version',
     }
-
     def __init__(self,
                  archive_log_enabled=None,
                  bct_enabled=None,
@@ -105,7 +107,9 @@ class OracleProtectionSource(object):
                  temp_files_count=None,
                  mtype=None,
                  uuid=None,
-                 version=None):
+                 version=None,
+            ):
+
         """Constructor for the OracleProtectionSource class"""
 
         # Initialize members of the class
@@ -128,7 +132,6 @@ class OracleProtectionSource(object):
         self.mtype = mtype
         self.uuid = uuid
         self.version = version
-
 
     @classmethod
     def from_dictionary(cls,
@@ -165,32 +168,32 @@ class OracleProtectionSource(object):
         owner_id = dictionary.get('ownerId')
         sga_target_size = dictionary.get('sgaTargetSize')
         shared_pool_size = dictionary.get('sharedPoolSize')
-        tde_encrypted_ts_count = dictionary.get('tdeEncryptedTsCount')
         size = dictionary.get('size')
+        tde_encrypted_ts_count = dictionary.get('tdeEncryptedTsCount')
         temp_files_count = dictionary.get('tempFilesCount')
         mtype = dictionary.get('type')
         uuid = dictionary.get('uuid')
         version = dictionary.get('version')
 
         # Return an object of this model
-        return cls(archive_log_enabled,
-                   bct_enabled,
-                   container_database_info,
-                   data_guard_info,
-                   database_unique_name,
-                   db_type,
-                   domain,
-                   fra_size,
-                   hosts,
-                   name,
-                   owner_id,
-                   sga_target_size,
-                   shared_pool_size,
-                   size,
-                   tde_encrypted_ts_count,
-                   temp_files_count,
-                   mtype,
-                   uuid,
-                   version)
-
-
+        return cls(
+            archive_log_enabled,
+            bct_enabled,
+            container_database_info,
+            data_guard_info,
+            database_unique_name,
+            db_type,
+            domain,
+            fra_size,
+            hosts,
+            name,
+            owner_id,
+            sga_target_size,
+            shared_pool_size,
+            size,
+            tde_encrypted_ts_count,
+            temp_files_count,
+            mtype,
+            uuid,
+            version
+)

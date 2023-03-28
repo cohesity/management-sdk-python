@@ -3,42 +3,42 @@
 
 import cohesity_management_sdk.models.exchange_restore_view_parameters
 
+
 class ExchangeRestoreParameters(object):
 
     """Implementation of the 'ExchangeRestoreParameters' model.
 
     Specifies the exchange restore parameters.
 
+
     Attributes:
-        mtype (TypeExchangeRestoreParametersEnum):Specifies the Exchange
-            restore type.
-            Specifies the type of Exchange restore.
 
-            'kNone' specifies no special behaviour.
-            'kView' specifies the option to create a view which cann be used
-            by the external tools like Kroll to perform mailbox or mail-item
-            recovery.
-            'kDatabase' specifies the option to restore an Exchange database.
+        mtype (TypeExchangeRestoreParametersEnum): Specifies the Exchange
+            restore type. Specifies the type of Exchange restore.  'kNone'
+            specifies no special behaviour. 'kView' specifies the option to
+            create a view which cann be used by the external tools like Kroll
+            to perform mailbox or mail-item recovery. 'kDatabase' specifies the
+            option to restore an Exchange database.
         view_parameters (ExchangeRestoreViewParameters): Specifies the
-            parameters for the restore of type kView.
-
+            paramters for the restore of type kView.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "mtype": 'type',
-        "view_parameters": 'viewParameters'
+        "mtype":'type',
+        "view_parameters":'viewParameters',
     }
-
     def __init__(self,
                  mtype=None,
-                 view_parameters=None):
+                 view_parameters=None,
+            ):
+
         """Constructor for the ExchangeRestoreParameters class"""
 
         # Initialize members of the class
         self.mtype = mtype
         self.view_parameters = view_parameters
-
 
     @classmethod
     def from_dictionary(cls,
@@ -62,7 +62,7 @@ class ExchangeRestoreParameters(object):
         view_parameters = cohesity_management_sdk.models.exchange_restore_view_parameters.ExchangeRestoreViewParameters.from_dictionary(dictionary.get('viewParameters')) if dictionary.get('viewParameters') else None
 
         # Return an object of this model
-        return cls(mtype,
-                   view_parameters)
-
-
+        return cls(
+            mtype,
+            view_parameters
+)

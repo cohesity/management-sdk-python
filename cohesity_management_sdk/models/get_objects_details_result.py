@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class GetObjectsDetailsResult(object):
 
     """Implementation of the 'GetObjectsDetailsResult' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
+
         end_time_msecs (long|int): Specifies the end time of the run.
-        entity_env (long|int): Specifies the entity environment of the
-            object.
+        entity_env (long|int): Specifies the entity environment of the object.
         entity_id (long|int): Specifies the entity id of the object.
         entity_name (string): Specifies the name of the entity.
         job_id (string): Specifies the job id.
@@ -20,8 +20,8 @@ class GetObjectsDetailsResult(object):
             archival, apollo, indexing etc.
         start_time_msecs (long|int): Specifies the start time of the run.
         status (long|int): Specifies status of the object run.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -33,9 +33,8 @@ class GetObjectsDetailsResult(object):
         "job_run_id":'jobRunId',
         "job_type":'jobType',
         "start_time_msecs":'startTimeMsecs',
-        "status":'status'
+        "status":'status',
     }
-
     def __init__(self,
                  end_time_msecs=None,
                  entity_env=None,
@@ -45,7 +44,9 @@ class GetObjectsDetailsResult(object):
                  job_run_id=None,
                  job_type=None,
                  start_time_msecs=None,
-                 status=None):
+                 status=None,
+            ):
+
         """Constructor for the GetObjectsDetailsResult class"""
 
         # Initialize members of the class
@@ -58,7 +59,6 @@ class GetObjectsDetailsResult(object):
         self.job_type = job_type
         self.start_time_msecs = start_time_msecs
         self.status = status
-
 
     @classmethod
     def from_dictionary(cls,
@@ -89,14 +89,14 @@ class GetObjectsDetailsResult(object):
         status = dictionary.get('status')
 
         # Return an object of this model
-        return cls(end_time_msecs,
-                   entity_env,
-                   entity_id,
-                   entity_name,
-                   job_id,
-                   job_run_id,
-                   job_type,
-                   start_time_msecs,
-                   status)
-
-
+        return cls(
+            end_time_msecs,
+            entity_env,
+            entity_id,
+            entity_name,
+            job_id,
+            job_run_id,
+            job_type,
+            start_time_msecs,
+            status
+)

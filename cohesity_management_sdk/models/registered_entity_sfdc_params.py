@@ -3,15 +3,18 @@
 
 import cohesity_management_sdk.models.credentials
 
+
 class RegisteredEntitySfdcParams(object):
 
     """Implementation of the 'RegisteredEntitySfdcParams' model.
 
-    Contains all params specified by the user while registering a Sfdc
-    source.
+    Contains all params specified by the user while registering a Sfdc source.
+
 
     Attributes:
-        access_token (string): Token that will be used in subsequent api requests.
+
+        access_token (string): Token that will be used in subsequent api
+            requests.
         api_limit (long|int): Maximum daily api limit
         consumer_key (string): Consumer key from the connected app in Sfdc.
         consumer_secret (string): Consumer secret from the connected app in
@@ -27,8 +30,8 @@ class RegisteredEntitySfdcParams(object):
         soap_endpoint_url (string): Soap endpoint url. All soap requests must
             be made to this url.
         use_bulk_api (bool): use bulk api if set to true
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -42,9 +45,8 @@ class RegisteredEntitySfdcParams(object):
         "metadata_endpoint_url":'metadataEndpointUrl',
         "refresh_token":'refreshToken',
         "soap_endpoint_url":'soapEndpointUrl',
-        "use_bulk_api":'useBulkApi'
+        "use_bulk_api":'useBulkApi',
     }
-
     def __init__(self,
                  access_token=None,
                  api_limit=None,
@@ -56,7 +58,9 @@ class RegisteredEntitySfdcParams(object):
                  metadata_endpoint_url=None,
                  refresh_token=None,
                  soap_endpoint_url=None,
-                 use_bulk_api=None):
+                 use_bulk_api=None,
+            ):
+
         """Constructor for the RegisteredEntitySfdcParams class"""
 
         # Initialize members of the class
@@ -71,7 +75,6 @@ class RegisteredEntitySfdcParams(object):
         self.refresh_token = refresh_token
         self.soap_endpoint_url = soap_endpoint_url
         self.use_bulk_api = use_bulk_api
-
 
     @classmethod
     def from_dictionary(cls,
@@ -101,19 +104,19 @@ class RegisteredEntitySfdcParams(object):
         metadata_endpoint_url = dictionary.get('metadataEndpointUrl')
         refresh_token = dictionary.get('refreshToken')
         soap_endpoint_url = dictionary.get('soapEndpointUrl')
-        use_bulk_api_list =  dictionary.get('useBulkApi', None)
+        use_bulk_api = dictionary.get('useBulkApi')
 
         # Return an object of this model
-        return cls(access_token,
-                   api_limit,
-                   consumer_key,
-                   consumer_secret,
-                   credentials,
-                   endpoint,
-                   endpoint_type,
-                   metadata_endpoint_url,
-                   refresh_token,
-                   soap_endpoint_url,
-                   use_bulk_api_list)
-
-
+        return cls(
+            access_token,
+            api_limit,
+            consumer_key,
+            consumer_secret,
+            credentials,
+            endpoint,
+            endpoint_type,
+            metadata_endpoint_url,
+            refresh_token,
+            soap_endpoint_url,
+            use_bulk_api
+)

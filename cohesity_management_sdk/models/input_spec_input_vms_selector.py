@@ -3,35 +3,35 @@
 
 import cohesity_management_sdk.models.input_spec_file_time_filter
 
-class InputSpecInputVMsSelector(object):
+
+class InputSpec_InputVMsSelector(object):
 
     """Implementation of the 'InputSpec_InputVMsSelector' model.
 
-    If mapper is going to run over files on SnapFS, this selects the input
-    files.
+    TODO: type description here.
+
 
     Attributes:
-        file_time_filter (InputSpec_FileTimeFilter): File time filter for
-            file's last change time.
-        filename_glob (list of string): After VMDKs are selected as above,
-            the files within them can be selected by using these predicates.
-        job_ids (list of int): TODO: add descritpion here.
-        max_snapshot_timestamp (long|int):Exclusive end of snapshot_timestamp
+
+        file_time_filter (InputSpec_FileTimeFilter): Time filter for file's
+            last change time.
+        filename_glob (list of string): After VMDKs are selected as above, the
+            files within them can be selected by using these predicates.
+        job_ids (list of long|int): TODO: Type description here.
+        max_snapshot_timestamp (long|int): Exclusive end of snapshot_timestamp
             range. If missing, inf will be used as the timestamp range.
-        min_snapshot_timestamp (long|int): Specifies the logical size used in
-            bytes.
-        partition_ids (list of int): Filters are AND of ORs.
+        min_snapshot_timestamp (long|int): Inclusive. If missing, 0 will the
+            default lower end of timestamp range
+        partition_ids (list of long|int): Filters are AND of ORs.
         process_latest_only (bool): Boolean flag to indicate if only latest
             snapshot of each object should be processed.
-        root_dir (string): Within each volume, traversal will be rooted at
-            this directory. A typical value here might be /home
-        source_entity_ids (list of int): TODO: add descritpion here.
-        view_box_ids (long|int): TODO: add descritpion here.
-        view_name (string): This is the view name user enters manually. If
-            this is set we will process this view only. partition_id and
-            view_box_id will be populated only if view_name is present.
-
+        root_dir (string): Within each volume, traversal will be rooted at this
+            directory. A typical value here might be /home
+        source_entity_ids (list of long|int): TODO: Type description here.
+        view_box_ids (list of long|int): TODO: Type description here.
+        view_names (list of string): TODO: Type description here.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -45,9 +45,8 @@ class InputSpecInputVMsSelector(object):
         "root_dir":'rootDir',
         "source_entity_ids":'sourceEntityIds',
         "view_box_ids":'viewBoxIds',
-        "view_name":'viewName'
+        "view_names":'viewNames',
     }
-
     def __init__(self,
                  file_time_filter=None,
                  filename_glob=None,
@@ -59,7 +58,9 @@ class InputSpecInputVMsSelector(object):
                  root_dir=None,
                  source_entity_ids=None,
                  view_box_ids=None,
-                 view_name=None):
+                 view_names=None,
+            ):
+
         """Constructor for the InputSpec_InputVMsSelector class"""
 
         # Initialize members of the class
@@ -73,8 +74,7 @@ class InputSpecInputVMsSelector(object):
         self.root_dir = root_dir
         self.source_entity_ids = source_entity_ids
         self.view_box_ids = view_box_ids
-        self.view_name = view_name
-
+        self.view_names = view_names
 
     @classmethod
     def from_dictionary(cls,
@@ -94,29 +94,29 @@ class InputSpecInputVMsSelector(object):
             return None
 
         # Extract variables from the dictionary
-        file_time_filter = cohesity_management_sdk.models.input_spec_file_time_filter.InputSpec_FileTimeFilter.from_dictionary( dictionary.get('fileTimeFilter')) if dictionary.get('fileTimeFilter') else None
-        filename_glob = dictionary.get('filenameGlob')
-        job_ids = dictionary.get('jobIds')
+        file_time_filter = cohesity_management_sdk.models.input_spec_file_time_filter.InputSpec_FileTimeFilter.from_dictionary(dictionary.get('fileTimeFilter')) if dictionary.get('fileTimeFilter') else None
+        filename_glob = dictionary.get("filenameGlob")
+        job_ids = dictionary.get("jobIds")
         max_snapshot_timestamp = dictionary.get('maxSnapshotTimestamp')
         min_snapshot_timestamp = dictionary.get('minSnapshotTimestamp')
-        partition_ids = dictionary.get('partitionIds')
+        partition_ids = dictionary.get("partitionIds")
         process_latest_only = dictionary.get('processLatestOnly')
         root_dir = dictionary.get('rootDir')
-        source_entity_ids = dictionary.get('sourceEntityIds')
-        view_box_ids = dictionary.get('viewBoxIds')
-        view_name = dictionary.get('viewName')
+        source_entity_ids = dictionary.get("sourceEntityIds")
+        view_box_ids = dictionary.get("viewBoxIds")
+        view_names = dictionary.get("viewNames")
 
         # Return an object of this model
-        return cls(file_time_filter,
-                   filename_glob,
-                   job_ids,
-                   max_snapshot_timestamp,
-                   min_snapshot_timestamp,
-                   partition_ids,
-                   process_latest_only,
-                   root_dir,
-                   source_entity_ids,
-                   view_box_ids,
-                   view_name)
-
-
+        return cls(
+            file_time_filter,
+            filename_glob,
+            job_ids,
+            max_snapshot_timestamp,
+            min_snapshot_timestamp,
+            partition_ids,
+            process_latest_only,
+            root_dir,
+            source_entity_ids,
+            view_box_ids,
+            view_names
+)

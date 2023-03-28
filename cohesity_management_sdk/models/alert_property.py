@@ -1,34 +1,35 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class AlertProperty(object):
 
     """Implementation of the 'AlertProperty' model.
 
     Specifies a key-value pair associated with an Alert.
 
+
     Attributes:
+
         key (string): Specifies name of the property.
         value (string): Specifies value of the property.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "key":'key',
-        "value":'value'
+        "value":'value',
     }
-
     def __init__(self,
                  key=None,
-                 value=None):
+                 value=None,
+            ):
+
         """Constructor for the AlertProperty class"""
 
         # Initialize members of the class
         self.key = key
         self.value = value
-
 
     @classmethod
     def from_dictionary(cls,
@@ -52,7 +53,7 @@ class AlertProperty(object):
         value = dictionary.get('value')
 
         # Return an object of this model
-        return cls(key,
-                   value)
-
-
+        return cls(
+            key,
+            value
+)

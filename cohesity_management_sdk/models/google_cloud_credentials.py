@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class GoogleCloudCredentials(object):
 
     """Implementation of the 'GoogleCloudCredentials' model.
 
     Specifies the cloud credentials to connect to a Google service account.
 
+
     Attributes:
+
         client_email_address (string): Specifies the client email address used
             to access Google Cloud Storage.
         client_private_key (string): Specifies the private key used to access
@@ -21,16 +22,15 @@ class GoogleCloudCredentials(object):
             Google. 'kGoogleStandard' indicates a tier type of Google
             properties. 'kGoogleNearline' indicates a tier type of Google
             properties that is not accessed frequently. 'kGoogleColdline'
-            indicates a tier type of Google properties that is rarely
-            accessed. 'kGoogleRegional' indicates a tier type of Google
-            properties that stores frequently accessed data in the same
-            region. 'kGoogleMultiRegional' indicates a tier type of Google
-            properties that is frequently accessed ("hot" objects) around the
-            world.
+            indicates a tier type of Google properties that is rarely accessed.
+            'kGoogleRegional' indicates a tier type of Google properties that
+            stores frequently accessed data in the same region.
+            'kGoogleMultiRegional' indicates a tier type of Google properties
+            that is frequently accessed ("hot" objects) around the world.
         tiers (list of string): Specifies the list of all tiers for Google
             account.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -38,15 +38,16 @@ class GoogleCloudCredentials(object):
         "client_private_key":'clientPrivateKey',
         "project_id":'projectId',
         "tier_type":'tierType',
-        "tiers":'tiers'
+        "tiers":'tiers',
     }
-
     def __init__(self,
                  client_email_address=None,
                  client_private_key=None,
                  project_id=None,
                  tier_type=None,
-                 tiers=None):
+                 tiers=None,
+            ):
+
         """Constructor for the GoogleCloudCredentials class"""
 
         # Initialize members of the class
@@ -55,7 +56,6 @@ class GoogleCloudCredentials(object):
         self.project_id = project_id
         self.tier_type = tier_type
         self.tiers = tiers
-
 
     @classmethod
     def from_dictionary(cls,
@@ -79,13 +79,13 @@ class GoogleCloudCredentials(object):
         client_private_key = dictionary.get('clientPrivateKey')
         project_id = dictionary.get('projectId')
         tier_type = dictionary.get('tierType')
-        tiers = dictionary.get('tiers')
+        tiers = dictionary.get("tiers")
 
         # Return an object of this model
-        return cls(client_email_address,
-                   client_private_key,
-                   project_id,
-                   tier_type,
-                   tiers)
-
-
+        return cls(
+            client_email_address,
+            client_private_key,
+            project_id,
+            tier_type,
+            tiers
+)

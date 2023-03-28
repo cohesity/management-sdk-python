@@ -1,34 +1,35 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class DailyEntitlement(object):
 
     """Implementation of the 'DailyEntitlement' model.
 
-    TODO: Type model description here.
+    TODO: type description here.
+
 
     Attributes:
+
         daily_entitlement (list of long|int): TODO: Type description here.
         feature_name (string): TODO: Type description here.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "daily_entitlement": 'dailyEntitlement',
-        "feature_name": 'featureName'
+        "daily_entitlement":'dailyEntitlement',
+        "feature_name":'featureName',
     }
-
     def __init__(self,
                  daily_entitlement=None,
-                 feature_name=None):
+                 feature_name=None,
+            ):
+
         """Constructor for the DailyEntitlement class"""
 
         # Initialize members of the class
         self.daily_entitlement = daily_entitlement
         self.feature_name = feature_name
-
 
     @classmethod
     def from_dictionary(cls,
@@ -48,11 +49,11 @@ class DailyEntitlement(object):
             return None
 
         # Extract variables from the dictionary
-        daily_entitlement = dictionary.get('dailyEntitlement', None)
-        feature_name = dictionary.get('featureName', None)
+        daily_entitlement = dictionary.get("dailyEntitlement")
+        feature_name = dictionary.get('featureName')
 
         # Return an object of this model
-        return cls(daily_entitlement,
-                   feature_name)
-
-
+        return cls(
+            daily_entitlement,
+            feature_name
+)

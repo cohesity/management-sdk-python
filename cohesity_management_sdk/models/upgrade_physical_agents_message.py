@@ -1,33 +1,34 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class UpgradePhysicalAgentsMessage(object):
 
     """Implementation of the 'UpgradePhysicalAgentsMessage' model.
 
     Specifies the status of an upgrade request.
 
+
     Attributes:
+
         message (string): Specifies the status message returned after
             initiating an upgrade request. Status of each agent upgrade can be
             obtained by listing Physical Servers using the GET
             /public/protectionSources operation.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "message":'message'
+        "message":'message',
     }
-
     def __init__(self,
-                 message=None):
+                 message=None,
+            ):
+
         """Constructor for the UpgradePhysicalAgentsMessage class"""
 
         # Initialize members of the class
         self.message = message
-
 
     @classmethod
     def from_dictionary(cls,
@@ -50,6 +51,6 @@ class UpgradePhysicalAgentsMessage(object):
         message = dictionary.get('message')
 
         # Return an object of this model
-        return cls(message)
-
-
+        return cls(
+            message
+)

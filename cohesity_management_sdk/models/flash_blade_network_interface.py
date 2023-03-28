@@ -1,40 +1,41 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class FlashBladeNetworkInterface(object):
 
     """Implementation of the 'FlashBladeNetworkInterface' model.
 
     Specifies network interface detail of a Flash Blade Storage Array.
 
+
     Attributes:
+
         ip_address (string): Specifies the IP address of the Pure Storage
             FlashBlade Array.
         name (string): Specifies the name of the network interface.
         vlan (int): Specifies the id of the VLAN network of the Pure Storage
             FlashBlade Array.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "ip_address":'ipAddress',
         "name":'name',
-        "vlan":'vlan'
+        "vlan":'vlan',
     }
-
     def __init__(self,
                  ip_address=None,
                  name=None,
-                 vlan=None):
+                 vlan=None,
+            ):
+
         """Constructor for the FlashBladeNetworkInterface class"""
 
         # Initialize members of the class
         self.ip_address = ip_address
         self.name = name
         self.vlan = vlan
-
 
     @classmethod
     def from_dictionary(cls,
@@ -59,8 +60,8 @@ class FlashBladeNetworkInterface(object):
         vlan = dictionary.get('vlan')
 
         # Return an object of this model
-        return cls(ip_address,
-                   name,
-                   vlan)
-
-
+        return cls(
+            ip_address,
+            name,
+            vlan
+)

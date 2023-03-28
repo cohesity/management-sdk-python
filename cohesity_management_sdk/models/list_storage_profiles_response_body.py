@@ -3,6 +3,7 @@
 
 import cohesity_management_sdk.models.vcd_storage_profile
 
+
 class ListStorageProfilesResponseBody(object):
 
     """Implementation of the 'ListStorageProfilesResponseBody' model.
@@ -10,23 +11,26 @@ class ListStorageProfilesResponseBody(object):
     Specifies the response to request to list the storage profiles associated
     with a VDC.
 
+
     Attributes:
+
         storage_profiles (list of VcdStorageProfile): Specifies a list of
             storage profiles.
     """
 
+
     # Create a mapping from Model property names to API property names
     _names = {
-        "storage_profiles":'storageProfiles'
+        "storage_profiles":'storageProfiles',
     }
-
     def __init__(self,
-                 storage_profiles=None):
+                 storage_profiles=None,
+            ):
+
         """Constructor for the ListStorageProfilesResponseBody class"""
 
         # Initialize members of the class
         self.storage_profiles = storage_profiles
-
 
     @classmethod
     def from_dictionary(cls,
@@ -53,5 +57,6 @@ class ListStorageProfilesResponseBody(object):
                 storage_profiles.append(cohesity_management_sdk.models.vcd_storage_profile.VcdStorageProfile.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(storage_profiles)
-
+        return cls(
+            storage_profiles
+)

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class AzureManagedDiskParams(object):
 
     """Implementation of the 'AzureManagedDiskParams' model.
@@ -9,27 +8,29 @@ class AzureManagedDiskParams(object):
     Contains managed disk parameters needed to deploy to Azure using managed
     disk.
 
+
     Attributes:
+
         data_disks_sku_type (int): SKU type for data disks.
         os_disk_sku_type (int): SKU type for OS disk.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "data_disks_sku_type":'dataDisksSkuType',
-        "os_disk_sku_type":'osDiskSkuType'
+        "os_disk_sku_type":'osDiskSkuType',
     }
-
     def __init__(self,
                  data_disks_sku_type=None,
-                 os_disk_sku_type=None):
+                 os_disk_sku_type=None,
+            ):
+
         """Constructor for the AzureManagedDiskParams class"""
 
         # Initialize members of the class
         self.data_disks_sku_type = data_disks_sku_type
         self.os_disk_sku_type = os_disk_sku_type
-
 
     @classmethod
     def from_dictionary(cls,
@@ -53,7 +54,7 @@ class AzureManagedDiskParams(object):
         os_disk_sku_type = dictionary.get('osDiskSkuType')
 
         # Return an object of this model
-        return cls(data_disks_sku_type,
-                   os_disk_sku_type)
-
-
+        return cls(
+            data_disks_sku_type,
+            os_disk_sku_type
+)

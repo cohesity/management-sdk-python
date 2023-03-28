@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class FixedUnixIdMapping(object):
 
     """Implementation of the 'FixedUnixIdMapping' model.
@@ -9,29 +8,31 @@ class FixedUnixIdMapping(object):
     Specifies the fields when mapping type is set to 'kFixed'. It maps all
     Active Directory users of a domain to a fixed Unix uid, and gid.
 
+
     Attributes:
+
         gid (long|int): Specifies the fixed Unix GID, when mapping type is set
             to kFixed.
         uid (long|int): Specifies the fixed Unix UID, when mapping type is set
             to kFixed.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "gid":'gid',
-        "uid":'uid'
+        "uid":'uid',
     }
-
     def __init__(self,
                  gid=None,
-                 uid=None):
+                 uid=None,
+            ):
+
         """Constructor for the FixedUnixIdMapping class"""
 
         # Initialize members of the class
         self.gid = gid
         self.uid = uid
-
 
     @classmethod
     def from_dictionary(cls,
@@ -55,7 +56,7 @@ class FixedUnixIdMapping(object):
         uid = dictionary.get('uid')
 
         # Return an object of this model
-        return cls(gid,
-                   uid)
-
-
+        return cls(
+            gid,
+            uid
+)

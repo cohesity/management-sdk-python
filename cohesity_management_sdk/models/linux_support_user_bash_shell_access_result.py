@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class LinuxSupportUserBashShellAccessResult(object):
 
     """Implementation of the 'LinuxSupportUserBashShellAccessResult' model.
@@ -9,23 +8,26 @@ class LinuxSupportUserBashShellAccessResult(object):
     Specifies the result returned after a successful request to get the linux
     'support' user bash shell access token,
 
+
     Attributes:
+
         support_user_token (string): SSH identity key to login as 'support'
             user.
     """
 
+
     # Create a mapping from Model property names to API property names
     _names = {
-        "support_user_token":'supportUserToken'
+        "support_user_token":'supportUserToken',
     }
-
     def __init__(self,
-                 support_user_token=None):
+                 support_user_token=None,
+            ):
+
         """Constructor for the LinuxSupportUserBashShellAccessResult class"""
 
         # Initialize members of the class
         self.support_user_token = support_user_token
-
 
     @classmethod
     def from_dictionary(cls,
@@ -48,6 +50,6 @@ class LinuxSupportUserBashShellAccessResult(object):
         support_user_token = dictionary.get('supportUserToken')
 
         # Return an object of this model
-        return cls(support_user_token)
-
-
+        return cls(
+            support_user_token
+)

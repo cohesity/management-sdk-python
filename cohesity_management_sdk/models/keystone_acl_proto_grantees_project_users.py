@@ -1,27 +1,31 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class KeystoneACLProto_Grantees_ProjectUsers(object):
 
     """Implementation of the 'KeystoneACLProto_Grantees_ProjectUsers' model.
 
+    TODO: type description here.
+
+
     Attributes:
+
         user_id_vec (list of string): TODO: Type description here.
     """
 
+
     # Create a mapping from Model property names to API property names
     _names = {
-        "user_id_vec":'userIdVec'
+        "user_id_vec":'userIdVec',
     }
-
     def __init__(self,
-                 user_id_vec=None):
+                 user_id_vec=None,
+            ):
+
         """Constructor for the KeystoneACLProto_Grantees_ProjectUsers class"""
 
         # Initialize members of the class
         self.user_id_vec = user_id_vec
-
 
     @classmethod
     def from_dictionary(cls,
@@ -41,9 +45,9 @@ class KeystoneACLProto_Grantees_ProjectUsers(object):
             return None
 
         # Extract variables from the dictionary
-        user_id_vec = dictionary.get('userIdVec')
+        user_id_vec = dictionary.get("userIdVec")
 
         # Return an object of this model
-        return cls(user_id_vec)
-
-
+        return cls(
+            user_id_vec
+)

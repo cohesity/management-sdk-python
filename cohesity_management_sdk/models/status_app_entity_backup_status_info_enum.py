@@ -4,19 +4,14 @@
 class StatusAppEntityBackupStatusInfoEnum(object):
 
     """Implementation of the 'StatusAppEntityBackupStatusInfo' enum.
-
-    Specifies the backup status for this app entity.
-    'kAccepted' indicates the task is queued to run but not yet running.
-    'kRunning' indicates the task is running.
-    'kCanceling' indicates a request to cancel the task has occurred but
-    the task is not yet canceled.
-    'kCanceled' indicates the task has been canceled.
-    'kSuccess' indicates the task was successful.
-    'kFailure' indicates the task failed.
-    'kWarning' indicates the task has finished with warning.
-    'kOnHold' indicates the task is kept onHold.
-    'kMissed' indicates the task is missed.
-    'kFinalizing' indicates the task is finalizing.
+    Specifies the backup status for this app entity. 'kAccepted' indicates the
+    task is queued to run but not yet running. 'kRunning' indicates the task is
+    running. 'kCanceling' indicates a request to cancel the task has occurred
+    but the task is not yet canceled. 'kCanceled' indicates the task has been
+    canceled. 'kSuccess' indicates the task was successful. 'kFailure'
+    indicates the task failed. 'kWarning' indicates the task has finished with
+    warning. 'kOnHold' indicates the task is kept onHold. 'kMissed' indicates
+    the task is missed. 'Finalizing' indicates the task is finalizing.
 
 
     Attributes:

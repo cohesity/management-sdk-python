@@ -4,35 +4,38 @@
 import cohesity_management_sdk.models.aws_kms_update_params
 import cohesity_management_sdk.models.cryptsoft_kms_update_params
 
+
 class KmsUpdateRequestParameters(object):
 
     """Implementation of the 'KmsUpdateRequestParameters' model.
 
-    Request to create a KMS with specified configuration.
+    TODO: type description here.
+
 
     Attributes:
-        aws_kms (AwsKmsUpdateParams): AWS KMS conifg.
-        cryptsoft_kms (CryptsoftKmsUpdateParams): Cryptsoft KMS config.
-        id (int): The Id of a KMS server.
+
+        aws_kms (AwsKmsUpdateParams): AWS KMS conifg response.
+        cryptsoft_kms (CryptsoftKmsUpdateParams): Specifies the config response
+            for cryptsoftKMS.
+        id (long|int): The Id of a KMS server.
         key_name (string): Specifies name of the key.
         server_name (string): Specifies the name given to the KMS Server.
         vault_id_list (list of long|int): Specifies the list of Vault Ids.
         view_box_id_list (list of long|int): Specifies the list of View Box
             Ids.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "aws_kms": 'awsKms',
-        "cryptsoft_kms": 'cryptsoftKms',
-        "id": 'id',
+        "aws_kms":'awsKms',
+        "cryptsoft_kms":'cryptsoftKms',
+        "id":'id',
         "key_name":'keyName',
-        "server_name": 'serverName',
+        "server_name":'serverName',
         "vault_id_list":'vaultIdList',
-        "view_box_id_list":'viewBoxIdList'
+        "view_box_id_list":'viewBoxIdList',
     }
-
     def __init__(self,
                  aws_kms=None,
                  cryptsoft_kms=None,
@@ -40,7 +43,9 @@ class KmsUpdateRequestParameters(object):
                  key_name=None,
                  server_name=None,
                  vault_id_list=None,
-                 view_box_id_list=None):
+                 view_box_id_list=None,
+            ):
+
         """Constructor for the KmsUpdateRequestParameters class"""
 
         # Initialize members of the class
@@ -75,16 +80,16 @@ class KmsUpdateRequestParameters(object):
         id = dictionary.get('id')
         key_name = dictionary.get('keyName')
         server_name = dictionary.get('serverName')
-        vault_id_list = dictionary.get('vaultIdList')
-        view_box_id_list = dictionary.get('viewBoxIdList')
+        vault_id_list = dictionary.get("vaultIdList")
+        view_box_id_list = dictionary.get("viewBoxIdList")
 
         # Return an object of this model
-        return cls(aws_kms,
-                   cryptsoft_kms,
-                   id,
-                   key_name,
-                   server_name,
-                   vault_id_list,
-                   view_box_id_list)
-
-
+        return cls(
+            aws_kms,
+            cryptsoft_kms,
+            id,
+            key_name,
+            server_name,
+            vault_id_list,
+            view_box_id_list
+)

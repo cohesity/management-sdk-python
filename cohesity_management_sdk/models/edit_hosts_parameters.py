@@ -3,32 +3,35 @@
 
 import cohesity_management_sdk.models.host_entry
 
+
 class EditHostsParameters(object):
 
     """Implementation of the 'EditHostsParameters' model.
 
     Specifies the parameters needed for an edit hosts request.
 
+
     Attributes:
+
         hosts (list of HostEntry): Specifies the list of host entries to be
             edited. Each IP address listed in the list of host entries will
-            have its corresponding domain names in the /etc/hosts file
-            replaced with the domain names specified here.
-
+            have its corresponding domain names in the /etc/hosts file replaced
+            with the domain names specified here.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "hosts":'hosts'
+        "hosts":'hosts',
     }
-
     def __init__(self,
-                 hosts=None):
+                 hosts=None,
+            ):
+
         """Constructor for the EditHostsParameters class"""
 
         # Initialize members of the class
         self.hosts = hosts
-
 
     @classmethod
     def from_dictionary(cls,
@@ -55,6 +58,6 @@ class EditHostsParameters(object):
                 hosts.append(cohesity_management_sdk.models.host_entry.HostEntry.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(hosts)
-
-
+        return cls(
+            hosts
+)

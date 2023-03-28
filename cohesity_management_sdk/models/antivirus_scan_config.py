@@ -3,13 +3,16 @@
 
 import cohesity_management_sdk.models.file_extension_filter
 
+
 class AntivirusScanConfig(object):
 
     """Implementation of the 'AntivirusScanConfig' model.
 
     Specifies the antivirus scan config settings for this View.
 
+
     Attributes:
+
         block_access_on_scan_failure (bool): Specifies whether block access to
             the file when antivirus scan fails.
         is_enabled (bool): Specifies whether the antivirus service is enabled
@@ -18,15 +21,16 @@ class AntivirusScanConfig(object):
             will be sent to antivirus server for scanning. if greater than
             zero, the file size that exceeds this size would be skipped from
             virus scan.
-        scan_filter (FileExtensionFilter): TODO: type description here.
+        scan_filter (FileExtensionFilter): Files extension that meets these
+            filter criteria will be sent to antivirus server for the scan.
         scan_on_access (bool): Specifies whether to scan a file when it is
             opened.
         scan_on_close (bool): Specifies whether to scan a file when it is
             closed after modify.
         scan_timeout_usecs (int): Specifies the maximum amount of time that a
             scan can take before timing out.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -36,9 +40,8 @@ class AntivirusScanConfig(object):
         "scan_filter":'scanFilter',
         "scan_on_access":'scanOnAccess',
         "scan_on_close":'scanOnClose',
-        "scan_timeout_usecs":'scanTimeoutUsecs'
+        "scan_timeout_usecs":'scanTimeoutUsecs',
     }
-
     def __init__(self,
                  block_access_on_scan_failure=None,
                  is_enabled=None,
@@ -46,7 +49,9 @@ class AntivirusScanConfig(object):
                  scan_filter=None,
                  scan_on_access=None,
                  scan_on_close=None,
-                 scan_timeout_usecs=None):
+                 scan_timeout_usecs=None,
+            ):
+
         """Constructor for the AntivirusScanConfig class"""
 
         # Initialize members of the class
@@ -57,7 +62,6 @@ class AntivirusScanConfig(object):
         self.scan_on_access = scan_on_access
         self.scan_on_close = scan_on_close
         self.scan_timeout_usecs = scan_timeout_usecs
-
 
     @classmethod
     def from_dictionary(cls,
@@ -86,12 +90,12 @@ class AntivirusScanConfig(object):
         scan_timeout_usecs = dictionary.get('scanTimeoutUsecs')
 
         # Return an object of this model
-        return cls(block_access_on_scan_failure,
-                   is_enabled,
-                   maximum_scan_file_size,
-                   scan_filter,
-                   scan_on_access,
-                   scan_on_close,
-                   scan_timeout_usecs)
-
-
+        return cls(
+            block_access_on_scan_failure,
+            is_enabled,
+            maximum_scan_file_size,
+            scan_filter,
+            scan_on_access,
+            scan_on_close,
+            scan_timeout_usecs
+)

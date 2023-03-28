@@ -1,30 +1,31 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class TenantIdData(object):
 
     """Implementation of the 'TenantIdData' model.
 
     Specifies id of a tenant.
 
-    Attributes:
-        tenant_id (string): Specifies the unique id of the tenant.
 
+    Attributes:
+
+        tenant_id (string): Specifies the unique id of the tenant.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "tenant_id":'tenantId'
+        "tenant_id":'tenantId',
     }
-
     def __init__(self,
-                 tenant_id=None):
+                 tenant_id=None,
+            ):
+
         """Constructor for the TenantIdData class"""
 
         # Initialize members of the class
         self.tenant_id = tenant_id
-
 
     @classmethod
     def from_dictionary(cls,
@@ -47,6 +48,6 @@ class TenantIdData(object):
         tenant_id = dictionary.get('tenantId')
 
         # Return an object of this model
-        return cls(tenant_id)
-
-
+        return cls(
+            tenant_id
+)

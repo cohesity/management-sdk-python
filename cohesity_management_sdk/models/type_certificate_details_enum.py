@@ -3,14 +3,12 @@
 
 class TypeCertificateDetailsEnum(object):
 
-    """Implementation of the 'Type_CertificateDetails' enum.
-
+    """Implementation of the 'TypeCertificateDetails' enum.
     Specifies the type of the host such as 'kSapHana', 'kSapOracle', etc.
-    Specifies the host type of host for generating and deploying a
-    Certificate.
-    'kOther' indicates it is any of the other hosts.
-    'kSapOracle' indicates it is a SAP Oracle host.
-    'kSapHana' indicates it is a SAP HANA host.
+    Specifies the host type of host for generating and deploying a Certificate.
+    'kOther' indicates it is any of the other hosts. 'kSapOracle' indicates it
+    is a SAP Oracle host. 'kSapHana' indicates it is a SAP HANA host.
+
 
     Attributes:
         KOTHER: TODO: type description here.
@@ -24,4 +22,3 @@ class TypeCertificateDetailsEnum(object):
     KSAPORACLE = 'kSapOracle'
 
     KSAPHANA = 'kSapHana'
-

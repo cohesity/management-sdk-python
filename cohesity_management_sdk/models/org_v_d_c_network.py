@@ -5,30 +5,35 @@ class OrgVDCNetwork(object):
 
     """Implementation of the 'OrgVDCNetwork' model.
 
-    Attributes:
-        name (string): This is the name of the  Org VDC network.
-        network_type (string): This is the type of the corresponding network
-            on VCenter.
-        vcd_uuid (string): This is the uuid of Org VDC network as identified
-            by VCD.
-        vcenter_moref_uuid (string): This is the uuid of the corresponding
-            network on VCenter.
+    TODO: type description here.
 
+
+    Attributes:
+
+        name (string): This is the name of the  Org VDC network.
+        network_type (string): This is the type of the corresponding network on
+            VCenter.
+        vcd_uuid (string): This is the uuid of Org VDC network as identified by
+            VCD.
+        vcenter_moref_uuid (string): This is the moref of the corresponding
+            network on VCenter.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "name":'name',
         "network_type":'networkType',
         "vcd_uuid":'vcdUuid',
-        "vcenter_moref_uuid":'vcenterMorefUuid'
+        "vcenter_moref_uuid":'vcenterMorefUuid',
     }
-
     def __init__(self,
                  name=None,
                  network_type=None,
                  vcd_uuid=None,
-                 vcenter_moref_uuid=None):
+                 vcenter_moref_uuid=None,
+            ):
+
         """Constructor for the OrgVDCNetwork class"""
 
         # Initialize members of the class
@@ -36,7 +41,6 @@ class OrgVDCNetwork(object):
         self.network_type = network_type
         self.vcd_uuid = vcd_uuid
         self.vcenter_moref_uuid = vcenter_moref_uuid
-
 
     @classmethod
     def from_dictionary(cls,
@@ -62,9 +66,9 @@ class OrgVDCNetwork(object):
         vcenter_moref_uuid = dictionary.get('vcenterMorefUuid')
 
         # Return an object of this model
-        return cls(name,
-                   network_type,
-                   vcd_uuid,
-                   vcenter_moref_uuid)
-
-
+        return cls(
+            name,
+            network_type,
+            vcd_uuid,
+            vcenter_moref_uuid
+)

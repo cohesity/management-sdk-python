@@ -1,50 +1,49 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class GetMapReduceAppRunsParams(object):
 
     """Implementation of the 'GetMapReduceAppRunsParams' model.
 
     GetMapReduceAppRunsParams specifies the input params to fetch the map
-    reduce
-    application runs.
+    reduce application runs.
+
 
     Attributes:
-        app_id (int): ApplicationId is the Id of the map reduce application.
-        app_instance_id (int): ApplicationInstanceId is the Id of the map
+
+        app_id (long|int): ApplicationId is the Id of the map reduce
+            application.
+        app_instance_id (long|int): ApplicationInstanceId is the Id of the map
             reduce application instance.
         include_details (bool): If this flag is true, then send details of
             instance, else send only RunInfo.
-        last_num_instances (long|int): Give last N instance of an app based on
-            end time.
-        max_run_end_time_in_secs (long|int): MaxRunEndTimestampInSecs
-            specifies the maximum job run end timestamp in seconds. App run
-            instances with end time less than equal to
-            MaxRunEndTimestampInSecs will be selected. Default is LONG_MAX
-            (inf).
-        max_run_start_time_in_secs (int|long): MaxRunStartTimestampInSecs
+        last_num_instances (int): Give last N instance of an app based on end
+            time.
+        max_run_end_time_in_secs (long|int): MaxRunEndTimestampInSecs specifies
+            the maximum job run end timestamp in seconds. App run instances
+            with end time less than equal to MaxRunEndTimestampInSecs will be
+            selected. Default is LONG_MAX (inf).
+        max_run_start_time_in_secs (long|int): MaxRunStartTimestampInSecs
             specifies the maximum job run start timestamp in seconds. App run
             instances with start time less than equal to
             MaxRunStartTimestampInSecs will be selected. Default is LONG_MAX
             (inf).
-        min_run_end_time_in_secs (long|int): MinRunEndTimestampInSecs
-            specifies the minimum job run end timestamp in seconds. App run
-            instances with end time greater than equal to
-            MinRunEndTimestampInSecs will be selected. Default is 0, i.e.
-            beginning of time.
-        min_run_start_time_in_secs (int|long): MinRunStartTimestampInSecs
+        min_run_end_time_in_secs (long|int): MinRunEndTimestampInSecs specifies
+            the minimum job run end timestamp in seconds. App run instances
+            with end time greater than equal to MinRunEndTimestampInSecs will
+            be selected. Default is 0, i.e. beginning of time.
+        min_run_start_time_in_secs (long|int): MinRunStartTimestampInSecs
             specifies the minimum job run start timestamp in seconds. App run
             instances with start time greater than equal to
             MinRunStartTimestampInSecs will be selected. Default is 0, i.e.
             beginning of time.
-        page_size (int|long): Number of results to be displayed on a page.
+        page_size (int): Number of results to be displayed on a page.
         run_status (string): Filter instances based on the map reduce
             application run status.
-        start_offset (int): Start offset for pagination from where
-            result needs to be fetched.
-
+        start_offset (int): Start offset for pagination from where result needs
+            to be fetched.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -58,9 +57,8 @@ class GetMapReduceAppRunsParams(object):
         "min_run_start_time_in_secs":'minRunStartTimeInSecs',
         "page_size":'pageSize',
         "run_status":'runStatus',
-        "start_offset":'startOffset'
+        "start_offset":'startOffset',
     }
-
     def __init__(self,
                  app_id=None,
                  app_instance_id=None,
@@ -72,7 +70,9 @@ class GetMapReduceAppRunsParams(object):
                  min_run_start_time_in_secs=None,
                  page_size=None,
                  run_status=None,
-                 start_offset=None):
+                 start_offset=None,
+            ):
+
         """Constructor for the GetMapReduceAppRunsParams class"""
 
         # Initialize members of the class
@@ -87,7 +87,6 @@ class GetMapReduceAppRunsParams(object):
         self.page_size = page_size
         self.run_status = run_status
         self.start_offset = start_offset
-
 
     @classmethod
     def from_dictionary(cls,
@@ -120,16 +119,16 @@ class GetMapReduceAppRunsParams(object):
         start_offset = dictionary.get('startOffset')
 
         # Return an object of this model
-        return cls(app_id,
-                   app_instance_id,
-                   include_details,
-                   last_num_instances,
-                   max_run_end_time_in_secs,
-                   max_run_start_time_in_secs,
-                   min_run_end_time_in_secs,
-                   min_run_start_time_in_secs,
-                   page_size,
-                   run_status,
-                   start_offset)
-
-
+        return cls(
+            app_id,
+            app_instance_id,
+            include_details,
+            last_num_instances,
+            max_run_end_time_in_secs,
+            max_run_start_time_in_secs,
+            min_run_end_time_in_secs,
+            min_run_start_time_in_secs,
+            page_size,
+            run_status,
+            start_offset
+)

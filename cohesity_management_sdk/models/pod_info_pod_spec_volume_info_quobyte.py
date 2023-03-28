@@ -7,34 +7,36 @@ class PodInfo_PodSpec_VolumeInfo_Quobyte(object):
 
     Represents a Quobyte mount that lasts the lifetime of a pod.
 
+
     Attributes:
+
         group (string): TODO: Type description here.
         read_only (bool): TODO: Type description here.
         registry (string): TODO: Type description here.
         tenant (string): TODO: Type description here.
         user (string): TODO: Type description here.
         volume (string): TODO: Type description here.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "group": 'group',
-        "read_only": 'readOnly',
+        "group":'group',
+        "read_only":'readOnly',
         "registry":'registry',
         "tenant":'tenant',
         "user":'user',
-        "volume":'volume'
+        "volume":'volume',
     }
-
     def __init__(self,
                  group=None,
                  read_only=None,
                  registry=None,
                  tenant=None,
                  user=None,
-                 volume=None
-                 ):
+                 volume=None,
+            ):
+
         """Constructor for the PodInfo_PodSpec_VolumeInfo_Quobyte class"""
 
         # Initialize members of the class
@@ -71,11 +73,11 @@ class PodInfo_PodSpec_VolumeInfo_Quobyte(object):
         volume = dictionary.get('volume')
 
         # Return an object of this model
-        return cls(group,
-                   read_only,
-                   registry,
-                   tenant,
-                   user,
-                   volume)
-
-
+        return cls(
+            group,
+            read_only,
+            registry,
+            tenant,
+            user,
+            volume
+)

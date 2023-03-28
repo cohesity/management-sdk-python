@@ -4,13 +4,16 @@
 import cohesity_management_sdk.models.one_drive_owner
 import cohesity_management_sdk.models.protection_source
 
+
 class OneDriveRestoreParameters(object):
 
     """Implementation of the 'OneDriveRestoreParameters' model.
 
     Specifies information needed for recovering Drive(s) & Drive items.
 
+
     Attributes:
+
         drive_owner_list (list of OneDriveOwner): Specifies the list of Drive
             owners which are to be restored along with the details of their
             drives.
@@ -20,11 +23,11 @@ class OneDriveRestoreParameters(object):
             where the OneDrive items are to be recovered.
         target_folder_path (string): Specifies the target folder path within
             the drive where recovery has to be done.
-        target_user (ProtectionSource): Specifies a generic structure that
-            represents a node in the Protection Source tree. Node details will
-            depend on the environment of the Protection Source.
-
+        target_user (ProtectionSource): Specifies the target user where the
+            recovery of the entire OneDrive or the OneDrive items is to be
+            done.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -32,15 +35,16 @@ class OneDriveRestoreParameters(object):
         "restore_to_original_drive":'restoreToOriginalDrive',
         "target_drive_id":'targetDriveId',
         "target_folder_path":'targetFolderPath',
-        "target_user":'targetUser'
+        "target_user":'targetUser',
     }
-
     def __init__(self,
                  drive_owner_list=None,
                  restore_to_original_drive=None,
                  target_drive_id=None,
                  target_folder_path=None,
-                 target_user=None):
+                 target_user=None,
+            ):
+
         """Constructor for the OneDriveRestoreParameters class"""
 
         # Initialize members of the class
@@ -49,7 +53,6 @@ class OneDriveRestoreParameters(object):
         self.target_drive_id = target_drive_id
         self.target_folder_path = target_folder_path
         self.target_user = target_user
-
 
     @classmethod
     def from_dictionary(cls,
@@ -80,10 +83,10 @@ class OneDriveRestoreParameters(object):
         target_user = cohesity_management_sdk.models.protection_source.ProtectionSource.from_dictionary(dictionary.get('targetUser')) if dictionary.get('targetUser') else None
 
         # Return an object of this model
-        return cls(drive_owner_list,
-                   restore_to_original_drive,
-                   target_drive_id,
-                   target_folder_path,
-                   target_user)
-
-
+        return cls(
+            drive_owner_list,
+            restore_to_original_drive,
+            target_drive_id,
+            target_folder_path,
+            target_user
+)

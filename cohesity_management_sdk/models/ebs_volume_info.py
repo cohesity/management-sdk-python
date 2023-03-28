@@ -1,40 +1,49 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
+import cohesity_management_sdk.models.ebs_volume_tag
+
+
 class EbsVolumeInfo(object):
 
     """Implementation of the 'EbsVolumeInfo' model.
 
     Specifies information about an AWS volume attached to an EC2 instance.
 
+
     Attributes:
+
         device_name (string): Specifies the name of the device. Eg - /dev/sdb.
         id (string): Specifies the ID of the volume.
-        is_root_device (bool): Specifies if the volume is attached as root device.
+        is_root_device (bool): Specifies if the volume is attached as root
+            device.
         name (string): Specifies the name of the volume.
         size_bytes (long|int): Specifies the size of the volume in bytes.
+        tags (list of EBSVolumeTag): Specifies the list of tags on EBS volume.
         mtype (string): Specifies the type of the volume. Eg - gp2, io1.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "device_name": 'deviceName',
-        "id": 'id',
+        "device_name":'deviceName',
+        "id":'id',
         "is_root_device":'isRootDevice',
         "name":'name',
         "size_bytes":'sizeBytes',
-        "mtype":'type'
+        "tags":'tags',
+        "mtype":'type',
     }
-
     def __init__(self,
                  device_name=None,
                  id=None,
                  is_root_device=None,
                  name=None,
                  size_bytes=None,
-                 mtype=None
-                 ):
+                 tags=None,
+                 mtype=None,
+            ):
+
         """Constructor for the EbsVolumeInfo class"""
 
         # Initialize members of the class
@@ -43,6 +52,7 @@ class EbsVolumeInfo(object):
         self.is_root_device = is_root_device
         self.name = name
         self.size_bytes = size_bytes
+        self.tags = tags
         self.mtype = mtype
 
     @classmethod
@@ -68,14 +78,20 @@ class EbsVolumeInfo(object):
         is_root_device = dictionary.get('isRootDevice')
         name = dictionary.get('name')
         size_bytes = dictionary.get('sizeBytes')
+        tags = None
+        if dictionary.get('tags') != None:
+            tags = list()
+            for structure in dictionary.get('tags'):
+                tags.append(cohesity_management_sdk.models.ebs_volume_tag.EBSVolumeTag.from_dictionary(structure))
         mtype = dictionary.get('type')
 
         # Return an object of this model
-        return cls(device_name,
-                   id,
-                   is_root_device,
-                   name,
-                   size_bytes,
-                   mtype)
-
-
+        return cls(
+            device_name,
+            id,
+            is_root_device,
+            name,
+            size_bytes,
+            tags,
+            mtype
+)

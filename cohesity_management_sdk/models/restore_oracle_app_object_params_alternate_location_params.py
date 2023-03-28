@@ -3,14 +3,17 @@
 
 import cohesity_management_sdk.models.oracle_db_config
 
-class RestoreOracleAppObjectParamsAlternateLocationParams(object):
+
+class RestoreOracleAppObjectParams_AlternateLocationParams(object):
 
     """Implementation of the 'RestoreOracleAppObjectParams_AlternateLocationParams' model.
 
     For restoring to alternate location this message can not be empty and all
     the fields inside the message also can not be empty.
 
+
     Attributes:
+
         base_dir (string): Base directory of Oracle at destination. Example :
             /u01/app/oracle
         database_file_destination (string): Location to put the database
@@ -21,10 +24,14 @@ class RestoreOracleAppObjectParamsAlternateLocationParams(object):
             restore to.
         new_sid_deprecated (string): Deprecated field SID of new Oracle
             database.
-        oracle_db_config (OracleDBConfig): This proto captures the oracle
-            database configuration for alternate DB restore.
-
+        newname_clause (string): SET NEWNAME clause user can specified. This
+            allows user to have full control on how their database files can be
+            renamed during the alternate restore workflow.
+        nofilenamecheck (bool): NOFILENAMECHECK option for RMAN Duplicate
+            Database command
+        oracle_db_config (OracleDBConfig): Alternate DB config override.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -33,17 +40,22 @@ class RestoreOracleAppObjectParamsAlternateLocationParams(object):
         "home_dir":'homeDir',
         "new_database_name":'newDatabaseName',
         "new_sid_deprecated":'newSidDeprecated',
-        "oracle_db_config":'oracleDbConfig'
+        "newname_clause":'newnameClause',
+        "nofilenamecheck":'nofilenamecheck',
+        "oracle_db_config":'oracleDbConfig',
     }
-
     def __init__(self,
                  base_dir=None,
                  database_file_destination=None,
                  home_dir=None,
                  new_database_name=None,
                  new_sid_deprecated=None,
-                 oracle_db_config=None):
-        """Constructor for the RestoreOracleAppObjectParamsAlternateLocationParams class"""
+                 newname_clause=None,
+                 nofilenamecheck=None,
+                 oracle_db_config=None,
+            ):
+
+        """Constructor for the RestoreOracleAppObjectParams_AlternateLocationParams class"""
 
         # Initialize members of the class
         self.base_dir = base_dir
@@ -51,8 +63,9 @@ class RestoreOracleAppObjectParamsAlternateLocationParams(object):
         self.home_dir = home_dir
         self.new_database_name = new_database_name
         self.new_sid_deprecated = new_sid_deprecated
+        self.newname_clause = newname_clause
+        self.nofilenamecheck = nofilenamecheck
         self.oracle_db_config = oracle_db_config
-
 
     @classmethod
     def from_dictionary(cls,
@@ -77,14 +90,18 @@ class RestoreOracleAppObjectParamsAlternateLocationParams(object):
         home_dir = dictionary.get('homeDir')
         new_database_name = dictionary.get('newDatabaseName')
         new_sid_deprecated = dictionary.get('newSidDeprecated')
+        newname_clause = dictionary.get('newnameClause')
+        nofilenamecheck = dictionary.get('nofilenamecheck')
         oracle_db_config = cohesity_management_sdk.models.oracle_db_config.OracleDBConfig.from_dictionary(dictionary.get('oracleDbConfig')) if dictionary.get('oracleDbConfig') else None
 
         # Return an object of this model
-        return cls(base_dir,
-                   database_file_destination,
-                   home_dir,
-                   new_database_name,
-                   new_sid_deprecated,
-                   oracle_db_config)
-
-
+        return cls(
+            base_dir,
+            database_file_destination,
+            home_dir,
+            new_database_name,
+            new_sid_deprecated,
+            newname_clause,
+            nofilenamecheck,
+            oracle_db_config
+)

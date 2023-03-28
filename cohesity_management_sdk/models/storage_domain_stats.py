@@ -1,31 +1,34 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
+import cohesity_management_sdk.models.data_usage_stats
 import cohesity_management_sdk.models.stats_group
 import cohesity_management_sdk.models.usage_schema_info
-import cohesity_management_sdk.models.data_usage_stats
+
 
 class StorageDomainStats(object):
 
     """Implementation of the 'StorageDomainStats' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
+
         cloud_spill_vault_id (long|int): Specifies the cloud spill vault id of
             the view box (storage domain).
         group_list (list of StatsGroup): Specifies a list of groups associated
             to this view box (storage domain).
         id (long|int): Specifies the id of the view box (storage domain).
         name (string): Specifies the name of the view box (storage domain).
-        quota_hard_limit_bytes (long|int): Specifies the hard limit of
-            physical quota of the view box (storage domain).
+        quota_hard_limit_bytes (long|int): Specifies the hard limit of physical
+            quota of the view box (storage domain).
         schema_info_list (list of UsageSchemaInfo): Specifies a list of
             schemaInfos of the view box (storage domain).
-        stats (DataUsageStats): Specifies details of statistics of the view
-            box (storage domain).
-
+        stats (DataUsageStats): Specifies details of statistics of the view box
+            (storage domain).
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -35,9 +38,8 @@ class StorageDomainStats(object):
         "name":'name',
         "quota_hard_limit_bytes":'quotaHardLimitBytes',
         "schema_info_list":'schemaInfoList',
-        "stats":'stats'
+        "stats":'stats',
     }
-
     def __init__(self,
                  cloud_spill_vault_id=None,
                  group_list=None,
@@ -45,7 +47,9 @@ class StorageDomainStats(object):
                  name=None,
                  quota_hard_limit_bytes=None,
                  schema_info_list=None,
-                 stats=None):
+                 stats=None,
+            ):
+
         """Constructor for the StorageDomainStats class"""
 
         # Initialize members of the class
@@ -56,7 +60,6 @@ class StorageDomainStats(object):
         self.quota_hard_limit_bytes = quota_hard_limit_bytes
         self.schema_info_list = schema_info_list
         self.stats = stats
-
 
     @classmethod
     def from_dictionary(cls,
@@ -93,12 +96,12 @@ class StorageDomainStats(object):
         stats = cohesity_management_sdk.models.data_usage_stats.DataUsageStats.from_dictionary(dictionary.get('stats')) if dictionary.get('stats') else None
 
         # Return an object of this model
-        return cls(cloud_spill_vault_id,
-                   group_list,
-                   id,
-                   name,
-                   quota_hard_limit_bytes,
-                   schema_info_list,
-                   stats)
-
-
+        return cls(
+            cloud_spill_vault_id,
+            group_list,
+            id,
+            name,
+            quota_hard_limit_bytes,
+            schema_info_list,
+            stats
+)

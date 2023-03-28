@@ -4,40 +4,43 @@
 import cohesity_management_sdk.models.snapshot_target_settings
 import cohesity_management_sdk.models.universal_id
 
+
 class ReplicaInfo(object):
 
     """Implementation of the 'ReplicaInfo' model.
 
     Specifies the Replication information about a snapshot.
 
+
     Attributes:
+
         expiry_time_usecs (long|int): Specifies the expiration time of the
             snapshot within the target location.
         snapshot_target_settings (SnapshotTargetSettings): Specifies the
             snapshot target settings for the given snapshot.
         uid (UniversalId): Specifies a global Protection Job id that is unique
             across Cohesity Clusters.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "expiry_time_usecs":'expiryTimeUsecs',
         "snapshot_target_settings":'snapshotTargetSettings',
-        "uid":'uid'
+        "uid":'uid',
     }
-
     def __init__(self,
                  expiry_time_usecs=None,
                  snapshot_target_settings=None,
-                 uid=None):
+                 uid=None,
+            ):
+
         """Constructor for the ReplicaInfo class"""
 
         # Initialize members of the class
         self.expiry_time_usecs = expiry_time_usecs
         self.snapshot_target_settings = snapshot_target_settings
         self.uid = uid
-
 
     @classmethod
     def from_dictionary(cls,
@@ -62,8 +65,8 @@ class ReplicaInfo(object):
         uid = cohesity_management_sdk.models.universal_id.UniversalId.from_dictionary(dictionary.get('uid')) if dictionary.get('uid') else None
 
         # Return an object of this model
-        return cls(expiry_time_usecs,
-                   snapshot_target_settings,
-                   uid)
-
-
+        return cls(
+            expiry_time_usecs,
+            snapshot_target_settings,
+            uid
+)

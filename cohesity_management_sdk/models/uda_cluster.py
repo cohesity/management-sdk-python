@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class UdaCluster(object):
 
     """Implementation of the 'UdaCluster' model.
@@ -9,22 +8,25 @@ class UdaCluster(object):
     Specifies an Object containing information about a Universal Data Adapter
     cluster.
 
+
     Attributes:
+
         hosts (list of string): Hosts of this Universal Data Adapter Cluster.
     """
 
+
     # Create a mapping from Model property names to API property names
     _names = {
-        "hosts":'hosts'
+        "hosts":'hosts',
     }
-
     def __init__(self,
-                 hosts=None):
+                 hosts=None,
+            ):
+
         """Constructor for the UdaCluster class"""
 
         # Initialize members of the class
         self.hosts = hosts
-
 
     @classmethod
     def from_dictionary(cls,
@@ -44,9 +46,9 @@ class UdaCluster(object):
             return None
 
         # Extract variables from the dictionary
-        hosts = dictionary.get('hosts')
+        hosts = dictionary.get("hosts")
 
         # Return an object of this model
-        return cls(hosts)
-
-
+        return cls(
+            hosts
+)

@@ -1,28 +1,31 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class PodInfo_PodSpec_VolumeInfo_ConfigMap(object):
 
     """Implementation of the 'PodInfo_PodSpec_VolumeInfo_ConfigMap' model.
 
+    TODO: type description here.
+
 
     Attributes:
+
         name (string): TODO: Type description here.
     """
 
+
     # Create a mapping from Model property names to API property names
     _names = {
-        "name":'name'
+        "name":'name',
     }
-
     def __init__(self,
-                 name=None):
+                 name=None,
+            ):
+
         """Constructor for the PodInfo_PodSpec_VolumeInfo_ConfigMap class"""
 
         # Initialize members of the class
         self.name = name
-
 
     @classmethod
     def from_dictionary(cls,
@@ -45,6 +48,6 @@ class PodInfo_PodSpec_VolumeInfo_ConfigMap(object):
         name = dictionary.get('name')
 
         # Return an object of this model
-        return cls(name)
-
-
+        return cls(
+            name
+)

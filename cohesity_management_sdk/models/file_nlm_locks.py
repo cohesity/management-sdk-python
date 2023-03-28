@@ -4,34 +4,36 @@
 import cohesity_management_sdk.models.file_id
 import cohesity_management_sdk.models.nlm_lock
 
+
 class FileNlmLocks(object):
 
     """Implementation of the 'FileNlmLocks' model.
 
     Specifies per-file NLM locks
 
-    Attributes:
-        file_id (FileId): TODO: type description here.
-        nlm_locks (list of NlmLock): Specifies the list of NLM locks in a
-            view.
 
+    Attributes:
+
+        file_id (FileId): File identitfiers
+        nlm_locks (list of NlmLock): Specifies the list of NLM locks in a view.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "file_id":'fileId',
-        "nlm_locks":'nlmLocks'
+        "nlm_locks":'nlmLocks',
     }
-
     def __init__(self,
                  file_id=None,
-                 nlm_locks=None):
+                 nlm_locks=None,
+            ):
+
         """Constructor for the FileNlmLocks class"""
 
         # Initialize members of the class
         self.file_id = file_id
         self.nlm_locks = nlm_locks
-
 
     @classmethod
     def from_dictionary(cls,
@@ -59,7 +61,7 @@ class FileNlmLocks(object):
                 nlm_locks.append(cohesity_management_sdk.models.nlm_lock.NlmLock.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(file_id,
-                   nlm_locks)
-
-
+        return cls(
+            file_id,
+            nlm_locks
+)

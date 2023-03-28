@@ -1,43 +1,45 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-import cohesity_management_sdk.models.pagination_parameters
-import cohesity_management_sdk.models.entity_permission_information
 import cohesity_management_sdk.models.aggregated_subtree_info
+import cohesity_management_sdk.models.entity_permission_information
+import cohesity_management_sdk.models.object_protection_info
+import cohesity_management_sdk.models.pagination_parameters
 import cohesity_management_sdk.models.protection_source
 import cohesity_management_sdk.models.registered_source_info
+
 
 class ProtectionSourceNode(object):
 
     """Implementation of the 'ProtectionSourceNode' model.
 
-    Many different node types are supported such as
-    'kComputeResource' and 'kResourcePool'.
+    Many different node types are supported such as 'kComputeResource' and
+    'kResourcePool'.
+
 
     Attributes:
-        application_nodes (list of object): Array of Child Subtrees.
-            Specifies the child subtree used to store additional
-            application-level Objects. Different environments use the subtree
-            to store application-level information. For example for SQL
-            Server, this subtree stores the SQL Server instances running on a
-            VM.
+
+        application_nodes (list of object): Array of Child Subtrees.  Specifies
+            the child subtree used to store additional application-level
+            Objects. Different environments use the subtree to store
+            application-level information. For example for SQL Server, this
+            subtree stores the SQL Server instances running on a VM.
         entity_pagination_parameters (PaginationParameters): Specifies the
-            cursor based pagination parameters for Protection Source and its
-            children. Pagination is supported at a given level within the
-            Protection Source Hierarchy with the help of before or after
-            cursors. A Cursor will always refer to a specific source within
-            the source dataset but will be invalidated if the item is
-            removed.
-        entity_permission_info (EntityPermissionInformation): Specifies the
-            permission information of entities.
+            cursor based pagination parameters for Protection Source to fetch
+            the next set of sources within a level. This parameter will only be
+            present at the parent entity.
+        entity_permission_info (EntityPermissionInformation): Specifies
+            permission information for the entities.
         logical_size (long|int): Specifies the logical size of the data in
-            bytes for the Object on this node. Presence of this field
-            indicates this node is a leaf node.
+            bytes for the Object on this node. Presence of this field indicates
+            this node is a leaf node.
         nodes (list of object): Array of Child Nodes.  Specifies children of
             the current node in the Protection Sources hierarchy. When
-            representing Objects in memory, the entire Object subtree
-            hierarchy is represented. You can use this subtree to navigate
-            down the Object hierarchy.
+            representing Objects in memory, the entire Object subtree hierarchy
+            is represented. You can use this subtree to navigate down the
+            Object hierarchy.
+        object_protection_info (ObjectProtectionInfo): Specifies object
+            protectionInfo information for the entities.
         protected_sources_summary (list of AggregatedSubtreeInfo): Array of
             Protected Objects.  Specifies aggregated information about all the
             child Objects of this node that are currently protected by a
@@ -64,8 +66,8 @@ class ProtectionSourceNode(object):
             some point in the past but are no longer actively protected.
             Snapshots containing these Objects may even exist on the Cohesity
             Cluster and be available to recover from.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -74,26 +76,29 @@ class ProtectionSourceNode(object):
         "entity_permission_info":'entityPermissionInfo',
         "logical_size":'logicalSize',
         "nodes":'nodes',
+        "object_protection_info":'objectProtectionInfo',
         "protected_sources_summary":'protectedSourcesSummary',
         "protection_source":'protectionSource',
         "registration_info":'registrationInfo',
         "total_downtiered_size_in_bytes":'totalDowntieredSizeInBytes',
         "total_uptiered_size_in_bytes":'totalUptieredSizeInBytes',
-        "unprotected_sources_summary":'unprotectedSourcesSummary'
+        "unprotected_sources_summary":'unprotectedSourcesSummary',
     }
-
     def __init__(self,
                  application_nodes=None,
                  entity_pagination_parameters=None,
                  entity_permission_info=None,
                  logical_size=None,
                  nodes=None,
+                 object_protection_info=None,
                  protected_sources_summary=None,
                  protection_source=None,
                  registration_info=None,
                  total_downtiered_size_in_bytes=None,
                  total_uptiered_size_in_bytes=None,
-                 unprotected_sources_summary=None):
+                 unprotected_sources_summary=None,
+            ):
+
         """Constructor for the ProtectionSourceNode class"""
 
         # Initialize members of the class
@@ -102,13 +107,13 @@ class ProtectionSourceNode(object):
         self.entity_permission_info = entity_permission_info
         self.logical_size = logical_size
         self.nodes = nodes
+        self.object_protection_info = object_protection_info
         self.protected_sources_summary = protected_sources_summary
         self.protection_source = protection_source
         self.registration_info = registration_info
         self.total_downtiered_size_in_bytes = total_downtiered_size_in_bytes
         self.total_uptiered_size_in_bytes = total_uptiered_size_in_bytes
         self.unprotected_sources_summary = unprotected_sources_summary
-
 
     @classmethod
     def from_dictionary(cls,
@@ -128,11 +133,12 @@ class ProtectionSourceNode(object):
             return None
 
         # Extract variables from the dictionary
-        application_nodes = dictionary.get('applicationNodes')
+        application_nodes = dictionary.get("applicationNodes")
         entity_pagination_parameters = cohesity_management_sdk.models.pagination_parameters.PaginationParameters.from_dictionary(dictionary.get('entityPaginationParameters')) if dictionary.get('entityPaginationParameters') else None
         entity_permission_info = cohesity_management_sdk.models.entity_permission_information.EntityPermissionInformation.from_dictionary(dictionary.get('entityPermissionInfo')) if dictionary.get('entityPermissionInfo') else None
         logical_size = dictionary.get('logicalSize')
-        nodes = dictionary.get('nodes')
+        nodes = dictionary.get("nodes")
+        object_protection_info = cohesity_management_sdk.models.object_protection_info.ObjectProtectionInfo.from_dictionary(dictionary.get('objectProtectionInfo')) if dictionary.get('objectProtectionInfo') else None
         protected_sources_summary = None
         if dictionary.get('protectedSourcesSummary') != None:
             protected_sources_summary = list()
@@ -149,16 +155,17 @@ class ProtectionSourceNode(object):
                 unprotected_sources_summary.append(cohesity_management_sdk.models.aggregated_subtree_info.AggregatedSubtreeInfo.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(application_nodes,
-                   entity_pagination_parameters,
-                   entity_permission_info,
-                   logical_size,
-                   nodes,
-                   protected_sources_summary,
-                   protection_source,
-                   registration_info,
-                   total_downtiered_size_in_bytes,
-                   total_uptiered_size_in_bytes,
-                   unprotected_sources_summary)
-
-
+        return cls(
+            application_nodes,
+            entity_pagination_parameters,
+            entity_permission_info,
+            logical_size,
+            nodes,
+            object_protection_info,
+            protected_sources_summary,
+            protection_source,
+            registration_info,
+            total_downtiered_size_in_bytes,
+            total_uptiered_size_in_bytes,
+            unprotected_sources_summary
+)

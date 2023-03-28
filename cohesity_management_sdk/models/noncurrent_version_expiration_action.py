@@ -1,29 +1,32 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class NoncurrentVersionExpirationAction(object):
 
     """Implementation of the 'NoncurrentVersionExpirationAction' model.
 
-    Attributes:
-        noncurrent_days (long|int): Specifies the number of days an object
-            is noncurrent before performing the associated action.
+    TODO: type description here.
 
+
+    Attributes:
+
+        noncurrent_days (long|int): Specifies the number of days an object is
+            noncurrent before performing the associated action.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "noncurrent_days":'noncurrentDays'
+        "noncurrent_days":'noncurrentDays',
     }
-
     def __init__(self,
-                 noncurrent_days=None):
+                 noncurrent_days=None,
+            ):
+
         """Constructor for the NoncurrentVersionExpirationAction class"""
 
         # Initialize members of the class
         self.noncurrent_days = noncurrent_days
-
 
     @classmethod
     def from_dictionary(cls,
@@ -46,6 +49,6 @@ class NoncurrentVersionExpirationAction(object):
         noncurrent_days = dictionary.get('noncurrentDays')
 
         # Return an object of this model
-        return cls(noncurrent_days)
-
-
+        return cls(
+            noncurrent_days
+)

@@ -1,37 +1,39 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class CryptsoftKmsConfigResponse(object):
 
     """Implementation of the 'CryptsoftKmsConfigResponse' model.
 
-    CryptsoftKmsConfigResponse specifies response parameters for cryptsoftKMS.
+    TODO: type description here.
+
 
     Attributes:
-        client_certificate_expiry_date (int): Specifies expiry date of client
-            certificate.
+
+        client_certificate_expiry_date (long|int): Specifies expiry date of
+            client certificate.
         kmip_protocol_version (string): Specifies protocol version used to
             communicate with the KMS.
         server_ip (string): Specifies the KMS IP address.
         server_port (int): Specifies port on which the server is listening.
             Default port is 5696.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "client_certificate_expiry_date":'clientCertificateExpiryDate',
         "kmip_protocol_version":'kmipProtocolVersion',
         "server_ip":'serverIp',
-        "server_port":'serverPort'
+        "server_port":'serverPort',
     }
-
     def __init__(self,
                  client_certificate_expiry_date=None,
                  kmip_protocol_version=None,
                  server_ip=None,
-                 server_port=None):
+                 server_port=None,
+            ):
+
         """Constructor for the CryptsoftKmsConfigResponse class"""
 
         # Initialize members of the class
@@ -39,7 +41,6 @@ class CryptsoftKmsConfigResponse(object):
         self.kmip_protocol_version = kmip_protocol_version
         self.server_ip = server_ip
         self.server_port = server_port
-
 
     @classmethod
     def from_dictionary(cls,
@@ -65,9 +66,9 @@ class CryptsoftKmsConfigResponse(object):
         server_port = dictionary.get('serverPort')
 
         # Return an object of this model
-        return cls(client_certificate_expiry_date,
-                   kmip_protocol_version,
-                   server_ip,
-                   server_port)
-
-
+        return cls(
+            client_certificate_expiry_date,
+            kmip_protocol_version,
+            server_ip,
+            server_port
+)

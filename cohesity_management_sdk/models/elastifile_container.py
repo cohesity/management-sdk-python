@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class ElastifileContainer(object):
 
     """Implementation of the 'ElastifileContainer' model.
 
     Specifies information about container in an Elastifile Cluster.
 
+
     Attributes:
+
         created_at (string): Specifies the creation date of the container.
         id (int): Specifies id of a Elastifile Container in a Cluster.
         is_nfs_interface (bool): Specifies if the container has NFS volumes or
@@ -16,14 +17,14 @@ class ElastifileContainer(object):
         is_smb_interface (bool): Specifies if the container has SMB volumes or
             not.
         name (string): Specifies the name of the container.
-        protocols (list of ProtocolEnum): Specifies Elastifile supported
+        protocols (list of ProtocolsEnum): Specifies Elastifile supported
             Protocol information enabled on Elastifile container. 'kNfs'
-            indicates NFS protocol in an elastifile container. 'kSmb'
-            indicates SMB protocol in an elastifile container.
+            indicates NFS protocol in an elastifile container. 'kSmb' indicates
+            SMB protocol in an elastifile container.
         used_bytes (long|int): Specifies the bytes used by the container.
         uuid (string): Specifies the UUID of the container.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -34,9 +35,8 @@ class ElastifileContainer(object):
         "name":'name',
         "protocols":'protocols',
         "used_bytes":'usedBytes',
-        "uuid":'uuid'
+        "uuid":'uuid',
     }
-
     def __init__(self,
                  created_at=None,
                  id=None,
@@ -45,7 +45,9 @@ class ElastifileContainer(object):
                  name=None,
                  protocols=None,
                  used_bytes=None,
-                 uuid=None):
+                 uuid=None,
+            ):
+
         """Constructor for the ElastifileContainer class"""
 
         # Initialize members of the class
@@ -57,7 +59,6 @@ class ElastifileContainer(object):
         self.protocols = protocols
         self.used_bytes = used_bytes
         self.uuid = uuid
-
 
     @classmethod
     def from_dictionary(cls,
@@ -82,18 +83,18 @@ class ElastifileContainer(object):
         is_nfs_interface = dictionary.get('isNfsInterface')
         is_smb_interface = dictionary.get('isSmbInterface')
         name = dictionary.get('name')
-        protocols = dictionary.get('protocols')
+        protocols = dictionary.get("protocols")
         used_bytes = dictionary.get('usedBytes')
         uuid = dictionary.get('uuid')
 
         # Return an object of this model
-        return cls(created_at,
-                   id,
-                   is_nfs_interface,
-                   is_smb_interface,
-                   name,
-                   protocols,
-                   used_bytes,
-                   uuid)
-
-
+        return cls(
+            created_at,
+            id,
+            is_nfs_interface,
+            is_smb_interface,
+            name,
+            protocols,
+            used_bytes,
+            uuid
+)

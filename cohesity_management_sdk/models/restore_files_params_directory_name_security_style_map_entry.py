@@ -1,34 +1,35 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
-class RestoreFilesParamsDirectoryNameSecurityStyleMapEntry(object):
+class RestoreFilesParams_DirectoryNameSecurityStyleMapEntry(object):
 
     """Implementation of the 'RestoreFilesParams_DirectoryNameSecurityStyleMapEntry' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
-        key (string): TODO: type description here.
-        value (string): TODO: type description here.
 
+        key (string): TODO: Type description here.
+        value (string): TODO: Type description here.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "key":'key',
-        "value":'value'
+        "value":'value',
     }
-
     def __init__(self,
                  key=None,
-                 value=None):
-        """Constructor for the RestoreFilesParamsDirectoryNameSecurityStyleMapEntry class"""
+                 value=None,
+            ):
+
+        """Constructor for the RestoreFilesParams_DirectoryNameSecurityStyleMapEntry class"""
 
         # Initialize members of the class
         self.key = key
         self.value = value
-
 
     @classmethod
     def from_dictionary(cls,
@@ -52,7 +53,7 @@ class RestoreFilesParamsDirectoryNameSecurityStyleMapEntry(object):
         value = dictionary.get('value')
 
         # Return an object of this model
-        return cls(key,
-                   value)
-
-
+        return cls(
+            key,
+            value
+)

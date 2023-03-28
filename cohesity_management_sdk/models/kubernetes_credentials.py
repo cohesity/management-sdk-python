@@ -1,31 +1,32 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class KubernetesCredentials(object):
 
     """Implementation of the 'KubernetesCredentials' model.
 
     Specifies the credentials to authenticate with a Kubernetes Cluster.
 
+
     Attributes:
+
         client_private_key (string): Specifies Client private associated with
             the service account.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "client_private_key":'clientPrivateKey'
+        "client_private_key":'clientPrivateKey',
     }
-
     def __init__(self,
-                 client_private_key=None):
+                 client_private_key=None,
+            ):
+
         """Constructor for the KubernetesCredentials class"""
 
         # Initialize members of the class
         self.client_private_key = client_private_key
-
 
     @classmethod
     def from_dictionary(cls,
@@ -48,6 +49,6 @@ class KubernetesCredentials(object):
         client_private_key = dictionary.get('clientPrivateKey')
 
         # Return an object of this model
-        return cls(client_private_key)
-
-
+        return cls(
+            client_private_key
+)

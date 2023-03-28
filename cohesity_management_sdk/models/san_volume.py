@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class SanVolume(object):
 
     """Implementation of the 'SanVolume' model.
 
     Specifies a SAN Volume in a SAN Storage Array.
 
+
     Attributes:
+
         created_time (string): Specifies the created time (e.g.,
             "2015-07-21T17:59:41Z") of the volume.
         parent_volume (string): Specifies the name of the source volume, if
@@ -18,8 +19,8 @@ class SanVolume(object):
             volume.
         used_bytes (long|int): Specifies the total space actually used by the
             volume.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -27,15 +28,16 @@ class SanVolume(object):
         "parent_volume":'parentVolume',
         "serial_number":'serialNumber',
         "size_bytes":'sizeBytes',
-        "used_bytes":'usedBytes'
+        "used_bytes":'usedBytes',
     }
-
     def __init__(self,
                  created_time=None,
                  parent_volume=None,
                  serial_number=None,
                  size_bytes=None,
-                 used_bytes=None):
+                 used_bytes=None,
+            ):
+
         """Constructor for the SanVolume class"""
 
         # Initialize members of the class
@@ -44,7 +46,6 @@ class SanVolume(object):
         self.serial_number = serial_number
         self.size_bytes = size_bytes
         self.used_bytes = used_bytes
-
 
     @classmethod
     def from_dictionary(cls,
@@ -71,10 +72,10 @@ class SanVolume(object):
         used_bytes = dictionary.get('usedBytes')
 
         # Return an object of this model
-        return cls(created_time,
-                   parent_volume,
-                   serial_number,
-                   size_bytes,
-                   used_bytes)
-
-
+        return cls(
+            created_time,
+            parent_volume,
+            serial_number,
+            size_bytes,
+            used_bytes
+)

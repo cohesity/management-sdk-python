@@ -3,37 +3,36 @@
 
 import cohesity_management_sdk.models.destroy_cloned_entity_info_proto
 
+
 class DestroyClonedVMTaskInfoProto(object):
 
     """Implementation of the 'DestroyClonedVMTaskInfoProto' model.
 
     Each available extension is listed below along with the location of the
-    proto file (relative to magneto/connectors) where it is defined.
-    DestroyClonedVMTaskInfoProto extension          Location
+    proto file (relative to magneto/connectors) where it is defined. 
+    DestroyClonedVMTaskInfoProto extension          Location          
     Extension
-    ===========================================================================
-    ==
-    vmware::DestroyClonedTaskInfo::
-    vmware_destroy_cloned_vm_task_info            vmware/vmware.proto    100
-    hyperv::DestroyClonedTaskInfo::
+    =============================================================================
+    vmware::DestroyClonedTaskInfo:: vmware_destroy_cloned_vm_task_info         
+    vmware/vmware.proto    100 hyperv::DestroyClonedTaskInfo::
     hyperv_destroy_cloned_vm_task_info            hyperv/hyperv.proto    101
-    ===========================================================================
-    ==
+    =============================================================================
+
 
     Attributes:
+
         datastore_not_unmounted_reason (string): If datastore was not
             unmounted, this field contains the reason for the same.
         datastore_unmounted (bool): Whether the datastore corresponding to the
             clone view was unmounted from primary environment.
         destroy_cloned_entity_info_vec (list of DestroyClonedEntityInfoProto):
-            Vector of all cloned entities that this destroy task will
-            teardown.
+            Vector of all cloned entities that this destroy task will teardown.
         mtype (int): The type of environment this destroy clone task info
             pertains to.
         view_deleted (bool): Whether the clone view was deleted by the destroy
             task.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -41,15 +40,16 @@ class DestroyClonedVMTaskInfoProto(object):
         "datastore_unmounted":'datastoreUnmounted',
         "destroy_cloned_entity_info_vec":'destroyClonedEntityInfoVec',
         "mtype":'type',
-        "view_deleted":'viewDeleted'
+        "view_deleted":'viewDeleted',
     }
-
     def __init__(self,
                  datastore_not_unmounted_reason=None,
                  datastore_unmounted=None,
                  destroy_cloned_entity_info_vec=None,
                  mtype=None,
-                 view_deleted=None):
+                 view_deleted=None,
+            ):
+
         """Constructor for the DestroyClonedVMTaskInfoProto class"""
 
         # Initialize members of the class
@@ -58,7 +58,6 @@ class DestroyClonedVMTaskInfoProto(object):
         self.destroy_cloned_entity_info_vec = destroy_cloned_entity_info_vec
         self.mtype = mtype
         self.view_deleted = view_deleted
-
 
     @classmethod
     def from_dictionary(cls,
@@ -89,10 +88,10 @@ class DestroyClonedVMTaskInfoProto(object):
         view_deleted = dictionary.get('viewDeleted')
 
         # Return an object of this model
-        return cls(datastore_not_unmounted_reason,
-                   datastore_unmounted,
-                   destroy_cloned_entity_info_vec,
-                   mtype,
-                   view_deleted)
-
-
+        return cls(
+            datastore_not_unmounted_reason,
+            datastore_unmounted,
+            destroy_cloned_entity_info_vec,
+            mtype,
+            view_deleted
+)

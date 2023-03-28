@@ -3,34 +3,35 @@
 
 import cohesity_management_sdk.models.cluster_networking_resource_information
 
+
 class NetworkingInformation(object):
 
     """Implementation of the 'NetworkingInformation' model.
 
     Specifies the struct containing information about network addresses
-    configured on the given box. This is needed for dealing with
-    Windows/Oracle
+    configured on the given box. This is needed for dealing with Windows/Oracle
     Cluster resources that we discover and protect automatically.
 
-    Attributes:
-        resource_vec (list of ClusterNetworkingResourceInformation): The list
-            of resources on the system that are accessible by an IP
-            address.
 
+    Attributes:
+
+        resource_vec (list of ClusterNetworkingResourceInformation): The list
+            of resources on the system that are accessible by an IP address.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "resource_vec":'resourceVec'
+        "resource_vec":'resourceVec',
     }
-
     def __init__(self,
-                 resource_vec=None):
+                 resource_vec=None,
+            ):
+
         """Constructor for the NetworkingInformation class"""
 
         # Initialize members of the class
         self.resource_vec = resource_vec
-
 
     @classmethod
     def from_dictionary(cls,
@@ -57,6 +58,6 @@ class NetworkingInformation(object):
                 resource_vec.append(cohesity_management_sdk.models.cluster_networking_resource_information.ClusterNetworkingResourceInformation.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(resource_vec)
-
-
+        return cls(
+            resource_vec
+)

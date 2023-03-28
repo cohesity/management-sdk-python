@@ -1,33 +1,33 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class UpdateResolutionParams(object):
 
     """Implementation of the 'UpdateResolutionParams' model.
 
     Apply an existing Resolution to a new list of Alerts, which are specified
-    by
-    Alert Ids.
+    by Alert Ids.
+
 
     Attributes:
+
         alert_id_list (list of string): Specifies the Alerts to resolve, which
             are specified by Alert Ids.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "alert_id_list":'alertIdList'
+        "alert_id_list":'alertIdList',
     }
-
     def __init__(self,
-                 alert_id_list=None):
+                 alert_id_list=None,
+            ):
+
         """Constructor for the UpdateResolutionParams class"""
 
         # Initialize members of the class
         self.alert_id_list = alert_id_list
-
 
     @classmethod
     def from_dictionary(cls,
@@ -47,9 +47,9 @@ class UpdateResolutionParams(object):
             return None
 
         # Extract variables from the dictionary
-        alert_id_list = dictionary.get('alertIdList')
+        alert_id_list = dictionary.get("alertIdList")
 
         # Return an object of this model
-        return cls(alert_id_list)
-
-
+        return cls(
+            alert_id_list
+)

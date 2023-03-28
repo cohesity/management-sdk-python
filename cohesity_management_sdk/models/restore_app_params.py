@@ -1,46 +1,52 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-import cohesity_management_sdk.models.credentials
 import cohesity_management_sdk.models.app_owner_restore_info
+import cohesity_management_sdk.models.credentials
 import cohesity_management_sdk.models.restore_app_object
+
 
 class RestoreAppParams(object):
 
     """Implementation of the 'RestoreAppParams' model.
 
-    This message captures all the necessary arguments specified by the user
-    to
+    This message captures all the necessary arguments specified by the user to
     restore an application.
 
+
     Attributes:
-        credentials (Credentials): Specifies credentials to access a target
-            source.
-        owner_restore_info (AppOwnerRestoreInfo): TODO: type description
-            here.
+
+        credentials (Credentials): For a local restore operation, credentials
+            are optional. If not specified, the restore operation will use the
+            credentials that were used to register the application's owner
+            entity.  For a remote restore operation from a replicated target,
+            credentials must be specified.
+        owner_restore_info (AppOwnerRestoreInfo): The restore information about
+            the application's owner.
         restore_app_object_vec (list of RestoreAppObject): The application
             level objects that needs to be restored. If this vector is
-            populated with exactly one object without its 'app_entity', all
-            the application objects of the owner will be restored. If multiple
+            populated with exactly one object without its 'app_entity', all the
+            application objects of the owner will be restored. If multiple
             objects are being restored, the 'app_entity' field must be
             specified for all of them.
         mtype (int): The application environment.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "credentials":'credentials',
         "owner_restore_info":'ownerRestoreInfo',
         "restore_app_object_vec":'restoreAppObjectVec',
-        "mtype":'type'
+        "mtype":'type',
     }
-
     def __init__(self,
                  credentials=None,
                  owner_restore_info=None,
                  restore_app_object_vec=None,
-                 mtype=None):
+                 mtype=None,
+            ):
+
         """Constructor for the RestoreAppParams class"""
 
         # Initialize members of the class
@@ -48,7 +54,6 @@ class RestoreAppParams(object):
         self.owner_restore_info = owner_restore_info
         self.restore_app_object_vec = restore_app_object_vec
         self.mtype = mtype
-
 
     @classmethod
     def from_dictionary(cls,
@@ -78,9 +83,9 @@ class RestoreAppParams(object):
         mtype = dictionary.get('type')
 
         # Return an object of this model
-        return cls(credentials,
-                   owner_restore_info,
-                   restore_app_object_vec,
-                   mtype)
-
-
+        return cls(
+            credentials,
+            owner_restore_info,
+            restore_app_object_vec,
+            mtype
+)

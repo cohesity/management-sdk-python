@@ -1,42 +1,42 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class InfectedFileId(object):
 
     """Implementation of the 'InfectedFileId' model.
 
-    Specifies the infected file Identifier. A file is identified with three
-    Ids
+    Specifies the infected file Identifier. A file is identified with three Ids
     mentioned in the InfectedFileId definition.
 
+
     Attributes:
+
         entity_id (long|int): Specifies the entity id of the infected file.
         root_inode_id (long|int): Specifies the root inode id of the file
             system that infected file belongs to.
         view_id (long|int): Specifies the id of the View the infected file
             belongs to.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "entity_id":'entityId',
         "root_inode_id":'rootInodeId',
-        "view_id":'viewId'
+        "view_id":'viewId',
     }
-
     def __init__(self,
                  entity_id=None,
                  root_inode_id=None,
-                 view_id=None):
+                 view_id=None,
+            ):
+
         """Constructor for the InfectedFileId class"""
 
         # Initialize members of the class
         self.entity_id = entity_id
         self.root_inode_id = root_inode_id
         self.view_id = view_id
-
 
     @classmethod
     def from_dictionary(cls,
@@ -61,8 +61,8 @@ class InfectedFileId(object):
         view_id = dictionary.get('viewId')
 
         # Return an object of this model
-        return cls(entity_id,
-                   root_inode_id,
-                   view_id)
-
-
+        return cls(
+            entity_id,
+            root_inode_id,
+            view_id
+)

@@ -1,29 +1,31 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class MongoDBCluster(object):
 
     """Implementation of the 'MongoDBCluster' model.
 
     Specifies an Object containing information about a mongodb cluster.
 
+
     Attributes:
-    seeds (list of string): Seeds of this MongoDB Cluster.
+
+        seeds (list of string): Seeds of this MongoDB Cluster.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "seeds":'seeds'
+        "seeds":'seeds',
     }
-
     def __init__(self,
-                 seeds=None):
+                 seeds=None,
+            ):
+
         """Constructor for the MongoDBCluster class"""
 
         # Initialize members of the class
         self.seeds = seeds
-
 
     @classmethod
     def from_dictionary(cls,
@@ -43,9 +45,9 @@ class MongoDBCluster(object):
             return None
 
         # Extract variables from the dictionary
-        seeds = dictionary.get('seeds')
+        seeds = dictionary.get("seeds")
 
         # Return an object of this model
-        return cls(seeds)
-
-
+        return cls(
+            seeds
+)

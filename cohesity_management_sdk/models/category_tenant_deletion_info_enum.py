@@ -4,15 +4,14 @@
 class CategoryTenantDeletionInfoEnum(object):
 
     """Implementation of the 'CategoryTenantDeletionInfo' enum.
-
     Specifies the category of objects whose deletion state is being captured.
-    Specifies the Category of objects which are required to be deleted.
-    On the first pass (when Tenant is marked 'deleted' and
-    'object_deletion_required' is set to true, for all the objects recognized
-    in the enum - default deletion_info_vec is created.
-    In order to skip the deletion of a few object categories, this object
-    should be created manually during the 'Delete API' and these categories
-    should be skipped.
+    Specifies the Category of objects which are required to be deleted. On the
+    first pass (when Tenant is marked 'deleted' and 'object_deletion_required'
+    is set to true, for all the objects recognized in the enum - default
+    deletion_info_vec is created. In order to skip the deletion of a few object
+    categories, this object should be created manually during the 'Delete API'
+    and these categories should be skipped.
+
 
     Attributes:
         PROTECTIONJOBS: TODO: type description here.

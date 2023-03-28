@@ -3,16 +3,14 @@
 
 class TypeRecoverTaskRequestEnum(object):
 
-    """Implementation of the 'Type_RecoverTaskRequest' enum.
-
+    """Implementation of the 'TypeRecoverTaskRequest' enum.
     Specifies the type of Restore Task such as 'kRecoverVMs' or
-    'kMountVolumes'.
-    'kRecoverVMs' specifies a Restore Task that recovers VMs.
+    'kMountVolumes'. 'kRecoverVMs' specifies a Restore Task that recovers VMs.
     'kMountVolumes' specifies a Restore Task that mounts volumes to mount
-    points.
-    'kRecoverNamespaces' specifies a Restore Task that recovers Kubernetes
-    namespaces.
-    'kMountFileVolume' specifies a Restore Task that mounts a file volume.
+    points. 'kRecoverNamespaces' specifies a Restore Task that recovers
+    Kubernetes namespaces. 'kMountFileVolume' specifies a Restore Task that
+    mounts a file volume.
+
 
     Attributes:
         KRECOVERVMS: TODO: type description here.
@@ -29,4 +27,3 @@ class TypeRecoverTaskRequestEnum(object):
     KRECOVERNAMESPACES = 'kRecoverNamespaces'
 
     KMOUNTFILEVOLUME = 'kMountFileVolume'
-

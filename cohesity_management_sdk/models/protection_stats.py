@@ -1,38 +1,39 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class ProtectionStats(object):
 
     """Implementation of the 'ProtectionStats' model.
 
     Protection Statistics.
 
+
     Attributes:
+
         num_failed (int): Number of Failed Objects.
         num_objects (int): Number of Objects.
         size_bytes (long|int): Size in Bytes.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "num_failed":'numFailed',
         "num_objects":'numObjects',
-        "size_bytes":'sizeBytes'
+        "size_bytes":'sizeBytes',
     }
-
     def __init__(self,
                  num_failed=None,
                  num_objects=None,
-                 size_bytes=None):
+                 size_bytes=None,
+            ):
+
         """Constructor for the ProtectionStats class"""
 
         # Initialize members of the class
         self.num_failed = num_failed
         self.num_objects = num_objects
         self.size_bytes = size_bytes
-
 
     @classmethod
     def from_dictionary(cls,
@@ -57,8 +58,8 @@ class ProtectionStats(object):
         size_bytes = dictionary.get('sizeBytes')
 
         # Return an object of this model
-        return cls(num_failed,
-                   num_objects,
-                   size_bytes)
-
-
+        return cls(
+            num_failed,
+            num_objects,
+            size_bytes
+)

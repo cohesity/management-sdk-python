@@ -4,9 +4,9 @@
 class ReplicationStrategyEnum(object):
 
     """Implementation of the 'ReplicationStrategy' enum.
+    Replication stragegy for the keyspace. Specifies the type of an Cassandra
+    source entity.
 
-    Replication stragegy for the keyspace.
-    Specifies the type of an Cassandra source entity.
 
     Attributes:
         KSIMPLE: TODO: type description here.
@@ -20,4 +20,3 @@ class ReplicationStrategyEnum(object):
     KNETWORK = 'kNetwork'
 
     KUNSUPPORTED = 'kUnsupported'
-

@@ -3,19 +3,22 @@
 
 import cohesity_management_sdk.models.protection_source
 
+
 class VirtualDiskInformation(object):
 
     """Implementation of the 'VirtualDiskInformation' model.
 
-    Specifies information about the virtual disk.
+    TODO: type description here.
+
 
     Attributes:
+
         bus_number (long|int): Specifies the Id of the controller bus that
             controls the disk.
         controller_type (string): Specifies the controller type like SCSI, or
             IDE etc.
         disk_id (string): Specifies original disk id. This is sufficient to
-            identify the disk information, but in some scenarios, user's may
+            identify the disk information, but in some scenarios, users may
             specify the controller option instead.
         disk_location (ProtectionSource): Specifies location of the disk, e.g.
             this will contain the location of datastore in VMware environment.
@@ -25,8 +28,8 @@ class VirtualDiskInformation(object):
         mount_points (list of string): Specifies the list of mount points.
         unit_number (long|int): Specifies the disk file name. This is the VMDK
             name and not the flat file name.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -37,9 +40,8 @@ class VirtualDiskInformation(object):
         "disk_size_in_bytes":'diskSizeInBytes',
         "file_path":'filePath',
         "mount_points":'mountPoints',
-        "unit_number":'unitNumber'
+        "unit_number":'unitNumber',
     }
-
     def __init__(self,
                  bus_number=None,
                  controller_type=None,
@@ -48,7 +50,9 @@ class VirtualDiskInformation(object):
                  disk_size_in_bytes=None,
                  file_path=None,
                  mount_points=None,
-                 unit_number=None):
+                 unit_number=None,
+            ):
+
         """Constructor for the VirtualDiskInformation class"""
 
         # Initialize members of the class
@@ -60,7 +64,6 @@ class VirtualDiskInformation(object):
         self.file_path = file_path
         self.mount_points = mount_points
         self.unit_number = unit_number
-
 
     @classmethod
     def from_dictionary(cls,
@@ -86,17 +89,17 @@ class VirtualDiskInformation(object):
         disk_location = cohesity_management_sdk.models.protection_source.ProtectionSource.from_dictionary(dictionary.get('diskLocation')) if dictionary.get('diskLocation') else None
         disk_size_in_bytes = dictionary.get('diskSizeInBytes')
         file_path = dictionary.get('filePath')
-        mount_points = dictionary.get('mountPoints')
+        mount_points = dictionary.get("mountPoints")
         unit_number = dictionary.get('unitNumber')
 
         # Return an object of this model
-        return cls(bus_number,
-                   controller_type,
-                   disk_id,
-                   disk_location,
-                   disk_size_in_bytes,
-                   file_path,
-                   mount_points,
-                   unit_number)
-
-
+        return cls(
+            bus_number,
+            controller_type,
+            disk_id,
+            disk_location,
+            disk_size_in_bytes,
+            file_path,
+            mount_points,
+            unit_number
+)

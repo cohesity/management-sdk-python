@@ -4,15 +4,12 @@
 class ServiceStateEnum(object):
 
     """Implementation of the 'ServiceState' enum.
+    Specifies the status of the cbt driver. Specifies the service state of the
+    cbt driver. 'kRunning' indicates the cbt driver is running. 'kStopped'
+    indicates the service is stopped. 'kPaused' indicates the service is paused
+    (it is a Windows-specific state). 'kUnknown' indicates the service with the
+    specified name is not known on the system.
 
-    Specifies the status of the cbt driver.
-    Specifies the service state of the cbt driver.
-    'kRunning' indicates the cbt driver is running.
-    'kStopped' indicates the service is stopped.
-    'kPaused' indicates the service is paused (it
-    is a Windows-specific state).
-    'kUnknown' indicates the service with the specified
-    name is not known on the system.
 
     Attributes:
         KRUNNING: TODO: type description here.

@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class VirtualDiskInfo(object):
 
     """Implementation of the 'VirtualDiskInfo' model.
 
-    Virtual Disk Information.
+    TODO: type description here.
+
 
     Attributes:
+
         bus_number (long|int): Specifies the Id of the controller bus that
             controls the disk.
         controller_type (string): Specifies the controller type like SCSI, or
@@ -18,8 +19,8 @@ class VirtualDiskInfo(object):
         logical_size_bytes (long|int): Virtual disk size.
         unit_number (long|int): Specifies the disk file name. This is the VMDK
             name and not the flat file name.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -27,15 +28,16 @@ class VirtualDiskInfo(object):
         "controller_type":'controllerType',
         "filename":'filename',
         "logical_size_bytes":'logicalSizeBytes',
-        "unit_number":'unitNumber'
+        "unit_number":'unitNumber',
     }
-
     def __init__(self,
                  bus_number=None,
                  controller_type=None,
                  filename=None,
                  logical_size_bytes=None,
-                 unit_number=None):
+                 unit_number=None,
+            ):
+
         """Constructor for the VirtualDiskInfo class"""
 
         # Initialize members of the class
@@ -44,7 +46,6 @@ class VirtualDiskInfo(object):
         self.filename = filename
         self.logical_size_bytes = logical_size_bytes
         self.unit_number = unit_number
-
 
     @classmethod
     def from_dictionary(cls,
@@ -71,10 +72,10 @@ class VirtualDiskInfo(object):
         unit_number = dictionary.get('unitNumber')
 
         # Return an object of this model
-        return cls(bus_number,
-                   controller_type,
-                   filename,
-                   logical_size_bytes,
-                   unit_number)
-
-
+        return cls(
+            bus_number,
+            controller_type,
+            filename,
+            logical_size_bytes,
+            unit_number
+)

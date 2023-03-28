@@ -3,39 +3,35 @@
 
 import cohesity_management_sdk.models.file_path_filter
 
+
 class DataMigrationJobParameters(object):
 
     """Implementation of the 'DataMigrationJobParameters' model.
 
-    Specifies parameters applicable for data migration jobs in NAS
-    environment.
+    Specifies parameters applicable for data migration jobs in NAS environment.
+
 
     Attributes:
+
         cold_file_window (long|int): Identifies the cold files in the NAS
             source. Files that haven't been accessed/modified in the last
             cold_file_window are migrated.
-        delete_orphan_data (bool): Delete migrated data if no symlink
-            at source is pointing to it.
-        file_path_filter (FilePathFilter): Specifies filters to match files
-            and directories on a Server. Two kinds of filters are supported.
-            a) prefix which always starts with '/'. b) posix which always
-            starts with '*' (cannot be "*" only). Regular expressions are not
-            supported. If a directory is matched, the action is applicable to
-            all of its descendants. File paths not matching any protectFilters
-            are not backed up.  An example is: Protect Filters: "/" Exclude
-            Filters: "/tmp", "*.mp4" Using such a policy will include
-            everything under the root directory except the /tmp directory and
-            all the mp4 files.
+        delete_orphan_data (bool): Delete migrated data if no symlink at source
+            is pointing to it.
+        file_path_filter (FilePathFilter): The filtering policy to decide which
+            objects within a source should be migrated. If this is not
+            specified, then all the objects within the source will be migrated
+            based on the migration policy.
         file_selection_policy (FileSelectionPolicyEnum): Specifies policy to
             select a file to migrate based on its creation, last access or
             modification time. eg. A file can be selected to migrate if it has
-            not been accessed/modified in the ColdFileWindow. enum:
-            kOlderThan, kLastAccessed, kLastModified. Specifies policy for
-            file selection in data migration jobs based on time. 'kOlderThan':
-            Migrate the files that are older than cold file window.
-            'kLastAccessed': Migrate the files that are not accessed in cold
-            file window. 'kLastModified': Migrate the files that have not been
-            modified in cold file window.
+            not been accessed/modified in the ColdFileWindow. enum: kOlderThan,
+            kLastAccessed, kLastModified. Specifies policy for file selection
+            in data migration jobs based on time. 'kOlderThan': Migrate the
+            files that are older than cold file window. 'kLastAccessed':
+            Migrate the files that are not accessed in cold file window.
+            'kLastModified': Migrate the files that have not been modified in
+            cold file window.
         file_size_bytes (long|int): Gives the size criteria to be used for
             selecting the files to be migrated in bytes. The cold files that
             are equal and greater than this size are migrated.
@@ -53,8 +49,8 @@ class DataMigrationJobParameters(object):
             mounted on all NFS clients for accessing the migrated data.
         target_view_name (string): The target view name to which the data will
             be migrated.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -66,9 +62,8 @@ class DataMigrationJobParameters(object):
         "file_size_policy":'fileSizePolicy',
         "migrate_without_stub":'migrateWithoutStub',
         "nfs_mount_path":'nfsMountPath',
-        "target_view_name":'targetViewName'
+        "target_view_name":'targetViewName',
     }
-
     def __init__(self,
                  cold_file_window=None,
                  delete_orphan_data=None,
@@ -78,7 +73,9 @@ class DataMigrationJobParameters(object):
                  file_size_policy=None,
                  migrate_without_stub=None,
                  nfs_mount_path=None,
-                 target_view_name=None):
+                 target_view_name=None,
+            ):
+
         """Constructor for the DataMigrationJobParameters class"""
 
         # Initialize members of the class
@@ -91,7 +88,6 @@ class DataMigrationJobParameters(object):
         self.migrate_without_stub = migrate_without_stub
         self.nfs_mount_path = nfs_mount_path
         self.target_view_name = target_view_name
-
 
     @classmethod
     def from_dictionary(cls,
@@ -117,19 +113,19 @@ class DataMigrationJobParameters(object):
         file_selection_policy = dictionary.get('fileSelectionPolicy')
         file_size_bytes = dictionary.get('fileSizeBytes')
         file_size_policy = dictionary.get('fileSizePolicy')
-        migrate_without_stub = dictionary.get('migrateWithoutStub', None)
+        migrate_without_stub = dictionary.get('migrateWithoutStub')
         nfs_mount_path = dictionary.get('nfsMountPath')
         target_view_name = dictionary.get('targetViewName')
 
         # Return an object of this model
-        return cls(cold_file_window,
-                   delete_orphan_data,
-                   file_path_filter,
-                   file_selection_policy,
-                   file_size_bytes,
-                   file_size_policy,
-                   migrate_without_stub,
-                   nfs_mount_path,
-                   target_view_name)
-
-
+        return cls(
+            cold_file_window,
+            delete_orphan_data,
+            file_path_filter,
+            file_selection_policy,
+            file_size_bytes,
+            file_size_policy,
+            migrate_without_stub,
+            nfs_mount_path,
+            target_view_name
+)

@@ -208,6 +208,7 @@ class ProtectionSourcesController(BaseController):
 
     def list_protection_sources(self,
                                 exclude_office_365_types=None,
+                                get_teams_channels=None,
                                 after_cursor_entity_id=None,
                                 before_cursor_entity_id=None,
                                 node_id=None,
@@ -229,6 +230,10 @@ class ProtectionSourcesController(BaseController):
                                 sids=None,
                                 include_source_credentials=None,
                                 encryption_key=None,
+                                include_object_protection_info=None,
+                                prune_non_critical_info=None,
+                                request_initiator_type=None,
+                                use_cached_data=None,
                                 tenant_ids=None,
                                 all_under_hierarchy=None):
         """Does a GET request to /public/protectionSources.
@@ -253,6 +258,10 @@ class ProtectionSourcesController(BaseController):
                 'kMailbox', etc.
                 For example, set this parameter to 'kMailbox' to exclude
                 Mailbox Objects from being returned.
+            get_teams_channels (bool): Specifies whether to get the list of the
+                channels for a given M365 Teams object. This should be set to true
+                only when a single Id belonging to M365 Teams object is provided
+                in the query params.
             after_cursor_entity_id (long|int, optional): Specifies the entity
                 id starting from which the items are to be returned.
             before_cursor_entity_id (long|int, optional): Specifies the entity
@@ -327,6 +336,23 @@ class ProtectionSourcesController(BaseController):
             encryption_key (string, optional): Key to be used to encrypt the
                 source credential. If include_source_credentials is set to true
                 this key must be specified.
+            include_object_protection_info (bool): If specified, the object
+                protection of entities(if any) will be returned.
+            prune_non_critical_info (bool): Specifies whether to prune non
+                critical info within entities. Incase of VMs, virtual disk
+                information will be pruned. Incase of Office365, metadata about
+                user entities will be pruned. This can be used to limit the size
+                of the response by caller.
+            request_initiator_type (string): Specifies the type of the request.
+                Possible values are UIUser and UIAuto, which means the request
+                is triggered by user or is an auto refresh request. Services
+                like magneto will use this to determine the priority of the
+                requests, so that it can more intelligently handle overload
+                situations by prioritizing higher priority requests.
+            use_cached_data (bool): Specifies whether we can serve the GET
+                request to the read replica cache. setting this to true ensures
+                that the API request is served to the read replica. setting this
+                to false will serve the request to the master.
             tenant_ids (list of string, optional): TenantIds contains ids of
                 the tenants for which objects are to be returned.
             all_under_hierarchy (bool, optional): AllUnderHierarchy specifies
@@ -353,6 +379,7 @@ class ProtectionSourcesController(BaseController):
             _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
             _query_parameters = {
+                'getTeamsChannels': get_teams_channels,
                 'excludeOffice365Types': exclude_office_365_types,
                 'afterCursorEntityId': after_cursor_entity_id,
                 'beforeCursorEntityId': before_cursor_entity_id,
@@ -364,7 +391,7 @@ class ProtectionSourcesController(BaseController):
                 'numLevels': num_levels,
                 'excludeTypes': exclude_types,
                 'excludeAwsTypes': exclude_aws_types,
-                'ExcludeKubernetesTypes': exclude_kubernetes_types,
+                'excludeKubernetesTypes': exclude_kubernetes_types,
                 'includeDatastores': include_datastores,
                 'includeNetworks': include_networks,
                 'includeVMFolders': include_vm_folders,
@@ -375,6 +402,10 @@ class ProtectionSourcesController(BaseController):
                 'sids': sids,
                 'includeSourceCredentials': include_source_credentials,
                 'encryptionKey': encryption_key,
+                'includeObjectProtectionInfo': include_object_protection_info,
+                'pruneNonCriticalInfo': prune_non_critical_info,
+                'requestInitiatorType': request_initiator_type,
+                'useCachedData': use_cached_data,
                 'tenantIds': tenant_ids,
                 'allUnderHierarchy': all_under_hierarchy
             }

@@ -4,36 +4,39 @@
 import cohesity_management_sdk.models.protection_source
 import cohesity_management_sdk.models.protection_source_snapshot_information
 
+
 class ProtectionSourcesJobRunsReportElement(object):
 
     """Implementation of the 'ProtectionSourcesJobRunsReportElement' model.
 
     Specifies a Protection Source and the Snapshots that back it up.
 
+
     Attributes:
+
         protection_source (ProtectionSource): Specifies the leaf Protection
             Source Object such as a VM.
-        snapshots_info (array of ProtectionSourceSnapshotInformation): Array
-            of Snapshots Specifies the Snapshots that contain backups of the
+        snapshots_info (list of ProtectionSourceSnapshotInformation): Array of
+            Snapshots  Specifies the Snapshots that contain backups of the
             Protection Source Object.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "protection_source": 'protectionSource',
-        "snapshots_info": 'snapshotsInfo'
+        "protection_source":'protectionSource',
+        "snapshots_info":'snapshotsInfo',
     }
-
     def __init__(self,
                  protection_source=None,
-                 snapshots_info=None):
+                 snapshots_info=None,
+            ):
+
         """Constructor for the ProtectionSourcesJobRunsReportElement class"""
 
         # Initialize members of the class
         self.protection_source = protection_source
         self.snapshots_info = snapshots_info
-
 
     @classmethod
     def from_dictionary(cls,
@@ -61,7 +64,7 @@ class ProtectionSourcesJobRunsReportElement(object):
                 snapshots_info.append(cohesity_management_sdk.models.protection_source_snapshot_information.ProtectionSourceSnapshotInformation.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(protection_source,
-                   snapshots_info)
-
-
+        return cls(
+            protection_source,
+            snapshots_info
+)

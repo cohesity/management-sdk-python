@@ -4,9 +4,11 @@
 import cohesity_management_sdk.models.ad_object_meta_data
 import cohesity_management_sdk.models.email_meta_data
 import cohesity_management_sdk.models.file_version
-import cohesity_management_sdk.models.universal_id
+import cohesity_management_sdk.models.one_drive_document_metadata
 import cohesity_management_sdk.models.protection_source
 import cohesity_management_sdk.models.sharepoint_document_metadata
+import cohesity_management_sdk.models.universal_id
+
 
 class FileSearchResult(object):
 
@@ -14,18 +16,20 @@ class FileSearchResult(object):
 
     Specifies details about the found file or folder.
 
+
     Attributes:
-        ad_object_meta_data (AdObjectMetaData): Specifies details about the AD
-            objects.
+
+        ad_object_meta_data (AdObjectMetaData): Specifies the metadata about
+            the AD objects.
         document_type (string): Specifies the inferred document type.
-        email_meta_data (EmailMetaData): Specifies details about the emails
-            and the folder containing emails.
-        file_versions (list of FileVersion): Array of File Versions.
-            Specifies the different snapshot versions of a file or folder that
-            were captured at different times.
+        email_meta_data (EmailMetaData): Specifies the metadata about the
+            Outlook Emails.
+        file_versions (list of FileVersion): Array of File Versions.  Specifies
+            the different snapshot versions of a file or folder that were
+            captured at different times.
         filename (string): Specifies the name of the found file or folder.
-        is_folder (bool): Specifies if the found item is a folder. If true,
-            the found item is a folder.
+        is_folder (bool): Specifies if the found item is a folder. If true, the
+            found item is a folder.
         job_id (long|int): Specifies the Job id for the Protection Job that is
             currently associated with object that contains the backed up file
             or folder. If the file or folder was backed up on current Cohesity
@@ -35,32 +39,28 @@ class FileSearchResult(object):
             Cluster, a new Inactive Job is created, the object that contains
             the file or folder is now associated with new Inactive Job, and
             this field contains the id of the new Inactive Job.
-        job_uid (UniversalId): Specifies the universal id of the Protection
-            Job that backed up the object that contains the file or folder.
+        job_uid (UniversalId): Specifies the universal id of the Protection Job
+            that backed up the object that contains the file or folder.
         one_drive_document_metadata (OneDriveDocumentMetadata): Specifies the
-            metadata for the OneDrive document.
-        protection_source (ProtectionSource): Specifies a generic structure
-            that represents a node in the Protection Source tree. Node details
-            will depend on the environment of the Protection Source.
+            metadata about the OneDrive documents.
+        protection_source (ProtectionSource): Specifies the Protection Source
+            to which the file or folder belongs.
         registered_source_id (long|int): Specifies the id of the top-level
             registered source (such as a vCenter Server) where the source
             object that contains the the file or folder is stored.
         sharepoint_document_metadata (SharepointDocumentMetadata): Specifies
             the metadata about the Sharepoint documents.
-        snapshot_tags (list of string): Snapshot tags present on this
-            document.
+        snapshot_tags (list of string): Snapshot tags present on this document
         source_id (long|int): Specifies the source id of the object that
             contains the file or folder.
         tags (list of string): Tags present on this document.
-        tags_to_snapshots_map (dict<object, list of int>): Mapping from
-            snapshot tags to.
+        tags_to_snapshots_map (object): Mapping from snapshot tags to.
         mtype (TypeFileSearchResultEnum): Specifies the type of the file
             document such as KDirectory, kFile, etc.
-        view_box_id (long|int): Specifies the id of the Domain (View Box)
-            where the source object that contains the file or folder is
-            stored.
-
+        view_box_id (long|int): Specifies the id of the Domain (View Box) where
+            the source object that contains the file or folder is stored.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -81,9 +81,8 @@ class FileSearchResult(object):
         "tags":'tags',
         "tags_to_snapshots_map":'tagsToSnapshotsMap',
         "mtype":'type',
-        "view_box_id":'viewBoxId'
+        "view_box_id":'viewBoxId',
     }
-
     def __init__(self,
                  ad_object_meta_data=None,
                  document_type=None,
@@ -100,9 +99,11 @@ class FileSearchResult(object):
                  snapshot_tags=None,
                  source_id=None,
                  tags=None,
-                 tags_to_snapshots_map= None,
+                 tags_to_snapshots_map=None,
                  mtype=None,
-                 view_box_id=None):
+                 view_box_id=None,
+            ):
+
         """Constructor for the FileSearchResult class"""
 
         # Initialize members of the class
@@ -126,7 +127,6 @@ class FileSearchResult(object):
         self.view_box_id = view_box_id
 
     @classmethod
-
     def from_dictionary(cls,
                         dictionary):
         """Creates an instance of this model from a dictionary
@@ -156,35 +156,35 @@ class FileSearchResult(object):
         is_folder = dictionary.get('isFolder')
         job_id = dictionary.get('jobId')
         job_uid = cohesity_management_sdk.models.universal_id.UniversalId.from_dictionary(dictionary.get('jobUid')) if dictionary.get('jobUid') else None
-        protection_source = cohesity_management_sdk.models.protection_source.ProtectionSource.from_dictionary(dictionary.get('protectionSource')) if dictionary.get('protectionSource') else None
         one_drive_document_metadata = cohesity_management_sdk.models.one_drive_document_metadata.OneDriveDocumentMetadata.from_dictionary(dictionary.get('oneDriveDocumentMetadata')) if dictionary.get('oneDriveDocumentMetadata') else None
+        protection_source = cohesity_management_sdk.models.protection_source.ProtectionSource.from_dictionary(dictionary.get('protectionSource')) if dictionary.get('protectionSource') else None
         registered_source_id = dictionary.get('registeredSourceId')
         sharepoint_document_metadata = cohesity_management_sdk.models.sharepoint_document_metadata.SharepointDocumentMetadata.from_dictionary(dictionary.get('sharepointDocumentMetadata')) if dictionary.get('sharepointDocumentMetadata') else None
-        snapshot_tags = dictionary.get('snapshotTags', None)
+        snapshot_tags = dictionary.get("snapshotTags")
         source_id = dictionary.get('sourceId')
-        tags = dictionary.get('tags', None)
-        tags_to_snapshots_map = dictionary.get('tagsToSnapshotsMap', None)
+        tags = dictionary.get("tags")
+        tags_to_snapshots_map = dictionary.get('tagsToSnapshotsMap')
         mtype = dictionary.get('type')
         view_box_id = dictionary.get('viewBoxId')
 
         # Return an object of this model
-        return cls(ad_object_meta_data,
-                   document_type,
-                   email_meta_data,
-                   file_versions,
-                   filename,
-                   is_folder,
-                   job_id,
-                   job_uid,
-                   one_drive_document_metadata,
-                   protection_source,
-                   registered_source_id,
-                   sharepoint_document_metadata,
-                   snapshot_tags,
-                   source_id,
-                   mtype,
-                   tags,
-                   tags_to_snapshots_map,
-                   view_box_id)
-
-
+        return cls(
+            ad_object_meta_data,
+            document_type,
+            email_meta_data,
+            file_versions,
+            filename,
+            is_folder,
+            job_id,
+            job_uid,
+            one_drive_document_metadata,
+            protection_source,
+            registered_source_id,
+            sharepoint_document_metadata,
+            snapshot_tags,
+            source_id,
+            tags,
+            tags_to_snapshots_map,
+            mtype,
+            view_box_id
+)

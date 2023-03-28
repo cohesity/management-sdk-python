@@ -3,6 +3,7 @@
 
 import cohesity_management_sdk.models.user_id_mapping
 
+
 class IdMappingInfo(object):
 
     """Implementation of the 'IdMappingInfo' model.
@@ -10,34 +11,38 @@ class IdMappingInfo(object):
     Specifies the params required to update the user id mapping info of an
     Active Directory.
 
+
     Attributes:
-        fallback_user_id_mapping_info (UserIdMapping): Specifies how the Unix
-            and Windows users are mapped in an Active Directory.
+
+        fallback_user_id_mapping_info (UserIdMapping): Specifies the fallback
+            id mapping info which is used when an ID mapping for a user is not
+            found via the above IdMappingInfo. Only supported for two types of
+            fallback mapping types - 'kRid' and 'kFixed'.
         unix_root_sid (string): Specifies the SID of the Active Directory
             domain user to be mapped to Unix root user.
-        user_id_mapping_info (UserIdMapping): Specifies how the Unix and
-            Windows users are mapped in an Active Directory.
-
+        user_id_mapping_info (UserIdMapping): Specifies the information about
+            how the Unix and Windows users are mapped for this domain.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "fallback_user_id_mapping_info":'fallbackUserIdMappingInfo',
         "unix_root_sid":'unixRootSid',
-        "user_id_mapping_info":'userIdMappingInfo'
+        "user_id_mapping_info":'userIdMappingInfo',
     }
-
     def __init__(self,
                  fallback_user_id_mapping_info=None,
                  unix_root_sid=None,
-                 user_id_mapping_info=None):
+                 user_id_mapping_info=None,
+            ):
+
         """Constructor for the IdMappingInfo class"""
 
         # Initialize members of the class
         self.fallback_user_id_mapping_info = fallback_user_id_mapping_info
         self.unix_root_sid = unix_root_sid
         self.user_id_mapping_info = user_id_mapping_info
-
 
     @classmethod
     def from_dictionary(cls,
@@ -62,8 +67,8 @@ class IdMappingInfo(object):
         user_id_mapping_info = cohesity_management_sdk.models.user_id_mapping.UserIdMapping.from_dictionary(dictionary.get('userIdMappingInfo')) if dictionary.get('userIdMappingInfo') else None
 
         # Return an object of this model
-        return cls(fallback_user_id_mapping_info,
-                   unix_root_sid,
-                   user_id_mapping_info)
-
-
+        return cls(
+            fallback_user_id_mapping_info,
+            unix_root_sid,
+            user_id_mapping_info
+)

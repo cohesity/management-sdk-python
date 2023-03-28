@@ -3,15 +3,17 @@
 
 import cohesity_management_sdk.models.cassandra_additional_params
 
+
 class CassandraBackupJobParams(object):
 
     """Implementation of the 'CassandraBackupJobParams' model.
 
-    Contains any additional cassandra environment specific backup params at
-    the
+    Contains any additional cassandra environment specific backup params at the
     job level.
 
+
     Attributes:
+
         cassandra_additional_info (CassandraAdditionalParams): Additional
             parameters required for Cassandra backup.
         graph_handling_enabled (bool): whether special graph handling is
@@ -23,26 +25,27 @@ class CassandraBackupJobParams(object):
             is read from the policy currently attached to the protection job.
             This field is used only in case of log backups and ignored for
             other backups.
-        selected_data_center_vec (list of string):  The data centers selected
+        selected_data_center_vec (list of string): The data centers selected
             for backup.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "cassandra_additional_info": 'cassandraAdditionalInfo',
+        "cassandra_additional_info":'cassandraAdditionalInfo',
         "graph_handling_enabled":'graphHandlingEnabled',
         "is_only_log_backup_job":'isOnlyLogBackupJob',
         "retention_period_in_secs":'retentionPeriodInSecs',
-        "selected_data_center_vec": 'selectedDataCenterVec'
+        "selected_data_center_vec":'selectedDataCenterVec',
     }
-
     def __init__(self,
                  cassandra_additional_info=None,
                  graph_handling_enabled=None,
                  is_only_log_backup_job=None,
                  retention_period_in_secs=None,
-                 selected_data_center_vec=None):
+                 selected_data_center_vec=None,
+            ):
+
         """Constructor for the CassandraBackupJobParams class"""
 
         # Initialize members of the class
@@ -51,7 +54,6 @@ class CassandraBackupJobParams(object):
         self.is_only_log_backup_job = is_only_log_backup_job
         self.retention_period_in_secs = retention_period_in_secs
         self.selected_data_center_vec = selected_data_center_vec
-
 
     @classmethod
     def from_dictionary(cls,
@@ -75,13 +77,13 @@ class CassandraBackupJobParams(object):
         graph_handling_enabled = dictionary.get('graphHandlingEnabled')
         is_only_log_backup_job = dictionary.get('isOnlyLogBackupJob')
         retention_period_in_secs = dictionary.get('retentionPeriodInSecs')
-        selected_data_center_vec = dictionary.get('selectedDataCenterVec', None)
+        selected_data_center_vec = dictionary.get("selectedDataCenterVec")
 
         # Return an object of this model
-        return cls(cassandra_additional_info,
-                   graph_handling_enabled,
-                   is_only_log_backup_job,
-                   retention_period_in_secs,
-                   selected_data_center_vec)
-
-
+        return cls(
+            cassandra_additional_info,
+            graph_handling_enabled,
+            is_only_log_backup_job,
+            retention_period_in_secs,
+            selected_data_center_vec
+)

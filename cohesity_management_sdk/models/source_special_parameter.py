@@ -2,10 +2,11 @@
 # Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.application_special_parameters
+import cohesity_management_sdk.models.credentials
 import cohesity_management_sdk.models.oracle_special_parameters
 import cohesity_management_sdk.models.physical_special_parameters
-import cohesity_management_sdk.models.credentials
 import cohesity_management_sdk.models.vmware_special_parameters
+
 
 class SourceSpecialParameter(object):
 
@@ -14,26 +15,29 @@ class SourceSpecialParameter(object):
     Specifies additional special settings for a single Source in a Protection
     Job. This Source must be a leaf node in the Source tree.
 
+
     Attributes:
+
         ad_special_parameters (ApplicationSpecialParameters): Specifies
-            additional special settings applicable for a Protection Source of
-            'kSQL'/'kOracle' type in a Protection Job.
+            additional special parameters that are applicable only to
+            Protection Sources of 'kAD' type.
         exchange_special_parameters (ApplicationSpecialParameters): Specifies
             additional special parameters that are applicable only to
             Protection Sources of 'kExchange' type.
-        oracle_special_parameters (OracleSpecialParameters): Specifies special
-            settings applicable for 'kOracle' environment.
+        oracle_special_parameters (OracleSpecialParameters): Specifies
+            additional special parameters that are applicable only to
+            Protection Sources of 'kOracle' type.
         physical_special_parameters (PhysicalSpecialParameters): Specifies
-            additional special settings applicable for a Protection Source of
-            'kPhysical' type in a Protection Job.
+            additional special parameters that are applicable only to Sources
+            of 'kHost' type in a kPhysical environment.
         skip_indexing (bool): Specifies not to index the objects in the
             Protection Source when backing up.
         source_id (long|int): Specifies the object id of the Protection Source
             that these special settings apply. This field must refer to a leaf
             node such a VM or a Physical Server.
         sql_special_parameters (ApplicationSpecialParameters): Specifies
-            additional special settings applicable for a Protection Source of
-            'kSQL'/'kOracle' type in a Protection Job.
+            additional special parameters that are applicable only to
+            Protection Sources of 'kSQL' type.
         truncate_exchange_log (bool): If true, after the Cohesity Cluster
             successfully captures a Snapshot during a Job Run, the Cluster
             truncates the Exchange transaction logs on a Microsoft Exchange
@@ -49,10 +53,10 @@ class SourceSpecialParameter(object):
             kVMware environment. This field is deprecated. Use the field in
             VmCredentials inside source specific parameter. deprecated: true
         vmware_special_parameters (VmwareSpecialParameters): Specifies
-            additional special settings applicable for a Protection Source of
-            'kVMware' type in a Protection Job.
-
+            additional special parameters that are applicable only to
+            Protection Sources of 'kVMware' type.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -65,9 +69,8 @@ class SourceSpecialParameter(object):
         "sql_special_parameters":'sqlSpecialParameters',
         "truncate_exchange_log":'truncateExchangeLog',
         "vm_credentials":'vmCredentials',
-        "vmware_special_parameters":'vmwareSpecialParameters'
+        "vmware_special_parameters":'vmwareSpecialParameters',
     }
-
     def __init__(self,
                  ad_special_parameters=None,
                  exchange_special_parameters=None,
@@ -78,7 +81,9 @@ class SourceSpecialParameter(object):
                  sql_special_parameters=None,
                  truncate_exchange_log=None,
                  vm_credentials=None,
-                 vmware_special_parameters=None):
+                 vmware_special_parameters=None,
+            ):
+
         """Constructor for the SourceSpecialParameter class"""
 
         # Initialize members of the class
@@ -92,7 +97,6 @@ class SourceSpecialParameter(object):
         self.truncate_exchange_log = truncate_exchange_log
         self.vm_credentials = vm_credentials
         self.vmware_special_parameters = vmware_special_parameters
-
 
     @classmethod
     def from_dictionary(cls,
@@ -113,7 +117,7 @@ class SourceSpecialParameter(object):
 
         # Extract variables from the dictionary
         ad_special_parameters = cohesity_management_sdk.models.application_special_parameters.ApplicationSpecialParameters.from_dictionary(dictionary.get('adSpecialParameters')) if dictionary.get('adSpecialParameters') else None
-        exchange_special_parameters =  cohesity_management_sdk.models.application_special_parameters.ApplicationSpecialParameters.from_dictionary(dictionary.get('exchangeSpecialParameters')) if dictionary.get('exchangeSpecialParameters') else None
+        exchange_special_parameters = cohesity_management_sdk.models.application_special_parameters.ApplicationSpecialParameters.from_dictionary(dictionary.get('exchangeSpecialParameters')) if dictionary.get('exchangeSpecialParameters') else None
         oracle_special_parameters = cohesity_management_sdk.models.oracle_special_parameters.OracleSpecialParameters.from_dictionary(dictionary.get('oracleSpecialParameters')) if dictionary.get('oracleSpecialParameters') else None
         physical_special_parameters = cohesity_management_sdk.models.physical_special_parameters.PhysicalSpecialParameters.from_dictionary(dictionary.get('physicalSpecialParameters')) if dictionary.get('physicalSpecialParameters') else None
         skip_indexing = dictionary.get('skipIndexing')
@@ -124,15 +128,15 @@ class SourceSpecialParameter(object):
         vmware_special_parameters = cohesity_management_sdk.models.vmware_special_parameters.VmwareSpecialParameters.from_dictionary(dictionary.get('vmwareSpecialParameters')) if dictionary.get('vmwareSpecialParameters') else None
 
         # Return an object of this model
-        return cls(ad_special_parameters,
-                   exchange_special_parameters,
-                   oracle_special_parameters,
-                   physical_special_parameters,
-                   skip_indexing,
-                   source_id,
-                   sql_special_parameters,
-                   truncate_exchange_log,
-                   vm_credentials,
-                   vmware_special_parameters)
-
-
+        return cls(
+            ad_special_parameters,
+            exchange_special_parameters,
+            oracle_special_parameters,
+            physical_special_parameters,
+            skip_indexing,
+            source_id,
+            sql_special_parameters,
+            truncate_exchange_log,
+            vm_credentials,
+            vmware_special_parameters
+)

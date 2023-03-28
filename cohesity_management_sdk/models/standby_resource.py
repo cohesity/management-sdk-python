@@ -3,6 +3,7 @@
 
 import cohesity_management_sdk.models.vmware_standby_resource
 
+
 class StandbyResource(object):
 
     """Implementation of the 'StandbyResource' model.
@@ -13,29 +14,30 @@ class StandbyResource(object):
 
 
     Attributes:
+
         recovery_point_objective_secs (long|int): User defined recovery point
             objective for the standby VM. Using this RPO, Magneto will hydrate
             the VMs.
         vmware_standby_resource (VMwareStandbyResource): Standby resources
             needed in a VMware environment.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "recovery_point_objective_secs": 'recoveryPointObjectiveSecs',
-        "vmware_standby_resource": 'vmwareStandbyResource'
+        "recovery_point_objective_secs":'recoveryPointObjectiveSecs',
+        "vmware_standby_resource":'vmwareStandbyResource',
     }
-
     def __init__(self,
                  recovery_point_objective_secs=None,
-                 vmware_standby_resource=None):
+                 vmware_standby_resource=None,
+            ):
+
         """Constructor for the StandbyResource class"""
 
         # Initialize members of the class
         self.recovery_point_objective_secs = recovery_point_objective_secs
         self.vmware_standby_resource = vmware_standby_resource
-
 
     @classmethod
     def from_dictionary(cls,
@@ -59,7 +61,7 @@ class StandbyResource(object):
         vmware_standby_resource = cohesity_management_sdk.models.vmware_standby_resource.VMwareStandbyResource.from_dictionary(dictionary.get('vmwareStandbyResource')) if dictionary.get('vmwareStandbyResource') else None
 
         # Return an object of this model
-        return cls(recovery_point_objective_secs,
-                   vmware_standby_resource)
-
-
+        return cls(
+            recovery_point_objective_secs,
+            vmware_standby_resource
+)

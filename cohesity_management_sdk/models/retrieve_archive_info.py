@@ -4,6 +4,7 @@
 import cohesity_management_sdk.models.error_proto
 import cohesity_management_sdk.models.retrieve_archive_info_retrieved_entity
 
+
 class RetrieveArchiveInfo(object):
 
     """Implementation of the 'RetrieveArchiveInfo' model.
@@ -11,14 +12,16 @@ class RetrieveArchiveInfo(object):
     Proto to describe information about the retrieval of an archive task as
     provided by Icebox.
 
+
     Attributes:
+
         avg_logical_transfer_rate_bps (long|int): Average logical bytes
             transfer rate in bytes per second as seen by Icebox.
         bytes_transferred (long|int): Number of physical bytes transferred for
             this retrieval task so far.
         end_time_usecs (long|int): Time when this retrieval task ended at
             Icebox side. If not set, then the retrieval has not ended yet.
-        error (ErrorProto):If the retrieval task has completed, the following
+        error (ErrorProto): If the retrieval task has completed, the following
             indicates whether there was an error in its completion.
         logical_bytes_transferred (long|int): Number of logical bytes
             transferred so far.
@@ -26,7 +29,7 @@ class RetrieveArchiveInfo(object):
             task.
         progress_monitor_task_path (string): The root path of the progress
             monitor for this task.
-        retrieved_entity_vec (list of RetrieveArchiveInfoRetrievedEntity):
+        retrieved_entity_vec (list of RetrieveArchiveInfo_RetrievedEntity):
             Contains info about all retrieved entities.
         skip_cloning_view (bool): If true, we will use the view directly
             without cloning it and delete it when the restore is complete.
@@ -37,16 +40,16 @@ class RetrieveArchiveInfo(object):
             archive location.
         stub_view_relative_dir_name (string): Relative directory inside the
             stub view that corresponds with the archive.
-        target_view_name (string): The name of the target view where Icebox
-            has retrieved and staged the requested entities.
+        target_view_name (string): The name of the target view where Icebox has
+            retrieved and staged the requested entities.
         user_action_required_msg (string): Message to display in the UI if any
             manual intervention is needed to make forward progress for the
             retrieve from archive task. This message is mainly relevant for
             tape based retrieve from archive tasks where a backup admin might
             be asked to load new media when the tape library does not have the
             relevant media to retrieve the archive from.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -63,9 +66,8 @@ class RetrieveArchiveInfo(object):
         "stub_view_name":'stubViewName',
         "stub_view_relative_dir_name":'stubViewRelativeDirName',
         "target_view_name":'targetViewName',
-        "user_action_required_msg":'userActionRequiredMsg'
+        "user_action_required_msg":'userActionRequiredMsg',
     }
-
     def __init__(self,
                  avg_logical_transfer_rate_bps=None,
                  bytes_transferred=None,
@@ -80,7 +82,9 @@ class RetrieveArchiveInfo(object):
                  stub_view_name=None,
                  stub_view_relative_dir_name=None,
                  target_view_name=None,
-                 user_action_required_msg=None):
+                 user_action_required_msg=None,
+            ):
+
         """Constructor for the RetrieveArchiveInfo class"""
 
         # Initialize members of the class
@@ -98,7 +102,6 @@ class RetrieveArchiveInfo(object):
         self.stub_view_relative_dir_name = stub_view_relative_dir_name
         self.target_view_name = target_view_name
         self.user_action_required_msg = user_action_required_msg
-
 
     @classmethod
     def from_dictionary(cls,
@@ -129,7 +132,7 @@ class RetrieveArchiveInfo(object):
         if dictionary.get('retrievedEntityVec') != None:
             retrieved_entity_vec = list()
             for structure in dictionary.get('retrievedEntityVec'):
-                retrieved_entity_vec.append(cohesity_management_sdk.models.retrieve_archive_info_retrieved_entity.RetrieveArchiveInfoRetrievedEntity.from_dictionary(structure))
+                retrieved_entity_vec.append(cohesity_management_sdk.models.retrieve_archive_info_retrieved_entity.RetrieveArchiveInfo_RetrievedEntity.from_dictionary(structure))
         skip_cloning_view = dictionary.get('skipCloningView')
         start_time_usecs = dictionary.get('startTimeUsecs')
         stub_view_name = dictionary.get('stubViewName')
@@ -138,19 +141,19 @@ class RetrieveArchiveInfo(object):
         user_action_required_msg = dictionary.get('userActionRequiredMsg')
 
         # Return an object of this model
-        return cls(avg_logical_transfer_rate_bps,
-                   bytes_transferred,
-                   end_time_usecs,
-                   error,
-                   logical_bytes_transferred,
-                   logical_size_bytes,
-                   progress_monitor_task_path,
-                   retrieved_entity_vec,
-                   skip_cloning_view,
-                   start_time_usecs,
-                   stub_view_name,
-                   stub_view_relative_dir_name,
-                   target_view_name,
-                   user_action_required_msg)
-
-
+        return cls(
+            avg_logical_transfer_rate_bps,
+            bytes_transferred,
+            end_time_usecs,
+            error,
+            logical_bytes_transferred,
+            logical_size_bytes,
+            progress_monitor_task_path,
+            retrieved_entity_vec,
+            skip_cloning_view,
+            start_time_usecs,
+            stub_view_name,
+            stub_view_relative_dir_name,
+            target_view_name,
+            user_action_required_msg
+)

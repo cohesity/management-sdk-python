@@ -4,19 +4,18 @@
 class TaskTypeEnum(object):
 
     """Implementation of the 'TaskType' enum.
-
-    Task type denotes which type of task this notification is for.
-    This param is used to reflect the taskType.
-    'Restore' notification type is generated upon completion of Restore
-    tasks.
-    'Clone' notification type is generated upon completion of Clone tasks.
-    'BackupNow' notification type is generated upon completion of Backup
-    tasks.
-    'FieldMessage' notification type is generated when field message from
-    Cohesity support is created.
+    Task type denotes which type of task this notification is for. This param
+    is used to reflect the taskType. 'Restore' notification type is generated
+    upon completion of Restore tasks. 'Clone' notification type is generated
+    upon completion of Clone tasks. 'BackupNow' notification type is generated
+    upon completion of Backup tasks. 'FieldMessage' notification type is
+    generated when field message from Cohesity support is created.
     'bulkInstallApp' notification type is generated from bulk install app
     'tiering' notification type is generated upon completion of tiering tasks.
-    'analysis' notification type is generated upon completion of analysis tasks.
+    'analysis' notification type is generated upon completion of analysis
+    tasks. 'agentUpgradeTask' notification type is generated upon completion of
+    upgrade task.
+
 
     Attributes:
         RESTORE: TODO: type description here.
@@ -26,6 +25,7 @@ class TaskTypeEnum(object):
         BULKINSTALLAPP: TODO: type description here.
         TIERING: TODO: type description here.
         ANALYSIS: TODO: type description here.
+        AGENTUPGRADETASK: TODO: type description here.
 
     """
 
@@ -43,3 +43,4 @@ class TaskTypeEnum(object):
 
     ANALYSIS = 'analysis'
 
+    AGENTUPGRADETASK = 'agentUpgradeTask'

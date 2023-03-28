@@ -3,30 +3,35 @@
 
 import cohesity_management_sdk.models.zone_config
 
+
 class RegisteredProtectionSourceIsilonParams(object):
 
     """Implementation of the 'RegisteredProtectionSourceIsilonParams' model.
 
-    Contains any additional hive environment specific backup params at the
-    job level.
+    Specifies the Isilon specific Registered Protection Source params. This
+    definition is used to send isilion source params in update protection
+    source params to magneto.
+
 
     Attributes:
+
         zone_config_list (list of ZoneConfig): List of access zone info in an
             Isilion Cluster.
     """
 
+
     # Create a mapping from Model property names to API property names
     _names = {
-        "zone_config_list":'zoneConfigList'
+        "zone_config_list":'zoneConfigList',
     }
-
     def __init__(self,
-                 zone_config_list=None):
+                 zone_config_list=None,
+            ):
+
         """Constructor for the RegisteredProtectionSourceIsilonParams class"""
 
         # Initialize members of the class
         self.zone_config_list = zone_config_list
-
 
     @classmethod
     def from_dictionary(cls,
@@ -53,6 +58,6 @@ class RegisteredProtectionSourceIsilonParams(object):
                 zone_config_list.append(cohesity_management_sdk.models.zone_config.ZoneConfig.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(zone_config_list)
-
-
+        return cls(
+            zone_config_list
+)

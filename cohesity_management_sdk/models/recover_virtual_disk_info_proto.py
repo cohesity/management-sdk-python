@@ -5,51 +5,41 @@ import cohesity_management_sdk.models.error_proto
 import cohesity_management_sdk.models.mo_ref
 import cohesity_management_sdk.models.setup_restore_disk_task_info_proto
 
+
 class RecoverVirtualDiskInfoProto(object):
 
     """Implementation of the 'RecoverVirtualDiskInfoProto' model.
 
     Each available extension is listed below along with the location of the
-    proto file (relative to magneto/connectors) where it is defined.
+    proto file (relative to magneto/connectors) where it is defined. 
     RecoverVirtualDiskInfoProto extension                     Location
-    ===========================================================================
-    ==
-    ===========================================================================
-    ==
+    =============================================================================
+    =============================================================================
+
 
     Attributes:
-        cleanup_error (ErrorProto): TODO: type description here.
-        data_migration_error (ErrorProto): TODO: type description here.
-        error (ErrorProto): TODO: type description here.
+
+        cleanup_error (ErrorProto): If an error is encountered while cleaning
+            up state, then it will be captured as part of this.
+        data_migration_error (ErrorProto): If an error was encountered while
+            migrating the disks it will be captured here.
+        error (ErrorProto): If recovering of disks failed, this field may
+            contain the cause of the failure.
         finished (bool): This will be set to true if the task is complete on
             the slave.
         instant_recovery_finished (bool): This will be set to true once the
             instant recovery of the virtual disk is complete.
-        migrate_task_moref (MORef): TODO: type description here.
-        restore_disks_task_info_proto (SetupRestoreDiskTaskInfoProto): Each
-            available extension is listed below along with the location of the
-            proto file (relative to magneto/connectors) where it is defined.
-            SetupRestoreDiskTaskInfoProto extension, extension_number Location
-            ===================================================================
-            ========== vmware::SetupRestoreDiskTaskInfo
-            vmware_setup_restore_disk_task_info, 100
-            connectors/vmware/vmware_setup_restore_disks.proto.proto
-            AgentSetupRestoreDiskTaskInfo agent_setup_restore_disk_task_info,
-            101 base/agent.proto  app_file::SetupRestoreTaskInfo
-            app_file_setup_restore_task_info, 102
-            connectors/app_file/app_file_setup_restore.proto
-            hyperv::SetupRestoreDiskTaskInfo
-            hyperv_setup_restore_disk_task_info, 103
-            connectors/hyperv/hyperv_setup_restore_disks.proto
-            ===================================================================
-            ==========
+        migrate_task_moref (MORef): The task moref of the migrate job.
+        restore_disks_task_info_proto (SetupRestoreDiskTaskInfoProto): The
+            environment specific extensions of this proto store the detailed
+            status information about the task.
         slave_task_start_time_usecs (long|int): This is the timestamp at which
             the slave task started.
         task_state (int): The state of the task.
         mtype (int): The type of environment this recover virtual disk info
             pertains to.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -62,9 +52,8 @@ class RecoverVirtualDiskInfoProto(object):
         "restore_disks_task_info_proto":'restoreDisksTaskInfoProto',
         "slave_task_start_time_usecs":'slaveTaskStartTimeUsecs',
         "task_state":'taskState',
-        "mtype":'type'
+        "mtype":'type',
     }
-
     def __init__(self,
                  cleanup_error=None,
                  data_migration_error=None,
@@ -75,7 +64,9 @@ class RecoverVirtualDiskInfoProto(object):
                  restore_disks_task_info_proto=None,
                  slave_task_start_time_usecs=None,
                  task_state=None,
-                 mtype=None):
+                 mtype=None,
+            ):
+
         """Constructor for the RecoverVirtualDiskInfoProto class"""
 
         # Initialize members of the class
@@ -89,7 +80,6 @@ class RecoverVirtualDiskInfoProto(object):
         self.slave_task_start_time_usecs = slave_task_start_time_usecs
         self.task_state = task_state
         self.mtype = mtype
-
 
     @classmethod
     def from_dictionary(cls,
@@ -121,15 +111,15 @@ class RecoverVirtualDiskInfoProto(object):
         mtype = dictionary.get('type')
 
         # Return an object of this model
-        return cls(cleanup_error,
-                   data_migration_error,
-                   error,
-                   finished,
-                   instant_recovery_finished,
-                   migrate_task_moref,
-                   restore_disks_task_info_proto,
-                   slave_task_start_time_usecs,
-                   task_state,
-                   mtype)
-
-
+        return cls(
+            cleanup_error,
+            data_migration_error,
+            error,
+            finished,
+            instant_recovery_finished,
+            migrate_task_moref,
+            restore_disks_task_info_proto,
+            slave_task_start_time_usecs,
+            task_state,
+            mtype
+)

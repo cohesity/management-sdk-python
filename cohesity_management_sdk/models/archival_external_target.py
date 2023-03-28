@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class ArchivalExternalTarget(object):
 
     """Implementation of the 'ArchivalExternalTarget' model.
@@ -9,36 +8,38 @@ class ArchivalExternalTarget(object):
     Specifies settings about the Archival External Target (such as Tape or
     AWS).
 
-    Attributes:
-        vault_id (long|int): Specifies the id of Archival Vault assigned by
-            the Cohesity Cluster.
-        vault_name (string): Name of the Archival Vault.
-        vault_type (VaultTypeEnum): Specifies the type of the Archival
-            External Target such as 'kCloud', 'kTape' or 'kNas'. 'kCloud'
-            indicates the archival location as Cloud. 'kTape' indicates the
-            archival location as Tape. 'kNas' indicates the archival location
-            as Network Attached Storage (Nas).
 
+    Attributes:
+
+        vault_id (long|int): Specifies the id of Archival Vault assigned by the
+            Cohesity Cluster.
+        vault_name (string): Name of the Archival Vault.
+        vault_type (VaultTypeArchivalExternalTargetEnum): Specifies the type of
+            the Archival External Target such as 'kCloud', 'kTape' or 'kNas'.
+            'kCloud' indicates the archival location as Cloud. 'kTape'
+            indicates the archival location as Tape. 'kNas' indicates the
+            archival location as Network Attached Storage (Nas).
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "vault_id":'vaultId',
         "vault_name":'vaultName',
-        "vault_type":'vaultType'
+        "vault_type":'vaultType',
     }
-
     def __init__(self,
                  vault_id=None,
                  vault_name=None,
-                 vault_type=None):
+                 vault_type=None,
+            ):
+
         """Constructor for the ArchivalExternalTarget class"""
 
         # Initialize members of the class
         self.vault_id = vault_id
         self.vault_name = vault_name
         self.vault_type = vault_type
-
 
     @classmethod
     def from_dictionary(cls,
@@ -63,8 +64,8 @@ class ArchivalExternalTarget(object):
         vault_type = dictionary.get('vaultType')
 
         # Return an object of this model
-        return cls(vault_id,
-                   vault_name,
-                   vault_type)
-
-
+        return cls(
+            vault_id,
+            vault_name,
+            vault_type
+)

@@ -1,35 +1,36 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class SwiftParams(object):
 
     """Implementation of the 'SwiftParams' model.
 
     Specifies the parameters of Swift configuration.
 
-    Attributes:
-        keystone_id (int|long): Specifies the associated Keystone
-            configuration id.
-        operator_roles (list of string): Specifies a list of operator roles.
 
+    Attributes:
+
+        keystone_id (long|int): Specifies the associated Keystone configuration
+            id.
+        operator_roles (list of string): Specifies a list of operator roles.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "keystone_id": 'keystoneId',
-        "operator_roles": 'operatorRoles'
+        "keystone_id":'keystoneId',
+        "operator_roles":'operatorRoles',
     }
-
     def __init__(self,
                  keystone_id=None,
-                 operator_roles=None):
+                 operator_roles=None,
+            ):
+
         """Constructor for the SwiftParams class"""
 
         # Initialize members of the class
         self.keystone_id = keystone_id
         self.operator_roles = operator_roles
-
 
     @classmethod
     def from_dictionary(cls,
@@ -49,11 +50,11 @@ class SwiftParams(object):
             return None
 
         # Extract variables from the dictionary
-        keystone_id = dictionary.get('keystoneId', None)
-        operator_roles = dictionary.get('operatorRoles', None)
+        keystone_id = dictionary.get('keystoneId')
+        operator_roles = dictionary.get("operatorRoles")
 
         # Return an object of this model
-        return cls(keystone_id,
-                   operator_roles)
-
-
+        return cls(
+            keystone_id,
+            operator_roles
+)

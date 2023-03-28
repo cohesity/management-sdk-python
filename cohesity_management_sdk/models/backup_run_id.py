@@ -3,33 +3,36 @@
 
 import cohesity_management_sdk.models.universal_id_proto
 
+
 class BackupRunId(object):
 
     """Implementation of the 'BackupRunId' model.
 
-    This captures information about identifying a backup run.
+    TODO: type description here.
+
 
     Attributes:
+
         job_uid (UniversalIdProto): UID of the job.
         run_start_time_usecs (long|int): Start time of the backup run.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "job_uid": 'jobUid',
-        "run_start_time_usecs": 'runStartTimeUsecs'
+        "job_uid":'jobUid',
+        "run_start_time_usecs":'runStartTimeUsecs',
     }
-
     def __init__(self,
                  job_uid=None,
-                 run_start_time_usecs=None):
+                 run_start_time_usecs=None,
+            ):
+
         """Constructor for the BackupRunId class"""
 
         # Initialize members of the class
         self.job_uid = job_uid
         self.run_start_time_usecs = run_start_time_usecs
-
 
     @classmethod
     def from_dictionary(cls,
@@ -53,7 +56,7 @@ class BackupRunId(object):
         run_start_time_usecs = dictionary.get('runStartTimeUsecs')
 
         # Return an object of this model
-        return cls(job_uid,
-                   run_start_time_usecs)
-
-
+        return cls(
+            job_uid,
+            run_start_time_usecs
+)

@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class IoPreferentialTier(object):
 
     """Implementation of the 'IoPreferentialTier' model.
 
     Specifies the preferred storage tier for IO operations.
 
+
     Attributes:
+
         apollo_io_preferential_tier (list of ApolloIOPreferentialTierEnum):
             Specifies the preferred storage tier used by Apollo as its working
             directory.
@@ -20,6 +21,9 @@ class IoPreferentialTier(object):
         athena_slower_io_preferential_tier (list of
             AthenaSlowerIOPreferentialTierEnum): Specifies the list of
             perferred storage tiers used by Athena for slower storage.
+        cloud_chunk_repo_io_preferential_tier (list of
+            CloudChunkRepoIOPreferentialTierEnum): Specifies the list of
+            perferred storage tiers used by cloud chunk repository.
         down_tier_usage_percent_thresholds (list of int): Specifies the usage
             percentage thresholds for the correponding storage tier.
         groot_io_preferential_tier (list of GrootIOPreferentialTierEnum):
@@ -43,8 +47,8 @@ class IoPreferentialTier(object):
             tier for sequential IO operations.
         yoda_io_preferential_tier (list of YodaIOPreferentialTierEnum):
             Specifies the list of perferred storage tiers used by Yoda.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -52,6 +56,7 @@ class IoPreferentialTier(object):
         "apollo_wal_io_preferential_tier":'apolloWalIOPreferentialTier',
         "athena_io_preferential_tier":'athenaIOPreferentialTier',
         "athena_slower_io_preferential_tier":'athenaSlowerIOPreferentialTier',
+        "cloud_chunk_repo_io_preferential_tier":'cloudChunkRepoIOPreferentialTier',
         "down_tier_usage_percent_thresholds":'downTierUsagePercentThresholds',
         "groot_io_preferential_tier":'grootIOPreferentialTier',
         "hydra_downtier_io_preferential_tier":'hydraDowntierIOPreferentialTier',
@@ -60,14 +65,14 @@ class IoPreferentialTier(object):
         "random_io_preferential_tier":'randomIOPreferentialTier',
         "scribe_io_preferential_tier":'scribeIOPreferentialTier',
         "sequential_io_preferential_tier":'sequentialIOPreferentialTier',
-        "yoda_io_preferential_tier":'yodaIOPreferentialTier'
+        "yoda_io_preferential_tier":'yodaIOPreferentialTier',
     }
-
     def __init__(self,
                  apollo_io_preferential_tier=None,
                  apollo_wal_io_preferential_tier=None,
                  athena_io_preferential_tier=None,
                  athena_slower_io_preferential_tier=None,
+                 cloud_chunk_repo_io_preferential_tier=None,
                  down_tier_usage_percent_thresholds=None,
                  groot_io_preferential_tier=None,
                  hydra_downtier_io_preferential_tier=None,
@@ -76,7 +81,9 @@ class IoPreferentialTier(object):
                  random_io_preferential_tier=None,
                  scribe_io_preferential_tier=None,
                  sequential_io_preferential_tier=None,
-                 yoda_io_preferential_tier=None):
+                 yoda_io_preferential_tier=None,
+            ):
+
         """Constructor for the IoPreferentialTier class"""
 
         # Initialize members of the class
@@ -84,6 +91,7 @@ class IoPreferentialTier(object):
         self.apollo_wal_io_preferential_tier = apollo_wal_io_preferential_tier
         self.athena_io_preferential_tier = athena_io_preferential_tier
         self.athena_slower_io_preferential_tier = athena_slower_io_preferential_tier
+        self.cloud_chunk_repo_io_preferential_tier = cloud_chunk_repo_io_preferential_tier
         self.down_tier_usage_percent_thresholds = down_tier_usage_percent_thresholds
         self.groot_io_preferential_tier = groot_io_preferential_tier
         self.hydra_downtier_io_preferential_tier = hydra_downtier_io_preferential_tier
@@ -93,7 +101,6 @@ class IoPreferentialTier(object):
         self.scribe_io_preferential_tier = scribe_io_preferential_tier
         self.sequential_io_preferential_tier = sequential_io_preferential_tier
         self.yoda_io_preferential_tier = yoda_io_preferential_tier
-
 
     @classmethod
     def from_dictionary(cls,
@@ -113,33 +120,35 @@ class IoPreferentialTier(object):
             return None
 
         # Extract variables from the dictionary
-        apollo_io_preferential_tier = dictionary.get('apolloIOPreferentialTier')
-        apollo_wal_io_preferential_tier = dictionary.get('apolloWalIOPreferentialTier')
-        athena_io_preferential_tier = dictionary.get('athenaIOPreferentialTier')
-        athena_slower_io_preferential_tier = dictionary.get('athenaSlowerIOPreferentialTier')
-        down_tier_usage_percent_thresholds = dictionary.get('downTierUsagePercentThresholds')
-        groot_io_preferential_tier = dictionary.get('grootIOPreferentialTier')
-        hydra_downtier_io_preferential_tier = dictionary.get('hydraDowntierIOPreferentialTier')
-        hydra_io_preferential_tier = dictionary.get('hydraIOPreferentialTier')
-        librarian_io_preferential_tier = dictionary.get('librarianIOPreferentialTier')
-        random_io_preferential_tier = dictionary.get('randomIOPreferentialTier')
-        scribe_io_preferential_tier = dictionary.get('scribeIOPreferentialTier')
-        sequential_io_preferential_tier = dictionary.get('sequentialIOPreferentialTier')
-        yoda_io_preferential_tier = dictionary.get('yodaIOPreferentialTier')
+        apollo_io_preferential_tier = dictionary.get("apolloIOPreferentialTier")
+        apollo_wal_io_preferential_tier = dictionary.get("apolloWalIOPreferentialTier")
+        athena_io_preferential_tier = dictionary.get("athenaIOPreferentialTier")
+        athena_slower_io_preferential_tier = dictionary.get("athenaSlowerIOPreferentialTier")
+        cloud_chunk_repo_io_preferential_tier = dictionary.get("cloudChunkRepoIOPreferentialTier")
+        down_tier_usage_percent_thresholds = dictionary.get("downTierUsagePercentThresholds")
+        groot_io_preferential_tier = dictionary.get("grootIOPreferentialTier")
+        hydra_downtier_io_preferential_tier = dictionary.get("hydraDowntierIOPreferentialTier")
+        hydra_io_preferential_tier = dictionary.get("hydraIOPreferentialTier")
+        librarian_io_preferential_tier = dictionary.get("librarianIOPreferentialTier")
+        random_io_preferential_tier = dictionary.get("randomIOPreferentialTier")
+        scribe_io_preferential_tier = dictionary.get("scribeIOPreferentialTier")
+        sequential_io_preferential_tier = dictionary.get("sequentialIOPreferentialTier")
+        yoda_io_preferential_tier = dictionary.get("yodaIOPreferentialTier")
 
         # Return an object of this model
-        return cls(apollo_io_preferential_tier,
-                   apollo_wal_io_preferential_tier,
-                   athena_io_preferential_tier,
-                   athena_slower_io_preferential_tier,
-                   down_tier_usage_percent_thresholds,
-                   groot_io_preferential_tier,
-                   hydra_downtier_io_preferential_tier,
-                   hydra_io_preferential_tier,
-                   librarian_io_preferential_tier,
-                   random_io_preferential_tier,
-                   scribe_io_preferential_tier,
-                   sequential_io_preferential_tier,
-                   yoda_io_preferential_tier)
-
-
+        return cls(
+            apollo_io_preferential_tier,
+            apollo_wal_io_preferential_tier,
+            athena_io_preferential_tier,
+            athena_slower_io_preferential_tier,
+            cloud_chunk_repo_io_preferential_tier,
+            down_tier_usage_percent_thresholds,
+            groot_io_preferential_tier,
+            hydra_downtier_io_preferential_tier,
+            hydra_io_preferential_tier,
+            librarian_io_preferential_tier,
+            random_io_preferential_tier,
+            scribe_io_preferential_tier,
+            sequential_io_preferential_tier,
+            yoda_io_preferential_tier
+)

@@ -3,33 +3,36 @@
 
 import cohesity_management_sdk.models.error_proto
 
+
 class RunMapReduceInstanceResult(object):
 
     """Implementation of the 'RunMapReduceInstanceResult' model.
 
-    Result of RunMapReduceInstance call.
+    TODO: type description here.
+
 
     Attributes:
+
         error (ErrorProto): Status code of http rpc.
         map_reduce_instance_id (long|int): Return the ID of instance.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "error": 'error',
-        "map_reduce_instance_id": 'mapReduceInstanceId'
+        "error":'error',
+        "map_reduce_instance_id":'mapReduceInstanceId',
     }
-
     def __init__(self,
                  error=None,
-                 map_reduce_instance_id=None):
+                 map_reduce_instance_id=None,
+            ):
+
         """Constructor for the RunMapReduceInstanceResult class"""
 
         # Initialize members of the class
         self.error = error
         self.map_reduce_instance_id = map_reduce_instance_id
-
 
     @classmethod
     def from_dictionary(cls,
@@ -49,11 +52,11 @@ class RunMapReduceInstanceResult(object):
             return None
 
         # Extract variables from the dictionary
-        error =  cohesity_management_sdk.models.error_proto.ErrorProto.from_dictionary(dictionary.get('error')) if  dictionary.get('error') else None
+        error = cohesity_management_sdk.models.error_proto.ErrorProto.from_dictionary(dictionary.get('error')) if dictionary.get('error') else None
         map_reduce_instance_id = dictionary.get('mapReduceInstanceId')
 
         # Return an object of this model
-        return cls(error,
-                   map_reduce_instance_id)
-
-
+        return cls(
+            error,
+            map_reduce_instance_id
+)

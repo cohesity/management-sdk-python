@@ -3,13 +3,16 @@
 
 import cohesity_management_sdk.models.cluster_identifier
 
+
 class McmUserProfile(object):
 
     """Implementation of the 'McmUserProfile' model.
 
-    Specfies the User profile for MCM user.
+    TODO: type description here.
+
 
     Attributes:
+
         cluster_identifiers (list of ClusterIdentifier): Specifies the list of
             clusters. This is only valid if tenant type is OnPrem.
         is_active (bool): Specifies whether or not the tenant is active.
@@ -18,23 +21,22 @@ class McmUserProfile(object):
             only valid if tenant type is Dmaas.
         tenant_id (string): Specifies the tenant id.
         tenant_name (string): Specifies the tenant name.
-        tenant_type (TenantTypeEnum): Specifies the MCM tenant type.
-            'Dmaas' implies tenant type is DMaaS.
-            'OnPrem' implies tenant is cluster tenant.
-
+        tenant_type (TenantTypeEnum): Specifies the MCM tenant type. 'Dmaas'
+            implies tenant type is DMaaS. 'Mcm' implies tenant is Mcm Cluster
+            tenant.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "cluster_identifiers": 'clusterIdentifiers',
-        "is_active": 'isActive',
-        "is_deleted": 'isDeleted',
+        "cluster_identifiers":'clusterIdentifiers',
+        "is_active":'isActive',
+        "is_deleted":'isDeleted',
         "region_ids":'regionIds',
         "tenant_id":'tenantId',
         "tenant_name":'tenantName',
-        "tenant_type":'tenantType'
+        "tenant_type":'tenantType',
     }
-
     def __init__(self,
                  cluster_identifiers=None,
                  is_active=None,
@@ -42,8 +44,9 @@ class McmUserProfile(object):
                  region_ids=None,
                  tenant_id=None,
                  tenant_name=None,
-                 tenant_type=None
-                 ):
+                 tenant_type=None,
+            ):
+
         """Constructor for the McmUserProfile class"""
 
         # Initialize members of the class
@@ -80,18 +83,18 @@ class McmUserProfile(object):
                 cluster_identifiers.append(cohesity_management_sdk.models.cluster_identifier.ClusterIdentifier.from_dictionary(structure))
         is_active = dictionary.get('isActive')
         is_deleted = dictionary.get('isDeleted')
-        region_ids = dictionary.get('regionIds')
+        region_ids = dictionary.get("regionIds")
         tenant_id = dictionary.get('tenantId')
         tenant_name = dictionary.get('tenantName')
         tenant_type = dictionary.get('tenantType')
 
         # Return an object of this model
-        return cls(cluster_identifiers,
-                   is_active,
-                   is_deleted,
-                   region_ids,
-                   tenant_id,
-                   tenant_name,
-                   tenant_type)
-
-
+        return cls(
+            cluster_identifiers,
+            is_active,
+            is_deleted,
+            region_ids,
+            tenant_id,
+            tenant_name,
+            tenant_type
+)

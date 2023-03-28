@@ -4,14 +4,13 @@
 class FileTypeEnum(object):
 
     """Implementation of the 'FileType' enum.
+    Specifies the format type of the file that SQL database stores the data.
+    Specifies the format type of the file that SQL database stores the data.
+    'kRows' refers to a data file 'kLog' refers to a log file 'kFileStream'
+    refers to a directory containing FILESTREAM data 'kNotSupportedType' is for
+    information purposes only. Not supported. 'kFullText' refers to a full-text
+    catalog.
 
-    Specifies the format type of the file that SQL database stores the data.
-    Specifies the format type of the file that SQL database stores the data.
-    'kRows' refers to a data file
-    'kLog' refers to a log file
-    'kFileStream' refers to a directory containing FILESTREAM data
-    'kNotSupportedType' is for information purposes only. Not supported.
-    'kFullText' refers to a full-text catalog.
 
     Attributes:
         KROWS: TODO: type description here.
@@ -31,4 +30,3 @@ class FileTypeEnum(object):
     KNOTSUPPORTEDTYPE = 'kNotSupportedType'
 
     KFULLTEXT = 'kFullText'
-

@@ -4,12 +4,11 @@
 class PrivilegeIdEnum(object):
 
     """Implementation of the 'PrivilegeId' enum.
-
     Specifies unique id for a privilege. This number must be unique when
-    creating a new privilege.
-    Type for unique privilege Id values.
-    All below enum values specify a value for all uniquely defined
-    privileges in Cohesity.
+    creating a new privilege. Type for unique privilege Id values. All below
+    enum values specify a value for all uniquely defined privileges in
+    Cohesity.
+
 
     Attributes:
         KPRINCIPALVIEW: TODO: type description here.
@@ -194,4 +193,3 @@ class PrivilegeIdEnum(object):
     KOBJECTSEARCH = 'kObjectSearch'
 
     KFILEDATALOCKEXPIRYTIMEDECREASE = 'kFileDatalockExpiryTimeDecrease'
-

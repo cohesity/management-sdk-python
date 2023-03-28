@@ -1,34 +1,35 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class NfsSquash(object):
 
     """Implementation of the 'NfsSquash' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
+
         gid (int): GID mapped for all clients.
         uid (int): UID mapped for all clients.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "gid":'gid',
-        "uid":'uid'
+        "uid":'uid',
     }
-
     def __init__(self,
                  gid=None,
-                 uid=None):
+                 uid=None,
+            ):
+
         """Constructor for the NfsSquash class"""
 
         # Initialize members of the class
         self.gid = gid
         self.uid = uid
-
 
     @classmethod
     def from_dictionary(cls,
@@ -52,7 +53,7 @@ class NfsSquash(object):
         uid = dictionary.get('uid')
 
         # Return an object of this model
-        return cls(gid,
-                   uid)
-
-
+        return cls(
+            gid,
+            uid
+)

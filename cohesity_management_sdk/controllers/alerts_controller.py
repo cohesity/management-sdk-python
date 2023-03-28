@@ -608,7 +608,7 @@ class AlertsController(BaseController):
         all registered alerts in the Cohesity cluster are returned.
 
         Args:
-            alert_category_list (list of AlertCategoryListEnum, optional):
+            alert_category_list (list of AlertCategoryEnum, optional):
                 Specifies a list of Alert Categories to filter alert types by.
                 Specifies the category of an Alert.
 

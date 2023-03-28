@@ -4,20 +4,21 @@
 class BackupTypeEnum(object):
 
     """Implementation of the 'BackupType' enum.
+    Specifies the type of the 'kFull' backup job. Specifies whether it is
+    Volume level backup or individual files level backup. kSqlVSSVolume implies
+    volume based VSS full backup. kSqlVSSFile implies file based VSS full
+    backup.
 
-    Specifies the type of backup supported by the VM.
-    'kRctBackup', 'kVssBackup'
-    Specifies the type of an HyperV datastore object.
-    'kRctBackup' indicates backup is done using RCT/checkpoints.
-    'kVssBackup' indicates backup is done using VSS.
 
     Attributes:
-        KRCTBACKUP: TODO: type description here.
-        KVSSBACKUP: TODO: type description here.
+        KSQLVSSVOLUME: TODO: type description here.
+        KSQLVSSFILE: TODO: type description here.
+        KSQLNATIVE: TODO: type description here.
 
     """
 
-    KRCTBACKUP = 'kRctBackup'
+    KSQLVSSVOLUME = 'kSqlVSSVolume'
 
-    KVSSBACKUP = 'kVssBackup'
+    KSQLVSSFILE = 'kSqlVSSFile'
 
+    KSQLNATIVE = 'kSqlNative'

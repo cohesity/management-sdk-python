@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-import cohesity_management_sdk.models.restore_task_additional_params
 import cohesity_management_sdk.models.entity_proto
 import cohesity_management_sdk.models.restore_app_object_params
+import cohesity_management_sdk.models.restore_task_additional_params
 import cohesity_management_sdk.models.universal_id_proto
+
 
 class RestoreAppObject(object):
 
@@ -13,21 +14,25 @@ class RestoreAppObject(object):
     Message that captures information about an application object being
     restored.
 
+
     Attributes:
+
         additional_params (RestoreTaskAdditionalParams): Any additional
             parameters associated with a restore task.
-        app_entity (EntityProto): Specifies the attributes and the latest
-            statistics about an entity.
+        app_entity (EntityProto): The application entity to restore (for
+            example, kSQL, kOracle). If this is not set, all the apps in the
+            owning entity will be restored.
         display_name (string): The proper display name of this object in the
             UI, if app_entity is not empty. For example, for SQL databases the
             name should also include the instance name.
-        entity_node_uid (UniversalIdProto): Universal id of entity node
-            created in graphDB to refer the entity created by clone task.
-        restore_params (RestoreAppObjectParams): TODO: type description here.
+        entity_node_uid (UniversalIdProto): Universal id of entity node created
+            in graphDB to refer the entity created by clone task.
+        restore_params (RestoreAppObjectParams): The restore params for the
+            RestoreAppObject.
         task_node_uid (UniversalIdProto): Universal id of task node created in
             graphDB to refer the clone task.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -36,16 +41,17 @@ class RestoreAppObject(object):
         "display_name":'displayName',
         "entity_node_uid":'entityNodeUid',
         "restore_params":'restoreParams',
-        "task_node_uid":'taskNodeUid'
+        "task_node_uid":'taskNodeUid',
     }
-
     def __init__(self,
                  additional_params=None,
                  app_entity=None,
                  display_name=None,
                  entity_node_uid=None,
                  restore_params=None,
-                 task_node_uid=None):
+                 task_node_uid=None,
+            ):
+
         """Constructor for the RestoreAppObject class"""
 
         # Initialize members of the class
@@ -55,7 +61,6 @@ class RestoreAppObject(object):
         self.entity_node_uid = entity_node_uid
         self.restore_params = restore_params
         self.task_node_uid = task_node_uid
-
 
     @classmethod
     def from_dictionary(cls,
@@ -83,11 +88,11 @@ class RestoreAppObject(object):
         task_node_uid = cohesity_management_sdk.models.universal_id_proto.UniversalIdProto.from_dictionary(dictionary.get('taskNodeUid')) if dictionary.get('taskNodeUid') else None
 
         # Return an object of this model
-        return cls(additional_params,
-                   app_entity,
-                   display_name,
-                   entity_node_uid,
-                   restore_params,
-                   task_node_uid)
-
-
+        return cls(
+            additional_params,
+            app_entity,
+            display_name,
+            entity_node_uid,
+            restore_params,
+            task_node_uid
+)

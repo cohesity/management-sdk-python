@@ -8,9 +8,11 @@ class CouchbaseRecoverJobParams(object):
     Contains any additional couchbase environment specific params for the
     recover job.
 
+
     Attributes:
-        append_documents (bool): Whether to append documents into the bucket
-            at the destination
+
+        append_documents (bool): Whether to append documents into the bucket at
+            the destination
         ddl_only_recovery (bool): Whether to recover only the bucket
             configuration
         documents_filter_type (int): Specify the document type recovery option.
@@ -22,20 +24,19 @@ class CouchbaseRecoverJobParams(object):
             from the bucket
         suffix (string): A suffix that is to be applied to all recovered
             entities
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "append_documents": 'appendDocuments',
-        "ddl_only_recovery": 'ddlOnlyRecovery',
-        "documents_filter_type": 'documentsFilterType',
+        "append_documents":'appendDocuments',
+        "ddl_only_recovery":'ddlOnlyRecovery',
+        "documents_filter_type":'documentsFilterType',
         "filter_expression":'filterExpression',
         "id_regex":'idRegex',
         "overwrite_users":'overwriteUsers',
-        "suffix":'suffix'
+        "suffix":'suffix',
     }
-
     def __init__(self,
                  append_documents=None,
                  ddl_only_recovery=None,
@@ -43,8 +44,9 @@ class CouchbaseRecoverJobParams(object):
                  filter_expression=None,
                  id_regex=None,
                  overwrite_users=None,
-                 suffix=None
-                 ):
+                 suffix=None,
+            ):
+
         """Constructor for the CouchbaseRecoverJobParams class"""
 
         # Initialize members of the class
@@ -83,12 +85,12 @@ class CouchbaseRecoverJobParams(object):
         suffix = dictionary.get('suffix')
 
         # Return an object of this model
-        return cls(append_documents,
-                   ddl_only_recovery,
-                   documents_filter_type,
-                   filter_expression,
-                   id_regex,
-                   overwrite_users,
-                   suffix)
-
-
+        return cls(
+            append_documents,
+            ddl_only_recovery,
+            documents_filter_type,
+            filter_expression,
+            id_regex,
+            overwrite_users,
+            suffix
+)
