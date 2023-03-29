@@ -303,6 +303,10 @@ class CohesityClient(object):
         if domain is not None:
             self.config.domain = domain
         self.config.cluster_vip = cluster_vip
+        if otp_code:
+            self.config.otp_code = otp_code
+        if otp_type:
+            self.config.otp_type = otp_type
         if api_key is not None:
             self.config.api_key = api_key
         if otp_code is not None:
