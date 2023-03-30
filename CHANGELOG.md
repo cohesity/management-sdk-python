@@ -1,3 +1,18 @@
+# [1.9.0] - 2023-03-30
+New SDK for 6.8.1_u1 Cluster Version.
+
+### Added
+- New SDK for 6.8.1_u1 cluster version
+
+### Changed
+- None
+
+### Fixed
+- None
+
+### Removed
+- None
+
 # [1.8.1] - 2022-07-08
 Paatch release with updated .py files.
 
