@@ -19,6 +19,9 @@ class AuthManager:
         if Configuration.api_key is not None:
             http_request.headers['apikey'] = Configuration.api_key
             return
+        if Configuration.open_id_token is not None:
+            http_request.headers['open-id-token'] = Configuration.open_id_token
+            return
         cls.check_auth(Configuration)
         token = Configuration.auth_token.access_token
         token_type = Configuration.auth_token.token_type

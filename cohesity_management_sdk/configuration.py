@@ -62,6 +62,8 @@ class Configuration(object):
 
     # API Key patch
     api_key = None
+    # Open Id token.
+    open_id_token = None
 
     # Optional: OTP support
     otp_type = None
