@@ -78,7 +78,7 @@ pip install cohesity-management-sdk==1.5.1
 
 This SDK exposes all the functionality provided by *Cohesity REST API*.
 
-Initializing the Client using username and password:
+Initializing the Client using `username` and `password`:
 ```
 username = 'Username'
 password = 'Password'
@@ -90,12 +90,12 @@ result = cluster_controller.get_basic_cluster_info()
 result_dict =  result.__dict__
 print(result_dict['cluster_software_version'])
 
-
 #OUTPUT
 6.4.1_release-20191219_aafe3274
 ```
+---
 
-Initializing the Client Using Session Id:
+Initializing the Client Using `Session Id`:
 ```
 cluster_vip = 'prod-cluster.eng.cohesity.com'
 session_id = '<session_id>'
@@ -108,8 +108,8 @@ print(result_dict['cluster_software_version'])
 #OUTPUT
 6.4.1_release-20191219_aafe3274
 ```
-
-Initializing the Client Using Api Key:
+---
+Initializing the Client Using `Api Key`:
 ```
 cluster_vip = 'prod-cluster.eng.cohesity.com'
 api_key = '<api_key>'
@@ -122,8 +122,8 @@ print(result_dict['cluster_software_version'])
 #OUTPUT
 6.4.1_release-20191219_aafe3274
 ```
-
-Initializing the Client Using Oprn-Id token:
+---
+Initializing the Client Using `Open-Id token`:
 ```
 cluster_vip = 'prod-cluster.eng.cohesity.com'
 open_id_token = '<token>'
@@ -136,8 +136,8 @@ print(result_dict['cluster_software_version'])
 #OUTPUT
 6.4.1_release-20191219_aafe3274
 ```
-
-Initializing the Client Using MFA:
+---
+Initializing the Client Using `MFA`:
 ```
 username = 'Username'
 password = 'Password'
