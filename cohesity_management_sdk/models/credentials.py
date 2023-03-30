@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class Credentials(object):
 
@@ -8,28 +7,30 @@ class Credentials(object):
 
     Specifies credentials to access a target source.
 
+
     Attributes:
+
         password (string): Specifies password of the username to access the
             target source.
         username (string): Specifies username to access the target source.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "password":'password',
-        "username":'username'
+        "username":'username',
     }
-
     def __init__(self,
                  password=None,
-                 username=None):
+                 username=None,
+            ):
+
         """Constructor for the Credentials class"""
 
         # Initialize members of the class
         self.password = password
         self.username = username
-
 
     @classmethod
     def from_dictionary(cls,
@@ -53,7 +54,7 @@ class Credentials(object):
         username = dictionary.get('username')
 
         # Return an object of this model
-        return cls(password,
-                   username)
-
-
+        return cls(
+            password,
+            username
+)

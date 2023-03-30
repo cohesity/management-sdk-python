@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.smb_permission
+
 
 class SmbPermissionsInfo(object):
 
@@ -9,29 +10,31 @@ class SmbPermissionsInfo(object):
 
     Specifies information about SMB permissions.
 
+
     Attributes:
+
         owner_sid (string): Specifies the security identifier (SID) of the
             owner of the SMB share.
-        permissions (list of SmbPermission): Array of SMB Permissions.
+        permissions (list of SmbPermission): Array of SMB Permissions. 
             Specifies a list of SMB permissions.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "owner_sid":'ownerSid',
-        "permissions":'permissions'
+        "permissions":'permissions',
     }
-
     def __init__(self,
                  owner_sid=None,
-                 permissions=None):
+                 permissions=None,
+            ):
+
         """Constructor for the SmbPermissionsInfo class"""
 
         # Initialize members of the class
         self.owner_sid = owner_sid
         self.permissions = permissions
-
 
     @classmethod
     def from_dictionary(cls,
@@ -59,7 +62,7 @@ class SmbPermissionsInfo(object):
                 permissions.append(cohesity_management_sdk.models.smb_permission.SmbPermission.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(owner_sid,
-                   permissions)
-
-
+        return cls(
+            owner_sid,
+            permissions
+)

@@ -1,17 +1,20 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
-import cohesity_management_sdk.models.remote_script_path_and_params
 import cohesity_management_sdk.models.remote_host
+import cohesity_management_sdk.models.remote_script_path_and_params
+
 
 class RemoteJobScript(object):
 
     """Implementation of the 'RemoteJobScript' model.
 
-    Provides details about the Remote Adapter associated with a
-    'kPuppeteer' Protection Job.
+    Provides details about the Remote Adapter associated with a 'kPuppeteer'
+    Protection Job.
+
 
     Attributes:
+
         full_backup_script (RemoteScriptPathAndParams): Specifies the script
             that should run for the Full (no CBT) backup schedule of a Remote
             Adapter 'kPuppeteer' Job. This field is mandatory if the Policy
@@ -32,12 +35,12 @@ class RemoteJobScript(object):
         remote_host (RemoteHost): Specifies the remote host where the remote
             scripts are executed. This field must be set for Remote Adapter
             Jobs.
-        username (string): Specifies the username that will be used to login
-            to the remote host. For host type 'kLinux', it is expected that
-            user has setup the password-less access. So only username field is
+        username (string): Specifies the username that will be used to login to
+            the remote host. For host type 'kLinux', it is expected that user
+            has setup the password-less access. So only username field is
             required.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -45,15 +48,16 @@ class RemoteJobScript(object):
         "incremental_backup_script":'incrementalBackupScript',
         "log_backup_script":'logBackupScript',
         "remote_host":'remoteHost',
-        "username":'username'
+        "username":'username',
     }
-
     def __init__(self,
                  full_backup_script=None,
                  incremental_backup_script=None,
                  log_backup_script=None,
                  remote_host=None,
-                 username=None):
+                 username=None,
+            ):
+
         """Constructor for the RemoteJobScript class"""
 
         # Initialize members of the class
@@ -62,7 +66,6 @@ class RemoteJobScript(object):
         self.log_backup_script = log_backup_script
         self.remote_host = remote_host
         self.username = username
-
 
     @classmethod
     def from_dictionary(cls,
@@ -89,10 +92,10 @@ class RemoteJobScript(object):
         username = dictionary.get('username')
 
         # Return an object of this model
-        return cls(full_backup_script,
-                   incremental_backup_script,
-                   log_backup_script,
-                   remote_host,
-                   username)
-
-
+        return cls(
+            full_backup_script,
+            incremental_backup_script,
+            log_backup_script,
+            remote_host,
+            username
+)

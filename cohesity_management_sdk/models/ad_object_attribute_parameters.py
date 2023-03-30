@@ -1,18 +1,21 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.restore_ad_guid_pair
+
 
 class AdObjectAttributeParameters(object):
 
     """Implementation of the 'AdObjectAttributeParameters' model.
 
-    AdObjectAttributeParameters are AD attribute recovery parameters for one
-    or more AD objects
+    AdObjectAttributeParameters are AD attribute recovery parameters for one or
+    more AD objects
+
 
     Attributes:
-        ad_guid_pairs (list of RestoreAdGuidPair): Specifies the array of source and
-            destination object guid pairs to restore attributes.
+
+        ad_guid_pairs (list of RestoreAdGuidPair): Specifies the array of
+            source and destination object guid pairs to restore attributes.
         exclude_ldap_properties (list of string): Specifies the array of LDAP
             property names to excluded from 'property_vec'. Excluded property
             name cannot contain wildcard character '*'.  Property names are
@@ -32,25 +35,26 @@ class AdObjectAttributeParameters(object):
             snapshot. Defaults is to overwrite production AD values from the
             source AD snapshot. When updating group membership (using
             'memberOf' property), setting this option to true will result in
-            group membership merge. This is useful in cases where production
-            AD has later updates that should not be overridden while restoring
-            an attribute.
-
+            group membership merge. This is useful in cases where production AD
+            has later updates that should not be overridden while restoring an
+            attribute.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "ad_guid_pairs":'adGuidPairs',
         "exclude_ldap_properties":'excludeLdapProperties',
         "ldap_properties":'ldapProperties',
-        "merge_multi_val_properties":'mergeMultiValProperties'
+        "merge_multi_val_properties":'mergeMultiValProperties',
     }
-
     def __init__(self,
                  ad_guid_pairs=None,
                  exclude_ldap_properties=None,
                  ldap_properties=None,
-                 merge_multi_val_properties=None):
+                 merge_multi_val_properties=None,
+            ):
+
         """Constructor for the AdObjectAttributeParameters class"""
 
         # Initialize members of the class
@@ -58,7 +62,6 @@ class AdObjectAttributeParameters(object):
         self.exclude_ldap_properties = exclude_ldap_properties
         self.ldap_properties = ldap_properties
         self.merge_multi_val_properties = merge_multi_val_properties
-
 
     @classmethod
     def from_dictionary(cls,
@@ -83,14 +86,14 @@ class AdObjectAttributeParameters(object):
             ad_guid_pairs = list()
             for structure in dictionary.get('adGuidPairs'):
                 ad_guid_pairs.append(cohesity_management_sdk.models.restore_ad_guid_pair.RestoreAdGuidPair.from_dictionary(structure))
-        exclude_ldap_properties = dictionary.get('excludeLdapProperties')
-        ldap_properties = dictionary.get('ldapProperties')
+        exclude_ldap_properties = dictionary.get("excludeLdapProperties")
+        ldap_properties = dictionary.get("ldapProperties")
         merge_multi_val_properties = dictionary.get('mergeMultiValProperties')
 
         # Return an object of this model
-        return cls(ad_guid_pairs,
-                   exclude_ldap_properties,
-                   ldap_properties,
-                   merge_multi_val_properties)
-
-
+        return cls(
+            ad_guid_pairs,
+            exclude_ldap_properties,
+            ldap_properties,
+            merge_multi_val_properties
+)

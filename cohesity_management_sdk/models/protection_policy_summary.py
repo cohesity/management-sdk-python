@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.last_protection_run_summary
 import cohesity_management_sdk.models.protected_source_summary
@@ -7,18 +7,20 @@ import cohesity_management_sdk.models.protection_job_summary_for_policies
 import cohesity_management_sdk.models.protection_policy
 import cohesity_management_sdk.models.protection_runs_summary
 
+
 class ProtectionPolicySummary(object):
 
     """Implementation of the 'ProtectionPolicySummary' model.
 
-    ProtectionPolicySummary specifies protection summary of a given
-    Protection Policy.
+    ProtectionPolicySummary specifies protection summary of a given Protection
+    Policy.
+
 
     Attributes:
-        last_protection_run_summary (LastProtectionRunSummary):
-            LastProtectionRunsSummary is the summary of the last Protection
-            Run for the Protection Jobs using the Specified Protection
-            Policy.
+
+        last_protection_run_summary (LastProtectionRunSummary): Specifies the
+            summary of the last Protection Runs of all the related Protection
+            Sources and Protection Jobs.
         pagination_cookie (string): If there are more results to display, use
             this value to get the next set of results, by using this value in
             paginationCookie param for the next request to
@@ -30,12 +32,12 @@ class ProtectionPolicySummary(object):
             Specifies the list of Protection Jobs associated with the given
             Protection Policy. This is only populated if the type of the
             Protection Policy is kRegular.
-        protection_policy (ProtectionPolicy): TODO: type description here.
-        protection_runs_summary (ProtectionRunsSummary): ProtectionRunsSummary
-            is the summary of the all the Protection Runs for the Protection
-            Jobs using the Specified Protection Policy.
-
+        protection_policy (ProtectionPolicy): Specifies the Protection Policy
+            for which the summary is requested.
+        protection_runs_summary (ProtectionRunsSummary): Specifies the
+            aggregated summary of the Protection Runs.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -44,16 +46,17 @@ class ProtectionPolicySummary(object):
         "protected_sources_summary":'protectedSourcesSummary',
         "protection_jobs_summary":'protectionJobsSummary',
         "protection_policy":'protectionPolicy',
-        "protection_runs_summary":'protectionRunsSummary'
+        "protection_runs_summary":'protectionRunsSummary',
     }
-
     def __init__(self,
                  last_protection_run_summary=None,
                  pagination_cookie=None,
                  protected_sources_summary=None,
                  protection_jobs_summary=None,
                  protection_policy=None,
-                 protection_runs_summary=None):
+                 protection_runs_summary=None,
+            ):
+
         """Constructor for the ProtectionPolicySummary class"""
 
         # Initialize members of the class
@@ -63,7 +66,6 @@ class ProtectionPolicySummary(object):
         self.protection_jobs_summary = protection_jobs_summary
         self.protection_policy = protection_policy
         self.protection_runs_summary = protection_runs_summary
-
 
     @classmethod
     def from_dictionary(cls,
@@ -99,11 +101,11 @@ class ProtectionPolicySummary(object):
         protection_runs_summary = cohesity_management_sdk.models.protection_runs_summary.ProtectionRunsSummary.from_dictionary(dictionary.get('protectionRunsSummary')) if dictionary.get('protectionRunsSummary') else None
 
         # Return an object of this model
-        return cls(last_protection_run_summary,
-                   pagination_cookie,
-                   protected_sources_summary,
-                   protection_jobs_summary,
-                   protection_policy,
-                   protection_runs_summary)
-
-
+        return cls(
+            last_protection_run_summary,
+            pagination_cookie,
+            protected_sources_summary,
+            protection_jobs_summary,
+            protection_policy,
+            protection_runs_summary
+)

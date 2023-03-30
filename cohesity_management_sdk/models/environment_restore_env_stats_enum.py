@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class EnvironmentRestoreEnvStatsEnum(object):
 
-    """Implementation of the 'Environment_RestoreEnvStats' enum.
-
+    """Implementation of the 'EnvironmentRestoreEnvStats' enum.
     Specifies the environment.
+
 
     Attributes:
         KVMWARE: TODO: type description here.
@@ -32,14 +32,14 @@ class EnvironmentRestoreEnvStatsEnum(object):
         KGCP: TODO: type description here.
         KFLASHBLADE: TODO: type description here.
         KAWSNATIVE: TODO: type description here.
+        KVCD: TODO: type description here.
         KO365: TODO: type description here.
         KO365OUTLOOK: TODO: type description here.
         KHYPERFLEX: TODO: type description here.
         KGCPNATIVE: TODO: type description here.
         KAZURENATIVE: TODO: type description here.
         KAD: TODO: type description here.
-        KRDSSNAPSHOTMANAGER: TODO: type description here.
-        KUDA: TODO: type description here.
+        KAWSSNAPSHOTMANAGER: TODO: type description here.
 
     """
 
@@ -101,11 +101,8 @@ class EnvironmentRestoreEnvStatsEnum(object):
 
     KGCPNATIVE = 'kGCPNative'
 
-    KELASTIFILE = 'kElastifile'
+    KAZURENATIVE = 'kAzureNative'
 
     KAD = 'kAD'
 
-    KRDSSNAPSHOTMANAGER = 'kRDSSnapshotManager'
-
-    KUDA = 'kUDA'
-
+    KAWSSNAPSHOTMANAGER = 'kAWSSnapshotManager'

@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.bond_slave_info
 import cohesity_management_sdk.models.interface_stats
+
 
 class NetworkInterface(object):
 
@@ -10,35 +11,34 @@ class NetworkInterface(object):
 
     Specifies the properties of a network interface.
 
+
     Attributes:
-        active_bond_slave (string): Current active slave. This is only valid
-            in active-backup mode.
+
+        active_bond_slave (string): Current active secondary. This is only
+            valid in active-backup mode.
         bond_slave_slot_types (list of string): Specifies the types of the
-            slots of any slaves if this interface is a bond.
-        bond_slaves (list of string): Specifies the names of any slaves if
+            slots of any secondaries if this interface is a bond.
+        bond_slaves (list of string): Specifies the names of any secondaries if
             this interface is a bond.
-        bond_slaves_details (list of BondSlaveInfo): Specifies the details
-            of the bond slaves.
-        bonding_mode (int): Specifies the bonding mode if this interface is
-            a bond.
+        bond_slaves_details (list of BondSlaveInfo): Specifies the details of
+            the bond secondaries.
+        bonding_mode (int): Specifies the bonding mode if this interface is a
+            bond.
         gateway (string): Specifies the gateway of the interface.
         gateway6 (string): Specifies the gateway6 of the interface.
         group (string): Specifies the group that this interface belongs to.
         id (long|int): Specifies the ID of this network interface.
         is_connected (bool): Specifies whether or not the Interface is
             connected.
-        is_default_route (bool): Specifies whether or not to use this
-            interface as the default route.
-        is_up (bool): Specifies whether or not the interface is currently
-            up.
+        is_default_route (bool): Specifies whether or not to use this interface
+            as the default route.
+        is_up (bool): Specifies whether or not the interface is currently  up.
         mac_address (string): Specifies the Mac address of the Interface.
         mtu (int): Specifies the MTU of the interface.
         name (string): Specifies the name of the interface port.
-        role (RoleNetworkInterfaceEnum): Specifies the role of this interface.
-            'kPrimary' indicates a primary role. 'kSecondary' indicates a
-            secondary role.
-        services (list of ServiceNetworkInterfaceEnum): Specifies the types of
-            services this interface is used for.
+        role (string): Specifies the role of this interface.
+        services (list of string): Specifies the types of services this
+            interface is used for.
         speed (string): Specifies the speed of the Interface.
         static_ip (string): Specifies the static IP of the interface.
         static_ip6 (string): Specifies the static IPv6 of the interface.
@@ -47,8 +47,8 @@ class NetworkInterface(object):
         subnet6 (string): Specifies the subnet6 mask of the interface.
         mtype (int): Specifies the type of interface.
         virtual_ip (string): Specifies the virtual IP of the interface.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -72,13 +72,12 @@ class NetworkInterface(object):
         "speed":'speed',
         "static_ip":'staticIp',
         "static_ip6":'staticIp6',
-        "stats": 'stats',
+        "stats":'stats',
         "subnet":'subnet',
         "subnet6":'subnet6',
         "mtype":'type',
-        "virtual_ip":'virtualIp'
+        "virtual_ip":'virtualIp',
     }
-
     def __init__(self,
                  active_bond_slave=None,
                  bond_slave_slot_types=None,
@@ -104,7 +103,9 @@ class NetworkInterface(object):
                  subnet=None,
                  subnet6=None,
                  mtype=None,
-                 virtual_ip=None):
+                 virtual_ip=None,
+            ):
+
         """Constructor for the NetworkInterface class"""
 
         # Initialize members of the class
@@ -134,7 +135,6 @@ class NetworkInterface(object):
         self.mtype = mtype
         self.virtual_ip = virtual_ip
 
-
     @classmethod
     def from_dictionary(cls,
                         dictionary):
@@ -154,13 +154,13 @@ class NetworkInterface(object):
 
         # Extract variables from the dictionary
         active_bond_slave = dictionary.get('activeBondSlave')
-        bond_slave_slot_types = dictionary.get('bondSlaveSlotTypes')
-        bond_slaves = dictionary.get('bondSlaves')
+        bond_slave_slot_types = dictionary.get("bondSlaveSlotTypes")
+        bond_slaves = dictionary.get("bondSlaves")
         bond_slaves_details = None
         if dictionary.get('bondSlavesDetails') != None:
             bond_slaves_details = list()
             for structure in dictionary.get('bondSlavesDetails'):
-                bond_slaves_details.append(cohesity_management_sdk.models.bond_slave_info.BondSlaveInfo.from_dictiona(bond_slaves_details))
+                bond_slaves_details.append(cohesity_management_sdk.models.bond_slave_info.BondSlaveInfo.from_dictionary(structure))
         bonding_mode = dictionary.get('bondingMode')
         gateway = dictionary.get('gateway')
         gateway6 = dictionary.get('gateway6')
@@ -173,7 +173,7 @@ class NetworkInterface(object):
         mtu = dictionary.get('mtu')
         name = dictionary.get('name')
         role = dictionary.get('role')
-        services = dictionary.get('services')
+        services = dictionary.get("services")
         speed = dictionary.get('speed')
         static_ip = dictionary.get('staticIp')
         static_ip6 = dictionary.get('staticIp6')
@@ -184,30 +184,30 @@ class NetworkInterface(object):
         virtual_ip = dictionary.get('virtualIp')
 
         # Return an object of this model
-        return cls(active_bond_slave,
-                   bond_slave_slot_types,
-                   bond_slaves,
-                   bond_slaves_details,
-                   bonding_mode,
-                   gateway,
-                   gateway6,
-                   group,
-                   id,
-                   is_connected,
-                   is_default_route,
-                   is_up,
-                   mac_address,
-                   mtu,
-                   name,
-                   role,
-                   services,
-                   speed,
-                   static_ip,
-                   static_ip6,
-                   stats,
-                   subnet,
-                   subnet6,
-                   mtype,
-                   virtual_ip)
-
-
+        return cls(
+            active_bond_slave,
+            bond_slave_slot_types,
+            bond_slaves,
+            bond_slaves_details,
+            bonding_mode,
+            gateway,
+            gateway6,
+            group,
+            id,
+            is_connected,
+            is_default_route,
+            is_up,
+            mac_address,
+            mtu,
+            name,
+            role,
+            services,
+            speed,
+            static_ip,
+            static_ip6,
+            stats,
+            subnet,
+            subnet6,
+            mtype,
+            virtual_ip
+)

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -23,6 +23,8 @@ class VaultsController(BaseController):
     def get_vaults(self,
                    id=None,
                    name=None,
+                   global_id=None,
+                   include_fort_knox_vault=None,
                    include_marked_for_removal=None,
                    tenant_ids=None):
         """Does a GET request to /public/vaults.
@@ -39,6 +41,10 @@ class VaultsController(BaseController):
                 empty, all Vaults are returned.
             name (string, optional): Specifies the name of the Vault to
                 return. If empty, all Vaults are returned.
+            global_id (string, optional): Specifies the global Identifier of
+                the vault to be returned. If empty, all Vaults are returned.
+            include_fort_knox_vault (bool, optional): Specifies if Vaults that
+                are RPaaS vaults should be returned.
             include_marked_for_removal (bool, optional): Specifies if Vaults
                 that are marked for removal should be returned.
             tenant_ids (list of string, optional): Specifies a list of tenant
@@ -65,6 +71,8 @@ class VaultsController(BaseController):
             _query_parameters = {
                 'id': id,
                 'name': name,
+                'globalId': global_id,
+                'includeFortKnoxVault': include_fort_knox_vault,
                 'includeMarkedForRemoval': include_marked_for_removal,
                 'tenantIds': tenant_ids
             }

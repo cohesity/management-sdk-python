@@ -1,16 +1,19 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.oracle_database_node
+
 
 class OracleDatabaseNodeChannel(object):
 
     """Implementation of the 'OracleDatabaseNodeChannel' model.
 
-    Specifies node and channel info required for the backup and restore of
-    a database.
+    Specifies node and channel info required for the backup and restore of a
+    database.
+
 
     Attributes:
+
         archive_log_keep_days (int): Specifies the number of days archive log
             should be stored.
         database_node_list (list of OracleDatabaseNode): Array of nodes of a
@@ -19,21 +22,21 @@ class OracleDatabaseNodeChannel(object):
         database_unique_name (string): Specifies the unique Name of the
             database.
         database_uuid (string): Specifies the database unique id. This is an
-            internal field and is filled by magneto master based on
+            internal field and is filled by primary magneto based on
             corresponding app entity id.
         default_channel_count (int): Specifies the default number of channels
-            to use per node per database. The default number of channels to
-            use per host per db. This value is used on all
-            OracleDatabaseNode's unless databaseNodeList item's channelCount
-            is specified for the node.
+            to use per node per database. The default number of channels to use
+            per host per db. This value is used on all OracleDatabaseNode's
+            unless databaseNodeList item's channelCount is specified for the
+            node.
         enable_dg_primary_backup (bool): Specifies whether the database having
             the Primary role within Data Guard configuration is to be backed
             up.
         max_node_count (int): Specifies the maximum number of nodes from which
             we are allowed to take backup/restore.
         rman_backup_type (int): Specifies the type of Oracle RMAN backup.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -44,9 +47,8 @@ class OracleDatabaseNodeChannel(object):
         "default_channel_count":'defaultChannelCount',
         "enable_dg_primary_backup":'enableDgPrimaryBackup',
         "max_node_count":'maxNodeCount',
-        "rman_backup_type":'rmanBackupType'
+        "rman_backup_type":'rmanBackupType',
     }
-
     def __init__(self,
                  archive_log_keep_days=None,
                  database_node_list=None,
@@ -55,7 +57,9 @@ class OracleDatabaseNodeChannel(object):
                  default_channel_count=None,
                  enable_dg_primary_backup=None,
                  max_node_count=None,
-                 rman_backup_type=None):
+                 rman_backup_type=None,
+            ):
+
         """Constructor for the OracleDatabaseNodeChannel class"""
 
         # Initialize members of the class
@@ -67,7 +71,6 @@ class OracleDatabaseNodeChannel(object):
         self.enable_dg_primary_backup = enable_dg_primary_backup
         self.max_node_count = max_node_count
         self.rman_backup_type = rman_backup_type
-
 
     @classmethod
     def from_dictionary(cls,
@@ -101,13 +104,13 @@ class OracleDatabaseNodeChannel(object):
         rman_backup_type = dictionary.get('rmanBackupType')
 
         # Return an object of this model
-        return cls(archive_log_keep_days,
-                   database_node_list,
-                   database_unique_name,
-                   database_uuid,
-                   default_channel_count,
-                   enable_dg_primary_backup,
-                   max_node_count,
-                   rman_backup_type)
-
-
+        return cls(
+            archive_log_keep_days,
+            database_node_list,
+            database_unique_name,
+            database_uuid,
+            default_channel_count,
+            enable_dg_primary_backup,
+            max_node_count,
+            rman_backup_type
+)

@@ -1,16 +1,12 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class CassandraAuthTypeEnum(object):
 
     """Implementation of the 'CassandraAuthType' enum.
+    Cassandra Authentication type. Enum: [PASSWORD KERBEROS LDAP] Specifies the
+    Cassandra auth type. 'PASSWORD' 'KERBEROS' 'LDAP'
 
-    Cassandra Authentication type.
-    Enum: [PASSWORD KERBEROS LDAP]
-    Specifies the Cassandra auth type.
-    'PASSWORD'
-    'KERBEROS'
-    'LDAP'
 
     Attributes:
         PASSWORD: TODO: type description here.
@@ -24,4 +20,3 @@ class CassandraAuthTypeEnum(object):
     KERBEROS = 'KERBEROS'
 
     LDAP = 'LDAP'
-

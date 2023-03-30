@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class UpgradeNodeResult(object):
 
@@ -8,29 +7,31 @@ class UpgradeNodeResult(object):
 
     Specifies the result returned from a request to upgrade a Node.
 
+
     Attributes:
+
         message (string): Specifies a message describing the result of the
             request.
         status_url (string): Specifies a URL that can be queried to get the
             status of the operation once it has begun.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "message":'message',
-        "status_url":'statusUrl'
+        "status_url":'statusUrl',
     }
-
     def __init__(self,
                  message=None,
-                 status_url=None):
+                 status_url=None,
+            ):
+
         """Constructor for the UpgradeNodeResult class"""
 
         # Initialize members of the class
         self.message = message
         self.status_url = status_url
-
 
     @classmethod
     def from_dictionary(cls,
@@ -54,7 +55,7 @@ class UpgradeNodeResult(object):
         status_url = dictionary.get('statusUrl')
 
         # Return an object of this model
-        return cls(message,
-                   status_url)
-
-
+        return cls(
+            message,
+            status_url
+)

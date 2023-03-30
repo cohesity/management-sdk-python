@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class AwsKmsUpdateParams(object):
 
     """Implementation of the 'AwsKmsUpdateParams' model.
 
-    AwsKmsUpdateParams to define AWS KMS config.
+    TODO: type description here.
+
 
     Attributes:
+
         access_key_id (string): Access key id needed to access the cloud
             account. When update cluster config, should encrypte accessKeyId
             with cluster ID.
@@ -17,10 +18,10 @@ class AwsKmsUpdateParams(object):
             access the security credentials required for API calls.
         secret_access_key (string): Secret access key needed to access the
             cloud account. This is encrypted with the cluster id.
-        verify_ssl (bool): Specify whether to verify SSL when connect with AWS
-            KMS. Default is true.
-
+        verify_s_s_l (bool): Specify whether to verify SSL when connect with
+            AWS KMS. Default is true.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -28,15 +29,16 @@ class AwsKmsUpdateParams(object):
         "ca_certificate_path":'caCertificatePath',
         "iam_role_arn":'iamRoleArn',
         "secret_access_key":'secretAccessKey',
-        "verify_ssl":'verifySSL'
+        "verify_s_s_l":'verifySSL',
     }
-
     def __init__(self,
                  access_key_id=None,
                  ca_certificate_path=None,
                  iam_role_arn=None,
                  secret_access_key=None,
-                 verify_ssl=None):
+                 verify_s_s_l=None,
+            ):
+
         """Constructor for the AwsKmsUpdateParams class"""
 
         # Initialize members of the class
@@ -44,8 +46,7 @@ class AwsKmsUpdateParams(object):
         self.ca_certificate_path = ca_certificate_path
         self.iam_role_arn = iam_role_arn
         self.secret_access_key = secret_access_key
-        self.verify_ssl = verify_ssl
-
+        self.verify_s_s_l = verify_s_s_l
 
     @classmethod
     def from_dictionary(cls,
@@ -69,13 +70,13 @@ class AwsKmsUpdateParams(object):
         ca_certificate_path = dictionary.get('caCertificatePath')
         iam_role_arn = dictionary.get('iamRoleArn')
         secret_access_key = dictionary.get('secretAccessKey')
-        verify_ssl = dictionary.get('verifySSL')
+        verify_s_s_l = dictionary.get('verifySSL')
 
         # Return an object of this model
-        return cls(access_key_id,
-                   ca_certificate_path,
-                   iam_role_arn,
-                   secret_access_key,
-                   verify_ssl)
-
-
+        return cls(
+            access_key_id,
+            ca_certificate_path,
+            iam_role_arn,
+            secret_access_key,
+            verify_s_s_l
+)

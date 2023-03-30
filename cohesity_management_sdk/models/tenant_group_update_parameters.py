@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class TenantGroupUpdateParameters(object):
 
@@ -8,27 +7,29 @@ class TenantGroupUpdateParameters(object):
 
     Specifies group update details about a tenant.
 
+
     Attributes:
+
         sids (list of string): Specifies the array of Sid of the groups.
         tenant_id (string): Specifies the unique id of the tenant.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "sids":'sids',
-        "tenant_id":'tenantId'
+        "tenant_id":'tenantId',
     }
-
     def __init__(self,
                  sids=None,
-                 tenant_id=None):
+                 tenant_id=None,
+            ):
+
         """Constructor for the TenantGroupUpdateParameters class"""
 
         # Initialize members of the class
         self.sids = sids
         self.tenant_id = tenant_id
-
 
     @classmethod
     def from_dictionary(cls,
@@ -48,11 +49,11 @@ class TenantGroupUpdateParameters(object):
             return None
 
         # Extract variables from the dictionary
-        sids = dictionary.get('sids')
+        sids = dictionary.get("sids")
         tenant_id = dictionary.get('tenantId')
 
         # Return an object of this model
-        return cls(sids,
-                   tenant_id)
-
-
+        return cls(
+            sids,
+            tenant_id
+)

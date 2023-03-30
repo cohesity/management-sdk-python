@@ -1,36 +1,43 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
+import cohesity_management_sdk.models.entity_proto
 import cohesity_management_sdk.models.restore_ad_app_object_params
+import cohesity_management_sdk.models.restore_exchange_params
 import cohesity_management_sdk.models.restore_oracle_app_object_params
 import cohesity_management_sdk.models.restore_sql_app_object_params
-import cohesity_management_sdk.models.entity_proto
-import cohesity_management_sdk.models.restore_exchange_params
+
 
 class RestoreAppObjectParams(object):
 
     """Implementation of the 'RestoreAppObjectParams' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
-        ad_restore_params (RestoreADAppObjectParams): TODO: type description
-            here.
+
+        ad_restore_params (RestoreADAppObjectParams): The AD specific
+            application object restore params. Only applicable if the
+            RestoreAppObject.app_entity is of type kAD.
         clone_task_id (long|int): Id of finished clone task which has to be
             refreshed with different data.
-        exchange_restore_params(RestoreExchangeParams): The Exchange specific
+        exchange_restore_params (RestoreExchangeParams): The Exchange specific
             application object restore params. Only applicable if the
             RestoreAppObject.app_entity is of type kExchange.
-        oracle_restore_params (RestoreOracleAppObjectParams): TODO: type
-            description here.
-        sql_restore_params (RestoreSqlAppObjectParams): TODO: type description
-            here.
-        target_host (EntityProto): Specifies the attributes and the latest
-            statistics about an entity.
-        target_host_parent_source (EntityProto): Specifies the attributes and
-            the latest statistics about an entity.
-
+        oracle_restore_params (RestoreOracleAppObjectParams): Note: Only one of
+            sql_restore_params and oracle_restore_params can be set.
+        sql_restore_params (RestoreSqlAppObjectParams): The SQL specific
+            application object restore params. Only applicable if the
+            RestoreAppObject.app_entity is of type kSQL.
+        target_host (EntityProto): The target host if the application is to be
+            restored to a different host. If this is empty, then we are
+            restoring to the original host, which is the owner entity.
+        target_host_parent_source (EntityProto): The registered source managing
+            the target host. If this is empty, then the target host has the
+            same parent source as the owner entity.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -40,9 +47,8 @@ class RestoreAppObjectParams(object):
         "oracle_restore_params":'oracleRestoreParams',
         "sql_restore_params":'sqlRestoreParams',
         "target_host":'targetHost',
-        "target_host_parent_source":'targetHostParentSource'
+        "target_host_parent_source":'targetHostParentSource',
     }
-
     def __init__(self,
                  ad_restore_params=None,
                  clone_task_id=None,
@@ -50,7 +56,9 @@ class RestoreAppObjectParams(object):
                  oracle_restore_params=None,
                  sql_restore_params=None,
                  target_host=None,
-                 target_host_parent_source=None):
+                 target_host_parent_source=None,
+            ):
+
         """Constructor for the RestoreAppObjectParams class"""
 
         # Initialize members of the class
@@ -61,7 +69,6 @@ class RestoreAppObjectParams(object):
         self.sql_restore_params = sql_restore_params
         self.target_host = target_host
         self.target_host_parent_source = target_host_parent_source
-
 
     @classmethod
     def from_dictionary(cls,
@@ -90,12 +97,12 @@ class RestoreAppObjectParams(object):
         target_host_parent_source = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('targetHostParentSource')) if dictionary.get('targetHostParentSource') else None
 
         # Return an object of this model
-        return cls(ad_restore_params,
-                   clone_task_id,
-                   exchange_restore_params,
-                   oracle_restore_params,
-                   sql_restore_params,
-                   target_host,
-                   target_host_parent_source)
-
-
+        return cls(
+            ad_restore_params,
+            clone_task_id,
+            exchange_restore_params,
+            oracle_restore_params,
+            sql_restore_params,
+            target_host,
+            target_host_parent_source
+)

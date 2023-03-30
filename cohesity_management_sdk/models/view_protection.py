@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.protection_job_info
+
 
 class ViewProtection(object):
 
@@ -10,35 +11,37 @@ class ViewProtection(object):
     Specifies information about the Protection Jobs that are protecting the
     View.
 
+
     Attributes:
+
         inactive (bool): Specifies if this View is an inactive View that was
             created on this Remote Cluster to store the Snapshots created by
             replication. This inactive View cannot be NFS or SMB mounted.
-        magneto_entity_id (long|int): Specifies the id of the Protection
-            Source that is using this View.
-        protection_jobs (list of ProtectionJobInfo): Array of Protection Jobs.
+        magneto_entity_id (long|int): Specifies the id of the Protection Source
+            that is using this View.
+        protection_jobs (list of ProtectionJobInfo): Array of Protection Jobs. 
             Specifies the Protection Jobs that are protecting the View.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "inactive":'inactive',
         "magneto_entity_id":'magnetoEntityId',
-        "protection_jobs":'protectionJobs'
+        "protection_jobs":'protectionJobs',
     }
-
     def __init__(self,
                  inactive=None,
                  magneto_entity_id=None,
-                 protection_jobs=None):
+                 protection_jobs=None,
+            ):
+
         """Constructor for the ViewProtection class"""
 
         # Initialize members of the class
         self.inactive = inactive
         self.magneto_entity_id = magneto_entity_id
         self.protection_jobs = protection_jobs
-
 
     @classmethod
     def from_dictionary(cls,
@@ -67,8 +70,8 @@ class ViewProtection(object):
                 protection_jobs.append(cohesity_management_sdk.models.protection_job_info.ProtectionJobInfo.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(inactive,
-                   magneto_entity_id,
-                   protection_jobs)
-
-
+        return cls(
+            inactive,
+            magneto_entity_id,
+            protection_jobs
+)

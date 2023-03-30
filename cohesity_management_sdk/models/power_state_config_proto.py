@@ -1,30 +1,31 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class PowerStateConfigProto(object):
 
     """Implementation of the 'PowerStateConfigProto' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
-        power_on (bool): TODO: type description here.
 
+        power_on (bool): TODO: Type description here.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "power_on":'powerOn'
+        "power_on":'powerOn',
     }
-
     def __init__(self,
-                 power_on=None):
+                 power_on=None,
+            ):
+
         """Constructor for the PowerStateConfigProto class"""
 
         # Initialize members of the class
         self.power_on = power_on
-
 
     @classmethod
     def from_dictionary(cls,
@@ -47,6 +48,6 @@ class PowerStateConfigProto(object):
         power_on = dictionary.get('powerOn')
 
         # Return an object of this model
-        return cls(power_on)
-
-
+        return cls(
+            power_on
+)

@@ -1,36 +1,38 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class SmbPrincipal(object):
 
     """Implementation of the 'SmbPrincipal' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
+
         domain (string): Specifies domain name of the principal.
-        name (string): Specifies name of the SMB principal which may be a
-            group or user.
+        name (string): Specifies name of the SMB principal which may be a group
+            or user.
         sid (string): Specifies unique Security ID (SID) of the principal that
             look similar to windows domain SID.
         mtype (string): Specifies the type. This can be a user or a group.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "domain":'domain',
         "name":'name',
         "sid":'sid',
-        "mtype":'type'
+        "mtype":'type',
     }
-
     def __init__(self,
                  domain=None,
                  name=None,
                  sid=None,
-                 mtype=None):
+                 mtype=None,
+            ):
+
         """Constructor for the SmbPrincipal class"""
 
         # Initialize members of the class
@@ -38,7 +40,6 @@ class SmbPrincipal(object):
         self.name = name
         self.sid = sid
         self.mtype = mtype
-
 
     @classmethod
     def from_dictionary(cls,
@@ -64,9 +65,9 @@ class SmbPrincipal(object):
         mtype = dictionary.get('type')
 
         # Return an object of this model
-        return cls(domain,
-                   name,
-                   sid,
-                   mtype)
-
-
+        return cls(
+            domain,
+            name,
+            sid,
+            mtype
+)

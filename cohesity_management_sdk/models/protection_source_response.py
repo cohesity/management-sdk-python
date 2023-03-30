@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.protection_job_summary
 import cohesity_management_sdk.models.protection_source
 import cohesity_management_sdk.models.protection_source_uid
+
 
 class ProtectionSourceResponse(object):
 
@@ -12,22 +13,22 @@ class ProtectionSourceResponse(object):
     Specifies the information about the individual object from search api
     response.
 
+
     Attributes:
+
         jobs (list of ProtectionJobSummary): Specifies the list of Protection
             Jobs that protect the object.
         logical_size_in_bytes (long|int): Specifies the logical size of
             Protection Source in bytes.
-        parent_source (ProtectionSource): Specifies a generic structure that
-            represents a node in the Protection Source tree. Node details will
-            depend on the environment of the Protection Source.
-        protection_source_uid_list (list of ProtectionSourceUid): Specifies
-            the list of universal ids of the Protection Source.
-        source (ProtectionSource): Specifies a generic structure that
-            represents a node in the Protection Source tree. Node details will
-            depend on the environment of the Protection Source.
+        parent_source (ProtectionSource): Specifies the information about the
+            parent of the source object.
+        protection_source_uid_list (list of ProtectionSourceUid): Specifies the
+            list of universal ids of the Protection Source.
+        source (ProtectionSource): Specifies the information about the
+            Protection Source.
         uuid (string): Specifies the unique id of the Protection Source.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -36,16 +37,17 @@ class ProtectionSourceResponse(object):
         "parent_source":'parentSource',
         "protection_source_uid_list":'protectionSourceUidList',
         "source":'source',
-        "uuid":'uuid'
+        "uuid":'uuid',
     }
-
     def __init__(self,
                  jobs=None,
                  logical_size_in_bytes=None,
                  parent_source=None,
                  protection_source_uid_list=None,
                  source=None,
-                 uuid=None):
+                 uuid=None,
+            ):
+
         """Constructor for the ProtectionSourceResponse class"""
 
         # Initialize members of the class
@@ -55,7 +57,6 @@ class ProtectionSourceResponse(object):
         self.protection_source_uid_list = protection_source_uid_list
         self.source = source
         self.uuid = uuid
-
 
     @classmethod
     def from_dictionary(cls,
@@ -91,11 +92,11 @@ class ProtectionSourceResponse(object):
         uuid = dictionary.get('uuid')
 
         # Return an object of this model
-        return cls(jobs,
-                   logical_size_in_bytes,
-                   parent_source,
-                   protection_source_uid_list,
-                   source,
-                   uuid)
-
-
+        return cls(
+            jobs,
+            logical_size_in_bytes,
+            parent_source,
+            protection_source_uid_list,
+            source,
+            uuid
+)

@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class NasMountCredentialParams(object):
 
@@ -8,7 +7,9 @@ class NasMountCredentialParams(object):
 
     Specifies the credentials to mount a volume on a NetApp server.
 
+
     Attributes:
+
         domain (string): Specifies the domain in which this credential is
             valid.
         domain_controller (string): Specifies the domain controller for the
@@ -30,8 +31,8 @@ class NasMountCredentialParams(object):
         skip_validation (bool): Specifies the flag to disable mount point
             validation during registration process.
         username (string): Specifies a username to use for mounting the NAS.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -42,9 +43,8 @@ class NasMountCredentialParams(object):
         "nas_type":'nasType',
         "password":'password',
         "skip_validation":'skipValidation',
-        "username":'username'
+        "username":'username',
     }
-
     def __init__(self,
                  domain=None,
                  domain_controller=None,
@@ -53,7 +53,9 @@ class NasMountCredentialParams(object):
                  nas_type=None,
                  password=None,
                  skip_validation=None,
-                 username=None):
+                 username=None,
+            ):
+
         """Constructor for the NasMountCredentialParams class"""
 
         # Initialize members of the class
@@ -65,7 +67,6 @@ class NasMountCredentialParams(object):
         self.password = password
         self.skip_validation = skip_validation
         self.username = username
-
 
     @classmethod
     def from_dictionary(cls,
@@ -95,13 +96,13 @@ class NasMountCredentialParams(object):
         username = dictionary.get('username')
 
         # Return an object of this model
-        return cls(domain,
-                   domain_controller,
-                   manage_password_by_cohesity,
-                   nas_protocol,
-                   nas_type,
-                   password,
-                   skip_validation,
-                   username)
-
-
+        return cls(
+            domain,
+            domain_controller,
+            manage_password_by_cohesity,
+            nas_protocol,
+            nas_type,
+            password,
+            skip_validation,
+            username
+)

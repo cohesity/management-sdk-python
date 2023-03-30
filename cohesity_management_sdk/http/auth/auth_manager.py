@@ -19,9 +19,17 @@ class AuthManager:
         if Configuration.api_key is not None:
             http_request.headers['apikey'] = Configuration.api_key
             return
+
+        # If this is SessionId based authentication, we add the session-id header
+        if Configuration.session_id is not None:
+            http_request.headers['session-id'] = Configuration.session_id
+            return
+
+        # If this is Open-Id based authentication, we add the open-id-token header
         if Configuration.open_id_token is not None:
             http_request.headers['open-id-token'] = Configuration.open_id_token
             return
+
         cls.check_auth(Configuration)
         token = Configuration.auth_token.access_token
         token_type = Configuration.auth_token.token_type

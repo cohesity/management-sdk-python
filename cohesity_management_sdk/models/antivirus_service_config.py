@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class AntivirusServiceConfig(object):
 
@@ -8,7 +7,9 @@ class AntivirusServiceConfig(object):
 
     Specifies configuration settings for antivirus service provider.
 
+
     Attributes:
+
         description (string): Specifies the description of the Antivirus
             service. This could be any additional information admin might
             associate with the Antivirus service.
@@ -18,27 +19,28 @@ class AntivirusServiceConfig(object):
             service-specific "cookie" sent from Antivirus server to clients
             that represents a service's current state. This tag validates that
             previous Antivirus server responses can still be considered fresh
-            by an Antivirus client that may be caching them. If a change on
-            the AV server invalidates previous responses, the AV server can
-            invalidate portions of the Antivirus client's cache by changing
-            its service tag.
+            by an Antivirus client that may be caching them. If a change on the
+            AV server invalidates previous responses, the AV server can
+            invalidate portions of the Antivirus client's cache by changing its
+            service tag.
         tag_id (long|int): Specifies the tag Id of antivirus service.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "icap_uri":'icapUri',
         "description":'description',
+        "icap_uri":'icapUri',
         "tag":'tag',
-        "tag_id":'tagId'
+        "tag_id":'tagId',
     }
-
     def __init__(self,
-                 icap_uri=None,
                  description=None,
+                 icap_uri=None,
                  tag=None,
-                 tag_id=None):
+                 tag_id=None,
+            ):
+
         """Constructor for the AntivirusServiceConfig class"""
 
         # Initialize members of the class
@@ -46,7 +48,6 @@ class AntivirusServiceConfig(object):
         self.icap_uri = icap_uri
         self.tag = tag
         self.tag_id = tag_id
-
 
     @classmethod
     def from_dictionary(cls,
@@ -66,15 +67,15 @@ class AntivirusServiceConfig(object):
             return None
 
         # Extract variables from the dictionary
-        icap_uri = dictionary.get('icapUri')
         description = dictionary.get('description')
+        icap_uri = dictionary.get('icapUri')
         tag = dictionary.get('tag')
         tag_id = dictionary.get('tagId')
 
         # Return an object of this model
-        return cls(icap_uri,
-                   description,
-                   tag,
-                   tag_id)
-
-
+        return cls(
+            description,
+            icap_uri,
+            tag,
+            tag_id
+)

@@ -1,36 +1,37 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class HiveConnectParams(object):
 
     """Implementation of the 'HiveConnectParams' model.
 
-    Specifies an Object containing information about a registered Hive
-    source.
+    Specifies an Object containing information about a registered Hive source.
+
 
     Attributes:
-        hdfs_entity_id (int|long): Specifies the entity id of the HDFS source
+
+        hdfs_entity_id (long|int): Specifies the entity id of the HDFS source
             for this Hive
         kerberos_principal (string): Specifies the kerberos principal.
         metastore (string): Specifies the Hive metastore host.
         thrift_port (int): Specifies the Hive metastore thrift Port
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "hdfs_entity_id":'hdfsEntityId',
         "kerberos_principal":'kerberosPrincipal',
-        "metastore": 'metastore',
-        "thrift_port": 'thriftPort'
+        "metastore":'metastore',
+        "thrift_port":'thriftPort',
     }
-
     def __init__(self,
                  hdfs_entity_id=None,
                  kerberos_principal=None,
                  metastore=None,
-                 thrift_port=None):
+                 thrift_port=None,
+            ):
+
         """Constructor for the HiveConnectParams class"""
 
         # Initialize members of the class
@@ -38,7 +39,6 @@ class HiveConnectParams(object):
         self.kerberos_principal = kerberos_principal
         self.metastore = metastore
         self.thrift_port = thrift_port
-
 
     @classmethod
     def from_dictionary(cls,
@@ -60,13 +60,13 @@ class HiveConnectParams(object):
         # Extract variables from the dictionary
         hdfs_entity_id = dictionary.get('hdfsEntityId')
         kerberos_principal = dictionary.get('kerberosPrincipal')
-        metastore = dictionary.get('metastore', None)
-        thrift_port = dictionary.get('thriftPort', None)
+        metastore = dictionary.get('metastore')
+        thrift_port = dictionary.get('thriftPort')
 
         # Return an object of this model
-        return cls(hdfs_entity_id,
-                   kerberos_principal,
-                   metastore,
-                   thrift_port)
-
-
+        return cls(
+            hdfs_entity_id,
+            kerberos_principal,
+            metastore,
+            thrift_port
+)

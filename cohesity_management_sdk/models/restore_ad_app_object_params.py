@@ -1,25 +1,30 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.ad_restore_status
 import cohesity_management_sdk.models.ad_update_restore_task_options
 import cohesity_management_sdk.models.credentials
 
+
 class RestoreADAppObjectParams(object):
 
     """Implementation of the 'RestoreADAppObjectParams' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
+
         ad_restore_status_vec (list of ADRestoreStatus): Status of the AD
             object/attribute restore operation.
-        ad_update_options (ADUpdateRestoreTaskOptions): TODO: type description
-            here.
-        credentials (Credentials): Specifies credentials to access a target
-            source.
-        ldap_port (int): The ldap port on which the AD domain controller's
-            NTDS database will be mounted.
+        ad_update_options (ADUpdateRestoreTaskOptions): This option will only
+            be set for child tasks (Restore AD objects and Restore AD object
+            attributes).
+        credentials (Credentials): Credentials used to execute AD powershell
+            cmdlet for AD search and restore. The specified credentials must
+            have required permissions to AD objects in specified OU.
+        ldap_port (int): The ldap port on which the AD domain controller's NTDS
+            database will be mounted.
         num_failed (int): Number of AD objects whose restore failed. Includes
             both AD object and attribute restored.
         num_running (int): Number of AD objects whose restores are currently
@@ -29,8 +34,8 @@ class RestoreADAppObjectParams(object):
         should_mount_and_restore (bool): The following field is set if user
             wants to mount AD, restore AD objects and destory AD mount in
             single task.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -41,9 +46,8 @@ class RestoreADAppObjectParams(object):
         "num_failed":'numFailed',
         "num_running":'numRunning',
         "num_successfull":'numSuccessfull',
-        "should_mount_and_restore":'shouldMountAndRestore'
+        "should_mount_and_restore":'shouldMountAndRestore',
     }
-
     def __init__(self,
                  ad_restore_status_vec=None,
                  ad_update_options=None,
@@ -52,7 +56,9 @@ class RestoreADAppObjectParams(object):
                  num_failed=None,
                  num_running=None,
                  num_successfull=None,
-                 should_mount_and_restore=None):
+                 should_mount_and_restore=None,
+            ):
+
         """Constructor for the RestoreADAppObjectParams class"""
 
         # Initialize members of the class
@@ -64,7 +70,6 @@ class RestoreADAppObjectParams(object):
         self.num_running = num_running
         self.num_successfull = num_successfull
         self.should_mount_and_restore = should_mount_and_restore
-
 
     @classmethod
     def from_dictionary(cls,
@@ -98,13 +103,13 @@ class RestoreADAppObjectParams(object):
         should_mount_and_restore = dictionary.get('shouldMountAndRestore')
 
         # Return an object of this model
-        return cls(ad_restore_status_vec,
-                   ad_update_options,
-                   credentials,
-                   ldap_port,
-                   num_failed,
-                   num_running,
-                   num_successfull,
-                   should_mount_and_restore)
-
-
+        return cls(
+            ad_restore_status_vec,
+            ad_update_options,
+            credentials,
+            ldap_port,
+            num_failed,
+            num_running,
+            num_successfull,
+            should_mount_and_restore
+)

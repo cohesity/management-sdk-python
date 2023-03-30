@@ -1,38 +1,38 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class FilesAndFoldersInfo(object):
 
     """Implementation of the 'FilesAndFoldersInfo' model.
 
-    FilesAndFolders specifies the metadata information about the files
-    and(or)
+    FilesAndFolders specifies the metadata information about the files and(or)
     folders for creating a download task.
 
+
     Attributes:
-        absolute_path (string): AbsolutePath specifies the absolute path of
-            the specified file or folder.
+
+        absolute_path (string): AbsolutePath specifies the absolute path of the
+            specified file or folder.
         is_directory (bool): IsDirectory specifies if specified object is a
             directory or not.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "absolute_path":'absolutePath',
-        "is_directory":'isDirectory'
+        "is_directory":'isDirectory',
     }
-
     def __init__(self,
                  absolute_path=None,
-                 is_directory=None):
+                 is_directory=None,
+            ):
+
         """Constructor for the FilesAndFoldersInfo class"""
 
         # Initialize members of the class
         self.absolute_path = absolute_path
         self.is_directory = is_directory
-
 
     @classmethod
     def from_dictionary(cls,
@@ -56,7 +56,7 @@ class FilesAndFoldersInfo(object):
         is_directory = dictionary.get('isDirectory')
 
         # Return an object of this model
-        return cls(absolute_path,
-                   is_directory)
-
-
+        return cls(
+            absolute_path,
+            is_directory
+)

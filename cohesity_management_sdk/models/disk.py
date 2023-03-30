@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.disk_block
 import cohesity_management_sdk.models.disk_partition
+
 
 class Disk(object):
 
@@ -10,34 +11,36 @@ class Disk(object):
 
     Specifies information about a disk and partitions in a volume.
 
+
     Attributes:
-        disk_blocks (list of DiskBlock): Array of Disk Blocks.  Specifies a
-            set of disk blocks by defining the location and offset of disk
-            blocks in a disk.
-        disk_format (DiskFormatEnum): Specifies the format of the virtual
-            disk. 'kVMDK' indicates VMware's Virtual Disk format. 'kVHD'
-            indicates Microsoft's Virtual Hard Drive format. 'kVHDx' indicates
-            Microsoft's Hyper-V Virtual Hard Drive format. 'kRaw' indicates
-            Raw disk format used by KVM, Acropolis. 'kUnknow' indicates
-            Unknown disk format.
-        disk_partitions (list of DiskPartition): Array of Partitions.
+
+        disk_blocks (list of DiskBlock): Array of Disk Blocks.  Specifies a set
+            of disk blocks by defining the location and offset of disk blocks
+            in a disk.
+        disk_format (DiskFormatEnum): Specifies the format of the virtual disk.
+            'kVMDK' indicates VMware's Virtual Disk format. 'kVHD' indicates
+            Microsoft's Virtual Hard Drive format. 'kVHDx' indicates
+            Microsoft's Hyper-V Virtual Hard Drive format. 'kRaw' indicates Raw
+            disk format used by KVM, Acropolis. 'kUnknow' indicates Unknown
+            disk format.
+        disk_partitions (list of DiskPartition): Array of Partitions. 
             Specifies information about all the partitions in this disk.
         partition_table_format (PartitionTableFormatEnum): Specifies partition
             table format on a disk. 'kNoPartition' indicates missing partition
             table. 'kMBRPartition' indicates partition table is in Master Boot
-            Record format. 'kGPTPartition' indicates partition table is in
-            Guid Partition Table format. 'kSGIPartition' indicates partition
-            table uses SGI scheme. 'kSUNPartition' indicates partition table
-            uses SUN scheme.
+            Record format. 'kGPTPartition' indicates partition table is in Guid
+            Partition Table format. 'kSGIPartition' indicates partition table
+            uses SGI scheme. 'kSUNPartition' indicates partition table uses SUN
+            scheme.
         sector_size_bytes (long|int): Specifies the sector size of hard disk.
             It is used for mapping the disk blocks of the disk file into a
             linear list of sectors.
         uuid (string): Specifies the disk uuid.
-        vmdk_file_name (string): Specifies the disk file name. This is the
-            VMDK name and not the flat file name.
+        vmdk_file_name (string): Specifies the disk file name. This is the VMDK
+            name and not the flat file name.
         vmdk_size_bytes (long|int): Specifies the disk size in bytes.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -48,9 +51,8 @@ class Disk(object):
         "sector_size_bytes":'sectorSizeBytes',
         "uuid":'uuid',
         "vmdk_file_name":'vmdkFileName',
-        "vmdk_size_bytes":'vmdkSizeBytes'
+        "vmdk_size_bytes":'vmdkSizeBytes',
     }
-
     def __init__(self,
                  disk_blocks=None,
                  disk_format=None,
@@ -59,7 +61,9 @@ class Disk(object):
                  sector_size_bytes=None,
                  uuid=None,
                  vmdk_file_name=None,
-                 vmdk_size_bytes=None):
+                 vmdk_size_bytes=None,
+            ):
+
         """Constructor for the Disk class"""
 
         # Initialize members of the class
@@ -71,7 +75,6 @@ class Disk(object):
         self.uuid = uuid
         self.vmdk_file_name = vmdk_file_name
         self.vmdk_size_bytes = vmdk_size_bytes
-
 
     @classmethod
     def from_dictionary(cls,
@@ -109,13 +112,13 @@ class Disk(object):
         vmdk_size_bytes = dictionary.get('vmdkSizeBytes')
 
         # Return an object of this model
-        return cls(disk_blocks,
-                   disk_format,
-                   disk_partitions,
-                   partition_table_format,
-                   sector_size_bytes,
-                   uuid,
-                   vmdk_file_name,
-                   vmdk_size_bytes)
-
-
+        return cls(
+            disk_blocks,
+            disk_format,
+            disk_partitions,
+            partition_table_format,
+            sector_size_bytes,
+            uuid,
+            vmdk_file_name,
+            vmdk_size_bytes
+)

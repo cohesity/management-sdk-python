@@ -1,39 +1,41 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
-import cohesity_management_sdk.models.restore_acropolis_vm_param_network_config_info_nic_spec
+import cohesity_management_sdk.models.restore_acropolis_vm_param_network_config_info_n_i_c_spec
 
-class RestoreAcropolisVMParamNetworkConfigInfo(object):
+
+class RestoreAcropolisVMParam_NetworkConfigInfo(object):
 
     """Implementation of the 'RestoreAcropolisVMParam_NetworkConfigInfo' model.
 
-    Proto to define the network configuration to be applied to the restored
-    VM.
+    Proto to define the network configuration to be applied to the restored VM.
+
 
     Attributes:
-        network_state_change (int): Network state to be applied to the
-            restored VM.
-        nic_vec (list of RestoreAcropolisVMParamNetworkConfigInfoNICSpec):
-            This field is applicable only if the network_state_change is set
-            to 'kAttachNewNetwork'.
 
+        network_state_change (int): Network state to be applied to the restored
+            VM.
+        nic_vec (list of RestoreAcropolisVMParam_NetworkConfigInfo_NICSpec):
+            This field is applicable only if the network_state_change is set to
+            'kAttachNewNetwork'.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "network_state_change":'networkStateChange',
-        "nic_vec":'nicVec'
+        "nic_vec":'nicVec',
     }
-
     def __init__(self,
                  network_state_change=None,
-                 nic_vec=None):
-        """Constructor for the RestoreAcropolisVMParamNetworkConfigInfo class"""
+                 nic_vec=None,
+            ):
+
+        """Constructor for the RestoreAcropolisVMParam_NetworkConfigInfo class"""
 
         # Initialize members of the class
         self.network_state_change = network_state_change
         self.nic_vec = nic_vec
-
 
     @classmethod
     def from_dictionary(cls,
@@ -58,10 +60,10 @@ class RestoreAcropolisVMParamNetworkConfigInfo(object):
         if dictionary.get('nicVec') != None:
             nic_vec = list()
             for structure in dictionary.get('nicVec'):
-                nic_vec.append(cohesity_management_sdk.models.restore_acropolis_vm_param_network_config_info_nic_spec.RestoreAcropolisVMParamNetworkConfigInfoNICSpec.from_dictionary(structure))
+                nic_vec.append(cohesity_management_sdk.models.restore_acropolis_vm_param_network_config_info_n_i_c_spec.RestoreAcropolisVMParam_NetworkConfigInfo_NICSpec.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(network_state_change,
-                   nic_vec)
-
-
+        return cls(
+            network_state_change,
+            nic_vec
+)

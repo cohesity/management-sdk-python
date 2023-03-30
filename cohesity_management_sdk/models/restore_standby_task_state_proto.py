@@ -1,32 +1,32 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class RestoreStandbyTaskStateProto(object):
 
     """Implementation of the 'RestoreStandbyTaskStateProto' model.
 
-    Specifies an Object containing information about a Universal Data Adapter
-    cluster.
+    TODO: type description here.
+
 
     Attributes:
-        standby_restore_complete (bool):This indicates if standby restore task
-            to update standby resource state is completed or not.
 
+        standby_restore_complete (bool): This indicates if standby restore task
+            to update standby resource state is completed or not.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "standby_restore_complete":'standbyRestoreComplete'
+        "standby_restore_complete":'standbyRestoreComplete',
     }
-
     def __init__(self,
-                 standby_restore_complete=None):
+                 standby_restore_complete=None,
+            ):
+
         """Constructor for the RestoreStandbyTaskStateProto class"""
 
         # Initialize members of the class
         self.standby_restore_complete = standby_restore_complete
-
 
     @classmethod
     def from_dictionary(cls,
@@ -49,6 +49,6 @@ class RestoreStandbyTaskStateProto(object):
         standby_restore_complete = dictionary.get('standbyRestoreComplete')
 
         # Return an object of this model
-        return cls(standby_restore_complete)
-
-
+        return cls(
+            standby_restore_complete
+)

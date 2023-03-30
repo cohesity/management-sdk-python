@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.smb_active_file_path
+
 
 class SmbActiveFileOpensResponse(object):
 
@@ -9,30 +10,32 @@ class SmbActiveFileOpensResponse(object):
 
     Query response to SMB active file opens.
 
+
     Attributes:
+
         active_file_paths (list of SmbActiveFilePath): Specifies the active
             opens for an SMB file in a view.
-        cookie (string): Specifies an opaque string to pass to get the next
-            set of active opens. If null is returned, this response is the
-            last set of active opens.
-
+        cookie (string): Specifies an opaque string to pass to get the next set
+            of active opens. If null is returned, this response is the last set
+            of active opens.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "active_file_paths":'activeFilePaths',
-        "cookie":'cookie'
+        "cookie":'cookie',
     }
-
     def __init__(self,
                  active_file_paths=None,
-                 cookie=None):
+                 cookie=None,
+            ):
+
         """Constructor for the SmbActiveFileOpensResponse class"""
 
         # Initialize members of the class
         self.active_file_paths = active_file_paths
         self.cookie = cookie
-
 
     @classmethod
     def from_dictionary(cls,
@@ -60,7 +63,7 @@ class SmbActiveFileOpensResponse(object):
         cookie = dictionary.get('cookie')
 
         # Return an object of this model
-        return cls(active_file_paths,
-                   cookie)
-
-
+        return cls(
+            active_file_paths,
+            cookie
+)

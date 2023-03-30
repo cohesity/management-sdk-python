@@ -1,24 +1,26 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.compare_ad_objects_result_ad_attribute
 import cohesity_management_sdk.models.error_proto
 
-class CompareADObjectsResultADObject(object):
+
+class CompareADObjectsResult_ADObject(object):
 
     """Implementation of the 'CompareADObjectsResult_ADObject' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
-        attribute_vec (list of CompareADObjectsResultADAttribute): Array of AD
-            attributes of AD object. This will contain distinct attributes
-            from source and destination objects.
+
+        attribute_vec (list of CompareADObjectsResult_ADAttribute): Array of AD
+            attributes of AD object. This will contain distinct attributes from
+            source and destination objects.
         dest_guid (string): Object guid from dest_server. If empty, compare
             could not find an AD object corresponding to 'source_guid' even
             after looking up based on source_guid, source DN or source SAM
-            account name. The SAM is applicable only for account type
-            objects.
+            account name. The SAM is applicable only for account type objects.
         dest_prop_count (int): Number of attributes in destination object
             including system properties compared. This count is useful for
             debugging.
@@ -35,9 +37,12 @@ class CompareADObjectsResultADObject(object):
         source_prop_count (int): Number of attributes in source object
             including system properties compared. This count is useful for
             debugging.
-        status (ErrorProto): TODO: type description here.
-
+        status (ErrorProto): Error status for object. This status will be set
+            to 'kNotFound' when source_guid or dest_guid could not be resolved.
+            To find out whether destination object is missing, use flag
+            'ADObjectFlags.kDestinationNotFound'.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -49,9 +54,8 @@ class CompareADObjectsResultADObject(object):
         "object_flags":'objectFlags',
         "source_guid":'sourceGuid',
         "source_prop_count":'sourcePropCount',
-        "status":'status'
+        "status":'status',
     }
-
     def __init__(self,
                  attribute_vec=None,
                  dest_guid=None,
@@ -61,8 +65,10 @@ class CompareADObjectsResultADObject(object):
                  object_flags=None,
                  source_guid=None,
                  source_prop_count=None,
-                 status=None):
-        """Constructor for the CompareADObjectsResultADObject class"""
+                 status=None,
+            ):
+
+        """Constructor for the CompareADObjectsResult_ADObject class"""
 
         # Initialize members of the class
         self.attribute_vec = attribute_vec
@@ -74,7 +80,6 @@ class CompareADObjectsResultADObject(object):
         self.source_guid = source_guid
         self.source_prop_count = source_prop_count
         self.status = status
-
 
     @classmethod
     def from_dictionary(cls,
@@ -98,7 +103,7 @@ class CompareADObjectsResultADObject(object):
         if dictionary.get('attributeVec') != None:
             attribute_vec = list()
             for structure in dictionary.get('attributeVec'):
-                attribute_vec.append(cohesity_management_sdk.models.compare_ad_objects_result_ad_attribute.CompareADObjectsResultADAttribute.from_dictionary(structure))
+                attribute_vec.append(cohesity_management_sdk.models.compare_ad_objects_result_ad_attribute.CompareADObjectsResult_ADAttribute.from_dictionary(structure))
         dest_guid = dictionary.get('destGuid')
         dest_prop_count = dictionary.get('destPropCount')
         excluded_prop_count = dictionary.get('excludedPropCount')
@@ -109,14 +114,14 @@ class CompareADObjectsResultADObject(object):
         status = cohesity_management_sdk.models.error_proto.ErrorProto.from_dictionary(dictionary.get('status')) if dictionary.get('status') else None
 
         # Return an object of this model
-        return cls(attribute_vec,
-                   dest_guid,
-                   dest_prop_count,
-                   excluded_prop_count,
-                   mismatch_prop_count,
-                   object_flags,
-                   source_guid,
-                   source_prop_count,
-                   status)
-
-
+        return cls(
+            attribute_vec,
+            dest_guid,
+            dest_prop_count,
+            excluded_prop_count,
+            mismatch_prop_count,
+            object_flags,
+            source_guid,
+            source_prop_count,
+            status
+)

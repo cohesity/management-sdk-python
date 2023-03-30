@@ -1,32 +1,35 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.entity_proto
 
-class BackupJobProtoExcludeSource(object):
+
+class BackupJobProto_ExcludeSource(object):
 
     """Implementation of the 'BackupJobProto_ExcludeSource' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
+
         entities (list of EntityProto): An intersection of leaf-level entities
             will be obtained after expanding the following entities.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "entities":'entities'
+        "entities":'entities',
     }
-
     def __init__(self,
-                 entities=None):
-        """Constructor for the BackupJobProtoExcludeSource class"""
+                 entities=None,
+            ):
+
+        """Constructor for the BackupJobProto_ExcludeSource class"""
 
         # Initialize members of the class
         self.entities = entities
-
 
     @classmethod
     def from_dictionary(cls,
@@ -53,6 +56,6 @@ class BackupJobProtoExcludeSource(object):
                 entities.append(cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(entities)
-
-
+        return cls(
+            entities
+)

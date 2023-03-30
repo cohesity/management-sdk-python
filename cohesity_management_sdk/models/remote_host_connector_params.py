@@ -1,44 +1,47 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.credentials
+
 
 class RemoteHostConnectorParams(object):
 
     """Implementation of the 'RemoteHostConnectorParams' model.
 
-    Contains parameters to connect to a remote host.
+    TODO: type description here.
+
 
     Attributes:
+
         credentials (Credentials): Credentials that will be used to login to
             the remote host. For env of type kLinux, it is expected that user
             has setup the password-less access to the remote host. So only
             username field MUST be specified.
-        host_address (string): Address (i.e., IP, hostname or FQDN) of the
-            host to connect to. Magneto will connect using ssh or equivalent
-            to the host.
-        host_type (int): Execution status of the host_address.
-
+        host_address (string): Address (i.e., IP, hostname or FQDN) of the host
+            to connect to. Magneto will connect using ssh or equivalent to the
+            host.
+        host_type (int): Type of host to connect to.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "credentials":'credentials',
         "host_address":'hostAddress',
-        "host_type":'hostType'
+        "host_type":'hostType',
     }
-
     def __init__(self,
                  credentials=None,
                  host_address=None,
-                 host_type=None):
+                 host_type=None,
+            ):
+
         """Constructor for the RemoteHostConnectorParams class"""
 
         # Initialize members of the class
         self.credentials = credentials
         self.host_address = host_address
         self.host_type = host_type
-
 
     @classmethod
     def from_dictionary(cls,
@@ -63,8 +66,8 @@ class RemoteHostConnectorParams(object):
         host_type = dictionary.get('hostType')
 
         # Return an object of this model
-        return cls(credentials,
-                   host_address,
-                   host_type)
-
-
+        return cls(
+            credentials,
+            host_address,
+            host_type
+)

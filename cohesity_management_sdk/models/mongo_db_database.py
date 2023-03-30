@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class MongoDBDatabase(object):
 
@@ -8,22 +7,25 @@ class MongoDBDatabase(object):
 
     Specifies an Object containing information about a mongodb database.
 
+
     Attributes:
-        size_bytes (int|long): Size of this Database.
+
+        size_bytes (long|int): Size of this Database.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "size_bytes":'sizeBytes'
+        "size_bytes":'sizeBytes',
     }
-
     def __init__(self,
-                 size_bytes=None):
+                 size_bytes=None,
+            ):
+
         """Constructor for the MongoDBDatabase class"""
 
         # Initialize members of the class
         self.size_bytes = size_bytes
-
 
     @classmethod
     def from_dictionary(cls,
@@ -46,6 +48,6 @@ class MongoDBDatabase(object):
         size_bytes = dictionary.get('sizeBytes')
 
         # Return an object of this model
-        return cls(size_bytes)
-
-
+        return cls(
+            size_bytes
+)

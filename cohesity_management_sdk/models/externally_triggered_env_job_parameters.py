@@ -1,37 +1,42 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.externally_triggered_sbt_parameters
+
 
 class ExternallyTriggeredEnvJobParameters(object):
 
     """Implementation of the 'ExternallyTriggeredEnvJobParameters' model.
 
+    TODO: type description here.
+
+
     Attributes:
+
         client_type (ClientTypeEnum): Specifies the client type of the
-            externally triggered job
-            kGeneric implies generic externally triggered backups.
-            kSbt implies externally triggered backups for SBT.
+            externally triggered job kGeneric implies generic externally
+            triggered backups. kSbt implies externally triggered backups for
+            SBT.
         sbt_params (ExternallyTriggeredSbtParameters): Specifies the catalog
             view associated with this job.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "client_type": 'clientType',
-        "sbt_params": 'sbtParams'
+        "client_type":'clientType',
+        "sbt_params":'sbtParams',
     }
-
     def __init__(self,
                  client_type=None,
-                 sbt_params=None):
+                 sbt_params=None,
+            ):
+
         """Constructor for the ExternallyTriggeredEnvJobParameters class"""
 
         # Initialize members of the class
         self.client_type = client_type
         self.sbt_params = sbt_params
-
 
     @classmethod
     def from_dictionary(cls,
@@ -55,7 +60,7 @@ class ExternallyTriggeredEnvJobParameters(object):
         sbt_params = cohesity_management_sdk.models.externally_triggered_sbt_parameters.ExternallyTriggeredSbtParameters.from_dictionary(dictionary.get('sbtParams')) if dictionary.get('sbtParams') else None
 
         # Return an object of this model
-        return cls(client_type,
-                   sbt_params)
-
-
+        return cls(
+            client_type,
+            sbt_params
+)

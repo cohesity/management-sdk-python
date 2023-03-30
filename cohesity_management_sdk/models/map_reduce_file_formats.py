@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class MapReduceFileFormats(object):
 
@@ -9,23 +8,26 @@ class MapReduceFileFormats(object):
     Specifies information about file formats produced by a mapo reduce
     instance.
 
+
     Attributes:
+
         supported_formats (list of string): Specifies the list of formats
             supported with integer enum mapping to file format.
     """
 
+
     # Create a mapping from Model property names to API property names
     _names = {
-        "supported_formats":'supportedFormats'
+        "supported_formats":'supportedFormats',
     }
-
     def __init__(self,
-                 supported_formats=None):
+                 supported_formats=None,
+            ):
+
         """Constructor for the MapReduceFileFormats class"""
 
         # Initialize members of the class
         self.supported_formats = supported_formats
-
 
     @classmethod
     def from_dictionary(cls,
@@ -45,9 +47,9 @@ class MapReduceFileFormats(object):
             return None
 
         # Extract variables from the dictionary
-        supported_formats = dictionary.get('supportedFormats')
+        supported_formats = dictionary.get("supportedFormats")
 
         # Return an object of this model
-        return cls(supported_formats)
-
-
+        return cls(
+            supported_formats
+)

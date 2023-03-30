@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class SanEnvJobParameters(object):
 
@@ -9,26 +8,28 @@ class SanEnvJobParameters(object):
     Specifies job parameters applicable for all SAN Environment types
     Protection Sources in a Protection Job.
 
+
     Attributes:
+
         max_snapshots_on_primary (long|int): Specifies how many recent
             snapshots of each backed up entity to retain on the primary
             environment. If not specified, then snapshots will not be be
             deleted from the primary environment.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "max_snapshots_on_primary":'maxSnapshotsOnPrimary'
+        "max_snapshots_on_primary":'maxSnapshotsOnPrimary',
     }
-
     def __init__(self,
-                 max_snapshots_on_primary=None):
+                 max_snapshots_on_primary=None,
+            ):
+
         """Constructor for the SanEnvJobParameters class"""
 
         # Initialize members of the class
         self.max_snapshots_on_primary = max_snapshots_on_primary
-
 
     @classmethod
     def from_dictionary(cls,
@@ -51,6 +52,6 @@ class SanEnvJobParameters(object):
         max_snapshots_on_primary = dictionary.get('maxSnapshotsOnPrimary')
 
         # Return an object of this model
-        return cls(max_snapshots_on_primary)
-
-
+        return cls(
+            max_snapshots_on_primary
+)

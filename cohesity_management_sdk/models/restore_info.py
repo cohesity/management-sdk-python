@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.archival_external_target
 import cohesity_management_sdk.models.cloud_deploy_target_details
-import cohesity_management_sdk.models.universal_id
 import cohesity_management_sdk.models.protection_source
+import cohesity_management_sdk.models.universal_id
+
 
 class RestoreInfo(object):
 
@@ -12,36 +13,31 @@ class RestoreInfo(object):
 
     Specifies the info regarding a full SQL snapshot.
 
+
     Attributes:
-        archival_target (ArchivalExternalTarget): Specifies settings about the
-            Archival External Target (such as Tape or AWS).
+
+        archival_target (ArchivalExternalTarget): Specifies the info related to
+            the archival target.
         attempt_number (int): Specifies the attempt number.
-        cloud_deploy_target (CloudDeployTargetDetails): Message that specifies
-            the details about CloudDeploy target where backup snapshots may be
-            converted and stored.
+        cloud_deploy_target (CloudDeployTargetDetails): Specifies the info
+            related to the cloud deploy target.
         job_run_id (long|int): Specifies the id of the job run.
-        job_uid (UniversalId): Specifies an id for an object that is unique
-            across Cohesity Clusters. The id is composite of all the ids
-            listed below.
-        parent_source (ProtectionSource): Specifies a generic structure that
-            represents a node in the Protection Source tree. Node details will
-            depend on the environment of the Protection Source.
-        restore_time_usecs (int): This field specifies the time in to which
-            the object needs to be restored.
-            This filed is only applicable when object is being backeup using
-            CDP feature.
-        snapshot_relative_dir_path (string): Specifies the relative path of
-            the snapshot directory.
-        source (ProtectionSource): Specifies a generic structure that
-            represents a node in the Protection Source tree. Node details will
-            depend on the environment of the Protection Source.
+        job_uid (UniversalId): Specifies the universal id for the job.
+        parent_source (ProtectionSource): Specifies the parent source related
+            information.
+        restore_time_usecs (long|int): This field specifies the time in to
+            which the object needs to be restored. This filed is only
+            applicable when object is being backeup using CDP feature.
+        snapshot_relative_dir_path (string): Specifies the relative path of the
+            snapshot directory.
+        source (ProtectionSource): Specifies the info related to the entity.
         start_time_usecs (long|int): Specifies the start time specified as a
             Unix epoch Timestamp (in microseconds).
         view_name (string): Specifies the name of the view.
         vm_had_independent_disks (bool): Specifies if the VM had independent
             disks.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -56,9 +52,8 @@ class RestoreInfo(object):
         "source":'source',
         "start_time_usecs":'startTimeUsecs',
         "view_name":'viewName',
-        "vm_had_independent_disks":'vmHadIndependentDisks'
+        "vm_had_independent_disks":'vmHadIndependentDisks',
     }
-
     def __init__(self,
                  archival_target=None,
                  attempt_number=None,
@@ -71,7 +66,9 @@ class RestoreInfo(object):
                  source=None,
                  start_time_usecs=None,
                  view_name=None,
-                 vm_had_independent_disks=None):
+                 vm_had_independent_disks=None,
+            ):
+
         """Constructor for the RestoreInfo class"""
 
         # Initialize members of the class
@@ -87,7 +84,6 @@ class RestoreInfo(object):
         self.start_time_usecs = start_time_usecs
         self.view_name = view_name
         self.vm_had_independent_disks = vm_had_independent_disks
-
 
     @classmethod
     def from_dictionary(cls,
@@ -121,17 +117,17 @@ class RestoreInfo(object):
         vm_had_independent_disks = dictionary.get('vmHadIndependentDisks')
 
         # Return an object of this model
-        return cls(archival_target,
-                   attempt_number,
-                   cloud_deploy_target,
-                   job_run_id,
-                   job_uid,
-                   parent_source,
-                   restore_time_usecs,
-                   snapshot_relative_dir_path,
-                   source,
-                   start_time_usecs,
-                   view_name,
-                   vm_had_independent_disks)
-
-
+        return cls(
+            archival_target,
+            attempt_number,
+            cloud_deploy_target,
+            job_run_id,
+            job_uid,
+            parent_source,
+            restore_time_usecs,
+            snapshot_relative_dir_path,
+            source,
+            start_time_usecs,
+            view_name,
+            vm_had_independent_disks
+)

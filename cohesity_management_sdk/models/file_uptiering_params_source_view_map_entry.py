@@ -1,33 +1,39 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.file_uptiering_params_source_view_data
+
 
 class FileUptieringParams_SourceViewMapEntry(object):
 
     """Implementation of the 'FileUptieringParams_SourceViewMapEntry' model.
 
-    Attributes:
-        key (long|int): TODO: type description here.
-        value (FileUptieringParams_SourceViewData): TODO: type description here.
+    TODO: type description here.
 
+
+    Attributes:
+
+        key (long|int): TODO: Type description here.
+        value (FileUptieringParams_SourceViewData): TODO: Type description
+            here.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "key": 'key',
-        "value": 'value'
+        "key":'key',
+        "value":'value',
     }
-
     def __init__(self,
                  key=None,
-                 value=None):
+                 value=None,
+            ):
+
         """Constructor for the FileUptieringParams_SourceViewMapEntry class"""
 
         # Initialize members of the class
         self.key = key
         self.value = value
-
 
     @classmethod
     def from_dictionary(cls,
@@ -51,7 +57,7 @@ class FileUptieringParams_SourceViewMapEntry(object):
         value = cohesity_management_sdk.models.file_uptiering_params_source_view_data.FileUptieringParams_SourceViewData.from_dictionary(dictionary.get('value')) if dictionary.get('value') else None
 
         # Return an object of this model
-        return cls(key,
-                   value)
-
-
+        return cls(
+            key,
+            value
+)

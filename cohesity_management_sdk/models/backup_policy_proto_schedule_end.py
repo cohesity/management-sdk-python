@@ -1,36 +1,37 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
-
-class BackupPolicyProtoScheduleEnd(object):
+class BackupPolicyProto_ScheduleEnd(object):
 
     """Implementation of the 'BackupPolicyProto_ScheduleEnd' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
+
         end_after_num_backups (long|int): If specified, the backup job will no
             longer be run after it has been run these many times.
         end_time_usecs (long|int): If specified, the backup job will no longer
             be run after this time.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "end_after_num_backups":'endAfterNumBackups',
-        "end_time_usecs":'endTimeUsecs'
+        "end_time_usecs":'endTimeUsecs',
     }
-
     def __init__(self,
                  end_after_num_backups=None,
-                 end_time_usecs=None):
-        """Constructor for the BackupPolicyProtoScheduleEnd class"""
+                 end_time_usecs=None,
+            ):
+
+        """Constructor for the BackupPolicyProto_ScheduleEnd class"""
 
         # Initialize members of the class
         self.end_after_num_backups = end_after_num_backups
         self.end_time_usecs = end_time_usecs
-
 
     @classmethod
     def from_dictionary(cls,
@@ -54,7 +55,7 @@ class BackupPolicyProtoScheduleEnd(object):
         end_time_usecs = dictionary.get('endTimeUsecs')
 
         # Return an object of this model
-        return cls(end_after_num_backups,
-                   end_time_usecs)
-
-
+        return cls(
+            end_after_num_backups,
+            end_time_usecs
+)

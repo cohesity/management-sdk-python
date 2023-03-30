@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class UserPreferencesResult(object):
 
@@ -8,24 +7,25 @@ class UserPreferencesResult(object):
 
     Specifies the result of user preference.
 
-    Attributes:
-        preferences (dict<object, string>): Preferences is a key-value map of
-            preferences.
 
+    Attributes:
+
+        preferences (object): Preferences is a key-value map of preferences.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "preferences":'preferences'
+        "preferences":'preferences',
     }
-
     def __init__(self,
-                 preferences=None):
+                 preferences=None,
+            ):
+
         """Constructor for the UserPreferencesResult class"""
 
         # Initialize members of the class
         self.preferences = preferences
-
 
     @classmethod
     def from_dictionary(cls,
@@ -48,6 +48,6 @@ class UserPreferencesResult(object):
         preferences = dictionary.get('preferences')
 
         # Return an object of this model
-        return cls(preferences)
-
-
+        return cls(
+            preferences
+)

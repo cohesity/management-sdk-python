@@ -1,18 +1,15 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class PartitionTableFormatEnum(object):
 
     """Implementation of the 'PartitionTableFormat' enum.
+    Specifies partition table format on a disk. 'kNoPartition' indicates
+    missing partition table. 'kMBRPartition' indicates partition table is in
+    Master Boot Record format. 'kGPTPartition' indicates partition table is in
+    Guid Partition Table format. 'kSGIPartition' indicates partition table uses
+    SGI scheme. 'kSUNPartition' indicates partition table uses SUN scheme.
 
-    Specifies partition table format on a disk.
-    'kNoPartition' indicates missing partition table.
-    'kMBRPartition' indicates partition table is in Master Boot Record
-    format.
-    'kGPTPartition' indicates partition table is in Guid Partition Table
-    format.
-    'kSGIPartition' indicates partition table uses SGI scheme.
-    'kSUNPartition' indicates partition table uses SUN scheme.
 
     Attributes:
         KNOPARTITION: TODO: type description here.
@@ -32,4 +29,3 @@ class PartitionTableFormatEnum(object):
     KSGIPARTITION = 'kSGIPartition'
 
     KSUNPARTITION = 'kSUNPartition'
-

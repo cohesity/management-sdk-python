@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.value_data
+
 
 class Value(object):
 
@@ -9,31 +10,31 @@ class Value(object):
 
     Specifies a data type and data field used to store data.
 
+
     Attributes:
-        data (ValueData): Specifies the fields to store data of a given type.
-            Specify data in the appropriate field for the current data type.
+
+        data (Value_Data): TODO: Type description here.
         mtype (int): Specifies the type of value. 0 specifies a data point of
             type Int64. 1 specifies a data point of type Double. 2 specifies a
-            data point of type String. 3 specifies a data point of type
-            Bytes.
-
+            data point of type String. 3 specifies a data point of type Bytes.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "data":'data',
-        "mtype":'type'
+        "mtype":'type',
     }
-
     def __init__(self,
                  data=None,
-                 mtype=None):
+                 mtype=None,
+            ):
+
         """Constructor for the Value class"""
 
         # Initialize members of the class
         self.data = data
         self.mtype = mtype
-
 
     @classmethod
     def from_dictionary(cls,
@@ -53,11 +54,11 @@ class Value(object):
             return None
 
         # Extract variables from the dictionary
-        data = cohesity_management_sdk.models.value_data.ValueData.from_dictionary(dictionary.get('data')) if dictionary.get('data') else None
+        data = cohesity_management_sdk.models.value_data.Value_Data.from_dictionary(dictionary.get('data')) if dictionary.get('data') else None
         mtype = dictionary.get('type')
 
         # Return an object of this model
-        return cls(data,
-                   mtype)
-
-
+        return cls(
+            data,
+            mtype
+)

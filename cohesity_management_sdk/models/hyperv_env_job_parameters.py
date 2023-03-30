@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class HypervEnvJobParameters(object):
 
@@ -9,26 +8,28 @@ class HypervEnvJobParameters(object):
     Specifies job parameters applicable for all 'kHyperV' Environment type
     Protection Sources in a Protection Job.
 
+
     Attributes:
+
         fallback_to_crash_consistent (bool): If true, takes a crash-consistent
             snapshot when app-consistent snapshot fails. Otherwise, the
-            snapshot attempt is marked failed. By default, this field is set
-            to false.
-
+            snapshot attempt is marked failed. By default, this field is set to
+            false.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "fallback_to_crash_consistent":'fallbackToCrashConsistent'
+        "fallback_to_crash_consistent":'fallbackToCrashConsistent',
     }
-
     def __init__(self,
-                 fallback_to_crash_consistent=None):
+                 fallback_to_crash_consistent=None,
+            ):
+
         """Constructor for the HypervEnvJobParameters class"""
 
         # Initialize members of the class
         self.fallback_to_crash_consistent = fallback_to_crash_consistent
-
 
     @classmethod
     def from_dictionary(cls,
@@ -51,6 +52,6 @@ class HypervEnvJobParameters(object):
         fallback_to_crash_consistent = dictionary.get('fallbackToCrashConsistent')
 
         # Return an object of this model
-        return cls(fallback_to_crash_consistent)
-
-
+        return cls(
+            fallback_to_crash_consistent
+)

@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.active_directory_entry
-import cohesity_management_sdk.models.tenant_deletion_info
-import cohesity_management_sdk.models.ldap_provider_response
 import cohesity_management_sdk.models.backup_job_proto
-import cohesity_management_sdk.models.view
+import cohesity_management_sdk.models.ldap_provider_response
 import cohesity_management_sdk.models.swift_params
+import cohesity_management_sdk.models.tenant_deletion_info
+import cohesity_management_sdk.models.view
+
 
 class Tenant(object):
 
@@ -14,23 +15,24 @@ class Tenant(object):
 
     Specifies details about a tenant.
 
+
     Attributes:
-        active_directories (list of ActiveDirectoryEntry): Specifies the
-            active directories this tenant is associated to.
-        bifrost_enabled (bool): Specifies whether bifrost (Ambassador proxy)
-            is enabled for tenant.
+
+        active_directories (list of ActiveDirectoryEntry): Specifies the active
+            directories this tenant is associated to.
+        bifrost_enabled (bool): Specifies whether bifrost (Ambassador proxy) is
+            enabled for tenant.
         cluster_hostname (string): The hostname for Cohesity cluster as seen by
             tenants and as is routable from the tenant's network. Tenant's
             VLAN's hostname, if available can be used instead but it is
-            mandatory to provide this value if there's no VLAN hostname to
-            use. Also, when set, this field would take precedence over VLAN
+            mandatory to provide this value if there's no VLAN hostname to use.
+            Also, when set, this field would take precedence over VLAN
             hostname.
         cluster_ips (list of string): Set of IPs as seen from the tenant's
             network for the Cohesity cluster. Only one from 'ClusterHostname'
             and 'ClusterIps' is needed.
-        created_time_msecs (long|int): Specifies the epoch time in
-            milliseconds when the tenant account was created on the Cohesity
-            Cluster.
+        created_time_msecs (long|int): Specifies the epoch time in milliseconds
+            when the tenant account was created on the Cohesity Cluster.
         deleted (bool): Specifies if the Tenant is deleted.
         deleted_time_msecs (long|int): Specifies the timestamp at which the
             tenant was deleted.
@@ -64,12 +66,11 @@ class Tenant(object):
         tenant_id (string): Specifies the unique id of the tenant.
         view_box_ids (list of long|int): Specifies the ViewBoxIds this tenant
             is associated to.
-        views (list of View): Specifies the Views this tenant is associated
-            to.
+        views (list of View): Specifies the Views this tenant is associated to.
         vlan_iface_names (list of string): Specifies the VlanIfaceNames this
             tenant is associated to, in the format of bond1.200.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -96,9 +97,8 @@ class Tenant(object):
         "tenant_id":'tenantId',
         "view_box_ids":'viewBoxIds',
         "views":'views',
-        "vlan_iface_names":'vlanIfaceNames'
+        "vlan_iface_names":'vlanIfaceNames',
     }
-
     def __init__(self,
                  active_directories=None,
                  bifrost_enabled=None,
@@ -123,7 +123,9 @@ class Tenant(object):
                  tenant_id=None,
                  view_box_ids=None,
                  views=None,
-                 vlan_iface_names=None):
+                 vlan_iface_names=None,
+            ):
+
         """Constructor for the Tenant class"""
 
         # Initialize members of the class
@@ -152,7 +154,6 @@ class Tenant(object):
         self.views = views
         self.vlan_iface_names = vlan_iface_names
 
-
     @classmethod
     def from_dictionary(cls,
                         dictionary):
@@ -178,7 +179,7 @@ class Tenant(object):
                 active_directories.append(cohesity_management_sdk.models.active_directory_entry.ActiveDirectoryEntry.from_dictionary(structure))
         bifrost_enabled = dictionary.get('bifrostEnabled')
         cluster_hostname = dictionary.get('clusterHostname')
-        cluster_ips = dictionary.get('clusterIps')
+        cluster_ips = dictionary.get("clusterIps")
         created_time_msecs = dictionary.get('createdTimeMsecs')
         deleted = dictionary.get('deleted')
         deleted_time_msecs = dictionary.get('deletedTimeMsecs')
@@ -189,7 +190,7 @@ class Tenant(object):
             for structure in dictionary.get('deletionInfoVec'):
                 deletion_info_vec.append(cohesity_management_sdk.models.tenant_deletion_info.TenantDeletionInfo.from_dictionary(structure))
         description = dictionary.get('description')
-        entity_ids = dictionary.get('entityIds')
+        entity_ids = dictionary.get("entityIds")
         last_updated_time_msecs = dictionary.get('lastUpdatedTimeMsecs')
         ldap_providers = None
         if dictionary.get('ldapProviders') != None:
@@ -199,7 +200,7 @@ class Tenant(object):
         name = dictionary.get('name')
         org_suffix = dictionary.get('orgSuffix')
         parent_tenant_id = dictionary.get('parentTenantId')
-        policy_ids = dictionary.get('policyIds')
+        policy_ids = dictionary.get("policyIds")
         protection_jobs = None
         if dictionary.get('protectionJobs') != None:
             protection_jobs = list()
@@ -208,38 +209,38 @@ class Tenant(object):
         subscribe_to_alert_emails = dictionary.get('subscribeToAlertEmails')
         swift_config = cohesity_management_sdk.models.swift_params.SwiftParams.from_dictionary(dictionary.get('swiftConfig')) if dictionary.get('swiftConfig') else None
         tenant_id = dictionary.get('tenantId')
-        view_box_ids = dictionary.get('viewBoxIds')
+        view_box_ids = dictionary.get("viewBoxIds")
         views = None
         if dictionary.get('views') != None:
             views = list()
             for structure in dictionary.get('views'):
                 views.append(cohesity_management_sdk.models.view.View.from_dictionary(structure))
-        vlan_iface_names = dictionary.get('vlanIfaceNames')
+        vlan_iface_names = dictionary.get("vlanIfaceNames")
 
         # Return an object of this model
-        return cls(active_directories,
-                   bifrost_enabled,
-                   cluster_hostname,
-                   cluster_ips,
-                   created_time_msecs,
-                   deleted,
-                   deleted_time_msecs,
-                   deletion_finished,
-                   deletion_info_vec,
-                   description,
-                   entity_ids,
-                   last_updated_time_msecs,
-                   ldap_providers,
-                   name,
-                   org_suffix,
-                   parent_tenant_id,
-                   policy_ids,
-                   protection_jobs,
-                   subscribe_to_alert_emails,
-                   swift_config,
-                   tenant_id,
-                   view_box_ids,
-                   views,
-                   vlan_iface_names)
-
-
+        return cls(
+            active_directories,
+            bifrost_enabled,
+            cluster_hostname,
+            cluster_ips,
+            created_time_msecs,
+            deleted,
+            deleted_time_msecs,
+            deletion_finished,
+            deletion_info_vec,
+            description,
+            entity_ids,
+            last_updated_time_msecs,
+            ldap_providers,
+            name,
+            org_suffix,
+            parent_tenant_id,
+            policy_ids,
+            protection_jobs,
+            subscribe_to_alert_emails,
+            swift_config,
+            tenant_id,
+            view_box_ids,
+            views,
+            vlan_iface_names
+)

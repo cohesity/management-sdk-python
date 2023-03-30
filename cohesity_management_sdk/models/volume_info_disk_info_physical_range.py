@@ -1,35 +1,36 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
-
-class VolumeInfoDiskInfoPhysicalRange(object):
+class VolumeInfo_DiskInfo_PhysicalRange(object):
 
     """Implementation of the 'VolumeInfo_DiskInfo_PhysicalRange' model.
 
-    This message represents a physical contiguous range in disk file.
+    TODO: type description here.
+
 
     Attributes:
+
         length (long|int): Length of this range in bytes.
         offset (long|int): Offset of this range in disk file from beginning of
             file.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "length":'length',
-        "offset":'offset'
+        "offset":'offset',
     }
-
     def __init__(self,
                  length=None,
-                 offset=None):
-        """Constructor for the VolumeInfoDiskInfoPhysicalRange class"""
+                 offset=None,
+            ):
+
+        """Constructor for the VolumeInfo_DiskInfo_PhysicalRange class"""
 
         # Initialize members of the class
         self.length = length
         self.offset = offset
-
 
     @classmethod
     def from_dictionary(cls,
@@ -53,7 +54,7 @@ class VolumeInfoDiskInfoPhysicalRange(object):
         offset = dictionary.get('offset')
 
         # Return an object of this model
-        return cls(length,
-                   offset)
-
-
+        return cls(
+            length,
+            offset
+)

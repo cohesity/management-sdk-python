@@ -1,30 +1,27 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class AwsTypeEnum(object):
 
     """Implementation of the 'AwsType' enum.
-
     Specifies the entity type such as 'kIAMUser' if the environment is kAWS.
-    Specifies the type of an AWS source entity.
-    'kIAMUser' indicates a unique user within an AWS account.
-    'kRegion' indicates a geographical region in the global infrastructure.
-    'kAvailabilityZone' indicates an availability zone within a region.
-    'kEC2Instance' indicates a Virtual Machine running in AWS environment.
-    'kVPC' indicates a virtual private cloud (VPC) network within AWS.
-    'kSubnet' indicates a subnet inside the VPC.
+    Specifies the type of an AWS source entity. 'kIAMUser' indicates a unique
+    user within an AWS account. 'kRegion' indicates a geographical region in
+    the global infrastructure. 'kAvailabilityZone' indicates an availability
+    zone within a region. 'kEC2Instance' indicates a Virtual Machine running in
+    AWS environment. 'kVPC' indicates a virtual private cloud (VPC) network
+    within AWS. 'kSubnet' indicates a subnet inside the VPC.
     'kNetworkSecurityGroup' represents a network security group.
-    'kInstanceType' represents various machine types.
-    'kKeyPair' represents a pair of public and private key used to login into
-    a Virtual Machine.
-    'kTag' represents a tag attached to EC2 instance.
-    'kRDSOptionGroup' represents a RDS option group for configuring database
-    features.
-    'kRDSParameterGroup' represents a RDS parameter group.
-    'kRDSInstance' represents a RDS DB instance.
-    'kRDSSubnet' represents a RDS subnet.
-    'kRDSTag' represents a tag attached to RDS instance.
-    'kAuroraCluster' represents an Aurora cluster.
+    'kInstanceType' represents various machine types. 'kKeyPair' represents a
+    pair of public and private key used to login into a Virtual Machine. 'kTag'
+    represents a tag attached to EC2 instance. 'kRDSOptionGroup' represents a
+    RDS option group for configuring database features. 'kRDSParameterGroup'
+    represents a RDS parameter group. 'kRDSInstance' represents a RDS DB
+    instance. 'kRDSSubnet' represents a RDS subnet. 'kRDSTag' represents a tag
+    attached to RDS instance. 'kAuroraTag' represents a tag attached to an
+    Aurora cluster. 'kAccount' represents an AWS account. 'kAuroraCluster'
+    represents an Aurora cluster.
+
 
     Attributes:
         KIAMUSER: TODO: type description here.
@@ -42,7 +39,9 @@ class AwsTypeEnum(object):
         KRDSINSTANCE: TODO: type description here.
         KRDSSUBNET: TODO: type description here.
         KRDSTAG: TODO: type description here.
-        KAURORACLUSTER:  TODO: type description here.
+        KAURORATAG: TODO: type description here.
+        KACCOUNT: TODO: type description here.
+        KAURORACLUSTER: TODO: type description here.
 
     """
 
@@ -75,5 +74,9 @@ class AwsTypeEnum(object):
     KRDSSUBNET = 'kRDSSubnet'
 
     KRDSTAG = 'kRDSTag'
+
+    KAURORATAG = 'kAuroraTag'
+
+    KACCOUNT = 'kAccount'
 
     KAURORACLUSTER = 'kAuroraCluster'

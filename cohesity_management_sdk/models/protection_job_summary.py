@@ -1,20 +1,21 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class ProtectionJobSummary(object):
 
     """Implementation of the 'ProtectionJobSummary' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
+
         cluster_id (long|int): Specifies the id of the cluster on which object
             is protected.
         cluster_incarnation_id (long|int): Specifies the incarnation id of the
             cluster on which object is protected.
-        is_rpo_job (bool): Specifies if the Protection Job is created by an
-            RPO policy.
+        is_rpo_job (bool): Specifies if the Protection Job is created by an RPO
+            policy.
         job_id (long|int): Specifies the id of the Protection Job.
         job_name (string): Specifies the name of the Protection Job.
         last_protection_job_run_status (int): Specifies the last job run
@@ -24,8 +25,8 @@ class ProtectionJobSummary(object):
             clusterid:clusterincarnationid:policyid.
         policy_name (string): Specifies the name of the policy that is used by
             a Protection Job.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -36,9 +37,8 @@ class ProtectionJobSummary(object):
         "job_name":'jobName',
         "last_protection_job_run_status":'lastProtectionJobRunStatus',
         "policy_id":'policyId',
-        "policy_name":'policyName'
+        "policy_name":'policyName',
     }
-
     def __init__(self,
                  cluster_id=None,
                  cluster_incarnation_id=None,
@@ -47,7 +47,9 @@ class ProtectionJobSummary(object):
                  job_name=None,
                  last_protection_job_run_status=None,
                  policy_id=None,
-                 policy_name=None):
+                 policy_name=None,
+            ):
+
         """Constructor for the ProtectionJobSummary class"""
 
         # Initialize members of the class
@@ -59,7 +61,6 @@ class ProtectionJobSummary(object):
         self.last_protection_job_run_status = last_protection_job_run_status
         self.policy_id = policy_id
         self.policy_name = policy_name
-
 
     @classmethod
     def from_dictionary(cls,
@@ -89,13 +90,13 @@ class ProtectionJobSummary(object):
         policy_name = dictionary.get('policyName')
 
         # Return an object of this model
-        return cls(cluster_id,
-                   cluster_incarnation_id,
-                   is_rpo_job,
-                   job_id,
-                   job_name,
-                   last_protection_job_run_status,
-                   policy_id,
-                   policy_name)
-
-
+        return cls(
+            cluster_id,
+            cluster_incarnation_id,
+            is_rpo_job,
+            job_id,
+            job_name,
+            last_protection_job_run_status,
+            policy_id,
+            policy_name
+)

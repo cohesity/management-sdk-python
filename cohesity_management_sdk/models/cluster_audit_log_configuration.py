@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class ClusterAuditLogConfiguration(object):
 
@@ -8,7 +7,9 @@ class ClusterAuditLogConfiguration(object):
 
     Specifies the settings of the Cluster audit log configuration.
 
+
     Attributes:
+
         enabled (bool): Specifies if the Cluster audit logging is enabled on
             the Cohesity Cluster. If 'true', Cluster audit logging is enabled.
             Otherwise, it is disabled.
@@ -18,27 +19,27 @@ class ClusterAuditLogConfiguration(object):
             the Cohesity Cluster.
         verbose_audit (bool): Specifies if the Cluster audit logging includes
             prev value and new value.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "enabled":'enabled',
         "retention_period_days":'retentionPeriodDays',
-        "verbose_audit":'verboseAudit'
+        "verbose_audit":'verboseAudit',
     }
-
     def __init__(self,
                  enabled=None,
                  retention_period_days=None,
-                 verbose_audit=None):
+                 verbose_audit=None,
+            ):
+
         """Constructor for the ClusterAuditLogConfiguration class"""
 
         # Initialize members of the class
         self.enabled = enabled
         self.retention_period_days = retention_period_days
         self.verbose_audit = verbose_audit
-
 
     @classmethod
     def from_dictionary(cls,
@@ -63,8 +64,8 @@ class ClusterAuditLogConfiguration(object):
         verbose_audit = dictionary.get('verboseAudit')
 
         # Return an object of this model
-        return cls(enabled,
-                   retention_period_days,
-                   verbose_audit)
-
-
+        return cls(
+            enabled,
+            retention_period_days,
+            verbose_audit
+)

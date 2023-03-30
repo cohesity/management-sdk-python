@@ -1,29 +1,35 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class UdaObjects(object):
 
     """Implementation of the 'UdaObjects' model.
 
-    Identifier for an individual object to be backed up. E.x. db1.
+    TODO: type description here.
+
 
     Attributes:
-        name (string): Name of the source
+
+        id (long|int): Magneto entity id
+        name (string): Name of the object
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "name":'name'
+        "id":'id',
+        "name":'name',
     }
-
     def __init__(self,
-                 name=None):
+                 id=None,
+                 name=None,
+            ):
+
         """Constructor for the UdaObjects class"""
 
         # Initialize members of the class
+        self.id = id
         self.name = name
-
 
     @classmethod
     def from_dictionary(cls,
@@ -43,9 +49,11 @@ class UdaObjects(object):
             return None
 
         # Extract variables from the dictionary
+        id = dictionary.get('id')
         name = dictionary.get('name')
 
         # Return an object of this model
-        return cls(name)
-
-
+        return cls(
+            id,
+            name
+)

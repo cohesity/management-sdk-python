@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.agent_information
-import cohesity_management_sdk.models.universal_id
 import cohesity_management_sdk.models.networking_information
 import cohesity_management_sdk.models.physical_volume
+import cohesity_management_sdk.models.universal_id
 import cohesity_management_sdk.models.vss_writer
+
 
 class PhysicalProtectionSource(object):
 
@@ -13,53 +14,58 @@ class PhysicalProtectionSource(object):
 
     Specifies a Protection Source in a Physical environment.
 
+
     Attributes:
+
         agents (list of AgentInformation): Array of Agents on the Physical
             Protection Source.  Specifiles the agents running on the Physical
             Protection Source and the status information.
+        cluster_source_type (string): Specifies the type of cluster resource
+            this source represents.
         host_name (string): Specifies the hostname.
-        host_type (HostTypePhysicalProtectionSourceEnum): Specifies the
-            environment type for the host. 'kLinux' indicates the Linux
-            operating system. 'kWindows' indicates the Microsoft Windows
-            operating system. 'kAix' indicates the IBM AIX operating system.
-            'kSolaris' indicates the Oracle Solaris operating system.
-            'kSapHana' indicates the Sap Hana database system developed by SAP
-            SE. 'kOther' indicates the other types of operating system.
+        host_type (HostTypeEnum): Specifies the environment type for the host.
+            'kLinux' indicates the Linux operating system. 'kWindows' indicates
+            the Microsoft Windows operating system. 'kAix' indicates the IBM
+            AIX operating system. 'kSolaris' indicates the Oracle Solaris
+            operating system. 'kSapHana' indicates the Sap Hana database system
+            developed by SAP SE. 'kSapOracle' indicates the Sap Oracle database
+            system developed by SAP SE. 'kCockroachDB' indicates the
+            CockroachDB database system. 'kMySQL' indicates the MySQL database
+            system. 'kOther' indicates the other types of operating system.
         id (UniversalId): Specifies a unique id of a Physical Protection
             Source. The id is unique across Cohesity Clusters.
         is_proxy_host (bool): Specifies if the physical host is a proxy host.
-        memory_size_bytes (long|int): Specifies the total memory on the host
-            in bytes.
+        memory_size_bytes (long|int): Specifies the total memory on the host in
+            bytes.
         name (string): Specifies a human readable name of the Protection
             Source.
-        networking_info (NetworkingInformation): Specifies the struct
-            containing information about network addresses configured on the
-            given box. This is needed for dealing with Windows/Oracle Cluster
-            resources that we discover and protect automatically.
+        networking_info (NetworkingInformation): Cached networking info. This
+            establishes physical-->agent linkage for the Cluster case.
         num_processors (long|int): Specifies the number of processors on the
             host.
         os_name (string): Specifies a human readable name of the OS of the
             Protection Source.
-        mtype (TypePhysicalProtectionSourceEnum): Specifies the type of
-            managed Object in a Physical Protection Source. 'kGroup' indicates
-            the EH container. 'kHost' indicates a single physical server.
+        mtype (TypePhysicalProtectionSourceEnum): Specifies the type of managed
+            Object in a Physical Protection Source. 'kGroup' indicates the EH
+            container. 'kHost' indicates a single physical server.
             'kWindowsCluster' indicates a Microsoft Windows cluster.
             'kOracleRACCluster' indicates an Oracle Real Application
-            Cluster(RAC). 'kOracleAPCluster' indicates an Oracle
-            Active-Passive Cluster.
+            Cluster(RAC). 'kOracleAPCluster' indicates an Oracle Active-Passive
+            Cluster.
         vcs_version (string): Specifies cluster version for VCS host.
-        volumes (list of PhysicalVolume): Array of Physical Volumes.
-            Specifies the volumes available on the physical host. These fields
-            are populated only for the kPhysicalHost type.
-        vsswriters (list of VssWriter): Specifies the list of writers
-            available on the physical host. These fields are populated only
-            for the kPhysicalHost type, particularly when the host is windows
-
+        volumes (list of PhysicalVolume): Array of Physical Volumes.  Specifies
+            the volumes available on the physical host. These fields are
+            populated only for the kPhysicalHost type.
+        vsswriters (list of VssWriter): Specifies the list of writers available
+            on the physical host. These fields are populated only for the
+            kPhysicalHost type, particularly when the host is windows
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "agents":'agents',
+        "cluster_source_type":'clusterSourceType',
         "host_name":'hostName',
         "host_type":'hostType',
         "id":'id',
@@ -72,11 +78,11 @@ class PhysicalProtectionSource(object):
         "mtype":'type',
         "vcs_version":'vcsVersion',
         "volumes":'volumes',
-        "vsswriters":'vsswriters'
+        "vsswriters":'vsswriters',
     }
-
     def __init__(self,
                  agents=None,
+                 cluster_source_type=None,
                  host_name=None,
                  host_type=None,
                  id=None,
@@ -89,11 +95,14 @@ class PhysicalProtectionSource(object):
                  mtype=None,
                  vcs_version=None,
                  volumes=None,
-                 vsswriters=None):
+                 vsswriters=None,
+            ):
+
         """Constructor for the PhysicalProtectionSource class"""
 
         # Initialize members of the class
         self.agents = agents
+        self.cluster_source_type = cluster_source_type
         self.host_name = host_name
         self.host_type = host_type
         self.id = id
@@ -107,7 +116,6 @@ class PhysicalProtectionSource(object):
         self.vcs_version = vcs_version
         self.volumes = volumes
         self.vsswriters = vsswriters
-
 
     @classmethod
     def from_dictionary(cls,
@@ -132,10 +140,11 @@ class PhysicalProtectionSource(object):
             agents = list()
             for structure in dictionary.get('agents'):
                 agents.append(cohesity_management_sdk.models.agent_information.AgentInformation.from_dictionary(structure))
+        cluster_source_type = dictionary.get('clusterSourceType')
         host_name = dictionary.get('hostName')
         host_type = dictionary.get('hostType')
-        is_proxy_host = dictionary.get('isProxyHost')
         id = cohesity_management_sdk.models.universal_id.UniversalId.from_dictionary(dictionary.get('id')) if dictionary.get('id') else None
+        is_proxy_host = dictionary.get('isProxyHost')
         memory_size_bytes = dictionary.get('memorySizeBytes')
         name = dictionary.get('name')
         networking_info = cohesity_management_sdk.models.networking_information.NetworkingInformation.from_dictionary(dictionary.get('networkingInfo')) if dictionary.get('networkingInfo') else None
@@ -155,19 +164,20 @@ class PhysicalProtectionSource(object):
                 vsswriters.append(cohesity_management_sdk.models.vss_writer.VssWriter.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(agents,
-                   host_name,
-                   host_type,
-                   id,
-                   is_proxy_host,
-                   memory_size_bytes,
-                   name,
-                   networking_info,
-                   num_processors,
-                   os_name,
-                   mtype,
-                   vcs_version,
-                   volumes,
-                   vsswriters)
-
-
+        return cls(
+            agents,
+            cluster_source_type,
+            host_name,
+            host_type,
+            id,
+            is_proxy_host,
+            memory_size_bytes,
+            name,
+            networking_info,
+            num_processors,
+            os_name,
+            mtype,
+            vcs_version,
+            volumes,
+            vsswriters
+)

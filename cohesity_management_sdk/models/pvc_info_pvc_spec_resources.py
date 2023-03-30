@@ -1,31 +1,35 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.pvc_info_pvc_spec_resources_requests_entry
+
 
 class PVCInfo_PVCSpec_Resources(object):
 
     """Implementation of the 'PVCInfo_PVCSpec_Resources' model.
 
-    Flocker Volumes.
+    TODO: type description here.
+
 
     Attributes:
+
         requests (list of PVCInfo_PVCSpec_Resources_RequestsEntry): Map of
             requested resources and their values.
     """
 
+
     # Create a mapping from Model property names to API property names
     _names = {
-        "requests":'requests'
+        "requests":'requests',
     }
-
     def __init__(self,
-                 requests=None):
+                 requests=None,
+            ):
+
         """Constructor for the PVCInfo_PVCSpec_Resources class"""
 
         # Initialize members of the class
         self.requests = requests
-
 
     @classmethod
     def from_dictionary(cls,
@@ -46,12 +50,12 @@ class PVCInfo_PVCSpec_Resources(object):
 
         # Extract variables from the dictionary
         requests = None
-        if dictionary.get('requests'):
+        if dictionary.get('requests') != None:
             requests = list()
             for structure in dictionary.get('requests'):
                 requests.append(cohesity_management_sdk.models.pvc_info_pvc_spec_resources_requests_entry.PVCInfo_PVCSpec_Resources_RequestsEntry.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(requests)
-
-
+        return cls(
+            requests
+)

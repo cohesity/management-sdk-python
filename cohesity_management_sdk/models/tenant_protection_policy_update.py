@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class TenantProtectionPolicyUpdate(object):
 
@@ -8,28 +7,30 @@ class TenantProtectionPolicyUpdate(object):
 
     Specifies protection policy update details response about a tenant.
 
+
     Attributes:
+
         policy_ids (list of string): Specifies the PolicyIds for respective
             tenant.
         tenant_id (string): Specifies the unique id of the tenant.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "policy_ids":'policyIds',
-        "tenant_id":'tenantId'
+        "tenant_id":'tenantId',
     }
-
     def __init__(self,
                  policy_ids=None,
-                 tenant_id=None):
+                 tenant_id=None,
+            ):
+
         """Constructor for the TenantProtectionPolicyUpdate class"""
 
         # Initialize members of the class
         self.policy_ids = policy_ids
         self.tenant_id = tenant_id
-
 
     @classmethod
     def from_dictionary(cls,
@@ -49,11 +50,11 @@ class TenantProtectionPolicyUpdate(object):
             return None
 
         # Extract variables from the dictionary
-        policy_ids = dictionary.get('policyIds')
+        policy_ids = dictionary.get("policyIds")
         tenant_id = dictionary.get('tenantId')
 
         # Return an object of this model
-        return cls(policy_ids,
-                   tenant_id)
-
-
+        return cls(
+            policy_ids,
+            tenant_id
+)

@@ -1,41 +1,45 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.no_sql_restore_object_object_restore_properties_map_entry
+
 
 class NoSqlRestoreObject(object):
 
     """Implementation of the 'NoSqlRestoreObject' model.
 
-    TODO: Type model description here.
+    TODO: type description here.
+
 
     Attributes:
+
         object_restore_properties_map (list of
-            NoSqlRestoreObject_ObjectRestorePropertiesMapEntry): Key-Value
-            pair for properties to apply on restore object.
+            NoSqlRestoreObject_ObjectRestorePropertiesMapEntry): Key-Value pair
+            for properties to apply on restore object. Ex. Compaction for
+            cassandra or ShardKeyJson for Mongo.
         object_uuid (string): Uuid of the object to be restored.
         rename (string): The new name of the object after restore.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "object_restore_properties_map":'objectRestorePropertiesMap',
         "object_uuid":'objectUuid',
-        "rename":'rename'
+        "rename":'rename',
     }
-
     def __init__(self,
                  object_restore_properties_map=None,
                  object_uuid=None,
-                 rename=None):
+                 rename=None,
+            ):
+
         """Constructor for the NoSqlRestoreObject class"""
 
         # Initialize members of the class
         self.object_restore_properties_map = object_restore_properties_map
         self.object_uuid = object_uuid
         self.rename = rename
-
 
     @classmethod
     def from_dictionary(cls,
@@ -64,8 +68,8 @@ class NoSqlRestoreObject(object):
         rename = dictionary.get('rename')
 
         # Return an object of this model
-        return cls(object_restore_properties_map,
-                   object_uuid,
-                   rename)
-
-
+        return cls(
+            object_restore_properties_map,
+            object_uuid,
+            rename
+)

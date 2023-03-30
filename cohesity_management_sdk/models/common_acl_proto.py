@@ -1,40 +1,42 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.common_acl_proto_grantees
+
 
 class CommonACLProto(object):
 
     """Implementation of the 'CommonACLProto' model.
 
     Protobuf that describes the Common access control list (ACL) permissions
-    for a swift container.
-    TODO (avinash_aita): Verify the '.rlistings' write ACL behavior. If
-    necessary, remove persisting 'write_rlistings' field and fail such
-    requests.
+    for a swift container. TODO (avinash_aita): Verify the '.rlistings' write
+    ACL behavior. If necessary, remove persisting 'write_rlistings' field and
+    fail such requests.
+
 
     Attributes:
+
         read_grantees (CommonACLProto_Grantees): Read permissions granted to
             grantees.
-        write_r_listings (bool): Write permissions granted to grantees.
-
+        write_rlistings (bool): Write permissions granted to grantees.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "read_grantees": 'readGrantees',
-        "write_r_listings": 'writeRlistings'
+        "read_grantees":'readGrantees',
+        "write_rlistings":'writeRlistings',
     }
-
     def __init__(self,
                  read_grantees=None,
-                 write_r_listings=None):
+                 write_rlistings=None,
+            ):
+
         """Constructor for the CommonACLProto class"""
 
         # Initialize members of the class
         self.read_grantees = read_grantees
-        self.write_r_listings = write_r_listings
-
+        self.write_rlistings = write_rlistings
 
     @classmethod
     def from_dictionary(cls,
@@ -55,10 +57,10 @@ class CommonACLProto(object):
 
         # Extract variables from the dictionary
         read_grantees = cohesity_management_sdk.models.common_acl_proto_grantees.CommonACLProto_Grantees.from_dictionary(dictionary.get('readGrantees')) if dictionary.get('readGrantees') else None
-        write_r_listings = dictionary.get('writeRlistings', None)
+        write_rlistings = dictionary.get('writeRlistings')
 
         # Return an object of this model
-        return cls(read_grantees,
-                   write_r_listings)
-
-
+        return cls(
+            read_grantees,
+            write_rlistings
+)

@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.iscsi_san_port
+
 
 class SanStorageArray(object):
 
@@ -9,29 +10,32 @@ class SanStorageArray(object):
 
     Specifies a SAN Storage Array.
 
+
     Attributes:
+
         id (string): Specifies a unique id of a SAN Storage Array. The id is
             unique across Cohesity Clusters.
         ports (list of IscsiSanPort): Specifies the SAN ports of the SAN
             Storage Array.
         revision (string): Specifies the revision of the SAN Storage Array.
         version (string): Specifies the version of the SAN Storage Array.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "id":'id',
         "ports":'ports',
         "revision":'revision',
-        "version":'version'
+        "version":'version',
     }
-
     def __init__(self,
                  id=None,
                  ports=None,
                  revision=None,
-                 version=None):
+                 version=None,
+            ):
+
         """Constructor for the SanStorageArray class"""
 
         # Initialize members of the class
@@ -39,7 +43,6 @@ class SanStorageArray(object):
         self.ports = ports
         self.revision = revision
         self.version = version
-
 
     @classmethod
     def from_dictionary(cls,
@@ -69,9 +72,9 @@ class SanStorageArray(object):
         version = dictionary.get('version')
 
         # Return an object of this model
-        return cls(id,
-                   ports,
-                   revision,
-                   version)
-
-
+        return cls(
+            id,
+            ports,
+            revision,
+            version
+)

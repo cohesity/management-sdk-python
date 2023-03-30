@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class ReplicationEncryptionKeyReponse(object):
 
@@ -9,23 +8,25 @@ class ReplicationEncryptionKeyReponse(object):
     Specifies the encryption key that is used for encrypting replication data
     from this Cluster to a remote Cluster.
 
-    Attributes:
-        encryption_key (string): Specifies a replication encryption key.
 
+    Attributes:
+
+        encryption_key (string): Specifies a replication encryption key.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "encryption_key":'encryptionKey'
+        "encryption_key":'encryptionKey',
     }
-
     def __init__(self,
-                 encryption_key=None):
+                 encryption_key=None,
+            ):
+
         """Constructor for the ReplicationEncryptionKeyReponse class"""
 
         # Initialize members of the class
         self.encryption_key = encryption_key
-
 
     @classmethod
     def from_dictionary(cls,
@@ -48,6 +49,6 @@ class ReplicationEncryptionKeyReponse(object):
         encryption_key = dictionary.get('encryptionKey')
 
         # Return an object of this model
-        return cls(encryption_key)
-
-
+        return cls(
+            encryption_key
+)

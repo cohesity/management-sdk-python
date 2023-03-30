@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class CloneStatusEnum(object):
 
     """Implementation of the 'CloneStatus' enum.
+    Specifies the latest state of the clone. This is only set when this task is
+    a clone task.
 
-    Specifies the latest state of the clone. This is only set when this
-    task is a clone task.
 
     Attributes:
         KRUNNING: TODO: type description here.
@@ -23,4 +23,3 @@ class CloneStatusEnum(object):
     KTORNDOWN = 'kTornDown'
 
     KTEARDOWNFAILED = 'kTearDownFailed'
-

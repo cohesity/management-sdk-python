@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class SqlBackupJobParams(object):
 
@@ -8,7 +7,9 @@ class SqlBackupJobParams(object):
 
     Message to capture additional backup job params specific to SQL.
 
+
     Attributes:
+
         aag_backup_preference_type (int): Preference type for backing up
             databases that are part of an AAG. Only applicable if
             'use_aag_preferences_from_sql_server' is set to false.
@@ -24,13 +25,23 @@ class SqlBackupJobParams(object):
         continue_after_error (bool): Whether backup should continue after
             encountering a page checksum error.
         enable_checksum (bool): Whether backup checksums are enabled.
-        enable_incremental_backup_after_restart (bool): If this is set to
-            true, then incremental backup will be performed after the server
+        enable_incremental_backup_after_restart (bool): If this is set to true,
+            then incremental backup will be performed after the server
             restarts, otherwise a full-backup will be done.
-        full_backup_type (int): The type of SQL full backup to be used for
-            this job.
+        full_backup_type (int): The type of SQL full backup to be used for this
+            job.
         is_copy_only_full (bool): Whether full backups should be copy-only.
         is_copy_only_log (bool): Whether log backups should be copy-only.
+        log_backup_num_streams (int): The number of streams to be used for log
+            backups in native sql backup command. This is only applicable for
+            native sql log backups. If this is not specified, we use the value
+            specified in magneto_sql_num_streams_for_each_db_backup gflag.
+        log_backup_with_clause (string): 'with_clause' contains 'with clause'
+            to be used for log backups in native sql backup command. This is
+            only applicable for native sql log backup. Here user can specify
+            multiple backup options. Example: "WITH BUFFERCOUNT = 575,
+            MAXTRANSFERSIZE = 2097152". If this is not specified, we use the
+            value specified in magneto_sql_native_backup_with_clause gflag.
         num_dbs_per_batch (int): The number of databases to be backed up per
             batch. This is only applicable for file based sql backup. If this
             is not specified, we use the value specified in
@@ -45,12 +56,12 @@ class SqlBackupJobParams(object):
             databases on the host.
         with_clause (string): 'with_clause' contains 'with clause' to be used
             in native sql backup command. This is only applicable for native
-            sql backup. Here user can specify multiple backup options.
-            Example: "WITH BUFFERCOUNT = 575, MAXTRANSFERSIZE = 2097152". If
-            this is not specified, we use the value specified in
+            sql backup. Here user can specify multiple backup options. Example:
+            "WITH BUFFERCOUNT = 575, MAXTRANSFERSIZE = 2097152". If this is not
+            specified, we use the value specified in
             magneto_sql_native_backup_with_clause gflag.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -63,13 +74,14 @@ class SqlBackupJobParams(object):
         "full_backup_type":'fullBackupType',
         "is_copy_only_full":'isCopyOnlyFull',
         "is_copy_only_log":'isCopyOnlyLog',
+        "log_backup_num_streams":'logBackupNumStreams',
+        "log_backup_with_clause":'logBackupWithClause',
         "num_dbs_per_batch":'numDbsPerBatch',
         "num_streams":'numStreams',
         "use_aag_preferences_from_sql_server":'useAagPreferencesFromSqlServer',
         "user_db_preference_type":'userDbPreferenceType',
-        "with_clause":'withClause'
+        "with_clause":'withClause',
     }
-
     def __init__(self,
                  aag_backup_preference_type=None,
                  backup_database_volumes_only=None,
@@ -80,11 +92,15 @@ class SqlBackupJobParams(object):
                  full_backup_type=None,
                  is_copy_only_full=None,
                  is_copy_only_log=None,
+                 log_backup_num_streams=None,
+                 log_backup_with_clause=None,
                  num_dbs_per_batch=None,
                  num_streams=None,
                  use_aag_preferences_from_sql_server=None,
                  user_db_preference_type=None,
-                 with_clause=None):
+                 with_clause=None,
+            ):
+
         """Constructor for the SqlBackupJobParams class"""
 
         # Initialize members of the class
@@ -97,12 +113,13 @@ class SqlBackupJobParams(object):
         self.full_backup_type = full_backup_type
         self.is_copy_only_full = is_copy_only_full
         self.is_copy_only_log = is_copy_only_log
+        self.log_backup_num_streams = log_backup_num_streams
+        self.log_backup_with_clause = log_backup_with_clause
         self.num_dbs_per_batch = num_dbs_per_batch
         self.num_streams = num_streams
         self.use_aag_preferences_from_sql_server = use_aag_preferences_from_sql_server
         self.user_db_preference_type = user_db_preference_type
         self.with_clause = with_clause
-
 
     @classmethod
     def from_dictionary(cls,
@@ -131,6 +148,8 @@ class SqlBackupJobParams(object):
         full_backup_type = dictionary.get('fullBackupType')
         is_copy_only_full = dictionary.get('isCopyOnlyFull')
         is_copy_only_log = dictionary.get('isCopyOnlyLog')
+        log_backup_num_streams = dictionary.get('logBackupNumStreams')
+        log_backup_with_clause = dictionary.get('logBackupWithClause')
         num_dbs_per_batch = dictionary.get('numDbsPerBatch')
         num_streams = dictionary.get('numStreams')
         use_aag_preferences_from_sql_server = dictionary.get('useAagPreferencesFromSqlServer')
@@ -138,19 +157,21 @@ class SqlBackupJobParams(object):
         with_clause = dictionary.get('withClause')
 
         # Return an object of this model
-        return cls(aag_backup_preference_type,
-                   backup_database_volumes_only,
-                   backup_system_dbs,
-                   continue_after_error,
-                   enable_checksum,
-                   enable_incremental_backup_after_restart,
-                   full_backup_type,
-                   is_copy_only_full,
-                   is_copy_only_log,
-                   num_dbs_per_batch,
-                   num_streams,
-                   use_aag_preferences_from_sql_server,
-                   user_db_preference_type,
-                   with_clause)
-
-
+        return cls(
+            aag_backup_preference_type,
+            backup_database_volumes_only,
+            backup_system_dbs,
+            continue_after_error,
+            enable_checksum,
+            enable_incremental_backup_after_restart,
+            full_backup_type,
+            is_copy_only_full,
+            is_copy_only_log,
+            log_backup_num_streams,
+            log_backup_with_clause,
+            num_dbs_per_batch,
+            num_streams,
+            use_aag_preferences_from_sql_server,
+            user_db_preference_type,
+            with_clause
+)

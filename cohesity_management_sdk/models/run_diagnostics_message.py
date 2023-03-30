@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class RunDiagnosticsMessage(object):
 
@@ -8,24 +7,26 @@ class RunDiagnosticsMessage(object):
 
     Specifies the status of an Run Diagnostics request.
 
+
     Attributes:
+
         message (string): Specifies the status message returned after
             initiating a run diagnostics request.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "message":'message'
+        "message":'message',
     }
-
     def __init__(self,
-                 message=None):
+                 message=None,
+            ):
+
         """Constructor for the RunDiagnosticsMessage class"""
 
         # Initialize members of the class
         self.message = message
-
 
     @classmethod
     def from_dictionary(cls,
@@ -48,6 +49,6 @@ class RunDiagnosticsMessage(object):
         message = dictionary.get('message')
 
         # Return an object of this model
-        return cls(message)
-
-
+        return cls(
+            message
+)

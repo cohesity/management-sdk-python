@@ -1,41 +1,44 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.restore_site_params_drive_item
+
 
 class RestoreSiteParams_SiteOwner_Drive(object):
 
     """Implementation of the 'RestoreSiteParams_SiteOwner_Drive' model.
 
-    TODO: Type model description here.
+    TODO: type description here.
+
 
     Attributes:
+
         is_entire_drive_required (bool): Specify if the entire drive is to be
             restored. This field should be false if restore_item_vec size > 0.
         restore_drive_id (string): Id of the drive whose items are being
             restored.
-        restore_drive_name (string): Specifies the name of the drive whos
-            items are being restored.
-            NOTE: For restore either the drive Id or the name must be
-            populated.
+        restore_drive_name (string): Specifies the name of the drive whos items
+            are being restored. NOTE: For restore either the drive Id or the
+            name must be populated.
         restore_path_vec (list of RestoreSiteParams_DriveItem): List of drive
             paths that need to be restored.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "is_entire_drive_required":'isEntireDriveRequired',
         "restore_drive_id":'restoreDriveId',
         "restore_drive_name":'restoreDriveName',
-        "restore_path_vec":'restorePathVec'
+        "restore_path_vec":'restorePathVec',
     }
-
     def __init__(self,
                  is_entire_drive_required=None,
                  restore_drive_id=None,
                  restore_drive_name=None,
-                 restore_path_vec=None):
+                 restore_path_vec=None,
+            ):
+
         """Constructor for the RestoreSiteParams_SiteOwner_Drive class"""
 
         # Initialize members of the class
@@ -43,7 +46,6 @@ class RestoreSiteParams_SiteOwner_Drive(object):
         self.restore_drive_id = restore_drive_id
         self.restore_drive_name = restore_drive_name
         self.restore_path_vec = restore_path_vec
-
 
     @classmethod
     def from_dictionary(cls,
@@ -73,9 +75,9 @@ class RestoreSiteParams_SiteOwner_Drive(object):
                 restore_path_vec.append(cohesity_management_sdk.models.restore_site_params_drive_item.RestoreSiteParams_DriveItem.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(is_entire_drive_required,
-                   restore_drive_id,
-                   restore_drive_name,
-                   restore_path_vec)
-
-
+        return cls(
+            is_entire_drive_required,
+            restore_drive_id,
+            restore_drive_name,
+            restore_path_vec
+)

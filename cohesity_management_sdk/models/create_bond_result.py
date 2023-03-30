@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class CreateBondResult(object):
 
@@ -8,24 +7,26 @@ class CreateBondResult(object):
 
     Specifies the result of a request to create a new bond.
 
+
     Attributes:
+
         message (string): Specifies a message describing the result of the
             operation.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "message":'message'
+        "message":'message',
     }
-
     def __init__(self,
-                 message=None):
+                 message=None,
+            ):
+
         """Constructor for the CreateBondResult class"""
 
         # Initialize members of the class
         self.message = message
-
 
     @classmethod
     def from_dictionary(cls,
@@ -48,6 +49,6 @@ class CreateBondResult(object):
         message = dictionary.get('message')
 
         # Return an object of this model
-        return cls(message)
-
-
+        return cls(
+            message
+)

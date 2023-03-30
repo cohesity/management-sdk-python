@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.universal_id
+
 
 class RemoteVaultSearchJobInformation(object):
 
@@ -9,25 +10,27 @@ class RemoteVaultSearchJobInformation(object):
 
     Specifies information about a search of a remote Vault.
 
+
     Attributes:
-        cluster_count (int): Specifies number of Clusters that have archived
-            to the remote Vault and match the search criteria for this job, up
-            to this point in the search. If the search is complete, the total
+
+        cluster_count (int): Specifies number of Clusters that have archived to
+            the remote Vault and match the search criteria for this job, up to
+            this point in the search. If the search is complete, the total
             number of Clusters that have archived to the remote Vault and that
-            match the search criteria for this search Job, are reported. If
-            the search is not complete, a partial number is reported.
+            match the search criteria for this search Job, are reported. If the
+            search is not complete, a partial number is reported.
         end_time_usecs (long|int): Specifies the end time of the search as a
             Unix epoch Timestamp (in microseconds) if the search Job has
             completed.
         error (string): Specifies the error message reported when a search
             fails.
-        job_count (int): Specifies number of Protection Jobs that have
-            archived to the remote Vault and match the search criteria for
-            this search Job, up to this point in the search. If the search is
-            complete, the total number of Protection Jobs that have archived
-            to the remote Vault and that match the search criteria for this
-            search Job, are reported. If the search is not complete, a partial
-            number is reported.
+        job_count (int): Specifies number of Protection Jobs that have archived
+            to the remote Vault and match the search criteria for this search
+            Job, up to this point in the search. If the search is complete, the
+            total number of Protection Jobs that have archived to the remote
+            Vault and that match the search criteria for this search Job, are
+            reported. If the search is not complete, a partial number is
+            reported.
         name (string): Specifies the name of the search Job.
         search_job_status (SearchJobStatusEnum): Specifies the status of the
             search. 'kJobRunning' indicates that the Job/task is currently
@@ -43,8 +46,8 @@ class RemoteVaultSearchJobInformation(object):
             Target) that was searched.
         vault_name (string): Specifies the name of the remote Vault (External
             Target) that was searched.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -57,9 +60,8 @@ class RemoteVaultSearchJobInformation(object):
         "search_job_uid":'searchJobUid',
         "start_time_usecs":'startTimeUsecs',
         "vault_id":'vaultId',
-        "vault_name":'vaultName'
+        "vault_name":'vaultName',
     }
-
     def __init__(self,
                  cluster_count=None,
                  end_time_usecs=None,
@@ -70,7 +72,9 @@ class RemoteVaultSearchJobInformation(object):
                  search_job_uid=None,
                  start_time_usecs=None,
                  vault_id=None,
-                 vault_name=None):
+                 vault_name=None,
+            ):
+
         """Constructor for the RemoteVaultSearchJobInformation class"""
 
         # Initialize members of the class
@@ -84,7 +88,6 @@ class RemoteVaultSearchJobInformation(object):
         self.start_time_usecs = start_time_usecs
         self.vault_id = vault_id
         self.vault_name = vault_name
-
 
     @classmethod
     def from_dictionary(cls,
@@ -116,15 +119,15 @@ class RemoteVaultSearchJobInformation(object):
         vault_name = dictionary.get('vaultName')
 
         # Return an object of this model
-        return cls(cluster_count,
-                   end_time_usecs,
-                   error,
-                   job_count,
-                   name,
-                   search_job_status,
-                   search_job_uid,
-                   start_time_usecs,
-                   vault_id,
-                   vault_name)
-
-
+        return cls(
+            cluster_count,
+            end_time_usecs,
+            error,
+            job_count,
+            name,
+            search_job_status,
+            search_job_uid,
+            start_time_usecs,
+            vault_id,
+            vault_name
+)

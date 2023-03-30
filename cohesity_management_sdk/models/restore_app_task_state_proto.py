@@ -1,17 +1,20 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.restore_app_params
+
 
 class RestoreAppTaskStateProto(object):
 
     """Implementation of the 'RestoreAppTaskStateProto' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
-        app_restore_progress_monitor_subtask_path (string): The Pulse task
-            path to the application restore task sub tree. If the application
+
+        app_restore_progress_monitor_subtask_path (string): The Pulse task path
+            to the application restore task sub tree. If the application
             restore has to wait on other tasks (for example, a SQL db restore
             may wait for a tail log backup or a VM restore), then this would
             represent a sub-tree of 'progress_monitor_task_path' in
@@ -19,28 +22,28 @@ class RestoreAppTaskStateProto(object):
         child_restore_app_params_vec (list of RestoreAppParams): This has list
             of the restore app params for all the child restore tasks. This is
             populated iff the 'is_parent_task' is set to true.
-        last_finished_log_backup_start_time_usecs (long|int): The start time
-            of the last finished log backup run. For SQL application, this is
-            set iff we need to take a tail log backup.
-        restore_app_params (RestoreAppParams): This message captures all the
-            necessary arguments specified by the user to restore an
-            application.
-
+        last_finished_log_backup_start_time_usecs (long|int): The start time of
+            the last finished log backup run. For SQL application, this is set
+            iff we need to take a tail log backup.
+        restore_app_params (RestoreAppParams): Information about the
+            application restore task.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "app_restore_progress_monitor_subtask_path":'appRestoreProgressMonitorSubtaskPath',
         "child_restore_app_params_vec":'childRestoreAppParamsVec',
         "last_finished_log_backup_start_time_usecs":'lastFinishedLogBackupStartTimeUsecs',
-        "restore_app_params":'restoreAppParams'
+        "restore_app_params":'restoreAppParams',
     }
-
     def __init__(self,
                  app_restore_progress_monitor_subtask_path=None,
                  child_restore_app_params_vec=None,
                  last_finished_log_backup_start_time_usecs=None,
-                 restore_app_params=None):
+                 restore_app_params=None,
+            ):
+
         """Constructor for the RestoreAppTaskStateProto class"""
 
         # Initialize members of the class
@@ -48,7 +51,6 @@ class RestoreAppTaskStateProto(object):
         self.child_restore_app_params_vec = child_restore_app_params_vec
         self.last_finished_log_backup_start_time_usecs = last_finished_log_backup_start_time_usecs
         self.restore_app_params = restore_app_params
-
 
     @classmethod
     def from_dictionary(cls,
@@ -78,9 +80,9 @@ class RestoreAppTaskStateProto(object):
         restore_app_params = cohesity_management_sdk.models.restore_app_params.RestoreAppParams.from_dictionary(dictionary.get('restoreAppParams')) if dictionary.get('restoreAppParams') else None
 
         # Return an object of this model
-        return cls(app_restore_progress_monitor_subtask_path,
-                   child_restore_app_params_vec,
-                   last_finished_log_backup_start_time_usecs,
-                   restore_app_params)
-
-
+        return cls(
+            app_restore_progress_monitor_subtask_path,
+            child_restore_app_params_vec,
+            last_finished_log_backup_start_time_usecs,
+            restore_app_params
+)

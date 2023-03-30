@@ -1,18 +1,17 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class TypeNetappVserverInfoEnum(object):
 
-    """Implementation of the 'Type_NetappVserverInfo' enum.
-
-    Specifies the type of this Vserver.
-    Specifies the type of the NetApp Vserver.
-    'kData' indicates the Vserver is used for data backup and restore.
+    """Implementation of the 'TypeNetappVserverInfo' enum.
+    Specifies the type of this Vserver. Specifies the type of the NetApp
+    Vserver. 'kData' indicates the Vserver is used for data backup and restore.
     'kAdmin' indicates the Vserver is used for cluster-wide management.
     'kSystem' indicates the Vserver is used for cluster-scoped communications
-    in an IPspace.
-    'kNode' indicates the Vserver is used as the physical controller.
-    'kUnknown' indicates the Vserver is used for an unknown purpose.
+    in an IPspace. 'kNode' indicates the Vserver is used as the physical
+    controller. 'kUnknown' indicates the Vserver is used for an unknown
+    purpose.
+
 
     Attributes:
         KDATA: TODO: type description here.
@@ -32,4 +31,3 @@ class TypeNetappVserverInfoEnum(object):
     KNODE = 'kNode'
 
     KUNKNOWN = 'kUnknown'
-

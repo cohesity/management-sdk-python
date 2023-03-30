@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
-import cohesity_management_sdk.models.restore_object_details
 import cohesity_management_sdk.models.outlook_folder
+import cohesity_management_sdk.models.restore_object_details
+
 
 class OutlookMailbox(object):
 
@@ -11,39 +12,37 @@ class OutlookMailbox(object):
     Specifies the Outlook mailbox with restore details to support full or
     partial recovery.
 
+
     Attributes:
-        mailbox_object (RestoreObjectDetails): Specifies an object to recover
-            or clone or an object to restore files and folders from. A VM
-            object can be recovered or cloned. A View object can be cloned. To
-            specify a particular snapshot, you must specify a jobRunId and a
-            startTimeUsecs. If jobRunId and startTimeUsecs are not specified,
-            the last Job Run of the specified Job is used.
+
+        mailbox_object (RestoreObjectDetails): Specifies the details of the
+            mailbox object.
         outlook_folder_list (list of OutlookFolder): Specifies the list of
             folders to be restored incase user wishes not to restore entire
             mailbox.
-        restore_entire_mailbox (bool): Specifies whether the enitre mailbox is
+        restore_entire_mailbox (bool): Specifies whether the entire mailbox is
             to be restored.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "mailbox_object":'mailboxObject',
         "outlook_folder_list":'outlookFolderList',
-        "restore_entire_mailbox":'restoreEntireMailbox'
+        "restore_entire_mailbox":'restoreEntireMailbox',
     }
-
     def __init__(self,
                  mailbox_object=None,
                  outlook_folder_list=None,
-                 restore_entire_mailbox=None):
+                 restore_entire_mailbox=None,
+            ):
+
         """Constructor for the OutlookMailbox class"""
 
         # Initialize members of the class
         self.mailbox_object = mailbox_object
         self.outlook_folder_list = outlook_folder_list
         self.restore_entire_mailbox = restore_entire_mailbox
-
 
     @classmethod
     def from_dictionary(cls,
@@ -72,8 +71,8 @@ class OutlookMailbox(object):
         restore_entire_mailbox = dictionary.get('restoreEntireMailbox')
 
         # Return an object of this model
-        return cls(mailbox_object,
-                   outlook_folder_list,
-                   restore_entire_mailbox)
-
-
+        return cls(
+            mailbox_object,
+            outlook_folder_list,
+            restore_entire_mailbox
+)

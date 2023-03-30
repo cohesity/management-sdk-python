@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.disk
 import cohesity_management_sdk.models.logical_volume
+
 
 class FilesystemVolume(object):
 
@@ -10,10 +11,12 @@ class FilesystemVolume(object):
 
     Specifies information about a filesystem volume.
 
+
     Attributes:
+
         disks (list of Disk): Array of Disks and Partitions.  Specifies
-            information about all the disks and partitions needed to mount
-            this logical volume.
+            information about all the disks and partitions needed to mount this
+            logical volume.
         display_name (string): Specifies a description about the filesystem.
         filesystem_type (string): Specifies type of the filesystem on this
             volume.
@@ -24,19 +27,18 @@ class FilesystemVolume(object):
             or kLDM (Windows) filesystem. This field is set only for kLVM and
             kLDM volume types.
         logical_volume_type (LogicalVolumeTypeEnum): Specifies the type of
-            logical volume such as kSimpleVolume, kLVM or kLDM.
-            'kSimpleVolume' indicates a simple volume. Data can be used by
-            just mounting the only one partition present on the disk. 'kLVM'
-            indicates a logical volume on Linux managed by a Logical Volume
-            Manager. In order to access the data, deviceTree must be created
-            based on the specification in logicalVolume.deviceTree. 'kLDM'
-            indicates a logical volume on Windows managed by Logical Disk
-            Manager.
+            logical volume such as kSimpleVolume, kLVM or kLDM. 'kSimpleVolume'
+            indicates a simple volume. Data can be used by just mounting the
+            only one partition present on the disk. 'kLVM' indicates a logical
+            volume on Linux managed by a Logical Volume Manager. In order to
+            access the data, deviceTree must be created based on the
+            specification in logicalVolume.deviceTree. 'kLDM' indicates a
+            logical volume on Windows managed by Logical Disk Manager.
         name (string): Specifies the name of the volume such as /C.
         volume_guid (string): VolumeGuid is the Volume guid. This is populated
             for kPhysical environments.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -48,9 +50,8 @@ class FilesystemVolume(object):
         "logical_volume":'logicalVolume',
         "logical_volume_type":'logicalVolumeType',
         "name":'name',
-        "volume_guid":'volumeGuid'
+        "volume_guid":'volumeGuid',
     }
-
     def __init__(self,
                  disks=None,
                  display_name=None,
@@ -60,7 +61,9 @@ class FilesystemVolume(object):
                  logical_volume=None,
                  logical_volume_type=None,
                  name=None,
-                 volume_guid=None):
+                 volume_guid=None,
+            ):
+
         """Constructor for the FilesystemVolume class"""
 
         # Initialize members of the class
@@ -73,7 +76,6 @@ class FilesystemVolume(object):
         self.logical_volume_type = logical_volume_type
         self.name = name
         self.volume_guid = volume_guid
-
 
     @classmethod
     def from_dictionary(cls,
@@ -108,14 +110,14 @@ class FilesystemVolume(object):
         volume_guid = dictionary.get('volumeGuid')
 
         # Return an object of this model
-        return cls(disks,
-                   display_name,
-                   filesystem_type,
-                   filesystem_uuid,
-                   is_supported,
-                   logical_volume,
-                   logical_volume_type,
-                   name,
-                   volume_guid)
-
-
+        return cls(
+            disks,
+            display_name,
+            filesystem_type,
+            filesystem_uuid,
+            is_supported,
+            logical_volume,
+            logical_volume_type,
+            name,
+            volume_guid
+)

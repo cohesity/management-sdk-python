@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class NetappClusterInfo(object):
 
@@ -8,36 +7,38 @@ class NetappClusterInfo(object):
 
     Specifies information about a NetApp Cluster Protection Source.
 
+
     Attributes:
+
         contact_info (string): Specifies information about the contact for the
             NetApp cluster such as a name, phone number, and email address.
-        location (string): Specifies where this NetApp cluster is located.
-            This location identification string is configured by the NetApp
-            system administrator. This field does not contain the NetApp
-            cluster hostname or IP address.
+        location (string): Specifies where this NetApp cluster is located. This
+            location identification string is configured by the NetApp system
+            administrator. This field does not contain the NetApp cluster
+            hostname or IP address.
         serial_number (string): Specifies the serial number of the NetApp
             cluster in the format: x-xx-xxxxxx.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "contact_info":'contactInfo',
         "location":'location',
-        "serial_number":'serialNumber'
+        "serial_number":'serialNumber',
     }
-
     def __init__(self,
                  contact_info=None,
                  location=None,
-                 serial_number=None):
+                 serial_number=None,
+            ):
+
         """Constructor for the NetappClusterInfo class"""
 
         # Initialize members of the class
         self.contact_info = contact_info
         self.location = location
         self.serial_number = serial_number
-
 
     @classmethod
     def from_dictionary(cls,
@@ -62,8 +63,8 @@ class NetappClusterInfo(object):
         serial_number = dictionary.get('serialNumber')
 
         # Return an object of this model
-        return cls(contact_info,
-                   location,
-                   serial_number)
-
-
+        return cls(
+            contact_info,
+            location,
+            serial_number
+)

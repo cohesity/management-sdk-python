@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.object_reference
+
 
 class PodInfo_PodSpec_VolumeInfo_RBD(object):
 
@@ -9,17 +10,19 @@ class PodInfo_PodSpec_VolumeInfo_RBD(object):
 
     Represents a Rados Block Device mount that lasts the lifetime of a pod.
 
+
     Attributes:
+
         fs_type (string): TODO: Type description here.
         image (string): TODO: Type description here.
-        keyring (bool): TODO: Type description here.
+        keyring (string): TODO: Type description here.
         monitors (list of string): TODO: Type description here.
-        pool (bool): TODO: Type description here.
-        read_only (string): TODO: Type description here.
+        pool (string): TODO: Type description here.
+        read_only (bool): TODO: Type description here.
         secret_ref (ObjectReference): TODO: Type description here.
         user (string): TODO: Type description here.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -30,9 +33,8 @@ class PodInfo_PodSpec_VolumeInfo_RBD(object):
         "pool":'pool',
         "read_only":'readOnly',
         "secret_ref":'secretRef',
-        "user":'user'
+        "user":'user',
     }
-
     def __init__(self,
                  fs_type=None,
                  image=None,
@@ -41,7 +43,9 @@ class PodInfo_PodSpec_VolumeInfo_RBD(object):
                  pool=None,
                  read_only=None,
                  secret_ref=None,
-                 user=None):
+                 user=None,
+            ):
+
         """Constructor for the PodInfo_PodSpec_VolumeInfo_RBD class"""
 
         # Initialize members of the class
@@ -53,7 +57,6 @@ class PodInfo_PodSpec_VolumeInfo_RBD(object):
         self.read_only = read_only
         self.secret_ref = secret_ref
         self.user = user
-
 
     @classmethod
     def from_dictionary(cls,
@@ -76,20 +79,20 @@ class PodInfo_PodSpec_VolumeInfo_RBD(object):
         fs_type = dictionary.get('fsType')
         image = dictionary.get('image')
         keyring = dictionary.get('keyring')
-        monitors = dictionary.get('monitors')
+        monitors = dictionary.get("monitors")
         pool = dictionary.get('pool')
         read_only = dictionary.get('readOnly')
         secret_ref = cohesity_management_sdk.models.object_reference.ObjectReference.from_dictionary(dictionary.get('secretRef')) if dictionary.get('secretRef') else None
         user = dictionary.get('user')
 
         # Return an object of this model
-        return cls(fs_type,
-                   image,
-                   keyring,
-                   monitors,
-                   pool,
-                   read_only,
-                   secret_ref,
-                   user)
-
-
+        return cls(
+            fs_type,
+            image,
+            keyring,
+            monitors,
+            pool,
+            read_only,
+            secret_ref,
+            user
+)

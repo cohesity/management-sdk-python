@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class DailySchedule(object):
 
@@ -8,26 +7,28 @@ class DailySchedule(object):
 
     Specifies a daily or weekly backup schedule.
 
-    Attributes:
-        days (list of DayEnum): Array of Days.  Specifies a list of days of
-            the week when to start Job Runs. If no days are specified, the
-            Jobs Runs will run every day of the week. Specifies a day in a
-            week such as 'kSunday', 'kMonday', etc.
 
+    Attributes:
+
+        days (list of DaysEnum): Array of Days.  Specifies a list of days of
+            the week when to start Job Runs. If no days are specified, the Jobs
+            Runs will run every day of the week. Specifies a day in a week such
+            as 'kSunday', 'kMonday', etc.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "days":'days'
+        "days":'days',
     }
-
     def __init__(self,
-                 days=None):
+                 days=None,
+            ):
+
         """Constructor for the DailySchedule class"""
 
         # Initialize members of the class
         self.days = days
-
 
     @classmethod
     def from_dictionary(cls,
@@ -47,9 +48,9 @@ class DailySchedule(object):
             return None
 
         # Extract variables from the dictionary
-        days = dictionary.get('days')
+        days = dictionary.get("days")
 
         # Return an object of this model
-        return cls(days)
-
-
+        return cls(
+            days
+)

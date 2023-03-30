@@ -1,38 +1,39 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class Overusage(object):
 
     """Implementation of the 'Overusage' model.
 
-    Structure to hold feature usage on cluster side.
+    TODO: type description here.
+
 
     Attributes:
-        feature_name (string):  Name of feature.
-        overused_gib (int|long): Feature overusage by the cluster.
-        overused_vm (int|long): Number of overused VM spinned.
 
+        feature_name (string): Name of feature.
+        overused_gib (long|int): Feature overusage by the cluster.
+        overused_vm (long|int): Number of overused VM spinned.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "feature_name":'featureName',
         "overused_gib":'overusedGiB',
-        "overused_vm":'overusedVm'
+        "overused_vm":'overusedVm',
     }
-
     def __init__(self,
                  feature_name=None,
                  overused_gib=None,
-                 overused_vm=None):
+                 overused_vm=None,
+            ):
+
         """Constructor for the Overusage class"""
 
         # Initialize members of the class
         self.feature_name = feature_name
         self.overused_gib = overused_gib
         self.overused_vm = overused_vm
-
 
     @classmethod
     def from_dictionary(cls,
@@ -57,8 +58,8 @@ class Overusage(object):
         overused_vm = dictionary.get('overusedVm')
 
         # Return an object of this model
-        return cls(feature_name,
-                   overused_gib,
-                   overused_vm)
-
-
+        return cls(
+            feature_name,
+            overused_gib,
+            overused_vm
+)

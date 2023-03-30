@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class SchemaInfo(object):
 
     """Implementation of the 'SchemaInfo' model.
 
     Specifies the metric data point where public data metric name as key and
-    the
-    schema defined metric name as a value.
+    the schema defined metric name as a value.
+
 
     Attributes:
+
         entity_id (string): Specifies the id of the entity represented as a
             string.
         key (string): Specifies the key which is public facing name for metric
@@ -18,22 +18,23 @@ class SchemaInfo(object):
         metric_name (string): Specifies the Apollo schema metric name.
         schema_name (string): Specifies the name of entity schema such as
             'ApolloViewBoxStats'.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "entity_id":'entityId',
         "key":'key',
         "metric_name":'metricName',
-        "schema_name":'schemaName'
+        "schema_name":'schemaName',
     }
-
     def __init__(self,
                  entity_id=None,
                  key=None,
                  metric_name=None,
-                 schema_name=None):
+                 schema_name=None,
+            ):
+
         """Constructor for the SchemaInfo class"""
 
         # Initialize members of the class
@@ -41,7 +42,6 @@ class SchemaInfo(object):
         self.key = key
         self.metric_name = metric_name
         self.schema_name = schema_name
-
 
     @classmethod
     def from_dictionary(cls,
@@ -67,9 +67,9 @@ class SchemaInfo(object):
         schema_name = dictionary.get('schemaName')
 
         # Return an object of this model
-        return cls(entity_id,
-                   key,
-                   metric_name,
-                   schema_name)
-
-
+        return cls(
+            entity_id,
+            key,
+            metric_name,
+            schema_name
+)

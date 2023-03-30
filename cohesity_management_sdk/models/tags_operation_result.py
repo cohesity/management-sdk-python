@@ -1,31 +1,35 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.doc_error
+
 
 class TagsOperationResult(object):
 
     """Implementation of the 'TagsOperationResult' model.
 
-    TagsOperationResult specifies the result of tagging operation.
+    TODO: type description here.
+
 
     Attributes:
-    doc_errors (list of DocError):  DocErrors are document errors incurred in
-        yoda service while tagging.
+
+        doc_errors (list of DocError): DocErrors are document errors incurred
+            in yoda service while tagging.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "doc_errors":'docErrors'
+        "doc_errors":'docErrors',
     }
-
     def __init__(self,
-                 doc_errors=None):
+                 doc_errors=None,
+            ):
+
         """Constructor for the TagsOperationResult class"""
 
         # Initialize members of the class
         self.doc_errors = doc_errors
-
 
     @classmethod
     def from_dictionary(cls,
@@ -52,6 +56,6 @@ class TagsOperationResult(object):
                 doc_errors.append(cohesity_management_sdk.models.doc_error.DocError.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(doc_errors)
-
-
+        return cls(
+            doc_errors
+)

@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class ProtectedObjectsByEnv(object):
 
@@ -8,14 +7,16 @@ class ProtectedObjectsByEnv(object):
 
     Number of Protected Objects by Type.
 
+
     Attributes:
+
         env_type (string): Environment Type.
         protected_count (int): Number of Protected Objects.
         protected_size_bytes (long|int): Size of Protected Objects.
         unprotected_count (int): Number of Unprotected Objects.
         unprotected_size_bytes (long|int): Size of Unprotected Objects.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -23,15 +24,16 @@ class ProtectedObjectsByEnv(object):
         "protected_count":'protectedCount',
         "protected_size_bytes":'protectedSizeBytes',
         "unprotected_count":'unprotectedCount',
-        "unprotected_size_bytes":'unprotectedSizeBytes'
+        "unprotected_size_bytes":'unprotectedSizeBytes',
     }
-
     def __init__(self,
                  env_type=None,
                  protected_count=None,
                  protected_size_bytes=None,
                  unprotected_count=None,
-                 unprotected_size_bytes=None):
+                 unprotected_size_bytes=None,
+            ):
+
         """Constructor for the ProtectedObjectsByEnv class"""
 
         # Initialize members of the class
@@ -40,7 +42,6 @@ class ProtectedObjectsByEnv(object):
         self.protected_size_bytes = protected_size_bytes
         self.unprotected_count = unprotected_count
         self.unprotected_size_bytes = unprotected_size_bytes
-
 
     @classmethod
     def from_dictionary(cls,
@@ -67,10 +68,10 @@ class ProtectedObjectsByEnv(object):
         unprotected_size_bytes = dictionary.get('unprotectedSizeBytes')
 
         # Return an object of this model
-        return cls(env_type,
-                   protected_count,
-                   protected_size_bytes,
-                   unprotected_count,
-                   unprotected_size_bytes)
-
-
+        return cls(
+            env_type,
+            protected_count,
+            protected_size_bytes,
+            unprotected_count,
+            unprotected_size_bytes
+)

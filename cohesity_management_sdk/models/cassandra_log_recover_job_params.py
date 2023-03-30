@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class CassandraLogRecoverJobParams(object):
 
     """Implementation of the 'CassandraLogRecoverJobParams' model.
 
+    TODO: type description here.
+
+
     Attributes:
+
         end_time_for_log_replay_in_usecs (long|int): This is the end time from
             when logs should be replayed.
         log_backup_view_box_name (string): The view box name where commit logs
@@ -16,10 +19,10 @@ class CassandraLogRecoverJobParams(object):
         object_names (list of string): Objects are of the form keyspace.table.
             If a full keyspace is selected to be restored, it is expanded
             before passing to imanis.
-        start_time_for_log_replay_in_usecs (long|int):  This is the start time
+        start_time_for_log_replay_in_usecs (long|int): This is the start time
             from when logs should be replayed.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -27,15 +30,16 @@ class CassandraLogRecoverJobParams(object):
         "log_backup_view_box_name":'logBackupViewBoxName',
         "log_backup_view_name":'logBackupViewName',
         "object_names":'objectNames',
-        "start_time_for_log_replay_in_usecs":'startTimeForLogReplayInUsecs'
+        "start_time_for_log_replay_in_usecs":'startTimeForLogReplayInUsecs',
     }
-
     def __init__(self,
                  end_time_for_log_replay_in_usecs=None,
                  log_backup_view_box_name=None,
                  log_backup_view_name=None,
                  object_names=None,
-                 start_time_for_log_replay_in_usecs=None):
+                 start_time_for_log_replay_in_usecs=None,
+            ):
+
         """Constructor for the CassandraLogRecoverJobParams class"""
 
         # Initialize members of the class
@@ -44,7 +48,6 @@ class CassandraLogRecoverJobParams(object):
         self.log_backup_view_name = log_backup_view_name
         self.object_names = object_names
         self.start_time_for_log_replay_in_usecs = start_time_for_log_replay_in_usecs
-
 
     @classmethod
     def from_dictionary(cls,
@@ -67,14 +70,14 @@ class CassandraLogRecoverJobParams(object):
         end_time_for_log_replay_in_usecs = dictionary.get('endTimeForLogReplayInUsecs')
         log_backup_view_box_name = dictionary.get('logBackupViewBoxName')
         log_backup_view_name = dictionary.get('logBackupViewName')
+        object_names = dictionary.get("objectNames")
         start_time_for_log_replay_in_usecs = dictionary.get('startTimeForLogReplayInUsecs')
-        object_names = dictionary.get('objectNames')
 
         # Return an object of this model
-        return cls(end_time_for_log_replay_in_usecs,
-                   log_backup_view_box_name,
-                   log_backup_view_name,
-                   object_names,
-                   start_time_for_log_replay_in_usecs)
-
-
+        return cls(
+            end_time_for_log_replay_in_usecs,
+            log_backup_view_box_name,
+            log_backup_view_name,
+            object_names,
+            start_time_for_log_replay_in_usecs
+)

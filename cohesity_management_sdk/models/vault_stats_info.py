@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class VaultStatsInfo(object):
 
@@ -8,27 +7,30 @@ class VaultStatsInfo(object):
 
     Specifies the stats for each vault.
 
+
     Attributes:
+
         id (long|int): Specifies the Vault Id.
         name (string): Specifies the Vault name.
         mtype (TypeVaultStatsInfoEnum): Specifies the Vault type.
         usage_bytes (long|int): Specifies the bytes used by the Vault.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "id":'id',
         "name":'name',
         "mtype":'type',
-        "usage_bytes":'usageBytes'
+        "usage_bytes":'usageBytes',
     }
-
     def __init__(self,
                  id=None,
                  name=None,
                  mtype=None,
-                 usage_bytes=None):
+                 usage_bytes=None,
+            ):
+
         """Constructor for the VaultStatsInfo class"""
 
         # Initialize members of the class
@@ -36,7 +38,6 @@ class VaultStatsInfo(object):
         self.name = name
         self.mtype = mtype
         self.usage_bytes = usage_bytes
-
 
     @classmethod
     def from_dictionary(cls,
@@ -62,9 +63,9 @@ class VaultStatsInfo(object):
         usage_bytes = dictionary.get('usageBytes')
 
         # Return an object of this model
-        return cls(id,
-                   name,
-                   mtype,
-                   usage_bytes)
-
-
+        return cls(
+            id,
+            name,
+            mtype,
+            usage_bytes
+)

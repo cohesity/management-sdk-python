@@ -1,35 +1,36 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
-
-class RecoverVolumesParamsMapping(object):
+class RecoverVolumesParams_Mapping(object):
 
     """Implementation of the 'RecoverVolumesParams_Mapping' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
+
         dst_guid (string): The destination, pertains to the newly rebuilt
             system.
         src_guid (string): The source, pertains to the original backup.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "dst_guid":'dstGuid',
-        "src_guid":'srcGuid'
+        "src_guid":'srcGuid',
     }
-
     def __init__(self,
                  dst_guid=None,
-                 src_guid=None):
-        """Constructor for the RecoverVolumesParamsMapping class"""
+                 src_guid=None,
+            ):
+
+        """Constructor for the RecoverVolumesParams_Mapping class"""
 
         # Initialize members of the class
         self.dst_guid = dst_guid
         self.src_guid = src_guid
-
 
     @classmethod
     def from_dictionary(cls,
@@ -53,7 +54,7 @@ class RecoverVolumesParamsMapping(object):
         src_guid = dictionary.get('srcGuid')
 
         # Return an object of this model
-        return cls(dst_guid,
-                   src_guid)
-
-
+        return cls(
+            dst_guid,
+            src_guid
+)

@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class HypervVirtualMachine(object):
 
     """Implementation of the 'HypervVirtualMachine' model.
 
-    Specifies information about a VirtualMachine Object in HyperV
-    environment.
+    Specifies information about a VirtualMachine Object in HyperV environment.
+
 
     Attributes:
+
         is_highly_available (bool): Specifies whether the VM is Highly
             Available or not.
         version (string): Specifies the version of the VM. For example, 8.0,
@@ -25,22 +25,23 @@ class HypervVirtualMachine(object):
             of an HyperV datastore object. 'kRctBackup' indicates backup is
             done using RCT/checkpoints. 'kVssBackup' indicates backup is done
             using VSS.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "is_highly_available":'isHighlyAvailable',
         "version":'version',
         "vm_backup_status":'vmBackupStatus',
-        "vm_backup_type":'vmBackupType'
+        "vm_backup_type":'vmBackupType',
     }
-
     def __init__(self,
                  is_highly_available=None,
                  version=None,
                  vm_backup_status=None,
-                 vm_backup_type=None):
+                 vm_backup_type=None,
+            ):
+
         """Constructor for the HypervVirtualMachine class"""
 
         # Initialize members of the class
@@ -48,7 +49,6 @@ class HypervVirtualMachine(object):
         self.version = version
         self.vm_backup_status = vm_backup_status
         self.vm_backup_type = vm_backup_type
-
 
     @classmethod
     def from_dictionary(cls,
@@ -74,9 +74,9 @@ class HypervVirtualMachine(object):
         vm_backup_type = dictionary.get('vmBackupType')
 
         # Return an object of this model
-        return cls(is_highly_available,
-                   version,
-                   vm_backup_status,
-                   vm_backup_type)
-
-
+        return cls(
+            is_highly_available,
+            version,
+            vm_backup_status,
+            vm_backup_type
+)

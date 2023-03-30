@@ -1,24 +1,25 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
-
-class ClusterConfigProtoQoSMappingQoSContext(object):
+class ClusterConfigProto_QoSMapping_QoSContext(object):
 
     """Implementation of the 'ClusterConfigProto_QoSMapping_QoSContext' model.
 
-    QoSContext captures the properties that are relevant for QoS in a
-    request. If a new field is added to QoSContext, cluster_config.h should
-    be changed to enhance the hasher (QoSContextHash) and comparator
-    (QoSContextEqual) for QoSContext.
+    QoSContext captures the properties that are relevant for QoS in a request.
+    If a new field is added to QoSContext, cluster_config.h should be changed
+    to enhance the hasher (QoSContextHash) and comparator (QoSContextEqual) for
+    QoSContext.
+
 
     Attributes:
+
         component (int): Component from which request is coming.
         priority (int): Priority of a request.
-        mtype (int): TODO: type description here.
+        mtype (int): TODO: Type description here.
         view_box_id (long|int): View box id of a request.
         view_id (long|int): View id of a request.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -26,16 +27,17 @@ class ClusterConfigProtoQoSMappingQoSContext(object):
         "priority":'priority',
         "mtype":'type',
         "view_box_id":'viewBoxId',
-        "view_id":'viewId'
+        "view_id":'viewId',
     }
-
     def __init__(self,
                  component=None,
                  priority=None,
                  mtype=None,
                  view_box_id=None,
-                 view_id=None):
-        """Constructor for the ClusterConfigProtoQoSMappingQoSContext class"""
+                 view_id=None,
+            ):
+
+        """Constructor for the ClusterConfigProto_QoSMapping_QoSContext class"""
 
         # Initialize members of the class
         self.component = component
@@ -43,7 +45,6 @@ class ClusterConfigProtoQoSMappingQoSContext(object):
         self.mtype = mtype
         self.view_box_id = view_box_id
         self.view_id = view_id
-
 
     @classmethod
     def from_dictionary(cls,
@@ -70,10 +71,10 @@ class ClusterConfigProtoQoSMappingQoSContext(object):
         view_id = dictionary.get('viewId')
 
         # Return an object of this model
-        return cls(component,
-                   priority,
-                   mtype,
-                   view_box_id,
-                   view_id)
-
-
+        return cls(
+            component,
+            priority,
+            mtype,
+            view_box_id,
+            view_id
+)

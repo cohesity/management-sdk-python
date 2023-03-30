@@ -1,34 +1,34 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.time
 
-class BackupPolicyProtoOneOffSchedule(object):
+
+class BackupPolicyProto_OneOffSchedule(object):
 
     """Implementation of the 'BackupPolicyProto_OneOffSchedule' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
-        time (Time): A message to encapusulate time of a day. Users of this
-            proto will have to store the timezone information separately. For
-            example, when this proto is part of a backup job, timezone of the
-            backup job is applied to get the absolute time.
 
+        time (Time): The time when the one-off backup should be performed.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "time":'time'
+        "time":'time',
     }
-
     def __init__(self,
-                 time=None):
-        """Constructor for the BackupPolicyProtoOneOffSchedule class"""
+                 time=None,
+            ):
+
+        """Constructor for the BackupPolicyProto_OneOffSchedule class"""
 
         # Initialize members of the class
         self.time = time
-
 
     @classmethod
     def from_dictionary(cls,
@@ -51,6 +51,6 @@ class BackupPolicyProtoOneOffSchedule(object):
         time = cohesity_management_sdk.models.time.Time.from_dictionary(dictionary.get('time')) if dictionary.get('time') else None
 
         # Return an object of this model
-        return cls(time)
-
-
+        return cls(
+            time
+)

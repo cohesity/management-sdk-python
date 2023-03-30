@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
-import cohesity_management_sdk.models.a_w_s_fleet_params
+import cohesity_management_sdk.models.aws_fleet_params
 import cohesity_management_sdk.models.c2s_server_info
 import cohesity_management_sdk.models.ebs_volume_info
 import cohesity_management_sdk.models.fleet_network_params
 import cohesity_management_sdk.models.tag_attribute
+
 
 class AwsProtectionSource(object):
 
@@ -13,44 +14,44 @@ class AwsProtectionSource(object):
 
     Specifies a Protection Source in AWS environment.
 
+
     Attributes:
+
         access_key (string): Specifies Access key of the AWS account.
         amazon_resource_name (string): Specifies Amazon Resource Name (owner
-            ID) of the IAM user, act as an unique identifier of as AWS
-            entity.
-        auth_method (AuthMethodEnum): Specifies the iauth method used for the
-            request. See the Cohesity online help for the value to specify for
-            this field based on the current S3-compatible Vault (External
-            Target) type. Specifies the authentication method to be used for
-            API calls. 'kUseIAMUser' indicates a user based authentication.
+            ID) of the IAM user, act as an unique identifier of as AWS entity.
+        auth_method (AuthMethodEnum): Specifies the authentication method to be
+            used for API calls. Specifies the authentication method to be used
+            for API calls. 'kUseIAMUser' indicates a user based authentication.
             'kUseIAMRole' indicates a role based authentication, used only for
-            AWS CE.
-        aws_fleet_params (AwsFleetParams): Specifies information related to
-            AWS fleets launched for various purposes. This will only be set
-            for kIAMUser entity.
-        aws_type (AwsTypeEnum): Specifies the entity type such as 'kIAMUser'
-            if the environment is kAWS. Specifies the type of an AWS source
+            AWS CE. 'kUseHelios' indicates a Helios based authentication.
+        aws_fleet_params (AwsFleetParams): Specifies information related to AWS
+            fleets launched for various purposes. This will only be set for
+            kIAMUser entity.
+        aws_type (AwsTypeEnum): Specifies the entity type such as 'kIAMUser' if
+            the environment is kAWS. Specifies the type of an AWS source
             entity. 'kIAMUser' indicates a unique user within an AWS account.
             'kRegion' indicates a geographical region in the global
             infrastructure. 'kAvailabilityZone' indicates an availability zone
-            within a region. 'kEC2Instance' indicates a Virtual Machine
-            running in AWS environment. 'kVPC' indicates a virtual private
-            cloud (VPC) network within AWS. 'kSubnet' indicates a subnet
-            inside the VPC. 'kNetworkSecurityGroup' represents a network
-            security group. 'kInstanceType' represents various machine types.
-            'kKeyPair' represents a pair of public and private key used to
-            login into a Virtual Machine. 'kTag' represents a tag attached to
-            EC2 instance. 'kRDSOptionGroup' represents a RDS option group for
-            configuring database features. 'kRDSParameterGroup' represents a
-            RDS parameter group. 'kRDSInstance' represents a RDS DB instance.
-            'kRDSSubnet' represents a RDS subnet. 'kRDSTag' represents a tag
-            attached to RDS instance. 'kAuroraCluster' represents an Aurora
-            cluster.
+            within a region. 'kEC2Instance' indicates a Virtual Machine running
+            in AWS environment. 'kVPC' indicates a virtual private cloud (VPC)
+            network within AWS. 'kSubnet' indicates a subnet inside the VPC.
+            'kNetworkSecurityGroup' represents a network security group.
+            'kInstanceType' represents various machine types. 'kKeyPair'
+            represents a pair of public and private key used to login into a
+            Virtual Machine. 'kTag' represents a tag attached to EC2 instance.
+            'kRDSOptionGroup' represents a RDS option group for configuring
+            database features. 'kRDSParameterGroup' represents a RDS parameter
+            group. 'kRDSInstance' represents a RDS DB instance. 'kRDSSubnet'
+            represents a RDS subnet. 'kRDSTag' represents a tag attached to RDS
+            instance. 'kAuroraTag' represents a tag attached to an Aurora
+            cluster. 'kAccount' represents an AWS account. 'kAuroraCluster'
+            represents an Aurora cluster.
+        c2s_server_info (C2SServerInfo): Specifies the C2S Access Portal (CAP)
+            server info.
         cluster_network_info (FleetNetworkParams): Specifies information
             related to cluster. This is only valid for CE clusters. This is
             only populated for kIAMUser entity.
-        c2s_server_info (C2SServerInfo): Specifies the C2S Access Portal (CAP)
-            server info.
         db_engine_id (string): Specifies DB engine version info of the entity.
             This is populated only for RDSInstance, RDSOptionGroup and
             RDSParameterGroup entity types.
@@ -59,13 +60,14 @@ class AwsProtectionSource(object):
             overrideDescription: true 'kLinux' indicates the Linux operating
             system. 'kWindows' indicates the Microsoft Windows operating
             system. 'kAix' indicates the IBM AIX operating system. 'kSolaris'
-            indicates the Oracle Solaris operating system. 'kSapHana'
-            indicates the Sap Hana database system developed by SAP SE.
-            'kOther' indicates the other types of operating system.
-        iam_role_arn (string): Specifies the iam role arn Amazon service
-            account. See the Cohesity online help for the value to specify for
-            this field based on the current S3-compatible Vault (External
-            Target) type.
+            indicates the Oracle Solaris operating system. 'kSapHana' indicates
+            the Sap Hana database system developed by SAP SE. 'kSapOracle'
+            indicates the Sap Oracle database system developed by SAP SE.
+            'kCockroachDB' indicates the CockroachDB database system. 'kMySQL'
+            indicates the MySQL database system. 'kOther' indicates the other
+            types of operating system.
+        iam_role_arn (string): Specifies the IAM role which will be used to
+            access the security credentials required for API calls.
         ip_addresses (string): Specifies the IP address of the entity of type
             'kVirtualMachine'.
         name (string): Specifies the name of the Object set by the Cloud
@@ -77,8 +79,8 @@ class AwsProtectionSource(object):
         physical_source_id (long|int): Specifies the Protection Source id of
             the registered Physical Host. If the cloud entity is protected
             using a Physical Agent, it must be registered as a physical host.
-        region_id (string): Specifies the region Id of the entity if the
-            entity is an EC2 instance.
+        region_id (string): Specifies the region Id of the entity if the entity
+            is an EC2 instance.
         resource_id (string): Specifies the unique Id of the resource given by
             the cloud provider.
         restore_task_id (long|int): Specifies the id of the "convert and
@@ -108,31 +110,32 @@ class AwsProtectionSource(object):
             attributes.
         mtype (TypeAwsProtectionSourceEnum): Specifies the type of an AWS
             Protection Source Object such as 'kStorageContainer',
-            'kVirtualMachine', 'kVirtualNetwork', etc. Specifies the type of
-            an AWS source entity. 'kIAMUser' indicates a unique user within an
-            AWS account. 'kRegion' indicates a geographical region in the
-            global infrastructure. 'kAvailabilityZone' indicates an
-            availability zone within a region. 'kEC2Instance' indicates a
-            Virtual Machine running in AWS environment. 'kVPC' indicates a
-            virtual private cloud (VPC) network within AWS. 'kSubnet'
-            indicates a subnet inside the VPC. 'kNetworkSecurityGroup'
-            represents a network security group. 'kInstanceType' represents
-            various machine types. 'kKeyPair' represents a pair of public and
-            private key used to login into a Virtual Machine. 'kTag'
-            represents a tag attached to EC2 instance. 'kRDSOptionGroup'
-            represents a RDS option group for configuring database features.
-            'kRDSParameterGroup' represents a RDS parameter group.
-            'kRDSInstance' represents a RDS DB instance. 'kRDSSubnet'
-            represents a RDS subnet. 'kRDSTag' represents a tag attached to
-            RDS instance. 'kAuroraCluster' represents an Aurora cluster.
-        user_account_id (string): Specifies the account id derived from the
-            ARN of the user.
+            'kVirtualMachine', 'kVirtualNetwork', etc. Specifies the type of an
+            AWS source entity. 'kIAMUser' indicates a unique user within an AWS
+            account. 'kRegion' indicates a geographical region in the global
+            infrastructure. 'kAvailabilityZone' indicates an availability zone
+            within a region. 'kEC2Instance' indicates a Virtual Machine running
+            in AWS environment. 'kVPC' indicates a virtual private cloud (VPC)
+            network within AWS. 'kSubnet' indicates a subnet inside the VPC.
+            'kNetworkSecurityGroup' represents a network security group.
+            'kInstanceType' represents various machine types. 'kKeyPair'
+            represents a pair of public and private key used to login into a
+            Virtual Machine. 'kTag' represents a tag attached to EC2 instance.
+            'kRDSOptionGroup' represents a RDS option group for configuring
+            database features. 'kRDSParameterGroup' represents a RDS parameter
+            group. 'kRDSInstance' represents a RDS DB instance. 'kRDSSubnet'
+            represents a RDS subnet. 'kRDSTag' represents a tag attached to RDS
+            instance. 'kAuroraTag' represents a tag attached to an Aurora
+            cluster. 'kAccount' represents an AWS account. 'kAuroraCluster'
+            represents an Aurora cluster.
+        user_account_id (string): Specifies the account id derived from the ARN
+            of the user.
         user_resource_name (string): Specifies the Amazon Resource Name (ARN)
             of the user.
         volumes (list of EbsVolumeInfo): Specified the list of EBS volumes
             attached to the entity if the entity is an EC2 instance.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -141,8 +144,8 @@ class AwsProtectionSource(object):
         "auth_method":'authMethod',
         "aws_fleet_params":'awsFleetParams',
         "aws_type":'awsType',
-        "cluster_network_info":'clusterNetworkInfo',
         "c2s_server_info":'c2sServerInfo',
+        "cluster_network_info":'clusterNetworkInfo',
         "db_engine_id":'dbEngineId',
         "host_type":'hostType',
         "iam_role_arn":'iamRoleArn',
@@ -159,17 +162,16 @@ class AwsProtectionSource(object):
         "mtype":'type',
         "user_account_id":'userAccountId',
         "user_resource_name":'userResourceName',
-        "volumes":'volumes'
+        "volumes":'volumes',
     }
-
     def __init__(self,
                  access_key=None,
                  amazon_resource_name=None,
                  auth_method=None,
                  aws_fleet_params=None,
                  aws_type=None,
-                 cluster_network_info=None,
                  c2s_server_info=None,
+                 cluster_network_info=None,
                  db_engine_id=None,
                  host_type=None,
                  iam_role_arn=None,
@@ -186,7 +188,9 @@ class AwsProtectionSource(object):
                  mtype=None,
                  user_account_id=None,
                  user_resource_name=None,
-                 volumes=None):
+                 volumes=None,
+            ):
+
         """Constructor for the AwsProtectionSource class"""
 
         # Initialize members of the class
@@ -195,8 +199,8 @@ class AwsProtectionSource(object):
         self.auth_method = auth_method
         self.aws_fleet_params = aws_fleet_params
         self.aws_type = aws_type
-        self.cluster_network_info = cluster_network_info
         self.c2s_server_info = c2s_server_info
+        self.cluster_network_info = cluster_network_info
         self.db_engine_id = db_engine_id
         self.host_type = host_type
         self.iam_role_arn = iam_role_arn
@@ -214,7 +218,6 @@ class AwsProtectionSource(object):
         self.user_account_id = user_account_id
         self.user_resource_name = user_resource_name
         self.volumes = volumes
-
 
     @classmethod
     def from_dictionary(cls,
@@ -237,10 +240,10 @@ class AwsProtectionSource(object):
         access_key = dictionary.get('accessKey')
         amazon_resource_name = dictionary.get('amazonResourceName')
         auth_method = dictionary.get('authMethod')
-        aws_fleet_params = cohesity_management_sdk.models.a_w_s_fleet_params.AwsFleetParams.from_dictionary(dictionary.get('awsFleetParams')) if dictionary.get('awsFleetParams') else None
+        aws_fleet_params = cohesity_management_sdk.models.aws_fleet_params.AwsFleetParams.from_dictionary(dictionary.get('awsFleetParams')) if dictionary.get('awsFleetParams') else None
         aws_type = dictionary.get('awsType')
-        cluster_network_info = cohesity_management_sdk.models.fleet_network_params.FleetNetworkParams.from_dictionary(dictionary.get('clusterNetworkInfo')) if dictionary.get('clusterNetworkInfo') else None
         c2s_server_info = cohesity_management_sdk.models.c2s_server_info.C2SServerInfo.from_dictionary(dictionary.get('c2sServerInfo')) if dictionary.get('c2sServerInfo') else None
+        cluster_network_info = cohesity_management_sdk.models.fleet_network_params.FleetNetworkParams.from_dictionary(dictionary.get('clusterNetworkInfo')) if dictionary.get('clusterNetworkInfo') else None
         db_engine_id = dictionary.get('dbEngineId')
         host_type = dictionary.get('hostType')
         iam_role_arn = dictionary.get('iamRoleArn')
@@ -268,29 +271,29 @@ class AwsProtectionSource(object):
                 volumes.append(cohesity_management_sdk.models.ebs_volume_info.EbsVolumeInfo.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(access_key,
-                   amazon_resource_name,
-                   auth_method,
-                   aws_fleet_params,
-                   aws_type,
-                   cluster_network_info,
-                   c2s_server_info,
-                   db_engine_id,
-                   host_type,
-                   iam_role_arn,
-                   ip_addresses,
-                   name,
-                   owner_id,
-                   physical_source_id,
-                   region_id,
-                   resource_id,
-                   restore_task_id,
-                   secret_access_key,
-                   subscription_type,
-                   tag_attributes,
-                   mtype,
-                   user_account_id,
-                   user_resource_name,
-                   volumes)
-
-
+        return cls(
+            access_key,
+            amazon_resource_name,
+            auth_method,
+            aws_fleet_params,
+            aws_type,
+            c2s_server_info,
+            cluster_network_info,
+            db_engine_id,
+            host_type,
+            iam_role_arn,
+            ip_addresses,
+            name,
+            owner_id,
+            physical_source_id,
+            region_id,
+            resource_id,
+            restore_task_id,
+            secret_access_key,
+            subscription_type,
+            tag_attributes,
+            mtype,
+            user_account_id,
+            user_resource_name,
+            volumes
+)

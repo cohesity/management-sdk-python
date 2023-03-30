@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.node_status_result
 import cohesity_management_sdk.models.system_app_status_result
+
 
 class ClusterStatusResult(object):
 
@@ -10,36 +11,37 @@ class ClusterStatusResult(object):
 
     Specifies the result of getting the status of a Cluster.
 
+
     Attributes:
+
         cluster_id (long|int): Specifies the ID of the Cluster.
         cluster_incarnation_id (long|int): Specifies the incarnation ID of the
             Cluster.
-        current_operation (CurrentOperationClusterStatusResultEnum): Specifies
-            the current operation being run on the Cluster. 'kNone' indicates
-            that there is no current operation taking place. 'kDestroy'
-            indicates that the Cluster is currently being destroyed.
-            'kUpgrade' indicates that the Cluster is currently being upgraded.
-            'kClean' indicates that the Cluster is being cleaned.
-            'kRemoveNode' indicates that a Node is being removed from the
-            Cluster. 'kRestartServices' indicates that the services on the
-            Cluster are currently being restarted.
+        current_operation (CurrentOperationEnum): Specifies the current
+            operation being run on the Cluster. 'kNone' indicates that there is
+            no current operation taking place. 'kDestroy' indicates that the
+            Cluster is currently being destroyed. 'kUpgrade' indicates that the
+            Cluster is currently being upgraded. 'kClean' indicates that the
+            Cluster is being cleaned. 'kRemoveNode' indicates that a Node is
+            being removed from the Cluster. 'kRestartServices' indicates that
+            the services on the Cluster are currently being restarted.
         message (string): Specifies an optional message describing details of
             the Cluster status.
         name (string): Specifies the name of the Cluster.
         node_statuses (list of NodeStatusResult): Specifies the status of each
             Node on the Cluster.
-        removal_state (RemovalStateEnum): Specifies the current healing state
-            of the Cluster. 'kNoRemoval' indicates that there are no removal
-            operations currently happening on the Cluster. 'kNodeRemoval'
-            indicates that there is a Node being removed from the Cluster.
-            'kDiskRemoval' indicates that there is a Disk being removed from
-            the Cluster. 'kNodeAndDiskRemoval' indicates that there is a Node
-            and a Disk being removed from the Cluster.
+        removal_state (RemovalStateClusterStatusResultEnum): Specifies the
+            current healing state of the Cluster. 'kNoRemoval' indicates that
+            there are no removal operations currently happening on the Cluster.
+            'kNodeRemoval' indicates that there is a Node being removed from
+            the Cluster. 'kDiskRemoval' indicates that there is a Disk being
+            removed from the Cluster. 'kNodeAndDiskRemoval' indicates that
+            there is a Node and a Disk being removed from the Cluster.
         services_synced (bool): Specifies whether or not the services are
             synced with the list of stopped services.
         software_version (string): Specifies the software version of the
             Cluster.
-        stopped_services (list of StoppedServiceEnum): Specifies the list of
+        stopped_services (list of StoppedServicesEnum): Specifies the list of
             stopped services on the Cluster. 'kApollo' is a service for
             reclaiming freed disk sectors on Nodes in the SnapFS distributed
             file system. 'kBridge' is a service for managing the SnapFS
@@ -56,37 +58,42 @@ class ClusterStatusResult(object):
             'kYoda' is an elastic search indexing service. 'kAlerts' is a
             publisher and subscribing service for alerts. 'kKeychain' is a
             service for managing disk encryption keys. 'kLogWatcher' is a
-            service that scans the log directory and reduces the number of
-            logs if required. 'kStatsCollector' is a service that periodically
-            logs system stats. 'kGandalf' is a distributed lock service and
-            coordination manager. 'kNexus' indicates the Nexus service. This
-            is the service that is responsible for creation of Clusters and
+            service that scans the log directory and reduces the number of logs
+            if required. 'kStatsCollector' is a service that periodically logs
+            system stats. 'kGandalf' is a distributed lock service and
+            coordination manager. 'kNexus' indicates the Nexus service. This is
+            the service that is responsible for creation of Clusters and
             configuration of Nodes and networking. 'kNexusProxy' is a service
             that links the Nexus service to other services on the Cluster.
             'kStorageProxy' is a service for accessing data on external
-            entities. 'kTricorder' is a diagnostic health testing service for
-            Clusters. 'kRtClient' is a reverse tunneling client service.
+            entities. 'kRtClient' is a reverse tunneling client service.
             'kVaultProxy' is a service for managing external targets that
             Clusters can be backed up to. 'kSmbProxy' is an SMB protocol
             service. 'kBridgeProxy' is the service that links the Bridge
             service to other services on the Cluster. 'kLibrarian' is an
-            elastic search indexing service. 'kGroot' is a service for
-            managing replication of SQL databases across multiple nodes in a
-            Cluster. 'kEagleAgent' is a service that is responsible for
-            retrieving information on Cluster health. 'kAthena' is a service
-            for running distributed containerized applications on the Cohesity
-            Data Platform. 'kBifrostBroker' is a service for communicating
-            with the Cohesity proxies for multitenancy. 'kSmb2Proxy' is a new
-            SMB protocol service. 'kOs' can be specified in order to do a full
+            elastic search indexing service. 'kGroot' is a service for managing
+            replication of SQL databases across multiple nodes in a Cluster.
+            'kEagleAgent' is a service that is responsible for retrieving
+            information on Cluster health. 'kAthena' is a service for running
+            distributed containerized applications on the Cohesity Data
+            Platform. 'kBifrostBroker' is a service for communicating with the
+            Cohesity proxies for multitenancy. 'kSmb2Proxy' is a new SMB
+            protocol service. 'kOs' can be specified in order to do a full
             reboot. 'kAtom' is a service for receiving data for the Continuous
-            Data Protection. 'kPatch' is a service for downloading and
-            applying patches. 'kCompass' is a service for serving dns request
-            for external and internal traffic. 'kEtlServer' is a service
+            Data Protection. 'kPatch' is a service for downloading and applying
+            patches. 'kCompass' is a service for serving dns request for
+            external and internal traffic. 'kEtlServer' is a service
             responsible for ETling data for globalsearch. 'kIcebox' is service
-            that links Icebox service to other services on cluster.
+            that links Icebox service to other services on cluster. kScribe,
+            kStats, kYoda, kAlerts, kKeychain, kLogWatcher, kStatsCollecter,
+            kGandalf, kNexus, kNexusProxy, kStorageProxy, kRtClient,
+            kVaultProxy, kSmbProxy, kBridgeProxy, kLibrarian, kGroot,
+            kEagleAgent, kAthena, kBifrostBroker, kSmb2Proxy, kOs, kAtom,
+            kIcebox
         system_app_status (list of SystemAppStatusResult): Specifies the status
             of each system app on the Cluster
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -100,9 +107,8 @@ class ClusterStatusResult(object):
         "services_synced":'servicesSynced',
         "software_version":'softwareVersion',
         "stopped_services":'stoppedServices',
-        "system_app_status":'systemAppStatus'
+        "system_app_status":'systemAppStatus',
     }
-
     def __init__(self,
                  cluster_id=None,
                  cluster_incarnation_id=None,
@@ -114,7 +120,9 @@ class ClusterStatusResult(object):
                  services_synced=None,
                  software_version=None,
                  stopped_services=None,
-                 system_app_status=None):
+                 system_app_status=None,
+            ):
+
         """Constructor for the ClusterStatusResult class"""
 
         # Initialize members of the class
@@ -129,7 +137,6 @@ class ClusterStatusResult(object):
         self.software_version = software_version
         self.stopped_services = stopped_services
         self.system_app_status = system_app_status
-
 
     @classmethod
     def from_dictionary(cls,
@@ -162,7 +169,7 @@ class ClusterStatusResult(object):
         removal_state = dictionary.get('removalState')
         services_synced = dictionary.get('servicesSynced')
         software_version = dictionary.get('softwareVersion')
-        stopped_services = dictionary.get('stoppedServices')
+        stopped_services = dictionary.get("stoppedServices")
         system_app_status = None
         if dictionary.get('systemAppStatus') != None:
             system_app_status = list()
@@ -170,16 +177,16 @@ class ClusterStatusResult(object):
                 system_app_status.append(cohesity_management_sdk.models.system_app_status_result.SystemAppStatusResult.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(cluster_id,
-                   cluster_incarnation_id,
-                   current_operation,
-                   message,
-                   name,
-                   node_statuses,
-                   removal_state,
-                   services_synced,
-                   software_version,
-                   stopped_services,
-                   system_app_status)
-
-
+        return cls(
+            cluster_id,
+            cluster_incarnation_id,
+            current_operation,
+            message,
+            name,
+            node_statuses,
+            removal_state,
+            services_synced,
+            software_version,
+            stopped_services,
+            system_app_status
+)

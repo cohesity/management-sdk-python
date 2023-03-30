@@ -1,34 +1,35 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class VmNumReplicas(object):
 
     """Implementation of the 'VmNumReplicas' model.
 
-    TODO: Type description here.
+    TODO: type description here.
+
 
     Attributes:
+
         num_replicas (long|int): Replica count.
         vm_name (string): Vm-name.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "num_replicas": 'numReplicas',
-        "vm_name": 'vmName'
+        "num_replicas":'numReplicas',
+        "vm_name":'vmName',
     }
-
     def __init__(self,
                  num_replicas=None,
-                 vm_name=None):
+                 vm_name=None,
+            ):
+
         """Constructor for the VmNumReplicas class"""
 
         # Initialize members of the class
         self.num_replicas = num_replicas
         self.vm_name = vm_name
-
 
     @classmethod
     def from_dictionary(cls,
@@ -48,11 +49,11 @@ class VmNumReplicas(object):
             return None
 
         # Extract variables from the dictionary
-        num_replicas = dictionary.get('numReplicas', None)
-        vm_name = dictionary.get('vmName', None)
+        num_replicas = dictionary.get('numReplicas')
+        vm_name = dictionary.get('vmName')
 
         # Return an object of this model
-        return cls(num_replicas,
-                   vm_name)
-
-
+        return cls(
+            num_replicas,
+            vm_name
+)

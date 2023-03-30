@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class ADObject(object):
 
@@ -8,19 +7,20 @@ class ADObject(object):
 
     Represents the details about an AD object.
 
+
     Attributes:
+
         description (string): Specifies the 'description' of an AD object.
         destination_guid (string): Specifies the guid of object in the
-            Production AD which is equivalent to the object in the Snapshot
-            AD.
+            Production AD which is equivalent to the object in the Snapshot AD.
         display_name (string): Specifies the display name of the AD object.
-        distinguished_name (string): Specifies the distinguished name of the
-            AD object. Eg: CN=Jone Doe,OU=Users,DC=corp,DC=cohesity,DC=com
+        distinguished_name (string): Specifies the distinguished name of the AD
+            object. Eg: CN=Jone Doe,OU=Users,DC=corp,DC=cohesity,DC=com
         error_message (string): Specifies the error message while fetching the
             AD object.
-        object_class (string): Specifies the class name of an AD Object such
-            as 'user','computer', 'organizationalUnit'.
-        search_result_flags (list of SearchResultFlagEnum): Specifies the
+        object_class (string): Specifies the class name of an AD Object such as
+            'user','computer', 'organizationalUnit'.
+        search_result_flags (list of SearchResultFlagsEnum): Specifies the
             SearchResultFlags of the AD object. 'kEqual' indicates the AD
             Object from Snapshot and Production AD are equal. 'kNotEqual'
             indicates the AD Object from snapshot and production AD are not
@@ -29,12 +29,12 @@ class ADObject(object):
             'kMovedOnDestination' indicates the object has moved to another
             container or OU in Production AD compared to  Snapshot AD.
             'kDisableSupported' indicates the enable and disable is supported
-            on the AD Object. AD Objects of type 'User' and 'Computers'
-            support this operation.
+            on the AD Object. AD Objects of type 'User' and 'Computers' support
+            this operation.
         source_guid (string): Specifies the guid of the AD object in Snapshot
             AD.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -45,9 +45,8 @@ class ADObject(object):
         "error_message":'errorMessage',
         "object_class":'objectClass',
         "search_result_flags":'searchResultFlags',
-        "source_guid":'sourceGuid'
+        "source_guid":'sourceGuid',
     }
-
     def __init__(self,
                  description=None,
                  destination_guid=None,
@@ -56,7 +55,9 @@ class ADObject(object):
                  error_message=None,
                  object_class=None,
                  search_result_flags=None,
-                 source_guid=None):
+                 source_guid=None,
+            ):
+
         """Constructor for the ADObject class"""
 
         # Initialize members of the class
@@ -68,7 +69,6 @@ class ADObject(object):
         self.object_class = object_class
         self.search_result_flags = search_result_flags
         self.source_guid = source_guid
-
 
     @classmethod
     def from_dictionary(cls,
@@ -94,17 +94,17 @@ class ADObject(object):
         distinguished_name = dictionary.get('distinguishedName')
         error_message = dictionary.get('errorMessage')
         object_class = dictionary.get('objectClass')
-        search_result_flags = dictionary.get('searchResultFlags')
+        search_result_flags = dictionary.get("searchResultFlags")
         source_guid = dictionary.get('sourceGuid')
 
         # Return an object of this model
-        return cls(description,
-                   destination_guid,
-                   display_name,
-                   distinguished_name,
-                   error_message,
-                   object_class,
-                   search_result_flags,
-                   source_guid)
-
-
+        return cls(
+            description,
+            destination_guid,
+            display_name,
+            distinguished_name,
+            error_message,
+            object_class,
+            search_result_flags,
+            source_guid
+)

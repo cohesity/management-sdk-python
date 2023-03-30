@@ -1,43 +1,45 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.restore_one_drive_params_drive_item
 
-class RestoreOneDriveParamsDriveOwnerDrive(object):
+
+class RestoreOneDriveParams_DriveOwner_Drive(object):
 
     """Implementation of the 'RestoreOneDriveParams_DriveOwner_Drive' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
+
         is_entire_drive_required (bool): Specify if the entire drive is to be
-            restored. This field should be false if restore_item_vec size >
-            0.
+            restored. This field should be false if restore_item_vec size > 0.
         restore_drive_id (string): Id of the drive whose items are being
             restored.
-        restore_item_vec (list of RestoreOneDriveParamsDriveItem): List of
+        restore_item_vec (list of RestoreOneDriveParams_DriveItem): List of
             drive paths that need to be restored.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "is_entire_drive_required":'isEntireDriveRequired',
         "restore_drive_id":'restoreDriveId',
-        "restore_item_vec":'restoreItemVec'
+        "restore_item_vec":'restoreItemVec',
     }
-
     def __init__(self,
                  is_entire_drive_required=None,
                  restore_drive_id=None,
-                 restore_item_vec=None):
-        """Constructor for the RestoreOneDriveParamsDriveOwnerDrive class"""
+                 restore_item_vec=None,
+            ):
+
+        """Constructor for the RestoreOneDriveParams_DriveOwner_Drive class"""
 
         # Initialize members of the class
         self.is_entire_drive_required = is_entire_drive_required
         self.restore_drive_id = restore_drive_id
         self.restore_item_vec = restore_item_vec
-
 
     @classmethod
     def from_dictionary(cls,
@@ -63,11 +65,11 @@ class RestoreOneDriveParamsDriveOwnerDrive(object):
         if dictionary.get('restoreItemVec') != None:
             restore_item_vec = list()
             for structure in dictionary.get('restoreItemVec'):
-                restore_item_vec.append(cohesity_management_sdk.models.restore_one_drive_params_drive_item.RestoreOneDriveParamsDriveItem.from_dictionary(structure))
+                restore_item_vec.append(cohesity_management_sdk.models.restore_one_drive_params_drive_item.RestoreOneDriveParams_DriveItem.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(is_entire_drive_required,
-                   restore_drive_id,
-                   restore_item_vec)
-
-
+        return cls(
+            is_entire_drive_required,
+            restore_drive_id,
+            restore_item_vec
+)

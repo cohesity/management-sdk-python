@@ -1,35 +1,39 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class UplinkSwitchInfo(object):
 
     """Implementation of the 'UplinkSwitchInfo' model.
 
+    TODO: type description here.
+
+
     Attributes:
+
         port_id (string): Port ID.
         sys_descr (string): System description.
         sys_name (string): System name.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "port_id":'portId',
         "sys_descr":'sysDescr',
-        "sys_name":'sysName'
+        "sys_name":'sysName',
     }
-
     def __init__(self,
                  port_id=None,
                  sys_descr=None,
-                 sys_name=None):
+                 sys_name=None,
+            ):
+
         """Constructor for the UplinkSwitchInfo class"""
 
         # Initialize members of the class
         self.port_id = port_id
         self.sys_descr = sys_descr
         self.sys_name = sys_name
-
 
     @classmethod
     def from_dictionary(cls,
@@ -54,8 +58,8 @@ class UplinkSwitchInfo(object):
         sys_name = dictionary.get('sysName')
 
         # Return an object of this model
-        return cls(port_id,
-                   sys_descr,
-                   sys_name)
-
-
+        return cls(
+            port_id,
+            sys_descr,
+            sys_name
+)

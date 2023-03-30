@@ -1,31 +1,32 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class SendSnmpTestTrapResult(object):
 
     """Implementation of the 'SendSnmpTestTrapResult' model.
 
-    Specifies the result returned after a successful request to send
-    SNMP Test Trap.
+    Specifies the result returned after a successful request to send SNMP Test
+    Trap.
+
 
     Attributes:
-        message (string): TODO: type description here.
 
+        message (string): TODO: Type description here.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "message":'message'
+        "message":'message',
     }
-
     def __init__(self,
-                 message=None):
+                 message=None,
+            ):
+
         """Constructor for the SendSnmpTestTrapResult class"""
 
         # Initialize members of the class
         self.message = message
-
 
     @classmethod
     def from_dictionary(cls,
@@ -48,6 +49,6 @@ class SendSnmpTestTrapResult(object):
         message = dictionary.get('message')
 
         # Return an object of this model
-        return cls(message)
-
-
+        return cls(
+            message
+)

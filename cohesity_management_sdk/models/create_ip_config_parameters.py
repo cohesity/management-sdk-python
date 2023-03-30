@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class CreateIpConfigParameters(object):
 
@@ -8,35 +7,37 @@ class CreateIpConfigParameters(object):
 
     Specifies the parameters needed for an ipconfig request.
 
+
     Attributes:
+
         ips (list of string): Specifies the interface ips.
         mtu (int): Specifies the interface mtu.
         name (string): Specifies the interface name.
-        role (RoleCreateIpConfigParametersEnum): Specifies the interface role.
-            'kPrimary' indicates a primary role. 'kSecondary' indicates a
-            secondary role.
+        role (RoleEnum): Specifies the interface role. 'kPrimary' indicates a
+            primary role. 'kSecondary' indicates a secondary role.
         subnet_gateway (string): Specifies the interface gateway.
         subnet_mask (string): Specifies the interface subnet mask.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "name":'name',
         "ips":'ips',
         "mtu":'mtu',
+        "name":'name',
         "role":'role',
         "subnet_gateway":'subnetGateway',
-        "subnet_mask":'subnetMask'
+        "subnet_mask":'subnetMask',
     }
-
     def __init__(self,
-                 name=None,
                  ips=None,
                  mtu=None,
+                 name=None,
                  role=None,
                  subnet_gateway=None,
-                 subnet_mask=None):
+                 subnet_mask=None,
+            ):
+
         """Constructor for the CreateIpConfigParameters class"""
 
         # Initialize members of the class
@@ -46,7 +47,6 @@ class CreateIpConfigParameters(object):
         self.role = role
         self.subnet_gateway = subnet_gateway
         self.subnet_mask = subnet_mask
-
 
     @classmethod
     def from_dictionary(cls,
@@ -66,19 +66,19 @@ class CreateIpConfigParameters(object):
             return None
 
         # Extract variables from the dictionary
-        name = dictionary.get('name')
-        ips = dictionary.get('ips')
+        ips = dictionary.get("ips")
         mtu = dictionary.get('mtu')
+        name = dictionary.get('name')
         role = dictionary.get('role')
         subnet_gateway = dictionary.get('subnetGateway')
         subnet_mask = dictionary.get('subnetMask')
 
         # Return an object of this model
-        return cls(name,
-                   ips,
-                   mtu,
-                   role,
-                   subnet_gateway,
-                   subnet_mask)
-
-
+        return cls(
+            ips,
+            mtu,
+            name,
+            role,
+            subnet_gateway,
+            subnet_mask
+)

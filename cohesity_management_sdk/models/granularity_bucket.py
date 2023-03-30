@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
+
+import cohesity_management_sdk.models.granularity_bucket_exact_dates_info
 
 
 class GranularityBucket(object):
@@ -9,36 +11,43 @@ class GranularityBucket(object):
     Message that specifies the frequency granularity at which to copy the
     snapshots from a backup job's runs.
 
-    Attributes:
-        granularity (int): The base time period granularity that determines
-            the frequency at which backup run snapshots will be copied.  NOTE:
-            The granularity (in combination with the 'multiplier' field below)
-            that is specified should be such that the frequency of copying
-            snapshots is lower than the frequency of actually creating the
-            snapshots (i.e., lower than the frequency of the backup job
-            runs).
-        multiplier (int): A factor to multiply the granularity by. For
-            example, if this is 2 and the granularity is kHour, then snapshots
-            from the first eligible run from every 2 hour period will be
-            copied.
 
+    Attributes:
+
+        exact_dates (GranularityBucket_ExactDatesInfo): Date information for
+            granularity of type kExactDates. Sequence of specific dates on
+            which snapshots need to be applied.
+        granularity (int): The base time period granularity that determines the
+            frequency at which backup run snapshots will be copied.  NOTE: The
+            granularity (in combination with the 'multiplier' field below but
+            for the case of kExactDates) that is specified should be such that
+            the frequency of copying snapshots is lower than the frequency of
+            actually creating the snapshots (i.e.,lower than the frequency of
+            the backup job runs).
+        multiplier (int): A factor to multiply the granularity by. For example,
+            if this is 2 and the granularity is kHour, then snapshots from the
+            first eligible run from every 2 hour period will be copied.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "exact_dates":'exactDates',
         "granularity":'granularity',
-        "multiplier":'multiplier'
+        "multiplier":'multiplier',
     }
-
     def __init__(self,
+                 exact_dates=None,
                  granularity=None,
-                 multiplier=None):
+                 multiplier=None,
+            ):
+
         """Constructor for the GranularityBucket class"""
 
         # Initialize members of the class
+        self.exact_dates = exact_dates
         self.granularity = granularity
         self.multiplier = multiplier
-
 
     @classmethod
     def from_dictionary(cls,
@@ -58,11 +67,13 @@ class GranularityBucket(object):
             return None
 
         # Extract variables from the dictionary
+        exact_dates = cohesity_management_sdk.models.granularity_bucket_exact_dates_info.GranularityBucket_ExactDatesInfo.from_dictionary(dictionary.get('exactDates')) if dictionary.get('exactDates') else None
         granularity = dictionary.get('granularity')
         multiplier = dictionary.get('multiplier')
 
         # Return an object of this model
-        return cls(granularity,
-                   multiplier)
-
-
+        return cls(
+            exact_dates,
+            granularity,
+            multiplier
+)

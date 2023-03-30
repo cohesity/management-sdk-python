@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class CountByTier(object):
 
@@ -8,33 +7,35 @@ class CountByTier(object):
 
     CountByTier provides the disk count of each storage tier.
 
+
     Attributes:
+
         disk_count (long|int): DiskCount is the disk number of the storage
             tier.
-        storage_tier (StorageTierEnum): StorageTier is the type of
-            StorageTier. StorageTierType represents the various values for the
-            Storage Tier. 'kPCIeSSD' indicates storage tier type of Pci Solid
-            State Drive. 'kSATAHDD' indicates storage tier type of SATA Solid
-            State Drive. 'kSATAHDD' indicates storage tier type of SATA Hard
-            Disk Drive. 'kCLOUD' indicates storage tier type of Cloud.
-
+        storage_tier (StorageTierEnum): StorageTier is the type of StorageTier.
+            StorageTierType represents the various values for the Storage Tier.
+            'kPCIeSSD' indicates storage tier type of Pci Solid State Drive.
+            'kSATAHDD' indicates storage tier type of SATA Solid State Drive.
+            'kSATAHDD' indicates storage tier type of SATA Hard Disk Drive.
+            'kCLOUD' indicates storage tier type of Cloud.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "disk_count":'diskCount',
-        "storage_tier":'storageTier'
+        "storage_tier":'storageTier',
     }
-
     def __init__(self,
                  disk_count=None,
-                 storage_tier=None):
+                 storage_tier=None,
+            ):
+
         """Constructor for the CountByTier class"""
 
         # Initialize members of the class
         self.disk_count = disk_count
         self.storage_tier = storage_tier
-
 
     @classmethod
     def from_dictionary(cls,
@@ -58,7 +59,7 @@ class CountByTier(object):
         storage_tier = dictionary.get('storageTier')
 
         # Return an object of this model
-        return cls(disk_count,
-                   storage_tier)
-
-
+        return cls(
+            disk_count,
+            storage_tier
+)

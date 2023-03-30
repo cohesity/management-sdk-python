@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class BondingOpts(object):
 
@@ -8,31 +7,33 @@ class BondingOpts(object):
 
     Bonding Opts
 
-    Attributes:
-        lacp_rate (string): TODO: type description here.
-        mode (string): TODO: type description here.
-        xmit_hash_policy (string): TODO: type description here.
 
+    Attributes:
+
+        lacp_rate (string): TODO: Type description here.
+        mode (string): TODO: Type description here.
+        xmit_hash_policy (string): TODO: Type description here.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "lacp_rate":'lacpRate',
         "mode":'mode',
-        "xmit_hash_policy":'xmitHashPolicy'
+        "xmit_hash_policy":'xmitHashPolicy',
     }
-
     def __init__(self,
                  lacp_rate=None,
                  mode=None,
-                 xmit_hash_policy=None):
+                 xmit_hash_policy=None,
+            ):
+
         """Constructor for the BondingOpts class"""
 
         # Initialize members of the class
         self.lacp_rate = lacp_rate
         self.mode = mode
         self.xmit_hash_policy = xmit_hash_policy
-
 
     @classmethod
     def from_dictionary(cls,
@@ -57,8 +58,8 @@ class BondingOpts(object):
         xmit_hash_policy = dictionary.get('xmitHashPolicy')
 
         # Return an object of this model
-        return cls(lacp_rate,
-                   mode,
-                   xmit_hash_policy)
-
-
+        return cls(
+            lacp_rate,
+            mode,
+            xmit_hash_policy
+)

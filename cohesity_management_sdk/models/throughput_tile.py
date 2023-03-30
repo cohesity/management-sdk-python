@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.sample
+
 
 class ThroughputTile(object):
 
@@ -9,33 +10,36 @@ class ThroughputTile(object):
 
     Throughput information for dashboard.
 
+
     Attributes:
+
         max_read_throughput (long|int): Maxium Read throughput in last 24
             hours.
         max_write_throughput (long|int): Maximum Write throughput in last 24
             hours.
-        read_throughput_samples (list of Sample): Read throughput samples
-            taken for the past 24 hours at 10 minutes interval given in
-            descending order of time.
+        read_throughput_samples (list of Sample): Read throughput samples taken
+            for the past 24 hours at 10 minutes interval given in descending
+            order of time.
         write_throughput_samples (list of Sample): Write throughput samples
             taken for the past 24 hours at 10 minutes interval given in
             descending order of time.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "max_read_throughput":'maxReadThroughput',
         "max_write_throughput":'maxWriteThroughput',
         "read_throughput_samples":'readThroughputSamples',
-        "write_throughput_samples":'writeThroughputSamples'
+        "write_throughput_samples":'writeThroughputSamples',
     }
-
     def __init__(self,
                  max_read_throughput=None,
                  max_write_throughput=None,
                  read_throughput_samples=None,
-                 write_throughput_samples=None):
+                 write_throughput_samples=None,
+            ):
+
         """Constructor for the ThroughputTile class"""
 
         # Initialize members of the class
@@ -43,7 +47,6 @@ class ThroughputTile(object):
         self.max_write_throughput = max_write_throughput
         self.read_throughput_samples = read_throughput_samples
         self.write_throughput_samples = write_throughput_samples
-
 
     @classmethod
     def from_dictionary(cls,
@@ -77,9 +80,9 @@ class ThroughputTile(object):
                 write_throughput_samples.append(cohesity_management_sdk.models.sample.Sample.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(max_read_throughput,
-                   max_write_throughput,
-                   read_throughput_samples,
-                   write_throughput_samples)
-
-
+        return cls(
+            max_read_throughput,
+            max_write_throughput,
+            read_throughput_samples,
+            write_throughput_samples
+)

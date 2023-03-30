@@ -1,25 +1,21 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class StatusCopyRunEnum(object):
 
-    """Implementation of the 'Status_CopyRun' enum.
-
+    """Implementation of the 'StatusCopyRun' enum.
     Specifies the aggregated status of copy tasks such as 'kRunning',
-    'kSuccess', 'kFailure' etc.
-    'kAccepted' indicates the task is queued to run but not yet running.
-    'kRunning' indicates the task is running.
-    'kCanceling' indicates a request to cancel the task has occurred but
-    the task is not yet canceled.
-    'kCanceled' indicates the task has been canceled.
-    'kSuccess' indicates the task was successful.
-    'kFailure' indicates the task failed.
-    'kWarning' indicates the task has finished with warning.
-    'kOnHold' indicates the task is kept onHold.
-    'kMissed' indicates the task is missed.
+    'kSuccess', 'kFailure' etc. 'kAccepted' indicates the task is queued to run
+    but not yet running. 'kRunning' indicates the task is running. 'kCanceling'
+    indicates a request to cancel the task has occurred but the task is not yet
+    canceled. 'kCanceled' indicates the task has been canceled. 'kSuccess'
+    indicates the task was successful. 'kFailure' indicates the task failed.
+    'kWarning' indicates the task has finished with warning. 'kOnHold'
+    indicates the task is kept onHold. 'kMissed' indicates the task is missed.
+    'Finalizing' indicates the task is finalizing.
+
 
     Attributes:
-
         KACCEPTED: TODO: type description here.
         KRUNNING: TODO: type description here.
         KCANCELING: TODO: type description here.
@@ -29,6 +25,7 @@ class StatusCopyRunEnum(object):
         KWARNING: TODO: type description here.
         KONHOLD: TODO: type description here.
         KMISSED: TODO: type description here.
+        KFINALIZING: TODO: type description here.
 
     """
 
@@ -50,3 +47,4 @@ class StatusCopyRunEnum(object):
 
     KMISSED = 'kMissed'
 
+    KFINALIZING = 'kFinalizing'

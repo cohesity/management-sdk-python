@@ -1,15 +1,14 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class TypeFlashBladeProtectionSourceEnum(object):
 
-    """Implementation of the 'Type_FlashBladeProtectionSource' enum.
+    """Implementation of the 'TypeFlashBladeProtectionSource' enum.
+    Specifies the type of managed object in a Pure Storage FlashBlade like
+    'kStorageArray' or 'kFileSystem'. 'kStorageArray' indicates a top level
+    Pure Storage FlashBlade array. 'kFileSystem' indicates a Pure Storage
+    FlashBlade file system within the array.
 
-    Specifies the type of managed object in a Pure Storage FlashBlade
-    like 'kStorageArray' or 'kFileSystem'.
-    'kStorageArray' indicates a top level Pure Storage FlashBlade array.
-    'kFileSystem' indicates a Pure Storage FlashBlade file system within the
-    array.
 
     Attributes:
         KSTORAGEARRAY: TODO: type description here.
@@ -20,4 +19,3 @@ class TypeFlashBladeProtectionSourceEnum(object):
     KSTORAGEARRAY = 'kStorageArray'
 
     KFILESYSTEM = 'kFileSystem'
-

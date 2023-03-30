@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.pod_info_pod_spec_volume_info_aws_ebs
 import cohesity_management_sdk.models.pod_info_pod_spec_volume_info_azure_disk
@@ -20,26 +20,28 @@ import cohesity_management_sdk.models.pod_info_pod_spec_volume_info_host_path
 import cohesity_management_sdk.models.pod_info_pod_spec_volume_info_iscsi
 import cohesity_management_sdk.models.pod_info_pod_spec_volume_info_local
 import cohesity_management_sdk.models.pod_info_pod_spec_volume_info_nfs
-import cohesity_management_sdk.models.pod_info_pod_spec_volume_info_pvc
 import cohesity_management_sdk.models.pod_info_pod_spec_volume_info_photon_persistent_disk
 import cohesity_management_sdk.models.pod_info_pod_spec_volume_info_portworx
 import cohesity_management_sdk.models.pod_info_pod_spec_volume_info_projected
+import cohesity_management_sdk.models.pod_info_pod_spec_volume_info_pvc
 import cohesity_management_sdk.models.pod_info_pod_spec_volume_info_quobyte
 import cohesity_management_sdk.models.pod_info_pod_spec_volume_info_rbd
 import cohesity_management_sdk.models.pod_info_pod_spec_volume_info_scale_io
-import cohesity_management_sdk.models.pod_info_pod_spec_volume_info_config_map
 import cohesity_management_sdk.models.pod_info_pod_spec_volume_info_storage_os
 import cohesity_management_sdk.models.pod_info_pod_spec_volume_info_vsphere_virtual_disk
+
 
 class PodInfo_PodSpec_VolumeInfo(object):
 
     """Implementation of the 'PodInfo_PodSpec_VolumeInfo' model.
 
-    Contains information about volumes of different types that can be
-    mounted to a pod. Reference:
+    Contains information about volumes of different types that can be mounted
+    to a pod. Reference:
     https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/
 
+
     Attributes:
+
         aws_elastic_block_store (PodInfo_PodSpec_VolumeInfo_AWS_EBS): Below
             fields determine type of volume.
         azure_disk (PodInfo_PodSpec_VolumeInfo_AzureDisk): TODO: Type
@@ -50,51 +52,52 @@ class PodInfo_PodSpec_VolumeInfo(object):
             here.
         cinder (PodInfo_PodSpec_VolumeInfo_Cinder): TODO: Type description
             here.
-        config_map (PodInfo_PodSpec_VolumeInfo_ConfigMap): TODO: Type description
-            here.
+        config_map (PodInfo_PodSpec_VolumeInfo_ConfigMap): TODO: Type
+            description here.
         csi (PodInfo_PodSpec_VolumeInfo_CSI): TODO: Type description here.
         downward_api (PodInfo_PodSpec_VolumeInfo_DownwardAPI): TODO: Type
             description here.
-        empty_dir (PodInfo_PodSpec_VolumeInfo_EmptyDir): TODO: Type
-            description here.
+        empty_dir (PodInfo_PodSpec_VolumeInfo_EmptyDir): TODO: Type description
+            here.
         ephemeral (PodInfo_PodSpec_VolumeInfo_EphemeralVolumeSource): TODO:
             Type description here.
         fc (PodInfo_PodSpec_VolumeInfo_FC): TODO: Type description here.
-        flex_volume (PodInfo_PodSpec_VolumeInfo_Flex): TODO: Type description here.
-        flocker (PodInfo_PodSpec_VolumeInfo_Flocker): TODO: Type description here.
-        gce_persistent_disk (PodInfo_PodSpec_VolumeInfo_GcePersistentDisk): 
+        flex_volume (PodInfo_PodSpec_VolumeInfo_Flex): TODO: Type description
+            here.
+        flocker (PodInfo_PodSpec_VolumeInfo_Flocker): TODO: Type description
+            here.
+        gce_persistent_disk (PodInfo_PodSpec_VolumeInfo_GcePersistentDisk):
             TODO: Type description here.
-        glusterfs (PodInfo_PodSpec_VolumeInfo_GlusterFs): TODO: Type description
-            here.
-        host_path (PodInfo_PodSpec_VolumeInfo_HostPath): TODO: Type description
-            here.
+        glusterfs (PodInfo_PodSpec_VolumeInfo_GlusterFs): TODO: Type
+            description here.
+        host_path (PodInfo_PodSpec_VolumeInfo_HostPath): Mount from host node's
+            file system into pod.
         iscsi (PodInfo_PodSpec_VolumeInfo_ISCSI): TODO: Type description here.
         local (PodInfo_PodSpec_VolumeInfo_Local): TODO: Type description here.
         name (string): Name of the volume.
-        nfs (PodInfo_PodSpec_VolumeInfo_NFS): TODO: Type
-            description here.
+        nfs (PodInfo_PodSpec_VolumeInfo_NFS): TODO: Type description here.
         persistent_volume_claim (PodInfo_PodSpec_VolumeInfo_PVC): TODO: Type
             description here.
-        photon_persistent_disk (PodInfo_PodSpec_VolumeInfo_PhotonPersistentDisk): TODO:
-            Type description here.
-        portworx_volume (PodInfo_PodSpec_VolumeInfo_Portworx):TODO: 
-        Type description here.
-        projected (PodInfo_PodSpec_VolumeInfo_Projected): TODO:
-            Type description here.
-        quobyte (PodInfo_PodSpec_VolumeInfo_Quobyte): TODO:
-            Type description here.
-        rbd (PodInfo_PodSpec_VolumeInfo_RBD): TODO: Type
+        photon_persistent_disk
+            (PodInfo_PodSpec_VolumeInfo_PhotonPersistentDisk): TODO: Type
             description here.
-        scale_io (PodInfo_PodSpec_VolumeInfo_ScaleIO): TODO: Type
+        portworx_volume (PodInfo_PodSpec_VolumeInfo_Portworx): TODO: Type
             description here.
-        secret (PodInfo_PodSpec_VolumeInfo_ConfigMap): TODO: Type
+        projected (PodInfo_PodSpec_VolumeInfo_Projected): TODO: Type
             description here.
-        storageos (PodInfo_PodSpec_VolumeInfo_StorageOS):
-            TODO: Type description here.
-        vsphere_volume (PodInfo_PodSpec_VolumeInfo_VsphereVirtualDisk):
-            TODO: Type description here.
-
+        quobyte (PodInfo_PodSpec_VolumeInfo_Quobyte): TODO: Type description
+            here.
+        rbd (PodInfo_PodSpec_VolumeInfo_RBD): TODO: Type description here.
+        scale_io (PodInfo_PodSpec_VolumeInfo_ScaleIO): TODO: Type description
+            here.
+        secret (PodInfo_PodSpec_VolumeInfo_ConfigMap): TODO: Type description
+            here.
+        storageos (PodInfo_PodSpec_VolumeInfo_StorageOS): TODO: Type
+            description here.
+        vsphere_volume (PodInfo_PodSpec_VolumeInfo_VsphereVirtualDisk): TODO:
+            Type description here.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -127,9 +130,8 @@ class PodInfo_PodSpec_VolumeInfo(object):
         "scale_io":'scaleIo',
         "secret":'secret',
         "storageos":'storageos',
-        "vsphere_volume":'vsphereVolume'
+        "vsphere_volume":'vsphereVolume',
     }
-
     def __init__(self,
                  aws_elastic_block_store=None,
                  azure_disk=None,
@@ -160,7 +162,9 @@ class PodInfo_PodSpec_VolumeInfo(object):
                  scale_io=None,
                  secret=None,
                  storageos=None,
-                 vsphere_volume=None):
+                 vsphere_volume=None,
+            ):
+
         """Constructor for the PodInfo_PodSpec_VolumeInfo class"""
 
         # Initialize members of the class
@@ -195,7 +199,6 @@ class PodInfo_PodSpec_VolumeInfo(object):
         self.storageos = storageos
         self.vsphere_volume = vsphere_volume
 
-
     @classmethod
     def from_dictionary(cls,
                         dictionary):
@@ -219,7 +222,7 @@ class PodInfo_PodSpec_VolumeInfo(object):
         azure_file = cohesity_management_sdk.models.pod_info_pod_spec_volume_info_azure_file.PodInfo_PodSpec_VolumeInfo_AzureFile.from_dictionary(dictionary.get('azureFile')) if dictionary.get('azureFile') else None
         cephfs = cohesity_management_sdk.models.pod_info_pod_spec_volume_info_cephfs.PodInfo_PodSpec_VolumeInfo_Cephfs.from_dictionary(dictionary.get('cephfs')) if dictionary.get('cephfs') else None
         cinder = cohesity_management_sdk.models.pod_info_pod_spec_volume_info_cinder.PodInfo_PodSpec_VolumeInfo_Cinder.from_dictionary(dictionary.get('cinder')) if dictionary.get('cinder') else None
-        config_map =  cohesity_management_sdk.models.pod_info_pod_spec_volume_info_config_map.PodInfo_PodSpec_VolumeInfo_ConfigMap.from_dictionary(dictionary.get('configMap')) if dictionary.get('configMap') else None
+        config_map = cohesity_management_sdk.models.pod_info_pod_spec_volume_info_config_map.PodInfo_PodSpec_VolumeInfo_ConfigMap.from_dictionary(dictionary.get('configMap')) if dictionary.get('configMap') else None
         csi = cohesity_management_sdk.models.pod_info_pod_spec_volume_info_csi.PodInfo_PodSpec_VolumeInfo_CSI.from_dictionary(dictionary.get('csi')) if dictionary.get('csi') else None
         downward_api = cohesity_management_sdk.models.pod_info_pod_spec_volume_info_downward_api.PodInfo_PodSpec_VolumeInfo_DownwardAPI.from_dictionary(dictionary.get('downwardApi')) if dictionary.get('downwardApi') else None
         empty_dir = cohesity_management_sdk.models.pod_info_pod_spec_volume_info_empty_dir.PodInfo_PodSpec_VolumeInfo_EmptyDir.from_dictionary(dictionary.get('emptyDir')) if dictionary.get('emptyDir') else None
@@ -236,7 +239,7 @@ class PodInfo_PodSpec_VolumeInfo(object):
         nfs = cohesity_management_sdk.models.pod_info_pod_spec_volume_info_nfs.PodInfo_PodSpec_VolumeInfo_NFS.from_dictionary(dictionary.get('nfs')) if dictionary.get('nfs') else None
         persistent_volume_claim = cohesity_management_sdk.models.pod_info_pod_spec_volume_info_pvc.PodInfo_PodSpec_VolumeInfo_PVC.from_dictionary(dictionary.get('persistentVolumeClaim')) if dictionary.get('persistentVolumeClaim') else None
         photon_persistent_disk = cohesity_management_sdk.models.pod_info_pod_spec_volume_info_photon_persistent_disk.PodInfo_PodSpec_VolumeInfo_PhotonPersistentDisk.from_dictionary(dictionary.get('photonPersistentDisk')) if dictionary.get('photonPersistentDisk') else None
-        portworx_volume =  cohesity_management_sdk.models.pod_info_pod_spec_volume_info_portworx.PodInfo_PodSpec_VolumeInfo_Portworx.from_dictionary(dictionary.get('portworxVolume')) if dictionary.get('portworxVolume') else None
+        portworx_volume = cohesity_management_sdk.models.pod_info_pod_spec_volume_info_portworx.PodInfo_PodSpec_VolumeInfo_Portworx.from_dictionary(dictionary.get('portworxVolume')) if dictionary.get('portworxVolume') else None
         projected = cohesity_management_sdk.models.pod_info_pod_spec_volume_info_projected.PodInfo_PodSpec_VolumeInfo_Projected.from_dictionary(dictionary.get('projected')) if dictionary.get('projected') else None
         quobyte = cohesity_management_sdk.models.pod_info_pod_spec_volume_info_quobyte.PodInfo_PodSpec_VolumeInfo_Quobyte.from_dictionary(dictionary.get('quobyte')) if dictionary.get('quobyte') else None
         rbd = cohesity_management_sdk.models.pod_info_pod_spec_volume_info_rbd.PodInfo_PodSpec_VolumeInfo_RBD.from_dictionary(dictionary.get('rbd')) if dictionary.get('rbd') else None
@@ -244,38 +247,37 @@ class PodInfo_PodSpec_VolumeInfo(object):
         secret = cohesity_management_sdk.models.pod_info_pod_spec_volume_info_config_map.PodInfo_PodSpec_VolumeInfo_ConfigMap.from_dictionary(dictionary.get('secret')) if dictionary.get('secret') else None
         storageos = cohesity_management_sdk.models.pod_info_pod_spec_volume_info_storage_os.PodInfo_PodSpec_VolumeInfo_StorageOS.from_dictionary(dictionary.get('storageos')) if dictionary.get('storageos') else None
         vsphere_volume = cohesity_management_sdk.models.pod_info_pod_spec_volume_info_vsphere_virtual_disk.PodInfo_PodSpec_VolumeInfo_VsphereVirtualDisk.from_dictionary(dictionary.get('vsphereVolume')) if dictionary.get('vsphereVolume') else None
-        
 
         # Return an object of this model
-        return cls(aws_elastic_block_store,
-                   azure_disk,
-                   azure_file,
-                   cephfs,
-                   cinder,
-                   config_map,
-                   csi,
-                   downward_api,
-                   empty_dir,
-                   ephemeral,
-                   fc,
-                   flex_volume,
-                   flocker,
-                   gce_persistent_disk,
-                   glusterfs,
-                   host_path,
-                   iscsi,
-                   local,
-                   name,
-                   nfs,
-                   persistent_volume_claim,
-                   photon_persistent_disk,
-                   portworx_volume,
-                   projected,
-                   quobyte,
-                   rbd,
-                   scale_io,
-                   secret,
-                   storageos,
-                   vsphere_volume)
-
-
+        return cls(
+            aws_elastic_block_store,
+            azure_disk,
+            azure_file,
+            cephfs,
+            cinder,
+            config_map,
+            csi,
+            downward_api,
+            empty_dir,
+            ephemeral,
+            fc,
+            flex_volume,
+            flocker,
+            gce_persistent_disk,
+            glusterfs,
+            host_path,
+            iscsi,
+            local,
+            name,
+            nfs,
+            persistent_volume_claim,
+            photon_persistent_disk,
+            portworx_volume,
+            projected,
+            quobyte,
+            rbd,
+            scale_io,
+            secret,
+            storageos,
+            vsphere_volume
+)

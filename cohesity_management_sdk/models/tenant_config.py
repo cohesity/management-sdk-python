@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class TenantConfig(object):
 
@@ -8,7 +7,9 @@ class TenantConfig(object):
 
     Specifies struct with basic tenant specific configuration.
 
+
     Attributes:
+
         bifrost_enabled (bool): Specifies if this tenant is bifrost enabled or
             not.
         name (string): Specifies name of the tenant.
@@ -19,8 +20,8 @@ class TenantConfig(object):
             'View'. The Cohesity roles determine privileges on the Cohesity
             Cluster for this user.
         tenant_id (string): Specifies the unique id of the tenant.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -28,15 +29,16 @@ class TenantConfig(object):
         "name":'name',
         "restricted":'restricted',
         "roles":'roles',
-        "tenant_id":'tenantId'
+        "tenant_id":'tenantId',
     }
-
     def __init__(self,
                  bifrost_enabled=None,
                  name=None,
                  restricted=None,
                  roles=None,
-                 tenant_id=None):
+                 tenant_id=None,
+            ):
+
         """Constructor for the TenantConfig class"""
 
         # Initialize members of the class
@@ -45,7 +47,6 @@ class TenantConfig(object):
         self.restricted = restricted
         self.roles = roles
         self.tenant_id = tenant_id
-
 
     @classmethod
     def from_dictionary(cls,
@@ -68,14 +69,14 @@ class TenantConfig(object):
         bifrost_enabled = dictionary.get('bifrostEnabled')
         name = dictionary.get('name')
         restricted = dictionary.get('restricted')
-        roles = dictionary.get('roles')
+        roles = dictionary.get("roles")
         tenant_id = dictionary.get('tenantId')
 
         # Return an object of this model
-        return cls(bifrost_enabled,
-                   name,
-                   restricted,
-                   roles,
-                   tenant_id)
-
-
+        return cls(
+            bifrost_enabled,
+            name,
+            restricted,
+            roles,
+            tenant_id
+)

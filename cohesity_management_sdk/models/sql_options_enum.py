@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class SqlOptionsEnum(object):
 
     """Implementation of the 'SqlOptions' enum.
+    Specifies the sql options to update the Restore Task with. Specifies the
+    action type of multi stage SQL restore.  'kCreate' specifies the create
+    action for a restore. 'kUpdate' specifies the user action to update an
+    ongoing restore. 'kFinalize' specifies the user action to finalize a
+    restore.
 
-    Specifies the sql options to update the Restore Task with.
-    Specifies the action type of multi stage SQL restore.
-    'kCreate' specifies the create action for a restore.
-    'kUpdate' specifies the user action to update an ongoing restore.
-    'kFinalize' specifies the user action to finalize a restore.
 
     Attributes:
         KCREATE: TODO: type description here.
@@ -23,4 +23,3 @@ class SqlOptionsEnum(object):
     KUPDATE = 'kUpdate'
 
     KFINALIZE = 'kFinalize'
-

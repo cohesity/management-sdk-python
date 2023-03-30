@@ -1,29 +1,31 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class PodInfo_PodSpec_VolumeInfo_Flocker(object):
 
     """Implementation of the 'PodInfo_PodSpec_VolumeInfo_Flocker' model.
 
-    Flocker Volumes.
+    Flocker volumes
+
 
     Attributes:
+
         dataset_name (string): TODO: Type description here.
     """
 
+
     # Create a mapping from Model property names to API property names
     _names = {
-        "dataset_name":'datasetName'
+        "dataset_name":'datasetName',
     }
-
     def __init__(self,
-                 dataset_name=None):
+                 dataset_name=None,
+            ):
+
         """Constructor for the PodInfo_PodSpec_VolumeInfo_Flocker class"""
 
         # Initialize members of the class
         self.dataset_name = dataset_name
-
 
     @classmethod
     def from_dictionary(cls,
@@ -46,6 +48,6 @@ class PodInfo_PodSpec_VolumeInfo_Flocker(object):
         dataset_name = dictionary.get('datasetName')
 
         # Return an object of this model
-        return cls(dataset_name)
-
-
+        return cls(
+            dataset_name
+)

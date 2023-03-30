@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
-import cohesity_management_sdk.models.vault_provider_stats_info
+# Copyright 2023 Cohesity Inc.
 
 class VaultProviderStatsList(object):
 
@@ -9,22 +7,21 @@ class VaultProviderStatsList(object):
 
     Specifies the stats by provider for each vault.
 
+
     Attributes:
-    vault_provider_stats_info (list of VaultProviderStatsInfo)
+
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "vault_provider_stats_info":'VaultProviderStatsInfo'
     }
-
     def __init__(self,
-                 vault_provider_stats_info=None):
+            ):
+
         """Constructor for the VaultProviderStatsList class"""
 
         # Initialize members of the class
-        self.vault_provider_stats_info = vault_provider_stats_info
-
 
     @classmethod
     def from_dictionary(cls,
@@ -44,9 +41,8 @@ class VaultProviderStatsList(object):
             return None
 
         # Extract variables from the dictionary
-        vault_provider_stats_info = cohesity_management_sdk.models.vault_provider_stats_info.VaultProviderStatsInfo.from_dictionary(dictionary.get('VaultProviderStatsInfo')) if dictionary.get('VaultProviderStatsInfo') else None
 
         # Return an object of this model
-        return cls(vault_provider_stats_info)
+        return cls(
 
-
+)

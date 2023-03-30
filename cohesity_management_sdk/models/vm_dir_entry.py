@@ -1,16 +1,19 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.file_stat_info
+
 
 class VmDirEntry(object):
 
     """Implementation of the 'VmDirEntry' model.
 
-    VmDirEntry is the struct to respresent a file or a folder on a VM.
+    VmDirEntry is the struct to represent a file or a folder on a VM.
+
 
     Attributes:
-        fstat_info (FileStatInfo):  FstatInfo is the stat information for the
+
+        fstat_info (FileStatInfo): FstatInfo is the stat information for the
             file.
         full_path (string): FullPath is the full path of the file/directory.
         name (string): Name is the name of the file or folder. For
@@ -20,22 +23,23 @@ class VmDirEntry(object):
             indicates that current entry is of file type. 'kDirectory'
             indicates that current entry is of directory type. 'kSymlink'
             indicates that current entry is of symbolic link.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "fstat_info":'fstatInfo',
         "full_path":'fullPath',
         "name":'name',
-        "mtype":'type'
+        "mtype":'type',
     }
-
     def __init__(self,
                  fstat_info=None,
                  full_path=None,
                  name=None,
-                 mtype=None):
+                 mtype=None,
+            ):
+
         """Constructor for the VmDirEntry class"""
 
         # Initialize members of the class
@@ -43,7 +47,6 @@ class VmDirEntry(object):
         self.full_path = full_path
         self.name = name
         self.mtype = mtype
-
 
     @classmethod
     def from_dictionary(cls,
@@ -69,9 +72,9 @@ class VmDirEntry(object):
         mtype = dictionary.get('type')
 
         # Return an object of this model
-        return cls(fstat_info,
-                   full_path,
-                   name,
-                   mtype)
-
-
+        return cls(
+            fstat_info,
+            full_path,
+            name,
+            mtype
+)

@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class FleetTag(object):
 
@@ -8,27 +7,29 @@ class FleetTag(object):
 
     Specfies the key,value pair for the fleet tag.
 
+
     Attributes:
+
         key (string): Specifies the key for the fleet tag.
         value (string): Specifies the value for the fleet tag.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "key": 'key',
-        "value": 'value'
+        "key":'key',
+        "value":'value',
     }
-
     def __init__(self,
                  key=None,
-                 value=None):
+                 value=None,
+            ):
+
         """Constructor for the FleetTag class"""
 
         # Initialize members of the class
         self.key = key
         self.value = value
-
 
     @classmethod
     def from_dictionary(cls,
@@ -48,11 +49,11 @@ class FleetTag(object):
             return None
 
         # Extract variables from the dictionary
-        key = dictionary.get('key', None)
-        value = dictionary.get('value', None)
+        key = dictionary.get('key')
+        value = dictionary.get('value')
 
         # Return an object of this model
-        return cls(key,
-                   value)
-
-
+        return cls(
+            key,
+            value
+)

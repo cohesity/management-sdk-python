@@ -1,37 +1,65 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.entity_proto
 import cohesity_management_sdk.models.power_state_config_proto
 import cohesity_management_sdk.models.rename_object_param_proto
 import cohesity_management_sdk.models.restored_object_network_config_proto
 
+
 class RestoreObjectParams(object):
 
     """Implementation of the 'RestoreObjectParams' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
+
         action (int): The action to perform.
-        datastore_entity (EntityProto): Specifies the attributes and the
-            latest statistics about an entity.
-        power_state_config (PowerStateConfigProto): TODO: type description
-            here.
-        rename_restored_object_param (RenameObjectParamProto): Message to
-            specify the prefix/suffix added to rename an object. At least one
-            of prefix or suffix must be specified. Please note that both
-            prefix and suffix can be specified.
-        resource_pool_entity (EntityProto): Specifies the attributes and the
-            latest statistics about an entity.
-        restore_parent_source (EntityProto): Specifies the attributes and the
-            latest statistics about an entity.
+        datastore_entity (EntityProto): A datastore entity where the object's
+            files should be restored to. This field is optional if object is
+            being restored to its original parent source. If not specified, the
+            object's files will be restored to their original datastore
+            locations. This field is mandatory if object is being restored to a
+            different resource pool or to a different parent source.
+        power_state_config (PowerStateConfigProto): Semantics for kCloneVMs
+            task: By default, objects are restored in the powered off state. 
+            Semantics for kRecoverVMs task: By default, objects are restored in
+            the powered on state.  This proto can be used to override the
+            default behavior for kCloneVMs or kRecoverVMs task.
+        rename_restored_object_param (RenameObjectParamProto): By default,
+            objects are restored with their original name. This field can be
+            used to specify the transformation ( i.e prefix/suffix) to be
+            applied to the source object name to derive the new name of the
+            restored object.
+        resource_pool_entity (EntityProto): This field is optional for a
+            kRecoverVMs task if the objects are being restored to its original
+            parent source. If not specified, restored objects will be attached
+            to its original resource entity. This field is mandatory if objects
+            are being restored to a different parent source.
+        restore_parent_source (EntityProto): An optional registered parent
+            source to which objects are to be restored. If not specified,
+            objects are restored back to the original source that was managing
+            the objects.
         restored_objects_network_config (RestoredObjectNetworkConfigProto):
-            TODO: type description here.
+            Semantics for kCloneVMs task: By default, if objects are being
+            restored to their original location, then network will be disabled.
+            If objects are being restored to a different location (i.e., either
+            to different resource pool or to different parent source), then
+            network will be detached.  Semantics for kRecoverVMs task: By
+            default, if objects are being restored to their original location,
+            then original network configuration will be preserved. If objects
+            are being restored to different location, (i.e., either to
+            different resource pool or to different parent source), then
+            network will be detached.  Below field can be used to override the
+            default network configuration of the restored objects.  If user
+            want to keep the original network setting for kRecoverVMs task,
+            then this proto should not be set.
         view_name (string): Target view into which the objects are to be
             cloned.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -42,9 +70,8 @@ class RestoreObjectParams(object):
         "resource_pool_entity":'resourcePoolEntity',
         "restore_parent_source":'restoreParentSource',
         "restored_objects_network_config":'restoredObjectsNetworkConfig',
-        "view_name":'viewName'
+        "view_name":'viewName',
     }
-
     def __init__(self,
                  action=None,
                  datastore_entity=None,
@@ -53,7 +80,9 @@ class RestoreObjectParams(object):
                  resource_pool_entity=None,
                  restore_parent_source=None,
                  restored_objects_network_config=None,
-                 view_name=None):
+                 view_name=None,
+            ):
+
         """Constructor for the RestoreObjectParams class"""
 
         # Initialize members of the class
@@ -65,7 +94,6 @@ class RestoreObjectParams(object):
         self.restore_parent_source = restore_parent_source
         self.restored_objects_network_config = restored_objects_network_config
         self.view_name = view_name
-
 
     @classmethod
     def from_dictionary(cls,
@@ -95,13 +123,13 @@ class RestoreObjectParams(object):
         view_name = dictionary.get('viewName')
 
         # Return an object of this model
-        return cls(action,
-                   datastore_entity,
-                   power_state_config,
-                   rename_restored_object_param,
-                   resource_pool_entity,
-                   restore_parent_source,
-                   restored_objects_network_config,
-                   view_name)
-
-
+        return cls(
+            action,
+            datastore_entity,
+            power_state_config,
+            rename_restored_object_param,
+            resource_pool_entity,
+            restore_parent_source,
+            restored_objects_network_config,
+            view_name
+)

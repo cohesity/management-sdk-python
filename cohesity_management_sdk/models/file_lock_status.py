@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class FileLockStatus(object):
 
@@ -8,7 +7,9 @@ class FileLockStatus(object):
 
     Specifies the information of lock status for a file.
 
+
     Attributes:
+
         expiry_timestamp_msecs (long|int): Specifies a expiry timestamp in
             milliseconds until the file is locked.
         hold_timestamp_msecs (long|int): Specifies a override timestamp in
@@ -25,8 +26,8 @@ class FileLockStatus(object):
             datalock is in effect. Datalock in this mode can be upgraded to
             'kCompliance' mode.
         state (int): Specifies the lock state of the file.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -34,15 +35,16 @@ class FileLockStatus(object):
         "hold_timestamp_msecs":'holdTimestampMsecs',
         "lock_timestamp_msecs":'lockTimestampMsecs',
         "mode":'mode',
-        "state":'state'
+        "state":'state',
     }
-
     def __init__(self,
                  expiry_timestamp_msecs=None,
                  hold_timestamp_msecs=None,
                  lock_timestamp_msecs=None,
                  mode=None,
-                 state=None):
+                 state=None,
+            ):
+
         """Constructor for the FileLockStatus class"""
 
         # Initialize members of the class
@@ -51,7 +53,6 @@ class FileLockStatus(object):
         self.lock_timestamp_msecs = lock_timestamp_msecs
         self.mode = mode
         self.state = state
-
 
     @classmethod
     def from_dictionary(cls,
@@ -78,10 +79,10 @@ class FileLockStatus(object):
         state = dictionary.get('state')
 
         # Return an object of this model
-        return cls(expiry_timestamp_msecs,
-                   hold_timestamp_msecs,
-                   lock_timestamp_msecs,
-                   mode,
-                   state)
-
-
+        return cls(
+            expiry_timestamp_msecs,
+            hold_timestamp_msecs,
+            lock_timestamp_msecs,
+            mode,
+            state
+)

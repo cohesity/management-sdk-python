@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class BannerUpdateParameters(object):
 
@@ -8,27 +7,30 @@ class BannerUpdateParameters(object):
 
     Specifies the settings used to update a new banner.
 
+
     Attributes:
+
         content (string): Specifies the content of the banner.
-        description (string): description field is deprecated.
-            Specifies the description of this banner.
+        description (string): description field is deprecated. Specifies the
+            description of this banner.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "content": 'content',
-        "description": 'description'
+        "content":'content',
+        "description":'description',
     }
-
     def __init__(self,
                  content=None,
-                 description=None):
+                 description=None,
+            ):
+
         """Constructor for the BannerUpdateParameters class"""
 
         # Initialize members of the class
         self.content = content
         self.description = description
-
 
     @classmethod
     def from_dictionary(cls,
@@ -52,7 +54,7 @@ class BannerUpdateParameters(object):
         description = dictionary.get('description')
 
         # Return an object of this model
-        return cls(content,
-                   description)
-
-
+        return cls(
+            content,
+            description
+)

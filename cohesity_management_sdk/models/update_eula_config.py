@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class UpdateEulaConfig(object):
 
@@ -8,24 +7,26 @@ class UpdateEulaConfig(object):
 
     Specifies the update to the End User License Agreement information.
 
+
     Attributes:
+
         signed_version (long|int): Specifies the version of the End User
             License Agreement that was accepted.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "signed_version":'signedVersion'
+        "signed_version":'signedVersion',
     }
-
     def __init__(self,
-                 signed_version=None):
+                 signed_version=None,
+            ):
+
         """Constructor for the UpdateEulaConfig class"""
 
         # Initialize members of the class
         self.signed_version = signed_version
-
 
     @classmethod
     def from_dictionary(cls,
@@ -48,6 +49,6 @@ class UpdateEulaConfig(object):
         signed_version = dictionary.get('signedVersion')
 
         # Return an object of this model
-        return cls(signed_version)
-
-
+        return cls(
+            signed_version
+)

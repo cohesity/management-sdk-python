@@ -1,7 +1,5 @@
-
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class UdaObject(object):
 
@@ -10,20 +8,29 @@ class UdaObject(object):
     Specifies an Object containing information about a Universal Data Adapter
     object.
 
+
     Attributes:
-        :TODO Add description here.
+
+        is_leaf (bool): Indicates whether this object is is a leaf object
+        object_type (string): Type of this object
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "is_leaf":'isLeaf',
+        "object_type":'objectType',
     }
+    def __init__(self,
+                 is_leaf=None,
+                 object_type=None,
+            ):
 
-    def __init__(self):
         """Constructor for the UdaObject class"""
 
         # Initialize members of the class
-        pass
-
+        self.is_leaf = is_leaf
+        self.object_type = object_type
 
     @classmethod
     def from_dictionary(cls,
@@ -42,6 +49,12 @@ class UdaObject(object):
         if dictionary is None:
             return None
 
-        # Return an object of this model
-        return cls()
+        # Extract variables from the dictionary
+        is_leaf = dictionary.get('isLeaf')
+        object_type = dictionary.get('objectType')
 
+        # Return an object of this model
+        return cls(
+            is_leaf,
+            object_type
+)

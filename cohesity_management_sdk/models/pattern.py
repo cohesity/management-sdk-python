@@ -1,36 +1,38 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class Pattern(object):
 
     """Implementation of the 'Pattern' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
+
         is_system_defined (bool): Whether this pattern is system defined.
         name (string): Name of the pattern. This is marked optional but is
             required.
         mtype (int): Pattern type.
         value (string): Value of the pattern. This is marked optional but is
             required.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "is_system_defined":'isSystemDefined',
         "name":'name',
         "mtype":'type',
-        "value":'value'
+        "value":'value',
     }
-
     def __init__(self,
                  is_system_defined=None,
                  name=None,
                  mtype=None,
-                 value=None):
+                 value=None,
+            ):
+
         """Constructor for the Pattern class"""
 
         # Initialize members of the class
@@ -38,7 +40,6 @@ class Pattern(object):
         self.name = name
         self.mtype = mtype
         self.value = value
-
 
     @classmethod
     def from_dictionary(cls,
@@ -64,9 +65,9 @@ class Pattern(object):
         value = dictionary.get('value')
 
         # Return an object of this model
-        return cls(is_system_defined,
-                   name,
-                   mtype,
-                   value)
-
-
+        return cls(
+            is_system_defined,
+            name,
+            mtype,
+            value
+)

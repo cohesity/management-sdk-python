@@ -1,29 +1,31 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class OwnerInfo(object):
 
     """Implementation of the 'OwnerInfo' model.
 
-    Information about a resource (i.e., bucket or object) owner.
+    TODO: type description here.
+
 
     Attributes:
+
         user_id (string): Unique identifier of the owner.
     """
 
+
     # Create a mapping from Model property names to API property names
     _names = {
-        "user_id":'userId'
+        "user_id":'userId',
     }
-
     def __init__(self,
-                 user_id=None):
+                 user_id=None,
+            ):
+
         """Constructor for the OwnerInfo class"""
 
         # Initialize members of the class
         self.user_id = user_id
-
 
     @classmethod
     def from_dictionary(cls,
@@ -46,6 +48,6 @@ class OwnerInfo(object):
         user_id = dictionary.get('userId')
 
         # Return an object of this model
-        return cls(user_id)
-
-
+        return cls(
+            user_id
+)

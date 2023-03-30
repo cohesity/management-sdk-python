@@ -1,28 +1,34 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.error_proto
+
 
 class KillMapReduceInstanceResult(object):
 
     """Implementation of the 'KillMapReduceInstanceResult' model.
 
+    TODO: type description here.
+
+
     Attributes:
-    error (ErrorProto):  Status code of http rpc.
+
+        error (ErrorProto): Status code of http rpc.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "error":'error'
+        "error":'error',
     }
-
     def __init__(self,
-                 error=None):
+                 error=None,
+            ):
+
         """Constructor for the KillMapReduceInstanceResult class"""
 
         # Initialize members of the class
         self.error = error
-
 
     @classmethod
     def from_dictionary(cls,
@@ -45,6 +51,6 @@ class KillMapReduceInstanceResult(object):
         error = cohesity_management_sdk.models.error_proto.ErrorProto.from_dictionary(dictionary.get('error')) if dictionary.get('error') else None
 
         # Return an object of this model
-        return cls(error)
-
-
+        return cls(
+            error
+)

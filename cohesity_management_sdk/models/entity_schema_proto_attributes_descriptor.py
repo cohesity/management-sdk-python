@@ -1,39 +1,41 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.entity_schema_proto_key_value_descriptor
 
-class EntitySchemaProtoAttributesDescriptor(object):
+
+class EntitySchemaProto_AttributesDescriptor(object):
 
     """Implementation of the 'EntitySchemaProto_AttributesDescriptor' model.
 
     Specifies a list of attributes about an entity.
 
+
     Attributes:
-        attribute_vec (list of EntitySchemaProtoKeyValueDescriptor): Array of
+
+        attribute_vec (list of EntitySchemaProto_KeyValueDescriptor): Array of
             Attributes.  List of attributes about an entity.
         key_attribute_name_index (int): Specifies the attribute to use as a
             unique identifier for the entity. This value is returned in
-            entityId when the GET public/statistics/entities operation is
-            run.
-
+            entityId when the GET public/statistics/entities operation is run.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "attribute_vec":'attributeVec',
-        "key_attribute_name_index":'keyAttributeNameIndex'
+        "key_attribute_name_index":'keyAttributeNameIndex',
     }
-
     def __init__(self,
                  attribute_vec=None,
-                 key_attribute_name_index=None):
-        """Constructor for the EntitySchemaProtoAttributesDescriptor class"""
+                 key_attribute_name_index=None,
+            ):
+
+        """Constructor for the EntitySchemaProto_AttributesDescriptor class"""
 
         # Initialize members of the class
         self.attribute_vec = attribute_vec
         self.key_attribute_name_index = key_attribute_name_index
-
 
     @classmethod
     def from_dictionary(cls,
@@ -57,11 +59,11 @@ class EntitySchemaProtoAttributesDescriptor(object):
         if dictionary.get('attributeVec') != None:
             attribute_vec = list()
             for structure in dictionary.get('attributeVec'):
-                attribute_vec.append(cohesity_management_sdk.models.entity_schema_proto_key_value_descriptor.EntitySchemaProtoKeyValueDescriptor.from_dictionary(structure))
+                attribute_vec.append(cohesity_management_sdk.models.entity_schema_proto_key_value_descriptor.EntitySchemaProto_KeyValueDescriptor.from_dictionary(structure))
         key_attribute_name_index = dictionary.get('keyAttributeNameIndex')
 
         # Return an object of this model
-        return cls(attribute_vec,
-                   key_attribute_name_index)
-
-
+        return cls(
+            attribute_vec,
+            key_attribute_name_index
+)

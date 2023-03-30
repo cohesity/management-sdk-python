@@ -1,34 +1,40 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class PeriodicityEnum(object):
 
     """Implementation of the 'Periodicity' enum.
+    Specifies the frequency that Snapshots should be copied to the specified
+    target. Used in combination with multiplier. 'kEvery' means that the
+    Snapshot copy occurs after the number of Job Runs equals the number
+    specified in the multiplier. 'kHour' means that the Snapshot copy occurs
+    hourly at the frequency set in the multiplier, for example if multiplier is
+    2, the copy occurs every 2 hours. 'kDay' means that the Snapshot copy
+    occurs daily at the frequency set in the multiplier. 'kWeek' means that the
+    Snapshot copy occurs weekly at the frequency set in the multiplier.
+    'kMonth' means that the Snapshot copy occurs monthly at the frequency set
+    in the multiplier. 'kYear' means that the Snapshot copy occurs yearly at
+    the frequency set in the multiplier.
 
-    Specifies how often to start new Job Runs of a Protection Job.
-    'kDaily' means new Job Runs start daily.
-    'kMonthly' means new Job Runs start monthly.
-    'kContinuous' means new Job Runs repetitively start at the
-    beginning of the specified time interval (in hours or minutes).
-    'kContinuousRPO' means this is an RPO schedule.
-    'kCDP' means this is a continuous data protection policy.
 
     Attributes:
-        KCONTINUOUS: TODO: type description here.
-        KDAILY: TODO: type description here.
-        KMONTHLY: TODO: type description here.
-        KCONTINUOUSRPO: TODO: type description here.
-        KCDP: TODO: type description here.
+        KEVERY: TODO: type description here.
+        KHOUR: TODO: type description here.
+        KDAY: TODO: type description here.
+        KWEEK: TODO: type description here.
+        KMONTH: TODO: type description here.
+        KYEAR: TODO: type description here.
 
     """
 
-    KCONTINUOUS = 'kContinuous'
+    KEVERY = 'kEvery'
 
-    KDAILY = 'kDaily'
+    KHOUR = 'kHour'
 
-    KMONTHLY = 'kMonthly'
+    KDAY = 'kDay'
 
-    KCONTINUOUSRPO = 'kContinuousRPO'
+    KWEEK = 'kWeek'
 
-    KCDP = 'kCDP'
+    KMONTH = 'kMonth'
 
+    KYEAR = 'kYear'

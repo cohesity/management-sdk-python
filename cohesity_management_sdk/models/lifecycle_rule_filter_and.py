@@ -1,35 +1,40 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.lifecycle_rule_filter_tag
+
 
 class LifecycleRuleFilterAnd(object):
 
     """Implementation of the 'LifecycleRuleFilterAnd' model.
 
+    TODO: type description here.
+
+
     Attributes:
+
         prefix (string): Prefix identifying one or more objects to which the
             rule applies.
         tag_vec (list of LifecycleRuleFilterTag): All of these tags must exist
             in the object's tag set in order for the rule to apply.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "prefix":'prefix',
-        "tag_vec":'tagVec'
+        "tag_vec":'tagVec',
     }
-
     def __init__(self,
                  prefix=None,
-                 tag_vec=None):
+                 tag_vec=None,
+            ):
+
         """Constructor for the LifecycleRuleFilterAnd class"""
 
         # Initialize members of the class
         self.prefix = prefix
         self.tag_vec = tag_vec
-
 
     @classmethod
     def from_dictionary(cls,
@@ -49,14 +54,15 @@ class LifecycleRuleFilterAnd(object):
             return None
 
         # Extract variables from the dictionary
-        prefix = dictionary.get('prefix', None)
+        prefix = dictionary.get('prefix')
         tag_vec = None
-        if dictionary.get('tagVec', None) != None:
+        if dictionary.get('tagVec') != None:
             tag_vec = list()
             for structure in dictionary.get('tagVec'):
                 tag_vec.append(cohesity_management_sdk.models.lifecycle_rule_filter_tag.LifecycleRuleFilterTag.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(prefix, tag_vec)
-
-
+        return cls(
+            prefix,
+            tag_vec
+)

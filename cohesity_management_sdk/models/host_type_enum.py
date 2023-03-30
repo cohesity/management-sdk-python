@@ -1,19 +1,19 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class HostTypeEnum(object):
 
     """Implementation of the 'HostType' enum.
+    Specifies the host type for the 'kVirtualMachine' Object. 'kLinux'
+    indicates the Linux operating system. 'kWindows' indicates the Microsoft
+    Windows operating system. 'kAix' indicates the IBM AIX operating system.
+    'kSolaris' indicates the Oracle Solaris operating system. 'kSapHana'
+    indicates the Sap Hana database system developed by SAP SE. 'kSapOracle'
+    indicates the Sap Oracle database system developed by SAP SE.
+    'kCockroachDB' indicates the CockroachDB database system. 'kMySQL'
+    indicates the MySQL database system. 'kOther' indicates the other types of
+    operating system.
 
-    Specifies the OS type of the Protection Source of type 'kVirtualMachine'
-    such as 'kWindows' or 'kLinux'.
-    overrideDescription: true
-    'kLinux' indicates the Linux operating system.
-    'kWindows' indicates the Microsoft Windows operating system.
-    'kAix' indicates the IBM AIX operating system.
-    'kSolaris' indicates the Oracle Solaris operating system.
-    'kSapHana' indicates the Sap Hana database system developed by SAP SE.
-    'kOther' indicates the other types of operating system.
 
     Attributes:
         KLINUX: TODO: type description here.
@@ -21,6 +21,9 @@ class HostTypeEnum(object):
         KAIX: TODO: type description here.
         KSOLARIS: TODO: type description here.
         KSAPHANA: TODO: type description here.
+        KSAPORACLE: TODO: type description here.
+        KCOCKROACHDB: TODO: type description here.
+        KMYSQL: TODO: type description here.
         KOTHER: TODO: type description here.
 
     """
@@ -35,5 +38,10 @@ class HostTypeEnum(object):
 
     KSAPHANA = 'kSapHana'
 
-    KOTHER = 'kOther'
+    KSAPORACLE = 'kSapOracle'
 
+    KCOCKROACHDB = 'kCockroachDB'
+
+    KMYSQL = 'kMySQL'
+
+    KOTHER = 'kOther'

@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.cassandra_cluster
 import cohesity_management_sdk.models.cassandra_keyspace
+
 
 class CassandraProtectionSource(object):
 
@@ -10,41 +11,43 @@ class CassandraProtectionSource(object):
 
     Specifies an Object representing Cassandra.
 
+
     Attributes:
+
         cluster_info (CassandraCluster): Information of a Cassandra cluster,
             only valid for an entity of type kCluster.
         keyspace_info (CassandraKeyspace): Information of a cassandra
             keyspapce, only valid for an entity of type kKeyspace.
         name (string): Specifies the instance name of the Cassandra entity.
         mtype (TypeCassandraProtectionSourceEnum): Specifies the type of the
-            managed Object in Cassandra Protection Source.
-            Replication strategy options for a keyspace.
-            'kCluster' indicates a Cassandra cluster distributed over several
-            physical nodes.
-            'kKeyspace' indicates a Keyspace enclosing one or more tables.
-            'kTable' indicates a Table in the Cassandra environment.
-        uuid (string): Specifies the UUID for the Cassandra entity.
-            Note : For each entity an ID unique within top level entity should
-            be assigned by imanis backend. Example, UUID for a table can be
-            the string <keyspace_name>.<table_name>
-
+            managed Object in Cassandra Protection Source. Replication strategy
+            options for a keyspace. 'kCluster' indicates a Cassandra cluster
+            distributed over several physical nodes. 'kKeyspace' indicates a
+            Keyspace enclosing one or more tables. 'kTable' indicates a Table
+            in the Cassandra environment.
+        uuid (string): Specifies the UUID for the Cassandra entity. Note : For
+            each entity an ID unique within top level entity should be assigned
+            by imanis backend. Example, UUID for a table can be the string
+            <keyspace_name>.<table_name>
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "cluster_info": 'clusterInfo',
-        "keyspace_info": 'keyspaceInfo',
-        "name": 'name',
-        "mtype": 'type',
-        "uuid":'uuid'
+        "cluster_info":'clusterInfo',
+        "keyspace_info":'keyspaceInfo',
+        "name":'name',
+        "mtype":'type',
+        "uuid":'uuid',
     }
-
     def __init__(self,
                  cluster_info=None,
                  keyspace_info=None,
                  name=None,
                  mtype=None,
-                 uuid=None):
+                 uuid=None,
+            ):
+
         """Constructor for the CassandraProtectionSource class"""
 
         # Initialize members of the class
@@ -79,10 +82,10 @@ class CassandraProtectionSource(object):
         uuid = dictionary.get('uuid')
 
         # Return an object of this model
-        return cls(cluster_info,
-                   keyspace_info,
-                   name,
-                   mtype,
-                   uuid)
-
-
+        return cls(
+            cluster_info,
+            keyspace_info,
+            name,
+            mtype,
+            uuid
+)

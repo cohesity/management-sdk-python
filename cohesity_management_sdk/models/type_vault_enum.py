@@ -1,37 +1,28 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class TypeVaultEnum(object):
 
-    """Implementation of the 'Type_Vault' enum.
-
-    Specifies the type of Vault.
-    This field is deprecated. This field is split into ExternalTargetType in
-    and TierType in respective credentials. Initialize those
-    fields instead.
-    deprecated: true
-    'kNearline' indicates a Google Nearline Vault.
-    'kGlacier' indicates an AWS Glacier Vault.
-    'kS3' indicates an AWS S3 Vault.
-    'kAzureStandard' indicates a Microsoft Azure Standard Vault.
-    'kS3Compatible' indicates an S3 Compatible Vault.
-    (See the online help for supported types.)
-    'kQStarTape' indicates a QStar Tape Vault.
-    'kGoogleStandard' indicates a Google Standard Vault.
-    'kGoogleDRA' indicates a Google DRA Vault.
-    'kAmazonS3StandardIA' indicates an Amazon S3 Standard-IA Vault.
-    'kAWSGovCloud' indicates an AWS Gov Cloud Vault.
-    'kNAS' indicates a NAS Vault.
-    'kColdline' indicates a Google Coldline Vault.
+    """Implementation of the 'TypeVault' enum.
+    Specifies the type of Vault. This field is deprecated. This field is split
+    into ExternalTargetType in and TierType in respective credentials.
+    Initialize those fields instead. deprecated: true 'kNearline' indicates a
+    Google Nearline Vault. 'kGlacier' indicates an AWS Glacier Vault. 'kS3'
+    indicates an AWS S3 Vault. 'kAzureStandard' indicates a Microsoft Azure
+    Standard Vault. 'kS3Compatible' indicates an S3 Compatible Vault. (See the
+    online help for supported types.) 'kQStarTape' indicates a QStar Tape
+    Vault. 'kGoogleStandard' indicates a Google Standard Vault. 'kGoogleDRA'
+    indicates a Google DRA Vault. 'kAmazonS3StandardIA' indicates an Amazon S3
+    Standard-IA Vault. 'kAWSGovCloud' indicates an AWS Gov Cloud Vault. 'kNAS'
+    indicates a NAS Vault. 'kColdline' indicates a Google Coldline Vault.
     'kAzureGovCloud' indicates a Microsoft Azure Gov Cloud Vault.
-    'kAzureArchive' indicates an Azure Archive Vault.
-    'kAzure' indicates an Azure Vault.
-    'kGoogle' indicates a Google Vault.
-    'kAmazon' indicates an Amazon Vault.
-    'kOracle' indicates an Oracle Vault.
-    'kOracleTierStandard' indicates an Oracle Tier Standard Vault.
-    'kOracleTierArchive' indicates an Oracle Tier Archive Vault.
-    'kAmazonC2S' indicates an Amazon Commercial Cloud Services Vault.
+    'kAzureArchive' indicates an Azure Archive Vault. 'kAzure' indicates an
+    Azure Vault. 'kGoogle' indicates a Google Vault. 'kAmazon' indicates an
+    Amazon Vault. 'kOracle' indicates an Oracle Vault. 'kOracleTierStandard'
+    indicates an Oracle Tier Standard Vault. 'kOracleTierArchive' indicates an
+    Oracle Tier Archive Vault. 'kAmazonC2S' indicates an Amazon Commercial
+    Cloud Services Vault.
+
 
     Attributes:
         KNEARLINE: TODO: type description here.
@@ -76,13 +67,13 @@ class TypeVaultEnum(object):
 
     KAMAZONS3STANDARDIA = 'kAmazonS3StandardIA'
 
-    KAWS_GO_VCLOUD = 'kAWSGovCloud'
+    KAWS_GOV_CLOUD = 'kAWSGovCloud'
 
     KNAS = 'kNAS'
 
     KCOLDLINE = 'kColdline'
 
-    K_AZURE_GO_VCLOUD = 'kAzureGovCloud'
+    K_AZURE_GOV_CLOUD = 'kAzureGovCloud'
 
     KAZUREARCHIVE = 'kAzureArchive'
 
@@ -99,4 +90,3 @@ class TypeVaultEnum(object):
     KORACLETIERARCHIVE = 'kOracleTierArchive'
 
     KAMAZONC2S = 'kAmazonC2S'
-

@@ -1,48 +1,51 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
-import cohesity_management_sdk.models.map_reduce_instance_input_param
 import cohesity_management_sdk.models.input_spec
-import cohesity_management_sdk.models.output_spec
+import cohesity_management_sdk.models.map_reduce_instance_input_param
 import cohesity_management_sdk.models.map_reduce_instance_run_info
+import cohesity_management_sdk.models.output_spec
+
 
 class MapReduceInstance(object):
 
     """Implementation of the 'MapReduceInstance' model.
 
-    Information about a Map reduce instance. An instance can be run only
-    once.
+    Information about a Map reduce instance. An instance can be run only once.
+
 
     Attributes:
-        id (int|long): System generated ID of map reduce instance.
-        input_params (list of MapReduceInstance_InputParam): TODO:
-            Add description here.
+
+        id (long|int): System generated ID of map reduce instance.
+        input_params (list of MapReduceInstance_InputParam): TODO: Type
+            description here.
         input_spec (InputSpec): Input spec for the MR.
-        map_reduce_info_id (int): ID of Map reduce info.
+        map_reduce_info_id (long|int): ID of Map reduce info.
         output_spec (OutputSpec): Output spec for the MR.
         run_info (MapReduceInstance_RunInfo): Information about run of this
-            instance. All fields of RunInfo will be populated b
-             yoda/analytics components.
-
+            instance. All fields of RunInfo will be populated by yoda/analytics
+            components.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "id": 'id',
-        "input_params": 'inputParams',
-        "input_spec": 'inputSpec',
-        "map_reduce_info_id": 'mapReduceInfoId',
+        "id":'id',
+        "input_params":'inputParams',
+        "input_spec":'inputSpec',
+        "map_reduce_info_id":'mapReduceInfoId',
         "output_spec":'outputSpec',
-        "run_info":'runInfo'
+        "run_info":'runInfo',
     }
-
     def __init__(self,
                  id=None,
                  input_params=None,
                  input_spec=None,
                  map_reduce_info_id=None,
                  output_spec=None,
-                 run_info=None):
+                 run_info=None,
+            ):
+
         """Constructor for the MapReduceInstance class"""
 
         # Initialize members of the class
@@ -76,18 +79,18 @@ class MapReduceInstance(object):
         if dictionary.get('inputParams') != None:
             input_params = list()
             for structure in dictionary.get('inputParams'):
-                input_params.append(cohesity_management_sdk.models.map_reduce_instance_input_param.MapReduceInstanceInputParam.from_dictionary(structure))
+                input_params.append(cohesity_management_sdk.models.map_reduce_instance_input_param.MapReduceInstance_InputParam.from_dictionary(structure))
         input_spec = cohesity_management_sdk.models.input_spec.InputSpec.from_dictionary(dictionary.get('inputSpec')) if dictionary.get('inputSpec') else None
         map_reduce_info_id = dictionary.get('mapReduceInfoId')
         output_spec = cohesity_management_sdk.models.output_spec.OutputSpec.from_dictionary(dictionary.get('outputSpec')) if dictionary.get('outputSpec') else None
-        run_info = cohesity_management_sdk.map_reduce_instance_run_info.MapReduceInstance_RunInfo.from_dictionary(dictionary.get('runInfo')) if dictionary.get('runInfo') else None
+        run_info = cohesity_management_sdk.models.map_reduce_instance_run_info.MapReduceInstance_RunInfo.from_dictionary(dictionary.get('runInfo')) if dictionary.get('runInfo') else None
 
         # Return an object of this model
-        return cls(id,
-                   input_params,
-                   input_spec,
-                   map_reduce_info_id,
-                   output_spec,
-                   run_info)
-
-
+        return cls(
+            id,
+            input_params,
+            input_spec,
+            map_reduce_info_id,
+            output_spec,
+            run_info
+)

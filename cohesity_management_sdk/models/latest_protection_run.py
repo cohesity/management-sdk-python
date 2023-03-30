@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
-import cohesity_management_sdk.models.source_backup_status
 import cohesity_management_sdk.models.copy_run
 import cohesity_management_sdk.models.run_uid
+import cohesity_management_sdk.models.source_backup_status
+
 
 class LatestProtectionRun(object):
 
@@ -11,15 +12,15 @@ class LatestProtectionRun(object):
 
     Specifies the information about the latest Protection Run.
 
+
     Attributes:
-        backup_run (SourceBackupStatus): Specifies the source object to
-            protect and the current backup status.
+
+        backup_run (SourceBackupStatus): Specifies information about the latest
+            successful Protection Job Run for local and replication snapshots.
         change_event_id (long|int): Specifies the event id which caused last
             update on this object.
-        copy_run (CopyRun): Specifies details about the Copy Run for a backup
-            run of a Job Run. A Copy task copies snapshots resulted from a
-            backup run to a snapshot target which could be 'kLocal',
-            'kArchival', or 'kRemote'.
+        copy_run (CopyRun): Specifies information about the latest successful
+            Protection Job Run for an archival snapshot.
         job_run_id (long|int): Specifies job run id of the latest successful
             Protection Job Run.
         protection_job_run_uid (RunUid): Specifies the universal id of the
@@ -33,8 +34,8 @@ class LatestProtectionRun(object):
             in the final attempt.
         uuid (string): Specifies the unique id of the Protection Source for
             which a snapshot is taken.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -46,9 +47,8 @@ class LatestProtectionRun(object):
         "snapshot_target":'snapshotTarget',
         "snapshot_target_type":'snapshotTargetType',
         "task_status":'taskStatus',
-        "uuid":'uuid'
+        "uuid":'uuid',
     }
-
     def __init__(self,
                  backup_run=None,
                  change_event_id=None,
@@ -58,7 +58,9 @@ class LatestProtectionRun(object):
                  snapshot_target=None,
                  snapshot_target_type=None,
                  task_status=None,
-                 uuid=None):
+                 uuid=None,
+            ):
+
         """Constructor for the LatestProtectionRun class"""
 
         # Initialize members of the class
@@ -71,7 +73,6 @@ class LatestProtectionRun(object):
         self.snapshot_target_type = snapshot_target_type
         self.task_status = task_status
         self.uuid = uuid
-
 
     @classmethod
     def from_dictionary(cls,
@@ -102,14 +103,14 @@ class LatestProtectionRun(object):
         uuid = dictionary.get('uuid')
 
         # Return an object of this model
-        return cls(backup_run,
-                   change_event_id,
-                   copy_run,
-                   job_run_id,
-                   protection_job_run_uid,
-                   snapshot_target,
-                   snapshot_target_type,
-                   task_status,
-                   uuid)
-
-
+        return cls(
+            backup_run,
+            change_event_id,
+            copy_run,
+            job_run_id,
+            protection_job_run_uid,
+            snapshot_target,
+            snapshot_target_type,
+            task_status,
+            uuid
+)

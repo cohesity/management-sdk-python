@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class ChangeServiceStateResult(object):
 
@@ -9,29 +8,31 @@ class ChangeServiceStateResult(object):
     Specifies the result returned after a successful request to change the
     state of services running on the Cluster.
 
+
     Attributes:
+
         message (string): Specifies a description of the result of the
             operation.
         status_url (string): Specifies a URL which can be queried to check the
             status of the operation.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "message":'message',
-        "status_url":'statusUrl'
+        "status_url":'statusUrl',
     }
-
     def __init__(self,
                  message=None,
-                 status_url=None):
+                 status_url=None,
+            ):
+
         """Constructor for the ChangeServiceStateResult class"""
 
         # Initialize members of the class
         self.message = message
         self.status_url = status_url
-
 
     @classmethod
     def from_dictionary(cls,
@@ -55,7 +56,7 @@ class ChangeServiceStateResult(object):
         status_url = dictionary.get('statusUrl')
 
         # Return an object of this model
-        return cls(message,
-                   status_url)
-
-
+        return cls(
+            message,
+            status_url
+)

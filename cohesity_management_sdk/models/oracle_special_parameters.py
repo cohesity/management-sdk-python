@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.oracle_app_params
+
 
 class OracleSpecialParameters(object):
 
@@ -9,7 +10,9 @@ class OracleSpecialParameters(object):
 
     Specifies special settings applicable for 'kOracle' environment.
 
+
     Attributes:
+
         app_params_list (list of OracleAppParams): Array of application
             parameters i.e. database parameters for standalone/RAC and DG
             parameters for data guard.  Specifies the list of parameters
@@ -22,27 +25,27 @@ class OracleSpecialParameters(object):
             all application entities on the Protection Source.
         persist_mountpoints (bool): Specifies if the mountpoints for Oracle
             view for the current host are to be persisted.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "app_params_list":'appParamsList',
         "application_entity_ids":'applicationEntityIds',
-        "persist_mountpoints":'persistMountpoints'
+        "persist_mountpoints":'persistMountpoints',
     }
-
     def __init__(self,
                  app_params_list=None,
                  application_entity_ids=None,
-                 persist_mountpoints=None):
+                 persist_mountpoints=None,
+            ):
+
         """Constructor for the OracleSpecialParameters class"""
 
         # Initialize members of the class
         self.app_params_list = app_params_list
         self.application_entity_ids = application_entity_ids
         self.persist_mountpoints = persist_mountpoints
-
 
     @classmethod
     def from_dictionary(cls,
@@ -67,12 +70,12 @@ class OracleSpecialParameters(object):
             app_params_list = list()
             for structure in dictionary.get('appParamsList'):
                 app_params_list.append(cohesity_management_sdk.models.oracle_app_params.OracleAppParams.from_dictionary(structure))
-        application_entity_ids = dictionary.get('applicationEntityIds')
+        application_entity_ids = dictionary.get("applicationEntityIds")
         persist_mountpoints = dictionary.get('persistMountpoints')
 
         # Return an object of this model
-        return cls(app_params_list,
-                   application_entity_ids,
-                   persist_mountpoints)
-
-
+        return cls(
+            app_params_list,
+            application_entity_ids,
+            persist_mountpoints
+)

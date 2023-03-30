@@ -1,33 +1,33 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class ContinuousSchedule(object):
 
     """Implementation of the 'ContinuousSchedule' model.
 
     Specifies the time interval between two Job Runs of a continuous backup
-    schedule and any blackout periods when new Job Runs should NOT be
-    started.
+    schedule and any QuietTime periods when new Job Runs should NOT be started.
+
 
     Attributes:
+
         backup_interval_mins (long|int): If specified, this field defines the
             time interval in minutes when new Job Runs are started.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "backup_interval_mins":'backupIntervalMins'
+        "backup_interval_mins":'backupIntervalMins',
     }
-
     def __init__(self,
-                 backup_interval_mins=None):
+                 backup_interval_mins=None,
+            ):
+
         """Constructor for the ContinuousSchedule class"""
 
         # Initialize members of the class
         self.backup_interval_mins = backup_interval_mins
-
 
     @classmethod
     def from_dictionary(cls,
@@ -50,6 +50,6 @@ class ContinuousSchedule(object):
         backup_interval_mins = dictionary.get('backupIntervalMins')
 
         # Return an object of this model
-        return cls(backup_interval_mins)
-
-
+        return cls(
+            backup_interval_mins
+)

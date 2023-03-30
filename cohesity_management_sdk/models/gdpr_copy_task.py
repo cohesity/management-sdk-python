@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class GdprCopyTask(object):
 
@@ -8,11 +7,13 @@ class GdprCopyTask(object):
 
     CopyTask defines the copy tasks of a job.
 
+
     Attributes:
+
         job_id (long|int): Specifies the job with which this copy task is tied
             to. Note: this is only used for internal aggregation.
-        cloud_target_type (string): Specifies the cloud deploy target type.
-            For example 'kAzure','kAWS', 'kGCP'
+        cloud_target_type (string): Specifies the cloud deploy target type. For
+            example 'kAzure','kAWS', 'kGCP'
         expiry_time_usecs (long|int): Specifies the expiry of the copy task.
         target_id (long|int): Specifies the id for the target.
         target_name (string): Specifies the target of the replication or
@@ -20,10 +21,9 @@ class GdprCopyTask(object):
         total_snapshots (long|int): Specifies the total number of snapshots.
         mtype (string): Specifies details about the Copy Run of a Job Run. A
             Copy task copies snapshots resulted from a backup run to an
-            external target which could be 'kLocal', 'kArchival', or
-            'kRemote'.
-
+            external target which could be 'kLocal', 'kArchival', or 'kRemote'.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -33,9 +33,8 @@ class GdprCopyTask(object):
         "target_id":'targetId',
         "target_name":'targetName',
         "total_snapshots":'totalSnapshots',
-        "mtype":'type'
+        "mtype":'type',
     }
-
     def __init__(self,
                  job_id=None,
                  cloud_target_type=None,
@@ -43,7 +42,9 @@ class GdprCopyTask(object):
                  target_id=None,
                  target_name=None,
                  total_snapshots=None,
-                 mtype=None):
+                 mtype=None,
+            ):
+
         """Constructor for the GdprCopyTask class"""
 
         # Initialize members of the class
@@ -54,7 +55,6 @@ class GdprCopyTask(object):
         self.target_name = target_name
         self.total_snapshots = total_snapshots
         self.mtype = mtype
-
 
     @classmethod
     def from_dictionary(cls,
@@ -83,12 +83,12 @@ class GdprCopyTask(object):
         mtype = dictionary.get('type')
 
         # Return an object of this model
-        return cls(job_id,
-                   cloud_target_type,
-                   expiry_time_usecs,
-                   target_id,
-                   target_name,
-                   total_snapshots,
-                   mtype)
-
-
+        return cls(
+            job_id,
+            cloud_target_type,
+            expiry_time_usecs,
+            target_id,
+            target_name,
+            total_snapshots,
+            mtype
+)

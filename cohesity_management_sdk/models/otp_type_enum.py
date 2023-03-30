@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class OtpTypeEnum(object):
 
     """Implementation of the 'OtpType' enum.
+    Specifies OTP type. 'Totp' implies the code is TOTP. 'Email' implies the
+    code is email OTP.
 
-    Specifies OTP type.
-    'Totp' implies the code is TOTP.
-    'Email' implies the code is email OTP.
 
     Attributes:
         TOTP: TODO: type description here.

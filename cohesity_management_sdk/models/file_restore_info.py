@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
-import cohesity_management_sdk.models.request_error
 import cohesity_management_sdk.models.filesystem_volume
+import cohesity_management_sdk.models.request_error
+
 
 class FileRestoreInfo(object):
 
@@ -10,28 +11,33 @@ class FileRestoreInfo(object):
 
     Specifies restore information of a file or a folder.
 
-    Attributes:
-        error (RequestError): Details about the Error.
-        filename (string): Specifies the path of the file/directory.
-        filesystem_volume (FilesystemVolume): Specifies information about a
-            filesystem volume.
-        is_folder (bool): Specifies whether the file path is a folder.
 
+    Attributes:
+
+        error (RequestError): Specifies any error status for the file. If this
+            error is set, it means we fail to get information for this file or
+            file is not present in this instance id.
+        filename (string): Specifies the path of the file/directory.
+        filesystem_volume (FilesystemVolume): Specifies the filesystem volume
+            information.
+        is_folder (bool): Specifies whether the file path is a folder.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "error":'error',
         "filename":'filename',
         "filesystem_volume":'filesystemVolume',
-        "is_folder":'isFolder'
+        "is_folder":'isFolder',
     }
-
     def __init__(self,
                  error=None,
                  filename=None,
                  filesystem_volume=None,
-                 is_folder=None):
+                 is_folder=None,
+            ):
+
         """Constructor for the FileRestoreInfo class"""
 
         # Initialize members of the class
@@ -39,7 +45,6 @@ class FileRestoreInfo(object):
         self.filename = filename
         self.filesystem_volume = filesystem_volume
         self.is_folder = is_folder
-
 
     @classmethod
     def from_dictionary(cls,
@@ -65,9 +70,9 @@ class FileRestoreInfo(object):
         is_folder = dictionary.get('isFolder')
 
         # Return an object of this model
-        return cls(error,
-                   filename,
-                   filesystem_volume,
-                   is_folder)
-
-
+        return cls(
+            error,
+            filename,
+            filesystem_volume,
+            is_folder
+)

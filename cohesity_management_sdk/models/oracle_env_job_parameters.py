@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.vlan_params
+
 
 class OracleEnvJobParameters(object):
 
@@ -10,31 +11,34 @@ class OracleEnvJobParameters(object):
     Specifies job parameters applicable for all 'kOracle' Environment type
     Protection Sources in a Protection Job.
 
+
     Attributes:
-    persist_mountpoints (bool): Specifies whether the mountpoints created while
-        backing up Oracle DBs should be persisted.
-        Note: This parameter is for the entire Job. For overriding persistence
-        of mountpoints for a subset of Oracle hosts within the job, refer
-        OracleSourceParams.
-    vlan_params (VlanParams): Indicates the vlan preference that is selected
-        by the user for doing backup.
+
+        persist_mountpoints (bool): Specifies whether the mountpoints created
+            while backing up Oracle DBs should be persisted. Note: This
+            parameter is for the entire Job. For overriding persistence of
+            mountpoints for a subset of Oracle hosts within the job, refer
+            OracleSourceParams.
+        vlan_params (VlanParams): Indicates the vlan preference that is
+            selected by the user for doing backup.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "persist_mountpoints": 'persistMountpoints',
-        "vlan_params":'vlanParams'
+        "persist_mountpoints":'persistMountpoints',
+        "vlan_params":'vlanParams',
     }
-
     def __init__(self,
                  persist_mountpoints=None,
-                 vlan_params=None):
+                 vlan_params=None,
+            ):
+
         """Constructor for the OracleEnvJobParameters class"""
 
         # Initialize members of the class
         self.persist_mountpoints = persist_mountpoints
         self.vlan_params = vlan_params
-
 
     @classmethod
     def from_dictionary(cls,
@@ -58,7 +62,7 @@ class OracleEnvJobParameters(object):
         vlan_params = cohesity_management_sdk.models.vlan_params.VlanParams.from_dictionary(dictionary.get('vlanParams')) if dictionary.get('vlanParams') else None
 
         # Return an object of this model
-        return cls(persist_mountpoints,
-                   vlan_params)
-
-
+        return cls(
+            persist_mountpoints,
+            vlan_params
+)

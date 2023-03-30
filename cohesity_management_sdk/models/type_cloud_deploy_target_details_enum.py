@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class TypeCloudDeployTargetDetailsEnum(object):
 
-    """Implementation of the 'Type_CloudDeployTargetDetails' enum.
+    """Implementation of the 'TypeCloudDeployTargetDetails' enum.
+    Specifies the type of the CloudDeploy target. 'kAzure' indicates that Azure
+    as a cloud deploy target type. 'kAWS' indicates that AWS as a cloud deploy
+    target type. 'kGCP' indicates that GCP as a cloud deploy target type.
 
-    Specifies the type of the CloudDeploy target.
-    'kAzure' indicates that Azure as a cloud deploy target type.
-    'kAWS' indicates that AWS as a cloud deploy target type.
-    'kGCP' indicates that GCP as a cloud deploy target type.
 
     Attributes:
         KAZURE: TODO: type description here.
@@ -22,4 +21,3 @@ class TypeCloudDeployTargetDetailsEnum(object):
     KAWS = 'kAWS'
 
     KGCP = 'kGCP'
-

@@ -1,19 +1,17 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class TypeOracleProtectionSourceEnum(object):
 
-    """Implementation of the 'Type_OracleProtectionSource' enum.
-
+    """Implementation of the 'TypeOracleProtectionSource' enum.
     Specifies the type of the managed Object in Oracle Protection Source.
     'kRACRootContainer' indicates the entity is a root container to an Oracle
-    Real Application clusters(Oracle RAC).
-    'kRootContainer' indicates the entity is a root container to an Oracle
-    standalone server.
-    'kHost' indicates the entity is an Oracle host.
-    'kDatabase' indicates the entity is an Oracle Database.
-    'kTableSpace' indicates the entity is an Oracle table space.
-    'kTable' indicates the entity is an Oracle table.
+    Real Application clusters(Oracle RAC). 'kRootContainer' indicates the
+    entity is a root container to an Oracle standalone server. 'kHost'
+    indicates the entity is an Oracle host. 'kDatabase' indicates the entity is
+    an Oracle Database. 'kTableSpace' indicates the entity is an Oracle table
+    space. 'kTable' indicates the entity is an Oracle table.
+
 
     Attributes:
         KRACROOTCONTAINER: TODO: type description here.
@@ -36,4 +34,3 @@ class TypeOracleProtectionSourceEnum(object):
     KTABLESPACE = 'kTableSpace'
 
     KTABLE = 'kTable'
-

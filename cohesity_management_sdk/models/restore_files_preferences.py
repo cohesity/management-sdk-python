@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class RestoreFilesPreferences(object):
 
@@ -9,15 +8,16 @@ class RestoreFilesPreferences(object):
     This message captures preferences from the user while restoring the files
     on the target.
 
+
     Attributes:
+
         alternate_restore_base_directory (string): This must be set to a
-            directory path if restore_to_original_paths is false. All the
-            files and directories restored will be restored under this
-            location.
+            directory path if restore_to_original_paths is false. All the files
+            and directories restored will be restored under this location.
         continue_on_error (bool): Whether to continue with the copy in case of
             encountering an error.
-        encryption_enabled (bool): Whether to enable encryption for NFS and
-            SMB restores.
+        encryption_enabled (bool): Whether to enable encryption for NFS and SMB
+            restores.
         generate_ssh_keys (bool): In case of GCP Linux restores, whether to
             generate ssh keys to connect to the customer's instance.
         override_originals (bool): This is relevant only if
@@ -30,11 +30,14 @@ class RestoreFilesPreferences(object):
             attributes.
         preserve_timestamps (bool): Whether to preserve the original time
             stamps.
+        restore_entities (int): Option to select whether to restore everything
+            or ACLs only.
         restore_to_original_paths (bool): If this is true, then files will be
             restored to original paths.
+        save_success_files (bool): Whether to save success files for FLR.
         skip_estimation (bool): Whether to skip the estimation step.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -46,10 +49,11 @@ class RestoreFilesPreferences(object):
         "preserve_acls":'preserveAcls',
         "preserve_attributes":'preserveAttributes',
         "preserve_timestamps":'preserveTimestamps',
+        "restore_entities":'restoreEntities',
         "restore_to_original_paths":'restoreToOriginalPaths',
-        "skip_estimation":'skipEstimation'
+        "save_success_files":'saveSuccessFiles',
+        "skip_estimation":'skipEstimation',
     }
-
     def __init__(self,
                  alternate_restore_base_directory=None,
                  continue_on_error=None,
@@ -59,8 +63,12 @@ class RestoreFilesPreferences(object):
                  preserve_acls=None,
                  preserve_attributes=None,
                  preserve_timestamps=None,
+                 restore_entities=None,
                  restore_to_original_paths=None,
-                 skip_estimation=None):
+                 save_success_files=None,
+                 skip_estimation=None,
+            ):
+
         """Constructor for the RestoreFilesPreferences class"""
 
         # Initialize members of the class
@@ -72,9 +80,10 @@ class RestoreFilesPreferences(object):
         self.preserve_acls = preserve_acls
         self.preserve_attributes = preserve_attributes
         self.preserve_timestamps = preserve_timestamps
+        self.restore_entities = restore_entities
         self.restore_to_original_paths = restore_to_original_paths
+        self.save_success_files = save_success_files
         self.skip_estimation = skip_estimation
-
 
     @classmethod
     def from_dictionary(cls,
@@ -102,19 +111,23 @@ class RestoreFilesPreferences(object):
         preserve_acls = dictionary.get('preserveAcls')
         preserve_attributes = dictionary.get('preserveAttributes')
         preserve_timestamps = dictionary.get('preserveTimestamps')
+        restore_entities = dictionary.get('restoreEntities')
         restore_to_original_paths = dictionary.get('restoreToOriginalPaths')
+        save_success_files = dictionary.get('saveSuccessFiles')
         skip_estimation = dictionary.get('skipEstimation')
 
         # Return an object of this model
-        return cls(alternate_restore_base_directory,
-                   continue_on_error,
-                   encryption_enabled,
-                   generate_ssh_keys,
-                   override_originals,
-                   preserve_acls,
-                   preserve_attributes,
-                   preserve_timestamps,
-                   restore_to_original_paths,
-                   skip_estimation)
-
-
+        return cls(
+            alternate_restore_base_directory,
+            continue_on_error,
+            encryption_enabled,
+            generate_ssh_keys,
+            override_originals,
+            preserve_acls,
+            preserve_attributes,
+            preserve_timestamps,
+            restore_entities,
+            restore_to_original_paths,
+            save_success_files,
+            skip_estimation
+)

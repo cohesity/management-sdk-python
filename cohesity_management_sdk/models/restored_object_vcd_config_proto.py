@@ -1,40 +1,42 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
-import cohesity_management_sdk.models.entity_proto
 import cohesity_management_sdk.models.connector_params
+import cohesity_management_sdk.models.entity_proto
 import cohesity_management_sdk.models.restore_object
+
 
 class RestoredObjectVCDConfigProto(object):
 
     """Implementation of the 'RestoredObjectVCDConfigProto' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
+
         is_vapp (bool): Whether the restored object is a VApp.
         is_vapp_template (bool): Whether the restored object is a VApp
             template.
-        restored_vapp_info (EntityProto): Entity info enabled only when
-            is_vapp is true. This proto will contain the original vApp that
-            is protected (deprecated)
+        restored_vapp_info (EntityProto): Entity info enabled only when is_vapp
+            is true. This proto will contain the original vApp that is
+            protected (deprecated)
         restored_vapp_object (RestoreObject): Enabled only when is_vapp is
             true. This proto will contain the original vApp that is protected.
         restored_vapp_template_info (EntityProto): Entity info enabled only
-            when is_vapp_template is true. This proto will contain the
-            original vApp template that is protected (deprecated)
+            when is_vapp_template is true. This proto will contain the original
+            vApp template that is protected (deprecated)
         restored_vapp_template_object (RestoreObject): Enabled only when
-            is_vapp_template is true. This proto will contain the original
-            vApp template that is protected.
-        vapp_entity (EntityProto): Specifies the attributes and the latest
-            statistics about an entity.
-        vcenter_connector_params (ConnectorParams): Message that encapsulates
-            the various params required to establish a connection with a
-            particular environment.
-        vdc_entity (EntityProto): Specifies the attributes and the latest
-            statistics about an entity.
-
+            is_vapp_template is true. This proto will contain the original vApp
+            template that is protected.
+        vapp_entity (EntityProto): Entity info of the vApp to be used to import
+            the VMs into while performing recovery of VMs into exisintg vApps.
+        vcenter_connector_params (ConnectorParams): Connector params associated
+            with the vcenter which will be captured for vCD environment.
+        vdc_entity (EntityProto): Entity info of the Virtual Datacenter used
+            while composing a new vApp.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -46,9 +48,8 @@ class RestoredObjectVCDConfigProto(object):
         "restored_vapp_template_object":'restoredVappTemplateObject',
         "vapp_entity":'vappEntity',
         "vcenter_connector_params":'vcenterConnectorParams',
-        "vdc_entity":'vdcEntity'
+        "vdc_entity":'vdcEntity',
     }
-
     def __init__(self,
                  is_vapp=None,
                  is_vapp_template=None,
@@ -58,7 +59,9 @@ class RestoredObjectVCDConfigProto(object):
                  restored_vapp_template_object=None,
                  vapp_entity=None,
                  vcenter_connector_params=None,
-                 vdc_entity=None):
+                 vdc_entity=None,
+            ):
+
         """Constructor for the RestoredObjectVCDConfigProto class"""
 
         # Initialize members of the class
@@ -71,7 +74,6 @@ class RestoredObjectVCDConfigProto(object):
         self.vapp_entity = vapp_entity
         self.vcenter_connector_params = vcenter_connector_params
         self.vdc_entity = vdc_entity
-
 
     @classmethod
     def from_dictionary(cls,
@@ -102,14 +104,14 @@ class RestoredObjectVCDConfigProto(object):
         vdc_entity = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('vdcEntity')) if dictionary.get('vdcEntity') else None
 
         # Return an object of this model
-        return cls(is_vapp,
-                   is_vapp_template,
-                   restored_vapp_info,
-                   restored_vapp_object,
-                   restored_vapp_template_info,
-                   restored_vapp_template_object,
-                   vapp_entity,
-                   vcenter_connector_params,
-                   vdc_entity)
-
-
+        return cls(
+            is_vapp,
+            is_vapp_template,
+            restored_vapp_info,
+            restored_vapp_object,
+            restored_vapp_template_info,
+            restored_vapp_template_object,
+            vapp_entity,
+            vcenter_connector_params,
+            vdc_entity
+)

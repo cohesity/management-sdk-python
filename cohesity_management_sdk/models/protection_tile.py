@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.protection_stats
+
 
 class ProtectionTile(object):
 
@@ -9,27 +10,34 @@ class ProtectionTile(object):
 
     Protection information and statistics.
 
-    Attributes:
-        last_day_archival (ProtectionStats): Protection Statistics.
-        last_day_backup (ProtectionStats): Protection Statistics.
-        last_day_replication_in (ProtectionStats): Protection Statistics.
-        last_day_replication_out (ProtectionStats): Protection Statistics.
 
+    Attributes:
+
+        last_day_archival (ProtectionStats): Statistics related to archival for
+            last 24 hours.
+        last_day_backup (ProtectionStats): Statistics related to Back for last
+            24 hours.
+        last_day_replication_in (ProtectionStats): Statistics related to
+            incoming replication for last 24 hours.
+        last_day_replication_out (ProtectionStats): Statistics related to
+            outgoing replication for last 24 hours.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "last_day_archival":'lastDayArchival',
         "last_day_backup":'lastDayBackup',
         "last_day_replication_in":'lastDayReplicationIn',
-        "last_day_replication_out":'lastDayReplicationOut'
+        "last_day_replication_out":'lastDayReplicationOut',
     }
-
     def __init__(self,
                  last_day_archival=None,
                  last_day_backup=None,
                  last_day_replication_in=None,
-                 last_day_replication_out=None):
+                 last_day_replication_out=None,
+            ):
+
         """Constructor for the ProtectionTile class"""
 
         # Initialize members of the class
@@ -37,7 +45,6 @@ class ProtectionTile(object):
         self.last_day_backup = last_day_backup
         self.last_day_replication_in = last_day_replication_in
         self.last_day_replication_out = last_day_replication_out
-
 
     @classmethod
     def from_dictionary(cls,
@@ -63,9 +70,9 @@ class ProtectionTile(object):
         last_day_replication_out = cohesity_management_sdk.models.protection_stats.ProtectionStats.from_dictionary(dictionary.get('lastDayReplicationOut')) if dictionary.get('lastDayReplicationOut') else None
 
         # Return an object of this model
-        return cls(last_day_archival,
-                   last_day_backup,
-                   last_day_replication_in,
-                   last_day_replication_out)
-
-
+        return cls(
+            last_day_archival,
+            last_day_backup,
+            last_day_replication_in,
+            last_day_replication_out
+)

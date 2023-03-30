@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.protected_objects_by_env
+
 
 class ProtectedObjectsTile(object):
 
@@ -9,15 +10,17 @@ class ProtectedObjectsTile(object):
 
     Protected Objects information.
 
+
     Attributes:
+
         objects_protected (list of ProtectedObjectsByEnv): Protected Objects
             breakdown by object type.
         protected_count (int): Number of Protected Objects.
         protected_size_bytes (long|int): Size of Protected Objects.
         unprotected_count (int): Number of Unprotected Objects.
         unprotected_size_bytes (long|int): Size of Unprotected Objects.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -25,15 +28,16 @@ class ProtectedObjectsTile(object):
         "protected_count":'protectedCount',
         "protected_size_bytes":'protectedSizeBytes',
         "unprotected_count":'unprotectedCount',
-        "unprotected_size_bytes":'unprotectedSizeBytes'
+        "unprotected_size_bytes":'unprotectedSizeBytes',
     }
-
     def __init__(self,
                  objects_protected=None,
                  protected_count=None,
                  protected_size_bytes=None,
                  unprotected_count=None,
-                 unprotected_size_bytes=None):
+                 unprotected_size_bytes=None,
+            ):
+
         """Constructor for the ProtectedObjectsTile class"""
 
         # Initialize members of the class
@@ -42,7 +46,6 @@ class ProtectedObjectsTile(object):
         self.protected_size_bytes = protected_size_bytes
         self.unprotected_count = unprotected_count
         self.unprotected_size_bytes = unprotected_size_bytes
-
 
     @classmethod
     def from_dictionary(cls,
@@ -73,10 +76,10 @@ class ProtectedObjectsTile(object):
         unprotected_size_bytes = dictionary.get('unprotectedSizeBytes')
 
         # Return an object of this model
-        return cls(objects_protected,
-                   protected_count,
-                   protected_size_bytes,
-                   unprotected_count,
-                   unprotected_size_bytes)
-
-
+        return cls(
+            objects_protected,
+            protected_count,
+            protected_size_bytes,
+            unprotected_count,
+            unprotected_size_bytes
+)

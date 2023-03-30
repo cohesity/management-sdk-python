@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class FileSizePolicyEnum(object):
 
     """Implementation of the 'FileSizePolicy' enum.
+    Specifies policy to select a file to migrate based on its size. eg. A file
+    can be selected to migrate if its size is greater than or smaller than the
+    FileSizeBytes. enum: kGreaterThan, kSmallerThan. Specifies policy for file
+    selection in data migration jobs based on file size. 'kGreaterThan':
+    Migrate the files whose size are greater than specified file size.
+    'kSmallerThan': Migrate the files whose size are smaller than specified
+    file size.
 
-    Specifies policy to select a file to uptier based on its size.
-    eg. A file can be selected to uptier if its size is greater than or
-    smaller than the FileSizeBytes.
-    enum: kGreaterThan, kSmallerThan.
-    Specifies policy for file selection in data uptier jobs based on file size.
-    'kGreaterThan': Uptier the files having size greater than file_size.
-    'kSmallerThan': Uptier the files having size smaller than file_size.
 
     Attributes:
         KGREATERTHAN: TODO: type description here.
@@ -22,4 +22,3 @@ class FileSizePolicyEnum(object):
     KGREATERTHAN = 'kGreaterThan'
 
     KSMALLERTHAN = 'kSmallerThan'
-

@@ -1,27 +1,30 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
+import cohesity_management_sdk.models.data_usage_stats
 import cohesity_management_sdk.models.stats_group
 import cohesity_management_sdk.models.usage_schema_info
-import cohesity_management_sdk.models.data_usage_stats
+
 
 class TenantStats(object):
 
     """Implementation of the 'TenantStats' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
+
         group_list (list of StatsGroup): Specifies a list of groups associated
             to this tenant (organization).
         id (string): Specifies the id of the tenant (organization).
         name (string): Specifies the name of the tenant (organization).
         schema_info_list (list of UsageSchemaInfo): Specifies a list of
             schemaInfos of the tenant (organization).
-        stats (DataUsageStats): Specifies the data usage metric of the data
-            stored on the Cohesity Cluster or Storage Domains (View Boxes).
-
+        stats (DataUsageStats): Specifies details of statistics of the tenant
+            (organization).
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -29,15 +32,16 @@ class TenantStats(object):
         "id":'id',
         "name":'name',
         "schema_info_list":'schemaInfoList',
-        "stats":'stats'
+        "stats":'stats',
     }
-
     def __init__(self,
                  group_list=None,
                  id=None,
                  name=None,
                  schema_info_list=None,
-                 stats=None):
+                 stats=None,
+            ):
+
         """Constructor for the TenantStats class"""
 
         # Initialize members of the class
@@ -46,7 +50,6 @@ class TenantStats(object):
         self.name = name
         self.schema_info_list = schema_info_list
         self.stats = stats
-
 
     @classmethod
     def from_dictionary(cls,
@@ -81,10 +84,10 @@ class TenantStats(object):
         stats = cohesity_management_sdk.models.data_usage_stats.DataUsageStats.from_dictionary(dictionary.get('stats')) if dictionary.get('stats') else None
 
         # Return an object of this model
-        return cls(group_list,
-                   id,
-                   name,
-                   schema_info_list,
-                   stats)
-
-
+        return cls(
+            group_list,
+            id,
+            name,
+            schema_info_list,
+            stats
+)

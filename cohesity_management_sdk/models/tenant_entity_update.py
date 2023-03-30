@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class TenantEntityUpdate(object):
 
@@ -8,28 +7,30 @@ class TenantEntityUpdate(object):
 
     Specifies entity update details response about a tenant.
 
+
     Attributes:
+
         entity_ids (list of long|int): Specifies the EntityIds for respective
             tenant.
         tenant_id (string): Specifies the unique id of the tenant.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "entity_ids":'entityIds',
-        "tenant_id":'tenantId'
+        "tenant_id":'tenantId',
     }
-
     def __init__(self,
                  entity_ids=None,
-                 tenant_id=None):
+                 tenant_id=None,
+            ):
+
         """Constructor for the TenantEntityUpdate class"""
 
         # Initialize members of the class
         self.entity_ids = entity_ids
         self.tenant_id = tenant_id
-
 
     @classmethod
     def from_dictionary(cls,
@@ -49,11 +50,11 @@ class TenantEntityUpdate(object):
             return None
 
         # Extract variables from the dictionary
-        entity_ids = dictionary.get('entityIds')
+        entity_ids = dictionary.get("entityIds")
         tenant_id = dictionary.get('tenantId')
 
         # Return an object of this model
-        return cls(entity_ids,
-                   tenant_id)
-
-
+        return cls(
+            entity_ids,
+            tenant_id
+)

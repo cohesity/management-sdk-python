@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class VerifyOtpCodeParams(object):
 
@@ -8,29 +7,30 @@ class VerifyOtpCodeParams(object):
 
     Specifies the parameters to verify OTP code.
 
-    Attributes:
-        otp_code (string): Specifies the OTP code.
-        otp_type (OtpTypeEnum): Specifies OTP type.
-          'Totp' implies the code is TOTP.
-          'Email' implies the code is email OTP.
 
+    Attributes:
+
+        otp_code (string): Specifies the OTP code.
+        otp_type (OtpTypeEnum): Specifies OTP type. 'Totp' implies the code is
+            TOTP. 'Email' implies the code is email OTP.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "otp_code": 'otpCode',
-        "otp_type": 'otpType'
+        "otp_code":'otpCode',
+        "otp_type":'otpType',
     }
-
     def __init__(self,
                  otp_code=None,
-                 otp_type=None):
+                 otp_type=None,
+            ):
+
         """Constructor for the VerifyOtpCodeParams class"""
 
         # Initialize members of the class
         self.otp_code = otp_code
         self.otp_type = otp_type
-
 
     @classmethod
     def from_dictionary(cls,
@@ -50,11 +50,11 @@ class VerifyOtpCodeParams(object):
             return None
 
         # Extract variables from the dictionary
-        otp_code = dictionary.get('otpCode', None)
-        otp_type = dictionary.get('otpType', None)
+        otp_code = dictionary.get('otpCode')
+        otp_type = dictionary.get('otpType')
 
         # Return an object of this model
-        return cls(otp_code,
-                   otp_type)
-
-
+        return cls(
+            otp_code,
+            otp_type
+)

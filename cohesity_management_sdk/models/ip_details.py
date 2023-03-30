@@ -1,36 +1,37 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class IpDetails(object):
 
     """Implementation of the 'IpDetails' model.
 
-    IP address details
-    The table below captures the type if information published by an entity
-    type using this field.
+    Entity Type      |  IP Address Details             | Details field 
+    kHostSystem      |  VMKernel Adapter IP Addresses  | VMKernelAdapter 
+    TODO(Matthew) : Use an enum for the 'Details'.
+
 
     Attributes:
+
         details (string): Details of the IP Addresses captured below
         ip_addresses (list of string): The IP Addresses
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "details": 'details',
-        "ip_addresses": 'ipAddresses'
+        "details":'details',
+        "ip_addresses":'ipAddresses',
     }
-
     def __init__(self,
                  details=None,
-                 ip_addresses=None):
+                 ip_addresses=None,
+            ):
+
         """Constructor for the IpDetails class"""
 
         # Initialize members of the class
         self.details = details
         self.ip_addresses = ip_addresses
-
 
     @classmethod
     def from_dictionary(cls,
@@ -50,11 +51,11 @@ class IpDetails(object):
             return None
 
         # Extract variables from the dictionary
-        details = dictionary.get('details', None)
-        ip_addresses = dictionary.get('ipAddresses', None)
+        details = dictionary.get('details')
+        ip_addresses = dictionary.get("ipAddresses")
 
         # Return an object of this model
-        return cls(details,
-                   ip_addresses)
-
-
+        return cls(
+            details,
+            ip_addresses
+)

@@ -1,35 +1,39 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class PodInfo_PodSpec_VolumeInfo_Projected_VolumeProjection_ServiceAccountTokenProjection(object):
 
     """Implementation of the 'PodInfo_PodSpec_VolumeInfo_Projected_VolumeProjection_ServiceAccountTokenProjection' model.
 
+    TODO: type description here.
+
+
     Attributes:
+
         audience (string): TODO: Type description here.
         expiration_seconds (int): TODO: Type description here.
         path (string): TODO: Type description here.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "audience":'audience',
         "expiration_seconds":'expirationSeconds',
-        "path":'path'
+        "path":'path',
     }
-
     def __init__(self,
                  audience=None,
                  expiration_seconds=None,
-                 path=None):
+                 path=None,
+            ):
+
         """Constructor for the PodInfo_PodSpec_VolumeInfo_Projected_VolumeProjection_ServiceAccountTokenProjection class"""
 
         # Initialize members of the class
         self.audience = audience
         self.expiration_seconds = expiration_seconds
         self.path = path
-
 
     @classmethod
     def from_dictionary(cls,
@@ -54,8 +58,8 @@ class PodInfo_PodSpec_VolumeInfo_Projected_VolumeProjection_ServiceAccountTokenP
         path = dictionary.get('path')
 
         # Return an object of this model
-        return cls(audience,
-                   expiration_seconds,
-                   path)
-
-
+        return cls(
+            audience,
+            expiration_seconds,
+            path
+)

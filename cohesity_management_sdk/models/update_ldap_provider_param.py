@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class UpdateLdapProviderParam(object):
 
@@ -8,7 +7,9 @@ class UpdateLdapProviderParam(object):
 
     Specifies the update LDAP provider params.
 
+
     Attributes:
+
         ad_domain_name (string): Specifies the domain name of an Active
             Directory which is mapped to this LDAP provider
         attribute_common_name (string): Name of the LDAP attribute used for
@@ -19,14 +20,14 @@ class UpdateLdapProviderParam(object):
             members of a group.
         attribute_uid (string): Name of the attribute used to lookup unix UID
             of an LDAP user.
-        attribute_user_name (string): Name of the LDAP attribute used to
-            lookup a user by user ID.
+        attribute_user_name (string): Name of the LDAP attribute used to lookup
+            a user by user ID.
         auth_type (AuthTypeEnum): Specifies the authentication type used while
             connecting to LDAP servers. Authentication level. 'kAnonymous'
             indicates LDAP authentication type 'Anonymous' 'kSimple' indicates
             LDAP authentication type 'Simple'
-        base_distinguished_name (string): Specifies the base distinguished
-            name used as the base for LDAP search requests.
+        base_distinguished_name (string): Specifies the base distinguished name
+            used as the base for LDAP search requests.
         domain_name (string): Specifies the name of the domain name to be used
             for querying LDAP servers from DNS. If PreferredLdapServerList is
             set, then DomainName field is ignored.
@@ -42,13 +43,13 @@ class UpdateLdapProviderParam(object):
             domain name (FQDN) format or IP addresses.
         tenant_id (string): Specifies the unique id of the tenant.
         use_ssl (bool): Specifies whether to use SSL for LDAP connections.
-        user_distinguished_name (string): Specifies the user distinguished
-            name that is used for LDAP authentication. It should be provided
-            if the AuthType is set to either kSimple or kSasl.
+        user_distinguished_name (string): Specifies the user distinguished name
+            that is used for LDAP authentication. It should be provided if the
+            AuthType is set to either kSimple or kSasl.
         user_password (string): Specifies the user password that is used for
             LDAP authentication.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -70,9 +71,8 @@ class UpdateLdapProviderParam(object):
         "tenant_id":'tenantId',
         "use_ssl":'useSsl',
         "user_distinguished_name":'userDistinguishedName',
-        "user_password":'userPassword'
+        "user_password":'userPassword',
     }
-
     def __init__(self,
                  ad_domain_name=None,
                  attribute_common_name=None,
@@ -92,13 +92,15 @@ class UpdateLdapProviderParam(object):
                  tenant_id=None,
                  use_ssl=None,
                  user_distinguished_name=None,
-                 user_password=None):
+                 user_password=None,
+            ):
+
         """Constructor for the UpdateLdapProviderParam class"""
 
         # Initialize members of the class
         self.ad_domain_name = ad_domain_name
-        self.attribute_gid = attribute_gid
         self.attribute_common_name = attribute_common_name
+        self.attribute_gid = attribute_gid
         self.attribute_member_of = attribute_member_of
         self.attribute_uid = attribute_uid
         self.attribute_user_name = attribute_user_name
@@ -115,7 +117,6 @@ class UpdateLdapProviderParam(object):
         self.use_ssl = use_ssl
         self.user_distinguished_name = user_distinguished_name
         self.user_password = user_password
-
 
     @classmethod
     def from_dictionary(cls,
@@ -149,31 +150,31 @@ class UpdateLdapProviderParam(object):
         object_class_group = dictionary.get('objectClassGroup')
         object_class_user = dictionary.get('objectClassUser')
         port = dictionary.get('port')
-        preferred_ldap_server_list = dictionary.get('preferredLdapServerList')
+        preferred_ldap_server_list = dictionary.get("preferredLdapServerList")
         tenant_id = dictionary.get('tenantId')
         use_ssl = dictionary.get('useSsl')
         user_distinguished_name = dictionary.get('userDistinguishedName')
         user_password = dictionary.get('userPassword')
 
         # Return an object of this model
-        return cls(ad_domain_name,
-                   attribute_common_name,
-                   attribute_gid,
-                   attribute_member_of,
-                   attribute_uid,
-                   attribute_user_name,
-                   auth_type,
-                   base_distinguished_name,
-                   domain_name,
-                   id,
-                   name,
-                   object_class_group,
-                   object_class_user,
-                   port,
-                   preferred_ldap_server_list,
-                   tenant_id,
-                   use_ssl,
-                   user_distinguished_name,
-                   user_password)
-
-
+        return cls(
+            ad_domain_name,
+            attribute_common_name,
+            attribute_gid,
+            attribute_member_of,
+            attribute_uid,
+            attribute_user_name,
+            auth_type,
+            base_distinguished_name,
+            domain_name,
+            id,
+            name,
+            object_class_group,
+            object_class_user,
+            port,
+            preferred_ldap_server_list,
+            tenant_id,
+            use_ssl,
+            user_distinguished_name,
+            user_password
+)

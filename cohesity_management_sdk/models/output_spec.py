@@ -1,28 +1,27 @@
-
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class OutputSpec(object):
 
     """Implementation of the 'OutputSpec' model.
 
-    Output specification for the mapreduce.
+    TODO: type description here.
+
 
     Attributes:
+
         num_reduce_shards (int): Number of reduce shards.
         output_dir (string): Name of output directory.
         partition_id (long|int): Partition id where output will go.
         reduce_output_prefix (string): Prefix of the reduce output files. File
             names will be: ${reduce_output_prefix}-00000-of-00100 if
             num_reduce_shards=100 This name can contain some path components.
-            e.g. "awb_results/run1" is a valid value. output_dir is
-            deprecated.
+            e.g. "awb_results/run1" is a valid value. output_dir is deprecated.
         view_box_id (long|int): Viewbox id where the output will go.
-        view_name (string): Name of the view where output will go. This will
-            be filled up by yoda.
-
+        view_name (string): Name of the view where output will go. This will be
+            filled up by yoda.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -31,16 +30,17 @@ class OutputSpec(object):
         "partition_id":'partitionId',
         "reduce_output_prefix":'reduceOutputPrefix',
         "view_box_id":'viewBoxId',
-        "view_name":'viewName'
+        "view_name":'viewName',
     }
-
     def __init__(self,
                  num_reduce_shards=None,
                  output_dir=None,
                  partition_id=None,
                  reduce_output_prefix=None,
                  view_box_id=None,
-                 view_name=None):
+                 view_name=None,
+            ):
+
         """Constructor for the OutputSpec class"""
 
         # Initialize members of the class
@@ -77,11 +77,11 @@ class OutputSpec(object):
         view_name = dictionary.get('viewName')
 
         # Return an object of this model
-        return cls(num_reduce_shards,
-                   output_dir,
-                   partition_id,
-                   reduce_output_prefix,
-                   view_box_id,
-                   view_name)
-
-
+        return cls(
+            num_reduce_shards,
+            output_dir,
+            partition_id,
+            reduce_output_prefix,
+            view_box_id,
+            view_name
+)

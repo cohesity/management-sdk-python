@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
-class AthenaSlowerIOPreferentialTierEnum(object):
+class AthenaSlowerIoPreferentialTierEnum(object):
 
-    """Implementation of the 'AthenaSlowerIOPreferentialTier' enum.
+    """Implementation of the 'AthenaSlowerIoPreferentialTier' enum.
+    Specifies the list of perferred storage tiers used by Athena for slower
+    storage.
 
-    Specifies the list of perferred storage tiers used by Athena
-    for slower storage.
 
     Attributes:
         KPCIESSD: TODO: type description here.
@@ -23,4 +23,3 @@ class AthenaSlowerIOPreferentialTierEnum(object):
     KSATAHDD = 'kSataHdd'
 
     KCLOUD = 'kCloud'
-

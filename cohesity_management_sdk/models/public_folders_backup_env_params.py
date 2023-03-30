@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.filtering_policy_proto
+
 
 class PublicFoldersBackupEnvParams(object):
 
@@ -10,26 +11,28 @@ class PublicFoldersBackupEnvParams(object):
     Message to capture any additional backup params for Public Folders within
     Office365 environment.
 
+
     Attributes:
+
         filtering_policy (FilteringPolicyProto): The filtering policy describes
             which paths within a Public Folder should be excluded within the
             backup. If this is not specified, then the entire Public Folders
             will be backed up.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "filtering_policy":'filteringPolicy'
+        "filtering_policy":'filteringPolicy',
     }
-
     def __init__(self,
-                 filtering_policy=None):
+                 filtering_policy=None,
+            ):
+
         """Constructor for the PublicFoldersBackupEnvParams class"""
 
         # Initialize members of the class
         self.filtering_policy = filtering_policy
-
 
     @classmethod
     def from_dictionary(cls,
@@ -52,6 +55,6 @@ class PublicFoldersBackupEnvParams(object):
         filtering_policy = cohesity_management_sdk.models.filtering_policy_proto.FilteringPolicyProto.from_dictionary(dictionary.get('filteringPolicy')) if dictionary.get('filteringPolicy') else None
 
         # Return an object of this model
-        return cls(filtering_policy)
-
-
+        return cls(
+            filtering_policy
+)

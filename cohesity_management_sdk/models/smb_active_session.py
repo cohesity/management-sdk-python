@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.smb_active_open
+
 
 class SmbActiveSession(object):
 
@@ -9,7 +10,9 @@ class SmbActiveSession(object):
 
     Specifies an active session and its opens.
 
+
     Attributes:
+
         active_opens (list of SmbActiveOpen): Specifies the list of active
             opens of the file in this session.
         client_ip (string): Specifies the IP address from which the file is
@@ -19,8 +22,8 @@ class SmbActiveSession(object):
             file exists.
         session_id (long|int): Specifies the id of the session.
         username (string): Specifies the username who keeps the file open.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -29,16 +32,17 @@ class SmbActiveSession(object):
         "domain":'domain',
         "server_ip":'serverIp',
         "session_id":'sessionId',
-        "username":'username'
+        "username":'username',
     }
-
     def __init__(self,
                  active_opens=None,
                  client_ip=None,
                  domain=None,
                  server_ip=None,
                  session_id=None,
-                 username=None):
+                 username=None,
+            ):
+
         """Constructor for the SmbActiveSession class"""
 
         # Initialize members of the class
@@ -48,7 +52,6 @@ class SmbActiveSession(object):
         self.server_ip = server_ip
         self.session_id = session_id
         self.username = username
-
 
     @classmethod
     def from_dictionary(cls,
@@ -80,11 +83,11 @@ class SmbActiveSession(object):
         username = dictionary.get('username')
 
         # Return an object of this model
-        return cls(active_opens,
-                   client_ip,
-                   domain,
-                   server_ip,
-                   session_id,
-                   username)
-
-
+        return cls(
+            active_opens,
+            client_ip,
+            domain,
+            server_ip,
+            session_id,
+            username
+)

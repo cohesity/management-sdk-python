@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class SQLServerInstanceVersion(object):
 
@@ -8,14 +7,16 @@ class SQLServerInstanceVersion(object):
 
     Specifies the Server Instance Version.
 
-    Attributes:
-        build (int): Specfies the build.
-        major_version (int): Specfies the major version.
-        minor_version (int): Specfies the minor version.
-        revision (int): Specfies the revision.
-        version_string (string): Specfies the version string.
 
+    Attributes:
+
+        build (int): Specifies the build.
+        major_version (int): Specifies the major version.
+        minor_version (int): Specifies the minor version.
+        revision (int): Specifies the revision.
+        version_string (string): Specifies the version string.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -23,15 +24,16 @@ class SQLServerInstanceVersion(object):
         "major_version":'majorVersion',
         "minor_version":'minorVersion',
         "revision":'revision',
-        "version_string":'versionString'
+        "version_string":'versionString',
     }
-
     def __init__(self,
                  build=None,
                  major_version=None,
                  minor_version=None,
                  revision=None,
-                 version_string=None):
+                 version_string=None,
+            ):
+
         """Constructor for the SQLServerInstanceVersion class"""
 
         # Initialize members of the class
@@ -40,7 +42,6 @@ class SQLServerInstanceVersion(object):
         self.minor_version = minor_version
         self.revision = revision
         self.version_string = version_string
-
 
     @classmethod
     def from_dictionary(cls,
@@ -67,10 +68,10 @@ class SQLServerInstanceVersion(object):
         version_string = dictionary.get('versionString')
 
         # Return an object of this model
-        return cls(build,
-                   major_version,
-                   minor_version,
-                   revision,
-                   version_string)
-
-
+        return cls(
+            build,
+            major_version,
+            minor_version,
+            revision,
+            version_string
+)

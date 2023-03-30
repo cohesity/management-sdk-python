@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.data_transfer_from_vault_summary
+
 
 class DataTransferFromVaultsSummaryResponse(object):
 
@@ -10,25 +11,27 @@ class DataTransferFromVaultsSummaryResponse(object):
     Provides summary statistics about the transfer of data from Vaults
     (External Targets) to this Cohesity Cluster.
 
+
     Attributes:
+
         data_transfer_summary (list of DataTransferFromVaultSummary): Array of
-            Summary Data Transfer Statistics.
-            Specifies summary statistics about the transfer of data from
-            Vaults to the Cohesity Cluster.
+            Summary Data Transfer Statistics.  Specifies summary statistics
+            about the transfer of data from Vaults to the Cohesity Cluster.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "data_transfer_summary":'dataTransferSummary'
+        "data_transfer_summary":'dataTransferSummary',
     }
-
     def __init__(self,
-                 data_transfer_summary=None):
+                 data_transfer_summary=None,
+            ):
+
         """Constructor for the DataTransferFromVaultsSummaryResponse class"""
 
         # Initialize members of the class
         self.data_transfer_summary = data_transfer_summary
-
 
     @classmethod
     def from_dictionary(cls,
@@ -55,6 +58,6 @@ class DataTransferFromVaultsSummaryResponse(object):
                 data_transfer_summary.append(cohesity_management_sdk.models.data_transfer_from_vault_summary.DataTransferFromVaultSummary.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(data_transfer_summary)
-
-
+        return cls(
+            data_transfer_summary
+)

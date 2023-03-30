@@ -1,37 +1,39 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class AnalyseJarArg(object):
 
     """Implementation of the 'AnalyseJarArg' model.
 
     API to analyse a JAR file. This JAR may contain multiple mappers/reducers.
-    Jar will be analysed and list of all mappers/reducers found in the jar
-    will be returned.
+    Jar will be analysed and list of all mappers/reducers found in the jar will
+    be returned.
+
 
     Attributes:
+
         jar_name (string): Name of the JAR to be analysed.
         jar_path (string): Path of the jar file.
-        jar_relative_path (string): :TODO add description here.
+        jar_relative_path (string): TODO: Type description here.
         save_entities (bool): If this flag is true, then also save mapper and
             reducers in scribe.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "jar_name":'jarName',
         "jar_path":'jarPath',
         "jar_relative_path":'jarRelativePath',
-        "save_entities":'saveEntities'
+        "save_entities":'saveEntities',
     }
-
     def __init__(self,
                  jar_name=None,
                  jar_path=None,
                  jar_relative_path=None,
-                 save_entities=None):
+                 save_entities=None,
+            ):
+
         """Constructor for the AnalyseJarArg class"""
 
         # Initialize members of the class
@@ -39,7 +41,6 @@ class AnalyseJarArg(object):
         self.jar_path = jar_path
         self.jar_relative_path = jar_relative_path
         self.save_entities = save_entities
-
 
     @classmethod
     def from_dictionary(cls,
@@ -65,9 +66,9 @@ class AnalyseJarArg(object):
         save_entities = dictionary.get('saveEntities')
 
         # Return an object of this model
-        return cls(jar_name,
-                   jar_path,
-                   jar_relative_path,
-                   save_entities)
-
-
+        return cls(
+            jar_name,
+            jar_path,
+            jar_relative_path,
+            save_entities
+)

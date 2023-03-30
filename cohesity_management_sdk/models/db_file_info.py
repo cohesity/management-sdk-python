@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class DbFileInfo(object):
 
@@ -8,39 +7,41 @@ class DbFileInfo(object):
 
     Specifies information about a database file.
 
+
     Attributes:
+
         file_type (FileTypeEnum): Specifies the format type of the file that
-            SQL database stores the data. Specifies the format type of the
-            file that SQL database stores the data. 'kRows' refers to a data
-            file 'kLog' refers to a log file 'kFileStream' refers to a
-            directory containing FILESTREAM data 'kNotSupportedType' is for
-            information purposes only. Not supported. 'kFullText' refers to a
-            full-text catalog.
-        full_path (string): Specifies the full path of the database file on
-            the SQL host machine.
+            SQL database stores the data. Specifies the format type of the file
+            that SQL database stores the data. 'kRows' refers to a data file
+            'kLog' refers to a log file 'kFileStream' refers to a directory
+            containing FILESTREAM data 'kNotSupportedType' is for information
+            purposes only. Not supported. 'kFullText' refers to a full-text
+            catalog.
+        full_path (string): Specifies the full path of the database file on the
+            SQL host machine.
         size_bytes (long|int): Specifies the last known size of the database
             file.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "file_type":'fileType',
         "full_path":'fullPath',
-        "size_bytes":'sizeBytes'
+        "size_bytes":'sizeBytes',
     }
-
     def __init__(self,
                  file_type=None,
                  full_path=None,
-                 size_bytes=None):
+                 size_bytes=None,
+            ):
+
         """Constructor for the DbFileInfo class"""
 
         # Initialize members of the class
         self.file_type = file_type
         self.full_path = full_path
         self.size_bytes = size_bytes
-
 
     @classmethod
     def from_dictionary(cls,
@@ -65,8 +66,8 @@ class DbFileInfo(object):
         size_bytes = dictionary.get('sizeBytes')
 
         # Return an object of this model
-        return cls(file_type,
-                   full_path,
-                   size_bytes)
-
-
+        return cls(
+            file_type,
+            full_path,
+            size_bytes
+)

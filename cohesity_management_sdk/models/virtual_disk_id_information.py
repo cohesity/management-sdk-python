@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class VirtualDiskIdInformation(object):
 
@@ -9,30 +8,33 @@ class VirtualDiskIdInformation(object):
     Specifies information about virtual disk which includes disk uuid,
     controller type, bus number and unit number.
 
+
     Attributes:
+
         bus_number (long|int): Specifies the Id of the controller bus that
             controls the disk.
         controller_type (string): Specifies the controller type like SCSI, or
             IDE etc.
-        disk_id (string): Specfies the uuid of the virtual disk.
+        disk_id (string): Specifies the uuid of the virtual disk.
         unit_number (long|int): Specifies the disk file name. This is the VMDK
             name and not the flat file name.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "bus_number":'busNumber',
         "controller_type":'controllerType',
         "disk_id":'diskId',
-        "unit_number":'unitNumber'
+        "unit_number":'unitNumber',
     }
-
     def __init__(self,
                  bus_number=None,
                  controller_type=None,
                  disk_id=None,
-                 unit_number=None):
+                 unit_number=None,
+            ):
+
         """Constructor for the VirtualDiskIdInformation class"""
 
         # Initialize members of the class
@@ -40,7 +42,6 @@ class VirtualDiskIdInformation(object):
         self.controller_type = controller_type
         self.disk_id = disk_id
         self.unit_number = unit_number
-
 
     @classmethod
     def from_dictionary(cls,
@@ -66,9 +67,9 @@ class VirtualDiskIdInformation(object):
         unit_number = dictionary.get('unitNumber')
 
         # Return an object of this model
-        return cls(bus_number,
-                   controller_type,
-                   disk_id,
-                   unit_number)
-
-
+        return cls(
+            bus_number,
+            controller_type,
+            disk_id,
+            unit_number
+)

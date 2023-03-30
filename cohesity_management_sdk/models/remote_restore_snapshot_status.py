@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.universal_id
+
 
 class RemoteRestoreSnapshotStatus(object):
 
@@ -9,15 +10,15 @@ class RemoteRestoreSnapshotStatus(object):
 
     Specifies the status of a restore Snapshot task.
 
+
     Attributes:
-        archive_task_uid (UniversalId): Specifies the globally unique id of
-            the archival task that archived the Snapshots to the remote
-            Vault.
-        error (string): Specifies the error message if the indexing task
-            fails.
+
+        archive_task_uid (UniversalId): Specifies the globally unique id of the
+            archival task that archived the Snapshots to the remote Vault.
+        error (string): Specifies the error message if the indexing task fails.
         expiry_time_usecs (long|int): Specifies the time when the Snapshot
-            expires on the remote Vault. This field is recorded as a Unix
-            epoch Timestamp (in microseconds).
+            expires on the remote Vault. This field is recorded as a Unix epoch
+            Timestamp (in microseconds).
         job_run_id (long|int): Specifies the id of the Job Run that originally
             captured the Snapshot.
         progress_monitor_task (string): Specifies the path to the progress
@@ -34,8 +35,8 @@ class RemoteRestoreSnapshotStatus(object):
         snapshot_time_usecs (long|int): Specify the time the Snapshot was
             captured. This time is recorded as a Unix epoch Timestamp (in
             microseconds).
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -46,9 +47,8 @@ class RemoteRestoreSnapshotStatus(object):
         "progress_monitor_task":'progressMonitorTask',
         "snapshot_task_status":'snapshotTaskStatus',
         "snapshot_task_uid":'snapshotTaskUid',
-        "snapshot_time_usecs":'snapshotTimeUsecs'
+        "snapshot_time_usecs":'snapshotTimeUsecs',
     }
-
     def __init__(self,
                  archive_task_uid=None,
                  error=None,
@@ -57,7 +57,9 @@ class RemoteRestoreSnapshotStatus(object):
                  progress_monitor_task=None,
                  snapshot_task_status=None,
                  snapshot_task_uid=None,
-                 snapshot_time_usecs=None):
+                 snapshot_time_usecs=None,
+            ):
+
         """Constructor for the RemoteRestoreSnapshotStatus class"""
 
         # Initialize members of the class
@@ -69,7 +71,6 @@ class RemoteRestoreSnapshotStatus(object):
         self.snapshot_task_status = snapshot_task_status
         self.snapshot_task_uid = snapshot_task_uid
         self.snapshot_time_usecs = snapshot_time_usecs
-
 
     @classmethod
     def from_dictionary(cls,
@@ -99,13 +100,13 @@ class RemoteRestoreSnapshotStatus(object):
         snapshot_time_usecs = dictionary.get('snapshotTimeUsecs')
 
         # Return an object of this model
-        return cls(archive_task_uid,
-                   error,
-                   expiry_time_usecs,
-                   job_run_id,
-                   progress_monitor_task,
-                   snapshot_task_status,
-                   snapshot_task_uid,
-                   snapshot_time_usecs)
-
-
+        return cls(
+            archive_task_uid,
+            error,
+            expiry_time_usecs,
+            job_run_id,
+            progress_monitor_task,
+            snapshot_task_status,
+            snapshot_task_uid,
+            snapshot_time_usecs
+)

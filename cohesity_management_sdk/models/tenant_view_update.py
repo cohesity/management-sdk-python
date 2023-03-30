@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class TenantViewUpdate(object):
 
@@ -8,28 +7,30 @@ class TenantViewUpdate(object):
 
     Specifies view update details response about a tenant.
 
+
     Attributes:
+
         tenant_id (string): Specifies the unique id of the tenant.
         view_names (list of string): Specifies the PolicyIds for respective
             tenant.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "tenant_id":'tenantId',
-        "view_names":'viewNames'
+        "view_names":'viewNames',
     }
-
     def __init__(self,
                  tenant_id=None,
-                 view_names=None):
+                 view_names=None,
+            ):
+
         """Constructor for the TenantViewUpdate class"""
 
         # Initialize members of the class
         self.tenant_id = tenant_id
         self.view_names = view_names
-
 
     @classmethod
     def from_dictionary(cls,
@@ -50,10 +51,10 @@ class TenantViewUpdate(object):
 
         # Extract variables from the dictionary
         tenant_id = dictionary.get('tenantId')
-        view_names = dictionary.get('viewNames')
+        view_names = dictionary.get("viewNames")
 
         # Return an object of this model
-        return cls(tenant_id,
-                   view_names)
-
-
+        return cls(
+            tenant_id,
+            view_names
+)

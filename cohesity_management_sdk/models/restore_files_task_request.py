@@ -1,31 +1,32 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.filter_ip_config
-import cohesity_management_sdk.models.restored_file_info_list
 import cohesity_management_sdk.models.restore_object_details
+import cohesity_management_sdk.models.restored_file_info_list
+
 
 class RestoreFilesTaskRequest(object):
 
     """Implementation of the 'RestoreFilesTaskRequest' model.
 
-    Specifies information about a Restore Task that recovers files and
-    folders.
+    Specifies information about a Restore Task that recovers files and folders.
+
 
     Attributes:
-        continue_on_error (bool): Specifies if the Restore Task should
-            continue even if the copy operation of some files and folders
-            fails. If true, the Cohesity Cluster ignores intermittent errors
-            and recovers as many files and folders as possible. If false, the
-            Restore Task stops recovering when a copy operation fails.
+
+        continue_on_error (bool): Specifies if the Restore Task should continue
+            even if the copy operation of some files and folders fails. If
+            true, the Cohesity Cluster ignores intermittent errors and recovers
+            as many files and folders as possible. If false, the Restore Task
+            stops recovering when a copy operation fails.
         file_recovery_method (FileRecoveryMethodEnum): Specifies the type of
-            method to be used to perform file recovery.
-            'kAutoDeploy' indicates that file restore operation will be
-            performed using an ephemeral agent.
-            'kUseExistingAgent' indicates that file restore operation will be
-            performed using an persistent agent.
-            'kUseHypervisorAPIs' indicates that file restore operation will be
-            performed using an hypervisor API's.
+            method to be used to perform file recovery. 'kAutoDeploy' indicates
+            that file restore operation wiil be performed using an ephemeral
+            agent. 'kUseExistingAgent' indicates that file restore operation
+            wiil be performed using an persistent agent. 'kUseHypervisorAPIs'
+            indicates that file restore operation wiil be performed using an
+            hypervisor API's.
         filenames (list of string): Array of Files or Folders.  Specifies the
             files and folders to recover from the snapshot.
         filter_ip_config (FilterIpConfig): Specifies the list of IP addresses
@@ -34,17 +35,16 @@ class RestoreFilesTaskRequest(object):
         is_file_based_volume_restore (bool): Specifies whether this is a file
             based volume restore.
         mount_disks_on_vm (bool): Sepcifies whether this will attach disks or
-            mount disks on the VM side OR use Storage Proxy RPCs to stream
-            data
+            mount disks on the VM side OR use Storage Proxy RPCs to stream data
         name (string): Specifies the name of the Restore Task. This field must
             be set and must be a unique name.
-        new_base_directory (string): Specifies an optional root folder where
-            to recover the selected files and folders. By default, files and
+        new_base_directory (string): Specifies an optional root folder where to
+            recover the selected files and folders. By default, files and
             folders are restored to their original path.
         overwrite (bool): If true, any existing files and folders on the
-            operating system are overwritten by the recovered files or
-            folders. This is the default. If false, existing files and folders
-            are not overwritten.
+            operating system are overwritten by the recovered files or folders.
+            This is the default. If false, existing files and folders are not
+            overwritten.
         password (string): Specifies password of the username to access the
             target source.
         preserve_attributes (bool): If true, the Restore Tasks preserves the
@@ -55,30 +55,32 @@ class RestoreFilesTaskRequest(object):
             the source object (such as a VM) that contains the files and
             folders to recover. In addition, it contains information about the
             Protection Job and Job Run that captured the snapshot to recover
-            from. To specify a particular snapshot, you must specify a
-            jobRunId and a startTimeUsecs. If jobRunId and startTimeUsecs are
-            not specified, the last Job Run of the specified Job is used.
+            from. To specify a particular snapshot, you must specify a jobRunId
+            and a startTimeUsecs. If jobRunId and startTimeUsecs are not
+            specified, the last Job Run of the specified Job is used.
         target_host_type (TargetHostTypeEnum): Specifies the target host types
             to be restored. 'kLinux' indicates the Linux operating system.
-            'kWindows' indicates the Microsoft Windows operating system.
-            'kAix' indicates the IBM AIX operating system. 'kSolaris'
-            indicates the Oracle Solaris operating system. 'kSapHana'
-            indicates the Sap Hana database system developed by SAP SE.
-            'kOther' indicates the other types of operating system.
+            'kWindows' indicates the Microsoft Windows operating system. 'kAix'
+            indicates the IBM AIX operating system. 'kSolaris' indicates the
+            Oracle Solaris operating system. 'kSapHana' indicates the Sap Hana
+            database system developed by SAP SE. 'kSapOracle' indicates the Sap
+            Oracle database system developed by SAP SE. 'kCockroachDB'
+            indicates the CockroachDB database system. 'kMySQL' indicates the
+            MySQL database system. 'kOther' indicates the other types of
+            operating system.
         target_parent_source_id (long|int): Specifies the registered source
             (such as a vCenter Server) that contains the target protection
-            source (such as a VM) where the files and folders are recovered
-            to. This field is not required for a Physical Server.
+            source (such as a VM) where the files and folders are recovered to.
+            This field is not required for a Physical Server.
         target_source_id (long|int): Specifies the id of the target protection
-            source (such as a VM) where the files and folders are recovered
-            to.
+            source (such as a VM) where the files and folders are recovered to.
         use_existing_agent (bool): Specifies whether this will use an existing
-            agent on the target vm to do restore. Following field is
-            deprecated and shall not be used. Please refer to the
-            FileRecoveryMethod field for more information.
+            agent on the target vm to do restore. Following field is deprecated
+            and shall not be used. Please refer to the FileRecoveryMethod field
+            for more information.
         username (string): Specifies username to access the target source.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -99,9 +101,8 @@ class RestoreFilesTaskRequest(object):
         "target_parent_source_id":'targetParentSourceId',
         "target_source_id":'targetSourceId',
         "use_existing_agent":'useExistingAgent',
-        "username":'username'
+        "username":'username',
     }
-
     def __init__(self,
                  continue_on_error=None,
                  file_recovery_method=None,
@@ -120,7 +121,9 @@ class RestoreFilesTaskRequest(object):
                  target_parent_source_id=None,
                  target_source_id=None,
                  use_existing_agent=None,
-                 username=None):
+                 username=None,
+            ):
+
         """Constructor for the RestoreFilesTaskRequest class"""
 
         # Initialize members of the class
@@ -143,7 +146,6 @@ class RestoreFilesTaskRequest(object):
         self.use_existing_agent = use_existing_agent
         self.username = username
 
-
     @classmethod
     def from_dictionary(cls,
                         dictionary):
@@ -163,8 +165,8 @@ class RestoreFilesTaskRequest(object):
 
         # Extract variables from the dictionary
         continue_on_error = dictionary.get('continueOnError')
-        filenames = dictionary.get('filenames')
         file_recovery_method = dictionary.get('fileRecoveryMethod')
+        filenames = dictionary.get("filenames")
         filter_ip_config = cohesity_management_sdk.models.filter_ip_config.FilterIpConfig.from_dictionary(dictionary.get('filterIpConfig')) if dictionary.get('filterIpConfig') else None
         is_file_based_volume_restore = dictionary.get('isFileBasedVolumeRestore')
         mount_disks_on_vm = dictionary.get('mountDisksOnVm')
@@ -186,23 +188,23 @@ class RestoreFilesTaskRequest(object):
         username = dictionary.get('username')
 
         # Return an object of this model
-        return cls(continue_on_error,
-                   file_recovery_method,
-                   filenames,
-                   filter_ip_config,
-                   is_file_based_volume_restore,
-                   mount_disks_on_vm,
-                   name,
-                   new_base_directory,
-                   overwrite,
-                   password,
-                   preserve_attributes,
-                   restored_file_info_list,
-                   source_object_info,
-                   target_host_type,
-                   target_parent_source_id,
-                   target_source_id,
-                   use_existing_agent,
-                   username)
-
-
+        return cls(
+            continue_on_error,
+            file_recovery_method,
+            filenames,
+            filter_ip_config,
+            is_file_based_volume_restore,
+            mount_disks_on_vm,
+            name,
+            new_base_directory,
+            overwrite,
+            password,
+            preserve_attributes,
+            restored_file_info_list,
+            source_object_info,
+            target_host_type,
+            target_parent_source_id,
+            target_source_id,
+            use_existing_agent,
+            username
+)

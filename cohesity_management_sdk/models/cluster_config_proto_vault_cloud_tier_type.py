@@ -1,40 +1,43 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.cluster_config_proto_vault_cloud_properties
+
 
 class ClusterConfigProto_Vault_CloudTierType(object):
 
     """Implementation of the 'ClusterConfigProto_Vault_CloudTierType' model.
 
-    Proto representing a cloud tier type.
+    TODO: type description here.
+
 
     Attributes:
+
         cloud_properties (ClusterConfigProto_Vault_CloudProperties): Field
             represeting cloud properties, which contains different properties
             (tiers/classes) supported by different cloud providers. In case of
             Oracle cloud, the 'tenant' property of OracleProperties message
             would not be populated for this use case.
-        cloud_type (int): Field representing the cloud type.
-            Currently tiers are supported for kAzure, kGoogle, kAmazon, kOracle.
-
+        cloud_type (int): Field representing the cloud type. Currently tiers
+            are supported for kAzure, kGoogle, kAmazon, kOracle.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "cloud_properties": 'cloudProperties',
-        "cloud_type": 'cloudType'
+        "cloud_properties":'cloudProperties',
+        "cloud_type":'cloudType',
     }
-
     def __init__(self,
                  cloud_properties=None,
-                 cloud_type=None):
+                 cloud_type=None,
+            ):
+
         """Constructor for the ClusterConfigProto_Vault_CloudTierType class"""
 
         # Initialize members of the class
         self.cloud_properties = cloud_properties
         self.cloud_type = cloud_type
-
 
     @classmethod
     def from_dictionary(cls,
@@ -58,7 +61,7 @@ class ClusterConfigProto_Vault_CloudTierType(object):
         cloud_type = dictionary.get('cloudType')
 
         # Return an object of this model
-        return cls(cloud_properties,
-                   cloud_type)
-
-
+        return cls(
+            cloud_properties,
+            cloud_type
+)

@@ -1,16 +1,15 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class IndexingTaskStatusEnum(object):
 
     """Implementation of the 'IndexingTaskStatus' enum.
+    Specifies the status of the indexing Job/task. 'kJobRunning' indicates that
+    the Job/task is currently running. 'kJobFinished' indicates that the
+    Job/task completed and finished. 'kJobFailed' indicates that the Job/task
+    failed and did not complete. 'kJobCanceled' indicates that the Job/task was
+    canceled. 'kJobPaused' indicates the Job/task is paused.
 
-    Specifies the status of the indexing Job/task.
-    'kJobRunning' indicates that the Job/task is currently running.
-    'kJobFinished' indicates that the Job/task completed and finished.
-    'kJobFailed' indicates that the Job/task failed and did not complete.
-    'kJobCanceled' indicates that the Job/task was canceled.
-    'kJobPaused' indicates the Job/task is paused.
 
     Attributes:
         KJOBRUNNING: TODO: type description here.
@@ -30,4 +29,3 @@ class IndexingTaskStatusEnum(object):
     KJOBCANCELED = 'kJobCanceled'
 
     KJOBPAUSED = 'kJobPaused'
-

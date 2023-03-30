@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class ObjectsByEnv(object):
 
@@ -8,27 +7,29 @@ class ObjectsByEnv(object):
 
     Number of Objects by Type.
 
+
     Attributes:
+
         env_type (string): Environment Type.
         num_objects (int): Number of Objects.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "env_type":'envType',
-        "num_objects":'numObjects'
+        "num_objects":'numObjects',
     }
-
     def __init__(self,
                  env_type=None,
-                 num_objects=None):
+                 num_objects=None,
+            ):
+
         """Constructor for the ObjectsByEnv class"""
 
         # Initialize members of the class
         self.env_type = env_type
         self.num_objects = num_objects
-
 
     @classmethod
     def from_dictionary(cls,
@@ -52,7 +53,7 @@ class ObjectsByEnv(object):
         num_objects = dictionary.get('numObjects')
 
         # Return an object of this model
-        return cls(env_type,
-                   num_objects)
-
-
+        return cls(
+            env_type,
+            num_objects
+)

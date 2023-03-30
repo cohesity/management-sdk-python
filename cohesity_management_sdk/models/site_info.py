@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.site_identity
 import cohesity_management_sdk.models.site_property
+
 
 class SiteInfo(object):
 
@@ -16,40 +17,38 @@ class SiteInfo(object):
 
 
     Attributes:
+
         classification (string): Site classification assigned by administrator.
         compatibility_level (int): Compatibility level . Its the site's
             compatibility to SPO server version.
         description (string): Admin entered description of this site.
         design (string): Needed for site collection create. Maps to
-            CommunicationSiteDesign enum
-            (Topic = 0,Showcase = 1,Blank = 2)
+            CommunicationSiteDesign enum (Topic = 0,Showcase = 1,Blank = 2)
         design_id (string): Design template id.
         geolocation (string): Geo location of the site.
         group_id (string): Group Id to which this site belongs.
-        hubsite_id (long|int): If it is a hub member site, the parent hub site
+        hubsite_id (string): If it is a hub member site, the parent hub site
             id.
         hubsite_url (string): If it is a hub member site, the parent hub site
-            url. This can be used to restore a hub site member to same hub
-            site even when the site is deleted and recreated or across
-            tenants.
-        is_hubsite (bool): Is it a Hub? This will be false for a hub
-            member.
+            url. This can be used to restore a hub site member to same hub site
+            even when the site is deleted and recreated or across tenants.
+        is_hubsite (bool): Is it a Hub? This will be false for a hub member.
         is_multilingual (bool): Site is multilingual, needs to get multilingual
             resource pages.
         is_personalsite (bool): Is this a personal site with
-            'https://*-my.sharepoint.com/*'
+            'https://*-my.sharepoint.com/*' pattern.
         is_public (bool): Is this a public or private site?
-        is_subsite (bool): Is this a subsite or root site? If this
-            is a subsite, it will inherit the template of root site.
+        is_subsite (bool): Is this a subsite or root site? If this is a
+            subsite, it will inherit the template of root site.
         lcid (int): Site LcId=1033 etc..
         locale_id (int): Locale id of the site. Normally 1033 for US English
             locale.
-        owner_vec (list of string): Owner. This is an email. Note
-            that across tenants, this email address may be invalid.
-            user@tenant.com. At least one owner must be there.
+        owner_vec (list of string): Owner. This is an email. Note that across
+            tenants, this email address may be invalid. user@tenant.com. At
+            least one owner must be there.
         read_only (bool): Site is read-only, locked, and unavailable for write
             access.
-        root_web_id (string): Rootwebid
+        root_web_id (string): Rootwebid.
         site (SiteIdentity): Site identifier echo.
         siteprop_vec (list of SiteProperty): Vector of sites collection
             properties (for classic site collections). Got from Get-PnPSite.
@@ -62,9 +61,8 @@ class SiteInfo(object):
             collection(tenant site).
         webprop_vec (list of SiteProperty): Vector of sites collection
             properties (for subsites). Got from Get-PnPWeb.
-
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -92,9 +90,8 @@ class SiteInfo(object):
         "template":'template',
         "tenantsiteprop_vec":'tenantsitepropVec',
         "timezone_id":'timezoneId',
-        "webprop_vec":'webpropVec'
+        "webprop_vec":'webpropVec',
     }
-
     def __init__(self,
                  classification=None,
                  compatibility_level=None,
@@ -120,7 +117,9 @@ class SiteInfo(object):
                  template=None,
                  tenantsiteprop_vec=None,
                  timezone_id=None,
-                 webprop_vec=None):
+                 webprop_vec=None,
+            ):
+
         """Constructor for the SiteInfo class"""
 
         # Initialize members of the class
@@ -149,7 +148,6 @@ class SiteInfo(object):
         self.tenantsiteprop_vec = tenantsiteprop_vec
         self.timezone_id = timezone_id
         self.webprop_vec = webprop_vec
-
 
     @classmethod
     def from_dictionary(cls,
@@ -185,7 +183,7 @@ class SiteInfo(object):
         is_subsite = dictionary.get('isSubsite')
         lcid = dictionary.get('lcid')
         locale_id = dictionary.get('localeId')
-        owner_vec = dictionary.get('ownerVec')
+        owner_vec = dictionary.get("ownerVec")
         read_only = dictionary.get('readOnly')
         root_web_id = dictionary.get('rootWebId')
         site = cohesity_management_sdk.models.site_identity.SiteIdentity.from_dictionary(dictionary.get('site')) if dictionary.get('site') else None
@@ -200,38 +198,38 @@ class SiteInfo(object):
             tenantsiteprop_vec = list()
             for structure in dictionary.get('tenantsitepropVec'):
                 tenantsiteprop_vec.append(cohesity_management_sdk.models.site_property.SiteProperty.from_dictionary(structure))
-        webprop_vec = None
         timezone_id = dictionary.get('timezoneId')
+        webprop_vec = None
         if dictionary.get('webpropVec') != None:
             webprop_vec = list()
             for structure in dictionary.get('webpropVec'):
                 webprop_vec.append(cohesity_management_sdk.models.site_property.SiteProperty.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(classification,
-                   compatibility_level,
-                   description,
-                   design,
-                   design_id,
-                   geolocation,
-                   group_id,
-                   hubsite_id,
-                   hubsite_url,
-                   is_hubsite,
-                   is_multilingual,
-                   is_personalsite,
-                   is_public,
-                   is_subsite,
-                   lcid,
-                   locale_id,
-                   owner_vec,
-                   read_only,
-                   root_web_id,
-                   site,
-                   siteprop_vec,
-                   template,
-                   tenantsiteprop_vec,
-                   timezone_id,
-                   webprop_vec)
-
-
+        return cls(
+            classification,
+            compatibility_level,
+            description,
+            design,
+            design_id,
+            geolocation,
+            group_id,
+            hubsite_id,
+            hubsite_url,
+            is_hubsite,
+            is_multilingual,
+            is_personalsite,
+            is_public,
+            is_subsite,
+            lcid,
+            locale_id,
+            owner_vec,
+            read_only,
+            root_web_id,
+            site,
+            siteprop_vec,
+            template,
+            tenantsiteprop_vec,
+            timezone_id,
+            webprop_vec
+)

@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class TestIdpReachability(object):
 
@@ -8,30 +7,32 @@ class TestIdpReachability(object):
 
     Specifies the parameters to test the reachability of an IdP.
 
+
     Attributes:
+
         issuer_id (string): Specifies the IdP provided Issuer ID for the app.
         sso_url (string): Specifies the SSO URL of the IdP service for the
-            customer. This is the URL given by IdP when the customer created
-            an account. Customers may use this for several clusters that are
+            customer. This is the URL given by IdP when the customer created an
+            account. Customers may use this for several clusters that are
             registered with on IdP site.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "issuer_id":'issuerId',
-        "sso_url":'ssoUrl'
+        "sso_url":'ssoUrl',
     }
-
     def __init__(self,
                  issuer_id=None,
-                 sso_url=None):
+                 sso_url=None,
+            ):
+
         """Constructor for the TestIdpReachability class"""
 
         # Initialize members of the class
         self.issuer_id = issuer_id
         self.sso_url = sso_url
-
 
     @classmethod
     def from_dictionary(cls,
@@ -55,7 +56,7 @@ class TestIdpReachability(object):
         sso_url = dictionary.get('ssoUrl')
 
         # Return an object of this model
-        return cls(issuer_id,
-                   sso_url)
-
-
+        return cls(
+            issuer_id,
+            sso_url
+)

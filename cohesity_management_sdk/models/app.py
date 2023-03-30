@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.app_metadata
 import cohesity_management_sdk.models.cluster_info
 import cohesity_management_sdk.models.external_network_info
 import cohesity_management_sdk.models.vm_name_info
+
 
 class App(object):
 
@@ -12,10 +13,12 @@ class App(object):
 
     App provides information about an application.
 
+
     Attributes:
+
         app_id (long|int): Specifies unique id allocated by the AppStore.
-        clusters (list of ClusterInfo): Specifies the list of clusters on
-            which the app is installed for a particular account Id.
+        clusters (list of ClusterInfo): Specifies the list of clusters on which
+            the app is installed for a particular account Id.
         download_progress_pct (float): Specifies app download progress
             percentage.
         external_ip_required (bool): Specifies if an external ip is required
@@ -23,17 +26,14 @@ class App(object):
         external_networks (list of ExternalNetworkInfo): List of external
             network information available for the app.
         install_state (InstallStateEnum): Specifies app installation status.
-            Specifies status of the app installation.
-            kNotInstalled - App yet to be installed.
-            kInstallInProgress - App installation is in progress.
-            kInstalled - App is installed required_privilegesly and can be
-            launched.
-            kInstallFailed - App installation failed.
+            Specifies status of the app installation. kNotInstalled - App yet
+            to be installed. kInstallInProgress - App installation is in
+            progress. kInstalled - App is installed successfully and can be
+            launched. kInstallFailed - App installation failed.
             kUninstallInProgress - App uninstallation is in progress.
-            kUninstallFailed - App uninstallation failed.
-            kDownloadNotStarted - App download has not started.
-            kDownloadInProgress - App download in progress.
-            kDownloadComplete - App download completed.
+            kUninstallFailed - App uninstallation failed. kDownloadNotStarted -
+            App download has not started. kDownloadInProgress - App download in
+            progress. kDownloadComplete - App download completed.
             kDownloadFailed - App download failed.
         install_time (long|int): Specifies timestamp when the app was
             installed.
@@ -45,15 +45,25 @@ class App(object):
         latest_version (long|int): Specifies application version assigned by
             the AppStore for the latest version of an app.
         metadata (AppMetadata): Specifies metadata information about the app.
-        required_privileges (RequiredPrivilegesEnum): Specifies privileges
-            that are required for this app. App privilege information.
+        required_privileges (list of RequiredPrivilegesEnum): Specifies
+            privileges that are required for this app. App privilege
+            information.  Specifies privileges that are required for this app.
+            kReadAccess - App needs views for read access. kReadWriteAccess -
+            App needs views for Read/write access. kManagementAccess - App
+            needs management access via iris API. kAutoMountAccess - Whether to
+            allow auto-mounting all the views. kUnrestrictedAppUIAccess -
+            Whether app requires unrestricted UI access (i.e. without passing
+            app access token in URL). kAuditLogViewReadAccess - Whether app
+            requires read access to the internal audit log view.
+            kProtectedObjectAccess - Whether app requires read access to
+            protected objects.
         uninstall_time (long|int): Specifies timestamp when the app was
             uninstalled.
         version (long|int): Specifies application version assigned by the
             AppStore.
         vm_name_info_list (list of VmNameInfo): List of vm name info objects.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -71,9 +81,8 @@ class App(object):
         "required_privileges":'requiredPrivileges',
         "uninstall_time":'uninstallTime',
         "version":'version',
-        "vm_name_info_list":'vmNameInfoList'
+        "vm_name_info_list":'vmNameInfoList',
     }
-
     def __init__(self,
                  app_id=None,
                  clusters=None,
@@ -89,7 +98,9 @@ class App(object):
                  required_privileges=None,
                  uninstall_time=None,
                  version=None,
-                 vm_name_info_list=None):
+                 vm_name_info_list=None,
+            ):
+
         """Constructor for the App class"""
 
         # Initialize members of the class
@@ -108,7 +119,6 @@ class App(object):
         self.uninstall_time = uninstall_time
         self.version = version
         self.vm_name_info_list = vm_name_info_list
-
 
     @classmethod
     def from_dictionary(cls,
@@ -143,11 +153,11 @@ class App(object):
                 external_networks.append(cohesity_management_sdk.models.external_network_info.ExternalNetworkInfo.from_dictionary(structure))
         install_state = dictionary.get('installState')
         install_time = dictionary.get('installTime')
-        instance_sizes = dictionary.get('instanceSizes')
+        instance_sizes = dictionary.get("instanceSizes")
         is_latest = dictionary.get('isLatest')
         latest_version = dictionary.get('latestVersion')
         metadata = cohesity_management_sdk.models.app_metadata.AppMetadata.from_dictionary(dictionary.get('metadata')) if dictionary.get('metadata') else None
-        required_privileges = dictionary.get('requiredPrivileges')
+        required_privileges = dictionary.get("requiredPrivileges")
         uninstall_time = dictionary.get('uninstallTime')
         version = dictionary.get('version')
         vm_name_info_list = None
@@ -157,19 +167,20 @@ class App(object):
                 vm_name_info_list.append(cohesity_management_sdk.models.vm_name_info.VmNameInfo.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(app_id,
-                   clusters,
-                   download_progress_pct,
-                   external_ip_required,
-                   external_networks,
-                   install_state,
-                   install_time,
-                   instance_sizes,
-                   is_latest,
-                   latest_version,
-                   metadata,
-                   required_privileges,
-                   uninstall_time,
-                   version,
-                   vm_name_info_list)
-
+        return cls(
+            app_id,
+            clusters,
+            download_progress_pct,
+            external_ip_required,
+            external_networks,
+            install_state,
+            install_time,
+            instance_sizes,
+            is_latest,
+            latest_version,
+            metadata,
+            required_privileges,
+            uninstall_time,
+            version,
+            vm_name_info_list
+)

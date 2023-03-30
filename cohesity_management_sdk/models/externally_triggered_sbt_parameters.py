@@ -1,27 +1,32 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class ExternallyTriggeredSbtParameters(object):
 
     """Implementation of the 'ExternallyTriggeredSbtParameters' model.
 
+    TODO: type description here.
+
+
     Attributes:
-        catalog_view (string): Specifies the catalog view associated with this job.
+
+        catalog_view (string): Specifies the catalog view associated with this
+            job.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "catalog_view":'catalogView'
+        "catalog_view":'catalogView',
     }
-
     def __init__(self,
-                 catalog_view=None):
+                 catalog_view=None,
+            ):
+
         """Constructor for the ExternallyTriggeredSbtParameters class"""
 
         # Initialize members of the class
         self.catalog_view = catalog_view
-
 
     @classmethod
     def from_dictionary(cls,
@@ -44,6 +49,6 @@ class ExternallyTriggeredSbtParameters(object):
         catalog_view = dictionary.get('catalogView')
 
         # Return an object of this model
-        return cls(catalog_view)
-
-
+        return cls(
+            catalog_view
+)

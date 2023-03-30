@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class ProtectionSummary(object):
 
     """Implementation of the 'ProtectionSummary' model.
 
-    Specifies the number of protected and unprotected
-    objects, and their sizes information of the given entity.
+    Specifies the number of protected and unprotected objects, and their sizes
+    information of the given entity.
+
 
     Attributes:
+
         protected_count (long|int): Specifies the number of objects that are
             protected under the given entity.
         protected_size (long|int): Specifies the total size of the protected
@@ -18,22 +19,23 @@ class ProtectionSummary(object):
             not protected under the given entity.
         unprotected_size (long|int): Specifies the total size of the
             unprotected objects under the given entity.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "protected_count":'protectedCount',
         "protected_size":'protectedSize',
         "unprotected_count":'unprotectedCount',
-        "unprotected_size":'unprotectedSize'
+        "unprotected_size":'unprotectedSize',
     }
-
     def __init__(self,
                  protected_count=None,
                  protected_size=None,
                  unprotected_count=None,
-                 unprotected_size=None):
+                 unprotected_size=None,
+            ):
+
         """Constructor for the ProtectionSummary class"""
 
         # Initialize members of the class
@@ -41,7 +43,6 @@ class ProtectionSummary(object):
         self.protected_size = protected_size
         self.unprotected_count = unprotected_count
         self.unprotected_size = unprotected_size
-
 
     @classmethod
     def from_dictionary(cls,
@@ -67,9 +68,9 @@ class ProtectionSummary(object):
         unprotected_size = dictionary.get('unprotectedSize')
 
         # Return an object of this model
-        return cls(protected_count,
-                   protected_size,
-                   unprotected_count,
-                   unprotected_size)
-
-
+        return cls(
+            protected_count,
+            protected_size,
+            unprotected_count,
+            unprotected_size
+)

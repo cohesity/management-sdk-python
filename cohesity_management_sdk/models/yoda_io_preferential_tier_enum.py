@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
-class YodaIOPreferentialTierEnum(object):
+class YodaIoPreferentialTierEnum(object):
 
-    """Implementation of the 'YodaIOPreferentialTier' enum.
+    """Implementation of the 'YodaIoPreferentialTier' enum.
+    Specifies the list of perferred storage tiers used by Yoda.
 
-    TODO: type enum description here.
 
     Attributes:
         KPCIESSD: TODO: type description here.
@@ -22,4 +22,3 @@ class YodaIOPreferentialTierEnum(object):
     KSATAHDD = 'kSataHdd'
 
     KCLOUD = 'kCloud'
-

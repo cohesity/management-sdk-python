@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
+
+import cohesity_management_sdk.models.view_stats_info
 
 
 class ViewStatInfo(object):
@@ -8,7 +10,9 @@ class ViewStatInfo(object):
 
     Specifies the View stats per view.
 
+
     Attributes:
+
         cluster_id (long|int): Specifies the cluster Id.
         cluster_incarnation_id (long|int): Specifies the cluster Incarnation
             Id.
@@ -22,14 +26,14 @@ class ViewStatInfo(object):
             bytes per second in the last day.
         physical_used_bytes (long|int): Specifies the physical size used in
             bytes.
-        protocols (list of ProtocolViewStatInfoEnum): Specifies the protocols
-            of this view.
-        storage_reduction_ratio (float): Specifies the storage reduction
-            ratio.
+        protocols (list of ProtocolsEnum): Specifies the protocols of this
+            view.
+        stats (list of ViewStatsInfo): Specifies the list of View stats.
+        storage_reduction_ratio (float): Specifies the storage reduction ratio.
         view_id (long|int): Specifies the view Id.
         view_name (string): Specifies the view name.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -42,11 +46,11 @@ class ViewStatInfo(object):
         "peak_write_throughput":'peakWriteThroughput',
         "physical_used_bytes":'physicalUsedBytes',
         "protocols":'protocols',
+        "stats":'stats',
         "storage_reduction_ratio":'storageReductionRatio',
         "view_id":'viewId',
-        "view_name":'viewName'
+        "view_name":'viewName',
     }
-
     def __init__(self,
                  cluster_id=None,
                  cluster_incarnation_id=None,
@@ -57,9 +61,12 @@ class ViewStatInfo(object):
                  peak_write_throughput=None,
                  physical_used_bytes=None,
                  protocols=None,
+                 stats=None,
                  storage_reduction_ratio=None,
                  view_id=None,
-                 view_name=None):
+                 view_name=None,
+            ):
+
         """Constructor for the ViewStatInfo class"""
 
         # Initialize members of the class
@@ -72,10 +79,10 @@ class ViewStatInfo(object):
         self.peak_write_throughput = peak_write_throughput
         self.physical_used_bytes = physical_used_bytes
         self.protocols = protocols
+        self.stats = stats
         self.storage_reduction_ratio = storage_reduction_ratio
         self.view_id = view_id
         self.view_name = view_name
-
 
     @classmethod
     def from_dictionary(cls,
@@ -103,23 +110,29 @@ class ViewStatInfo(object):
         peak_read_throughput = dictionary.get('peakReadThroughput')
         peak_write_throughput = dictionary.get('peakWriteThroughput')
         physical_used_bytes = dictionary.get('physicalUsedBytes')
-        protocols = dictionary.get('protocols')
+        protocols = dictionary.get("protocols")
+        stats = None
+        if dictionary.get('stats') != None:
+            stats = list()
+            for structure in dictionary.get('stats'):
+                stats.append(cohesity_management_sdk.models.view_stats_info.ViewStatsInfo.from_dictionary(structure))
         storage_reduction_ratio = dictionary.get('storageReductionRatio')
         view_id = dictionary.get('viewId')
         view_name = dictionary.get('viewName')
 
         # Return an object of this model
-        return cls(cluster_id,
-                   cluster_incarnation_id,
-                   data_read_bytes,
-                   data_written_bytes,
-                   logical_used_bytes,
-                   peak_read_throughput,
-                   peak_write_throughput,
-                   physical_used_bytes,
-                   protocols,
-                   storage_reduction_ratio,
-                   view_id,
-                   view_name)
-
-
+        return cls(
+            cluster_id,
+            cluster_incarnation_id,
+            data_read_bytes,
+            data_written_bytes,
+            logical_used_bytes,
+            peak_read_throughput,
+            peak_write_throughput,
+            physical_used_bytes,
+            protocols,
+            stats,
+            storage_reduction_ratio,
+            view_id,
+            view_name
+)

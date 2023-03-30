@@ -1,38 +1,39 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class LockRange(object):
 
     """Implementation of the 'LockRange' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
-        is_exclusive (bool): TODO: type description here.
-        length (int): TODO: type description here.
-        offset (int): TODO: type description here.
 
+        is_exclusive (bool): TODO: Type description here.
+        length (long|int): TODO: Type description here.
+        offset (long|int): TODO: Type description here.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "is_exclusive":'isExclusive',
         "length":'length',
-        "offset":'offset'
+        "offset":'offset',
     }
-
     def __init__(self,
                  is_exclusive=None,
                  length=None,
-                 offset=None):
+                 offset=None,
+            ):
+
         """Constructor for the LockRange class"""
 
         # Initialize members of the class
         self.is_exclusive = is_exclusive
         self.length = length
         self.offset = offset
-
 
     @classmethod
     def from_dictionary(cls,
@@ -57,8 +58,8 @@ class LockRange(object):
         offset = dictionary.get('offset')
 
         # Return an object of this model
-        return cls(is_exclusive,
-                   length,
-                   offset)
-
-
+        return cls(
+            is_exclusive,
+            length,
+            offset
+)

@@ -1,33 +1,35 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class NetworkPoolRange(object):
 
     """Implementation of the 'NetworkPoolRange' model.
 
-    Specifies the IP address range for the network pool.
+    TODO: type description here.
+
 
     Attributes:
-        high (string): Specifies the high range of the IP address.
-        low (string):Specifies the low range of the IP address.
 
+        high (string): Specifies the high range of the IP address.
+        low (string): Specifies the low range of the IP address.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "high": 'high',
-        "low": 'low'
+        "high":'high',
+        "low":'low',
     }
-
     def __init__(self,
                  high=None,
-                 low=None):
+                 low=None,
+            ):
+
         """Constructor for the NetworkPoolRange class"""
 
         # Initialize members of the class
         self.high = high
         self.low = low
-
 
     @classmethod
     def from_dictionary(cls,
@@ -36,7 +38,7 @@ class NetworkPoolRange(object):
 
         Args:
             dictionary (dictionary): A dictionary representation of the object as
-            obtained from the deserialization of the server's response. The highs
+            obtained from the deserialization of the server's response. The keys
             MUST match property names in the API description.
 
         Returns:
@@ -51,7 +53,7 @@ class NetworkPoolRange(object):
         low = dictionary.get('low')
 
         # Return an object of this model
-        return cls(high,
-                   low)
-
-
+        return cls(
+            high,
+            low
+)

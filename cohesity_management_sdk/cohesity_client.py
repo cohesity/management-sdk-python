@@ -286,6 +286,7 @@ class CohesityClient(object):
                  auth_token=None,
                  api_key=None,
                  open_id_token=None,
+                 session_id=None,
                  otp_code=None,
                  otp_type=None):
 
@@ -305,10 +306,12 @@ class CohesityClient(object):
             self.config.domain = domain
         if open_id_token is not None:
             self.config.open_id_token = open_id_token
-        self.config.cluster_vip = cluster_vip
-        if otp_code:
-            self.config.otp_code = otp_code
-        if otp_type:
-            self.config.otp_type = otp_type
+        if session_id is not None:
+            self.config.session_id = session_id
         if api_key is not None:
             self.config.api_key = api_key
+        if otp_code is not None:
+            self.config.otp_code = otp_code
+        if otp_type is not None:
+            self.config.otp_type = otp_type
+        self.config.cluster_vip = cluster_vip

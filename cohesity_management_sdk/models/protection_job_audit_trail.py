@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.protection_job
+
 
 class ProtectionJobAuditTrail(object):
 
@@ -9,23 +10,27 @@ class ProtectionJobAuditTrail(object):
 
     Specifies the fields for Protection job audit Response.
 
+
     Attributes:
-        after (ProtectionJob): Provides details about a Protection Job.
-        before (ProtectionJob): Provides details about a Protection Job.
-        changes (list of ChangeEnum): Specifies the list of changed values in
+
+        after (ProtectionJob): Specifies the audit logs for Protection Job
+            after change.
+        before (ProtectionJob): Specifies the audit logs for Protection Job
+            before change.
+        changes (list of ChangesEnum): Specifies the list of changed values in
             a Protection Job. kProtectionJobName implies that protection job
-            has change in the name field kProtectionJobDescription implies
-            that protection job has change in the description field.
-            kProtectionJobSources implies that protection job has change in
-            the source field. kProtectionJobSchedule implies that protection
-            job has change in the schedule field. kProtectionJobFullSchedule
+            has change in the name field kProtectionJobDescription implies that
+            protection job has change in the description field.
+            kProtectionJobSources implies that protection job has change in the
+            source field. kProtectionJobSchedule implies that protection job
+            has change in the schedule field. kProtectionJobFullSchedule
             implies that protection job has change in the full schedule field.
             kProtectionJobRetrySettings implies that protection job has change
             in the retry settings. kProtectionJobRetentionPolicy implies that
             protection job has change in the retention policy.
-            kProtectionJobIndexingPolicy implies that protection job has
-            change in the indexing policy. kProtectionJobAlertingPolicy
-            implies that protection job has change in the alerting policy.
+            kProtectionJobIndexingPolicy implies that protection job has change
+            in the indexing policy. kProtectionJobAlertingPolicy implies that
+            protection job has change in the alerting policy.
             kProtectionJobPriority implies that protection job has change in
             the alerting policy. kProtectionJobQuiesce implies that protection
             job has change in the Quiesce. kProtectionJobSla implies that
@@ -41,27 +46,27 @@ class ProtectionJobAuditTrail(object):
             implies that protection job has change in QOS settings.
             kProtectionJobInvalidField implies that the changed field is
             invalid.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "after":'after',
         "before":'before',
-        "changes":'changes'
+        "changes":'changes',
     }
-
     def __init__(self,
                  after=None,
                  before=None,
-                 changes=None):
+                 changes=None,
+            ):
+
         """Constructor for the ProtectionJobAuditTrail class"""
 
         # Initialize members of the class
         self.after = after
         self.before = before
         self.changes = changes
-
 
     @classmethod
     def from_dictionary(cls,
@@ -83,11 +88,11 @@ class ProtectionJobAuditTrail(object):
         # Extract variables from the dictionary
         after = cohesity_management_sdk.models.protection_job.ProtectionJob.from_dictionary(dictionary.get('after')) if dictionary.get('after') else None
         before = cohesity_management_sdk.models.protection_job.ProtectionJob.from_dictionary(dictionary.get('before')) if dictionary.get('before') else None
-        changes = dictionary.get('changes')
+        changes = dictionary.get("changes")
 
         # Return an object of this model
-        return cls(after,
-                   before,
-                   changes)
-
-
+        return cls(
+            after,
+            before,
+            changes
+)

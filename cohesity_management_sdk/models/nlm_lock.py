@@ -1,37 +1,39 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.lock_range
+
 
 class NlmLock(object):
 
     """Implementation of the 'NlmLock' model.
 
     Response <clientID-Locks> map as received from view-keeper is converted
-    into
-    this structure. These Locks belong to one file-path.
+    into this structure. These Locks belong to one file-path.
+
 
     Attributes:
-        client_id (string): Specifies the client ID
-        lock_ranges (list of LockRange): TODO: type description here.
 
+        client_id (string): Specifies the client ID
+        lock_ranges (list of LockRange): TODO: Type description here.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "client_id":'clientId',
-        "lock_ranges":'lockRanges'
+        "lock_ranges":'lockRanges',
     }
-
     def __init__(self,
                  client_id=None,
-                 lock_ranges=None):
+                 lock_ranges=None,
+            ):
+
         """Constructor for the NlmLock class"""
 
         # Initialize members of the class
         self.client_id = client_id
         self.lock_ranges = lock_ranges
-
 
     @classmethod
     def from_dictionary(cls,
@@ -59,7 +61,7 @@ class NlmLock(object):
                 lock_ranges.append(cohesity_management_sdk.models.lock_range.LockRange.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(client_id,
-                   lock_ranges)
-
-
+        return cls(
+            client_id,
+            lock_ranges
+)

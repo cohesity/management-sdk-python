@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.host_info
+
 
 class DeployCertParameters(object):
 
@@ -9,34 +10,37 @@ class DeployCertParameters(object):
 
     Specifies the parameters used to generate and deploy a certificate.
 
+
     Attributes:
+
         cert_file_name (string): Specifies the filename of the certificate.
         hosts_info_list (list of HostInfo): Specifies the list of all hosts on
             which the certificate is to be deployed.
         mtype (TypeDeployCertParametersEnum): Specifies the type of the host
             such as 'kSapHana', 'kSapOracle', etc. Specifies the host type of
-            host for generating and deploying a Certificate. 'kOther'
-            indicates it is any of the other hosts. 'kSapOracle' indicates it
-            is a SAP Oracle host. 'kSapHana' indicates it is a SAP HANA host.
+            host for generating and deploying a Certificate. 'kOther' indicates
+            it is any of the other hosts. 'kSapOracle' indicates it is a SAP
+            Oracle host. 'kSapHana' indicates it is a SAP HANA host.
         valid_days (long|int): Specifies the number of days after which the
             certificate will expire. The user has to input the number of days
             (from the current date) till when the certificate is valid.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "cert_file_name":'certFileName',
         "hosts_info_list":'hostsInfoList',
         "mtype":'type',
-        "valid_days":'validDays'
+        "valid_days":'validDays',
     }
-
     def __init__(self,
                  cert_file_name=None,
                  hosts_info_list=None,
                  mtype=None,
-                 valid_days=None):
+                 valid_days=None,
+            ):
+
         """Constructor for the DeployCertParameters class"""
 
         # Initialize members of the class
@@ -44,7 +48,6 @@ class DeployCertParameters(object):
         self.hosts_info_list = hosts_info_list
         self.mtype = mtype
         self.valid_days = valid_days
-
 
     @classmethod
     def from_dictionary(cls,
@@ -74,9 +77,9 @@ class DeployCertParameters(object):
         valid_days = dictionary.get('validDays')
 
         # Return an object of this model
-        return cls(cert_file_name,
-                   hosts_info_list,
-                   mtype,
-                   valid_days)
-
-
+        return cls(
+            cert_file_name,
+            hosts_info_list,
+            mtype,
+            valid_days
+)

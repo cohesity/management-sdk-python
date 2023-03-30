@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class ProtectedObjectsSummaryByEnv(object):
 
@@ -8,7 +7,9 @@ class ProtectedObjectsSummaryByEnv(object):
 
     Specifies the protection summary of given environment type.
 
+
     Attributes:
+
         environment (EnvironmentProtectedObjectsSummaryByEnvEnum): Specifies
             the environment.
         num_objects_protected (long|int): Specifies the total number of
@@ -19,8 +20,8 @@ class ProtectedObjectsSummaryByEnv(object):
             objects in bytes.
         unprotected_size_bytes (long|int): Specifies the total size of
             unprotected objects in bytes.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -28,15 +29,16 @@ class ProtectedObjectsSummaryByEnv(object):
         "num_objects_protected":'numObjectsProtected',
         "num_objects_unprotected":'numObjectsUnprotected',
         "protected_size_bytes":'protectedSizeBytes',
-        "unprotected_size_bytes":'unprotectedSizeBytes'
+        "unprotected_size_bytes":'unprotectedSizeBytes',
     }
-
     def __init__(self,
                  environment=None,
                  num_objects_protected=None,
                  num_objects_unprotected=None,
                  protected_size_bytes=None,
-                 unprotected_size_bytes=None):
+                 unprotected_size_bytes=None,
+            ):
+
         """Constructor for the ProtectedObjectsSummaryByEnv class"""
 
         # Initialize members of the class
@@ -45,7 +47,6 @@ class ProtectedObjectsSummaryByEnv(object):
         self.num_objects_unprotected = num_objects_unprotected
         self.protected_size_bytes = protected_size_bytes
         self.unprotected_size_bytes = unprotected_size_bytes
-
 
     @classmethod
     def from_dictionary(cls,
@@ -72,10 +73,10 @@ class ProtectedObjectsSummaryByEnv(object):
         unprotected_size_bytes = dictionary.get('unprotectedSizeBytes')
 
         # Return an object of this model
-        return cls(environment,
-                   num_objects_protected,
-                   num_objects_unprotected,
-                   protected_size_bytes,
-                   unprotected_size_bytes)
-
-
+        return cls(
+            environment,
+            num_objects_protected,
+            num_objects_unprotected,
+            protected_size_bytes,
+            unprotected_size_bytes
+)

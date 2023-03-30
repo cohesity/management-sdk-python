@@ -1,53 +1,53 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
-import cohesity_management_sdk.models.error_proto
 import cohesity_management_sdk.models.connector_params
+import cohesity_management_sdk.models.error_proto
 import cohesity_management_sdk.models.restore_file_result_info
+
 
 class RestoreFilesInfoProto(object):
 
     """Implementation of the 'RestoreFilesInfoProto' model.
 
     Each available extension is listed below along with the location of the
-    proto file (relative to magneto/connectors) where it is defined.
-    RestoreFilesInfoProto extension                  Location
+    proto file (relative to magneto/connectors) where it is defined. 
+    RestoreFilesInfoProto extension                  Location              
     Extn
-    ===========================================================================
-    ==
-    vmware::RestoreFilesInfo::vmware_restore_files_info
-    vmware/vmware.proto     100
-    AgentRestoreFilesInfo::agent_restore_files_info  base/agent.proto
-    101
-    file::RestoreFilesInfo::restore_files_info
-    file/file.proto         102
-    hyperv::RestoreFilesInfo::hyperv_restore_files_info
-    hyperv/hyperv.proto     103
-    ===========================================================================
-    ==
+    =============================================================================
+    vmware::RestoreFilesInfo::vmware_restore_files_info vmware/vmware.proto    
+    100 AgentRestoreFilesInfo::agent_restore_files_info  base/agent.proto      
+    101 file::RestoreFilesInfo::restore_files_info file/file.proto         102
+    hyperv::RestoreFilesInfo::hyperv_restore_files_info hyperv/hyperv.proto    
+    103
+    =============================================================================
+
 
     Attributes:
+
         download_files_path (string): The path that the user should use to
             download files through the UI. If only a single file needs to be
             downloaded, this will be the path to that file. If a directory or
             multiple files & directories need to be downloaded, this will be
             the path to the .zip file to download. Only applicable to a
             download files task.
-        error (ErrorProto): TODO: type description here.
-        proxy_entity_connector_params (ConnectorParams): Message that
-            encapsulates the various params required to establish a connection
-            with a particular environment.
+        error (ErrorProto): If the restore files failed, this field may contain
+            the cause of the failure.
+        proxy_entity_connector_params (ConnectorParams): Contains the connector
+            params of the proxy server if one was specified.
         restore_files_result_vec (list of RestoreFileResultInfo): Contains the
             result information of the restored files.
         slave_task_start_time_usecs (long|int): This is the timestamp at which
             the slave task started.
-        target_type (int): Specifies the target type for the task. The field
-            is only valid if the task has got a permit.
-        teardown_error (ErrorProto): TODO: type description here.
+        target_type (int): Specifies the target type for the task. The field is
+            only valid if the task has got a permit.
+        teardown_error (ErrorProto): If an error was encountered during
+            teardown of the setup (for ex: unmounting the datastore from the
+            host), then this field will contain the cause of the failure.
         mtype (int): The type of environment this restore files info pertains
             to.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -58,9 +58,8 @@ class RestoreFilesInfoProto(object):
         "slave_task_start_time_usecs":'slaveTaskStartTimeUsecs',
         "target_type":'targetType',
         "teardown_error":'teardownError',
-        "mtype":'type'
+        "mtype":'type',
     }
-
     def __init__(self,
                  download_files_path=None,
                  error=None,
@@ -69,7 +68,9 @@ class RestoreFilesInfoProto(object):
                  slave_task_start_time_usecs=None,
                  target_type=None,
                  teardown_error=None,
-                 mtype=None):
+                 mtype=None,
+            ):
+
         """Constructor for the RestoreFilesInfoProto class"""
 
         # Initialize members of the class
@@ -81,7 +82,6 @@ class RestoreFilesInfoProto(object):
         self.target_type = target_type
         self.teardown_error = teardown_error
         self.mtype = mtype
-
 
     @classmethod
     def from_dictionary(cls,
@@ -115,13 +115,13 @@ class RestoreFilesInfoProto(object):
         mtype = dictionary.get('type')
 
         # Return an object of this model
-        return cls(download_files_path,
-                   error,
-                   proxy_entity_connector_params,
-                   restore_files_result_vec,
-                   slave_task_start_time_usecs,
-                   target_type,
-                   teardown_error,
-                   mtype)
-
-
+        return cls(
+            download_files_path,
+            error,
+            proxy_entity_connector_params,
+            restore_files_result_vec,
+            slave_task_start_time_usecs,
+            target_type,
+            teardown_error,
+            mtype
+)

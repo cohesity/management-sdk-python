@@ -1,32 +1,33 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class ShowSystemLedInfoParameters(object):
 
     """Implementation of the 'ShowSystemLedInfoParameters' model.
 
-    Specifies the local or remote node for which system LED details
-    are requested.
+    Specifies the local or remote node for which system LED details are
+    requested.
+
 
     Attributes:
-        node_ip (string): Optional field. If Node IP is not specified, LED
-            info for the current node is displayed.
 
+        node_ip (string): Optional field. If Node IP is not specified, LED info
+            for the current node is displayed.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "node_ip":'nodeIp'
+        "node_ip":'nodeIp',
     }
-
     def __init__(self,
-                 node_ip=None):
+                 node_ip=None,
+            ):
+
         """Constructor for the ShowSystemLedInfoParameters class"""
 
         # Initialize members of the class
         self.node_ip = node_ip
-
 
     @classmethod
     def from_dictionary(cls,
@@ -49,6 +50,6 @@ class ShowSystemLedInfoParameters(object):
         node_ip = dictionary.get('nodeIp')
 
         # Return an object of this model
-        return cls(node_ip)
-
-
+        return cls(
+            node_ip
+)

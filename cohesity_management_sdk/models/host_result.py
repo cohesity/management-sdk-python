@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class HostResult(object):
 
@@ -9,24 +8,26 @@ class HostResult(object):
     Specifies the response received after requesting a PUT, POST, or DELETE
     method on the /network/hosts endpoint.
 
+
     Attributes:
+
         message (string): Specifies a message describing the status of the
             Hosts request.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "message":'message'
+        "message":'message',
     }
-
     def __init__(self,
-                 message=None):
+                 message=None,
+            ):
+
         """Constructor for the HostResult class"""
 
         # Initialize members of the class
         self.message = message
-
 
     @classmethod
     def from_dictionary(cls,
@@ -49,6 +50,6 @@ class HostResult(object):
         message = dictionary.get('message')
 
         # Return an object of this model
-        return cls(message)
-
-
+        return cls(
+            message
+)

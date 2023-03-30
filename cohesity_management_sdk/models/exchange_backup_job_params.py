@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class ExchangeBackupJobParams(object):
 
@@ -8,25 +7,27 @@ class ExchangeBackupJobParams(object):
 
     Message to capture additional backup job params specific to Exchange.
 
-    Attributes:
-        is_copy_only_full (bool): Whether the backups should be copy-only.
-            If this is set to true, then Exchange server will not truncate
-            logs after backup.
 
+    Attributes:
+
+        is_copy_only_full (bool): Whether the backups should be copy-only. If
+            this is set to true, then Exchange server will not truncate logs
+            after backup.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "is_copy_only_full": 'isCopyOnlyFull'
+        "is_copy_only_full":'isCopyOnlyFull',
     }
-
     def __init__(self,
-                 is_copy_only_full=None):
+                 is_copy_only_full=None,
+            ):
+
         """Constructor for the ExchangeBackupJobParams class"""
 
         # Initialize members of the class
         self.is_copy_only_full = is_copy_only_full
-
 
     @classmethod
     def from_dictionary(cls,
@@ -49,6 +50,6 @@ class ExchangeBackupJobParams(object):
         is_copy_only_full = dictionary.get('isCopyOnlyFull')
 
         # Return an object of this model
-        return cls(is_copy_only_full)
-
-
+        return cls(
+            is_copy_only_full
+)

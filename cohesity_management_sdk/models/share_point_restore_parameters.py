@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
-import cohesity_management_sdk.models.site_owner
 import cohesity_management_sdk.models.protection_source
+import cohesity_management_sdk.models.site_owner
+
 
 class SharePointRestoreParameters(object):
 
@@ -10,7 +11,9 @@ class SharePointRestoreParameters(object):
 
     Specifies information needed for recovering SharePoint Site and items.
 
+
     Attributes:
+
         restore_to_original_site (bool): Specifies whether the objects are to
             be restored to the original drive.
         site_owner_list (list of SiteOwner): Specifies the list of SharePoint
@@ -22,24 +25,25 @@ class SharePointRestoreParameters(object):
             alternate site.
         target_site (ProtectionSource): Specifies the target site where the
             recovery of the entire Site or the Site items is to be done.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "restore_to_original_site": 'restoreToOriginalSite',
-        "site_owner_list": 'siteOwnerList',
-        "target_document_library_name": 'targetDocumentLibraryName',
-        "target_document_library_prefix": 'targetDocumentLibraryPrefix',
-        "target_site":'targetSite'
+        "restore_to_original_site":'restoreToOriginalSite',
+        "site_owner_list":'siteOwnerList',
+        "target_document_library_name":'targetDocumentLibraryName',
+        "target_document_library_prefix":'targetDocumentLibraryPrefix',
+        "target_site":'targetSite',
     }
-
     def __init__(self,
                  restore_to_original_site=None,
                  site_owner_list=None,
                  target_document_library_name=None,
                  target_document_library_prefix=None,
-                 target_site=None):
+                 target_site=None,
+            ):
+
         """Constructor for the SharePointRestoreParameters class"""
 
         # Initialize members of the class
@@ -78,10 +82,10 @@ class SharePointRestoreParameters(object):
         target_site = cohesity_management_sdk.models.protection_source.ProtectionSource.from_dictionary(dictionary.get('targetSite')) if dictionary.get('targetSite') else None
 
         # Return an object of this model
-        return cls(restore_to_original_site,
-                   site_owner_list,
-                   target_document_library_name,
-                   target_document_library_prefix,
-                   target_site)
-
-
+        return cls(
+            restore_to_original_site,
+            site_owner_list,
+            target_document_library_name,
+            target_document_library_prefix,
+            target_site
+)

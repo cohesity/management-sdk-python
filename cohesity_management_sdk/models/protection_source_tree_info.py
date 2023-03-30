@@ -1,30 +1,34 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.application_info
 import cohesity_management_sdk.models.entity_permission_information
-import cohesity_management_sdk.models.registered_source_info
 import cohesity_management_sdk.models.protection_source
 import cohesity_management_sdk.models.protection_summary
 import cohesity_management_sdk.models.protection_summary_by_env
+import cohesity_management_sdk.models.registered_source_info
+
 
 class ProtectionSourceTreeInfo(object):
 
     """Implementation of the 'ProtectionSourceTreeInfo' model.
 
     Specifies the registration and protection information of a registered
-    Protection Source Tree on the Cohesity Cluster.
-    Many different Protection Source trees are supported such as
-    'kVMware', 'kAcropolis', 'kPhysical' etc.,
+    Protection Source Tree on the Cohesity Cluster.  Many different Protection
+    Source trees are supported such as 'kVMware', 'kAcropolis', 'kPhysical'
+    etc.,
+
 
     Attributes:
-        applications (list of ApplicationInfo): Array of applications
-            hierarchy registered on this node.  Specifies the application type
-            and the list of instances of the application objects. For example
-            for SQL Server, this list provides the SQL Server instances
-            running on a VM or a Physical Server.
-        entity_permission_info (EntityPermissionInformation): Specifies the
-            permission information of entities.
+
+        applications (list of ApplicationInfo): Array of applications hierarchy
+            registered on this node.  Specifies the application type and the
+            list of instances of the application objects. For example for SQL
+            Server, this list provides the SQL Server instances running on a VM
+            or a Physical Server.
+        entity_permission_info (EntityPermissionInformation): Specifies
+            permission information for the protection source for the root node
+            of protection source tree.
         logical_size_bytes (long|int): Specifies the logical size of the
             Protection Source in bytes.
         registration_info (RegisteredSourceInfo): Specifies registration
@@ -42,8 +46,8 @@ class ProtectionSourceTreeInfo(object):
             downtiered from the source so far.
         total_uptiered_size_in_bytes (long|int): Specifies the total bytes
             uptiered to the source so far.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -55,9 +59,8 @@ class ProtectionSourceTreeInfo(object):
         "stats":'stats',
         "stats_by_env":'statsByEnv',
         "total_downtiered_size_in_bytes":'totalDowntieredSizeInBytes',
-        "total_uptiered_size_in_bytes":'totalUptieredSizeInBytes'
+        "total_uptiered_size_in_bytes":'totalUptieredSizeInBytes',
     }
-
     def __init__(self,
                  applications=None,
                  entity_permission_info=None,
@@ -67,7 +70,9 @@ class ProtectionSourceTreeInfo(object):
                  stats=None,
                  stats_by_env=None,
                  total_downtiered_size_in_bytes=None,
-                 total_uptiered_size_in_bytes=None):
+                 total_uptiered_size_in_bytes=None,
+            ):
+
         """Constructor for the ProtectionSourceTreeInfo class"""
 
         # Initialize members of the class
@@ -80,7 +85,6 @@ class ProtectionSourceTreeInfo(object):
         self.stats_by_env = stats_by_env
         self.total_downtiered_size_in_bytes = total_downtiered_size_in_bytes
         self.total_uptiered_size_in_bytes = total_uptiered_size_in_bytes
-
 
     @classmethod
     def from_dictionary(cls,
@@ -119,14 +123,14 @@ class ProtectionSourceTreeInfo(object):
         total_uptiered_size_in_bytes = dictionary.get('totalUptieredSizeInBytes')
 
         # Return an object of this model
-        return cls(applications,
-                   entity_permission_info,
-                   logical_size_bytes,
-                   registration_info,
-                   root_node,
-                   stats,
-                   stats_by_env,
-                   total_downtiered_size_in_bytes,
-                   total_uptiered_size_in_bytes)
-
-
+        return cls(
+            applications,
+            entity_permission_info,
+            logical_size_bytes,
+            registration_info,
+            root_node,
+            stats,
+            stats_by_env,
+            total_downtiered_size_in_bytes,
+            total_uptiered_size_in_bytes
+)

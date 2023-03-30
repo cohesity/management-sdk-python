@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class ChangeProtectionJobStateParam(object):
 
@@ -8,7 +7,9 @@ class ChangeProtectionJobStateParam(object):
 
     Specifies if the Run state of a Protection Job should change.
 
+
     Attributes:
+
         pause (bool): If true, the specified Protection Job is paused and no
             new Runs of the Job are started. Any Runs that were executing
             continue to run. If false and the Protection Job was in a paused
@@ -18,24 +19,24 @@ class ChangeProtectionJobStateParam(object):
             depending on the pause reason, only specific jobs can be resumed.
             All the jobs paused manually by the user will be identified by nil
             PauseReason.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "pause":'pause',
-        "pause_reason":'pauseReason'
+        "pause_reason":'pauseReason',
     }
-
     def __init__(self,
                  pause=None,
-                 pause_reason=None):
+                 pause_reason=None,
+            ):
+
         """Constructor for the ChangeProtectionJobStateParam class"""
 
         # Initialize members of the class
         self.pause = pause
         self.pause_reason = pause_reason
-
 
     @classmethod
     def from_dictionary(cls,
@@ -59,7 +60,7 @@ class ChangeProtectionJobStateParam(object):
         pause_reason = dictionary.get('pauseReason')
 
         # Return an object of this model
-        return cls(pause,
-                   pause_reason)
-
-
+        return cls(
+            pause,
+            pause_reason
+)

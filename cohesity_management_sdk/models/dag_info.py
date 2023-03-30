@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.dag_application_server_info
 import cohesity_management_sdk.models.exchange_dag_protection_preference
+
 
 class DagInfo(object):
 
@@ -10,7 +11,9 @@ class DagInfo(object):
 
     Specifies the information about the DAG(Database availability group).
 
+
     Attributes:
+
         dag_application_server_info_list (list of DagApplicationServerInfo):
             Specifies the status of all the Exchange Application Servers that
             are part of this DAG.
@@ -22,19 +25,21 @@ class DagInfo(object):
         name (string): Specifies display name of the DAG.
     """
 
+
     # Create a mapping from Model property names to API property names
     _names = {
         "dag_application_server_info_list":'dagApplicationServerInfoList',
         "exchange_dag_protection_preference":'exchangeDagProtectionPreference',
         "guid":'guid',
-        "name":'name'
+        "name":'name',
     }
-
     def __init__(self,
                  dag_application_server_info_list=None,
                  exchange_dag_protection_preference=None,
                  guid=None,
-                 name=None):
+                 name=None,
+            ):
+
         """Constructor for the DagInfo class"""
 
         # Initialize members of the class
@@ -42,7 +47,6 @@ class DagInfo(object):
         self.exchange_dag_protection_preference = exchange_dag_protection_preference
         self.guid = guid
         self.name = name
-
 
     @classmethod
     def from_dictionary(cls,
@@ -68,13 +72,13 @@ class DagInfo(object):
             for structure in dictionary.get('dagApplicationServerInfoList'):
                 dag_application_server_info_list.append(cohesity_management_sdk.models.dag_application_server_info.DagApplicationServerInfo.from_dictionary(structure))
         exchange_dag_protection_preference = cohesity_management_sdk.models.exchange_dag_protection_preference.ExchangeDAGProtectionPreference.from_dictionary(dictionary.get('exchangeDagProtectionPreference')) if dictionary.get('exchangeDagProtectionPreference') else None
-        guid = dictionary.get('guid', None)
-        name = dictionary.get('name', None)
+        guid = dictionary.get('guid')
+        name = dictionary.get('name')
 
         # Return an object of this model
-        return cls(dag_application_server_info_list,
-                   exchange_dag_protection_preference,
-                   guid,
-                   name)
-
-
+        return cls(
+            dag_application_server_info_list,
+            exchange_dag_protection_preference,
+            guid,
+            name
+)

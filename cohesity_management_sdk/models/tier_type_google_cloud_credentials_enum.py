@@ -1,22 +1,18 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class TierTypeGoogleCloudCredentialsEnum(object):
 
-    """Implementation of the 'TierType_GoogleCloudCredentials' enum.
+    """Implementation of the 'TierTypeGoogleCloudCredentials' enum.
+    Specifies the storage class of GCP. GoogleTierType specifies the storage
+    class for Google. 'kGoogleStandard' indicates a tier type of Google
+    properties. 'kGoogleNearline' indicates a tier type of Google properties
+    that is not accessed frequently. 'kGoogleColdline' indicates a tier type of
+    Google properties that is rarely accessed. 'kGoogleRegional' indicates a
+    tier type of Google properties that stores frequently accessed data in the
+    same region. 'kGoogleMultiRegional' indicates a tier type of Google
+    properties that is frequently accessed ("hot" objects) around the world.
 
-    Specifies the storage class of GCP.
-    GoogleTierType specifies the storage class for Google.
-    'kGoogleStandard' indicates a tier type of Google properties.
-    'kGoogleNearline' indicates a tier type of Google properties that is not
-    accessed frequently.
-    'kGoogleColdline' indicates a tier type of Google properties that is
-    rarely
-    accessed.
-    'kGoogleRegional' indicates a tier type of Google properties that stores
-    frequently accessed data in the same region.
-    'kGoogleMultiRegional' indicates a tier type of Google properties that is
-    frequently accessed ("hot" objects) around the world.
 
     Attributes:
         KGOOGLESTANDARD: TODO: type description here.
@@ -36,4 +32,3 @@ class TierTypeGoogleCloudCredentialsEnum(object):
     KGOOGLEREGIONAL = 'kGoogleRegional'
 
     KGOOGLEMULTIREGIONAL = 'kGoogleMultiRegional'
-

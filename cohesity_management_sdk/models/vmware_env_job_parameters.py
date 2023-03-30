@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.disk_unit
+
 
 class VmwareEnvJobParameters(object):
 
@@ -10,7 +11,9 @@ class VmwareEnvJobParameters(object):
     Specifies job parameters applicable for all 'kVMware' Environment type
     Protection Sources in a Protection Job.
 
+
     Attributes:
+
         excluded_disks (list of DiskUnit): Specifies the list of Disks to be
             excluded from backing up. These disks are excluded from all
             Protection Sources in the Protection Job.
@@ -20,27 +23,27 @@ class VmwareEnvJobParameters(object):
         skip_physical_rdm_disks (bool): If true, skip physical RDM disks when
             backing up VMs. Otherwise, backup of VMs having physical RDM will
             fail.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "excluded_disks":'excludedDisks',
         "fallback_to_crash_consistent":'fallbackToCrashConsistent',
-        "skip_physical_rdm_disks":'skipPhysicalRdmDisks'
+        "skip_physical_rdm_disks":'skipPhysicalRdmDisks',
     }
-
     def __init__(self,
                  excluded_disks=None,
                  fallback_to_crash_consistent=None,
-                 skip_physical_rdm_disks=None):
+                 skip_physical_rdm_disks=None,
+            ):
+
         """Constructor for the VmwareEnvJobParameters class"""
 
         # Initialize members of the class
         self.excluded_disks = excluded_disks
         self.fallback_to_crash_consistent = fallback_to_crash_consistent
         self.skip_physical_rdm_disks = skip_physical_rdm_disks
-
 
     @classmethod
     def from_dictionary(cls,
@@ -69,8 +72,8 @@ class VmwareEnvJobParameters(object):
         skip_physical_rdm_disks = dictionary.get('skipPhysicalRdmDisks')
 
         # Return an object of this model
-        return cls(excluded_disks,
-                   fallback_to_crash_consistent,
-                   skip_physical_rdm_disks)
-
-
+        return cls(
+            excluded_disks,
+            fallback_to_crash_consistent,
+            skip_physical_rdm_disks
+)

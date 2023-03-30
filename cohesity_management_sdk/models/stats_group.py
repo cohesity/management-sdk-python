@@ -1,19 +1,21 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.consumer
+
 
 class StatsGroup(object):
 
     """Implementation of the 'StatsGroup' model.
 
-    StatsGroup describes the details of a stats group. A stats group is a
-    basic
+    StatsGroup describes the details of a stats group. A stats group is a basic
     group of usage stats, it is the usage of a tenant within a storage domain
     may also for a specific consumer type.
 
+
     Attributes:
-        consumer (Consumer): Consumer is the storage consumer of a group.
+
+        consumer (Consumer): Specifies the consumer information of this group.
         entity_id (string): Specifies the entity id of the group.
         id (long|int): Specifies the id of the group.
         name (string): Specifies the name of the group.
@@ -25,8 +27,8 @@ class StatsGroup(object):
             domain) with respect to this group.
         view_box_name (string): Specifies the name of the view box (storage
             domain) with respect to this group.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -37,9 +39,8 @@ class StatsGroup(object):
         "tenant_id":'tenantId',
         "tenant_name":'tenantName',
         "view_box_id":'viewBoxId',
-        "view_box_name":'viewBoxName'
+        "view_box_name":'viewBoxName',
     }
-
     def __init__(self,
                  consumer=None,
                  entity_id=None,
@@ -48,7 +49,9 @@ class StatsGroup(object):
                  tenant_id=None,
                  tenant_name=None,
                  view_box_id=None,
-                 view_box_name=None):
+                 view_box_name=None,
+            ):
+
         """Constructor for the StatsGroup class"""
 
         # Initialize members of the class
@@ -60,7 +63,6 @@ class StatsGroup(object):
         self.tenant_name = tenant_name
         self.view_box_id = view_box_id
         self.view_box_name = view_box_name
-
 
     @classmethod
     def from_dictionary(cls,
@@ -90,13 +92,13 @@ class StatsGroup(object):
         view_box_name = dictionary.get('viewBoxName')
 
         # Return an object of this model
-        return cls(consumer,
-                   entity_id,
-                   id,
-                   name,
-                   tenant_id,
-                   tenant_name,
-                   view_box_id,
-                   view_box_name)
-
-
+        return cls(
+            consumer,
+            entity_id,
+            id,
+            name,
+            tenant_id,
+            tenant_name,
+            view_box_id,
+            view_box_name
+)

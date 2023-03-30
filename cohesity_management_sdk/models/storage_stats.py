@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class StorageStats(object):
 
@@ -8,23 +7,29 @@ class StorageStats(object):
 
     Specifies the storage statistics of the cluster.
 
+
     Attributes:
+
         data_protection_logical_usage_bytes (long|int): Specifies the logical
             size of protected objects in bytes.
-        data_protection_physical_usage_bytes (long|int): Specifies the
-            physical size of protected objects in bytes.
+        data_protection_physical_usage_bytes (long|int): Specifies the physical
+            size of protected objects in bytes.
         file_services_logical_usage_bytes (long|int): Specifies the logical
             size consumed by file services in bytes.
         file_services_physical_usage_bytes (long|int): Specifies the physical
             size consumed by file services in bytes.
-        local_available_bytes (long|int): Specifies the local storage
-            currently available on the cluster in bytes.
+        local_available_bytes (long|int): Specifies the local storage currently
+            available on the cluster in bytes.
         local_usage_bytes (long|int): Specifies the local storage currently in
             use on the cluster in bytes.
         total_capacity_bytes (long|int): Specifies the total capacity of the
             cluster in bytes.
-
+        view_backup_logical_usage_bytes (long|int): Specifies the logical size
+            consumed by the external view backups.
+        view_backup_physical_usage_bytes (long|int): Specifies the physical
+            size consumed by the external view backups.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -34,9 +39,10 @@ class StorageStats(object):
         "file_services_physical_usage_bytes":'fileServicesPhysicalUsageBytes',
         "local_available_bytes":'localAvailableBytes',
         "local_usage_bytes":'localUsageBytes',
-        "total_capacity_bytes":'totalCapacityBytes'
+        "total_capacity_bytes":'totalCapacityBytes',
+        "view_backup_logical_usage_bytes":'viewBackupLogicalUsageBytes',
+        "view_backup_physical_usage_bytes":'viewBackupPhysicalUsageBytes',
     }
-
     def __init__(self,
                  data_protection_logical_usage_bytes=None,
                  data_protection_physical_usage_bytes=None,
@@ -44,7 +50,11 @@ class StorageStats(object):
                  file_services_physical_usage_bytes=None,
                  local_available_bytes=None,
                  local_usage_bytes=None,
-                 total_capacity_bytes=None):
+                 total_capacity_bytes=None,
+                 view_backup_logical_usage_bytes=None,
+                 view_backup_physical_usage_bytes=None,
+            ):
+
         """Constructor for the StorageStats class"""
 
         # Initialize members of the class
@@ -55,7 +65,8 @@ class StorageStats(object):
         self.local_available_bytes = local_available_bytes
         self.local_usage_bytes = local_usage_bytes
         self.total_capacity_bytes = total_capacity_bytes
-
+        self.view_backup_logical_usage_bytes = view_backup_logical_usage_bytes
+        self.view_backup_physical_usage_bytes = view_backup_physical_usage_bytes
 
     @classmethod
     def from_dictionary(cls,
@@ -82,14 +93,18 @@ class StorageStats(object):
         local_available_bytes = dictionary.get('localAvailableBytes')
         local_usage_bytes = dictionary.get('localUsageBytes')
         total_capacity_bytes = dictionary.get('totalCapacityBytes')
+        view_backup_logical_usage_bytes = dictionary.get('viewBackupLogicalUsageBytes')
+        view_backup_physical_usage_bytes = dictionary.get('viewBackupPhysicalUsageBytes')
 
         # Return an object of this model
-        return cls(data_protection_logical_usage_bytes,
-                   data_protection_physical_usage_bytes,
-                   file_services_logical_usage_bytes,
-                   file_services_physical_usage_bytes,
-                   local_available_bytes,
-                   local_usage_bytes,
-                   total_capacity_bytes)
-
-
+        return cls(
+            data_protection_logical_usage_bytes,
+            data_protection_physical_usage_bytes,
+            file_services_logical_usage_bytes,
+            file_services_physical_usage_bytes,
+            local_available_bytes,
+            local_usage_bytes,
+            total_capacity_bytes,
+            view_backup_logical_usage_bytes,
+            view_backup_physical_usage_bytes
+)

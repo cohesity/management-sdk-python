@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.nas_analysis_job_params_access_time_bucket
 import cohesity_management_sdk.models.nas_analysis_job_params_file_size_bucket
 import cohesity_management_sdk.models.nas_analysis_job_params_file_type_bucket
 import cohesity_management_sdk.models.nas_analysis_job_params_mod_time_bucket
+
 
 class NasAnalysisJobParams(object):
 
@@ -12,7 +13,9 @@ class NasAnalysisJobParams(object):
 
     Message to capture additional NAS analysis job params.
 
+
     Attributes:
+
         access_time_buckets (list of NasAnalysisJobParams_AccessTimeBucket):
             File access time buckets.
         file_size_buckets (list of NasAnalysisJobParams_FileSizeBucket): File
@@ -21,22 +24,23 @@ class NasAnalysisJobParams(object):
             type buckets.
         mod_time_buckets (list of NasAnalysisJobParams_ModTimeBucket): File
             modification time buckets.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "access_time_buckets":'accessTimeBuckets',
         "file_size_buckets":'fileSizeBuckets',
         "file_type_buckets":'fileTypeBuckets',
-        "mod_time_buckets":'modTimeBuckets'
+        "mod_time_buckets":'modTimeBuckets',
     }
-
     def __init__(self,
                  access_time_buckets=None,
                  file_size_buckets=None,
                  file_type_buckets=None,
-                 mod_time_buckets=None):
+                 mod_time_buckets=None,
+            ):
+
         """Constructor for the NasAnalysisJobParams class"""
 
         # Initialize members of the class
@@ -44,7 +48,6 @@ class NasAnalysisJobParams(object):
         self.file_size_buckets = file_size_buckets
         self.file_type_buckets = file_type_buckets
         self.mod_time_buckets = mod_time_buckets
-
 
     @classmethod
     def from_dictionary(cls,
@@ -86,9 +89,9 @@ class NasAnalysisJobParams(object):
                 mod_time_buckets.append(cohesity_management_sdk.models.nas_analysis_job_params_mod_time_bucket.NasAnalysisJobParams_ModTimeBucket.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(access_time_buckets,
-                   file_size_buckets,
-                   file_type_buckets,
-                   mod_time_buckets)
-
-
+        return cls(
+            access_time_buckets,
+            file_size_buckets,
+            file_type_buckets,
+            mod_time_buckets
+)

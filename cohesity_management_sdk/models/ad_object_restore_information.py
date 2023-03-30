@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.attribute_restore_information
+
 
 class AdObjectRestoreInformation(object):
 
@@ -9,20 +10,20 @@ class AdObjectRestoreInformation(object):
 
     Represents the details about the restore of the AD object.
 
-    Attributes:
-        attribute_restore_info (list of AttributeRestoreInformation):
-            Specifies the list of attributes of the AD object whose restore
-            failed.
-        error_message (string): Specifies the error message while restoring
-            the AD Object.
-        name (string): Specifies the name of the AD object.
-        start_time_usecs (long|int): Specifies the start time of the restore
-            of the AD object specified as a Unix epoch Timestamp(in
-            microseconds).
-        time_taken_msecs (int): Specifies the time taken for restore of AD
-            Object and its attributes in milliseconds.
 
+    Attributes:
+
+        attribute_restore_info (list of AttributeRestoreInformation): Specifies
+            the list of attributes of the AD object whose restore failed.
+        error_message (string): Specifies the error message while restoring the
+            AD Object.
+        name (string): Specifies the name of the AD object.
+        start_time_usecs (long|int): Specifies the start time of the restore of
+            the AD object specified as a Unix epoch Timestamp(in microseconds).
+        time_taken_msecs (long|int): Specifies the time taken for restore of AD
+            Object and its attributes in milliseconds.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -30,15 +31,16 @@ class AdObjectRestoreInformation(object):
         "error_message":'errorMessage',
         "name":'name',
         "start_time_usecs":'startTimeUsecs',
-        "time_taken_msecs":'timeTakenMsecs'
+        "time_taken_msecs":'timeTakenMsecs',
     }
-
     def __init__(self,
                  attribute_restore_info=None,
                  error_message=None,
                  name=None,
                  start_time_usecs=None,
-                 time_taken_msecs=None):
+                 time_taken_msecs=None,
+            ):
+
         """Constructor for the AdObjectRestoreInformation class"""
 
         # Initialize members of the class
@@ -47,7 +49,6 @@ class AdObjectRestoreInformation(object):
         self.name = name
         self.start_time_usecs = start_time_usecs
         self.time_taken_msecs = time_taken_msecs
-
 
     @classmethod
     def from_dictionary(cls,
@@ -78,10 +79,10 @@ class AdObjectRestoreInformation(object):
         time_taken_msecs = dictionary.get('timeTakenMsecs')
 
         # Return an object of this model
-        return cls(attribute_restore_info,
-                   error_message,
-                   name,
-                   start_time_usecs,
-                   time_taken_msecs)
-
-
+        return cls(
+            attribute_restore_info,
+            error_message,
+            name,
+            start_time_usecs,
+            time_taken_msecs
+)

@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class EnvironmentProtectedObjectsSummaryByEnvEnum(object):
 
-    """Implementation of the 'Environment_ProtectedObjectsSummaryByEnv' enum.
-
+    """Implementation of the 'EnvironmentProtectedObjectsSummaryByEnv' enum.
     Specifies the environment.
 
-     Attributes:
+
+    Attributes:
         KVMWARE: TODO: type description here.
         KHYPERV: TODO: type description here.
         KSQL: TODO: type description here.
@@ -39,7 +39,7 @@ class EnvironmentProtectedObjectsSummaryByEnvEnum(object):
         KGCPNATIVE: TODO: type description here.
         KAZURENATIVE: TODO: type description here.
         KAD: TODO: type description here.
-        KRDSSNAPSHOTMANAGER: TODO: type description here.
+        KAWSSNAPSHOTMANAGER: TODO: type description here.
 
     """
 
@@ -90,7 +90,7 @@ class EnvironmentProtectedObjectsSummaryByEnvEnum(object):
     KFLASHBLADE = 'kFlashBlade'
 
     KAWSNATIVE = 'kAWSNative'
-    
+
     KVCD = 'kVCD'
 
     KO365 = 'kO365'
@@ -105,5 +105,4 @@ class EnvironmentProtectedObjectsSummaryByEnvEnum(object):
 
     KAD = 'kAD'
 
-    KRDSSNAPSHOTMANAGER = 'kRDSSnapshotManager'
-
+    KAWSSNAPSHOTMANAGER = 'kAWSSnapshotManager'

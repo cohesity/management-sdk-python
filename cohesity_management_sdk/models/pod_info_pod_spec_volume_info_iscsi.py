@@ -1,35 +1,39 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class PodInfo_PodSpec_VolumeInfo_ISCSI(object):
 
-    """Implementation of the 'PodInfo_PodSpec_VolumeInfo_ISCSI' lunl.
+    """Implementation of the 'PodInfo_PodSpec_VolumeInfo_ISCSI' model.
+
+    TODO: type description here.
+
 
     Attributes:
-        iqn (string):  TODO: Type description here.
+
+        iqn (string): TODO: Type description here.
         lun (int): TODO: Type description here.
         target_portal (string): TODO: Type description here.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "iqn":'iqn',
         "lun":'lun',
-        "target_portal":'targetPortal'
+        "target_portal":'targetPortal',
     }
-
     def __init__(self,
                  iqn=None,
                  lun=None,
-                 target_portal=None):
+                 target_portal=None,
+            ):
+
         """Constructor for the PodInfo_PodSpec_VolumeInfo_ISCSI class"""
 
         # Initialize members of the class
         self.iqn = iqn
         self.lun = lun
         self.target_portal = target_portal
-
 
     @classmethod
     def from_dictionary(cls,
@@ -54,8 +58,8 @@ class PodInfo_PodSpec_VolumeInfo_ISCSI(object):
         target_portal = dictionary.get('targetPortal')
 
         # Return an object of this model
-        return cls(iqn,
-                   lun,
-                   target_portal)
-
-
+        return cls(
+            iqn,
+            lun,
+            target_portal
+)

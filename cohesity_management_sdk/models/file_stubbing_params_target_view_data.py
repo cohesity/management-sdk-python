@@ -1,33 +1,37 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class FileStubbingParams_TargetViewData(object):
 
     """Implementation of the 'FileStubbingParams_TargetViewData' model.
 
+    TODO: type description here.
+
+
     Attributes:
-        nfs_mount_path (string): Mount path where the Cohesity target view
-            must be mounted on all NFS clients for accessing the migrated data.
+
+        nfs_mount_path (string): Mount path where the Cohesity target view must
+            be mounted on all NFS clients for accessing the migrated data.
         target_view_name (string): The target view name to which the data will
             be migrated.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "nfs_mount_path": 'nfsMountPath',
-        "target_view_name": 'targetViewName'
+        "nfs_mount_path":'nfsMountPath',
+        "target_view_name":'targetViewName',
     }
-
     def __init__(self,
                  nfs_mount_path=None,
-                 target_view_name=None):
+                 target_view_name=None,
+            ):
+
         """Constructor for the FileStubbingParams_TargetViewData class"""
 
         # Initialize members of the class
         self.nfs_mount_path = nfs_mount_path
         self.target_view_name = target_view_name
-
 
     @classmethod
     def from_dictionary(cls,
@@ -47,11 +51,11 @@ class FileStubbingParams_TargetViewData(object):
             return None
 
         # Extract variables from the dictionary
-        nfs_mount_path = dictionary.get('nfsMountPath', None)
-        target_view_name = dictionary.get('targetViewName', None)
+        nfs_mount_path = dictionary.get('nfsMountPath')
+        target_view_name = dictionary.get('targetViewName')
 
         # Return an object of this model
-        return cls(nfs_mount_path,
-                   target_view_name)
-
-
+        return cls(
+            nfs_mount_path,
+            target_view_name
+)

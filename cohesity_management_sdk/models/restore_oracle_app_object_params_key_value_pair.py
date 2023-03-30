@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class RestoreOracleAppObjectParams_KeyValuePair(object):
 
@@ -8,27 +7,29 @@ class RestoreOracleAppObjectParams_KeyValuePair(object):
 
     This defines the restore Shell environment.
 
+
     Attributes:
+
         x_key (string): Name of the key.
         x_value (string): Value of the key.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "x_key": 'xKey',
-        "x_value": 'xValue'
+        "x_key":'xKey',
+        "x_value":'xValue',
     }
-
     def __init__(self,
                  x_key=None,
-                 x_value=None):
+                 x_value=None,
+            ):
+
         """Constructor for the RestoreOracleAppObjectParams_KeyValuePair class"""
 
         # Initialize members of the class
         self.x_key = x_key
         self.x_value = x_value
-
 
     @classmethod
     def from_dictionary(cls,
@@ -48,11 +49,11 @@ class RestoreOracleAppObjectParams_KeyValuePair(object):
             return None
 
         # Extract variables from the dictionary
-        x_key = dictionary.get('xKey', None)
-        x_value = dictionary.get('xValue', None)
+        x_key = dictionary.get('xKey')
+        x_value = dictionary.get('xValue')
 
         # Return an object of this model
-        return cls(x_key,
-                   x_value)
-
-
+        return cls(
+            x_key,
+            x_value
+)

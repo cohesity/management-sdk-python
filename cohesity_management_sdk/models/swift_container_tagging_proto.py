@@ -1,43 +1,47 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
-import cohesity_management_sdk.models.user
 import cohesity_management_sdk.models.project
+import cohesity_management_sdk.models.user
+
 
 class SwiftContainerTaggingProto(object):
 
     """Implementation of the 'SwiftContainerTaggingProto' model.
 
-    Proto to define the tagging info associated with a Swift container.
+    TODO: type description here.
+
 
     Attributes:
-        acl_root_user (User): [optional] The Keystone user who could get grant of
-            access to this container after creation by ACL. It is used to let
-            this user get access to this container if noboby has any Swift
-            roles from Keystone. If this user has a Swift role, other Keystone
-            users could get grant by this 'root' user through ACL.
-            If 'acl_root_user' is set, below fields are mandatory.
-            [mandatory] acl_root_user.name
-            [mandatory] acl_root_user.domain.name
-        project_tag (Project): Start IP of the range
 
+        acl_root_user (User): [optional] The Keystone user who could get grant
+            of access to this container after creation by ACL. It is used to
+            let this user get access to this container if noboby has any Swift
+            roles from Keystone. If this user has a Swift role, other Keystone
+            users could get grant by this 'root' user through ACL. If
+            'acl_root_user' is set, below fields are mandatory. [mandatory]
+            acl_root_user.name [mandatory] acl_root_user.domain.name
+        project_tag (Project): [mandatory] The Keystone project this Swift
+            container belongs to. Below fields are mandatory. [mandatory]
+            project_tag.name [mandatory] project_tag.domain.name
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "acl_root_user": 'aclRootUser',
-        "project_tag": 'projectTag'
+        "acl_root_user":'aclRootUser',
+        "project_tag":'projectTag',
     }
-
     def __init__(self,
                  acl_root_user=None,
-                 project_tag=None):
+                 project_tag=None,
+            ):
+
         """Constructor for the SwiftContainerTaggingProto class"""
 
         # Initialize members of the class
         self.acl_root_user = acl_root_user
         self.project_tag = project_tag
-
 
     @classmethod
     def from_dictionary(cls,
@@ -61,7 +65,7 @@ class SwiftContainerTaggingProto(object):
         project_tag = cohesity_management_sdk.models.project.Project.from_dictionary(dictionary.get('projectTag')) if dictionary.get('projectTag') else None
 
         # Return an object of this model
-        return cls(acl_root_user,
-                   project_tag)
-
-
+        return cls(
+            acl_root_user,
+            project_tag
+)

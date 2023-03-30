@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class VirtualDiskId(object):
 
@@ -9,7 +8,9 @@ class VirtualDiskId(object):
     This message defines the proto that can be used to identify the disks in
     different environments.
 
+
     Attributes:
+
         controller_bus_number (long|int): Controller's bus-id controlling the
             virtual disk in question.
         controller_type (string): Controller's type (SCSI, IDE etc).
@@ -18,22 +19,23 @@ class VirtualDiskId(object):
             controller option instead.
         unit_number (long|int): Disk unit number to identify the virtual disk
             within a controller.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "controller_bus_number":'controllerBusNumber',
         "controller_type":'controllerType',
         "disk_id":'diskId',
-        "unit_number":'unitNumber'
+        "unit_number":'unitNumber',
     }
-
     def __init__(self,
                  controller_bus_number=None,
                  controller_type=None,
                  disk_id=None,
-                 unit_number=None):
+                 unit_number=None,
+            ):
+
         """Constructor for the VirtualDiskId class"""
 
         # Initialize members of the class
@@ -41,7 +43,6 @@ class VirtualDiskId(object):
         self.controller_type = controller_type
         self.disk_id = disk_id
         self.unit_number = unit_number
-
 
     @classmethod
     def from_dictionary(cls,
@@ -67,9 +68,9 @@ class VirtualDiskId(object):
         unit_number = dictionary.get('unitNumber')
 
         # Return an object of this model
-        return cls(controller_bus_number,
-                   controller_type,
-                   disk_id,
-                   unit_number)
-
-
+        return cls(
+            controller_bus_number,
+            controller_type,
+            disk_id,
+            unit_number
+)

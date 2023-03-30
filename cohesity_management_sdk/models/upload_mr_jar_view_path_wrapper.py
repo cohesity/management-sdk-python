@@ -1,36 +1,37 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class UploadMRJarViewPathWrapper(object):
 
     """Implementation of the 'UploadMRJarViewPathWrapper' model.
 
-    UploadMRJarViewPathWrapper contains jar name and local mount path where
-    the Jars will be uploaded.
+    UploadMRJarViewPathWrapper contains jar name and local mount path where the
+    Jars will be uploaded.
+
 
     Attributes:
-        jar_name (string): JarName is the name of the uploaded jar.
-        jar_path (string): JarPath is the path for the directory where
-            uploaded jar is stored.
 
+        jar_name (string): JarName is the name of the uploaded jar.
+        jar_path (string): JarPath is the path for the directory where uploaded
+            jar is stored.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "jar_name": 'jarName',
-        "jar_path": 'JarPath'
+        "jar_name":'jarName',
+        "jar_path":'jarPath',
     }
-
     def __init__(self,
                  jar_name=None,
-                 jar_path=None):
+                 jar_path=None,
+            ):
+
         """Constructor for the UploadMRJarViewPathWrapper class"""
 
         # Initialize members of the class
         self.jar_name = jar_name
         self.jar_path = jar_path
-
 
     @classmethod
     def from_dictionary(cls,
@@ -50,11 +51,11 @@ class UploadMRJarViewPathWrapper(object):
             return None
 
         # Extract variables from the dictionary
-        jar_name = dictionary.get('jarName', None)
-        jar_path = dictionary.get('JarPath', None)
+        jar_name = dictionary.get('jarName')
+        jar_path = dictionary.get('jarPath')
 
         # Return an object of this model
-        return cls(jar_name,
-                   jar_path)
-
-
+        return cls(
+            jar_name,
+            jar_path
+)

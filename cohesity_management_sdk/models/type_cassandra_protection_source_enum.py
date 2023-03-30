@@ -1,16 +1,15 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class TypeCassandraProtectionSourceEnum(object):
 
-    """Implementation of the 'Type_CassandraProtectionSource' enum.
-
+    """Implementation of the 'TypeCassandraProtectionSource' enum.
     Specifies the type of the managed Object in Cassandra Protection Source.
-    Replication strategy options for a keyspace.
-    'kCluster' indicates a Cassandra cluster distributed over several physical
-    nodes.
-    'kKeyspace' indicates a Keyspace enclosing one or more tables.
-    'kTable' indicates a Table in the Cassandra environment.
+    Replication strategy options for a keyspace. 'kCluster' indicates a
+    Cassandra cluster distributed over several physical nodes. 'kKeyspace'
+    indicates a Keyspace enclosing one or more tables. 'kTable' indicates a
+    Table in the Cassandra environment.
+
 
     Attributes:
         KCLUSTER: TODO: type description here.
@@ -24,4 +23,3 @@ class TypeCassandraProtectionSourceEnum(object):
     KKEYSPACE = 'kKeyspace'
 
     KTABLE = 'kTable'
-

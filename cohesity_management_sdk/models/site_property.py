@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class SiteProperty(object):
 
@@ -9,33 +9,35 @@ class SiteProperty(object):
     site properties are not captured by Get-PnpProvisioningTemplate cmdlet. So
     they may need to be set outside of Appy-PnPProvisoningTemplate cmdlet.
 
+
     Attributes:
-        datatype (string): PnP data type of the property ('string',
-            'mvstring', 'bool', 'guid','<enumname>','int', 'int64', etc.)
+
+        datatype (string): PnP data type of the property ('string', 'mvstring',
+            'bool', 'guid','<enumname>','int', 'int64', etc.)
         name (string): Name of the property returned by Get-PnPSite,
             Get-PnPTenantSite, Get-PnPWeb, or other cmdlets.
         value (string): Property value represented as string.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "datatype":'datatype',
         "name":'name',
-        "value":'value'
+        "value":'value',
     }
-
     def __init__(self,
                  datatype=None,
                  name=None,
-                 value=None):
+                 value=None,
+            ):
+
         """Constructor for the SiteProperty class"""
 
         # Initialize members of the class
         self.datatype = datatype
         self.name = name
         self.value = value
-
 
     @classmethod
     def from_dictionary(cls,
@@ -60,8 +62,8 @@ class SiteProperty(object):
         value = dictionary.get('value')
 
         # Return an object of this model
-        return cls(datatype,
-                   name,
-                   value)
-
-
+        return cls(
+            datatype,
+            name,
+            value
+)

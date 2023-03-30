@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class TenantVlanUpdateParameters(object):
 
@@ -8,28 +7,30 @@ class TenantVlanUpdateParameters(object):
 
     Specifies vlan update details about a tenant.
 
+
     Attributes:
+
         tenant_id (string): Specifies the unique id of the tenant.
         vlan_iface_names (list of string): Specifies the VlanIfaceNames for
             respective tenant, in the format of bond1.200.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "tenant_id":'tenantId',
-        "vlan_iface_names":'vlanIfaceNames'
+        "vlan_iface_names":'vlanIfaceNames',
     }
-
     def __init__(self,
                  tenant_id=None,
-                 vlan_iface_names=None):
+                 vlan_iface_names=None,
+            ):
+
         """Constructor for the TenantVlanUpdateParameters class"""
 
         # Initialize members of the class
         self.tenant_id = tenant_id
         self.vlan_iface_names = vlan_iface_names
-
 
     @classmethod
     def from_dictionary(cls,
@@ -50,10 +51,10 @@ class TenantVlanUpdateParameters(object):
 
         # Extract variables from the dictionary
         tenant_id = dictionary.get('tenantId')
-        vlan_iface_names = dictionary.get('vlanIfaceNames')
+        vlan_iface_names = dictionary.get("vlanIfaceNames")
 
         # Return an object of this model
-        return cls(tenant_id,
-                   vlan_iface_names)
-
-
+        return cls(
+            tenant_id,
+            vlan_iface_names
+)

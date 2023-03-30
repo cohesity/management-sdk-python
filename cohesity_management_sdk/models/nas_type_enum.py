@@ -1,18 +1,16 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class NasTypeEnum(object):
 
     """Implementation of the 'NasType' enum.
+    Specifies the type of a NAS Object such as 'kGroup', or 'kHost'. Specifies
+    the kind of NAS mount. 'kGroup' indicates top level node that holds
+    individual NAS hosts. 'kHost' indicates a single NAS path that can be
+    mounted. 'kDfsGroup' indicates a DFS group containing top level directories
+    mapped to different servers. 'kDfsTopDir' indicates a top level directory
+    inside a DFS group, discovered when registering a DFS group.
 
-    Specifies the type of a NAS Object such as 'kGroup', or 'kHost'.
-    Specifies the kind of NAS mount.
-    'kGroup' indicates top level node that holds individual NAS hosts.
-    'kHost' indicates a single NAS path that can be mounted.
-    'kDfsGroup' indicates a DFS group containing top level directories mapped
-    to different servers.
-    'kDfsTopDir' indicates a top level directory inside a DFS group,
-    discovered when registering a DFS group.
 
     Attributes:
         KGROUP: TODO: type description here.
@@ -29,4 +27,3 @@ class NasTypeEnum(object):
     KDFSGROUP = 'kDfsGroup'
 
     KDFSTOPDIR = 'kDfsTopDir'
-

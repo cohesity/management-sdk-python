@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class OutlookFolder(object):
 
@@ -8,31 +7,34 @@ class OutlookFolder(object):
 
     Specifies the Outlook folder details.
 
+
     Attributes:
+
         folder_id (string): Specifies the unique ID of the folder.
         folder_key (long|int): Specifies the key unique within the mailbox of
             the folder.
         outlook_item_id_list (list of string): Specifies the outlook items
             within the folder to be restored incase the user wishes not to
             restore the entire folder.
-        restore_entire_folder (bool): Specifies whether the entire folder is
-            to be restored.
-
+        restore_entire_folder (bool): Specifies whether the entire folder is to
+            be restored.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "folder_id":'folderId',
         "folder_key":'folderKey',
         "outlook_item_id_list":'outlookItemIdList',
-        "restore_entire_folder":'restoreEntireFolder'
+        "restore_entire_folder":'restoreEntireFolder',
     }
-
     def __init__(self,
                  folder_id=None,
                  folder_key=None,
                  outlook_item_id_list=None,
-                 restore_entire_folder=None):
+                 restore_entire_folder=None,
+            ):
+
         """Constructor for the OutlookFolder class"""
 
         # Initialize members of the class
@@ -40,7 +42,6 @@ class OutlookFolder(object):
         self.folder_key = folder_key
         self.outlook_item_id_list = outlook_item_id_list
         self.restore_entire_folder = restore_entire_folder
-
 
     @classmethod
     def from_dictionary(cls,
@@ -62,13 +63,13 @@ class OutlookFolder(object):
         # Extract variables from the dictionary
         folder_id = dictionary.get('folderId')
         folder_key = dictionary.get('folderKey')
-        outlook_item_id_list = dictionary.get('outlookItemIdList')
+        outlook_item_id_list = dictionary.get("outlookItemIdList")
         restore_entire_folder = dictionary.get('restoreEntireFolder')
 
         # Return an object of this model
-        return cls(folder_id,
-                   folder_key,
-                   outlook_item_id_list,
-                   restore_entire_folder)
-
-
+        return cls(
+            folder_id,
+            folder_key,
+            outlook_item_id_list,
+            restore_entire_folder
+)

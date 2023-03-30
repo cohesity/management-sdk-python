@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class RemoteHost(object):
 
@@ -8,35 +7,39 @@ class RemoteHost(object):
 
     Specifies the settings required to connect to a remote host.
 
+
     Attributes:
+
         address (string): Specifies the address (IP, hostname or FQDN) of the
             remote host that will run the script.
         mtype (TypeRemoteHostEnum): Specifies the OS type of the remote host
             that will run the script. Currently only 'kLinux' is supported.
-            'kLinux' indicates the Linux operating system. 'kWindows'
-            indicates the Microsoft Windows operating system. 'kAix' indicates
-            the IBM AIX operating system. 'kSolaris' indicates the Oracle
-            Solaris operating system. 'kSapHana' indicates the Sap Hana
-            database system developed by SAP SE. 'kOther' indicates the other
-            types of operating system.
-
+            'kLinux' indicates the Linux operating system. 'kWindows' indicates
+            the Microsoft Windows operating system. 'kAix' indicates the IBM
+            AIX operating system. 'kSolaris' indicates the Oracle Solaris
+            operating system. 'kSapHana' indicates the Sap Hana database system
+            developed by SAP SE. 'kSapOracle' indicates the Sap Oracle database
+            system developed by SAP SE. 'kCockroachDB' indicates the
+            CockroachDB database system. 'kMySQL' indicates the MySQL database
+            system. 'kOther' indicates the other types of operating system.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "address":'address',
-        "mtype":'type'
+        "mtype":'type',
     }
-
     def __init__(self,
                  address=None,
-                 mtype=None):
+                 mtype=None,
+            ):
+
         """Constructor for the RemoteHost class"""
 
         # Initialize members of the class
         self.address = address
         self.mtype = mtype
-
 
     @classmethod
     def from_dictionary(cls,
@@ -60,7 +63,7 @@ class RemoteHost(object):
         mtype = dictionary.get('type')
 
         # Return an object of this model
-        return cls(address,
-                   mtype)
-
-
+        return cls(
+            address,
+            mtype
+)

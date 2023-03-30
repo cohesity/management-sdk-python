@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class TrendingData(object):
 
     """Implementation of the 'TrendingData' model.
 
-    Specifies protection runs information per object, aggregated over a
-    period
+    Specifies protection runs information per object, aggregated over a period
     of time.
 
+
     Attributes:
+
         cancelled (long|int): Specifies number of cancelled runs.
         failed (long|int): Specifies number of failed runs.
         running (long|int): Specifies number of in-progress runs.
@@ -20,8 +20,8 @@ class TrendingData(object):
             day/week/month.
         trend_start_time_usecs (long|int): Specifies start of the
             day/week/month in micro seconds
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -31,9 +31,8 @@ class TrendingData(object):
         "successful":'successful',
         "total":'total',
         "trend_name":'trendName',
-        "trend_start_time_usecs":'trendStartTimeUsecs'
+        "trend_start_time_usecs":'trendStartTimeUsecs',
     }
-
     def __init__(self,
                  cancelled=None,
                  failed=None,
@@ -41,7 +40,9 @@ class TrendingData(object):
                  successful=None,
                  total=None,
                  trend_name=None,
-                 trend_start_time_usecs=None):
+                 trend_start_time_usecs=None,
+            ):
+
         """Constructor for the TrendingData class"""
 
         # Initialize members of the class
@@ -52,7 +53,6 @@ class TrendingData(object):
         self.total = total
         self.trend_name = trend_name
         self.trend_start_time_usecs = trend_start_time_usecs
-
 
     @classmethod
     def from_dictionary(cls,
@@ -81,12 +81,12 @@ class TrendingData(object):
         trend_start_time_usecs = dictionary.get('trendStartTimeUsecs')
 
         # Return an object of this model
-        return cls(cancelled,
-                   failed,
-                   running,
-                   successful,
-                   total,
-                   trend_name,
-                   trend_start_time_usecs)
-
-
+        return cls(
+            cancelled,
+            failed,
+            running,
+            successful,
+            total,
+            trend_name,
+            trend_start_time_usecs
+)

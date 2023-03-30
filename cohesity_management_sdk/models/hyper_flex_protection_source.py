@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class HyperFlexProtectionSource(object):
 
@@ -8,7 +7,9 @@ class HyperFlexProtectionSource(object):
 
     Specifies a Storage Snapshot Provider in a HyperFlex environment.
 
+
     Attributes:
+
         name (string): Specifies a unique name of the Protection Source
         product_version (string): Specifies the product version of the
             protection source.
@@ -17,22 +18,23 @@ class HyperFlexProtectionSource(object):
             Examples of a HyperFlex types include 'kServer'. 'kServer'
             indicates HyperFlex server entity.
         uuid (string): Specifies the uuid of the protection source.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "name":'name',
         "product_version":'productVersion',
         "mtype":'type',
-        "uuid":'uuid'
+        "uuid":'uuid',
     }
-
     def __init__(self,
                  name=None,
                  product_version=None,
                  mtype=None,
-                 uuid=None):
+                 uuid=None,
+            ):
+
         """Constructor for the HyperFlexProtectionSource class"""
 
         # Initialize members of the class
@@ -40,7 +42,6 @@ class HyperFlexProtectionSource(object):
         self.product_version = product_version
         self.mtype = mtype
         self.uuid = uuid
-
 
     @classmethod
     def from_dictionary(cls,
@@ -66,9 +67,9 @@ class HyperFlexProtectionSource(object):
         uuid = dictionary.get('uuid')
 
         # Return an object of this model
-        return cls(name,
-                   product_version,
-                   mtype,
-                   uuid)
-
-
+        return cls(
+            name,
+            product_version,
+            mtype,
+            uuid
+)

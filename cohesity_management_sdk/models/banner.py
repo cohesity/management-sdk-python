@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class Banner(object):
 
@@ -9,37 +8,40 @@ class Banner(object):
     Banner is used for storing the banner content in scribe and also for
     transferring it over the wire.
 
+
     Attributes:
-        banner_id (string): Specifies a banner_id which can uniquely identify
-            a banner. This may be the cluster_id, or the tenant_id, or the
-            group_id, or the user SID etc.
-            If this field is nil, the it is assumed to be the cluster_id.
-            The content is stored against this 'row' in Scribe.
+
+        banner_id (string): Specifies a banner_id which can uniquely identify a
+            banner. This may be the cluster_id, or the tenant_id, or the
+            group_id, or the user SID etc. If this field is nil, the it is
+            assumed to be the cluster_id. The content is stored against this
+            'row' in Scribe.
         content (string): Specifies the content of the banner.
-        created_time_msecs (int|long): createdTimeMsecs field is deprecated.
+        created_time_msecs (long|int): createdTimeMsecs field is deprecated.
             Timestamp at which banner was created.
         description (string): description field is deprecated. Specifies the
             description of this banner.
-        last_updated_time_msecs (int|long): lastUpdatedTimeMsecs field is
+        last_updated_time_msecs (long|int): lastUpdatedTimeMsecs field is
             deprecated. Timestamp at which banner was last updated.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "banner_id": 'bannerId',
-        "content": 'content',
-        "created_time_msecs": 'createdTimeMsecs',
-        "description": 'description',
-        "last_updated_time_msecs":'lastUpdatedTimeMsecs'
+        "banner_id":'bannerId',
+        "content":'content',
+        "created_time_msecs":'createdTimeMsecs',
+        "description":'description',
+        "last_updated_time_msecs":'lastUpdatedTimeMsecs',
     }
-
     def __init__(self,
                  banner_id=None,
                  content=None,
                  created_time_msecs=None,
                  description=None,
-                 last_updated_time_msecs=None):
+                 last_updated_time_msecs=None,
+            ):
+
         """Constructor for the Banner class"""
 
         # Initialize members of the class
@@ -74,10 +76,10 @@ class Banner(object):
         last_updated_time_msecs = dictionary.get('lastUpdatedTimeMsecs')
 
         # Return an object of this model
-        return cls(banner_id,
-                   content,
-                   created_time_msecs,
-                   description,
-                   last_updated_time_msecs)
-
-
+        return cls(
+            banner_id,
+            content,
+            created_time_msecs,
+            description,
+            last_updated_time_msecs
+)

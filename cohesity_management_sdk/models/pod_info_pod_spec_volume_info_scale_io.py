@@ -1,13 +1,18 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.object_reference
+
 
 class PodInfo_PodSpec_VolumeInfo_ScaleIO(object):
 
     """Implementation of the 'PodInfo_PodSpec_VolumeInfo_ScaleIO' model.
 
+    TODO: type description here.
+
+
     Attributes:
+
         fs_type (string): TODO: Type description here.
         gateway (string): TODO: Type description here.
         protection_domain (string): TODO: Type description here.
@@ -18,8 +23,8 @@ class PodInfo_PodSpec_VolumeInfo_ScaleIO(object):
         storage_pool (string): TODO: Type description here.
         system (string): TODO: Type description here.
         volume_name (string): TODO: Type description here.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -32,9 +37,8 @@ class PodInfo_PodSpec_VolumeInfo_ScaleIO(object):
         "storage_mode":'storageMode',
         "storage_pool":'storagePool',
         "system":'system',
-        "volume_name":'volumeName'
+        "volume_name":'volumeName',
     }
-
     def __init__(self,
                  fs_type=None,
                  gateway=None,
@@ -45,7 +49,9 @@ class PodInfo_PodSpec_VolumeInfo_ScaleIO(object):
                  storage_mode=None,
                  storage_pool=None,
                  system=None,
-                 volume_name=None):
+                 volume_name=None,
+            ):
+
         """Constructor for the PodInfo_PodSpec_VolumeInfo_ScaleIO class"""
 
         # Initialize members of the class
@@ -59,7 +65,6 @@ class PodInfo_PodSpec_VolumeInfo_ScaleIO(object):
         self.storage_pool = storage_pool
         self.system = system
         self.volume_name = volume_name
-
 
     @classmethod
     def from_dictionary(cls,
@@ -91,15 +96,15 @@ class PodInfo_PodSpec_VolumeInfo_ScaleIO(object):
         volume_name = dictionary.get('volumeName')
 
         # Return an object of this model
-        return cls(fs_type,
-                   gateway,
-                   protection_domain,
-                   read_only,
-                   secret_ref,
-                   ssl_enabled,
-                   storage_mode,
-                   storage_pool,
-                   system,
-                   volume_name)
-
-
+        return cls(
+            fs_type,
+            gateway,
+            protection_domain,
+            read_only,
+            secret_ref,
+            ssl_enabled,
+            storage_mode,
+            storage_pool,
+            system,
+            volume_name
+)

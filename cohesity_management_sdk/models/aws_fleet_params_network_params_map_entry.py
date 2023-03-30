@@ -1,35 +1,38 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.aws_fleet_params_network_params
+
 
 class AWSFleetParams_NetworkParamsMapEntry(object):
 
     """Implementation of the 'AWSFleetParams_NetworkParamsMapEntry' model.
 
-   TODO: Type model description here.
+    TODO: type description here.
+
 
     Attributes:
-        key (string): TODO: Type model description here.
-        value (AWSFleetParams_NetworkParams): TODO: Type description here.
 
+        key (string): TODO: Type description here.
+        value (AWSFleetParams_NetworkParams): TODO: Type description here.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "key":'key',
-        "value":'value'
+        "value":'value',
     }
-
     def __init__(self,
                  key=None,
-                 value=None):
+                 value=None,
+            ):
+
         """Constructor for the AWSFleetParams_NetworkParamsMapEntry class"""
 
         # Initialize members of the class
         self.key = key
         self.value = value
-
 
     @classmethod
     def from_dictionary(cls,
@@ -49,10 +52,11 @@ class AWSFleetParams_NetworkParamsMapEntry(object):
             return None
 
         # Extract variables from the dictionary
-        key = dictionary.get('key', None)
+        key = dictionary.get('key')
         value = cohesity_management_sdk.models.aws_fleet_params_network_params.AWSFleetParams_NetworkParams.from_dictionary(dictionary.get('value')) if dictionary.get('value') else None
 
         # Return an object of this model
-        return cls(key, value)
-
-
+        return cls(
+            key,
+            value
+)

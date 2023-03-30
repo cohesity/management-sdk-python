@@ -1,37 +1,40 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.grantee_proto
+
 
 class ACLProto_Grant(object):
 
     """Implementation of the 'ACLProto_Grant' model.
 
-    IP Range for range of vip address addition.
+    TODO: type description here.
+
 
     Attributes:
+
         grantee (GranteeProto): Identifier of a grantee. It can be either a
             registered user or one of Amazon S3 predefined group.
         permission_vec (list of int): Vector of permission granted to this
             grantee.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "grantee": 'grantee',
-        "permission_vec": 'permissionVec'
+        "grantee":'grantee',
+        "permission_vec":'permissionVec',
     }
-
     def __init__(self,
                  grantee=None,
-                 permission_vec=None):
+                 permission_vec=None,
+            ):
+
         """Constructor for the ACLProto_Grant class"""
 
         # Initialize members of the class
         self.grantee = grantee
         self.permission_vec = permission_vec
-
 
     @classmethod
     def from_dictionary(cls,
@@ -51,11 +54,11 @@ class ACLProto_Grant(object):
             return None
 
         # Extract variables from the dictionary
-        grantee = cohesity_management_sdk.models.grantee_proto.GranteeProto.from_dictionary(dictionary.get('grantee', None)) if dictionary.get('grantee', None) else None
-        permission_vec = dictionary.get('permissionVec', None)
+        grantee = cohesity_management_sdk.models.grantee_proto.GranteeProto.from_dictionary(dictionary.get('grantee')) if dictionary.get('grantee') else None
+        permission_vec = dictionary.get("permissionVec")
 
         # Return an object of this model
-        return cls(grantee,
-                   permission_vec)
-
-
+        return cls(
+            grantee,
+            permission_vec
+)

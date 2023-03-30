@@ -1,18 +1,15 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class TypeNetappVolumeInfoEnum(object):
 
-    """Implementation of the 'Type_NetappVolumeInfo' enum.
+    """Implementation of the 'TypeNetappVolumeInfo' enum.
+    Specifies the NetApp type of this volume. Specifies the type of a NetApp
+    Volume. 'kReadWrite' indicates read-write volume. 'kLoadSharing' indicates
+    load-sharing volume. 'kDataProtection' indicates data-protection volume.
+    'kDataCache' indicates data-cache volume. 'kTmp' indicates temporary
+    purpose. 'kUnknownType' indicates unknown type.
 
-    Specifies the NetApp type of this volume.
-    Specifies the type of a NetApp Volume.
-    'kReadWrite' indicates read-write volume.
-    'kLoadSharing' indicates load-sharing volume.
-    'kDataProtection' indicates data-protection volume.
-    'kDataCache' indicates data-cache volume.
-    'kTmp' indicates temporaray purpose.
-    'kUnknownType' indicates unknown type.
 
     Attributes:
         KREADWRITE: TODO: type description here.
@@ -35,4 +32,3 @@ class TypeNetappVolumeInfoEnum(object):
     KTMP = 'kTmp'
 
     KUNKNOWNTYPE = 'kUnknownType'
-

@@ -1,33 +1,34 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class CloudParameters(object):
 
     """Implementation of the 'CloudParameters' model.
 
-    Specifies Cloud parameters that are applicable to all Protection
-    Sources in a Protection Job in certain scenarios.
+    Specifies Cloud parameters that are applicable to all Protection Sources in
+    a Protection Job in certain scenarios.
+
 
     Attributes:
+
         failover_to_cloud (bool): Specifies whether the Protection Sources in
             this Protection Job will be failed over to Cloud. This flag is
             applicable to backup on-prem Sources.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "failover_to_cloud":'failoverToCloud'
+        "failover_to_cloud":'failoverToCloud',
     }
-
     def __init__(self,
-                 failover_to_cloud=None):
+                 failover_to_cloud=None,
+            ):
+
         """Constructor for the CloudParameters class"""
 
         # Initialize members of the class
         self.failover_to_cloud = failover_to_cloud
-
 
     @classmethod
     def from_dictionary(cls,
@@ -50,6 +51,6 @@ class CloudParameters(object):
         failover_to_cloud = dictionary.get('failoverToCloud')
 
         # Return an object of this model
-        return cls(failover_to_cloud)
-
-
+        return cls(
+            failover_to_cloud
+)

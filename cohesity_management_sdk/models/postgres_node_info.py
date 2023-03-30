@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class PostgresNodeInfo(object):
 
@@ -9,19 +8,21 @@ class PostgresNodeInfo(object):
     Specifies the Node Id, IP and port information to access the postgres
     database.
 
+
     Attributes:
-        default_password (string): Specifies the default password to access
-            the postgres database.
-        default_username (string): Specifies the default username to access
-            the postgres database.
+
+        default_password (string): Specifies the default password to access the
+            postgres database.
+        default_username (string): Specifies the default username to access the
+            postgres database.
         node_id (long|int): Specifies the id of the node where postgres
             database is running.
         node_ip (string): Specifies the ip of the node where postgres database
             is running.
         port (int): Specifies the information where postgres database is
             running.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -29,15 +30,16 @@ class PostgresNodeInfo(object):
         "default_username":'defaultUsername',
         "node_id":'nodeId',
         "node_ip":'nodeIp',
-        "port":'port'
+        "port":'port',
     }
-
     def __init__(self,
                  default_password=None,
                  default_username=None,
                  node_id=None,
                  node_ip=None,
-                 port=None):
+                 port=None,
+            ):
+
         """Constructor for the PostgresNodeInfo class"""
 
         # Initialize members of the class
@@ -46,7 +48,6 @@ class PostgresNodeInfo(object):
         self.node_id = node_id
         self.node_ip = node_ip
         self.port = port
-
 
     @classmethod
     def from_dictionary(cls,
@@ -73,10 +74,10 @@ class PostgresNodeInfo(object):
         port = dictionary.get('port')
 
         # Return an object of this model
-        return cls(default_password,
-                   default_username,
-                   node_id,
-                   node_ip,
-                   port)
-
-
+        return cls(
+            default_password,
+            default_username,
+            node_id,
+            node_ip,
+            port
+)

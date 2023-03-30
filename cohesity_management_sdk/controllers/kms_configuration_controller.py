@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -18,13 +18,15 @@ class KmsConfigurationController(BaseController):
         self.config = config
 
 
-    def get_kms_config(self, id=None):
+    def get_kms_config(self, id=None, include_rpaas_kms=None):
         """Does a GET request to /public/kmsConfig.
 
         List KMS configurations in the cluster.
 
         Args:
             id (int, optional): The Id of a KMS server.
+            include_rpaas_kms(bool, optional): Include RPaaS KMS, if true
+                returns RPaaS keys
 
         Returns:
             list of KmsConfigurationResponse: Response from the API. Specifies
@@ -45,7 +47,10 @@ class KmsConfigurationController(BaseController):
             _url_path = '/public/kmsConfig'
             _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
-            _query_parameters = {'id': id}
+            _query_parameters = {
+                'id': id,
+                'includeRpaasKms': include_rpaas_kms
+                }
             _query_builder = APIHelper.append_url_with_query_parameters(
                 _query_builder, _query_parameters,
                 Configuration.array_serialization)

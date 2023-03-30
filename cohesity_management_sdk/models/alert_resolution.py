@@ -1,17 +1,19 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.alert_resolution_details
+
 
 class AlertResolution(object):
 
     """Implementation of the 'AlertResolution' model.
 
     Provides Resolution details and the list of Alerts resolved by a
-    Resolution,
-    which are specified by Alert Ids.
+    Resolution, which are specified by Alert Ids.
+
 
     Attributes:
+
         alert_id_list (list of string): Specifies list of Alerts resolved by a
             Resolution, which are specified by Alert Ids.
         resolution_details (AlertResolutionDetails): Specifies information
@@ -19,27 +21,27 @@ class AlertResolution(object):
             Cohesity Cluster, user who resolved the Alerts, etc.
         tenant_ids (list of string): Specifies unique tenantIds of the alert
             contained in this resolution.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "alert_id_list":'alertIdList',
         "resolution_details":'resolutionDetails',
-        "tenant_ids":'tenantIds'
+        "tenant_ids":'tenantIds',
     }
-
     def __init__(self,
                  alert_id_list=None,
                  resolution_details=None,
-                 tenant_ids=None):
+                 tenant_ids=None,
+            ):
+
         """Constructor for the AlertResolution class"""
 
         # Initialize members of the class
         self.alert_id_list = alert_id_list
         self.resolution_details = resolution_details
         self.tenant_ids = tenant_ids
-
 
     @classmethod
     def from_dictionary(cls,
@@ -59,13 +61,13 @@ class AlertResolution(object):
             return None
 
         # Extract variables from the dictionary
-        alert_id_list = dictionary.get('alertIdList')
+        alert_id_list = dictionary.get("alertIdList")
         resolution_details = cohesity_management_sdk.models.alert_resolution_details.AlertResolutionDetails.from_dictionary(dictionary.get('resolutionDetails')) if dictionary.get('resolutionDetails') else None
-        tenant_ids = dictionary.get('tenantIds')
+        tenant_ids = dictionary.get("tenantIds")
 
         # Return an object of this model
-        return cls(alert_id_list,
-                   resolution_details,
-                   tenant_ids)
-
-
+        return cls(
+            alert_id_list,
+            resolution_details,
+            tenant_ids
+)

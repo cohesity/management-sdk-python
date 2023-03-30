@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.cluster_networking_endpoint
+
 
 class ClusterNetworkingResourceInformation(object):
 
@@ -9,28 +10,30 @@ class ClusterNetworkingResourceInformation(object):
 
     Specifies a resource with IP address.
 
+
     Attributes:
+
         endpoints (list of ClusterNetworkingEndpoint): The endpoints by which
             the resource is accessible.
         mtype (string): The type of the resource.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "endpoints":'endpoints',
-        "mtype":'type'
+        "mtype":'type',
     }
-
     def __init__(self,
                  endpoints=None,
-                 mtype=None):
+                 mtype=None,
+            ):
+
         """Constructor for the ClusterNetworkingResourceInformation class"""
 
         # Initialize members of the class
         self.endpoints = endpoints
         self.mtype = mtype
-
 
     @classmethod
     def from_dictionary(cls,
@@ -58,7 +61,7 @@ class ClusterNetworkingResourceInformation(object):
         mtype = dictionary.get('type')
 
         # Return an object of this model
-        return cls(endpoints,
-                   mtype)
-
-
+        return cls(
+            endpoints,
+            mtype
+)

@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.ad_restore_options
 import cohesity_management_sdk.models.oracle_update_restore_task_options
+import cohesity_management_sdk.models.update_restore_task_options
+
 
 class UpdateRestoreTaskParams(object):
 
@@ -11,13 +13,20 @@ class UpdateRestoreTaskParams(object):
     UpdateRestoreTaskParams holds the information to update a Restore Task in
     Magneto.
 
+
     Attributes:
-        oracle_options (OracleUpdateRestoreTaskOptions): Specifies the oracle
-            options to update the Restore Task with.
-        ad_options (AdRestoreOptions): AdRestoreOptions are the AD specific
-            options for the restore task being updated
+
+        ad_options (AdRestoreOptions): Specifies the Active Directory options
+            to update the Restore Task with.
+        child_restore_task_ids (list of long|int): Specifies the ID of the
+            child restore tasks of 'RestoreTaskId' to which the update is
+            meant.
         enable_auto_sync (bool): Enables Auto Sync feature for SQL Multi-stage
             Restore task.
+        options (UpdateRestoreTaskOptions): Specifies generic options to update
+            the restore task.
+        oracle_options (OracleUpdateRestoreTaskOptions): Specifies the oracle
+            options to update the Restore Task with.
         restore_task_id (long|int): Specifies the ID of the existing Restore
             Task to update.
         sql_options (SqlOptionsEnum): Specifies the sql options to update the
@@ -25,33 +34,39 @@ class UpdateRestoreTaskParams(object):
             restore.  'kCreate' specifies the create action for a restore.
             'kUpdate' specifies the user action to update an ongoing restore.
             'kFinalize' specifies the user action to finalize a restore.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "oracle_options":'OracleOptions',
         "ad_options":'adOptions',
+        "child_restore_task_ids":'childRestoreTaskIds',
         "enable_auto_sync":'enableAutoSync',
+        "options":'options',
+        "oracle_options":'oracleOptions',
         "restore_task_id":'restoreTaskId',
-        "sql_options":'sqlOptions'
+        "sql_options":'sqlOptions',
     }
-
     def __init__(self,
-                 oracle_options=None,
                  ad_options=None,
+                 child_restore_task_ids=None,
                  enable_auto_sync=None,
+                 options=None,
+                 oracle_options=None,
                  restore_task_id=None,
-                 sql_options=None):
+                 sql_options=None,
+            ):
+
         """Constructor for the UpdateRestoreTaskParams class"""
 
         # Initialize members of the class
-        self.oracle_options = oracle_options
         self.ad_options = ad_options
+        self.child_restore_task_ids = child_restore_task_ids
         self.enable_auto_sync = enable_auto_sync
+        self.options = options
+        self.oracle_options = oracle_options
         self.restore_task_id = restore_task_id
         self.sql_options = sql_options
-
 
     @classmethod
     def from_dictionary(cls,
@@ -71,17 +86,21 @@ class UpdateRestoreTaskParams(object):
             return None
 
         # Extract variables from the dictionary
-        oracle_options = cohesity_management_sdk.models.oracle_update_restore_task_options.OracleUpdateRestoreTaskOptions.from_dictionary(dictionary.get('OracleOptions')) if dictionary.get('OracleOptions') else None
         ad_options = cohesity_management_sdk.models.ad_restore_options.AdRestoreOptions.from_dictionary(dictionary.get('adOptions')) if dictionary.get('adOptions') else None
+        child_restore_task_ids = dictionary.get("childRestoreTaskIds")
         enable_auto_sync = dictionary.get('enableAutoSync')
+        options = cohesity_management_sdk.models.update_restore_task_options.UpdateRestoreTaskOptions.from_dictionary(dictionary.get('options')) if dictionary.get('options') else None
+        oracle_options = cohesity_management_sdk.models.oracle_update_restore_task_options.OracleUpdateRestoreTaskOptions.from_dictionary(dictionary.get('oracleOptions')) if dictionary.get('oracleOptions') else None
         restore_task_id = dictionary.get('restoreTaskId')
         sql_options = dictionary.get('sqlOptions')
 
         # Return an object of this model
-        return cls(oracle_options,
-                   ad_options,
-                   enable_auto_sync,
-                   restore_task_id,
-                   sql_options)
-
-
+        return cls(
+            ad_options,
+            child_restore_task_ids,
+            enable_auto_sync,
+            options,
+            oracle_options,
+            restore_task_id,
+            sql_options
+)

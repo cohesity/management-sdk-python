@@ -1,15 +1,14 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class SecurityModeEnum(object):
 
     """Implementation of the 'SecurityMode' enum.
-
-    Specifies the security mode used for this view.
-    Currently we support the following modes: Native, Unified and NTFS style.
-    'kNativeMode' indicates a native security mode.
-    'kUnifiedMode' indicates a unified security mode.
+    Specifies the security mode used for this view. Currently we support the
+    following modes: Native, Unified and NTFS style. 'kNativeMode' indicates a
+    native security mode. 'kUnifiedMode' indicates a unified security mode.
     'kNtfsMode' indicates a NTFS style security mode.
+
 
     Attributes:
         KNATIVEMODE: TODO: type description here.
@@ -23,4 +22,3 @@ class SecurityModeEnum(object):
     KUNIFIEDMODE = 'kUnifiedMode'
 
     KNTFSMODE = 'kNtfsMode'
-

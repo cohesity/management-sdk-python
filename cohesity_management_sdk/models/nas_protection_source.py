@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class NasProtectionSource(object):
 
@@ -8,29 +7,30 @@ class NasProtectionSource(object):
 
     Specifies a Protection Source in a Generic NAS environment.
 
+
     Attributes:
+
         description (string): Specifies a description about the Protection
             Source.
-        mount_path (string): Specifies the mount path of this NAS. For
-            example, for a NFS mount point, this should be in the format of IP
-            or hostname:/foo/bar.
+        mount_path (string): Specifies the mount path of this NAS. For example,
+            for a NFS mount point, this should be in the format of IP or
+            hostname:/foo/bar.
         name (string): Specifies the name of the NetApp Object.
-        protocol (ProtocolNasProtectionSourceEnum): Specifies the protocol
-            used by the NAS server. Specifies the protocol used by a NAS
-            server. 'kNfs3' indicates NFS v3 protocol. 'kCifs1' indicates CIFS
-            v1.0 protocol.
+        protocol (ProtocolEnum): Specifies the protocol used by the NAS server.
+            Specifies the protocol used by a NAS server. 'kNfs3' indicates NFS
+            v3 protocol. 'kCifs1' indicates CIFS v1.0 protocol.
         skip_validation (bool): Specifies whether to skip validation of the
             given mount point.
-        mtype (TypeNasProtectionSourceEnum): Specifies the type of a
-            Protection Source Object in a generic NAS Source such as 'kGroup',
-            or 'kHost'. Specifies the kind of NAS mount. 'kGroup' indicates
-            top level node that holds individual NAS hosts. 'kHost' indicates
-            a single NAS path that can be mounted. 'kDfsGroup' indicates a DFS
-            group containing top level directories mapped to different
-            servers. 'kDfsTopDir' indicates a top level directory inside a DFS
-            group, discovered when registering a DFS group.
-
+        mtype (TypeNasProtectionSourceEnum): Specifies the type of a Protection
+            Source Object in a generic NAS Source such as 'kGroup', or 'kHost'.
+            Specifies the kind of NAS mount. 'kGroup' indicates top level node
+            that holds individual NAS hosts. 'kHost' indicates a single NAS
+            path that can be mounted. 'kDfsGroup' indicates a DFS group
+            containing top level directories mapped to different servers.
+            'kDfsTopDir' indicates a top level directory inside a DFS group,
+            discovered when registering a DFS group.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -39,16 +39,17 @@ class NasProtectionSource(object):
         "name":'name',
         "protocol":'protocol',
         "skip_validation":'skipValidation',
-        "mtype":'type'
+        "mtype":'type',
     }
-
     def __init__(self,
                  description=None,
                  mount_path=None,
                  name=None,
                  protocol=None,
                  skip_validation=None,
-                 mtype=None):
+                 mtype=None,
+            ):
+
         """Constructor for the NasProtectionSource class"""
 
         # Initialize members of the class
@@ -58,7 +59,6 @@ class NasProtectionSource(object):
         self.protocol = protocol
         self.skip_validation = skip_validation
         self.mtype = mtype
-
 
     @classmethod
     def from_dictionary(cls,
@@ -86,11 +86,11 @@ class NasProtectionSource(object):
         mtype = dictionary.get('type')
 
         # Return an object of this model
-        return cls(description,
-                   mount_path,
-                   name,
-                   protocol,
-                   skip_validation,
-                   mtype)
-
-
+        return cls(
+            description,
+            mount_path,
+            name,
+            protocol,
+            skip_validation,
+            mtype
+)

@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class ReplicationTarget(object):
 
@@ -9,27 +8,29 @@ class ReplicationTarget(object):
     Message that specifies the details about a remote cluster where backup
     snapshots may be replicated to.
 
+
     Attributes:
+
         cluster_id (long|int): The id of the remote cluster.
         cluster_name (string): The name of the remote cluster.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "cluster_id":'clusterId',
-        "cluster_name":'clusterName'
+        "cluster_name":'clusterName',
     }
-
     def __init__(self,
                  cluster_id=None,
-                 cluster_name=None):
+                 cluster_name=None,
+            ):
+
         """Constructor for the ReplicationTarget class"""
 
         # Initialize members of the class
         self.cluster_id = cluster_id
         self.cluster_name = cluster_name
-
 
     @classmethod
     def from_dictionary(cls,
@@ -53,7 +54,7 @@ class ReplicationTarget(object):
         cluster_name = dictionary.get('clusterName')
 
         # Return an object of this model
-        return cls(cluster_id,
-                   cluster_name)
-
-
+        return cls(
+            cluster_id,
+            cluster_name
+)

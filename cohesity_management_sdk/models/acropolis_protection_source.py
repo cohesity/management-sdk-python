@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
+
+import cohesity_management_sdk.models.virtual_disk_config
 
 
 class AcropolisProtectionSource(object):
@@ -8,19 +10,21 @@ class AcropolisProtectionSource(object):
 
     Specifies a Protection Source in Acropolis environment.
 
+
     Attributes:
+
         cluster_uuid (string): Specifies the UUID of the Acropolis cluster
             instance to which this entity belongs to.
         description (string): Specifies a description about the Protection
             Source.
-        mount_path (bool): Specifies whether the the VM is an agent VM. This
-            is applicable to acropolis entity of type kVirtualMachine.
+        mount_path (bool): Specifies whether the VM is an agent VM. This is
+            applicable to acropolis entity of type kVirtualMachine.
         name (string): Specifies the name of the Acropolis Object.
         ngt_capabilities (list of int): Specifies enabled capabilities for NGT
             on the VM. This is applicable to acropolis entity of type
             kVirtualMachine.
-        ngt_enable_status (int): Specifies if NGT is enabled on the VM. This
-            is applicable to acropolis entity of type kVirtualMachine.
+        ngt_enable_status (int): Specifies if NGT is enabled on the VM. This is
+            applicable to acropolis entity of type kVirtualMachine.
         ngt_install_status (int): Specified if NGT is installed on the VM. This
             is applicable to acropolis entity of type kVirtualMachine.
         ngt_reachable (bool): Specifies if NGT on the VM is reachable from
@@ -31,12 +35,15 @@ class AcropolisProtectionSource(object):
         mtype (int): Specifies the type of an Acropolis Protection Source
             Object such as 'kPrismCentral', 'kHost', 'kNetwork', etc.
         uuid (string): Specifies the UUID of the Acropolis Object. This is
-            unique within the cluster instance. Together with clusterUuid,
-            this entity is unique within the Acropolis environment.
-        version (string, optional): Specifies the version of an Acropolis
-            cluster or standalone cluster.
-
+            unique within the cluster instance. Together with clusterUuid, this
+            entity is unique within the Acropolis environment.
+        version (string): Specifies the version of an Acropolis cluster or
+            standalone cluster.
+        virtual_disks (list of VirtualDiskConfig): Specifies an array of
+            virtual disks that are part of the Virtual Machine. This is
+            populated for entities of type 'kVirtualMachine'.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -51,9 +58,9 @@ class AcropolisProtectionSource(object):
         "ngt_version":'ngtVersion',
         "mtype":'type',
         "uuid":'uuid',
-        "version":'version'
+        "version":'version',
+        "virtual_disks":'virtualDisks',
     }
-
     def __init__(self,
                  cluster_uuid=None,
                  description=None,
@@ -66,7 +73,10 @@ class AcropolisProtectionSource(object):
                  ngt_version=None,
                  mtype=None,
                  uuid=None,
-                 version=None):
+                 version=None,
+                 virtual_disks=None,
+            ):
+
         """Constructor for the AcropolisProtectionSource class"""
 
         # Initialize members of the class
@@ -82,7 +92,7 @@ class AcropolisProtectionSource(object):
         self.mtype = mtype
         self.uuid = uuid
         self.version = version
-
+        self.virtual_disks = virtual_disks
 
     @classmethod
     def from_dictionary(cls,
@@ -106,7 +116,7 @@ class AcropolisProtectionSource(object):
         description = dictionary.get('description')
         mount_path = dictionary.get('mountPath')
         name = dictionary.get('name')
-        ngt_capabilities = dictionary.get('ngtCapabilities')
+        ngt_capabilities = dictionary.get("ngtCapabilities")
         ngt_enable_status = dictionary.get('ngtEnableStatus')
         ngt_install_status = dictionary.get('ngtInstallStatus')
         ngt_reachable = dictionary.get('ngtReachable')
@@ -114,19 +124,25 @@ class AcropolisProtectionSource(object):
         mtype = dictionary.get('type')
         uuid = dictionary.get('uuid')
         version = dictionary.get('version')
+        virtual_disks = None
+        if dictionary.get('virtualDisks') != None:
+            virtual_disks = list()
+            for structure in dictionary.get('virtualDisks'):
+                virtual_disks.append(cohesity_management_sdk.models.virtual_disk_config.VirtualDiskConfig.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(cluster_uuid,
-                   description,
-                   mount_path,
-                   name,
-                   ngt_capabilities,
-                   ngt_enable_status,
-                   ngt_install_status,
-                   ngt_reachable,
-                   ngt_version,
-                   mtype,
-                   uuid,
-                   version)
-
-
+        return cls(
+            cluster_uuid,
+            description,
+            mount_path,
+            name,
+            ngt_capabilities,
+            ngt_enable_status,
+            ngt_install_status,
+            ngt_reachable,
+            ngt_version,
+            mtype,
+            uuid,
+            version,
+            virtual_disks
+)

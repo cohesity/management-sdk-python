@@ -1,22 +1,24 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.sample
+
 
 class StorageEfficiencyTile(object):
 
     """Implementation of the 'StorageEfficiencyTile' model.
 
-    StorageEfficiencyTile gives tile information for the storage saved
-    because of compression and dedupe done on the cluster.
+    StorageEfficiencyTile gives tile information for the storage saved because
+    of compression and dedupe done on the cluster.
+
 
     Attributes:
+
         data_in_bytes (long|int): Specifies the size of data brought into the
             cluster. This is the usage before data reduction if we ignore the
             zeroes and effects of cloning.
-        data_in_bytes_samples (list of Sample): Specifies the samples taken
-            for Data brought into the cluster in bytes in ascending order of
-            time.
+        data_in_bytes_samples (list of Sample): Specifies the samples taken for
+            Data brought into the cluster in bytes in ascending order of time.
         data_in_deduped_bytes (long|int): Specifies the size of data after
             compression and or dedupe operations just before the data is
             replicated to other nodes as per RF or Erasure Coding policy.
@@ -41,12 +43,12 @@ class StorageEfficiencyTile(object):
             taken for physical data consumed in bytes in ascending order of
             time.
         storage_reduction_ratio (float): Specifies the current storage
-            reduction ratio on the cluster. It is the ratio of
-            LogicalUsedBytes to PhysicalUsedBytes.
+            reduction ratio on the cluster. It is the ratio of LogicalUsedBytes
+            to PhysicalUsedBytes.
         storage_reduction_samples (list of Sample): Specifies the samples for
             storage reduction ratio in ascending order of time.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -63,9 +65,8 @@ class StorageEfficiencyTile(object):
         "physical_used_bytes":'physicalUsedBytes',
         "physical_used_bytes_samples":'physicalUsedBytesSamples',
         "storage_reduction_ratio":'storageReductionRatio',
-        "storage_reduction_samples":'storageReductionSamples'
+        "storage_reduction_samples":'storageReductionSamples',
     }
-
     def __init__(self,
                  data_in_bytes=None,
                  data_in_bytes_samples=None,
@@ -80,7 +81,9 @@ class StorageEfficiencyTile(object):
                  physical_used_bytes=None,
                  physical_used_bytes_samples=None,
                  storage_reduction_ratio=None,
-                 storage_reduction_samples=None):
+                 storage_reduction_samples=None,
+            ):
+
         """Constructor for the StorageEfficiencyTile class"""
 
         # Initialize members of the class
@@ -98,7 +101,6 @@ class StorageEfficiencyTile(object):
         self.physical_used_bytes_samples = physical_used_bytes_samples
         self.storage_reduction_ratio = storage_reduction_ratio
         self.storage_reduction_samples = storage_reduction_samples
-
 
     @classmethod
     def from_dictionary(cls,
@@ -158,19 +160,19 @@ class StorageEfficiencyTile(object):
                 storage_reduction_samples.append(cohesity_management_sdk.models.sample.Sample.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(data_in_bytes,
-                   data_in_bytes_samples,
-                   data_in_deduped_bytes,
-                   data_in_deduped_bytes_samples,
-                   dedupe_ratio,
-                   dedupe_ratio_samples,
-                   duration_days,
-                   interval_seconds,
-                   logical_used_bytes,
-                   logical_used_bytes_samples,
-                   physical_used_bytes,
-                   physical_used_bytes_samples,
-                   storage_reduction_ratio,
-                   storage_reduction_samples)
-
-
+        return cls(
+            data_in_bytes,
+            data_in_bytes_samples,
+            data_in_deduped_bytes,
+            data_in_deduped_bytes_samples,
+            dedupe_ratio,
+            dedupe_ratio_samples,
+            duration_days,
+            interval_seconds,
+            logical_used_bytes,
+            logical_used_bytes_samples,
+            physical_used_bytes,
+            physical_used_bytes_samples,
+            storage_reduction_ratio,
+            storage_reduction_samples
+)

@@ -1,58 +1,58 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.amqp_target_config
-import cohesity_management_sdk.models.subnet
 import cohesity_management_sdk.models.cluster_audit_log_configuration
 import cohesity_management_sdk.models.filer_audit_log_configuration
 import cohesity_management_sdk.models.ntp_settings_config
-import cohesity_management_sdk.models.syslog_server
+import cohesity_management_sdk.models.old_syslog_server
+import cohesity_management_sdk.models.subnet
 import cohesity_management_sdk.models.tiering_audit_log_configuration
+
 
 class UpdateClusterParams(object):
 
     """Implementation of the 'UpdateClusterParams' model.
 
-    Specifies the configuration settings that can be updated on the
-    Cohesity Cluster.
+    Specifies the configuration settings that can be updated on the Cohesity
+    Cluster.
+
 
     Attributes:
-        amqp_target_config (AMQPTargetConfig): Specifies the AMQP target config.
+
+        amqp_target_config (AMQPTargetConfig): Specifies the AMQP target
+            config.
         apps_subnet (Subnet): The subnet for Athena apps.
         banner_enabled (bool): Specifies whether UI banner is enabled on the
             cluster or not. When banner is enabled, UI will make an additional
             API call to fetch the banner and show at the login page.
-        cluster_audit_log_config (ClusterAuditLogConfiguration): Specifies the
-            settings of the Cluster audit log configuration.
-        dns_server_ips (list of string): Array of IP Addresses of DNS Servers.
+        cluster_audit_log_config (ClusterAuditLogConfiguration): Cluster Audit
+            Log Configuration.
+        dns_server_ips (list of string): Array of IP Addresses of DNS Servers. 
             Specifies the IP addresses of the DNS Servers used by the Cohesity
             Cluster.
-        domain_names (list of string): Array of Domain Names.  The first
-            domain name specified in the array is the fully qualified domain
-            name assigned to the Cohesity Cluster. Any additional domain names
-            specified are used for the domain search list for hostname
-            look-up.
+        domain_names (list of string): Array of Domain Names.  The first domain
+            name specified in the array is the fully qualified domain name
+            assigned to the Cohesity Cluster. Any additional domain names
+            specified are used for the domain search list for hostname look-up.
         enable_active_monitoring (bool): Specifies if Cohesity can receive
-            monitoring information from the Cohesity Cluster. If 'true',
-            remote monitoring of the Cohesity Cluster is allowed.
-        enable_patches_download (bool): Specifies whether to enable
-            downloading patches from Cohesity download site.
-        enable_upgrade_pkg_polling (bool): If 'true', Cohesity's upgrade
-            server is polled for new releases.
-        encryption_key_rotation_period_secs (long|int): Specifies the period
-            of time (in seconds) when encryption keys are rotated. By default,
-            the encryption keys are rotated every 77760000 seconds (30 days).
-        fault_tolerance_level (UpdateClusterParamsFaultToleranceLevelEnum):
-            Specifies the level which 'MetadataFaultToleranceFactor' applies
-            to.
-            'kNode' indicates 'MetadataFaultToleranceFactor' applies to Node
-            level.
-            'kChassis' indicates 'MetadataFaultToleranceFactor' applies to
-            Chassis level.
+            monitoring information from the Cohesity Cluster. If 'true', remote
+            monitoring of the Cohesity Cluster is allowed.
+        enable_patches_download (bool): Specifies whether to enable downloading
+            patches from Cohesity download site.
+        enable_upgrade_pkg_polling (bool): If 'true', Cohesity's upgrade server
+            is polled for new releases.
+        encryption_key_rotation_period_secs (long|int): Specifies the period of
+            time (in seconds) when encryption keys are rotated. By default, the
+            encryption keys are rotated every 77760000 seconds (30 days).
+        fault_tolerance_level (FaultToleranceLevelEnum): Specifies the level
+            which 'MetadataFaultToleranceFactor' applies to. 'kNode' indicates
+            'MetadataFaultToleranceFactor' applies to Node level. 'kChassis'
+            indicates 'MetadataFaultToleranceFactor' applies to Chassis level.
             'kRack' indicates 'MetadataFaultToleranceFactor' applies to Rack
             level.
-        filer_audit_log_config (FilerAuditLogConfiguration): Specifies the
-            settings of the filer audit log configuration.
+        filer_audit_log_config (FilerAuditLogConfiguration): Filer Audit Log
+            Configuration.
         gateway (string): Specifies the gateway IP address.
         google_analytics_enabled (bool): Specifies whether Google Analytics is
             enabled.
@@ -63,8 +63,8 @@ class UpdateClusterParams(object):
             is 'false'. Cohesity recommends accessing the Help from the
             Cohesity Web site which provides the newest and most complete
             version of Help.
-        kms_server_id (long|int): Specifies the KMS Server Id.
-            This can only be set when the encryption is enabled on cluster.
+        kms_server_id (long|int): Specifies the KMS Server Id. This can only be
+            set when the encryption is enabled on cluster.
         language_locale (string): Specifies the language and locale for this
             Cohesity Cluster.
         local_auth_domain_name (string): Domain name for SMB local
@@ -80,10 +80,10 @@ class UpdateClusterParams(object):
             tenant_id, however, some UI elements may be disabled when multi
             tenancy is disabled.
         name (string): Specifies the name of the Cohesity Cluster.
-        ntp_settings (NtpSettingsConfig): Specifies if the ntp/master slave
-            scheme should be disabled for this cluster.
-        pcie_ssd_tier_rebalance_delay_secs (int): Specifies the rebalance
-            delay in seconds for cluster PcieSSD storage tier.
+        ntp_settings (NtpSettingsConfig): Specifies if the ntp/primary
+            secondary scheme should be disabled for this cluster.
+        pcie_ssd_tier_rebalance_delay_secs (int): Specifies the rebalance delay
+            in seconds for cluster PcieSSD storage tier.
         proto_rpc_encryption_enabled (bool): Specifies if protorpc encryption
             is enabled or not.
         reverse_tunnel_enabled (bool): If 'true', Cohesity's Remote Tunnel is
@@ -103,8 +103,7 @@ class UpdateClusterParams(object):
             per session to the Server.
         stig_mode (bool): TODO(mitch) StigMode is deprecated. Should it still
             be in this list??
-        syslog_servers (list of SyslogServer): Array of Syslog Servers.
-            Specifies a list of Syslog servers to send audit logs to.
+        syslog_servers (list of OldSyslogServer): Syslog servers.
         tenant_viewbox_sharing_enabled (bool): In case multi tenancy is
             enabled, this flag controls whether multiple tenants can be placed
             on the same viewbox. Once set to true, this flag should never
@@ -117,12 +116,12 @@ class UpdateClusterParams(object):
         use_heimdall (bool): Specifies whether to enable Heimdall which tells
             whether services should use temporary fleet instances to mount
             disks by talking to Heimdall.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "amqp_target_config": 'amqpTargetConfig',
+        "amqp_target_config":'amqpTargetConfig',
         "apps_subnet":'appsSubnet',
         "banner_enabled":'bannerEnabled',
         "cluster_audit_log_config":'clusterAuditLogConfig',
@@ -158,9 +157,8 @@ class UpdateClusterParams(object):
         "tiering_audit_log_config":'tieringAuditLogConfig',
         "timezone":'timezone',
         "turbo_mode":'turboMode',
-        "use_heimdall":'useHeimdall'
+        "use_heimdall":'useHeimdall',
     }
-
     def __init__(self,
                  amqp_target_config=None,
                  apps_subnet=None,
@@ -198,7 +196,9 @@ class UpdateClusterParams(object):
                  tiering_audit_log_config=None,
                  timezone=None,
                  turbo_mode=None,
-                 use_heimdall=None):
+                 use_heimdall=None,
+            ):
+
         """Constructor for the UpdateClusterParams class"""
 
         # Initialize members of the class
@@ -240,7 +240,6 @@ class UpdateClusterParams(object):
         self.turbo_mode = turbo_mode
         self.use_heimdall = use_heimdall
 
-
     @classmethod
     def from_dictionary(cls,
                         dictionary):
@@ -263,8 +262,8 @@ class UpdateClusterParams(object):
         apps_subnet = cohesity_management_sdk.models.subnet.Subnet.from_dictionary(dictionary.get('appsSubnet')) if dictionary.get('appsSubnet') else None
         banner_enabled = dictionary.get('bannerEnabled')
         cluster_audit_log_config = cohesity_management_sdk.models.cluster_audit_log_configuration.ClusterAuditLogConfiguration.from_dictionary(dictionary.get('clusterAuditLogConfig')) if dictionary.get('clusterAuditLogConfig') else None
-        dns_server_ips = dictionary.get('dnsServerIps')
-        domain_names = dictionary.get('domainNames')
+        dns_server_ips = dictionary.get("dnsServerIps")
+        domain_names = dictionary.get("domainNames")
         enable_active_monitoring = dictionary.get('enableActiveMonitoring')
         enable_patches_download = dictionary.get('enablePatchesDownload')
         enable_upgrade_pkg_polling = dictionary.get('enableUpgradePkgPolling')
@@ -294,7 +293,7 @@ class UpdateClusterParams(object):
         if dictionary.get('syslogServers') != None:
             syslog_servers = list()
             for structure in dictionary.get('syslogServers'):
-                syslog_servers.append(cohesity_management_sdk.models.syslog_server.SyslogServer.from_dictionary(structure))
+                syslog_servers.append(cohesity_management_sdk.models.old_syslog_server.OldSyslogServer.from_dictionary(structure))
         tenant_viewbox_sharing_enabled = dictionary.get('tenantViewboxSharingEnabled')
         tiering_audit_log_config = cohesity_management_sdk.models.tiering_audit_log_configuration.TieringAuditLogConfiguration.from_dictionary(dictionary.get('tieringAuditLogConfig')) if dictionary.get('tieringAuditLogConfig') else None
         timezone = dictionary.get('timezone')
@@ -302,42 +301,42 @@ class UpdateClusterParams(object):
         use_heimdall = dictionary.get('useHeimdall')
 
         # Return an object of this model
-        return cls(amqp_target_config,
-                   apps_subnet,
-                   banner_enabled,
-                   cluster_audit_log_config,
-                   dns_server_ips,
-                   domain_names,
-                   enable_active_monitoring,
-                   enable_patches_download,
-                   enable_upgrade_pkg_polling,
-                   encryption_key_rotation_period_secs,
-                   fault_tolerance_level,
-                   filer_audit_log_config,
-                   gateway,
-                   google_analytics_enabled,
-                   is_documentation_local,
-                   kms_server_id,
-                   language_locale,
-                   local_auth_domain_name,
-                   local_groups_enabled,
-                   metadata_fault_tolerance_factor,
-                   multi_tenancy_enabled,
-                   name,
-                   ntp_settings,
-                   pcie_ssd_tier_rebalance_delay_secs,
-                   proto_rpc_encryption_enabled,
-                   reverse_tunnel_enabled,
-                   reverse_tunnel_end_time_msecs,
-                   security_mode_dod,
-                   smb_ad_disabled,
-                   smb_multichannel_enabled,
-                   stig_mode,
-                   syslog_servers,
-                   tenant_viewbox_sharing_enabled,
-                   tiering_audit_log_config,
-                   timezone,
-                   turbo_mode,
-                   use_heimdall)
-
-
+        return cls(
+            amqp_target_config,
+            apps_subnet,
+            banner_enabled,
+            cluster_audit_log_config,
+            dns_server_ips,
+            domain_names,
+            enable_active_monitoring,
+            enable_patches_download,
+            enable_upgrade_pkg_polling,
+            encryption_key_rotation_period_secs,
+            fault_tolerance_level,
+            filer_audit_log_config,
+            gateway,
+            google_analytics_enabled,
+            is_documentation_local,
+            kms_server_id,
+            language_locale,
+            local_auth_domain_name,
+            local_groups_enabled,
+            metadata_fault_tolerance_factor,
+            multi_tenancy_enabled,
+            name,
+            ntp_settings,
+            pcie_ssd_tier_rebalance_delay_secs,
+            proto_rpc_encryption_enabled,
+            reverse_tunnel_enabled,
+            reverse_tunnel_end_time_msecs,
+            security_mode_dod,
+            smb_ad_disabled,
+            smb_multichannel_enabled,
+            stig_mode,
+            syslog_servers,
+            tenant_viewbox_sharing_enabled,
+            tiering_audit_log_config,
+            timezone,
+            turbo_mode,
+            use_heimdall
+)

@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class RemoteScriptPathAndParams(object):
 
     """Implementation of the 'RemoteScriptPathAndParams' model.
 
-    Specifies the path to the remote script and any parameters
-    expected by the remote script.
+    Specifies the path to the remote script and any parameters expected by the
+    remote script.
+
 
     Attributes:
+
         continue_on_error (bool): Specifies if the script needs to continue
             even if there is an occurence of an error. If this flag is set to
             true, then backup job will start even if the pre backup script
@@ -24,11 +25,11 @@ class RemoteScriptPathAndParams(object):
             user=me".
         script_path (string): Specifies the path to the script on the remote
             host.
-        timeout_secs (int): Specifies the timeout of the script in seconds.
-            The script will be killed if it exceeds this value. If the value
-            of the field is '-1' then timeout is not set for the script.
-
+        timeout_secs (int): Specifies the timeout of the script in seconds. The
+            script will be killed if it exceeds this value. If the value of the
+            field is '-1' then timeout is not set for the script.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -36,15 +37,16 @@ class RemoteScriptPathAndParams(object):
         "is_active":'isActive',
         "script_params":'scriptParams',
         "script_path":'scriptPath',
-        "timeout_secs":'timeoutSecs'
+        "timeout_secs":'timeoutSecs',
     }
-
     def __init__(self,
                  continue_on_error=None,
                  is_active=None,
                  script_params=None,
                  script_path=None,
-                 timeout_secs=None):
+                 timeout_secs=None,
+            ):
+
         """Constructor for the RemoteScriptPathAndParams class"""
 
         # Initialize members of the class
@@ -53,7 +55,6 @@ class RemoteScriptPathAndParams(object):
         self.script_params = script_params
         self.script_path = script_path
         self.timeout_secs = timeout_secs
-
 
     @classmethod
     def from_dictionary(cls,
@@ -80,10 +81,10 @@ class RemoteScriptPathAndParams(object):
         timeout_secs = dictionary.get('timeoutSecs')
 
         # Return an object of this model
-        return cls(continue_on_error,
-                   is_active,
-                   script_params,
-                   script_path,
-                   timeout_secs)
-
-
+        return cls(
+            continue_on_error,
+            is_active,
+            script_params,
+            script_path,
+            timeout_secs
+)

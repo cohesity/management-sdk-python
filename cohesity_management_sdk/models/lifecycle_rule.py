@@ -1,48 +1,53 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.abort_incomplete_multipart_upload_action
 import cohesity_management_sdk.models.expiration_action
 import cohesity_management_sdk.models.lifecycle_rule_filter
 import cohesity_management_sdk.models.noncurrent_version_expiration_action
 
+
 class LifecycleRule(object):
 
     """Implementation of the 'LifecycleRule' model.
 
-    Structure to hold feature usage on cluster side.
+    TODO: type description here.
+
 
     Attributes:
-        abort_incomplete_multipart_upload (AbortIncompleteMultipartUploadAction):
-            Specifies the days since the initiation of an incomplete multipart
-            upload before permanently removing all parts of the upload.
+
+        abort_incomplete_multipart_upload
+            (AbortIncompleteMultipartUploadAction): Specifies the days since
+            the initiation of an incomplete multipart upload before permanently
+            removing all parts of the upload.
         expiration (ExpirationAction): Specifies the expiration for the
             lifecycle of the object in the form of date, days and, whether the
             object has a delete marker.
         filter (LifecycleRuleFilter): The Filter is used to identify objects
             that a Lifecycle Rule applies to.
-        id (string):  Unique identifier for the rule. The value cannot be longer
+        id (string): Unique identifier for the rule. The value cannot be longer
             than 255 characters.
-        noncurrent_version_expiration (NoncurrentVersionExpirationAction): Number
-            of VM spinned.
-        prefix (string): The prefix is used to identify objects that a lifecycle rule
-          applies to.
+        noncurrent_version_expiration (NoncurrentVersionExpirationAction):
+            Specifies when noncurrent object versions expire. Upon expiration,
+            noncurrent object versions are permanently deleted. The action can
+            be specified only in versioning enabled of suspended buckets.
+        prefix (string): The prefix is used to identify objects that a
+            lifecycle rule applies to.
         status (bool): If set, the rule is currently being applied. If
             'Disabled', the rule is not currently being applied.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "abort_incomplete_multipart_upload": 'abortIncompleteMultipartUpload',
-        "expiration": 'expiration',
-        "filter": 'filter',
-        "id": 'id',
+        "abort_incomplete_multipart_upload":'abortIncompleteMultipartUpload',
+        "expiration":'expiration',
+        "filter":'filter',
+        "id":'id',
         "noncurrent_version_expiration":'noncurrentVersionExpiration',
         "prefix":'prefix',
-        "status":'status'
+        "status":'status',
     }
-
     def __init__(self,
                  abort_incomplete_multipart_upload=None,
                  expiration=None,
@@ -50,7 +55,9 @@ class LifecycleRule(object):
                  id=None,
                  noncurrent_version_expiration=None,
                  prefix=None,
-                 status=None):
+                 status=None,
+            ):
+
         """Constructor for the LifecycleRule class"""
 
         # Initialize members of the class
@@ -89,12 +96,12 @@ class LifecycleRule(object):
         status = dictionary.get('status')
 
         # Return an object of this model
-        return cls(abort_incomplete_multipart_upload,
-                   expiration,
-                   filter,
-                   id,
-                   noncurrent_version_expiration,
-                   prefix,
-                   status)
-
-
+        return cls(
+            abort_incomplete_multipart_upload,
+            expiration,
+            filter,
+            id,
+            noncurrent_version_expiration,
+            prefix,
+            status
+)

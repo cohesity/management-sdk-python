@@ -1,35 +1,39 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class PodInfo_PodSpec_VolumeInfo_AzureFile(object):
 
     """Implementation of the 'PodInfo_PodSpec_VolumeInfo_AzureFile' model.
 
+    TODO: type description here.
+
+
     Attributes:
+
         read_only (string): TODO: Type description here.
         secret_name (string): TODO: Type description here.
         share_name (string): TODO: Type description here.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "read_only":'readOnly',
         "secret_name":'secretName',
-        "share_name":'shareName'
+        "share_name":'shareName',
     }
-
     def __init__(self,
                  read_only=None,
                  secret_name=None,
-                 share_name=None):
+                 share_name=None,
+            ):
+
         """Constructor for the PodInfo_PodSpec_VolumeInfo_AzureFile class"""
 
         # Initialize members of the class
         self.read_only = read_only
         self.secret_name = secret_name
         self.share_name = share_name
-
 
     @classmethod
     def from_dictionary(cls,
@@ -54,8 +58,8 @@ class PodInfo_PodSpec_VolumeInfo_AzureFile(object):
         share_name = dictionary.get('shareName')
 
         # Return an object of this model
-        return cls(read_only,
-                   secret_name,
-                   share_name)
-
-
+        return cls(
+            read_only,
+            secret_name,
+            share_name
+)

@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
-class SequentialIOPreferentialTierEnum(object):
+class SequentialIoPreferentialTierEnum(object):
 
-    """Implementation of the 'SequentialIOPreferentialTier' enum.
+    """Implementation of the 'SequentialIoPreferentialTier' enum.
+    Specifies the preferred storage tier for sequential IO operations.
 
-    TODO: type enum description here.
 
     Attributes:
         KPCIESSD: TODO: type description here.
@@ -22,4 +22,3 @@ class SequentialIOPreferentialTierEnum(object):
     KSATAHDD = 'kSataHdd'
 
     KCLOUD = 'kCloud'
-

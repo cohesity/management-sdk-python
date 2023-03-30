@@ -1,34 +1,37 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.agent_information
 import cohesity_management_sdk.models.datastore_info
 import cohesity_management_sdk.models.ip_details
-import cohesity_management_sdk.models.vmware_object_id
 import cohesity_management_sdk.models.tag_attribute
 import cohesity_management_sdk.models.vcloud_director_info
 import cohesity_management_sdk.models.virtual_disk_info
-import cohesity_management_sdk.models.vmware_cdp_protection_source_info
 import cohesity_management_sdk.models.vm_linking_info
+import cohesity_management_sdk.models.vmware_cdp_protection_source_info
+import cohesity_management_sdk.models.vmware_object_id
 
-class VmwareProtectionSource(object):
+
+class VMwareProtectionSource(object):
 
     """Implementation of the 'VMwareProtectionSource' model.
 
     Specifies a Protection Source in a VMware environment.
 
+
     Attributes:
+
         agent_id (long|int): Specifies the id of the persistent agent.
         agents (list of AgentInformation): Specifies the list of agent
-            information on the Virtual Machine. This is set only if the
-            Virtual Machine has persistent agent.
+            information on the Virtual Machine. This is set only if the Virtual
+            Machine has persistent agent.
         cdp_info (VMwareCdpProtectionSourceInfo): This field contains the
             details about Continuous Data Protection (CDP) of the Protection
             Source.
         connection_state (ConnectionStateEnum): Specifies the connection state
             of the Object and are only valid for ESXi hosts ('kHostSystem') or
-            Virtual Machines ('kVirtualMachine'). These enums are equivalent
-            to the connection states documented in VMware's reference
+            Virtual Machines ('kVirtualMachine'). These enums are equivalent to
+            the connection states documented in VMware's reference
             documentation. Examples of Cohesity connection states include
             'kConnected', 'kDisconnected', 'kInacccessible', etc. 'kConnected'
             indicates that server has access to virtual machine.
@@ -38,9 +41,10 @@ class VmwareProtectionSource(object):
             virtual machine configuration is invalid. 'kOrphaned' indicates
             that virtual machine is no longer registered on the host it is
             associated with. 'kNotResponding' indicates that virtual machine
-            is failed to response due to external issues such as network
-            connectivity, hostd not running etc.
-        datastore_info (DatastoreInfo): TODO: type description here.
+            has failed to respond due to external issues such as network
+            connectivity, host not running etc.
+        datastore_info (DatastoreInfo): Specifies additional information of
+            entities of type 'kDatastore'.
         folder_type (FolderTypeEnum): Specifies the folder type for the
             'kFolder' Object. 'kVMFolder' indicates folder can hold VMs or
             vApps. 'kHostFolder' indicates folder can hold hosts and compute
@@ -51,34 +55,36 @@ class VmwareProtectionSource(object):
         has_persistent_agent (bool): Set to true if a persistent agent is
             running on the Virtual Machine. This is populated for entities of
             type 'kVirtualMachine'.
-        host_type (HostTypeVmwareProtectionSourceEnum): Specifies the host
-            type for the 'kVirtualMachine' Object. 'kLinux' indicates the
-            Linux operating system. 'kWindows' indicates the Microsoft Windows
-            operating system. 'kAix' indicates the IBM AIX operating system.
-            'kSolaris' indicates the Oracle Solaris operating system.
-            'kSapHana' indicates the Sap Hana database system developed by SAP
-            SE. 'kOther' indicates the other types of operating system.
-        id (VmwareObjectId): Specifies a unique Protection Source id across
-            Cohesity Clusters. It is derived from the id of the VMware
-            Protection Source.
+        host_type (HostTypeEnum): Specifies the host type for the
+            'kVirtualMachine' Object. 'kLinux' indicates the Linux operating
+            system. 'kWindows' indicates the Microsoft Windows operating
+            system. 'kAix' indicates the IBM AIX operating system. 'kSolaris'
+            indicates the Oracle Solaris operating system. 'kSapHana' indicates
+            the Sap Hana database system developed by SAP SE. 'kSapOracle'
+            indicates the Sap Oracle database system developed by SAP SE.
+            'kCockroachDB' indicates the CockroachDB database system. 'kMySQL'
+            indicates the MySQL database system. 'kOther' indicates the other
+            types of operating system.
+        id (VMwareObjectId): Specifies the UUID of the VMware Protection
+            Source.
         ip_details (IpDetails): This field can be used to capture IP Addresses
             for entities that have it.
         is_vm_template (bool): IsTemplate specifies if the VM is a template or
             not.
-        is_vmc_entity (bool): This field is used for indicating that
-            registered vmware source is a VMC (VMware Cloud) environment.
+        is_vmc_entity (bool): This field is used for indicating that registered
+            vmware source is a VMC (VMware Cloud) environment.
         name (string): Specifies a human readable name of the Protection
             Source.
         tag_attributes (list of TagAttribute): Specifies the optional list of
             VM Tag attributes associated with this Object.
-        tools_running_status (ToolsRunningStatusEnum): Specifies the status of
-            VMware Tools for the guest OS on the VM. This is only valid for
-            the 'kVirtualMachine' type. 'kGuestToolsRunning' means the VMware
-            tools are running on the guest OS. 'kGuestToolsNotRunning' means
-            the VMware tools are not running on the guest OS. 'kUnknown' means
-            the state of the VMware tools on the guest OS is not known.
-            'kGuestToolsExecutingScripts' means the guest OS is currently
-            executing scripts using VMware tools.
+        tools_running_status (VMwareToolsRunningStatusEnum): Specifies the
+            status of VMware Tools for the guest OS on the VM. This is only
+            valid for the 'kVirtualMachine' type. 'kGuestToolsRunning' means
+            the VMware tools are running on the guest OS.
+            'kGuestToolsNotRunning' means the VMware tools are not running on
+            the guest OS. 'kUnknown' means the state of the VMware tools on the
+            guest OS is not known. 'kGuestToolsExecutingScripts' means the
+            guest OS is currently executing scripts using VMware tools.
         mtype (TypeVmwareProtectionSourceEnum): Specifies the type of managed
             Object in a VMware Protection Source. Examples of VMware Objects
             include 'kVCenter', 'kFolder', 'kDatacenter', 'kResourcePool',
@@ -88,33 +94,33 @@ class VmwareProtectionSource(object):
             source type. 'kDatacenter' indicates the datacenter entity in a
             VMware protection source type. 'kComputeResource' indicates the
             physical compute resource entity in a VMware protection source
-            type. 'kResourcePool' indicates the set of physical resourses
+            type. 'kResourcePool' indicates the set of physical resources
             within a compute resource or cloudcompute resource. 'kDataStore'
             indicates the datastore entity in a VMware protection source type.
-            'kHostSystem' indicates the ESXi host entity in a VMware
-            protection source type. 'kVirtualMachine' indicates the virtual
-            machine entity in a VMware protection source type. 'kVirtualApp'
-            indicates the virtual app entity in a VMware protection source
-            type. 'kStandaloneHost' indicates the standalone ESXi host entity
-            (not managed by vCenter) in a VMware protection source type.
+            'kHostSystem' indicates the ESXi host entity in a VMware protection
+            source type. 'kVirtualMachine' indicates the virtual machine entity
+            in a VMware protection source type. 'kVirtualApp' indicates the
+            virtual app entity in a VMware protection source type.
+            'kStandaloneHost' indicates the standalone ESXi host entity (not
+            managed by vCenter) in a VMware protection source type.
             'kStoragePod' indicates the storage pod entity in a VMware
             protection source type. 'kNetwork' indicates the standard vSwitch
             in a VMware protection source type. 'kDistributedVirtualPortgroup'
             indicates a distributed vSwitch port group in a VMware protection
             source type. 'kTagCategory' indicates a tag category entity in a
-            VMware protection source type. 'kTag' indocates a tag entity in a
-            VMware protection source type. 'kOpaqueNetwork' indicates a opaque
+            VMware protection source type. 'kTag' indicates a tag entity in a
+            VMware protection source type. 'kOpaqueNetwork' indicates an opaque
             network which is created and managed by an entity outside of
-            vSphere. 'kVCloudDirector' indicates a vCloud director entity in a
+            vSphere. 'kvCloudDirector' indicates a vCloud director entity in a
             VMware protection source type. 'kOrganization' indicates an
             Organization under a vCD in a VMware protection source type.
             'kVirtualDatacenter' indicates a virtual datacenter entity in a
-            VMware protection source type. 'kCatalog' indocates a VCD catalog
-            entity in a VMware protection source type. 'kOrgMetadata'
-            indicates an VCD organization metadata in a VMware protection
-            source type. 'kStoragePolicy' indicates a storage policy
-            associated with the vApp in a VMware protection source type.
-        vcloud_director_info (list of VcloudDirectorInfo): Specifies an array
+            VMware protection source type. 'kCatalog' indicates a VCD catalog
+            entity in a VMware protection source type. 'kOrgMetadata' indicates
+            an VCD organization metadata in a VMware protection source type.
+            'kStoragePolicy' indicates a storage policy associated with the
+            vApp in a VMware protection source type.
+        vcloud_director_info (list of VCloudDirectorInfo): Specifies an array
             of vCenters to be registered
         version (string): For vCenter and ESXi, this will show the software
             version. For VMs, this will show the hardware version.
@@ -124,8 +130,8 @@ class VmwareProtectionSource(object):
         vm_linking_info (VmLinkingInfo): This field contains information about
             a VM that has been migrated from another vCenter. This is only
             valid for the 'kVirtualMachine' type.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -148,9 +154,8 @@ class VmwareProtectionSource(object):
         "vcloud_director_info":'vCloudDirectorInfo',
         "version":'version',
         "virtual_disks":'virtualDisks',
-        "vm_linking_info":'vmLinkingInfo'
+        "vm_linking_info":'vmLinkingInfo',
     }
-
     def __init__(self,
                  agent_id=None,
                  agents=None,
@@ -171,8 +176,10 @@ class VmwareProtectionSource(object):
                  vcloud_director_info=None,
                  version=None,
                  virtual_disks=None,
-                 vm_linking_info=None):
-        """Constructor for the VmwareProtectionSource class"""
+                 vm_linking_info=None,
+            ):
+
+        """Constructor for the VMwareProtectionSource class"""
 
         # Initialize members of the class
         self.agent_id = agent_id
@@ -195,7 +202,6 @@ class VmwareProtectionSource(object):
         self.version = version
         self.virtual_disks = virtual_disks
         self.vm_linking_info = vm_linking_info
-
 
     @classmethod
     def from_dictionary(cls,
@@ -227,7 +233,7 @@ class VmwareProtectionSource(object):
         folder_type = dictionary.get('folderType')
         has_persistent_agent = dictionary.get('hasPersistentAgent')
         host_type = dictionary.get('hostType')
-        id = cohesity_management_sdk.models.vmware_object_id.VmwareObjectId.from_dictionary(dictionary.get('id')) if dictionary.get('id') else None
+        id = cohesity_management_sdk.models.vmware_object_id.VMwareObjectId.from_dictionary(dictionary.get('id')) if dictionary.get('id') else None
         ip_details = cohesity_management_sdk.models.ip_details.IpDetails.from_dictionary(dictionary.get('ipDetails')) if dictionary.get('ipDetails') else None
         is_vm_template = dictionary.get('isVmTemplate')
         is_vmc_entity = dictionary.get('isVmcEntity')
@@ -243,7 +249,7 @@ class VmwareProtectionSource(object):
         if dictionary.get('vCloudDirectorInfo') != None:
             vcloud_director_info = list()
             for structure in dictionary.get('vCloudDirectorInfo'):
-                vcloud_director_info.append(cohesity_management_sdk.models.vcloud_director_info.VcloudDirectorInfo.from_dictionary(structure))
+                vcloud_director_info.append(cohesity_management_sdk.models.vcloud_director_info.VCloudDirectorInfo.from_dictionary(structure))
         version = dictionary.get('version')
         virtual_disks = None
         if dictionary.get('virtualDisks') != None:
@@ -253,25 +259,25 @@ class VmwareProtectionSource(object):
         vm_linking_info = cohesity_management_sdk.models.vm_linking_info.VmLinkingInfo.from_dictionary(dictionary.get('vmLinkingInfo')) if dictionary.get('vmLinkingInfo') else None
 
         # Return an object of this model
-        return cls(agent_id,
-                   agents,
-                   cdp_info,
-                   connection_state,
-                   datastore_info,
-                   folder_type,
-                   has_persistent_agent,
-                   host_type,
-                   id,
-                   ip_details,
-                   is_vm_template,
-                   is_vmc_entity,
-                   name,
-                   tag_attributes,
-                   tools_running_status,
-                   mtype,
-                   vcloud_director_info,
-                   version,
-                   virtual_disks,
-                   vm_linking_info)
-
-
+        return cls(
+            agent_id,
+            agents,
+            cdp_info,
+            connection_state,
+            datastore_info,
+            folder_type,
+            has_persistent_agent,
+            host_type,
+            id,
+            ip_details,
+            is_vm_template,
+            is_vmc_entity,
+            name,
+            tag_attributes,
+            tools_running_status,
+            mtype,
+            vcloud_director_info,
+            version,
+            virtual_disks,
+            vm_linking_info
+)

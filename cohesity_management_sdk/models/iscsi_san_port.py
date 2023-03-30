@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class IscsiSanPort(object):
 
@@ -8,31 +7,33 @@ class IscsiSanPort(object):
 
     Specifies an iSCSI SAN Port.
 
+
     Attributes:
+
         ip_address (string): Specifies the IP address of the SAN port.
         iqn (string): Specifies the qualified name of the iSCSI port (IQN).
         tcp_port (int): Specifies the listening port(tcp) of the SAN port.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "ip_address":'ipAddress',
         "iqn":'iqn',
-        "tcp_port":'tcpPort'
+        "tcp_port":'tcpPort',
     }
-
     def __init__(self,
                  ip_address=None,
                  iqn=None,
-                 tcp_port=None):
+                 tcp_port=None,
+            ):
+
         """Constructor for the IscsiSanPort class"""
 
         # Initialize members of the class
         self.ip_address = ip_address
         self.iqn = iqn
         self.tcp_port = tcp_port
-
 
     @classmethod
     def from_dictionary(cls,
@@ -57,8 +58,8 @@ class IscsiSanPort(object):
         tcp_port = dictionary.get('tcpPort')
 
         # Return an object of this model
-        return cls(ip_address,
-                   iqn,
-                   tcp_port)
-
-
+        return cls(
+            ip_address,
+            iqn,
+            tcp_port
+)

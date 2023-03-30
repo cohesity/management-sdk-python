@@ -1,20 +1,17 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class TypeUserIdMappingEnum(object):
 
-    """Implementation of the 'Type_UserIdMapping' enum.
-
-    Specifies the mapping type used.
-    'kRid' indicates the kRid mapping type.
-    'kRfc2307' indicates the kRfc2307 mapping type.
-    'kSfu30' indicates the kSfu30 mapping type.
-    'kCentrify' indicates the mapping type to refer to a centrify zone.
-    'kFixed' indicates the mapping from all Active Directory users to a fixed
-    Unix uid, and gid.
-    'kCustomAttributes' indicates the mapping to derive from custom attributes
-    defined in an AD domain.
+    """Implementation of the 'TypeUserIdMapping' enum.
+    Specifies the mapping type used. 'kRid' indicates the kRid mapping type.
+    'kRfc2307' indicates the kRfc2307 mapping type. 'kSfu30' indicates the
+    kSfu30 mapping type. 'kCentrify' indicates the mapping type to refer to a
+    centrify zone. 'kFixed' indicates the mapping from all Active Directory
+    users to a fixed Unix uid, and gid. 'kCustomAttributes' indicates the
+    mapping to derive from custom attributes defined in an AD domain.
     'kLdapProvider' indicates the Active Directory to LDAP provider mapping.
+
 
     Attributes:
         KRID: TODO: type description here.
@@ -40,4 +37,3 @@ class TypeUserIdMappingEnum(object):
     KCUSTOMATTRIBUTES = 'kCustomAttributes'
 
     KLDAPPROVIDER = 'kLdapProvider'
-

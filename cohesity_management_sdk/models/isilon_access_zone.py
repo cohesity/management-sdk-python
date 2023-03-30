@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.network_pool
+
 
 class IsilonAccessZone(object):
 
@@ -9,7 +10,9 @@ class IsilonAccessZone(object):
 
     Specifies information about access zone in an Isilon Cluster.
 
+
     Attributes:
+
         groupnet (string): Specifies the groupnet name of the Isilon Access
             Zone.
         id (long|int): Specifies the id of the access zone.
@@ -18,8 +21,8 @@ class IsilonAccessZone(object):
             associated with the Isilon Access Zone.
         path (string): Specifies the path of the access zone in ifs. This
             should include the leading "/ifs/".
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -27,15 +30,16 @@ class IsilonAccessZone(object):
         "id":'id',
         "name":'name',
         "network_pools":'networkPools',
-        "path":'path'
+        "path":'path',
     }
-
     def __init__(self,
                  groupnet=None,
                  id=None,
                  name=None,
                  network_pools=None,
-                 path=None):
+                 path=None,
+            ):
+
         """Constructor for the IsilonAccessZone class"""
 
         # Initialize members of the class
@@ -44,7 +48,6 @@ class IsilonAccessZone(object):
         self.name = name
         self.network_pools = network_pools
         self.path = path
-
 
     @classmethod
     def from_dictionary(cls,
@@ -75,10 +78,10 @@ class IsilonAccessZone(object):
         path = dictionary.get('path')
 
         # Return an object of this model
-        return cls(groupnet,
-                   id,
-                   name,
-                   network_pools,
-                   path)
-
-
+        return cls(
+            groupnet,
+            id,
+            name,
+            network_pools,
+            path
+)

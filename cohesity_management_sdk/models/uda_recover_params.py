@@ -1,13 +1,18 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.uda_restore_object
+
 
 class UdaRecoverParams(object):
 
     """Implementation of the 'UdaRecoverParams' model.
 
+    TODO: type description here.
+
+
     Attributes:
+
         log_view_name (string): If the restore has logs to be replayed,
             'log_view_name' contains the name of log backup view to be mounted
             on the host.
@@ -17,24 +22,25 @@ class UdaRecoverParams(object):
             saved.
     """
 
+
     # Create a mapping from Model property names to API property names
     _names = {
         "log_view_name":'logViewName',
         "restore_objects":'restoreObjects',
-        "view_box_id":'viewBoxId'
+        "view_box_id":'viewBoxId',
     }
-
     def __init__(self,
                  log_view_name=None,
                  restore_objects=None,
-                 view_box_id=None):
+                 view_box_id=None,
+            ):
+
         """Constructor for the UdaRecoverParams class"""
 
         # Initialize members of the class
         self.log_view_name = log_view_name
         self.restore_objects = restore_objects
         self.view_box_id = view_box_id
-
 
     @classmethod
     def from_dictionary(cls,
@@ -63,8 +69,8 @@ class UdaRecoverParams(object):
         view_box_id = dictionary.get('viewBoxId')
 
         # Return an object of this model
-        return cls(log_view_name,
-                   restore_objects,
-                   view_box_id)
-
-
+        return cls(
+            log_view_name,
+            restore_objects,
+            view_box_id
+)

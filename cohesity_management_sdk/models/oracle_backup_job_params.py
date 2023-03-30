@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.vlan_params
+
 
 class OracleBackupJobParams(object):
 
@@ -9,52 +10,56 @@ class OracleBackupJobParams(object):
 
     Message to capture any additional backup params specific to Oracle.
 
+
     Attributes:
-    full_auto_kill_timeout_secs (long|int): Time in seconds after which the
-        full backup of the database in given backup job should be auto-killed.
-        If set to -1, then the backup will run until completion.
-    incr_auto_kill_timeout_secs (long|int): Time in seconds after which the
-        incremental backup of the database in given backup job should be
-        auto-killed.
-        If set to -1, then the backup will run until completion.
-    log_auto_kill_timeout_secs (long|int): Time in seconds after which the
-        log backup of the database in given backup job should be auto-killed.
-        If set to -1, then the backup will run until completion.
-    persist_mountpoints (bool): Indicates whether the mountpoints created
-        while backing up Oracle DBs should be persisted. If this is set to
-        'false' all Oracle views mounted to the hosts will be unmounted at the
-        end.
-        Note: This parameter is for the entire Job. For overriding persistence of
-        mountpoints for a subset of Oracle hosts within the job,
-        refer OracleSourceParams.
-    vlan_params (VlanParams): Contains vlan params associated with the
-        backup/restore operation.
+
+        full_auto_kill_timeout_secs (long|int): Time in seconds after which the
+            full backup of the database in given backup job should be
+            auto-killed. If set to -1, then the backup will run until
+            completion.
+        incr_auto_kill_timeout_secs (long|int): Time in seconds after which the
+            incremental backup of the database in given backup job should be
+            auto-killed. If set to -1, then the backup will run until
+            completion.
+        log_auto_kill_timeout_secs (long|int): Time in seconds after which the
+            log backup of the database in given backup job should be
+            auto-killed. If set to -1, then the backup will run until
+            completion.
+        persist_mountpoints (bool): Indicates whether the mountpoints created
+            while backing up Oracle DBs should be persisted. If this is set to
+            'false' all Oracle views mounted to the hosts will be unmounted at
+            the end. Note: This parameter is for the entire Job. For overriding
+            persistence of mountpoints for a subset of Oracle hosts within the
+            job, refer OracleSourceParams.
+        vlan_params (VlanParams): Indicates the vlan preference that is
+            selected by the user for doing backup.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "full_auto_kill_timeout_secs":'fullAutoKillTimeoutSecs',
         "incr_auto_kill_timeout_secs":'incrAutoKillTimeoutSecs',
         "log_auto_kill_timeout_secs":'logAutoKillTimeoutSecs',
-        "persist_mountpoints": 'persistMountpoints',
-        "vlan_params": "vlanParams"
+        "persist_mountpoints":'persistMountpoints',
+        "vlan_params":'vlanParams',
     }
-
     def __init__(self,
                  full_auto_kill_timeout_secs=None,
                  incr_auto_kill_timeout_secs=None,
                  log_auto_kill_timeout_secs=None,
                  persist_mountpoints=None,
-                 vlan_params=None):
+                 vlan_params=None,
+            ):
+
         """Constructor for the OracleBackupJobParams class"""
 
         # Initialize members of the class
         self.full_auto_kill_timeout_secs = full_auto_kill_timeout_secs
-        self.incr_auto_kill_timeout_secs   = incr_auto_kill_timeout_secs
+        self.incr_auto_kill_timeout_secs = incr_auto_kill_timeout_secs
         self.log_auto_kill_timeout_secs = log_auto_kill_timeout_secs
         self.persist_mountpoints = persist_mountpoints
         self.vlan_params = vlan_params
-
 
     @classmethod
     def from_dictionary(cls,
@@ -81,10 +86,10 @@ class OracleBackupJobParams(object):
         vlan_params = cohesity_management_sdk.models.vlan_params.VlanParams.from_dictionary(dictionary.get('vlanParams')) if dictionary.get('vlanParams') else None
 
         # Return an object of this model
-        return cls(full_auto_kill_timeout_secs,
-                   incr_auto_kill_timeout_secs,
-                   log_auto_kill_timeout_secs,
-                   persist_mountpoints,
-                   vlan_params)
-
-
+        return cls(
+            full_auto_kill_timeout_secs,
+            incr_auto_kill_timeout_secs,
+            log_auto_kill_timeout_secs,
+            persist_mountpoints,
+            vlan_params
+)

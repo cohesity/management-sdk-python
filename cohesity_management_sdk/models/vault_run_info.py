@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class VaultRunInfo(object):
 
@@ -8,30 +7,32 @@ class VaultRunInfo(object):
 
     Specifies the information about a specific vault run.
 
+
     Attributes:
+
         count (long|int): Specifies the count of runs that ended in the
             specified state between the start time passed in and the current
             timestamp.
         timestamp (long|int): Specifies the Unix timestamp at which the run
             entered the specified state.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "count":'count',
-        "timestamp":'timestamp'
+        "timestamp":'timestamp',
     }
-
     def __init__(self,
                  count=None,
-                 timestamp=None):
+                 timestamp=None,
+            ):
+
         """Constructor for the VaultRunInfo class"""
 
         # Initialize members of the class
         self.count = count
         self.timestamp = timestamp
-
 
     @classmethod
     def from_dictionary(cls,
@@ -55,7 +56,7 @@ class VaultRunInfo(object):
         timestamp = dictionary.get('timestamp')
 
         # Return an object of this model
-        return cls(count,
-                   timestamp)
-
-
+        return cls(
+            count,
+            timestamp
+)

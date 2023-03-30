@@ -1,39 +1,49 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.pod_info_pod_spec_volume_info_projected_volume_projection_config_map_projection
 import cohesity_management_sdk.models.pod_info_pod_spec_volume_info_projected_volume_projection_downward_api_projection
 import cohesity_management_sdk.models.pod_info_pod_spec_volume_info_projected_volume_projection_service_account_token_projection
 
+
 class PodInfo_PodSpec_VolumeInfo_Projected_VolumeProjection(object):
 
     """Implementation of the 'PodInfo_PodSpec_VolumeInfo_Projected_VolumeProjection' model.
 
-    Specifies the parameters for configuration of IPMI. This is only needed
-    for physical clusters.
+    TODO: type description here.
+
 
     Attributes:
-        config_map (PodInfo_PodSpec_VolumeInfo_Projected_VolumeProjection_ConfigMapProjection):
-            TODO: Type description here
-        downward_api (PodInfo_PodSpec_VolumeInfo_Projected_VolumeProjection_DownwardAPIProjection): TODO: Type description here
-        secret (PodInfo_PodSpec_VolumeInfo_Projected_VolumeProjection_ConfigMapProjection): TODO: Type description here
-        service_account_token (PodInfo_PodSpec_VolumeInfo_Projected_VolumeProjection_ServiceAccountTokenProjection): TODO: Type description here
 
+        config_map
+            (PodInfo_PodSpec_VolumeInfo_Projected_VolumeProjection_ConfigMapProjection):
+            TODO: Type description here.
+        downward_api
+            (PodInfo_PodSpec_VolumeInfo_Projected_VolumeProjection_DownwardAPIProjection):
+            TODO: Type description here.
+        secret
+            (PodInfo_PodSpec_VolumeInfo_Projected_VolumeProjection_ConfigMapProjection):
+            TODO: Type description here.
+        service_account_token
+            (PodInfo_PodSpec_VolumeInfo_Projected_VolumeProjection_ServiceAccountTokenProjection):
+            TODO: Type description here.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "config_map":'configMap',
         "downward_api":'downwardApi',
         "secret":'secret',
-        "service_account_token":'serviceAccountToken'
+        "service_account_token":'serviceAccountToken',
     }
-
     def __init__(self,
                  config_map=None,
                  downward_api=None,
                  secret=None,
-                 service_account_token=None):
+                 service_account_token=None,
+            ):
+
         """Constructor for the PodInfo_PodSpec_VolumeInfo_Projected_VolumeProjection class"""
 
         # Initialize members of the class
@@ -41,7 +51,6 @@ class PodInfo_PodSpec_VolumeInfo_Projected_VolumeProjection(object):
         self.downward_api = downward_api
         self.secret = secret
         self.service_account_token = service_account_token
-
 
     @classmethod
     def from_dictionary(cls,
@@ -67,9 +76,9 @@ class PodInfo_PodSpec_VolumeInfo_Projected_VolumeProjection(object):
         service_account_token = cohesity_management_sdk.models.pod_info_pod_spec_volume_info_projected_volume_projection_service_account_token_projection.PodInfo_PodSpec_VolumeInfo_Projected_VolumeProjection_ServiceAccountTokenProjection.from_dictionary(dictionary.get('serviceAccountToken')) if dictionary.get('serviceAccountToken') else None
 
         # Return an object of this model
-        return cls(config_map,
-                   downward_api,
-                   secret,
-                   service_account_token)
-
-
+        return cls(
+            config_map,
+            downward_api,
+            secret,
+            service_account_token
+)

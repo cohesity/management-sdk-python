@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class UpdateAppInstanceStateParameters(object):
 
@@ -8,33 +7,33 @@ class UpdateAppInstanceStateParameters(object):
 
     Specifies update app instance state parameters.
 
+
     Attributes:
-        state (StateUpdateAppInstanceStateParametersEnum):
-            Specifies the desired app instance state type.
-            Specifies operational status of an app instance.
-            kInitializing - The app instance has been launched or resumed,
-            but is not fully running yet.
-            kRunning - The app instance is running. Check health_status for
-            the actual health.
-            kPausing - The app instance is being paused.
-            kPaused - The app instance has been paused.
-            kTerminating - The app instance is being terminated.
-            kTerminated -  The app instance has been terminated.
-            kFailed - The app instance has failed due to an unrecoverable error.
+
+        state (StateUpdateAppInstanceStateParametersEnum): Specifies the
+            desired app instance state type. Specifies operational status of an
+            app instance. kInitializing - The app instance has been launched or
+            resumed, but is not fully running yet. kRunning - The app instance
+            is running. Check health_status for the actual health. kPausing -
+            The app instance is being paused. kPaused - The app instance has
+            been paused. kTerminating - The app instance is being terminated.
+            kTerminated -  The app instance has been terminated. kFailed - The
+            app instance has failed due to an unrecoverable error.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "state":'state'
+        "state":'state',
     }
-
     def __init__(self,
-                 state=None):
+                 state=None,
+            ):
+
         """Constructor for the UpdateAppInstanceStateParameters class"""
 
         # Initialize members of the class
         self.state = state
-
 
     @classmethod
     def from_dictionary(cls,
@@ -57,6 +56,6 @@ class UpdateAppInstanceStateParameters(object):
         state = dictionary.get('state')
 
         # Return an object of this model
-        return cls(state)
-
-
+        return cls(
+            state
+)

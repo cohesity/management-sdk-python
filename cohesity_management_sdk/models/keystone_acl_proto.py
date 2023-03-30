@@ -1,37 +1,42 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.keystone_acl_proto_grantees
+
 
 class KeystoneACLProto(object):
 
     """Implementation of the 'KeystoneACLProto' model.
 
     Protobuf that describes the Keystone access control list (ACL) permissions
-    for a swift container.
-    Note: Keystone ACL is applicable for only keystone authenticated users.
+    for a swift container. Note: Keystone ACL is applicable for only keystone
+    authenticated users.
+
 
     Attributes:
-        read_grantees (KeystoneACLProto_Grantees): Grantees with read permission.
-        write_grantees (KeystoneACLProto_Grantees): Grantees with write permission.
 
+        read_grantees (KeystoneACLProto_Grantees): Grantees with read
+            permission.
+        write_grantees (KeystoneACLProto_Grantees): Grantees with write
+            permission.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "read_grantees": 'readGrantees',
-        "write_grantees": 'writeGrantees'
+        "read_grantees":'readGrantees',
+        "write_grantees":'writeGrantees',
     }
-
     def __init__(self,
                  read_grantees=None,
-                 write_grantees=None):
+                 write_grantees=None,
+            ):
+
         """Constructor for the KeystoneACLProto class"""
 
         # Initialize members of the class
         self.read_grantees = read_grantees
         self.write_grantees = write_grantees
-
 
     @classmethod
     def from_dictionary(cls,
@@ -55,7 +60,7 @@ class KeystoneACLProto(object):
         write_grantees = cohesity_management_sdk.models.keystone_acl_proto_grantees.KeystoneACLProto_Grantees.from_dictionary(dictionary.get('writeGrantees')) if dictionary.get('writeGrantees') else None
 
         # Return an object of this model
-        return cls(read_grantees,
-                   write_grantees)
-
-
+        return cls(
+            read_grantees,
+            write_grantees
+)

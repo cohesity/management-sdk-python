@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class InfectedFile(object):
 
@@ -8,15 +7,17 @@ class InfectedFile(object):
 
     Specifies the Result parameters for all infected files.
 
+
     Attributes:
+
         antivirus_provider_name (string): Specifies the name of antivirus
             service provider.
         entity_id (long|int): Specifies the entity id of the infected file.
         file_path (string): Specifies file path of the infected file.
         infection_detection_timestamp (long|int): Specifies unix epoch
             timestamp (in microseconds) at which these threats were detected.
-        modified_timestamp_usecs (long|int): Specifies unix epoch timestamp
-            (in microseconds) at which this file is modified.
+        modified_timestamp_usecs (long|int): Specifies unix epoch timestamp (in
+            microseconds) at which this file is modified.
         remediation_state (RemediationStateEnum): Specifies the remediation
             state of the file. Remediation State. 'kQuarantine' indicates
             'Quarantine' state of the file. This state blocks the client
@@ -24,8 +25,7 @@ class InfectedFile(object):
             unquarantine the file. 'kUnquarantine' indicates 'Unquarantine'
             state of the file. The administrator has manually moved files from
             quarantined to the unquarantined state to allow client access.
-            Unquarantined files are not scanned for virus until manually
-            reset.
+            Unquarantined files are not scanned for virus until manually reset.
         root_inode_id (long|int): Specifies the root inode id of the file
             system that infected file belongs to.
         scan_timestamp_usecs (long|int): Specifies unix epoch timestamp (in
@@ -36,10 +36,10 @@ class InfectedFile(object):
             threat descriptions found in the file.
         view_id (long|int): Specifies the id of the View the infected file
             belongs to.
-        view_name (string): Specifies the View name corresponding to above
-            view id.
-
+        view_name (string): Specifies the View name corresponding to above view
+            id.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -54,9 +54,8 @@ class InfectedFile(object):
         "service_icap_uri":'serviceIcapUri',
         "threat_descriptions":'threatDescriptions',
         "view_id":'viewId',
-        "view_name":'viewName'
+        "view_name":'viewName',
     }
-
     def __init__(self,
                  antivirus_provider_name=None,
                  entity_id=None,
@@ -69,7 +68,9 @@ class InfectedFile(object):
                  service_icap_uri=None,
                  threat_descriptions=None,
                  view_id=None,
-                 view_name=None):
+                 view_name=None,
+            ):
+
         """Constructor for the InfectedFile class"""
 
         # Initialize members of the class
@@ -85,7 +86,6 @@ class InfectedFile(object):
         self.threat_descriptions = threat_descriptions
         self.view_id = view_id
         self.view_name = view_name
-
 
     @classmethod
     def from_dictionary(cls,
@@ -114,22 +114,22 @@ class InfectedFile(object):
         root_inode_id = dictionary.get('rootInodeId')
         scan_timestamp_usecs = dictionary.get('scanTimestampUsecs')
         service_icap_uri = dictionary.get('serviceIcapUri')
-        threat_descriptions = dictionary.get('threatDescriptions')
+        threat_descriptions = dictionary.get("threatDescriptions")
         view_id = dictionary.get('viewId')
         view_name = dictionary.get('viewName')
 
         # Return an object of this model
-        return cls(antivirus_provider_name,
-                   entity_id,
-                   file_path,
-                   infection_detection_timestamp,
-                   modified_timestamp_usecs,
-                   remediation_state,
-                   root_inode_id,
-                   scan_timestamp_usecs,
-                   service_icap_uri,
-                   threat_descriptions,
-                   view_id,
-                   view_name)
-
-
+        return cls(
+            antivirus_provider_name,
+            entity_id,
+            file_path,
+            infection_detection_timestamp,
+            modified_timestamp_usecs,
+            remediation_state,
+            root_inode_id,
+            scan_timestamp_usecs,
+            service_icap_uri,
+            threat_descriptions,
+            view_id,
+            view_name
+)

@@ -1,19 +1,16 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class TierTypeAzureCloudCredentialsEnum(object):
 
-    """Implementation of the 'TierType_AzureCloudCredentials' enum.
+    """Implementation of the 'TierTypeAzureCloudCredentials' enum.
+    Specifies the storage class of Azure. AzureTierType specifies the storage
+    class for Azure. 'kAzureTierHot' indicates a tier type of Azure properties
+    that is accessed frequently. 'kAzureTierCool' indicates a tier type of
+    Azure properties that is accessed less frequently, and stored for at least
+    30 days. 'kAzureTierArchive' indicates a tier type of Azure properties that
+    is accessed rarely and stored for at least 180 days.
 
-    Specifies the storage class of Azure.
-    AzureTierType specifies the storage class for Azure.
-    'kAzureTierHot' indicates a tier type of Azure properties that is
-    accessed
-    frequently.
-    'kAzureTierCool' indicates a tier type of Azure properties that is
-    accessed less frequently, and stored for at least 30 days.
-    'kAzureTierArchive' indicates a tier type of Azure properties that is
-    accessed rarely and stored for at least 180 days.
 
     Attributes:
         KAZURETIERHOT: TODO: type description here.
@@ -27,4 +24,3 @@ class TierTypeAzureCloudCredentialsEnum(object):
     KAZURETIERCOOL = 'kAzureTierCool'
 
     KAZURETIERARCHIVE = 'kAzureTierArchive'
-

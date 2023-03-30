@@ -1,30 +1,29 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class AwsKmsConfiguration(object):
 
     """Implementation of the 'AwsKmsConfiguration' model.
 
-    AwsKmsConfiguration to define AWS KMS config.
+    TODO: type description here.
+
 
     Attributes:
+
         access_key_id (string): Access key id needed to access the cloud
-            account. When update cluster config, should encrypte
-            accessKeyId with cluster ID.
-        auth_method (AuthMethodEnum): Specifies the authentication method
-            to be used for API calls.
-            Specifies the authentication method to be used for API calls.
-            'kUseIAMUser' indicates a user based authentication.
+            account. When update cluster config, should encrypte accessKeyId
+            with cluster ID.
+        auth_method (AuthMethodEnum): Specifies the authentication method to be
+            used for API calls. Specifies the authentication method to be used
+            for API calls. 'kUseIAMUser' indicates a user based authentication.
             'kUseIAMRole' indicates a role based authentication, used only for
-            AWS CE.
+            AWS CE. 'kUseHelios' indicates a Helios based authentication.
         ca_certificate (string): Specify the ca certificate path.
         cmk_alias (string): The string alias of the CMK.
         cmk_arn (string): The Amazon Resource Number of AWS Customer Managed
             Key.
-        cmk_key_id (string): AWS keyId, and alias.
-            Only need one of them to connect AWS.
-            Alias is better, because keyId maybe rotated by AWS.
+        cmk_key_id (string): AWS keyId, and alias. Only need one of them to
+            connect AWS. Alias is better, because keyId maybe rotated by AWS.
             The unique key id of the CMK.
         iam_role_arn (string): Specifies the IAM role which will be used to
             access the security credentials required for API calls.
@@ -33,10 +32,10 @@ class AwsKmsConfiguration(object):
             region by the configured AWS account.
         secret_access_key (string): Secret access key needed to access the
             cloud account. This is encrypted with the cluster id.
-        verify_ssl (bool): Specify whether to verify SSL when connect with
+        verify_s_s_l (bool): Specify whether to verify SSL when connect with
             AWS KMS. Default is true.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -49,9 +48,8 @@ class AwsKmsConfiguration(object):
         "iam_role_arn":'iamRoleArn',
         "region":'region',
         "secret_access_key":'secretAccessKey',
-        "verify_ssl":'verifySSL'
+        "verify_s_s_l":'verifySSL',
     }
-
     def __init__(self,
                  access_key_id=None,
                  auth_method=None,
@@ -62,7 +60,9 @@ class AwsKmsConfiguration(object):
                  iam_role_arn=None,
                  region=None,
                  secret_access_key=None,
-                 verify_ssl=None):
+                 verify_s_s_l=None,
+            ):
+
         """Constructor for the AwsKmsConfiguration class"""
 
         # Initialize members of the class
@@ -75,8 +75,7 @@ class AwsKmsConfiguration(object):
         self.iam_role_arn = iam_role_arn
         self.region = region
         self.secret_access_key = secret_access_key
-        self.verify_ssl = verify_ssl
-
+        self.verify_s_s_l = verify_s_s_l
 
     @classmethod
     def from_dictionary(cls,
@@ -105,18 +104,18 @@ class AwsKmsConfiguration(object):
         iam_role_arn = dictionary.get('iamRoleArn')
         region = dictionary.get('region')
         secret_access_key = dictionary.get('secretAccessKey')
-        verify_ssl = dictionary.get('verifySSL')
+        verify_s_s_l = dictionary.get('verifySSL')
 
         # Return an object of this model
-        return cls(access_key_id,
-                   auth_method,
-                   ca_certificate,
-                   cmk_alias,
-                   cmk_arn,
-                   cmk_key_id,
-                   iam_role_arn,
-                   region,
-                   secret_access_key,
-                   verify_ssl)
-
-
+        return cls(
+            access_key_id,
+            auth_method,
+            ca_certificate,
+            cmk_alias,
+            cmk_arn,
+            cmk_key_id,
+            iam_role_arn,
+            region,
+            secret_access_key,
+            verify_s_s_l
+)

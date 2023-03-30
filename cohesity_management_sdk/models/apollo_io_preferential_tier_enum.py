@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
-class ApolloIOPreferentialTierEnum(object):
+class ApolloIoPreferentialTierEnum(object):
 
-    """Implementation of the 'ApolloIOPreferentialTier' enum.
+    """Implementation of the 'ApolloIoPreferentialTier' enum.
+    Specifies the preferred storage tier used by Apollo as its working
+    directory.
 
-    Specifies the preferred storage tier used by Apollo as its actions WAL.
 
     Attributes:
         KPCIESSD: TODO: type description here.
@@ -22,4 +23,3 @@ class ApolloIOPreferentialTierEnum(object):
     KSATAHDD = 'kSataHdd'
 
     KCLOUD = 'kCloud'
-

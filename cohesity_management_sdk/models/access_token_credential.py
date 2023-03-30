@@ -1,33 +1,31 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class AccessTokenCredential(object):
 
     """Implementation of the 'AccessTokenCredential' model.
 
-    Specifies the Cohesity credentials required for generating an access
-    token.
+    Specifies the Cohesity credentials required for generating an access token.
+
 
     Attributes:
-        certificate (string): Specifies the certificate for logging in the
-            cert base auth cluster.
+
+        certificate (string): Specifies the certificate for logging in the cert
+            base auth cluster.
         domain (string): Specifies the domain the user is logging in to. For a
             Local user model, the domain is always LOCAL. For LDAP/AD user
-            models, the domain will map to an LDAP connection string. A user
-            is uniquely identified by a combination of username and domain. If
+            models, the domain will map to an LDAP connection string. A user is
+            uniquely identified by a combination of username and domain. If
             this is not set, LOCAL is assumed.
         otp_code (string): Specifies OTP code for MFA verification.
-        otp_type (OtpTypeEnum): Specifies OTP type for MFA verification.
-            'Totp' implies the code is TOTP.
-            'Email' implies the code is email OTP.
-        password (string): Specifies the password of the Cohesity user
-            account.
+        otp_type (OtpTypeEnum): Specifies OTP type for MFA verification. 'Totp'
+            implies the code is TOTP. 'Email' implies the code is email OTP.
+        password (string): Specifies the password of the Cohesity user account.
         private_key (string): Specifies the matching private key of the above
             certificate.
         username (string): Specifies the login name of the Cohesity user.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -37,9 +35,8 @@ class AccessTokenCredential(object):
         "otp_type":'otpType',
         "password":'password',
         "private_key":'privateKey',
-        "username":'username'
+        "username":'username',
     }
-
     def __init__(self,
                  certificate=None,
                  domain=None,
@@ -47,18 +44,19 @@ class AccessTokenCredential(object):
                  otp_type=None,
                  password=None,
                  private_key=None,
-                 username=None):
+                 username=None,
+            ):
+
         """Constructor for the AccessTokenCredential class"""
 
         # Initialize members of the class
-        self.domain = domain
-        self.password = password
-        self.username = username
         self.certificate = certificate
+        self.domain = domain
         self.otp_code = otp_code
         self.otp_type = otp_type
+        self.password = password
         self.private_key = private_key
-
+        self.username = username
 
     @classmethod
     def from_dictionary(cls,
@@ -78,21 +76,21 @@ class AccessTokenCredential(object):
             return None
 
         # Extract variables from the dictionary
-        password = dictionary.get('password')
-        username = dictionary.get('username')
-        domain = dictionary.get('domain')
         certificate = dictionary.get('certificate')
+        domain = dictionary.get('domain')
         otp_code = dictionary.get('otpCode')
         otp_type = dictionary.get('otpType')
+        password = dictionary.get('password')
         private_key = dictionary.get('privateKey')
+        username = dictionary.get('username')
 
         # Return an object of this model
-        return cls(certificate,
-                   domain,
-                   otp_code,
-                   otp_type,
-                   password,
-                   private_key,
-                   username)
-
-
+        return cls(
+            certificate,
+            domain,
+            otp_code,
+            otp_type,
+            password,
+            private_key,
+            username
+)

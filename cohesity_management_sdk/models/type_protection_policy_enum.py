@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class TypeProtectionPolicyEnum(object):
 
-    """Implementation of the 'Type_ProtectionPolicy' enum.
+    """Implementation of the 'TypeProtectionPolicy' enum.
+    Specifies the type of the protection policy. 'kRegular' means a regular
+    Protection Policy. 'kRPO' means an RPO Protection Policy.
 
-    Specifies the type of the protection policy.
-    'kRegular' means a regular Protection Policy.
-    'kRPO' means an RPO Protection Policy.
 
     Attributes:
         KREGULAR: TODO: type description here.
@@ -18,4 +17,3 @@ class TypeProtectionPolicyEnum(object):
     KREGULAR = 'kRegular'
 
     KRPO = 'kRPO'
-

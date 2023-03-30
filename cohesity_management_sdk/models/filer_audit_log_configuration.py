@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class FilerAuditLogConfiguration(object):
 
@@ -8,7 +7,9 @@ class FilerAuditLogConfiguration(object):
 
     Specifies the settings of the filer audit log configuration.
 
+
     Attributes:
+
         enabled (bool): Specifies if filer audit logging is enabled on the
             Cohesity Cluster. If 'true', filer audit logging is enabled.
             Otherwise, it is disabled.
@@ -16,24 +17,24 @@ class FilerAuditLogConfiguration(object):
             (retain) the filer audit logs. Audit logs generated before the
             period of time specified by retentionPeriodDays are removed from
             the Cohesity Cluster.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "enabled":'enabled',
-        "retention_period_days":'retentionPeriodDays'
+        "retention_period_days":'retentionPeriodDays',
     }
-
     def __init__(self,
                  enabled=None,
-                 retention_period_days=None):
+                 retention_period_days=None,
+            ):
+
         """Constructor for the FilerAuditLogConfiguration class"""
 
         # Initialize members of the class
         self.enabled = enabled
         self.retention_period_days = retention_period_days
-
 
     @classmethod
     def from_dictionary(cls,
@@ -57,7 +58,7 @@ class FilerAuditLogConfiguration(object):
         retention_period_days = dictionary.get('retentionPeriodDays')
 
         # Return an object of this model
-        return cls(enabled,
-                   retention_period_days)
-
-
+        return cls(
+            enabled,
+            retention_period_days
+)

@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class FlashBladeNfsInfo(object):
 
     """Implementation of the 'FlashBladeNfsInfo' model.
 
-    Specifies information specific to NFS protocol exposed by Pure Flash
-    Blade
+    Specifies information specific to NFS protocol exposed by Pure Flash Blade
     file system.
 
+
     Attributes:
+
         export_rules (string): Specifies NFS protocol export rules. Rules are
             in the form host(options). host represents one of the following
             categories:  IP address in the form ddd.ddd.ddd.ddd for IPv4, or
@@ -21,21 +21,21 @@ class FlashBladeNfsInfo(object):
             represents a comma-separated list of NFS export options. Valid
             export options are rw, ro, root_squash, no_root_squash, and
             fileid_32bit.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "export_rules":'exportRules'
+        "export_rules":'exportRules',
     }
-
     def __init__(self,
-                 export_rules=None):
+                 export_rules=None,
+            ):
+
         """Constructor for the FlashBladeNfsInfo class"""
 
         # Initialize members of the class
         self.export_rules = export_rules
-
 
     @classmethod
     def from_dictionary(cls,
@@ -58,6 +58,6 @@ class FlashBladeNfsInfo(object):
         export_rules = dictionary.get('exportRules')
 
         # Return an object of this model
-        return cls(export_rules)
-
-
+        return cls(
+            export_rules
+)

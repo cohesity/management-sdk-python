@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.cassandra_additional_params
 import cohesity_management_sdk.models.cassandra_connect_params
@@ -7,14 +7,19 @@ import cohesity_management_sdk.models.couchbase_connect_params
 import cohesity_management_sdk.models.hbase_connect_params
 import cohesity_management_sdk.models.hdfs_connect_params
 import cohesity_management_sdk.models.hive_connect_params
-import cohesity_management_sdk.models.mongoDB_additional_params
+import cohesity_management_sdk.models.mongo_db_additional_params
 import cohesity_management_sdk.models.mongo_db_connect_params
+
 
 class NoSqlConnectParams(object):
 
     """Implementation of the 'NoSqlConnectParams' model.
 
+    TODO: type description here.
+
+
     Attributes:
+
         cassandra_additional_params (CassandraAdditionalParams): Additional
             params required for cassandra backup.
         cassandra_connect_params (CassandraConnectParams): Connect params for
@@ -33,8 +38,8 @@ class NoSqlConnectParams(object):
             required for mongodb backup.
         mongodb_connect_params (MongoDBConnectParams): Additional params for
             connecting to mongodb cluster. Set only if env_type is kMongoDB.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -45,9 +50,8 @@ class NoSqlConnectParams(object):
         "hdfs_connect_params":'hdfsConnectParams',
         "hive_connect_params":'hiveConnectParams',
         "mongodb_additional_params":'mongodbAdditionalParams',
-        "mongodb_connect_params":'mongodbConnectParams'
+        "mongodb_connect_params":'mongodbConnectParams',
     }
-
     def __init__(self,
                  cassandra_additional_params=None,
                  cassandra_connect_params=None,
@@ -56,7 +60,9 @@ class NoSqlConnectParams(object):
                  hdfs_connect_params=None,
                  hive_connect_params=None,
                  mongodb_additional_params=None,
-                 mongodb_connect_params=None):
+                 mongodb_connect_params=None,
+            ):
+
         """Constructor for the NoSqlConnectParams class"""
 
         # Initialize members of the class
@@ -68,7 +74,6 @@ class NoSqlConnectParams(object):
         self.hive_connect_params = hive_connect_params
         self.mongodb_additional_params = mongodb_additional_params
         self.mongodb_connect_params = mongodb_connect_params
-
 
     @classmethod
     def from_dictionary(cls,
@@ -94,17 +99,17 @@ class NoSqlConnectParams(object):
         hbase_connect_params = cohesity_management_sdk.models.hbase_connect_params.HBaseConnectParams.from_dictionary(dictionary.get('hbaseConnectParams')) if dictionary.get('hbaseConnectParams') else None
         hdfs_connect_params = cohesity_management_sdk.models.hdfs_connect_params.HdfsConnectParams.from_dictionary(dictionary.get('hdfsConnectParams')) if dictionary.get('hdfsConnectParams') else None
         hive_connect_params = cohesity_management_sdk.models.hive_connect_params.HiveConnectParams.from_dictionary(dictionary.get('hiveConnectParams')) if dictionary.get('hiveConnectParams') else None
-        mongodb_additional_params = cohesity_management_sdk.models.mongoDB_additional_params.MongoDBAdditionalParams.from_dictionary(dictionary.get('mongodbAdditionalParams')) if dictionary.get('mongodbAdditionalParams') else None
+        mongodb_additional_params = cohesity_management_sdk.models.mongo_db_additional_params.MongoDBAdditionalParams.from_dictionary(dictionary.get('mongodbAdditionalParams')) if dictionary.get('mongodbAdditionalParams') else None
         mongodb_connect_params = cohesity_management_sdk.models.mongo_db_connect_params.MongoDBConnectParams.from_dictionary(dictionary.get('mongodbConnectParams')) if dictionary.get('mongodbConnectParams') else None
 
         # Return an object of this model
-        return cls(cassandra_additional_params,
-                   cassandra_connect_params,
-                   couchbase_connect_params,
-                   hbase_connect_params,
-                   hdfs_connect_params,
-                   hive_connect_params,
-                   mongodb_additional_params,
-                   mongodb_connect_params)
-
-
+        return cls(
+            cassandra_additional_params,
+            cassandra_connect_params,
+            couchbase_connect_params,
+            hbase_connect_params,
+            hdfs_connect_params,
+            hive_connect_params,
+            mongodb_additional_params,
+            mongodb_connect_params
+)

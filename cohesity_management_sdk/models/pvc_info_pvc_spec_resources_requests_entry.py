@@ -1,32 +1,35 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class PVCInfo_PVCSpec_Resources_RequestsEntry(object):
 
     """Implementation of the 'PVCInfo_PVCSpec_Resources_RequestsEntry' model.
 
+    TODO: type description here.
+
+
     Attributes:
+
         key (string): TODO: Type description here.
         value (string): TODO: Type description here.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "key": 'key',
-        "value": 'value'
+        "key":'key',
+        "value":'value',
     }
-
     def __init__(self,
                  key=None,
-                 value=None):
+                 value=None,
+            ):
+
         """Constructor for the PVCInfo_PVCSpec_Resources_RequestsEntry class"""
 
         # Initialize members of the class
         self.key = key
         self.value = value
-
 
     @classmethod
     def from_dictionary(cls,
@@ -46,11 +49,11 @@ class PVCInfo_PVCSpec_Resources_RequestsEntry(object):
             return None
 
         # Extract variables from the dictionary
-        key = dictionary.get('key', None)
-        value = dictionary.get('value', None)
+        key = dictionary.get('key')
+        value = dictionary.get('value')
 
         # Return an object of this model
-        return cls(key,
-                   value)
-
-
+        return cls(
+            key,
+            value
+)

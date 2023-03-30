@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class EnvironmentSearchProtectionSourcesEnum(object):
 
     """Implementation of the 'Environment_SearchProtectionSources' enum.
 
     TODO: type enum description here.
+
 
     Attributes:
         KVMWARE: TODO: type description here.
@@ -48,6 +49,12 @@ class EnvironmentSearchProtectionSourcesEnum(object):
         KHIVE: TODO: type description here.
         KHBASE: TODO: type description here.
         KUDA: TODO: type description here.
+        KO365TEAMS: TODO: type description here.
+        KO365GROUP: TODO: type description here.
+        KO365EXCHANGE: TODO: type description here.
+        KO365ONEDRIVE: TODO: type description here.
+        KO365SHAREPOINT: TODO: type description here.
+        KO365PUBLICFOLDERS: TODO: type description here.
 
     """
 
@@ -130,3 +137,15 @@ class EnvironmentSearchProtectionSourcesEnum(object):
     KHBASE = 'kHBase'
 
     KUDA = 'kUDA'
+
+    KO365TEAMS = 'kO365Teams'
+
+    KO365GROUP = 'kO365Group'
+
+    KO365EXCHANGE = 'kO365Exchange'
+
+    KO365ONEDRIVE = 'kO365OneDrive'
+
+    KO365SHAREPOINT = 'kO365Sharepoint'
+
+    KO365PUBLICFOLDERS = 'kO365PublicFolders'

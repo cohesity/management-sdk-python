@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.cloud_deploy_target_details
 import cohesity_management_sdk.models.data_lock_config
 import cohesity_management_sdk.models.replication_target_settings
+
 
 class SnapshotReplicationCopyPolicy(object):
 
@@ -13,22 +14,23 @@ class SnapshotReplicationCopyPolicy(object):
     specifies the retention policy that should be applied to Snapshots after
     they have been copied to the specified target.
 
+
     Attributes:
-        id (string): Specified the Id for a snapshot copy policy. Thsi is
+
+        id (string): Specified the Id for a snapshot copy policy. This is
             generated when the policy is created.
-        cloud_target (CloudDeployTargetDetails): Message that specifies the
-            details about CloudDeploy target where backup snapshots may be
-            converted and stored.
+        cloud_target (CloudDeployTargetDetails): Specifies the cloud
+            replication target to copy the Snapshots to.
         copy_partial (bool): Specifies if Snapshots are copied from the first
-            completely successful Job Run or the first partially successful
-            Job Run occurring at the start of the replication schedule. If
-            true, Snapshots are copied from the first Job Run occurring at the
-            start of the replication schedule, even if first Job Run was not
+            completely successful Job Run or the first partially successful Job
+            Run occurring at the start of the replication schedule. If true,
+            Snapshots are copied from the first Job Run occurring at the start
+            of the replication schedule, even if first Job Run was not
             completely successful i.e. Snapshots were not captured for all
             Objects in the Job. If false, Snapshots are copied from the first
-            Job Run occurring at the start of the replication schedule that
-            was completely successful i.e. Snapshots for all the Objects in
-            the Job were successfully captured.
+            Job Run occurring at the start of the replication schedule that was
+            completely successful i.e. Snapshots for all the Objects in the Job
+            were successfully captured.
         datalock_config (DataLockConfig): Specifies WORM retention type for the
             copy target snapshots. When a WORM retention type is specified, the
             snapshots of the Protection Groups using this policy will be kept
@@ -36,27 +38,26 @@ class SnapshotReplicationCopyPolicy(object):
             During that time, the snapshots cannot be deleted.
         days_to_keep (long|int): Specifies the number of days to retain copied
             Snapshots on the target.
-        multiplier (int): Specifies a factor to multiply the periodicity by,
-            to determine the copy schedule. For example if set to 2 and the
+        multiplier (int): Specifies a factor to multiply the periodicity by, to
+            determine the copy schedule. For example if set to 2 and the
             periodicity is hourly, then Snapshots from the first eligible Job
             Run for every 2 hour period is copied.
-        periodicity (PeriodicitySnapshotReplicationCopyPolicyEnum): Specifies
-            the frequency that Snapshots should be copied to the specified
-            target. Used in combination with multipiler. 'kEvery' means that
-            the Snapshot copy occurs after the number of Job Runs equals the
-            number specified in the multiplier. 'kHour' means that the
-            Snapshot copy occurs hourly at the frequency set in the
-            multiplier, for example if multiplier is 2, the copy occurs every
-            2 hours. 'kDay' means that the Snapshot copy occurs daily at the
-            frequency set in the multiplier. 'kWeek' means that the Snapshot
-            copy occurs weekly at the frequency set in the multiplier.
-            'kMonth' means that the Snapshot copy occurs monthly at the
-            frequency set in the multiplier. 'kYear' means that the Snapshot
-            copy occurs yearly at the frequency set in the multiplier.
-        target (ReplicationTargetSettings): Specifies the replication target
-            to copy the Snapshots to.
-
+        periodicity (PeriodicityEnum): Specifies the frequency that Snapshots
+            should be copied to the specified target. Used in combination with
+            multiplier. 'kEvery' means that the Snapshot copy occurs after the
+            number of Job Runs equals the number specified in the multiplier.
+            'kHour' means that the Snapshot copy occurs hourly at the frequency
+            set in the multiplier, for example if multiplier is 2, the copy
+            occurs every 2 hours. 'kDay' means that the Snapshot copy occurs
+            daily at the frequency set in the multiplier. 'kWeek' means that
+            the Snapshot copy occurs weekly at the frequency set in the
+            multiplier. 'kMonth' means that the Snapshot copy occurs monthly at
+            the frequency set in the multiplier. 'kYear' means that the
+            Snapshot copy occurs yearly at the frequency set in the multiplier.
+        target (ReplicationTargetSettings): Specifies the replication target to
+            copy the Snapshots to.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -67,9 +68,8 @@ class SnapshotReplicationCopyPolicy(object):
         "days_to_keep":'daysToKeep',
         "multiplier":'multiplier',
         "periodicity":'periodicity',
-        "target":'target'
+        "target":'target',
     }
-
     def __init__(self,
                  id=None,
                  cloud_target=None,
@@ -78,7 +78,9 @@ class SnapshotReplicationCopyPolicy(object):
                  days_to_keep=None,
                  multiplier=None,
                  periodicity=None,
-                 target=None):
+                 target=None,
+            ):
+
         """Constructor for the SnapshotReplicationCopyPolicy class"""
 
         # Initialize members of the class
@@ -90,7 +92,6 @@ class SnapshotReplicationCopyPolicy(object):
         self.multiplier = multiplier
         self.periodicity = periodicity
         self.target = target
-
 
     @classmethod
     def from_dictionary(cls,
@@ -120,13 +121,13 @@ class SnapshotReplicationCopyPolicy(object):
         target = cohesity_management_sdk.models.replication_target_settings.ReplicationTargetSettings.from_dictionary(dictionary.get('target')) if dictionary.get('target') else None
 
         # Return an object of this model
-        return cls(id,
-                   cloud_target,
-                   copy_partial,
-                   datalock_config,
-                   days_to_keep,
-                   multiplier,
-                   periodicity,
-                   target)
-
-
+        return cls(
+            id,
+            cloud_target,
+            copy_partial,
+            datalock_config,
+            days_to_keep,
+            multiplier,
+            periodicity,
+            target
+)

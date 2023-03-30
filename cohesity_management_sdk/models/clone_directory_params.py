@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class CloneDirectoryParams(object):
 
@@ -8,7 +7,9 @@ class CloneDirectoryParams(object):
 
     Specifies the params that have to be provided to clone a directory.
 
+
     Attributes:
+
         destination_directory_name (string): Name of the new directory which
             will contain the clone contents.
         destination_parent_directory_path (string): Specifies the path of the
@@ -16,27 +17,27 @@ class CloneDirectoryParams(object):
             child of destination parent dir.
         source_directory_path (string): Specifies the path of the source
             directory
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "destination_directory_name":'destinationDirectoryName',
         "destination_parent_directory_path":'destinationParentDirectoryPath',
-        "source_directory_path":'sourceDirectoryPath'
+        "source_directory_path":'sourceDirectoryPath',
     }
-
     def __init__(self,
                  destination_directory_name=None,
                  destination_parent_directory_path=None,
-                 source_directory_path=None):
+                 source_directory_path=None,
+            ):
+
         """Constructor for the CloneDirectoryParams class"""
 
         # Initialize members of the class
         self.destination_directory_name = destination_directory_name
         self.destination_parent_directory_path = destination_parent_directory_path
         self.source_directory_path = source_directory_path
-
 
     @classmethod
     def from_dictionary(cls,
@@ -61,8 +62,8 @@ class CloneDirectoryParams(object):
         source_directory_path = dictionary.get('sourceDirectoryPath')
 
         # Return an object of this model
-        return cls(destination_directory_name,
-                   destination_parent_directory_path,
-                   source_directory_path)
-
-
+        return cls(
+            destination_directory_name,
+            destination_parent_directory_path,
+            source_directory_path
+)

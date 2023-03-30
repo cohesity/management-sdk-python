@@ -1,42 +1,42 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class HdfsConnectParams(object):
 
     """Implementation of the 'HdfsConnectParams' model.
 
-    Specifies an Object containing information about a registered Hdfs
-    source.
+    Specifies an Object containing information about a registered Hdfs source.
+
 
     Attributes:
-        hadoop_distribution (HadoopDistributionEnum): Specifies the Hadoop
-            Distribution.
-            Hadoop distribution.
 
-            'CDH' indicates Hadoop distribution type Cloudera.
-            'HDP' indicates Hadoop distribution type Hortonworks.
+        hadoop_distribution (HadoopDistributionEnum): Specifies the Hadoop
+            Distribution. Hadoop distribution.  'CDH' indicates Hadoop
+            distribution type Cloudera. 'HDP' indicates Hadoop distribution
+            type Hortonworks.
         hadoop_version (string): Specifies the Hadoop version
         kerberos_principal (string): Specifies the kerberos principal.
         namenode (string): Specifies the Namenode host or Nameservice.
         port (int): Specifies the Webhdfs Port
     """
 
+
     # Create a mapping from Model property names to API property names
     _names = {
-        "hadoop_distribution": 'hadoopDistribution',
-        "hadoop_version": 'hadoopVersion',
+        "hadoop_distribution":'hadoopDistribution',
+        "hadoop_version":'hadoopVersion',
         "kerberos_principal":'kerberosPrincipal',
-        "namenode": 'namenode',
-        "port":'port'
+        "namenode":'namenode',
+        "port":'port',
     }
-
     def __init__(self,
                  hadoop_distribution=None,
                  hadoop_version=None,
                  kerberos_principal=None,
                  namenode=None,
-                 port=None):
+                 port=None,
+            ):
+
         """Constructor for the HdfsConnectParams class"""
 
         # Initialize members of the class
@@ -45,7 +45,6 @@ class HdfsConnectParams(object):
         self.kerberos_principal = kerberos_principal
         self.namenode = namenode
         self.port = port
-
 
     @classmethod
     def from_dictionary(cls,
@@ -72,10 +71,10 @@ class HdfsConnectParams(object):
         port = dictionary.get('port')
 
         # Return an object of this model
-        return cls(hadoop_distribution,
-                   hadoop_version,
-                   kerberos_principal,
-                   namenode,
-                   port)
-
-
+        return cls(
+            hadoop_distribution,
+            hadoop_version,
+            kerberos_principal,
+            namenode,
+            port
+)

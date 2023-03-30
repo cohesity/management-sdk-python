@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.sequence_number
+
 
 class Sequencer(object):
 
@@ -11,27 +12,29 @@ class Sequencer(object):
     different enviroment protos will be added to this  to define their own
     sequencers like one is added for VMware below.
 
+
     Attributes:
+
         mongodb_sequencer (SequenceNumber): TODO: Type description here.
         vmware_sequencer (SequenceNumber): TODO: Type description here.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "mongodb_sequencer": 'mongodbSequencer',
-        "vmware_sequencer": 'vmwareSequencer'
+        "mongodb_sequencer":'mongodbSequencer',
+        "vmware_sequencer":'vmwareSequencer',
     }
-
     def __init__(self,
                  mongodb_sequencer=None,
-                 vmware_sequencer=None):
+                 vmware_sequencer=None,
+            ):
+
         """Constructor for the Sequencer class"""
 
         # Initialize members of the class
         self.mongodb_sequencer = mongodb_sequencer
         self.vmware_sequencer = vmware_sequencer
-
 
     @classmethod
     def from_dictionary(cls,
@@ -55,7 +58,7 @@ class Sequencer(object):
         vmware_sequencer = cohesity_management_sdk.models.sequence_number.SequenceNumber.from_dictionary(dictionary.get('vmwareSequencer')) if dictionary.get('vmwareSequencer') else None
 
         # Return an object of this model
-        return cls(mongodb_sequencer,
-                   vmware_sequencer)
-
-
+        return cls(
+            mongodb_sequencer,
+            vmware_sequencer
+)

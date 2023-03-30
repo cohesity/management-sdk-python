@@ -1,35 +1,36 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class DatastoreInfo(object):
 
     """Implementation of the 'DatastoreInfo' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
-        capacity (int): Specifies the capacity of the datastore in bytes.
-        free_space (int): Specifies the available space on the datastore in
-            bytes.
 
+        capacity (long|int): Specifies the capacity of the datastore in bytes.
+        free_space (long|int): Specifies the available space on the datastore
+            in bytes.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "capacity":'capacity',
-        "free_space":'freeSpace'
+        "free_space":'freeSpace',
     }
-
     def __init__(self,
                  capacity=None,
-                 free_space=None):
+                 free_space=None,
+            ):
+
         """Constructor for the DatastoreInfo class"""
 
         # Initialize members of the class
         self.capacity = capacity
         self.free_space = free_space
-
 
     @classmethod
     def from_dictionary(cls,
@@ -53,7 +54,7 @@ class DatastoreInfo(object):
         free_space = dictionary.get('freeSpace')
 
         # Return an object of this model
-        return cls(capacity,
-                   free_space)
-
-
+        return cls(
+            capacity,
+            free_space
+)

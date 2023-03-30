@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.agent_information
 import cohesity_management_sdk.models.hyperv_datastore
-import cohesity_management_sdk.models.tag_attribute
 import cohesity_management_sdk.models.hyperv_virtual_machine
+import cohesity_management_sdk.models.tag_attribute
+
 
 class HypervProtectionSource(object):
 
@@ -12,57 +13,60 @@ class HypervProtectionSource(object):
 
     Specifies a Protection Source in HyperV environment.
 
+
     Attributes:
+
         agents (list of AgentInformation): Array of Agents on the Physical
             Protection Source.  Specifiles the agents running on the HyperV
             Protection Source and the status information.
-        backup_type (BackupTypeEnum): Specifies the type of backup supported
-            by the VM. 'kRctBackup', 'kVssBackup' Specifies the type of an
-            HyperV datastore object. 'kRctBackup' indicates backup is done
-            using RCT/checkpoints. 'kVssBackup' indicates backup is done using
-            VSS.
+        backup_type (BackupTypeEnum): Specifies the type of backup supported by
+            the VM. 'kRctBackup', 'kVssBackup' Specifies the type of an HyperV
+            datastore object. 'kRctBackup' indicates backup is done using
+            RCT/checkpoints. 'kVssBackup' indicates backup is done using VSS.
         build_number (string): Specifies the build number for HyperV SCVMM
             Servers.
         cluster_name (string): Specifies the cluster name for 'kHostCluster'
             objects.
-        datastore_info (HypervDatastore): Specifies information about a
-            Datastore Object in HyperV environment.
+        datastore_info (HypervDatastore): Specifies additional information for
+            'kDatastore' objects.
         description (string): Specifies a description about the Protection
             Source.
-        host_type (HostTypeHypervProtectionSourceEnum): Specifies host OS type
-            for 'kVirtualMachine' objects. 'kLinux' indicates the Linux
-            operating system. 'kWindows' indicates the Microsoft Windows
-            operating system. 'kAix' indicates the IBM AIX operating system.
-            'kSolaris' indicates the Oracle Solaris operating system.
-            'kSapHana' indicates the Sap Hana database system developed by SAP
-            SE. 'kOther' indicates the other types of operating system.
+        host_type (HostTypeEnum): Specifies host OS type for 'kVirtualMachine'
+            objects. 'kLinux' indicates the Linux operating system. 'kWindows'
+            indicates the Microsoft Windows operating system. 'kAix' indicates
+            the IBM AIX operating system. 'kSolaris' indicates the Oracle
+            Solaris operating system. 'kSapHana' indicates the Sap Hana
+            database system developed by SAP SE. 'kSapOracle' indicates the Sap
+            Oracle database system developed by SAP SE. 'kCockroachDB'
+            indicates the CockroachDB database system. 'kMySQL' indicates the
+            MySQL database system. 'kOther' indicates the other types of
+            operating system.
         hyperv_uuid (string): Specifies the UUID for 'kVirtualMachine' HyperV
             objects.
         name (string): Specifies the name of the HyperV Object.
         tag_attributes (list of TagAttribute): Specifies the list of VM Tag
             attributes associated with this Object.
-        mtype (TypeHypervProtectionSourceEnum): Specifies the type of an
-            HyperV Protection Source Object such as 'kSCVMMServer',
-            'kStandaloneHost', 'kNetwork', etc. overrideDescription: true
-            Specifies the type of an HyperV Protection Source. 'kSCVMMServer'
-            indicates a collection of root folders clusters. 'kStandaloneHost'
-            indicates a single Nutanix cluster. 'kStandaloneCluster' indicates
-            a single Nutanix cluster. 'kHostGroup' indicates a Nutanix cluster
-            managed by a Prism Central. 'kHypervHost' indicates an HyperV
-            host. 'kHostCluster' indicates a Nutanix cluster managed by a
-            Prism Central. 'kVirtualMachine' indicates a Virtual Machine.
-            'kNetwork' indicates a Virtual Machine network object.
-            'kDatastore' represents a storage container object. 'kTag'
-            indicates a tag type object. 'kCustomProperty' indicates a custom
-            property including tag type.
+        mtype (TypeHypervProtectionSourceEnum): Specifies the type of an HyperV
+            Protection Source Object such as 'kSCVMMServer', 'kStandaloneHost',
+            'kNetwork', etc. overrideDescription: true Specifies the type of an
+            HyperV Protection Source. 'kSCVMMServer' indicates a collection of
+            root folders clusters. 'kStandaloneHost' indicates a single Nutanix
+            cluster. 'kStandaloneCluster' indicates a single Nutanix cluster.
+            'kHostGroup' indicates a Nutanix cluster managed by a Prism
+            Central. 'kHypervHost' indicates an HyperV host. 'kHostCluster'
+            indicates a Nutanix cluster managed by a Prism Central.
+            'kVirtualMachine' indicates a Virtual Machine. 'kNetwork' indicates
+            a Virtual Machine network object. 'kDatastore' represents a storage
+            container object. 'kTag' indicates a tag type object.
+            'kCustomProperty' indicates a custom property including tag type.
         uuid (string): Specifies the UUID of the Object. This is unique within
             the HyperV environment.
-        vm_info (HypervVirtualMachine): Specifies information about a
-            VirtualMachine Object in HyperV environment.
+        vm_info (HypervVirtualMachine): Specifies additional information for
+            'kVirtualMachine' objects.
         windows_version (string): Specifies the windows version for HyperV
             hosts.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -79,9 +83,8 @@ class HypervProtectionSource(object):
         "mtype":'type',
         "uuid":'uuid',
         "vm_info":'vmInfo',
-        "windows_version":'windowsVersion'
+        "windows_version":'windowsVersion',
     }
-
     def __init__(self,
                  agents=None,
                  backup_type=None,
@@ -96,7 +99,9 @@ class HypervProtectionSource(object):
                  mtype=None,
                  uuid=None,
                  vm_info=None,
-                 windows_version=None):
+                 windows_version=None,
+            ):
+
         """Constructor for the HypervProtectionSource class"""
 
         # Initialize members of the class
@@ -114,7 +119,6 @@ class HypervProtectionSource(object):
         self.uuid = uuid
         self.vm_info = vm_info
         self.windows_version = windows_version
-
 
     @classmethod
     def from_dictionary(cls,
@@ -140,7 +144,7 @@ class HypervProtectionSource(object):
             for structure in dictionary.get('agents'):
                 agents.append(cohesity_management_sdk.models.agent_information.AgentInformation.from_dictionary(structure))
         backup_type = dictionary.get('backupType')
-        build_number = dictionary.get('buildNumber', None)
+        build_number = dictionary.get('buildNumber')
         cluster_name = dictionary.get('clusterName')
         datastore_info = cohesity_management_sdk.models.hyperv_datastore.HypervDatastore.from_dictionary(dictionary.get('datastoreInfo')) if dictionary.get('datastoreInfo') else None
         description = dictionary.get('description')
@@ -155,22 +159,22 @@ class HypervProtectionSource(object):
         mtype = dictionary.get('type')
         uuid = dictionary.get('uuid')
         vm_info = cohesity_management_sdk.models.hyperv_virtual_machine.HypervVirtualMachine.from_dictionary(dictionary.get('vmInfo')) if dictionary.get('vmInfo') else None
-        windows_version = dictionary.get('windowsVersion', None)
+        windows_version = dictionary.get('windowsVersion')
 
         # Return an object of this model
-        return cls(agents,
-                   backup_type,
-                   build_number,
-                   cluster_name,
-                   datastore_info,
-                   description,
-                   host_type,
-                   hyperv_uuid,
-                   name,
-                   tag_attributes,
-                   mtype,
-                   uuid,
-                   vm_info,
-                   windows_version)
-
-
+        return cls(
+            agents,
+            backup_type,
+            build_number,
+            cluster_name,
+            datastore_info,
+            description,
+            host_type,
+            hyperv_uuid,
+            name,
+            tag_attributes,
+            mtype,
+            uuid,
+            vm_info,
+            windows_version
+)

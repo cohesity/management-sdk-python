@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.virtual_disk_id_information
+
 
 class VirtualDiskMapping(object):
 
@@ -10,37 +11,39 @@ class VirtualDiskMapping(object):
     Specifies the request data struct for virtual disk mapping with only the
     disk ids.
 
+
     Attributes:
+
         disk_to_overwrite (VirtualDiskIdInformation): Specifies information
             about disk which user wants to overwrite. If specified, then
             powerOffVmBeforeRecovery must be true.
-        source_disk (VirtualDiskIdInformation): Specifies information about
-            the source disk.
+        source_disk (VirtualDiskIdInformation): Specifies information about the
+            source disk.
         target_location_id (long|int): Specifies the target location
             information, for e.g. a datastore in VMware environment. If
-            diskToOverwrite is specified then the target location is
+            diskToOverwrite is specified, then the target location is
             automatically deduced.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "disk_to_overwrite":'diskToOverwrite',
         "source_disk":'sourceDisk',
-        "target_location_id":'targetLocationId'
+        "target_location_id":'targetLocationId',
     }
-
     def __init__(self,
                  disk_to_overwrite=None,
                  source_disk=None,
-                 target_location_id=None):
+                 target_location_id=None,
+            ):
+
         """Constructor for the VirtualDiskMapping class"""
 
         # Initialize members of the class
         self.disk_to_overwrite = disk_to_overwrite
         self.source_disk = source_disk
         self.target_location_id = target_location_id
-
 
     @classmethod
     def from_dictionary(cls,
@@ -65,8 +68,8 @@ class VirtualDiskMapping(object):
         target_location_id = dictionary.get('targetLocationId')
 
         # Return an object of this model
-        return cls(disk_to_overwrite,
-                   source_disk,
-                   target_location_id)
-
-
+        return cls(
+            disk_to_overwrite,
+            source_disk,
+            target_location_id
+)

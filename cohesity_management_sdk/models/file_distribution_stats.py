@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.file_distribution_metrics
+
 
 class FileDistributionStats(object):
 
@@ -9,7 +10,9 @@ class FileDistributionStats(object):
 
     Specifies the File distribution stats.
 
+
     Attributes:
+
         cluster_id (long|int): Specifies the cluster Id.
         cluster_incarnation_id (long|int): Specifies the cluster Incarnation
             Id.
@@ -19,8 +22,8 @@ class FileDistributionStats(object):
             distribution stats are computed.
         metrics_list (list of FileDistributionMetrics): Specifies the list of
             file stats for different file extensions.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -28,15 +31,16 @@ class FileDistributionStats(object):
         "cluster_incarnation_id":'clusterIncarnationId',
         "entity_id":'entityId',
         "entity_name":'entityName',
-        "metrics_list":'metricsList'
+        "metrics_list":'metricsList',
     }
-
     def __init__(self,
                  cluster_id=None,
                  cluster_incarnation_id=None,
                  entity_id=None,
                  entity_name=None,
-                 metrics_list=None):
+                 metrics_list=None,
+            ):
+
         """Constructor for the FileDistributionStats class"""
 
         # Initialize members of the class
@@ -45,7 +49,6 @@ class FileDistributionStats(object):
         self.entity_id = entity_id
         self.entity_name = entity_name
         self.metrics_list = metrics_list
-
 
     @classmethod
     def from_dictionary(cls,
@@ -76,10 +79,10 @@ class FileDistributionStats(object):
                 metrics_list.append(cohesity_management_sdk.models.file_distribution_metrics.FileDistributionMetrics.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(cluster_id,
-                   cluster_incarnation_id,
-                   entity_id,
-                   entity_name,
-                   metrics_list)
-
-
+        return cls(
+            cluster_id,
+            cluster_incarnation_id,
+            entity_id,
+            entity_name,
+            metrics_list
+)

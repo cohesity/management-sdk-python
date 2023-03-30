@@ -1,27 +1,33 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.keystone_acl_proto_grantees_project_users_map_entry
+
 
 class KeystoneACLProto_Grantees(object):
 
     """Implementation of the 'KeystoneACLProto_Grantees' model.
 
+    TODO: type description here.
+
+
     Attributes:
-        all_users (bool):This field indicates if all users are granted ACL
+
+        all_users (bool): This field indicates if all users are granted ACL
             permission.
-        project_id_vec (list of string): Specifies the instance name of the
-            Universal Data Adapter entity.
-        project_users_map (
-            list of KeystoneACLProto_Grantees_ProjectUsersMapEntry):
+        project_id_vec (list of string): This field holds a list of Keystone
+            project ids whose users are granted ACL permission.
+        project_users_map (list of
+            KeystoneACLProto_Grantees_ProjectUsersMapEntry): TODO: Type
+            description here.
         role_name_vec (list of string): This field holds a list of Keystone
             roles for which any Keystone user with one (or more) of the roles
             on the project containing the swift container holding this
             KeystoneACLProto is granted ACL permission.
-        user_id_vec (list of string): This field holds a list of keystone
-            user ids who are granted ACL permission.
-
+        user_id_vec (list of string): This field holds a list of keystone user
+            ids who are granted ACL permission.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -29,15 +35,16 @@ class KeystoneACLProto_Grantees(object):
         "project_id_vec":'projectIdVec',
         "project_users_map":'projectUsersMap',
         "role_name_vec":'roleNameVec',
-        "user_id_vec":'userIdVec'
+        "user_id_vec":'userIdVec',
     }
-
     def __init__(self,
                  all_users=None,
                  project_id_vec=None,
                  project_users_map=None,
                  role_name_vec=None,
-                 user_id_vec=None):
+                 user_id_vec=None,
+            ):
+
         """Constructor for the KeystoneACLProto_Grantees class"""
 
         # Initialize members of the class
@@ -46,7 +53,6 @@ class KeystoneACLProto_Grantees(object):
         self.project_users_map = project_users_map
         self.role_name_vec = role_name_vec
         self.user_id_vec = user_id_vec
-
 
     @classmethod
     def from_dictionary(cls,
@@ -67,20 +73,20 @@ class KeystoneACLProto_Grantees(object):
 
         # Extract variables from the dictionary
         all_users = dictionary.get('allUsers')
-        project_id_vec = dictionary.get('projectIdVec')
+        project_id_vec = dictionary.get("projectIdVec")
         project_users_map = None
         if dictionary.get('projectUsersMap') != None:
-            project_id_vec = list()
+            project_users_map = list()
             for structure in dictionary.get('projectUsersMap'):
-                project_id_vec.append(cohesity_management_sdk.models.keystone_acl_proto_grantees_project_users_map_entry.KeystoneACLProto_Grantees_ProjectUsersMapEntry.from_dictionary(structure))
-        user_id_vec = dictionary.get('userIdVec')
-        role_name_vec = dictionary.get('roleNameVec')
+                project_users_map.append(cohesity_management_sdk.models.keystone_acl_proto_grantees_project_users_map_entry.KeystoneACLProto_Grantees_ProjectUsersMapEntry.from_dictionary(structure))
+        role_name_vec = dictionary.get("roleNameVec")
+        user_id_vec = dictionary.get("userIdVec")
 
         # Return an object of this model
-        return cls(all_users,
-                   project_id_vec,
-                   project_users_map,
-                   role_name_vec,
-                   user_id_vec)
-
-
+        return cls(
+            all_users,
+            project_id_vec,
+            project_users_map,
+            role_name_vec,
+            user_id_vec
+)

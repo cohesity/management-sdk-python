@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class AzureParams(object):
 
@@ -8,27 +7,27 @@ class AzureParams(object):
 
     Specifies various resources when converting and deploying a VM to Azure.
 
+
     Attributes:
-        availability_set_id (long|int): Specifies id of the Availability set
-            in which the VM is to be restored.
+
+        availability_set_id (long|int): Specifies id of the Availability set in
+            which the VM is to be restored.
         data_disk_type (DataDiskTypeEnum): Specifies the disk type used by the
             data. 'kPremiumSSD' is disk type backed by SSDs, delivers high
-            performance, low latency disk support for VMs running I/O
-            intensive workloads. 'kStandardSSD' implies disk type that offers
-            more consistent performance and reliability than HDD.
-            'kStandardHDD' implies disk type backed by HDDs, delivers cost
-            effective storage.
+            performance, low latency disk support for VMs running I/O intensive
+            workloads. 'kStandardSSD' implies disk type that offers more
+            consistent performance and reliability than HDD. 'kStandardHDD'
+            implies disk type backed by HDDs, delivers cost effective storage.
         instance_id (long|int): Specifies Type of VM (e.g. small, medium,
             large) when cloning the VM in Azure.
         network_resource_group_id (long|int): Specifies id of the resource
             group for the selected virtual network.
         os_disk_type (OsDiskTypeEnum): Specifies the disk type used by the OS.
             'kPremiumSSD' is disk type backed by SSDs, delivers high
-            performance, low latency disk support for VMs running I/O
-            intensive workloads. 'kStandardSSD' implies disk type that offers
-            more consistent performance and reliability than HDD.
-            'kStandardHDD' implies disk type backed by HDDs, delivers cost
-            effective storage.
+            performance, low latency disk support for VMs running I/O intensive
+            workloads. 'kStandardSSD' implies disk type that offers more
+            consistent performance and reliability than HDD. 'kStandardHDD'
+            implies disk type backed by HDDs, delivers cost effective storage.
         resource_group (long|int): Specifies id of the Azure resource group.
             Its value is globally unique within Azure.
         storage_account (long|int): Specifies id of the storage account that
@@ -51,8 +50,8 @@ class AzureParams(object):
         temp_vm_virtual_network_id (long|int): Specifies the Virtual network
             where temporary VM needs to be created.
         virtual_network_id (long|int): Specifies Id of the Virtual Network.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -71,9 +70,8 @@ class AzureParams(object):
         "temp_vm_storage_container_id":'tempVmStorageContainerId',
         "temp_vm_subnet_id":'tempVmSubnetId',
         "temp_vm_virtual_network_id":'tempVmVirtualNetworkId',
-        "virtual_network_id":'virtualNetworkId'
+        "virtual_network_id":'virtualNetworkId',
     }
-
     def __init__(self,
                  availability_set_id=None,
                  data_disk_type=None,
@@ -90,7 +88,9 @@ class AzureParams(object):
                  temp_vm_storage_container_id=None,
                  temp_vm_subnet_id=None,
                  temp_vm_virtual_network_id=None,
-                 virtual_network_id=None):
+                 virtual_network_id=None,
+            ):
+
         """Constructor for the AzureParams class"""
 
         # Initialize members of the class
@@ -110,7 +110,6 @@ class AzureParams(object):
         self.temp_vm_subnet_id = temp_vm_subnet_id
         self.temp_vm_virtual_network_id = temp_vm_virtual_network_id
         self.virtual_network_id = virtual_network_id
-
 
     @classmethod
     def from_dictionary(cls,
@@ -148,21 +147,21 @@ class AzureParams(object):
         virtual_network_id = dictionary.get('virtualNetworkId')
 
         # Return an object of this model
-        return cls(availability_set_id,
-                   data_disk_type,
-                   instance_id,
-                   network_resource_group_id,
-                   os_disk_type,
-                   resource_group,
-                   storage_account,
-                   storage_container,
-                   storage_resource_group_id,
-                   subnet_id,
-                   temp_vm_resource_group_id,
-                   temp_vm_storage_account_id,
-                   temp_vm_storage_container_id,
-                   temp_vm_subnet_id,
-                   temp_vm_virtual_network_id,
-                   virtual_network_id)
-
-
+        return cls(
+            availability_set_id,
+            data_disk_type,
+            instance_id,
+            network_resource_group_id,
+            os_disk_type,
+            resource_group,
+            storage_account,
+            storage_container,
+            storage_resource_group_id,
+            subnet_id,
+            temp_vm_resource_group_id,
+            temp_vm_storage_account_id,
+            temp_vm_storage_container_id,
+            temp_vm_subnet_id,
+            temp_vm_virtual_network_id,
+            virtual_network_id
+)

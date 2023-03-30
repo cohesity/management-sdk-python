@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class DeleteIpConfigParameters(object):
 
@@ -8,23 +7,25 @@ class DeleteIpConfigParameters(object):
 
     Specifies the parameters needed for an ipunconfig request.
 
-    Attributes:
-        name (string): Specifies the interface name to be deleted.
 
+    Attributes:
+
+        name (string): Specifies the interface name to be deleted.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "name":'name'
+        "name":'name',
     }
-
     def __init__(self,
-                 name=None):
+                 name=None,
+            ):
+
         """Constructor for the DeleteIpConfigParameters class"""
 
         # Initialize members of the class
         self.name = name
-
 
     @classmethod
     def from_dictionary(cls,
@@ -47,6 +48,6 @@ class DeleteIpConfigParameters(object):
         name = dictionary.get('name')
 
         # Return an object of this model
-        return cls(name)
-
-
+        return cls(
+            name
+)

@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.throttling_policy_parameters
+
 
 class ThrottlingPolicyOverride(object):
 
@@ -10,33 +11,35 @@ class ThrottlingPolicyOverride(object):
     Specifies throttling policy override for a Datastore in a registered
     entity.
 
+
     Attributes:
+
         datastore_id (long|int): Specifies the Protection Source id of the
             Datastore.
         datastore_name (string): Specifies the display name of the Datastore.
         throttling_policy (ThrottlingPolicyParameters): Specifies the
-            throttling policy for a registered Protection Source.
-
+            throttling policy that should be applied to this Source.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "datastore_id":'datastoreId',
         "datastore_name":'datastoreName',
-        "throttling_policy":'throttlingPolicy'
+        "throttling_policy":'throttlingPolicy',
     }
-
     def __init__(self,
                  datastore_id=None,
                  datastore_name=None,
-                 throttling_policy=None):
+                 throttling_policy=None,
+            ):
+
         """Constructor for the ThrottlingPolicyOverride class"""
 
         # Initialize members of the class
         self.datastore_id = datastore_id
         self.datastore_name = datastore_name
         self.throttling_policy = throttling_policy
-
 
     @classmethod
     def from_dictionary(cls,
@@ -61,8 +64,8 @@ class ThrottlingPolicyOverride(object):
         throttling_policy = cohesity_management_sdk.models.throttling_policy_parameters.ThrottlingPolicyParameters.from_dictionary(dictionary.get('throttlingPolicy')) if dictionary.get('throttlingPolicy') else None
 
         # Return an object of this model
-        return cls(datastore_id,
-                   datastore_name,
-                   throttling_policy)
-
-
+        return cls(
+            datastore_id,
+            datastore_name,
+            throttling_policy
+)

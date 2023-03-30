@@ -1,26 +1,27 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class ListCentrifyZone(object):
 
     """Implementation of the 'ListCentrifyZone' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
+
         centrify_schema (CentrifySchemaEnum): Specifies the schema of this
-            Centrify zone. The below list of schemas and their values are
-            taken from the document Centrify Server Suite 2016 Windows API
+            Centrify zone. The below list of schemas and their values are taken
+            from the document Centrify Server Suite 2016 Windows API
             Programmer's Guide
-            https://docs.centrify.com/en/css/suite2016/centrify-win-progguide.p
-            df 'kCentrifyDynamicSchema_1_0' specifies dynamic schema, version
-            1.0. 'kCentrifyDynamicSchema_2_0' specifies dynamic schema,
-            version 2.0. 'kCentrifyDynamicSchema_3_0' specifies dynamic
-            schema, version 3.0. 'kCentrifyDynamicSchema_5_0' specifies
-            dynamic schema, version 5.0. 'kCentrifySfu_3_0' specifies sfu
-            schema, version 3.0. 'kCentrifySfu_3_0_V5' specifies sfu schema,
-            3.0.5. 'kCentrifySfu_4_0' specifies sfu schema, version 4.0.
+            https://docs.centrify.com/en/css/suite2016/centrify-win-progguide.pdf
+            'kCentrifyDynamicSchema_1_0' specifies dynamic schema, version 1.0.
+            'kCentrifyDynamicSchema_2_0' specifies dynamic schema, version 2.0.
+            'kCentrifyDynamicSchema_3_0' specifies dynamic schema, version 3.0.
+            'kCentrifyDynamicSchema_5_0' specifies dynamic schema, version 5.0.
+            'kCentrifySfu_3_0' specifies sfu schema, version 3.0.
+            'kCentrifySfu_3_0_V5' specifies sfu schema, 3.0.5.
+            'kCentrifySfu_4_0' specifies sfu schema, version 4.0.
             'kCentrifyCdcRfc2307' specifies cdcrfc2307 schema.
             'kCentrifyCdcRfc2307_2' specifies cdcrfc2307, version 2.
             'kCentrifyCdcRfc2307_3' specifies cdcrfc2307, version 3.
@@ -28,22 +29,23 @@ class ListCentrifyZone(object):
         distinguished_name (string): Specifies the distinguished name of the
             Centrify zone.
         zone_name (string): Specifies the zone name.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "centrify_schema":'centrifySchema',
         "description":'description',
         "distinguished_name":'distinguishedName',
-        "zone_name":'zoneName'
+        "zone_name":'zoneName',
     }
-
     def __init__(self,
                  centrify_schema=None,
                  description=None,
                  distinguished_name=None,
-                 zone_name=None):
+                 zone_name=None,
+            ):
+
         """Constructor for the ListCentrifyZone class"""
 
         # Initialize members of the class
@@ -51,7 +53,6 @@ class ListCentrifyZone(object):
         self.description = description
         self.distinguished_name = distinguished_name
         self.zone_name = zone_name
-
 
     @classmethod
     def from_dictionary(cls,
@@ -77,9 +78,9 @@ class ListCentrifyZone(object):
         zone_name = dictionary.get('zoneName')
 
         # Return an object of this model
-        return cls(centrify_schema,
-                   description,
-                   distinguished_name,
-                   zone_name)
-
-
+        return cls(
+            centrify_schema,
+            description,
+            distinguished_name,
+            zone_name
+)

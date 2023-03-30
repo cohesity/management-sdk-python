@@ -1,27 +1,34 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.compare_ad_objects_result_ad_attribute_value
 import cohesity_management_sdk.models.error_proto
 
-class CompareADObjectsResultADAttribute(object):
+
+class CompareADObjectsResult_ADAttribute(object):
 
     """Implementation of the 'CompareADObjectsResult_ADAttribute' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
-        attr_flags (int): Object result flags of type ADAttributeFlags.
-        dest_value (CompareADObjectsResultADAttributeValue): TODO: type
-            description here.
-        ldap_name (string): LDAP attribute name.
-        same_value (CompareADObjectsResultADAttributeValue): TODO: type
-            description here.
-        source_value (CompareADObjectsResultADAttributeValue): TODO: type
-            description here.
-        status (ErrorProto): TODO: type description here.
 
+        attr_flags (int): Object result flags of type ADAttributeFlags.
+        dest_value (CompareADObjectsResult_ADAttributeValue): Destination
+            attribute value if dest value exists (!ADAttributeFlags.kNotFound)
+            and is different from source.
+        ldap_name (string): LDAP attribute name.
+        same_value (CompareADObjectsResult_ADAttributeValue): if the attribute
+            values are same (ADAttributeFlags.kEqual), the value is put here to
+            avoid duplication in 'source_value' and 'dest_value'.
+        source_value (CompareADObjectsResult_ADAttributeValue): Source
+            attribute value if source value exists
+            (!ADAttributeFlags.kNotFound) and is different from destination.
+        status (ErrorProto): Error status for the attribute compare or value
+            access.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -30,17 +37,18 @@ class CompareADObjectsResultADAttribute(object):
         "ldap_name":'ldapName',
         "same_value":'sameValue',
         "source_value":'sourceValue',
-        "status":'status'
+        "status":'status',
     }
-
     def __init__(self,
                  attr_flags=None,
                  dest_value=None,
                  ldap_name=None,
                  same_value=None,
                  source_value=None,
-                 status=None):
-        """Constructor for the CompareADObjectsResultADAttribute class"""
+                 status=None,
+            ):
+
+        """Constructor for the CompareADObjectsResult_ADAttribute class"""
 
         # Initialize members of the class
         self.attr_flags = attr_flags
@@ -49,7 +57,6 @@ class CompareADObjectsResultADAttribute(object):
         self.same_value = same_value
         self.source_value = source_value
         self.status = status
-
 
     @classmethod
     def from_dictionary(cls,
@@ -70,18 +77,18 @@ class CompareADObjectsResultADAttribute(object):
 
         # Extract variables from the dictionary
         attr_flags = dictionary.get('attrFlags')
-        dest_value = cohesity_management_sdk.models.compare_ad_objects_result_ad_attribute_value.CompareADObjectsResultADAttributeValue.from_dictionary(dictionary.get('destValue')) if dictionary.get('destValue') else None
+        dest_value = cohesity_management_sdk.models.compare_ad_objects_result_ad_attribute_value.CompareADObjectsResult_ADAttributeValue.from_dictionary(dictionary.get('destValue')) if dictionary.get('destValue') else None
         ldap_name = dictionary.get('ldapName')
-        same_value = cohesity_management_sdk.models.compare_ad_objects_result_ad_attribute_value.CompareADObjectsResultADAttributeValue.from_dictionary(dictionary.get('sameValue')) if dictionary.get('sameValue') else None
-        source_value = cohesity_management_sdk.models.compare_ad_objects_result_ad_attribute_value.CompareADObjectsResultADAttributeValue.from_dictionary(dictionary.get('sourceValue')) if dictionary.get('sourceValue') else None
+        same_value = cohesity_management_sdk.models.compare_ad_objects_result_ad_attribute_value.CompareADObjectsResult_ADAttributeValue.from_dictionary(dictionary.get('sameValue')) if dictionary.get('sameValue') else None
+        source_value = cohesity_management_sdk.models.compare_ad_objects_result_ad_attribute_value.CompareADObjectsResult_ADAttributeValue.from_dictionary(dictionary.get('sourceValue')) if dictionary.get('sourceValue') else None
         status = cohesity_management_sdk.models.error_proto.ErrorProto.from_dictionary(dictionary.get('status')) if dictionary.get('status') else None
 
         # Return an object of this model
-        return cls(attr_flags,
-                   dest_value,
-                   ldap_name,
-                   same_value,
-                   source_value,
-                   status)
-
-
+        return cls(
+            attr_flags,
+            dest_value,
+            ldap_name,
+            same_value,
+            source_value,
+            status
+)

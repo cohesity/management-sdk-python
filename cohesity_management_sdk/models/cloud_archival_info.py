@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class CloudArchivalInfo(object):
 
@@ -7,40 +7,59 @@ class CloudArchivalInfo(object):
 
     Specifies the cloud archival for active and finished tasks.
 
-    Attributes:
-        is_active_task (bool): Specifies if the task if active or finished.
-        public_status (PublicStatusCloudArchivalInfoEnum): Specifies the
-            public status type.
-        status (StatusCloudArchivalInfoEnum): Specifies the status type.
-        vault_id (long|int): Specifies the id of Archival Vault assigned by
-            the Cohesity Cluster.
-        vault_name (string): Name of the Archival Vault.
-        vault_type (VaultTypeEnum): Specifies the type of the Archival
-            External Target such as 'kCloud', 'kTape' or 'kNas'.
-            'kCloud' indicates the archival location as Cloud.
-            'kTape' indicates the archival location as Tape.
-            'kNas' indicates the archival location as Network Attached Storage
-            (Nas).
 
+    Attributes:
+
+        is_active_task (bool): Specifies if the task if active or finished.
+        public_status (PublicStatusEnum): Specifies the public status type.
+            'kAccepted' indicates the task is queued to run but not yet
+            running. 'kRunning' indicates the task is running. 'kCanceling'
+            indicates a request to cancel the task has occurred but the task is
+            not yet canceled. 'kCanceled' indicates the task has been canceled.
+            'kSuccess' indicates the task was successful. 'kFailure' indicates
+            the task failed. 'kWarning' indicates the task has finished with
+            warning. 'kOnHold' indicates the task is kept onHold. 'kMissed'
+            indicates the task is missed. 'Finalizing' indicates the task is
+            finalizing.
+        status (StatusCloudArchivalInfoEnum): Specifies the status type.
+            'kAccepted' indicates the task is queued to run but not yet
+            running. 'kRunning' indicates the task is running. 'kCanceling'
+            indicates a request to cancel the task has occurred but the task is
+            not yet canceled. 'kCanceled' indicates the task has been canceled.
+            'kSuccess' indicates the task was successful. 'kFailure' indicates
+            the task failed. 'kWarning' indicates the task has finished with
+            warning. 'kOnHold' indicates the task is kept onHold. 'kMissed'
+            indicates the task is missed. 'Finalizing' indicates the task is
+            finalizing.
+        vault_id (long|int): Specifies the id of Archival Vault assigned by the
+            Cohesity Cluster.
+        vault_name (string): Name of the Archival Vault.
+        vault_type (VaultTypeCloudArchivalInfoEnum): Specifies the type of the
+            Archival External Target such as 'kCloud', 'kTape' or 'kNas'.
+            'kCloud' indicates the archival location as Cloud. 'kTape'
+            indicates the archival location as Tape. 'kNas' indicates the
+            archival location as Network Attached Storage (Nas).
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "is_active_task": 'isActiveTask',
-        "public_status": 'publicStatus',
-        "status": 'status',
+        "is_active_task":'isActiveTask',
+        "public_status":'publicStatus',
+        "status":'status',
         "vault_id":'vaultId',
         "vault_name":'vaultName',
-        "vault_type":'vaultType'
+        "vault_type":'vaultType',
     }
-
     def __init__(self,
                  is_active_task=None,
                  public_status=None,
                  status=None,
                  vault_id=None,
                  vault_name=None,
-                 vault_type=None):
+                 vault_type=None,
+            ):
+
         """Constructor for the CloudArchivalInfo class"""
 
         # Initialize members of the class
@@ -77,11 +96,11 @@ class CloudArchivalInfo(object):
         vault_type = dictionary.get('vaultType')
 
         # Return an object of this model
-        return cls(is_active_task,
-                   public_status,
-                   status,
-                   vault_id,
-                   vault_name,
-                   vault_type)
-
-
+        return cls(
+            is_active_task,
+            public_status,
+            status,
+            vault_id,
+            vault_name,
+            vault_type
+)

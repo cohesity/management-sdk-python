@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class ViewTimeSeriesStats(object):
 
@@ -8,28 +7,30 @@ class ViewTimeSeriesStats(object):
 
     Specifies the View Time Series stats.
 
+
     Attributes:
+
         timestamp_msecs (long|int): Specifies the timestamp in milliseconds.
         value (long|int): Specifies the value of the specified metric at the
             timestamp.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "timestamp_msecs":'timestampMsecs',
-        "value":'value'
+        "value":'value',
     }
-
     def __init__(self,
                  timestamp_msecs=None,
-                 value=None):
+                 value=None,
+            ):
+
         """Constructor for the ViewTimeSeriesStats class"""
 
         # Initialize members of the class
         self.timestamp_msecs = timestamp_msecs
         self.value = value
-
 
     @classmethod
     def from_dictionary(cls,
@@ -53,7 +54,7 @@ class ViewTimeSeriesStats(object):
         value = dictionary.get('value')
 
         # Return an object of this model
-        return cls(timestamp_msecs,
-                   value)
-
-
+        return cls(
+            timestamp_msecs,
+            value
+)

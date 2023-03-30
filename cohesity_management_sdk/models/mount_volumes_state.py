@@ -1,34 +1,36 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.mount_volume_result_details
 import cohesity_management_sdk.models.request_error
+
 
 class MountVolumesState(object):
 
     """Implementation of the 'MountVolumesState' model.
 
-    Specifies the states of mounting all the volumes onto a mount target
-    for a 'kRecoverVMs' Restore Task.
+    Specifies the states of mounting all the volumes onto a mount target for a
+    'kRecoverVMs' Restore Task.
+
 
     Attributes:
+
         bring_disks_online (bool): Optional setting that determines if the
             volumes are brought online on the mount target after attaching the
             disks. This option is only significant for VMs.
-        mount_volume_results (list of MountVolumeResultDetails): Array of
-            Mount Volume Results.  Specifies the results of mounting each
-            specified volume.
+        mount_volume_results (list of MountVolumeResultDetails): Array of Mount
+            Volume Results.  Specifies the results of mounting each specified
+            volume.
         other_error (RequestError): Specifies an error that did not occur
             during the mount operation.
         target_source_id (long|int): Specifies the target Protection Source Id
-            where the volumes will be mounted. NOTE: The source that was
-            backed up and the mount target must be the same type, for example
-            if the source is a VMware VM, then the mount target must also be a
-            VMware VM. The mount target must be registered on the Cohesity
-            Cluster.
+            where the volumes will be mounted. NOTE: The source that was backed
+            up and the mount target must be the same type, for example if the
+            source is a VMware VM, then the mount target must also be a VMware
+            VM. The mount target must be registered on the Cohesity Cluster.
         username (string): Specifies the username to access the mount target.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -36,15 +38,16 @@ class MountVolumesState(object):
         "mount_volume_results":'mountVolumeResults',
         "other_error":'otherError',
         "target_source_id":'targetSourceId',
-        "username":'username'
+        "username":'username',
     }
-
     def __init__(self,
                  bring_disks_online=None,
                  mount_volume_results=None,
                  other_error=None,
                  target_source_id=None,
-                 username=None):
+                 username=None,
+            ):
+
         """Constructor for the MountVolumesState class"""
 
         # Initialize members of the class
@@ -53,7 +56,6 @@ class MountVolumesState(object):
         self.other_error = other_error
         self.target_source_id = target_source_id
         self.username = username
-
 
     @classmethod
     def from_dictionary(cls,
@@ -84,10 +86,10 @@ class MountVolumesState(object):
         username = dictionary.get('username')
 
         # Return an object of this model
-        return cls(bring_disks_online,
-                   mount_volume_results,
-                   other_error,
-                   target_source_id,
-                   username)
-
-
+        return cls(
+            bring_disks_online,
+            mount_volume_results,
+            other_error,
+            target_source_id,
+            username
+)

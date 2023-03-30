@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.vm_info
+
 
 class VmGroup(object):
 
@@ -9,27 +10,29 @@ class VmGroup(object):
 
     VmGroup specifies information of a VM Group.
 
+
     Attributes:
+
         name (string): Specifies name of the VM group.
         vms (list of VmInfo): Specifies VMs in the group.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "name":'name',
-        "vms":'vms'
+        "vms":'vms',
     }
-
     def __init__(self,
                  name=None,
-                 vms=None):
+                 vms=None,
+            ):
+
         """Constructor for the VmGroup class"""
 
         # Initialize members of the class
         self.name = name
         self.vms = vms
-
 
     @classmethod
     def from_dictionary(cls,
@@ -57,7 +60,7 @@ class VmGroup(object):
                 vms.append(cohesity_management_sdk.models.vm_info.VmInfo.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(name,
-                   vms)
-
-
+        return cls(
+            name,
+            vms
+)

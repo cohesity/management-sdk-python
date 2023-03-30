@@ -1,41 +1,47 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.ad_attribute_restore_param
 import cohesity_management_sdk.models.ad_object_restore_param
+
 
 class ADUpdateRestoreTaskOptions(object):
 
     """Implementation of the 'ADUpdateRestoreTaskOptions' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
-        object_attributes_param (ADAttributeRestoreParam): TODO: type
-            description here.
-        object_param (ADObjectRestoreParam): TODO: type description here.
-        mtype (int): Specifies the AD restore request type.
 
+        object_attributes_param (ADAttributeRestoreParam): Object attributes
+            restore params with the list of attributes to be restored. This is
+            set only when type is kObjectAttributes.
+        object_param (ADObjectRestoreParam): Object restore params with info
+            about objects to be restored. This is set only when type is
+            kObjects.
+        mtype (int): Specifies the AD restore request type.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "object_attributes_param":'objectAttributesParam',
         "object_param":'objectParam',
-        "mtype":'type'
+        "mtype":'type',
     }
-
     def __init__(self,
                  object_attributes_param=None,
                  object_param=None,
-                 mtype=None):
+                 mtype=None,
+            ):
+
         """Constructor for the ADUpdateRestoreTaskOptions class"""
 
         # Initialize members of the class
         self.object_attributes_param = object_attributes_param
         self.object_param = object_param
         self.mtype = mtype
-
 
     @classmethod
     def from_dictionary(cls,
@@ -60,8 +66,8 @@ class ADUpdateRestoreTaskOptions(object):
         mtype = dictionary.get('type')
 
         # Return an object of this model
-        return cls(object_attributes_param,
-                   object_param,
-                   mtype)
-
-
+        return cls(
+            object_attributes_param,
+            object_param,
+            mtype
+)

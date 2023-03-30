@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class VaultProviderStatsByEnv(object):
 
@@ -8,34 +7,36 @@ class VaultProviderStatsByEnv(object):
 
     Specifies the Vault stats by environments.
 
+
     Attributes:
+
         count (long|int): Specifies the count of the objects of the specified
             environment.
         environment (EnvironmentVaultProviderStatsByEnvEnum): Specifies the
             environment type.
         size (long|int): Specifies the size of the entities of the specified
             environment.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "count":'count',
         "environment":'environment',
-        "size":'size'
+        "size":'size',
     }
-
     def __init__(self,
                  count=None,
                  environment=None,
-                 size=None):
+                 size=None,
+            ):
+
         """Constructor for the VaultProviderStatsByEnv class"""
 
         # Initialize members of the class
         self.count = count
         self.environment = environment
         self.size = size
-
 
     @classmethod
     def from_dictionary(cls,
@@ -60,8 +61,8 @@ class VaultProviderStatsByEnv(object):
         size = dictionary.get('size')
 
         # Return an object of this model
-        return cls(count,
-                   environment,
-                   size)
-
-
+        return cls(
+            count,
+            environment,
+            size
+)

@@ -1,18 +1,20 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
-import cohesity_management_sdk.models.snapshot_attempt
 import cohesity_management_sdk.models.replica_info
+import cohesity_management_sdk.models.snapshot_attempt
+
 
 class FileSnapshotInformation(object):
 
     """Implementation of the 'FileSnapshotInformation' model.
 
-    Specifies the information about the snapshot that contains the file
-    or folder. In addition, information about the file or folder is
-    provided.
+    Specifies the information about the snapshot that contains the file or
+    folder. In addition, information about the file or folder is provided.
+
 
     Attributes:
+
         has_archival_copy (bool): If true, this snapshot is located on an
             archival target (such as a tape or AWS).
         has_local_copy (bool): If true, this snapshot is located on a local
@@ -26,10 +28,10 @@ class FileSnapshotInformation(object):
             replication information about the current snapshot.
         size_bytes (long|int): Specifies the size of the file or folder in
             bytes.
-        snapshot (SnapshotAttempt): Specifies information about a single
-            snapshot.
-
+        snapshot (SnapshotAttempt): Specifies the snapshot that contains the
+            specified file or folder.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -39,9 +41,8 @@ class FileSnapshotInformation(object):
         "modified_time_usecs":'modifiedTimeUsecs',
         "replica_info_list":'replicaInfoList',
         "size_bytes":'sizeBytes',
-        "snapshot":'snapshot'
+        "snapshot":'snapshot',
     }
-
     def __init__(self,
                  has_archival_copy=None,
                  has_local_copy=None,
@@ -49,7 +50,9 @@ class FileSnapshotInformation(object):
                  modified_time_usecs=None,
                  replica_info_list=None,
                  size_bytes=None,
-                 snapshot=None):
+                 snapshot=None,
+            ):
+
         """Constructor for the FileSnapshotInformation class"""
 
         # Initialize members of the class
@@ -60,7 +63,6 @@ class FileSnapshotInformation(object):
         self.replica_info_list = replica_info_list
         self.size_bytes = size_bytes
         self.snapshot = snapshot
-
 
     @classmethod
     def from_dictionary(cls,
@@ -93,12 +95,12 @@ class FileSnapshotInformation(object):
         snapshot = cohesity_management_sdk.models.snapshot_attempt.SnapshotAttempt.from_dictionary(dictionary.get('snapshot')) if dictionary.get('snapshot') else None
 
         # Return an object of this model
-        return cls(has_archival_copy,
-                   has_local_copy,
-                   has_remote_copy,
-                   modified_time_usecs,
-                   replica_info_list,
-                   size_bytes,
-                   snapshot)
-
-
+        return cls(
+            has_archival_copy,
+            has_local_copy,
+            has_remote_copy,
+            modified_time_usecs,
+            replica_info_list,
+            size_bytes,
+            snapshot
+)

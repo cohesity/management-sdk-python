@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.netapp_cluster_info
+import cohesity_management_sdk.models.netapp_version_tuple
 import cohesity_management_sdk.models.netapp_volume_info
 import cohesity_management_sdk.models.netapp_vserver_info
+
 
 class NetappProtectionSource(object):
 
@@ -11,31 +13,34 @@ class NetappProtectionSource(object):
 
     Specifies a Protection Source in a NetApp environment.
 
+
     Attributes:
+
         cluster_info (NetappClusterInfo): Specifies information about a NetApp
-            Cluster Protection Source.
+            cluster and is only valid for a NetApp Object of type kCluster.
         is_top_level (bool): Specifies if this Object is a top level Object.
             Because a top level Object can either be a NetApp cluster or a
             Vserver, this cannot be determined only by type.
-        license_types (LicenseTypesEnum): Specifies the type of license
-            available on Netapp Cluster
-            'kSnapmirrorCloud' indicates a SnapMirror license on Netapp.
+        license_types (list of LicenseTypesEnum): Specifies the type of license
+            available on Netapp Cluster 'kSnapmirrorCloud' indicates a
+            SnapMirror license on Netapp.
         name (string): Specifies the name of the NetApp Object.
         mtype (TypeNetappProtectionSourceEnum): Specifies the type of managed
             NetApp Object in a NetApp Protection Source such as 'kCluster',
-            'kVserver' or 'kVolume'. 'kCluster' indicates a Netapp cluster as
-            a protection source. 'kVserver' indicates a Netapp vserver in a
+            'kVserver' or 'kVolume'. 'kCluster' indicates a Netapp cluster as a
+            protection source. 'kVserver' indicates a Netapp vserver in a
             cluster as a protection source. 'kVolume' indicates  a volume in
             Netapp vserver as a protection source.
-        uuid (string): Specifies the globally unique ID of this Object
-            assigned by the NetApp server.
-        version (string): Specifies the version of Netapp Cluster.
-        volume_info (NetappVolumeInfo): Specifies information about a volume
-            in a NetApp cluster.
+        uuid (string): Specifies the globally unique ID of this Object assigned
+            by the NetApp server.
+        version_tuple (NetappVersionTuple): Specifies the version of Netapp
+            Cluster.
+        volume_info (NetappVolumeInfo): Specifies information about a NetApp
+            volume and is only valid for a NetApp Object of type kVolume.
         vserver_info (NetappVserverInfo): Specifies information about a NetApp
-            Vserver in a NetApp Protection Source.
-
+            Vserver and is only valid for a NetApp Object of type kVserver.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -45,11 +50,10 @@ class NetappProtectionSource(object):
         "name":'name',
         "mtype":'type',
         "uuid":'uuid',
-        "version":'version',
+        "version_tuple":'versionTuple',
         "volume_info":'volumeInfo',
-        "vserver_info":'vserverInfo'
+        "vserver_info":'vserverInfo',
     }
-
     def __init__(self,
                  cluster_info=None,
                  is_top_level=None,
@@ -57,9 +61,11 @@ class NetappProtectionSource(object):
                  name=None,
                  mtype=None,
                  uuid=None,
-                 version=None,
+                 version_tuple=None,
                  volume_info=None,
-                 vserver_info=None):
+                 vserver_info=None,
+            ):
+
         """Constructor for the NetappProtectionSource class"""
 
         # Initialize members of the class
@@ -69,10 +75,9 @@ class NetappProtectionSource(object):
         self.name = name
         self.mtype = mtype
         self.uuid = uuid
-        self.version = version
+        self.version_tuple = version_tuple
         self.volume_info = volume_info
         self.vserver_info = vserver_info
-
 
     @classmethod
     def from_dictionary(cls,
@@ -94,23 +99,23 @@ class NetappProtectionSource(object):
         # Extract variables from the dictionary
         cluster_info = cohesity_management_sdk.models.netapp_cluster_info.NetappClusterInfo.from_dictionary(dictionary.get('clusterInfo')) if dictionary.get('clusterInfo') else None
         is_top_level = dictionary.get('isTopLevel')
-        license_types = dictionary.get('licenseTypes')
+        license_types = dictionary.get("licenseTypes")
         name = dictionary.get('name')
         mtype = dictionary.get('type')
         uuid = dictionary.get('uuid')
-        version = dictionary.get('version')
+        version_tuple = cohesity_management_sdk.models.netapp_version_tuple.NetappVersionTuple.from_dictionary(dictionary.get('versionTuple')) if dictionary.get('versionTuple') else None
         volume_info = cohesity_management_sdk.models.netapp_volume_info.NetappVolumeInfo.from_dictionary(dictionary.get('volumeInfo')) if dictionary.get('volumeInfo') else None
         vserver_info = cohesity_management_sdk.models.netapp_vserver_info.NetappVserverInfo.from_dictionary(dictionary.get('vserverInfo')) if dictionary.get('vserverInfo') else None
 
         # Return an object of this model
-        return cls(cluster_info,
-                   is_top_level,
-                   license_types,
-                   name,
-                   mtype,
-                   uuid,
-                   version,
-                   volume_info,
-                   vserver_info)
-
-
+        return cls(
+            cluster_info,
+            is_top_level,
+            license_types,
+            name,
+            mtype,
+            uuid,
+            version_tuple,
+            volume_info,
+            vserver_info
+)

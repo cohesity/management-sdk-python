@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class TenantCreateParameters(object):
 
@@ -8,14 +7,16 @@ class TenantCreateParameters(object):
 
     Specifies the settings used to create/add a new tenant.
 
+
     Attributes:
-        bifrost_enabled (bool): Specifies whether bifrost (Ambassador proxy)
-            is enabled for tenant.
+
+        bifrost_enabled (bool): Specifies whether bifrost (Ambassador proxy) is
+            enabled for tenant.
         cluster_hostname (string): The hostname for Cohesity cluster as seen by
             tenants and as is routable from the tenant's network. Tenant's
             VLAN's hostname, if available can be used instead but it is
-            mandatory to provide this value if there's no VLAN hostname to
-            use. Also, when set, this field would take precedence over VLAN
+            mandatory to provide this value if there's no VLAN hostname to use.
+            Also, when set, this field would take precedence over VLAN
             hostname.
         cluster_ips (list of string): Set of IPs as seen from the tenant's
             network for the Cohesity cluster. Only one from 'ClusterHostname'
@@ -30,8 +31,8 @@ class TenantCreateParameters(object):
             if available.
         subscribe_to_alert_emails (bool): Service provider can optionally
             unsubscribe from the Tenant Alert Emails.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -42,9 +43,8 @@ class TenantCreateParameters(object):
         "name":'name',
         "org_suffix":'orgSuffix',
         "parent_tenant_id":'parentTenantId',
-        "subscribe_to_alert_emails":'subscribeToAlertEmails'
+        "subscribe_to_alert_emails":'subscribeToAlertEmails',
     }
-
     def __init__(self,
                  bifrost_enabled=None,
                  cluster_hostname=None,
@@ -53,7 +53,9 @@ class TenantCreateParameters(object):
                  name=None,
                  org_suffix=None,
                  parent_tenant_id=None,
-                 subscribe_to_alert_emails=None):
+                 subscribe_to_alert_emails=None,
+            ):
+
         """Constructor for the TenantCreateParameters class"""
 
         # Initialize members of the class
@@ -65,7 +67,6 @@ class TenantCreateParameters(object):
         self.org_suffix = org_suffix
         self.parent_tenant_id = parent_tenant_id
         self.subscribe_to_alert_emails = subscribe_to_alert_emails
-
 
     @classmethod
     def from_dictionary(cls,
@@ -87,7 +88,7 @@ class TenantCreateParameters(object):
         # Extract variables from the dictionary
         bifrost_enabled = dictionary.get('bifrostEnabled')
         cluster_hostname = dictionary.get('clusterHostname')
-        cluster_ips = dictionary.get('clusterIps')
+        cluster_ips = dictionary.get("clusterIps")
         description = dictionary.get('description')
         name = dictionary.get('name')
         org_suffix = dictionary.get('orgSuffix')
@@ -95,13 +96,13 @@ class TenantCreateParameters(object):
         subscribe_to_alert_emails = dictionary.get('subscribeToAlertEmails')
 
         # Return an object of this model
-        return cls(bifrost_enabled,
-                   cluster_hostname,
-                   cluster_ips,
-                   description,
-                   name,
-                   org_suffix,
-                   parent_tenant_id,
-                   subscribe_to_alert_emails)
-
-
+        return cls(
+            bifrost_enabled,
+            cluster_hostname,
+            cluster_ips,
+            description,
+            name,
+            org_suffix,
+            parent_tenant_id,
+            subscribe_to_alert_emails
+)

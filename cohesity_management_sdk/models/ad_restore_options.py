@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.ad_object_attribute_parameters
 import cohesity_management_sdk.models.ad_object_restore_parameters
+
 
 class AdRestoreOptions(object):
 
@@ -11,40 +12,43 @@ class AdRestoreOptions(object):
     AdRestoreOptions are the AD specific options for the restore task being
     updated
 
+
     Attributes:
-        object_attribute_parameters (AdObjectAttributeParameters):
-            AdObjectAttributeParameters are AD attribute recovery parameters
-            for one or more AD objects
-        object_parameters (AdObjectRestoreParameters):
-            AdObjectRestoreParameters are the parameters to restore AD objects
-            from recycle bin or from a mounted AD snapshot database.
+
+        object_attribute_parameters (AdObjectAttributeParameters): Specifies
+            the object attributes restore parameters with the list of
+            attributes to be restored. This is set only when type is
+            kObjectAttributes.
+        object_parameters (AdObjectRestoreParameters): Specifies the object
+            restore params with info about objects to be restored. This is set
+            only when type is kObjects.
         mtype (TypeAdRestoreOptionsEnum): Specifies the AD restore request
             type. Specifies the action type of AD restore.  'kNone' specifies
             no special behaviour. 'kObjects' specifies the user action to
             restore AD objects from a mounted AD snapshot database.
-            'kObjectAttributes' specifies the user action to restore
-            attributes of an AD object from a mounted AD snapshot database.
-
+            'kObjectAttributes' specifies the user action to restore attributes
+            of an AD object from a mounted AD snapshot database.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "object_attribute_parameters":'objectAttributeParameters',
         "object_parameters":'objectParameters',
-        "mtype":'type'
+        "mtype":'type',
     }
-
     def __init__(self,
                  object_attribute_parameters=None,
                  object_parameters=None,
-                 mtype=None):
+                 mtype=None,
+            ):
+
         """Constructor for the AdRestoreOptions class"""
 
         # Initialize members of the class
         self.object_attribute_parameters = object_attribute_parameters
         self.object_parameters = object_parameters
         self.mtype = mtype
-
 
     @classmethod
     def from_dictionary(cls,
@@ -69,8 +73,8 @@ class AdRestoreOptions(object):
         mtype = dictionary.get('type')
 
         # Return an object of this model
-        return cls(object_attribute_parameters,
-                   object_parameters,
-                   mtype)
-
-
+        return cls(
+            object_attribute_parameters,
+            object_parameters,
+            mtype
+)

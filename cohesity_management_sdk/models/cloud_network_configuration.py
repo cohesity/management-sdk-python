@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class CloudNetworkConfiguration(object):
 
     """Implementation of the 'CloudNetworkConfiguration' model.
 
-    Specifies all of the parameters needed for network configuration of
-    the new Cloud Cluster.
+    Specifies all of the parameters needed for network configuration of the new
+    Cloud Cluster.
+
 
     Attributes:
+
         cluster_gateway (string): Specifies the default gateway IP address (or
             addresses) for the Cluster network.
         cluster_subnet_mask (string): Specifies the subnet mask (or masks) of
@@ -20,8 +21,8 @@ class CloudNetworkConfiguration(object):
             cluster should be configured with.
         ntp_servers (list of string): Specifies the list of NTP Servers this
             cluster should be configured with.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -29,15 +30,16 @@ class CloudNetworkConfiguration(object):
         "cluster_subnet_mask":'clusterSubnetMask',
         "dns_servers":'dnsServers',
         "domain_names":'domainNames',
-        "ntp_servers":'ntpServers'
+        "ntp_servers":'ntpServers',
     }
-
     def __init__(self,
                  cluster_gateway=None,
                  cluster_subnet_mask=None,
                  dns_servers=None,
                  domain_names=None,
-                 ntp_servers=None):
+                 ntp_servers=None,
+            ):
+
         """Constructor for the CloudNetworkConfiguration class"""
 
         # Initialize members of the class
@@ -46,7 +48,6 @@ class CloudNetworkConfiguration(object):
         self.dns_servers = dns_servers
         self.domain_names = domain_names
         self.ntp_servers = ntp_servers
-
 
     @classmethod
     def from_dictionary(cls,
@@ -68,15 +69,15 @@ class CloudNetworkConfiguration(object):
         # Extract variables from the dictionary
         cluster_gateway = dictionary.get('clusterGateway')
         cluster_subnet_mask = dictionary.get('clusterSubnetMask')
-        dns_servers = dictionary.get('dnsServers')
-        domain_names = dictionary.get('domainNames')
-        ntp_servers = dictionary.get('ntpServers')
+        dns_servers = dictionary.get("dnsServers")
+        domain_names = dictionary.get("domainNames")
+        ntp_servers = dictionary.get("ntpServers")
 
         # Return an object of this model
-        return cls(cluster_gateway,
-                   cluster_subnet_mask,
-                   dns_servers,
-                   domain_names,
-                   ntp_servers)
-
-
+        return cls(
+            cluster_gateway,
+            cluster_subnet_mask,
+            dns_servers,
+            domain_names,
+            ntp_servers
+)

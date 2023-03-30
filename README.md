@@ -59,6 +59,7 @@ pip install cohesity-management-sdk==1.5.1
 
 |Cluster Version| SDK Version|
 |---|--|
+6.8.1_u1|1.9.0|
 |6.6.0x|1.8.1|
 |6.6x| 1.6.0|
 |6.5.1x|1.5.0|
@@ -77,7 +78,7 @@ pip install cohesity-management-sdk==1.5.1
 
 This SDK exposes all the functionality provided by *Cohesity REST API*.
 
-Initializing the Client:
+Initializing the Client using `username` and `password`:
 ```
 username = 'Username'
 password = 'Password'
@@ -87,7 +88,67 @@ client = CohesityClient(cluster_vip, username, password, domain)
 cluster_controller = client.cluster
 result = cluster_controller.get_basic_cluster_info()
 result_dict =  result.__dict__
-print(result_dict['cluster_software_version']) 
+print(result_dict['cluster_software_version'])
+
+#OUTPUT
+6.4.1_release-20191219_aafe3274
+```
+---
+
+Initializing the Client Using `Session Id`:
+```
+cluster_vip = 'prod-cluster.eng.cohesity.com'
+session_id = '<session_id>'
+client = CohesityClient(cluster_vip=cluster_vip, session_id = session_id)
+cluster_controller = client.cluster
+result = cluster_controller.get_basic_cluster_info()
+print(result_dict['cluster_software_version'])
+
+
+#OUTPUT
+6.4.1_release-20191219_aafe3274
+```
+---
+Initializing the Client Using `Api Key`:
+```
+cluster_vip = 'prod-cluster.eng.cohesity.com'
+api_key = '<api_key>'
+client = CohesityClient(cluster_vip=cluster_vip, api_key = api_key)
+cluster_controller = client.cluster
+result = cluster_controller.get_basic_cluster_info()
+print(result_dict['cluster_software_version'])
+
+
+#OUTPUT
+6.4.1_release-20191219_aafe3274
+```
+---
+Initializing the Client Using `Open-Id token`:
+```
+cluster_vip = 'prod-cluster.eng.cohesity.com'
+open_id_token = '<token>'
+client = CohesityClient(cluster_vip=cluster_vip, open_id_token = open_id_token)
+cluster_controller = client.cluster
+result = cluster_controller.get_basic_cluster_info()
+print(result_dict['cluster_software_version'])
+
+
+#OUTPUT
+6.4.1_release-20191219_aafe3274
+```
+---
+Initializing the Client Using `MFA`:
+```
+username = 'Username'
+password = 'Password'
+otp_type = 'Email'
+otp_code = '123456'
+domain = 'Domain' #optional
+cluster_vip = 'prod-cluster.eng.cohesity.com'
+client = CohesityClient(cluster_vip=cluster_vip, username=username, password=password, domain=domain, otp_type=otp_type, otp_code=otp_code)
+cluster_controller = client.cluster
+result = cluster_controller.get_basic_cluster_info()
+print(result_dict['cluster_software_version'])
 
 
 #OUTPUT

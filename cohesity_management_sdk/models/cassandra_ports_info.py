@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class CassandraPortsInfo(object):
 
@@ -7,18 +7,20 @@ class CassandraPortsInfo(object):
 
     Specifies an Object containing information on various Cassandra ports.
 
+
     Attributes:
+
         jmx_port (int): Specifies the Cassandra JMX port.
         native_transport_port (int): Specifies the port for the CQL native
             transport.
         rpc_port (int): Specifies the Remote Procedure Call (RPC) port for
             general mechanism for client-server applications.
-        ssl_storage_port (string):  Specifies the SSL port for encrypted
+        ssl_storage_port (int): Specifies the SSL port for encrypted
             communication.
-        storage_port (int): Specifies the attributes and the latest
-            statistics about an entity.
-
+        storage_port (int): Specifies the TCP port for data. Internally used by
+            Cassandra bulk loader.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -26,15 +28,16 @@ class CassandraPortsInfo(object):
         "native_transport_port":'nativeTransportPort',
         "rpc_port":'rpcPort',
         "ssl_storage_port":'sslStoragePort',
-        "storage_port":'storagePort'
+        "storage_port":'storagePort',
     }
-
     def __init__(self,
                  jmx_port=None,
                  native_transport_port=None,
                  rpc_port=None,
                  ssl_storage_port=None,
-                 storage_port=None):
+                 storage_port=None,
+            ):
+
         """Constructor for the CassandraPortsInfo class"""
 
         # Initialize members of the class
@@ -43,7 +46,6 @@ class CassandraPortsInfo(object):
         self.rpc_port = rpc_port
         self.ssl_storage_port = ssl_storage_port
         self.storage_port = storage_port
-
 
     @classmethod
     def from_dictionary(cls,
@@ -70,9 +72,10 @@ class CassandraPortsInfo(object):
         storage_port = dictionary.get('storagePort')
 
         # Return an object of this model
-        return cls(jmx_port,
-                   native_transport_port,
-                   rpc_port,
-                   ssl_storage_port,
-                   storage_port)
-
+        return cls(
+            jmx_port,
+            native_transport_port,
+            rpc_port,
+            ssl_storage_port,
+            storage_port
+)

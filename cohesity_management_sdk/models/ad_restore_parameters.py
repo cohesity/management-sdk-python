@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.ad_restore_options
 import cohesity_management_sdk.models.credentials
+
 
 class AdRestoreParameters(object):
 
@@ -10,32 +11,35 @@ class AdRestoreParameters(object):
 
     Specifies the parameters specific to Application domain controller.
 
+
     Attributes:
-        ad_options (AdRestoreOptions): Specifies the Active Directory options for the
-            Restore task.
-        credentials (Credentials): Specifies credentials to access a target
-            source.
+
+        ad_options (AdRestoreOptions): Specifies the Active Directory options
+            for the Restore task.
+        credentials (Credentials): Specifies the credentials which are needed
+            to connect to Production AD.
         mount_and_restore (bool): Specifies the option to mount the AD snapshot
             database and restore the AD objects in a single restore task.
             AdOptions must be set if this is set to true.
-        port (int): Specifies the port on which the AD domain controller's
-            NTDS database will be mounted.
-
+        port (int): Specifies the port on which the AD domain controller's NTDS
+            database will be mounted.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "ad_options":'adOptions',
         "credentials":'credentials',
         "mount_and_restore":'mountAndRestore',
-        "port":'port'
+        "port":'port',
     }
-
     def __init__(self,
                  ad_options=None,
                  credentials=None,
                  mount_and_restore=None,
-                 port=None):
+                 port=None,
+            ):
+
         """Constructor for the AdRestoreParameters class"""
 
         # Initialize members of the class
@@ -43,7 +47,6 @@ class AdRestoreParameters(object):
         self.credentials = credentials
         self.mount_and_restore = mount_and_restore
         self.port = port
-
 
     @classmethod
     def from_dictionary(cls,
@@ -63,15 +66,15 @@ class AdRestoreParameters(object):
             return None
 
         # Extract variables from the dictionary
-        ad_options = cohesity_management_sdk.models.ad_restore_options.AdRestoreOptions.from_dictionary(dictionary.get("adOptions")) if dictionary.get("adOptions") else None
+        ad_options = cohesity_management_sdk.models.ad_restore_options.AdRestoreOptions.from_dictionary(dictionary.get('adOptions')) if dictionary.get('adOptions') else None
         credentials = cohesity_management_sdk.models.credentials.Credentials.from_dictionary(dictionary.get('credentials')) if dictionary.get('credentials') else None
         mount_and_restore = dictionary.get('mountAndRestore')
         port = dictionary.get('port')
 
         # Return an object of this model
-        return cls(ad_options,
-                   credentials,
-                   mount_and_restore,
-                   port)
-
-
+        return cls(
+            ad_options,
+            credentials,
+            mount_and_restore,
+            port
+)

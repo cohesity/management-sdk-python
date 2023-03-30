@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class TenantUpdate(object):
 
@@ -8,14 +7,16 @@ class TenantUpdate(object):
 
     Specifies update details about a tenant.
 
+
     Attributes:
-        bifrost_enabled (bool): Specifies whether bifrost (Ambassador proxy)
-            is enabled for tenant.
+
+        bifrost_enabled (bool): Specifies whether bifrost (Ambassador proxy) is
+            enabled for tenant.
         cluster_hostname (string): The hostname for Cohesity cluster as seen by
             tenants and as is routable from the tenant's network. Tenant's
             VLAN's hostname, if available can be used instead but it is
-            mandatory to provide this value if there's no VLAN hostname to
-            use. Also, when set, this field would take precedence over VLAN
+            mandatory to provide this value if there's no VLAN hostname to use.
+            Also, when set, this field would take precedence over VLAN
             hostname.
         cluster_ips (list of string): Set of IPs as seen from the tenant's
             network for the Cohesity cluster. Only one from 'ClusterHostname'
@@ -25,8 +26,8 @@ class TenantUpdate(object):
         subscribe_to_alert_emails (bool): Service provider can optionally
             unsubscribe from the Tenant Alert Emails.
         tenant_id (string): Specifies the unique id of the tenant.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -36,9 +37,8 @@ class TenantUpdate(object):
         "description":'description',
         "name":'name',
         "subscribe_to_alert_emails":'subscribeToAlertEmails',
-        "tenant_id":'tenantId'
+        "tenant_id":'tenantId',
     }
-
     def __init__(self,
                  bifrost_enabled=None,
                  cluster_hostname=None,
@@ -46,7 +46,9 @@ class TenantUpdate(object):
                  description=None,
                  name=None,
                  subscribe_to_alert_emails=None,
-                 tenant_id=None):
+                 tenant_id=None,
+            ):
+
         """Constructor for the TenantUpdate class"""
 
         # Initialize members of the class
@@ -57,7 +59,6 @@ class TenantUpdate(object):
         self.name = name
         self.subscribe_to_alert_emails = subscribe_to_alert_emails
         self.tenant_id = tenant_id
-
 
     @classmethod
     def from_dictionary(cls,
@@ -79,19 +80,19 @@ class TenantUpdate(object):
         # Extract variables from the dictionary
         bifrost_enabled = dictionary.get('bifrostEnabled')
         cluster_hostname = dictionary.get('clusterHostname')
-        cluster_ips = dictionary.get('clusterIps')
+        cluster_ips = dictionary.get("clusterIps")
         description = dictionary.get('description')
         name = dictionary.get('name')
         subscribe_to_alert_emails = dictionary.get('subscribeToAlertEmails')
         tenant_id = dictionary.get('tenantId')
 
         # Return an object of this model
-        return cls(bifrost_enabled,
-                   cluster_hostname,
-                   cluster_ips,
-                   description,
-                   name,
-                   subscribe_to_alert_emails,
-                   tenant_id)
-
-
+        return cls(
+            bifrost_enabled,
+            cluster_hostname,
+            cluster_ips,
+            description,
+            name,
+            subscribe_to_alert_emails,
+            tenant_id
+)

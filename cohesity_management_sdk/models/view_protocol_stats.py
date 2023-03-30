@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class ViewProtocolStats(object):
 
@@ -8,34 +7,36 @@ class ViewProtocolStats(object):
 
     Specifies the View Protocol stats.
 
+
     Attributes:
-        protocols (list of ProtocolViewProtocolStatsEnum): Specifies the
-            protocols supported on these Views.
+
+        protocols (list of ProtocolsEnum): Specifies the protocols supported on
+            these Views.
         size_bytes (long|int): Specifies the size of all the Views in bytes
             which are using the specified protocol.
         view_count (long|int): Specifies the number of Views which are using
             the specified protocol.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "protocols":'protocols',
         "size_bytes":'sizeBytes',
-        "view_count":'viewCount'
+        "view_count":'viewCount',
     }
-
     def __init__(self,
                  protocols=None,
                  size_bytes=None,
-                 view_count=None):
+                 view_count=None,
+            ):
+
         """Constructor for the ViewProtocolStats class"""
 
         # Initialize members of the class
         self.protocols = protocols
         self.size_bytes = size_bytes
         self.view_count = view_count
-
 
     @classmethod
     def from_dictionary(cls,
@@ -55,13 +56,13 @@ class ViewProtocolStats(object):
             return None
 
         # Extract variables from the dictionary
-        protocols = dictionary.get('protocols')
+        protocols = dictionary.get("protocols")
         size_bytes = dictionary.get('sizeBytes')
         view_count = dictionary.get('viewCount')
 
         # Return an object of this model
-        return cls(protocols,
-                   size_bytes,
-                   view_count)
-
-
+        return cls(
+            protocols,
+            size_bytes,
+            view_count
+)

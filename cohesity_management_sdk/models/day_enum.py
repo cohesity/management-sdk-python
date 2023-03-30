@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class DayEnum(object):
 
     """Implementation of the 'Day' enum.
+    Specifies the day of the week (such as 'kMonday') to start the Job Run.
+    Used with day count to define the day in the month to start the Job Run.
+    Specifies a day in a week such as 'kSunday', 'kMonday', etc.
 
-    TODO: type enum description here.
 
     Attributes:
         KSUNDAY: TODO: type description here.
@@ -31,4 +33,3 @@ class DayEnum(object):
     KFRIDAY = 'kFriday'
 
     KSATURDAY = 'kSaturday'
-

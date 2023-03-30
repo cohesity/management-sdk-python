@@ -1,18 +1,21 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.application_parameters
-import cohesity_management_sdk.models.disk_unit
 import cohesity_management_sdk.models.credentials
+import cohesity_management_sdk.models.disk_unit
+
 
 class VmwareSpecialParameters(object):
 
     """Implementation of the 'VmwareSpecialParameters' model.
 
-    Specifies additional special settings applicable for a Protection Source
-    of 'kVMware' type in a Protection Job.
+    Specifies additional special settings applicable for a Protection Source of
+    'kVMware' type in a Protection Job.
+
 
     Attributes:
+
         application_parameters (ApplicationParameters): Specifies parameters
             that are related to applications running on the Protection Source.
         excluded_disks (list of DiskUnit): Specifies the list of Disks to be
@@ -25,27 +28,27 @@ class VmwareSpecialParameters(object):
             in to the guest Windows system of the VM must be provided to
             truncate the logs. This field is only applicable to Sources in the
             kVMware environment.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "application_parameters":'applicationParameters',
         "excluded_disks":'excludedDisks',
-        "vm_credentials":'vmCredentials'
+        "vm_credentials":'vmCredentials',
     }
-
     def __init__(self,
                  application_parameters=None,
                  excluded_disks=None,
-                 vm_credentials=None):
+                 vm_credentials=None,
+            ):
+
         """Constructor for the VmwareSpecialParameters class"""
 
         # Initialize members of the class
         self.application_parameters = application_parameters
         self.excluded_disks = excluded_disks
         self.vm_credentials = vm_credentials
-
 
     @classmethod
     def from_dictionary(cls,
@@ -74,8 +77,8 @@ class VmwareSpecialParameters(object):
         vm_credentials = cohesity_management_sdk.models.credentials.Credentials.from_dictionary(dictionary.get('vmCredentials')) if dictionary.get('vmCredentials') else None
 
         # Return an object of this model
-        return cls(application_parameters,
-                   excluded_disks,
-                   vm_credentials)
-
-
+        return cls(
+            application_parameters,
+            excluded_disks,
+            vm_credentials
+)

@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.data_usage_stats
+
 
 class ViewStats(object):
 
@@ -9,28 +10,30 @@ class ViewStats(object):
 
     Provides statistics about the View.
 
-    Attributes:
-        data_usage_stats (DataUsageStats): Specifies the data usage
-            metric of the data stored in this View.
-        id (long|int): Specifies the id of the View.
 
+    Attributes:
+
+        data_usage_stats (DataUsageStats): Specifies the data usage metric of
+            the data stored in this View.
+        id (long|int): Specifies the id of the View.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "data_usage_stats":'dataUsageStats',
-        "id":'id'
+        "id":'id',
     }
-
     def __init__(self,
                  data_usage_stats=None,
-                 id=None):
+                 id=None,
+            ):
+
         """Constructor for the ViewStats class"""
 
         # Initialize members of the class
         self.data_usage_stats = data_usage_stats
         self.id = id
-
 
     @classmethod
     def from_dictionary(cls,
@@ -54,7 +57,7 @@ class ViewStats(object):
         id = dictionary.get('id')
 
         # Return an object of this model
-        return cls(data_usage_stats,
-                   id)
-
-
+        return cls(
+            data_usage_stats,
+            id
+)

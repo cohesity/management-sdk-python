@@ -1,16 +1,15 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class SnapshotTaskStatusEnum(object):
 
     """Implementation of the 'SnapshotTaskStatus' enum.
-
-    Specifies the status of the indexing task.
-    'kJobRunning' indicates that the Job/task is currently running.
-    'kJobFinished' indicates that the Job/task completed and finished.
-    'kJobFailed' indicates that the Job/task failed and did not complete.
-    'kJobCanceled' indicates that the Job/task was canceled.
+    Specifies the status of the indexing task. 'kJobRunning' indicates that the
+    Job/task is currently running. 'kJobFinished' indicates that the Job/task
+    completed and finished. 'kJobFailed' indicates that the Job/task failed and
+    did not complete. 'kJobCanceled' indicates that the Job/task was canceled.
     'kJobPaused' indicates the Job/task is paused.
+
 
     Attributes:
         KJOBRUNNING: TODO: type description here.
@@ -30,4 +29,3 @@ class SnapshotTaskStatusEnum(object):
     KJOBCANCELED = 'kJobCanceled'
 
     KJOBPAUSED = 'kJobPaused'
-

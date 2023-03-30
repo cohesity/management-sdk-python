@@ -1,19 +1,15 @@
-
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class DocumentTypeEnum(object):
 
-    """Implementation of the 'DocumentTypeEnum' enum.
+    """Implementation of the 'DocumentType' enum.
+    Specifies the type of site document(file/folder). Specifies the Sharepoint
+    document type.  'kFile' specifies a file. 'kFolder' specifies a folder.
 
-    Specifies the type of OneDrive document(file/folder).
-    Specifies the OneDrive document type.
-
-    'kFile' specifies a file.
-    'kFolder' specifies a folder.
 
     Attributes:
-        kFILE: TODO: type description here.
+        KFILE: TODO: type description here.
         KFOLDER: TODO: type description here.
 
     """
@@ -21,4 +17,3 @@ class DocumentTypeEnum(object):
     KFILE = 'kFile'
 
     KFOLDER = 'kFolder'
-

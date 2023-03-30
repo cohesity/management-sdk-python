@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.sample
+
 
 class IopsTile(object):
 
@@ -9,33 +10,35 @@ class IopsTile(object):
 
     IOPs information for dashboard.
 
+
     Attributes:
-        max_read_iops (long|int): Maximum Read IOs per second in last 24
-            hours.
+
+        max_read_iops (long|int): Maximum Read IOs per second in last 24 hours.
         max_write_iops (long|int): Maximum number of Write IOs per second in
             last 24 hours.
         read_iops_samples (list of Sample): Read IOs per second samples taken
             for the past 24 hours at 10 minutes interval given in descending
             order of time.
-        write_iops_samples (list of Sample): Write IOs per second samples
-            taken for the past 24 hours at 10 minutes interval given in
-            descending order of time.
-
+        write_iops_samples (list of Sample): Write IOs per second samples taken
+            for the past 24 hours at 10 minutes interval given in descending
+            order of time.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "max_read_iops":'maxReadIops',
         "max_write_iops":'maxWriteIops',
         "read_iops_samples":'readIopsSamples',
-        "write_iops_samples":'writeIopsSamples'
+        "write_iops_samples":'writeIopsSamples',
     }
-
     def __init__(self,
                  max_read_iops=None,
                  max_write_iops=None,
                  read_iops_samples=None,
-                 write_iops_samples=None):
+                 write_iops_samples=None,
+            ):
+
         """Constructor for the IopsTile class"""
 
         # Initialize members of the class
@@ -43,7 +46,6 @@ class IopsTile(object):
         self.max_write_iops = max_write_iops
         self.read_iops_samples = read_iops_samples
         self.write_iops_samples = write_iops_samples
-
 
     @classmethod
     def from_dictionary(cls,
@@ -77,9 +79,9 @@ class IopsTile(object):
                 write_iops_samples.append(cohesity_management_sdk.models.sample.Sample.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(max_read_iops,
-                   max_write_iops,
-                   read_iops_samples,
-                   write_iops_samples)
-
-
+        return cls(
+            max_read_iops,
+            max_write_iops,
+            read_iops_samples,
+            write_iops_samples
+)

@@ -1,17 +1,16 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class HealthStatusEnum(object):
 
     """Implementation of the 'HealthStatus' enum.
+    Specifies the health status of the Cohesity agent. Specifies the status of
+    the agent running on a physical source. 'kUnknown' indicates the Agent is
+    not known. No attempt to connect to the Agent has occurred. 'kUnreachable'
+    indicates the Agent is not reachable. 'kHealthy' indicates the Agent is
+    healthy. 'kDegraded' indicates the Agent is running but in a degraded
+    state.
 
-    Specifies the health status of the Cohesity agent.
-    Specifies the status of the agent running on a physical source.
-    'kUnknown' indicates the Agent is not known. No attempt to connect
-    to the Agent has occurred.
-    'kUnreachable' indicates the Agent is not reachable.
-    'kHealthy' indicates the Agent is healthy.
-    'kDegraded' indicates the Agent is running but in a degraded state.
 
     Attributes:
         KUNKNOWN: TODO: type description here.
@@ -28,4 +27,3 @@ class HealthStatusEnum(object):
     KHEALTHY = 'kHealthy'
 
     KDEGRADED = 'kDegraded'
-

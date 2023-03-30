@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.vault_stats_info
+
 
 class VaultStats(object):
 
@@ -9,20 +10,21 @@ class VaultStats(object):
 
     Specifies the storage usage on vaults.
 
+
     Attributes:
+
         aws_usage_bytes (long|int): Specifies the usage on AWS vaults.
         azure_usage_bytes (long|int): Specifies the usage on Azure vaults.
         gcp_usage_bytes (long|int): Specifies the usage on GCP vaults.
         nas_usage_bytes (long|int): Specifies the usage on NAS vaults.
         oracle_usage_bytes (long|int): Specifies the usage on Oracle vaults.
-        qstar_usage_bytes (long|int): Specifies the usage on QStar Tape
-            vaults.
-        s_3_c_usage_bytes (long|int): Specifies the usage on S3 Compatible
+        qstar_usage_bytes (long|int): Specifies the usage on QStar Tape vaults.
+        s3c_usage_bytes (long|int): Specifies the usage on S3 Compatible
             vaults.
         vault_stats_list (list of VaultStatsInfo): Specifies the stats of all
             vaults on the cluster.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -32,10 +34,9 @@ class VaultStats(object):
         "nas_usage_bytes":'nasUsageBytes',
         "oracle_usage_bytes":'oracleUsageBytes',
         "qstar_usage_bytes":'qstarUsageBytes',
-        "s_3_c_usage_bytes":'s3cUsageBytes',
-        "vault_stats_list":'vaultStatsList'
+        "s3c_usage_bytes":'s3cUsageBytes',
+        "vault_stats_list":'vaultStatsList',
     }
-
     def __init__(self,
                  aws_usage_bytes=None,
                  azure_usage_bytes=None,
@@ -43,8 +44,10 @@ class VaultStats(object):
                  nas_usage_bytes=None,
                  oracle_usage_bytes=None,
                  qstar_usage_bytes=None,
-                 s_3_c_usage_bytes=None,
-                 vault_stats_list=None):
+                 s3c_usage_bytes=None,
+                 vault_stats_list=None,
+            ):
+
         """Constructor for the VaultStats class"""
 
         # Initialize members of the class
@@ -54,9 +57,8 @@ class VaultStats(object):
         self.nas_usage_bytes = nas_usage_bytes
         self.oracle_usage_bytes = oracle_usage_bytes
         self.qstar_usage_bytes = qstar_usage_bytes
-        self.s_3_c_usage_bytes = s_3_c_usage_bytes
+        self.s3c_usage_bytes = s3c_usage_bytes
         self.vault_stats_list = vault_stats_list
-
 
     @classmethod
     def from_dictionary(cls,
@@ -82,7 +84,7 @@ class VaultStats(object):
         nas_usage_bytes = dictionary.get('nasUsageBytes')
         oracle_usage_bytes = dictionary.get('oracleUsageBytes')
         qstar_usage_bytes = dictionary.get('qstarUsageBytes')
-        s_3_c_usage_bytes = dictionary.get('s3cUsageBytes')
+        s3c_usage_bytes = dictionary.get('s3cUsageBytes')
         vault_stats_list = None
         if dictionary.get('vaultStatsList') != None:
             vault_stats_list = list()
@@ -90,13 +92,13 @@ class VaultStats(object):
                 vault_stats_list.append(cohesity_management_sdk.models.vault_stats_info.VaultStatsInfo.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(aws_usage_bytes,
-                   azure_usage_bytes,
-                   gcp_usage_bytes,
-                   nas_usage_bytes,
-                   oracle_usage_bytes,
-                   qstar_usage_bytes,
-                   s_3_c_usage_bytes,
-                   vault_stats_list)
-
-
+        return cls(
+            aws_usage_bytes,
+            azure_usage_bytes,
+            gcp_usage_bytes,
+            nas_usage_bytes,
+            oracle_usage_bytes,
+            qstar_usage_bytes,
+            s3c_usage_bytes,
+            vault_stats_list
+)

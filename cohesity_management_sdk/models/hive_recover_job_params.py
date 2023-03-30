@@ -1,38 +1,41 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.hdfs_connect_params
+
 
 class HiveRecoverJobParams(object):
 
     """Implementation of the 'HiveRecoverJobParams' model.
 
-    Contains any additional hive environment specific params for the
-    recover job.
+    Contains any additional hive environment specific params for the recover
+    job.
+
 
     Attributes:
+
         hdfs_connect_params (HdfsConnectParams): Additional hdfs connection
             params required for Hive Backup.
         suffix (string): A suffix that is to be applied to all recovered
             entities
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "hdfs_connect_params": 'hdfsConnectParams',
-        "suffix": 'suffix'
+        "hdfs_connect_params":'hdfsConnectParams',
+        "suffix":'suffix',
     }
-
     def __init__(self,
                  hdfs_connect_params=None,
-                 suffix=None):
+                 suffix=None,
+            ):
+
         """Constructor for the HiveRecoverJobParams class"""
 
         # Initialize members of the class
         self.hdfs_connect_params = hdfs_connect_params
         self.suffix = suffix
-
 
     @classmethod
     def from_dictionary(cls,
@@ -52,11 +55,11 @@ class HiveRecoverJobParams(object):
             return None
 
         # Extract variables from the dictionary
-        hdfs_connect_params = cohesity_management_sdk.models.hdfs_connect_params.HdfsConnectParams.from_dictionary(dictionary.get('hdfsConnectParams')) if dictionary.get('hdfsConnectParams', None) else None
-        suffix = dictionary.get('suffix', None)
+        hdfs_connect_params = cohesity_management_sdk.models.hdfs_connect_params.HdfsConnectParams.from_dictionary(dictionary.get('hdfsConnectParams')) if dictionary.get('hdfsConnectParams') else None
+        suffix = dictionary.get('suffix')
 
         # Return an object of this model
-        return cls(hdfs_connect_params,
-                   suffix)
-
-
+        return cls(
+            hdfs_connect_params,
+            suffix
+)

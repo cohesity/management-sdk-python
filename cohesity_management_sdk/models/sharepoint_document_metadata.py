@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class SharepointDocumentMetadata(object):
 
@@ -8,26 +7,27 @@ class SharepointDocumentMetadata(object):
 
     Specifies the metadata for the Sharepoint Site document.
 
-    Attributes:
-        document_type (DocumentTypeEnum): Specifies the type of site
-            document(file/folder). Specifies the Sharepoint document type.
 
-          'kFile' specifies a file.
-          'kFolder' specifies a folder.
+    Attributes:
+
+        document_type (DocumentTypeEnum): Specifies the type of site
+            document(file/folder). Specifies the Sharepoint document type. 
+            'kFile' specifies a file. 'kFolder' specifies a folder.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "document_type":'documentType'
+        "document_type":'documentType',
     }
-
     def __init__(self,
-                 document_type=None):
+                 document_type=None,
+            ):
+
         """Constructor for the SharepointDocumentMetadata class"""
 
         # Initialize members of the class
         self.document_type = document_type
-
 
     @classmethod
     def from_dictionary(cls,
@@ -50,6 +50,6 @@ class SharepointDocumentMetadata(object):
         document_type = dictionary.get('documentType')
 
         # Return an object of this model
-        return cls(document_type)
-
-
+        return cls(
+            document_type
+)

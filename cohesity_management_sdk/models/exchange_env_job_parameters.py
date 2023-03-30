@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class ExchangeEnvJobParameters(object):
 
@@ -8,23 +7,26 @@ class ExchangeEnvJobParameters(object):
 
     Specifies job parameters applicable for the Exchange Protection Jobs.
 
+
     Attributes:
-    backups_copy_only (bool): Specifies whether the backups should be
-        copy-only.
+
+        backups_copy_only (bool): Specifies whether the backups should be
+            copy-only.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "backups_copy_only": 'backupsCopyOnly'
+        "backups_copy_only":'backupsCopyOnly',
     }
-
     def __init__(self,
-                 backups_copy_only=None):
+                 backups_copy_only=None,
+            ):
+
         """Constructor for the ExchangeEnvJobParameters class"""
 
         # Initialize members of the class
         self.backups_copy_only = backups_copy_only
-
 
     @classmethod
     def from_dictionary(cls,
@@ -47,6 +49,6 @@ class ExchangeEnvJobParameters(object):
         backups_copy_only = dictionary.get('backupsCopyOnly')
 
         # Return an object of this model
-        return cls(backups_copy_only)
-
-
+        return cls(
+            backups_copy_only
+)

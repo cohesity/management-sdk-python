@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
-class RandomIOPreferentialTierEnum(object):
+class RandomIoPreferentialTierEnum(object):
 
-    """Implementation of the 'RandomIOPreferentialTier' enum.
+    """Implementation of the 'RandomIoPreferentialTier' enum.
+    Specifies the order of perferred storage tiers for random IO operations.
 
-    TODO: type enum description here.
 
     Attributes:
         KPCIESSD: TODO: type description here.
@@ -22,4 +22,3 @@ class RandomIOPreferentialTierEnum(object):
     KSATAHDD = 'kSataHdd'
 
     KCLOUD = 'kCloud'
-

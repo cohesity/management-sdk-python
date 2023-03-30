@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class GcpParams(object):
 
@@ -8,7 +7,9 @@ class GcpParams(object):
 
     Specifies various resources when converting and deploying a VM to GCP.
 
+
     Attributes:
+
         instance_id (long|int): Specifies id of the GCP instance type in which
             to deploy the VM.
         region (long|int): Specifies id of the GCP region in which to deploy
@@ -16,22 +17,23 @@ class GcpParams(object):
         subnet_id (long|int): Specifies id of the subnet within above VPC.
         virtual_private_cloud_id (long|int): Specifies id of the Virtual
             Private Cloud to chose for the instance type.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "instance_id":'instanceId',
         "region":'region',
         "subnet_id":'subnetId',
-        "virtual_private_cloud_id":'virtualPrivateCloudId'
+        "virtual_private_cloud_id":'virtualPrivateCloudId',
     }
-
     def __init__(self,
                  instance_id=None,
                  region=None,
                  subnet_id=None,
-                 virtual_private_cloud_id=None):
+                 virtual_private_cloud_id=None,
+            ):
+
         """Constructor for the GcpParams class"""
 
         # Initialize members of the class
@@ -39,7 +41,6 @@ class GcpParams(object):
         self.region = region
         self.subnet_id = subnet_id
         self.virtual_private_cloud_id = virtual_private_cloud_id
-
 
     @classmethod
     def from_dictionary(cls,
@@ -65,9 +66,9 @@ class GcpParams(object):
         virtual_private_cloud_id = dictionary.get('virtualPrivateCloudId')
 
         # Return an object of this model
-        return cls(instance_id,
-                   region,
-                   subnet_id,
-                   virtual_private_cloud_id)
-
-
+        return cls(
+            instance_id,
+            region,
+            subnet_id,
+            virtual_private_cloud_id
+)

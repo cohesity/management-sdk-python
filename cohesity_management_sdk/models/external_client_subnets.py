@@ -1,32 +1,35 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.subnet
+
 
 class ExternalClientSubnets(object):
 
     """Implementation of the 'ExternalClientSubnets' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
+
         client_subnets (list of Subnet): Specifies the Client Subnets for the
             cluster.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "client_subnets":'clientSubnets'
+        "client_subnets":'clientSubnets',
     }
-
     def __init__(self,
-                 client_subnets=None):
+                 client_subnets=None,
+            ):
+
         """Constructor for the ExternalClientSubnets class"""
 
         # Initialize members of the class
         self.client_subnets = client_subnets
-
 
     @classmethod
     def from_dictionary(cls,
@@ -53,6 +56,6 @@ class ExternalClientSubnets(object):
                 client_subnets.append(cohesity_management_sdk.models.subnet.Subnet.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(client_subnets)
-
-
+        return cls(
+            client_subnets
+)

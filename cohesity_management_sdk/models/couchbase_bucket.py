@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class CouchbaseBucket(object):
 
@@ -8,26 +7,29 @@ class CouchbaseBucket(object):
 
     Specifies an Object containing information about a couchbase Bucket.
 
+
     Attributes:
-    bucket_type (string): Type of this bucket.
-    document_count (int|long): Number of documents in this bucket.
+
+        bucket_type (string): Type of this bucket.
+        document_count (long|int): Number of documents in this bucket.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "bucket_type":'bucketType',
-        "document_count":'documentCount'
+        "document_count":'documentCount',
     }
-
     def __init__(self,
                  bucket_type=None,
-                 document_count=None):
+                 document_count=None,
+            ):
+
         """Constructor for the CouchbaseBucket class"""
 
         # Initialize members of the class
         self.bucket_type = bucket_type
         self.document_count = document_count
-
 
     @classmethod
     def from_dictionary(cls,
@@ -51,7 +53,7 @@ class CouchbaseBucket(object):
         document_count = dictionary.get('documentCount')
 
         # Return an object of this model
-        return cls(bucket_type,
-                   document_count)
-
-
+        return cls(
+            bucket_type,
+            document_count
+)

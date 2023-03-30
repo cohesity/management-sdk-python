@@ -1,34 +1,35 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class DailyUsage(object):
 
     """Implementation of the 'DailyUsage' model.
 
-    TODO: Type model description here.
+    TODO: type description here.
+
 
     Attributes:
+
         daily_usage (list of long|int): TODO: Type description here.
         feature_name (string): TODO: Type description here.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "daily_usage": 'dailyUsage',
-        "feature_name": 'featureName'
+        "daily_usage":'dailyUsage',
+        "feature_name":'featureName',
     }
-
     def __init__(self,
                  daily_usage=None,
-                 feature_name=None):
+                 feature_name=None,
+            ):
+
         """Constructor for the DailyUsage class"""
 
         # Initialize members of the class
         self.daily_usage = daily_usage
         self.feature_name = feature_name
-
 
     @classmethod
     def from_dictionary(cls,
@@ -48,11 +49,11 @@ class DailyUsage(object):
             return None
 
         # Extract variables from the dictionary
-        daily_usage = dictionary.get('dailyUsage', None)
-        feature_name = dictionary.get('featureName', None)
+        daily_usage = dictionary.get("dailyUsage")
+        feature_name = dictionary.get('featureName')
 
         # Return an object of this model
-        return cls(daily_usage,
-                   feature_name)
-
-
+        return cls(
+            daily_usage,
+            feature_name
+)

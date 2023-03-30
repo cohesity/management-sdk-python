@@ -1,37 +1,37 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class DiskBlock(object):
 
     """Implementation of the 'DiskBlock' model.
 
-    Specifies a contiguous block by defining an offset and
-    length of the block.
+    Specifies a contiguous block by defining an offset and length of the block.
+
 
     Attributes:
+
         length_bytes (long|int): Specifies the length of the block in bytes.
         offset_bytes (long|int): Specifies the offset of the block (in bytes)
-            from the beginning of the containing object such as a physical
-            disk or a virtual disk file.
-
+            from the beginning of the containing object such as a physical disk
+            or a virtual disk file.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "length_bytes":'lengthBytes',
-        "offset_bytes":'offsetBytes'
+        "offset_bytes":'offsetBytes',
     }
-
     def __init__(self,
                  length_bytes=None,
-                 offset_bytes=None):
+                 offset_bytes=None,
+            ):
+
         """Constructor for the DiskBlock class"""
 
         # Initialize members of the class
         self.length_bytes = length_bytes
         self.offset_bytes = offset_bytes
-
 
     @classmethod
     def from_dictionary(cls,
@@ -55,7 +55,7 @@ class DiskBlock(object):
         offset_bytes = dictionary.get('offsetBytes')
 
         # Return an object of this model
-        return cls(length_bytes,
-                   offset_bytes)
-
-
+        return cls(
+            length_bytes,
+            offset_bytes
+)

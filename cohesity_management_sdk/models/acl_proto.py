@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.acl_proto_grant
 import cohesity_management_sdk.models.common_acl_proto
 import cohesity_management_sdk.models.keystone_acl_proto
+
 
 class ACLProto(object):
 
@@ -12,14 +13,16 @@ class ACLProto(object):
     Protobuf that describes the access control list (ACL) permissions for a
     bucket or for an object.
 
+
     Attributes:
+
         common_acl (CommonACLProto): CommonACL of the Swift container.
         grant_vec (list of ACLProto_Grant): TODO: Type description here.
         keystone_acl (KeystoneACLProto): KeystoneACL of the Swift container.
         swift_read_acl (string): Swift ACL strings.
-        swift_write_acl (TypeACLProtoEnum): TODO: Type description here.
-
+        swift_write_acl (string): TODO: Type description here.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -27,15 +30,16 @@ class ACLProto(object):
         "grant_vec":'grantVec',
         "keystone_acl":'keystoneAcl',
         "swift_read_acl":'swiftReadAcl',
-        "swift_write_acl":'swiftWriteAcl'
+        "swift_write_acl":'swiftWriteAcl',
     }
-
     def __init__(self,
                  common_acl=None,
                  grant_vec=None,
                  keystone_acl=None,
                  swift_read_acl=None,
-                 swift_write_acl=None):
+                 swift_write_acl=None,
+            ):
+
         """Constructor for the ACLProto class"""
 
         # Initialize members of the class
@@ -44,7 +48,6 @@ class ACLProto(object):
         self.keystone_acl = keystone_acl
         self.swift_read_acl = swift_read_acl
         self.swift_write_acl = swift_write_acl
-
 
     @classmethod
     def from_dictionary(cls,
@@ -71,14 +74,14 @@ class ACLProto(object):
             for structure in dictionary.get('grantVec'):
                 grant_vec.append(cohesity_management_sdk.models.acl_proto_grant.ACLProto_Grant.from_dictionary(structure))
         keystone_acl = cohesity_management_sdk.models.keystone_acl_proto.KeystoneACLProto.from_dictionary(dictionary.get('keystoneAcl')) if dictionary.get('keystoneAcl') else None
-        swift_write_acl = dictionary.get('swiftWriteAcl')
         swift_read_acl = dictionary.get('swiftReadAcl')
+        swift_write_acl = dictionary.get('swiftWriteAcl')
 
         # Return an object of this model
-        return cls(common_acl,
-                   grant_vec,
-                   keystone_acl,
-                   swift_read_acl,
-                   swift_write_acl)
-
-
+        return cls(
+            common_acl,
+            grant_vec,
+            keystone_acl,
+            swift_read_acl,
+            swift_write_acl
+)

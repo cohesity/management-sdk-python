@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class ServerTypeEnum(object):
 
     """Implementation of the 'ServerType' enum.
+    Specifies the type of key mangement system. 'kInternalKms' indicates an
+    internal KMS object. 'kAwsKms' indicates an Aws KMS object. 'kCryptsoftKms'
+    indicates a Cryptsoft KMS object.
 
-    Specifies the type of key mangement system.
-    'kInternalKms' indicates an internal KMS object.
-    'kAwsKms' indicates an Aws KMS object.
-    'kCryptsoftKms' indicates a Cryptsoft KMS object.
 
     Attributes:
         KINTERNALKMS: TODO: type description here.
@@ -22,4 +21,3 @@ class ServerTypeEnum(object):
     KAWSKMS = 'kAwsKms'
 
     KCRYPTSOFTKMS = 'kCryptsoftKms'
-

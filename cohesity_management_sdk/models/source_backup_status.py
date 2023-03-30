@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.app_entity_backup_status_info
-import cohesity_management_sdk.models.snapshot_info
-import cohesity_management_sdk.models.protection_source
 import cohesity_management_sdk.models.backup_source_stats
+import cohesity_management_sdk.models.protection_source
+import cohesity_management_sdk.models.snapshot_info
+
 
 class SourceBackupStatus(object):
 
@@ -12,21 +13,22 @@ class SourceBackupStatus(object):
 
     Specifies the source object to protect and the current backup status.
 
+
     Attributes:
+
         apps_backup_status (list of AppEntityBackupStatusInfo): Specifies the
             backup status at app/DB level.
         current_snapshot_info (SnapshotInfo): Specifies details about the
-            snapshot task created to backup or copy one source object like a
-            VM.
+            snapshot captured to backup the source object (such as a VM).
         error (string): Specifies if an error occurred (if any) while running
             this task. This field is populated when the status is equal to
             'kFailure'.
         is_full_backup (bool): Specifies whether this is a 'kFull' or
             'kRegular' backup of the Run. This may be true even if the
-            scheduled backup type is 'kRegular'. This will happen when this
-            run corresponds to the first backup run of the Job or if no
-            previous snapshot information is found.
-        num_restarts (int): Specifies the number of times the the task was
+            scheduled backup type is 'kRegular'. This will happen when this run
+            corresponds to the first backup run of the Job or if no previous
+            snapshot information is found.
+        num_restarts (int): Specifies the number of times the task was
             restarted because of the changes on the backup source host.
         parent_source_id (long|int): Specifies the id of the registered
             Protection Source that is the parent of the Objects that are
@@ -38,32 +40,27 @@ class SourceBackupStatus(object):
             This field is set to true, if an app-consistent snapshot was taken
             by quiescing applications and the file system before taking a
             backup.
-        sla_violated (bool): Specifies if the SLA was violated for the Job
-            Run. This field is set to true, if time to complete the Job Run is
+        sla_violated (bool): Specifies if the SLA was violated for the Job Run.
+            This field is set to true, if time to complete the Job Run is
             longer than the SLA specified. This field is populated when the
             status is set to 'kSuccess' or 'kFailure'.
-        source (ProtectionSource): Specifies a generic structure that
-            represents a node in the Protection Source tree. Node details will
-            depend on the environment of the Protection Source.
-        stats (BackupSourceStats): Specifies statistics about a Backup task in
-            a Protection Job Run. Specifies statistics for one backup task.
-            One backup task is used to backup on Protection Source. This
-            structure is also used to aggregate stats of a Backup tasks in a
-            Protection Job Run.
+        source (ProtectionSource): Specifies the source object to protect.
+        stats (BackupSourceStats): Specifies the stats of the Backup Run task
+            for the Protection Source.
         status (StatusSourceBackupStatusEnum): Specifies the status of the
             source object being protected. 'kAccepted' indicates the task is
-            queued to run but not yet running. 'kRunning' indicates the task
-            is running. 'kCanceling' indicates a request to cancel the task
-            has occurred but the task is not yet canceled. 'kCanceled'
-            indicates the task has been canceled. 'kSuccess' indicates the
-            task was successful. 'kFailure' indicates the task failed.
-            'kWarning' indicates the task has finished with warning.
-            'kOnHold' indicates the task is kept onHold.
-            'kMissed' indicates the task is missed.
+            queued to run but not yet running. 'kRunning' indicates the task is
+            running. 'kCanceling' indicates a request to cancel the task has
+            occurred but the task is not yet canceled. 'kCanceled' indicates
+            the task has been canceled. 'kSuccess' indicates the task was
+            successful. 'kFailure' indicates the task failed. 'kWarning'
+            indicates the task has finished with warning. 'kOnHold' indicates
+            the task is kept onHold. 'kMissed' indicates the task is missed.
+            'Finalizing' indicates the task is finalizing.
         warnings (list of string): Array of Warnings.  Specifies the warnings
             that occurred (if any) while running this task.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -79,9 +76,8 @@ class SourceBackupStatus(object):
         "source":'source',
         "stats":'stats',
         "status":'status',
-        "warnings":'warnings'
+        "warnings":'warnings',
     }
-
     def __init__(self,
                  apps_backup_status=None,
                  current_snapshot_info=None,
@@ -95,7 +91,9 @@ class SourceBackupStatus(object):
                  source=None,
                  stats=None,
                  status=None,
-                 warnings=None):
+                 warnings=None,
+            ):
+
         """Constructor for the SourceBackupStatus class"""
 
         # Initialize members of the class
@@ -112,7 +110,6 @@ class SourceBackupStatus(object):
         self.stats = stats
         self.status = status
         self.warnings = warnings
-
 
     @classmethod
     def from_dictionary(cls,
@@ -148,21 +145,21 @@ class SourceBackupStatus(object):
         source = cohesity_management_sdk.models.protection_source.ProtectionSource.from_dictionary(dictionary.get('source')) if dictionary.get('source') else None
         stats = cohesity_management_sdk.models.backup_source_stats.BackupSourceStats.from_dictionary(dictionary.get('stats')) if dictionary.get('stats') else None
         status = dictionary.get('status')
-        warnings = dictionary.get('warnings')
+        warnings = dictionary.get("warnings")
 
         # Return an object of this model
-        return cls(apps_backup_status,
-                   current_snapshot_info,
-                   error,
-                   is_full_backup,
-                   num_restarts,
-                   parent_source_id,
-                   progress_monitor_task_path,
-                   quiesced,
-                   sla_violated,
-                   source,
-                   stats,
-                   status,
-                   warnings)
-
-
+        return cls(
+            apps_backup_status,
+            current_snapshot_info,
+            error,
+            is_full_backup,
+            num_restarts,
+            parent_source_id,
+            progress_monitor_task_path,
+            quiesced,
+            sla_violated,
+            source,
+            stats,
+            status,
+            warnings
+)

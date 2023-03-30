@@ -1,40 +1,41 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class UpdateApiKeyParams(object):
 
     """Implementation of the 'UpdateApiKeyParams' model.
 
-    Specifies the parameters to create an API key.
+    Specifies the parameters to update an API key.
+
 
     Attributes:
-        expiring_time_msecs (int|long): Specifies a time stamp when the API
-            key will expire in milli seconds.
+
+        expiring_time_msecs (long|int): Specifies a time stamp when the API key
+            will expire in milli seconds.
         is_active (bool): Specifies if the API key is active. Only an active
             and not expired API key can be used for authentication.
-        name (string, required): Specifies the name of API key.
-
+        name (string): Specifies the name of API key.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "expiring_time_msecs":'expiringTimeMsecs',
         "is_active":'isActive',
-        "name":'name'
+        "name":'name',
     }
-
     def __init__(self,
                  expiring_time_msecs=None,
                  is_active=None,
-                 name=None):
+                 name=None,
+            ):
+
         """Constructor for the UpdateApiKeyParams class"""
 
         # Initialize members of the class
         self.expiring_time_msecs = expiring_time_msecs
         self.is_active = is_active
         self.name = name
-
 
     @classmethod
     def from_dictionary(cls,
@@ -59,8 +60,8 @@ class UpdateApiKeyParams(object):
         name = dictionary.get('name')
 
         # Return an object of this model
-        return cls(expiring_time_msecs,
-                   is_active,
-                   name)
-
-
+        return cls(
+            expiring_time_msecs,
+            is_active,
+            name
+)

@@ -1,36 +1,39 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class PodInfo_PodSpec_VolumeInfo_DownwardAPIVolumeFile_ResourceFieldSelector(object):
 
     """Implementation of the 'PodInfo_PodSpec_VolumeInfo_DownwardAPIVolumeFile_ResourceFieldSelector' model.
 
+    TODO: type description here.
+
+
     Attributes:
+
         container_name (string): TODO: Type description here.
         divisor (string): TODO: Type description here.
         resource (string): TODO: Type description here.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "container_name":'containerName',
         "divisor":'divisor',
-        "resource":'resource'
+        "resource":'resource',
     }
-
     def __init__(self,
                  container_name=None,
                  divisor=None,
-                 resource=None):
+                 resource=None,
+            ):
+
         """Constructor for the PodInfo_PodSpec_VolumeInfo_DownwardAPIVolumeFile_ResourceFieldSelector class"""
 
         # Initialize members of the class
         self.container_name = container_name
         self.divisor = divisor
         self.resource = resource
-
 
     @classmethod
     def from_dictionary(cls,
@@ -55,8 +58,8 @@ class PodInfo_PodSpec_VolumeInfo_DownwardAPIVolumeFile_ResourceFieldSelector(obj
         resource = dictionary.get('resource')
 
         # Return an object of this model
-        return cls(container_name,
-                   divisor,
-                   resource)
-
-
+        return cls(
+            container_name,
+            divisor,
+            resource
+)

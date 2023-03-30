@@ -1,35 +1,39 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
-import cohesity_management_sdk.models.network_mapping_proto
 import cohesity_management_sdk.models.entity_proto
+import cohesity_management_sdk.models.network_mapping_proto
 import cohesity_management_sdk.models.org_v_d_c_network
+
 
 class RestoredObjectNetworkConfigProto(object):
 
     """Implementation of the 'RestoredObjectNetworkConfigProto' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
-        detach_network (bool): If this is set to true, then the network will
-            be detached from the recovered or cloned VMs. NOTE: If this is set
-            to true, then all the following fields will be ignored.
+
+        detach_network (bool): If this is set to true, then the network will be
+            detached from the recovered or cloned VMs. NOTE: If this is set to
+            true, then all the following fields will be ignored.
         disable_network (bool): This can be set to true to indicate that the
             attached network should be left in disabled state.
         mappings (list of NetworkMappingProto): The network mappings to be
             applied to the target object.
-        network_entity (EntityProto): Specifies the attributes and the latest
-            statistics about an entity.
+        network_entity (EntityProto): The network entity (i.e, either a
+            standard switch port group or a distributed port group in a VMware
+            env) that will attached to the restored object.
         preserve_mac_address_on_new_network (bool): If this is true and we are
             attaching to a new network entity, then the VM's MAC address will
             be preserved on the new network.
         vcd_network (OrgVDCNetwork): This will be populated for
             kVirtualDatacenter.
-        vnic_entity (EntityProto): Specifies the attributes and the latest
-            statistics about an entity.
-
+        vnic_entity (EntityProto): The VNicProfile that will be attached to the
+            restored object.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -39,9 +43,8 @@ class RestoredObjectNetworkConfigProto(object):
         "network_entity":'networkEntity',
         "preserve_mac_address_on_new_network":'preserveMacAddressOnNewNetwork',
         "vcd_network":'vcdNetwork',
-        "vnic_entity":'vnicEntity'
+        "vnic_entity":'vnicEntity',
     }
-
     def __init__(self,
                  detach_network=None,
                  disable_network=None,
@@ -49,7 +52,9 @@ class RestoredObjectNetworkConfigProto(object):
                  network_entity=None,
                  preserve_mac_address_on_new_network=None,
                  vcd_network=None,
-                 vnic_entity=None):
+                 vnic_entity=None,
+            ):
+
         """Constructor for the RestoredObjectNetworkConfigProto class"""
 
         # Initialize members of the class
@@ -60,7 +65,6 @@ class RestoredObjectNetworkConfigProto(object):
         self.preserve_mac_address_on_new_network = preserve_mac_address_on_new_network
         self.vcd_network = vcd_network
         self.vnic_entity = vnic_entity
-
 
     @classmethod
     def from_dictionary(cls,
@@ -93,12 +97,12 @@ class RestoredObjectNetworkConfigProto(object):
         vnic_entity = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('vnicEntity')) if dictionary.get('vnicEntity') else None
 
         # Return an object of this model
-        return cls(detach_network,
-                   disable_network,
-                   mappings,
-                   network_entity,
-                   preserve_mac_address_on_new_network,
-                   vcd_network,
-                   vnic_entity)
-
-
+        return cls(
+            detach_network,
+            disable_network,
+            mappings,
+            network_entity,
+            preserve_mac_address_on_new_network,
+            vcd_network,
+            vnic_entity
+)

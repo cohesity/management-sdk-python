@@ -1,29 +1,33 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class UptieringRunOnceParams(object):
 
     """Implementation of the 'UptieringRunOnceParams' model.
 
-    Attributes:
-        uptier_path (string): Ignore the uptiering policy and uptier the
-            pointed by the 'uptier_path'. If path is '/', then uptier
-            everything.
+    TODO: type description here.
 
+
+    Attributes:
+
+        uptier_path (string): Ignore the uptiering policy and uptier the
+            directory pointed by the 'uptier_path'. If path is '/', then uptier
+            everything.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "uptier_path":'uptierPath'
+        "uptier_path":'uptierPath',
     }
-
     def __init__(self,
-                 uptier_path=None):
+                 uptier_path=None,
+            ):
+
         """Constructor for the UptieringRunOnceParams class"""
 
         # Initialize members of the class
         self.uptier_path = uptier_path
-
 
     @classmethod
     def from_dictionary(cls,
@@ -46,6 +50,6 @@ class UptieringRunOnceParams(object):
         uptier_path = dictionary.get('uptierPath')
 
         # Return an object of this model
-        return cls(uptier_path)
-
-
+        return cls(
+            uptier_path
+)

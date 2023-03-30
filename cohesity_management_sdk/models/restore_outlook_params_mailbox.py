@@ -1,43 +1,47 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
-import cohesity_management_sdk.models.restore_outlook_params_folder
 import cohesity_management_sdk.models.restore_object
+import cohesity_management_sdk.models.restore_outlook_params_folder
 
-class RestoreOutlookParamsMailbox(object):
+
+class RestoreOutlookParams_Mailbox(object):
 
     """Implementation of the 'RestoreOutlookParams_Mailbox' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
-        folder_vec (list of RestoreOutlookParamsFolder): If
+
+        folder_vec (list of RestoreOutlookParams_Folder): If
             is_entire_mailbox_required is set to false, user will then specify
             which particular folders are to be restored.
         is_entire_mailbox_required (bool): Specify if the entire mailbox is to
             be restored.
-        object (RestoreObject): TODO: type description here.
-
+        object (RestoreObject): This will store the details of the mailbox to
+            be restored.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "folder_vec":'folderVec',
         "is_entire_mailbox_required":'isEntireMailboxRequired',
-        "object":'object'
+        "object":'object',
     }
-
     def __init__(self,
                  folder_vec=None,
                  is_entire_mailbox_required=None,
-                 object=None):
-        """Constructor for the RestoreOutlookParamsMailbox class"""
+                 object=None,
+            ):
+
+        """Constructor for the RestoreOutlookParams_Mailbox class"""
 
         # Initialize members of the class
         self.folder_vec = folder_vec
         self.is_entire_mailbox_required = is_entire_mailbox_required
         self.object = object
-
 
     @classmethod
     def from_dictionary(cls,
@@ -61,13 +65,13 @@ class RestoreOutlookParamsMailbox(object):
         if dictionary.get('folderVec') != None:
             folder_vec = list()
             for structure in dictionary.get('folderVec'):
-                folder_vec.append(cohesity_management_sdk.models.restore_outlook_params_folder.RestoreOutlookParamsFolder.from_dictionary(structure))
+                folder_vec.append(cohesity_management_sdk.models.restore_outlook_params_folder.RestoreOutlookParams_Folder.from_dictionary(structure))
         is_entire_mailbox_required = dictionary.get('isEntireMailboxRequired')
         object = cohesity_management_sdk.models.restore_object.RestoreObject.from_dictionary(dictionary.get('object')) if dictionary.get('object') else None
 
         # Return an object of this model
-        return cls(folder_vec,
-                   is_entire_mailbox_required,
-                   object)
-
-
+        return cls(
+            folder_vec,
+            is_entire_mailbox_required,
+            object
+)

@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.public_folder
 import cohesity_management_sdk.models.restore_object_details
+
 
 class RootPublicFolder(object):
 
@@ -11,34 +12,37 @@ class RootPublicFolder(object):
     Specifies the RootPublicFolder with restore details to support full or
     partial recovery.
 
+
     Attributes:
+
         public_folder_list (list of PublicFolder): Specifies the list of Public
             Folders to be restored incase user wishes not to restore entire
             RootPublicFolder.
-        restore_entire_root_public_folder (bool): Notification list.
+        restore_entire_root_public_folder (bool): Specifies whether the entire
+            RootPublicFolder is to be restored.
         root_public_folder_object (RestoreObjectDetails): Specifies the details
             of the RootPublicFolder object.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "public_folder_list":'publicFolderList',
         "restore_entire_root_public_folder":'restoreEntireRootPublicFolder',
-        "root_public_folder_object":'rootPublicFolderObject'
+        "root_public_folder_object":'rootPublicFolderObject',
     }
-
     def __init__(self,
                  public_folder_list=None,
                  restore_entire_root_public_folder=None,
-                 root_public_folder_object=None):
+                 root_public_folder_object=None,
+            ):
+
         """Constructor for the RootPublicFolder class"""
 
         # Initialize members of the class
         self.public_folder_list = public_folder_list
         self.restore_entire_root_public_folder = restore_entire_root_public_folder
         self.root_public_folder_object = root_public_folder_object
-
 
     @classmethod
     def from_dictionary(cls,
@@ -62,14 +66,13 @@ class RootPublicFolder(object):
         if dictionary.get('publicFolderList') != None:
             public_folder_list = list()
             for structure in dictionary.get('publicFolderList'):
-                restore_entire_root_public_folder.append(cohesity_management_sdk.models.public_folder.PublicFolder.from_dictionary(structure))
-
+                public_folder_list.append(cohesity_management_sdk.models.public_folder.PublicFolder.from_dictionary(structure))
         restore_entire_root_public_folder = dictionary.get('restoreEntireRootPublicFolder')
         root_public_folder_object = cohesity_management_sdk.models.restore_object_details.RestoreObjectDetails.from_dictionary(dictionary.get('rootPublicFolderObject')) if dictionary.get('rootPublicFolderObject') else None
 
         # Return an object of this model
-        return cls(public_folder_list,
-                   restore_entire_root_public_folder,
-                   root_public_folder_object)
-
-
+        return cls(
+            public_folder_list,
+            restore_entire_root_public_folder,
+            root_public_folder_object
+)

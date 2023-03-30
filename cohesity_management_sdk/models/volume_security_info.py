@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class VolumeSecurityInfo(object):
 
@@ -8,34 +7,38 @@ class VolumeSecurityInfo(object):
 
     Specifies information about NetApp volume security settings.
 
+
     Attributes:
+
         group_id (int): Specifies the Unix group ID for this volume. 0
             indicates the root id.
         permissions (string): Specifies the Unix permission bits in octal
             string format.
         style (StyleEnum): Specifies the security style associated with this
             volume. Specifies the type of a NetApp Volume. 'kUnix' indicates
-            Unix-style security. 'kNtfs' indicates Windows NTFS-style
-            security. 'kMixed' indicates mixed-style security. 'kUnified'
-            indicates Unified-style security.
+            Unix-style security. 'kNtfs' indicates Windows NTFS-style security.
+            'kMixed' indicates mixed-style security. 'kUnified' indicates
+            Unified-style security. 'kUnknown' indicates the security style is
+            unknown.
         user_id (int): Specifies the Unix user id for this volume. 0 indicates
             the root id.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "group_id":'groupId',
         "permissions":'permissions',
         "style":'style',
-        "user_id":'userId'
+        "user_id":'userId',
     }
-
     def __init__(self,
                  group_id=None,
                  permissions=None,
                  style=None,
-                 user_id=None):
+                 user_id=None,
+            ):
+
         """Constructor for the VolumeSecurityInfo class"""
 
         # Initialize members of the class
@@ -43,7 +46,6 @@ class VolumeSecurityInfo(object):
         self.permissions = permissions
         self.style = style
         self.user_id = user_id
-
 
     @classmethod
     def from_dictionary(cls,
@@ -69,9 +71,9 @@ class VolumeSecurityInfo(object):
         user_id = dictionary.get('userId')
 
         # Return an object of this model
-        return cls(group_id,
-                   permissions,
-                   style,
-                   user_id)
-
-
+        return cls(
+            group_id,
+            permissions,
+            style,
+            user_id
+)

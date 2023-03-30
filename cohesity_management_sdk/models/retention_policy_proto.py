@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.worm_retention_proto
+
 
 class RetentionPolicyProto(object):
 
@@ -9,40 +10,45 @@ class RetentionPolicyProto(object):
 
     Message that specifies the retention policy for backup snapshots.
 
+
     Attributes:
+
         num_days_to_keep (long|int): The number of days to keep the snapshots
             for a backup run.
-        num_secs_to_keep (int): The number of seconds to keep the snapshots
-            for a backup run.
-        worm_retention (WormRetentionProto): Message that specifies the WORM
-            attributes. WORM attributes can be associated with any of the
-            following: 1. backup policy: compliance or administrative policy
-            with worm retention. 2. backup runs: worm retention inherited from
-            policy at successful backup run completion.. 3. backup tasks do
-            not inherit WORM retention. Instead they check for WORM property
-            on the corresponding backup run. There are no WORM attributes
-            associated with the backup job.
-
+        num_secs_to_keep (int): The number of seconds to keep the snapshots for
+            a backup run.
+        worm_retention (WormRetentionProto): If the WORM lock is enabled on
+            this policy, details of WORM policy. Absence of this field
+            indicates WORM is not enabled on this policy. Also, presence of
+            this field doesn't necessarily imply WORM protection. This is
+            because the field could be present but the retention could have
+            expired. If the policy has WORM enabled, We do not propagate it to
+            attached backup jobs and further down the hierarchy here. Instead,
+            any update on the backup run performs WORM checks based on the
+            currently attached policy. Backup runs, when finished, inherit the
+            WORM property from the corresponding attached policy at the
+            completion time.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "num_days_to_keep":'numDaysToKeep',
         "num_secs_to_keep":'numSecsToKeep',
-        "worm_retention":'wormRetention'
+        "worm_retention":'wormRetention',
     }
-
     def __init__(self,
                  num_days_to_keep=None,
                  num_secs_to_keep=None,
-                 worm_retention=None):
+                 worm_retention=None,
+            ):
+
         """Constructor for the RetentionPolicyProto class"""
 
         # Initialize members of the class
         self.num_days_to_keep = num_days_to_keep
         self.num_secs_to_keep = num_secs_to_keep
         self.worm_retention = worm_retention
-
 
     @classmethod
     def from_dictionary(cls,
@@ -67,8 +73,8 @@ class RetentionPolicyProto(object):
         worm_retention = cohesity_management_sdk.models.worm_retention_proto.WormRetentionProto.from_dictionary(dictionary.get('wormRetention')) if dictionary.get('wormRetention') else None
 
         # Return an object of this model
-        return cls(num_days_to_keep,
-                   num_secs_to_keep,
-                   worm_retention)
-
-
+        return cls(
+            num_days_to_keep,
+            num_secs_to_keep,
+            worm_retention
+)

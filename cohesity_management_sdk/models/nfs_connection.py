@@ -1,23 +1,24 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class NfsConnection(object):
 
     """Implementation of the 'NfsConnection' model.
 
-    :TODO Type description here.
+    TODO: type description here.
+
 
     Attributes:
-        client_ip (string): Information of a Universal Data
-            Adapter cluster, only valid for an entity of view_name kCluster.
+
+        client_ip (string): Specifies the Client IP address of the connection.
         node_ip (string): Specifies a Node IP address where the connection
             request is received.
         server_ip (string): Specifies the Server IP address of the connection.
             This could be a VIP, VLAN IP, or node IP on the Cluster.
         view_id (long|int): Specifies the id of the view.
         view_name (string): Specifies the name of the view.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -25,15 +26,16 @@ class NfsConnection(object):
         "node_ip":'nodeIp',
         "server_ip":'serverIp',
         "view_id":'viewId',
-        "view_name":'viewName'
+        "view_name":'viewName',
     }
-
     def __init__(self,
                  client_ip=None,
                  node_ip=None,
                  server_ip=None,
                  view_id=None,
-                 view_name=None):
+                 view_name=None,
+            ):
+
         """Constructor for the NfsConnection class"""
 
         # Initialize members of the class
@@ -42,7 +44,6 @@ class NfsConnection(object):
         self.server_ip = server_ip
         self.view_id = view_id
         self.view_name = view_name
-
 
     @classmethod
     def from_dictionary(cls,
@@ -69,9 +70,10 @@ class NfsConnection(object):
         view_name = dictionary.get('viewName')
 
         # Return an object of this model
-        return cls(client_ip,
-                   node_ip,
-                   server_ip,
-                   view_id,
-                   view_name)
-
+        return cls(
+            client_ip,
+            node_ip,
+            server_ip,
+            view_id,
+            view_name
+)

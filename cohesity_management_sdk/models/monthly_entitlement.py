@@ -1,35 +1,36 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class MonthlyEntitlement(object):
 
     """Implementation of the 'MonthlyEntitlement' model.
 
-    TODO: Type model description here.
+    TODO: type description here.
+
 
     Attributes:
+
         feature_name (string): TODO: Type description here.
         monthly_avg_entitlement (list of long|int): TODO: Type description
             here.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "feature_name": 'featureName',
-        "monthly_avg_entitlement": 'monthlyAvgEntitlement'
+        "feature_name":'featureName',
+        "monthly_avg_entitlement":'monthlyAvgEntitlement',
     }
-
     def __init__(self,
                  feature_name=None,
-                 monthly_avg_entitlement=None):
+                 monthly_avg_entitlement=None,
+            ):
+
         """Constructor for the MonthlyEntitlement class"""
 
         # Initialize members of the class
         self.feature_name = feature_name
         self.monthly_avg_entitlement = monthly_avg_entitlement
-
 
     @classmethod
     def from_dictionary(cls,
@@ -49,11 +50,11 @@ class MonthlyEntitlement(object):
             return None
 
         # Extract variables from the dictionary
-        feature_name = dictionary.get('featureName', None)
-        monthly_avg_entitlement = dictionary.get('monthlyAvgEntitlement', None)
+        feature_name = dictionary.get('featureName')
+        monthly_avg_entitlement = dictionary.get("monthlyAvgEntitlement")
 
         # Return an object of this model
-        return cls(feature_name,
-                   monthly_avg_entitlement)
-
-
+        return cls(
+            feature_name,
+            monthly_avg_entitlement
+)

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -399,10 +399,22 @@ class StatsController(BaseController):
             self.logger.error(e, exc_info=True)
             raise
 
-    def get_last_protection_run_stats(self):
+    def get_last_protection_run_stats(self,
+                                      from_time_secs=None,
+                                      to_time_secs=None):
         """Does a GET request to /public/stats/protectionRuns/lastRun.
 
         Compute stats on last Protection Run for every job.
+
+        Args:
+            from_time_secs (long|int, optional): Specifies the time in Unix
+                timestamp epoch in microsecond which filters all the runs
+                started after this value. If not specified, this will be set
+                to 24 hours prior to toTimeUsecs parameter.
+            to_time_secs (long|int, optional): Specifies the time in Unix
+                timestamp epoch in microsecond which filters all the runs
+                started before this value. If not specified, this will
+                be set to 24 hours ahead of fromTimeUsecs parameter.
 
         Returns:
             LastProtectionRunStats: Response from the API. Success
@@ -423,6 +435,13 @@ class StatsController(BaseController):
             _url_path = '/public/stats/protectionRuns/lastRun'
             _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
+            _query_parameters = {
+                'fromTimeUsecs': from_time_secs,
+                'toTimeUsecs': to_time_secs
+                }
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Prepare headers
@@ -1032,7 +1051,11 @@ class StatsController(BaseController):
             self.logger.error(e, exc_info=True)
             raise
 
-    def get_view_stats(self, metric=None, num_top_views=None):
+    def get_view_stats(self,
+                       metric=None,
+                       num_top_views=None,
+                       protocol=None,
+                       last_hours=None):
         """Does a GET request to /public/stats/views.
 
         Compute the statistics on Views.
@@ -1046,6 +1069,10 @@ class StatsController(BaseController):
                 specified. If specified, minimum value is 1. If not specified,
                 all views will be returned. If metric is not specified, this
                 parameter must also not be specified.
+            last_hours (long|int, optional): Specifies the last hours of stats
+                to sort.
+            protocol (ProtocolViewStatsEnum, optional): Specifies the protocol
+                to sort.
 
         Returns:
             ViewStatsSnapshot: Response from the API. Success
@@ -1067,7 +1094,9 @@ class StatsController(BaseController):
             _query_builder += _url_path
             _query_parameters = {
                 'metric': metric,
-                'numTopViews': num_top_views
+                'numTopViews': num_top_views,
+                'lastHours': last_hours,
+                'protocol': protocol
             }
             _query_builder = APIHelper.append_url_with_query_parameters(
                 _query_builder, _query_parameters,

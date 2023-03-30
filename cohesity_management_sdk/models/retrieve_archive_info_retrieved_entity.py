@@ -1,39 +1,44 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.entity_proto
 import cohesity_management_sdk.models.error_proto
 
-class RetrieveArchiveInfoRetrievedEntity(object):
+
+class RetrieveArchiveInfo_RetrievedEntity(object):
 
     """Implementation of the 'RetrieveArchiveInfo_RetrievedEntity' model.
 
     Proto to define the info about the entity that was retrieved from an
     archive.
 
+
     Attributes:
-        bytes_transferred (long|int): Number of physical bytes transferred
-            over wire for this entity.
+
+        bytes_transferred (long|int): Number of physical bytes transferred over
+            wire for this entity.
         end_timestamp_usecs (long|int): Time in microseconds when retrieve of
             this entity finished or failed.
-        entity (EntityProto): Specifies the attributes and the latest
-            statistics about an entity.
-        error (ErrorProto): If the retrieve of the 'entity' failed, this
-            field may contain the cause of the failure.
+        entity (EntityProto): The entity that was retrieved.
+        error (ErrorProto): If the retrieve of the 'entity' failed, this field
+            may contain the cause of the failure.
         logical_bytes_transferred (long|int): Number of logical bytes
             transferred so far.
         logical_size_bytes (long|int): Total logical size of this entity.
-        progress_monitor_task_path (string): The path relative to the root
-            path of the retrieval task progress monitor of this entity
-            progress monitor.
+        progress_monitor_task_path (string): The path relative to the root path
+            of the retrieval task progress monitor of this entity progress
+            monitor.
         relative_snapshot_dir (string): The path relative to the root of the
             file system where the snapshot of this entity was retrieved/copied
             to.
-        start_timestamp_usecs (long|int): Time in microseconds when retrieve
-            of this entity started.
+        start_timestamp_usecs (long|int): Time in microseconds when retrieve of
+            this entity started.
         status (int): The retrieval status of this entity.
-
+        uptier_expiry_timestamp_usecs (long|int): If this is part of an uptier
+            restore task, this will denote how much time the retrieved entity
+            is present in the hot-tiers.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -46,9 +51,9 @@ class RetrieveArchiveInfoRetrievedEntity(object):
         "progress_monitor_task_path":'progressMonitorTaskPath',
         "relative_snapshot_dir":'relativeSnapshotDir',
         "start_timestamp_usecs":'startTimestampUsecs',
-        "status":'status'
+        "status":'status',
+        "uptier_expiry_timestamp_usecs":'uptierExpiryTimestampUsecs',
     }
-
     def __init__(self,
                  bytes_transferred=None,
                  end_timestamp_usecs=None,
@@ -59,8 +64,11 @@ class RetrieveArchiveInfoRetrievedEntity(object):
                  progress_monitor_task_path=None,
                  relative_snapshot_dir=None,
                  start_timestamp_usecs=None,
-                 status=None):
-        """Constructor for the RetrieveArchiveInfoRetrievedEntity class"""
+                 status=None,
+                 uptier_expiry_timestamp_usecs=None,
+            ):
+
+        """Constructor for the RetrieveArchiveInfo_RetrievedEntity class"""
 
         # Initialize members of the class
         self.bytes_transferred = bytes_transferred
@@ -73,7 +81,7 @@ class RetrieveArchiveInfoRetrievedEntity(object):
         self.relative_snapshot_dir = relative_snapshot_dir
         self.start_timestamp_usecs = start_timestamp_usecs
         self.status = status
-
+        self.uptier_expiry_timestamp_usecs = uptier_expiry_timestamp_usecs
 
     @classmethod
     def from_dictionary(cls,
@@ -103,17 +111,19 @@ class RetrieveArchiveInfoRetrievedEntity(object):
         relative_snapshot_dir = dictionary.get('relativeSnapshotDir')
         start_timestamp_usecs = dictionary.get('startTimestampUsecs')
         status = dictionary.get('status')
+        uptier_expiry_timestamp_usecs = dictionary.get('uptierExpiryTimestampUsecs')
 
         # Return an object of this model
-        return cls(bytes_transferred,
-                   end_timestamp_usecs,
-                   entity,
-                   error,
-                   logical_bytes_transferred,
-                   logical_size_bytes,
-                   progress_monitor_task_path,
-                   relative_snapshot_dir,
-                   start_timestamp_usecs,
-                   status)
-
-
+        return cls(
+            bytes_transferred,
+            end_timestamp_usecs,
+            entity,
+            error,
+            logical_bytes_transferred,
+            logical_size_bytes,
+            progress_monitor_task_path,
+            relative_snapshot_dir,
+            start_timestamp_usecs,
+            status,
+            uptier_expiry_timestamp_usecs
+)

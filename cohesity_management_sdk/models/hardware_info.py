@@ -1,31 +1,32 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class HardwareInfo(object):
 
     """Implementation of the 'HardwareInfo' model.
 
-    This struct should match the fields in the hardware JSON file.
-    Hardware JSON file serves as cache for hardware info to reduce
-    hardware polling which takes time.
+    This struct should match the fields in the hardware JSON file. Hardware
+    JSON file serves as cache for hardware info to reduce hardware polling
+    which takes time.
+
 
     Attributes:
-        chassis_model (string): TODO: type description here.
-        chassis_serial (string): TODO: type description here.
-        chassis_type (string): TODO: type description here.
-        cohesity_chassis_serial (string): TODO: type description here.
-        cohesity_node_serial (string): TODO: type description here.
-        hba_model (string): TODO: type description here.
-        ipmi_lan_channel (string): TODO: type description here.
-        max_slots (string): TODO: type description here.
-        node_model (string): TODO: type description here.
-        node_serial (string): TODO: type description here.
-        product_model (string): TODO: type description here.
-        product_model_type (string): TODO: type description here.
-        slot_number (string): TODO: type description here.
 
+        chassis_model (string): TODO: Type description here.
+        chassis_serial (string): TODO: Type description here.
+        chassis_type (string): TODO: Type description here.
+        cohesity_chassis_serial (string): TODO: Type description here.
+        cohesity_node_serial (string): TODO: Type description here.
+        hba_model (string): TODO: Type description here.
+        ipmi_lan_channel (string): TODO: Type description here.
+        max_slots (string): TODO: Type description here.
+        node_model (string): TODO: Type description here.
+        node_serial (string): TODO: Type description here.
+        product_model (string): TODO: Type description here.
+        product_model_type (string): TODO: Type description here.
+        slot_number (string): TODO: Type description here.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -41,9 +42,8 @@ class HardwareInfo(object):
         "node_serial":'nodeSerial',
         "product_model":'productModel',
         "product_model_type":'productModelType',
-        "slot_number":'slotNumber'
+        "slot_number":'slotNumber',
     }
-
     def __init__(self,
                  chassis_model=None,
                  chassis_serial=None,
@@ -57,7 +57,9 @@ class HardwareInfo(object):
                  node_serial=None,
                  product_model=None,
                  product_model_type=None,
-                 slot_number=None):
+                 slot_number=None,
+            ):
+
         """Constructor for the HardwareInfo class"""
 
         # Initialize members of the class
@@ -74,7 +76,6 @@ class HardwareInfo(object):
         self.product_model = product_model
         self.product_model_type = product_model_type
         self.slot_number = slot_number
-
 
     @classmethod
     def from_dictionary(cls,
@@ -109,18 +110,18 @@ class HardwareInfo(object):
         slot_number = dictionary.get('slotNumber')
 
         # Return an object of this model
-        return cls(chassis_model,
-                   chassis_serial,
-                   chassis_type,
-                   cohesity_chassis_serial,
-                   cohesity_node_serial,
-                   hba_model,
-                   ipmi_lan_channel,
-                   max_slots,
-                   node_model,
-                   node_serial,
-                   product_model,
-                   product_model_type,
-                   slot_number)
-
-
+        return cls(
+            chassis_model,
+            chassis_serial,
+            chassis_type,
+            cohesity_chassis_serial,
+            cohesity_node_serial,
+            hba_model,
+            ipmi_lan_channel,
+            max_slots,
+            node_model,
+            node_serial,
+            product_model,
+            product_model_type,
+            slot_number
+)

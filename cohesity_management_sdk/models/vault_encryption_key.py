@@ -1,28 +1,31 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.universal_id
+
 
 class VaultEncryptionKey(object):
 
     """Implementation of the 'VaultEncryptionKey' model.
 
-    Specifies the encrytion information needed to restore data.
+    Specifies the encryption information needed to restore data.
+
 
     Attributes:
+
         cluster_name (string): Specifies the name of the source Cohesity
             Cluster that archived the data on the Vault.
         encryption_key_data (string): Specifies the encryption key data
-            corresponding to the specified keyUid. It contains a Key
-            Encryption Key (KEK) or a Encrypted Data Encryption Key (eDEK).
+            corresponding to the specified keyUid. It contains a Key Encryption
+            Key (KEK) or a Encrypted Data Encryption Key (eDEK).
         key_uid (UniversalId): Specifies the universal id of the Data
             Encryption Key.
         vault_id (long|int): Specifies the id of the Vault whose data is
             encrypted by this key.
         vault_name (string): Specifies the name of the Vault whose data is
             encrypted by this key.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -30,15 +33,16 @@ class VaultEncryptionKey(object):
         "encryption_key_data":'encryptionKeyData',
         "key_uid":'keyUid',
         "vault_id":'vaultId',
-        "vault_name":'vaultName'
+        "vault_name":'vaultName',
     }
-
     def __init__(self,
                  cluster_name=None,
                  encryption_key_data=None,
                  key_uid=None,
                  vault_id=None,
-                 vault_name=None):
+                 vault_name=None,
+            ):
+
         """Constructor for the VaultEncryptionKey class"""
 
         # Initialize members of the class
@@ -47,7 +51,6 @@ class VaultEncryptionKey(object):
         self.key_uid = key_uid
         self.vault_id = vault_id
         self.vault_name = vault_name
-
 
     @classmethod
     def from_dictionary(cls,
@@ -74,10 +77,10 @@ class VaultEncryptionKey(object):
         vault_name = dictionary.get('vaultName')
 
         # Return an object of this model
-        return cls(cluster_name,
-                   encryption_key_data,
-                   key_uid,
-                   vault_id,
-                   vault_name)
-
-
+        return cls(
+            cluster_name,
+            encryption_key_data,
+            key_uid,
+            vault_id,
+            vault_name
+)

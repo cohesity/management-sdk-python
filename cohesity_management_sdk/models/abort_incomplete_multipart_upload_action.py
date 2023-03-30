@@ -1,27 +1,32 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class AbortIncompleteMultipartUploadAction(object):
 
     """Implementation of the 'AbortIncompleteMultipartUploadAction' model.
 
+    TODO: type description here.
+
+
     Attributes:
-        days_after_initiation (long|int): Specifies the number of days after which
-            to abort an incomplete multipart upload.
+
+        days_after_initiation (long|int): Specifies the number of days after
+            which to abort an incomplete multipart upload.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "days_after_initiation":'daysAfterInitiation'
+        "days_after_initiation":'daysAfterInitiation',
     }
-
     def __init__(self,
-                 days_after_initiation=None):
+                 days_after_initiation=None,
+            ):
+
         """Constructor for the AbortIncompleteMultipartUploadAction class"""
 
         # Initialize members of the class
         self.days_after_initiation = days_after_initiation
-
 
     @classmethod
     def from_dictionary(cls,
@@ -44,6 +49,6 @@ class AbortIncompleteMultipartUploadAction(object):
         days_after_initiation = dictionary.get('daysAfterInitiation')
 
         # Return an object of this model
-        return cls(days_after_initiation)
-
-
+        return cls(
+            days_after_initiation
+)

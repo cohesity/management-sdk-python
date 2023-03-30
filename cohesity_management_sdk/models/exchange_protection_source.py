@@ -1,55 +1,57 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
-import cohesity_management_sdk.models.dag_info
 import cohesity_management_sdk.models.application_server_info
-import cohesity_management_sdk.models.exchange_database_copy_info
+import cohesity_management_sdk.models.dag_info
 import cohesity_management_sdk.models.exchange_dag_database
+import cohesity_management_sdk.models.exchange_database_copy_info
 import cohesity_management_sdk.models.exchange_database_info
+
 
 class ExchangeProtectionSource(object):
 
     """Implementation of the 'ExchangeProtectionSource' model.
 
-    Specifies an object representing an Exchange entity.
-    DAG - Database availability group
+    Specifies an object representing an Exchange entity. DAG - Database
+    availability group
+
 
     Attributes:
+
         dag_info (DagInfo): Specifies the Exchange DAG information if
             ExchangeProtectionSourceType is 'kExchangeDAG'.
-        application_server_info (ApplicationServerInfo): Specifies the
-            Exchange Application server information if
-            ExchangeProtectionSourceType is 'kExhangeNode'
+        application_server_info (ApplicationServerInfo): Specifies the Exchange
+            Application server information if ExchangeProtectionSourceType is
+            'kExchangeNode'.
         dag_database_copy_info (ExchangeDatabaseCopyInfo): Specifies the
             Exchange DAG Database copy information if
             ExchangeProtectionSourceType is 'kExchangeDAGDatabaseCopy'.
         dag_database_info (ExchangeDAGDatabase): Specifies the Exchange DAG
             Database information if ExchangeProtectionSourceType is
             'kExchangeDAGDatabase'
-        name (string): TODO: add description here.
-        owner_id (int): Specifies the entity id of the owner of the Exchange
-            Protection Source.
+        name (string): TODO: Type description here.
+        owner_id (long|int): Specifies the entity id of the owner of the
+            Exchange Protection Source.
         standalone_database_copy_info (ExchangeDatabaseInfo): Specifies the
             Exchange Standalone Database information if
             ExchangeProtectionSourceType is 'kExchangeStandaloneDatabase'.
         mtype (int): Specifies the type of the Exchange Protection Source.
         uuid (string): Specifies the UUID for the Exchange entity.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "dag_info": 'DagInfo',
-        "application_server_info": 'applicationServerInfo',
+        "dag_info":'DagInfo',
+        "application_server_info":'applicationServerInfo',
         "dag_database_copy_info":'dagDatabaseCopyInfo',
         "dag_database_info":'dagDatabaseInfo',
-        "name": 'name',
+        "name":'name',
         "owner_id":'ownerId',
         "standalone_database_copy_info":'standaloneDatabaseCopyInfo',
-        "mtype": 'type',
-        "uuid":'uuid'
+        "mtype":'type',
+        "uuid":'uuid',
     }
-
     def __init__(self,
                  dag_info=None,
                  application_server_info=None,
@@ -59,7 +61,9 @@ class ExchangeProtectionSource(object):
                  owner_id=None,
                  standalone_database_copy_info=None,
                  mtype=None,
-                 uuid=None):
+                 uuid=None,
+            ):
+
         """Constructor for the ExchangeProtectionSource class"""
 
         # Initialize members of the class
@@ -102,14 +106,14 @@ class ExchangeProtectionSource(object):
         uuid = dictionary.get('uuid')
 
         # Return an object of this model
-        return cls(dag_info,
-                   application_server_info,
-                   dag_database_copy_info,
-                   dag_database_info,
-                   name,
-                   owner_id,
-                   standalone_database_copy_info,
-                   mtype,
-                   uuid)
-
-
+        return cls(
+            dag_info,
+            application_server_info,
+            dag_database_copy_info,
+            dag_database_info,
+            name,
+            owner_id,
+            standalone_database_copy_info,
+            mtype,
+            uuid
+)

@@ -1,61 +1,40 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class TypeVmwareProtectionSourceEnum(object):
 
-    """Implementation of the 'Type_VMwareProtectionSource' enum.
-
+    """Implementation of the 'TypeVmwareProtectionSource' enum.
     Specifies the type of managed Object in a VMware Protection Source.
     Examples of VMware Objects include 'kVCenter', 'kFolder', 'kDatacenter',
-    'kResourcePool', 'kDatastore', 'kVirtualMachine', etc.
-    'kVCenter' indicates the vCenter entity in a VMware protection source
-    type.
-    'kFolder indicates the folder entity (of any kind) in a VMware protection
-    source type.
-    'kDatacenter' indicates the datacenter entity in a VMware protection
-    source type.
-    'kComputeResource' indicates the physical compute resource entity in a
-    VMware
-    protection source type.
-    'kResourcePool' indicates the set of physical resourses within a compute
-    resource
-    or cloudcompute resource.
+    'kResourcePool', 'kDatastore', 'kVirtualMachine', etc. 'kVCenter' indicates
+    the vCenter entity in a VMware protection source type. 'kFolder indicates
+    the folder entity (of any kind) in a VMware protection source type.
+    'kDatacenter' indicates the datacenter entity in a VMware protection source
+    type. 'kComputeResource' indicates the physical compute resource entity in
+    a VMware protection source type. 'kResourcePool' indicates the set of
+    physical resources within a compute resource or cloudcompute resource.
     'kDataStore' indicates the datastore entity in a VMware protection source
-    type.
-    'kHostSystem' indicates the ESXi host entity in a VMware protection source
-    type.
-    'kVirtualMachine' indicates the virtual machine entity in a VMware
-    protection source type.
-    'kVirtualApp' indicates the virtual app entity in a VMware protection
-    source type.
-    'kStandaloneHost' indicates the standalone ESXi host entity (not managed
-    by vCenter)
-    in a VMware protection source type.
-    'kStoragePod' indicates the storage pod entity in a VMware protection
-    source type.
-    'kNetwork' indicates the standard vSwitch in a VMware protection source
-    type.
-    'kDistributedVirtualPortgroup' indicates a distributed vSwitch port group
-    in a
-    VMware protection source type.
+    type. 'kHostSystem' indicates the ESXi host entity in a VMware protection
+    source type. 'kVirtualMachine' indicates the virtual machine entity in a
+    VMware protection source type. 'kVirtualApp' indicates the virtual app
+    entity in a VMware protection source type. 'kStandaloneHost' indicates the
+    standalone ESXi host entity (not managed by vCenter) in a VMware protection
+    source type. 'kStoragePod' indicates the storage pod entity in a VMware
+    protection source type. 'kNetwork' indicates the standard vSwitch in a
+    VMware protection source type. 'kDistributedVirtualPortgroup' indicates a
+    distributed vSwitch port group in a VMware protection source type.
     'kTagCategory' indicates a tag category entity in a VMware protection
-    source type.
-    'kTag' indocates a tag entity in a VMware protection source type.
-    'kOpaqueNetwork' indicates a opaque network which is created and managed
-    by an
-    entity outside of vSphere.
-    'kVCloudDirector' indicates a vCloud director entity in a VMware
-    protection source type.
-    'kOrganization' indicates an Organization under a vCD in a VMware
-    protection source type.
+    source type. 'kTag' indicates a tag entity in a VMware protection source
+    type. 'kOpaqueNetwork' indicates an opaque network which is created and
+    managed by an entity outside of vSphere. 'kvCloudDirector' indicates a
+    vCloud director entity in a VMware protection source type. 'kOrganization'
+    indicates an Organization under a vCD in a VMware protection source type.
     'kVirtualDatacenter' indicates a virtual datacenter entity in a VMware
-    protection source type.
-    'kCatalog' indocates a VCD catalog entity in a VMware protection source
-    type.
-    'kOrgMetadata' indicates an VCD organization metadata in a VMware
-    protection source type.
-    'kStoragePolicy' indicates a storage policy associated with the vApp in a
-    VMware protection source type.
+    protection source type. 'kCatalog' indicates a VCD catalog entity in a
+    VMware protection source type. 'kOrgMetadata' indicates an VCD organization
+    metadata in a VMware protection source type. 'kStoragePolicy' indicates a
+    storage policy associated with the vApp in a VMware protection source type.
+
 
     Attributes:
         KVCENTER: TODO: type description here.
@@ -118,7 +97,7 @@ class TypeVmwareProtectionSourceEnum(object):
 
     KOPAQUENETWORK = 'kOpaqueNetwork'
 
-    K_VCLOUD_DIRECTOR = 'kVCloudDirector'
+    KVCLOUDDIRECTOR = 'kvCloudDirector'
 
     KORGANIZATION = 'kOrganization'
 
@@ -129,4 +108,3 @@ class TypeVmwareProtectionSourceEnum(object):
     KORGMETADATA = 'kOrgMetadata'
 
     KSTORAGEPOLICY = 'kStoragePolicy'
-

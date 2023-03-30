@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.cluster_audit_log
+
 
 class AuditLogsTile(object):
 
@@ -9,9 +10,11 @@ class AuditLogsTile(object):
 
     Audit logs for Dashboard.
 
+
     Attributes:
+
         cluster_audit_logs (list of ClusterAuditLog): Array of Cluster Audit
-            Logs. Specifies a list of Cluster audit logs that match the
+            Logs.  Specifies a list of Cluster audit logs that match the
             specified filter criteria up to the limit specified in pageCount.
         total_count (long|int): Specifies the total number of logs that match
             the specified filter criteria. (This number might be larger than
@@ -20,21 +23,22 @@ class AuditLogsTile(object):
             result.
     """
 
+
     # Create a mapping from Model property names to API property names
     _names = {
         "cluster_audit_logs":'clusterAuditLogs',
-        "total_count":'totalCount'
+        "total_count":'totalCount',
     }
-
     def __init__(self,
                  cluster_audit_logs=None,
-                 total_count=None):
+                 total_count=None,
+            ):
+
         """Constructor for the AuditLogsTile class"""
 
         # Initialize members of the class
         self.cluster_audit_logs = cluster_audit_logs
         self.total_count = total_count
-
 
     @classmethod
     def from_dictionary(cls,
@@ -62,7 +66,7 @@ class AuditLogsTile(object):
         total_count = dictionary.get('totalCount')
 
         # Return an object of this model
-        return cls(cluster_audit_logs,
-                   total_count)
-
-
+        return cls(
+            cluster_audit_logs,
+            total_count
+)

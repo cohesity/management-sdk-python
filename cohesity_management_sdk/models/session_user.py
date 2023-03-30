@@ -1,34 +1,41 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
+
+import cohesity_management_sdk.models.user
 
 
 class SessionUser(object):
 
     """Implementation of the 'SessionUser' model.
 
+    TODO: type description here.
+
+
     Attributes:
-        group_sids (list of string):  SIDs of the groups the user is a member
+
+        group_sids (list of string): SIDs of the groups the user is a member
             of.
         is_node_in_cluster (bool): Whether node is in cluster.
         privileges (list of string): Privileges is the array of privileges the
             current user has.
-        user (string): User is the current session user.
-
+        user (User): User is the current session user.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "group_sids":'groupSids',
         "is_node_in_cluster":'isNodeInCluster',
         "privileges":'privileges',
-        "user":'user'
+        "user":'user',
     }
-
     def __init__(self,
                  group_sids=None,
                  is_node_in_cluster=None,
                  privileges=None,
-                 user=None):
+                 user=None,
+            ):
+
         """Constructor for the SessionUser class"""
 
         # Initialize members of the class
@@ -36,7 +43,6 @@ class SessionUser(object):
         self.is_node_in_cluster = is_node_in_cluster
         self.privileges = privileges
         self.user = user
-
 
     @classmethod
     def from_dictionary(cls,
@@ -56,15 +62,15 @@ class SessionUser(object):
             return None
 
         # Extract variables from the dictionary
-        group_sids = dictionary.get('groupSids')
+        group_sids = dictionary.get("groupSids")
         is_node_in_cluster = dictionary.get('isNodeInCluster')
-        privileges = dictionary.get('privileges')
-        user = dictionary.get('user')
+        privileges = dictionary.get("privileges")
+        user = cohesity_management_sdk.models.user.User.from_dictionary(dictionary.get('user')) if dictionary.get('user') else None
 
         # Return an object of this model
-        return cls(group_sids,
-                   is_node_in_cluster,
-                   privileges,
-                   user)
-
-
+        return cls(
+            group_sids,
+            is_node_in_cluster,
+            privileges,
+            user
+)

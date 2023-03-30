@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class Principal(object):
 
@@ -8,7 +7,9 @@ class Principal(object):
 
     Specifies information about a single Principal.
 
+
     Attributes:
+
         domain (string): Specifies the domain name of the where the principal'
             account is maintained.
         full_name (string): Specifies the full name (first and last names) of
@@ -20,10 +21,9 @@ class Principal(object):
             a well known principal. 'kServiceAccount' specifies a service
             account object class.
         principal_name (string): Specifies the name of the principal.
-        sid (string): Specifies the unique Security id (SID) of the
-            principal.
-
+        sid (string): Specifies the unique Security id (SID) of the principal.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -31,15 +31,16 @@ class Principal(object):
         "full_name":'fullName',
         "object_class":'objectClass',
         "principal_name":'principalName',
-        "sid":'sid'
+        "sid":'sid',
     }
-
     def __init__(self,
                  domain=None,
                  full_name=None,
                  object_class=None,
                  principal_name=None,
-                 sid=None):
+                 sid=None,
+            ):
+
         """Constructor for the Principal class"""
 
         # Initialize members of the class
@@ -48,7 +49,6 @@ class Principal(object):
         self.object_class = object_class
         self.principal_name = principal_name
         self.sid = sid
-
 
     @classmethod
     def from_dictionary(cls,
@@ -75,10 +75,10 @@ class Principal(object):
         sid = dictionary.get('sid')
 
         # Return an object of this model
-        return cls(domain,
-                   full_name,
-                   object_class,
-                   principal_name,
-                   sid)
-
-
+        return cls(
+            domain,
+            full_name,
+            object_class,
+            principal_name,
+            sid
+)

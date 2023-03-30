@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.vault_provider_stats_by_env
+
 
 class VaultProviderStatsInfo(object):
 
@@ -9,7 +10,9 @@ class VaultProviderStatsInfo(object):
 
     Specifies the stats for each vault.
 
+
     Attributes:
+
         change_rate (long|int): Specifies the relative change of size of
             entities on the vault.
         cluster_id (long|int): Specifies the cluster id.
@@ -27,8 +30,8 @@ class VaultProviderStatsInfo(object):
         vaultname (string): Specifies the Vault name.
         write_bandwidth (long|int): Specifies the average write bandwidth over
             the last 24 hours.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -42,9 +45,8 @@ class VaultProviderStatsInfo(object):
         "vault_id":'vaultId',
         "vault_type":'vaultType',
         "vaultname":'vaultname',
-        "write_bandwidth":'writeBandwidth'
+        "write_bandwidth":'writeBandwidth',
     }
-
     def __init__(self,
                  change_rate=None,
                  cluster_id=None,
@@ -56,7 +58,9 @@ class VaultProviderStatsInfo(object):
                  vault_id=None,
                  vault_type=None,
                  vaultname=None,
-                 write_bandwidth=None):
+                 write_bandwidth=None,
+            ):
+
         """Constructor for the VaultProviderStatsInfo class"""
 
         # Initialize members of the class
@@ -71,7 +75,6 @@ class VaultProviderStatsInfo(object):
         self.vault_type = vault_type
         self.vaultname = vaultname
         self.write_bandwidth = write_bandwidth
-
 
     @classmethod
     def from_dictionary(cls,
@@ -108,16 +111,16 @@ class VaultProviderStatsInfo(object):
         write_bandwidth = dictionary.get('writeBandwidth')
 
         # Return an object of this model
-        return cls(change_rate,
-                   cluster_id,
-                   cluster_incarnation_id,
-                   cluster_name,
-                   read_bandwidth,
-                   stats_by_env,
-                   vault_group,
-                   vault_id,
-                   vault_type,
-                   vaultname,
-                   write_bandwidth)
-
-
+        return cls(
+            change_rate,
+            cluster_id,
+            cluster_incarnation_id,
+            cluster_name,
+            read_bandwidth,
+            stats_by_env,
+            vault_group,
+            vault_id,
+            vault_type,
+            vaultname,
+            write_bandwidth
+)

@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class AddedActiveDirectoryPrincipal(object):
 
@@ -9,25 +8,25 @@ class AddedActiveDirectoryPrincipal(object):
     Specifies a group or user added to the Cohesity Cluster for an Active
     Directory principal.
 
+
     Attributes:
-        created_time_msecs (long|int): Specifies the epoch time in
-            milliseconds when the group or user was added to the Cohesity
-            Cluster.
-        description (string): Specifies a description about the user or
-            group.
-        domain (string): Specifies the domain of the Active Directory where
-            the referenced principal is stored.
+
+        created_time_msecs (long|int): Specifies the epoch time in milliseconds
+            when the group or user was added to the Cohesity Cluster.
+        description (string): Specifies a description about the user or group.
+        domain (string): Specifies the domain of the Active Directory where the
+            referenced principal is stored.
         last_updated_time_msecs (long|int): Specifies the epoch time in
             milliseconds when the group or user was last modified on the
             Cohesity Cluster.
-        object_class (ObjectClassAddedActiveDirectoryPrincipalEnum): Specifies
-            the type of the referenced Active Directory principal. If
-            'kGroup', the referenced Active Directory principal is a group. If
-            'kUser', the referenced Active Directory principal is a user.
-            'kUser' specifies a user object class. 'kGroup' specifies a group
-            object class. 'kComputer' specifies a computer object class.
-            'kWellKnownPrincipal' specifies a well known principal.
-            'kServiceAccount' specifies a service account object class.
+        object_class (ObjectClassEnum): Specifies the type of the referenced
+            Active Directory principal. If 'kGroup', the referenced Active
+            Directory principal is a group. If 'kUser', the referenced Active
+            Directory principal is a user. 'kUser' specifies a user object
+            class. 'kGroup' specifies a group object class. 'kComputer'
+            specifies a computer object class. 'kWellKnownPrincipal' specifies
+            a well known principal. 'kServiceAccount' specifies a service
+            account object class.
         principal_name (string): Specifies the name of the Active Directory
             principal, that will be referenced by the group or user. The name
             of the Active Directory principal is used for naming the new group
@@ -45,8 +44,8 @@ class AddedActiveDirectoryPrincipal(object):
             Cohesity Cluster.
         sid (string): Specifies the unique Security ID (SID) of the Active
             Directory principal associated with this group or user.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -58,9 +57,8 @@ class AddedActiveDirectoryPrincipal(object):
         "principal_name":'principalName',
         "restricted":'restricted',
         "roles":'roles',
-        "sid":'sid'
+        "sid":'sid',
     }
-
     def __init__(self,
                  created_time_msecs=None,
                  description=None,
@@ -70,7 +68,9 @@ class AddedActiveDirectoryPrincipal(object):
                  principal_name=None,
                  restricted=None,
                  roles=None,
-                 sid=None):
+                 sid=None,
+            ):
+
         """Constructor for the AddedActiveDirectoryPrincipal class"""
 
         # Initialize members of the class
@@ -83,7 +83,6 @@ class AddedActiveDirectoryPrincipal(object):
         self.restricted = restricted
         self.roles = roles
         self.sid = sid
-
 
     @classmethod
     def from_dictionary(cls,
@@ -110,18 +109,18 @@ class AddedActiveDirectoryPrincipal(object):
         object_class = dictionary.get('objectClass')
         principal_name = dictionary.get('principalName')
         restricted = dictionary.get('restricted')
-        roles = dictionary.get('roles')
+        roles = dictionary.get("roles")
         sid = dictionary.get('sid')
 
         # Return an object of this model
-        return cls(created_time_msecs,
-                   description,
-                   domain,
-                   last_updated_time_msecs,
-                   object_class,
-                   principal_name,
-                   restricted,
-                   roles,
-                   sid)
-
-
+        return cls(
+            created_time_msecs,
+            description,
+            domain,
+            last_updated_time_msecs,
+            object_class,
+            principal_name,
+            restricted,
+            roles,
+            sid
+)

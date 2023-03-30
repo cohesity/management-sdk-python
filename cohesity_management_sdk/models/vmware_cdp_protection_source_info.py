@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.cdp_io_filter_state
+
 
 class VMwareCdpProtectionSourceInfo(object):
 
@@ -10,23 +11,26 @@ class VMwareCdpProtectionSourceInfo(object):
     Specifies the details about the Continuous Data Protection (CDP) info of a
     VMware Protection Source.
 
+
     Attributes:
+
         io_filter_state (CdpIoFilterState): Specifies the current state of the
             CDP IO Filter.
     """
 
+
     # Create a mapping from Model property names to API property names
     _names = {
-        "io_filter_state":'ioFilterState'
+        "io_filter_state":'ioFilterState',
     }
-
     def __init__(self,
-                 io_filter_state=None):
+                 io_filter_state=None,
+            ):
+
         """Constructor for the VMwareCdpProtectionSourceInfo class"""
 
         # Initialize members of the class
         self.io_filter_state = io_filter_state
-
 
     @classmethod
     def from_dictionary(cls,
@@ -49,6 +53,6 @@ class VMwareCdpProtectionSourceInfo(object):
         io_filter_state = cohesity_management_sdk.models.cdp_io_filter_state.CdpIoFilterState.from_dictionary(dictionary.get('ioFilterState')) if dictionary.get('ioFilterState') else None
 
         # Return an object of this model
-        return cls(io_filter_state)
-
-
+        return cls(
+            io_filter_state
+)

@@ -1,48 +1,50 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.backup_run
 import cohesity_management_sdk.models.copy_run
 import cohesity_management_sdk.models.protection_job
 
+
 class ProtectionJobSummaryForPolicies(object):
 
     """Implementation of the 'ProtectionJobSummaryForPolicies' model.
 
-    ProtectionJobSummaryForPolicies is the summary of a Protection
-    Jobs associated with the Specified Protection Policy. This is only
-    populated for a policy of type kRegular.
+    ProtectionJobSummaryForPolicies is the summary of a Protection Jobs
+    associated with the Specified Protection Policy. This is only populated for
+    a policy of type kRegular.
+
 
     Attributes:
-        backup_run (BackupRun): Specifies details about the Backup task for a
-            Job Run. A Backup task captures the original backup snapshots for
-            each Protection Source in the Job.
+
+        backup_run (BackupRun): Specifies details about the last Backup task. A
+            Backup task captures the original backup snapshots.
         copy_runs (list of CopyRun): Specifies details about the Copy tasks of
             the Job Run. A Copy task copies the captured snapshots to an
             external target or a Remote Cohesity Cluster.
         protection_job (ProtectionJob): Specifies the Protection job
             information.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "backup_run":'backupRun',
         "copy_runs":'copyRuns',
-        "protection_job":'protectionJob'
+        "protection_job":'protectionJob',
     }
-
     def __init__(self,
                  backup_run=None,
                  copy_runs=None,
-                 protection_job=None):
+                 protection_job=None,
+            ):
+
         """Constructor for the ProtectionJobSummaryForPolicies class"""
 
         # Initialize members of the class
         self.backup_run = backup_run
         self.copy_runs = copy_runs
         self.protection_job = protection_job
-
 
     @classmethod
     def from_dictionary(cls,
@@ -71,8 +73,8 @@ class ProtectionJobSummaryForPolicies(object):
         protection_job = cohesity_management_sdk.models.protection_job.ProtectionJob.from_dictionary(dictionary.get('protectionJob')) if dictionary.get('protectionJob') else None
 
         # Return an object of this model
-        return cls(backup_run,
-                   copy_runs,
-                   protection_job)
-
-
+        return cls(
+            backup_run,
+            copy_runs,
+            protection_job
+)

@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class OracleSession(object):
 
@@ -8,28 +7,30 @@ class OracleSession(object):
 
     Specifies information about session configuration for an Oracle host.
 
+
     Attributes:
+
         location (string): Location is the path where Oracle is installed.
         system_identifier (string): SystemIdentifier is the unique Oracle
             System Identifier for the DB instance.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "location":'location',
-        "system_identifier":'systemIdentifier'
+        "system_identifier":'systemIdentifier',
     }
-
     def __init__(self,
                  location=None,
-                 system_identifier=None):
+                 system_identifier=None,
+            ):
+
         """Constructor for the OracleSession class"""
 
         # Initialize members of the class
         self.location = location
         self.system_identifier = system_identifier
-
 
     @classmethod
     def from_dictionary(cls,
@@ -53,7 +54,7 @@ class OracleSession(object):
         system_identifier = dictionary.get('systemIdentifier')
 
         # Return an object of this model
-        return cls(location,
-                   system_identifier)
-
-
+        return cls(
+            location,
+            system_identifier
+)

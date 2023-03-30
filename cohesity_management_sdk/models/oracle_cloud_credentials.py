@@ -1,18 +1,17 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class OracleCloudCredentials(object):
 
     """Implementation of the 'OracleCloudCredentials' model.
 
     Specifies the Oracle Cloud Credentials to connect to an Oracle S3
-    Compatible
-    vault account.
-    Oracle Cloud Credentials Region, Access-Key-Id and Secret-Access-Key.
-    Oracle Cloud properties Tenant and Tier Type.
+    Compatible vault account.  Oracle Cloud Credentials Region, Access-Key-Id
+    and Secret-Access-Key. Oracle Cloud properties Tenant and Tier Type.
+
 
     Attributes:
+
         access_key_id (string): Specifies access key to connect to Oracle S3
             Compatible vault account.
         region (string): Specifies the region for Oracle S3 Compatible vault
@@ -29,8 +28,8 @@ class OracleCloudCredentials(object):
             that is rarely accesed and preserved for long times.
         tiers (list of string): Specifies the list of all tiers for Amazon
             account.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -39,16 +38,17 @@ class OracleCloudCredentials(object):
         "secret_access_key":'secretAccessKey',
         "tenant":'tenant',
         "tier_type":'tierType',
-        "tiers":'tiers'
+        "tiers":'tiers',
     }
-
     def __init__(self,
                  access_key_id=None,
                  region=None,
                  secret_access_key=None,
                  tenant=None,
                  tier_type=None,
-                 tiers=None):
+                 tiers=None,
+            ):
+
         """Constructor for the OracleCloudCredentials class"""
 
         # Initialize members of the class
@@ -58,7 +58,6 @@ class OracleCloudCredentials(object):
         self.tenant = tenant
         self.tier_type = tier_type
         self.tiers = tiers
-
 
     @classmethod
     def from_dictionary(cls,
@@ -83,14 +82,14 @@ class OracleCloudCredentials(object):
         secret_access_key = dictionary.get('secretAccessKey')
         tenant = dictionary.get('tenant')
         tier_type = dictionary.get('tierType')
-        tiers = dictionary.get('tiers')
+        tiers = dictionary.get("tiers")
 
         # Return an object of this model
-        return cls(access_key_id,
-                   region,
-                   secret_access_key,
-                   tenant,
-                   tier_type,
-                   tiers)
-
-
+        return cls(
+            access_key_id,
+            region,
+            secret_access_key,
+            tenant,
+            tier_type,
+            tiers
+)

@@ -1,16 +1,15 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class TypePhysicalProtectionSourceEnum(object):
 
-    """Implementation of the 'Type_PhysicalProtectionSource' enum.
-
+    """Implementation of the 'TypePhysicalProtectionSource' enum.
     Specifies the type of managed Object in a Physical Protection Source.
-    'kGroup' indicates the EH container.
-    'kHost' indicates a single physical server.
-    'kWindowsCluster' indicates a Microsoft Windows cluster.
+    'kGroup' indicates the EH container. 'kHost' indicates a single physical
+    server. 'kWindowsCluster' indicates a Microsoft Windows cluster.
     'kOracleRACCluster' indicates an Oracle Real Application Cluster(RAC).
     'kOracleAPCluster' indicates an Oracle Active-Passive Cluster.
+
 
     Attributes:
         KGROUP: TODO: type description here.
@@ -30,4 +29,3 @@ class TypePhysicalProtectionSourceEnum(object):
     KORACLERACCLUSTER = 'kOracleRACCluster'
 
     KORACLEAPCLUSTER = 'kOracleAPCluster'
-

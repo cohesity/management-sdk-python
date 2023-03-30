@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.reducer_info
+
 
 class ReducersWrapper(object):
 
@@ -9,23 +10,26 @@ class ReducersWrapper(object):
 
     ReducersWrapper is the struct to define the list of reducers.
 
+
     Attributes:
+
         reducers (list of ReducerInfo): Reducers specifies the list of
             available reducers in analytics workbench.
     """
 
+
     # Create a mapping from Model property names to API property names
     _names = {
-        "reducers":'reducers'
+        "reducers":'reducers',
     }
-
     def __init__(self,
-                 reducers=None):
+                 reducers=None,
+            ):
+
         """Constructor for the ReducersWrapper class"""
 
         # Initialize members of the class
         self.reducers = reducers
-
 
     @classmethod
     def from_dictionary(cls,
@@ -45,13 +49,13 @@ class ReducersWrapper(object):
             return None
 
         # Extract variables from the dictionary
-        reducer_list = None
-        if dictionary.get('reducers', None) != None:
-            reducer_list = list()
-            for reducer in dictionary.get('reducers'):
-                reducer_list.append(cohesity_management_sdk.models.reducer_info.ReducerInfo.from_dictionary(reducer))
+        reducers = None
+        if dictionary.get('reducers') != None:
+            reducers = list()
+            for structure in dictionary.get('reducers'):
+                reducers.append(cohesity_management_sdk.models.reducer_info.ReducerInfo.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(reducer_list)
-
-
+        return cls(
+            reducers
+)

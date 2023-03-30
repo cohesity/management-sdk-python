@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class KubernetesRestoreParameters(object):
 
@@ -8,7 +7,9 @@ class KubernetesRestoreParameters(object):
 
     Specifies the information required for recovering kubernetes entities.
 
+
     Attributes:
+
         prefix (string): Specifies a prefix to prepended to the source object
             name to derive a new name for the recovered or cloned object. By
             default, cloned or recovered objects retain their original name.
@@ -17,24 +18,24 @@ class KubernetesRestoreParameters(object):
             object name to derive a new name for the recovered or cloned
             object. By default, cloned or recovered objects retain their
             original name. Length of this field is limited to 8 characters.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "prefix":'prefix',
-        "suffix":'suffix'
+        "suffix":'suffix',
     }
-
     def __init__(self,
                  prefix=None,
-                 suffix=None):
+                 suffix=None,
+            ):
+
         """Constructor for the KubernetesRestoreParameters class"""
 
         # Initialize members of the class
         self.prefix = prefix
         self.suffix = suffix
-
 
     @classmethod
     def from_dictionary(cls,
@@ -58,7 +59,7 @@ class KubernetesRestoreParameters(object):
         suffix = dictionary.get('suffix')
 
         # Return an object of this model
-        return cls(prefix,
-                   suffix)
-
-
+        return cls(
+            prefix,
+            suffix
+)

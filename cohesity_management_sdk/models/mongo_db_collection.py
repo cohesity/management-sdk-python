@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class MongoDBCollection(object):
 
@@ -8,32 +7,34 @@ class MongoDBCollection(object):
 
     Specifies an Object containing information about a mongodb collection.
 
+
     Attributes:
+
         is_capped_collection (bool): Set to true if this is a capped
             Collection.
         is_mongo_view (bool): Set to true if this Collection is a view.
-        size_bytes (int|long): Size of this Collection.
-
+        size_bytes (long|int): Size of this Collection.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "is_capped_collection":'isCappedCollection',
         "is_mongo_view":'isMongoView',
-        "size_bytes":'sizeBytes'
+        "size_bytes":'sizeBytes',
     }
-
     def __init__(self,
                  is_capped_collection=None,
                  is_mongo_view=None,
-                 size_bytes=None):
+                 size_bytes=None,
+            ):
+
         """Constructor for the MongoDBCollection class"""
 
         # Initialize members of the class
         self.is_capped_collection = is_capped_collection
         self.is_mongo_view = is_mongo_view
         self.size_bytes = size_bytes
-
 
     @classmethod
     def from_dictionary(cls,
@@ -58,8 +59,8 @@ class MongoDBCollection(object):
         size_bytes = dictionary.get('sizeBytes')
 
         # Return an object of this model
-        return cls(is_capped_collection,
-                   is_mongo_view,
-                   size_bytes)
-
-
+        return cls(
+            is_capped_collection,
+            is_mongo_view,
+            size_bytes
+)

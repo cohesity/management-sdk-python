@@ -1,74 +1,65 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
-import cohesity_management_sdk.models.entity_proto
-import cohesity_management_sdk.models.deploy_v_ms_to_cloud_task_state_proto
+import cohesity_management_sdk.models.connector_params
+import cohesity_management_sdk.models.deploy_vms_to_cloud_task_state_proto
 import cohesity_management_sdk.models.destroy_clone_app_task_info_proto
 import cohesity_management_sdk.models.destroy_cloned_vm_task_info_proto
 import cohesity_management_sdk.models.destroy_mount_volumes_task_info_proto
+import cohesity_management_sdk.models.entity_proto
 import cohesity_management_sdk.models.error_proto
-import cohesity_management_sdk.models.connector_params
-import cohesity_management_sdk.models.user_information
 import cohesity_management_sdk.models.restored_object_vcd_config_proto
+import cohesity_management_sdk.models.user_information
+
 
 class DestroyClonedTaskStateProto(object):
 
     """Implementation of the 'DestroyClonedTaskStateProto' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
+
         action_executor_target_type (int): Denotes the target for action
-            executor(Bridge/Bridge_Proxy) on which task on slave should
-            execute actions.
+            executor(Bridge/Bridge_Proxy) on which task on slave should execute
+            actions.
         clone_task_name (string): The name of the clone task.
-        datastore_entity (EntityProto): Specifies the attributes and the
-            latest statistics about an entity.
-        deploy_vms_to_cloud_task_state (DeployVMsToCloudTaskStateProto): TODO:
-            type description here.
-        destroy_clone_app_task_info (DestroyCloneAppTaskInfoProto): Each
-            available extension is listed below along with the location of the
-            proto file (relative to magneto/connectors) where it is defined.
-            DestroyCloneAppTaskInfoProto extension Location Extension
-            ===================================================================
-            ==========
-            sql::DestroyCloneTaskInfo::sql_destroy_clone_app_task_info
-            sql/sql.proto 100
-            oracle::DestroyCloneTaskInfo::oracle_destroy_clone_app_task_info
-            oracle/oracle.proto 101
-            ad::DestroyTaskInfo::ad_destroy_app_task_info ad/ad.proto 102
-            ===================================================================
-            ==========
-        destroy_clone_vm_task_info (DestroyClonedVMTaskInfoProto): Each
-            available extension is listed below along with the location of the
-            proto file (relative to magneto/connectors) where it is defined.
-            DestroyClonedVMTaskInfoProto extension          Location
-            Extension
-            ===================================================================
-            ========== vmware::DestroyClonedTaskInfo::
-            vmware_destroy_cloned_vm_task_info            vmware/vmware.proto
-            100 hyperv::DestroyClonedTaskInfo::
-            hyperv_destroy_cloned_vm_task_info            hyperv/hyperv.proto
-            101
-            ===================================================================
-            ==========
+        datastore_entity (EntityProto): The EntityProto of the datastore that
+            corresponds to the above 'view_name'. This field will be empty if
+            no datastore is associated with the clone view.
+        deploy_vms_to_cloud_task_state (DeployVMsToCloudTaskStateProto): Master
+            populates information regarding deploy vm to cloud task state. This
+            is needed during restore task of type kConvertAndDeployVMs. We use
+            it during destroy clone to delete VMs, network entities and storage
+            blobs.
+        destroy_clone_app_task_info (DestroyCloneAppTaskInfoProto): Master
+            populates the information about the destroy clone application task.
+            Slave populates the progress and status of the task.
+        destroy_clone_vm_task_info (DestroyClonedVMTaskInfoProto): Master
+            populates the information about the destroy clone task. Slave
+            populates the progress and status of the task.
         destroy_mount_volumes_task_info (DestroyMountVolumesTaskInfoProto):
-            TODO: type description here.
-        end_time_usecs (long|int): If the destroy clone task has finished,
-            this field contains the end time of the task.
-        error (ErrorProto): TODO: type description here.
-        folder_entity (EntityProto): Specifies the attributes and the latest
-            statistics about an entity.
-        force_delete (bool): flag used to perform force delete, ignore error
-            on delete steps
+            Master populates the information about the destroy mount volumes
+            task, Slave populate the progress and status of the task.
+        end_time_usecs (long|int): If the destroy clone task has finished, this
+            field contains the end time of the task.
+        error (ErrorProto): The error encountered by task (if any). Only valid
+            if the task has finished.
+        folder_entity (EntityProto): A folder entity where the cloned objects
+            are placed. This folder will be deleted after all cloned entity are
+            destroyed.
+        force_delete (bool): flag used to perform force delete, ignore error on
+            delete steps
         full_view_name (string): The full external view name where cloned
             objects are placed.
-        parent_source_connection_params (ConnectorParams): Message that
-            encapsulates the various params required to establish a connection
-            with a particular environment.
+        parent_source_connection_params (ConnectorParams): Note: In case of
+            kConvertAndDeployVMs to Azure, we need the original ConnectorParams
+            of the corresponding deploy to Azure task (i.e. original Azure
+            subscription id).
         parent_task_id (long|int): The id of the task that triggered the
-            destroy task. This will be used by refresh task to mark the
-            destroy task as internal sub-task.
+            destroy task. This will be used by refresh task to mark the destroy
+            task as internal sub-task.
         perform_clone_task_id (long|int): The unique id of the task that
             performed the clone operation.
         restore_type (int): The type of the restore/clone operation that is
@@ -77,27 +68,22 @@ class DestroyClonedTaskStateProto(object):
             session id) where this task has been scheduled. If -1, the task is
             not running at any slave. It's possible that the task was
             previously scheduled, but is now being re-scheduled.
-        scheduled_gandalf_session_id (long|int): TODO: type description here.
-        start_time_usecs (long|int): The start time of this destroy clone
-            task.
+        scheduled_gandalf_session_id (long|int): TODO: Type description here.
+        start_time_usecs (long|int): The start time of this destroy clone task.
         status (int): Status of the destroy clone task.
         task_id (long|int): A globally unique id of this destroy clone task.
         mtype (int): The type of environment that is being operated on.
         user (string): The user who requested this destroy clone task.
-        user_info (UserInformation): A message to encapsulate information
-            about the user who made the request. Request should be filtered by
-            these fields if specified so that only the objects that the user
-            is permissioned for are returned. If both sid_vec & tenant_id are
-            specified then an intersection of respective results should be
-            returned.
+        user_info (UserInformation): Specifies information about the user who
+            made the request.
+        vcd_config (RestoredObjectVCDConfigProto): VCD config for the restored
+            object.
         view_box_id (long|int): The view box id to which 'view_name' belongs
             to.
         view_name_deprecated (string): The view name as provided by the user
             for the clone operation.
-        vcd_config (RestoredObjectVCDConfigProto): VCD config for the
-            restored object.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -127,9 +113,8 @@ class DestroyClonedTaskStateProto(object):
         "user_info":'userInfo',
         "vcd_config":'vcdConfig',
         "view_box_id":'viewBoxId',
-        "view_name_deprecated":'viewName_DEPRECATED'
+        "view_name_deprecated":'viewNameDEPRECATED',
     }
-
     def __init__(self,
                  action_executor_target_type=None,
                  clone_task_name=None,
@@ -157,7 +142,9 @@ class DestroyClonedTaskStateProto(object):
                  user_info=None,
                  vcd_config=None,
                  view_box_id=None,
-                 view_name_deprecated=None):
+                 view_name_deprecated=None,
+            ):
+
         """Constructor for the DestroyClonedTaskStateProto class"""
 
         # Initialize members of the class
@@ -189,7 +176,6 @@ class DestroyClonedTaskStateProto(object):
         self.view_box_id = view_box_id
         self.view_name_deprecated = view_name_deprecated
 
-
     @classmethod
     def from_dictionary(cls,
                         dictionary):
@@ -211,7 +197,7 @@ class DestroyClonedTaskStateProto(object):
         action_executor_target_type = dictionary.get('actionExecutorTargetType')
         clone_task_name = dictionary.get('cloneTaskName')
         datastore_entity = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('datastoreEntity')) if dictionary.get('datastoreEntity') else None
-        deploy_vms_to_cloud_task_state = cohesity_management_sdk.models.deploy_v_ms_to_cloud_task_state_proto.DeployVMsToCloudTaskStateProto.from_dictionary(dictionary.get('deployVmsToCloudTaskState')) if dictionary.get('deployVmsToCloudTaskState') else None
+        deploy_vms_to_cloud_task_state = cohesity_management_sdk.models.deploy_vms_to_cloud_task_state_proto.DeployVMsToCloudTaskStateProto.from_dictionary(dictionary.get('deployVmsToCloudTaskState')) if dictionary.get('deployVmsToCloudTaskState') else None
         destroy_clone_app_task_info = cohesity_management_sdk.models.destroy_clone_app_task_info_proto.DestroyCloneAppTaskInfoProto.from_dictionary(dictionary.get('destroyCloneAppTaskInfo')) if dictionary.get('destroyCloneAppTaskInfo') else None
         destroy_clone_vm_task_info = cohesity_management_sdk.models.destroy_cloned_vm_task_info_proto.DestroyClonedVMTaskInfoProto.from_dictionary(dictionary.get('destroyCloneVmTaskInfo')) if dictionary.get('destroyCloneVmTaskInfo') else None
         destroy_mount_volumes_task_info = cohesity_management_sdk.models.destroy_mount_volumes_task_info_proto.DestroyMountVolumesTaskInfoProto.from_dictionary(dictionary.get('destroyMountVolumesTaskInfo')) if dictionary.get('destroyMountVolumesTaskInfo') else None
@@ -234,35 +220,35 @@ class DestroyClonedTaskStateProto(object):
         user_info = cohesity_management_sdk.models.user_information.UserInformation.from_dictionary(dictionary.get('userInfo')) if dictionary.get('userInfo') else None
         vcd_config = cohesity_management_sdk.models.restored_object_vcd_config_proto.RestoredObjectVCDConfigProto.from_dictionary(dictionary.get('vcdConfig')) if dictionary.get('vcdConfig') else None
         view_box_id = dictionary.get('viewBoxId')
-        view_name_deprecated = dictionary.get('viewName_DEPRECATED')
+        view_name_deprecated = dictionary.get('viewNameDEPRECATED')
 
         # Return an object of this model
-        return cls(action_executor_target_type,
-                   clone_task_name,
-                   datastore_entity,
-                   deploy_vms_to_cloud_task_state,
-                   destroy_clone_app_task_info,
-                   destroy_clone_vm_task_info,
-                   destroy_mount_volumes_task_info,
-                   end_time_usecs,
-                   error,
-                   folder_entity,
-                   force_delete,
-                   full_view_name,
-                   parent_source_connection_params,
-                   parent_task_id,
-                   perform_clone_task_id,
-                   restore_type,
-                   scheduled_constituent_id,
-                   scheduled_gandalf_session_id,
-                   start_time_usecs,
-                   status,
-                   task_id,
-                   mtype,
-                   user,
-                   user_info,
-                   vcd_config,
-                   view_box_id,
-                   view_name_deprecated)
-
-
+        return cls(
+            action_executor_target_type,
+            clone_task_name,
+            datastore_entity,
+            deploy_vms_to_cloud_task_state,
+            destroy_clone_app_task_info,
+            destroy_clone_vm_task_info,
+            destroy_mount_volumes_task_info,
+            end_time_usecs,
+            error,
+            folder_entity,
+            force_delete,
+            full_view_name,
+            parent_source_connection_params,
+            parent_task_id,
+            perform_clone_task_id,
+            restore_type,
+            scheduled_constituent_id,
+            scheduled_gandalf_session_id,
+            start_time_usecs,
+            status,
+            task_id,
+            mtype,
+            user,
+            user_info,
+            vcd_config,
+            view_box_id,
+            view_name_deprecated
+)

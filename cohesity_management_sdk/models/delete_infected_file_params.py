@@ -1,32 +1,35 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.infected_file_param
+
 
 class DeleteInfectedFileParams(object):
 
     """Implementation of the 'DeleteInfectedFileParams' model.
 
-    Specifies the parameters to delete the infected files.
+    TODO: type description here.
+
 
     Attributes:
+
         infected_file_ids (list of InfectedFileParam): Specifies the list of
             infected file path.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "infected_file_ids":'infectedFileIds'
+        "infected_file_ids":'infectedFileIds',
     }
-
     def __init__(self,
-                 infected_file_ids=None):
+                 infected_file_ids=None,
+            ):
+
         """Constructor for the DeleteInfectedFileParams class"""
 
         # Initialize members of the class
         self.infected_file_ids = infected_file_ids
-
 
     @classmethod
     def from_dictionary(cls,
@@ -53,6 +56,6 @@ class DeleteInfectedFileParams(object):
                 infected_file_ids.append(cohesity_management_sdk.models.infected_file_param.InfectedFileParam.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(infected_file_ids)
-
-
+        return cls(
+            infected_file_ids
+)

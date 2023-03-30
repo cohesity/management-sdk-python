@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.hive_table
+
 
 class HiveProtectionSource(object):
 
@@ -9,34 +10,36 @@ class HiveProtectionSource(object):
 
     Specifies an Object representing Hive.
 
+
     Attributes:
+
         name (string): Specifies the instance name of the Hive entity.
         table_info (HiveTable): Information of a Hive Table, only valid for an
             entity of type kTable.
-        mtype (TypeHiveProtectionSourceEnum): Specifies the type of the
-            managed Object in Hive Protection Source.
-            Specifies the type of an Hive source entity.
-            'kCluster' indicates a Hive cluster distributed over several
-            physical nodes.
-            'kDatabase' indicates a Database in the Hive environment.
-            'kTable' indicates a Table in the Hive environment.
-        uuid (string):  Specifies the UUID for the Hive entity.
-
+        mtype (TypeHiveProtectionSourceEnum): Specifies the type of the managed
+            Object in Hive Protection Source. Specifies the type of an Hive
+            source entity. 'kCluster' indicates a Hive cluster distributed over
+            several physical nodes. 'kDatabase' indicates a Database in the
+            Hive environment. 'kTable' indicates a Table in the Hive
+            environment.
+        uuid (string): Specifies the UUID for the Hive entity.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "name":'name',
         "table_info":'tableInfo',
         "mtype":'type',
-        "uuid":'uuid'
+        "uuid":'uuid',
     }
-
     def __init__(self,
                  name=None,
                  table_info=None,
                  mtype=None,
-                 uuid=None):
+                 uuid=None,
+            ):
+
         """Constructor for the HiveProtectionSource class"""
 
         # Initialize members of the class
@@ -44,7 +47,6 @@ class HiveProtectionSource(object):
         self.table_info = table_info
         self.mtype = mtype
         self.uuid = uuid
-
 
     @classmethod
     def from_dictionary(cls,
@@ -70,9 +72,9 @@ class HiveProtectionSource(object):
         uuid = dictionary.get('uuid')
 
         # Return an object of this model
-        return cls(name,
-                   table_info,
-                   mtype,
-                   uuid)
-
-
+        return cls(
+            name,
+            table_info,
+            mtype,
+            uuid
+)

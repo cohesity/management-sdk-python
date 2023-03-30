@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.cloud_archival_info
+
 
 class CloudArchiveRun(object):
 
@@ -9,23 +10,25 @@ class CloudArchiveRun(object):
 
     Specifies the info about cloud archive run.
 
-    Attributes:
-        archival_info (list of CloudArchivalInfo): Notification list.
 
+    Attributes:
+
+        archival_info (list of CloudArchivalInfo): Specifies the archival info.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "archival_info":'archivalInfo'
+        "archival_info":'archivalInfo',
     }
-
     def __init__(self,
-                 archival_info=None):
+                 archival_info=None,
+            ):
+
         """Constructor for the CloudArchiveRun class"""
 
         # Initialize members of the class
         self.archival_info = archival_info
-
 
     @classmethod
     def from_dictionary(cls,
@@ -52,6 +55,6 @@ class CloudArchiveRun(object):
                 archival_info.append(cohesity_management_sdk.models.cloud_archival_info.CloudArchivalInfo.from_dictionary(structure))
 
         # Return an object of this model
-        return cls(archival_info)
-
-
+        return cls(
+            archival_info
+)

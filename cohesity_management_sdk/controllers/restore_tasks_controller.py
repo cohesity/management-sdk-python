@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import logging
 from cohesity_management_sdk.api_helper import APIHelper
@@ -2153,7 +2153,7 @@ Success
                 environment. 'kPuppeteer' indicates the Cohesity's Remote
                 Adapter. 'kPhysical' indicates the physical Protection Source
                 environment. 'kPure' indicates the Pure Storage Protection
-                Source environment. 'Nimble' indicates the Nimble Storage
+                Source environment. 'kNimble' indicates the Nimble Storage
                 Protection Source environment. 'kAzure' indicates the
                 Microsoft's Azure Protection Source environment. 'kNetapp'
                 indicates the Netapp Protection Source environment. 'kAgent'
@@ -2192,6 +2192,18 @@ Success
                 environment. 'kHBase' indicates HBase Protection Source
                 environment. 'kUDA' indicates Universal Data Adapter Protection
                 Source environment.
+                'kO365Teams' indicates the Office365 Teams Protection Source
+                environment.
+                'kO365Group' indicates the Office365 Groups Protection Source
+                environment.
+                'kO365Exchange' indicates the Office365 Mailbox Protection
+                Source environment.
+                'kO365OneDrive' indicates the Office365 OneDrive Protection
+                Source environment.
+                'kO365Sharepoint' indicates the Office365 SharePoint Protection
+                Source environment.
+                'kO365PublicFolders' indicates the Office365 PublicFolders
+                Protection Source environment.
             storage_domain_ids (long|int): Filter by a list of Storage Domain
                 IDs. This field applies only if 'TaskTypes' includes
                 'kCloneView'. Only task writing data to these storage domains

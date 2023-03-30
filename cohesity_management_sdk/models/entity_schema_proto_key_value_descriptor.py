@@ -1,37 +1,38 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
-
-class EntitySchemaProtoKeyValueDescriptor(object):
+class EntitySchemaProto_KeyValueDescriptor(object):
 
     """Implementation of the 'EntitySchemaProto_KeyValueDescriptor' model.
 
     Specifies a key/value pair.
 
+
     Attributes:
+
         key_name (string): Specifies the name of a key.
         value_type (int): Specifies the type of the value that is associated
             with the key. 0 specifies a value type of Int64. 1 specifies a
             value type of Double. 2 specifies a value type of String. 3
             specifies a value type of Bytes.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "key_name":'keyName',
-        "value_type":'valueType'
+        "value_type":'valueType',
     }
-
     def __init__(self,
                  key_name=None,
-                 value_type=None):
-        """Constructor for the EntitySchemaProtoKeyValueDescriptor class"""
+                 value_type=None,
+            ):
+
+        """Constructor for the EntitySchemaProto_KeyValueDescriptor class"""
 
         # Initialize members of the class
         self.key_name = key_name
         self.value_type = value_type
-
 
     @classmethod
     def from_dictionary(cls,
@@ -55,7 +56,7 @@ class EntitySchemaProtoKeyValueDescriptor(object):
         value_type = dictionary.get('valueType')
 
         # Return an object of this model
-        return cls(key_name,
-                   value_type)
-
-
+        return cls(
+            key_name,
+            value_type
+)

@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.san_storage_array
 import cohesity_management_sdk.models.san_volume
+
 
 class PureProtectionSource(object):
 
@@ -10,32 +11,37 @@ class PureProtectionSource(object):
 
     Specifies a Protection Source in a Pure environment.
 
+
     Attributes:
+
         name (string): Specifies a unique name of the Protection Source
-        storage_array (SanStorageArray): Specifies a SAN Storage Array.
+        storage_array (SanStorageArray): Specifies a SAN Storage Array
+            information. This is set only when the type is kStorageArray.
         mtype (TypePureProtectionSourceEnum): Specifies the type of managed
             Object in a SAN/Pure Protection Source like a kStorageArray or
             kVolume. Examples of SAN Objects include 'kStorageArray' and
             'kVolume'. 'kStorageArray' indicates that entire SAN storage array
             is being protected. 'kVolume' indicates that volume within the
             array is being protected.
-        volume (SanVolume): Specifies a SAN Volume in a SAN Storage Array.
-
+        volume (SanVolume): Specifies a SAN Volume information within a storage
+            array. This is set only when the type is kVolume.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "name":'name',
         "storage_array":'storageArray',
         "mtype":'type',
-        "volume":'volume'
+        "volume":'volume',
     }
-
     def __init__(self,
                  name=None,
                  storage_array=None,
                  mtype=None,
-                 volume=None):
+                 volume=None,
+            ):
+
         """Constructor for the PureProtectionSource class"""
 
         # Initialize members of the class
@@ -43,7 +49,6 @@ class PureProtectionSource(object):
         self.storage_array = storage_array
         self.mtype = mtype
         self.volume = volume
-
 
     @classmethod
     def from_dictionary(cls,
@@ -69,9 +74,9 @@ class PureProtectionSource(object):
         volume = cohesity_management_sdk.models.san_volume.SanVolume.from_dictionary(dictionary.get('volume')) if dictionary.get('volume') else None
 
         # Return an object of this model
-        return cls(name,
-                   storage_array,
-                   mtype,
-                   volume)
-
-
+        return cls(
+            name,
+            storage_array,
+            mtype,
+            volume
+)

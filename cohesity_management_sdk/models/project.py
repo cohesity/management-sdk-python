@@ -1,35 +1,40 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.domain
+
 
 class Project(object):
 
     """Implementation of the 'Project' model.
 
-    Keystone project proto.
+    TODO: type description here.
+
 
     Attributes:
+
         domain (Domain): Domain to which the project is scoped.
-        domain_id (string): Specifies the IPMI Password.
+        domain_id (string): The ID of the domain to which the project is
+            scoped. This field is used in the reponse of Keystone API.
         id (string): The ID of the project.
         name (string): The name of the project.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "domain":'domain',
         "domain_id":'domainId',
         "id":'id',
-        "name":'name'
+        "name":'name',
     }
-
     def __init__(self,
                  domain=None,
                  domain_id=None,
                  id=None,
-                 name=None):
+                 name=None,
+            ):
+
         """Constructor for the Project class"""
 
         # Initialize members of the class
@@ -37,7 +42,6 @@ class Project(object):
         self.domain_id = domain_id
         self.id = id
         self.name = name
-
 
     @classmethod
     def from_dictionary(cls,
@@ -63,9 +67,9 @@ class Project(object):
         name = dictionary.get('name')
 
         # Return an object of this model
-        return cls(domain,
-                   domain_id,
-                   id,
-                   name)
-
-
+        return cls(
+            domain,
+            domain_id,
+            id,
+            name
+)

@@ -1,47 +1,50 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.request_error
 import cohesity_management_sdk.models.virtual_disk_restore_response
+
 
 class VirtualDiskRecoverTaskState(object):
 
     """Implementation of the 'VirtualDiskRecoverTaskState' model.
 
-    Specifies the complete information about a recover virtual disk task
-    state.
+    Specifies the complete information about a recover virtual disk task state.
+
 
     Attributes:
+
         error (RequestError): The error encountered by task (if any). Only
             valid if the task has finished.
         is_instant_recovery_finished (bool): Specifies if instant recovery of
             the virtual disk is complete.
         task_state (TaskStateEnum): Specifies the current state of the restore
             virtual disks task. Specifies the current state of the restore
-            virtual disks task. 'kDetachDisksDone' indicates the detached
-            state of disks. 'kSetupDisksDone' indicates that disks setup is
+            virtual disks task. 'kDetachDisksDone' indicates the detached state
+            of disks. 'kSetupDisksDone' indicates that disks setup is
             completed. 'kMigrateDisksStarted' indicates that disks are being
             migrated. 'kMigrateDisksDone' indicates that disk migration is
             completed. 'kUnMountDatastoreDone' indicates that disk has
             unmounted the datastore.
         virtual_disk_restore_response (VirtualDiskRestoreResponse): Specifies
             the response for recovery of virtual disks of a vm.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "error":'error',
         "is_instant_recovery_finished":'isInstantRecoveryFinished',
         "task_state":'taskState',
-        "virtual_disk_restore_response":'virtualDiskRestoreResponse'
+        "virtual_disk_restore_response":'virtualDiskRestoreResponse',
     }
-
     def __init__(self,
                  error=None,
                  is_instant_recovery_finished=None,
                  task_state=None,
-                 virtual_disk_restore_response=None):
+                 virtual_disk_restore_response=None,
+            ):
+
         """Constructor for the VirtualDiskRecoverTaskState class"""
 
         # Initialize members of the class
@@ -49,7 +52,6 @@ class VirtualDiskRecoverTaskState(object):
         self.is_instant_recovery_finished = is_instant_recovery_finished
         self.task_state = task_state
         self.virtual_disk_restore_response = virtual_disk_restore_response
-
 
     @classmethod
     def from_dictionary(cls,
@@ -75,9 +77,9 @@ class VirtualDiskRecoverTaskState(object):
         virtual_disk_restore_response = cohesity_management_sdk.models.virtual_disk_restore_response.VirtualDiskRestoreResponse.from_dictionary(dictionary.get('virtualDiskRestoreResponse')) if dictionary.get('virtualDiskRestoreResponse') else None
 
         # Return an object of this model
-        return cls(error,
-                   is_instant_recovery_finished,
-                   task_state,
-                   virtual_disk_restore_response)
-
-
+        return cls(
+            error,
+            is_instant_recovery_finished,
+            task_state,
+            virtual_disk_restore_response
+)

@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class LockFileParams(object):
 
@@ -8,29 +7,31 @@ class LockFileParams(object):
 
     Specifies the parameters to lock a file in a view.
 
+
     Attributes:
-        expiry_timestamp_msecs (int): Specifies a definite timestamp in
+
+        expiry_timestamp_msecs (long|int): Specifies a definite timestamp in
             milliseconds for retaining the file, or to extend it's expiry
             timestamp.
         path (string): Specifies the file path that needs to be locked.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "expiry_timestamp_msecs":'expiryTimestampMsecs',
-        "path":'path'
+        "path":'path',
     }
-
     def __init__(self,
                  expiry_timestamp_msecs=None,
-                 path=None):
+                 path=None,
+            ):
+
         """Constructor for the LockFileParams class"""
 
         # Initialize members of the class
         self.expiry_timestamp_msecs = expiry_timestamp_msecs
         self.path = path
-
 
     @classmethod
     def from_dictionary(cls,
@@ -54,7 +55,7 @@ class LockFileParams(object):
         path = dictionary.get('path')
 
         # Return an object of this model
-        return cls(expiry_timestamp_msecs,
-                   path)
-
-
+        return cls(
+            expiry_timestamp_msecs,
+            path
+)

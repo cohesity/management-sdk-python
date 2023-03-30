@@ -1,35 +1,39 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class PodInfo_PodSpec_VolumeInfo_KeyToPath(object):
 
     """Implementation of the 'PodInfo_PodSpec_VolumeInfo_KeyToPath' model.
 
+    TODO: type description here.
+
+
     Attributes:
-        key (string):  TODO: Type description here.
+
+        key (string): TODO: Type description here.
         mode (int): TODO: Type description here.
         path (string): TODO: Type description here.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "key":'key',
         "mode":'mode',
-        "path":'path'
+        "path":'path',
     }
-
     def __init__(self,
                  key=None,
                  mode=None,
-                 path=None):
+                 path=None,
+            ):
+
         """Constructor for the PodInfo_PodSpec_VolumeInfo_KeyToPath class"""
 
         # Initialize members of the class
         self.key = key
         self.mode = mode
         self.path = path
-
 
     @classmethod
     def from_dictionary(cls,
@@ -54,8 +58,8 @@ class PodInfo_PodSpec_VolumeInfo_KeyToPath(object):
         path = dictionary.get('path')
 
         # Return an object of this model
-        return cls(key,
-                   mode,
-                   path)
-
-
+        return cls(
+            key,
+            mode,
+            path
+)

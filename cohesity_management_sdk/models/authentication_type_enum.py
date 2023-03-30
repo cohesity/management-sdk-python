@@ -1,27 +1,31 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 class AuthenticationTypeEnum(object):
 
     """Implementation of the 'AuthenticationType' enum.
+    Specifies the authentication type of the user. 'kAuthLocal' implies
+    authenticated user is a local user. 'kAuthAd' implies authenticated user is
+    an Active Directory user. 'kAuthSalesforce' implies authenticated user is a
+    Salesforce user. 'kAuthGoogle' implies authenticated user is a Google user.
+    'kAuthSso' implies authenticated user is an SSO user.
 
-    Specifies the authentication scheme for the cluster.
-    'kPasswordOnly' indicates the normal cohesity authentication type.
-    'kCertificateOnly' indicates that certificate based authentication has
-    been enabled and the password based authentication has been turned off.
-    'kPasswordAndCertificate' indicates that both the authenticatio schemes
-    are required.
 
     Attributes:
-        KPASSWORDONLY: TODO: type description here.
-        KCERTIFICATEONLY: TODO: type description here.
-        KPASSWORDANDCERTIFICATE: TODO: type description here.
+        KAUTHLOCAL: TODO: type description here.
+        KAUTHAD: TODO: type description here.
+        KAUTHSALESFORCE: TODO: type description here.
+        KAUTHGOOGLE: TODO: type description here.
+        KAUTHSSO: TODO: type description here.
 
     """
 
-    KPASSWORDONLY = 'kPasswordOnly'
+    KAUTHLOCAL = 'kAuthLocal'
 
-    KCERTIFICATEONLY = 'kCertificateOnly'
+    KAUTHAD = 'kAuthAd'
 
-    KPASSWORDANDCERTIFICATE = 'kPasswordAndCertificate'
+    KAUTHSALESFORCE = 'kAuthSalesforce'
 
+    KAUTHGOOGLE = 'kAuthGoogle'
+
+    KAUTHSSO = 'kAuthSso'

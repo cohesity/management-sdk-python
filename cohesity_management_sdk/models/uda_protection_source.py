@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.uda_cluster
 import cohesity_management_sdk.models.uda_object
+
 
 class UdaProtectionSource(object):
 
@@ -10,46 +11,50 @@ class UdaProtectionSource(object):
 
     Specifies an Object representing Universal Data Adapter.
 
+
     Attributes:
-        cluster_info (UdaCluster): Information of a Universal Data
-            Adapter cluster, only valid for an entity of mtype kCluster.
+
+        cluster_info (UdaCluster): Information of a Universal Data Adapter
+            cluster, only valid for an entity of type kCluster.
         name (string): Specifies the instance name of the Universal Data
             Adapter entity.
         object_info (UdaObject): Information of a Universal Data Adapter
-            object, only valid for an entity of
-        uuid (string): Specifies the UUID for the Universal Data Adapter entity.
-        mtype (TypeUdaProtectionSourceEnum): Specifies the mtype of the managed
-            Object in Universal Data Adapter Protection Source.
-            Specifies the mtype of an Universal Data Adapter source entity.
-            'kCluster' indicates a Universal Data Adapter source, possibly
-            distributed over several physical nodes.
-
+            object, only valid for an entity of type kObject.
+        mtype (TypeUdaProtectionSourceEnum): Specifies the type of the managed
+            Object in Universal Data Adapter Protection Source. Specifies the
+            type of an Universal Data Adapter source entity. 'kCluster'
+            indicates a Universal Data Adapter source, possibly distributed
+            over several physical nodes. 'kObject' indicates a generic object
+            within the UDA environment.
+        uuid (string): Specifies the UUID for the Universal Data Adapter
+            entity.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "cluster_info":'clusterInfo',
         "name":'name',
         "object_info":'objectInfo',
+        "mtype":'type',
         "uuid":'uuid',
-        "mtype":'type'
     }
-
     def __init__(self,
                  cluster_info=None,
                  name=None,
                  object_info=None,
+                 mtype=None,
                  uuid=None,
-                 mtype=None):
+            ):
+
         """Constructor for the UdaProtectionSource class"""
 
         # Initialize members of the class
         self.cluster_info = cluster_info
         self.name = name
         self.object_info = object_info
-        self.uuid = uuid
         self.mtype = mtype
-
+        self.uuid = uuid
 
     @classmethod
     def from_dictionary(cls,
@@ -76,10 +81,10 @@ class UdaProtectionSource(object):
         uuid = dictionary.get('uuid')
 
         # Return an object of this model
-        return cls(cluster_info,
-                   name,
-                   object_info,
-                   uuid,
-                   mtype)
-
-
+        return cls(
+            cluster_info,
+            name,
+            object_info,
+            mtype,
+            uuid
+)

@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.application_restore_object
-import cohesity_management_sdk.models.restore_object_details
 import cohesity_management_sdk.models.protection_source_and_application_restore_objects
+import cohesity_management_sdk.models.restore_object_details
+
 
 class ApplicationRestoreParameters(object):
 
@@ -11,7 +12,9 @@ class ApplicationRestoreParameters(object):
 
     Specifies the information regarding the application restore parameters.
 
+
     Attributes:
+
         application_environment (ApplicationEnvironmentEnum): Specifies the
             Environment of the Application server to restore like
             'kSQL','kAD',or 'kExchange'. Supported environment types such as
@@ -23,13 +26,13 @@ class ApplicationRestoreParameters(object):
             environment. 'kPuppeteer' indicates the Cohesity's Remote Adapter.
             'kPhysical' indicates the physical Protection Source environment.
             'kPure' indicates the Pure Storage Protection Source environment.
-            'Nimble' indicates the Nimble Storage Protection Source
+            'kNimble' indicates the Nimble Storage Protection Source
             environment. 'kAzure' indicates the Microsoft's Azure Protection
             Source environment. 'kNetapp' indicates the Netapp Protection
             Source environment. 'kAgent' indicates the Agent Protection Source
             environment. 'kGenericNas' indicates the Generic Network Attached
             Storage Protection Source environment. 'kAcropolis' indicates the
-            Acropolis Protection Source environment. 'kPhsicalFiles' indicates
+            Acropolis Protection Source environment. 'kPhysicalFiles' indicates
             the Physical Files Protection Source environment. 'kIsilon'
             indicates the Dell EMC's Isilon Protection Source environment.
             'kGPFS' indicates IBM's GPFS Protection Source environment. 'kKVM'
@@ -57,35 +60,42 @@ class ApplicationRestoreParameters(object):
             indicates Hdfs Protection Source environment. 'kHive' indicates
             Hive Protection Source environment. 'kHBase' indicates HBase
             Protection Source environment. 'kUDA' indicates Universal Data
-            Adapter Protection Source environment.
+            Adapter Protection Source environment. 'kO365Teams' indicates the
+            Office365 Teams Protection Source environment. 'kO365Group'
+            indicates the Office365 Groups Protection Source environment.
+            'kO365Exchange' indicates the Office365 Mailbox Protection Source
+            environment. 'kO365OneDrive' indicates the Office365 OneDrive
+            Protection Source environment. 'kO365Sharepoint' indicates the
+            Office365 SharePoint Protection Source environment.
+            'kO365PublicFolders' indicates the Office365 PublicFolders
+            Protection Source environment.
         application_restore_objects (list of ApplicationRestoreObject):
             Specifies the Application Server objects whose data should be
             restored.
-        hosting_protection_source (RestoreObjectDetails): Specifies an object
-            to recover or clone or an object to restore files and folders
-            from. A VM object can be recovered or cloned. A View object can be
-            cloned. To specify a particular snapshot, you must specify a
-            jobRunId and a startTimeUsecs. If jobRunId and startTimeUsecs are
-            not specified, the last Job Run of the specified Job is used.
-        protection_source_and_application_objects (list of 
-            ProtectionSourceAndApplicationRestoreObjects): Specifies the list of
-            hosting protection source and Application restore objects tuple.
-
+        hosting_protection_source (RestoreObjectDetails): Specifies the restore
+            information for the Protection Source object that registered and
+            hosts the Application Servers. This provides the snapshot details
+            from which the application should be restored.
+        protection_source_and_application_objects (list of
+            ProtectionSourceAndApplicationRestoreObjects): Specifies the list
+            of hosting protection source and Application restore objects tuple.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "application_environment":'applicationEnvironment',
         "application_restore_objects":'applicationRestoreObjects',
         "hosting_protection_source":'hostingProtectionSource',
-        "protection_source_and_application_objects":'protectionSourceAndApplicationObjects'
+        "protection_source_and_application_objects":'protectionSourceAndApplicationObjects',
     }
-
     def __init__(self,
                  application_environment=None,
                  application_restore_objects=None,
                  hosting_protection_source=None,
-                 protection_source_and_application_objects=None):
+                 protection_source_and_application_objects=None,
+            ):
+
         """Constructor for the ApplicationRestoreParameters class"""
 
         # Initialize members of the class
@@ -93,7 +103,6 @@ class ApplicationRestoreParameters(object):
         self.application_restore_objects = application_restore_objects
         self.hosting_protection_source = hosting_protection_source
         self.protection_source_and_application_objects = protection_source_and_application_objects
-
 
     @classmethod
     def from_dictionary(cls,
@@ -123,12 +132,13 @@ class ApplicationRestoreParameters(object):
         protection_source_and_application_objects = None
         if dictionary.get('protectionSourceAndApplicationObjects') != None:
             protection_source_and_application_objects = list()
-            for each_object in dictionary.get('protectionSourceAndApplicationObjects'):
-                protection_source_and_application_objects.append(cohesity_management_sdk.models.protection_source_and_application_restore_objects.ProtectionSourceAndApplicationRestoreObjects.from_dictionary(each_object))
+            for structure in dictionary.get('protectionSourceAndApplicationObjects'):
+                protection_source_and_application_objects.append(cohesity_management_sdk.models.protection_source_and_application_restore_objects.ProtectionSourceAndApplicationRestoreObjects.from_dictionary(structure))
+
         # Return an object of this model
-        return cls(application_environment,
-                   application_restore_objects,
-                   hosting_protection_source,
-                   protection_source_and_application_objects)
-
-
+        return cls(
+            application_environment,
+            application_restore_objects,
+            hosting_protection_source,
+            protection_source_and_application_objects
+)

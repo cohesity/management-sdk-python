@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class RestoredFileInfo(object):
 
     """Implementation of the 'RestoredFileInfo' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
+
         absolute_path (string): Full path of the file being restored: the
             actual file path without the disk. E.g.: \Program
             Files\App\file.txt
@@ -16,8 +17,8 @@ class RestoredFileInfo(object):
             currently located.
         disk_partition_id (int): Disk partition to which the file belongs to.
         fs_uuid (string): File system UUID on which file resides.
-        inode_number (long|int): Inode number of the file.
-            This is needed for snapmirror restore workflow.
+        inode_number (long|int): Inode number of the file. This is needed for
+            snapmirror restore workflow.
         is_directory (bool): Whether the path points to a directory.
         is_non_simple_ldm_vol (bool): This will be set to true for recovery
             workflows for non-simple volumes on Windows Dynamic Disks. In that
@@ -25,11 +26,11 @@ class RestoredFileInfo(object):
             captured here (e.g. virtual_disk_file) for determining disk and
             volume related details.
         restore_base_directory (string): This must be set to a directory path
-            if restore_to_original_paths is false and restore task has
-            multiple files which are not desired to be restore to one common
-            location. If this filed is populated, 'absolute_path' will be
-            restored under this location. If this field is not populated all
-            files in restore task will be restored to location specified in
+            if restore_to_original_paths is false and restore task has multiple
+            files which are not desired to be restore to one common location.
+            If this filed is populated, 'absolute_path' will be restored under
+            this location. If this field is not populated all files in restore
+            task will be restored to location specified in
             RestoreFilesPreferences.
         restore_mount_point (string): Mount point of the volume on which the
             file to be restored is located. E.g.: c:\temp\vhd_mount_1234
@@ -40,8 +41,8 @@ class RestoredFileInfo(object):
         volume_id (string): Id of the volume.
         volume_path (string): Original volume name (or drive letter). This is
             used while performing the copy to the original paths. E.g.: c:
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -57,9 +58,8 @@ class RestoredFileInfo(object):
         "size_bytes":'sizeBytes',
         "virtual_disk_file":'virtualDiskFile',
         "volume_id":'volumeId',
-        "volume_path":'volumePath'
+        "volume_path":'volumePath',
     }
-
     def __init__(self,
                  absolute_path=None,
                  attached_disk_id=None,
@@ -73,7 +73,9 @@ class RestoredFileInfo(object):
                  size_bytes=None,
                  virtual_disk_file=None,
                  volume_id=None,
-                 volume_path=None):
+                 volume_path=None,
+            ):
+
         """Constructor for the RestoredFileInfo class"""
 
         # Initialize members of the class
@@ -90,7 +92,6 @@ class RestoredFileInfo(object):
         self.virtual_disk_file = virtual_disk_file
         self.volume_id = volume_id
         self.volume_path = volume_path
-
 
     @classmethod
     def from_dictionary(cls,
@@ -125,18 +126,18 @@ class RestoredFileInfo(object):
         volume_path = dictionary.get('volumePath')
 
         # Return an object of this model
-        return cls(absolute_path,
-                   attached_disk_id,
-                   disk_partition_id,
-                   fs_uuid,
-                   inode_number,
-                   is_directory,
-                   is_non_simple_ldm_vol,
-                   restore_base_directory,
-                   restore_mount_point,
-                   size_bytes,
-                   virtual_disk_file,
-                   volume_id,
-                   volume_path)
-
-
+        return cls(
+            absolute_path,
+            attached_disk_id,
+            disk_partition_id,
+            fs_uuid,
+            inode_number,
+            is_directory,
+            is_non_simple_ldm_vol,
+            restore_base_directory,
+            restore_mount_point,
+            size_bytes,
+            virtual_disk_file,
+            volume_id,
+            volume_path
+)

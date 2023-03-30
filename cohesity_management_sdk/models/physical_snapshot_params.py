@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class PhysicalSnapshotParams(object):
 
@@ -9,7 +8,9 @@ class PhysicalSnapshotParams(object):
     This message contains params that controls the snapshot process for a
     physical host.
 
+
     Attributes:
+
         fetch_snapshot_metadata_disabled (bool): Whether fetching and storing
             of snapshot metadata was disabled.
         notify_backup_complete_disabled (bool): Whether notify backup complete
@@ -18,22 +19,23 @@ class PhysicalSnapshotParams(object):
             at the time of the snapshot.
         vss_excluded_writers (list of string): List of VSS writers that were
             excluded.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "fetch_snapshot_metadata_disabled":'fetchSnapshotMetadataDisabled',
         "notify_backup_complete_disabled":'notifyBackupCompleteDisabled',
         "vss_copy_only_backup":'vssCopyOnlyBackup',
-        "vss_excluded_writers":'vssExcludedWriters'
+        "vss_excluded_writers":'vssExcludedWriters',
     }
-
     def __init__(self,
                  fetch_snapshot_metadata_disabled=None,
                  notify_backup_complete_disabled=None,
                  vss_copy_only_backup=None,
-                 vss_excluded_writers=None):
+                 vss_excluded_writers=None,
+            ):
+
         """Constructor for the PhysicalSnapshotParams class"""
 
         # Initialize members of the class
@@ -41,7 +43,6 @@ class PhysicalSnapshotParams(object):
         self.notify_backup_complete_disabled = notify_backup_complete_disabled
         self.vss_copy_only_backup = vss_copy_only_backup
         self.vss_excluded_writers = vss_excluded_writers
-
 
     @classmethod
     def from_dictionary(cls,
@@ -64,12 +65,12 @@ class PhysicalSnapshotParams(object):
         fetch_snapshot_metadata_disabled = dictionary.get('fetchSnapshotMetadataDisabled')
         notify_backup_complete_disabled = dictionary.get('notifyBackupCompleteDisabled')
         vss_copy_only_backup = dictionary.get('vssCopyOnlyBackup')
-        vss_excluded_writers = dictionary.get('vssExcludedWriters')
+        vss_excluded_writers = dictionary.get("vssExcludedWriters")
 
         # Return an object of this model
-        return cls(fetch_snapshot_metadata_disabled,
-                   notify_backup_complete_disabled,
-                   vss_copy_only_backup,
-                   vss_excluded_writers)
-
-
+        return cls(
+            fetch_snapshot_metadata_disabled,
+            notify_backup_complete_disabled,
+            vss_copy_only_backup,
+            vss_excluded_writers
+)

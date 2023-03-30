@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class CassandraSecurityInfo(object):
 
@@ -8,39 +7,35 @@ class CassandraSecurityInfo(object):
 
     Specifies an Object containing information on Cassandra security.
 
-    Attributes:
-        cassandra_auth_required (bool): Is Cassandra authentication
-            required ?
-        cassandra_auth_type (CassandraAuthTypeEnum): Cassandra Authentication
-            type.
-            Enum: [PASSWORD KERBEROS LDAP]
-            Specifies the Cassandra auth type.
-            'PASSWORD'
-            'KERBEROS'
-            'LDAP'
-        cassandra_authorizer (string): Cassandra Authenticator/Authorizer.
-        client_encryption (bool): Is Client Encryption enabled for this
-            cluster ?
-        dse_authorization (bool): Is DSE Authorization enabled for this
-            cluster ?
-        server_encryption_req_client_auth (bool): Is 'Server encryption
-            request client authentication' enabled for this cluster ?
-        server_internode_encryption_type (string): '''Server internal node
-            Encryption'' type for this cluster.'
 
+    Attributes:
+
+        cassandra_auth_required (bool): Is Cassandra authentication required ?
+        cassandra_auth_type (CassandraAuthTypeEnum): Cassandra Authentication
+            type. Enum: [PASSWORD KERBEROS LDAP] Specifies the Cassandra auth
+            type. 'PASSWORD' 'KERBEROS' 'LDAP'
+        cassandra_authorizer (string): Cassandra Authenticator/Authorizer.
+        client_encryption (bool): Is Client Encryption enabled for this cluster
+            ?
+        dse_authorization (bool): Is DSE Authorization enabled for this cluster
+            ?
+        server_encryption_req_client_auth (bool): Is 'Server encryption request
+            client authentication' enabled for this cluster ?
+        server_internode_encryption_type (string): 'Server internal node
+            Encryption' type for this cluster.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "cassandra_auth_required": 'cassandraAuthRequired',
-        "cassandra_auth_type": 'cassandraAuthType',
-        "cassandra_authorizer": 'cassandraAuthorizer',
-        "client_encryption": 'clientEncryption',
+        "cassandra_auth_required":'cassandraAuthRequired',
+        "cassandra_auth_type":'cassandraAuthType',
+        "cassandra_authorizer":'cassandraAuthorizer',
+        "client_encryption":'clientEncryption',
         "dse_authorization":'dseAuthorization',
         "server_encryption_req_client_auth":'serverEncryptionReqClientAuth',
-        "server_internode_encryption_type":'serverInternodeEncryptionType'
+        "server_internode_encryption_type":'serverInternodeEncryptionType',
     }
-
     def __init__(self,
                  cassandra_auth_required=None,
                  cassandra_auth_type=None,
@@ -48,7 +43,9 @@ class CassandraSecurityInfo(object):
                  client_encryption=None,
                  dse_authorization=None,
                  server_encryption_req_client_auth=None,
-                 server_internode_encryption_type=None):
+                 server_internode_encryption_type=None,
+            ):
+
         """Constructor for the CassandraSecurityInfo class"""
 
         # Initialize members of the class
@@ -87,12 +84,12 @@ class CassandraSecurityInfo(object):
         server_internode_encryption_type = dictionary.get('serverInternodeEncryptionType')
 
         # Return an object of this model
-        return cls(cassandra_auth_required,
-                   cassandra_auth_type,
-                   cassandra_authorizer,
-                   client_encryption,
-                   dse_authorization,
-                   server_encryption_req_client_auth,
-                   server_internode_encryption_type)
-
-
+        return cls(
+            cassandra_auth_required,
+            cassandra_auth_type,
+            cassandra_authorizer,
+            client_encryption,
+            dse_authorization,
+            server_encryption_req_client_auth,
+            server_internode_encryption_type
+)

@@ -1,30 +1,33 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
-
+# Copyright 2023 Cohesity Inc.
 
 class LinuxSupportUserSudoAccessReqParams(object):
 
     """Implementation of the 'LinuxSupportUserSudoAccessReqParams' model.
 
-    Linux Support Sudo Access Req Params.
+    TODO: type description here.
+
 
     Attributes:
-        sudo_access_enable (bool): If sudoAccessEnable is set to true, the
-            token would be regenerated and the new token will be returned.
+
+        sudo_access_enable (bool): If the enable flag is set to true, the sudo
+            access will be enabled. If the enable flag is set to false, the
+            sudo access will be disabled.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "sudo_access_enable":'sudoAccessEnable'
+        "sudo_access_enable":'sudoAccessEnable',
     }
-
     def __init__(self,
-                 sudo_access_enable=None):
+                 sudo_access_enable=None,
+            ):
+
         """Constructor for the LinuxSupportUserSudoAccessReqParams class"""
 
         # Initialize members of the class
         self.sudo_access_enable = sudo_access_enable
-
 
     @classmethod
     def from_dictionary(cls,
@@ -47,6 +50,6 @@ class LinuxSupportUserSudoAccessReqParams(object):
         sudo_access_enable = dictionary.get('sudoAccessEnable')
 
         # Return an object of this model
-        return cls(sudo_access_enable)
-
-
+        return cls(
+            sudo_access_enable
+)

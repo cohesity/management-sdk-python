@@ -1,42 +1,45 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.restore_exchange_params_database_options
 import cohesity_management_sdk.models.restore_exchange_params_view_options
+
 
 class RestoreExchangeParams(object):
 
     """Implementation of the 'RestoreExchangeParams' model.
 
-    Params specific to restoring an Exchange application.
+    TODO: type description here.
+
 
     Attributes:
+
         database_options (RestoreExchangeParams_DatabaseOptions): Only
             applicable when ExchangeRestoreType.Type=kDatabase.
         mtype (int): Restore type.
-        view_options (RestoreExchangeParams_ViewOptions): Only applicable
-            when ExchangeRestoreType.Type=kView.
-
+        view_options (RestoreExchangeParams_ViewOptions): Only applicable when
+            ExchangeRestoreType.Type=kView.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "database_options":'databaseOptions',
         "mtype":'type',
-        "view_options":'viewOptions'
+        "view_options":'viewOptions',
     }
-
     def __init__(self,
                  database_options=None,
                  mtype=None,
-                 view_options=None):
+                 view_options=None,
+            ):
+
         """Constructor for the RestoreExchangeParams class"""
 
         # Initialize members of the class
         self.database_options = database_options
         self.mtype = mtype
         self.view_options = view_options
-
 
     @classmethod
     def from_dictionary(cls,
@@ -61,8 +64,8 @@ class RestoreExchangeParams(object):
         view_options = cohesity_management_sdk.models.restore_exchange_params_view_options.RestoreExchangeParams_ViewOptions.from_dictionary(dictionary.get('viewOptions')) if dictionary.get('viewOptions') else None
 
         # Return an object of this model
-        return cls(database_options,
-                   mtype,
-                   view_options)
-
-
+        return cls(
+            database_options,
+            mtype,
+            view_options
+)

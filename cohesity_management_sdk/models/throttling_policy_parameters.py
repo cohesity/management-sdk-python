@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.latency_thresholds
 import cohesity_management_sdk.models.nas_source_throttling_params
+import cohesity_management_sdk.models.storage_array_snapshot_config_params
+
 
 class ThrottlingPolicyParameters(object):
 
@@ -10,7 +12,9 @@ class ThrottlingPolicyParameters(object):
 
     Specifies the throttling policy for a registered Protection Source.
 
+
     Attributes:
+
         enforce_max_streams (bool): Specifies whether datastore streams are
             configured for all datastores that are part of the registered
             entity. If set to true, number of streams from Cohesity cluster to
@@ -19,29 +23,31 @@ class ThrottlingPolicyParameters(object):
             limit for the number of concurrent streams.
         enforce_registered_source_max_backups (bool): Specifies whether no. of
             backups are configured for the registered entity. If set to true,
-            number of backups made by Cohesity cluster in the registered
-            entity will be limited to the value set for
+            number of backups made by Cohesity cluster in the registered entity
+            will be limited to the value set for
             RegisteredSourceMaxConcurrentBackups. If not set or set to false,
             there is no max limit for the number of concurrent backups.
-        is_enabled (bool): Indicates whether read operations to the
-            datastores, which are part of the registered Protection Source,
-            are throttled.
-        latency_thresholds (LatencyThresholds): Specifies latency thresholds
-            that trigger throttling for all datastores found in the registered
-            Protection Source or specific to one datastore.
+        is_enabled (bool): Indicates whether read operations to the datastores,
+            which are part of the registered Protection Source, are throttled.
+        latency_thresholds (LatencyThresholds): Specifies the thresholds that
+            should be applied to all datastores that are part of the registered
+            Object.
         max_concurrent_streams (int): Specifies the limit on the number of
             streams Cohesity cluster will make concurrently to the datastores
-            of the registered entity. This limit is enforced only when the
-            flag enforceMaxStreams is set to true.
+            of the registered entity. This limit is enforced only when the flag
+            enforceMaxStreams is set to true.
         nas_source_params (NasSourceThrottlingParams): Specifies the NAS
-            specific source throttling parameters during source registration
-            of the source.
+            specific source throttling parameters during source registration of
+            the source.
         registered_source_max_concurrent_backups (int): Specifies the limit on
             the number of backups Cohesity cluster will make concurrently to
             the registered entity. This limit is enforced only when the flag
             enforceRegisteredSourceMaxBackups is set to true.
-
+        storage_array_snapshot_config (StorageArraySnapshotConfigParams):
+            Specifies the storage array snapshot configuration parameters.
+            Valid only when IsStorageArraySnapshotEnabled is true.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -51,9 +57,9 @@ class ThrottlingPolicyParameters(object):
         "latency_thresholds":'latencyThresholds',
         "max_concurrent_streams":'maxConcurrentStreams',
         "nas_source_params":'nasSourceParams',
-        "registered_source_max_concurrent_backups":'registeredSourceMaxConcurrentBackups'
+        "registered_source_max_concurrent_backups":'registeredSourceMaxConcurrentBackups',
+        "storage_array_snapshot_config":'storageArraySnapshotConfig',
     }
-
     def __init__(self,
                  enforce_max_streams=None,
                  enforce_registered_source_max_backups=None,
@@ -61,7 +67,10 @@ class ThrottlingPolicyParameters(object):
                  latency_thresholds=None,
                  max_concurrent_streams=None,
                  nas_source_params=None,
-                 registered_source_max_concurrent_backups=None):
+                 registered_source_max_concurrent_backups=None,
+                 storage_array_snapshot_config=None,
+            ):
+
         """Constructor for the ThrottlingPolicyParameters class"""
 
         # Initialize members of the class
@@ -72,7 +81,7 @@ class ThrottlingPolicyParameters(object):
         self.max_concurrent_streams = max_concurrent_streams
         self.nas_source_params = nas_source_params
         self.registered_source_max_concurrent_backups = registered_source_max_concurrent_backups
-
+        self.storage_array_snapshot_config = storage_array_snapshot_config
 
     @classmethod
     def from_dictionary(cls,
@@ -99,14 +108,16 @@ class ThrottlingPolicyParameters(object):
         max_concurrent_streams = dictionary.get('maxConcurrentStreams')
         nas_source_params = cohesity_management_sdk.models.nas_source_throttling_params.NasSourceThrottlingParams.from_dictionary(dictionary.get('nasSourceParams')) if dictionary.get('nasSourceParams') else None
         registered_source_max_concurrent_backups = dictionary.get('registeredSourceMaxConcurrentBackups')
+        storage_array_snapshot_config = cohesity_management_sdk.models.storage_array_snapshot_config_params.StorageArraySnapshotConfigParams.from_dictionary(dictionary.get('storageArraySnapshotConfig')) if dictionary.get('storageArraySnapshotConfig') else None
 
         # Return an object of this model
-        return cls(enforce_max_streams,
-                   enforce_registered_source_max_backups,
-                   is_enabled,
-                   latency_thresholds,
-                   max_concurrent_streams,
-                   nas_source_params,
-                   registered_source_max_concurrent_backups)
-
-
+        return cls(
+            enforce_max_streams,
+            enforce_registered_source_max_backups,
+            is_enabled,
+            latency_thresholds,
+            max_concurrent_streams,
+            nas_source_params,
+            registered_source_max_concurrent_backups,
+            storage_array_snapshot_config
+)

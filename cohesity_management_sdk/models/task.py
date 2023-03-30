@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-# Copyright 2021 Cohesity Inc.
+# Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.task_attribute
 import cohesity_management_sdk.models.task_event
+
 
 class Task(object):
 
@@ -10,7 +11,9 @@ class Task(object):
 
     Specifies one task.
 
+
     Attributes:
+
         attributes (list of TaskAttribute): The latest attributes reported for
             this task.
         end_time_seconds (long|int): Specifies the end time of the task.
@@ -20,31 +23,30 @@ class Task(object):
             task.
         expected_end_time_seconds (long|int): Specifies the estimated end time
             of the task.
-        expected_seconds_remaining (long|int): Specifies the expected
-            remaining time for this task in seconds.
+        expected_seconds_remaining (long|int): Specifies the expected remaining
+            time for this task in seconds.
         expected_total_work_count (long|int): The expected raw count of the
-            total work remaining. This is the highest work count value
-            reported by the client. This field can be set to let pulse compute
+            total work remaining. This is the highest work count value reported
+            by the client. This field can be set to let pulse compute
             percentFinished by looking at the currently reported
             remainingWorkCount and the expectedTotalWorkCount.
         last_update_time_seconds (long|int): Specifies the timestamp when the
             last progress was reported.
-        percent_finished (float): Specifies the reported progress on the
-            task.
+        percent_finished (float): Specifies the reported progress on the task.
         start_time_seconds (long|int): Specifies the start time of the task.
         status (StatusTaskEnum): Specifies the status of the task being
             queried. 'kActive' indicates that the task is still active.
             'kFinished' indicates that the task has finished without any
             errors. 'kFinishedWithError' indicates that the task has finished,
             but that there was an errror of some kind. 'kCancelled' indicates
-            that the task was cancelled. 'kFinishedGarbageCollected' inidcates
+            that the task was cancelled. 'kFinishedGarbageCollected' indicates
             that the task was garbage collected due to its subtasks not
             finishing within the allotted time.
         sub_tasks (list of object): Specifies a list of subtasks belonging to
             this task.
         task_path (string): Specifes the path of this task.
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -60,9 +62,8 @@ class Task(object):
         "start_time_seconds":'startTimeSeconds',
         "status":'status',
         "sub_tasks":'subTasks',
-        "task_path":'taskPath'
+        "task_path":'taskPath',
     }
-
     def __init__(self,
                  attributes=None,
                  end_time_seconds=None,
@@ -76,7 +77,9 @@ class Task(object):
                  start_time_seconds=None,
                  status=None,
                  sub_tasks=None,
-                 task_path=None):
+                 task_path=None,
+            ):
+
         """Constructor for the Task class"""
 
         # Initialize members of the class
@@ -93,7 +96,6 @@ class Task(object):
         self.status = status
         self.sub_tasks = sub_tasks
         self.task_path = task_path
-
 
     @classmethod
     def from_dictionary(cls,
@@ -132,22 +134,22 @@ class Task(object):
         percent_finished = dictionary.get('percentFinished')
         start_time_seconds = dictionary.get('startTimeSeconds')
         status = dictionary.get('status')
-        sub_tasks = dictionary.get('subTasks')
+        sub_tasks = dictionary.get("subTasks")
         task_path = dictionary.get('taskPath')
 
         # Return an object of this model
-        return cls(attributes,
-                   end_time_seconds,
-                   error_message,
-                   events,
-                   expected_end_time_seconds,
-                   expected_seconds_remaining,
-                   expected_total_work_count,
-                   last_update_time_seconds,
-                   percent_finished,
-                   start_time_seconds,
-                   status,
-                   sub_tasks,
-                   task_path)
-
-
+        return cls(
+            attributes,
+            end_time_seconds,
+            error_message,
+            events,
+            expected_end_time_seconds,
+            expected_seconds_remaining,
+            expected_total_work_count,
+            last_update_time_seconds,
+            percent_finished,
+            start_time_seconds,
+            status,
+            sub_tasks,
+            task_path
+)
