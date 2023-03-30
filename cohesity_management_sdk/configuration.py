@@ -62,6 +62,10 @@ class Configuration(object):
 
     # API Key patch
     api_key = None
+
+    # Session-Id.
+    session_id = None
+
     # Open Id token.
     open_id_token = None
 
