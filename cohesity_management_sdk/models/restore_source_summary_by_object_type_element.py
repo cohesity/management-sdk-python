@@ -22,8 +22,8 @@ class RestoreSourceSummaryByObjectTypeElement(object):
             their original datastore locations in the original parent source.
         file_restore_info (list of FileRestoreInfo): Specifies a list of
             restore information of files.
-        name (string): Specifies the name of the Restore Task. This field must
-            be set and must be a unique name.
+        name (string, required): Specifies the name of the Restore Task. This
+            field must be set and must be a unique name.
         objects (list of RestoreObjectDetails): Array of Objects.  Specifies a
             list of Protection Source objects or Protection Job objects (with
             specified Protection Source objects).

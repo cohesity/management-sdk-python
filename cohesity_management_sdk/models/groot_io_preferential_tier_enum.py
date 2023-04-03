@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-class GrootIoPreferentialTierEnum(object):
+class GrootIOPreferentialTierEnum(object):
 
-    """Implementation of the 'GrootIoPreferentialTier' enum.
+    """Implementation of the 'GrootIOPreferentialTier' enum.
     Specifies the preferred storage tier used by Groot as its working
     directory.
 

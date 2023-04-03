@@ -69,8 +69,8 @@ class RestoreTask(object):
         mount_volumes_state (MountVolumesState): Specifies the states of
             mounting all the volumes onto a mount target for a 'kRecoverVMs'
             Restore Task.
-        name (string): Specifies the name of the Restore Task. This field must
-            be set and must be a unique name.
+        name (string, required): Specifies the name of the Restore Task. This
+            field must be set and must be a unique name.
         new_parent_id (long|int): Specify a new registered parent Protection
             Source. If specified the selected objects are cloned or recovered
             to this new Protection Source. If not specified, objects are cloned

@@ -12,9 +12,9 @@ import cohesity_management_sdk.models.vmware_cdp_protection_source_info
 import cohesity_management_sdk.models.vmware_object_id
 
 
-class VMwareProtectionSource(object):
+class VmwareProtectionSource(object):
 
-    """Implementation of the 'VMwareProtectionSource' model.
+    """Implementation of the 'VmwareProtectionSource' model.
 
     Specifies a Protection Source in a VMware environment.
 
@@ -179,7 +179,7 @@ class VMwareProtectionSource(object):
                  vm_linking_info=None,
             ):
 
-        """Constructor for the VMwareProtectionSource class"""
+        """Constructor for the VmwareProtectionSource class"""
 
         # Initialize members of the class
         self.agent_id = agent_id

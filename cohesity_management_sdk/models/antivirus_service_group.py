@@ -17,10 +17,12 @@ class AntivirusServiceGroup(object):
             Antivirus Services belonging to this antivirus group.
         description (string): Specifies the description of the Antivirus
             service group.
-        id (long|int): Specifies the Id of the Antivirus service group.
+        id (long|int, required): Specifies the Id of the Antivirus service
+            group.
         is_enabled (bool): Specifies whether the antivirus service group is
             enabled or not.
-        name (string): Specifies the name of the Antivirus service group.
+        name (string, required): Specifies the name of the Antivirus service
+            group.
     """
 
 

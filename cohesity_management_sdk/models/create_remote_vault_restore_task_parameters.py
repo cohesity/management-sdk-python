@@ -37,13 +37,13 @@ class CreateRemoteVaultRestoreTaskParameters(object):
             Specifies the list of Snapshots and the index to be restored from
             the remote Vault. The data on the remote Vault may have been
             originally archived from multiple remote Clusters.
-        search_job_uid (UniversalId): Specifies the unique id of the remote
-            Vault search Job.
-        task_name (string): Specifies a name of the restore task.
-        vault_id (long|int): Specifies the id of the Vault that contains the
-            index and Snapshots to restore to the current Cluster. This is the
-            id assigned by the Cohesity Cluster when Vault was registered as an
-            External Target.
+        search_job_uid (UniversalId, required): Specifies the unique id of the
+            remote Vault search Job.
+        task_name (string, required): Specifies a name of the restore task.
+        vault_id (long|int, required): Specifies the id of the Vault that
+            contains the index and Snapshots to restore to the current Cluster.
+            This is the id assigned by the Cohesity Cluster when Vault was
+            registered as an External Target.
     """
 
 

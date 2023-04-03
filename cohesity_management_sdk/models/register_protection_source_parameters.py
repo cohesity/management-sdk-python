@@ -11,7 +11,7 @@ import cohesity_management_sdk.models.gcp_credentials
 import cohesity_management_sdk.models.kubernetes_credentials
 import cohesity_management_sdk.models.kubernetes_params
 import cohesity_management_sdk.models.nas_mount_credential_params
-import cohesity_management_sdk.models.office365_credentials
+import cohesity_management_sdk.models.office_365_credentials
 import cohesity_management_sdk.models.physical_params
 import cohesity_management_sdk.models.registered_protection_source_isilon_params
 import cohesity_management_sdk.models.ssl_verification
@@ -163,14 +163,14 @@ class RegisterProtectionSourceParameters(object):
         nimble_type (NimbleTypeEnum): Specifies the entity type such as
             'kStorageArray' if the environment is kNimble. overrideDescription:
             true
-        office365_credentials_list (list of Office365Credentials): Office365
+        office_365_credentials_list (list of Office365Credentials): Office365
             Source Credentials.  Specifies credentials needed to authenticate &
             authorize user for Office365 using MS Graph APIs.
-        office365_region (string): Specifies the region for Office365.
-        office365_service_account_credentials_list (list of Credentials):
+        office_365_region (string): Specifies the region for Office365.
+        office_365_service_account_credentials_list (list of Credentials):
             Office365 Service Account Credentials.  Specifies credentials for
             improving mailbox backup performance for O365.
-        office365_type (Office365TypeEnum): Specifies the entity type such as
+        office_365_type (Office365TypeEnum): Specifies the entity type such as
             'kDomain', 'kOutlook', 'kMailbox', if the environment is kO365.
         password (string): Specifies password of the username to access the
             target source.
@@ -251,10 +251,10 @@ class RegisterProtectionSourceParameters(object):
         "nas_mount_credentials":'nasMountCredentials',
         "netapp_type":'netappType',
         "nimble_type":'nimbleType',
-        "office365_credentials_list":'office365CredentialsList',
-        "office365_region":'office365Region',
-        "office365_service_account_credentials_list":'office365ServiceAccountCredentialsList',
-        "office365_type":'office365Type',
+        "office_365_credentials_list":'office365CredentialsList',
+        "office_365_region":'office365Region',
+        "office_365_service_account_credentials_list":'office365ServiceAccountCredentialsList',
+        "office_365_type":'office365Type',
         "password":'password',
         "physical_params":'physicalParams',
         "physical_type":'physicalType',
@@ -301,10 +301,10 @@ class RegisterProtectionSourceParameters(object):
                  nas_mount_credentials=None,
                  netapp_type=None,
                  nimble_type=None,
-                 office365_credentials_list=None,
-                 office365_region=None,
-                 office365_service_account_credentials_list=None,
-                 office365_type=None,
+                 office_365_credentials_list=None,
+                 office_365_region=None,
+                 office_365_service_account_credentials_list=None,
+                 office_365_type=None,
                  password=None,
                  physical_params=None,
                  physical_type=None,
@@ -354,10 +354,10 @@ class RegisterProtectionSourceParameters(object):
         self.nas_mount_credentials = nas_mount_credentials
         self.netapp_type = netapp_type
         self.nimble_type = nimble_type
-        self.office365_credentials_list = office365_credentials_list
-        self.office365_region = office365_region
-        self.office365_service_account_credentials_list = office365_service_account_credentials_list
-        self.office365_type = office365_type
+        self.office_365_credentials_list = office_365_credentials_list
+        self.office_365_region = office_365_region
+        self.office_365_service_account_credentials_list = office_365_service_account_credentials_list
+        self.office_365_type = office_365_type
         self.password = password
         self.physical_params = physical_params
         self.physical_type = physical_type
@@ -421,18 +421,18 @@ class RegisterProtectionSourceParameters(object):
         nas_mount_credentials = cohesity_management_sdk.models.nas_mount_credential_params.NasMountCredentialParams.from_dictionary(dictionary.get('nasMountCredentials')) if dictionary.get('nasMountCredentials') else None
         netapp_type = dictionary.get('netappType')
         nimble_type = dictionary.get('nimbleType')
-        office365_credentials_list = None
+        office_365_credentials_list = None
         if dictionary.get('office365CredentialsList') != None:
-            office365_credentials_list = list()
+            office_365_credentials_list = list()
             for structure in dictionary.get('office365CredentialsList'):
-                office365_credentials_list.append(cohesity_management_sdk.models.office365_credentials.Office365Credentials.from_dictionary(structure))
-        office365_region = dictionary.get('office365Region')
-        office365_service_account_credentials_list = None
+                office_365_credentials_list.append(cohesity_management_sdk.models.office_365_credentials.Office365Credentials.from_dictionary(structure))
+        office_365_region = dictionary.get('office365Region')
+        office_365_service_account_credentials_list = None
         if dictionary.get('office365ServiceAccountCredentialsList') != None:
-            office365_service_account_credentials_list = list()
+            office_365_service_account_credentials_list = list()
             for structure in dictionary.get('office365ServiceAccountCredentialsList'):
-                office365_service_account_credentials_list.append(cohesity_management_sdk.models.credentials.Credentials.from_dictionary(structure))
-        office365_type = dictionary.get('office365Type')
+                office_365_service_account_credentials_list.append(cohesity_management_sdk.models.credentials.Credentials.from_dictionary(structure))
+        office_365_type = dictionary.get('office365Type')
         password = dictionary.get('password')
         physical_params = cohesity_management_sdk.models.physical_params.PhysicalParams.from_dictionary(dictionary.get('physicalParams')) if dictionary.get('physicalParams') else None
         physical_type = dictionary.get('physicalType')
@@ -488,10 +488,10 @@ class RegisterProtectionSourceParameters(object):
             nas_mount_credentials,
             netapp_type,
             nimble_type,
-            office365_credentials_list,
-            office365_region,
-            office365_service_account_credentials_list,
-            office365_type,
+            office_365_credentials_list,
+            office_365_region,
+            office_365_service_account_credentials_list,
+            office_365_type,
             password,
             physical_params,
             physical_type,

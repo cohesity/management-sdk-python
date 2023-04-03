@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-class CloudChunkRepoIoPreferentialTierEnum(object):
+class CloudChunkRepoIOPreferentialTierEnum(object):
 
-    """Implementation of the 'CloudChunkRepoIoPreferentialTier' enum.
+    """Implementation of the 'CloudChunkRepoIOPreferentialTier' enum.
     Specifies the list of perferred storage tiers used by cloud chunk
     repository.
 

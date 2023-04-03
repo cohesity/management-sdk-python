@@ -10,7 +10,8 @@ class KmsDeleteParams(object):
 
     Attributes:
 
-        id (long|int): Specifies a unique id of the KMS config. in: path
+        id (long|int, required): Specifies a unique id of the KMS config. in:
+            path
     """
 
 

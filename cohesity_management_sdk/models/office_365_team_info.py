@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-import cohesity_management_sdk.models.m365_teams_channel_info
+import cohesity_management_sdk.models.m_365_teams_channel_info
 
 
 class Office365TeamInfo(object):
@@ -64,7 +64,7 @@ class Office365TeamInfo(object):
         if dictionary.get('channels') != None:
             channels = list()
             for structure in dictionary.get('channels'):
-                channels.append(cohesity_management_sdk.models.m365_teams_channel_info.M365TeamsChannelInfo.from_dictionary(structure))
+                channels.append(cohesity_management_sdk.models.m_365_teams_channel_info.M365TeamsChannelInfo.from_dictionary(structure))
         members_count = dictionary.get('membersCount')
 
         # Return an object of this model

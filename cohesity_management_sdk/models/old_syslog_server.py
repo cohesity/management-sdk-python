@@ -11,8 +11,8 @@ class OldSyslogServer(object):
 
     Attributes:
 
-        address (string): Specifies the IP address or hostname of the syslog
-            server.
+        address (string, required): Specifies the IP address or hostname of the
+            syslog server.
         is_alert_auditing_enabled (bool): Specifies if cohesity alert should be
             sent to syslog server If 'true', alert audting message are sent to
             the server. If 'false', alert auditng message are not sent to the
@@ -36,8 +36,9 @@ class OldSyslogServer(object):
             If 'false', ssh login logs are not sent to the server.(default)
         name (string): Specifies a unique name for the syslog server on the
             Cluster.
-        port (int): Specifies the port where the syslog server listens.
-        protocol (int): Specifies the protocol used to send the logs.
+        port (int, required): Specifies the port where the syslog server
+            listens.
+        protocol (int, required): Specifies the protocol used to send the logs.
     """
 
 

@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-class HydraDowntierIoPreferentialTierEnum(object):
+class HydraDowntierIOPreferentialTierEnum(object):
 
-    """Implementation of the 'HydraDowntierIoPreferentialTier' enum.
+    """Implementation of the 'HydraDowntierIOPreferentialTier' enum.
     Specifies the list of perferred storage tiers used by Hydra for offloading.
 
 

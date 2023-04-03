@@ -10,11 +10,11 @@ class FilerAuditLogConfiguration(object):
 
     Attributes:
 
-        enabled (bool): Specifies if filer audit logging is enabled on the
-            Cohesity Cluster. If 'true', filer audit logging is enabled.
+        enabled (bool, required): Specifies if filer audit logging is enabled
+            on the Cohesity Cluster. If 'true', filer audit logging is enabled.
             Otherwise, it is disabled.
-        retention_period_days (int): Specifies the number of days to keep
-            (retain) the filer audit logs. Audit logs generated before the
+        retention_period_days (int, required): Specifies the number of days to
+            keep (retain) the filer audit logs. Audit logs generated before the
             period of time specified by retentionPeriodDays are removed from
             the Cohesity Cluster.
     """

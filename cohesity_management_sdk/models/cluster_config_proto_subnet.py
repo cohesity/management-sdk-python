@@ -18,7 +18,7 @@ class ClusterConfigProto_Subnet(object):
             is specified by giving CIDR length in netmask_bits for ipv6. For
             IPv4 addresses, netmask_ip4 field is set in dotted decimal.
         netmask_bits (int): TODO: Type description here.
-        netmask_ip4 (string): TODO: Type description here.
+        netmask_ip_4 (string): TODO: Type description here.
         nfs_access (int): Whether clients from this subnet can mount using NFS
             protocol.
         nfs_all_squash (bool): Whether all clients from this subnet can map
@@ -26,7 +26,7 @@ class ClusterConfigProto_Subnet(object):
             view.
         nfs_root_squash (bool): Whether clients from this subnet can mount as
             root on NFS.
-        s3_access (int): Whether clients from this subnet can accept requests
+        s_3_access (int): Whether clients from this subnet can accept requests
             using S3 protocol.
         smb_access (int): Whether clients from this subnet can mount using SMB
             protocol.
@@ -41,11 +41,11 @@ class ClusterConfigProto_Subnet(object):
         "id":'id',
         "ip":'ip',
         "netmask_bits":'netmaskBits',
-        "netmask_ip4":'netmaskIp4',
+        "netmask_ip_4":'netmaskIp4',
         "nfs_access":'nfsAccess',
         "nfs_all_squash":'nfsAllSquash',
         "nfs_root_squash":'nfsRootSquash',
-        "s3_access":'s3Access',
+        "s_3_access":'s3Access',
         "smb_access":'smbAccess',
     }
     def __init__(self,
@@ -55,11 +55,11 @@ class ClusterConfigProto_Subnet(object):
                  id=None,
                  ip=None,
                  netmask_bits=None,
-                 netmask_ip4=None,
+                 netmask_ip_4=None,
                  nfs_access=None,
                  nfs_all_squash=None,
                  nfs_root_squash=None,
-                 s3_access=None,
+                 s_3_access=None,
                  smb_access=None,
             ):
 
@@ -72,11 +72,11 @@ class ClusterConfigProto_Subnet(object):
         self.id = id
         self.ip = ip
         self.netmask_bits = netmask_bits
-        self.netmask_ip4 = netmask_ip4
+        self.netmask_ip_4 = netmask_ip_4
         self.nfs_access = nfs_access
         self.nfs_all_squash = nfs_all_squash
         self.nfs_root_squash = nfs_root_squash
-        self.s3_access = s3_access
+        self.s_3_access = s_3_access
         self.smb_access = smb_access
 
     @classmethod
@@ -103,11 +103,11 @@ class ClusterConfigProto_Subnet(object):
         id = dictionary.get('id')
         ip = dictionary.get('ip')
         netmask_bits = dictionary.get('netmaskBits')
-        netmask_ip4 = dictionary.get('netmaskIp4')
+        netmask_ip_4 = dictionary.get('netmaskIp4')
         nfs_access = dictionary.get('nfsAccess')
         nfs_all_squash = dictionary.get('nfsAllSquash')
         nfs_root_squash = dictionary.get('nfsRootSquash')
-        s3_access = dictionary.get('s3Access')
+        s_3_access = dictionary.get('s3Access')
         smb_access = dictionary.get('smbAccess')
 
         # Return an object of this model
@@ -118,10 +118,10 @@ class ClusterConfigProto_Subnet(object):
             id,
             ip,
             netmask_bits,
-            netmask_ip4,
+            netmask_ip_4,
             nfs_access,
             nfs_all_squash,
             nfs_root_squash,
-            s3_access,
+            s_3_access,
             smb_access
 )

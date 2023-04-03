@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-import cohesity_management_sdk.models.c2s_server_info
+import cohesity_management_sdk.models.c_2_s_server_info
 
 
 class AwsCredentials(object):
@@ -40,8 +40,8 @@ class AwsCredentials(object):
             instance. 'kAuroraTag' represents a tag attached to an Aurora
             cluster. 'kAccount' represents an AWS account. 'kAuroraCluster'
             represents an Aurora cluster.
-        c2s_server_info (C2SServerInfo): Specifies the C2S Access Portal (CAP)
-            server info.
+        c_2_s_server_info (C2SServerInfo): Specifies the C2S Access Portal
+            (CAP) server info.
         iam_role_arn (string): Specifies the IAM role which will be used to
             access the security credentials required for API calls.
         secret_access_key (string): Specifies Secret Access key of the AWS
@@ -60,7 +60,7 @@ class AwsCredentials(object):
         "amazon_resource_name":'amazonResourceName',
         "auth_method":'authMethod',
         "aws_type":'awsType',
-        "c2s_server_info":'c2sServerInfo',
+        "c_2_s_server_info":'c2sServerInfo',
         "iam_role_arn":'iamRoleArn',
         "secret_access_key":'secretAccessKey',
         "subscription_type":'subscriptionType',
@@ -70,7 +70,7 @@ class AwsCredentials(object):
                  amazon_resource_name=None,
                  auth_method=None,
                  aws_type=None,
-                 c2s_server_info=None,
+                 c_2_s_server_info=None,
                  iam_role_arn=None,
                  secret_access_key=None,
                  subscription_type=None,
@@ -83,7 +83,7 @@ class AwsCredentials(object):
         self.amazon_resource_name = amazon_resource_name
         self.auth_method = auth_method
         self.aws_type = aws_type
-        self.c2s_server_info = c2s_server_info
+        self.c_2_s_server_info = c_2_s_server_info
         self.iam_role_arn = iam_role_arn
         self.secret_access_key = secret_access_key
         self.subscription_type = subscription_type
@@ -110,7 +110,7 @@ class AwsCredentials(object):
         amazon_resource_name = dictionary.get('amazonResourceName')
         auth_method = dictionary.get('authMethod')
         aws_type = dictionary.get('awsType')
-        c2s_server_info = cohesity_management_sdk.models.c2s_server_info.C2SServerInfo.from_dictionary(dictionary.get('c2sServerInfo')) if dictionary.get('c2sServerInfo') else None
+        c_2_s_server_info = cohesity_management_sdk.models.c_2_s_server_info.C2SServerInfo.from_dictionary(dictionary.get('c2sServerInfo')) if dictionary.get('c2sServerInfo') else None
         iam_role_arn = dictionary.get('iamRoleArn')
         secret_access_key = dictionary.get('secretAccessKey')
         subscription_type = dictionary.get('subscriptionType')
@@ -121,7 +121,7 @@ class AwsCredentials(object):
             amazon_resource_name,
             auth_method,
             aws_type,
-            c2s_server_info,
+            c_2_s_server_info,
             iam_role_arn,
             secret_access_key,
             subscription_type

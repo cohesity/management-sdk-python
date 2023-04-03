@@ -10,8 +10,8 @@ import cohesity_management_sdk.models.hdfs_connect_params
 import cohesity_management_sdk.models.hive_connect_params
 import cohesity_management_sdk.models.mongo_db_connect_params
 import cohesity_management_sdk.models.nas_mount_credential_params
-import cohesity_management_sdk.models.o365_connect_params
-import cohesity_management_sdk.models.office365_credentials
+import cohesity_management_sdk.models.o_365_connect_params
+import cohesity_management_sdk.models.office_365_credentials
 import cohesity_management_sdk.models.physical_params
 import cohesity_management_sdk.models.registered_app_info
 import cohesity_management_sdk.models.registered_protection_source_isilon_params
@@ -137,13 +137,13 @@ class RegisteredSourceInfo(object):
         nas_mount_credentials (NasMountCredentialParams): Specifies the
             credentials required to mount directories on the NetApp server if
             given.
-        o365_params (O365ConnectParams): Contains all the additional params
+        o_365_params (O365ConnectParams): Contains all the additional params
             specified by the user while registering the Office 365 source.
-        office365_credentials_list (list of Office365Credentials): Office365
+        office_365_credentials_list (list of Office365Credentials): Office365
             Source Credentials.  Specifies credentials needed to authenticate &
             authorize user for Office365.
-        office365_region (string): Specifies the region for Office365.
-        office365_service_account_credentials_list (list of Credentials):
+        office_365_region (string): Specifies the region for Office365.
+        office_365_service_account_credentials_list (list of Credentials):
             Office365 Service Account Credentials.  Specifies credentials for
             improving mailbox backup performance for O365.
         password (string): Specifies password of the username to access the
@@ -215,10 +215,10 @@ class RegisteredSourceInfo(object):
         "minimum_free_space_gb":'minimumFreeSpaceGB',
         "mongodb_params":'mongodbParams',
         "nas_mount_credentials":'nasMountCredentials',
-        "o365_params":'o365Params',
-        "office365_credentials_list":'office365CredentialsList',
-        "office365_region":'office365Region',
-        "office365_service_account_credentials_list":'office365ServiceAccountCredentialsList',
+        "o_365_params":'o365Params',
+        "office_365_credentials_list":'office365CredentialsList',
+        "office_365_region":'office365Region',
+        "office_365_service_account_credentials_list":'office365ServiceAccountCredentialsList',
         "password":'password',
         "physical_params":'physicalParams',
         "progress_monitor_path":'progressMonitorPath',
@@ -256,10 +256,10 @@ class RegisteredSourceInfo(object):
                  minimum_free_space_gb=None,
                  mongodb_params=None,
                  nas_mount_credentials=None,
-                 o365_params=None,
-                 office365_credentials_list=None,
-                 office365_region=None,
-                 office365_service_account_credentials_list=None,
+                 o_365_params=None,
+                 office_365_credentials_list=None,
+                 office_365_region=None,
+                 office_365_service_account_credentials_list=None,
                  password=None,
                  physical_params=None,
                  progress_monitor_path=None,
@@ -300,10 +300,10 @@ class RegisteredSourceInfo(object):
         self.minimum_free_space_gb = minimum_free_space_gb
         self.mongodb_params = mongodb_params
         self.nas_mount_credentials = nas_mount_credentials
-        self.o365_params = o365_params
-        self.office365_credentials_list = office365_credentials_list
-        self.office365_region = office365_region
-        self.office365_service_account_credentials_list = office365_service_account_credentials_list
+        self.o_365_params = o_365_params
+        self.office_365_credentials_list = office_365_credentials_list
+        self.office_365_region = office_365_region
+        self.office_365_service_account_credentials_list = office_365_service_account_credentials_list
         self.password = password
         self.physical_params = physical_params
         self.progress_monitor_path = progress_monitor_path
@@ -358,18 +358,18 @@ class RegisteredSourceInfo(object):
         minimum_free_space_gb = dictionary.get('minimumFreeSpaceGB')
         mongodb_params = cohesity_management_sdk.models.mongo_db_connect_params.MongoDBConnectParams.from_dictionary(dictionary.get('mongodbParams')) if dictionary.get('mongodbParams') else None
         nas_mount_credentials = cohesity_management_sdk.models.nas_mount_credential_params.NasMountCredentialParams.from_dictionary(dictionary.get('nasMountCredentials')) if dictionary.get('nasMountCredentials') else None
-        o365_params = cohesity_management_sdk.models.o365_connect_params.O365ConnectParams.from_dictionary(dictionary.get('o365Params')) if dictionary.get('o365Params') else None
-        office365_credentials_list = None
+        o_365_params = cohesity_management_sdk.models.o_365_connect_params.O365ConnectParams.from_dictionary(dictionary.get('o365Params')) if dictionary.get('o365Params') else None
+        office_365_credentials_list = None
         if dictionary.get('office365CredentialsList') != None:
-            office365_credentials_list = list()
+            office_365_credentials_list = list()
             for structure in dictionary.get('office365CredentialsList'):
-                office365_credentials_list.append(cohesity_management_sdk.models.office365_credentials.Office365Credentials.from_dictionary(structure))
-        office365_region = dictionary.get('office365Region')
-        office365_service_account_credentials_list = None
+                office_365_credentials_list.append(cohesity_management_sdk.models.office_365_credentials.Office365Credentials.from_dictionary(structure))
+        office_365_region = dictionary.get('office365Region')
+        office_365_service_account_credentials_list = None
         if dictionary.get('office365ServiceAccountCredentialsList') != None:
-            office365_service_account_credentials_list = list()
+            office_365_service_account_credentials_list = list()
             for structure in dictionary.get('office365ServiceAccountCredentialsList'):
-                office365_service_account_credentials_list.append(cohesity_management_sdk.models.credentials.Credentials.from_dictionary(structure))
+                office_365_service_account_credentials_list.append(cohesity_management_sdk.models.credentials.Credentials.from_dictionary(structure))
         password = dictionary.get('password')
         physical_params = cohesity_management_sdk.models.physical_params.PhysicalParams.from_dictionary(dictionary.get('physicalParams')) if dictionary.get('physicalParams') else None
         progress_monitor_path = dictionary.get('progressMonitorPath')
@@ -420,10 +420,10 @@ class RegisteredSourceInfo(object):
             minimum_free_space_gb,
             mongodb_params,
             nas_mount_credentials,
-            o365_params,
-            office365_credentials_list,
-            office365_region,
-            office365_service_account_credentials_list,
+            o_365_params,
+            office_365_credentials_list,
+            office_365_region,
+            office_365_service_account_credentials_list,
             password,
             physical_params,
             progress_monitor_path,

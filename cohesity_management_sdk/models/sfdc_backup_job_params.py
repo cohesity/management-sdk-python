@@ -4,7 +4,7 @@
 import cohesity_management_sdk.models.aurora_cluster_info
 import cohesity_management_sdk.models.object_level_params
 import cohesity_management_sdk.models.registered_entity_sfdc_params
-import cohesity_management_sdk.models.s3_bucket_info
+import cohesity_management_sdk.models.s_3_bucket_info
 
 
 class SfdcBackupJobParams(object):
@@ -26,7 +26,7 @@ class SfdcBackupJobParams(object):
             object.
         registered_entity_sfdc_params (RegisteredEntitySfdcParams): Includes
             connection parameters and info saved during registration.
-        s3_bucket_info (S3BucketInfo): Contains the information of the S3
+        s_3_bucket_info (S3BucketInfo): Contains the information of the S3
             bucket used for uploading data.
     """
 
@@ -37,14 +37,14 @@ class SfdcBackupJobParams(object):
         "aws_iam_role":'awsIamRole',
         "object_info_vec":'objectInfoVec',
         "registered_entity_sfdc_params":'registeredEntitySfdcParams',
-        "s3_bucket_info":'s3BucketInfo',
+        "s_3_bucket_info":'s3BucketInfo',
     }
     def __init__(self,
                  aurora_cluster_info=None,
                  aws_iam_role=None,
                  object_info_vec=None,
                  registered_entity_sfdc_params=None,
-                 s3_bucket_info=None,
+                 s_3_bucket_info=None,
             ):
 
         """Constructor for the SfdcBackupJobParams class"""
@@ -54,7 +54,7 @@ class SfdcBackupJobParams(object):
         self.aws_iam_role = aws_iam_role
         self.object_info_vec = object_info_vec
         self.registered_entity_sfdc_params = registered_entity_sfdc_params
-        self.s3_bucket_info = s3_bucket_info
+        self.s_3_bucket_info = s_3_bucket_info
 
     @classmethod
     def from_dictionary(cls,
@@ -82,7 +82,7 @@ class SfdcBackupJobParams(object):
             for structure in dictionary.get('objectInfoVec'):
                 object_info_vec.append(cohesity_management_sdk.models.object_level_params.ObjectLevelParams.from_dictionary(structure))
         registered_entity_sfdc_params = cohesity_management_sdk.models.registered_entity_sfdc_params.RegisteredEntitySfdcParams.from_dictionary(dictionary.get('registeredEntitySfdcParams')) if dictionary.get('registeredEntitySfdcParams') else None
-        s3_bucket_info = cohesity_management_sdk.models.s3_bucket_info.S3BucketInfo.from_dictionary(dictionary.get('s3BucketInfo')) if dictionary.get('s3BucketInfo') else None
+        s_3_bucket_info = cohesity_management_sdk.models.s_3_bucket_info.S3BucketInfo.from_dictionary(dictionary.get('s3BucketInfo')) if dictionary.get('s3BucketInfo') else None
 
         # Return an object of this model
         return cls(
@@ -90,5 +90,5 @@ class SfdcBackupJobParams(object):
             aws_iam_role,
             object_info_vec,
             registered_entity_sfdc_params,
-            s3_bucket_info
+            s_3_bucket_info
 )

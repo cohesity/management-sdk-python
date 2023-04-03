@@ -11,7 +11,7 @@ import cohesity_management_sdk.models.gcp_credentials
 import cohesity_management_sdk.models.kubernetes_credentials
 import cohesity_management_sdk.models.kubernetes_params
 import cohesity_management_sdk.models.nas_mount_credential_params
-import cohesity_management_sdk.models.office365_credentials
+import cohesity_management_sdk.models.office_365_credentials
 import cohesity_management_sdk.models.registered_protection_source_isilon_params
 import cohesity_management_sdk.models.ssl_verification
 import cohesity_management_sdk.models.subnet
@@ -91,11 +91,11 @@ class UpdateProtectionSourceParameters(object):
         nas_mount_credentials (NasMountCredentialParams): Specifies the server
             credentials to connect to a NetApp server. This field is required
             for mounting SMB volumes on NetApp servers.
-        office365_credentials_list (list of Office365Credentials): Office365
+        office_365_credentials_list (list of Office365Credentials): Office365
             Source Credentials.  Specifies credentials needed to authenticate &
             authorize user for Office365 using MS Graph APIs.
-        office365_region (string): Specifies the region for Office365.
-        office365_service_account_credentials_list (list of Credentials):
+        office_365_region (string): Specifies the region for Office365.
+        office_365_service_account_credentials_list (list of Credentials):
             Office365 Service Account Credentials.  Specifies credentials for
             improving mailbox backup performance for O365.
         password (string): Specifies password of the username to access the
@@ -157,9 +157,9 @@ class UpdateProtectionSourceParameters(object):
         "kubernetes_params":'kubernetesParams',
         "minimum_free_space_gb":'minimumFreeSpaceGB',
         "nas_mount_credentials":'nasMountCredentials',
-        "office365_credentials_list":'office365CredentialsList',
-        "office365_region":'office365Region',
-        "office365_service_account_credentials_list":'office365ServiceAccountCredentialsList',
+        "office_365_credentials_list":'office365CredentialsList',
+        "office_365_region":'office365Region',
+        "office_365_service_account_credentials_list":'office365ServiceAccountCredentialsList',
         "password":'password',
         "proxy_host_source_id_list":'proxyHostSourceIdList',
         "source_side_dedup_enabled":'sourceSideDedupEnabled',
@@ -193,9 +193,9 @@ class UpdateProtectionSourceParameters(object):
                  kubernetes_params=None,
                  minimum_free_space_gb=None,
                  nas_mount_credentials=None,
-                 office365_credentials_list=None,
-                 office365_region=None,
-                 office365_service_account_credentials_list=None,
+                 office_365_credentials_list=None,
+                 office_365_region=None,
+                 office_365_service_account_credentials_list=None,
                  password=None,
                  proxy_host_source_id_list=None,
                  source_side_dedup_enabled=None,
@@ -232,9 +232,9 @@ class UpdateProtectionSourceParameters(object):
         self.kubernetes_params = kubernetes_params
         self.minimum_free_space_gb = minimum_free_space_gb
         self.nas_mount_credentials = nas_mount_credentials
-        self.office365_credentials_list = office365_credentials_list
-        self.office365_region = office365_region
-        self.office365_service_account_credentials_list = office365_service_account_credentials_list
+        self.office_365_credentials_list = office_365_credentials_list
+        self.office_365_region = office_365_region
+        self.office_365_service_account_credentials_list = office_365_service_account_credentials_list
         self.password = password
         self.proxy_host_source_id_list = proxy_host_source_id_list
         self.source_side_dedup_enabled = source_side_dedup_enabled
@@ -285,17 +285,17 @@ class UpdateProtectionSourceParameters(object):
         kubernetes_params = cohesity_management_sdk.models.kubernetes_params.KubernetesParams.from_dictionary(dictionary.get('kubernetesParams')) if dictionary.get('kubernetesParams') else None
         minimum_free_space_gb = dictionary.get('minimumFreeSpaceGB')
         nas_mount_credentials = cohesity_management_sdk.models.nas_mount_credential_params.NasMountCredentialParams.from_dictionary(dictionary.get('nasMountCredentials')) if dictionary.get('nasMountCredentials') else None
-        office365_credentials_list = None
+        office_365_credentials_list = None
         if dictionary.get('office365CredentialsList') != None:
-            office365_credentials_list = list()
+            office_365_credentials_list = list()
             for structure in dictionary.get('office365CredentialsList'):
-                office365_credentials_list.append(cohesity_management_sdk.models.office365_credentials.Office365Credentials.from_dictionary(structure))
-        office365_region = dictionary.get('office365Region')
-        office365_service_account_credentials_list = None
+                office_365_credentials_list.append(cohesity_management_sdk.models.office_365_credentials.Office365Credentials.from_dictionary(structure))
+        office_365_region = dictionary.get('office365Region')
+        office_365_service_account_credentials_list = None
         if dictionary.get('office365ServiceAccountCredentialsList') != None:
-            office365_service_account_credentials_list = list()
+            office_365_service_account_credentials_list = list()
             for structure in dictionary.get('office365ServiceAccountCredentialsList'):
-                office365_service_account_credentials_list.append(cohesity_management_sdk.models.credentials.Credentials.from_dictionary(structure))
+                office_365_service_account_credentials_list.append(cohesity_management_sdk.models.credentials.Credentials.from_dictionary(structure))
         password = dictionary.get('password')
         proxy_host_source_id_list = dictionary.get("proxyHostSourceIdList")
         source_side_dedup_enabled = dictionary.get('sourceSideDedupEnabled')
@@ -338,9 +338,9 @@ class UpdateProtectionSourceParameters(object):
             kubernetes_params,
             minimum_free_space_gb,
             nas_mount_credentials,
-            office365_credentials_list,
-            office365_region,
-            office365_service_account_credentials_list,
+            office_365_credentials_list,
+            office_365_region,
+            office_365_service_account_credentials_list,
             password,
             proxy_host_source_id_list,
             source_side_dedup_enabled,

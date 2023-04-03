@@ -12,8 +12,9 @@ class HostEntry(object):
     Attributes:
 
         description (string): Description the host entry.
-        domain_names (list of string): Specifies the domain names of the host.
-        ip (string): Specifies the IP address of the host.
+        domain_names (list of string, required): Specifies the domain names of
+            the host.
+        ip (string, required): Specifies the IP address of the host.
     """
 
 

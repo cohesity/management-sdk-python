@@ -14,9 +14,9 @@ import cohesity_management_sdk.models.rename_object_param_proto
 import cohesity_management_sdk.models.restore_acropolis_vms_params
 import cohesity_management_sdk.models.restore_kubernetes_namespaces_params
 import cohesity_management_sdk.models.restore_kvm_vms_params
-import cohesity_management_sdk.models.restore_o365_groups_params
-import cohesity_management_sdk.models.restore_o365_public_folders_params
-import cohesity_management_sdk.models.restore_o365_teams_params
+import cohesity_management_sdk.models.restore_o_365_groups_params
+import cohesity_management_sdk.models.restore_o_365_public_folders_params
+import cohesity_management_sdk.models.restore_o_365_teams_params
 import cohesity_management_sdk.models.restore_object
 import cohesity_management_sdk.models.restore_site_params
 import cohesity_management_sdk.models.restore_vmware_vm_params
@@ -345,13 +345,13 @@ class PerformRestoreJobStateProto(object):
         rename_restored_object_param = cohesity_management_sdk.models.rename_object_param_proto.RenameObjectParamProto.from_dictionary(dictionary.get('renameRestoredObjectParam')) if dictionary.get('renameRestoredObjectParam') else None
         rename_restored_vapp_param = cohesity_management_sdk.models.rename_object_param_proto.RenameObjectParamProto.from_dictionary(dictionary.get('renameRestoredVappParam')) if dictionary.get('renameRestoredVappParam') else None
         restore_acropolis_vms_params = cohesity_management_sdk.models.restore_acropolis_vms_params.RestoreAcropolisVMsParams.from_dictionary(dictionary.get('restoreAcropolisVmsParams')) if dictionary.get('restoreAcropolisVmsParams') else None
-        restore_groups_params = cohesity_management_sdk.models.restore_o365_groups_params.RestoreO365GroupsParams.from_dictionary(dictionary.get('restoreGroupsParams')) if dictionary.get('restoreGroupsParams') else None
+        restore_groups_params = cohesity_management_sdk.models.restore_o_365_groups_params.RestoreO365GroupsParams.from_dictionary(dictionary.get('restoreGroupsParams')) if dictionary.get('restoreGroupsParams') else None
         restore_job_id = dictionary.get('restoreJobId')
         restore_job_uid = cohesity_management_sdk.models.universal_id_proto.UniversalIdProto.from_dictionary(dictionary.get('restoreJobUid')) if dictionary.get('restoreJobUid') else None
         restore_kubernetes_namespaces_params = cohesity_management_sdk.models.restore_kubernetes_namespaces_params.RestoreKubernetesNamespacesParams.from_dictionary(dictionary.get('restoreKubernetesNamespacesParams')) if dictionary.get('restoreKubernetesNamespacesParams') else None
         restore_kvm_vms_params = cohesity_management_sdk.models.restore_kvm_vms_params.RestoreKVMVMsParams.from_dictionary(dictionary.get('restoreKvmVmsParams')) if dictionary.get('restoreKvmVmsParams') else None
         restore_parent_source = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('restoreParentSource')) if dictionary.get('restoreParentSource') else None
-        restore_public_folders_params = cohesity_management_sdk.models.restore_o365_public_folders_params.RestoreO365PublicFoldersParams.from_dictionary(dictionary.get('restorePublicFoldersParams')) if dictionary.get('restorePublicFoldersParams') else None
+        restore_public_folders_params = cohesity_management_sdk.models.restore_o_365_public_folders_params.RestoreO365PublicFoldersParams.from_dictionary(dictionary.get('restorePublicFoldersParams')) if dictionary.get('restorePublicFoldersParams') else None
         restore_site_params = cohesity_management_sdk.models.restore_site_params.RestoreSiteParams.from_dictionary(dictionary.get('restoreSiteParams')) if dictionary.get('restoreSiteParams') else None
         restore_task_state_proto_tmpl = cohesity_management_sdk.models.perform_restore_task_state_proto.PerformRestoreTaskStateProto.from_dictionary(dictionary.get('restoreTaskStateProtoTmpl')) if dictionary.get('restoreTaskStateProtoTmpl') else None
         restore_task_vec = None
@@ -359,7 +359,7 @@ class PerformRestoreJobStateProto(object):
             restore_task_vec = list()
             for structure in dictionary.get('restoreTaskVec'):
                 restore_task_vec.append(cohesity_management_sdk.models.perform_restore_job_state_proto_restore_task.PerformRestoreJobStateProto_RestoreTask.from_dictionary(structure))
-        restore_teams_params = cohesity_management_sdk.models.restore_o365_teams_params.RestoreO365TeamsParams.from_dictionary(dictionary.get('restoreTeamsParams')) if dictionary.get('restoreTeamsParams') else None
+        restore_teams_params = cohesity_management_sdk.models.restore_o_365_teams_params.RestoreO365TeamsParams.from_dictionary(dictionary.get('restoreTeamsParams')) if dictionary.get('restoreTeamsParams') else None
         restore_vmware_vm_params = cohesity_management_sdk.models.restore_vmware_vm_params.RestoreVMwareVMParams.from_dictionary(dictionary.get('restoreVmwareVmParams')) if dictionary.get('restoreVmwareVmParams') else None
         restored_objects_network_config = cohesity_management_sdk.models.restored_object_network_config_proto.RestoredObjectNetworkConfigProto.from_dictionary(dictionary.get('restoredObjectsNetworkConfig')) if dictionary.get('restoredObjectsNetworkConfig') else None
         restored_to_different_source = dictionary.get('restoredToDifferentSource')

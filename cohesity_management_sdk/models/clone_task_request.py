@@ -43,8 +43,8 @@ class CloneTaskRequest(object):
             within 1–5 minutes.
         hyperv_parameters (HypervCloneParameters): Specifies additional
             parameters for 'kHyperV' restore objects.
-        name (string): Specifies the name of the Restore Task. This field must
-            be set and must be a unique name.
+        name (string, required): Specifies the name of the Restore Task. This
+            field must be set and must be a unique name.
         new_parent_id (long|int): Specify a new registered parent Protection
             Source. If specified the selected objects are cloned or recovered
             to this new Protection Source. If not specified, objects are cloned
@@ -56,10 +56,10 @@ class CloneTaskRequest(object):
         target_view_name (string): Specifies the name of the View where the
             cloned VMs are stored. This field is required for a 'kCloneVMs'
             Restore Task.
-        mtype (TypeCloneTaskRequestEnum): Specifies the type of Restore Task
-            such as 'kCloneVMs' or 'kCloneView'. 'kCloneVMs' specifies a
-            Restore Task that clones VMs. 'kCloneView' specifies a Restore Task
-            that clones a View.
+        mtype (TypeCloneTaskRequestEnum, required): Specifies the type of
+            Restore Task such as 'kCloneVMs' or 'kCloneView'. 'kCloneVMs'
+            specifies a Restore Task that clones VMs. 'kCloneView' specifies a
+            Restore Task that clones a View.
         vlan_parameters (VlanParameters): Specifies VLAN parameters for the
             restore operation.
         vmware_parameters (VmwareCloneParameters): Specifies additional

@@ -1,42 +1,43 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class ResetS3SecretKeyParameters(object):
 
     """Implementation of the 'ResetS3SecretKeyParameters' model.
 
-    Specifies the parameters required to reset the S3 secret access key for
-    the specified Cohesity user.
+    Specifies the parameters required to reset the S3 secret access key for the
+    specified Cohesity user.
+
 
     Attributes:
-        domain (string): Specifies the fully qualified domain name (FQDN) of
-            an Active Directory or LOCAL for the default LOCAL domain on the
-            Cohesity Cluster. If not specified, it is assumed to be LOCAL.
-        tenant_id (string): Specifies the tenant for which the users are
-            to be deleted.
-        username (string): Specifies the Cohesity user.
 
+        domain (string): Specifies the fully qualified domain name (FQDN) of an
+            Active Directory or LOCAL for the default LOCAL domain on the
+            Cohesity Cluster. If not specified, it is assumed to be LOCAL.
+        tenant_id (string): Specifies the tenant for which the users are to be
+            deleted.
+        username (string): Specifies the Cohesity user.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "domain":'domain',
         "tenant_id":'tenantId',
-        "username":'username'
+        "username":'username',
     }
-
     def __init__(self,
                  domain=None,
                  tenant_id=None,
-                 username=None):
+                 username=None,
+            ):
+
         """Constructor for the ResetS3SecretKeyParameters class"""
 
         # Initialize members of the class
         self.domain = domain
         self.tenant_id = tenant_id
         self.username = username
-
 
     @classmethod
     def from_dictionary(cls,
@@ -61,8 +62,8 @@ class ResetS3SecretKeyParameters(object):
         username = dictionary.get('username')
 
         # Return an object of this model
-        return cls(domain,
-                   tenant_id,
-                   username)
-
-
+        return cls(
+            domain,
+            tenant_id,
+            username
+)

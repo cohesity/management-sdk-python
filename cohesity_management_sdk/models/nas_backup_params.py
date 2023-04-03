@@ -3,7 +3,7 @@
 
 import cohesity_management_sdk.models.filtering_policy_proto
 import cohesity_management_sdk.models.nas_throttling_params
-import cohesity_management_sdk.models.s3_view_backup_properties
+import cohesity_management_sdk.models.s_3_view_backup_properties
 import cohesity_management_sdk.models.view_id_mapping_proto_file_level_data_lock_config
 
 
@@ -55,8 +55,8 @@ class NasBackupParams(object):
         nfs_version_preference (int): If the target entity supports both NFSv3
             and NFSv4.1, which NAS protocol type the user prefers to backup.
             This does not apply to generic NAS and will be ignored.
-        s3_viewbackupproperties (S3ViewBackupProperties): This message captures
-            all the details of S3 view.
+        s_3_viewbackupproperties (S3ViewBackupProperties): This message
+            captures all the details of S3 view.
         shared_view_name (string): Specifies the view name if the view is to be
             shared across multiple backup jobs. Required for backing up
             multiple directories of the same share through different protection
@@ -85,7 +85,7 @@ class NasBackupParams(object):
         "mixed_mode_preference":'mixedModePreference',
         "modify_source_permissions":'modifySourcePermissions',
         "nfs_version_preference":'nfsVersionPreference',
-        "s3_viewbackupproperties":'s3Viewbackupproperties',
+        "s_3_viewbackupproperties":'s3Viewbackupproperties',
         "shared_view_name":'sharedViewName',
         "snapshot_change_enabled":'snapshotChangeEnabled',
         "throttling_params":'throttlingParams',
@@ -104,7 +104,7 @@ class NasBackupParams(object):
                  mixed_mode_preference=None,
                  modify_source_permissions=None,
                  nfs_version_preference=None,
-                 s3_viewbackupproperties=None,
+                 s_3_viewbackupproperties=None,
                  shared_view_name=None,
                  snapshot_change_enabled=None,
                  throttling_params=None,
@@ -126,7 +126,7 @@ class NasBackupParams(object):
         self.mixed_mode_preference = mixed_mode_preference
         self.modify_source_permissions = modify_source_permissions
         self.nfs_version_preference = nfs_version_preference
-        self.s3_viewbackupproperties = s3_viewbackupproperties
+        self.s_3_viewbackupproperties = s_3_viewbackupproperties
         self.shared_view_name = shared_view_name
         self.snapshot_change_enabled = snapshot_change_enabled
         self.throttling_params = throttling_params
@@ -162,7 +162,7 @@ class NasBackupParams(object):
         mixed_mode_preference = dictionary.get('mixedModePreference')
         modify_source_permissions = dictionary.get('modifySourcePermissions')
         nfs_version_preference = dictionary.get('nfsVersionPreference')
-        s3_viewbackupproperties = cohesity_management_sdk.models.s3_view_backup_properties.S3ViewBackupProperties.from_dictionary(dictionary.get('s3Viewbackupproperties')) if dictionary.get('s3Viewbackupproperties') else None
+        s_3_viewbackupproperties = cohesity_management_sdk.models.s_3_view_backup_properties.S3ViewBackupProperties.from_dictionary(dictionary.get('s3Viewbackupproperties')) if dictionary.get('s3Viewbackupproperties') else None
         shared_view_name = dictionary.get('sharedViewName')
         snapshot_change_enabled = dictionary.get('snapshotChangeEnabled')
         throttling_params = cohesity_management_sdk.models.nas_throttling_params.NasThrottlingParams.from_dictionary(dictionary.get('throttlingParams')) if dictionary.get('throttlingParams') else None
@@ -182,7 +182,7 @@ class NasBackupParams(object):
             mixed_mode_preference,
             modify_source_permissions,
             nfs_version_preference,
-            s3_viewbackupproperties,
+            s_3_viewbackupproperties,
             shared_view_name,
             snapshot_change_enabled,
             throttling_params,

@@ -63,9 +63,9 @@ class ProtectObjectParameters(object):
             indicates the Office365 SharePoint Protection Source environment.
             'kO365PublicFolders' indicates the Office365 PublicFolders
             Protection Source environment.
-        protection_source_ids (list of long|int): Specifies the ids of the
-            Protection Sources to protect.
-        rpo_policy_id (string): Specifies the Rpo policy id.
+        protection_source_ids (list of long|int, required): Specifies the ids
+            of the Protection Sources to protect.
+        rpo_policy_id (string, required): Specifies the Rpo policy id.
     """
 
 

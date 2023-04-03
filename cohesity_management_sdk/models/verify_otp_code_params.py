@@ -10,7 +10,7 @@ class VerifyOtpCodeParams(object):
 
     Attributes:
 
-        otp_code (string): Specifies the OTP code.
+        otp_code (string, required): Specifies the OTP code.
         otp_type (OtpTypeEnum): Specifies OTP type. 'Totp' implies the code is
             TOTP. 'Email' implies the code is email OTP.
     """

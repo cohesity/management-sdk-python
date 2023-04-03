@@ -68,8 +68,8 @@ class RestorePointsForTimeRangeParam(object):
             Office365 SharePoint Protection Source environment.
             'kO365PublicFolders' indicates the Office365 PublicFolders
             Protection Source environment.
-        job_uids (list of UniversalId): Specifies the jobs for which to get the
-            full snapshot information.
+        job_uids (list of UniversalId, required): Specifies the jobs for which
+            to get the full snapshot information.
         protection_source_id (long|int): Specifies the id of the Protection
             Source which is to be restored.
         start_time_usecs (long|int): Specifies the start time specified as a

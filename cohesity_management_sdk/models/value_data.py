@@ -17,7 +17,7 @@ class Value_Data(object):
         double_value (float): Specifies the field to store data if the current
             data type is a double value. Specify a value for this field when
             type is equal to 2.
-        int64_value (long|int): Specifies the field to store data if the
+        int_64_value (long|int): Specifies the field to store data if the
             current data type is a int64 value. Specify a value for this field
             when type is equal to 1.
         string_value (string): Specifies the field to store data if the current
@@ -30,13 +30,13 @@ class Value_Data(object):
     _names = {
         "bytes_value":'bytesValue',
         "double_value":'doubleValue',
-        "int64_value":'int64Value',
+        "int_64_value":'int64Value',
         "string_value":'stringValue',
     }
     def __init__(self,
                  bytes_value=None,
                  double_value=None,
-                 int64_value=None,
+                 int_64_value=None,
                  string_value=None,
             ):
 
@@ -45,7 +45,7 @@ class Value_Data(object):
         # Initialize members of the class
         self.bytes_value = bytes_value
         self.double_value = double_value
-        self.int64_value = int64_value
+        self.int_64_value = int_64_value
         self.string_value = string_value
 
     @classmethod
@@ -68,13 +68,13 @@ class Value_Data(object):
         # Extract variables from the dictionary
         bytes_value = dictionary.get("bytesValue")
         double_value = dictionary.get('doubleValue')
-        int64_value = dictionary.get('int64Value')
+        int_64_value = dictionary.get('int64Value')
         string_value = dictionary.get('stringValue')
 
         # Return an object of this model
         return cls(
             bytes_value,
             double_value,
-            int64_value,
+            int_64_value,
             string_value
 )

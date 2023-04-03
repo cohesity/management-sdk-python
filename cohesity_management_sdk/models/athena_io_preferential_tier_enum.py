@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-class AthenaIoPreferentialTierEnum(object):
+class AthenaIOPreferentialTierEnum(object):
 
-    """Implementation of the 'AthenaIoPreferentialTier' enum.
+    """Implementation of the 'AthenaIOPreferentialTier' enum.
     Specifies the list of perferred storage tiers used by Athena.
 
 

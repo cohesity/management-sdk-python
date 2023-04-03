@@ -1,3 +1,16 @@
+# [1.9.1] - 2023-04-04
+Updated SDK for 6.8.1_u1 Cluster Version.
+
+### Added
+- None
+
+### Changed
+- Fixed incorrect Enum class names.
+- Updated documentation with module parameters that are mandatory.
+
+### Fixed
+- None
+
 # [1.9.0] - 2023-03-30
 New SDK for 6.8.1_u1 Cluster Version.
 

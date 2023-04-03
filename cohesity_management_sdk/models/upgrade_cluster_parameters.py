@@ -10,10 +10,11 @@ class UpgradeClusterParameters(object):
 
     Attributes:
 
-        target_sw_version (string): Specifies the target software version. If
-            specified, all Nodes on the Cluster will be searched to see if they
-            have had the specified software package uploaded to them. If the
-            specified package is found, then it will be used for the upgrade.
+        target_sw_version (string, required): Specifies the target software
+            version. If specified, all Nodes on the Cluster will be searched to
+            see if they have had the specified software package uploaded to
+            them. If the specified package is found, then it will be used for
+            the upgrade.
     """
 
 

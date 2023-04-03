@@ -12,10 +12,10 @@ class UnprotectObjectParams(object):
 
         delete_snapshots (bool): Specifies whether to delete the snapshots of
             the Protection Object.
-        protection_source_id (long|int): Specifies the id of the Protection
-            Source to be unprotected.
-        rpo_policy_id (string): Specifies the id of the Rpo Policy from which
-            to unprotect the object.
+        protection_source_id (long|int, required): Specifies the id of the
+            Protection Source to be unprotected.
+        rpo_policy_id (string, required): Specifies the id of the Rpo Policy
+            from which to unprotect the object.
     """
 
 

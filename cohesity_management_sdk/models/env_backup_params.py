@@ -13,7 +13,7 @@ import cohesity_management_sdk.models.kubernetes_env_params
 import cohesity_management_sdk.models.nas_analysis_job_params
 import cohesity_management_sdk.models.nas_backup_params
 import cohesity_management_sdk.models.no_sql_backup_job_params
-import cohesity_management_sdk.models.o365_backup_env_params
+import cohesity_management_sdk.models.o_365_backup_env_params
 import cohesity_management_sdk.models.oracle_backup_job_params
 import cohesity_management_sdk.models.outlook_backup_env_params
 import cohesity_management_sdk.models.physical_backup_env_params
@@ -58,7 +58,7 @@ class EnvBackupParams(object):
             environments.
         nosql_backup_job_params (NoSqlBackupJobParams): This is applicable to
             NoSql DB environments.
-        o365_backup_params (O365BackupEnvParams): This is applicable to
+        o_365_backup_params (O365BackupEnvParams): This is applicable to
             stubbing in o365 environments.
         oracle_backup_job_params (OracleBackupJobParams): This is applicable to
             Oracle environments.
@@ -93,7 +93,7 @@ class EnvBackupParams(object):
         "nas_analysis_job_params":'nasAnalysisJobParams',
         "nas_backup_params":'nasBackupParams',
         "nosql_backup_job_params":'nosqlBackupJobParams',
-        "o365_backup_params":'o365BackupParams',
+        "o_365_backup_params":'o365BackupParams',
         "oracle_backup_job_params":'oracleBackupJobParams',
         "outlook_backup_params":'outlookBackupParams',
         "physical_backup_params":'physicalBackupParams',
@@ -116,7 +116,7 @@ class EnvBackupParams(object):
                  nas_analysis_job_params=None,
                  nas_backup_params=None,
                  nosql_backup_job_params=None,
-                 o365_backup_params=None,
+                 o_365_backup_params=None,
                  oracle_backup_job_params=None,
                  outlook_backup_params=None,
                  physical_backup_params=None,
@@ -142,7 +142,7 @@ class EnvBackupParams(object):
         self.nas_analysis_job_params = nas_analysis_job_params
         self.nas_backup_params = nas_backup_params
         self.nosql_backup_job_params = nosql_backup_job_params
-        self.o365_backup_params = o365_backup_params
+        self.o_365_backup_params = o_365_backup_params
         self.oracle_backup_job_params = oracle_backup_job_params
         self.outlook_backup_params = outlook_backup_params
         self.physical_backup_params = physical_backup_params
@@ -182,7 +182,7 @@ class EnvBackupParams(object):
         nas_analysis_job_params = cohesity_management_sdk.models.nas_analysis_job_params.NasAnalysisJobParams.from_dictionary(dictionary.get('nasAnalysisJobParams')) if dictionary.get('nasAnalysisJobParams') else None
         nas_backup_params = cohesity_management_sdk.models.nas_backup_params.NasBackupParams.from_dictionary(dictionary.get('nasBackupParams')) if dictionary.get('nasBackupParams') else None
         nosql_backup_job_params = cohesity_management_sdk.models.no_sql_backup_job_params.NoSqlBackupJobParams.from_dictionary(dictionary.get('nosqlBackupJobParams')) if dictionary.get('nosqlBackupJobParams') else None
-        o365_backup_params = cohesity_management_sdk.models.o365_backup_env_params.O365BackupEnvParams.from_dictionary(dictionary.get('o365BackupParams')) if dictionary.get('o365BackupParams') else None
+        o_365_backup_params = cohesity_management_sdk.models.o_365_backup_env_params.O365BackupEnvParams.from_dictionary(dictionary.get('o365BackupParams')) if dictionary.get('o365BackupParams') else None
         oracle_backup_job_params = cohesity_management_sdk.models.oracle_backup_job_params.OracleBackupJobParams.from_dictionary(dictionary.get('oracleBackupJobParams')) if dictionary.get('oracleBackupJobParams') else None
         outlook_backup_params = cohesity_management_sdk.models.outlook_backup_env_params.OutlookBackupEnvParams.from_dictionary(dictionary.get('outlookBackupParams')) if dictionary.get('outlookBackupParams') else None
         physical_backup_params = cohesity_management_sdk.models.physical_backup_env_params.PhysicalBackupEnvParams.from_dictionary(dictionary.get('physicalBackupParams')) if dictionary.get('physicalBackupParams') else None
@@ -206,7 +206,7 @@ class EnvBackupParams(object):
             nas_analysis_job_params,
             nas_backup_params,
             nosql_backup_job_params,
-            o365_backup_params,
+            o_365_backup_params,
             oracle_backup_job_params,
             outlook_backup_params,
             physical_backup_params,

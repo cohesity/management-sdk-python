@@ -33,7 +33,7 @@ class Vlan(object):
             VLAN.
         gateway (string): Specifies the Gateway of the VLAN. It can carry V4 or
             V6 in case of requests, and carrises V4 in case of response.
-        gateway_v6 (string): Specifies the Gateway of the VLAN.
+        gateway_v_6 (string): Specifies the Gateway of the VLAN.
         hostname (string): Specifies the hostname of the VLAN.
         id (int): Specifies the id of the VLAN.
         iface_group_name (string): Specifies the interface group name of the
@@ -56,7 +56,7 @@ class Vlan(object):
             only be set using netmaskIp4 if the IP address is an IPv4 address.
             It can carry V4 or V6 in case of requests, and carries V4 in case
             of response.
-        subnet_v6 (Subnet): Specifies the subnet of the VLAN. The netmask can
+        subnet_v_6 (Subnet): Specifies the subnet of the VLAN. The netmask can
             be specified by setting netmaskBits or netmaskIp4. The netmask can
             only be set using netmaskIp4 if the IP address is an IPv4 address.
         tenant_id (string): Optional tenant id that this vlan belongs to.
@@ -74,7 +74,7 @@ class Vlan(object):
         "dns_delegation_zones":'dnsDelegationZones',
         "ecmp_enabled":'ecmpEnabled',
         "gateway":'gateway',
-        "gateway_v6":'gatewayV6',
+        "gateway_v_6":'gatewayV6',
         "hostname":'hostname',
         "id":'id',
         "iface_group_name":'ifaceGroupName',
@@ -87,7 +87,7 @@ class Vlan(object):
         "ips":'ips',
         "mtu":'mtu',
         "subnet":'subnet',
-        "subnet_v6":'subnetV6',
+        "subnet_v_6":'subnetV6',
         "tenant_id":'tenantId',
         "vlan_name":'vlanName',
     }
@@ -100,7 +100,7 @@ class Vlan(object):
                  dns_delegation_zones=None,
                  ecmp_enabled=None,
                  gateway=None,
-                 gateway_v6=None,
+                 gateway_v_6=None,
                  hostname=None,
                  id=None,
                  iface_group_name=None,
@@ -113,7 +113,7 @@ class Vlan(object):
                  ips=None,
                  mtu=None,
                  subnet=None,
-                 subnet_v6=None,
+                 subnet_v_6=None,
                  tenant_id=None,
                  vlan_name=None,
             ):
@@ -129,7 +129,7 @@ class Vlan(object):
         self.dns_delegation_zones = dns_delegation_zones
         self.ecmp_enabled = ecmp_enabled
         self.gateway = gateway
-        self.gateway_v6 = gateway_v6
+        self.gateway_v_6 = gateway_v_6
         self.hostname = hostname
         self.id = id
         self.iface_group_name = iface_group_name
@@ -142,7 +142,7 @@ class Vlan(object):
         self.ips = ips
         self.mtu = mtu
         self.subnet = subnet
-        self.subnet_v6 = subnet_v6
+        self.subnet_v_6 = subnet_v_6
         self.tenant_id = tenant_id
         self.vlan_name = vlan_name
 
@@ -176,7 +176,7 @@ class Vlan(object):
                 dns_delegation_zones.append(cohesity_management_sdk.models.dns_delegation_zone.DnsDelegationZone.from_dictionary(structure))
         ecmp_enabled = dictionary.get('ecmpEnabled')
         gateway = dictionary.get('gateway')
-        gateway_v6 = dictionary.get('gatewayV6')
+        gateway_v_6 = dictionary.get('gatewayV6')
         hostname = dictionary.get('hostname')
         id = dictionary.get('id')
         iface_group_name = dictionary.get('ifaceGroupName')
@@ -193,7 +193,7 @@ class Vlan(object):
         ips = dictionary.get("ips")
         mtu = dictionary.get('mtu')
         subnet = cohesity_management_sdk.models.subnet.Subnet.from_dictionary(dictionary.get('subnet')) if dictionary.get('subnet') else None
-        subnet_v6 = cohesity_management_sdk.models.subnet.Subnet.from_dictionary(dictionary.get('subnetV6')) if dictionary.get('subnetV6') else None
+        subnet_v_6 = cohesity_management_sdk.models.subnet.Subnet.from_dictionary(dictionary.get('subnetV6')) if dictionary.get('subnetV6') else None
         tenant_id = dictionary.get('tenantId')
         vlan_name = dictionary.get('vlanName')
 
@@ -207,7 +207,7 @@ class Vlan(object):
             dns_delegation_zones,
             ecmp_enabled,
             gateway,
-            gateway_v6,
+            gateway_v_6,
             hostname,
             id,
             iface_group_name,
@@ -220,7 +220,7 @@ class Vlan(object):
             ips,
             mtu,
             subnet,
-            subnet_v6,
+            subnet_v_6,
             tenant_id,
             vlan_name
 )

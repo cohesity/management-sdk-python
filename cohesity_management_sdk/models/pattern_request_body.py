@@ -13,11 +13,11 @@ class PatternRequestBody(object):
 
     Attributes:
 
-        application_data_type (int): Specifies the data type for which
-            supported patterns can be fetched.
-        application_id (long|int): Specifies AWB Application ID.
-        user_pattern (SupportedPattern): Specifies the pattern details to be
-            saved.
+        application_data_type (int, required): Specifies the data type for
+            which supported patterns can be fetched.
+        application_id (long|int, required): Specifies AWB Application ID.
+        user_pattern (SupportedPattern, required): Specifies the pattern
+            details to be saved.
     """
 
 
