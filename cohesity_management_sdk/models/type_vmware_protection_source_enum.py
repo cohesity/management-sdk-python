@@ -97,7 +97,7 @@ class TypeVmwareProtectionSourceEnum(object):
 
     KOPAQUENETWORK = 'kOpaqueNetwork'
 
-    KVCLOUDDIRECTOR = 'kvCloudDirector'
+    K_VCLOUD_DIRECTOR = 'kvCloudDirector'
 
     KORGANIZATION = 'kOrganization'
 

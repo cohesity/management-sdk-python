@@ -11,29 +11,29 @@ class ClusterNetworkingEndpoint(object):
     Attributes:
 
         fqdn (string): The Fully Qualified Domain Name.
-        ipv4_addr (string): The IPv4 address.
-        ipv6_addr (string): The IPv6 address.
+        ipv_4_addr (string): The IPv4 address.
+        ipv_6_addr (string): The IPv6 address.
     """
 
 
     # Create a mapping from Model property names to API property names
     _names = {
         "fqdn":'fqdn',
-        "ipv4_addr":'ipv4Addr',
-        "ipv6_addr":'ipv6Addr',
+        "ipv_4_addr":'ipv4Addr',
+        "ipv_6_addr":'ipv6Addr',
     }
     def __init__(self,
                  fqdn=None,
-                 ipv4_addr=None,
-                 ipv6_addr=None,
+                 ipv_4_addr=None,
+                 ipv_6_addr=None,
             ):
 
         """Constructor for the ClusterNetworkingEndpoint class"""
 
         # Initialize members of the class
         self.fqdn = fqdn
-        self.ipv4_addr = ipv4_addr
-        self.ipv6_addr = ipv6_addr
+        self.ipv_4_addr = ipv_4_addr
+        self.ipv_6_addr = ipv_6_addr
 
     @classmethod
     def from_dictionary(cls,
@@ -54,12 +54,12 @@ class ClusterNetworkingEndpoint(object):
 
         # Extract variables from the dictionary
         fqdn = dictionary.get('fqdn')
-        ipv4_addr = dictionary.get('ipv4Addr')
-        ipv6_addr = dictionary.get('ipv6Addr')
+        ipv_4_addr = dictionary.get('ipv4Addr')
+        ipv_6_addr = dictionary.get('ipv6Addr')
 
         # Return an object of this model
         return cls(
             fqdn,
-            ipv4_addr,
-            ipv6_addr
+            ipv_4_addr,
+            ipv_6_addr
 )

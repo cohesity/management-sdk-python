@@ -19,7 +19,7 @@ class VaultStats(object):
         nas_usage_bytes (long|int): Specifies the usage on NAS vaults.
         oracle_usage_bytes (long|int): Specifies the usage on Oracle vaults.
         qstar_usage_bytes (long|int): Specifies the usage on QStar Tape vaults.
-        s3c_usage_bytes (long|int): Specifies the usage on S3 Compatible
+        s_3_c_usage_bytes (long|int): Specifies the usage on S3 Compatible
             vaults.
         vault_stats_list (list of VaultStatsInfo): Specifies the stats of all
             vaults on the cluster.
@@ -34,7 +34,7 @@ class VaultStats(object):
         "nas_usage_bytes":'nasUsageBytes',
         "oracle_usage_bytes":'oracleUsageBytes',
         "qstar_usage_bytes":'qstarUsageBytes',
-        "s3c_usage_bytes":'s3cUsageBytes',
+        "s_3_c_usage_bytes":'s3cUsageBytes',
         "vault_stats_list":'vaultStatsList',
     }
     def __init__(self,
@@ -44,7 +44,7 @@ class VaultStats(object):
                  nas_usage_bytes=None,
                  oracle_usage_bytes=None,
                  qstar_usage_bytes=None,
-                 s3c_usage_bytes=None,
+                 s_3_c_usage_bytes=None,
                  vault_stats_list=None,
             ):
 
@@ -57,7 +57,7 @@ class VaultStats(object):
         self.nas_usage_bytes = nas_usage_bytes
         self.oracle_usage_bytes = oracle_usage_bytes
         self.qstar_usage_bytes = qstar_usage_bytes
-        self.s3c_usage_bytes = s3c_usage_bytes
+        self.s_3_c_usage_bytes = s_3_c_usage_bytes
         self.vault_stats_list = vault_stats_list
 
     @classmethod
@@ -84,7 +84,7 @@ class VaultStats(object):
         nas_usage_bytes = dictionary.get('nasUsageBytes')
         oracle_usage_bytes = dictionary.get('oracleUsageBytes')
         qstar_usage_bytes = dictionary.get('qstarUsageBytes')
-        s3c_usage_bytes = dictionary.get('s3cUsageBytes')
+        s_3_c_usage_bytes = dictionary.get('s3cUsageBytes')
         vault_stats_list = None
         if dictionary.get('vaultStatsList') != None:
             vault_stats_list = list()
@@ -99,6 +99,6 @@ class VaultStats(object):
             nas_usage_bytes,
             oracle_usage_bytes,
             qstar_usage_bytes,
-            s3c_usage_bytes,
+            s_3_c_usage_bytes,
             vault_stats_list
 )

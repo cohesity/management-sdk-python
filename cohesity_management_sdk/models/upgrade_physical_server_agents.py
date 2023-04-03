@@ -11,9 +11,10 @@ class UpgradePhysicalServerAgents(object):
 
     Attributes:
 
-        agent_ids (list of long|int): Array of Agent Ids.  Specifies a list of
-            agentIds associated with the Physical Servers to upgrade with the
-            agent release currently available from the Cohesity Cluster.
+        agent_ids (list of long|int, required): Array of Agent Ids.  Specifies
+            a list of agentIds associated with the Physical Servers to upgrade
+            with the agent release currently available from the Cohesity
+            Cluster.
     """
 
 

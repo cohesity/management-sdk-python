@@ -11,9 +11,10 @@ class AntivirusServiceGroupStateParams(object):
 
     Attributes:
 
-        enable (bool): Specifies the enable flag to enable the Antivirus
-            service group.
-        id (long|int): Specifies the Id of the Antivirus service group.
+        enable (bool, required): Specifies the enable flag to enable the
+            Antivirus service group.
+        id (long|int, required): Specifies the Id of the Antivirus service
+            group.
     """
 
 

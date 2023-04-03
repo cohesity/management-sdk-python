@@ -37,12 +37,12 @@ class CreateRemoteVaultSearchJobParameters(object):
             prefix string are returned in the search result. If not set, all
             Protection Jobs archiving data to the Vault are returned in the
             search results.
-        search_job_name (string): Specifies the search Job name.
+        search_job_name (string, required): Specifies the search Job name.
         start_time_usecs (long|int): Filter by a start time specified as a Unix
             epoch Timestamp (in microseconds). Only Job Runs that started after
             the specified time are included in the search results.
-        vault_id (long|int): Specifies the id of the Vault to search. This id
-            was assigned by the local Cohesity Cluster when Vault was
+        vault_id (long|int, required): Specifies the id of the Vault to search.
+            This id was assigned by the local Cohesity Cluster when Vault was
             registered as an External Target.
     """
 

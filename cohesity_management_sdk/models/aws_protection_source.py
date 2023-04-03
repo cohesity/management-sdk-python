@@ -2,7 +2,7 @@
 # Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.aws_fleet_params
-import cohesity_management_sdk.models.c2s_server_info
+import cohesity_management_sdk.models.c_2_s_server_info
 import cohesity_management_sdk.models.ebs_volume_info
 import cohesity_management_sdk.models.fleet_network_params
 import cohesity_management_sdk.models.tag_attribute
@@ -47,8 +47,8 @@ class AwsProtectionSource(object):
             instance. 'kAuroraTag' represents a tag attached to an Aurora
             cluster. 'kAccount' represents an AWS account. 'kAuroraCluster'
             represents an Aurora cluster.
-        c2s_server_info (C2SServerInfo): Specifies the C2S Access Portal (CAP)
-            server info.
+        c_2_s_server_info (C2SServerInfo): Specifies the C2S Access Portal
+            (CAP) server info.
         cluster_network_info (FleetNetworkParams): Specifies information
             related to cluster. This is only valid for CE clusters. This is
             only populated for kIAMUser entity.
@@ -144,7 +144,7 @@ class AwsProtectionSource(object):
         "auth_method":'authMethod',
         "aws_fleet_params":'awsFleetParams',
         "aws_type":'awsType',
-        "c2s_server_info":'c2sServerInfo',
+        "c_2_s_server_info":'c2sServerInfo',
         "cluster_network_info":'clusterNetworkInfo',
         "db_engine_id":'dbEngineId',
         "host_type":'hostType',
@@ -170,7 +170,7 @@ class AwsProtectionSource(object):
                  auth_method=None,
                  aws_fleet_params=None,
                  aws_type=None,
-                 c2s_server_info=None,
+                 c_2_s_server_info=None,
                  cluster_network_info=None,
                  db_engine_id=None,
                  host_type=None,
@@ -199,7 +199,7 @@ class AwsProtectionSource(object):
         self.auth_method = auth_method
         self.aws_fleet_params = aws_fleet_params
         self.aws_type = aws_type
-        self.c2s_server_info = c2s_server_info
+        self.c_2_s_server_info = c_2_s_server_info
         self.cluster_network_info = cluster_network_info
         self.db_engine_id = db_engine_id
         self.host_type = host_type
@@ -242,7 +242,7 @@ class AwsProtectionSource(object):
         auth_method = dictionary.get('authMethod')
         aws_fleet_params = cohesity_management_sdk.models.aws_fleet_params.AwsFleetParams.from_dictionary(dictionary.get('awsFleetParams')) if dictionary.get('awsFleetParams') else None
         aws_type = dictionary.get('awsType')
-        c2s_server_info = cohesity_management_sdk.models.c2s_server_info.C2SServerInfo.from_dictionary(dictionary.get('c2sServerInfo')) if dictionary.get('c2sServerInfo') else None
+        c_2_s_server_info = cohesity_management_sdk.models.c_2_s_server_info.C2SServerInfo.from_dictionary(dictionary.get('c2sServerInfo')) if dictionary.get('c2sServerInfo') else None
         cluster_network_info = cohesity_management_sdk.models.fleet_network_params.FleetNetworkParams.from_dictionary(dictionary.get('clusterNetworkInfo')) if dictionary.get('clusterNetworkInfo') else None
         db_engine_id = dictionary.get('dbEngineId')
         host_type = dictionary.get('hostType')
@@ -277,7 +277,7 @@ class AwsProtectionSource(object):
             auth_method,
             aws_fleet_params,
             aws_type,
-            c2s_server_info,
+            c_2_s_server_info,
             cluster_network_info,
             db_engine_id,
             host_type,

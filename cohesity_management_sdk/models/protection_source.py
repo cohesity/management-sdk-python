@@ -24,7 +24,7 @@ import cohesity_management_sdk.models.mongo_db_protection_source
 import cohesity_management_sdk.models.nas_protection_source
 import cohesity_management_sdk.models.netapp_protection_source
 import cohesity_management_sdk.models.nimble_protection_source
-import cohesity_management_sdk.models.office365_protection_source
+import cohesity_management_sdk.models.office_365_protection_source
 import cohesity_management_sdk.models.oracle_protection_source
 import cohesity_management_sdk.models.physical_protection_source
 import cohesity_management_sdk.models.pure_protection_source
@@ -171,7 +171,7 @@ class ProtectionSource(object):
         nimble_protection_source (NimbleProtectionSource): Specifies details
             about a SAN Protection Source when the environment is set to
             'kNimble'.
-        office365_protection_source (Office365ProtectionSource): Specifies
+        office_365_protection_source (Office365ProtectionSource): Specifies
             details about an Office 365 Protection Source when the environment
             is set to 'kO365'.
         oracle_protection_source (OracleProtectionSource): Specifies details
@@ -194,7 +194,7 @@ class ProtectionSource(object):
             set to 'kUDA'.
         view_protection_source (ViewProtectionSource): Specifies details about
             a View Protection Source when the environment is set to 'kView'.
-        vm_ware_protection_source (VMwareProtectionSource): Specifies details
+        vmware_protection_source (VMwareProtectionSource): Specifies details
             about a VMware Protection Source when the environment is set to
             'kVMware'.
     """
@@ -231,7 +231,7 @@ class ProtectionSource(object):
         "nas_protection_source":'nasProtectionSource',
         "netapp_protection_source":'netappProtectionSource',
         "nimble_protection_source":'nimbleProtectionSource',
-        "office365_protection_source":'office365ProtectionSource',
+        "office_365_protection_source":'office365ProtectionSource',
         "oracle_protection_source":'oracleProtectionSource',
         "parent_id":'parentId',
         "physical_protection_source":'physicalProtectionSource',
@@ -240,7 +240,7 @@ class ProtectionSource(object):
         "sql_protection_source":'sqlProtectionSource',
         "uda_protection_source":'udaProtectionSource',
         "view_protection_source":'viewProtectionSource',
-        "vm_ware_protection_source":'vmWareProtectionSource',
+        "vmware_protection_source":'vmwareProtectionSource',
     }
     def __init__(self,
                  acropolis_protection_source=None,
@@ -272,7 +272,7 @@ class ProtectionSource(object):
                  nas_protection_source=None,
                  netapp_protection_source=None,
                  nimble_protection_source=None,
-                 office365_protection_source=None,
+                 office_365_protection_source=None,
                  oracle_protection_source=None,
                  parent_id=None,
                  physical_protection_source=None,
@@ -281,7 +281,7 @@ class ProtectionSource(object):
                  sql_protection_source=None,
                  uda_protection_source=None,
                  view_protection_source=None,
-                 vm_ware_protection_source=None,
+                 vmware_protection_source=None,
             ):
 
         """Constructor for the ProtectionSource class"""
@@ -316,7 +316,7 @@ class ProtectionSource(object):
         self.nas_protection_source = nas_protection_source
         self.netapp_protection_source = netapp_protection_source
         self.nimble_protection_source = nimble_protection_source
-        self.office365_protection_source = office365_protection_source
+        self.office_365_protection_source = office_365_protection_source
         self.oracle_protection_source = oracle_protection_source
         self.parent_id = parent_id
         self.physical_protection_source = physical_protection_source
@@ -325,7 +325,7 @@ class ProtectionSource(object):
         self.sql_protection_source = sql_protection_source
         self.uda_protection_source = uda_protection_source
         self.view_protection_source = view_protection_source
-        self.vm_ware_protection_source = vm_ware_protection_source
+        self.vmware_protection_source = vmware_protection_source
 
     @classmethod
     def from_dictionary(cls,
@@ -374,7 +374,7 @@ class ProtectionSource(object):
         nas_protection_source = cohesity_management_sdk.models.nas_protection_source.NasProtectionSource.from_dictionary(dictionary.get('nasProtectionSource')) if dictionary.get('nasProtectionSource') else None
         netapp_protection_source = cohesity_management_sdk.models.netapp_protection_source.NetappProtectionSource.from_dictionary(dictionary.get('netappProtectionSource')) if dictionary.get('netappProtectionSource') else None
         nimble_protection_source = cohesity_management_sdk.models.nimble_protection_source.NimbleProtectionSource.from_dictionary(dictionary.get('nimbleProtectionSource')) if dictionary.get('nimbleProtectionSource') else None
-        office365_protection_source = cohesity_management_sdk.models.office365_protection_source.Office365ProtectionSource.from_dictionary(dictionary.get('office365ProtectionSource')) if dictionary.get('office365ProtectionSource') else None
+        office_365_protection_source = cohesity_management_sdk.models.office_365_protection_source.Office365ProtectionSource.from_dictionary(dictionary.get('office365ProtectionSource')) if dictionary.get('office365ProtectionSource') else None
         oracle_protection_source = cohesity_management_sdk.models.oracle_protection_source.OracleProtectionSource.from_dictionary(dictionary.get('oracleProtectionSource')) if dictionary.get('oracleProtectionSource') else None
         parent_id = dictionary.get('parentId')
         physical_protection_source = cohesity_management_sdk.models.physical_protection_source.PhysicalProtectionSource.from_dictionary(dictionary.get('physicalProtectionSource')) if dictionary.get('physicalProtectionSource') else None
@@ -383,7 +383,7 @@ class ProtectionSource(object):
         sql_protection_source = cohesity_management_sdk.models.sql_protection_source.SqlProtectionSource.from_dictionary(dictionary.get('sqlProtectionSource')) if dictionary.get('sqlProtectionSource') else None
         uda_protection_source = cohesity_management_sdk.models.uda_protection_source.UdaProtectionSource.from_dictionary(dictionary.get('udaProtectionSource')) if dictionary.get('udaProtectionSource') else None
         view_protection_source = cohesity_management_sdk.models.view_protection_source.ViewProtectionSource.from_dictionary(dictionary.get('viewProtectionSource')) if dictionary.get('viewProtectionSource') else None
-        vm_ware_protection_source = cohesity_management_sdk.models.vmware_protection_source.VMwareProtectionSource.from_dictionary(dictionary.get('vmWareProtectionSource')) if dictionary.get('vmWareProtectionSource') else None
+        vmware_protection_source = cohesity_management_sdk.models.vmware_protection_source.VMwareProtectionSource.from_dictionary(dictionary.get('vmwareProtectionSource')) if dictionary.get('vmwareProtectionSource') else None
 
         # Return an object of this model
         return cls(
@@ -416,7 +416,7 @@ class ProtectionSource(object):
             nas_protection_source,
             netapp_protection_source,
             nimble_protection_source,
-            office365_protection_source,
+            office_365_protection_source,
             oracle_protection_source,
             parent_id,
             physical_protection_source,
@@ -425,5 +425,5 @@ class ProtectionSource(object):
             sql_protection_source,
             uda_protection_source,
             view_protection_source,
-            vm_ware_protection_source
+            vmware_protection_source
 )

@@ -17,7 +17,8 @@ class AntivirusServiceGroupParams(object):
             the Antivirus services for this provider.
         description (string): Specifies the description of the Antivirus
             service group.
-        name (string): Specifies the name of the Antivirus service group.
+        name (string, required): Specifies the name of the Antivirus service
+            group.
     """
 
 

@@ -91,7 +91,7 @@ class CreateViewRequest(object):
             if the limit is increased or data is removed, there may be a delay
             before the Cohesity Cluster allows more data to be written to the
             View, as the Cluster is calculating the usage across Nodes.
-        name (string): Specifies the name of the new View to create.
+        name (string, required): Specifies the name of the new View to create.
         netgroup_whitelist (list of NisNetgroup): Array of Netgroups. 
             Specifies a list of Netgroups that have permissions to access the
             View. (Overrides the Netgroups specified at the global Cohesity
@@ -113,10 +113,10 @@ class CreateViewRequest(object):
             of a view does not match any of the above. In this case, the
             constant is used as 'catch-all'.
         qos (QoS): Specifies the Quality of Service (QoS) Policy for the View.
-        s3_folder_support_enabled (bool): Specifies whether to support s3
+        s_3_folder_support_enabled (bool): Specifies whether to support s3
             folder support feature on the view. This parameter can only be set
             during create and cannot be changed.
-        s3_key_mapping_config (S3KeyMappingConfigEnum): Specifies key mapping
+        s_3_key_mapping_config (S3KeyMappingConfigEnum): Specifies key mapping
             config of S3 storage. Configuration of S3 key mapping.  Specifies
             the type of S3 key mapping config.
         security_mode (SecurityModeEnum): Specifies the security mode used for
@@ -142,8 +142,8 @@ class CreateViewRequest(object):
         swift_user_domain (string): Specifies the Keystone user domain.
         swift_username (string): Specifies the Keystone username.
         tenant_id (string): Optional tenant id who has access to this View.
-        view_box_id (long|int): Specifies the id of the Storage Domain (View
-            Box) where the View will be created.
+        view_box_id (long|int, required): Specifies the id of the Storage
+            Domain (View Box) where the View will be created.
         view_lock_enabled (bool): Specifies whether view lock is enabled. If
             enabled the view cannot be modified or deleted until unlock. By
             default it is disabled.
@@ -182,8 +182,8 @@ class CreateViewRequest(object):
         "override_global_whitelist":'overrideGlobalWhitelist',
         "protocol_access":'protocolAccess',
         "qos":'qos',
-        "s3_folder_support_enabled":'s3FolderSupportEnabled',
-        "s3_key_mapping_config":'s3KeyMappingConfig',
+        "s_3_folder_support_enabled":'s3FolderSupportEnabled',
+        "s_3_key_mapping_config":'s3KeyMappingConfig',
         "security_mode":'securityMode',
         "share_permissions":'sharePermissions',
         "smb_permissions_info":'smbPermissionsInfo',
@@ -229,8 +229,8 @@ class CreateViewRequest(object):
                  override_global_whitelist=None,
                  protocol_access=None,
                  qos=None,
-                 s3_folder_support_enabled=None,
-                 s3_key_mapping_config=None,
+                 s_3_folder_support_enabled=None,
+                 s_3_key_mapping_config=None,
                  security_mode=None,
                  share_permissions=None,
                  smb_permissions_info=None,
@@ -279,8 +279,8 @@ class CreateViewRequest(object):
         self.override_global_whitelist = override_global_whitelist
         self.protocol_access = protocol_access
         self.qos = qos
-        self.s3_folder_support_enabled = s3_folder_support_enabled
-        self.s3_key_mapping_config = s3_key_mapping_config
+        self.s_3_folder_support_enabled = s_3_folder_support_enabled
+        self.s_3_key_mapping_config = s_3_key_mapping_config
         self.security_mode = security_mode
         self.share_permissions = share_permissions
         self.smb_permissions_info = smb_permissions_info
@@ -347,8 +347,8 @@ class CreateViewRequest(object):
         override_global_whitelist = dictionary.get('overrideGlobalWhitelist')
         protocol_access = dictionary.get('protocolAccess')
         qos = cohesity_management_sdk.models.qo_s.QoS.from_dictionary(dictionary.get('qos')) if dictionary.get('qos') else None
-        s3_folder_support_enabled = dictionary.get('s3FolderSupportEnabled')
-        s3_key_mapping_config = dictionary.get('s3KeyMappingConfig')
+        s_3_folder_support_enabled = dictionary.get('s3FolderSupportEnabled')
+        s_3_key_mapping_config = dictionary.get('s3KeyMappingConfig')
         security_mode = dictionary.get('securityMode')
         share_permissions = None
         if dictionary.get('sharePermissions') != None:
@@ -403,8 +403,8 @@ class CreateViewRequest(object):
             override_global_whitelist,
             protocol_access,
             qos,
-            s3_folder_support_enabled,
-            s3_key_mapping_config,
+            s_3_folder_support_enabled,
+            s_3_key_mapping_config,
             security_mode,
             share_permissions,
             smb_permissions_info,

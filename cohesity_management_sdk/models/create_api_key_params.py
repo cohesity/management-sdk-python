@@ -14,7 +14,7 @@ class CreateApiKeyParams(object):
             will expire in milli seconds.
         is_active (bool): Specifies if the API key is active. Only an active
             and not expired API key can be used for authentication.
-        name (string): Specifies the name of API key.
+        name (string, required): Specifies the name of API key.
     """
 
 

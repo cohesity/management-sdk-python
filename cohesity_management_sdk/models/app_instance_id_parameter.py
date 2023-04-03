@@ -10,7 +10,8 @@ class AppInstanceIdParameter(object):
 
     Attributes:
 
-        app_instance_id (long|int): Specifies the app instance Id. In: path
+        app_instance_id (long|int, required): Specifies the app instance Id.
+            In: path
     """
 
 

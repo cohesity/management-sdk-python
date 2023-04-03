@@ -3,7 +3,7 @@
 
 import cohesity_management_sdk.models.uda_recover_job_params_restore_job_arguments_map_entry
 import cohesity_management_sdk.models.uda_recover_job_params_source_arguments_map_entry
-import cohesity_management_sdk.models.uda_s3_view_backup_properties
+import cohesity_management_sdk.models.uda_s_3_view_backup_properties
 import cohesity_management_sdk.models.uda_source_capabilities
 
 
@@ -44,10 +44,10 @@ class UdaRecoverJobParams(object):
             scripts.
         source_type (string): Universal Data Adapter source type for which
             recovery is being performed.
-        uda_s3_view_backup_properties (UdaS3ViewBackupProperties): This message
-            captures all the details needed by UDA Restore to clone S3 views
-            and access the S3 bucket.
-        use_s3_view (bool): Whether S3 views should be used for restore.
+        uda_s_3_view_backup_properties (UdaS3ViewBackupProperties): This
+            message captures all the details needed by UDA Restore to clone S3
+            views and access the S3 bucket.
+        use_s_3_view (bool): Whether S3 views should be used for restore.
     """
 
 
@@ -68,8 +68,8 @@ class UdaRecoverJobParams(object):
         "source_args":'sourceArgs',
         "source_arguments_map":'sourceArgumentsMap',
         "source_type":'sourceType',
-        "uda_s3_view_backup_properties":'udaS3ViewBackupProperties',
-        "use_s3_view":'useS3View',
+        "uda_s_3_view_backup_properties":'udaS3ViewBackupProperties',
+        "use_s_3_view":'useS3View',
     }
     def __init__(self,
                  capabilities=None,
@@ -87,8 +87,8 @@ class UdaRecoverJobParams(object):
                  source_args=None,
                  source_arguments_map=None,
                  source_type=None,
-                 uda_s3_view_backup_properties=None,
-                 use_s3_view=None,
+                 uda_s_3_view_backup_properties=None,
+                 use_s_3_view=None,
             ):
 
         """Constructor for the UdaRecoverJobParams class"""
@@ -109,8 +109,8 @@ class UdaRecoverJobParams(object):
         self.source_args = source_args
         self.source_arguments_map = source_arguments_map
         self.source_type = source_type
-        self.uda_s3_view_backup_properties = uda_s3_view_backup_properties
-        self.use_s3_view = use_s3_view
+        self.uda_s_3_view_backup_properties = uda_s_3_view_backup_properties
+        self.use_s_3_view = use_s_3_view
 
     @classmethod
     def from_dictionary(cls,
@@ -153,8 +153,8 @@ class UdaRecoverJobParams(object):
             for structure in dictionary.get('sourceArgumentsMap'):
                 source_arguments_map.append(cohesity_management_sdk.models.uda_recover_job_params_source_arguments_map_entry.UdaRecoverJobParams_SourceArgumentsMapEntry.from_dictionary(structure))
         source_type = dictionary.get('sourceType')
-        uda_s3_view_backup_properties = cohesity_management_sdk.models.uda_s3_view_backup_properties.UdaS3ViewBackupProperties.from_dictionary(dictionary.get('udaS3ViewBackupProperties')) if dictionary.get('udaS3ViewBackupProperties') else None
-        use_s3_view = dictionary.get('useS3View')
+        uda_s_3_view_backup_properties = cohesity_management_sdk.models.uda_s_3_view_backup_properties.UdaS3ViewBackupProperties.from_dictionary(dictionary.get('udaS3ViewBackupProperties')) if dictionary.get('udaS3ViewBackupProperties') else None
+        use_s_3_view = dictionary.get('useS3View')
 
         # Return an object of this model
         return cls(
@@ -173,6 +173,6 @@ class UdaRecoverJobParams(object):
             source_args,
             source_arguments_map,
             source_type,
-            uda_s3_view_backup_properties,
-            use_s3_view
+            uda_s_3_view_backup_properties,
+            use_s_3_view
 )

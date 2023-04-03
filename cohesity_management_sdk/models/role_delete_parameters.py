@@ -10,8 +10,8 @@ class RoleDeleteParameters(object):
 
     Attributes:
 
-        names (list of string): Array of Role Names.  Specifies the list of
-            roles to delete which are specified by role names.
+        names (list of string, required): Array of Role Names.  Specifies the
+            list of roles to delete which are specified by role names.
     """
 
 

@@ -1,30 +1,31 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class NewS3SecretAccessKey(object):
 
     """Implementation of the 'NewS3SecretAccessKey' model.
 
-    TODO: type model description here.
+    TODO: type description here.
+
 
     Attributes:
-        new_key (string): Specifies the new S3 Secret Access key.
 
+        new_key (string): Specifies the new S3 Secret Access key.
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "new_key":'newKey'
+        "new_key":'newKey',
     }
-
     def __init__(self,
-                 new_key=None):
+                 new_key=None,
+            ):
+
         """Constructor for the NewS3SecretAccessKey class"""
 
         # Initialize members of the class
         self.new_key = new_key
-
 
     @classmethod
     def from_dictionary(cls,
@@ -47,6 +48,6 @@ class NewS3SecretAccessKey(object):
         new_key = dictionary.get('newKey')
 
         # Return an object of this model
-        return cls(new_key)
-
-
+        return cls(
+            new_key
+)

@@ -24,7 +24,7 @@ class SfdcBackupSourceParamsProto(object):
         object_level_params_vec (list of ObjectLevelParams): This list is a
             mapping between an Sfdc object's entity Id and the list of field
             names that user has specified to exclude from this object's backup.
-        s3_bucket_prefix (string): S3 bucket prefix to be used while uploading
+        s_3_bucket_prefix (string): S3 bucket prefix to be used while uploading
             the data to Aurora-postgres.
     """
 
@@ -35,14 +35,14 @@ class SfdcBackupSourceParamsProto(object):
         "aws_iam_role":'awsIamRole',
         "excluded_object_ids_vec":'excludedObjectIdsVec',
         "object_level_params_vec":'objectLevelParamsVec',
-        "s3_bucket_prefix":'s3BucketPrefix',
+        "s_3_bucket_prefix":'s3BucketPrefix',
     }
     def __init__(self,
                  aurora_cluster_info=None,
                  aws_iam_role=None,
                  excluded_object_ids_vec=None,
                  object_level_params_vec=None,
-                 s3_bucket_prefix=None,
+                 s_3_bucket_prefix=None,
             ):
 
         """Constructor for the SfdcBackupSourceParamsProto class"""
@@ -52,7 +52,7 @@ class SfdcBackupSourceParamsProto(object):
         self.aws_iam_role = aws_iam_role
         self.excluded_object_ids_vec = excluded_object_ids_vec
         self.object_level_params_vec = object_level_params_vec
-        self.s3_bucket_prefix = s3_bucket_prefix
+        self.s_3_bucket_prefix = s_3_bucket_prefix
 
     @classmethod
     def from_dictionary(cls,
@@ -80,7 +80,7 @@ class SfdcBackupSourceParamsProto(object):
             object_level_params_vec = list()
             for structure in dictionary.get('objectLevelParamsVec'):
                 object_level_params_vec.append(cohesity_management_sdk.models.object_level_params.ObjectLevelParams.from_dictionary(structure))
-        s3_bucket_prefix = dictionary.get('s3BucketPrefix')
+        s_3_bucket_prefix = dictionary.get('s3BucketPrefix')
 
         # Return an object of this model
         return cls(
@@ -88,5 +88,5 @@ class SfdcBackupSourceParamsProto(object):
             aws_iam_role,
             excluded_object_ids_vec,
             object_level_params_vec,
-            s3_bucket_prefix
+            s_3_bucket_prefix
 )

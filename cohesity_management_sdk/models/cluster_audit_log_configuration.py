@@ -10,15 +10,15 @@ class ClusterAuditLogConfiguration(object):
 
     Attributes:
 
-        enabled (bool): Specifies if the Cluster audit logging is enabled on
-            the Cohesity Cluster. If 'true', Cluster audit logging is enabled.
-            Otherwise, it is disabled.
-        retention_period_days (int): Specifies the number of days to keep
-            (retain) the Cluster audit logs. Audit logs generated before the
-            period of time specified by retentionPeriodDays are removed from
-            the Cohesity Cluster.
-        verbose_audit (bool): Specifies if the Cluster audit logging includes
-            prev value and new value.
+        enabled (bool, required): Specifies if the Cluster audit logging is
+            enabled on the Cohesity Cluster. If 'true', Cluster audit logging
+            is enabled. Otherwise, it is disabled.
+        retention_period_days (int, required): Specifies the number of days to
+            keep (retain) the Cluster audit logs. Audit logs generated before
+            the period of time specified by retentionPeriodDays are removed
+            from the Cohesity Cluster.
+        verbose_audit (bool, required): Specifies if the Cluster audit logging
+            includes prev value and new value.
     """
 
 

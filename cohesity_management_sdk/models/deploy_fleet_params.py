@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-import cohesity_management_sdk.models.a_w_s_fleet_params
+import cohesity_management_sdk.models.aws_fleet_params
 
 
 class DeployFleetParams(object):
@@ -48,7 +48,7 @@ class DeployFleetParams(object):
             return None
 
         # Extract variables from the dictionary
-        aws_fleet_params = cohesity_management_sdk.models.a_w_s_fleet_params.AWSFleetParams.from_dictionary(dictionary.get('awsFleetParams')) if dictionary.get('awsFleetParams') else None
+        aws_fleet_params = cohesity_management_sdk.models.aws_fleet_params.AWSFleetParams.from_dictionary(dictionary.get('awsFleetParams')) if dictionary.get('awsFleetParams') else None
 
         # Return an object of this model
         return cls(

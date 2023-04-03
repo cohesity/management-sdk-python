@@ -11,8 +11,8 @@ class DownloadPackageParameters(object):
 
     Attributes:
 
-        url (string): Specifies a URL from which the package can be downloaded
-            to the Cluster.
+        url (string, required): Specifies a URL from which the package can be
+            downloaded to the Cluster.
     """
 
 

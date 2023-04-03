@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-
 class Office365Credentials(object):
 
     """Implementation of the 'Office365Credentials' model.
 
     Specifies the credentials to authenticate with Office365 account.
 
+
     Attributes:
+
         client_id (string): Specifies the application ID that the registration
             portal (apps.dev.microsoft.com) assigned.
         client_secret (string): Specifies the application secret that was
@@ -22,8 +23,8 @@ class Office365Credentials(object):
         use_o_auth_for_exchange_online (bool): This field is deprecated from
             here and placed in RegisteredSourceInfo and
             ProtectionSourceParameters. deprecated: true
-
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
@@ -31,15 +32,16 @@ class Office365Credentials(object):
         "client_secret":'clientSecret',
         "grant_type":'grantType',
         "scope":'scope',
-        "use_o_auth_for_exchange_online":'useOAuthForExchangeOnline'
+        "use_o_auth_for_exchange_online":'useOAuthForExchangeOnline',
     }
-
     def __init__(self,
                  client_id=None,
                  client_secret=None,
                  grant_type=None,
                  scope=None,
-                 use_o_auth_for_exchange_online=None):
+                 use_o_auth_for_exchange_online=None,
+            ):
+
         """Constructor for the Office365Credentials class"""
 
         # Initialize members of the class
@@ -48,7 +50,6 @@ class Office365Credentials(object):
         self.grant_type = grant_type
         self.scope = scope
         self.use_o_auth_for_exchange_online = use_o_auth_for_exchange_online
-
 
     @classmethod
     def from_dictionary(cls,
@@ -75,10 +76,10 @@ class Office365Credentials(object):
         use_o_auth_for_exchange_online = dictionary.get('useOAuthForExchangeOnline')
 
         # Return an object of this model
-        return cls(client_id,
-                   client_secret,
-                   grant_type,
-                   scope,
-                   use_o_auth_for_exchange_online)
-
-
+        return cls(
+            client_id,
+            client_secret,
+            grant_type,
+            scope,
+            use_o_auth_for_exchange_online
+)

@@ -14,8 +14,8 @@ class DeployTaskRequest(object):
 
     Attributes:
 
-        name (string): Specifies the name of the Deploy Task. This field must
-            be set and must be a unique name.
+        name (string, required): Specifies the name of the Deploy Task. This
+            field must be set and must be a unique name.
         new_parent_id (long|int): Specifies a new registered parent Protection
             Source. If specified the selected objects are cloned or recovered
             to this new Protection Source. If not specified, objects are cloned

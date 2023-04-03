@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-class ApolloWalIoPreferentialTierEnum(object):
+class ApolloWalIOPreferentialTierEnum(object):
 
-    """Implementation of the 'ApolloWalIoPreferentialTier' enum.
+    """Implementation of the 'ApolloWalIOPreferentialTier' enum.
     Specifies the preferred storage tier used by Apollo as its actions WAL.
 
 

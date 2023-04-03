@@ -20,10 +20,10 @@ class ProtectionSourceAndApplicationRestoreObjects(object):
         application_restore_objects (list of ApplicationRestoreObject):
             Specifies the Application Server objects whose data should be
             restored and the restore parameters for each of them.
-        hosting_protection_source (RestoreObjectDetails): Specifies the restore
-            information for the Protection Source object that registered and
-            hosts the Application Servers. This provides the snapshot details
-            from which the applications should be restored.
+        hosting_protection_source (RestoreObjectDetails, required): Specifies
+            the restore information for the Protection Source object that
+            registered and hosts the Application Servers. This provides the
+            snapshot details from which the applications should be restored.
     """
 
 

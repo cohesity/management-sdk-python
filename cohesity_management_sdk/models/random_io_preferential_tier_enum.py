@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-class RandomIoPreferentialTierEnum(object):
+class RandomIOPreferentialTierEnum(object):
 
-    """Implementation of the 'RandomIoPreferentialTier' enum.
+    """Implementation of the 'RandomIOPreferentialTier' enum.
     Specifies the order of perferred storage tiers for random IO operations.
 
 

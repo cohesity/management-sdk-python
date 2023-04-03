@@ -15,8 +15,8 @@ class ExpandPhysicalClusterParameters(object):
     Attributes:
 
         chassis_serial_to_rack_id_map (object): ChassisSerialToRackId map.
-        node_configs (list of PhysicalNodeConfiguration): Specifies the
-            configuration details of the Nodes in the Cluster.
+        node_configs (list of PhysicalNodeConfiguration, required): Specifies
+            the configuration details of the Nodes in the Cluster.
         vips (list of string): Specifies the virtual IPs to add to the Cluster.
     """
 

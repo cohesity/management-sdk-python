@@ -6,9 +6,9 @@ import cohesity_management_sdk.models.rename_object_param_proto
 import cohesity_management_sdk.models.restored_object_network_config_proto
 
 
-class VMwareStandbyResource(object):
+class VmwareStandbyResource(object):
 
-    """Implementation of the 'VMwareStandbyResource' model.
+    """Implementation of the 'VmwareStandbyResource' model.
 
     TODO: type description here.
 
@@ -51,7 +51,7 @@ class VMwareStandbyResource(object):
                  target_vm_folder=None,
             ):
 
-        """Constructor for the VMwareStandbyResource class"""
+        """Constructor for the VmwareStandbyResource class"""
 
         # Initialize members of the class
         self.datastore_entity_vec = datastore_entity_vec

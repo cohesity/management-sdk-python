@@ -14,10 +14,10 @@ class CreateBondParameters(object):
             this bond. If not specified, this value will default to
             'kActiveBackup'. 'kActiveBackup' indicates active backup bonding
             mode. 'k802_3ad' indicates 802.3ad bonding mode.
-        name (string): Specifies a unique name to identify the bond being
-            created.
-        slaves (list of string): Specifies the names of the secondaries of this
-            bond.
+        name (string, required): Specifies a unique name to identify the bond
+            being created.
+        slaves (list of string, required): Specifies the names of the
+            secondaries of this bond.
     """
 
 

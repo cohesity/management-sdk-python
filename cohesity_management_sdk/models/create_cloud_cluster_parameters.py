@@ -14,17 +14,17 @@ class CreateCloudClusterParameters(object):
 
     Attributes:
 
-        cluster_name (string): Specifies the name of the new Cluster.
+        cluster_name (string, required): Specifies the name of the new Cluster.
         cluster_size (ClusterSizeEnum): Specifies the size of the cluster. It
             is set as Large by default if the parameter is not specified.
         encryption_config (EncryptionConfiguration): Specifies the encryption
             configuration parameters.
         ip_preference (int): Specifies IP preference.
         metadata_fault_tolerance (int): Specifies the metadata fault tolerance.
-        network_config (CloudNetworkConfiguration): Specifies the network
-            configuration parameters.
-        node_ips (list of string): Specifies the configuration for the nodes in
-            the new cluster.
+        network_config (CloudNetworkConfiguration, required): Specifies the
+            network configuration parameters.
+        node_ips (list of string, required): Specifies the configuration for
+            the nodes in the new cluster.
     """
 
 

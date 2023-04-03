@@ -61,8 +61,8 @@ class RecoverTaskRequest(object):
             additional parameters for 'kKubernetes' restore objects.
         mount_parameters (MountVolumesParameters): Specifies parameters
             required for mounting volumes.
-        name (string): Specifies the name of the Restore Task. This field must
-            be set and must be a unique name.
+        name (string, required): Specifies the name of the Restore Task. This
+            field must be set and must be a unique name.
         new_parent_id (long|int): Specify a new registered parent Protection
             Source. If specified the selected objects are cloned or recovered
             to this new Protection Source. If not specified, objects are cloned
@@ -79,13 +79,13 @@ class RecoverTaskRequest(object):
             restoring view.
         share_point_parameters (SharePointRestoreParameters): Specifies
             additional parameters for 'kRecoverSites' restore objects.
-        mtype (TypeRecoverTaskRequestEnum): Specifies the type of Restore Task
-            such as 'kRecoverVMs' or 'kMountVolumes'. 'kRecoverVMs' specifies a
-            Restore Task that recovers VMs. 'kMountVolumes' specifies a Restore
-            Task that mounts volumes to mount points. 'kRecoverNamespaces'
-            specifies a Restore Task that recovers Kubernetes namespaces.
-            'kMountFileVolume' specifies a Restore Task that mounts a file
-            volume.
+        mtype (TypeRecoverTaskRequestEnum, required): Specifies the type of
+            Restore Task such as 'kRecoverVMs' or 'kMountVolumes'.
+            'kRecoverVMs' specifies a Restore Task that recovers VMs.
+            'kMountVolumes' specifies a Restore Task that mounts volumes to
+            mount points. 'kRecoverNamespaces' specifies a Restore Task that
+            recovers Kubernetes namespaces. 'kMountFileVolume' specifies a
+            Restore Task that mounts a file volume.
         view_name (string): Specifie target view into which the objects are to
             be cloned when doing recovery for NAS.
         virtual_disk_restore_parameters (VirtualDiskRestoreParameters):

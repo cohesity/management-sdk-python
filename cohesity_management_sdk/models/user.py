@@ -107,9 +107,9 @@ class User(object):
             to associate with the user such as such as 'Admin', 'Ops' or
             'View'. The Cohesity roles determine privileges on the Cohesity
             Cluster for this user.
-        s3_access_key_id (string): Specifies the S3 Account Access Key ID.
-        s3_account_id (string): Specifies the S3 Account Canonical User ID.
-        s3_secret_key (string): Specifies the S3 Account Secret Key.
+        s_3_access_key_id (string): Specifies the S3 Account Access Key ID.
+        s_3_account_id (string): Specifies the S3 Account Canonical User ID.
+        s_3_secret_key (string): Specifies the S3 Account Secret Key.
         salesforce_account (SalesforceAccountInfo): Specifies additional
             information pertaining to Salesforce account. This field is set
             only for Helios users who has account on Salesforce.
@@ -161,9 +161,9 @@ class User(object):
         "profiles":'profiles',
         "restricted":'restricted',
         "roles":'roles',
-        "s3_access_key_id":'s3AccessKeyId',
-        "s3_account_id":'s3AccountId',
-        "s3_secret_key":'s3SecretKey',
+        "s_3_access_key_id":'s3AccessKeyId',
+        "s_3_account_id":'s3AccountId',
+        "s_3_secret_key":'s3SecretKey',
         "salesforce_account":'salesforceAccount',
         "sid":'sid',
         "subscription_info":'subscriptionInfo',
@@ -206,9 +206,9 @@ class User(object):
                  profiles=None,
                  restricted=None,
                  roles=None,
-                 s3_access_key_id=None,
-                 s3_account_id=None,
-                 s3_secret_key=None,
+                 s_3_access_key_id=None,
+                 s_3_account_id=None,
+                 s_3_secret_key=None,
                  salesforce_account=None,
                  sid=None,
                  subscription_info=None,
@@ -254,9 +254,9 @@ class User(object):
         self.profiles = profiles
         self.restricted = restricted
         self.roles = roles
-        self.s3_access_key_id = s3_access_key_id
-        self.s3_account_id = s3_account_id
-        self.s3_secret_key = s3_secret_key
+        self.s_3_access_key_id = s_3_access_key_id
+        self.s_3_account_id = s_3_account_id
+        self.s_3_secret_key = s_3_secret_key
         self.salesforce_account = salesforce_account
         self.sid = sid
         self.subscription_info = subscription_info
@@ -328,9 +328,9 @@ class User(object):
                 profiles.append(cohesity_management_sdk.models.mcm_user_profile.McmUserProfile.from_dictionary(structure))
         restricted = dictionary.get('restricted')
         roles = dictionary.get("roles")
-        s3_access_key_id = dictionary.get('s3AccessKeyId')
-        s3_account_id = dictionary.get('s3AccountId')
-        s3_secret_key = dictionary.get('s3SecretKey')
+        s_3_access_key_id = dictionary.get('s3AccessKeyId')
+        s_3_account_id = dictionary.get('s3AccountId')
+        s_3_secret_key = dictionary.get('s3SecretKey')
         salesforce_account = cohesity_management_sdk.models.salesforce_account_info.SalesforceAccountInfo.from_dictionary(dictionary.get('salesforceAccount')) if dictionary.get('salesforceAccount') else None
         sid = dictionary.get('sid')
         subscription_info = cohesity_management_sdk.models.subscription_info.SubscriptionInfo.from_dictionary(dictionary.get('subscriptionInfo')) if dictionary.get('subscriptionInfo') else None
@@ -378,9 +378,9 @@ class User(object):
             profiles,
             restricted,
             roles,
-            s3_access_key_id,
-            s3_account_id,
-            s3_secret_key,
+            s_3_access_key_id,
+            s_3_account_id,
+            s_3_secret_key,
             salesforce_account,
             sid,
             subscription_info,

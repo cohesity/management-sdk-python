@@ -29,8 +29,8 @@ class CreateViewBoxParams(object):
         cloud_down_waterfall_threshold_secs (int): Specifies the cloud down
             water-fall threshold seconds. This indicates what's the time
             threshold on water-falling data to cloud tier.
-        cluster_partition_id (long|int): Specifies the Cluster Partition id
-            where the Storage Domain (View Box) is located.
+        cluster_partition_id (long|int, required): Specifies the Cluster
+            Partition id where the Storage Domain (View Box) is located.
         default_user_quota_policy (QuotaPolicy): Specifies an optional quota
             policy/limits that are inherited by all users within the views in
             this viewbox.
@@ -69,7 +69,8 @@ class CreateViewBoxParams(object):
             is also a mapping between LDAP provider and AD domain that is
             stored in AD provider config. It will be used if AD is not set on
             the view box.
-        name (string): Specifies the name of the Storage Domain (View Box).
+        name (string, required): Specifies the name of the Storage Domain (View
+            Box).
         nis_domain_name_vec (list of string): Specifies the NIS domain that
             this view box is mapped to.
         physical_quota (QuotaPolicy): Specifies an optional quota limit (in
@@ -87,8 +88,8 @@ class CreateViewBoxParams(object):
             or data is removed, there may be a delay before the Cohesity
             Cluster allows more data to be written to the Storage Domain (View
             Box), as the Cluster is calculating the usage across Nodes.
-        s3_buckets_allowed (bool): Specifies whether creation of a S3 bucket is
-            allowed in this Storage Domain (View Box). When a new S3 bucket
+        s_3_buckets_allowed (bool): Specifies whether creation of a S3 bucket
+            is allowed in this Storage Domain (View Box). When a new S3 bucket
             creation request arrives, we'll look at all the View Boxes and the
             first Storage Domain (View Box) that allows creating S3 buckets in
             it will be the one where the bucket will be placed.
@@ -123,7 +124,7 @@ class CreateViewBoxParams(object):
         "name":'name',
         "nis_domain_name_vec":'nisDomainNameVec',
         "physical_quota":'physicalQuota',
-        "s3_buckets_allowed":'s3BucketsAllowed',
+        "s_3_buckets_allowed":'s3BucketsAllowed',
         "storage_policy":'storagePolicy',
         "tenant_id_vec":'tenantIdVec',
         "updated_brick_size":'updatedBrickSize',
@@ -145,7 +146,7 @@ class CreateViewBoxParams(object):
                  name=None,
                  nis_domain_name_vec=None,
                  physical_quota=None,
-                 s3_buckets_allowed=None,
+                 s_3_buckets_allowed=None,
                  storage_policy=None,
                  tenant_id_vec=None,
                  updated_brick_size=None,
@@ -170,7 +171,7 @@ class CreateViewBoxParams(object):
         self.name = name
         self.nis_domain_name_vec = nis_domain_name_vec
         self.physical_quota = physical_quota
-        self.s3_buckets_allowed = s3_buckets_allowed
+        self.s_3_buckets_allowed = s_3_buckets_allowed
         self.storage_policy = storage_policy
         self.tenant_id_vec = tenant_id_vec
         self.updated_brick_size = updated_brick_size
@@ -213,7 +214,7 @@ class CreateViewBoxParams(object):
         name = dictionary.get('name')
         nis_domain_name_vec = dictionary.get("nisDomainNameVec")
         physical_quota = cohesity_management_sdk.models.quota_policy.QuotaPolicy.from_dictionary(dictionary.get('physicalQuota')) if dictionary.get('physicalQuota') else None
-        s3_buckets_allowed = dictionary.get('s3BucketsAllowed')
+        s_3_buckets_allowed = dictionary.get('s3BucketsAllowed')
         storage_policy = cohesity_management_sdk.models.storage_policy.StoragePolicy.from_dictionary(dictionary.get('storagePolicy')) if dictionary.get('storagePolicy') else None
         tenant_id_vec = dictionary.get("tenantIdVec")
         updated_brick_size = dictionary.get('updatedBrickSize')
@@ -236,7 +237,7 @@ class CreateViewBoxParams(object):
             name,
             nis_domain_name_vec,
             physical_quota,
-            s3_buckets_allowed,
+            s_3_buckets_allowed,
             storage_policy,
             tenant_id_vec,
             updated_brick_size

@@ -10,7 +10,7 @@ class Gflag(object):
 
     Attributes:
 
-        name (string): Specifies name of the gflag.
+        name (string, required): Specifies name of the gflag.
         product_model (string): Specifies product model this gflag set on.
         reason (string): Specifies reason for setting the gflag.
         timestamp (long|int): Specifies timestamp when gflag was set.

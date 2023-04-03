@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-class ApolloIoPreferentialTierEnum(object):
+class ApolloIOPreferentialTierEnum(object):
 
-    """Implementation of the 'ApolloIoPreferentialTier' enum.
+    """Implementation of the 'ApolloIOPreferentialTier' enum.
     Specifies the preferred storage tier used by Apollo as its working
     directory.
 

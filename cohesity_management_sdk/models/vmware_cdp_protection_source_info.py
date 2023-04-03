@@ -4,9 +4,9 @@
 import cohesity_management_sdk.models.cdp_io_filter_state
 
 
-class VMwareCdpProtectionSourceInfo(object):
+class VmwareCdpProtectionSourceInfo(object):
 
-    """Implementation of the 'VMwareCdpProtectionSourceInfo' model.
+    """Implementation of the 'VmwareCdpProtectionSourceInfo' model.
 
     Specifies the details about the Continuous Data Protection (CDP) info of a
     VMware Protection Source.
@@ -27,7 +27,7 @@ class VMwareCdpProtectionSourceInfo(object):
                  io_filter_state=None,
             ):
 
-        """Constructor for the VMwareCdpProtectionSourceInfo class"""
+        """Constructor for the VmwareCdpProtectionSourceInfo class"""
 
         # Initialize members of the class
         self.io_filter_state = io_filter_state

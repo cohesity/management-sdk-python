@@ -6,9 +6,9 @@ import cohesity_management_sdk.models.source_app_params
 import cohesity_management_sdk.models.vmware_disk_exclusion_proto
 
 
-class VMwareBackupSourceParams(object):
+class VmwareBackupSourceParams(object):
 
-    """Implementation of the 'VMwareBackupSourceParams' model.
+    """Implementation of the 'VmwareBackupSourceParams' model.
 
     Message to capture additional backup params for a VMware type source.
 
@@ -39,7 +39,7 @@ class VMwareBackupSourceParams(object):
                  vmware_disk_exclusion_info=None,
             ):
 
-        """Constructor for the VMwareBackupSourceParams class"""
+        """Constructor for the VmwareBackupSourceParams class"""
 
         # Initialize members of the class
         self.source_app_params = source_app_params

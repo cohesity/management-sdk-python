@@ -13,7 +13,7 @@ class ViewStatsInLastHours(object):
         last_hours (long|int): Specifies the time range.
         nfs_protocol_value (long|int): Specifies the stats value for NFS
             protocol.
-        s3_protocol_value (long|int): Specifies the stats value for S3
+        s_3_protocol_value (long|int): Specifies the stats value for S3
             protocol.
         smb_protocol_value (long|int): Specifies the stats value for SMB
             protocol.
@@ -25,14 +25,14 @@ class ViewStatsInLastHours(object):
     _names = {
         "last_hours":'lastHours',
         "nfs_protocol_value":'nfsProtocolValue',
-        "s3_protocol_value":'s3ProtocolValue',
+        "s_3_protocol_value":'s3ProtocolValue',
         "smb_protocol_value":'smbProtocolValue',
         "value":'value',
     }
     def __init__(self,
                  last_hours=None,
                  nfs_protocol_value=None,
-                 s3_protocol_value=None,
+                 s_3_protocol_value=None,
                  smb_protocol_value=None,
                  value=None,
             ):
@@ -42,7 +42,7 @@ class ViewStatsInLastHours(object):
         # Initialize members of the class
         self.last_hours = last_hours
         self.nfs_protocol_value = nfs_protocol_value
-        self.s3_protocol_value = s3_protocol_value
+        self.s_3_protocol_value = s_3_protocol_value
         self.smb_protocol_value = smb_protocol_value
         self.value = value
 
@@ -66,7 +66,7 @@ class ViewStatsInLastHours(object):
         # Extract variables from the dictionary
         last_hours = dictionary.get('lastHours')
         nfs_protocol_value = dictionary.get('nfsProtocolValue')
-        s3_protocol_value = dictionary.get('s3ProtocolValue')
+        s_3_protocol_value = dictionary.get('s3ProtocolValue')
         smb_protocol_value = dictionary.get('smbProtocolValue')
         value = dictionary.get('value')
 
@@ -74,7 +74,7 @@ class ViewStatsInLastHours(object):
         return cls(
             last_hours,
             nfs_protocol_value,
-            s3_protocol_value,
+            s_3_protocol_value,
             smb_protocol_value,
             value
 )

@@ -162,7 +162,7 @@ class Cluster(object):
             in seconds for cluster PcieSSD storage tier.
         proto_rpc_encryption_enabled (bool): Specifies if protorpc encryption
             is enabled or not.
-        proxy_vmsubnet (string): The subnet reserved for ProxyVM
+        proxy_vm_subnet (string): The subnet reserved for ProxyVM
         reverse_tunnel_enabled (bool): If 'true', Cohesity's Remote Tunnel is
             enabled. Cohesity can access the Cluster and provide remote
             assistance via a Remote Tunnel.
@@ -262,7 +262,7 @@ class Cluster(object):
         "patch_version":'patchVersion',
         "pcie_ssd_tier_rebalance_delay_secs":'pcieSsdTierRebalanceDelaySecs',
         "proto_rpc_encryption_enabled":'protoRpcEncryptionEnabled',
-        "proxy_vmsubnet":'proxyVMSubnet',
+        "proxy_vm_subnet":'proxyVMSubnet',
         "reverse_tunnel_enabled":'reverseTunnelEnabled',
         "reverse_tunnel_end_time_msecs":'reverseTunnelEndTimeMsecs',
         "schema_info_list":'schemaInfoList',
@@ -334,7 +334,7 @@ class Cluster(object):
                  patch_version=None,
                  pcie_ssd_tier_rebalance_delay_secs=None,
                  proto_rpc_encryption_enabled=None,
-                 proxy_vmsubnet=None,
+                 proxy_vm_subnet=None,
                  reverse_tunnel_enabled=None,
                  reverse_tunnel_end_time_msecs=None,
                  schema_info_list=None,
@@ -409,7 +409,7 @@ class Cluster(object):
         self.patch_version = patch_version
         self.pcie_ssd_tier_rebalance_delay_secs = pcie_ssd_tier_rebalance_delay_secs
         self.proto_rpc_encryption_enabled = proto_rpc_encryption_enabled
-        self.proxy_vmsubnet = proxy_vmsubnet
+        self.proxy_vm_subnet = proxy_vm_subnet
         self.reverse_tunnel_enabled = reverse_tunnel_enabled
         self.reverse_tunnel_end_time_msecs = reverse_tunnel_end_time_msecs
         self.schema_info_list = schema_info_list
@@ -502,7 +502,7 @@ class Cluster(object):
         patch_version = dictionary.get('patchVersion')
         pcie_ssd_tier_rebalance_delay_secs = dictionary.get('pcieSsdTierRebalanceDelaySecs')
         proto_rpc_encryption_enabled = dictionary.get('protoRpcEncryptionEnabled')
-        proxy_vmsubnet = dictionary.get('proxyVMSubnet')
+        proxy_vm_subnet = dictionary.get('proxyVMSubnet')
         reverse_tunnel_enabled = dictionary.get('reverseTunnelEnabled')
         reverse_tunnel_end_time_msecs = dictionary.get('reverseTunnelEndTimeMsecs')
         schema_info_list = None
@@ -583,7 +583,7 @@ class Cluster(object):
             patch_version,
             pcie_ssd_tier_rebalance_delay_secs,
             proto_rpc_encryption_enabled,
-            proxy_vmsubnet,
+            proxy_vm_subnet,
             reverse_tunnel_enabled,
             reverse_tunnel_end_time_msecs,
             schema_info_list,

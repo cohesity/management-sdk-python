@@ -11,9 +11,9 @@ class UpdateLinuxPasswordReqParams(object):
     Attributes:
 
         linux_current_password (string): Specifies the current password.
-        linux_password (string): Specifies the new linux password.
-        linux_username (string): Specifies the linux username for which the
-            password will be updated.
+        linux_password (string, required): Specifies the new linux password.
+        linux_username (string, required): Specifies the linux username for
+            which the password will be updated.
         verify_password (bool): True if request is only to verify if current
             password matches with set password.
     """

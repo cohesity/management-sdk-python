@@ -6,7 +6,7 @@ import cohesity_management_sdk.models.exchange_env_job_parameters
 import cohesity_management_sdk.models.externally_triggered_env_job_parameters
 import cohesity_management_sdk.models.hyperv_env_job_parameters
 import cohesity_management_sdk.models.nas_env_job_parameters
-import cohesity_management_sdk.models.office365_env_job_parameters
+import cohesity_management_sdk.models.office_365_env_job_parameters
 import cohesity_management_sdk.models.oracle_env_job_parameters
 import cohesity_management_sdk.models.physical_env_job_parameters
 import cohesity_management_sdk.models.san_env_job_parameters
@@ -39,7 +39,7 @@ class EnvironmentTypeJobParameters(object):
             type.
         nas_parameters (NasEnvJobParameters): Specifies additional special
             parameters that are applicable only to Types of 'kGenericNas' type.
-        office365_parameters (Office365EnvJobParameters): Specifies additional
+        office_365_parameters (Office365EnvJobParameters): Specifies additional
             special parameters that are applicable only to types of
             'kO365Outlook' type which incorporates both Mailbox & OneDrive
             backup parameters.
@@ -66,7 +66,7 @@ class EnvironmentTypeJobParameters(object):
         "externally_triggered_job_parameters":'externallyTriggeredJobParameters',
         "hyperv_parameters":'hypervParameters',
         "nas_parameters":'nasParameters',
-        "office365_parameters":'office365Parameters',
+        "office_365_parameters":'office365Parameters',
         "oracle_parameters":'oracleParameters',
         "physical_parameters":'physicalParameters',
         "pure_parameters":'pureParameters',
@@ -79,7 +79,7 @@ class EnvironmentTypeJobParameters(object):
                  externally_triggered_job_parameters=None,
                  hyperv_parameters=None,
                  nas_parameters=None,
-                 office365_parameters=None,
+                 office_365_parameters=None,
                  oracle_parameters=None,
                  physical_parameters=None,
                  pure_parameters=None,
@@ -95,7 +95,7 @@ class EnvironmentTypeJobParameters(object):
         self.externally_triggered_job_parameters = externally_triggered_job_parameters
         self.hyperv_parameters = hyperv_parameters
         self.nas_parameters = nas_parameters
-        self.office365_parameters = office365_parameters
+        self.office_365_parameters = office_365_parameters
         self.oracle_parameters = oracle_parameters
         self.physical_parameters = physical_parameters
         self.pure_parameters = pure_parameters
@@ -125,7 +125,7 @@ class EnvironmentTypeJobParameters(object):
         externally_triggered_job_parameters = cohesity_management_sdk.models.externally_triggered_env_job_parameters.ExternallyTriggeredEnvJobParameters.from_dictionary(dictionary.get('externallyTriggeredJobParameters')) if dictionary.get('externallyTriggeredJobParameters') else None
         hyperv_parameters = cohesity_management_sdk.models.hyperv_env_job_parameters.HypervEnvJobParameters.from_dictionary(dictionary.get('hypervParameters')) if dictionary.get('hypervParameters') else None
         nas_parameters = cohesity_management_sdk.models.nas_env_job_parameters.NasEnvJobParameters.from_dictionary(dictionary.get('nasParameters')) if dictionary.get('nasParameters') else None
-        office365_parameters = cohesity_management_sdk.models.office365_env_job_parameters.Office365EnvJobParameters.from_dictionary(dictionary.get('office365Parameters')) if dictionary.get('office365Parameters') else None
+        office_365_parameters = cohesity_management_sdk.models.office_365_env_job_parameters.Office365EnvJobParameters.from_dictionary(dictionary.get('office365Parameters')) if dictionary.get('office365Parameters') else None
         oracle_parameters = cohesity_management_sdk.models.oracle_env_job_parameters.OracleEnvJobParameters.from_dictionary(dictionary.get('oracleParameters')) if dictionary.get('oracleParameters') else None
         physical_parameters = cohesity_management_sdk.models.physical_env_job_parameters.PhysicalEnvJobParameters.from_dictionary(dictionary.get('physicalParameters')) if dictionary.get('physicalParameters') else None
         pure_parameters = cohesity_management_sdk.models.san_env_job_parameters.SanEnvJobParameters.from_dictionary(dictionary.get('pureParameters')) if dictionary.get('pureParameters') else None
@@ -139,7 +139,7 @@ class EnvironmentTypeJobParameters(object):
             externally_triggered_job_parameters,
             hyperv_parameters,
             nas_parameters,
-            office365_parameters,
+            office_365_parameters,
             oracle_parameters,
             physical_parameters,
             pure_parameters,

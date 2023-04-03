@@ -17,7 +17,7 @@ class Subnet(object):
         id (int): ID of the subnet.
         ip (string): Specifies either an IPv6 address or an IPv4 address.
         netmask_bits (int): Specifies the netmask using bits.
-        netmask_ip4 (string): Specifies the netmask using an IP4 address. The
+        netmask_ip_4 (string): Specifies the netmask using an IP4 address. The
             netmask can only be set using netmaskIp4 if the IP address is an
             IPv4 address.
         nfs_access (NfsAccessEnum): Specifies whether clients from this subnet
@@ -30,7 +30,7 @@ class Subnet(object):
             configured in the view.
         nfs_root_squash (bool): Specifies whether clients from this subnet can
             mount as root on NFS.
-        s3_access (S3AccessEnum): Specifies whether clients from this subnet
+        s_3_access (S3AccessEnum): Specifies whether clients from this subnet
             can access using S3 protocol. Protocol access level. 'kDisabled'
             indicates Protocol access level 'Disabled' 'kReadOnly' indicates
             Protocol access level 'ReadOnly' 'kReadWrite' indicates Protocol
@@ -51,11 +51,11 @@ class Subnet(object):
         "id":'id',
         "ip":'ip',
         "netmask_bits":'netmaskBits',
-        "netmask_ip4":'netmaskIp4',
+        "netmask_ip_4":'netmaskIp4',
         "nfs_access":'nfsAccess',
         "nfs_all_squash":'nfsAllSquash',
         "nfs_root_squash":'nfsRootSquash',
-        "s3_access":'s3Access',
+        "s_3_access":'s3Access',
         "smb_access":'smbAccess',
         "tenant_id":'tenantId',
     }
@@ -65,11 +65,11 @@ class Subnet(object):
                  id=None,
                  ip=None,
                  netmask_bits=None,
-                 netmask_ip4=None,
+                 netmask_ip_4=None,
                  nfs_access=None,
                  nfs_all_squash=None,
                  nfs_root_squash=None,
-                 s3_access=None,
+                 s_3_access=None,
                  smb_access=None,
                  tenant_id=None,
             ):
@@ -82,11 +82,11 @@ class Subnet(object):
         self.id = id
         self.ip = ip
         self.netmask_bits = netmask_bits
-        self.netmask_ip4 = netmask_ip4
+        self.netmask_ip_4 = netmask_ip_4
         self.nfs_access = nfs_access
         self.nfs_all_squash = nfs_all_squash
         self.nfs_root_squash = nfs_root_squash
-        self.s3_access = s3_access
+        self.s_3_access = s_3_access
         self.smb_access = smb_access
         self.tenant_id = tenant_id
 
@@ -113,11 +113,11 @@ class Subnet(object):
         id = dictionary.get('id')
         ip = dictionary.get('ip')
         netmask_bits = dictionary.get('netmaskBits')
-        netmask_ip4 = dictionary.get('netmaskIp4')
+        netmask_ip_4 = dictionary.get('netmaskIp4')
         nfs_access = dictionary.get('nfsAccess')
         nfs_all_squash = dictionary.get('nfsAllSquash')
         nfs_root_squash = dictionary.get('nfsRootSquash')
-        s3_access = dictionary.get('s3Access')
+        s_3_access = dictionary.get('s3Access')
         smb_access = dictionary.get('smbAccess')
         tenant_id = dictionary.get('tenantId')
 
@@ -128,11 +128,11 @@ class Subnet(object):
             id,
             ip,
             netmask_bits,
-            netmask_ip4,
+            netmask_ip_4,
             nfs_access,
             nfs_all_squash,
             nfs_root_squash,
-            s3_access,
+            s_3_access,
             smb_access,
             tenant_id
 )
