@@ -11,6 +11,9 @@ Updated SDK for 6.8.1_u1 Cluster Version.
 ### Fixed
 - None
 
+### Removed
+- None
+
 # [1.9.0] - 2023-03-30
 New SDK for 6.8.1_u1 Cluster Version.
 
