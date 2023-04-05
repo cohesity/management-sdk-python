@@ -58,7 +58,7 @@ class StandbyResource(object):
 
         # Extract variables from the dictionary
         recovery_point_objective_secs = dictionary.get('recoveryPointObjectiveSecs')
-        vmware_standby_resource = cohesity_management_sdk.models.vmware_standby_resource.VMwareStandbyResource.from_dictionary(dictionary.get('vmwareStandbyResource')) if dictionary.get('vmwareStandbyResource') else None
+        vmware_standby_resource = cohesity_management_sdk.models.vmware_standby_resource.VmwareStandbyResource.from_dictionary(dictionary.get('vmwareStandbyResource')) if dictionary.get('vmwareStandbyResource') else None
 
         # Return an object of this model
         return cls(

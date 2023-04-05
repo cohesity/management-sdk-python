@@ -16,7 +16,7 @@ class BifrostSubnet(object):
         ips (list of string): Array of IPs.  Specifies a list of IPs in the
             VLAN.
         netmask_bits (int): Specifies the netmask using bits.
-        netmask_ip_4_ (string): Specifies the netmask using an IP4 address. The
+        netmask_ip_4 (string): Specifies the netmask using an IP4 address. The
             netmask can only be set using netmaskIp4 if the IP address is an
             IPv4 address.
     """
@@ -28,14 +28,14 @@ class BifrostSubnet(object):
         "ip_cidr":'ipCidr',
         "ips":'ips',
         "netmask_bits":'netmaskBits',
-        "netmask_ip_4_":'netmaskIp4',
+        "netmask_ip_4":'netmaskIp4',
     }
     def __init__(self,
                  gateway=None,
                  ip_cidr=None,
                  ips=None,
                  netmask_bits=None,
-                 netmask_ip_4_=None,
+                 netmask_ip_4=None,
             ):
 
         """Constructor for the BifrostSubnet class"""
@@ -45,7 +45,7 @@ class BifrostSubnet(object):
         self.ip_cidr = ip_cidr
         self.ips = ips
         self.netmask_bits = netmask_bits
-        self.netmask_ip_4_ = netmask_ip_4_
+        self.netmask_ip_4 = netmask_ip_4
 
     @classmethod
     def from_dictionary(cls,
@@ -69,7 +69,7 @@ class BifrostSubnet(object):
         ip_cidr = dictionary.get('ipCidr')
         ips = dictionary.get("ips")
         netmask_bits = dictionary.get('netmaskBits')
-        netmask_ip_4_ = dictionary.get('netmaskIp4')
+        netmask_ip_4 = dictionary.get('netmaskIp4')
 
         # Return an object of this model
         return cls(
@@ -77,5 +77,5 @@ class BifrostSubnet(object):
             ip_cidr,
             ips,
             netmask_bits,
-            netmask_ip_4_
+            netmask_ip_4
 )

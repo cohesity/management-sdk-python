@@ -227,13 +227,13 @@ class VmwareProtectionSource(object):
             agents = list()
             for structure in dictionary.get('agents'):
                 agents.append(cohesity_management_sdk.models.agent_information.AgentInformation.from_dictionary(structure))
-        cdp_info = cohesity_management_sdk.models.vmware_cdp_protection_source_info.VMwareCdpProtectionSourceInfo.from_dictionary(dictionary.get('cdpInfo')) if dictionary.get('cdpInfo') else None
+        cdp_info = cohesity_management_sdk.models.vmware_cdp_protection_source_info.VmwareCdpProtectionSourceInfo.from_dictionary(dictionary.get('cdpInfo')) if dictionary.get('cdpInfo') else None
         connection_state = dictionary.get('connectionState')
         datastore_info = cohesity_management_sdk.models.datastore_info.DatastoreInfo.from_dictionary(dictionary.get('datastoreInfo')) if dictionary.get('datastoreInfo') else None
         folder_type = dictionary.get('folderType')
         has_persistent_agent = dictionary.get('hasPersistentAgent')
         host_type = dictionary.get('hostType')
-        id = cohesity_management_sdk.models.vmware_object_id.VMwareObjectId.from_dictionary(dictionary.get('id')) if dictionary.get('id') else None
+        id = cohesity_management_sdk.models.vmware_object_id.VmwareObjectId.from_dictionary(dictionary.get('id')) if dictionary.get('id') else None
         ip_details = cohesity_management_sdk.models.ip_details.IpDetails.from_dictionary(dictionary.get('ipDetails')) if dictionary.get('ipDetails') else None
         is_vm_template = dictionary.get('isVmTemplate')
         is_vmc_entity = dictionary.get('isVmcEntity')

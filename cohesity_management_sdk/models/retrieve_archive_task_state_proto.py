@@ -91,7 +91,7 @@ class RetrieveArchiveTaskStateProto(object):
         "end_time_usecs":'endTimeUsecs',
         "entity_vec":'entityVec',
         "error":'error',
-        "full_view_name_deprecated":'fullViewNameDEPRECATED',
+        "full_view_name_deprecated":'fullViewName_DEPRECATED',
         "glacier_flr_restore_option":'glacierFlrRestoreOption',
         "is_uptier_restore_job":'isUptierRestoreJob',
         "job_uid":'jobUid',
@@ -106,7 +106,7 @@ class RetrieveArchiveTaskStateProto(object):
         "user":'user',
         "vault_restore_params":'vaultRestoreParams',
         "view_box_id":'viewBoxId',
-        "view_name_deprecated":'viewNameDEPRECATED',
+        "view_name_deprecated":'viewName_DEPRECATED',
     }
     def __init__(self,
                  archival_target=None,
@@ -193,7 +193,7 @@ class RetrieveArchiveTaskStateProto(object):
             for structure in dictionary.get('entityVec'):
                 entity_vec.append(cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(structure))
         error = cohesity_management_sdk.models.error_proto.ErrorProto.from_dictionary(dictionary.get('error')) if dictionary.get('error') else None
-        full_view_name_deprecated = dictionary.get('fullViewNameDEPRECATED')
+        full_view_name_deprecated = dictionary.get('fullViewName_DEPRECATED')
         glacier_flr_restore_option = dictionary.get('glacierFlrRestoreOption')
         is_uptier_restore_job = dictionary.get('isUptierRestoreJob')
         job_uid = cohesity_management_sdk.models.universal_id_proto.UniversalIdProto.from_dictionary(dictionary.get('jobUid')) if dictionary.get('jobUid') else None
@@ -208,7 +208,7 @@ class RetrieveArchiveTaskStateProto(object):
         user = dictionary.get('user')
         vault_restore_params = cohesity_management_sdk.models.vault_params_restore_params.VaultParams_RestoreParams.from_dictionary(dictionary.get('vaultRestoreParams')) if dictionary.get('vaultRestoreParams') else None
         view_box_id = dictionary.get('viewBoxId')
-        view_name_deprecated = dictionary.get('viewNameDEPRECATED')
+        view_name_deprecated = dictionary.get('viewName_DEPRECATED')
 
         # Return an object of this model
         return cls(

@@ -70,7 +70,7 @@ class VmwareBackupSourceParams(object):
         if dictionary.get('vmwareDiskExclusionInfo') != None:
             vmware_disk_exclusion_info = list()
             for structure in dictionary.get('vmwareDiskExclusionInfo'):
-                vmware_disk_exclusion_info.append(cohesity_management_sdk.models.vmware_disk_exclusion_proto.VMwareDiskExclusionProto.from_dictionary(structure))
+                vmware_disk_exclusion_info.append(cohesity_management_sdk.models.vmware_disk_exclusion_proto.VmwareDiskExclusionProto.from_dictionary(structure))
 
         # Return an object of this model
         return cls(

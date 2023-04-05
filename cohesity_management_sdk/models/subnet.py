@@ -17,7 +17,7 @@ class Subnet(object):
         id (int): ID of the subnet.
         ip (string): Specifies either an IPv6 address or an IPv4 address.
         netmask_bits (int): Specifies the netmask using bits.
-        netmask_ip_4_ (string): Specifies the netmask using an IP4 address. The
+        netmask_ip_4 (string): Specifies the netmask using an IP4 address. The
             netmask can only be set using netmaskIp4 if the IP address is an
             IPv4 address.
         nfs_access (NfsAccessEnum): Specifies whether clients from this subnet
@@ -51,7 +51,7 @@ class Subnet(object):
         "id":'id',
         "ip":'ip',
         "netmask_bits":'netmaskBits',
-        "netmask_ip_4_":'netmaskIp4',
+        "netmask_ip_4":'netmaskIp4',
         "nfs_access":'nfsAccess',
         "nfs_all_squash":'nfsAllSquash',
         "nfs_root_squash":'nfsRootSquash',
@@ -65,7 +65,7 @@ class Subnet(object):
                  id=None,
                  ip=None,
                  netmask_bits=None,
-                 netmask_ip_4_=None,
+                 netmask_ip_4=None,
                  nfs_access=None,
                  nfs_all_squash=None,
                  nfs_root_squash=None,
@@ -82,7 +82,7 @@ class Subnet(object):
         self.id = id
         self.ip = ip
         self.netmask_bits = netmask_bits
-        self.netmask_ip_4_ = netmask_ip_4_
+        self.netmask_ip_4 = netmask_ip_4
         self.nfs_access = nfs_access
         self.nfs_all_squash = nfs_all_squash
         self.nfs_root_squash = nfs_root_squash
@@ -113,7 +113,7 @@ class Subnet(object):
         id = dictionary.get('id')
         ip = dictionary.get('ip')
         netmask_bits = dictionary.get('netmaskBits')
-        netmask_ip_4_ = dictionary.get('netmaskIp4')
+        netmask_ip_4 = dictionary.get('netmaskIp4')
         nfs_access = dictionary.get('nfsAccess')
         nfs_all_squash = dictionary.get('nfsAllSquash')
         nfs_root_squash = dictionary.get('nfsRootSquash')
@@ -128,7 +128,7 @@ class Subnet(object):
             id,
             ip,
             netmask_bits,
-            netmask_ip_4_,
+            netmask_ip_4,
             nfs_access,
             nfs_all_squash,
             nfs_root_squash,

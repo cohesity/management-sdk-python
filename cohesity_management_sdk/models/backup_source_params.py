@@ -144,7 +144,7 @@ class BackupSourceParams(object):
         sharepoint_params = cohesity_management_sdk.models.sharepoint_backup_source_params.SharepointBackupSourceParams.from_dictionary(dictionary.get('sharepointParams')) if dictionary.get('sharepointParams') else None
         skip_indexing = dictionary.get('skipIndexing')
         source_id = dictionary.get('sourceId')
-        vmware_params = cohesity_management_sdk.models.vmware_backup_source_params.VMwareBackupSourceParams.from_dictionary(dictionary.get('vmwareParams')) if dictionary.get('vmwareParams') else None
+        vmware_params = cohesity_management_sdk.models.vmware_backup_source_params.VmwareBackupSourceParams.from_dictionary(dictionary.get('vmwareParams')) if dictionary.get('vmwareParams') else None
 
         # Return an object of this model
         return cls(
