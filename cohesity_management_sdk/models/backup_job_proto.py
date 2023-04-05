@@ -336,7 +336,7 @@ class BackupJobProto(object):
         "end_time_usecs":'endTimeUsecs',
         "env_backup_params":'envBackupParams',
         "exclude_sources":'excludeSources',
-        "exclude_sources_deprecated":'excludeSourcesDEPRECATED',
+        "exclude_sources_deprecated":'excludeSources_DEPRECATED',
         "exclusion_ranges":'exclusionRanges',
         "full_backup_job_policy":'fullBackupJobPolicy',
         "full_backup_sla_time_mins":'fullBackupSlaTimeMins',
@@ -623,9 +623,9 @@ class BackupJobProto(object):
             for structure in dictionary.get('excludeSources'):
                 exclude_sources.append(cohesity_management_sdk.models.backup_job_proto_exclude_source.BackupJobProto_ExcludeSource.from_dictionary(structure))
         exclude_sources_deprecated = None
-        if dictionary.get('excludeSourcesDEPRECATED') != None:
+        if dictionary.get('excludeSources_DEPRECATED') != None:
             exclude_sources_deprecated = list()
-            for structure in dictionary.get('excludeSourcesDEPRECATED'):
+            for structure in dictionary.get('excludeSources_DEPRECATED'):
                 exclude_sources_deprecated.append(cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(structure))
         exclusion_ranges = None
         if dictionary.get('exclusionRanges') != None:

@@ -3,7 +3,7 @@
 
 import cohesity_management_sdk.models.uda_backup_job_params_backup_job_arguments_map_entry
 import cohesity_management_sdk.models.uda_objects
-import cohesity_management_sdk.models.uda_s_3_view_backup_properties
+import cohesity_management_sdk.models.uda_s3_view_backup_properties
 
 
 class UdaBackupJobParams(object):
@@ -32,9 +32,9 @@ class UdaBackupJobParams(object):
             support is added to UDA and protected objects can be specified by
             their Ids instead of their names.
         uda_objects (list of UdaObjects): List of objects to be backed up.
-        uda_s_3_view_backup_properties (UdaS3ViewBackupProperties): This
-            message captures all the details needed by UDA Backup to create S3
-            views and to access the S3 bucket.
+        uda_s3_view_backup_properties (UdaS3ViewBackupProperties): This message
+            captures all the details needed by UDA Backup to create S3 views
+            and to access the S3 bucket.
     """
 
 
@@ -49,7 +49,7 @@ class UdaBackupJobParams(object):
         "mounts":'mounts',
         "source_id":'sourceId',
         "uda_objects":'udaObjects',
-        "uda_s_3_view_backup_properties":'udaS3ViewBackupProperties',
+        "uda_s3_view_backup_properties":'udaS3ViewBackupProperties',
     }
     def __init__(self,
                  backup_job_arguments_map=None,
@@ -61,7 +61,7 @@ class UdaBackupJobParams(object):
                  mounts=None,
                  source_id=None,
                  uda_objects=None,
-                 uda_s_3_view_backup_properties=None,
+                 uda_s3_view_backup_properties=None,
             ):
 
         """Constructor for the UdaBackupJobParams class"""
@@ -76,7 +76,7 @@ class UdaBackupJobParams(object):
         self.mounts = mounts
         self.source_id = source_id
         self.uda_objects = uda_objects
-        self.uda_s_3_view_backup_properties = uda_s_3_view_backup_properties
+        self.uda_s3_view_backup_properties = uda_s3_view_backup_properties
 
     @classmethod
     def from_dictionary(cls,
@@ -113,7 +113,7 @@ class UdaBackupJobParams(object):
             uda_objects = list()
             for structure in dictionary.get('udaObjects'):
                 uda_objects.append(cohesity_management_sdk.models.uda_objects.UdaObjects.from_dictionary(structure))
-        uda_s_3_view_backup_properties = cohesity_management_sdk.models.uda_s_3_view_backup_properties.UdaS3ViewBackupProperties.from_dictionary(dictionary.get('udaS3ViewBackupProperties')) if dictionary.get('udaS3ViewBackupProperties') else None
+        uda_s3_view_backup_properties = cohesity_management_sdk.models.uda_s3_view_backup_properties.UdaS3ViewBackupProperties.from_dictionary(dictionary.get('udaS3ViewBackupProperties')) if dictionary.get('udaS3ViewBackupProperties') else None
 
         # Return an object of this model
         return cls(
@@ -126,5 +126,5 @@ class UdaBackupJobParams(object):
             mounts,
             source_id,
             uda_objects,
-            uda_s_3_view_backup_properties
+            uda_s3_view_backup_properties
 )

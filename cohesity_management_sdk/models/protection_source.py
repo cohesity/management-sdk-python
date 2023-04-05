@@ -240,7 +240,7 @@ class ProtectionSource(object):
         "sql_protection_source":'sqlProtectionSource',
         "uda_protection_source":'udaProtectionSource',
         "view_protection_source":'viewProtectionSource',
-        "vmware_protection_source":'vmwareProtectionSource',
+        "vmware_protection_source":'vmWareProtectionSource',
     }
     def __init__(self,
                  acropolis_protection_source=None,
@@ -383,7 +383,7 @@ class ProtectionSource(object):
         sql_protection_source = cohesity_management_sdk.models.sql_protection_source.SqlProtectionSource.from_dictionary(dictionary.get('sqlProtectionSource')) if dictionary.get('sqlProtectionSource') else None
         uda_protection_source = cohesity_management_sdk.models.uda_protection_source.UdaProtectionSource.from_dictionary(dictionary.get('udaProtectionSource')) if dictionary.get('udaProtectionSource') else None
         view_protection_source = cohesity_management_sdk.models.view_protection_source.ViewProtectionSource.from_dictionary(dictionary.get('viewProtectionSource')) if dictionary.get('viewProtectionSource') else None
-        vmware_protection_source = cohesity_management_sdk.models.vmware_protection_source.VMwareProtectionSource.from_dictionary(dictionary.get('vmwareProtectionSource')) if dictionary.get('vmwareProtectionSource') else None
+        vmware_protection_source = cohesity_management_sdk.models.vmware_protection_source.VmwareProtectionSource.from_dictionary(dictionary.get('vmWareProtectionSource')) if dictionary.get('vmWareProtectionSource') else None
 
         # Return an object of this model
         return cls(

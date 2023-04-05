@@ -39,7 +39,7 @@ class RestoreKubernetesNamespacesParams(object):
             used to specify the transformation ( i.e prefix/suffix) to be
             applied to the source namespace to derive the new name of the
             restored namespace.
-        s_3_account_id (string): S3 account ID that was used to register the
+        s3_account_id (string): S3 account ID that was used to register the
             source.
     """
 
@@ -55,7 +55,7 @@ class RestoreKubernetesNamespacesParams(object):
         "management_namespace":'managementNamespace',
         "pod_metadata_vec":'podMetadataVec',
         "rename_restored_object_param":'renameRestoredObjectParam',
-        "s_3_account_id":'s3AccountId',
+        "s3_account_id":'s3AccountId',
     }
     def __init__(self,
                  backup_cluster_id=None,
@@ -67,7 +67,7 @@ class RestoreKubernetesNamespacesParams(object):
                  management_namespace=None,
                  pod_metadata_vec=None,
                  rename_restored_object_param=None,
-                 s_3_account_id=None,
+                 s3_account_id=None,
             ):
 
         """Constructor for the RestoreKubernetesNamespacesParams class"""
@@ -82,7 +82,7 @@ class RestoreKubernetesNamespacesParams(object):
         self.management_namespace = management_namespace
         self.pod_metadata_vec = pod_metadata_vec
         self.rename_restored_object_param = rename_restored_object_param
-        self.s_3_account_id = s_3_account_id
+        self.s3_account_id = s3_account_id
 
     @classmethod
     def from_dictionary(cls,
@@ -115,7 +115,7 @@ class RestoreKubernetesNamespacesParams(object):
             for structure in dictionary.get('podMetadataVec'):
                 pod_metadata_vec.append(cohesity_management_sdk.models.pod_metadata.PodMetadata.from_dictionary(structure))
         rename_restored_object_param = cohesity_management_sdk.models.rename_object_param_proto.RenameObjectParamProto.from_dictionary(dictionary.get('renameRestoredObjectParam')) if dictionary.get('renameRestoredObjectParam') else None
-        s_3_account_id = dictionary.get('s3AccountId')
+        s3_account_id = dictionary.get('s3AccountId')
 
         # Return an object of this model
         return cls(
@@ -128,5 +128,5 @@ class RestoreKubernetesNamespacesParams(object):
             management_namespace,
             pod_metadata_vec,
             rename_restored_object_param,
-            s_3_account_id
+            s3_account_id
 )

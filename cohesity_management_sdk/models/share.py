@@ -34,7 +34,7 @@ class Share(object):
         nfs_mount_path (string): Specifies the path for mounting this Share as
             an NFS share.
         path (string): Specifies the path information for this share.
-        s_3_access_path (string): Specifies the path to access this View as an
+        s3_access_path (string): Specifies the path to access this View as an
             S3 share.
         share_name (string): The name of the share.
         share_permissions (list of SmbPermission): Specifies a list of share
@@ -61,7 +61,7 @@ class Share(object):
         "enforce_smb_encryption":'enforceSmbEncryption',
         "nfs_mount_path":'nfsMountPath',
         "path":'path',
-        "s_3_access_path":'s3AccessPath',
+        "s3_access_path":'s3AccessPath',
         "share_name":'shareName',
         "share_permissions":'sharePermissions',
         "smb_mount_path":'smbMountPath',
@@ -78,7 +78,7 @@ class Share(object):
                  enforce_smb_encryption=None,
                  nfs_mount_path=None,
                  path=None,
-                 s_3_access_path=None,
+                 s3_access_path=None,
                  share_name=None,
                  share_permissions=None,
                  smb_mount_path=None,
@@ -98,7 +98,7 @@ class Share(object):
         self.enforce_smb_encryption = enforce_smb_encryption
         self.nfs_mount_path = nfs_mount_path
         self.path = path
-        self.s_3_access_path = s_3_access_path
+        self.s3_access_path = s3_access_path
         self.share_name = share_name
         self.share_permissions = share_permissions
         self.smb_mount_path = smb_mount_path
@@ -132,7 +132,7 @@ class Share(object):
         enforce_smb_encryption = dictionary.get('enforceSmbEncryption')
         nfs_mount_path = dictionary.get('nfsMountPath')
         path = dictionary.get('path')
-        s_3_access_path = dictionary.get('s3AccessPath')
+        s3_access_path = dictionary.get('s3AccessPath')
         share_name = dictionary.get('shareName')
         share_permissions = None
         if dictionary.get('sharePermissions') != None:
@@ -158,7 +158,7 @@ class Share(object):
             enforce_smb_encryption,
             nfs_mount_path,
             path,
-            s_3_access_path,
+            s3_access_path,
             share_name,
             share_permissions,
             smb_mount_path,

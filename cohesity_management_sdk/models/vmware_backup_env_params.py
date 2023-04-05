@@ -96,12 +96,12 @@ class VmwareBackupEnvParams(object):
         if dictionary.get('vappsToVmsList') != None:
             vapps_to_vms_list = list()
             for structure in dictionary.get('vappsToVmsList'):
-                vapps_to_vms_list.append(cohesity_management_sdk.models.vmware_backup_env_params_vapp_child_vms_list.VMwareBackupEnvParams_VAppChildVMsList.from_dictionary(structure))
+                vapps_to_vms_list.append(cohesity_management_sdk.models.vmware_backup_env_params_vapp_child_vms_list.VmwareBackupEnvParams_VAppChildVmsList.from_dictionary(structure))
         vmware_disk_exclusion_info = None
         if dictionary.get('vmwareDiskExclusionInfo') != None:
             vmware_disk_exclusion_info = list()
             for structure in dictionary.get('vmwareDiskExclusionInfo'):
-                vmware_disk_exclusion_info.append(cohesity_management_sdk.models.vmware_disk_exclusion_proto.VMwareDiskExclusionProto.from_dictionary(structure))
+                vmware_disk_exclusion_info.append(cohesity_management_sdk.models.vmware_disk_exclusion_proto.VmwareDiskExclusionProto.from_dictionary(structure))
 
         # Return an object of this model
         return cls(

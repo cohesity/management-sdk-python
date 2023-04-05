@@ -360,12 +360,12 @@ class PerformRestoreTaskStateProto(object):
         "multi_stage_restore_task_state":'multiStageRestoreTaskState',
         "nosql_connect_params":'nosqlConnectParams',
         "nosql_recover_job_params":'nosqlRecoverJobParams',
-        "object_name_deprecated":'objectNameDEPRECATED',
+        "object_name_deprecated":'objectName_DEPRECATED',
         "objects":'objects',
         "objects_progress_monitor_task_paths":'objectsProgressMonitorTaskPaths',
         "parent_restore_job_id":'parentRestoreJobId',
         "parent_restore_task_id":'parentRestoreTaskId',
-        "path_prefix_deprecated":'pathPrefixDEPRECATED',
+        "path_prefix_deprecated":'pathPrefix_DEPRECATED',
         "physical_flr_parallel_restore":'physicalFlrParallelRestore',
         "physical_flr_use_new_locking_method":'physicalFlrUseNewLockingMethod',
         "power_state_config":'powerStateConfig',
@@ -415,7 +415,7 @@ class PerformRestoreTaskStateProto(object):
         "vcd_config":'vcdConfig',
         "vcd_storage_profile_datastore_moref_vec":'vcdStorageProfileDatastoreMorefVec',
         "view_box_id":'viewBoxId',
-        "view_name_deprecated":'viewNameDEPRECATED',
+        "view_name_deprecated":'viewName_DEPRECATED',
         "view_params":'viewParams',
         "vm_restore_reuse_cdp_view":'vmRestoreReuseCdpView',
         "volume_info_vec":'volumeInfoVec',
@@ -646,7 +646,7 @@ class PerformRestoreTaskStateProto(object):
         multi_stage_restore_task_state = cohesity_management_sdk.models.multi_stage_restore_task_state_proto.MultiStageRestoreTaskStateProto.from_dictionary(dictionary.get('multiStageRestoreTaskState')) if dictionary.get('multiStageRestoreTaskState') else None
         nosql_connect_params = cohesity_management_sdk.models.no_sql_connect_params.NoSqlConnectParams.from_dictionary(dictionary.get('nosqlConnectParams')) if dictionary.get('nosqlConnectParams') else None
         nosql_recover_job_params = cohesity_management_sdk.models.no_sql_recover_job_params.NoSqlRecoverJobParams.from_dictionary(dictionary.get('nosqlRecoverJobParams')) if dictionary.get('nosqlRecoverJobParams') else None
-        object_name_deprecated = dictionary.get('objectNameDEPRECATED')
+        object_name_deprecated = dictionary.get('objectName_DEPRECATED')
         objects = None
         if dictionary.get('objects') != None:
             objects = list()
@@ -655,7 +655,7 @@ class PerformRestoreTaskStateProto(object):
         objects_progress_monitor_task_paths = dictionary.get("objectsProgressMonitorTaskPaths")
         parent_restore_job_id = dictionary.get('parentRestoreJobId')
         parent_restore_task_id = dictionary.get('parentRestoreTaskId')
-        path_prefix_deprecated = dictionary.get('pathPrefixDEPRECATED')
+        path_prefix_deprecated = dictionary.get('pathPrefix_DEPRECATED')
         physical_flr_parallel_restore = dictionary.get('physicalFlrParallelRestore')
         physical_flr_use_new_locking_method = dictionary.get('physicalFlrUseNewLockingMethod')
         power_state_config = cohesity_management_sdk.models.power_state_config_proto.PowerStateConfigProto.from_dictionary(dictionary.get('powerStateConfig')) if dictionary.get('powerStateConfig') else None
@@ -713,7 +713,7 @@ class PerformRestoreTaskStateProto(object):
         vcd_config = cohesity_management_sdk.models.restored_object_vcd_config_proto.RestoredObjectVCDConfigProto.from_dictionary(dictionary.get('vcdConfig')) if dictionary.get('vcdConfig') else None
         vcd_storage_profile_datastore_moref_vec = dictionary.get("vcdStorageProfileDatastoreMorefVec")
         view_box_id = dictionary.get('viewBoxId')
-        view_name_deprecated = dictionary.get('viewNameDEPRECATED')
+        view_name_deprecated = dictionary.get('viewName_DEPRECATED')
         view_params = cohesity_management_sdk.models.view_params.ViewParams.from_dictionary(dictionary.get('viewParams')) if dictionary.get('viewParams') else None
         vm_restore_reuse_cdp_view = dictionary.get('vmRestoreReuseCdpView')
         volume_info_vec = None

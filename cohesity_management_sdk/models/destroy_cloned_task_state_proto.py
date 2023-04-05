@@ -113,7 +113,7 @@ class DestroyClonedTaskStateProto(object):
         "user_info":'userInfo',
         "vcd_config":'vcdConfig',
         "view_box_id":'viewBoxId',
-        "view_name_deprecated":'viewNameDEPRECATED',
+        "view_name_deprecated":'viewName_DEPRECATED',
     }
     def __init__(self,
                  action_executor_target_type=None,
@@ -220,7 +220,7 @@ class DestroyClonedTaskStateProto(object):
         user_info = cohesity_management_sdk.models.user_information.UserInformation.from_dictionary(dictionary.get('userInfo')) if dictionary.get('userInfo') else None
         vcd_config = cohesity_management_sdk.models.restored_object_vcd_config_proto.RestoredObjectVCDConfigProto.from_dictionary(dictionary.get('vcdConfig')) if dictionary.get('vcdConfig') else None
         view_box_id = dictionary.get('viewBoxId')
-        view_name_deprecated = dictionary.get('viewNameDEPRECATED')
+        view_name_deprecated = dictionary.get('viewName_DEPRECATED')
 
         # Return an object of this model
         return cls(

@@ -105,8 +105,8 @@ class ViewBox(object):
             'kOkToRemove' means the object has been removed on the Cohesity
             Cluster and if the object is physical, it can be removed from the
             Cohesity Cluster.
-        s_3_buckets_allowed (bool): Specifies whether creation of a S3 bucket
-            is allowed in this Storage Domain (View Box). When a new S3 bucket
+        s3_buckets_allowed (bool): Specifies whether creation of a S3 bucket is
+            allowed in this Storage Domain (View Box). When a new S3 bucket
             creation request arrives, we'll look at all the View Boxes and the
             first Storage Domain (View Box) that allows creating S3 buckets in
             it will be the one where the bucket will be placed.
@@ -159,7 +159,7 @@ class ViewBox(object):
         "nis_domain_name_vec":'nisDomainNameVec',
         "physical_quota":'physicalQuota',
         "removal_state":'removalState',
-        "s_3_buckets_allowed":'s3BucketsAllowed',
+        "s3_buckets_allowed":'s3BucketsAllowed',
         "schema_info_list":'schemaInfoList',
         "stats":'stats',
         "storage_policy":'storagePolicy',
@@ -190,7 +190,7 @@ class ViewBox(object):
                  nis_domain_name_vec=None,
                  physical_quota=None,
                  removal_state=None,
-                 s_3_buckets_allowed=None,
+                 s3_buckets_allowed=None,
                  schema_info_list=None,
                  stats=None,
                  storage_policy=None,
@@ -224,7 +224,7 @@ class ViewBox(object):
         self.nis_domain_name_vec = nis_domain_name_vec
         self.physical_quota = physical_quota
         self.removal_state = removal_state
-        self.s_3_buckets_allowed = s_3_buckets_allowed
+        self.s3_buckets_allowed = s3_buckets_allowed
         self.schema_info_list = schema_info_list
         self.stats = stats
         self.storage_policy = storage_policy
@@ -276,7 +276,7 @@ class ViewBox(object):
         nis_domain_name_vec = dictionary.get("nisDomainNameVec")
         physical_quota = cohesity_management_sdk.models.quota_policy.QuotaPolicy.from_dictionary(dictionary.get('physicalQuota')) if dictionary.get('physicalQuota') else None
         removal_state = dictionary.get('removalState')
-        s_3_buckets_allowed = dictionary.get('s3BucketsAllowed')
+        s3_buckets_allowed = dictionary.get('s3BucketsAllowed')
         schema_info_list = None
         if dictionary.get('schemaInfoList') != None:
             schema_info_list = list()
@@ -312,7 +312,7 @@ class ViewBox(object):
             nis_domain_name_vec,
             physical_quota,
             removal_state,
-            s_3_buckets_allowed,
+            s3_buckets_allowed,
             schema_info_list,
             stats,
             storage_policy,

@@ -30,7 +30,7 @@ class Subnet(object):
             configured in the view.
         nfs_root_squash (bool): Specifies whether clients from this subnet can
             mount as root on NFS.
-        s_3_access (S3AccessEnum): Specifies whether clients from this subnet
+        s3_access (S3AccessEnum): Specifies whether clients from this subnet
             can access using S3 protocol. Protocol access level. 'kDisabled'
             indicates Protocol access level 'Disabled' 'kReadOnly' indicates
             Protocol access level 'ReadOnly' 'kReadWrite' indicates Protocol
@@ -55,7 +55,7 @@ class Subnet(object):
         "nfs_access":'nfsAccess',
         "nfs_all_squash":'nfsAllSquash',
         "nfs_root_squash":'nfsRootSquash',
-        "s_3_access":'s3Access',
+        "s3_access":'s3Access',
         "smb_access":'smbAccess',
         "tenant_id":'tenantId',
     }
@@ -69,7 +69,7 @@ class Subnet(object):
                  nfs_access=None,
                  nfs_all_squash=None,
                  nfs_root_squash=None,
-                 s_3_access=None,
+                 s3_access=None,
                  smb_access=None,
                  tenant_id=None,
             ):
@@ -86,7 +86,7 @@ class Subnet(object):
         self.nfs_access = nfs_access
         self.nfs_all_squash = nfs_all_squash
         self.nfs_root_squash = nfs_root_squash
-        self.s_3_access = s_3_access
+        self.s3_access = s3_access
         self.smb_access = smb_access
         self.tenant_id = tenant_id
 
@@ -117,7 +117,7 @@ class Subnet(object):
         nfs_access = dictionary.get('nfsAccess')
         nfs_all_squash = dictionary.get('nfsAllSquash')
         nfs_root_squash = dictionary.get('nfsRootSquash')
-        s_3_access = dictionary.get('s3Access')
+        s3_access = dictionary.get('s3Access')
         smb_access = dictionary.get('smbAccess')
         tenant_id = dictionary.get('tenantId')
 
@@ -132,7 +132,7 @@ class Subnet(object):
             nfs_access,
             nfs_all_squash,
             nfs_root_squash,
-            s_3_access,
+            s3_access,
             smb_access,
             tenant_id
 )

@@ -26,7 +26,7 @@ class ClusterConfigProto_Subnet(object):
             view.
         nfs_root_squash (bool): Whether clients from this subnet can mount as
             root on NFS.
-        s_3_access (int): Whether clients from this subnet can accept requests
+        s3_access (int): Whether clients from this subnet can accept requests
             using S3 protocol.
         smb_access (int): Whether clients from this subnet can mount using SMB
             protocol.
@@ -45,7 +45,7 @@ class ClusterConfigProto_Subnet(object):
         "nfs_access":'nfsAccess',
         "nfs_all_squash":'nfsAllSquash',
         "nfs_root_squash":'nfsRootSquash',
-        "s_3_access":'s3Access',
+        "s3_access":'s3Access',
         "smb_access":'smbAccess',
     }
     def __init__(self,
@@ -59,7 +59,7 @@ class ClusterConfigProto_Subnet(object):
                  nfs_access=None,
                  nfs_all_squash=None,
                  nfs_root_squash=None,
-                 s_3_access=None,
+                 s3_access=None,
                  smb_access=None,
             ):
 
@@ -76,7 +76,7 @@ class ClusterConfigProto_Subnet(object):
         self.nfs_access = nfs_access
         self.nfs_all_squash = nfs_all_squash
         self.nfs_root_squash = nfs_root_squash
-        self.s_3_access = s_3_access
+        self.s3_access = s3_access
         self.smb_access = smb_access
 
     @classmethod
@@ -107,7 +107,7 @@ class ClusterConfigProto_Subnet(object):
         nfs_access = dictionary.get('nfsAccess')
         nfs_all_squash = dictionary.get('nfsAllSquash')
         nfs_root_squash = dictionary.get('nfsRootSquash')
-        s_3_access = dictionary.get('s3Access')
+        s3_access = dictionary.get('s3Access')
         smb_access = dictionary.get('smbAccess')
 
         # Return an object of this model
@@ -122,6 +122,6 @@ class ClusterConfigProto_Subnet(object):
             nfs_access,
             nfs_all_squash,
             nfs_root_squash,
-            s_3_access,
+            s3_access,
             smb_access
 )

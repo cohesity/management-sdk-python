@@ -9,7 +9,7 @@ import cohesity_management_sdk.models.nas_backup_params
 import cohesity_management_sdk.models.restore_files_params_directory_name_security_style_map_entry
 import cohesity_management_sdk.models.restore_files_preferences
 import cohesity_management_sdk.models.restored_file_info
-import cohesity_management_sdk.models.s_3_view_backup_properties
+import cohesity_management_sdk.models.s3_view_backup_properties
 
 
 class RestoreFilesParams(object):
@@ -66,9 +66,8 @@ class RestoreFilesParams(object):
             perform FLR.
         restored_file_info_vec (list of RestoredFileInfo): Information
             regarding files and directories.
-        s_3_viewbackupproperties (S3ViewBackupProperties): This message
-            captures all the details of S3 view from where the data is
-            restored.
+        s3_viewbackupproperties (S3ViewBackupProperties): This message captures
+            all the details of S3 view from where the data is restored.
         source_snapshot_name (string): Snapshot name need by source to start
             the restore.
         target_entity (EntityProto): Target entity where the files are being
@@ -124,7 +123,7 @@ class RestoreFilesParams(object):
         "restore_files_preferences":'restoreFilesPreferences',
         "restore_method":'restoreMethod',
         "restored_file_info_vec":'restoredFileInfoVec',
-        "s_3_viewbackupproperties":'s3Viewbackupproperties',
+        "s3_viewbackupproperties":'s3Viewbackupproperties',
         "source_snapshot_name":'sourceSnapshotName',
         "target_entity":'targetEntity',
         "target_entity_credentials":'targetEntityCredentials',
@@ -158,7 +157,7 @@ class RestoreFilesParams(object):
                  restore_files_preferences=None,
                  restore_method=None,
                  restored_file_info_vec=None,
-                 s_3_viewbackupproperties=None,
+                 s3_viewbackupproperties=None,
                  source_snapshot_name=None,
                  target_entity=None,
                  target_entity_credentials=None,
@@ -195,7 +194,7 @@ class RestoreFilesParams(object):
         self.restore_files_preferences = restore_files_preferences
         self.restore_method = restore_method
         self.restored_file_info_vec = restored_file_info_vec
-        self.s_3_viewbackupproperties = s_3_viewbackupproperties
+        self.s3_viewbackupproperties = s3_viewbackupproperties
         self.source_snapshot_name = source_snapshot_name
         self.target_entity = target_entity
         self.target_entity_credentials = target_entity_credentials
@@ -254,7 +253,7 @@ class RestoreFilesParams(object):
             restored_file_info_vec = list()
             for structure in dictionary.get('restoredFileInfoVec'):
                 restored_file_info_vec.append(cohesity_management_sdk.models.restored_file_info.RestoredFileInfo.from_dictionary(structure))
-        s_3_viewbackupproperties = cohesity_management_sdk.models.s_3_view_backup_properties.S3ViewBackupProperties.from_dictionary(dictionary.get('s3Viewbackupproperties')) if dictionary.get('s3Viewbackupproperties') else None
+        s3_viewbackupproperties = cohesity_management_sdk.models.s3_view_backup_properties.S3ViewBackupProperties.from_dictionary(dictionary.get('s3Viewbackupproperties')) if dictionary.get('s3Viewbackupproperties') else None
         source_snapshot_name = dictionary.get('sourceSnapshotName')
         target_entity = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('targetEntity')) if dictionary.get('targetEntity') else None
         target_entity_credentials = cohesity_management_sdk.models.credentials.Credentials.from_dictionary(dictionary.get('targetEntityCredentials')) if dictionary.get('targetEntityCredentials') else None
@@ -289,7 +288,7 @@ class RestoreFilesParams(object):
             restore_files_preferences,
             restore_method,
             restored_file_info_vec,
-            s_3_viewbackupproperties,
+            s3_viewbackupproperties,
             source_snapshot_name,
             target_entity,
             target_entity_credentials,

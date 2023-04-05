@@ -190,7 +190,7 @@ class EnvBackupParams(object):
         snapshot_manager_params = cohesity_management_sdk.models.snapshot_manager_params.SnapshotManagerParams.from_dictionary(dictionary.get('snapshotManagerParams')) if dictionary.get('snapshotManagerParams') else None
         sql_backup_job_params = cohesity_management_sdk.models.sql_backup_job_params.SqlBackupJobParams.from_dictionary(dictionary.get('sqlBackupJobParams')) if dictionary.get('sqlBackupJobParams') else None
         uda_backup_job_params = cohesity_management_sdk.models.uda_backup_job_params.UdaBackupJobParams.from_dictionary(dictionary.get('udaBackupJobParams')) if dictionary.get('udaBackupJobParams') else None
-        vmware_backup_params = cohesity_management_sdk.models.vmware_backup_env_params.VMwareBackupEnvParams.from_dictionary(dictionary.get('vmwareBackupParams')) if dictionary.get('vmwareBackupParams') else None
+        vmware_backup_params = cohesity_management_sdk.models.vmware_backup_env_params.VmwareBackupEnvParams.from_dictionary(dictionary.get('vmwareBackupParams')) if dictionary.get('vmwareBackupParams') else None
 
         # Return an object of this model
         return cls(
