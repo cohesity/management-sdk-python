@@ -2,6 +2,7 @@
 # Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.aws_kms_configuration
+import cohesity_management_sdk.models.azure_kms_configuration
 import cohesity_management_sdk.models.cryptsoft_kms_config_response
 
 
@@ -15,6 +16,7 @@ class KmsConfigurationResponse(object):
     Attributes:
 
         aws_kms (AwsKmsConfiguration): AWS KMS conifg response.
+        azure_kms (AzureKmsConfiguration): Azure KMS conifg response.
         connection_status (bool): Specifies if connection to this KMS exists.
         cryptsoft_kms (CryptsoftKmsConfigResponse): Specifies the config
             response for cryptsoftKMS.
@@ -45,6 +47,7 @@ class KmsConfigurationResponse(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "aws_kms":'awsKms',
+        "azure_kms":'azureKms',
         "connection_status":'connectionStatus',
         "cryptsoft_kms":'cryptsoftKms',
         "id":'id',
@@ -59,6 +62,7 @@ class KmsConfigurationResponse(object):
     }
     def __init__(self,
                  aws_kms=None,
+                 azure_kms=None,
                  connection_status=None,
                  cryptsoft_kms=None,
                  id=None,
@@ -76,6 +80,7 @@ class KmsConfigurationResponse(object):
 
         # Initialize members of the class
         self.aws_kms = aws_kms
+        self.azure_kms = azure_kms
         self.connection_status = connection_status
         self.cryptsoft_kms = cryptsoft_kms
         self.id = id
@@ -107,6 +112,7 @@ class KmsConfigurationResponse(object):
 
         # Extract variables from the dictionary
         aws_kms = cohesity_management_sdk.models.aws_kms_configuration.AwsKmsConfiguration.from_dictionary(dictionary.get('awsKms')) if dictionary.get('awsKms') else None
+        azure_kms = cohesity_management_sdk.models.azure_kms_configuration.AzureKmsConfiguration.from_dictionary(dictionary.get('azureKms')) if dictionary.get('azureKms') else None
         connection_status = dictionary.get('connectionStatus')
         cryptsoft_kms = cohesity_management_sdk.models.cryptsoft_kms_config_response.CryptsoftKmsConfigResponse.from_dictionary(dictionary.get('cryptsoftKms')) if dictionary.get('cryptsoftKms') else None
         id = dictionary.get('id')
@@ -122,6 +128,7 @@ class KmsConfigurationResponse(object):
         # Return an object of this model
         return cls(
             aws_kms,
+            azure_kms,
             connection_status,
             cryptsoft_kms,
             id,

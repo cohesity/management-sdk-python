@@ -15,7 +15,7 @@ class RestoreExchangeParams(object):
     Attributes:
 
         database_options (RestoreExchangeParams_DatabaseOptions): Only
-            applicable when ExchangeRestoreType.Type=kDatabase.
+            applicable when ExchangeRestoreType.Type = kDatabase.
         mtype (int): Restore type.
         view_options (RestoreExchangeParams_ViewOptions): Only applicable when
             ExchangeRestoreType.Type=kView.

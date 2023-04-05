@@ -72,12 +72,15 @@ class AppController(BaseController):
             self.logger.error(e, exc_info=True)
             raise
 
-    def upload_app(self, files):
+    def upload_app(self, files, app_url=None):
         """Does a POST request to /public/apps.
 
         Api provides the list of the apps which are available for the user to
         install or are already installed. App object provides basic app
         information along with app metadata.
+
+        Args:
+            app_url (string, optional): Specifies the url of the app package
 
         Returns:
             App: Response from the API. Success
@@ -97,6 +100,12 @@ class AppController(BaseController):
             _url_path = '/public/apps'
             _query_builder = self.config.get_base_uri()
             _query_builder += _url_path
+            _query_parameters = {
+                'appUrl': app_url,
+            }
+            _query_builder = APIHelper.append_url_with_query_parameters(
+                _query_builder, _query_parameters,
+                Configuration.array_serialization)
             _query_url = APIHelper.clean_url(_query_builder)
 
             # Read the file content.

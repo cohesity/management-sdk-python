@@ -18,6 +18,21 @@ class SnapshotCloudCopyPolicy(object):
 
         id (string): Specified the Id for a snapshot copy policy. This is
             generated when the policy is created.
+        backup_run_type (BackupRunTypeEnum): The backup run type to which this
+            copy policy applies to. If set, this will ensure that the first run
+            in scheduled period of given type will be copied. If this isn't
+            set, copy tasks will be generated as per other filters in the
+            protection policy. Currently, it can only be set to Full.
+            'kRegular' indicates a incremental (CBT) backup. Incremental
+            backups utilizing CBT (if supported) are captured of the target
+            protection objects. The first run of a kRegular schedule captures
+            all the blocks. 'kFull' indicates a full (no CBT) backup. A
+            complete backup (all blocks) of the target protection objects are
+            always captured and Change Block Tracking (CBT) is not utilized.
+            'kLog' indicates a Database Log backup. Capture the database
+            transaction logs to allow rolling back to a specific point in time.
+            'kSystem' indicates a system backup. System backups are used to do
+            bare metal recovery of the system to a specific point in time.
         copy_partial (bool): Specifies if Snapshots are copied from the first
             completely successful Job Run or the first partially successful Job
             Run occurring at the start of the replication schedule. If true,
@@ -60,6 +75,7 @@ class SnapshotCloudCopyPolicy(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "id":'Id',
+        "backup_run_type":'backupRunType',
         "copy_partial":'copyPartial',
         "datalock_config":'datalockConfig',
         "days_to_keep":'daysToKeep',
@@ -69,6 +85,7 @@ class SnapshotCloudCopyPolicy(object):
     }
     def __init__(self,
                  id=None,
+                 backup_run_type=None,
                  copy_partial=None,
                  datalock_config=None,
                  days_to_keep=None,
@@ -81,6 +98,7 @@ class SnapshotCloudCopyPolicy(object):
 
         # Initialize members of the class
         self.id = id
+        self.backup_run_type = backup_run_type
         self.copy_partial = copy_partial
         self.datalock_config = datalock_config
         self.days_to_keep = days_to_keep
@@ -107,6 +125,7 @@ class SnapshotCloudCopyPolicy(object):
 
         # Extract variables from the dictionary
         id = dictionary.get('Id')
+        backup_run_type = dictionary.get('backupRunType')
         copy_partial = dictionary.get('copyPartial')
         datalock_config = cohesity_management_sdk.models.data_lock_config.DataLockConfig.from_dictionary(dictionary.get('datalockConfig')) if dictionary.get('datalockConfig') else None
         days_to_keep = dictionary.get('daysToKeep')
@@ -117,6 +136,7 @@ class SnapshotCloudCopyPolicy(object):
         # Return an object of this model
         return cls(
             id,
+            backup_run_type,
             copy_partial,
             datalock_config,
             days_to_keep,

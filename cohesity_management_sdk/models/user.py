@@ -9,6 +9,7 @@ import cohesity_management_sdk.models.mcm_user_profile
 import cohesity_management_sdk.models.mfa_info
 import cohesity_management_sdk.models.preferences
 import cohesity_management_sdk.models.salesforce_account_info
+import cohesity_management_sdk.models.spog_context
 import cohesity_management_sdk.models.subscription_info
 import cohesity_management_sdk.models.tenant_access
 import cohesity_management_sdk.models.tenant_config
@@ -115,6 +116,9 @@ class User(object):
             only for Helios users who has account on Salesforce.
         sid (string): Specifies the unique Security ID (SID) of the user. This
             field is mandatory in modifying user.
+        spog_context (SpogContext): Specifies the SPOG context. This will be
+            set for sessions where a user is accessing a remote cluster. This
+            is needed for audit logging purposes.
         subscription_info (SubscriptionInfo): Specifies the subscription
             information. If the user has subscribed for Helios, DataProtect,
             DRaaS.....
@@ -166,6 +170,7 @@ class User(object):
         "s3_secret_key":'s3SecretKey',
         "salesforce_account":'salesforceAccount',
         "sid":'sid',
+        "spog_context":'spogContext',
         "subscription_info":'subscriptionInfo',
         "tenant_accesses":'tenantAccesses',
         "tenant_id":'tenantId',
@@ -211,6 +216,7 @@ class User(object):
                  s3_secret_key=None,
                  salesforce_account=None,
                  sid=None,
+                 spog_context=None,
                  subscription_info=None,
                  tenant_accesses=None,
                  tenant_id=None,
@@ -259,6 +265,7 @@ class User(object):
         self.s3_secret_key = s3_secret_key
         self.salesforce_account = salesforce_account
         self.sid = sid
+        self.spog_context = spog_context
         self.subscription_info = subscription_info
         self.tenant_accesses = tenant_accesses
         self.tenant_id = tenant_id
@@ -333,6 +340,7 @@ class User(object):
         s3_secret_key = dictionary.get('s3SecretKey')
         salesforce_account = cohesity_management_sdk.models.salesforce_account_info.SalesforceAccountInfo.from_dictionary(dictionary.get('salesforceAccount')) if dictionary.get('salesforceAccount') else None
         sid = dictionary.get('sid')
+        spog_context = cohesity_management_sdk.models.spog_context.SpogContext.from_dictionary(dictionary.get('spogContext')) if dictionary.get('spogContext') else None
         subscription_info = cohesity_management_sdk.models.subscription_info.SubscriptionInfo.from_dictionary(dictionary.get('subscriptionInfo')) if dictionary.get('subscriptionInfo') else None
         tenant_accesses = None
         if dictionary.get('tenantAccesses') != None:
@@ -383,6 +391,7 @@ class User(object):
             s3_secret_key,
             salesforce_account,
             sid,
+            spog_context,
             subscription_info,
             tenant_accesses,
             tenant_id,

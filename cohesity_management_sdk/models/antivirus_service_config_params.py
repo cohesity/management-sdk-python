@@ -13,8 +13,8 @@ class AntivirusServiceConfigParams(object):
         description (string): Specifies the description of the Antivirus
             service. This could be any additional information admin might
             associate with the Antivirus service.
-        icap_uri (string): Specifies the ICAP uri for this Antivirus service.
-            It is of the form icap://<ip-address>[:<port>]/<service>
+        icap_uri (string, required): Specifies the ICAP uri for this Antivirus
+            service. It is of the form icap://<ip-address>[:<port>]/<service>
     """
 
 

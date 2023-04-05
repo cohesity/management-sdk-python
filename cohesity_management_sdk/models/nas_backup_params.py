@@ -16,8 +16,8 @@ class NasBackupParams(object):
 
     Attributes:
 
-        backup_existing_snapshot (bool): This bool parameter will be set only
-            for DP volumes when customer doesn't select the
+        backup_all_existing_snapshot (bool): This bool parameter will be set
+            only for DP volumes when customer doesn't select the
             full_backup_snapshot_label and incremental_backup_snapshot_label.
             When set to true, backend will be using existing oldest snapshot
             for the first backup. Each incremental will be selected in
@@ -73,7 +73,7 @@ class NasBackupParams(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "backup_existing_snapshot":'backupExistingSnapshot',
+        "backup_all_existing_snapshot":'backupAllExistingSnapshot',
         "blacklisted_ip_addrs":'blacklistedIpAddrs',
         "continue_on_error":'continueOnError',
         "encryption_enabled":'encryptionEnabled',
@@ -92,7 +92,7 @@ class NasBackupParams(object):
         "whitelisted_ip_addrs":'whitelistedIpAddrs',
     }
     def __init__(self,
-                 backup_existing_snapshot=None,
+                 backup_all_existing_snapshot=None,
                  blacklisted_ip_addrs=None,
                  continue_on_error=None,
                  encryption_enabled=None,
@@ -114,7 +114,7 @@ class NasBackupParams(object):
         """Constructor for the NasBackupParams class"""
 
         # Initialize members of the class
-        self.backup_existing_snapshot = backup_existing_snapshot
+        self.backup_all_existing_snapshot = backup_all_existing_snapshot
         self.blacklisted_ip_addrs = blacklisted_ip_addrs
         self.continue_on_error = continue_on_error
         self.encryption_enabled = encryption_enabled
@@ -150,7 +150,7 @@ class NasBackupParams(object):
             return None
 
         # Extract variables from the dictionary
-        backup_existing_snapshot = dictionary.get('backupExistingSnapshot')
+        backup_all_existing_snapshot = dictionary.get('backupAllExistingSnapshot')
         blacklisted_ip_addrs = dictionary.get("blacklistedIpAddrs")
         continue_on_error = dictionary.get('continueOnError')
         encryption_enabled = dictionary.get('encryptionEnabled')
@@ -170,7 +170,7 @@ class NasBackupParams(object):
 
         # Return an object of this model
         return cls(
-            backup_existing_snapshot,
+            backup_all_existing_snapshot,
             blacklisted_ip_addrs,
             continue_on_error,
             encryption_enabled,

@@ -13,6 +13,9 @@ class RemoteRestoreSnapshotStatus(object):
 
     Attributes:
 
+        snapshot_task_start_time_usecs (long|int): Specifies when the snapshot
+            task started. This time is recorded as a Unix epoch Timestamp (in
+            microseconds).
         archive_task_uid (UniversalId): Specifies the globally unique id of the
             archival task that archived the Snapshots to the remote Vault.
         error (string): Specifies the error message if the indexing task fails.
@@ -23,6 +26,9 @@ class RemoteRestoreSnapshotStatus(object):
             captured the Snapshot.
         progress_monitor_task (string): Specifies the path to the progress
             monitor task that tracks the progress of building the index.
+        snapshot_task_end_time_usecs (long|int): Specifies when the snapshot
+            task completed. This time is recorded as a Unix epoch Timestamp (in
+            microseconds).
         snapshot_task_status (SnapshotTaskStatusEnum): Specifies the status of
             the indexing task. 'kJobRunning' indicates that the Job/task is
             currently running. 'kJobFinished' indicates that the Job/task
@@ -40,21 +46,25 @@ class RemoteRestoreSnapshotStatus(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "snapshot_task_start_time_usecs":'SnapshotTaskStartTimeUsecs',
         "archive_task_uid":'archiveTaskUid',
         "error":'error',
         "expiry_time_usecs":'expiryTimeUsecs',
         "job_run_id":'jobRunId',
         "progress_monitor_task":'progressMonitorTask',
+        "snapshot_task_end_time_usecs":'snapshotTaskEndTimeUsecs',
         "snapshot_task_status":'snapshotTaskStatus',
         "snapshot_task_uid":'snapshotTaskUid',
         "snapshot_time_usecs":'snapshotTimeUsecs',
     }
     def __init__(self,
+                 snapshot_task_start_time_usecs=None,
                  archive_task_uid=None,
                  error=None,
                  expiry_time_usecs=None,
                  job_run_id=None,
                  progress_monitor_task=None,
+                 snapshot_task_end_time_usecs=None,
                  snapshot_task_status=None,
                  snapshot_task_uid=None,
                  snapshot_time_usecs=None,
@@ -63,11 +73,13 @@ class RemoteRestoreSnapshotStatus(object):
         """Constructor for the RemoteRestoreSnapshotStatus class"""
 
         # Initialize members of the class
+        self.snapshot_task_start_time_usecs = snapshot_task_start_time_usecs
         self.archive_task_uid = archive_task_uid
         self.error = error
         self.expiry_time_usecs = expiry_time_usecs
         self.job_run_id = job_run_id
         self.progress_monitor_task = progress_monitor_task
+        self.snapshot_task_end_time_usecs = snapshot_task_end_time_usecs
         self.snapshot_task_status = snapshot_task_status
         self.snapshot_task_uid = snapshot_task_uid
         self.snapshot_time_usecs = snapshot_time_usecs
@@ -90,22 +102,26 @@ class RemoteRestoreSnapshotStatus(object):
             return None
 
         # Extract variables from the dictionary
+        snapshot_task_start_time_usecs = dictionary.get('SnapshotTaskStartTimeUsecs')
         archive_task_uid = cohesity_management_sdk.models.universal_id.UniversalId.from_dictionary(dictionary.get('archiveTaskUid')) if dictionary.get('archiveTaskUid') else None
         error = dictionary.get('error')
         expiry_time_usecs = dictionary.get('expiryTimeUsecs')
         job_run_id = dictionary.get('jobRunId')
         progress_monitor_task = dictionary.get('progressMonitorTask')
+        snapshot_task_end_time_usecs = dictionary.get('snapshotTaskEndTimeUsecs')
         snapshot_task_status = dictionary.get('snapshotTaskStatus')
         snapshot_task_uid = cohesity_management_sdk.models.universal_id.UniversalId.from_dictionary(dictionary.get('snapshotTaskUid')) if dictionary.get('snapshotTaskUid') else None
         snapshot_time_usecs = dictionary.get('snapshotTimeUsecs')
 
         # Return an object of this model
         return cls(
+            snapshot_task_start_time_usecs,
             archive_task_uid,
             error,
             expiry_time_usecs,
             job_run_id,
             progress_monitor_task,
+            snapshot_task_end_time_usecs,
             snapshot_task_status,
             snapshot_task_uid,
             snapshot_time_usecs

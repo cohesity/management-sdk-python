@@ -22,11 +22,11 @@ class UpdateGflagParameters(object):
             gflag will be reset to default value. If no gflag is specified, all
             gflags for this service will be reset to default value.
         reason (string): Specifies the reason for clearing gflags.
-        service_name (ServiceNameEnum): Specifies the service name. 'kApollo'
-            is a service for reclaiming freed disk sectors on Nodes in the
-            SnapFS distributed file system. 'kBridge' is a service for managing
-            the SnapFS distributed file system. 'kGenie' is a service that is
-            responsible for monitoring hardware health on the Cluster.
+        service_name (ServiceNameEnum, required): Specifies the service name.
+            'kApollo' is a service for reclaiming freed disk sectors on Nodes
+            in the SnapFS distributed file system. 'kBridge' is a service for
+            managing the SnapFS distributed file system. 'kGenie' is a service
+            that is responsible for monitoring hardware health on the Cluster.
             'kGenieGofer' is a service that links the Genie service to other
             services on the Cluster. 'kMagneto' is the data protection service
             of the Cohesity Data Platform. 'kIris' is the service which serves

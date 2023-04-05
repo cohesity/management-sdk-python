@@ -7,6 +7,7 @@ import cohesity_management_sdk.models.hbase_recover_job_params
 import cohesity_management_sdk.models.hdfs_recover_job_params
 import cohesity_management_sdk.models.hive_recover_job_params
 import cohesity_management_sdk.models.mongo_db_recover_job_params
+import cohesity_management_sdk.models.no_sql_mirror_recovery_job_params
 
 
 class NoSqlRecoverJobParams(object):
@@ -30,6 +31,7 @@ class NoSqlRecoverJobParams(object):
             recover job.
         hive_recover_job_params (HiveRecoverJobParams): Params specific to hive
             recover job.
+        mirror_job_params (NoSqlMirrorRecoveryJobParams): Mirror params
         mongodb_recover_job_params (MongoDBRecoverJobParams): Params specific
             to mongodb recover job.
         overwrite (bool): Whether to overwrite or keep the object if the object
@@ -46,6 +48,7 @@ class NoSqlRecoverJobParams(object):
         "hbase_recover_job_params":'hbaseRecoverJobParams',
         "hdfs_recover_job_params":'hdfsRecoverJobParams',
         "hive_recover_job_params":'hiveRecoverJobParams',
+        "mirror_job_params":'mirrorJobParams',
         "mongodb_recover_job_params":'mongodbRecoverJobParams',
         "overwrite":'overwrite',
     }
@@ -57,6 +60,7 @@ class NoSqlRecoverJobParams(object):
                  hbase_recover_job_params=None,
                  hdfs_recover_job_params=None,
                  hive_recover_job_params=None,
+                 mirror_job_params=None,
                  mongodb_recover_job_params=None,
                  overwrite=None,
             ):
@@ -71,6 +75,7 @@ class NoSqlRecoverJobParams(object):
         self.hbase_recover_job_params = hbase_recover_job_params
         self.hdfs_recover_job_params = hdfs_recover_job_params
         self.hive_recover_job_params = hive_recover_job_params
+        self.mirror_job_params = mirror_job_params
         self.mongodb_recover_job_params = mongodb_recover_job_params
         self.overwrite = overwrite
 
@@ -99,6 +104,7 @@ class NoSqlRecoverJobParams(object):
         hbase_recover_job_params = cohesity_management_sdk.models.hbase_recover_job_params.HBaseRecoverJobParams.from_dictionary(dictionary.get('hbaseRecoverJobParams')) if dictionary.get('hbaseRecoverJobParams') else None
         hdfs_recover_job_params = cohesity_management_sdk.models.hdfs_recover_job_params.HdfsRecoverJobParams.from_dictionary(dictionary.get('hdfsRecoverJobParams')) if dictionary.get('hdfsRecoverJobParams') else None
         hive_recover_job_params = cohesity_management_sdk.models.hive_recover_job_params.HiveRecoverJobParams.from_dictionary(dictionary.get('hiveRecoverJobParams')) if dictionary.get('hiveRecoverJobParams') else None
+        mirror_job_params = cohesity_management_sdk.models.no_sql_mirror_recovery_job_params.NoSqlMirrorRecoveryJobParams.from_dictionary(dictionary.get('mirrorJobParams')) if dictionary.get('mirrorJobParams') else None
         mongodb_recover_job_params = cohesity_management_sdk.models.mongo_db_recover_job_params.MongoDBRecoverJobParams.from_dictionary(dictionary.get('mongodbRecoverJobParams')) if dictionary.get('mongodbRecoverJobParams') else None
         overwrite = dictionary.get('overwrite')
 
@@ -111,6 +117,7 @@ class NoSqlRecoverJobParams(object):
             hbase_recover_job_params,
             hdfs_recover_job_params,
             hive_recover_job_params,
+            mirror_job_params,
             mongodb_recover_job_params,
             overwrite
 )

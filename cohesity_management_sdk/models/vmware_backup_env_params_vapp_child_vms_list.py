@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-class VMwareBackupEnvParams_VAppChildVMsList(object):
+class VmwareBackupEnvParams_VAppChildVmsList(object):
 
-    """Implementation of the 'VMwareBackupEnvParams_VAppChildVMsList' model.
+    """Implementation of the 'VmwareBackupEnvParams_VAppChildVmsList' model.
 
     TODO: type description here.
 
@@ -26,7 +26,7 @@ class VMwareBackupEnvParams_VAppChildVMsList(object):
                  vm_entity_ids=None,
             ):
 
-        """Constructor for the VMwareBackupEnvParams_VAppChildVMsList class"""
+        """Constructor for the VmwareBackupEnvParams_VAppChildVmsList class"""
 
         # Initialize members of the class
         self.vapp_entity_id = vapp_entity_id

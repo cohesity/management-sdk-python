@@ -10,12 +10,12 @@ class UpdateBondParameters(object):
 
     Attributes:
 
-        bonding_mode (BondingModeEnum): Specifies the new bonding mode.
-            'kActiveBackup' indicates active backup bonding mode. 'k802_3ad'
-            indicates 802.3ad bonding mode.
+        bonding_mode (BondingModeEnum, required): Specifies the new bonding
+            mode. 'kActiveBackup' indicates active backup bonding mode.
+            'k802_3ad' indicates 802.3ad bonding mode.
         lacp_rate (string): Specifies the LACP rate. If not specified, This
             value will default to 0 (slow).
-        name (string): Specifies the name of the bond being updated.
+        name (string, required): Specifies the name of the bond being updated.
         xmit_hash_policy (string): Specifies the xmit hash policy. If not
             specified, This value will default to 1 (layer3+4).
     """

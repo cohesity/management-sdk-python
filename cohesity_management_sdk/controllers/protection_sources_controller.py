@@ -215,6 +215,7 @@ class ProtectionSourcesController(BaseController):
                                 page_size=None,
                                 has_valid_mailbox=None,
                                 has_valid_onedrive=None,
+                                is_security_group=None,
                                 id=None,
                                 num_levels=None,
                                 exclude_types=None,
@@ -223,6 +224,7 @@ class ProtectionSourcesController(BaseController):
                                 include_datastores=None,
                                 include_networks=None,
                                 include_vm_folders=None,
+                                include_sfdc_fields=None,
                                 include_system_v_apps=None,
                                 environments=None,
                                 environment=None,
@@ -232,6 +234,7 @@ class ProtectionSourcesController(BaseController):
                                 encryption_key=None,
                                 include_object_protection_info=None,
                                 prune_non_critical_info=None,
+                                prune_aggregation_info=None,
                                 request_initiator_type=None,
                                 use_cached_data=None,
                                 tenant_ids=None,
@@ -275,6 +278,8 @@ class ProtectionSourcesController(BaseController):
                 valid mailbox will be returned.
             has_valid_onedrive (bool, optional): If set to true, users with
                 valid onedrive will be returned.
+            is_security_group (bool, optional): If set to true, Groups which
+                are security enabled will be returned.
             id (long|int, optional): Return the Object subtree for the passed
                 in Protection Source id.
             num_levels (int, optional): Specifies the expected number of levels
@@ -309,6 +314,10 @@ class ProtectionSourcesController(BaseController):
                 also return kVMFolder object types found in the Source in
                 addition to their Object subtrees. By default, VM folder
                 objects are not returned.
+            include_sfdc_fields (bool, optional): Set this parameter to true to
+                also return fields of the object found in the Source in
+                addition to their Object subtrees. By default, Sfdc object
+                fields are not returned.
             include_system_v_apps (bool, optional): Set this parameter to true
                 to also return system VApp object types found in the Source in
                 addition to their Object subtrees. By default, VM folder
@@ -343,6 +352,9 @@ class ProtectionSourcesController(BaseController):
                 information will be pruned. Incase of Office365, metadata about
                 user entities will be pruned. This can be used to limit the size
                 of the response by caller.
+            prune_aggregation_info (bool): Specifies whether to prune the
+                aggregation information about the number of entities
+                protected/unprotected.
             request_initiator_type (string): Specifies the type of the request.
                 Possible values are UIUser and UIAuto, which means the request
                 is triggered by user or is an auto refresh request. Services
@@ -387,6 +399,7 @@ class ProtectionSourcesController(BaseController):
                 'pageSize': page_size,
                 'hasValidMailbox': has_valid_mailbox,
                 'hasValidOnedrive': has_valid_onedrive,
+                'isSecurityGroup': is_security_group,
                 'id': id,
                 'numLevels': num_levels,
                 'excludeTypes': exclude_types,
@@ -395,6 +408,7 @@ class ProtectionSourcesController(BaseController):
                 'includeDatastores': include_datastores,
                 'includeNetworks': include_networks,
                 'includeVMFolders': include_vm_folders,
+                'includeSfdcFields': include_sfdc_fields,
                 'includeSystemVApps': include_system_v_apps,
                 'environments': environments,
                 'environment': environment,
@@ -404,6 +418,7 @@ class ProtectionSourcesController(BaseController):
                 'encryptionKey': encryption_key,
                 'includeObjectProtectionInfo': include_object_protection_info,
                 'pruneNonCriticalInfo': prune_non_critical_info,
+                'pruneAggregationInfo': prune_aggregation_info,
                 'requestInitiatorType': request_initiator_type,
                 'useCachedData': use_cached_data,
                 'tenantIds': tenant_ids,

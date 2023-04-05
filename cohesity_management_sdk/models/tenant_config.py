@@ -12,6 +12,8 @@ class TenantConfig(object):
 
         bifrost_enabled (bool): Specifies if this tenant is bifrost enabled or
             not.
+        is_managed_on_helios (bool): Specifies whether this tenant is manged on
+            helios
         name (string): Specifies name of the tenant.
         restricted (bool): Whether the user is a restricted user. A restricted
             user can only view the objects he has permissions to.
@@ -26,6 +28,7 @@ class TenantConfig(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "bifrost_enabled":'bifrostEnabled',
+        "is_managed_on_helios":'isManagedOnHelios',
         "name":'name',
         "restricted":'restricted',
         "roles":'roles',
@@ -33,6 +36,7 @@ class TenantConfig(object):
     }
     def __init__(self,
                  bifrost_enabled=None,
+                 is_managed_on_helios=None,
                  name=None,
                  restricted=None,
                  roles=None,
@@ -43,6 +47,7 @@ class TenantConfig(object):
 
         # Initialize members of the class
         self.bifrost_enabled = bifrost_enabled
+        self.is_managed_on_helios = is_managed_on_helios
         self.name = name
         self.restricted = restricted
         self.roles = roles
@@ -67,6 +72,7 @@ class TenantConfig(object):
 
         # Extract variables from the dictionary
         bifrost_enabled = dictionary.get('bifrostEnabled')
+        is_managed_on_helios = dictionary.get('isManagedOnHelios')
         name = dictionary.get('name')
         restricted = dictionary.get('restricted')
         roles = dictionary.get("roles")
@@ -75,6 +81,7 @@ class TenantConfig(object):
         # Return an object of this model
         return cls(
             bifrost_enabled,
+            is_managed_on_helios,
             name,
             restricted,
             roles,

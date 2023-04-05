@@ -10,13 +10,13 @@ class TieringAuditLogConfiguration(object):
 
     Attributes:
 
-        enabled (bool): Specifies if tiering audit logging is enabled on the
-            Cohesity Cluster. If 'true', NAS tiering audit logging is enabled.
-            Otherwise, it is disabled.
-        retention_period_days (int): Specifies the number of days to keep
-            (retain) the tiering audit logs. Audit logs generated before the
-            period of time specified by retentionPeriodDays are removed from
-            the Cohesity Cluster.
+        enabled (bool, required): Specifies if tiering audit logging is enabled
+            on the Cohesity Cluster. If 'true', NAS tiering audit logging is
+            enabled. Otherwise, it is disabled.
+        retention_period_days (int, required): Specifies the number of days to
+            keep (retain) the tiering audit logs. Audit logs generated before
+            the period of time specified by retentionPeriodDays are removed
+            from the Cohesity Cluster.
     """
 
 

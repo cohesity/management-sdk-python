@@ -13,6 +13,7 @@ import cohesity_management_sdk.models.smb_permission
 import cohesity_management_sdk.models.smb_permissions_info
 import cohesity_management_sdk.models.storage_policy_override
 import cohesity_management_sdk.models.subnet
+import cohesity_management_sdk.models.view_pinning_config
 
 
 class CloneViewRequest(object):
@@ -143,6 +144,8 @@ class CloneViewRequest(object):
         view_lock_enabled (bool): Specifies whether view lock is enabled. If
             enabled the view cannot be modified or deleted until unlock. By
             default it is disabled.
+        view_pinning_config (ViewPinningConfig): Specifies the pinning config
+            of this view.
     """
 
 
@@ -189,6 +192,7 @@ class CloneViewRequest(object):
         "swift_project_name":'swiftProjectName',
         "tenant_id":'tenantId',
         "view_lock_enabled":'viewLockEnabled',
+        "view_pinning_config":'viewPinningConfig',
     }
     def __init__(self,
                  access_sids=None,
@@ -232,6 +236,7 @@ class CloneViewRequest(object):
                  swift_project_name=None,
                  tenant_id=None,
                  view_lock_enabled=None,
+                 view_pinning_config=None,
             ):
 
         """Constructor for the CloneViewRequest class"""
@@ -278,6 +283,7 @@ class CloneViewRequest(object):
         self.swift_project_name = swift_project_name
         self.tenant_id = tenant_id
         self.view_lock_enabled = view_lock_enabled
+        self.view_pinning_config = view_pinning_config
 
     @classmethod
     def from_dictionary(cls,
@@ -350,6 +356,7 @@ class CloneViewRequest(object):
         swift_project_name = dictionary.get('swiftProjectName')
         tenant_id = dictionary.get('tenantId')
         view_lock_enabled = dictionary.get('viewLockEnabled')
+        view_pinning_config = cohesity_management_sdk.models.view_pinning_config.ViewPinningConfig.from_dictionary(dictionary.get('viewPinningConfig')) if dictionary.get('viewPinningConfig') else None
 
         # Return an object of this model
         return cls(
@@ -393,5 +400,6 @@ class CloneViewRequest(object):
             swift_project_domain,
             swift_project_name,
             tenant_id,
-            view_lock_enabled
+            view_lock_enabled,
+            view_pinning_config
 )

@@ -10,14 +10,24 @@ class SfdcRestoreObjectParams(object):
 
     Attributes:
 
-        filter_query (string): Restore subset of records. Query to filter the
-            records. populated if restore_type is kRestoreFilter.
-        include_deleted_records (bool): Include deleted records.
+        filter_query (string): This field contains the user provided query to
+            select only subset of records in an object for recovery. This field
+            is set only if restore_type is 'kRestoreFilter;.
+        include_deleted_records (bool): This field specifies whether to include
+            the records in user selected object, that were marked as deleted in
+            the user selected snapshot. This is applicable for restore types
+            'kRestoreObject' and 'kRestoreOrg'.
+        mutation_type (int): The type of records to be returned. This is only
+            applicable for restore type 'kRestoreFilter'.
         new_object_name (string): The new name of the object, if it is going to
             be renamed.
-        record_id_vec (list of string): Restore selected records populated if
-            restore_type is kRestoreRecords
-        restore_type (int): TODO: Type description here.
+        record_id_vec (list of string): Restore selected records from user
+            selected object. This field is set only if restore_type is
+            'kRestoreRecords'.
+        sfdc_restore_type (int): Please note that this restore_type is
+            applicable only for the restore of Sfdc adapter. It is different
+            from the Magneto infra field 'restore_type' that is applicable for
+            all the Recovery tasks.
     """
 
 
@@ -25,16 +35,18 @@ class SfdcRestoreObjectParams(object):
     _names = {
         "filter_query":'filterQuery',
         "include_deleted_records":'includeDeletedRecords',
+        "mutation_type":'mutationType',
         "new_object_name":'newObjectName',
         "record_id_vec":'recordIdVec',
-        "restore_type":'restoreType',
+        "sfdc_restore_type":'sfdcRestoreType',
     }
     def __init__(self,
                  filter_query=None,
                  include_deleted_records=None,
+                 mutation_type=None,
                  new_object_name=None,
                  record_id_vec=None,
-                 restore_type=None,
+                 sfdc_restore_type=None,
             ):
 
         """Constructor for the SfdcRestoreObjectParams class"""
@@ -42,9 +54,10 @@ class SfdcRestoreObjectParams(object):
         # Initialize members of the class
         self.filter_query = filter_query
         self.include_deleted_records = include_deleted_records
+        self.mutation_type = mutation_type
         self.new_object_name = new_object_name
         self.record_id_vec = record_id_vec
-        self.restore_type = restore_type
+        self.sfdc_restore_type = sfdc_restore_type
 
     @classmethod
     def from_dictionary(cls,
@@ -66,15 +79,17 @@ class SfdcRestoreObjectParams(object):
         # Extract variables from the dictionary
         filter_query = dictionary.get('filterQuery')
         include_deleted_records = dictionary.get('includeDeletedRecords')
+        mutation_type = dictionary.get('mutationType')
         new_object_name = dictionary.get('newObjectName')
         record_id_vec = dictionary.get("recordIdVec")
-        restore_type = dictionary.get('restoreType')
+        sfdc_restore_type = dictionary.get('sfdcRestoreType')
 
         # Return an object of this model
         return cls(
             filter_query,
             include_deleted_records,
+            mutation_type,
             new_object_name,
             record_id_vec,
-            restore_type
+            sfdc_restore_type
 )

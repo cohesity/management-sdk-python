@@ -38,7 +38,9 @@ class Statement(object):
             "urn:csf:s3:::bucket_name/key_name". 'csf' stands for Cohesity
             SmartFiles. We support wildcard('*' and '?') in the key name. Some
             of the valid formats are : "urn:csf:s3:::bucket_name",
-            "urn:csf:s3:::bucket_name/*", "urn:csf:s3:::bucket_name/*/ab?"
+            "urn:csf:s3:::bucket_name/*", "urn:csf:s3:::bucket_name/*/ab?" We
+            remove the common prefix 'urn:csf:s3:::bucket_name' from the string
+            and then store it in proto.
         sid (string): Statement identifier.
     """
 

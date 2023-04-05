@@ -47,6 +47,8 @@ class BackupJobProto(object):
             job (if any) have been acknowledged by Icebox. NOTE: This field may
             remain false for some period of time even if is_deleted field is
             set to true for the job.
+        all_internal_replication_views_deleted (bool): Indicates that all the
+            internal replication views have been deleted.
         allow_parallel_runs (bool): Denotes whether for this host based backup
             jobs we allow parallel runs or not. This is only supported by
             VMware adapter.
@@ -68,9 +70,8 @@ class BackupJobProto(object):
             view is created with the given name. NOTE: From 6.6 onwards, remote
             view is always created for view backups if policy has replication.
             Hence, this bool is only used for Remote Adapter jobs (kPuppeteer).
-        data_transfer_info (DataTransferInfo): Will contain the details of
-            network used in transferring the data from source account to
-            Cohesity cluster.
+        data_transfer_info (DataTransferInfo): Currently it is being used for
+            Azure Native Backups.
         dedup_disabled_source_id_vec (list of long|int): List of source ids for
             which source side dedup is disabled from the backup job.
         deletion_status (int): Determines if the job (and associated backups)
@@ -322,6 +323,7 @@ class BackupJobProto(object):
         "abort_in_exclusion_window":'abortInExclusionWindow',
         "alerting_policy":'alertingPolicy',
         "all_archival_snapshots_expired":'allArchivalSnapshotsExpired',
+        "all_internal_replication_views_deleted":'allInternalReplicationViewsDeleted',
         "allow_parallel_runs":'allowParallelRuns',
         "backup_qos_principal":'backupQosPrincipal',
         "backup_source_params":'backupSourceParams',
@@ -408,6 +410,7 @@ class BackupJobProto(object):
                  abort_in_exclusion_window=None,
                  alerting_policy=None,
                  all_archival_snapshots_expired=None,
+                 all_internal_replication_views_deleted=None,
                  allow_parallel_runs=None,
                  backup_qos_principal=None,
                  backup_source_params=None,
@@ -497,6 +500,7 @@ class BackupJobProto(object):
         self.abort_in_exclusion_window = abort_in_exclusion_window
         self.alerting_policy = alerting_policy
         self.all_archival_snapshots_expired = all_archival_snapshots_expired
+        self.all_internal_replication_views_deleted = all_internal_replication_views_deleted
         self.allow_parallel_runs = allow_parallel_runs
         self.backup_qos_principal = backup_qos_principal
         self.backup_source_params = backup_source_params
@@ -600,6 +604,7 @@ class BackupJobProto(object):
         abort_in_exclusion_window = dictionary.get('abortInExclusionWindow')
         alerting_policy = cohesity_management_sdk.models.alerting_policy_proto.AlertingPolicyProto.from_dictionary(dictionary.get('alertingPolicy')) if dictionary.get('alertingPolicy') else None
         all_archival_snapshots_expired = dictionary.get('allArchivalSnapshotsExpired')
+        all_internal_replication_views_deleted = dictionary.get('allInternalReplicationViewsDeleted')
         allow_parallel_runs = dictionary.get('allowParallelRuns')
         backup_qos_principal = dictionary.get('backupQosPrincipal')
         backup_source_params = None
@@ -723,6 +728,7 @@ class BackupJobProto(object):
             abort_in_exclusion_window,
             alerting_policy,
             all_archival_snapshots_expired,
+            all_internal_replication_views_deleted,
             allow_parallel_runs,
             backup_qos_principal,
             backup_source_params,

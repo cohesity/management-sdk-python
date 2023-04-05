@@ -13,7 +13,7 @@ class FeatureFlag(object):
         is_approved (bool): Specifies the overridden approval status.
         is_ui_feature (bool): Specifies if it's a front-end(UI) or back-end
             feature.
-        name (string): Specifies name of the feature.
+        name (string, required): Specifies name of the feature.
         reason (string): Specifies the reason for override.
         timestamp (long|int): Specifies the timestamp of override.
     """

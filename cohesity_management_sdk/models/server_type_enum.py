@@ -4,20 +4,23 @@
 class ServerTypeEnum(object):
 
     """Implementation of the 'ServerType' enum.
-    Specifies the type of key mangement system. 'kInternalKms' indicates an
-    internal KMS object. 'kAwsKms' indicates an Aws KMS object. 'kCryptsoftKms'
-    indicates a Cryptsoft KMS object.
+    Specifies the type of key mangement system. 'kInternalKMS' indicates an
+    internal KMS object. 'kAwsKMS' indicates an Aws KMS object. 'kCryptsoftKMS'
+    indicates a Cryptsoft KMS object. 'kAzureKMS' indicates a Azure KMS object.
 
 
     Attributes:
         KINTERNALKMS: TODO: type description here.
         KAWSKMS: TODO: type description here.
         KCRYPTSOFTKMS: TODO: type description here.
+        KAZUREKMS: TODO: type description here.
 
     """
 
-    KINTERNALKMS = 'kInternalKms'
+    KINTERNALKMS = 'kInternalKMS'
 
-    KAWSKMS = 'kAwsKms'
+    KAWSKMS = 'kAwsKMS'
 
-    KCRYPTSOFTKMS = 'kCryptsoftKms'
+    KCRYPTSOFTKMS = 'kCryptsoftKMS'
+
+    KAZUREKMS = 'kAzureKMS'

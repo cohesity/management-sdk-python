@@ -10,7 +10,7 @@ class RenameViewParam(object):
 
     Attributes:
 
-        new_view_name (string): Specifies the new name of the View.
+        new_view_name (string, required): Specifies the new name of the View.
     """
 
 

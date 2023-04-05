@@ -22,9 +22,10 @@ class DeployVMsToAzureParams(object):
             parameter if deployment is using managed disks.
         compute_options (EntityProto): Type of VM (e.g. small, medium, large)
             when cloning the VM in Azure.
-        data_transfer_info (DataTransferInfo): Will contain the details of
-            network used in transferring the data from source account to
-            Cohesity cluster.
+        data_transfer_info (DataTransferInfo): NOTE:: Not using as of now, we
+            will use it in cloudspin/clone/failover to azure. Will contain the
+            details of network used in transferring the data from source
+            account to Cohesity cluster.
         network_resource_group (EntityProto): Name of the Azure resource group
             that has the virtual network mentioned below.
         network_security_group (EntityProto): Name of the network security

@@ -10,8 +10,8 @@ class OverwriteViewParam(object):
 
     Attributes:
 
-        source_view_name (string): Specifies the source view name.
-        target_view_name (string): Specifies the target view name.
+        source_view_name (string, required): Specifies the source view name.
+        target_view_name (string, required): Specifies the target view name.
     """
 
 

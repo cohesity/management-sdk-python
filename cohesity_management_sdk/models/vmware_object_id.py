@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-class VMwareObjectId(object):
+class VmwareObjectId(object):
 
-    """Implementation of the 'VMwareObjectId' model.
+    """Implementation of the 'VmwareObjectId' model.
 
     Specifies a unique Protection Source id across Cohesity Clusters. It is
     derived from the id of the VMware Protection Source.
@@ -30,7 +30,7 @@ class VMwareObjectId(object):
                  uuid=None,
             ):
 
-        """Constructor for the VMwareObjectId class"""
+        """Constructor for the VmwareObjectId class"""
 
         # Initialize members of the class
         self.mor_item = mor_item

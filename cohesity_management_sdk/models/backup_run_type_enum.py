@@ -4,9 +4,10 @@
 class BackupRunTypeEnum(object):
 
     """Implementation of the 'BackupRunType' enum.
-    The backup run type to which this extended retention applies to. If this is
-    not set, the extended retention will be applicable to all non-log backup
-    types. Currently, the only value that can be set here is kFull. 'kRegular'
+    The backup run type to which this copy policy applies to. If set, this will
+    ensure that the first run in scheduled period of given type will be copied.
+    If this isn't set, copy tasks will be generated as per other filters in the
+    protection policy. Currently, it can only be set to Full. 'kRegular'
     indicates a incremental (CBT) backup. Incremental backups utilizing CBT (if
     supported) are captured of the target protection objects. The first run of
     a kRegular schedule captures all the blocks. 'kFull' indicates a full (no

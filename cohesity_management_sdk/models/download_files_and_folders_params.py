@@ -17,8 +17,8 @@ class DownloadFilesAndFoldersParams(object):
 
         files_and_folders_info (list of FilesAndFoldersInfo): Specifies the
             absolute paths for list of files and folders to download.
-        name (string): Specifies the name of the Download Task. This field must
-            be set and must be a unique name.
+        name (string, required): Specifies the name of the Download Task. This
+            field must be set and must be a unique name.
         source_object_info (RestoreObjectDetails): Specifies the details of the
             task that is created in order to download the specified list of
             files and folders.

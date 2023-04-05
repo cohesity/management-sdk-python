@@ -15,6 +15,7 @@ import cohesity_management_sdk.models.storage_policy_override
 import cohesity_management_sdk.models.subnet
 import cohesity_management_sdk.models.view_alias
 import cohesity_management_sdk.models.view_intent
+import cohesity_management_sdk.models.view_pinning_config
 import cohesity_management_sdk.models.view_protection
 import cohesity_management_sdk.models.view_stats
 
@@ -188,6 +189,8 @@ class View(object):
         view_lock_enabled (bool): Specifies whether view lock is enabled. If
             enabled the view cannot be modified or deleted until unlock. By
             default it is disabled.
+        view_pinning_config (ViewPinningConfig): Specifies the pinning config
+            of this view.
         view_protection (ViewProtection): Specifies information about the
             Protection Jobs protecting this View.
     """
@@ -255,6 +258,7 @@ class View(object):
         "view_box_name":'viewBoxName',
         "view_id":'viewId',
         "view_lock_enabled":'viewLockEnabled',
+        "view_pinning_config":'viewPinningConfig',
         "view_protection":'viewProtection',
     }
     def __init__(self,
@@ -318,6 +322,7 @@ class View(object):
                  view_box_name=None,
                  view_id=None,
                  view_lock_enabled=None,
+                 view_pinning_config=None,
                  view_protection=None,
             ):
 
@@ -384,6 +389,7 @@ class View(object):
         self.view_box_name = view_box_name
         self.view_id = view_id
         self.view_lock_enabled = view_lock_enabled
+        self.view_pinning_config = view_pinning_config
         self.view_protection = view_protection
 
     @classmethod
@@ -480,6 +486,7 @@ class View(object):
         view_box_name = dictionary.get('viewBoxName')
         view_id = dictionary.get('viewId')
         view_lock_enabled = dictionary.get('viewLockEnabled')
+        view_pinning_config = cohesity_management_sdk.models.view_pinning_config.ViewPinningConfig.from_dictionary(dictionary.get('viewPinningConfig')) if dictionary.get('viewPinningConfig') else None
         view_protection = cohesity_management_sdk.models.view_protection.ViewProtection.from_dictionary(dictionary.get('viewProtection')) if dictionary.get('viewProtection') else None
 
         # Return an object of this model
@@ -544,5 +551,6 @@ class View(object):
             view_box_name,
             view_id,
             view_lock_enabled,
+            view_pinning_config,
             view_protection
 )

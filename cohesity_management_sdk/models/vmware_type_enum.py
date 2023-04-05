@@ -19,4 +19,4 @@ class VmwareTypeEnum(object):
 
     KSTANDALONEHOST = 'kStandaloneHost'
 
-    KVCLOUDDIRECTOR = 'kvCloudDirector'
+    K_VCLOUD_DIRECTOR = 'kvCloudDirector'

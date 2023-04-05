@@ -31,6 +31,7 @@ class TierTypeAmazonCloudCredentialsEnum(object):
         KAMAZONS3INTELLIGENTTIERING: TODO: type description here.
         KAMAZONS3GLACIER: TODO: type description here.
         KAMAZONS3GLACIERDEEPARCHIVE: TODO: type description here.
+        KAMAZONS3GLACIERIR: TODO: type description here.
 
     """
 
@@ -47,3 +48,5 @@ class TierTypeAmazonCloudCredentialsEnum(object):
     KAMAZONS3GLACIER = 'kAmazonS3Glacier'
 
     KAMAZONS3GLACIERDEEPARCHIVE = 'kAmazonS3GlacierDeepArchive'
+
+    KAMAZONS3GLACIERIR = 'kAmazonS3GlacierIR'

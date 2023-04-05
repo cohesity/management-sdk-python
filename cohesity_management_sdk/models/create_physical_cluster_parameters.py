@@ -22,20 +22,20 @@ class CreatePhysicalClusterParameters(object):
             be used to validate OTP used for destroy request. This is b32
             format of the HMAC key. This should only be set/modified during
             cluster creation.
-        cluster_name (string): Specifies the name of the new Cluster.
+        cluster_name (string, required): Specifies the name of the new Cluster.
         enable_cluster_destroy (bool): Specifies if cluster destroy op is
             enabled on this cluster. This should only be set/modified during
             cluster creation.
         encryption_config (EncryptionConfiguration): Specifies the encryption
             configuration parameters.
         ip_preference (int): Specifies IP preference.
-        ipmi_config (IpmiConfiguration): Specifies the IPMI configuration
-            parameters.
-        metadata_fault_tolerance (int): Specifies the metadata fault tolerance.
-        network_config (NetworkConfiguration): Specifies the network
+        ipmi_config (IpmiConfiguration, required): Specifies the IPMI
             configuration parameters.
-        node_configs (list of PhysicalNodeConfiguration): Specifies the
-            configuration for the nodes in the new cluster.
+        metadata_fault_tolerance (int): Specifies the metadata fault tolerance.
+        network_config (NetworkConfiguration, required): Specifies the network
+            configuration parameters.
+        node_configs (list of PhysicalNodeConfiguration, required): Specifies
+            the configuration for the nodes in the new cluster.
         trust_domain (string): Specifies Trust Domain used for Service
             Identity.
     """

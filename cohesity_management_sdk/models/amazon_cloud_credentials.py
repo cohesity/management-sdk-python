@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-import cohesity_management_sdk.models.c2s_access_portal
+import cohesity_management_sdk.models.c_2_s_access_portal
 
 
 class AmazonCloudCredentials(object):
@@ -30,7 +30,7 @@ class AmazonCloudCredentials(object):
             API calls. 'kUseIAMUser' indicates a user based authentication.
             'kUseIAMRole' indicates a role based authentication, used only for
             AWS CE. 'kUseHelios' indicates a Helios based authentication.
-        c2s_access_portal (C2SAccessPortal): Specifies the C2S Access Portal
+        c_2_s_access_portal (C2SAccessPortal): Specifies the C2S Access Portal
             (CAP) which is used to get the aws credentials in Amazon Commercial
             Cloud Service(C2S).
         credential_blob (string): Specifies the credential blob to authenticate
@@ -91,7 +91,7 @@ class AmazonCloudCredentials(object):
         "is_lambda_based_g_c_enabled":'IsLambdaBasedGCEnabled',
         "access_key_id":'accessKeyId',
         "auth_method":'authMethod',
-        "c2s_access_portal":'c2sAccessPortal',
+        "c_2_s_access_portal":'c2sAccessPortal',
         "credential_blob":'credentialBlob',
         "credential_endpoint":'credentialEndpoint',
         "iam_role_arn":'iamRoleArn',
@@ -108,7 +108,7 @@ class AmazonCloudCredentials(object):
                  is_lambda_based_g_c_enabled=None,
                  access_key_id=None,
                  auth_method=None,
-                 c2s_access_portal=None,
+                 c_2_s_access_portal=None,
                  credential_blob=None,
                  credential_endpoint=None,
                  iam_role_arn=None,
@@ -128,7 +128,7 @@ class AmazonCloudCredentials(object):
         self.is_lambda_based_g_c_enabled = is_lambda_based_g_c_enabled
         self.access_key_id = access_key_id
         self.auth_method = auth_method
-        self.c2s_access_portal = c2s_access_portal
+        self.c_2_s_access_portal = c_2_s_access_portal
         self.credential_blob = credential_blob
         self.credential_endpoint = credential_endpoint
         self.iam_role_arn = iam_role_arn
@@ -162,7 +162,7 @@ class AmazonCloudCredentials(object):
         is_lambda_based_g_c_enabled = dictionary.get('IsLambdaBasedGCEnabled')
         access_key_id = dictionary.get('accessKeyId')
         auth_method = dictionary.get('authMethod')
-        c2s_access_portal = cohesity_management_sdk.models.c2s_access_portal.C2SAccessPortal.from_dictionary(dictionary.get('c2sAccessPortal')) if dictionary.get('c2sAccessPortal') else None
+        c_2_s_access_portal = cohesity_management_sdk.models.c_2_s_access_portal.C2SAccessPortal.from_dictionary(dictionary.get('c2sAccessPortal')) if dictionary.get('c2sAccessPortal') else None
         credential_blob = dictionary.get('credentialBlob')
         credential_endpoint = dictionary.get('credentialEndpoint')
         iam_role_arn = dictionary.get('iamRoleArn')
@@ -180,7 +180,7 @@ class AmazonCloudCredentials(object):
             is_lambda_based_g_c_enabled,
             access_key_id,
             auth_method,
-            c2s_access_portal,
+            c_2_s_access_portal,
             credential_blob,
             credential_endpoint,
             iam_role_arn,

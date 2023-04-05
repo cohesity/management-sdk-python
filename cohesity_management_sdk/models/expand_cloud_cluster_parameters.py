@@ -10,7 +10,8 @@ class ExpandCloudClusterParameters(object):
 
     Attributes:
 
-        node_ips (list of string): Specifies the list of IPs of the new Nodes.
+        node_ips (list of string, required): Specifies the list of IPs of the
+            new Nodes.
     """
 
 

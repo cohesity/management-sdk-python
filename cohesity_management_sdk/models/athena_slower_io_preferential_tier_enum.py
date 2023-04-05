@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-class AthenaSlowerIoPreferentialTierEnum(object):
+class AthenaSlowerIOPreferentialTierEnum(object):
 
-    """Implementation of the 'AthenaSlowerIoPreferentialTier' enum.
+    """Implementation of the 'AthenaSlowerIOPreferentialTier' enum.
     Specifies the list of perferred storage tiers used by Athena for slower
     storage.
 

@@ -171,6 +171,8 @@ class ProtectionJob(object):
             Full (no CBT) Protection Schedule. Default value is 02:00 AM.
             deprecated: true
         id (long|int): Specifies an id for the Protection Job.
+        ignorable_errors_in_error_db (list of int): Specifies the errors which
+            we can ignore from showing to the user.
         incremental_protection_sla_time_mins (long|int): If specified, this
             setting is number of minutes that a Job Run of a CBT-based backup
             schedule is expected to complete, which is known as a Service-Level
@@ -237,7 +239,7 @@ class ProtectionJob(object):
             was updated.
         modified_by_user (string): Specifies the last Cohesity user who updated
             this Job.
-        name (string): Specifies the name of the Protection Job.
+        name (string, required): Specifies the name of the Protection Job.
         parent_source_id (long|int): Specifies the id of the registered
             Protection Source that is the parent of the Objects that may be
             protected by this Job. For example when a vCenter Server is
@@ -251,10 +253,10 @@ class ProtectionJob(object):
             milliseconds) when the associated Policy was last applied to this
             Job. This is used to determine if the Policy has changed since it
             was last applied to this Job.
-        policy_id (string): Specifies the unique id of the Protection Policy
-            associated with the Protection Job. The Policy provides retry
-            settings, Protection Schedules, Priority, SLA, etc. The Job defines
-            the Storage Domain (View Box), the Objects to Protect (if
+        policy_id (string, required): Specifies the unique id of the Protection
+            Policy associated with the Protection Job. The Policy provides
+            retry settings, Protection Schedules, Priority, SLA, etc. The Job
+            defines the Storage Domain (View Box), the Objects to Protect (if
             applicable), Start Time, Indexing settings, etc.
         post_backup_script (BackupScript): Specifies the script associated with
             the backup job. This field must be specified for 'kPhysical' jobs.
@@ -306,14 +308,14 @@ class ProtectionJob(object):
             Datacenter could be selected but its child Host excluded. However,
             a child VM under the Host could be explicitly selected to be
             protected. Both the Datacenter and the VM are listed.
-        source_special_parameters (list of SourceSpecialParameter): Array of
-            Special Source Parameters.  Specifies additional settings that can
-            apply to a subset of the Sources listed in the Protection Job. For
-            example, you can specify a list of files and folders to protect
-            instead of protecting the entire Physical Server. If this field's
-            setting conflicts with environmentParameters, then this setting
-            will be used. Specific volume selections must be passed in here to
-            take effect.
+        source_special_parameters (list of SourceSpecialParameter, required):
+            Array of Special Source Parameters.  Specifies additional settings
+            that can apply to a subset of the Sources listed in the Protection
+            Job. For example, you can specify a list of files and folders to
+            protect instead of protecting the entire Physical Server. If this
+            field's setting conflicts with environmentParameters, then this
+            setting will be used. Specific volume selections must be passed in
+            here to take effect.
         start_time (TimeOfDay): Specifies the time of day to start the
             Protection Schedule. This is optional and only applicable if the
             Protection Policy defines a monthly or a daily Protection Schedule.
@@ -332,8 +334,8 @@ class ProtectionJob(object):
             later searched in UI. For example, user can create a 'kPuppeteer'
             job to backup Oracle DB for 'payroll' department. User can specify
             following tags: 'payroll', 'Oracle_DB'.
-        view_box_id (long|int): Specifies the Storage Domain (View Box) id
-            where this Job writes data.
+        view_box_id (long|int, required): Specifies the Storage Domain (View
+            Box) id where this Job writes data.
         view_name (string): For a Remote Adapter 'kPuppeteer' Job or a 'kView'
             Job, this field specifies a View name that should be protected.
             Specify this field when creating a Protection Job for the first
@@ -381,6 +383,7 @@ class ProtectionJob(object):
         "full_protection_sla_time_mins":'fullProtectionSlaTimeMins',
         "full_protection_start_time":'fullProtectionStartTime',
         "id":'id',
+        "ignorable_errors_in_error_db":'ignorableErrorsInErrorDb',
         "incremental_protection_sla_time_mins":'incrementalProtectionSlaTimeMins',
         "incremental_protection_start_time":'incrementalProtectionStartTime',
         "indexing_policy":'indexingPolicy',
@@ -446,6 +449,7 @@ class ProtectionJob(object):
                  full_protection_sla_time_mins=None,
                  full_protection_start_time=None,
                  id=None,
+                 ignorable_errors_in_error_db=None,
                  incremental_protection_sla_time_mins=None,
                  incremental_protection_start_time=None,
                  indexing_policy=None,
@@ -514,6 +518,7 @@ class ProtectionJob(object):
         self.full_protection_sla_time_mins = full_protection_sla_time_mins
         self.full_protection_start_time = full_protection_start_time
         self.id = id
+        self.ignorable_errors_in_error_db = ignorable_errors_in_error_db
         self.incremental_protection_sla_time_mins = incremental_protection_sla_time_mins
         self.incremental_protection_start_time = incremental_protection_start_time
         self.indexing_policy = indexing_policy
@@ -596,6 +601,7 @@ class ProtectionJob(object):
         full_protection_sla_time_mins = dictionary.get('fullProtectionSlaTimeMins')
         full_protection_start_time = cohesity_management_sdk.models.time_of_day.TimeOfDay.from_dictionary(dictionary.get('fullProtectionStartTime')) if dictionary.get('fullProtectionStartTime') else None
         id = dictionary.get('id')
+        ignorable_errors_in_error_db = dictionary.get("ignorableErrorsInErrorDb")
         incremental_protection_sla_time_mins = dictionary.get('incrementalProtectionSlaTimeMins')
         incremental_protection_start_time = cohesity_management_sdk.models.time_of_day.TimeOfDay.from_dictionary(dictionary.get('incrementalProtectionStartTime')) if dictionary.get('incrementalProtectionStartTime') else None
         indexing_policy = cohesity_management_sdk.models.indexing_policy.IndexingPolicy.from_dictionary(dictionary.get('indexingPolicy')) if dictionary.get('indexingPolicy') else None
@@ -674,6 +680,7 @@ class ProtectionJob(object):
             full_protection_sla_time_mins,
             full_protection_start_time,
             id,
+            ignorable_errors_in_error_db,
             incremental_protection_sla_time_mins,
             incremental_protection_start_time,
             indexing_policy,

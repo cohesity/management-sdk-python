@@ -13,6 +13,9 @@ class RestoreVMwareVMParams(object):
 
     Attributes:
 
+        allow_nbdssl_transport_fallback (bool): Whether to fallback to use
+            NBDSSL transport for recovery in case using SAN transport recovery
+            fails.
         attempt_differential_restore (bool): This field is only applicable when
             overwrite_existing_vm is set to true. If this field is true, as
             part of overwrite existing vm, differential restore will be
@@ -23,6 +26,8 @@ class RestoreVMwareVMParams(object):
             instant recovery.
         datastore_entity_vec (list of EntityProto): Datastore entities if the
             restore is to alternate location.
+        disk_provision_type (int): This specifies vmware virtual disk
+            provisioning policies
         is_on_prem_deploy (bool): This will be true if this is on prem deploy
             task. attempt_differential_restore should also be set to true in
             case of doing on prem deploy.
@@ -63,10 +68,12 @@ class RestoreVMwareVMParams(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "allow_nbdssl_transport_fallback":'allowNbdsslTransportFallback',
         "attempt_differential_restore":'attemptDifferentialRestore',
         "catalog_uuid":'catalogUuid',
         "copy_recovery":'copyRecovery',
         "datastore_entity_vec":'datastoreEntityVec',
+        "disk_provision_type":'diskProvisionType',
         "is_on_prem_deploy":'isOnPremDeploy',
         "org_vdc_network_name":'orgVdcNetworkName',
         "org_vdc_network_vcd_uuid":'orgVdcNetworkVcdUuid',
@@ -81,10 +88,12 @@ class RestoreVMwareVMParams(object):
         "target_vm_folder":'targetVmFolder',
     }
     def __init__(self,
+                 allow_nbdssl_transport_fallback=None,
                  attempt_differential_restore=None,
                  catalog_uuid=None,
                  copy_recovery=None,
                  datastore_entity_vec=None,
+                 disk_provision_type=None,
                  is_on_prem_deploy=None,
                  org_vdc_network_name=None,
                  org_vdc_network_vcd_uuid=None,
@@ -102,10 +111,12 @@ class RestoreVMwareVMParams(object):
         """Constructor for the RestoreVMwareVMParams class"""
 
         # Initialize members of the class
+        self.allow_nbdssl_transport_fallback = allow_nbdssl_transport_fallback
         self.attempt_differential_restore = attempt_differential_restore
         self.catalog_uuid = catalog_uuid
         self.copy_recovery = copy_recovery
         self.datastore_entity_vec = datastore_entity_vec
+        self.disk_provision_type = disk_provision_type
         self.is_on_prem_deploy = is_on_prem_deploy
         self.org_vdc_network_name = org_vdc_network_name
         self.org_vdc_network_vcd_uuid = org_vdc_network_vcd_uuid
@@ -137,6 +148,7 @@ class RestoreVMwareVMParams(object):
             return None
 
         # Extract variables from the dictionary
+        allow_nbdssl_transport_fallback = dictionary.get('allowNbdsslTransportFallback')
         attempt_differential_restore = dictionary.get('attemptDifferentialRestore')
         catalog_uuid = dictionary.get('catalogUuid')
         copy_recovery = dictionary.get('copyRecovery')
@@ -145,6 +157,7 @@ class RestoreVMwareVMParams(object):
             datastore_entity_vec = list()
             for structure in dictionary.get('datastoreEntityVec'):
                 datastore_entity_vec.append(cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(structure))
+        disk_provision_type = dictionary.get('diskProvisionType')
         is_on_prem_deploy = dictionary.get('isOnPremDeploy')
         org_vdc_network_name = dictionary.get('orgVdcNetworkName')
         org_vdc_network_vcd_uuid = dictionary.get('orgVdcNetworkVcdUuid')
@@ -160,10 +173,12 @@ class RestoreVMwareVMParams(object):
 
         # Return an object of this model
         return cls(
+            allow_nbdssl_transport_fallback,
             attempt_differential_restore,
             catalog_uuid,
             copy_recovery,
             datastore_entity_vec,
+            disk_provision_type,
             is_on_prem_deploy,
             org_vdc_network_name,
             org_vdc_network_vcd_uuid,

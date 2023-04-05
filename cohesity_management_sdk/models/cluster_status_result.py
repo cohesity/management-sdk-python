@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
+import cohesity_management_sdk.models.airgap_config
 import cohesity_management_sdk.models.node_status_result
 import cohesity_management_sdk.models.system_app_status_result
 
@@ -14,6 +15,7 @@ class ClusterStatusResult(object):
 
     Attributes:
 
+        airgap_config (AirgapConfig): Specifies Airgap config
         cluster_id (long|int): Specifies the ID of the Cluster.
         cluster_incarnation_id (long|int): Specifies the incarnation ID of the
             Cluster.
@@ -97,6 +99,7 @@ class ClusterStatusResult(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "airgap_config":'airgapConfig',
         "cluster_id":'clusterId',
         "cluster_incarnation_id":'clusterIncarnationId',
         "current_operation":'currentOperation',
@@ -110,6 +113,7 @@ class ClusterStatusResult(object):
         "system_app_status":'systemAppStatus',
     }
     def __init__(self,
+                 airgap_config=None,
                  cluster_id=None,
                  cluster_incarnation_id=None,
                  current_operation=None,
@@ -126,6 +130,7 @@ class ClusterStatusResult(object):
         """Constructor for the ClusterStatusResult class"""
 
         # Initialize members of the class
+        self.airgap_config = airgap_config
         self.cluster_id = cluster_id
         self.cluster_incarnation_id = cluster_incarnation_id
         self.current_operation = current_operation
@@ -156,6 +161,7 @@ class ClusterStatusResult(object):
             return None
 
         # Extract variables from the dictionary
+        airgap_config = cohesity_management_sdk.models.airgap_config.AirgapConfig.from_dictionary(dictionary.get('airgapConfig')) if dictionary.get('airgapConfig') else None
         cluster_id = dictionary.get('clusterId')
         cluster_incarnation_id = dictionary.get('clusterIncarnationId')
         current_operation = dictionary.get('currentOperation')
@@ -178,6 +184,7 @@ class ClusterStatusResult(object):
 
         # Return an object of this model
         return cls(
+            airgap_config,
             cluster_id,
             cluster_incarnation_id,
             current_operation,

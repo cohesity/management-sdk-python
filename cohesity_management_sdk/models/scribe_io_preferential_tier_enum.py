@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-class ScribeIoPreferentialTierEnum(object):
+class ScribeIOPreferentialTierEnum(object):
 
-    """Implementation of the 'ScribeIoPreferentialTier' enum.
+    """Implementation of the 'ScribeIOPreferentialTier' enum.
     Specifies the list of perferred storage tiers used by Scribe.
 
 

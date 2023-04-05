@@ -32,8 +32,8 @@ class ViewBox(object):
         cloud_down_waterfall_threshold_secs (int): Specifies the cloud down
             water-fall threshold seconds. This indicates what's the time
             threshold on water-falling data to cloud tier.
-        cluster_partition_id (long|int): Specifies the Cluster Partition id
-            where the Storage Domain (View Box) is located.
+        cluster_partition_id (long|int, required): Specifies the Cluster
+            Partition id where the Storage Domain (View Box) is located.
         cluster_partition_name (string): Specifies the Cohesity Cluster name
             where the Storage Domain (View Box) is located.
         default_user_quota_policy (QuotaPolicy): Specifies an optional quota
@@ -79,7 +79,8 @@ class ViewBox(object):
             is also a mapping between LDAP provider and AD domain that is
             stored in AD provider config. It will be used if AD is not set on
             the view box.
-        name (string): Specifies the name of the Storage Domain (View Box).
+        name (string, required): Specifies the name of the Storage Domain (View
+            Box).
         nis_domain_name_vec (list of string): Specifies the NIS domain that
             this view box is mapped to.
         physical_quota (QuotaPolicy): Specifies an optional quota limit (in

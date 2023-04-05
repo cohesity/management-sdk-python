@@ -10,13 +10,13 @@ class NasMountCredentials(object):
 
     Attributes:
 
-        cohesity_managed_password (bool): Whether the password managed by
-            cohesity during registration.
-        domain_controller (string): Active Domain controller IP or hostname;
         domain_name (string): The name of the domain which the NAS mount
             credentials belong to.
         encrypted_password (list of long|int): AES256 encrypted password. The
             key for encryption should be obtained from KMS.
+        kdc (string): KDC hostname or IP for krb5 authentication. KDC stores
+            secret keys for a smb user and provides the krb5 tickets for
+            authentication.
         password (string): The password field is only populated in RPCs. On
             disk, instances of this proto should not have this field set,
             except for legacy records.  TODO(oleg): Change this field type to
@@ -29,19 +29,17 @@ class NasMountCredentials(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "cohesity_managed_password":'cohesityManagedPassword',
-        "domain_controller":'domainController',
         "domain_name":'domainName',
         "encrypted_password":'encryptedPassword',
+        "kdc":'kdc',
         "password":'password',
         "protocol":'protocol',
         "username":'username',
     }
     def __init__(self,
-                 cohesity_managed_password=None,
-                 domain_controller=None,
                  domain_name=None,
                  encrypted_password=None,
+                 kdc=None,
                  password=None,
                  protocol=None,
                  username=None,
@@ -50,10 +48,9 @@ class NasMountCredentials(object):
         """Constructor for the NasMountCredentials class"""
 
         # Initialize members of the class
-        self.cohesity_managed_password = cohesity_managed_password
-        self.domain_controller = domain_controller
         self.domain_name = domain_name
         self.encrypted_password = encrypted_password
+        self.kdc = kdc
         self.password = password
         self.protocol = protocol
         self.username = username
@@ -76,20 +73,18 @@ class NasMountCredentials(object):
             return None
 
         # Extract variables from the dictionary
-        cohesity_managed_password = dictionary.get('cohesityManagedPassword')
-        domain_controller = dictionary.get('domainController')
         domain_name = dictionary.get('domainName')
         encrypted_password = dictionary.get("encryptedPassword")
+        kdc = dictionary.get('kdc')
         password = dictionary.get('password')
         protocol = dictionary.get('protocol')
         username = dictionary.get('username')
 
         # Return an object of this model
         return cls(
-            cohesity_managed_password,
-            domain_controller,
             domain_name,
             encrypted_password,
+            kdc,
             password,
             protocol,
             username

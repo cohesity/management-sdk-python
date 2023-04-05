@@ -26,7 +26,8 @@ class StatisticsController(BaseController):
                      include_aggr_metric_sources=None,
                      metric_names=None,
                      max_entities=None,
-                     view_name=None):
+                     view_name=None,
+                     entity_prefix=None):
         """Does a GET request to /public/statistics/entities.
 
         An entity is an object found on the Cohesity Cluster, such as a disk
@@ -50,6 +51,8 @@ class StatisticsController(BaseController):
             view_name (string, optional): Specifies a view name, only view
                 entities which have name containing the specified name will
                 be returned.
+            entity_prefix (string, optional): Fetch only the entities having
+                this prefix, otherwise all entities are returned.
 
         Returns:
             list of EntityProto: Response from the API. Success
@@ -79,7 +82,8 @@ class StatisticsController(BaseController):
                 'includeAggrMetricSources': include_aggr_metric_sources,
                 'metricNames': metric_names,
                 'maxEntities': max_entities,
-                'viewName': view_name
+                'viewName': view_name,
+                'entityPrefix': entity_prefix
             }
             _query_builder = APIHelper.append_url_with_query_parameters(
                 _query_builder, _query_parameters,
@@ -360,7 +364,8 @@ class StatisticsController(BaseController):
                               end_time_msecs=None,
                               rollup_function=None,
                               rollup_interval_secs=None,
-                              prorate_data_points=None):
+                              prorate_data_points=None,
+                              include_growth_change=None):
         """Does a GET request to /public/statistics/timeSeriesStats.
 
         A Metric specifies a data point (such as CPU usage and IOPS) to track
@@ -416,6 +421,11 @@ class StatisticsController(BaseController):
                 rated data point for every rollup interval instead of
                 returning the actual raw data points. This should be used
                 only when rollup function is provided.
+            include_growth_change (bool, optional): Specifies if the response
+                should return the difference of a data point with the previous
+                datapoint. Used for determining the change in growth rate.
+                Datapoint could be +x, 0, -x showing the growth is up, no
+                change or down respectively.
 
         Returns:
             MetricDataBlock: Response from the API. Success
@@ -451,7 +461,8 @@ class StatisticsController(BaseController):
                 'endTimeMsecs': end_time_msecs,
                 'rollupFunction': rollup_function,
                 'rollupIntervalSecs': rollup_interval_secs,
-                'prorateDataPoints': prorate_data_points
+                'prorateDataPoints': prorate_data_points,
+                'includeGrowthChange': include_growth_change
             }
             _query_builder = APIHelper.append_url_with_query_parameters(
                 _query_builder, _query_parameters,

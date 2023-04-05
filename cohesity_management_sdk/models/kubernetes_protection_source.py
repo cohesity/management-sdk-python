@@ -15,6 +15,8 @@ class KubernetesProtectionSource(object):
 
         datamover_image_location (string): Specifies the location of Datamover
             image in private registry.
+        datamover_upgradability (int): Specifies if the deployed Datamover
+            image needs to be upgraded for this kubernetes entity
         description (string): Specifies an optional description of the object.
         distribution (DistributionEnum): Specifies the type of the entity in a
             Kubernetes environment. Determines the K8s distribution.
@@ -36,12 +38,15 @@ class KubernetesProtectionSource(object):
             in private registry.
         velero_openshift_plugin_image_location (string): Specifies the location
             of the image for openshift plugin container.
+        velero_upgradability (int): Specifies if the deployed Velero image
+            needs to be upgraded for this kubernetes entity.
     """
 
 
     # Create a mapping from Model property names to API property names
     _names = {
         "datamover_image_location":'datamoverImageLocation',
+        "datamover_upgradability":'datamoverUpgradability',
         "description":'description',
         "distribution":'distribution',
         "init_container_image_location":'initContainerImageLocation',
@@ -52,9 +57,11 @@ class KubernetesProtectionSource(object):
         "velero_aws_plugin_image_location":'veleroAwsPluginImageLocation',
         "velero_image_location":'veleroImageLocation',
         "velero_openshift_plugin_image_location":'veleroOpenshiftPluginImageLocation',
+        "velero_upgradability":'veleroUpgradability',
     }
     def __init__(self,
                  datamover_image_location=None,
+                 datamover_upgradability=None,
                  description=None,
                  distribution=None,
                  init_container_image_location=None,
@@ -65,12 +72,14 @@ class KubernetesProtectionSource(object):
                  velero_aws_plugin_image_location=None,
                  velero_image_location=None,
                  velero_openshift_plugin_image_location=None,
+                 velero_upgradability=None,
             ):
 
         """Constructor for the KubernetesProtectionSource class"""
 
         # Initialize members of the class
         self.datamover_image_location = datamover_image_location
+        self.datamover_upgradability = datamover_upgradability
         self.description = description
         self.distribution = distribution
         self.init_container_image_location = init_container_image_location
@@ -81,6 +90,7 @@ class KubernetesProtectionSource(object):
         self.velero_aws_plugin_image_location = velero_aws_plugin_image_location
         self.velero_image_location = velero_image_location
         self.velero_openshift_plugin_image_location = velero_openshift_plugin_image_location
+        self.velero_upgradability = velero_upgradability
 
     @classmethod
     def from_dictionary(cls,
@@ -101,6 +111,7 @@ class KubernetesProtectionSource(object):
 
         # Extract variables from the dictionary
         datamover_image_location = dictionary.get('datamoverImageLocation')
+        datamover_upgradability = dictionary.get('datamoverUpgradability')
         description = dictionary.get('description')
         distribution = dictionary.get('distribution')
         init_container_image_location = dictionary.get('initContainerImageLocation')
@@ -115,10 +126,12 @@ class KubernetesProtectionSource(object):
         velero_aws_plugin_image_location = dictionary.get('veleroAwsPluginImageLocation')
         velero_image_location = dictionary.get('veleroImageLocation')
         velero_openshift_plugin_image_location = dictionary.get('veleroOpenshiftPluginImageLocation')
+        velero_upgradability = dictionary.get('veleroUpgradability')
 
         # Return an object of this model
         return cls(
             datamover_image_location,
+            datamover_upgradability,
             description,
             distribution,
             init_container_image_location,
@@ -128,5 +141,6 @@ class KubernetesProtectionSource(object):
             uuid,
             velero_aws_plugin_image_location,
             velero_image_location,
-            velero_openshift_plugin_image_location
+            velero_openshift_plugin_image_location,
+            velero_upgradability
 )

@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-class SequentialIoPreferentialTierEnum(object):
+class SequentialIOPreferentialTierEnum(object):
 
-    """Implementation of the 'SequentialIoPreferentialTier' enum.
+    """Implementation of the 'SequentialIOPreferentialTier' enum.
     Specifies the preferred storage tier for sequential IO operations.
 
 

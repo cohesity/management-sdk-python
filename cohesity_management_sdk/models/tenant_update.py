@@ -22,6 +22,8 @@ class TenantUpdate(object):
             network for the Cohesity cluster. Only one from 'ClusterHostname'
             and 'ClusterIps' is needed.
         description (string): Specifies the description of this tenant.
+        is_managed_on_helios (bool): Specifies whether this tenant is manged on
+            helios
         name (string): Specifies the name of the tenant.
         subscribe_to_alert_emails (bool): Service provider can optionally
             unsubscribe from the Tenant Alert Emails.
@@ -35,6 +37,7 @@ class TenantUpdate(object):
         "cluster_hostname":'clusterHostname',
         "cluster_ips":'clusterIps',
         "description":'description',
+        "is_managed_on_helios":'isManagedOnHelios',
         "name":'name',
         "subscribe_to_alert_emails":'subscribeToAlertEmails',
         "tenant_id":'tenantId',
@@ -44,6 +47,7 @@ class TenantUpdate(object):
                  cluster_hostname=None,
                  cluster_ips=None,
                  description=None,
+                 is_managed_on_helios=None,
                  name=None,
                  subscribe_to_alert_emails=None,
                  tenant_id=None,
@@ -56,6 +60,7 @@ class TenantUpdate(object):
         self.cluster_hostname = cluster_hostname
         self.cluster_ips = cluster_ips
         self.description = description
+        self.is_managed_on_helios = is_managed_on_helios
         self.name = name
         self.subscribe_to_alert_emails = subscribe_to_alert_emails
         self.tenant_id = tenant_id
@@ -82,6 +87,7 @@ class TenantUpdate(object):
         cluster_hostname = dictionary.get('clusterHostname')
         cluster_ips = dictionary.get("clusterIps")
         description = dictionary.get('description')
+        is_managed_on_helios = dictionary.get('isManagedOnHelios')
         name = dictionary.get('name')
         subscribe_to_alert_emails = dictionary.get('subscribeToAlertEmails')
         tenant_id = dictionary.get('tenantId')
@@ -92,6 +98,7 @@ class TenantUpdate(object):
             cluster_hostname,
             cluster_ips,
             description,
+            is_managed_on_helios,
             name,
             subscribe_to_alert_emails,
             tenant_id

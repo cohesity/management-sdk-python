@@ -3,19 +3,9 @@
 
 class TypeOffice365ProtectionSourceEnum(object):
 
-    """Implementation of the 'Type_Office365ProtectionSource' enum.
-
+    """Implementation of the 'TypeOffice365ProtectionSource' enum.
     Specifies the type of the Office 365 entity.
-    Specifies the type of Office 365 entity
-    'kDomain' indicates the O365 domain through which authentication occurs.
-    'kOutlook' indicates the Exchange online entities.
-    'kMailbox' indicates the user's mailbox account.
-    'kUsers' indicates the container for User entities.
-    'kGroups' indicates the container for Group entities.
-    'kSites' indicates the container for Site entities.
-    'kUser' indicates an Office365 User entity.
-    'kGroup' indicates an Office365 Group entity.
-    'kSite' indicates an Office365 SharePoint Site entity.
+
 
     Attributes:
         KDOMAIN: TODO: type description here.
@@ -27,7 +17,13 @@ class TypeOffice365ProtectionSourceEnum(object):
         KUSER: TODO: type description here.
         KGROUP: TODO: type description here.
         KSITE: TODO: type description here.
-
+        KAPPLICATION: TODO: type description here.
+        KGRAPHUSER: TODO: type description here.
+        KPUBLICFOLDERS: TODO: type description here.
+        KPUBLICFOLDER: TODO: type description here.
+        KTEAMS: TODO: type description here.
+        KTEAM: TODO: type description here.
+        KROOTPUBLICFOLDER: TODO: type description here.
 
     """
 
@@ -48,3 +44,17 @@ class TypeOffice365ProtectionSourceEnum(object):
     KGROUP = 'kGroup'
 
     KSITE = 'kSite'
+
+    KAPPLICATION = 'kApplication'
+
+    KGRAPHUSER = 'kGraphUser'
+
+    KPUBLICFOLDERS = 'kPublicFolders'
+
+    KPUBLICFOLDER = 'kPublicFolder'
+
+    KTEAMS = 'kTeams'
+
+    KTEAM = 'kTeam'
+
+    KROOTPUBLICFOLDER = 'kRootPublicFolder'

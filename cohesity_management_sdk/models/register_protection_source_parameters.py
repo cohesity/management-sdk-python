@@ -8,10 +8,11 @@ import cohesity_management_sdk.models.credentials
 import cohesity_management_sdk.models.exchange_dag_protection_preference
 import cohesity_management_sdk.models.fleet_network_params
 import cohesity_management_sdk.models.gcp_credentials
+import cohesity_management_sdk.models.gcp_fleet_params
 import cohesity_management_sdk.models.kubernetes_credentials
 import cohesity_management_sdk.models.kubernetes_params
 import cohesity_management_sdk.models.nas_mount_credential_params
-import cohesity_management_sdk.models.office365_credentials
+import cohesity_management_sdk.models.office_365_credentials
 import cohesity_management_sdk.models.physical_params
 import cohesity_management_sdk.models.registered_protection_source_isilon_params
 import cohesity_management_sdk.models.ssl_verification
@@ -52,6 +53,9 @@ class RegisterProtectionSourceParameters(object):
         cluster_network_info (FleetNetworkParams): Specifies information
             related to cluster. This is only valid for CE clusters. This is
             only populated for kIAMUser entity.
+        connection_id (long|int): Specifies the Bifrost realm to be associated
+            with the source root. Whenever needed, the workflows related to
+            this source would then only use Bifrosts from the specified realm.
         denied_ip_addresses (list of string): Specifies the list of IP
             Addresses on the registered source to be denied for doing any type
             of IO operations.
@@ -128,6 +132,9 @@ class RegisterProtectionSourceParameters(object):
             parameter and should not be documented externally.
         gcp_credentials (GcpCredentials): Specifies credentials needed to
             authenticate with Google Cloud Platform.
+        gcp_fleet_params (GcpFleetParams): Specifies information related to GCP
+            fleets launched for various purposes. This will only be set for
+            kIAMUser entity.
         host_type (HostTypeEnum): Specifies the optional OS type of the
             Protection Source (such as kWindows or kLinux).
             overrideDescription: true 'kLinux' indicates the Linux operating
@@ -163,14 +170,14 @@ class RegisterProtectionSourceParameters(object):
         nimble_type (NimbleTypeEnum): Specifies the entity type such as
             'kStorageArray' if the environment is kNimble. overrideDescription:
             true
-        office365_credentials_list (list of Office365Credentials): Office365
+        office_365_credentials_list (list of Office365Credentials): Office365
             Source Credentials.  Specifies credentials needed to authenticate &
             authorize user for Office365 using MS Graph APIs.
-        office365_region (string): Specifies the region for Office365.
-        office365_service_account_credentials_list (list of Credentials):
+        office_365_region (string): Specifies the region for Office365.
+        office_365_service_account_credentials_list (list of Credentials):
             Office365 Service Account Credentials.  Specifies credentials for
             improving mailbox backup performance for O365.
-        office365_type (Office365TypeEnum): Specifies the entity type such as
+        office_365_type (Office365TypeEnum): Specifies the entity type such as
             'kDomain', 'kOutlook', 'kMailbox', if the environment is kO365.
         password (string): Specifies password of the username to access the
             target source.
@@ -186,6 +193,15 @@ class RegisterProtectionSourceParameters(object):
         pure_type (PureTypeEnum): Specifies the entity type such as
             'kStorageArray' if the environment is kPure. overrideDescription:
             true
+        re_register (bool): ReRegister is applicable to Physical Environment.
+            By default, the agent running on a physical host will fail the
+            registration, if it is already registered with the cluster. By
+            setting this option to true, agent can be re-registered with the
+            current cluster.
+        restore_config (bool): RestoreConfig is applicable to Physical
+            Environment. The ReRegister option needs to be true if
+            RestoreConfig is true. By setting this option to true, the agent
+            configuration can be restored.
         source_side_dedup_enabled (bool): This controls whether to use source
             side dedup on the source or not. This is only applicable to sources
             which support source side dedup (e.g., Linux physical servers).
@@ -232,6 +248,7 @@ class RegisterProtectionSourceParameters(object):
         "azure_credentials":'azureCredentials',
         "blacklisted_ip_addresses":'blacklistedIpAddresses',
         "cluster_network_info":'clusterNetworkInfo',
+        "connection_id":'connectionId',
         "denied_ip_addresses":'deniedIpAddresses',
         "encryption_key":'encryptionKey',
         "endpoint":'endpoint',
@@ -239,6 +256,7 @@ class RegisterProtectionSourceParameters(object):
         "exchange_dag_protection_preference":'exchangeDagProtectionPreference',
         "force_register":'forceRegister',
         "gcp_credentials":'gcpCredentials',
+        "gcp_fleet_params":'gcpFleetParams',
         "host_type":'hostType',
         "hyperv_type":'hyperVType',
         "is_internal_encrypted":'isInternalEncrypted',
@@ -251,15 +269,17 @@ class RegisterProtectionSourceParameters(object):
         "nas_mount_credentials":'nasMountCredentials',
         "netapp_type":'netappType',
         "nimble_type":'nimbleType',
-        "office365_credentials_list":'office365CredentialsList',
-        "office365_region":'office365Region',
-        "office365_service_account_credentials_list":'office365ServiceAccountCredentialsList',
-        "office365_type":'office365Type',
+        "office_365_credentials_list":'office365CredentialsList',
+        "office_365_region":'office365Region',
+        "office_365_service_account_credentials_list":'office365ServiceAccountCredentialsList',
+        "office_365_type":'office365Type',
         "password":'password',
         "physical_params":'physicalParams',
         "physical_type":'physicalType',
         "proxy_host_source_id_list":'proxyHostSourceIdList',
         "pure_type":'pureType',
+        "re_register":'reRegister',
+        "restore_config":'restoreConfig',
         "source_side_dedup_enabled":'sourceSideDedupEnabled',
         "ssl_verification":'sslVerification',
         "subnets":'subnets',
@@ -282,6 +302,7 @@ class RegisterProtectionSourceParameters(object):
                  azure_credentials=None,
                  blacklisted_ip_addresses=None,
                  cluster_network_info=None,
+                 connection_id=None,
                  denied_ip_addresses=None,
                  encryption_key=None,
                  endpoint=None,
@@ -289,6 +310,7 @@ class RegisterProtectionSourceParameters(object):
                  exchange_dag_protection_preference=None,
                  force_register=None,
                  gcp_credentials=None,
+                 gcp_fleet_params=None,
                  host_type=None,
                  hyperv_type=None,
                  is_internal_encrypted=None,
@@ -301,15 +323,17 @@ class RegisterProtectionSourceParameters(object):
                  nas_mount_credentials=None,
                  netapp_type=None,
                  nimble_type=None,
-                 office365_credentials_list=None,
-                 office365_region=None,
-                 office365_service_account_credentials_list=None,
-                 office365_type=None,
+                 office_365_credentials_list=None,
+                 office_365_region=None,
+                 office_365_service_account_credentials_list=None,
+                 office_365_type=None,
                  password=None,
                  physical_params=None,
                  physical_type=None,
                  proxy_host_source_id_list=None,
                  pure_type=None,
+                 re_register=None,
+                 restore_config=None,
                  source_side_dedup_enabled=None,
                  ssl_verification=None,
                  subnets=None,
@@ -335,6 +359,7 @@ class RegisterProtectionSourceParameters(object):
         self.azure_credentials = azure_credentials
         self.blacklisted_ip_addresses = blacklisted_ip_addresses
         self.cluster_network_info = cluster_network_info
+        self.connection_id = connection_id
         self.denied_ip_addresses = denied_ip_addresses
         self.encryption_key = encryption_key
         self.endpoint = endpoint
@@ -342,6 +367,7 @@ class RegisterProtectionSourceParameters(object):
         self.exchange_dag_protection_preference = exchange_dag_protection_preference
         self.force_register = force_register
         self.gcp_credentials = gcp_credentials
+        self.gcp_fleet_params = gcp_fleet_params
         self.host_type = host_type
         self.hyperv_type = hyperv_type
         self.is_internal_encrypted = is_internal_encrypted
@@ -354,15 +380,17 @@ class RegisterProtectionSourceParameters(object):
         self.nas_mount_credentials = nas_mount_credentials
         self.netapp_type = netapp_type
         self.nimble_type = nimble_type
-        self.office365_credentials_list = office365_credentials_list
-        self.office365_region = office365_region
-        self.office365_service_account_credentials_list = office365_service_account_credentials_list
-        self.office365_type = office365_type
+        self.office_365_credentials_list = office_365_credentials_list
+        self.office_365_region = office_365_region
+        self.office_365_service_account_credentials_list = office_365_service_account_credentials_list
+        self.office_365_type = office_365_type
         self.password = password
         self.physical_params = physical_params
         self.physical_type = physical_type
         self.proxy_host_source_id_list = proxy_host_source_id_list
         self.pure_type = pure_type
+        self.re_register = re_register
+        self.restore_config = restore_config
         self.source_side_dedup_enabled = source_side_dedup_enabled
         self.ssl_verification = ssl_verification
         self.subnets = subnets
@@ -402,6 +430,7 @@ class RegisterProtectionSourceParameters(object):
         azure_credentials = cohesity_management_sdk.models.azure_credentials.AzureCredentials.from_dictionary(dictionary.get('azureCredentials')) if dictionary.get('azureCredentials') else None
         blacklisted_ip_addresses = dictionary.get("blacklistedIpAddresses")
         cluster_network_info = cohesity_management_sdk.models.fleet_network_params.FleetNetworkParams.from_dictionary(dictionary.get('clusterNetworkInfo')) if dictionary.get('clusterNetworkInfo') else None
+        connection_id = dictionary.get('connectionId')
         denied_ip_addresses = dictionary.get("deniedIpAddresses")
         encryption_key = dictionary.get('encryptionKey')
         endpoint = dictionary.get('endpoint')
@@ -409,6 +438,7 @@ class RegisterProtectionSourceParameters(object):
         exchange_dag_protection_preference = cohesity_management_sdk.models.exchange_dag_protection_preference.ExchangeDAGProtectionPreference.from_dictionary(dictionary.get('exchangeDagProtectionPreference')) if dictionary.get('exchangeDagProtectionPreference') else None
         force_register = dictionary.get('forceRegister')
         gcp_credentials = cohesity_management_sdk.models.gcp_credentials.GcpCredentials.from_dictionary(dictionary.get('gcpCredentials')) if dictionary.get('gcpCredentials') else None
+        gcp_fleet_params = cohesity_management_sdk.models.gcp_fleet_params.GcpFleetParams.from_dictionary(dictionary.get('gcpFleetParams')) if dictionary.get('gcpFleetParams') else None
         host_type = dictionary.get('hostType')
         hyperv_type = dictionary.get('hyperVType')
         is_internal_encrypted = dictionary.get('isInternalEncrypted')
@@ -421,23 +451,25 @@ class RegisterProtectionSourceParameters(object):
         nas_mount_credentials = cohesity_management_sdk.models.nas_mount_credential_params.NasMountCredentialParams.from_dictionary(dictionary.get('nasMountCredentials')) if dictionary.get('nasMountCredentials') else None
         netapp_type = dictionary.get('netappType')
         nimble_type = dictionary.get('nimbleType')
-        office365_credentials_list = None
+        office_365_credentials_list = None
         if dictionary.get('office365CredentialsList') != None:
-            office365_credentials_list = list()
+            office_365_credentials_list = list()
             for structure in dictionary.get('office365CredentialsList'):
-                office365_credentials_list.append(cohesity_management_sdk.models.office365_credentials.Office365Credentials.from_dictionary(structure))
-        office365_region = dictionary.get('office365Region')
-        office365_service_account_credentials_list = None
+                office_365_credentials_list.append(cohesity_management_sdk.models.office_365_credentials.Office365Credentials.from_dictionary(structure))
+        office_365_region = dictionary.get('office365Region')
+        office_365_service_account_credentials_list = None
         if dictionary.get('office365ServiceAccountCredentialsList') != None:
-            office365_service_account_credentials_list = list()
+            office_365_service_account_credentials_list = list()
             for structure in dictionary.get('office365ServiceAccountCredentialsList'):
-                office365_service_account_credentials_list.append(cohesity_management_sdk.models.credentials.Credentials.from_dictionary(structure))
-        office365_type = dictionary.get('office365Type')
+                office_365_service_account_credentials_list.append(cohesity_management_sdk.models.credentials.Credentials.from_dictionary(structure))
+        office_365_type = dictionary.get('office365Type')
         password = dictionary.get('password')
         physical_params = cohesity_management_sdk.models.physical_params.PhysicalParams.from_dictionary(dictionary.get('physicalParams')) if dictionary.get('physicalParams') else None
         physical_type = dictionary.get('physicalType')
         proxy_host_source_id_list = dictionary.get("proxyHostSourceIdList")
         pure_type = dictionary.get('pureType')
+        re_register = dictionary.get('reRegister')
+        restore_config = dictionary.get('restoreConfig')
         source_side_dedup_enabled = dictionary.get('sourceSideDedupEnabled')
         ssl_verification = cohesity_management_sdk.models.ssl_verification.SslVerification.from_dictionary(dictionary.get('sslVerification')) if dictionary.get('sslVerification') else None
         subnets = None
@@ -469,6 +501,7 @@ class RegisterProtectionSourceParameters(object):
             azure_credentials,
             blacklisted_ip_addresses,
             cluster_network_info,
+            connection_id,
             denied_ip_addresses,
             encryption_key,
             endpoint,
@@ -476,6 +509,7 @@ class RegisterProtectionSourceParameters(object):
             exchange_dag_protection_preference,
             force_register,
             gcp_credentials,
+            gcp_fleet_params,
             host_type,
             hyperv_type,
             is_internal_encrypted,
@@ -488,15 +522,17 @@ class RegisterProtectionSourceParameters(object):
             nas_mount_credentials,
             netapp_type,
             nimble_type,
-            office365_credentials_list,
-            office365_region,
-            office365_service_account_credentials_list,
-            office365_type,
+            office_365_credentials_list,
+            office_365_region,
+            office_365_service_account_credentials_list,
+            office_365_type,
             password,
             physical_params,
             physical_type,
             proxy_host_source_id_list,
             pure_type,
+            re_register,
+            restore_config,
             source_side_dedup_enabled,
             ssl_verification,
             subnets,

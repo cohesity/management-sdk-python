@@ -14,8 +14,8 @@ class CompareAdObjectsRequest(object):
 
     Attributes:
 
-        restore_task_id (long|int): Specifies the Restore Task Id corresponding
-            to which we need to compare the AD objects.
+        restore_task_id (long|int, required): Specifies the Restore Task Id
+            corresponding to which we need to compare the AD objects.
         allow_empty_dest_guids (bool): Specifies the option to get object
             attributes from Snapshot AD when destination guid is missing in
             GuidPair. This helps to show attributes of AD object from Snapshot
@@ -32,8 +32,9 @@ class CompareAdObjectsRequest(object):
         filter_same_value_attributes (bool): Specifies the option to not return
             attributes where source and destination values are same. Use this
             flag to return only values that are different.
-        guid_pairs (list of GuidPair): Specifies the GuidPair of the AD Objects
-            which we want to compare from both Snapshot and Production AD.
+        guid_pairs (list of GuidPair, required): Specifies the GuidPair of the
+            AD Objects which we want to compare from both Snapshot and
+            Production AD.
         quick_compare (bool): Specifies the option to do quick compare of
             specified guid between Snapshot AD and Production AD. If at least
             one attribute mismatch is found, comparison stops and returns with

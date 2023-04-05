@@ -103,8 +103,9 @@ class SnapshotInfoProto(object):
         source_snapshot_create_time_usecs (long|int): The source snapshot
             create time.
         source_snapshot_name (string): This filed is only applicable for NAS
-            when we do backup from Readonly/DataProtect volume where we use
-            already created snapshot on the source.
+            when we do backup from ReadOnly or DataProtect volume or RW volume
+            with Snapdiff where we use a snapshot already present on the
+            volume.
         source_snapshot_status (int): Indicates the state of the source
             snapshot if it is being managed by the master op.
             'source_snapshot_name' will be set to indicate the snapshot name.
@@ -134,6 +135,9 @@ class SnapshotInfoProto(object):
         total_primary_physical_size_bytes (long|int): Contains the information
             regarding number of bytes that the source (such as VM) has taken up
             on the primary storage.
+        total_zero_fill_bytes (long|int): Total number of bytes to be
+            zero-filled in Snap FS as part of this backup. Currently applicable
+            only for VMware backups.
         mtype (int): The type of environment this snapshot info pertains to.
         view_case_insensitivity_altered (bool): Whether during the backup, the
             backup view's case insensitivity property has been altered. If so,
@@ -146,6 +150,9 @@ class SnapshotInfoProto(object):
             migration tasks.
         warnings (list of ErrorProto): Warnings if any. These warnings will be
             propogated to the UI by master.
+        zero_fill_task_weight_scale_down_factor (long|int): Factor by which
+            weight of a zero-fill sub-task should be scaled down. This is used
+            while creating sub-task monitors.
     """
 
 
@@ -180,11 +187,13 @@ class SnapshotInfoProto(object):
         "total_entity_count":'totalEntityCount',
         "total_logical_backup_size_bytes":'totalLogicalBackupSizeBytes',
         "total_primary_physical_size_bytes":'totalPrimaryPhysicalSizeBytes',
+        "total_zero_fill_bytes":'totalZeroFillBytes',
         "mtype":'type',
         "view_case_insensitivity_altered":'viewCaseInsensitivityAltered',
         "view_name":'viewName',
         "view_name_to_gc":'viewNameToGc',
         "warnings":'warnings',
+        "zero_fill_task_weight_scale_down_factor":'zeroFillTaskWeightScaleDownFactor',
     }
     def __init__(self,
                  change_rocksdb_name=None,
@@ -216,11 +225,13 @@ class SnapshotInfoProto(object):
                  total_entity_count=None,
                  total_logical_backup_size_bytes=None,
                  total_primary_physical_size_bytes=None,
+                 total_zero_fill_bytes=None,
                  mtype=None,
                  view_case_insensitivity_altered=None,
                  view_name=None,
                  view_name_to_gc=None,
                  warnings=None,
+                 zero_fill_task_weight_scale_down_factor=None,
             ):
 
         """Constructor for the SnapshotInfoProto class"""
@@ -255,11 +266,13 @@ class SnapshotInfoProto(object):
         self.total_entity_count = total_entity_count
         self.total_logical_backup_size_bytes = total_logical_backup_size_bytes
         self.total_primary_physical_size_bytes = total_primary_physical_size_bytes
+        self.total_zero_fill_bytes = total_zero_fill_bytes
         self.mtype = mtype
         self.view_case_insensitivity_altered = view_case_insensitivity_altered
         self.view_name = view_name
         self.view_name_to_gc = view_name_to_gc
         self.warnings = warnings
+        self.zero_fill_task_weight_scale_down_factor = zero_fill_task_weight_scale_down_factor
 
     @classmethod
     def from_dictionary(cls,
@@ -308,6 +321,7 @@ class SnapshotInfoProto(object):
         total_entity_count = dictionary.get('totalEntityCount')
         total_logical_backup_size_bytes = dictionary.get('totalLogicalBackupSizeBytes')
         total_primary_physical_size_bytes = dictionary.get('totalPrimaryPhysicalSizeBytes')
+        total_zero_fill_bytes = dictionary.get('totalZeroFillBytes')
         mtype = dictionary.get('type')
         view_case_insensitivity_altered = dictionary.get('viewCaseInsensitivityAltered')
         view_name = dictionary.get('viewName')
@@ -317,6 +331,7 @@ class SnapshotInfoProto(object):
             warnings = list()
             for structure in dictionary.get('warnings'):
                 warnings.append(cohesity_management_sdk.models.error_proto.ErrorProto.from_dictionary(structure))
+        zero_fill_task_weight_scale_down_factor = dictionary.get('zeroFillTaskWeightScaleDownFactor')
 
         # Return an object of this model
         return cls(
@@ -349,9 +364,11 @@ class SnapshotInfoProto(object):
             total_entity_count,
             total_logical_backup_size_bytes,
             total_primary_physical_size_bytes,
+            total_zero_fill_bytes,
             mtype,
             view_case_insensitivity_altered,
             view_name,
             view_name_to_gc,
-            warnings
+            warnings,
+            zero_fill_task_weight_scale_down_factor
 )

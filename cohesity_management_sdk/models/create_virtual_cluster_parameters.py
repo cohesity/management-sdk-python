@@ -15,15 +15,15 @@ class CreateVirtualClusterParameters(object):
 
     Attributes:
 
-        cluster_name (string): Specifies the name of the new Cluster.
+        cluster_name (string, required): Specifies the name of the new Cluster.
         encryption_config (EncryptionConfiguration): Specifies the encryption
             configuration parameters.
         ip_preference (int): Specifies IP preference.
         metadata_fault_tolerance (int): Specifies the metadata fault tolerance.
-        network_config (NetworkConfiguration): Specifies the network
+        network_config (NetworkConfiguration, required): Specifies the network
             configuration parameters.
-        node_configs (list of VirtualNodeConfiguration): Specifies the
-            configuration for the nodes in the new cluster.
+        node_configs (list of VirtualNodeConfiguration, required): Specifies
+            the configuration for the nodes in the new cluster.
         trust_domain (string): Specifies Trust Domain used for Service
             Identity.
     """

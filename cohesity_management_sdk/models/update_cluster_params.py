@@ -92,6 +92,8 @@ class UpdateClusterParams(object):
         reverse_tunnel_end_time_msecs (long|int): ReverseTunnelEndTimeMsecs
             specifies the end time in milliseconds since epoch until when the
             reverse tunnel will stay enabled.
+        sata_hdd_tier_admission_control (int): Specifies the admission control
+            for cluster SATAHDD storage tier.
         security_mode_dod (bool): Specifies if Security Mode DOD is enabled or
             not.
         smb_ad_disabled (bool): Specifies if Active Directory should be
@@ -148,6 +150,7 @@ class UpdateClusterParams(object):
         "proto_rpc_encryption_enabled":'protoRpcEncryptionEnabled',
         "reverse_tunnel_enabled":'reverseTunnelEnabled',
         "reverse_tunnel_end_time_msecs":'reverseTunnelEndTimeMsecs',
+        "sata_hdd_tier_admission_control":'sataHddTierAdmissionControl',
         "security_mode_dod":'securityModeDod',
         "smb_ad_disabled":'smbAdDisabled',
         "smb_multichannel_enabled":'smbMultichannelEnabled',
@@ -187,6 +190,7 @@ class UpdateClusterParams(object):
                  proto_rpc_encryption_enabled=None,
                  reverse_tunnel_enabled=None,
                  reverse_tunnel_end_time_msecs=None,
+                 sata_hdd_tier_admission_control=None,
                  security_mode_dod=None,
                  smb_ad_disabled=None,
                  smb_multichannel_enabled=None,
@@ -229,6 +233,7 @@ class UpdateClusterParams(object):
         self.proto_rpc_encryption_enabled = proto_rpc_encryption_enabled
         self.reverse_tunnel_enabled = reverse_tunnel_enabled
         self.reverse_tunnel_end_time_msecs = reverse_tunnel_end_time_msecs
+        self.sata_hdd_tier_admission_control = sata_hdd_tier_admission_control
         self.security_mode_dod = security_mode_dod
         self.smb_ad_disabled = smb_ad_disabled
         self.smb_multichannel_enabled = smb_multichannel_enabled
@@ -285,6 +290,7 @@ class UpdateClusterParams(object):
         proto_rpc_encryption_enabled = dictionary.get('protoRpcEncryptionEnabled')
         reverse_tunnel_enabled = dictionary.get('reverseTunnelEnabled')
         reverse_tunnel_end_time_msecs = dictionary.get('reverseTunnelEndTimeMsecs')
+        sata_hdd_tier_admission_control = dictionary.get('sataHddTierAdmissionControl')
         security_mode_dod = dictionary.get('securityModeDod')
         smb_ad_disabled = dictionary.get('smbAdDisabled')
         smb_multichannel_enabled = dictionary.get('smbMultichannelEnabled')
@@ -329,6 +335,7 @@ class UpdateClusterParams(object):
             proto_rpc_encryption_enabled,
             reverse_tunnel_enabled,
             reverse_tunnel_end_time_msecs,
+            sata_hdd_tier_admission_control,
             security_mode_dod,
             smb_ad_disabled,
             smb_multichannel_enabled,

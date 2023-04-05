@@ -43,6 +43,8 @@ class Tenant(object):
         description (string): Specifies the description of this tenant.
         entity_ids (list of long|int): Specifies the EntityIds this tenant is
             associated to.
+        is_managed_on_helios (bool): Specifies whether this tenant is manged on
+            helios
         last_updated_time_msecs (long|int): Specifies the epoch time in
             milliseconds when the tenant account was last modified on the
             Cohesity Cluster.
@@ -85,6 +87,7 @@ class Tenant(object):
         "deletion_info_vec":'deletionInfoVec',
         "description":'description',
         "entity_ids":'entityIds',
+        "is_managed_on_helios":'isManagedOnHelios',
         "last_updated_time_msecs":'lastUpdatedTimeMsecs',
         "ldap_providers":'ldapProviders',
         "name":'name',
@@ -111,6 +114,7 @@ class Tenant(object):
                  deletion_info_vec=None,
                  description=None,
                  entity_ids=None,
+                 is_managed_on_helios=None,
                  last_updated_time_msecs=None,
                  ldap_providers=None,
                  name=None,
@@ -140,6 +144,7 @@ class Tenant(object):
         self.deletion_info_vec = deletion_info_vec
         self.description = description
         self.entity_ids = entity_ids
+        self.is_managed_on_helios = is_managed_on_helios
         self.last_updated_time_msecs = last_updated_time_msecs
         self.ldap_providers = ldap_providers
         self.name = name
@@ -191,6 +196,7 @@ class Tenant(object):
                 deletion_info_vec.append(cohesity_management_sdk.models.tenant_deletion_info.TenantDeletionInfo.from_dictionary(structure))
         description = dictionary.get('description')
         entity_ids = dictionary.get("entityIds")
+        is_managed_on_helios = dictionary.get('isManagedOnHelios')
         last_updated_time_msecs = dictionary.get('lastUpdatedTimeMsecs')
         ldap_providers = None
         if dictionary.get('ldapProviders') != None:
@@ -230,6 +236,7 @@ class Tenant(object):
             deletion_info_vec,
             description,
             entity_ids,
+            is_managed_on_helios,
             last_updated_time_msecs,
             ldap_providers,
             name,

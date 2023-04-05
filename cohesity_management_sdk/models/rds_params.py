@@ -12,8 +12,8 @@ class RdsParams(object):
 
         availability_zone_id (long|int): Entity representing the availability
             zone to use while restoring the DB.
-        db_instance_id (string): The DB instance identifier to use for the
-            restored DB. This field is required.
+        db_instance_id (string, required): The DB instance identifier to use
+            for the restored DB. This field is required.
         db_option_group_id (long|int): Entity representing the RDS option group
             to use while restoring the DB.
         db_parameter_group_id (long|int): Entity representing the RDS parameter

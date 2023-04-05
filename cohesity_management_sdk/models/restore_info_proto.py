@@ -43,7 +43,8 @@ class RestoreInfoProto(object):
     outlook/outlook.proto      123 o365::GroupRestoreInfo::group_restore_info  
     o365/o365.proto            124
     o365::TeamsRestoreInfoProto::teams_restore_info o365/o365.proto           
-    125
+    125 sfdc::RestoreInfoProto::sfdc_restore_info sfdc/sfdc.proto           
+    126
     =============================================================================
     RestoreInfoProto.RestoreEntity extension       Location           
     Extension
@@ -66,7 +67,8 @@ class RestoreInfoProto(object):
     imanis::RestoreEntityInfo::nosql_restore_entity_info imanis/nosql.proto    
     110 site::RestoreEntityInfo::site_restore_entity_info ms_graph/graph.proto 
     111 uda::RestoreEntityInfo::uda_restore_entity_info uda/uda.proto          
-    112
+    112 sfdc::RestoreEntityInfo::sfdc_restore_entity_info sfdc/sfdc.proto      
+    113
     =============================================================================
 
 

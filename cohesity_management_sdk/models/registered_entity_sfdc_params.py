@@ -16,11 +16,14 @@ class RegisteredEntitySfdcParams(object):
         access_token (string): Token that will be used in subsequent api
             requests.
         api_limit (long|int): Maximum daily api limit
+        auth_token (string): Token that will be used for fetching access_token
+            from salesforce.
+        concurrent_req_limit (long|int): Concurrent API Request Limits.
         consumer_key (string): Consumer key from the connected app in Sfdc.
         consumer_secret (string): Consumer secret from the connected app in
             Sfdc.
         credentials (Credentials): Credentials that will be used to log into
-            the application environment. Remove this field later.
+            the application environment.
         endpoint (string): Sfdc instance_url. Rename to instance_url later.
         endpoint_type (int): TODO: Type description here.
         metadata_endpoint_url (string): Metadata endpoint url. All metadata
@@ -37,6 +40,8 @@ class RegisteredEntitySfdcParams(object):
     _names = {
         "access_token":'accessToken',
         "api_limit":'apiLimit',
+        "auth_token":'authToken',
+        "concurrent_req_limit":'concurrentReqLimit',
         "consumer_key":'consumerKey',
         "consumer_secret":'consumerSecret',
         "credentials":'credentials',
@@ -50,6 +55,8 @@ class RegisteredEntitySfdcParams(object):
     def __init__(self,
                  access_token=None,
                  api_limit=None,
+                 auth_token=None,
+                 concurrent_req_limit=None,
                  consumer_key=None,
                  consumer_secret=None,
                  credentials=None,
@@ -66,6 +73,8 @@ class RegisteredEntitySfdcParams(object):
         # Initialize members of the class
         self.access_token = access_token
         self.api_limit = api_limit
+        self.auth_token = auth_token
+        self.concurrent_req_limit = concurrent_req_limit
         self.consumer_key = consumer_key
         self.consumer_secret = consumer_secret
         self.credentials = credentials
@@ -96,6 +105,8 @@ class RegisteredEntitySfdcParams(object):
         # Extract variables from the dictionary
         access_token = dictionary.get('accessToken')
         api_limit = dictionary.get('apiLimit')
+        auth_token = dictionary.get('authToken')
+        concurrent_req_limit = dictionary.get('concurrentReqLimit')
         consumer_key = dictionary.get('consumerKey')
         consumer_secret = dictionary.get('consumerSecret')
         credentials = cohesity_management_sdk.models.credentials.Credentials.from_dictionary(dictionary.get('credentials')) if dictionary.get('credentials') else None
@@ -110,6 +121,8 @@ class RegisteredEntitySfdcParams(object):
         return cls(
             access_token,
             api_limit,
+            auth_token,
+            concurrent_req_limit,
             consumer_key,
             consumer_secret,
             credentials,

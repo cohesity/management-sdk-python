@@ -20,6 +20,8 @@ class NasEnvJobParameters(object):
 
     Attributes:
 
+        backup_existing_snapshot (bool): Specifies if the protection job should
+            use existing snapshot while backing up.
         continue_on_error (bool): Specifies if the backup should continue on
             with other Protection Sources even if the backup operation of some
             Protection Source fails. If true, the Cohesity Cluster ignores the
@@ -37,7 +39,7 @@ class NasEnvJobParameters(object):
             will enable faster incremental backups using change list or similar
             APIs
         encryption_enabled (bool): Specifies if the protection job should use
-            encryption while backing up
+            encryption while backing up.
         file_lock_config (FileLevelDataLockConfig): Optional config that
             enables file locking for this job. It cannot be disabled during the
             edit of a job, if it has been enabled during the creation of the
@@ -73,6 +75,7 @@ class NasEnvJobParameters(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "backup_existing_snapshot":'backupExistingSnapshot',
         "continue_on_error":'continueOnError',
         "data_migration_job_parameters":'dataMigrationJobParameters',
         "data_uptier_job_parameters":'dataUptierJobParameters',
@@ -87,6 +90,7 @@ class NasEnvJobParameters(object):
         "throttling_config":'throttlingConfig',
     }
     def __init__(self,
+                 backup_existing_snapshot=None,
                  continue_on_error=None,
                  data_migration_job_parameters=None,
                  data_uptier_job_parameters=None,
@@ -104,6 +108,7 @@ class NasEnvJobParameters(object):
         """Constructor for the NasEnvJobParameters class"""
 
         # Initialize members of the class
+        self.backup_existing_snapshot = backup_existing_snapshot
         self.continue_on_error = continue_on_error
         self.data_migration_job_parameters = data_migration_job_parameters
         self.data_uptier_job_parameters = data_uptier_job_parameters
@@ -135,6 +140,7 @@ class NasEnvJobParameters(object):
             return None
 
         # Extract variables from the dictionary
+        backup_existing_snapshot = dictionary.get('backupExistingSnapshot')
         continue_on_error = dictionary.get('continueOnError')
         data_migration_job_parameters = cohesity_management_sdk.models.data_migration_job_parameters.DataMigrationJobParameters.from_dictionary(dictionary.get('dataMigrationJobParameters')) if dictionary.get('dataMigrationJobParameters') else None
         data_uptier_job_parameters = cohesity_management_sdk.models.data_uptier_job_parameters.DataUptierJobParameters.from_dictionary(dictionary.get('dataUptierJobParameters')) if dictionary.get('dataUptierJobParameters') else None
@@ -150,6 +156,7 @@ class NasEnvJobParameters(object):
 
         # Return an object of this model
         return cls(
+            backup_existing_snapshot,
             continue_on_error,
             data_migration_job_parameters,
             data_uptier_job_parameters,

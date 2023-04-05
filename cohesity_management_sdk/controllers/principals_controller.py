@@ -15,7 +15,7 @@ from cohesity_management_sdk.models.sources_for_sid import SourcesForSid
 from cohesity_management_sdk.models.principal import Principal
 from cohesity_management_sdk.models.update_linux_password_result import UpdateLinuxPasswordResult
 from cohesity_management_sdk.models.user import User
-from cohesity_management_sdk.models.new_s_3_secret_access_key import NewS3SecretAccessKey
+from cohesity_management_sdk.models.new_s3_secret_access_key import NewS3SecretAccessKey
 from cohesity_management_sdk.exceptions.request_error_error_exception import RequestErrorErrorException
 
 

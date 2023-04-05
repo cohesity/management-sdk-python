@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
+import cohesity_management_sdk.models.sfdc_object_fields
+
+
 class SfdcObject(object):
 
     """Implementation of the 'SfdcObject' model.
@@ -10,6 +13,7 @@ class SfdcObject(object):
 
     Attributes:
 
+        fields (list of SfdcObjectFields): Type of this object
         object_type (ObjectTypeEnum): Type of this object Specifies the type of
             an Universal Data Adapter source entity. 'kStandard' indicates a
             Universal Data Adapter source, possibly distributed over several
@@ -21,10 +25,12 @@ class SfdcObject(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "fields":'fields',
         "object_type":'objectType',
         "record_count":'recordCount',
     }
     def __init__(self,
+                 fields=None,
                  object_type=None,
                  record_count=None,
             ):
@@ -32,6 +38,7 @@ class SfdcObject(object):
         """Constructor for the SfdcObject class"""
 
         # Initialize members of the class
+        self.fields = fields
         self.object_type = object_type
         self.record_count = record_count
 
@@ -53,11 +60,17 @@ class SfdcObject(object):
             return None
 
         # Extract variables from the dictionary
+        fields = None
+        if dictionary.get('fields') != None:
+            fields = list()
+            for structure in dictionary.get('fields'):
+                fields.append(cohesity_management_sdk.models.sfdc_object_fields.SfdcObjectFields.from_dictionary(structure))
         object_type = dictionary.get('objectType')
         record_count = dictionary.get('recordCount')
 
         # Return an object of this model
         return cls(
+            fields,
             object_type,
             record_count
 )

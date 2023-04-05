@@ -15,6 +15,10 @@ class PrivilegeInfo(object):
             This number must be unique when creating a new privilege. Type for
             unique privilege Id values. All below enum values specify a value
             for all uniquely defined privileges in Cohesity.
+        additional_categories (list of string): Specifies if there are any
+            other categories in which this privilege is associated with. For
+            example, Certain privileges are used in SaaS products
+            interchangably.
         category (string): Specifies a category for the privilege such as
             'Access Management'.
         description (string): Specifies a description defining what the
@@ -42,6 +46,7 @@ class PrivilegeInfo(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "privilege_id":'PrivilegeId',
+        "additional_categories":'additionalCategories',
         "category":'category',
         "description":'description',
         "is_available_on_helios":'isAvailableOnHelios',
@@ -54,6 +59,7 @@ class PrivilegeInfo(object):
     }
     def __init__(self,
                  privilege_id=None,
+                 additional_categories=None,
                  category=None,
                  description=None,
                  is_available_on_helios=None,
@@ -69,6 +75,7 @@ class PrivilegeInfo(object):
 
         # Initialize members of the class
         self.privilege_id = privilege_id
+        self.additional_categories = additional_categories
         self.category = category
         self.description = description
         self.is_available_on_helios = is_available_on_helios
@@ -98,6 +105,7 @@ class PrivilegeInfo(object):
 
         # Extract variables from the dictionary
         privilege_id = dictionary.get('PrivilegeId')
+        additional_categories = dictionary.get("additionalCategories")
         category = dictionary.get('category')
         description = dictionary.get('description')
         is_available_on_helios = dictionary.get('isAvailableOnHelios')
@@ -111,6 +119,7 @@ class PrivilegeInfo(object):
         # Return an object of this model
         return cls(
             privilege_id,
+            additional_categories,
             category,
             description,
             is_available_on_helios,

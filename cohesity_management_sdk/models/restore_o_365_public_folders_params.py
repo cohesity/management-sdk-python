@@ -1,51 +1,53 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-import cohesity_management_sdk.models.restore_o_365_public_folders_params_root_public_folder
 import cohesity_management_sdk.models.entity_proto
+import cohesity_management_sdk.models.restore_o_365_public_folders_params_root_public_folder
+
 
 class RestoreO365PublicFoldersParams(object):
 
     """Implementation of the 'RestoreO365PublicFoldersParams' model.
 
+    TODO: type description here.
+
+
     Attributes:
+
         root_public_folder_vec (list of
-            RestoreO365PublicFoldersParams_RootPublicFolder): If
-            is_entire_folder_required is set to false, user will then specify
-            which particular sub-folders are to be restored.
+            RestoreO365PublicFoldersParams_RootPublicFolder): In a RestoreJob ,
+            user will provide the list of Root Public Folders to be restored.
+            Provision is there for restoring full and partial Public Folder
+            recovery.
         target_folder_path (string): TODO: Type description here.
-            Public Folder including the sub-folders is to be restored.
         target_root_public_folder (EntityProto): All RootPublicFolders listed
-            in the root_public_folder_vec will be
-            restored to this traget RootPublicFolder with appropriate names.
-
-            Let's say root_public_folder_vec is A and B; target_root_public_folder is
-            C. The final folder-hierarchy after restore job is finished will look
-            like this
-            C/{target_folder_path}/A/{whatever is there in Public Folder A}
-            B/{whatever is inside Public Folder B}
-
-
+            in the root_public_folder_vec will be restored to this traget
+            RootPublicFolder with appropriate names.  Let's say
+            root_public_folder_vec is A and B; target_root_public_folder is C.
+            The final folder-hierarchy after restore job is finished will look
+            like this C/{target_folder_path}/A/{whatever is there in Public
+            Folder A} B/{whatever is inside Public Folder B}
     """
+
 
     # Create a mapping from Model property names to API property names
     _names = {
         "root_public_folder_vec":'rootPublicFolderVec',
         "target_folder_path":'targetFolderPath',
-        "target_root_public_folder":'targetRootPublicFolder'
+        "target_root_public_folder":'targetRootPublicFolder',
     }
-
     def __init__(self,
                  root_public_folder_vec=None,
                  target_folder_path=None,
-                 target_root_public_folder=None):
+                 target_root_public_folder=None,
+            ):
+
         """Constructor for the RestoreO365PublicFoldersParams class"""
 
         # Initialize members of the class
         self.root_public_folder_vec = root_public_folder_vec
         self.target_folder_path = target_folder_path
         self.target_root_public_folder = target_root_public_folder
-
 
     @classmethod
     def from_dictionary(cls,
@@ -74,8 +76,8 @@ class RestoreO365PublicFoldersParams(object):
         target_root_public_folder = cohesity_management_sdk.models.entity_proto.EntityProto.from_dictionary(dictionary.get('targetRootPublicFolder')) if dictionary.get('targetRootPublicFolder') else None
 
         # Return an object of this model
-        return cls(root_public_folder_vec,
-                   target_folder_path,
-                   target_root_public_folder)
-
-
+        return cls(
+            root_public_folder_vec,
+            target_folder_path,
+            target_root_public_folder
+)

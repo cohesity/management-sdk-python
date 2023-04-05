@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
+import cohesity_management_sdk.models.fleet_network_params
+import cohesity_management_sdk.models.gcp_disk_info
+import cohesity_management_sdk.models.gcp_fleet_params
 import cohesity_management_sdk.models.tag_attribute
 
 
@@ -17,6 +20,13 @@ class GcpProtectionSource(object):
             associated with the service account.
         client_private_key (string): Specifies Client private associated with
             the service account.
+        cluster_network_info (FleetNetworkParams): Specifies information
+            related to cluster. This is only valid for CE & NGCE clusters. This
+            is only populated for kIAMUser entity.
+        gcp_disk_info_list (list of GcpDiskInfo): Specified list of disks
+            attached to the GCP instances.
+        gcp_fleet_params (GcpFleetParams): Specifies the GCP Fleet Parameters
+            for entity type kIAMUser in the new source registration workflow.
         gcp_type (GcpTypeEnum): Specifies the entity type such as 'kIAMUser' if
             the environment is kGCP. Specifies the type of a GCP source entity.
             'kIAMUser' indicates a unique user within a GCP account. 'kProject'
@@ -112,6 +122,9 @@ class GcpProtectionSource(object):
     _names = {
         "client_email_address":'clientEmailAddress',
         "client_private_key":'clientPrivateKey',
+        "cluster_network_info":'clusterNetworkInfo',
+        "gcp_disk_info_list":'gcpDiskInfoList',
+        "gcp_fleet_params":'gcpFleetParams',
         "gcp_type":'gcpType',
         "host_project_id":'hostProjectId',
         "host_type":'hostType',
@@ -131,6 +144,9 @@ class GcpProtectionSource(object):
     def __init__(self,
                  client_email_address=None,
                  client_private_key=None,
+                 cluster_network_info=None,
+                 gcp_disk_info_list=None,
+                 gcp_fleet_params=None,
                  gcp_type=None,
                  host_project_id=None,
                  host_type=None,
@@ -153,6 +169,9 @@ class GcpProtectionSource(object):
         # Initialize members of the class
         self.client_email_address = client_email_address
         self.client_private_key = client_private_key
+        self.cluster_network_info = cluster_network_info
+        self.gcp_disk_info_list = gcp_disk_info_list
+        self.gcp_fleet_params = gcp_fleet_params
         self.gcp_type = gcp_type
         self.host_project_id = host_project_id
         self.host_type = host_type
@@ -189,6 +208,13 @@ class GcpProtectionSource(object):
         # Extract variables from the dictionary
         client_email_address = dictionary.get('clientEmailAddress')
         client_private_key = dictionary.get('clientPrivateKey')
+        cluster_network_info = cohesity_management_sdk.models.fleet_network_params.FleetNetworkParams.from_dictionary(dictionary.get('clusterNetworkInfo')) if dictionary.get('clusterNetworkInfo') else None
+        gcp_disk_info_list = None
+        if dictionary.get('gcpDiskInfoList') != None:
+            gcp_disk_info_list = list()
+            for structure in dictionary.get('gcpDiskInfoList'):
+                gcp_disk_info_list.append(cohesity_management_sdk.models.gcp_disk_info.GcpDiskInfo.from_dictionary(structure))
+        gcp_fleet_params = cohesity_management_sdk.models.gcp_fleet_params.GcpFleetParams.from_dictionary(dictionary.get('gcpFleetParams')) if dictionary.get('gcpFleetParams') else None
         gcp_type = dictionary.get('gcpType')
         host_project_id = dictionary.get('hostProjectId')
         host_type = dictionary.get('hostType')
@@ -213,6 +239,9 @@ class GcpProtectionSource(object):
         return cls(
             client_email_address,
             client_private_key,
+            cluster_network_info,
+            gcp_disk_info_list,
+            gcp_fleet_params,
             gcp_type,
             host_project_id,
             host_type,

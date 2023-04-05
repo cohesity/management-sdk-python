@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-import cohesity_management_sdk.models.k8_s_filter_params
+import cohesity_management_sdk.models.k_8_s_filter_params
 import cohesity_management_sdk.models.vlan_params
 
 
@@ -69,8 +69,8 @@ class KubernetesEnvParams(object):
             return None
 
         # Extract variables from the dictionary
-        exclude_params = cohesity_management_sdk.models.k8_s_filter_params.K8SFilterParams.from_dictionary(dictionary.get('excludeParams')) if dictionary.get('excludeParams') else None
-        include_params = cohesity_management_sdk.models.k8_s_filter_params.K8SFilterParams.from_dictionary(dictionary.get('includeParams')) if dictionary.get('includeParams') else None
+        exclude_params = cohesity_management_sdk.models.k_8_s_filter_params.K8SFilterParams.from_dictionary(dictionary.get('excludeParams')) if dictionary.get('excludeParams') else None
+        include_params = cohesity_management_sdk.models.k_8_s_filter_params.K8SFilterParams.from_dictionary(dictionary.get('includeParams')) if dictionary.get('includeParams') else None
         leverage_csi_snapshot = dictionary.get('leverageCsiSnapshot')
         vlan_params = cohesity_management_sdk.models.vlan_params.VlanParams.from_dictionary(dictionary.get('vlanParams')) if dictionary.get('vlanParams') else None
 

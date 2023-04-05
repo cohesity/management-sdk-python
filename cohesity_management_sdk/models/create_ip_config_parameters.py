@@ -12,7 +12,7 @@ class CreateIpConfigParameters(object):
 
         ips (list of string): Specifies the interface ips.
         mtu (int): Specifies the interface mtu.
-        name (string): Specifies the interface name.
+        name (string, required): Specifies the interface name.
         role (RoleEnum): Specifies the interface role. 'kPrimary' indicates a
             primary role. 'kSecondary' indicates a secondary role.
         subnet_gateway (string): Specifies the interface gateway.

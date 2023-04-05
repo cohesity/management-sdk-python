@@ -22,6 +22,9 @@ class EntitySchemaProto(object):
             based on this setting. Rollup is disabled by default. Rollups
             cannot be done for metrics with value_type other than kInt64 or
             kDouble.
+        entities_time_to_live_secs (long|int): Time to live for all entities
+            for this schema. Entities will be deleted if no stats has been
+            published for this TTL time.
         flush_interval_secs (int): Defines the interval used to flush in memory
             stats to scribe table. During this time if the stats server is down
             before flushing, it could loose some of the stats. Modules can
@@ -59,6 +62,7 @@ class EntitySchemaProto(object):
     _names = {
         "attributes_descriptor":'attributesDescriptor',
         "enable_rollup":'enableRollup',
+        "entities_time_to_live_secs":'entitiesTimeToLiveSecs',
         "flush_interval_secs":'flushIntervalSecs',
         "is_internal_schema":'isInternalSchema',
         "largest_flush_interval_secs":'largestFlushIntervalSecs',
@@ -73,6 +77,7 @@ class EntitySchemaProto(object):
     def __init__(self,
                  attributes_descriptor=None,
                  enable_rollup=None,
+                 entities_time_to_live_secs=None,
                  flush_interval_secs=None,
                  is_internal_schema=None,
                  largest_flush_interval_secs=None,
@@ -90,6 +95,7 @@ class EntitySchemaProto(object):
         # Initialize members of the class
         self.attributes_descriptor = attributes_descriptor
         self.enable_rollup = enable_rollup
+        self.entities_time_to_live_secs = entities_time_to_live_secs
         self.flush_interval_secs = flush_interval_secs
         self.is_internal_schema = is_internal_schema
         self.largest_flush_interval_secs = largest_flush_interval_secs
@@ -121,6 +127,7 @@ class EntitySchemaProto(object):
         # Extract variables from the dictionary
         attributes_descriptor = cohesity_management_sdk.models.entity_schema_proto_attributes_descriptor.EntitySchemaProto_AttributesDescriptor.from_dictionary(dictionary.get('attributesDescriptor')) if dictionary.get('attributesDescriptor') else None
         enable_rollup = dictionary.get('enableRollup')
+        entities_time_to_live_secs = dictionary.get('entitiesTimeToLiveSecs')
         flush_interval_secs = dictionary.get('flushIntervalSecs')
         is_internal_schema = dictionary.get('isInternalSchema')
         largest_flush_interval_secs = dictionary.get('largestFlushIntervalSecs')
@@ -144,6 +151,7 @@ class EntitySchemaProto(object):
         return cls(
             attributes_descriptor,
             enable_rollup,
+            entities_time_to_live_secs,
             flush_interval_secs,
             is_internal_schema,
             largest_flush_interval_secs,

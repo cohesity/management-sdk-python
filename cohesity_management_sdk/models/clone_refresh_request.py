@@ -21,8 +21,8 @@ class CloneRefreshRequest(object):
             when some operations on some objects fail. If true, the Cohesity
             Cluster ignores intermittent errors and restores as many objects as
             possible.
-        name (string): Specifies the name of the Restore Task. This field must
-            be set and must be a unique name.
+        name (string, required): Specifies the name of the Restore Task. This
+            field must be set and must be a unique name.
         new_parent_id (long|int): Specify a new registered parent Protection
             Source. If specified the selected objects are cloned or recovered
             to this new Protection Source. If not specified, objects are cloned

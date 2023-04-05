@@ -16,8 +16,8 @@ class UpdateProtectionObjectParameters(object):
 
         pause_backup (bool): Specifies if the protection for the Protection
             Object is to be paused.
-        protected_source_uid (UniversalId): Specifies the unique id of the
-            Protected Source to be updated.
+        protected_source_uid (UniversalId, required): Specifies the unique id
+            of the Protected Source to be updated.
         rpo_policy_id (string): Specifies the unique id of the new RPO policy
             to assign to the object.
         source_parameters (list of SourceSpecialParameter): Specifies the

@@ -10,13 +10,13 @@ class EulaConfig(object):
 
     Attributes:
 
-        license_key (string): Specifies the license key.
+        license_key (string, required): Specifies the license key.
         signed_by_user (string): Specifies the login account name for the
             Cohesity user who accepted the End User License Agreement.
         signed_time (long|int): Specifies the time that the End User License
             Agreement was accepted.
-        signed_version (long|int): Specifies the version of the End User
-            License Agreement that was accepted.
+        signed_version (long|int, required): Specifies the version of the End
+            User License Agreement that was accepted.
     """
 
 

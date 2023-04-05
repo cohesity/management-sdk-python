@@ -31,9 +31,10 @@ class Alert(object):
             with data management in the cluster. kMetadata - Alert associated
             with metadata management. kIndexing - Alert associated with
             indexing services. kHelios - Alert associated with Helios.
-            kAppMarketPlace - Alert associated with App MarketPlace. kLicense -
-            Alert associated with licensing. kSecurity - Alert associated with
-            security. kUpgrade - Alert associated with upgrade activities.
+            kAppMarketPlace - Alert associated with App MarketPlace.
+            kSystemService -Alert associated with System service apps. kLicense
+            - Alert associated with licensing. kSecurity - Alert associated
+            with security. kUpgrade - Alert associated with upgrade activities.
             kClusterManagement - Alert associated with cluster management
             activities. kAuditLog - Alert associated with audit log events.
             kNetworking - Alert associated with networking issue.

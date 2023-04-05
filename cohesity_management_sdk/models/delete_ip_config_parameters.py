@@ -10,7 +10,7 @@ class DeleteIpConfigParameters(object):
 
     Attributes:
 
-        name (string): Specifies the interface name to be deleted.
+        name (string, required): Specifies the interface name to be deleted.
     """
 
 

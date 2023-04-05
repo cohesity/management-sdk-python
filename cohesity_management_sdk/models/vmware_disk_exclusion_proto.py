@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-class VMwareDiskExclusionProto(object):
+class VmwareDiskExclusionProto(object):
 
-    """Implementation of the 'VMwareDiskExclusionProto' model.
+    """Implementation of the 'VmwareDiskExclusionProto' model.
 
     This message contains basic info of the disk to be excluded from backup.
     The info contained here: 1. should be enough to identify the disk during
@@ -34,7 +34,7 @@ class VMwareDiskExclusionProto(object):
                  unit_number=None,
             ):
 
-        """Constructor for the VMwareDiskExclusionProto class"""
+        """Constructor for the VmwareDiskExclusionProto class"""
 
         # Initialize members of the class
         self.controller_bus_number = controller_bus_number

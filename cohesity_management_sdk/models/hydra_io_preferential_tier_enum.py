@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-class HydraIoPreferentialTierEnum(object):
+class HydraIOPreferentialTierEnum(object):
 
-    """Implementation of the 'HydraIoPreferentialTier' enum.
+    """Implementation of the 'HydraIOPreferentialTier' enum.
     Specifies the list of perferred storage tiers used by Hydra.
 
 

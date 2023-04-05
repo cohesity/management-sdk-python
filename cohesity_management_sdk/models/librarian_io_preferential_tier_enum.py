@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-class LibrarianIoPreferentialTierEnum(object):
+class LibrarianIOPreferentialTierEnum(object):
 
-    """Implementation of the 'LibrarianIoPreferentialTier' enum.
+    """Implementation of the 'LibrarianIOPreferentialTier' enum.
     Specifies the list of perferred storage tiers used by librarian.
 
 

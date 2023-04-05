@@ -18,6 +18,8 @@ class SourceBackupStatus(object):
 
         apps_backup_status (list of AppEntityBackupStatusInfo): Specifies the
             backup status at app/DB level.
+        attempt_num (int): Specifies the attempt number of the source object
+            run.
         current_snapshot_info (SnapshotInfo): Specifies details about the
             snapshot captured to backup the source object (such as a VM).
         error (string): Specifies if an error occurred (if any) while running
@@ -65,6 +67,7 @@ class SourceBackupStatus(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "apps_backup_status":'appsBackupStatus',
+        "attempt_num":'attemptNum',
         "current_snapshot_info":'currentSnapshotInfo',
         "error":'error',
         "is_full_backup":'isFullBackup',
@@ -80,6 +83,7 @@ class SourceBackupStatus(object):
     }
     def __init__(self,
                  apps_backup_status=None,
+                 attempt_num=None,
                  current_snapshot_info=None,
                  error=None,
                  is_full_backup=None,
@@ -98,6 +102,7 @@ class SourceBackupStatus(object):
 
         # Initialize members of the class
         self.apps_backup_status = apps_backup_status
+        self.attempt_num = attempt_num
         self.current_snapshot_info = current_snapshot_info
         self.error = error
         self.is_full_backup = is_full_backup
@@ -134,6 +139,7 @@ class SourceBackupStatus(object):
             apps_backup_status = list()
             for structure in dictionary.get('appsBackupStatus'):
                 apps_backup_status.append(cohesity_management_sdk.models.app_entity_backup_status_info.AppEntityBackupStatusInfo.from_dictionary(structure))
+        attempt_num = dictionary.get('attemptNum')
         current_snapshot_info = cohesity_management_sdk.models.snapshot_info.SnapshotInfo.from_dictionary(dictionary.get('currentSnapshotInfo')) if dictionary.get('currentSnapshotInfo') else None
         error = dictionary.get('error')
         is_full_backup = dictionary.get('isFullBackup')
@@ -150,6 +156,7 @@ class SourceBackupStatus(object):
         # Return an object of this model
         return cls(
             apps_backup_status,
+            attempt_num,
             current_snapshot_info,
             error,
             is_full_backup,

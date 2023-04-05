@@ -5,9 +5,9 @@ import cohesity_management_sdk.models.vmware_backup_env_params_vapp_child_vms_li
 import cohesity_management_sdk.models.vmware_disk_exclusion_proto
 
 
-class VMwareBackupEnvParams(object):
+class VmwareBackupEnvParams(object):
 
-    """Implementation of the 'VMwareBackupEnvParams' model.
+    """Implementation of the 'VmwareBackupEnvParams' model.
 
     Message to capture any additional backup params for a VMware environment.
 
@@ -60,7 +60,7 @@ class VMwareBackupEnvParams(object):
                  vmware_disk_exclusion_info=None,
             ):
 
-        """Constructor for the VMwareBackupEnvParams class"""
+        """Constructor for the VmwareBackupEnvParams class"""
 
         # Initialize members of the class
         self.allow_crash_consistent_snapshot = allow_crash_consistent_snapshot

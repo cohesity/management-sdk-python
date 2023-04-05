@@ -2,6 +2,7 @@
 # Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.aws_kms_configuration
+import cohesity_management_sdk.models.azure_kms_configuration
 import cohesity_management_sdk.models.cryptsoft_kms_configuration
 
 
@@ -15,6 +16,7 @@ class KmsCreateRequestParameters(object):
     Attributes:
 
         aws_kms (AwsKmsConfiguration): AWS KMS conifg.
+        azure_kms (AzureKmsConfiguration): Azure KMS config.
         cryptsoft_kms (CryptsoftKmsConfiguration): Cryptsoft KMS config.
         id (long|int): The Id of a KMS server.
         key_name (string): Specifies name of the key.
@@ -23,9 +25,9 @@ class KmsCreateRequestParameters(object):
             'FortKnox' indicates an FortKnox KMS object.
         server_name (string): Specifies the name given to the KMS Server.
         server_type (ServerTypeEnum): Specifies the type of key mangement
-            system. 'kInternalKms' indicates an internal KMS object. 'kAwsKms'
-            indicates an Aws KMS object. 'kCryptsoftKms' indicates a Cryptsoft
-            KMS object.
+            system. 'kInternalKMS' indicates an internal KMS object. 'kAwsKMS'
+            indicates an Aws KMS object. 'kCryptsoftKMS' indicates a Cryptsoft
+            KMS object. 'kAzureKMS' indicates a Azure KMS object.
         usage_type (UsageTypeEnum): Specifies the usage type of the kms config.
             kArchival indicates this is used for regular archival.
             kRpaasArchival indicates this is used for RPaaS only. 'kArchival'
@@ -40,6 +42,7 @@ class KmsCreateRequestParameters(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "aws_kms":'awsKms',
+        "azure_kms":'azureKms',
         "cryptsoft_kms":'cryptsoftKms',
         "id":'id',
         "key_name":'keyName',
@@ -52,6 +55,7 @@ class KmsCreateRequestParameters(object):
     }
     def __init__(self,
                  aws_kms=None,
+                 azure_kms=None,
                  cryptsoft_kms=None,
                  id=None,
                  key_name=None,
@@ -67,6 +71,7 @@ class KmsCreateRequestParameters(object):
 
         # Initialize members of the class
         self.aws_kms = aws_kms
+        self.azure_kms = azure_kms
         self.cryptsoft_kms = cryptsoft_kms
         self.id = id
         self.key_name = key_name
@@ -96,6 +101,7 @@ class KmsCreateRequestParameters(object):
 
         # Extract variables from the dictionary
         aws_kms = cohesity_management_sdk.models.aws_kms_configuration.AwsKmsConfiguration.from_dictionary(dictionary.get('awsKms')) if dictionary.get('awsKms') else None
+        azure_kms = cohesity_management_sdk.models.azure_kms_configuration.AzureKmsConfiguration.from_dictionary(dictionary.get('azureKms')) if dictionary.get('azureKms') else None
         cryptsoft_kms = cohesity_management_sdk.models.cryptsoft_kms_configuration.CryptsoftKmsConfiguration.from_dictionary(dictionary.get('cryptsoftKms')) if dictionary.get('cryptsoftKms') else None
         id = dictionary.get('id')
         key_name = dictionary.get('keyName')
@@ -109,6 +115,7 @@ class KmsCreateRequestParameters(object):
         # Return an object of this model
         return cls(
             aws_kms,
+            azure_kms,
             cryptsoft_kms,
             id,
             key_name,
