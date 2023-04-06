@@ -1,3 +1,31 @@
+
+# [1.10.0] - 2023-04-06
+New SDK for 7.0 Cluster Version.
+
+### Added
+- New SDK for 7.0 cluster version
+
+### Changed
+- None
+
+### Fixed
+- None
+
+### Removed
+- None
+
+# [1.9.2] - 2023-04-06
+Updated SDK for 6.8.1_u1 Cluster Version.
+
+### Added
+- None
+
+### Changed
+- Fixed incorrect vmware_protection_source class name.
+
+### Fixed
+- None
+
 # [1.9.1] - 2023-04-04
 Updated SDK for 6.8.1_u1 Cluster Version.
 

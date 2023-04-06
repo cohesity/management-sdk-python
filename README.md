@@ -59,6 +59,8 @@ pip install cohesity-management-sdk==1.5.1
 
 |Cluster Version| SDK Version|
 |---|--|
+|7.0|1.10.1|
+|6.8.1_u1|1.9.2|
 |6.8.1_u1|1.9.1|
 |6.8.1_u1|1.9.0|
 |6.6.0x|1.8.1|
