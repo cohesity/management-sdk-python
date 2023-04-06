@@ -17,12 +17,13 @@ class CategoryAlertCategoryNameEnum(object):
     systems. kDataPath - Alert associated with data management in the cluster.
     kMetadata - Alert associated with metadata management. kIndexing - Alert
     associated with indexing services. kHelios - Alert associated with Helios.
-    kAppMarketPlace - Alert associated with App MarketPlace. kLicense - Alert
-    associated with licensing. kSecurity - Alert associated with security.
-    kUpgrade - Alert associated with upgrade activities. kClusterManagement -
-    Alert associated with cluster management activities. kAuditLog - Alert
-    associated with audit log events. kNetworking - Alert associated with
-    networking issue. kConfiguration - Alert associated with cluster or system
+    kAppMarketPlace - Alert associated with App MarketPlace. kSystemService
+    -Alert associated with System service apps. kLicense - Alert associated
+    with licensing. kSecurity - Alert associated with security. kUpgrade -
+    Alert associated with upgrade activities. kClusterManagement - Alert
+    associated with cluster management activities. kAuditLog - Alert associated
+    with audit log events. kNetworking - Alert associated with networking
+    issue. kConfiguration - Alert associated with cluster or system
     configurations. kStorageUsage - Alert associated with the
     disk/domain/cluster storage usage. kFaultTolerance - Alert associated with
     the fault tolerance in different levels. kBackupRestore - Alert associated
@@ -53,6 +54,7 @@ class CategoryAlertCategoryNameEnum(object):
         KINDEXING: TODO: type description here.
         KHELIOS: TODO: type description here.
         KAPPMARKETPLACE: TODO: type description here.
+        KSYSTEMSERVICE: TODO: type description here.
         KLICENSE: TODO: type description here.
         KSECURITY: TODO: type description here.
         KUPGRADE: TODO: type description here.
@@ -107,6 +109,8 @@ class CategoryAlertCategoryNameEnum(object):
     KHELIOS = 'kHelios'
 
     KAPPMARKETPLACE = 'kAppMarketPlace'
+
+    KSYSTEMSERVICE = 'kSystemService'
 
     KLICENSE = 'kLicense'
 

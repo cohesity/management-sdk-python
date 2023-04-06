@@ -1,40 +1,36 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-class S3BucketInfo(object):
+class NoSqlMirrorRecoveryJobParams(object):
 
-    """Implementation of the 'S3BucketInfo' model.
+    """Implementation of the 'NoSqlMirrorRecoveryJobParams' model.
 
     TODO: type description here.
 
 
     Attributes:
 
-        aws_region (string): AWS region of the S3 bucket.
-        bucket_name (string): Name of the S3 bucket.
-        key_prefix (string): Complete path of the sub folder in the s3 bucket.
-            This job will create all keys within the given key prefix.
+        mirror_restore_parent_task_id (long|int): For mirroring, this id
+            indicates task id of parent restore task in magneto This Id can be
+            used by Imanis scheduler to create unique drectory on Imanis
+            Scratch Pad view for storing adapater specific meta-data files (e.g
+            error list) that will be passed to adapters for each incremental
+            recovery runs
     """
 
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "aws_region":'awsRegion',
-        "bucket_name":'bucketName',
-        "key_prefix":'keyPrefix',
+        "mirror_restore_parent_task_id":'mirrorRestoreParentTaskId',
     }
     def __init__(self,
-                 aws_region=None,
-                 bucket_name=None,
-                 key_prefix=None,
+                 mirror_restore_parent_task_id=None,
             ):
 
-        """Constructor for the S3BucketInfo class"""
+        """Constructor for the NoSqlMirrorRecoveryJobParams class"""
 
         # Initialize members of the class
-        self.aws_region = aws_region
-        self.bucket_name = bucket_name
-        self.key_prefix = key_prefix
+        self.mirror_restore_parent_task_id = mirror_restore_parent_task_id
 
     @classmethod
     def from_dictionary(cls,
@@ -54,13 +50,9 @@ class S3BucketInfo(object):
             return None
 
         # Extract variables from the dictionary
-        aws_region = dictionary.get('awsRegion')
-        bucket_name = dictionary.get('bucketName')
-        key_prefix = dictionary.get('keyPrefix')
+        mirror_restore_parent_task_id = dictionary.get('mirrorRestoreParentTaskId')
 
         # Return an object of this model
         return cls(
-            aws_region,
-            bucket_name,
-            key_prefix
+            mirror_restore_parent_task_id
 )

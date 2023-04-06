@@ -8,6 +8,7 @@ import cohesity_management_sdk.models.credentials
 import cohesity_management_sdk.models.exchange_dag_protection_preference
 import cohesity_management_sdk.models.fleet_network_params
 import cohesity_management_sdk.models.gcp_credentials
+import cohesity_management_sdk.models.gcp_fleet_params
 import cohesity_management_sdk.models.kubernetes_credentials
 import cohesity_management_sdk.models.kubernetes_params
 import cohesity_management_sdk.models.nas_mount_credential_params
@@ -49,6 +50,9 @@ class UpdateProtectionSourceParameters(object):
         cluster_network_info (FleetNetworkParams): Specifies information
             related to cluster. This is only valid for CE clusters. This is
             only populated for kIAMUser entity.
+        connection_id (long|int): Specifies the Bifrost realm to be associated
+            with the source root. Whenever needed, the workflows related to
+            this source would then only use Bifrosts from the specified realm.
         denied_ip_addresses (list of string): Specifies the list of IP
             Addresses on the registered source to be denied for doing any type
             of IO operations.
@@ -67,6 +71,9 @@ class UpdateProtectionSourceParameters(object):
             parameter and should not be documented externally.
         gcp_credentials (GcpCredentials): Specifies credentials needed to
             authenticate with Google Cloud Platform.
+        gcp_fleet_params (GcpFleetParams): Specifies information related to GCP
+            fleets launched for various purposes. This will only be set for
+            kIAMUser entity.
         host_type (HostTypeEnum): Specifies the optional OS type of the
             Protection Source (such as kWindows or kLinux).
             overrideDescription: true 'kLinux' indicates the Linux operating
@@ -104,6 +111,15 @@ class UpdateProtectionSourceParameters(object):
             protection source id of the windows physical host which will be
             used during the protection and recovery of the sites that belong to
             a office365 domain.
+        re_register (bool): ReRegister is applicable to Physical Environment.
+            By default, the agent running on a physical host will fail the
+            registration, if it is already registered with the cluster. By
+            setting this option to true, agent can be re-registered with the
+            current cluster.
+        restore_config (bool): RestoreConfig is applicable to Physical
+            Environment. The ReRegister option needs to be true if
+            RestoreConfig is true. By setting this option to true, the agent
+            configuration can be restored.
         source_side_dedup_enabled (bool): This controls whether to use source
             side dedup on the source or not. This is only applicable to sources
             which support source side dedup (e.g., Linux physical servers).
@@ -145,11 +161,13 @@ class UpdateProtectionSourceParameters(object):
         "azure_credentials":'azureCredentials',
         "blacklisted_ip_addresses":'blacklistedIpAddresses',
         "cluster_network_info":'clusterNetworkInfo',
+        "connection_id":'connectionId',
         "denied_ip_addresses":'deniedIpAddresses',
         "endpoint":'endpoint',
         "exchange_dag_protection_preference":'exchangeDagProtectionPreference',
         "force_register":'forceRegister',
         "gcp_credentials":'gcpCredentials',
+        "gcp_fleet_params":'gcpFleetParams',
         "host_type":'hostType',
         "is_proxy_host":'isProxyHost',
         "isilon_params":'isilonParams',
@@ -162,6 +180,8 @@ class UpdateProtectionSourceParameters(object):
         "office_365_service_account_credentials_list":'office365ServiceAccountCredentialsList',
         "password":'password',
         "proxy_host_source_id_list":'proxyHostSourceIdList',
+        "re_register":'reRegister',
+        "restore_config":'restoreConfig',
         "source_side_dedup_enabled":'sourceSideDedupEnabled',
         "ssl_verification":'sslVerification',
         "subnets":'subnets',
@@ -181,11 +201,13 @@ class UpdateProtectionSourceParameters(object):
                  azure_credentials=None,
                  blacklisted_ip_addresses=None,
                  cluster_network_info=None,
+                 connection_id=None,
                  denied_ip_addresses=None,
                  endpoint=None,
                  exchange_dag_protection_preference=None,
                  force_register=None,
                  gcp_credentials=None,
+                 gcp_fleet_params=None,
                  host_type=None,
                  is_proxy_host=None,
                  isilon_params=None,
@@ -198,6 +220,8 @@ class UpdateProtectionSourceParameters(object):
                  office_365_service_account_credentials_list=None,
                  password=None,
                  proxy_host_source_id_list=None,
+                 re_register=None,
+                 restore_config=None,
                  source_side_dedup_enabled=None,
                  ssl_verification=None,
                  subnets=None,
@@ -220,11 +244,13 @@ class UpdateProtectionSourceParameters(object):
         self.azure_credentials = azure_credentials
         self.blacklisted_ip_addresses = blacklisted_ip_addresses
         self.cluster_network_info = cluster_network_info
+        self.connection_id = connection_id
         self.denied_ip_addresses = denied_ip_addresses
         self.endpoint = endpoint
         self.exchange_dag_protection_preference = exchange_dag_protection_preference
         self.force_register = force_register
         self.gcp_credentials = gcp_credentials
+        self.gcp_fleet_params = gcp_fleet_params
         self.host_type = host_type
         self.is_proxy_host = is_proxy_host
         self.isilon_params = isilon_params
@@ -237,6 +263,8 @@ class UpdateProtectionSourceParameters(object):
         self.office_365_service_account_credentials_list = office_365_service_account_credentials_list
         self.password = password
         self.proxy_host_source_id_list = proxy_host_source_id_list
+        self.re_register = re_register
+        self.restore_config = restore_config
         self.source_side_dedup_enabled = source_side_dedup_enabled
         self.ssl_verification = ssl_verification
         self.subnets = subnets
@@ -273,11 +301,13 @@ class UpdateProtectionSourceParameters(object):
         azure_credentials = cohesity_management_sdk.models.azure_credentials.AzureCredentials.from_dictionary(dictionary.get('azureCredentials')) if dictionary.get('azureCredentials') else None
         blacklisted_ip_addresses = dictionary.get("blacklistedIpAddresses")
         cluster_network_info = cohesity_management_sdk.models.fleet_network_params.FleetNetworkParams.from_dictionary(dictionary.get('clusterNetworkInfo')) if dictionary.get('clusterNetworkInfo') else None
+        connection_id = dictionary.get('connectionId')
         denied_ip_addresses = dictionary.get("deniedIpAddresses")
         endpoint = dictionary.get('endpoint')
         exchange_dag_protection_preference = cohesity_management_sdk.models.exchange_dag_protection_preference.ExchangeDAGProtectionPreference.from_dictionary(dictionary.get('exchangeDagProtectionPreference')) if dictionary.get('exchangeDagProtectionPreference') else None
         force_register = dictionary.get('forceRegister')
         gcp_credentials = cohesity_management_sdk.models.gcp_credentials.GcpCredentials.from_dictionary(dictionary.get('gcpCredentials')) if dictionary.get('gcpCredentials') else None
+        gcp_fleet_params = cohesity_management_sdk.models.gcp_fleet_params.GcpFleetParams.from_dictionary(dictionary.get('gcpFleetParams')) if dictionary.get('gcpFleetParams') else None
         host_type = dictionary.get('hostType')
         is_proxy_host = dictionary.get('isProxyHost')
         isilon_params = cohesity_management_sdk.models.registered_protection_source_isilon_params.RegisteredProtectionSourceIsilonParams.from_dictionary(dictionary.get('isilonParams')) if dictionary.get('isilonParams') else None
@@ -298,6 +328,8 @@ class UpdateProtectionSourceParameters(object):
                 office_365_service_account_credentials_list.append(cohesity_management_sdk.models.credentials.Credentials.from_dictionary(structure))
         password = dictionary.get('password')
         proxy_host_source_id_list = dictionary.get("proxyHostSourceIdList")
+        re_register = dictionary.get('reRegister')
+        restore_config = dictionary.get('restoreConfig')
         source_side_dedup_enabled = dictionary.get('sourceSideDedupEnabled')
         ssl_verification = cohesity_management_sdk.models.ssl_verification.SslVerification.from_dictionary(dictionary.get('sslVerification')) if dictionary.get('sslVerification') else None
         subnets = None
@@ -326,11 +358,13 @@ class UpdateProtectionSourceParameters(object):
             azure_credentials,
             blacklisted_ip_addresses,
             cluster_network_info,
+            connection_id,
             denied_ip_addresses,
             endpoint,
             exchange_dag_protection_preference,
             force_register,
             gcp_credentials,
+            gcp_fleet_params,
             host_type,
             is_proxy_host,
             isilon_params,
@@ -343,6 +377,8 @@ class UpdateProtectionSourceParameters(object):
             office_365_service_account_credentials_list,
             password,
             proxy_host_source_id_list,
+            re_register,
+            restore_config,
             source_side_dedup_enabled,
             ssl_verification,
             subnets,

@@ -8,6 +8,7 @@ import cohesity_management_sdk.models.count_by_tier
 import cohesity_management_sdk.models.node_hardware_info
 import cohesity_management_sdk.models.node_stats
 import cohesity_management_sdk.models.node_system_disk_info
+import cohesity_management_sdk.models.pre_check_validation
 
 
 class Node(object):
@@ -63,7 +64,12 @@ class Node(object):
             sometime in the past. After these disks have been fixed, their
             mount paths needs to be removed from the following list before
             these will be accessed again.
+        precheck_timestamp_secs (long|int): PrecheckTimestampSecs specifies the
+            last run time of the pre-checks execution in Unix epoch timestamp
+            in seconds
         product_model (string): Specifies the product model of the node.
+        progress_percentage (long|int): ProgressPercentage is the overall
+            progress percentage in removing the entity.
         removal_progress_list (list of ComponentRemovalProgress): Removal
             progress for various components which are not acked yet.
         removal_reason (list of RemovalReasonEnum): RemovalReason specifies the
@@ -79,12 +85,14 @@ class Node(object):
             means the object is being removed. 'kOkToRemove' means the object
             has been removed on the Cohesity Cluster and if the object is
             physical, it can be removed from the Cohesity Cluster.
-        services_acked_list (list of string): [For UI: Displays list of
-            Acked/NotAcked services separately.] Services already acked for
+        removal_timestamp_secs (long|int): RemovalTimestampSecs specifies the
+            Unix epoch timestamp (in seconds) when the entity was marked for
+            removal.
+        services_acked_list (list of string): Services already acked for
             removal of this entity.
         services_not_acked (string): [For CLI displays the string with
             ServicesNotAcked] ServicesNotAcked specifies services that have not
-            ACKed yet in string format after node is marked for removal.
+            ACKed yet in string format after the entity is marked for removal.
         services_not_acked_list (list of string): Services not acked yet for
             removal of this entity.
         slot_number (int): Slot number occupied by this node within the
@@ -92,6 +100,10 @@ class Node(object):
         stats (NodeStats): Stats describes the node stats.
         system_disks (list of NodeSystemDiskInfo): SystemDisk describes the
             node system disks.
+        time_remaining (long|int): TimeRemaining is the overall total duration
+            left to remove the entity.
+        validation_checks (list of PreCheckValidation): ValidationChecks
+            specifies list of pre-check validations
     """
 
 
@@ -117,16 +129,21 @@ class Node(object):
         "node_type":'nodeType',
         "offline_disk_count":'offlineDiskCount',
         "offline_mount_paths_of_disks":'offlineMountPathsOfDisks',
+        "precheck_timestamp_secs":'precheckTimestampSecs',
         "product_model":'productModel',
+        "progress_percentage":'progressPercentage',
         "removal_progress_list":'removalProgressList',
         "removal_reason":'removalReason',
         "removal_state":'removalState',
+        "removal_timestamp_secs":'removalTimestampSecs',
         "services_acked_list":'servicesAckedList',
         "services_not_acked":'servicesNotAcked',
         "services_not_acked_list":'servicesNotAckedList',
         "slot_number":'slotNumber',
         "stats":'stats',
         "system_disks":'systemDisks',
+        "time_remaining":'timeRemaining',
+        "validation_checks":'validationChecks',
     }
     def __init__(self,
                  capacity_by_tier=None,
@@ -149,16 +166,21 @@ class Node(object):
                  node_type=None,
                  offline_disk_count=None,
                  offline_mount_paths_of_disks=None,
+                 precheck_timestamp_secs=None,
                  product_model=None,
+                 progress_percentage=None,
                  removal_progress_list=None,
                  removal_reason=None,
                  removal_state=None,
+                 removal_timestamp_secs=None,
                  services_acked_list=None,
                  services_not_acked=None,
                  services_not_acked_list=None,
                  slot_number=None,
                  stats=None,
                  system_disks=None,
+                 time_remaining=None,
+                 validation_checks=None,
             ):
 
         """Constructor for the Node class"""
@@ -184,16 +206,21 @@ class Node(object):
         self.node_type = node_type
         self.offline_disk_count = offline_disk_count
         self.offline_mount_paths_of_disks = offline_mount_paths_of_disks
+        self.precheck_timestamp_secs = precheck_timestamp_secs
         self.product_model = product_model
+        self.progress_percentage = progress_percentage
         self.removal_progress_list = removal_progress_list
         self.removal_reason = removal_reason
         self.removal_state = removal_state
+        self.removal_timestamp_secs = removal_timestamp_secs
         self.services_acked_list = services_acked_list
         self.services_not_acked = services_not_acked
         self.services_not_acked_list = services_not_acked_list
         self.slot_number = slot_number
         self.stats = stats
         self.system_disks = system_disks
+        self.time_remaining = time_remaining
+        self.validation_checks = validation_checks
 
     @classmethod
     def from_dictionary(cls,
@@ -241,7 +268,9 @@ class Node(object):
         node_type = dictionary.get('nodeType')
         offline_disk_count = dictionary.get('offlineDiskCount')
         offline_mount_paths_of_disks = dictionary.get("offlineMountPathsOfDisks")
+        precheck_timestamp_secs = dictionary.get('precheckTimestampSecs')
         product_model = dictionary.get('productModel')
+        progress_percentage = dictionary.get('progressPercentage')
         removal_progress_list = None
         if dictionary.get('removalProgressList') != None:
             removal_progress_list = list()
@@ -249,6 +278,7 @@ class Node(object):
                 removal_progress_list.append(cohesity_management_sdk.models.component_removal_progress.ComponentRemovalProgress.from_dictionary(structure))
         removal_reason = dictionary.get("removalReason")
         removal_state = dictionary.get('removalState')
+        removal_timestamp_secs = dictionary.get('removalTimestampSecs')
         services_acked_list = dictionary.get("servicesAckedList")
         services_not_acked = dictionary.get('servicesNotAcked')
         services_not_acked_list = dictionary.get("servicesNotAckedList")
@@ -259,6 +289,12 @@ class Node(object):
             system_disks = list()
             for structure in dictionary.get('systemDisks'):
                 system_disks.append(cohesity_management_sdk.models.node_system_disk_info.NodeSystemDiskInfo.from_dictionary(structure))
+        time_remaining = dictionary.get('timeRemaining')
+        validation_checks = None
+        if dictionary.get('validationChecks') != None:
+            validation_checks = list()
+            for structure in dictionary.get('validationChecks'):
+                validation_checks.append(cohesity_management_sdk.models.pre_check_validation.PreCheckValidation.from_dictionary(structure))
 
         # Return an object of this model
         return cls(
@@ -282,14 +318,19 @@ class Node(object):
             node_type,
             offline_disk_count,
             offline_mount_paths_of_disks,
+            precheck_timestamp_secs,
             product_model,
+            progress_percentage,
             removal_progress_list,
             removal_reason,
             removal_state,
+            removal_timestamp_secs,
             services_acked_list,
             services_not_acked,
             services_not_acked_list,
             slot_number,
             stats,
-            system_disks
+            system_disks,
+            time_remaining,
+            validation_checks
 )

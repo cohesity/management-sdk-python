@@ -13,6 +13,7 @@ import cohesity_management_sdk.models.smb_permission
 import cohesity_management_sdk.models.smb_permissions_info
 import cohesity_management_sdk.models.storage_policy_override
 import cohesity_management_sdk.models.subnet
+import cohesity_management_sdk.models.view_pinning_config
 
 
 class CreateViewRequest(object):
@@ -147,6 +148,8 @@ class CreateViewRequest(object):
         view_lock_enabled (bool): Specifies whether view lock is enabled. If
             enabled the view cannot be modified or deleted until unlock. By
             default it is disabled.
+        view_pinning_config (ViewPinningConfig): Specifies the pinning config
+            of this view.
     """
 
 
@@ -197,6 +200,7 @@ class CreateViewRequest(object):
         "tenant_id":'tenantId',
         "view_box_id":'viewBoxId',
         "view_lock_enabled":'viewLockEnabled',
+        "view_pinning_config":'viewPinningConfig',
     }
     def __init__(self,
                  access_sids=None,
@@ -244,6 +248,7 @@ class CreateViewRequest(object):
                  tenant_id=None,
                  view_box_id=None,
                  view_lock_enabled=None,
+                 view_pinning_config=None,
             ):
 
         """Constructor for the CreateViewRequest class"""
@@ -294,6 +299,7 @@ class CreateViewRequest(object):
         self.tenant_id = tenant_id
         self.view_box_id = view_box_id
         self.view_lock_enabled = view_lock_enabled
+        self.view_pinning_config = view_pinning_config
 
     @classmethod
     def from_dictionary(cls,
@@ -370,6 +376,7 @@ class CreateViewRequest(object):
         tenant_id = dictionary.get('tenantId')
         view_box_id = dictionary.get('viewBoxId')
         view_lock_enabled = dictionary.get('viewLockEnabled')
+        view_pinning_config = cohesity_management_sdk.models.view_pinning_config.ViewPinningConfig.from_dictionary(dictionary.get('viewPinningConfig')) if dictionary.get('viewPinningConfig') else None
 
         # Return an object of this model
         return cls(
@@ -417,5 +424,6 @@ class CreateViewRequest(object):
             swift_username,
             tenant_id,
             view_box_id,
-            view_lock_enabled
+            view_lock_enabled,
+            view_pinning_config
 )

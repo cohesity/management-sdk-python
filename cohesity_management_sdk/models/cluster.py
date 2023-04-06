@@ -169,6 +169,8 @@ class Cluster(object):
         reverse_tunnel_end_time_msecs (long|int): ReverseTunnelEndTimeMsecs
             specifies the end time in milliseconds since epoch until when the
             reverse tunnel will stay enabled.
+        sata_hdd_tier_admission_control (int): Specifies the admission control
+            for cluster SATAHDD storage tier.
         schema_info_list (list of SchemaInfo): Specifies the time series schema
             info of the cluster.
         security_mode_dod (bool): Specifies if Security Mode DOD is enabled or
@@ -180,6 +182,8 @@ class Cluster(object):
             enabled on the cluster. When this is set to true, then any SMB3
             multichannel enabled client can establish multiple TCP connection
             per session to the Server.
+        split_key_host_access (bool): Specifies if split key host access is
+            enabled.
         stats (ClusterStats): Specifies statistics about this Cohesity Cluster.
         stig_mode (bool): TODO(mitch) StigMode is deprecated. Should it still
             be in this list??
@@ -265,10 +269,12 @@ class Cluster(object):
         "proxy_vm_subnet":'proxyVMSubnet',
         "reverse_tunnel_enabled":'reverseTunnelEnabled',
         "reverse_tunnel_end_time_msecs":'reverseTunnelEndTimeMsecs',
+        "sata_hdd_tier_admission_control":'sataHddTierAdmissionControl',
         "schema_info_list":'schemaInfoList',
         "security_mode_dod":'securityModeDod',
         "smb_ad_disabled":'smbAdDisabled',
         "smb_multichannel_enabled":'smbMultichannelEnabled',
+        "split_key_host_access":'splitKeyHostAccess',
         "stats":'stats',
         "stig_mode":'stigMode',
         "supported_config":'supportedConfig',
@@ -337,10 +343,12 @@ class Cluster(object):
                  proxy_vm_subnet=None,
                  reverse_tunnel_enabled=None,
                  reverse_tunnel_end_time_msecs=None,
+                 sata_hdd_tier_admission_control=None,
                  schema_info_list=None,
                  security_mode_dod=None,
                  smb_ad_disabled=None,
                  smb_multichannel_enabled=None,
+                 split_key_host_access=None,
                  stats=None,
                  stig_mode=None,
                  supported_config=None,
@@ -412,10 +420,12 @@ class Cluster(object):
         self.proxy_vm_subnet = proxy_vm_subnet
         self.reverse_tunnel_enabled = reverse_tunnel_enabled
         self.reverse_tunnel_end_time_msecs = reverse_tunnel_end_time_msecs
+        self.sata_hdd_tier_admission_control = sata_hdd_tier_admission_control
         self.schema_info_list = schema_info_list
         self.security_mode_dod = security_mode_dod
         self.smb_ad_disabled = smb_ad_disabled
         self.smb_multichannel_enabled = smb_multichannel_enabled
+        self.split_key_host_access = split_key_host_access
         self.stats = stats
         self.stig_mode = stig_mode
         self.supported_config = supported_config
@@ -505,6 +515,7 @@ class Cluster(object):
         proxy_vm_subnet = dictionary.get('proxyVMSubnet')
         reverse_tunnel_enabled = dictionary.get('reverseTunnelEnabled')
         reverse_tunnel_end_time_msecs = dictionary.get('reverseTunnelEndTimeMsecs')
+        sata_hdd_tier_admission_control = dictionary.get('sataHddTierAdmissionControl')
         schema_info_list = None
         if dictionary.get('schemaInfoList') != None:
             schema_info_list = list()
@@ -513,6 +524,7 @@ class Cluster(object):
         security_mode_dod = dictionary.get('securityModeDod')
         smb_ad_disabled = dictionary.get('smbAdDisabled')
         smb_multichannel_enabled = dictionary.get('smbMultichannelEnabled')
+        split_key_host_access = dictionary.get('splitKeyHostAccess')
         stats = cohesity_management_sdk.models.cluster_stats.ClusterStats.from_dictionary(dictionary.get('stats')) if dictionary.get('stats') else None
         stig_mode = dictionary.get('stigMode')
         supported_config = cohesity_management_sdk.models.supported_config.SupportedConfig.from_dictionary(dictionary.get('supportedConfig')) if dictionary.get('supportedConfig') else None
@@ -586,10 +598,12 @@ class Cluster(object):
             proxy_vm_subnet,
             reverse_tunnel_enabled,
             reverse_tunnel_end_time_msecs,
+            sata_hdd_tier_admission_control,
             schema_info_list,
             security_mode_dod,
             smb_ad_disabled,
             smb_multichannel_enabled,
+            split_key_host_access,
             stats,
             stig_mode,
             supported_config,

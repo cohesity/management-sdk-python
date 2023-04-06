@@ -1,35 +1,31 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-class S3BucketConfigProto_TagMapEntry(object):
+class SfdcObjectFields(object):
 
-    """Implementation of the 'S3BucketConfigProto_TagMapEntry' model.
+    """Implementation of the 'SfdcObjectFields' model.
 
-    TODO: type description here.
+    Specifies information about a Sfdc Object Field.
 
 
     Attributes:
 
-        key (string): TODO: Type description here.
-        value (string): TODO: Type description here.
+        name (string): Specifies the name of a Salesforce Object Field.
     """
 
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "key":'key',
-        "value":'value',
+        "name":'name',
     }
     def __init__(self,
-                 key=None,
-                 value=None,
+                 name=None,
             ):
 
-        """Constructor for the S3BucketConfigProto_TagMapEntry class"""
+        """Constructor for the SfdcObjectFields class"""
 
         # Initialize members of the class
-        self.key = key
-        self.value = value
+        self.name = name
 
     @classmethod
     def from_dictionary(cls,
@@ -49,11 +45,9 @@ class S3BucketConfigProto_TagMapEntry(object):
             return None
 
         # Extract variables from the dictionary
-        key = dictionary.get('key')
-        value = dictionary.get('value')
+        name = dictionary.get('name')
 
         # Return an object of this model
         return cls(
-            key,
-            value
+            name
 )

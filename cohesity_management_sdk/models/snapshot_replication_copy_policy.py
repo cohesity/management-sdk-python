@@ -19,6 +19,21 @@ class SnapshotReplicationCopyPolicy(object):
 
         id (string): Specified the Id for a snapshot copy policy. This is
             generated when the policy is created.
+        backup_run_type (BackupRunTypeEnum): The backup run type to which this
+            copy policy applies to. If set, this will ensure that the first run
+            in scheduled period of given type will be copied. If this isn't
+            set, copy tasks will be generated as per other filters in the
+            protection policy. Currently, it can only be set to Full.
+            'kRegular' indicates a incremental (CBT) backup. Incremental
+            backups utilizing CBT (if supported) are captured of the target
+            protection objects. The first run of a kRegular schedule captures
+            all the blocks. 'kFull' indicates a full (no CBT) backup. A
+            complete backup (all blocks) of the target protection objects are
+            always captured and Change Block Tracking (CBT) is not utilized.
+            'kLog' indicates a Database Log backup. Capture the database
+            transaction logs to allow rolling back to a specific point in time.
+            'kSystem' indicates a system backup. System backups are used to do
+            bare metal recovery of the system to a specific point in time.
         cloud_target (CloudDeployTargetDetails): Specifies the cloud
             replication target to copy the Snapshots to.
         copy_partial (bool): Specifies if Snapshots are copied from the first
@@ -54,6 +69,8 @@ class SnapshotReplicationCopyPolicy(object):
             multiplier. 'kMonth' means that the Snapshot copy occurs monthly at
             the frequency set in the multiplier. 'kYear' means that the
             Snapshot copy occurs yearly at the frequency set in the multiplier.
+        source_cluster_id (long|int): Specifies a the source cluster id from
+            which the data must be replicated.
         target (ReplicationTargetSettings): Specifies the replication target to
             copy the Snapshots to.
     """
@@ -62,22 +79,26 @@ class SnapshotReplicationCopyPolicy(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "id":'Id',
+        "backup_run_type":'backupRunType',
         "cloud_target":'cloudTarget',
         "copy_partial":'copyPartial',
         "datalock_config":'datalockConfig',
         "days_to_keep":'daysToKeep',
         "multiplier":'multiplier',
         "periodicity":'periodicity',
+        "source_cluster_id":'sourceClusterId',
         "target":'target',
     }
     def __init__(self,
                  id=None,
+                 backup_run_type=None,
                  cloud_target=None,
                  copy_partial=None,
                  datalock_config=None,
                  days_to_keep=None,
                  multiplier=None,
                  periodicity=None,
+                 source_cluster_id=None,
                  target=None,
             ):
 
@@ -85,12 +106,14 @@ class SnapshotReplicationCopyPolicy(object):
 
         # Initialize members of the class
         self.id = id
+        self.backup_run_type = backup_run_type
         self.cloud_target = cloud_target
         self.copy_partial = copy_partial
         self.datalock_config = datalock_config
         self.days_to_keep = days_to_keep
         self.multiplier = multiplier
         self.periodicity = periodicity
+        self.source_cluster_id = source_cluster_id
         self.target = target
 
     @classmethod
@@ -112,22 +135,26 @@ class SnapshotReplicationCopyPolicy(object):
 
         # Extract variables from the dictionary
         id = dictionary.get('Id')
+        backup_run_type = dictionary.get('backupRunType')
         cloud_target = cohesity_management_sdk.models.cloud_deploy_target_details.CloudDeployTargetDetails.from_dictionary(dictionary.get('cloudTarget')) if dictionary.get('cloudTarget') else None
         copy_partial = dictionary.get('copyPartial')
         datalock_config = cohesity_management_sdk.models.data_lock_config.DataLockConfig.from_dictionary(dictionary.get('datalockConfig')) if dictionary.get('datalockConfig') else None
         days_to_keep = dictionary.get('daysToKeep')
         multiplier = dictionary.get('multiplier')
         periodicity = dictionary.get('periodicity')
+        source_cluster_id = dictionary.get('sourceClusterId')
         target = cohesity_management_sdk.models.replication_target_settings.ReplicationTargetSettings.from_dictionary(dictionary.get('target')) if dictionary.get('target') else None
 
         # Return an object of this model
         return cls(
             id,
+            backup_run_type,
             cloud_target,
             copy_partial,
             datalock_config,
             days_to_keep,
             multiplier,
             periodicity,
+            source_cluster_id,
             target
 )

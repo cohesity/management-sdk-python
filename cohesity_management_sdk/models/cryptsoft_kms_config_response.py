@@ -10,6 +10,8 @@ class CryptsoftKmsConfigResponse(object):
 
     Attributes:
 
+        additional_server_address (list of string): AdditonalServerAddress for
+            the KMS server.
         client_certificate_expiry_date (long|int): Specifies expiry date of
             client certificate.
         kmip_protocol_version (string): Specifies protocol version used to
@@ -22,12 +24,14 @@ class CryptsoftKmsConfigResponse(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "additional_server_address":'additionalServerAddress',
         "client_certificate_expiry_date":'clientCertificateExpiryDate',
         "kmip_protocol_version":'kmipProtocolVersion',
         "server_ip":'serverIp',
         "server_port":'serverPort',
     }
     def __init__(self,
+                 additional_server_address=None,
                  client_certificate_expiry_date=None,
                  kmip_protocol_version=None,
                  server_ip=None,
@@ -37,6 +41,7 @@ class CryptsoftKmsConfigResponse(object):
         """Constructor for the CryptsoftKmsConfigResponse class"""
 
         # Initialize members of the class
+        self.additional_server_address = additional_server_address
         self.client_certificate_expiry_date = client_certificate_expiry_date
         self.kmip_protocol_version = kmip_protocol_version
         self.server_ip = server_ip
@@ -60,6 +65,7 @@ class CryptsoftKmsConfigResponse(object):
             return None
 
         # Extract variables from the dictionary
+        additional_server_address = dictionary.get("additionalServerAddress")
         client_certificate_expiry_date = dictionary.get('clientCertificateExpiryDate')
         kmip_protocol_version = dictionary.get('kmipProtocolVersion')
         server_ip = dictionary.get('serverIp')
@@ -67,6 +73,7 @@ class CryptsoftKmsConfigResponse(object):
 
         # Return an object of this model
         return cls(
+            additional_server_address,
             client_certificate_expiry_date,
             kmip_protocol_version,
             server_ip,

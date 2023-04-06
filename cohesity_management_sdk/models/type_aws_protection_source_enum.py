@@ -20,7 +20,9 @@ class TypeAwsProtectionSourceEnum(object):
     'kRDSInstance' represents a RDS DB instance. 'kRDSSubnet' represents a RDS
     subnet. 'kRDSTag' represents a tag attached to RDS instance. 'kAuroraTag'
     represents a tag attached to an Aurora cluster. 'kAccount' represents an
-    AWS account. 'kAuroraCluster' represents an Aurora cluster.
+    AWS account. 'kAuroraCluster' represents an Aurora cluster. 'kS3Bucket'
+    represents an S3 bucket. 'kS3Tag' represents an S3 tag attached to S3
+    Bucket.
 
 
     Attributes:
@@ -42,6 +44,8 @@ class TypeAwsProtectionSourceEnum(object):
         KAURORATAG: TODO: type description here.
         KACCOUNT: TODO: type description here.
         KAURORACLUSTER: TODO: type description here.
+        KS3BUCKET: TODO: type description here.
+        KS3TAG: TODO: type description here.
 
     """
 
@@ -80,3 +84,7 @@ class TypeAwsProtectionSourceEnum(object):
     KACCOUNT = 'kAccount'
 
     KAURORACLUSTER = 'kAuroraCluster'
+
+    KS3BUCKET = 'kS3Bucket'
+
+    KS3TAG = 'kS3Tag'

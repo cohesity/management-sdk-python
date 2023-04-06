@@ -11,26 +11,39 @@ class ComponentRemovalProgress(object):
 
     Attributes:
 
+        is_removal_stuck (bool): If there is no progress for certain threshold
+            time, set this flag to true
+        progress_percentage (long|int): Progress percentage
         removal_progress (string): Removal progress details.
         service_name (string): Name of the component.
+        time_remaining (long|int): Time remaining
     """
 
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "is_removal_stuck":'isRemovalStuck',
+        "progress_percentage":'progressPercentage',
         "removal_progress":'removalProgress',
         "service_name":'serviceName',
+        "time_remaining":'timeRemaining',
     }
     def __init__(self,
+                 is_removal_stuck=None,
+                 progress_percentage=None,
                  removal_progress=None,
                  service_name=None,
+                 time_remaining=None,
             ):
 
         """Constructor for the ComponentRemovalProgress class"""
 
         # Initialize members of the class
+        self.is_removal_stuck = is_removal_stuck
+        self.progress_percentage = progress_percentage
         self.removal_progress = removal_progress
         self.service_name = service_name
+        self.time_remaining = time_remaining
 
     @classmethod
     def from_dictionary(cls,
@@ -50,11 +63,17 @@ class ComponentRemovalProgress(object):
             return None
 
         # Extract variables from the dictionary
+        is_removal_stuck = dictionary.get('isRemovalStuck')
+        progress_percentage = dictionary.get('progressPercentage')
         removal_progress = dictionary.get('removalProgress')
         service_name = dictionary.get('serviceName')
+        time_remaining = dictionary.get('timeRemaining')
 
         # Return an object of this model
         return cls(
+            is_removal_stuck,
+            progress_percentage,
             removal_progress,
-            service_name
+            service_name,
+            time_remaining
 )

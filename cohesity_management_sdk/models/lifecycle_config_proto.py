@@ -16,8 +16,11 @@ class LifecycleConfigProto(object):
 
         rules (list of LifecycleRule): Specifies lifecycle configuration rules
             for an Amazon S3 bucket. A maximum of 1000 rules can be specified.
-        version_id (long|int): Specifies the uniq monotonically increasing
-            version for lifecycle configuration.
+        version_id (long|int): Specifies the unique monotonically increasing
+            version for lifecycle configuration. This field will be set
+            automatically inside bridge. Components outside bridge no needs to
+            set this field. It will be ignored and overwritten by bridge even
+            if it is set.
     """
 
 

@@ -113,6 +113,8 @@ class DataUsageStats(object):
             Timestamp of TotalLogicalUsageBytes.
         unique_physical_data_bytes (long|int): Specifies the unique physical
             data usage in bytes.
+        unique_physical_data_bytes_timestamp_usec (long|int): Specifies
+            Timestamp of UniquePhysicalDataBytes.
     """
 
 
@@ -160,6 +162,7 @@ class DataUsageStats(object):
         "total_logical_usage_bytes":'totalLogicalUsageBytes',
         "total_logical_usage_bytes_timestamp_usec":'totalLogicalUsageBytesTimestampUsec',
         "unique_physical_data_bytes":'uniquePhysicalDataBytes',
+        "unique_physical_data_bytes_timestamp_usec":'uniquePhysicalDataBytesTimestampUsec',
     }
     def __init__(self,
                  cloud_data_written_bytes=None,
@@ -204,6 +207,7 @@ class DataUsageStats(object):
                  total_logical_usage_bytes=None,
                  total_logical_usage_bytes_timestamp_usec=None,
                  unique_physical_data_bytes=None,
+                 unique_physical_data_bytes_timestamp_usec=None,
             ):
 
         """Constructor for the DataUsageStats class"""
@@ -251,6 +255,7 @@ class DataUsageStats(object):
         self.total_logical_usage_bytes = total_logical_usage_bytes
         self.total_logical_usage_bytes_timestamp_usec = total_logical_usage_bytes_timestamp_usec
         self.unique_physical_data_bytes = unique_physical_data_bytes
+        self.unique_physical_data_bytes_timestamp_usec = unique_physical_data_bytes_timestamp_usec
 
     @classmethod
     def from_dictionary(cls,
@@ -312,6 +317,7 @@ class DataUsageStats(object):
         total_logical_usage_bytes = dictionary.get('totalLogicalUsageBytes')
         total_logical_usage_bytes_timestamp_usec = dictionary.get('totalLogicalUsageBytesTimestampUsec')
         unique_physical_data_bytes = dictionary.get('uniquePhysicalDataBytes')
+        unique_physical_data_bytes_timestamp_usec = dictionary.get('uniquePhysicalDataBytesTimestampUsec')
 
         # Return an object of this model
         return cls(
@@ -356,5 +362,6 @@ class DataUsageStats(object):
             storage_consumed_bytes_timestamp_usec,
             total_logical_usage_bytes,
             total_logical_usage_bytes_timestamp_usec,
-            unique_physical_data_bytes
+            unique_physical_data_bytes,
+            unique_physical_data_bytes_timestamp_usec
 )

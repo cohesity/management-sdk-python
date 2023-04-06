@@ -39,7 +39,8 @@ class AwsCredentials(object):
             represents a RDS subnet. 'kRDSTag' represents a tag attached to RDS
             instance. 'kAuroraTag' represents a tag attached to an Aurora
             cluster. 'kAccount' represents an AWS account. 'kAuroraCluster'
-            represents an Aurora cluster.
+            represents an Aurora cluster. 'kS3Bucket' represents an S3 bucket.
+            'kS3Tag' represents an S3 tag attached to S3 Bucket.
         c_2_s_server_info (C2SServerInfo): Specifies the C2S Access Portal
             (CAP) server info.
         iam_role_arn (string): Specifies the IAM role which will be used to

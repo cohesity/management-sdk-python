@@ -15,6 +15,7 @@ import cohesity_management_sdk.models.office_365_credentials
 import cohesity_management_sdk.models.physical_params
 import cohesity_management_sdk.models.registered_app_info
 import cohesity_management_sdk.models.registered_protection_source_isilon_params
+import cohesity_management_sdk.models.sfdc_params
 import cohesity_management_sdk.models.subnet
 import cohesity_management_sdk.models.throttling_policy_override
 import cohesity_management_sdk.models.throttling_policy_parameters
@@ -126,12 +127,24 @@ class RegisteredSourceInfo(object):
         isilon_params (RegisteredProtectionSourceIsilonParams): Contains all
             the registered source params specified by the user while
             configuring the Isilon source.
+        link_vms_across_vcenter (bool): Specifies if the VM linking feature is
+            enabled for this VCenter This means that VMs present in this
+            VCenter which earlier belonged to some other VCenter(also registerd
+            on same cluster) and were migrated, will be linked during EH
+            refresh. This will enable preserving snapshot chains for migrated
+            VMs.
         minimum_free_space_gb (long|int): Specifies the minimum free space in
             GiB of the space expected to be available on the datastore where
             the virtual disks of the VM being backed up. If the amount of free
             space(in GiB) is lower than the value given by this field, backup
             will be aborted. Note that this field is applicable only to
             'kVMware' type of environments.
+        minimum_free_space_percent (long|int): Specifies the minimum free space
+            in percentage of the space expected to be available on the
+            datastore where the virtual disks of the VM being backed up. If the
+            amount of free space(in percentage) is lower than the value given
+            by this field, backup will be aborted. Note that this field is
+            applicable only to 'kVMware' type of environments.
         mongodb_params (MongoDBConnectParams): Contains all the additional
             params specified by the user while registering the MongoDB source.
         nas_mount_credentials (NasMountCredentialParams): Specifies the
@@ -142,7 +155,9 @@ class RegisteredSourceInfo(object):
         office_365_credentials_list (list of Office365Credentials): Office365
             Source Credentials.  Specifies credentials needed to authenticate &
             authorize user for Office365.
-        office_365_region (string): Specifies the region for Office365.
+        office_365_region (string): Specifies the region for Office365. Inorder
+            to truly categorize M365 region, clients should not depend upon the
+            endpoint, instead look at this attribute for the same.
         office_365_service_account_credentials_list (list of Credentials):
             Office365 Service Account Credentials.  Specifies credentials for
             improving mailbox backup performance for O365.
@@ -163,6 +178,8 @@ class RegisteredSourceInfo(object):
             of the applications registered on this protection source.
         registration_time_usecs (long|int): Specifies the Unix epoch time (in
             microseconds) when the Protection Source was registered.
+        sfdc_params (SfdcParams): Contains all the additional params specified
+            by the user while registering the Salesforce source.
         subnets (list of Subnet): Specifies the list of subnets added during
             creation or updation of vmare source. Currently, this field will
             only be populated in case of VMware registration.
@@ -212,7 +229,9 @@ class RegisteredSourceInfo(object):
         "is_db_authenticated":'isDbAuthenticated',
         "is_storage_array_snapshot_enabled":'isStorageArraySnapshotEnabled',
         "isilon_params":'isilonParams',
+        "link_vms_across_vcenter":'linkVmsAcrossVcenter',
         "minimum_free_space_gb":'minimumFreeSpaceGB',
+        "minimum_free_space_percent":'minimumFreeSpacePercent',
         "mongodb_params":'mongodbParams',
         "nas_mount_credentials":'nasMountCredentials',
         "o_365_params":'o365Params',
@@ -226,6 +245,7 @@ class RegisteredSourceInfo(object):
         "refresh_time_usecs":'refreshTimeUsecs',
         "registered_apps_info":'registeredAppsInfo',
         "registration_time_usecs":'registrationTimeUsecs',
+        "sfdc_params":'sfdcParams',
         "subnets":'subnets',
         "throttling_policy":'throttlingPolicy',
         "throttling_policy_overrides":'throttlingPolicyOverrides',
@@ -253,7 +273,9 @@ class RegisteredSourceInfo(object):
                  is_db_authenticated=None,
                  is_storage_array_snapshot_enabled=None,
                  isilon_params=None,
+                 link_vms_across_vcenter=None,
                  minimum_free_space_gb=None,
+                 minimum_free_space_percent=None,
                  mongodb_params=None,
                  nas_mount_credentials=None,
                  o_365_params=None,
@@ -267,6 +289,7 @@ class RegisteredSourceInfo(object):
                  refresh_time_usecs=None,
                  registered_apps_info=None,
                  registration_time_usecs=None,
+                 sfdc_params=None,
                  subnets=None,
                  throttling_policy=None,
                  throttling_policy_overrides=None,
@@ -297,7 +320,9 @@ class RegisteredSourceInfo(object):
         self.is_db_authenticated = is_db_authenticated
         self.is_storage_array_snapshot_enabled = is_storage_array_snapshot_enabled
         self.isilon_params = isilon_params
+        self.link_vms_across_vcenter = link_vms_across_vcenter
         self.minimum_free_space_gb = minimum_free_space_gb
+        self.minimum_free_space_percent = minimum_free_space_percent
         self.mongodb_params = mongodb_params
         self.nas_mount_credentials = nas_mount_credentials
         self.o_365_params = o_365_params
@@ -311,6 +336,7 @@ class RegisteredSourceInfo(object):
         self.refresh_time_usecs = refresh_time_usecs
         self.registered_apps_info = registered_apps_info
         self.registration_time_usecs = registration_time_usecs
+        self.sfdc_params = sfdc_params
         self.subnets = subnets
         self.throttling_policy = throttling_policy
         self.throttling_policy_overrides = throttling_policy_overrides
@@ -355,7 +381,9 @@ class RegisteredSourceInfo(object):
         is_db_authenticated = dictionary.get('isDbAuthenticated')
         is_storage_array_snapshot_enabled = dictionary.get('isStorageArraySnapshotEnabled')
         isilon_params = cohesity_management_sdk.models.registered_protection_source_isilon_params.RegisteredProtectionSourceIsilonParams.from_dictionary(dictionary.get('isilonParams')) if dictionary.get('isilonParams') else None
+        link_vms_across_vcenter = dictionary.get('linkVmsAcrossVcenter')
         minimum_free_space_gb = dictionary.get('minimumFreeSpaceGB')
+        minimum_free_space_percent = dictionary.get('minimumFreeSpacePercent')
         mongodb_params = cohesity_management_sdk.models.mongo_db_connect_params.MongoDBConnectParams.from_dictionary(dictionary.get('mongodbParams')) if dictionary.get('mongodbParams') else None
         nas_mount_credentials = cohesity_management_sdk.models.nas_mount_credential_params.NasMountCredentialParams.from_dictionary(dictionary.get('nasMountCredentials')) if dictionary.get('nasMountCredentials') else None
         o_365_params = cohesity_management_sdk.models.o_365_connect_params.O365ConnectParams.from_dictionary(dictionary.get('o365Params')) if dictionary.get('o365Params') else None
@@ -381,6 +409,7 @@ class RegisteredSourceInfo(object):
             for structure in dictionary.get('registeredAppsInfo'):
                 registered_apps_info.append(cohesity_management_sdk.models.registered_app_info.RegisteredAppInfo.from_dictionary(structure))
         registration_time_usecs = dictionary.get('registrationTimeUsecs')
+        sfdc_params = cohesity_management_sdk.models.sfdc_params.SfdcParams.from_dictionary(dictionary.get('sfdcParams')) if dictionary.get('sfdcParams') else None
         subnets = None
         if dictionary.get('subnets') != None:
             subnets = list()
@@ -417,7 +446,9 @@ class RegisteredSourceInfo(object):
             is_db_authenticated,
             is_storage_array_snapshot_enabled,
             isilon_params,
+            link_vms_across_vcenter,
             minimum_free_space_gb,
+            minimum_free_space_percent,
             mongodb_params,
             nas_mount_credentials,
             o_365_params,
@@ -431,6 +462,7 @@ class RegisteredSourceInfo(object):
             refresh_time_usecs,
             registered_apps_info,
             registration_time_usecs,
+            sfdc_params,
             subnets,
             throttling_policy,
             throttling_policy_overrides,

@@ -6,6 +6,7 @@ import cohesity_management_sdk.models.cloud_deploy_target
 import cohesity_management_sdk.models.entity_proto
 import cohesity_management_sdk.models.no_sql_recover_params
 import cohesity_management_sdk.models.restore_acropolis_vm_param
+import cohesity_management_sdk.models.restore_exchange_params
 import cohesity_management_sdk.models.restore_vapp_info
 import cohesity_management_sdk.models.sfdc_recover_params
 import cohesity_management_sdk.models.uda_recover_params
@@ -67,6 +68,8 @@ class RestoreObject(object):
             be recovered from standby if it is enabled.
         restore_acropolis_vm_param (RestoreAcropolisVMParam): This field
             contains params specific to the restore of an Acropolis VM.
+        restore_exchange_params (RestoreExchangeParams): This field contains
+            params specific to the restore of a Exchange entities.
         restore_vapp_info (RestoreVappInfo): This field contains params
             specific to restore of VCD vApp entity.
         sfdc_recover_params (SfdcRecoverParams): This field contains params
@@ -107,6 +110,7 @@ class RestoreObject(object):
         "point_in_time_restore_time_usecs":'pointInTimeRestoreTimeUsecs',
         "recover_from_standby":'recoverFromStandby',
         "restore_acropolis_vm_param":'restoreAcropolisVmParam',
+        "restore_exchange_params":'restoreExchangeParams',
         "restore_vapp_info":'restoreVappInfo',
         "sfdc_recover_params":'sfdcRecoverParams',
         "snapshot_relative_dir_path":'snapshotRelativeDirPath',
@@ -132,6 +136,7 @@ class RestoreObject(object):
                  point_in_time_restore_time_usecs=None,
                  recover_from_standby=None,
                  restore_acropolis_vm_param=None,
+                 restore_exchange_params=None,
                  restore_vapp_info=None,
                  sfdc_recover_params=None,
                  snapshot_relative_dir_path=None,
@@ -160,6 +165,7 @@ class RestoreObject(object):
         self.point_in_time_restore_time_usecs = point_in_time_restore_time_usecs
         self.recover_from_standby = recover_from_standby
         self.restore_acropolis_vm_param = restore_acropolis_vm_param
+        self.restore_exchange_params = restore_exchange_params
         self.restore_vapp_info = restore_vapp_info
         self.sfdc_recover_params = sfdc_recover_params
         self.snapshot_relative_dir_path = snapshot_relative_dir_path
@@ -202,6 +208,7 @@ class RestoreObject(object):
         point_in_time_restore_time_usecs = dictionary.get('pointInTimeRestoreTimeUsecs')
         recover_from_standby = dictionary.get('recoverFromStandby')
         restore_acropolis_vm_param = cohesity_management_sdk.models.restore_acropolis_vm_param.RestoreAcropolisVMParam.from_dictionary(dictionary.get('restoreAcropolisVmParam')) if dictionary.get('restoreAcropolisVmParam') else None
+        restore_exchange_params = cohesity_management_sdk.models.restore_exchange_params.RestoreExchangeParams.from_dictionary(dictionary.get('restoreExchangeParams')) if dictionary.get('restoreExchangeParams') else None
         restore_vapp_info = cohesity_management_sdk.models.restore_vapp_info.RestoreVappInfo.from_dictionary(dictionary.get('restoreVappInfo')) if dictionary.get('restoreVappInfo') else None
         sfdc_recover_params = cohesity_management_sdk.models.sfdc_recover_params.SfdcRecoverParams.from_dictionary(dictionary.get('sfdcRecoverParams')) if dictionary.get('sfdcRecoverParams') else None
         snapshot_relative_dir_path = dictionary.get('snapshotRelativeDirPath')
@@ -228,6 +235,7 @@ class RestoreObject(object):
             point_in_time_restore_time_usecs,
             recover_from_standby,
             restore_acropolis_vm_param,
+            restore_exchange_params,
             restore_vapp_info,
             sfdc_recover_params,
             snapshot_relative_dir_path,

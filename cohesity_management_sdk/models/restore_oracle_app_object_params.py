@@ -66,6 +66,8 @@ class RestoreOracleAppObjectParams(object):
             here.
         skip_clone_nid (bool): Whether or not to skip the nid step in Oracle
             Clone workflow. Applicable to both smart and old clone workflow.
+        stop_active_passive (bool): Specifies whether allowed to automatically
+            stop active passive database.
         use_scn_for_restore (bool): Whether database recovery should be
             performed using the SCN value or time value. Currently this is
             applicable only during overwrite restore and clone workflow. In
@@ -93,6 +95,7 @@ class RestoreOracleAppObjectParams(object):
         "roll_forward_time_msecs":'rollForwardTimeMsecs',
         "shell_environment_vec":'shellEnvironmentVec',
         "skip_clone_nid":'skipCloneNid',
+        "stop_active_passive":'stopActivePassive',
         "use_scn_for_restore":'useScnForRestore',
     }
     def __init__(self,
@@ -113,6 +116,7 @@ class RestoreOracleAppObjectParams(object):
                  roll_forward_time_msecs=None,
                  shell_environment_vec=None,
                  skip_clone_nid=None,
+                 stop_active_passive=None,
                  use_scn_for_restore=None,
             ):
 
@@ -136,6 +140,7 @@ class RestoreOracleAppObjectParams(object):
         self.roll_forward_time_msecs = roll_forward_time_msecs
         self.shell_environment_vec = shell_environment_vec
         self.skip_clone_nid = skip_clone_nid
+        self.stop_active_passive = stop_active_passive
         self.use_scn_for_restore = use_scn_for_restore
 
     @classmethod
@@ -181,6 +186,7 @@ class RestoreOracleAppObjectParams(object):
             for structure in dictionary.get('shellEnvironmentVec'):
                 shell_environment_vec.append(cohesity_management_sdk.models.restore_oracle_app_object_params_key_value_pair.RestoreOracleAppObjectParams_KeyValuePair.from_dictionary(structure))
         skip_clone_nid = dictionary.get('skipCloneNid')
+        stop_active_passive = dictionary.get('stopActivePassive')
         use_scn_for_restore = dictionary.get('useScnForRestore')
 
         # Return an object of this model
@@ -202,5 +208,6 @@ class RestoreOracleAppObjectParams(object):
             roll_forward_time_msecs,
             shell_environment_vec,
             skip_clone_nid,
+            stop_active_passive,
             use_scn_for_restore
 )

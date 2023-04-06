@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
+import cohesity_management_sdk.models.office_365_group_info
 import cohesity_management_sdk.models.office_365_site_info
 import cohesity_management_sdk.models.office_365_team_info
 import cohesity_management_sdk.models.office_365_user_info
@@ -17,6 +18,8 @@ class Office365ProtectionSource(object):
 
         description (string): Specifies the description of the Office 365
             entity.
+        group_info (Office365GroupInfo): Specifies the information about
+            Office365 group.
         name (string): Specifies the name of the office 365 entity.
         primary_s_m_t_p_address (string): Specifies the SMTP address for the
             Outlook source.
@@ -43,6 +46,7 @@ class Office365ProtectionSource(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "description":'description',
+        "group_info":'groupInfo',
         "name":'name',
         "primary_s_m_t_p_address":'primarySMTPAddress',
         "proxy_host_source_id_list":'proxyHostSourceIdList',
@@ -55,6 +59,7 @@ class Office365ProtectionSource(object):
     }
     def __init__(self,
                  description=None,
+                 group_info=None,
                  name=None,
                  primary_s_m_t_p_address=None,
                  proxy_host_source_id_list=None,
@@ -70,6 +75,7 @@ class Office365ProtectionSource(object):
 
         # Initialize members of the class
         self.description = description
+        self.group_info = group_info
         self.name = name
         self.primary_s_m_t_p_address = primary_s_m_t_p_address
         self.proxy_host_source_id_list = proxy_host_source_id_list
@@ -99,6 +105,7 @@ class Office365ProtectionSource(object):
 
         # Extract variables from the dictionary
         description = dictionary.get('description')
+        group_info = cohesity_management_sdk.models.office_365_group_info.Office365GroupInfo.from_dictionary(dictionary.get('groupInfo')) if dictionary.get('groupInfo') else None
         name = dictionary.get('name')
         primary_s_m_t_p_address = dictionary.get('primarySMTPAddress')
         proxy_host_source_id_list = dictionary.get("proxyHostSourceIdList")
@@ -112,6 +119,7 @@ class Office365ProtectionSource(object):
         # Return an object of this model
         return cls(
             description,
+            group_info,
             name,
             primary_s_m_t_p_address,
             proxy_host_source_id_list,

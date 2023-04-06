@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
+import cohesity_management_sdk.models.advanced_settings
+
+
 class SqlBackupJobParams(object):
 
     """Implementation of the 'SqlBackupJobParams' model.
@@ -13,6 +16,9 @@ class SqlBackupJobParams(object):
         aag_backup_preference_type (int): Preference type for backing up
             databases that are part of an AAG. Only applicable if
             'use_aag_preferences_from_sql_server' is set to false.
+        advanced_settings (AdvancedSettings): This is used to regulate certain
+            gflag values from the UI. The values passed by the user from the UI
+            will be used for the respective gflags.
         backup_database_volumes_only (bool): If set to true, only the volumes
             associated with databases should be backed up. The user cannot
             select additional volumes at host level for backup.  If set to
@@ -66,6 +72,7 @@ class SqlBackupJobParams(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "aag_backup_preference_type":'aagBackupPreferenceType',
+        "advanced_settings":'advancedSettings',
         "backup_database_volumes_only":'backupDatabaseVolumesOnly',
         "backup_system_dbs":'backupSystemDbs',
         "continue_after_error":'continueAfterError',
@@ -84,6 +91,7 @@ class SqlBackupJobParams(object):
     }
     def __init__(self,
                  aag_backup_preference_type=None,
+                 advanced_settings=None,
                  backup_database_volumes_only=None,
                  backup_system_dbs=None,
                  continue_after_error=None,
@@ -105,6 +113,7 @@ class SqlBackupJobParams(object):
 
         # Initialize members of the class
         self.aag_backup_preference_type = aag_backup_preference_type
+        self.advanced_settings = advanced_settings
         self.backup_database_volumes_only = backup_database_volumes_only
         self.backup_system_dbs = backup_system_dbs
         self.continue_after_error = continue_after_error
@@ -140,6 +149,7 @@ class SqlBackupJobParams(object):
 
         # Extract variables from the dictionary
         aag_backup_preference_type = dictionary.get('aagBackupPreferenceType')
+        advanced_settings = cohesity_management_sdk.models.advanced_settings.AdvancedSettings.from_dictionary(dictionary.get('advancedSettings')) if dictionary.get('advancedSettings') else None
         backup_database_volumes_only = dictionary.get('backupDatabaseVolumesOnly')
         backup_system_dbs = dictionary.get('backupSystemDbs')
         continue_after_error = dictionary.get('continueAfterError')
@@ -159,6 +169,7 @@ class SqlBackupJobParams(object):
         # Return an object of this model
         return cls(
             aag_backup_preference_type,
+            advanced_settings,
             backup_database_volumes_only,
             backup_system_dbs,
             continue_after_error,

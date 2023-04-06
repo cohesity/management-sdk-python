@@ -14,8 +14,12 @@ class Entity(object):
 
     Attributes:
 
+        datamover_agent_version (string): Software version of the agent running
+            in the DataMover pod.
         datamover_image_location (string): Location of the datamover image
             specified by the user.
+        datamover_upgradability (int): Indicates if deployed datamover needs to
+            be upgraded for this kubernetes entity.
         description (string): This is a general description that could be set
             for some entities.
         distribution (int): K8s distribution. This will only be applicable to
@@ -44,13 +48,18 @@ class Entity(object):
             by the user.
         velero_openshift_plugin_image_location (string): Location of the Velero
             Openshift plugin image specified by the user.
+        velero_upgradability (int): Indicates if deployed Velero image needs to
+            be upgraded for this kubernetes entity.
+        velero_version (string): Velero version deployed.
         version (string): Kubernetes cluster version.
     """
 
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "datamover_agent_version":'datamoverAgentVersion',
         "datamover_image_location":'datamoverImageLocation',
+        "datamover_upgradability":'datamoverUpgradability',
         "description":'description',
         "distribution":'distribution',
         "init_container_image_location":'initContainerImageLocation',
@@ -64,10 +73,14 @@ class Entity(object):
         "velero_aws_plugin_image_location":'veleroAwsPluginImageLocation',
         "velero_image_location":'veleroImageLocation',
         "velero_openshift_plugin_image_location":'veleroOpenshiftPluginImageLocation',
+        "velero_upgradability":'veleroUpgradability',
+        "velero_version":'veleroVersion',
         "version":'version',
     }
     def __init__(self,
+                 datamover_agent_version=None,
                  datamover_image_location=None,
+                 datamover_upgradability=None,
                  description=None,
                  distribution=None,
                  init_container_image_location=None,
@@ -81,13 +94,17 @@ class Entity(object):
                  velero_aws_plugin_image_location=None,
                  velero_image_location=None,
                  velero_openshift_plugin_image_location=None,
+                 velero_upgradability=None,
+                 velero_version=None,
                  version=None,
             ):
 
         """Constructor for the Entity class"""
 
         # Initialize members of the class
+        self.datamover_agent_version = datamover_agent_version
         self.datamover_image_location = datamover_image_location
+        self.datamover_upgradability = datamover_upgradability
         self.description = description
         self.distribution = distribution
         self.init_container_image_location = init_container_image_location
@@ -101,6 +118,8 @@ class Entity(object):
         self.velero_aws_plugin_image_location = velero_aws_plugin_image_location
         self.velero_image_location = velero_image_location
         self.velero_openshift_plugin_image_location = velero_openshift_plugin_image_location
+        self.velero_upgradability = velero_upgradability
+        self.velero_version = velero_version
         self.version = version
 
     @classmethod
@@ -121,7 +140,9 @@ class Entity(object):
             return None
 
         # Extract variables from the dictionary
+        datamover_agent_version = dictionary.get('datamoverAgentVersion')
         datamover_image_location = dictionary.get('datamoverImageLocation')
+        datamover_upgradability = dictionary.get('datamoverUpgradability')
         description = dictionary.get('description')
         distribution = dictionary.get('distribution')
         init_container_image_location = dictionary.get('initContainerImageLocation')
@@ -143,11 +164,15 @@ class Entity(object):
         velero_aws_plugin_image_location = dictionary.get('veleroAwsPluginImageLocation')
         velero_image_location = dictionary.get('veleroImageLocation')
         velero_openshift_plugin_image_location = dictionary.get('veleroOpenshiftPluginImageLocation')
+        velero_upgradability = dictionary.get('veleroUpgradability')
+        velero_version = dictionary.get('veleroVersion')
         version = dictionary.get('version')
 
         # Return an object of this model
         return cls(
+            datamover_agent_version,
             datamover_image_location,
+            datamover_upgradability,
             description,
             distribution,
             init_container_image_location,
@@ -161,5 +186,7 @@ class Entity(object):
             velero_aws_plugin_image_location,
             velero_image_location,
             velero_openshift_plugin_image_location,
+            velero_upgradability,
+            velero_version,
             version
 )

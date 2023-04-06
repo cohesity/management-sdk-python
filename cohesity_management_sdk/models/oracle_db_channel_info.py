@@ -19,6 +19,9 @@ class OracleDBChannelInfo(object):
         archivelog_keep_days (int): Archived log deletion policy for this
             unique Oracle database. 1: keep archived log forever 0: delete
             archived log immediately n>0: delete archived log after n days
+        archivelog_keep_hours (int): Archived log deletion policy for Oracle
+            database. 1: if hours value is not specified 0: delete archived log
+            immediately k>0: delete archived log after k hours
         credentials (Credentials): The credentials to be used for this
             database.
         db_unique_name (string): The unique name of the database.
@@ -55,6 +58,7 @@ class OracleDBChannelInfo(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "archivelog_keep_days":'archivelogKeepDays',
+        "archivelog_keep_hours":'archivelogKeepHours',
         "credentials":'credentials',
         "db_unique_name":'dbUniqueName',
         "db_uuid":'dbUuid',
@@ -66,6 +70,7 @@ class OracleDBChannelInfo(object):
     }
     def __init__(self,
                  archivelog_keep_days=None,
+                 archivelog_keep_hours=None,
                  credentials=None,
                  db_unique_name=None,
                  db_uuid=None,
@@ -80,6 +85,7 @@ class OracleDBChannelInfo(object):
 
         # Initialize members of the class
         self.archivelog_keep_days = archivelog_keep_days
+        self.archivelog_keep_hours = archivelog_keep_hours
         self.credentials = credentials
         self.db_unique_name = db_unique_name
         self.db_uuid = db_uuid
@@ -108,6 +114,7 @@ class OracleDBChannelInfo(object):
 
         # Extract variables from the dictionary
         archivelog_keep_days = dictionary.get('archivelogKeepDays')
+        archivelog_keep_hours = dictionary.get('archivelogKeepHours')
         credentials = cohesity_management_sdk.models.credentials.Credentials.from_dictionary(dictionary.get('credentials')) if dictionary.get('credentials') else None
         db_unique_name = dictionary.get('dbUniqueName')
         db_uuid = dictionary.get('dbUuid')
@@ -124,6 +131,7 @@ class OracleDBChannelInfo(object):
         # Return an object of this model
         return cls(
             archivelog_keep_days,
+            archivelog_keep_hours,
             credentials,
             db_unique_name,
             db_uuid,

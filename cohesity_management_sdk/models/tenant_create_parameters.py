@@ -22,6 +22,8 @@ class TenantCreateParameters(object):
             network for the Cohesity cluster. Only one from 'ClusterHostname'
             and 'ClusterIps' is needed.
         description (string): Specifies the description of this tenant.
+        is_managed_on_helios (bool): Specifies whether this tenant is manged on
+            helios
         name (string): Specifies the name of the tenant.
         org_suffix (string): Specifies the organization suffix needed to
             construct tenant id. Tenant id is not completely auto generated
@@ -40,6 +42,7 @@ class TenantCreateParameters(object):
         "cluster_hostname":'clusterHostname',
         "cluster_ips":'clusterIps',
         "description":'description',
+        "is_managed_on_helios":'isManagedOnHelios',
         "name":'name',
         "org_suffix":'orgSuffix',
         "parent_tenant_id":'parentTenantId',
@@ -50,6 +53,7 @@ class TenantCreateParameters(object):
                  cluster_hostname=None,
                  cluster_ips=None,
                  description=None,
+                 is_managed_on_helios=None,
                  name=None,
                  org_suffix=None,
                  parent_tenant_id=None,
@@ -63,6 +67,7 @@ class TenantCreateParameters(object):
         self.cluster_hostname = cluster_hostname
         self.cluster_ips = cluster_ips
         self.description = description
+        self.is_managed_on_helios = is_managed_on_helios
         self.name = name
         self.org_suffix = org_suffix
         self.parent_tenant_id = parent_tenant_id
@@ -90,6 +95,7 @@ class TenantCreateParameters(object):
         cluster_hostname = dictionary.get('clusterHostname')
         cluster_ips = dictionary.get("clusterIps")
         description = dictionary.get('description')
+        is_managed_on_helios = dictionary.get('isManagedOnHelios')
         name = dictionary.get('name')
         org_suffix = dictionary.get('orgSuffix')
         parent_tenant_id = dictionary.get('parentTenantId')
@@ -101,6 +107,7 @@ class TenantCreateParameters(object):
             cluster_hostname,
             cluster_ips,
             description,
+            is_managed_on_helios,
             name,
             org_suffix,
             parent_tenant_id,

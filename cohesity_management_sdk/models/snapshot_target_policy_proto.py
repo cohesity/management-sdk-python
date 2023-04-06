@@ -18,6 +18,11 @@ class SnapshotTargetPolicyProto(object):
 
     Attributes:
 
+        backup_type (int): The backup type for which copy will be made to the
+            snapshot target. If set, the first run of given type during the
+            scheduled period will get copied.  Currently, the only value that
+            can be set here is kFull (Magneto will return an error if it is set
+            to anything else).
         copy_partially_successful_run (bool): If this is false, then only
             snapshots from the first completely successful run in the given
             time granularity will be considered for being copied. If this is
@@ -49,6 +54,7 @@ class SnapshotTargetPolicyProto(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "backup_type":'backupType',
         "copy_partially_successful_run":'copyPartiallySuccessfulRun',
         "extended_retention_policy_vec":'extendedRetentionPolicyVec',
         "granularity_bucket":'granularityBucket',
@@ -58,6 +64,7 @@ class SnapshotTargetPolicyProto(object):
         "snapshot_target":'snapshotTarget',
     }
     def __init__(self,
+                 backup_type=None,
                  copy_partially_successful_run=None,
                  extended_retention_policy_vec=None,
                  granularity_bucket=None,
@@ -70,6 +77,7 @@ class SnapshotTargetPolicyProto(object):
         """Constructor for the SnapshotTargetPolicyProto class"""
 
         # Initialize members of the class
+        self.backup_type = backup_type
         self.copy_partially_successful_run = copy_partially_successful_run
         self.extended_retention_policy_vec = extended_retention_policy_vec
         self.granularity_bucket = granularity_bucket
@@ -96,6 +104,7 @@ class SnapshotTargetPolicyProto(object):
             return None
 
         # Extract variables from the dictionary
+        backup_type = dictionary.get('backupType')
         copy_partially_successful_run = dictionary.get('copyPartiallySuccessfulRun')
         extended_retention_policy_vec = None
         if dictionary.get('extendedRetentionPolicyVec') != None:
@@ -110,6 +119,7 @@ class SnapshotTargetPolicyProto(object):
 
         # Return an object of this model
         return cls(
+            backup_type,
             copy_partially_successful_run,
             extended_retention_policy_vec,
             granularity_bucket,

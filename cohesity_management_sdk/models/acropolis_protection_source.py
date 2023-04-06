@@ -32,8 +32,9 @@ class AcropolisProtectionSource(object):
             kVirtualMachine.
         ngt_version (string): Specifies version of NGT installed on the VM.
             This is applicable to acropolis entity of type kVirtualMachine.
-        mtype (int): Specifies the type of an Acropolis Protection Source
-            Object such as 'kPrismCentral', 'kHost', 'kNetwork', etc.
+        mtype (TypeAcropolisProtectionSourceEnum): Specifies the type of an
+            Acropolis Protection Source Object such as 'kPrismCentral',
+            'kHost', 'kNetwork', etc.
         uuid (string): Specifies the UUID of the Acropolis Object. This is
             unique within the cluster instance. Together with clusterUuid, this
             entity is unique within the Acropolis environment.

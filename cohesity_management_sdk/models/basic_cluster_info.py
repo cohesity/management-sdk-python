@@ -36,9 +36,12 @@ class BasicClusterInfo(object):
             a VM on Amazon S3 using Cohesity's Cloud Edition. 'kGoogleCloud'
             indicates the Cohesity Cluster is hosted in a VM on Google Cloud
             Platform using Cohesity's Cloud Edition.
+        dodin_mode_enabled (bool): Specifies if dodin mode is enabled on the
+            cluster.
         domains (list of string): Array of Domains.  Specifies a list of
             domains joined to the Cohesity Cluster, including the default LOCAL
             Cohesity domain used to store the local Cohesity users.
+        helios_control_plane_env (string): Specifies the HeliosControlPlaneEnv.
         idp_configured (bool): Specifies Idp is configured for the Cluster.
         idp_tenant_exists (bool): Specifies Idp is configured for a Tenant.
         language_locale (string): Specifies the language and locale for the
@@ -61,7 +64,9 @@ class BasicClusterInfo(object):
         "cluster_domains":'clusterDomains',
         "cluster_software_version":'clusterSoftwareVersion',
         "cluster_type":'clusterType',
+        "dodin_mode_enabled":'dodinModeEnabled',
         "domains":'domains',
+        "helios_control_plane_env":'heliosControlPlaneEnv',
         "idp_configured":'idpConfigured',
         "idp_tenant_exists":'idpTenantExists',
         "language_locale":'languageLocale',
@@ -76,7 +81,9 @@ class BasicClusterInfo(object):
                  cluster_domains=None,
                  cluster_software_version=None,
                  cluster_type=None,
+                 dodin_mode_enabled=None,
                  domains=None,
+                 helios_control_plane_env=None,
                  idp_configured=None,
                  idp_tenant_exists=None,
                  language_locale=None,
@@ -94,7 +101,9 @@ class BasicClusterInfo(object):
         self.cluster_domains = cluster_domains
         self.cluster_software_version = cluster_software_version
         self.cluster_type = cluster_type
+        self.dodin_mode_enabled = dodin_mode_enabled
         self.domains = domains
+        self.helios_control_plane_env = helios_control_plane_env
         self.idp_configured = idp_configured
         self.idp_tenant_exists = idp_tenant_exists
         self.language_locale = language_locale
@@ -130,7 +139,9 @@ class BasicClusterInfo(object):
                 cluster_domains.append(cohesity_management_sdk.models.domain.Domain.from_dictionary(structure))
         cluster_software_version = dictionary.get('clusterSoftwareVersion')
         cluster_type = dictionary.get('clusterType')
+        dodin_mode_enabled = dictionary.get('dodinModeEnabled')
         domains = dictionary.get("domains")
+        helios_control_plane_env = dictionary.get('heliosControlPlaneEnv')
         idp_configured = dictionary.get('idpConfigured')
         idp_tenant_exists = dictionary.get('idpTenantExists')
         language_locale = dictionary.get('languageLocale')
@@ -146,7 +157,9 @@ class BasicClusterInfo(object):
             cluster_domains,
             cluster_software_version,
             cluster_type,
+            dodin_mode_enabled,
             domains,
+            helios_control_plane_env,
             idp_configured,
             idp_tenant_exists,
             language_locale,

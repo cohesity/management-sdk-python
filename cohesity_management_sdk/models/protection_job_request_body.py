@@ -164,6 +164,8 @@ class ProtectionJobRequestBody(object):
             applicable if the Protection Policy defines a monthly or a daily
             Full (no CBT) Protection Schedule. Default value is 02:00 AM.
             deprecated: true
+        ignorable_errors_in_error_db (list of int): Specifies the errors which
+            we can ignore from showing to the user.
         incremental_protection_sla_time_mins (long|int): If specified, this
             setting is number of minutes that a Job Run of a CBT-based backup
             schedule is expected to complete, which is known as a Service-Level
@@ -346,6 +348,7 @@ class ProtectionJobRequestBody(object):
         "exclude_vm_tag_ids":'excludeVmTagIds',
         "full_protection_sla_time_mins":'fullProtectionSlaTimeMins',
         "full_protection_start_time":'fullProtectionStartTime',
+        "ignorable_errors_in_error_db":'ignorableErrorsInErrorDb',
         "incremental_protection_sla_time_mins":'incrementalProtectionSlaTimeMins',
         "incremental_protection_start_time":'incrementalProtectionStartTime',
         "indexing_policy":'indexingPolicy',
@@ -399,6 +402,7 @@ class ProtectionJobRequestBody(object):
                  exclude_vm_tag_ids=None,
                  full_protection_sla_time_mins=None,
                  full_protection_start_time=None,
+                 ignorable_errors_in_error_db=None,
                  incremental_protection_sla_time_mins=None,
                  incremental_protection_start_time=None,
                  indexing_policy=None,
@@ -455,6 +459,7 @@ class ProtectionJobRequestBody(object):
         self.exclude_vm_tag_ids = exclude_vm_tag_ids
         self.full_protection_sla_time_mins = full_protection_sla_time_mins
         self.full_protection_start_time = full_protection_start_time
+        self.ignorable_errors_in_error_db = ignorable_errors_in_error_db
         self.incremental_protection_sla_time_mins = incremental_protection_sla_time_mins
         self.incremental_protection_start_time = incremental_protection_start_time
         self.indexing_policy = indexing_policy
@@ -525,6 +530,7 @@ class ProtectionJobRequestBody(object):
         exclude_vm_tag_ids = dictionary.get("excludeVmTagIds")
         full_protection_sla_time_mins = dictionary.get('fullProtectionSlaTimeMins')
         full_protection_start_time = cohesity_management_sdk.models.time_of_day.TimeOfDay.from_dictionary(dictionary.get('fullProtectionStartTime')) if dictionary.get('fullProtectionStartTime') else None
+        ignorable_errors_in_error_db = dictionary.get("ignorableErrorsInErrorDb")
         incremental_protection_sla_time_mins = dictionary.get('incrementalProtectionSlaTimeMins')
         incremental_protection_start_time = cohesity_management_sdk.models.time_of_day.TimeOfDay.from_dictionary(dictionary.get('incrementalProtectionStartTime')) if dictionary.get('incrementalProtectionStartTime') else None
         indexing_policy = cohesity_management_sdk.models.indexing_policy.IndexingPolicy.from_dictionary(dictionary.get('indexingPolicy')) if dictionary.get('indexingPolicy') else None
@@ -587,6 +593,7 @@ class ProtectionJobRequestBody(object):
             exclude_vm_tag_ids,
             full_protection_sla_time_mins,
             full_protection_start_time,
+            ignorable_errors_in_error_db,
             incremental_protection_sla_time_mins,
             incremental_protection_start_time,
             indexing_policy,

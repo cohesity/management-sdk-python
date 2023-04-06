@@ -1,31 +1,35 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
-class NewS3SecretAccessKey(object):
+class SfdcRecoverJobParams_PrevFullSfdcServerTimestampUsecsMapEntry(object):
 
-    """Implementation of the 'NewS3SecretAccessKey' model.
+    """Implementation of the 'SfdcRecoverJobParams_PrevFullSfdcServerTimestampUsecsMapEntry' model.
 
     TODO: type description here.
 
 
     Attributes:
 
-        new_key (string): Specifies the new S3 Secret Access key.
+        key (string): TODO: Type description here.
+        value (long|int): TODO: Type description here.
     """
 
 
     # Create a mapping from Model property names to API property names
     _names = {
-        "new_key":'newKey',
+        "key":'key',
+        "value":'value',
     }
     def __init__(self,
-                 new_key=None,
+                 key=None,
+                 value=None,
             ):
 
-        """Constructor for the NewS3SecretAccessKey class"""
+        """Constructor for the SfdcRecoverJobParams_PrevFullSfdcServerTimestampUsecsMapEntry class"""
 
         # Initialize members of the class
-        self.new_key = new_key
+        self.key = key
+        self.value = value
 
     @classmethod
     def from_dictionary(cls,
@@ -45,9 +49,11 @@ class NewS3SecretAccessKey(object):
             return None
 
         # Extract variables from the dictionary
-        new_key = dictionary.get('newKey')
+        key = dictionary.get('key')
+        value = dictionary.get('value')
 
         # Return an object of this model
         return cls(
-            new_key
+            key,
+            value
 )

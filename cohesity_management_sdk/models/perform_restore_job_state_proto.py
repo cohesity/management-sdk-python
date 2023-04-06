@@ -2,6 +2,7 @@
 # Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.connector_params
+import cohesity_management_sdk.models.data_transfer_info
 import cohesity_management_sdk.models.deploy_vms_to_cloud_task_state_proto
 import cohesity_management_sdk.models.entity_proto
 import cohesity_management_sdk.models.error_proto
@@ -48,6 +49,9 @@ class PerformRestoreJobStateProto(object):
             cancellation request.
         continue_restore_on_error (bool): Whether to continue with the restore
             operation if restore of any object fails.
+        data_transfer_info (DataTransferInfo): Will contain the details of
+            network used in transferring the data from source account to
+            Cohesity cluster.
         deploy_vms_to_cloud_task_state (DeployVMsToCloudTaskStateProto): This
             contains information regarding deploy vm to cloud task state. This
             is set for restore type kConvertAndDeployVMs and kDeployVms.
@@ -55,6 +59,10 @@ class PerformRestoreJobStateProto(object):
             contains the end time for the job.
         error (ErrorProto): The error encountered by job (if any). Only valid
             if the job has finished.
+        leverage_san_transport (bool): This is set to true by the user in order
+            to restore the objects via SAN transport, as opposed to NBDSSL
+            transport. NOTE: Not all adapters support this method. Currently
+            only VMware.
         name (string): The name of the restore job.
         nosql_connect_params (NoSqlConnectParams): Parameters to connect to
             destination nosql parent entity.
@@ -168,9 +176,11 @@ class PerformRestoreJobStateProto(object):
         "admitted_time_usecs":'admittedTimeUsecs',
         "cancellation_requested":'cancellationRequested',
         "continue_restore_on_error":'continueRestoreOnError',
+        "data_transfer_info":'dataTransferInfo',
         "deploy_vms_to_cloud_task_state":'deployVmsToCloudTaskState',
         "end_time_usecs":'endTimeUsecs',
         "error":'error',
+        "leverage_san_transport":'leverageSanTransport',
         "name":'name',
         "nosql_connect_params":'nosqlConnectParams',
         "nosql_recover_job_params":'nosqlRecoverJobParams',
@@ -214,9 +224,11 @@ class PerformRestoreJobStateProto(object):
                  admitted_time_usecs=None,
                  cancellation_requested=None,
                  continue_restore_on_error=None,
+                 data_transfer_info=None,
                  deploy_vms_to_cloud_task_state=None,
                  end_time_usecs=None,
                  error=None,
+                 leverage_san_transport=None,
                  name=None,
                  nosql_connect_params=None,
                  nosql_recover_job_params=None,
@@ -263,9 +275,11 @@ class PerformRestoreJobStateProto(object):
         self.admitted_time_usecs = admitted_time_usecs
         self.cancellation_requested = cancellation_requested
         self.continue_restore_on_error = continue_restore_on_error
+        self.data_transfer_info = data_transfer_info
         self.deploy_vms_to_cloud_task_state = deploy_vms_to_cloud_task_state
         self.end_time_usecs = end_time_usecs
         self.error = error
+        self.leverage_san_transport = leverage_san_transport
         self.name = name
         self.nosql_connect_params = nosql_connect_params
         self.nosql_recover_job_params = nosql_recover_job_params
@@ -326,9 +340,11 @@ class PerformRestoreJobStateProto(object):
         admitted_time_usecs = dictionary.get('admittedTimeUsecs')
         cancellation_requested = dictionary.get('cancellationRequested')
         continue_restore_on_error = dictionary.get('continueRestoreOnError')
+        data_transfer_info = cohesity_management_sdk.models.data_transfer_info.DataTransferInfo.from_dictionary(dictionary.get('dataTransferInfo')) if dictionary.get('dataTransferInfo') else None
         deploy_vms_to_cloud_task_state = cohesity_management_sdk.models.deploy_vms_to_cloud_task_state_proto.DeployVMsToCloudTaskStateProto.from_dictionary(dictionary.get('deployVmsToCloudTaskState')) if dictionary.get('deployVmsToCloudTaskState') else None
         end_time_usecs = dictionary.get('endTimeUsecs')
         error = cohesity_management_sdk.models.error_proto.ErrorProto.from_dictionary(dictionary.get('error')) if dictionary.get('error') else None
+        leverage_san_transport = dictionary.get('leverageSanTransport')
         name = dictionary.get('name')
         nosql_connect_params = cohesity_management_sdk.models.no_sql_connect_params.NoSqlConnectParams.from_dictionary(dictionary.get('nosqlConnectParams')) if dictionary.get('nosqlConnectParams') else None
         nosql_recover_job_params = cohesity_management_sdk.models.no_sql_recover_job_params.NoSqlRecoverJobParams.from_dictionary(dictionary.get('nosqlRecoverJobParams')) if dictionary.get('nosqlRecoverJobParams') else None
@@ -385,9 +401,11 @@ class PerformRestoreJobStateProto(object):
             admitted_time_usecs,
             cancellation_requested,
             continue_restore_on_error,
+            data_transfer_info,
             deploy_vms_to_cloud_task_state,
             end_time_usecs,
             error,
+            leverage_san_transport,
             name,
             nosql_connect_params,
             nosql_recover_job_params,

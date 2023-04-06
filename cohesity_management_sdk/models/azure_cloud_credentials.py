@@ -11,6 +11,9 @@ class AzureCloudCredentials(object):
 
     Attributes:
 
+        client_id (string): Specifies the client id of the managed identity
+            assigned to the cluster. This is used only for clusters running as
+            Azure VMs where authentication is done using AD.
         is_worm_enabled (bool): Specifies if write once read many (WORM)
             protection is enabled for the Azure container or not.
         storage_access_key (string): Specifies the access key to use when
@@ -32,6 +35,7 @@ class AzureCloudCredentials(object):
 
     # Create a mapping from Model property names to API property names
     _names = {
+        "client_id":'clientId',
         "is_worm_enabled":'isWormEnabled',
         "storage_access_key":'storageAccessKey',
         "storage_account_name":'storageAccountName',
@@ -39,6 +43,7 @@ class AzureCloudCredentials(object):
         "tiers":'tiers',
     }
     def __init__(self,
+                 client_id=None,
                  is_worm_enabled=None,
                  storage_access_key=None,
                  storage_account_name=None,
@@ -49,6 +54,7 @@ class AzureCloudCredentials(object):
         """Constructor for the AzureCloudCredentials class"""
 
         # Initialize members of the class
+        self.client_id = client_id
         self.is_worm_enabled = is_worm_enabled
         self.storage_access_key = storage_access_key
         self.storage_account_name = storage_account_name
@@ -73,6 +79,7 @@ class AzureCloudCredentials(object):
             return None
 
         # Extract variables from the dictionary
+        client_id = dictionary.get('clientId')
         is_worm_enabled = dictionary.get('isWormEnabled')
         storage_access_key = dictionary.get('storageAccessKey')
         storage_account_name = dictionary.get('storageAccountName')
@@ -81,6 +88,7 @@ class AzureCloudCredentials(object):
 
         # Return an object of this model
         return cls(
+            client_id,
             is_worm_enabled,
             storage_access_key,
             storage_account_name,

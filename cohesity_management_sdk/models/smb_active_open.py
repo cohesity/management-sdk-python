@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 # Copyright 2023 Cohesity Inc.
 
+import cohesity_management_sdk.models.smb_lease_info
+
+
 class SmbActiveOpen(object):
 
     """Implementation of the 'SmbActiveOpen' model.
@@ -49,6 +52,8 @@ class SmbActiveOpen(object):
             kReadControl. 'kGenericRead' indicates a request for the following
             combination of access flags listed above: kFileReadData|
             kFileReadAttributes| kFileReadEa| kSynchronize| kReadControl.
+        lease_info (SmbLeaseInfo): Specifies the SMB lease info of the open
+            item.
         open_id (long|int): Specifies the id of the active open.
         others_can_delete (bool): Specifies whether others are allowed to
             delete.
@@ -60,6 +65,7 @@ class SmbActiveOpen(object):
     # Create a mapping from Model property names to API property names
     _names = {
         "access_info_list":'accessInfoList',
+        "lease_info":'leaseInfo',
         "open_id":'openId',
         "others_can_delete":'othersCanDelete',
         "others_can_read":'othersCanRead',
@@ -67,6 +73,7 @@ class SmbActiveOpen(object):
     }
     def __init__(self,
                  access_info_list=None,
+                 lease_info=None,
                  open_id=None,
                  others_can_delete=None,
                  others_can_read=None,
@@ -77,6 +84,7 @@ class SmbActiveOpen(object):
 
         # Initialize members of the class
         self.access_info_list = access_info_list
+        self.lease_info = lease_info
         self.open_id = open_id
         self.others_can_delete = others_can_delete
         self.others_can_read = others_can_read
@@ -101,6 +109,7 @@ class SmbActiveOpen(object):
 
         # Extract variables from the dictionary
         access_info_list = dictionary.get("accessInfoList")
+        lease_info = cohesity_management_sdk.models.smb_lease_info.SmbLeaseInfo.from_dictionary(dictionary.get('leaseInfo')) if dictionary.get('leaseInfo') else None
         open_id = dictionary.get('openId')
         others_can_delete = dictionary.get('othersCanDelete')
         others_can_read = dictionary.get('othersCanRead')
@@ -109,6 +118,7 @@ class SmbActiveOpen(object):
         # Return an object of this model
         return cls(
             access_info_list,
+            lease_info,
             open_id,
             others_can_delete,
             others_can_read,

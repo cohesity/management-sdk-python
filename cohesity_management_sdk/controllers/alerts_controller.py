@@ -665,6 +665,7 @@ class AlertsController(BaseController):
 
     def get_alerts(self,
                    max_alerts,
+                   alert_name=None,
                    alert_id_list=None,
                    alert_type_list=None,
                    alert_category_list=None,
@@ -693,6 +694,8 @@ class AlertsController(BaseController):
         Args:
             max_alerts (int): Specifies the number of returned Alerts to be
                 returned. The newest Alerts are returned.
+            alert_name (string, optional): Specifies Alert name to filter
+                alerts by.
             alert_id_list (list of string, optional): Specifies list of Alert
                 ids to filter alerts by.
             alert_type_list (list of int, optional): Specifies list of Alert
@@ -746,6 +749,7 @@ class AlertsController(BaseController):
             _query_builder += _url_path
             _query_parameters = {
                 'maxAlerts': max_alerts,
+                'alertName': alert_name,
                 'alertIdList': alert_id_list,
                 'alertTypeList': alert_type_list,
                 'alertCategoryList': alert_category_list,
