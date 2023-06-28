@@ -23,7 +23,7 @@ setup(
     url='https://github.com/cohesity/management-sdk-python',
     packages=find_packages(),
     install_requires=[
-        'requests>=2.9.1, <3.0',
+        'requests>=2.31.0, <3.0',
         'cachecontrol>=0.11.7, <1.0',
         'python-dateutil>=2.5.3, <3.0'
     ]
