@@ -1435,18 +1435,7 @@ def create_protection_jobs():
                         protocol = node["protectionSource"]["isilonProtectionSource"][
                             "mountPoint"
                         ]["protocols"]
-                        if "kNfs" in protocol:
-                            source_list.append(node["protectionSource"]["id"])
-                        else:
-                            # flag set to skip protection job creation which contains
-                            # objects with SMB protocol.
-                            to_proceed = False
-                            ERROR_LIST.append(
-                                "Protection job '%s' contain objects %s of "
-                                "following protocol %s. Supported protocol is kNfs."
-                                % (job_name, name, ", ".join(protocol))
-                            )
-                            break
+                        source_list.append(node["protectionSource"]["id"])
                 elif environment == KCASSANDRA:
                     uuid = node["protectionSource"]["cassandraProtectionSource"].get(
                         "uuid"
@@ -1835,10 +1824,20 @@ def add_active_directory():
             domain_name = domain.domain_name
             if not configparser.has_section(domain_name):
                 ERROR_LIST.append(
-                    "Please update credentials for active directory '%s'" % domain_name
+                    "Please provide credentials for active directory '%s'" % domain_name
                 )
                 continue
             if domain_name not in existing_ad_list:
+                if not configparser[domain_name].get("username"):
+                    ERROR_LIST.append(
+                        "Please provide username for active directory '%s'" % domain_name
+                    )
+                    continue
+                if not configparser[domain_name].get("password"):
+                    ERROR_LIST.append(
+                        "Please provide password for active directory '%s'" % domain_name
+                    )
+                    continue
                 domain.user_name = configparser[domain_name]["username"]
                 domain.password = configparser[domain_name]["password"]
                 if configparser[domain_name].get("machine_accounts", None):
@@ -1853,6 +1852,8 @@ def add_active_directory():
                 "Error while adding active directory '%s', err msg %s"
                 % (domain_name, err)
             )
+    # Sleep for 10 seconds.
+    time.sleep(10)
 
 
 def create_roles():
@@ -1927,6 +1928,7 @@ def create_ad_objects():
             try:
                 if user.username not in existing_users:
                     cohesity_client.principals.create_user(user)
+                imported_res_dict["AD Users"].append(user.username)
             except APIException as err:
                 ERROR_LIST.append(
                     "Error while creating AD user '%s', err msg %s"
@@ -1936,6 +1938,7 @@ def create_ad_objects():
             try:
                 if group.name not in existing_groups:
                     cohesity_client.groups.create_group(group)
+                imported_res_dict["AD Groups"].append(group.name)
             except APIException as err:
                 ERROR_LIST.append(
                     "Error while creating AD group '%s', err msg %s" % (group.name, err)

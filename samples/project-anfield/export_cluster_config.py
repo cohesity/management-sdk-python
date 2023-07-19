@@ -172,7 +172,9 @@ cluster_dict = {
 # Export Active directory entries and AD users and groups along with roles.
 if export_access_mgmnt:
     cluster_dict["ad"] = library.get_ad_entries(cohesity_client)
-    cluster_dict["ad_objects"] = library.get_ad_objects(cohesity_client)
+    domains = [ad.domain_name for ad in cluster_dict["ad"]]
+    cluster_dict["ad_objects"] = library.get_ad_objects(
+        cohesity_client, domains)
     cluster_dict["roles"] = cohesity_client.roles.get_roles()
 
 exported_res = library.debug()
