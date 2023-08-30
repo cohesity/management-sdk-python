@@ -510,7 +510,7 @@ def create_sources(source, environment, node):
                     nas_enum.KNFS3:
                 exported_creds = registration_info.nas_mount_credentials
                 password = configparser.get(section, "smb_password")
-                mount_creds = NasMountCredentialParams()
+                mount_creds = exported_creds
                 mount_creds.password = password
                 mount_creds.username = exported_creds.username
                 mount_creds.domain = exported_creds.domain
