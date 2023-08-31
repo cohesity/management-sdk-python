@@ -54,9 +54,10 @@ class SnapshotCloudCopyPolicy(object):
             determine the copy schedule. For example if set to 2 and the
             periodicity is hourly, then Snapshots from the first eligible Job
             Run for every 2 hour period is copied.
-        periodicity (PeriodicityEnum): Specifies the frequency that Snapshots
-            should be copied to the specified target. Used in combination with
-            multiplier. 'kEvery' means that the Snapshot copy occurs after the
+        periodicity (PeriodicitySnapshotCloudCopyPolicyEnum): Specifies the
+            frequency that Snapshots should be copied to the specified target.
+            Used in combination with multiplier.
+            'kEvery' means that the Snapshot copy occurs after the
             number of Job Runs equals the number specified in the multiplier.
             'kHour' means that the Snapshot copy occurs hourly at the frequency
             set in the multiplier, for example if multiplier is 2, the copy
