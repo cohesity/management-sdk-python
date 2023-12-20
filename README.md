@@ -169,4 +169,4 @@ Check out the scripts included under [`samples`](./samples) for reference.
 
 ## <a name ="suggest"></a> Questions or Feedback :raised_hand:
 
-We would love to hear from you. Please send your questions and feedback to: *cohesity-api-sdks@cohesity.com*
+We would love to hear from you. Please send your questions and feedback via Cohesity support portal: *https://www.cohesity.com/support/*
