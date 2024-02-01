@@ -18,10 +18,11 @@ from cohesity_management_sdk.exceptions.api_exception import APIException
 from cohesity_management_sdk.models.protocol_access_enum import ProtocolAccessEnum
 from cohesity_management_sdk.models.view import View
 
-CLUSTER_USERNAME = 'cluster_username'
-CLUSTER_PASSWORD = 'cluster_password'
-CLUSTER_VIP = 'prod-cluster.cohesity.com'
-DOMAIN = 'LOCAL'
+CLUSTER_USERNAME = "cluster_username"
+CLUSTER_PASSWORD = "cluster_password"
+CLUSTER_VIP = "prod-cluster.cohesity.com"
+DOMAIN = "LOCAL"
+
 
 class CloneView(object):
     """
@@ -41,7 +42,7 @@ class CloneView(object):
         """
         json_req = {"cloneViewName": clone_name, "sourceViewName": view_name}
         resp = self.view_client.create_clone_view(body=json_req)
-        print ("Cloned view:")
+        print("Cloned view:")
         cloned_view = jsonpickle.encode(resp)
         pprint.pprint(json.loads(cloned_view))
         return cloned_view
@@ -58,28 +59,34 @@ class CloneView(object):
         req_json = View()
         req_json.description = description
         req_json.protocol_access = protocol_access
-        resp = self.view_client.update_view_by_name(body=req_json,
-                                                    name=view_name)
+        resp = self.view_client.update_view_by_name(body=req_json, name=view_name)
         updated_view = json.loads(jsonpickle.encode(resp))
 
         # Verify the fields updated
-        assert updated_view['protocol_access']== protocol_access, "View not updated"
-        assert updated_view['description'] == description, "View not updated"
-        print ("Updated view:")
+        assert updated_view["protocol_access"] == protocol_access, "View not updated"
+        assert updated_view["description"] == description, "View not updated"
+        print("Updated view:")
         pprint.pprint(updated_view)
 
-def main(args):
 
-    cohesity_client = CohesityClient(cluster_vip=CLUSTER_VIP,
-                                     username=CLUSTER_USERNAME,
-                                     password=CLUSTER_PASSWORD,
-				                     domain=DOMAIN)
+def main(args):
+    cohesity_client = CohesityClient(
+        cluster_vip=CLUSTER_VIP,
+        username=CLUSTER_USERNAME,
+        password=CLUSTER_PASSWORD,
+        domain=DOMAIN,
+    )
     view_name = args.view_name
     clone_name = args.clone_name
 
     if args.clone_name is None:
-        clone_name = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(5))+ \
-                     '_cloned_view_' + args.view_name
+        clone_name = (
+            "".join(
+                random.choice(string.ascii_letters + string.digits) for _ in range(5)
+            )
+            + "_cloned_view_"
+            + args.view_name
+        )
 
     # Clone a view with name.
     try:
@@ -87,13 +94,16 @@ def main(args):
         cloneview.clone_existing_view(view_name, clone_name)
 
         # Update the cloned view.
-        cloneview.update_view(view_name=clone_name,
-                              protocol_access=ProtocolAccessEnum.KNFSONLY,
-                              description="View to restrict access to s3 only.")
+        cloneview.update_view(
+            view_name=clone_name,
+            protocol_access=ProtocolAccessEnum.KNFSONLY,
+            description="View to restrict access to s3 only.",
+        )
     except APIException as e:
-        print ("Error : %s" % e.context.response.raw_body)
+        print("Error : %s" % e.context.response.raw_body)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--view_name", help="Name of the View to clone.", required=True)
     parser.add_argument("--clone_name", help="Clone view name.", required=False)
