@@ -1,0 +1,4 @@
+jsonpickle==3.0.2
+cohesity_management_sdk==1.10.1
+# This is part of Python in-built library for Python 3+.
+configparser=3.7.4

@@ -2,6 +2,7 @@
 #
 #Usage: python create_nas_from_backup.py --job_name NAS-Protect-hitachi-nas --cohesity_nfs_name cohesity_nas
 
+import os
 from cohesity_management_sdk.cohesity_client import CohesityClient
 from cohesity_management_sdk.exceptions.api_exception import APIException
 from cohesity_management_sdk.models.environment_enum import EnvironmentEnum
@@ -15,8 +16,9 @@ import argparse
 import configparser
 
 
-configparser = configparser.ConfigParser()
-configparser.read('config.ini')
+# Get the config file directory location using current file path.
+config_file = os.path.join(os.path.dirname(os.path.realpath(__file__)), "config.ini")
+configparser.read(config_file)
 
 cohesity_client = CohesityClient(cluster_vip=configparser.get('cohesity', 'cluster_vip'),
                                  username=configparser.get('cohesity', 'username'),
@@ -61,7 +63,7 @@ def main(args):
 
     except APIException as ex:
         SystemExit("Unable to create Cohesity NFS share. Error: %s" %
-                   ex.message)
+                   ex)
     print("Successfully created NFS share %s on Cohesity." %
           args.cohesity_nfs_name)
 

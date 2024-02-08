@@ -12,25 +12,29 @@
 from cohesity_management_sdk.cohesity_client import CohesityClient
 from cohesity_management_sdk.exceptions.api_exception import APIException
 from cohesity_management_sdk.models.environment_enum import EnvironmentEnum
-from cohesity_management_sdk.models.upgrade_physical_server_agents import \
-    UpgradePhysicalServerAgents
+from cohesity_management_sdk.models.upgrade_physical_server_agents import (
+    UpgradePhysicalServerAgents,
+)
+
+CLUSTER_USERNAME = "admin"
+CLUSTER_PASSWORD = "Cohe$1ty"
+CLUSTER_VIP = "10.14.55.217"
+DOMAIN = "LOCAL"
 
 try:
-    cohesity_client = CohesityClient(cluster_vip=CLUSTER_VIP,
-                                     username=CLUSTER_USERNAME,
-                                     password=CLUSTER_PASSWORD,
-                                     domain=CLUSTER_DOMAIN)
+    cohesity_client = CohesityClient(
+        cluster_vip=CLUSTER_VIP,
+        username=CLUSTER_USERNAME,
+        password=CLUSTER_PASSWORD,
+        domain=DOMAIN,
+    )
 except APIException as ex:
-    print("Unable to initialze the client due to : %s " % ex.context)
+    print("Unable to initialze the client due to : %s " % ex)
     SystemExit
-    
-CLUSTER_USERNAME = 'cluster_username'
-CLUSTER_PASSWORD = 'cluster_password'
-CLUSTER_VIP = 'prod-cluster.cohesity.com'
-DOMAIN = 'LOCAL'
 
 
 AGENT_PARALLEL_UPGRADES = 10
+
 
 def get_tenants():
     """
@@ -48,24 +52,26 @@ def get_tenants():
         print("Adding Tenant: %s" % tenant.name)
     return tenant_list
 
+
 def _get_agents(tenant=None, agent_dict=None):
     try:
         resp_agents = cohesity_client.protection_sources.list_protection_sources(
-                              tenant_ids=tenant,
-                              environments=EnvironmentEnum.KPHYSICAL)
+            tenant_ids=tenant, environments=EnvironmentEnum.KPHYSICAL
+        )
 
     except APIException as ex:
-        raise SystemExit("Unable to get agent list: %s" %
-                         ex.context.response.raw_body)
+        raise SystemExit("Unable to get agent list: %s" % ex.context.response.raw_body)
     if len(resp_agents) == 0:
         return
     node_list = resp_agents[0].nodes
     for agent in node_list:
-        agent_src = agent['protectionSource']['physicalProtectionSource']['agents'][0]
-        agent_dict[agent_src[ 'id']] = {
-            'upgradability':agent_src['upgradability'],
-            'name': agent['protectionSource']['physicalProtectionSource']['name'],
-            'status':agent_src['status']}
+        agent_src = agent["protectionSource"]["physicalProtectionSource"]["agents"][0]
+        agent_dict[agent_src["id"]] = {
+            "upgradability": agent_src["upgradability"],
+            "name": agent["protectionSource"]["physicalProtectionSource"]["name"],
+            "status": agent_src["status"],
+        }
+
 
 def get_agents(tenant_list):
     """
@@ -83,19 +89,19 @@ def get_agents(tenant_list):
     _get_agents(agent_dict=agent_dict)
     return agent_dict
 
+
 def _upgrade_agents(temp_upgrade_list):
     body = UpgradePhysicalServerAgents()
     body.agent_ids = temp_upgrade_list
     try:
-        result = cohesity_client.protection_sources \
-            .create_upgrade_physical_agents(body)
+        result = cohesity_client.protection_sources.create_upgrade_physical_agents(body)
         if result.message == "Upgrading physical agents started.":
             return True
     except APIException as ex:
-        print("Unable to get agent list: %s" %
-              ex.context.response.raw_body)
+        print("Unable to get agent list: %s" % ex.context.response.raw_body)
         print("Continuing the operation")
     return False
+
 
 def upgrade_agents(agent_dict):
     """
@@ -107,15 +113,17 @@ def upgrade_agents(agent_dict):
     temp_agent_names = []
     pagination = 0
 
-    for agent_id, agent in agent_dict.iteritems():
-        if agent['upgradability'] == 'kUpgradable':
+    for agent_id, agent in agent_dict.items():
+        if agent["upgradability"] == "kUpgradable":
             temp_upgrade_list.append(agent_id)
-            temp_agent_names.append(agent['name'])
+            temp_agent_names.append(agent["name"])
             pagination += 1
-            print("Adding agent: %s to upgrade list"% agent['name'] )
+            print("Adding agent: %s to upgrade list" % agent["name"])
         else:
-            print("Excluding Agent from upgrade list: %s because upgradability "
-                  "state is : %s " % (agent['name'], agent['upgradability']))
+            print(
+                "Excluding Agent from upgrade list: %s because upgradability "
+                "state is : %s " % (agent["name"], agent["upgradability"])
+            )
         if pagination >= AGENT_PARALLEL_UPGRADES:
             print("Upgrading agents: %s" % temp_agent_names)
             result = _upgrade_agents(temp_upgrade_list)
@@ -130,12 +138,13 @@ def upgrade_agents(agent_dict):
         if result:
             print("Agents upgraded %s" % temp_agent_names)
 
-def main():
 
+def main():
     tenant_list = get_tenants()
     print("Tenant list: %s\n" % tenant_list)
     agent_dict = get_agents(tenant_list)
     upgrade_agents(agent_dict)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()
