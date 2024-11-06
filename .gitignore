@@ -9,3 +9,7 @@ dist
 cohesity_management_sdk.egg-info
 setup.cfg
 *.pyc
+.venv/
+Notas Fabs/
+PromptEngineering/
+.DS_Store
