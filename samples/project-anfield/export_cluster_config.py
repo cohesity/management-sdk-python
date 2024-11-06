@@ -50,8 +50,6 @@ else:
 
 from configparser import NoSectionError, NoOptionError, MissingSectionHeaderError
 
-logger = logging.getLogger("export_app")
-
 # Fetch command line arguments.
 parser = argparse.ArgumentParser(
     description="Please provide export file location and filename"
@@ -80,6 +78,16 @@ parser.add_argument(
     default="config.ini",
     action="store",
     help="Config file to export the resources.",
+)
+parser.add_argument(
+    '--verbose', '-v',
+    action='store_true',
+    help='Enable verbose logging to console. By default log file is doing verbose logging. This one should be used only if live console verbosity is desired.'
+)
+parser.add_argument(
+    '--log_file',
+    default='export_script.log',
+    help='File to write logs to.'
 )
 
 args = parser.parse_args()
@@ -128,55 +136,151 @@ except Exception as err:
     print("Authentication error occurred, error details: %s" % err)
     sys.exit(1)
 
-logger.setLevel(logging.INFO)
+logger = logging.getLogger("export_app")
+logger.setLevel(logging.DEBUG)  # Capture all levels
 
+# Console logging handler
+console_handler = logging.StreamHandler()
+console_handler.setLevel(logging.DEBUG if args.verbose else logging.INFO)
+logger.propagate = False
+
+# File logging handler
+file_handler = logging.FileHandler(args.log_file, mode='w')  # Ensure 'write' mode
+file_handler.setLevel(logging.DEBUG)
+
+# Defining logging formatter
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+console_handler.setFormatter(formatter)
+file_handler.setFormatter(formatter)
+
+# Clear all existing handlers before adding new ones
+if logger.hasHandlers():
+    logger.handlers.clear()
+
+# Clear existing handlers to avoid duplication
+if not logger.handlers:
+    logger.addHandler(console_handler)
+    logger.addHandler(file_handler)
+
+
+# Starting the export process
 logger.info(
-    "Exporting resources from cluster '%s'",
+    "Starting export process for cluster: '%s'",
     (configparser.get("export_cluster_config", "cluster_ip")),
 )
 
 try:
     # Skip paused jobs and failover ready jobs by setting this flag to true
     # in config file.
+    logger.info("Preparing boolean value to determine if jobs must be skipped.")
     skip_jobs = configparser.getboolean("export_cluster_config", "skip_jobs")
+    logger.debug("skip_jobs value: %s", skip_jobs)
+
+    logger.info("Preparing boolean value to determine if access management should be exported.")
     export_access_mgmnt = configparser.getboolean(
         "export_cluster_config", "export_access_management"
     )
+    logger.debug("skip_jobs value: %s", export_access_mgmnt)
 except (NoSectionError, NoOptionError) as err:
-    print("Error while fetching '%s' content, error msg %s" % (config_file, err))
+    logger.info("Error while fetching '%s' content, error msg: %s" % (config_file, err))
 
-cluster_dict = {
-    "cluster_config": library.get_cluster_config(cohesity_client),
-    "views": library.get_views(cohesity_client),
-    "storage_domains": library.get_storage_domains(cohesity_client),
-    "policies": library.get_protection_policies(cohesity_client),
-    "protection_jobs": library.get_protection_jobs(cohesity_client, skip_jobs),
-    "protection_sources": library.list_protection_sources(cohesity_client),
-    "external_targets": library.get_external_targets(cohesity_client),
-    "sources": library.get_protection_sources(cohesity_client),
-    "remote_clusters": library.get_remote_clusters(cohesity_client),
-    "sql_entity_mapping": library.get_sql_entity_mapping(
+logger.info("Calling library function to pull cluster configuration info.")
+cluster_config_info = library.get_cluster_config(cohesity_client)
+
+logger.info("Calling library function to pull views info.")
+views_info = library.get_views(cohesity_client)
+
+logger.info("Calling library function to pull storage domains info.")
+storage_domains_info = library.get_storage_domains(cohesity_client)
+
+logger.info("Calling library function to pull policies info.")
+policies_info = library.get_protection_policies(cohesity_client)
+
+logger.info("Calling library function to pull protection jobs info.")
+protection_jobs_info = library.get_protection_jobs(cohesity_client, skip_jobs)
+
+logger.info("Calling library function to pull protection sources info.")
+protection_sources_info = library.list_protection_sources(cohesity_client)
+
+logger.info("Calling library function to pull external targets info.")
+external_targets_info = library.get_external_targets(cohesity_client)
+
+logger.info("Calling library function to pull sources info.")
+sources_info = library.get_protection_sources(cohesity_client)
+
+logger.info("Calling library function to pull remote clusters info.")
+remote_clusters_info = library.get_remote_clusters(cohesity_client)
+
+logger.info("Calling library function to pull SQL entity mappings info.")
+sql_entity_mapping_info = library.get_sql_entity_mapping(
         cohesity_client, env_enum.KSQL
-    ),
-    "ad_entity_mapping": library.get_ad_entity_mapping(cohesity_client, env_enum.KAD),
-    "oracle_entity_mapping": library.get_ad_entity_mapping(
+    )
+
+logger.info("Calling library function to pull AD entity mappings info.")
+ad_entity_mapping_info = library.get_ad_entity_mapping(cohesity_client, env_enum.KAD)
+
+logger.info("Calling library function to pull Oracle entity mappings info.")
+oracle_entity_mapping_info = library.get_ad_entity_mapping(
         cohesity_client, env_enum.KORACLE
-    ),
-    "whitelist_settings": library.get_whitelist_settings(cohesity_client, rest_obj),
-    "vlans": library.get_vlans(cohesity_client),
-    "iface_groups": library.get_interface_groups(cohesity_client),
-    "routes": library.get_routes(cohesity_client),
-    "host_mappings": library.get_host_mapping(cohesity_client),
+    )
+
+logger.info("Calling library function to pull whitelist info.")
+whitelist_settings_info = library.get_whitelist_settings(cohesity_client, rest_obj)
+
+logger.info("Calling library function to pull VLANs settings info.")
+vlans_info = library.get_vlans(cohesity_client)
+
+logger.info("Calling library function to pull Interface Group info.")
+iface_groups_info = library.get_interface_groups(cohesity_client)
+
+logger.info("Calling library function to pull routes info.")
+routes_info = library.get_routes(cohesity_client)
+
+logger.info("Calling library function to pull host mappings info.")
+host_mappings_info = library.get_host_mapping(cohesity_client)
+
+# Export Active directory entries and AD users and groups along with roles.
+if export_access_mgmnt:
+    logger.info("Access management boolean is set to TRUE, exporting corresponding settings.")
+    logger.debug("Calling library function to pull AD info.")
+    logger.debug("Iterating every AD configuration to get a list of domains.")
+    ad_info = library.get_ad_entries(cohesity_client)
+    domains = [ad.domain_name for ad in ad_info]
+    logger.debug("Domains found: %s.", domains)
+    logger.info("Calling library function to pull AD Objects info.")
+    ad_objects_info = library.get_ad_objects(
+        cohesity_client, domains)
+    logger.info("Calling library function to pull roles info.")
+    roles_info = cohesity_client.roles.get_roles()
+
+logger.info("Adding all information collected into a cluster dictionary object.")
+cluster_dict = {
+    "cluster_config": cluster_config_info,
+    "views": views_info,
+    "storage_domains": storage_domains_info,
+    "policies": policies_info,
+    "protection_jobs": protection_jobs_info,
+    "protection_sources": protection_sources_info,
+    "external_targets": external_targets_info,
+    "sources": sources_info,
+    "remote_clusters": remote_clusters_info,
+    "sql_entity_mapping": sql_entity_mapping_info,
+    "ad_entity_mapping": ad_entity_mapping_info,
+    "oracle_entity_mapping": oracle_entity_mapping_info,
+    "whitelist_settings": whitelist_settings_info,
+    "vlans": vlans_info,
+    "iface_groups": iface_groups_info,
+    "routes": routes_info,
+    "host_mappings": host_mappings_info,
 }
 
 # Export Active directory entries and AD users and groups along with roles.
 if export_access_mgmnt:
-    cluster_dict["ad"] = library.get_ad_entries(cohesity_client)
-    domains = [ad.domain_name for ad in cluster_dict["ad"]]
-    cluster_dict["ad_objects"] = library.get_ad_objects(
-        cohesity_client, domains)
-    cluster_dict["roles"] = cohesity_client.roles.get_roles()
+    cluster_dict["ad"] = ad_info
+    cluster_dict["ad_objects"] = ad_objects_info
+    cluster_dict["roles"] = roles_info
 
+logger.info("Getting a dictionary of exported resources mapped to types.")
 exported_res = library.debug()
 
 source_dct = {}
@@ -198,22 +302,30 @@ env_list = [
     env_enum.KNETAPP,
 ]
 
-
+logger.info("Starting to process protection sources for the cluster. Total sources to process: {}.".format(len(cluster_dict["sources"])))
 for source in cluster_dict["sources"]:
+    logger.info("  - Processing source with ID: {} and environment: {}.".format(source.protection_source.id, source.protection_source.environment))
+
     _id = source.protection_source.id
     env = source.protection_source.environment
+    logger.info("  - Checking if the source type is supported for export.")
     if env not in env_list:
+        logger.debug("    |- Skipping, not in the list of supported source types (environments).")
         continue
 
+    logger.info("  - Checking if the source type is Cassandra (API must be handled differently).")
     if env == "kCassandra":
+        logger.debug("    |- Source type is Cassandra, generating API manually.")
         API = "public/protectionSources?id={}&environment={}".format(_id, env)
         _, resp = rest_obj.get(api=API)
         resp = json.loads(resp)
         source_dct[_id] = resp
     else:
+        logger.debug("    |- Source type is not Cassandra, getting protection source info using the default process.")
         res = library.get_protection_source_by_id(cohesity_client, _id, env)
         source_dct[_id] = res.nodes
 
+    logger.info("  - Checking source type to export protection source details appropriately.")
     if env in [
         env_enum.KVIEW,
         env_enum.K_VMWARE,
@@ -222,28 +334,36 @@ for source in cluster_dict["sources"]:
         env_enum.K_HYPERV,
         env_enum.KNETAPP,
     ]:
+        logger.debug("    |- Source type is: View, VMware, Isilon, Cassandra, Hyper-V or NetApp. Name retrieval is simple, using dot notation.")
         name = source.protection_source.name
         exported_res["Protection Sources"].append(name)
     else:
+        logger.debug("    |- Source type is different from the standard list. Need to iterate the sources list (nodes) and pull the source name.")
         if res.nodes:
             for nodes in res.nodes:
                 name = nodes["protectionSource"]["name"]
                 if name not in exported_res["Protection Sources"]:
                     exported_res["Protection Sources"].append(name)
+
+logger.info("Adding all sources dictionary into the cluster export config dictionary.")
 cluster_dict["source_dct"] = source_dct
 
 # Fetch all the gflags from the cluster.
+logger.info("Fetching all gflags.")
 code, resp = library.gflag(cluster_vip, username, password, domain)
 
 if code == 200:
+    logger.info("Gflags pulled succesfylly. Adding to cluster config object.")
     cluster_dict["gflag"] = resp.decode("utf-8")
 else:
     # Incase of cluster versions less than 6.3, API for fetching gflags is not
     # available.
+    logger.info("Gflags API not available or supported. Empty gflag value added.")
     cluster_dict["gflag"] = []
 
 # File path is created using location and filename provided. If location and
 # filename is not provided by user, default location and filename is used.
+logger.info("Creating export file.")
 exported_config_file = "export-config-%s-%s" % (
     cluster_dict["cluster_config"].name,
     datetime.datetime.now().strftime("%Y-%m-%d-%H-%M"),
@@ -256,6 +376,7 @@ elif file_name:
     exported_config_file = file_name
 
 # Fetch all the resources and store the data in file.
+logger.info("Serializing (dumping) all configuration information into the file.")
 pickle.dump(cluster_dict, open(exported_config_file, "wb"))
 
 logger.info("Please find the exported resources summary.\n")
