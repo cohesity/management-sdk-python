@@ -2,7 +2,7 @@
 # Copyright 2023 Cohesity Inc.
 
 import cohesity_management_sdk.models.credentials
-import cohesity_management_sdk.models.key_value_pair
+import cohesity_management_sdk.models.key_value_str_pair
 import cohesity_management_sdk.models.uda_source_capabilities
 
 
@@ -119,7 +119,7 @@ class UdaConnectParams(object):
         if dictionary.get('sourceRegistrationArguments') != None:
             source_registration_arguments = list()
             for structure in dictionary.get('sourceRegistrationArguments'):
-                source_registration_arguments.append(cohesity_management_sdk.models.key_value_pair.KeyValuePair.from_dictionary(structure))
+                source_registration_arguments.append(cohesity_management_sdk.models.key_value_str_pair.KeyValueStrPair.from_dictionary(structure))
         source_type = dictionary.get('sourceType')
 
         # Return an object of this model
