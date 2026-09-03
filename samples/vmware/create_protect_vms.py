@@ -29,7 +29,7 @@ vcenter_client = connect_vcenter()
 #### VMWARE Methods ####
 def get_vms(vmfolder):
     """
-    Test method ot get VMs from Cohesity
+    Test method to get VMs from Cohesity
     :param vmfolder:
     :return:
     """
@@ -96,7 +96,7 @@ def check_protection_job_exists(protect_job_name):
 def add_vms_to_protection_job(vm_id_list, resp):
     """
     Method to add VM list to the protection Job. This method assumes the
-    prtection job is already protecting existing VMs in vCenter.
+    protection job is already protecting existing VMs in vCenter.
     :param vm_list(list): List of VMs to be protected.
     :param pj_name(str): Name of protection job.
     :return: None
@@ -128,7 +128,7 @@ def create_protection_job(vm_ids, vcenter_id):
     except APIException as ex:
         print("Unable to create Protection Job due to: %s" %
               ex.context.response.raw_body)
-    print("Successfully added VMs added to protection job.")
+    print("Successfully added VMs to protection job.")
 
 def _get_protection_policy_id(policy_name):
     """

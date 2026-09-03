@@ -66,8 +66,8 @@ class RegisterApplicationServersParameters(object):
             'kO365PublicFolders' indicates the Office365 PublicFolders
             Protection Source environment.
         encryption_key (string): If set, user has encrypted the credential with
-            'user_ecryption_key'. It is assumed that credentials are first
-            encrypted using internal magento key and then encrypted using user
+            'user_encryption_key'. It is assumed that credentials are first
+            encrypted using internal magneto key and then encrypted using user
             encryption key.
         has_persistent_agent (bool): Set this to true if a persistent agent is
             running on the host. If this is specified, then credentials would
