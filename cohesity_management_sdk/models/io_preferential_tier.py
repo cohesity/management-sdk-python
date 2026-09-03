@@ -17,36 +17,36 @@ class IoPreferentialTier(object):
             ApolloWalIOPreferentialTierEnum): Specifies the preferred storage
             tier used by Apollo as its actions WAL.
         athena_io_preferential_tier (list of AthenaIOPreferentialTierEnum):
-            Specifies the list of perferred storage tiers used by Athena.
+            Specifies the list of preferred storage tiers used by Athena.
         athena_slower_io_preferential_tier (list of
             AthenaSlowerIOPreferentialTierEnum): Specifies the list of
-            perferred storage tiers used by Athena for slower storage.
+            preferred storage tiers used by Athena for slower storage.
         cloud_chunk_repo_io_preferential_tier (list of
             CloudChunkRepoIOPreferentialTierEnum): Specifies the list of
-            perferred storage tiers used by cloud chunk repository.
+            preferred storage tiers used by cloud chunk repository.
         down_tier_usage_percent_thresholds (list of int): Specifies the usage
-            percentage thresholds for the correponding storage tier.
+            percentage thresholds for the corresponding storage tier.
         groot_io_preferential_tier (list of GrootIOPreferentialTierEnum):
             Specifies the preferred storage tier used by Groot as its working
             directory.
         hydra_downtier_io_preferential_tier (list of
             HydraDowntierIOPreferentialTierEnum): Specifies the list of
-            perferred storage tiers used by Hydra for offloading.
+            preferred storage tiers used by Hydra for offloading.
         hydra_io_preferential_tier (list of HydraIOPreferentialTierEnum):
-            Specifies the list of perferred storage tiers used by Hydra.
+            Specifies the list of preferred storage tiers used by Hydra.
         librarian_io_preferential_tier (list of
-            LibrarianIOPreferentialTierEnum): Specifies the list of perferred
+            LibrarianIOPreferentialTierEnum): Specifies the list of preferred
             storage tiers used by librarian.
         random_io_preferential_tier (list of RandomIOPreferentialTierEnum):
-            Specifies the order of perferred storage tiers for random IO
+            Specifies the order of preferred storage tiers for random IO
             operations.
         scribe_io_preferential_tier (list of ScribeIOPreferentialTierEnum):
-            Specifies the list of perferred storage tiers used by Scribe.
+            Specifies the list of preferred storage tiers used by Scribe.
         sequential_io_preferential_tier (list of
             SequentialIOPreferentialTierEnum): Specifies the preferred storage
             tier for sequential IO operations.
         yoda_io_preferential_tier (list of YodaIOPreferentialTierEnum):
-            Specifies the list of perferred storage tiers used by Yoda.
+            Specifies the list of preferred storage tiers used by Yoda.
     """
 
 

@@ -80,7 +80,7 @@ class RegisteredAppInfo(object):
             Protection Source environment.
         host_settings_check_results (list of HostSettingsCheckResult):
             Specifies the list of check results internally performed to verify
-            status of various services such as 'AgnetRunning',
+            status of various services such as 'AgentRunning',
             'SQLWriterRunning' etc.
         refresh_error_message (string): Specifies a message if there was any
             error encountered during the last rebuild of the application tree.
